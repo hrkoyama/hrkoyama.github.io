@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-11",
+  "updated_on": "2026-11-22",
   "scope": "関連資料の書誌情報のみ。本文・スキャン画像・PDFは非公開。",
   "entries": [
     {
@@ -13,7 +13,8 @@
       "kind": "書籍",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b002",
@@ -26,7 +27,8 @@
       "kind": "書籍",
       "note": "日本語版の２分冊。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b004",
@@ -38,7 +40,8 @@
       "kind": "書籍",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b005",
@@ -51,7 +54,8 @@
       "kind": "書籍",
       "note": "２分冊。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b007",
@@ -63,7 +67,8 @@
       "kind": "書籍",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b008",
@@ -75,7 +80,8 @@
       "kind": "書籍",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b009",
@@ -88,7 +94,8 @@
       "kind": "書籍",
       "note": "２分冊。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b011",
@@ -100,7 +107,8 @@
       "kind": "書籍",
       "note": "見出しのみ確認。出典書籍と版は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b012",
@@ -112,7 +120,8 @@
       "kind": "書籍",
       "note": "",
       "title_status": "identified",
-      "reference_url": "https://www.informit.com/store/patterns-for-parallel-programming-9780132651189"
+      "reference_url": "https://www.informit.com/store/patterns-for-parallel-programming-9780132651189",
+      "related_notebooks": []
     },
     {
       "id": "b013",
@@ -124,7 +133,8 @@
       "kind": "記事",
       "note": "名古屋大学大型計算機センターニュース Vol.31 No.4。",
       "title_status": "identified",
-      "reference_url": "https://icts.nagoya-u.ac.jp/ja/center/pub/news90-02.html"
+      "reference_url": "https://icts.nagoya-u.ac.jp/ja/center/pub/news90-02.html",
+      "related_notebooks": []
     },
     {
       "id": "b014",
@@ -137,7 +147,8 @@
       "kind": "書籍",
       "note": "同じ章の２資料。章題・内容と出版社目次を照合。手元の版の確定は継続。",
       "title_status": "identified",
-      "reference_url": "https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-8032-8.htm"
+      "reference_url": "https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-8032-8.htm",
+      "related_notebooks": []
     },
     {
       "id": "b016",
@@ -149,7 +160,8 @@
       "kind": "記事",
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b017",
@@ -161,7 +173,8 @@
       "kind": "記事",
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b018",
@@ -173,7 +186,8 @@
       "kind": "記事",
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b019",
@@ -185,7 +199,8 @@
       "kind": "記事",
       "note": "先頭記事の表題・著者を記載。後続記事の書誌は確認中。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b020",
@@ -197,7 +212,8 @@
       "kind": "講義資料",
       "note": "仮題。資料全体の正式な表題・著者は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b022",
@@ -209,7 +225,8 @@
       "kind": "講義資料",
       "note": "副題：宇宙におけるX線と原子、電子との相互作用。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b023",
@@ -221,7 +238,8 @@
       "kind": "演習・試験",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b025",
@@ -233,7 +251,8 @@
       "kind": "講義資料",
       "note": "先頭の見出しを記載。資料全体の正式な表題は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b026",
@@ -245,7 +264,8 @@
       "kind": "講義資料",
       "note": "先頭の見出しを記載。資料全体の正式な表題は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b027",
@@ -257,7 +277,8 @@
       "kind": "演習・試験",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b029",
@@ -269,7 +290,17 @@
       "kind": "演習・試験",
       "note": "先頭ページ余白の氏名を転記。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n031",
+          "relation": "exercise_solution"
+        },
+        {
+          "notebook_id": "n040",
+          "relation": "exercise_solution"
+        }
+      ]
     },
     {
       "id": "b030",
@@ -281,7 +312,17 @@
       "kind": "演習・試験",
       "note": "表題の「電磁気学演習（佐々）」から転記。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n032",
+          "relation": "exercise_solution"
+        },
+        {
+          "notebook_id": "n045",
+          "relation": "exercise_solution"
+        }
+      ]
     },
     {
       "id": "b036",
@@ -293,7 +334,17 @@
       "kind": "演習・試験",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n035",
+          "relation": "exercise_solution"
+        },
+        {
+          "notebook_id": "n044",
+          "relation": "exercise_solution"
+        }
+      ]
     },
     {
       "id": "b037",
@@ -309,7 +360,17 @@
       "creator_source": {
         "type": "owner_confirmation",
         "confirmed_on": "2026-11-11"
-      }
+      },
+      "related_notebooks": [
+        {
+          "notebook_id": "n034",
+          "relation": "exercise_solution"
+        },
+        {
+          "notebook_id": "n043",
+          "relation": "exercise_solution"
+        }
+      ]
     },
     {
       "id": "b038",
@@ -321,7 +382,44 @@
       "kind": "演習・試験",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
+    },
+    {
+      "id": "b042",
+      "source_ids": [
+        "n042"
+      ],
+      "title": "1993年度前期 Report 問題（物理数学演習レポートに添付）",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "原本に添付された配布問題。科目名は保存されているノート名からの補足で、問題自体の正式科目名・講師名は未確認。",
+      "title_status": "identified_with_archive_context",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n042",
+          "relation": "exercise_solution"
+        }
+      ]
+    },
+    {
+      "id": "b043",
+      "source_ids": [
+        "n043"
+      ],
+      "title": "統計熱力学演習II組レポート問題",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "自筆ノートと同じ原本の先頭に添付。講師名・年度は未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n043",
+          "relation": "same_source"
+        }
+      ]
     },
     {
       "id": "b046",
@@ -334,7 +432,8 @@
       "kind": "講義資料",
       "note": "前半の表題で確認。同題の連続資料をまとめて記載。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b048",
@@ -346,7 +445,8 @@
       "kind": "講義資料",
       "note": "仮題。資料全体の正式な表題・著者は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b050",
@@ -358,7 +458,13 @@
       "kind": "演習・試験",
       "note": "提出先欄の教員姓を記載。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n049",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b052",
@@ -370,7 +476,13 @@
       "kind": "演習・試験",
       "note": "提出先欄で氏名を確認。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n051",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b053",
@@ -382,19 +494,49 @@
       "kind": "講義資料",
       "note": "先頭の章見出しを記載。資料全体の正式な表題は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n051",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b055",
       "source_ids": [
         "n055"
       ],
-      "title": "実験物理学B レポート問題",
+      "title": "実験物理学B（中村）レポート問題",
       "creator": "中村（姓のみ）",
       "kind": "演習・試験",
-      "note": "表題の「実験物理学B（中村）」から転記。",
+      "note": "担当姓は表題で確認。舞原担当の課題とは別の資料として記載。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n054",
+          "relation": "course_material"
+        }
+      ]
+    },
+    {
+      "id": "b055-maihara",
+      "source_ids": [
+        "n055"
+      ],
+      "title": "実験物理学B（舞原）レポート問題（1992年度後期）",
+      "creator": "舞原（姓のみ）",
+      "kind": "演習・試験",
+      "note": "中村担当の課題とは別の担当・表題として記載。フルネームは未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n054",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b059",
@@ -406,7 +548,8 @@
       "kind": "講義資料",
       "note": "仮題。資料全体の正式な表題・著者は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b069",
@@ -418,7 +561,8 @@
       "kind": "講義資料",
       "note": "仮題。先頭のゲート一覧を確認。メーカーや資料全体の著者は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b071",
@@ -428,9 +572,23 @@
       "title": "近代物理学1 前期試験問題（1989年度）",
       "creator": "小玉（姓のみ）",
       "kind": "演習・試験",
-      "note": "担当教官欄で確認。後続資料は個別確認中。",
+      "note": "担当と年度はこの試験の記載。同じ保存資料には1991年度の試験と別の手書きページも含まれます。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
+    },
+    {
+      "id": "b071-1991",
+      "source_ids": [
+        "n071"
+      ],
+      "title": "近代物理学1 前期試験問題（1991年度）",
+      "creator": "小玉（姓のみ）",
+      "kind": "演習・試験",
+      "note": "1989年度の試験と同じ保存資料に含まれる別年度の試験。N070の担当とは未照合。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b073",
@@ -442,7 +600,8 @@
       "kind": "演習・試験",
       "note": "先頭試験問題の氏名を記載。後続資料は個別確認中。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b076",
@@ -451,14 +610,20 @@
       ],
       "title": "Maxwell方程式",
       "creator": "恒藤敏彦",
-      "kind": "講義資料",
-      "note": "先頭見出しを記載。著者名は所蔵者の確認（2026年11月11日）。",
+      "kind": "記事",
+      "note": "署名入りの解説記事。掲載誌・刊行年は未確認。授業配布資料であったかは未確認。",
       "title_status": "identified",
       "reference_url": null,
       "creator_source": {
-        "type": "owner_confirmation",
-        "confirmed_on": "2026-11-11"
-      }
+        "type": "printed_signature_and_owner_confirmation",
+        "confirmed_on": "2026-11-22"
+      },
+      "related_notebooks": [
+        {
+          "notebook_id": "n075",
+          "relation": "reference_article"
+        }
+      ]
     },
     {
       "id": "b077",
@@ -470,7 +635,8 @@
       "kind": "書籍",
       "note": "出版情報ページで著者・書名を確認。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b078",
@@ -482,7 +648,8 @@
       "kind": "講義資料",
       "note": "講義案内の表題・講師名で確認。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b079",
@@ -494,7 +661,26 @@
       "kind": "講義資料",
       "note": "引用文献の著者と、資料自体の作成者を区別。作成者は未確認。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
+    },
+    {
+      "id": "b080",
+      "source_ids": [
+        "n080"
+      ],
+      "title": "恒星物理学特論II レポート問題",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "自筆ノートと同じ原本に添付。課題自体には講師名・年度の記載を確認できていません。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n080",
+          "relation": "same_source"
+        }
+      ]
     },
     {
       "id": "b084",
@@ -506,7 +692,8 @@
       "kind": "講義資料",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b088",
@@ -518,7 +705,8 @@
       "kind": "演習・試験",
       "note": "内容を示す仮題。正式な表題・作成者は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b089",
@@ -530,7 +718,8 @@
       "kind": "書籍",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b091",
@@ -540,9 +729,15 @@
       "title": "星間物理学 ― References for Interstellar Medium",
       "creator": "中川貴雄",
       "kind": "講義資料",
-      "note": "先頭の文献案内の表題・氏名で確認。",
+      "note": "文献案内に中川貴雄の氏名。後続資料に「星間物理特論III」および1999年の記載。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n090",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b092",
@@ -555,7 +750,8 @@
       "kind": "講義資料",
       "note": "同じ講義予定を持つ２資料をまとめて記載。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b095",
@@ -567,7 +763,8 @@
       "kind": "論文",
       "note": "修士論文。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b096",
@@ -579,7 +776,8 @@
       "kind": "講義資料",
       "note": "",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b097",
@@ -591,7 +789,8 @@
       "kind": "論文",
       "note": "修士論文。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b099",
@@ -601,9 +800,15 @@
       "title": "パルサー・宇宙線・活動銀河中心核関連の講義資料",
       "creator": null,
       "kind": "講義資料",
-      "note": "仮題。先頭の項目一覧を記載。作成者は未確認。",
+      "note": "仮題。対応する自筆ノートの講師は高原文郎。資料自体の作成者は未確認。",
       "title_status": "tentative",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n098",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b100",
@@ -618,7 +823,8 @@
       "kind": "講義資料",
       "note": "前後２分冊のTIFF・PDF版をまとめて記載。前半の表題・講師名で確認。",
       "title_status": "identified",
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     },
     {
       "id": "b102",
@@ -634,7 +840,8 @@
       "creator_source": {
         "type": "owner_confirmation",
         "confirmed_on": "2026-11-11"
-      }
+      },
+      "related_notebooks": []
     },
     {
       "id": "b103",
@@ -650,7 +857,8 @@
       "creator_source": {
         "type": "owner_confirmation",
         "confirmed_on": "2026-11-11"
-      }
+      },
+      "related_notebooks": []
     },
     {
       "id": "b109",
@@ -667,7 +875,8 @@
         "confirmed_on": "2026-11-11",
         "body_checked": false
       },
-      "reference_url": null
+      "reference_url": null,
+      "related_notebooks": []
     }
   ]
 }

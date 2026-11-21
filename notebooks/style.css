@@ -46,3 +46,6 @@ summary:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
  .masthead>nav a{min-height:44px;white-space:normal}
  .masthead>.edition{display:none}
 }
+
+/* Curated bibliographic relationships; material bodies remain private. */
+.material-records{list-style:none;padding:0;margin:24px 0;display:grid;gap:18px}.material-records li{border-top:1px solid var(--line);padding-top:16px}.material-records a{font-weight:600;text-decoration:underline;overflow-wrap:anywhere}.material-records .material-relation,.material-records .material-creator{font: .875rem/1.7 var(--sans);margin:7px 0;color:var(--muted)}.related-notebooks{border-top:1px solid var(--line);margin-top:16px;padding-top:12px}.related-notebooks h3{font:500 .875rem/1.6 var(--sans);margin:0 0 6px}.related-notebooks ul{padding-left:20px;margin:0}.related-notebooks li{margin:8px 0}.related-notebooks a{font-size:.875rem;line-height:1.8;text-decoration:underline;overflow-wrap:anywhere}.related-notebooks span{display:block;color:var(--muted);font-size:.75rem;line-height:1.7}.bibliographic-card{scroll-margin-top:20px}.bibliographic-card:target{outline:2px solid var(--green);outline-offset:3px}

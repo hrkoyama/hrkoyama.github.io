@@ -48,9 +48,10 @@
     $('book-total').textContent = String(books.length);
     $('page-total').textContent = countPages(books).toLocaleString(english() ? 'en-US' : 'ja-JP');
     $('search').placeholder = english() ? 'Subject, instructor, year or original filename' : '科目・講師名・年・元ファイル名';
-    const query = $('search').value.trim().toLocaleLowerCase();
+    const normalize = value => value.normalize('NFKC').toLocaleLowerCase().replace(/\s+/g, '');
+    const terms = $('search').value.normalize('NFKC').trim().split(/\s+/).filter(Boolean).map(normalize);
     const shown = books.filter(book => (group === 'all' || book.group === group) &&
-      `${book.display_title} ${book.source} ${book.id} ${book.lecture_title || ''} ${book.lecturer || ''} ${book.lecture_year || ''} ${university(book).join(' ')}`.toLocaleLowerCase().includes(query));
+      terms.every(term => normalize(`${book.display_title} ${book.source} ${book.id} ${book.lecture_title || ''} ${book.lecturer || ''} ${book.lecture_year || ''} ${university(book).join(' ')} ${(book.related_materials || []).map(material => `${material.title} ${material.creator || ''}`).join(' ')}`).includes(term)));
     wording($('result-count'), `${shown.length} 冊 / ${countPages(shown).toLocaleString('ja-JP')} ページ`, `${shown.length} notebooks / ${countPages(shown).toLocaleString('en-US')} pages`);
     const grid = $('library-grid');
     grid.replaceChildren();
@@ -79,7 +80,7 @@
       const pages = label('p', `${book.frames.length} ページ`, `${book.frames.length} pages`, 'card-pages');
       const instructorJa = book.lecturer || '講師未確認';
       const instructorEn = book.lecturer || 'Instructor unconfirmed';
-      const provisional = book.metadata_status === 'from_original';
+      const provisional = book.metadata_status === 'from_original' || book.lecture_year_status === 'provisional';
       const yearJa = book.lecture_year ? `${book.lecture_year}年${provisional ? '（仮）' : ''}` : '年未確認';
       const yearEn = book.lecture_year ? `${book.lecture_year}${provisional ? ' (provisional)' : ''}` : 'Year unconfirmed';
       const meta = label('p', `${instructorJa} / ${yearJa}`, `${instructorEn} / ${yearEn}`, 'card-meta');

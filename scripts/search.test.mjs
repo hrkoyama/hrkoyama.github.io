@@ -26,6 +26,17 @@ test('notebook metadata resolves individual viewer IDs, and policy / thermal res
   assert.equal(search('熱的不安定性')[0].url,'/the-art-of-thermal-instability/');
   assert.ok(search('Poisson').slice(0,5).some(row=>row.url.startsWith('/numerical-methods-atlas/')));
 });
+test('confirmed material metadata finds its own notebook without indexing private contents',()=>{
+  for(const query of ['千葉 柾司','膨張宇宙における構造形成']){
+    assert.ok(search(query).some(row=>row.url==='/notebooks/notebook.html?id=n051'),query);
+  }
+  assert.ok(search('Maxwell方程式').some(row=>row.url==='/notebooks/notebook.html?id=n075'));
+  const interstellar=data.documents.find(row=>row.url==='/notebooks/notebook.html?id=n090');
+  assert.ok(interstellar.text.includes('1999')&&interstellar.text.includes('仮入力'));
+  const nuclear=data.documents.find(row=>row.url==='/notebooks/notebook.html?id=n049');
+  assert.equal(nuclear.title,'原子核物理学');
+  assert.ok(!JSON.stringify(data).includes('private_reason'));
+});
 test('unknown and empty queries do not leak arbitrary fallback results',()=>{
   assert.deepEqual(search('zxqvnotfound123456789'),[]);
   assert.deepEqual(search('  '),[]);

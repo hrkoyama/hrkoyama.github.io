@@ -19,16 +19,33 @@
  wording($('book-id'),`ノートID：${book.id.toUpperCase()}`,`Notebook ID: ${book.id.toUpperCase()}`);
  wording($('book-source'),`保存元：${book.source}`,`Original location: ${book.source}`);
  const university=groupNames[book.group]||[book.group,book.group];wording($('book-group'),university[0],university[1]);
- const provisional=book.lecture_year&&book.metadata_status==='from_original';
- wording($('book-status'),`講師名：${book.lecturer||'未確認'}　／　年：${book.lecture_year?book.lecture_year+'年':'未確認'}${provisional?'　（原本から仮入力）':''}`,`Instructor: ${book.lecturer||'unconfirmed'} / Year: ${book.lecture_year||'unconfirmed'}${provisional?' (provisional, from the original)':''}`);
+ const provisional=book.lecture_year&&(book.metadata_status==='from_original'||book.lecture_year_status==='provisional');
+ wording($('book-status'),`講師名：${book.lecturer||'未確認'}　／　年：${book.lecture_year?book.lecture_year+'年':'未確認'}${provisional?(book.lecture_year_basis?'　（配布資料との照合から仮入力）':'　（原本から仮入力）'):''}`,`Instructor: ${book.lecturer||'unconfirmed'} / Year: ${book.lecture_year||'unconfirmed'}${provisional?(book.lecture_year_basis?' (provisional, from matched materials)':' (provisional, from the original)'):''}`);
  wording($('book-count'),`収録 ${frames.length} ページ / 原本 ${book.source_pages} ページ`,`${frames.length} published pages / ${book.source_pages} original pages`);
  $('page-count').textContent=String(frames.length).padStart(2,'0');$('book-pdf').href=book.pdf;
  $('lecture-title').textContent=book.lecture_title||'未確認';$('lecturer').textContent=book.lecturer||'未確認';
- $('lecture-year').textContent=book.lecture_year?`${book.lecture_year}年${book.metadata_status==='from_original'?'（原本の日付から仮入力）':''}`:'未確認';
+ $('lecture-year').textContent=book.lecture_year?`${book.lecture_year}年${book.lecture_year_basis?'（配布資料との照合から仮入力）':book.metadata_status==='from_original'?'（原本の日付から仮入力）':''}`:'未確認';
  $('lecture-period').textContent=book.lecture_period||'—';$('lecture-notes').textContent=book.notes||'—';
- $('metadata-explanation').textContent=(book.metadata_sources||[]).some(s=>s.source==='user')?'ノート作成者が確認した情報を反映しています。原本の日付から仮入力した年は、その旨を併記しています。':(book.metadata_sources||[]).some(s=>s.source==='related_handout')?'対応する配布プリントの記載から講師名を転記しています。フルネームが確認できていないものは姓のみを表示しています。':book.metadata_status==='from_original'?'原本の見出し・氏名・日付から仮入力しています。正式な講義情報は、確認できたものから更新します。':'講義名・講師名・年は、確認できたものから追記します。';
+ $('metadata-explanation').textContent=(book.metadata_sources||[]).some(s=>s.source==='user')?'ノート作成者が確認した情報を反映しています。年を原本や対応資料から仮入力した場合は、その旨を併記しています。':(book.metadata_sources||[]).some(s=>s.source==='related_handout')?'原本と対応する配布資料から情報を確認しています。姓のみの記載や、年の仮入力はその旨を併記しています。':book.metadata_status==='from_original'?'原本の見出し・氏名・日付から仮入力しています。正式な講義情報は、確認できたものから更新します。':'講義名・講師名・年は、確認できたものから追記します。';
  const fieldNames={lecture_title:'講義名',lecturer:'講師名',lecture_year:'年'};
- for(const s of book.metadata_sources||[]){const li=document.createElement('li');if(s.source==='user'){li.textContent=`${fieldNames[s.field]||s.field}：作成者の確認「${s.value}」`;}else if(s.source==='related_handout'){li.textContent=`${fieldNames[s.field]||s.field}：配布プリント「${s.source_label}」p.${s.source_pages.join('・')}の記載「${s.excerpt}」から転記（姓のみ）`;}else{li.textContent=`${fieldNames[s.field]||s.field}：原本 p.${s.source_pages.join('・')}「${s.excerpt}」`;if(s.source_pages.some(p=>!frames.some(f=>f.source_page===p)))li.textContent+='（該当ページは閲覧版未収録）';}$('metadata-sources').append(li);}
+ for(const s of book.metadata_sources||[]){const li=document.createElement('li');if(s.source==='user'){li.textContent=`${fieldNames[s.field]||s.field}：作成者の確認「${s.value}」`;}else if(s.source==='related_handout'){li.textContent=`${fieldNames[s.field]||s.field}：配布プリント「${s.source_label}」p.${s.source_pages.join('・')}の記載「${s.excerpt}」から確認${s.field==='lecturer'&&(s.name_scope==='surname'||s.status?.includes('姓のみ'))?'（姓のみ）':''}${s.status?.includes('仮入力')?'（仮入力）':''}`;}else{li.textContent=`${fieldNames[s.field]||s.field}：原本 p.${s.source_pages.join('・')}「${s.excerpt}」`;if(s.source_pages.some(p=>!frames.some(f=>f.source_page===p)))li.textContent+='（該当ページは閲覧版未収録）';}$('metadata-sources').append(li);}
+
+ // Only curated, public-safe bibliographic metadata is available here.
+ if (book.related_materials?.length) {
+  const section=document.createElement('section');section.className='lecture-info related-materials';section.id='related-materials';
+  const put=(tag,ja,en)=>{const el=document.createElement(tag);el.dataset.uiJa=ja;el.dataset.uiEn=en;el.textContent=typeof english==='function'&&english()?en:ja;return el;};
+  const title=put('h2','対応する資料の目録','Related material records');
+  section.append(title,put('p','資料の本文・画像・PDFは非公開です。リンク先では表題・氏名と、自筆ノートとの関係を紹介しています。','The material text, images and PDFs remain private. Links show bibliographic information and its relationship to this notebook.'));
+  const list=document.createElement('ul');list.className='material-records';
+  for(const material of book.related_materials){
+   const item=document.createElement('li');const a=document.createElement('a');a.href=`bibliography.html#${encodeURIComponent(material.id)}`;a.textContent=material.title;
+   const relation=document.createElement('p');relation.className='material-relation';relation.textContent=material.label;
+   item.append(a,relation);
+   if(material.creator){const person=document.createElement('p');person.className='material-creator';person.textContent=`資料の氏名表記：${material.creator}`;item.append(person);}
+   list.append(item);
+  }
+  section.append(list);$('lecture-info').after(section);
+ }
  wording($('selection-note'),frames.length===book.source_pages?'原本のページ順で収録しています。':'原本の一部を収録。ページ番号は原本に対応します。',frames.length===book.source_pages?'Pages retain their original order.':'Selected pages only; numbering follows the original notebook.');
  const buttons=[];
  frames.forEach((f,i)=>{
