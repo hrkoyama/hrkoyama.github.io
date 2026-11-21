@@ -42,7 +42,7 @@ def main():
     site = args.site_dir.resolve()
     links = json.loads((site / 'material-links.json').read_text())
     assert set(links) == {'schema_version', 'updated_on', 'scope', 'relation_labels', 'links'}
-    assert set(links['relation_labels']) == {'exercise_solution', 'course_material', 'same_source', 'reference_article'}
+    assert set(links['relation_labels']) == {'exercise_solution', 'course_material', 'same_source', 'reference_article', 'reference_book'}
     catalog = read_catalog((site / 'catalog.js').read_text())
     books = {n['id']: n for n in catalog['notebooks']}
     bibliography = json.loads((site / 'bibliography.json').read_text())
@@ -93,6 +93,10 @@ def main():
     assert materials['b099']['creator'] is None, 'A matching course does not establish material authorship'
     assert materials['b076']['kind'] == '記事'
     assert books['n090']['lecture_year_status'] == 'provisional'
+    assert books['n063']['lecture_year'] == 1993 and books['n063']['lecture_year_status'] == 'confirmed'
+    assert books['n064']['lecture_year'] == 1992 and books['n064']['lecture_year_status'] == 'provisional'
+    assert books['n056']['lecturer'] == '九後汰一郎・政池明'
+    assert {(n, m) for n, m in pairs if m == 'b014'} == {('n063', 'b014')}
     if args.baseline_ref:
         repo = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], cwd=site, text=True).strip())
         rel = (site / 'catalog.js').relative_to(repo).as_posix()

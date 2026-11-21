@@ -19,14 +19,17 @@
  wording($('book-id'),`ノートID：${book.id.toUpperCase()}`,`Notebook ID: ${book.id.toUpperCase()}`);
  wording($('book-source'),`保存元：${book.source}`,`Original location: ${book.source}`);
  const university=groupNames[book.group]||[book.group,book.group];wording($('book-group'),university[0],university[1]);
- const provisional=book.lecture_year&&(book.metadata_status==='from_original'||book.lecture_year_status==='provisional');
- wording($('book-status'),`講師名：${book.lecturer||'未確認'}　／　年：${book.lecture_year?book.lecture_year+'年':'未確認'}${provisional?(book.lecture_year_basis?'　（配布資料との照合から仮入力）':'　（原本から仮入力）'):''}`,`Instructor: ${book.lecturer||'unconfirmed'} / Year: ${book.lecture_year||'unconfirmed'}${provisional?(book.lecture_year_basis?' (provisional, from matched materials)':' (provisional, from the original)'):''}`);
+ const provisional=book.lecture_year_status?book.lecture_year_status==='provisional':book.metadata_status==='from_original';
+ const yearJa=book.lecture_year?`${book.lecture_year}年${provisional?'（推定）':''}`:'未確認';
+ const yearEn=book.lecture_year?`${book.lecture_year}${provisional?' (provisional)':''}`:'unconfirmed';
+ wording($('book-status'),`講師名：${book.lecturer||'未確認'}　／　年：${yearJa}`,`Instructor: ${book.lecturer||'unconfirmed'} / Year: ${yearEn}`);
  wording($('book-count'),`収録 ${frames.length} ページ / 原本 ${book.source_pages} ページ`,`${frames.length} published pages / ${book.source_pages} original pages`);
  $('page-count').textContent=String(frames.length).padStart(2,'0');$('book-pdf').href=book.pdf;
  $('lecture-title').textContent=book.lecture_title||'未確認';$('lecturer').textContent=book.lecturer||'未確認';
- $('lecture-year').textContent=book.lecture_year?`${book.lecture_year}年${book.lecture_year_basis?'（配布資料との照合から仮入力）':book.metadata_status==='from_original'?'（原本の日付から仮入力）':''}`:'未確認';
+ wording($('lecture-year'),yearJa,yearEn);
  $('lecture-period').textContent=book.lecture_period||'—';$('lecture-notes').textContent=book.notes||'—';
- $('metadata-explanation').textContent=(book.metadata_sources||[]).some(s=>s.source==='user')?'ノート作成者が確認した情報を反映しています。年を原本や対応資料から仮入力した場合は、その旨を併記しています。':(book.metadata_sources||[]).some(s=>s.source==='related_handout')?'原本と対応する配布資料から情報を確認しています。姓のみの記載や、年の仮入力はその旨を併記しています。':book.metadata_status==='from_original'?'原本の見出し・氏名・日付から仮入力しています。正式な講義情報は、確認できたものから更新します。':'講義名・講師名・年は、確認できたものから追記します。';
+ $('metadata-explanation').textContent=(book.metadata_sources||[]).some(s=>s.source==='user')?'ノート作成者が確認した情報を反映しています。年を原本や対応資料から仮入力した場合は、その旨を併記しています。':(book.metadata_sources||[]).some(s=>s.source==='related_handout')?'原本と対応する配布資料から情報を確認しています。姓のみの記載や、年の仮入力はその旨を併記しています。':book.metadata_status==='from_original'?'原本の見出し・氏名・日付をもとに整理しています。推定の年は区別して表示しています。':'講義名・講師名・年は、確認できたものから追記します。';
+ if(book.lecture_year_basis)$('metadata-explanation').textContent+=' '+book.lecture_year_basis;
  const fieldNames={lecture_title:'講義名',lecturer:'講師名',lecture_year:'年'};
  for(const s of book.metadata_sources||[]){const li=document.createElement('li');if(s.source==='user'){li.textContent=`${fieldNames[s.field]||s.field}：作成者の確認「${s.value}」`;}else if(s.source==='related_handout'){li.textContent=`${fieldNames[s.field]||s.field}：配布プリント「${s.source_label}」p.${s.source_pages.join('・')}の記載「${s.excerpt}」から確認${s.field==='lecturer'&&(s.name_scope==='surname'||s.status?.includes('姓のみ'))?'（姓のみ）':''}${s.status?.includes('仮入力')?'（仮入力）':''}`;}else{li.textContent=`${fieldNames[s.field]||s.field}：原本 p.${s.source_pages.join('・')}「${s.excerpt}」`;if(s.source_pages.some(p=>!frames.some(f=>f.source_page===p)))li.textContent+='（該当ページは閲覧版未収録）';}$('metadata-sources').append(li);}
 

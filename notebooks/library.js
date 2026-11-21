@@ -80,7 +80,7 @@
       const pages = label('p', `${book.frames.length} ページ`, `${book.frames.length} pages`, 'card-pages');
       const instructorJa = book.lecturer || '講師未確認';
       const instructorEn = book.lecturer || 'Instructor unconfirmed';
-      const provisional = book.metadata_status === 'from_original' || book.lecture_year_status === 'provisional';
+      const provisional = book.lecture_year_status ? book.lecture_year_status === 'provisional' : book.metadata_status === 'from_original';
       const yearJa = book.lecture_year ? `${book.lecture_year}年${provisional ? '（仮）' : ''}` : '年未確認';
       const yearEn = book.lecture_year ? `${book.lecture_year}${provisional ? ' (provisional)' : ''}` : 'Year unconfirmed';
       const meta = label('p', `${instructorJa} / ${yearJa}`, `${instructorEn} / ${yearEn}`, 'card-meta');

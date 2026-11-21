@@ -145,10 +145,15 @@
       "title": "大学演習 熱学・統計力学 ― 第5章「統計力学の原理」",
       "creator": "久保亮五 編",
       "kind": "書籍",
-      "note": "同じ章の２資料。章題・内容と出版社目次を照合。手元の版の確定は継続。",
+      "note": "同じ章の２資料。章題・内容と出版社目次を照合。手元の版の確定は継続。N063には参考書として書名の記載あり。",
       "title_status": "identified",
       "reference_url": "https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-8032-8.htm",
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n063",
+          "relation": "reference_book"
+        }
+      ]
     },
     {
       "id": "b016",
@@ -661,26 +666,36 @@
       "source_ids": [
         "n059"
       ],
-      "title": "ニュートリノ関連の配布資料",
+      "title": "ニュートリノ天文学関連の配布図表",
       "creator": null,
       "kind": "講義資料",
-      "note": "仮題。資料全体の正式な表題・著者は未確認。",
+      "note": "仮題。N058の講義との対応を確認。講師名・資料集の編者は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n058",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b069",
       "source_ids": [
         "n069"
       ],
-      "title": "論理回路・ゲート関連資料",
-      "creator": null,
+      "title": "TTL論理IC資料（74シリーズのピン配置・データシート）",
+      "creator": "Texas Instruments（収録データシートの発行元）",
       "kind": "講義資料",
-      "note": "仮題。先頭のゲート一覧を確認。メーカーや資料全体の著者は未確認。",
+      "note": "表題は資料集の内容を表す仮題。データシートの発行元を確認。配布資料の編集者は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n068",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b071",

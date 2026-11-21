@@ -6,7 +6,8 @@
     "exercise_solution": "課題と自筆解答の対応確認",
     "course_material": "講義資料との対応確認",
     "same_source": "同じ原本に添付された資料",
-    "reference_article": "同じ講師・著者の参考記事"
+    "reference_article": "同じ講師・著者の参考記事",
+    "reference_book": "ノートに参考書として記載"
   },
   "links": [
     {
@@ -262,6 +263,30 @@
       "notebook_id": "n085",
       "material_id": "b085-chapter",
       "relation": "same_source",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n058-b059",
+      "notebook_id": "n058",
+      "material_id": "b059",
+      "relation": "course_material",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n063-b014",
+      "notebook_id": "n063",
+      "material_id": "b014",
+      "relation": "reference_book",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n068-b069",
+      "notebook_id": "n068",
+      "material_id": "b069",
+      "relation": "course_material",
       "status": "confirmed",
       "confirmed_on": "2026-11-22"
     }
