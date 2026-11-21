@@ -236,7 +236,25 @@
       "title": "物理数学（1993後期）試験問題",
       "creator": null,
       "kind": "演習・試験",
-      "note": "",
+      "note": "1993年度後期の試験。1992年度後期の試験とは分けて記載。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n024",
+          "relation": "course_material"
+        }
+      ]
+    },
+    {
+      "id": "b023-1992",
+      "source_ids": [
+        "n023"
+      ],
+      "title": "物理数学92（後期）試験問題（1993年2月23日）",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "表題の92は授業年度、1993年2月23日は試験日として区別。講師名は未確認。",
       "title_status": "identified",
       "reference_url": null,
       "related_notebooks": []
@@ -249,7 +267,7 @@
       "title": "Γ関数・Β関数",
       "creator": null,
       "kind": "講義資料",
-      "note": "先頭の見出しを記載。資料全体の正式な表題は未確認。",
+      "note": "先頭の見出しを記載。同じ保存資料に「特殊関数の性質」などの別章も含みます。全体の正式表題・講師名は未確認。",
       "title_status": "tentative",
       "reference_url": null,
       "related_notebooks": []
@@ -257,15 +275,21 @@
     {
       "id": "b026",
       "source_ids": [
+        "n025",
         "n026"
       ],
       "title": "特殊関数の性質",
       "creator": null,
       "kind": "講義資料",
-      "note": "先頭の見出しを記載。資料全体の正式な表題は未確認。",
+      "note": "先頭の見出しを記載。同じ本文は別の保存資料にも含まれます。自筆ノートの式番号・記号・導出順と照合。資料全体の正式表題・講師名は未確認。",
       "title_status": "tentative",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n024",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b027",
@@ -281,14 +305,32 @@
       "related_notebooks": []
     },
     {
+      "id": "b028",
+      "source_ids": [
+        "n028"
+      ],
+      "title": "X線銀河団と宇宙論に添付された図版集",
+      "creator": null,
+      "kind": "講義資料",
+      "note": "内容と保存状況を示す仮題。図版に1997年7月8日の日付。正式な資料名・編者は未確認。個々の図の著者を講義担当者とはみなしません。",
+      "title_status": "tentative",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n028",
+          "relation": "same_source"
+        }
+      ]
+    },
+    {
       "id": "b029",
       "source_ids": [
         "n029"
       ],
-      "title": "物理数学演習問題（複素解析ほか）",
+      "title": "物理数学演習問題（複素解析）",
       "creator": "藤原（姓のみ）",
       "kind": "演習・試験",
-      "note": "先頭ページ余白の氏名を転記。",
+      "note": "複素解析の章。先頭余白の藤原という姓を記載。他の演習章の担当には引き継いでいません。",
       "title_status": "identified",
       "reference_url": null,
       "related_notebooks": [
@@ -298,6 +340,78 @@
         },
         {
           "notebook_id": "n040",
+          "relation": "exercise_solution"
+        }
+      ]
+    },
+    {
+      "id": "b029-functions",
+      "source_ids": [
+        "n029"
+      ],
+      "title": "物理数学演習問題（複素関数論）",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "複数の演習をまとめた保存資料の一章。この章の担当者・年度は未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n033",
+          "relation": "exercise_solution"
+        }
+      ]
+    },
+    {
+      "id": "b029-green",
+      "source_ids": [
+        "n029"
+      ],
+      "title": "物理数学演習問題（微分方程式とグリーン関数）",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "複数の演習をまとめた保存資料の一章。この章の担当者・年度は未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n041",
+          "relation": "exercise_solution"
+        }
+      ]
+    },
+    {
+      "id": "b029-lie",
+      "source_ids": [
+        "n029"
+      ],
+      "title": "物理数学演習［Lie群、Lie環とその表現］",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "複数の演習をまとめた保存資料の一章。この章の担当者・年度は未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n041",
+          "relation": "exercise_solution"
+        }
+      ]
+    },
+    {
+      "id": "b029-pde",
+      "source_ids": [
+        "n029"
+      ],
+      "title": "物理数学演習問題（1階偏微分方程式）",
+      "creator": null,
+      "kind": "演習・試験",
+      "note": "複数の演習をまとめた保存資料の一章。この章の担当者・年度は未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n041",
           "relation": "exercise_solution"
         }
       ]
@@ -399,6 +513,10 @@
       "related_notebooks": [
         {
           "notebook_id": "n042",
+          "relation": "exercise_solution"
+        },
+        {
+          "notebook_id": "n039",
           "relation": "exercise_solution"
         }
       ]
@@ -598,10 +716,15 @@
       "title": "電磁気学 試験問題（1992年度後期）",
       "creator": "笹尾（姓のみ）",
       "kind": "演習・試験",
-      "note": "先頭試験問題の氏名を記載。後続資料は個別確認中。",
+      "note": "1992年度後期の試験。試験日は1993年2月19日。担当姓は試験に記載。後続の手書きページの作成者は未確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n072",
+          "relation": "course_material"
+        }
+      ]
     },
     {
       "id": "b076",
@@ -683,6 +806,19 @@
       ]
     },
     {
+      "id": "b083",
+      "source_ids": [
+        "n083"
+      ],
+      "title": "Deflagration Bubbles in the Quark-Hadron Phase Transition",
+      "creator": "H. Kurki-Suonio",
+      "kind": "論文",
+      "note": "University of Helsinki, HU-TFT-84-36（1984年8月3日）。表紙と著者欄で確認。自筆ノートとの対応は未確認。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": []
+    },
+    {
       "id": "b084",
       "source_ids": [
         "n084"
@@ -696,17 +832,80 @@
       "related_notebooks": []
     },
     {
+      "id": "b085-chapter",
+      "source_ids": [
+        "n085"
+      ],
+      "title": "11. The Evolution of Small Perturbations",
+      "creator": null,
+      "kind": "書籍",
+      "note": "ノート原本に添付された書籍章の見出し。書名・著者・版は未確認。冒頭の引用詩の署名は章の著者とは区別しています。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n085",
+          "relation": "same_source"
+        }
+      ]
+    },
+    {
+      "id": "b085-figures",
+      "source_ids": [
+        "n085"
+      ],
+      "title": "観測的宇宙論に添付された図版集",
+      "creator": null,
+      "kind": "講義資料",
+      "note": "内容と保存状況を示す仮題。正式な資料名・編者・配布年は未確認。参考論文・書籍章とは分けて記載。",
+      "title_status": "tentative",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n085",
+          "relation": "same_source"
+        }
+      ]
+    },
+    {
+      "id": "b085-peaks",
+      "source_ids": [
+        "n085"
+      ],
+      "title": "The Statistics of Peaks of Gaussian Random Fields",
+      "creator": "J. M. Bardeen / J. R. Bond / N. Kaiser / A. S. Szalay",
+      "kind": "論文",
+      "note": "The Astrophysical Journal 304, 15–61（1986）。参考論文の冒頭ページがノート原本に添付。刊行年を受講年とはみなしません。",
+      "title_status": "identified",
+      "reference_url": null,
+      "related_notebooks": [
+        {
+          "notebook_id": "n085",
+          "relation": "same_source"
+        }
+      ]
+    },
+    {
       "id": "b088",
       "source_ids": [
         "n088"
       ],
-      "title": "場の量子論・演習問題",
-      "creator": null,
+      "title": "場の量子論I レポート問題",
+      "creator": "福来正孝",
       "kind": "演習・試験",
-      "note": "内容を示す仮題。正式な表題・作成者は未確認。",
-      "title_status": "tentative",
+      "note": "課題表題の福来という姓と提出先の福来正孝という氏名を確認。年度は未確認。",
+      "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n087",
+          "relation": "course_material"
+        }
+      ],
+      "creator_source": {
+        "type": "assignment_heading_and_signature",
+        "confirmed_on": "2026-11-22"
+      }
     },
     {
       "id": "b089",

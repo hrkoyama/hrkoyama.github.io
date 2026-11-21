@@ -5,7 +5,7 @@
   "relation_labels": {
     "exercise_solution": "課題と自筆解答の対応確認",
     "course_material": "講義資料との対応確認",
-    "same_source": "同じ原本に添付された課題",
+    "same_source": "同じ原本に添付された資料",
     "reference_article": "同じ講師・著者の参考記事"
   },
   "links": [
@@ -158,6 +158,110 @@
       "notebook_id": "n075",
       "material_id": "b076",
       "relation": "reference_article",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n033-b029-functions",
+      "notebook_id": "n033",
+      "material_id": "b029-functions",
+      "relation": "exercise_solution",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n039-b042",
+      "notebook_id": "n039",
+      "material_id": "b042",
+      "relation": "exercise_solution",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n041-b029-green",
+      "notebook_id": "n041",
+      "material_id": "b029-green",
+      "relation": "exercise_solution",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n041-b029-pde",
+      "notebook_id": "n041",
+      "material_id": "b029-pde",
+      "relation": "exercise_solution",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n041-b029-lie",
+      "notebook_id": "n041",
+      "material_id": "b029-lie",
+      "relation": "exercise_solution",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n024-b026",
+      "notebook_id": "n024",
+      "material_id": "b026",
+      "relation": "course_material",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n024-b023",
+      "notebook_id": "n024",
+      "material_id": "b023",
+      "relation": "course_material",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n087-b088",
+      "notebook_id": "n087",
+      "material_id": "b088",
+      "relation": "course_material",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n072-b073",
+      "notebook_id": "n072",
+      "material_id": "b073",
+      "relation": "course_material",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n028-b028",
+      "notebook_id": "n028",
+      "material_id": "b028",
+      "relation": "same_source",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n085-b085-figures",
+      "notebook_id": "n085",
+      "material_id": "b085-figures",
+      "relation": "same_source",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n085-b085-peaks",
+      "notebook_id": "n085",
+      "material_id": "b085-peaks",
+      "relation": "same_source",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n085-b085-chapter",
+      "notebook_id": "n085",
+      "material_id": "b085-chapter",
+      "relation": "same_source",
       "status": "confirmed",
       "confirmed_on": "2026-11-22"
     }

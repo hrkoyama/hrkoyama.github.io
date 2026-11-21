@@ -40,6 +40,8 @@ Python 3.10以上とNode.js 22以上を使う。以下はPython標準ライブ�
 
 公開用の正本は `notebooks/material-links.json` と `notebooks/bibliography.json`。対応には講義・演習、同じ原本への添付、参考記事の区別を残し、確認済みの関係だけを掲載する。詳細な照合根拠と全文OCRは公開リポジトリへ含めない。`catalog.js` の `related_materials` と目録の戻りリンクは同じ対応に揃える。講師名と資料の著者・提出先の役割を区別し、姓のみや年の仮入力を保持する。
 
+`scripts/build-notebook-bibliography.py` は公開済みの書誌JSON・対応JSON・catalogだけから目録カードと戻りリンクを再生成する。通常のrefreshにも含む。一つのスキャンに複数の課題・年度・著者の資料が含まれる場合は目録項目を分け、原本への添付と同じ講義での利用を区別する。資料の刊行年や試験年度だけでノートの受講年・講師を補わない。
+
 `python3 scripts/check-notebook-material-links.py` が公開項目、対応の相互整合、既存の除外、講師表記を検査する。資料の本文・画像・PDFを追加せず、公開済みノート画像のマスクとページ選択を保持する。書誌JSONと新しい対応JSONのmanifestだけを確認して更新し、通常のrefreshでHTML・CSS・JSと全体検索の版を揃える。
 
 ## 公開前の自動確認
