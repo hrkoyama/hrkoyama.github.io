@@ -100,6 +100,8 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 CI案内の正本は `catalog/atlas-ci.json`、生成は `build-atlas-ci-page.py`。`numerical-methods-atlas/code-and-data/ci/` に最新状態への参照と、日付・run・registry SHAを持つ保存済み記録を分けて表示する。成功したrunのレポートを保存するときは、Actions成果物の `ci-summary.json` と `report.json` を確認し、新しい `ci/verification/` のJSONへrun URL等とともに収め、snapshotsへ追加して再生成する。古い成功記録を最新の成功と呼ばず、台帳SHAが変わった場合も履歴と現行条件を区別する。
 
+AIの外部検索・公開情報の取得・実行・引用の実地観測は `numerical-methods-atlas/code-and-data/acceptance/YYYY-MM-DD.json` に日付付きで保存する。固定検索語・サービス・返却範囲・未発見、検索ツールのopenと通常HTTPの違い、URL提示あり試験、実行環境・生成出力・数値条件・文献の閲覧深度を別に記録する。ソースcheckoutや過去CI成功を独立AI実行の代用にせず、未発見からGoogle等の未登録を断定しない。保存記録を上書きせず、`catalog/atlas-ci.json` の `ai_acceptance_report` にURLとSHA-256を指定し、日英CI案内とllms.txtから接続する。
+
 主要24手法の個別条件は `catalog/atlas-methods.json` の `priority_review` / `method_review` を正本とする。問題・実際の採用形・使う条件・避ける条件・単位・境界・制約を日英で記載し、`specified` / 理由付き `not-applicable` / `unknown` を区別する。原法・採用変種・定式化・参照解・背景の文献役割と、本文の該当箇所／抄録・書誌／書誌のみの確認範囲を保存する。この整理で数値検証済みの状態へ格上げしない。Ewald/PME/SPMEは実装前の比較仕様であり、重力PMの核・境界・符号と区別する。
 
 一次文献の書誌は `catalog/atlas-method-primary-references.json` から `build-atlas-method-sources.py` が統合する。DOI・既存ID・同じ題名と年を照合し、URL別名や複数手法からの引用を重複加算しない。文献統合を量子章生成より先に実行し、全体の文献数・BibTeX・日英文献一覧を揃える。`atlas_method_review.py` は条件の欠落と状態・文献の確認範囲を検査し、HTML/Markdownと `/numerical-methods-atlas/methods/reviewed.json` へ同じ内容を出す。

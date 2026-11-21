@@ -98,5 +98,10 @@
   },
   "snapshots": [
     "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-linux.json"
-  ]
+  ],
+  "ai_acceptance_report": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22.json",
+    "sha256": "d6e05d388732aa4c809a00c8a84a22085b494c965691b15a2f54a17e03a59bab",
+    "observed_on": "2026-11-22"
+  }
 }

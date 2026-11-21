@@ -1,0 +1,1977 @@
+{
+  "schema_version": 1,
+  "kind": "ai-public-use-observation",
+  "observed_on": "2026-11-22",
+  "timezone": "Asia/Tokyo",
+  "recorded_on_utc": "2026-11-21T23:51:17.827544+00:00",
+  "site_version_before_test": "e1993ae84a9249e861051e0d00e170ee8129eeaa",
+  "result": "external-discovery-not-observed; URL-assisted-public-only-use-passed",
+  "summary": {
+    "ja": "外部検索では未発見。URL提示後は3エージェントが公開情報のみで5問題を4回実行し、数値条件と引用・利用条件の読み取りを確認。検索から実行までの一気通貫は未達。",
+    "en": "External-search discovery was not observed. After receiving a URL, three agents used only public information to run five problems in four executions, check numerical criteria, and produce scoped citations and terms summaries. Unprompted search-to-execution remains unconfirmed."
+  },
+  "protocol": {
+    "search": "Fixed four unbranded queries, once each, before providing the site URL to the two search evaluators.",
+    "url_assisted": "Three separate agent contexts received only the homepage URL and problem goals. No repository, prior output or CI receipt was permitted as an execution substitute.",
+    "isolation_limit": "Instructional source isolation, fresh scratch folders and venvs on one shared macOS host; not separate hardware or OS-enforced read isolation.",
+    "sampling": "Five purpose-selected representative problems, not a randomized benchmark, all fifteen CI examples, or all sixty atlas problems.",
+    "execution_mode": "Direct published example runners; no published full-suite CI/bootstrap/verifier used by the agents. Each agent wrote its own checks. Parent subsequently rechecked generated artifacts with the published verifier criteria."
+  },
+  "external_search": {
+    "target_observed": false,
+    "service": "tools.web__run",
+    "underlying_engine": "not exposed",
+    "started_utc": "2026-11-21 23:38:42 UTC",
+    "unbranded_queries": [
+      {
+        "language": "ja",
+        "query": "Barnes Hut 重力ツリー Python 固定入力 誤差 検証",
+        "evaluated_entries": 10,
+        "observed_urls": [
+          "https://indico.ict.inaf.it/event/3153/contributions/21328/attachments/9676/20998/Valentini_2025_May_13.pdf",
+          "https://isidore.co/misc/Physics%20papers%20and%20books/Zotero/storage/WQA4QPU5/Barnes%20and%20Hut%20-%201989%20-%20Error%20analysis%20of%20a%20tree%20code.pdf",
+          "https://github.com/bhorowitz/barnes-hut",
+          "https://indico.ict.inaf.it/event/3173/contributions/23106/attachments/10323/21228/Valentini_2025_May_Perugia.pdf",
+          "https://anaroxanapop.github.io/behalf/index.html",
+          "https://github.com/David-OConnor/barnes_hut/blob/main/README.md",
+          "https://www.cfca.nao.ac.jp/files/160123_NbodySchool-Lec4.pdf",
+          "https://anaroxanapop.github.io/behalf/",
+          "https://www.theoj.org/joss-papers/joss.03675/10.21105.joss.03675.pdf",
+          "https://maroba.github.io/bhut/api/"
+        ],
+        "ordering": "tool response order; not a known engine ranking"
+      },
+      {
+        "language": "ja",
+        "query": "水素原子 ヘリウム Hartree Fock LDA Python 数値 検証",
+        "evaluated_entries": 10,
+        "observed_urls": [
+          "https://www.ag.kagawa-u.ac.jp/charlesy/2026/10/05/%E9%AB%98%E6%A0%A1%E3%81%BE%E3%81%A7%E3%81%97%E3%81%8B%E6%95%B0%E5%AD%A6%E3%82%92%E3%82%84%E3%81%A3%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E4%BA%BA%E3%81%A7%E3%82%82%E5%88%86%E3%81%8B%E3%82%8B%E3%83%8F/",
+          "https://github.com/eirillsh/hartree_fock",
+          "https://www.researchgate.net/publication/407212185_A_Real-Space_Density-Functional_Theory_Program_for_the_Ground-State_Energy_of_the_Helium_Atom_Staged_Construction_Validation_and_the_Self-Interaction_Error",
+          "https://github.com/ckz1/hf-sto3g-from-scratch",
+          "https://dspace.jaist.ac.jp/dspace/bitstream/10119/10843/1/19069.pdf",
+          "https://www.jstage.jst.go.jp/article/jccjie/11/0/11_2024-0032/_pdf/-char/en",
+          "https://mdsc.kyushu-u.ac.jp/wp/wp-content/uploads/2025/12/%E5%8C%96%E5%AD%A6%E6%83%85%E5%A0%B1%E5%AD%A6.pdf",
+          "https://www.jstage.jst.go.jp/article/jccjie/11/0/11_2024-0032/_html/-char/ja",
+          "https://ma.issp.u-tokyo.ac.jp/app-post/1783",
+          "https://github.com/sympy/sympy/blob/master/sympy/physics/hydrogen.py"
+        ],
+        "ordering": "tool response order; not a known engine ranking"
+      },
+      {
+        "language": "en",
+        "query": "one dimensional Poisson equation Python fixed input residual verification code data",
+        "evaluated_entries": 5,
+        "observed_urls": [
+          "https://www.youtube.com/watch?v=up1eAR4iZSQ",
+          "https://www.youtube.com/watch?v=DT9apS8IsFU",
+          "https://en.wikipedia.org/wiki/Poisson%27s_equation",
+          "https://en.wikipedia.org/wiki/MPDATA",
+          "https://en.wikipedia.org/wiki/Discrete_Poisson_equation"
+        ],
+        "ordering": "inferred topic grouping of a combined response; no query-specific rank or attribution supplied"
+      },
+      {
+        "language": "en",
+        "query": "Sod shock tube Python reproducible input numerical validation reference solution",
+        "evaluated_entries": 10,
+        "observed_urls": [
+          "https://gales.pi.ingv.it/sod-shock-tube/",
+          "https://zcfd.zenotech.com/validation/shocktube",
+          "https://matthewbonanni.github.io/mallard/validation/",
+          "https://therocketiq.com/research/finitevolume-shocktube",
+          "https://open-hydra.github.io/MOSE/vv/1D/",
+          "https://pypi.org/project/sodshock/",
+          "https://badrelsayednyu.github.io/shock-tube-solver/",
+          "https://tarikdzanic.org/docs/aiaa_shockcapturing.pdf",
+          "https://github.com/cfdgasman/sod-shock-tube",
+          "https://re.public.polimi.it/retrieve/e0c31c0a-23ed-4599-e053-1705fe0aef77/Cremonesi_Frangi_eccomas_2016.pdf"
+        ],
+        "ordering": "inferred topic grouping of a combined response; no query-specific rank or attribution supplied"
+      }
+    ],
+    "evaluated_entries": 35,
+    "rank_limit": "Returned order is not a known search-engine rank. English topic attribution is inferred from a combined response. Entries are not distinct educational resources.",
+    "diagnostic_queries": [
+      {
+        "query": "\"hrkoyama\" \"Numerical Methods Atlas\"",
+        "outcome": "no results returned"
+      },
+      {
+        "query": "site:hrkoyama.github.io/numerical-methods-atlas/",
+        "outcome": "no results returned"
+      }
+    ],
+    "index_status": "No conclusion about Google-wide or other engines’ index registration. Search Console was not inspected."
+  },
+  "retrieval": {
+    "web_open_homepage": "not accessible via this tool; observed by parent and all three agents",
+    "fallback": "unauthenticated HTTPS via Python urllib/curl; TLS verification retained",
+    "public_http_probe": {
+      "checked_on": "2026-11-21T23:42:03.113489+00:00",
+      "mode": "unauthenticated-public-HTTP",
+      "requests": [
+        {
+          "url": "https://hrkoyama.github.io/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "x_robots_tag": null,
+          "bytes": 16157,
+          "sha256": "571574294a4ba0f3bdb8cb725a5797bc173049d3b6e22b91a3ee5b2183a6909b",
+          "canonical": [
+            "https://hrkoyama.github.io/"
+          ],
+          "meta_robots": [
+            "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+          ],
+          "description": [
+            "小山洋の宇宙物理・数値計算教材、熱的不安定性の研究資料、大学ノート、ゴードンベル賞、計算科学政策の記録。"
+          ]
+        },
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "x_robots_tag": null,
+          "bytes": 69822,
+          "sha256": "b7b6e988383971d7d54dd44eaaa6c918fc959fe1cf358bbaf6ae5b8cf906f9c0",
+          "canonical": [
+            "https://hrkoyama.github.io/numerical-methods-atlas/"
+          ],
+          "meta_robots": [
+            "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+          ],
+          "description": [
+            "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore fifteen fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."
+          ]
+        },
+        {
+          "url": "https://hrkoyama.github.io/robots.txt",
+          "status": 200,
+          "content_type": "text/plain; charset=utf-8",
+          "x_robots_tag": null,
+          "bytes": 260,
+          "sha256": "b2126b16c9b330baa6ac2d9455382d12c677ddb192e3f3a616d4f2f033ca53c6"
+        },
+        {
+          "url": "https://hrkoyama.github.io/sitemap.xml",
+          "status": 200,
+          "content_type": "application/xml",
+          "x_robots_tag": null,
+          "bytes": 49047,
+          "sha256": "347a8aea8d18b93d7d7733838b19ae8f43cabea9a7d05866582930df1e6768c4"
+        },
+        {
+          "url": "https://hrkoyama.github.io/llms.txt",
+          "status": 200,
+          "content_type": "text/plain; charset=utf-8",
+          "x_robots_tag": null,
+          "bytes": 15994,
+          "sha256": "1be6d51ab28f7d772d3770caa6756ede845fef8344dd24fc2e515ed223822f9c"
+        }
+      ],
+      "robots_allows_all": true,
+      "sitemap_lists_atlas": true,
+      "interpretation": "HTTP accessibility and published crawl directives only; not proof of any search-engine index, retrieval-tool compatibility or training use."
+    },
+    "capability_limit": "The successful URL-assisted path required a direct HTTP client and Python execution in addition to web search. Web-search/extraction alone did not complete this test."
+  },
+  "public_only_use": {
+    "start_url": "https://hrkoyama.github.io/",
+    "problem_count": 5,
+    "unique_runner_executions": 4,
+    "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+    "registry_sha256": "ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632",
+    "passed": true,
+    "normal_registry_checks": 32,
+    "output_checks": 18,
+    "expected_failure_checks": 2,
+    "execution_groups": {
+      "barnes-hut": {
+        "agent": "public-only-tree",
+        "environment": {
+          "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+          "platform": "macOS-26.6.2-arm64-arm-64bit",
+          "machine": "arm64",
+          "numpy": "2.0.2",
+          "matplotlib": "3.9.4",
+          "pytest": "8.3.5"
+        },
+        "execution": {
+          "exit_code": 0,
+          "duration_seconds": null,
+          "timing_note": "Exact solver wall time was not captured separately from tool polling."
+        },
+        "navigation": [
+          {
+            "from": "https://hrkoyama.github.io/",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja",
+            "basis": "homepage ordinary link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
+            "basis": "featured fixed-input example link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+            "basis": "example code edition link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+            "basis": "public example registry link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
+            "to": "https://doi.org/10.1038/324446a0",
+            "basis": "primary method publication link"
+          }
+        ]
+      },
+      "quantum-atoms": {
+        "agent": "public-only-quantum",
+        "environment": {
+          "python": "3.12.16 (main, Oct 25 2026, 18:24:37) [Clang 21.0.0 (clang-2100.3.34.2)]",
+          "platform": "macOS-26.6.2-arm64-arm-64bit",
+          "machine": "arm64",
+          "numpy": "2.0.2",
+          "scipy": "1.14.1",
+          "matplotlib": "3.9.4",
+          "pytest": "8.3.5"
+        },
+        "execution": {
+          "exit_code": 0,
+          "duration_seconds": 17.512092167000006,
+          "started_utc": "2026-11-21T23:41:37.705106+00:00"
+        },
+        "navigation": [
+          {
+            "from": "https://hrkoyama.github.io/",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja",
+            "link": "数値計算アトラス"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja",
+            "link": "水素型原子 / 固定入力で実行"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja",
+            "link": "H・He：原子の計算 / 入力・実行・検証へ"
+          }
+        ]
+      },
+      "sod": {
+        "agent": "public-only-pde",
+        "environment": {
+          "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+          "platform": "macOS-26.6.2-arm64-arm-64bit",
+          "machine": "arm64",
+          "numpy": "2.0.2"
+        },
+        "execution": {
+          "exit_code": 0,
+          "duration_seconds": 0.29315770799999996,
+          "started_utc": "2026-11-21T23:43:02.806948+00:00"
+        },
+        "navigation": [
+          {
+            "from": "user-provided URL",
+            "to": "https://hrkoyama.github.io/",
+            "relation": "only starting URL; URL-assisted acceptance, not search discovery"
+          },
+          {
+            "from": "https://hrkoyama.github.io/",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en",
+            "relation": "homepage English Numerical Methods Atlas link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en",
+            "relation": "homepage method map link; supplementary navigation"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "relation": "field-map fixed-input example link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+            "relation": "fixed input"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "relation": "code edition ZIP"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/index.json",
+            "relation": "machine-readable example record"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/",
+            "relation": "equations/background"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#execution-steps-en",
+            "relation": "setup/common steps"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+            "relation": "file hashes and code revision"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+            "relation": "code license"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/rights/",
+            "relation": "content/data rights"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+            "relation": "published reference output json"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv",
+            "relation": "published reference output csv"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/index.json",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+            "relation": "registry_url property; registry SHA verified"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "relation": "field-map fixed-input example link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+            "relation": "fixed input"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "relation": "code edition ZIP"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/index.json",
+            "relation": "machine-readable example record"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/",
+            "relation": "equations/background"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#execution-steps-en",
+            "relation": "setup/common steps"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+            "relation": "file hashes and code revision"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+            "relation": "code license"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/rights/",
+            "relation": "content/data rights"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+            "relation": "published reference output json"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/solution.csv",
+            "relation": "published reference output csv"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://doi.org/10.1016/0021-9991(78)90023-2",
+            "relation": "primary-method publication link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://doi.org/10.1007/BF01414629",
+            "relation": "primary-method publication link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/index.json",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+            "relation": "registry_url property; registry SHA verified"
+          },
+          {
+            "from": "https://doi.org/10.1016/0021-9991(78)90023-2",
+            "to": "https://linkinghub.elsevier.com/retrieve/pii/0021999178900232",
+            "relation": "HTTP redirect"
+          },
+          {
+            "from": "https://linkinghub.elsevier.com/retrieve/pii/0021999178900232",
+            "to": "https://www.sciencedirect.com/science/article/pii/0021999178900232?via%3Dihub",
+            "relation": "decoded embedded redirectURL; web reader failed Cache miss"
+          }
+        ]
+      },
+      "poisson-1d-dirichlet": {
+        "agent": "public-only-pde",
+        "environment": {
+          "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+          "platform": "macOS-26.6.2-arm64-arm-64bit",
+          "machine": "arm64",
+          "numpy": "2.0.2"
+        },
+        "execution": {
+          "exit_code": 0,
+          "duration_seconds": 0.553669375,
+          "started_utc": "2026-11-21T23:43:02.253033+00:00"
+        },
+        "navigation": [
+          {
+            "from": "user-provided URL",
+            "to": "https://hrkoyama.github.io/",
+            "relation": "only starting URL; URL-assisted acceptance, not search discovery"
+          },
+          {
+            "from": "https://hrkoyama.github.io/",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en",
+            "relation": "homepage English Numerical Methods Atlas link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en",
+            "relation": "homepage method map link; supplementary navigation"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "relation": "field-map fixed-input example link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+            "relation": "fixed input"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "relation": "code edition ZIP"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/index.json",
+            "relation": "machine-readable example record"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/",
+            "relation": "equations/background"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#execution-steps-en",
+            "relation": "setup/common steps"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+            "relation": "file hashes and code revision"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+            "relation": "code license"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/rights/",
+            "relation": "content/data rights"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+            "relation": "published reference output json"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv",
+            "relation": "published reference output csv"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/index.json",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+            "relation": "registry_url property; registry SHA verified"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "relation": "field-map fixed-input example link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+            "relation": "fixed input"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "relation": "code edition ZIP"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/index.json",
+            "relation": "machine-readable example record"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/",
+            "relation": "equations/background"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#execution-steps-en",
+            "relation": "setup/common steps"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+            "relation": "file hashes and code revision"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+            "relation": "code license"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/rights/",
+            "relation": "content/data rights"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+            "relation": "published reference output json"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/solution.csv",
+            "relation": "published reference output csv"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://doi.org/10.1016/0021-9991(78)90023-2",
+            "relation": "primary-method publication link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en",
+            "to": "https://doi.org/10.1007/BF01414629",
+            "relation": "primary-method publication link"
+          },
+          {
+            "from": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/index.json",
+            "to": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+            "relation": "registry_url property; registry SHA verified"
+          },
+          {
+            "from": "https://doi.org/10.1016/0021-9991(78)90023-2",
+            "to": "https://linkinghub.elsevier.com/retrieve/pii/0021999178900232",
+            "relation": "HTTP redirect"
+          },
+          {
+            "from": "https://linkinghub.elsevier.com/retrieve/pii/0021999178900232",
+            "to": "https://www.sciencedirect.com/science/article/pii/0021999178900232?via%3Dihub",
+            "relation": "decoded embedded redirectURL; web reader failed Cache miss"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "id": "barnes-hut",
+        "name": {
+          "ja": "Barnes–Hut：192粒子と直接和の比較",
+          "en": "Barnes–Hut: 192 particles against direct summation"
+        },
+        "guide_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/",
+        "problem_id": "isolated-particles",
+        "execution_group": "barnes-hut",
+        "release": {
+          "family": "numerical-methods-atlas",
+          "version": "2026-11-21",
+          "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+          "sha256": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
+          "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/source-manifest.json",
+          "manifest_sha256": "af57327b5aaec0a62c76fde23e1b8da750abd6d07abe5d4593a3f7ad45907c63",
+          "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json",
+          "archive_directory": "atlas-code-2026-11-21"
+        },
+        "inputs": {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/input.json",
+          "sha256": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+          "path": "examples/barnes-hut/input.json"
+        },
+        "published_run_command": "python examples/barnes-hut/run.py --input examples/barnes-hut/input.json --output output",
+        "scope": {
+          "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
+          "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "id": "particle-count",
+              "pointer": "/particles",
+              "comparison": "equals",
+              "expected": 192,
+              "observed": 192,
+              "passed": true
+            },
+            {
+              "id": "relative-force-error",
+              "pointer": "/relative_rms_force_error",
+              "comparison": "maximum",
+              "tolerance": 0.05,
+              "observed": 0.0028910490118654836,
+              "maximum_residual": 0.0028910490118654836,
+              "passed": true
+            },
+            {
+              "id": "fully-opened-error",
+              "pointer": "/fully_opened_max_absolute_error",
+              "comparison": "maximum",
+              "tolerance": 2e-13,
+              "observed": 3.552713678800501e-15,
+              "maximum_residual": 3.552713678800501e-15,
+              "passed": true
+            },
+            {
+              "id": "reported-checks",
+              "pointer": "/checks",
+              "comparison": "all_true",
+              "observed": {
+                "fixed_case_relative_force_error": true,
+                "fully_opened_tree_matches_direct_sum": true
+              },
+              "passed": true
+            },
+            {
+              "id": "input-provenance",
+              "pointer": "/input_sha256",
+              "comparison": "equals",
+              "expected": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+              "observed": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+              "passed": true
+            },
+            {
+              "id": "output-results",
+              "passed": true,
+              "generated_path": "result.json",
+              "comparison": "nonempty_artifact",
+              "sha256": "336b48a0bbfc8b6ae9abd4be86c366917885875fbd85f1033864dadeeff257ab",
+              "bytes": 904
+            },
+            {
+              "id": "output-forces",
+              "passed": true,
+              "generated_path": "forces.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "f7d88b05718203b27b961d2c6247c7aef121ffbdaee1222ba9c2c33b93a2d2a2",
+              "bytes": 37879
+            }
+          ],
+          "expected_failures": []
+        },
+        "generated_outputs": [
+          {
+            "id": "results",
+            "generated_path": "result.json",
+            "sha256": "336b48a0bbfc8b6ae9abd4be86c366917885875fbd85f1033864dadeeff257ab",
+            "bytes": 904,
+            "published_reference_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+            "published_reference_sha256": "336b48a0bbfc8b6ae9abd4be86c366917885875fbd85f1033864dadeeff257ab",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22/outputs/barnes-hut/result.json"
+          },
+          {
+            "id": "forces",
+            "generated_path": "forces.csv",
+            "sha256": "f7d88b05718203b27b961d2c6247c7aef121ffbdaee1222ba9c2c33b93a2d2a2",
+            "bytes": 37879,
+            "published_reference_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/forces.csv",
+            "published_reference_sha256": "f7d88b05718203b27b961d2c6247c7aef121ffbdaee1222ba9c2c33b93a2d2a2",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/forces.csv"
+          }
+        ],
+        "citation": {
+          "creator": "Hiroshi Koyama",
+          "title": {
+            "ja": "Barnes–Hut：192粒子と直接和の比較",
+            "en": "Barnes–Hut: 192 particles against direct summation"
+          },
+          "version": "2026-11-21",
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#barnes-hut-en",
+          "method_publications": [
+            "https://doi.org/10.1038/324446a0"
+          ]
+        },
+        "agent_citation_example": "Hiroshi Koyama, “Barnes–Hut: 192 particles against direct summation,” An Atlas of Numerical Methods, version 2026-11-21, https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja (accessed 2026-11-22 JST; 2026-11-21 UTC).",
+        "reference_scope": [
+          {
+            "type": "same-kernel-direct-sum",
+            "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+            "description": {
+              "ja": "同じPlummer核の直接和。完全に開いたツリーとの一致と近似力の誤差を分ける。",
+              "en": "Same-Plummer-kernel direct sum, distinguishing fully opened tree agreement from approximation error."
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1038/324446a0",
+            "description": {
+              "ja": "原法の文献：A hierarchical O(N log N) force-calculation algorithm (1986)",
+              "en": "Original method publication: A hierarchical O(N log N) force-calculation algorithm (1986)"
+            }
+          }
+        ],
+        "terms": {
+          "code": "MIT",
+          "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/LICENSE",
+          "content_and_data": "https://hrkoyama.github.io/rights/",
+          "scope": {
+            "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+            "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+          }
+        }
+      },
+      {
+        "id": "hydrogenic-atoms",
+        "name": {
+          "ja": "水素型原子：解析解と格子収束",
+          "en": "Hydrogenic atoms: analytic references and grid refinement"
+        },
+        "guide_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/",
+        "problem_id": "hydrogenic-atoms",
+        "execution_group": "quantum-atoms",
+        "release": {
+          "family": "quantum-atoms",
+          "version": "2026-11-21",
+          "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+          "sha256": "f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9",
+          "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+          "manifest_sha256": "c6d22b507028150eb09699fc0103d958e04764d1af9f98692f18ae111357d546",
+          "verification": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/verification.json",
+          "archive_directory": "quantum-atoms-2026-11-21"
+        },
+        "inputs": {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+          "sha256": "8680ad9e5b04b5689b52849c71d849ddb98f9ecc9bea851a0f09d2ee2fcc6237",
+          "path": "inputs.json"
+        },
+        "published_run_command": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "scope": {
+          "ja": "孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。",
+          "en": "Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver."
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "id": "normalization",
+              "pointer": "/hydrogenic/refinement",
+              "comparison": "abs_difference",
+              "field": "norm",
+              "expected": 1,
+              "tolerance": 1e-12,
+              "observed": [
+                0.9999999999999998,
+                1.0,
+                0.9999999999999996,
+                1.0000000000000002,
+                1.0000000000000002,
+                1.0000000000000007,
+                1.0000000000000007,
+                1.0000000000000004,
+                0.9999999999999998,
+                0.9999999999999998,
+                1.0,
+                0.9999999999999996,
+                1.0000000000000002,
+                1.0000000000000002,
+                1.0000000000000002,
+                1.0000000000000007,
+                1.0000000000000002,
+                1.0000000000000007,
+                1.0000000000000004,
+                1.0000000000000004,
+                0.9999999999999996,
+                1.0000000000000002,
+                0.9999999999999999,
+                1.0000000000000018
+              ],
+              "maximum_residual": 1.7763568394002505e-15,
+              "passed": true
+            },
+            {
+              "id": "eigen-residual",
+              "pointer": "/hydrogenic/refinement",
+              "comparison": "maximum",
+              "field": "eigen_residual",
+              "tolerance": 1e-07,
+              "units": "hartree",
+              "observed": [
+                1.0570707547073232e-13,
+                3.9806651155800925e-13,
+                2.1195230425015774e-12,
+                1.1036779698394472e-13,
+                4.662331035286052e-13,
+                1.2462227066855107e-12,
+                1.0675701833957839e-13,
+                3.359062911290406e-13,
+                1.3870807586420553e-12,
+                1.4150878293828522e-13,
+                3.993268036939531e-13,
+                2.1735873252979166e-12,
+                9.578598462256446e-14,
+                3.4890717976743023e-13,
+                1.5824961512569615e-12,
+                1.15386623356884e-13,
+                4.476261512092323e-13,
+                1.3126538175385397e-12,
+                9.201426801495605e-14,
+                4.805127544225791e-13,
+                1.3762158288763509e-12,
+                1.198210157460636e-13,
+                5.473742429450054e-13,
+                1.4502003553359513e-12
+              ],
+              "maximum_residual": 2.1735873252979166e-12,
+              "passed": true
+            },
+            {
+              "id": "analytic-energy-fine-grid",
+              "pointer": "/hydrogenic/refinement",
+              "comparison": "maximum",
+              "field": "energy_error",
+              "where": {
+                "dr": 0.01
+              },
+              "tolerance": 0.00021,
+              "units": "hartree",
+              "observed": [
+                1.2499376568997356e-05,
+                7.812400994733348e-07,
+                2.604209303758154e-07,
+                1.0284986737274515e-08,
+                0.0001999600109197086,
+                1.2499374537455754e-05,
+                4.166921105053234e-06,
+                1.6460908686122266e-07
+              ],
+              "maximum_residual": 0.0001999600109197086,
+              "passed": true
+            },
+            {
+              "id": "energy-refinement",
+              "pointer": "/checks/hydrogenic_exact_energy_errors_reduce",
+              "comparison": "equals",
+              "expected": true,
+              "observed": true,
+              "passed": true
+            },
+            {
+              "id": "output-results",
+              "passed": true,
+              "generated_path": "results.json",
+              "comparison": "nonempty_artifact",
+              "sha256": "a6141e61a7e2e58eba532ab638fcf434ec5fb1c26fad49ab24e7b88d80257f66",
+              "bytes": 64495
+            },
+            {
+              "id": "output-hydrogenic-z1-n1-l0",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z1-n1-l0.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "b00c67ed623bbd98d3ea29feed6ac89446f54d17cfd6a2ef97d9be46eb2d4cff",
+              "bytes": 448266
+            },
+            {
+              "id": "output-hydrogenic-z1-n2-l0",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z1-n2-l0.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "ca41c51afb53299779ac47de455ce12238e57e59bb77a885776960a6b3f7429f",
+              "bytes": 451918
+            },
+            {
+              "id": "output-hydrogenic-z1-n2-l1",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z1-n2-l1.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "506ce166c04e8b752b39a4d213a5ba27225c611e632056c37b98e214ff13b4ef",
+              "bytes": 441135
+            },
+            {
+              "id": "output-hydrogenic-z1-n3-l2",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z1-n3-l2.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "834d641826f32f21dde2b7cee1985845c29489a5cee1c80d8f925fbabe8a9d77",
+              "bytes": 432863
+            },
+            {
+              "id": "output-hydrogenic-z2-n1-l0",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z2-n1-l0.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "7237ffefc37504bab5050a6c35f84b9b1284b2e1ecde9001e684319148a1e82c",
+              "bytes": 451703
+            },
+            {
+              "id": "output-hydrogenic-z2-n2-l0",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z2-n2-l0.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "325acf636fee554d4dca765d8d824f46df5291c016261efccd28f328b19734ce",
+              "bytes": 458165
+            },
+            {
+              "id": "output-hydrogenic-z2-n2-l1",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z2-n2-l1.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "c15d122c7dd9363296a77e61a987db71e823910705825ae7748ac325d1c4f066",
+              "bytes": 446809
+            },
+            {
+              "id": "output-hydrogenic-z2-n3-l2",
+              "passed": true,
+              "generated_path": "profiles/hydrogenic-z2-n3-l2.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "0b3c44b4035123ba7c385a8137b98bffba50e45e62f8b646e393c027a80d0ab6",
+              "bytes": 442445
+            }
+          ],
+          "expected_failures": []
+        },
+        "generated_outputs": [
+          {
+            "id": "results",
+            "generated_path": "results.json",
+            "sha256": "a6141e61a7e2e58eba532ab638fcf434ec5fb1c26fad49ab24e7b88d80257f66",
+            "bytes": 64495,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+            "published_reference_sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+            "byte_identical_to_published_reference": false,
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22/outputs/quantum-atoms/results.json"
+          },
+          {
+            "id": "hydrogenic-z1-n1-l0",
+            "generated_path": "profiles/hydrogenic-z1-n1-l0.csv",
+            "sha256": "b00c67ed623bbd98d3ea29feed6ac89446f54d17cfd6a2ef97d9be46eb2d4cff",
+            "bytes": 448266,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n1-l0.csv",
+            "published_reference_sha256": "b00c67ed623bbd98d3ea29feed6ac89446f54d17cfd6a2ef97d9be46eb2d4cff",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n1-l0.csv"
+          },
+          {
+            "id": "hydrogenic-z1-n2-l0",
+            "generated_path": "profiles/hydrogenic-z1-n2-l0.csv",
+            "sha256": "ca41c51afb53299779ac47de455ce12238e57e59bb77a885776960a6b3f7429f",
+            "bytes": 451918,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l0.csv",
+            "published_reference_sha256": "ca41c51afb53299779ac47de455ce12238e57e59bb77a885776960a6b3f7429f",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l0.csv"
+          },
+          {
+            "id": "hydrogenic-z1-n2-l1",
+            "generated_path": "profiles/hydrogenic-z1-n2-l1.csv",
+            "sha256": "506ce166c04e8b752b39a4d213a5ba27225c611e632056c37b98e214ff13b4ef",
+            "bytes": 441135,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l1.csv",
+            "published_reference_sha256": "506ce166c04e8b752b39a4d213a5ba27225c611e632056c37b98e214ff13b4ef",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l1.csv"
+          },
+          {
+            "id": "hydrogenic-z1-n3-l2",
+            "generated_path": "profiles/hydrogenic-z1-n3-l2.csv",
+            "sha256": "834d641826f32f21dde2b7cee1985845c29489a5cee1c80d8f925fbabe8a9d77",
+            "bytes": 432863,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n3-l2.csv",
+            "published_reference_sha256": "834d641826f32f21dde2b7cee1985845c29489a5cee1c80d8f925fbabe8a9d77",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n3-l2.csv"
+          },
+          {
+            "id": "hydrogenic-z2-n1-l0",
+            "generated_path": "profiles/hydrogenic-z2-n1-l0.csv",
+            "sha256": "7237ffefc37504bab5050a6c35f84b9b1284b2e1ecde9001e684319148a1e82c",
+            "bytes": 451703,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n1-l0.csv",
+            "published_reference_sha256": "7237ffefc37504bab5050a6c35f84b9b1284b2e1ecde9001e684319148a1e82c",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n1-l0.csv"
+          },
+          {
+            "id": "hydrogenic-z2-n2-l0",
+            "generated_path": "profiles/hydrogenic-z2-n2-l0.csv",
+            "sha256": "325acf636fee554d4dca765d8d824f46df5291c016261efccd28f328b19734ce",
+            "bytes": 458165,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l0.csv",
+            "published_reference_sha256": "325acf636fee554d4dca765d8d824f46df5291c016261efccd28f328b19734ce",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l0.csv"
+          },
+          {
+            "id": "hydrogenic-z2-n2-l1",
+            "generated_path": "profiles/hydrogenic-z2-n2-l1.csv",
+            "sha256": "c15d122c7dd9363296a77e61a987db71e823910705825ae7748ac325d1c4f066",
+            "bytes": 446809,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l1.csv",
+            "published_reference_sha256": "c15d122c7dd9363296a77e61a987db71e823910705825ae7748ac325d1c4f066",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l1.csv"
+          },
+          {
+            "id": "hydrogenic-z2-n3-l2",
+            "generated_path": "profiles/hydrogenic-z2-n3-l2.csv",
+            "sha256": "0b3c44b4035123ba7c385a8137b98bffba50e45e62f8b646e393c027a80d0ab6",
+            "bytes": 442445,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n3-l2.csv",
+            "published_reference_sha256": "0b3c44b4035123ba7c385a8137b98bffba50e45e62f8b646e393c027a80d0ab6",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n3-l2.csv"
+          }
+        ],
+        "citation": {
+          "creator": "Hiroshi Koyama",
+          "title": {
+            "ja": "水素型原子：解析解と格子収束",
+            "en": "Hydrogenic atoms: analytic references and grid refinement"
+          },
+          "version": "2026-11-21",
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#hydrogenic-atoms-en",
+          "method_publications": [
+            "https://doi.org/10.1002/andp.19263840404"
+          ]
+        },
+        "agent_citation_example": "Hiroshi Koyama, 水素型原子：解析解と格子収束, version2026-11-21, https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja (accessed2026-11-22 JST). Fixed published inputs unchanged; quantum-atoms2026-11-21 ZIP SHA256 f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9; Python3.12.16/NumPy2.0.2/SciPy1.14.1.",
+        "reference_scope": [
+          {
+            "type": "analytic",
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic",
+            "description": {
+              "ja": "E_n=−Z²/(2n²)とLaguerre動径解。有限格子の誤差と箱の誤差を分ける。",
+              "en": "E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error."
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1002/andp.19263840404",
+            "description": {
+              "ja": "原法の文献：Schrödinger, E. (1926), Quantisierung als Eigenwertproblem",
+              "en": "Original method publication: Schrödinger, E. (1926), Quantisierung als Eigenwertproblem"
+            }
+          }
+        ],
+        "terms": {
+          "code": "MIT",
+          "code_license": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/LICENSE",
+          "content_and_data": "https://hrkoyama.github.io/rights/",
+          "scope": {
+            "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+            "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+          }
+        }
+      },
+      {
+        "id": "helium-ground-state",
+        "name": {
+          "ja": "He：閉殻HF・交換のみLDA",
+          "en": "Helium: closed-shell HF and exchange-only LDA"
+        },
+        "guide_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/",
+        "problem_id": "helium-ground-state",
+        "execution_group": "quantum-atoms",
+        "release": {
+          "family": "quantum-atoms",
+          "version": "2026-11-21",
+          "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+          "sha256": "f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9",
+          "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+          "manifest_sha256": "c6d22b507028150eb09699fc0103d958e04764d1af9f98692f18ae111357d546",
+          "verification": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/verification.json",
+          "archive_directory": "quantum-atoms-2026-11-21"
+        },
+        "inputs": {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+          "sha256": "8680ad9e5b04b5689b52849c71d849ddb98f9ecc9bea851a0f09d2ee2fcc6237",
+          "path": "inputs.json"
+        },
+        "published_run_command": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "scope": {
+          "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
+          "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "id": "scf-convergence",
+              "pointer": "/helium/refinement",
+              "comparison": "equals",
+              "field": "converged",
+              "expected": true,
+              "observed": [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true
+              ],
+              "passed": true
+            },
+            {
+              "id": "electron-count",
+              "pointer": "/helium/refinement",
+              "comparison": "abs_difference",
+              "field": "electron_count",
+              "expected": 2,
+              "tolerance": 1e-12,
+              "observed": [
+                2.000000000000001,
+                2.0000000000000013,
+                2.0000000000000004,
+                2.0000000000000004,
+                1.9999999999999987,
+                1.9999999999999971,
+                1.9999999999999978,
+                1.9999999999999991
+              ],
+              "maximum_residual": 2.886579864025407e-15,
+              "passed": true
+            },
+            {
+              "id": "density-residual",
+              "pointer": "/helium/refinement",
+              "comparison": "maximum",
+              "field": "density_residual",
+              "tolerance": 1e-09,
+              "observed": [
+                7.298249888167601e-10,
+                7.316610815340308e-10,
+                7.316707064930232e-10,
+                7.323110498990301e-10,
+                6.952509607840008e-10,
+                6.967106753784264e-10,
+                6.974721705773261e-10,
+                6.978373585460334e-10
+              ],
+              "maximum_residual": 7.323110498990301e-10,
+              "passed": true
+            },
+            {
+              "id": "orbital-residual",
+              "pointer": "/helium/refinement",
+              "comparison": "maximum",
+              "field": "orbital_residual",
+              "tolerance": 1e-07,
+              "units": "hartree",
+              "observed": [
+                4.695098870537009e-11,
+                4.7038039700900065e-11,
+                4.7182351733513516e-11,
+                5.1491767770429186e-11,
+                1.0149884055190545e-11,
+                1.025495451273947e-11,
+                1.1489290296974026e-11,
+                2.4583100641605903e-11
+              ],
+              "maximum_residual": 5.1491767770429186e-11,
+              "passed": true
+            },
+            {
+              "id": "energy-identity",
+              "pointer": "/helium/refinement",
+              "comparison": "maximum",
+              "field": "energy_identity_error",
+              "tolerance": 1e-10,
+              "units": "hartree",
+              "observed": [
+                0.0,
+                4.440892098500626e-16,
+                0.0,
+                4.440892098500626e-16,
+                1.7763568394002505e-15,
+                4.440892098500626e-16,
+                8.881784197001252e-16,
+                4.440892098500626e-16
+              ],
+              "maximum_residual": 1.7763568394002505e-15,
+              "passed": true
+            },
+            {
+              "id": "independent-energy",
+              "pointer": "/helium/independent_comparison",
+              "comparison": "absolute_maximum",
+              "field": "extrapolated_reference_difference",
+              "tolerance": 1e-08,
+              "units": "hartree",
+              "observed": [
+                5.990838936043019e-10,
+                9.792922028850626e-11
+              ],
+              "maximum_residual": 5.990838936043019e-10,
+              "passed": true
+            },
+            {
+              "id": "independent-density",
+              "pointer": "/helium/independent_comparison",
+              "comparison": "maximum",
+              "field": "radial_density_l1_difference",
+              "tolerance": 5e-05,
+              "observed": [
+                1.530884883674325e-05,
+                1.6870027832909943e-05
+              ],
+              "maximum_residual": 1.6870027832909943e-05,
+              "passed": true
+            },
+            {
+              "id": "output-results",
+              "passed": true,
+              "generated_path": "results.json",
+              "comparison": "nonempty_artifact",
+              "sha256": "a6141e61a7e2e58eba532ab638fcf434ec5fb1c26fad49ab24e7b88d80257f66",
+              "bytes": 64495
+            },
+            {
+              "id": "output-helium-hf",
+              "passed": true,
+              "generated_path": "profiles/helium-hf.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "d06863e6b740b53cce7cd85ff05f915f68a2e8e42838e59538c5d63d3382d176",
+              "bytes": 730040
+            },
+            {
+              "id": "output-helium-lda_x",
+              "passed": true,
+              "generated_path": "profiles/helium-lda_x.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "4d48d7640e370ef764d6bbf6548e49c17a476d1a41397e7991f2903077f4f4eb",
+              "bytes": 739498
+            }
+          ],
+          "expected_failures": [
+            {
+              "id": "iteration-limit-is-failure",
+              "pointer": "/helium/expected_nonconvergence",
+              "comparison": "equals",
+              "field": "converged",
+              "expected": false,
+              "observed": [
+                false,
+                false
+              ],
+              "passed": true
+            },
+            {
+              "id": "failure-reason",
+              "pointer": "/helium/expected_nonconvergence",
+              "comparison": "equals",
+              "field": "reason",
+              "expected": "max_iterations",
+              "observed": [
+                "max_iterations",
+                "max_iterations"
+              ],
+              "passed": true
+            }
+          ]
+        },
+        "generated_outputs": [
+          {
+            "id": "results",
+            "generated_path": "results.json",
+            "sha256": "a6141e61a7e2e58eba532ab638fcf434ec5fb1c26fad49ab24e7b88d80257f66",
+            "bytes": 64495,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+            "published_reference_sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+            "byte_identical_to_published_reference": false,
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22/outputs/quantum-atoms/results.json"
+          },
+          {
+            "id": "helium-hf",
+            "generated_path": "profiles/helium-hf.csv",
+            "sha256": "d06863e6b740b53cce7cd85ff05f915f68a2e8e42838e59538c5d63d3382d176",
+            "bytes": 730040,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-hf.csv",
+            "published_reference_sha256": "d06863e6b740b53cce7cd85ff05f915f68a2e8e42838e59538c5d63d3382d176",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-hf.csv"
+          },
+          {
+            "id": "helium-lda_x",
+            "generated_path": "profiles/helium-lda_x.csv",
+            "sha256": "4d48d7640e370ef764d6bbf6548e49c17a476d1a41397e7991f2903077f4f4eb",
+            "bytes": 739498,
+            "published_reference_url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-lda_x.csv",
+            "published_reference_sha256": "4d48d7640e370ef764d6bbf6548e49c17a476d1a41397e7991f2903077f4f4eb",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-lda_x.csv"
+          }
+        ],
+        "citation": {
+          "creator": "Hiroshi Koyama",
+          "title": {
+            "ja": "He：閉殻HF・交換のみLDA",
+            "en": "Helium: closed-shell HF and exchange-only LDA"
+          },
+          "version": "2026-11-21",
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#helium-ground-state-en",
+          "method_publications": [
+            "https://doi.org/10.1103/RevModPhys.23.69",
+            "https://doi.org/10.1103/PhysRev.140.A1133",
+            "https://doi.org/10.1017/S0305004100016108"
+          ]
+        },
+        "agent_citation_example": "Hiroshi Koyama, He：閉殻HF・交換のみLDA, version2026-11-21, https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja (accessed2026-11-22 JST). Same fixed inputs/shared runner; HF and LDA_X without correlation; precomputed finite-basis reference-pyscf.json SHA256 0fcf5800a54f5429e258e304d58c43214d20f22703625e76d703639ea79c36d9.",
+        "reference_scope": [
+          {
+            "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/reference-pyscf.json",
+            "sha256": "0fcf5800a54f5429e258e304d58c43214d20f22703625e76d703639ea79c36d9",
+            "path": "reference-pyscf.json",
+            "type": "independently-computed-finite-basis",
+            "description": {
+              "ja": "PySCF 2.11.0 / LibxcのGaussian基底参照。外挿値・有限格子値・参照を区別。参照scriptの再実行は今回の共通runnerの測定に含まない。",
+              "en": "PySCF 2.11.0 / Libxc finite-Gaussian references. Distinguish extrapolation, finite-grid values and references. Regenerating the independent reference is outside this measured runner."
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1103/RevModPhys.23.69",
+            "description": {
+              "ja": "原法の文献：Roothaan, C. C. J. (1951), New Developments in Molecular Orbital Theory",
+              "en": "Original method publication: Roothaan, C. C. J. (1951), New Developments in Molecular Orbital Theory"
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1103/PhysRev.140.A1133",
+            "description": {
+              "ja": "原法の文献：Kohn, W.; Sham, L. J. (1965), Self-Consistent Equations Including Exchange and Correlation Effects",
+              "en": "Original method publication: Kohn, W.; Sham, L. J. (1965), Self-Consistent Equations Including Exchange and Correlation Effects"
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1017/S0305004100016108",
+            "description": {
+              "ja": "原法の文献：Dirac, P. A. M. (1930), Note on Exchange Phenomena in the Thomas Atom",
+              "en": "Original method publication: Dirac, P. A. M. (1930), Note on Exchange Phenomena in the Thomas Atom"
+            }
+          }
+        ],
+        "terms": {
+          "code": "MIT",
+          "code_license": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/LICENSE",
+          "content_and_data": "https://hrkoyama.github.io/rights/",
+          "scope": {
+            "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+            "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+          }
+        }
+      },
+      {
+        "id": "poisson-1d-dirichlet",
+        "name": {
+          "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+          "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+        },
+        "guide_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/",
+        "problem_id": "poisson-1d-dirichlet",
+        "execution_group": "poisson-1d-dirichlet",
+        "release": {
+          "family": "numerical-methods-atlas",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+          "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+          "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+          "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+          "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+          "archive_directory": "atlas-code-2026-11-22"
+        },
+        "inputs": {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+          "sha256": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+          "path": "recipes/poisson-1d-dirichlet.json"
+        },
+        "published_run_command": "python run_recipe.py --input recipes/poisson-1d-dirichlet.json --output output-poisson-1d-dirichlet",
+        "scope": {
+          "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
+          "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "id": "continuous-error",
+              "comparison": "maximum",
+              "tolerance": 0.0003,
+              "pointer": "/metrics/finest_linf_error",
+              "observed": 0.00020082180969560604,
+              "maximum_residual": 0.00020082180969560604,
+              "passed": true
+            },
+            {
+              "id": "second-order-refinement",
+              "comparison": "minimum",
+              "tolerance": 1.9,
+              "pointer": "/metrics/minimum_observed_order",
+              "observed": 2.0005215338201543,
+              "minimum_observed": 2.0005215338201543,
+              "passed": true
+            },
+            {
+              "id": "discrete-residual",
+              "comparison": "maximum",
+              "tolerance": 1e-10,
+              "pointer": "/metrics/maximum_true_relative_residual",
+              "observed": 5.26166319191689e-14,
+              "maximum_residual": 5.26166319191689e-14,
+              "passed": true
+            },
+            {
+              "id": "dirichlet-boundary",
+              "comparison": "maximum",
+              "tolerance": 1e-14,
+              "pointer": "/metrics/boundary_maximum_absolute_value",
+              "observed": 0.0,
+              "maximum_residual": 0.0,
+              "passed": true
+            },
+            {
+              "id": "all-criteria",
+              "pointer": "/checks",
+              "comparison": "all_true",
+              "observed": {
+                "continuous-error": true,
+                "second-order-refinement": true,
+                "discrete-residual": true,
+                "dirichlet-boundary": true
+              },
+              "passed": true
+            },
+            {
+              "id": "input-provenance",
+              "pointer": "/input_sha256",
+              "comparison": "equals",
+              "expected": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+              "observed": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+              "passed": true
+            },
+            {
+              "id": "case-passed",
+              "pointer": "/passed",
+              "comparison": "equals",
+              "expected": true,
+              "observed": true,
+              "passed": true
+            },
+            {
+              "id": "output-results",
+              "passed": true,
+              "generated_path": "result.json",
+              "comparison": "nonempty_artifact",
+              "sha256": "89cd06021224fd9a4e118db5b0c0bd7a1902f49b97af9853fc57863fe86baf00",
+              "bytes": 3510
+            },
+            {
+              "id": "output-solution",
+              "passed": true,
+              "generated_path": "solution.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "4d09e05092c6536f5511cfc410f0c4610837ca6e71651767e739ae4538d358bd",
+              "bytes": 4488
+            }
+          ],
+          "expected_failures": []
+        },
+        "generated_outputs": [
+          {
+            "id": "results",
+            "generated_path": "result.json",
+            "sha256": "89cd06021224fd9a4e118db5b0c0bd7a1902f49b97af9853fc57863fe86baf00",
+            "bytes": 3510,
+            "published_reference_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+            "published_reference_sha256": "89cd06021224fd9a4e118db5b0c0bd7a1902f49b97af9853fc57863fe86baf00",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22/outputs/poisson-1d-dirichlet/result.json"
+          },
+          {
+            "id": "solution",
+            "generated_path": "solution.csv",
+            "sha256": "4d09e05092c6536f5511cfc410f0c4610837ca6e71651767e739ae4538d358bd",
+            "bytes": 4488,
+            "published_reference_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv",
+            "published_reference_sha256": "4d09e05092c6536f5511cfc410f0c4610837ca6e71651767e739ae4538d358bd",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv"
+          }
+        ],
+        "citation": {
+          "creator": "Hiroshi Koyama",
+          "title": {
+            "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+            "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+          },
+          "version": "2026-11-22",
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-1d-dirichlet-en",
+          "method_publications": []
+        },
+        "agent_citation_example": "Hiroshi Koyama. 1D Poisson: Dirichlet sine solution and second-order refinement. Version 2026-11-22. https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-1d-dirichlet-en. Fixed input SHA-256 07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51; unmodified settings; accessed 2026-11-22 Asia/Tokyo.",
+        "reference_scope": [
+          {
+            "type": "analytic-solution",
+            "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+            "description": {
+              "ja": "CSVは最細格子でx・数値解・解析解・誤差を整列。全3格子の誤差と残差、隣接格子間の次数はresult.jsonに保存。Thomasの原報告は既存台帳でも直接確認未済のため、未検証の一次文献を新たに掲げない。",
+              "en": "CSV aligns finest-grid x, numerical/analytic values and error. JSON retains all three errors/residuals and adjacent-level orders. The Thomas original report remains unverified in the existing catalog, so no newly verified primary-source claim is added."
+            }
+          },
+          {
+            "type": "analytic-solution",
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/",
+            "description": {
+              "ja": "独立にsin(πx)と右辺を評価する。小残差と連続解誤差は分けて報告する。",
+              "en": "Evaluate sin(πx) and its forcing independently; report continuous-solution error separately from a small discrete residual."
+            }
+          }
+        ],
+        "terms": {
+          "code": "MIT",
+          "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+          "content_and_data": "https://hrkoyama.github.io/rights/",
+          "scope": {
+            "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+            "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+          }
+        }
+      },
+      {
+        "id": "sod",
+        "name": {
+          "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+          "en": "Sod shock tube: Godunov-type update and self-similar reference"
+        },
+        "guide_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/",
+        "problem_id": "sod",
+        "execution_group": "sod",
+        "release": {
+          "family": "numerical-methods-atlas",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+          "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+          "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+          "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+          "verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/verification.json",
+          "archive_directory": "atlas-code-2026-11-22"
+        },
+        "inputs": {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+          "sha256": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+          "path": "recipes/sod.json"
+        },
+        "published_run_command": "python run_recipe.py --input recipes/sod.json --output output-sod",
+        "scope": {
+          "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
+          "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
+        },
+        "validation": {
+          "passed": true,
+          "checks": [
+            {
+              "id": "riemann-error",
+              "comparison": "maximum",
+              "tolerance": 0.035,
+              "pointer": "/metrics/density_l1_error_fine",
+              "observed": 0.015469740521059604,
+              "maximum_residual": 0.015469740521059604,
+              "passed": true
+            },
+            {
+              "id": "refinement",
+              "comparison": "maximum",
+              "tolerance": 0.85,
+              "pointer": "/metrics/fine_to_coarse_error_ratio",
+              "observed": 0.6504478779523587,
+              "maximum_residual": 0.6504478779523587,
+              "passed": true
+            },
+            {
+              "id": "positive-density",
+              "comparison": "minimum",
+              "tolerance": 1e-08,
+              "pointer": "/metrics/minimum_density",
+              "observed": 0.1250000001362996,
+              "minimum_observed": 0.1250000001362996,
+              "passed": true
+            },
+            {
+              "id": "positive-pressure",
+              "comparison": "minimum",
+              "tolerance": 1e-08,
+              "pointer": "/metrics/minimum_pressure",
+              "observed": 0.1000000001526556,
+              "minimum_observed": 0.1000000001526556,
+              "passed": true
+            },
+            {
+              "id": "boundary-balance",
+              "comparison": "maximum",
+              "tolerance": 1e-10,
+              "pointer": "/metrics/physical_boundary_balance_relative_defect",
+              "observed": 4.0513854896993565e-12,
+              "maximum_residual": 4.0513854896993565e-12,
+              "passed": true
+            },
+            {
+              "id": "reached-time",
+              "comparison": "maximum",
+              "tolerance": 1e-14,
+              "pointer": "/metrics/final_time_error",
+              "observed": 0.0,
+              "maximum_residual": 0.0,
+              "passed": true
+            },
+            {
+              "id": "all-criteria",
+              "pointer": "/checks",
+              "comparison": "all_true",
+              "observed": {
+                "riemann-error": true,
+                "refinement": true,
+                "positive-density": true,
+                "positive-pressure": true,
+                "boundary-balance": true,
+                "reached-time": true
+              },
+              "passed": true
+            },
+            {
+              "id": "input-provenance",
+              "pointer": "/input_sha256",
+              "comparison": "equals",
+              "expected": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+              "observed": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+              "passed": true
+            },
+            {
+              "id": "case-passed",
+              "pointer": "/passed",
+              "comparison": "equals",
+              "expected": true,
+              "observed": true,
+              "passed": true
+            },
+            {
+              "id": "output-results",
+              "passed": true,
+              "generated_path": "result.json",
+              "comparison": "nonempty_artifact",
+              "sha256": "0ceb383f60bf2576964ff2df8be834ea46221a01d0e8f1472b4d6e0bc5ffa489",
+              "bytes": 4599
+            },
+            {
+              "id": "output-solution",
+              "passed": true,
+              "generated_path": "solution.csv",
+              "comparison": "nonempty_artifact",
+              "sha256": "2e8611df4ae935d37dba0d83fb9dd163a384d3b6b6c38b20ace3ac58ff9e648f",
+              "bytes": 20687
+            }
+          ],
+          "expected_failures": []
+        },
+        "generated_outputs": [
+          {
+            "id": "results",
+            "generated_path": "result.json",
+            "sha256": "0ceb383f60bf2576964ff2df8be834ea46221a01d0e8f1472b4d6e0bc5ffa489",
+            "bytes": 4599,
+            "published_reference_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+            "published_reference_sha256": "0ceb383f60bf2576964ff2df8be834ea46221a01d0e8f1472b4d6e0bc5ffa489",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22/outputs/sod/result.json"
+          },
+          {
+            "id": "solution",
+            "generated_path": "solution.csv",
+            "sha256": "2e8611df4ae935d37dba0d83fb9dd163a384d3b6b6c38b20ace3ac58ff9e648f",
+            "bytes": 20687,
+            "published_reference_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/solution.csv",
+            "published_reference_sha256": "2e8611df4ae935d37dba0d83fb9dd163a384d3b6b6c38b20ace3ac58ff9e648f",
+            "byte_identical_to_published_reference": true,
+            "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/solution.csv"
+          }
+        ],
+        "citation": {
+          "creator": "Hiroshi Koyama",
+          "title": {
+            "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+            "en": "Sod shock tube: Godunov-type update and self-similar reference"
+          },
+          "version": "2026-11-22",
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sod-en",
+          "method_publications": [
+            "https://doi.org/10.1016/0021-9991(78)90023-2",
+            "https://doi.org/10.1007/BF01414629"
+          ]
+        },
+        "agent_citation_example": "Hiroshi Koyama. Sod shock tube: Godunov-type update and self-similar reference. Version 2026-11-22. https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sod-en. Fixed input SHA-256 45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f; unmodified settings; accessed 2026-11-22 Asia/Tokyo.",
+        "reference_scope": [
+          {
+            "type": "analytic",
+            "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+            "description": {
+              "ja": "細格子160セルの各中心でρ,u,pと同位置・同時刻の参照値を併記。初期値も点サンプルをセル値として与える既存solverを使う。解析的な波構造を使うが、圧力根の数値評価を含み、別コードベースとの独立照合ではない。",
+              "en": "Each of the 160 fine-grid centers carries ρ,u,p and reference values at the same time/location. The existing solver also initializes its cell values from point samples. Wave structure is analytic but reference pressure requires a numerical root; this is not a cross-check against an independent codebase."
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1016/0021-9991(78)90023-2",
+            "description": {
+              "ja": "Sod衝撃波管の比較課題の出典。参照は本配布版の理想気体Riemann評価であり、原論文の数値表の転記ではない。",
+              "en": "Benchmark provenance for the Sod shock tube. The reference uses the edition's ideal-gas Riemann evaluator, not transcribed paper tables."
+            }
+          },
+          {
+            "type": "primary-publication",
+            "url": "https://doi.org/10.1007/BF01414629",
+            "description": {
+              "ja": "HLLCの接触波復元の原報。公開実装ではDavis型外側波速を用いる。",
+              "en": "Original HLLC contact-restoration paper; the released implementation uses Davis-type outer speeds."
+            }
+          }
+        ],
+        "terms": {
+          "code": "MIT",
+          "code_license": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/LICENSE",
+          "content_and_data": "https://hrkoyama.github.io/rights/",
+          "scope": {
+            "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+            "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+          }
+        }
+      }
+    ],
+    "unique_declared_generated_artifacts": 17,
+    "output_check_count_note": "18 assertions cover 17 distinct declared artifacts because hydrogenic atoms and helium share results.json; optional generated plots are outside this artifact count."
+  },
+  "additional_checks": {
+    "barnes_hut": {
+      "method": "Scalar double loop of the Plummer-softened pair force; no direct_acceleration call",
+      "pairs": 36672,
+      "csv_direct_max_absolute_difference": 0.0,
+      "relative_rms_tree_force_error": 0.0028910490118654836,
+      "fully_opened_vs_independent_max_absolute_error": 3.552713678800501e-15,
+      "fully_opened_interaction_counts": {
+        "accepted_nodes": 0,
+        "direct_pairs": 36672
+      },
+      "coordinates_match_input": true,
+      "masses_match_input": true
+    },
+    "quantum": "Registry checks independently evaluated from fresh results; all generated profile CSV norms/electron counts and He density L1 differences independently recomputed. 24 H energies independently compared with -Z^2/(2n^2).",
+    "pde": {
+      "sod": {
+        "density_l1_error_from_csv": 0.015469740521059604,
+        "error_ratio_using_csv_fine_and_json_coarse": 0.6504478779523587,
+        "minimum_density_from_csv": 0.1250000001362996,
+        "minimum_pressure_from_csv": 0.1000000001526556,
+        "final_conserved_integrals_from_primitive_csv": [
+          0.5625000000014916,
+          0.17999999999712746,
+          1.3750000000055695
+        ],
+        "initial_conserved_integrals_from_fixed_states": [
+          0.5625,
+          0.0,
+          1.375
+        ],
+        "time_integrated_boundary_flux_difference": [
+          0.0,
+          0.18,
+          0.0
+        ],
+        "signed_balance_defects_from_csv": [
+          1.4915846335838978e-12,
+          -2.8725355427638988e-12,
+          5.56954482533456e-12
+        ],
+        "physical_boundary_balance_relative_defect_from_csv": 4.0505780547723636e-12,
+        "max_density_error_column_difference": 0.0,
+        "max_cell_center_coordinate_difference": 0.0,
+        "published_criteria_rechecked_from_csv": true,
+        "scope": "Reference density is the published same-codebase self-similar evaluator. Balance is independently formed from primitive CSV fields and fixed physical far-field fluxes. Final-time evidence comes from result JSON."
+      },
+      "poisson-1d-dirichlet": {
+        "continuous_error_from_csv_and_math_sin": 0.00020082180969560604,
+        "fine_grid_relative_residual_from_csv": 5.2616631919168895e-14,
+        "boundary_maximum_absolute_value_from_csv": 0.0,
+        "minimum_order_recomputed_from_reported_level_errors": 2.0005215338201543,
+        "max_csv_reference_minus_math_sin": 0.0,
+        "max_csv_error_column_difference": 0.0,
+        "uniform_grid_exact": true,
+        "published_criteria_rechecked_from_csv": true,
+        "scope": "Finest-grid fields independently recalculated with stdlib math; coarse-field CSVs are not published, so refinement uses JSON level errors."
+      }
+    }
+  },
+  "citation_review": {
+    "passed_for_traceable_scoped_citations": true,
+    "full_primary_texts_all_accessed": false,
+    "tree": {
+      "citation": "Josh Barnes and Piet Hut, “A hierarchical O(N log N) force-calculation algorithm,” Nature 324, 446–449 (1986), https://doi.org/10.1038/324446a0.",
+      "access": "DOI registration bibliographic metadata; original full text not read"
+    },
+    "quantum": [
+      {
+        "authors": "E. Schrödinger",
+        "year": 1926,
+        "title": "Quantisierung als Eigenwertproblem",
+        "journal": "Annalen der Physik 384, 361–376",
+        "doi_url": "https://doi.org/10.1002/andp.19263840404",
+        "original_url": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/andp.19263840404",
+        "status": "original PDF text accessed by web tool; relevant passages inspected, not full-paper reproduction",
+        "inspected": "PDF pp.361–363,368–371: nonrelativistic hydrogen; radial boundary behavior; discrete negative-energy spectrum and Bohr energy levels. OCR is imperfect.",
+        "http_download": "403 for direct urllib DOI and PDF requests; no local PDF SHA available",
+        "inference_limit": "The modern finite-difference implementation is educational code, not original 1926 code; all specified states and current units are documented by the site."
+      },
+      {
+        "authors": "C. C. J. Roothaan",
+        "year": 1951,
+        "title": "New Developments in Molecular Orbital Theory",
+        "journal": "Reviews of Modern Physics 23, 69",
+        "doi_url": "https://doi.org/10.1103/RevModPhys.23.69",
+        "original_url": "https://journals.aps.org/rmp/pdf/10.1103/RevModPhys.23.69",
+        "status": "publisher bibliographic metadata accessed; original full text not accessible",
+        "inspected": "Publisher page confirms title, author, volume/page and publication 1 April 1951; Authorization Required is shown. PDF web fetch returns 401.",
+        "inference_limit": "Only site citation information and publisher metadata verified. No claim of reading its derivation or reproducing all paper results."
+      },
+      {
+        "authors": "W. Kohn; L. J. Sham",
+        "year": 1965,
+        "title": "Self-Consistent Equations Including Exchange and Correlation Effects",
+        "journal": "Physical Review 140, A1133–A1138",
+        "doi_url": "https://doi.org/10.1103/PhysRev.140.A1133",
+        "original_url": "https://journals.aps.org/pr/pdf/10.1103/PhysRev.140.A1133",
+        "status": "original PDF text accessed by web tool; relevant passages inspected",
+        "inspected": "pp.A1133–A1135, Sec.II: kinetic-plus-exchange/correlation functional, local electron-gas approximation and self-consistency; limits of density variation and finite-system boundaries.",
+        "download_sha256": "99685aebe6c51a23ffe4288394f8b8fa5dfe9fd33956348851d1a0354155c83b",
+        "inference_limit": "This runner sets correlation to zero (LDA_X). Passing He does not reproduce the whole exchange-and-correlation paper."
+      },
+      {
+        "authors": "P. A. M. Dirac",
+        "year": 1930,
+        "title": "Note on Exchange Phenomena in the Thomas Atom",
+        "journal": "Mathematical Proceedings of the Cambridge Philosophical Society 26, 376–385",
+        "doi_url": "https://doi.org/10.1017/S0305004100016108",
+        "original_url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6C5FF7297CD96F49A8B8E9E3EA50E412/S0305004100016108a.pdf/note-on-exchange-phenomena-in-the-thomas-atom.pdf",
+        "status": "original PDF text accessed by web tool; relevant passages inspected",
+        "inspected": "pp.376–377 and384–385: many-electron approximations, exchange correction to the Thomas model, and limits outside the atom.",
+        "download_sha256": "6d9e74ceaf23bc6b9bf894414100c93c828d8f9d136f66df051282348562b320",
+        "inference_limit": "Historical source for exchange approximation; this fixed runner is a modern radial He example, not a reproduction of the complete Thomas-atom calculation."
+      }
+    ],
+    "pde": [
+      {
+        "id": "hllc1994",
+        "requested_url": "https://doi.org/10.1007/BF01414629",
+        "final_url": "https://link.springer.com/article/10.1007/BF01414629",
+        "service": "tools.web__run open",
+        "status": "opened publisher bibliography and abstract; subscription preview, full paper not read",
+        "actually_opened_content": "Title, authors E. F. Toro, M. Spruce, W. Speares; Shock Waves 4, 25–34 (1994); contact-restoration abstract",
+        "verified_bibliographic_citation": "Toro, E. F., Spruce, M., and Speares, W. (1994). Restoration of the contact surface in the HLL-Riemann solver. Shock Waves 4, 25–34. DOI:10.1007/BF01414629."
+      },
+      {
+        "id": "sod1978",
+        "requested_url": "https://doi.org/10.1016/0021-9991(78)90023-2",
+        "service": "tools.web__run open; unauthenticated Python urllib fallback",
+        "web_status": "403 Forbidden",
+        "urllib_status": 200,
+        "urllib_final_url": "https://linkinghub.elsevier.com/retrieve/pii/0021999178900232",
+        "actually_opened_content": "Redirect shell only. Embedded article title matches site bibliography; no article/abstract body read.",
+        "publisher_followup": "Following the embedded public ScienceDirect destination in web reader returned Cache miss.",
+        "citation_status": "Full citation below is site/bundled public bibliography metadata, not independently verified original-paper contents."
+      },
+      {
+        "id": "thomas1949",
+        "status": "bibliographic metadata only; original not opened",
+        "reason": "Example explicitly says original Thomas report remains unverified; elliptic reading repeats that original 1949 report was not inspected.",
+        "primary_source_claim": "none"
+      },
+      {
+        "id": "godunov1959",
+        "status": "bundled public bibliography metadata only; original not opened",
+        "scope": "Historical context only. Executed Godunov-type/HLLC/SSPRK3 update differs from original exact-Riemann one-step construction."
+      }
+    ],
+    "rights": "Original code MIT; data, text, figures, PDFs and third-party material retain item-specific terms. This receipt adds no reuse grant."
+  },
+  "friction": {
+    "tool": "web open failed; default sandbox HTTP required network-enabled execution",
+    "quantum": "Default Python 3.9 did not meet published >=3.10; agent selected available Python 3.12 before running.",
+    "tree": "Agent first assumed a different manifest shape and mishandled an existing download directory; corrected its own helper and reran. Published source/input were unchanged.",
+    "sources": "Some publisher full texts were unavailable; bibliographic metadata and full-text access are explicitly separated."
+  },
+  "limitations": [
+    "URL-assisted success is not external-search discovery, adoption by all AI products, or evidence of future model training.",
+    "This observation used macOS arm64 with Python 3.9.6/3.12.16. Prior fresh-Linux fifteen-case CI is separate evidence.",
+    "He uses a saved finite-basis PySCF reference; the agent did not regenerate that reference. HF and exchange-only LDA are not general molecular DFT.",
+    "Sod uses a same-codebase self-similar reference with numerical root finding, not an independent external solver.",
+    "Normal checks, output checks, expected nonconvergence, setup-helper errors and literature-access failures are different categories."
+  ],
+  "next_checks": {
+    "ja": [
+      "検索サービス側の登録・取得状況を確認する。現時点の未登録とは断定しない。",
+      "同じ検索語・サービス・記録条件で日を改めて再確認する。",
+      "追加例にも公開取得・実行・検証・引用の確認を適用する。"
+    ],
+    "en": [
+      "Inspect search-service registration and fetch status without presuming nonregistration.",
+      "Repeat the same queries and recording protocol on a later date.",
+      "Apply public-only retrieval, execution, validation and citation checks to added examples."
+    ]
+  }
+}

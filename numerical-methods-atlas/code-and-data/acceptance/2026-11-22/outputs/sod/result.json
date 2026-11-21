@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "problem_id": "sod",
+  "parameters": {
+    "coarse_n": 80,
+    "fine_n": 160,
+    "domain": [
+      0,
+      1
+    ],
+    "discontinuity": 0.5,
+    "gamma": 1.4,
+    "left": [
+      1,
+      0,
+      1
+    ],
+    "right": [
+      0.125,
+      0,
+      0.1
+    ],
+    "final_time": 0.2,
+    "cfl": 0.3,
+    "boundary": "outflow",
+    "method": "godunov",
+    "riemann": "hllc"
+  },
+  "status": "passed",
+  "passed": true,
+  "metrics": {
+    "density_l1_error_coarse": 0.02378321314500878,
+    "density_l1_error_fine": 0.015469740521059604,
+    "fine_to_coarse_error_ratio": 0.6504478779523587,
+    "minimum_density": 0.1250000001362996,
+    "minimum_pressure": 0.1000000001526556,
+    "physical_boundary_balance_relative_defect": 4.0513854896993565e-12,
+    "mass_balance_absolute_defect": 1.4918066781888228e-12,
+    "momentum_balance_absolute_defect": 2.8727020762175925e-12,
+    "energy_balance_absolute_defect": 5.5706550483591855e-12,
+    "steps_fine": 228,
+    "final_time_error": 0.0
+  },
+  "checks": {
+    "riemann-error": true,
+    "refinement": true,
+    "positive-density": true,
+    "positive-pressure": true,
+    "boundary-balance": true,
+    "reached-time": true
+  },
+  "acceptance": [
+    {
+      "id": "riemann-error",
+      "metric": "density_l1_error_fine",
+      "comparison": "maximum",
+      "tolerance": 0.035,
+      "description": {
+        "ja": "自己相似Riemann解に対する密度L1標本誤差が0.035未満（既存Sod検査と同じ基準）。",
+        "en": "Density L1 sample error against the self-similar Riemann solution is at most 0.035, matching the existing Sod-test criterion."
+      },
+      "observed": 0.015469740521059604,
+      "passed": true
+    },
+    {
+      "id": "refinement",
+      "metric": "fine_to_coarse_error_ratio",
+      "comparison": "maximum",
+      "tolerance": 0.85,
+      "description": {
+        "ja": "80→160セルで密度誤差が15%以上減る（既存検査の基準）。",
+        "en": "Density error decreases by at least 15% from 80 to 160 cells, following the existing test criterion."
+      },
+      "observed": 0.6504478779523587,
+      "passed": true
+    },
+    {
+      "id": "positive-density",
+      "metric": "minimum_density",
+      "comparison": "minimum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "最小密度が正である。",
+        "en": "Minimum density remains positive."
+      },
+      "observed": 0.1250000001362996,
+      "passed": true
+    },
+    {
+      "id": "positive-pressure",
+      "metric": "minimum_pressure",
+      "comparison": "minimum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "最小圧力が正である。",
+        "en": "Minimum gas pressure remains positive."
+      },
+      "observed": 0.1000000001526556,
+      "passed": true
+    },
+    {
+      "id": "boundary-balance",
+      "metric": "physical_boundary_balance_relative_defect",
+      "comparison": "maximum",
+      "tolerance": 1e-10,
+      "description": {
+        "ja": "遠方の物理境界流束を差し引いた相対収支誤差。",
+        "en": "Relative integral balance defect after subtracting physical far-field boundary fluxes."
+      },
+      "observed": 4.0513854896993565e-12,
+      "passed": true
+    },
+    {
+      "id": "reached-time",
+      "metric": "final_time_error",
+      "comparison": "maximum",
+      "tolerance": 1e-14,
+      "description": {
+        "ja": "指定した終端時刻まで進んだ。",
+        "en": "The requested final time is reached."
+      },
+      "observed": 0.0,
+      "passed": true
+    }
+  ],
+  "table": {
+    "file": "solution.csv",
+    "columns": [
+      "x",
+      "density",
+      "velocity",
+      "pressure",
+      "reference_density",
+      "reference_velocity",
+      "reference_pressure",
+      "density_absolute_error"
+    ],
+    "rows": 160
+  },
+  "details": {
+    "reference_kind": "analytic self-similar Euler Riemann solution; pressure evaluated by bracketed numerical root in numart.riemann, not an independent codebase",
+    "row_layout": "one fine-grid location per row; reference at the identical final time and location",
+    "representation": "sampled cell values with piecewise-constant FV update",
+    "conservation": "integral(final)-integral(initial)-T*(physical left flux-physical right flux); uniform far fields remain outside the wave fan",
+    "refinement": "coarse and fine L1 sample errors against the stated reference; ratio is empirical, not a proof of formal order"
+  },
+  "input_sha256": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f"
+}

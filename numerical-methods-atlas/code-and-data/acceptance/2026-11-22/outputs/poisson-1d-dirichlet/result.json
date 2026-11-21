@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "problem_id": "poisson-1d-dirichlet",
+  "parameters": {
+    "interior_nodes": [
+      15,
+      31,
+      63
+    ],
+    "domain": [
+      0,
+      1
+    ],
+    "boundary_values": [
+      0,
+      0
+    ],
+    "forcing": "pi^2*sin(pi*x)",
+    "solver": "thomas"
+  },
+  "status": "passed",
+  "passed": true,
+  "metrics": {
+    "finest_linf_error": 0.00020082180969560604,
+    "minimum_observed_order": 2.0005215338201543,
+    "maximum_true_relative_residual": 5.26166319191689e-14,
+    "boundary_maximum_absolute_value": 0.0
+  },
+  "checks": {
+    "continuous-error": true,
+    "second-order-refinement": true,
+    "discrete-residual": true,
+    "dirichlet-boundary": true
+  },
+  "acceptance": [
+    {
+      "id": "continuous-error",
+      "metric": "finest_linf_error",
+      "comparison": "maximum",
+      "tolerance": 0.0003,
+      "description": {
+        "ja": "63内部点の連続解最大誤差。2次差分の主要誤差π²h²/12に余裕を持つ上限。",
+        "en": "Continuous-solution maximum error at 63 interior nodes; the bound allows margin above the leading π²h²/12 error."
+      },
+      "observed": 0.00020082180969560604,
+      "passed": true
+    },
+    {
+      "id": "second-order-refinement",
+      "metric": "minimum_observed_order",
+      "comparison": "minimum",
+      "tolerance": 1.9,
+      "description": {
+        "ja": "格子幅を半減したときの最大誤差の次数が1.9以上。",
+        "en": "Maximum-error refinement order is at least 1.9 when spacing halves."
+      },
+      "observed": 2.0005215338201543,
+      "passed": true
+    },
+    {
+      "id": "discrete-residual",
+      "metric": "maximum_true_relative_residual",
+      "comparison": "maximum",
+      "tolerance": 1e-10,
+      "description": {
+        "ja": "独立な差分式で再計算した離散相対残差。離散化誤差とは別の確認。",
+        "en": "Discrete relative residual recomputed with a separate stencil; distinct from discretization error."
+      },
+      "observed": 5.26166319191689e-14,
+      "passed": true
+    },
+    {
+      "id": "dirichlet-boundary",
+      "metric": "boundary_maximum_absolute_value",
+      "comparison": "maximum",
+      "tolerance": 1e-14,
+      "description": {
+        "ja": "両端の零Dirichlet条件。",
+        "en": "Zero Dirichlet values at both endpoints."
+      },
+      "observed": 0.0,
+      "passed": true
+    }
+  ],
+  "table": {
+    "file": "solution.csv",
+    "columns": [
+      "x",
+      "solution",
+      "reference",
+      "absolute_error"
+    ],
+    "rows": 65
+  },
+  "details": {
+    "equation": "-u_xx=pi^2*sin(pi*x)",
+    "reference_type": "analytic continuous solution sin(pi*x)",
+    "refinement": [
+      {
+        "interior_nodes": 15,
+        "h": 0.0625,
+        "linf_error": 0.003218964440079519,
+        "true_relative_residual": 4.05337150633784e-15
+      },
+      {
+        "interior_nodes": 31,
+        "h": 0.03125,
+        "linf_error": 0.0008035776793697824,
+        "true_relative_residual": 1.3382262369588953e-14
+      },
+      {
+        "interior_nodes": 63,
+        "h": 0.015625,
+        "linf_error": 0.00020082180969560604,
+        "true_relative_residual": 5.26166319191689e-14
+      }
+    ],
+    "observed_orders": [
+      2.0020872428192216,
+      2.0005215338201543
+    ],
+    "table_layout": "Finest mesh, including both Dirichlet boundary nodes; every row shares x."
+  },
+  "input_sha256": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51"
+}

@@ -130,10 +130,15 @@
       "sha256": "e5c45fd29864fe858e2827381a55b5901b3b0e51b66cc2e182b4745bfb5c8422"
     }
   ],
+  "ai_acceptance_report": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22.json",
+    "sha256": "d6e05d388732aa4c809a00c8a84a22085b494c965691b15a2f54a17e03a59bab",
+    "observed_on": "2026-11-22"
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "474f3a9d683b61793db36f4f74e4346ad126899fe7fcdcbd782085080d4ee3b5"
+    "sha256": "5af4bf665892ff18639186c5c91de7ff1195bd3a8901ef7eb35699f938d8d146"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",

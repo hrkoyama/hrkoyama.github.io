@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-21-a494c567a8
-Captured (UTC): 2026-11-21T23:16:16+00:00
+Snapshot: 2026-11-21-2f5c56e7d0
+Captured (UTC): 2026-11-21T23:53:35+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -7222,6 +7222,7 @@ Coverage: reading
 
 In progress / publication check pending
 Extract public ZIPs in a fixed environment and run small representative examples. Record human bilingual navigation and AI discovery, retrieval, execution and citation separately. Apply the same checks to any newly published examples; do not promise search inclusion or future model-training use.
+AI discovery, retrieval, execution and citation observation / JSON
 
 ## Implementation roadmap — Prepare a year-end edition that can be maintained and restored [en]
 
@@ -14673,6 +14674,7 @@ Coverage: reading
 
 実装中・公開確認待ち
 固定環境で公開ZIPを展開し、小規模な代表例を実行する。人の日英の導線と、AIの外部発見・情報取得・実行・引用を別々に記録する。年内に追加公開する例も同じ確認を通し、検索への掲載や将来の学習採用を保証しない。
+AIの外部検索・取得・実行・引用の観測 / JSON
 
 ## 実装ロードマップ — 更新・復元できる年末版へまとめる [ja]
 

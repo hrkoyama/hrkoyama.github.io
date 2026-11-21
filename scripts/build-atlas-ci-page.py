@@ -147,6 +147,12 @@ def load(root):
         path=snapshot_path(url,root)
         record=validate_snapshot(url,json.loads(path.read_bytes()),registry,registry_sha,config,module)
         record['sha256']=digest(path.read_bytes());snapshots.append(record)
+    if config.get('ai_acceptance_report'):
+        receipt=config['ai_acceptance_report'];parsed=urlparse(receipt['url'])
+        if parsed.scheme!='https' or parsed.netloc!='hrkoyama.github.io' or not re.fullmatch(r'/numerical-methods-atlas/code-and-data/acceptance/[0-9-]+\.json',parsed.path) or parsed.query or parsed.fragment:
+            raise ValueError('AI acceptance report must be a dated public JSON receipt')
+        raw_receipt=(root/parsed.path.lstrip('/')).read_bytes()
+        if digest(raw_receipt)!=receipt['sha256']:raise ValueError('AI acceptance receipt SHA-256 mismatch')
     return config,current,snapshots,digest(source)
 
 
@@ -171,6 +177,9 @@ def render(config,current,snapshots,lang):
     title='公開配布物のLinux再実行' if ja else 'Public-distribution checks on Linux'
     body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">PUBLIC DISTRIBUTIONS · FRESH LINUX CI</p><h1>'+title+'</h1>'+paragraph(config['scope'][lang],'intro')
     body+='<nav class="ci-links">'+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'取得・実行の案内' if ja else 'Download and execution guide')+link('/numerical-methods-atlas/code-and-data/examples.json','実行例台帳 / JSON' if ja else 'Execution registry / JSON')+link('#latest-'+lang,'最新のCI状態' if ja else 'Current CI status')+link('#saved-'+lang,'保存された成功記録' if ja else 'Saved successful runs')+'</nav>'
+    if config.get('ai_acceptance_report'):
+        body+='<p>'+link(config['ai_acceptance_report']['url'],'AIの外部検索・取得・実行・引用の確認記録 / JSON' if ja else 'AI external-search, retrieval, execution and citation observations / JSON')+'</p>'
+        body+=paragraph('この観測は定期CIと別に記録し、外部検索での発見と、URLを提示した後の利用を区別しています。' if ja else 'This observation is separate from scheduled CI and distinguishes external-search discovery from use after providing a URL.','ci-note')
     body+='<section id="latest-'+lang+'" class="ci-panel"><h2>'+('最新のCI状態' if ja else 'Current CI status')+'</h2>'
     body+='<a class="ci-badge" href="'+esc(workflow['runs_url'])+'"><img src="'+esc(workflow['badge_url'])+'" alt="'+('GitHub Actions：公開ブランチのワークフロー状態' if ja else 'GitHub Actions workflow status for the public branch')+'"></a>'
     body+=paragraph(definitions['latest'][lang])
@@ -223,6 +232,9 @@ def main():
     guide=ROOT/'llms.txt';text=guide.read_text()
     text=re.sub(r'^- \[Public Linux verification CI\].*\n?','',text,flags=re.M)
     line=f'- [Public Linux verification CI]({ORIGIN}{ROUTE}): {public["current_registry"]["example_count"]} fixed-input public-distribution examples; latest workflow status and runs via GitHub Actions, separately from dated saved Linux success snapshots. The JSON page metadata links to the latest-run public API; no scientific data or code is changed by this page.\n'
+    text=re.sub(r'^- \[AI external-use observations\].*\n?','',text,flags=re.M)
+    if public.get('ai_acceptance_report'):
+        line+='- [AI external-use observations]('+public['ai_acceptance_report']['url']+'): Dated search, retrieval, public-only execution, numerical checks and citation evidence. URL-assisted execution is not evidence of unprompted search discovery or future model training.\n'
     guide.write_text(text.rstrip()+'\n'+line)
     print('Built bilingual Linux CI guide:',public['current_registry']['example_count'],'problems;',len(public['snapshots']),'saved successes.')
 

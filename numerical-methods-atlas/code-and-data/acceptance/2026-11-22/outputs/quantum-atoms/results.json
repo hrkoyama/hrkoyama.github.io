@@ -1,0 +1,1890 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.16",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1"
+  },
+  "inputs": {
+    "units": "atomic units; infinite-mass point nucleus; nonrelativistic isolated atom",
+    "boundary": "u(0)=u(r_max)=0 on a uniform interior radial grid",
+    "hydrogenic": {
+      "charges": [
+        1,
+        2
+      ],
+      "states": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "r_max": 60,
+      "steps": [
+        0.04,
+        0.02,
+        0.01
+      ],
+      "domain_radii": [
+        4,
+        8,
+        16,
+        32
+      ],
+      "domain_step": 0.01
+    },
+    "helium": {
+      "models": [
+        "hf",
+        "lda_x"
+      ],
+      "r_max": 16,
+      "steps": [
+        0.02,
+        0.01,
+        0.005,
+        0.0025
+      ],
+      "domain_radii": [
+        4,
+        8,
+        12,
+        16
+      ],
+      "domain_step": 0.005,
+      "mixing": 0.35,
+      "alternative_mixing": 0.7,
+      "alternative_initial_exponent": 1.0,
+      "density_tolerance": 1e-09,
+      "energy_tolerance": 1e-10,
+      "orbital_tolerance": 1e-07,
+      "max_iterations": 300
+    },
+    "independent_reference": {
+      "basis_sizes": [
+        24,
+        32,
+        40
+      ],
+      "exponent_range": [
+        0.01,
+        1000000
+      ],
+      "radial_angular_grids": [
+        [
+          250,
+          110
+        ],
+        [
+          500,
+          194
+        ]
+      ],
+      "pyscf_xc": "LDA_X,",
+      "scf_energy_tolerance": 1e-12,
+      "spin": 0,
+      "charge": 0,
+      "density_profile": {
+        "r_max": 16,
+        "dr": 0.0025
+      }
+    }
+  },
+  "scope": "Hydrogenic radial bound states and isolated closed-shell 1s^2 helium. HF exact exchange is special to this two-electron orbital. LDA_X has zero correlation. Not molecular/periodic or a general HF/DFT solver.",
+  "hydrogenic": {
+    "refinement": [
+      {
+        "Z": 1.0,
+        "n": 1,
+        "l": 0,
+        "energy": -0.49980015984024706,
+        "exact_energy": -0.5,
+        "energy_error": 0.00019984015975293978,
+        "norm": 0.9999999999999998,
+        "wavefunction_l2": 0.00023080466758797422,
+        "eigen_residual": 1.0570707547073232e-13,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 1,
+        "l": 0,
+        "energy": -0.49995000999771044,
+        "exact_energy": -0.5,
+        "energy_error": 4.999000228955719e-05,
+        "norm": 1.0,
+        "wavefunction_l2": 5.772655977334099e-05,
+        "eigen_residual": 3.9806651155800925e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 1,
+        "l": 0,
+        "energy": -0.499987500623431,
+        "exact_energy": -0.5,
+        "energy_error": 1.2499376568997356e-05,
+        "norm": 0.9999999999999996,
+        "wavefunction_l2": 1.4433227510651771e-05,
+        "eigen_residual": 2.1195230425015774e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 2,
+        "l": 0,
+        "energy": -0.12498750249932192,
+        "exact_energy": -0.125,
+        "energy_error": 1.249750067808253e-05,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 0.00019146407320588127,
+        "eigen_residual": 1.1036779698394472e-13,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 2,
+        "l": 0,
+        "energy": -0.12499687515588957,
+        "exact_energy": -0.125,
+        "energy_error": 3.1248441104275715e-06,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 4.7870020855936485e-05,
+        "eigen_residual": 4.662331035286052e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 2,
+        "l": 0,
+        "energy": -0.12499921875990053,
+        "exact_energy": -0.125,
+        "energy_error": 7.812400994733348e-07,
+        "norm": 1.0000000000000007,
+        "wavefunction_l2": 1.1967755510570955e-05,
+        "eigen_residual": 1.2462227066855107e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 2,
+        "l": 1,
+        "energy": -0.1250041676852603,
+        "exact_energy": -0.125,
+        "energy_error": 4.16768526029232e-06,
+        "norm": 1.0000000000000007,
+        "wavefunction_l2": 6.274126824964613e-05,
+        "eigen_residual": 1.0675701833957839e-13,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 2,
+        "l": 1,
+        "energy": -0.12500104173028737,
+        "exact_energy": -0.125,
+        "energy_error": 1.0417302873655387e-06,
+        "norm": 1.0000000000000004,
+        "wavefunction_l2": 1.568257251166027e-05,
+        "eigen_residual": 3.359062911290406e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 2,
+        "l": 1,
+        "energy": -0.12500026042093038,
+        "exact_energy": -0.125,
+        "energy_error": 2.604209303758154e-07,
+        "norm": 0.9999999999999998,
+        "wavefunction_l2": 3.920471818305439e-06,
+        "eigen_residual": 1.3870807586420553e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 3,
+        "l": 2,
+        "energy": -0.0555557201593732,
+        "exact_energy": -0.05555555555555555,
+        "energy_error": 1.6460381764560328e-07,
+        "norm": 0.9999999999999998,
+        "wavefunction_l2": 9.694874826397729e-06,
+        "eigen_residual": 1.4150878293828522e-13,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 3,
+        "l": 2,
+        "energy": -0.055555596703047716,
+        "exact_energy": -0.05555555555555555,
+        "energy_error": 4.114749216355129e-08,
+        "norm": 1.0,
+        "wavefunction_l2": 5.733864967321415e-06,
+        "eigen_residual": 3.993268036939531e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 1.0,
+        "n": 3,
+        "l": 2,
+        "energy": -0.05555556584054229,
+        "exact_energy": -0.05555555555555555,
+        "energy_error": 1.0284986737274515e-08,
+        "norm": 0.9999999999999996,
+        "wavefunction_l2": 5.3966471053758796e-06,
+        "eigen_residual": 2.1735873252979166e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 1,
+        "l": 0,
+        "energy": -1.996810199222688,
+        "exact_energy": -2.0,
+        "energy_error": 0.003189800777311902,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 0.0009215955512896879,
+        "eigen_residual": 9.578598462256446e-14,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 1,
+        "l": 0,
+        "energy": -1.9992006393607626,
+        "exact_energy": -2.0,
+        "energy_error": 0.0007993606392373565,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 0.00023080466757842636,
+        "eigen_residual": 3.4890717976743023e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 1,
+        "l": 0,
+        "energy": -1.9998000399890803,
+        "exact_energy": -2.0,
+        "energy_error": 0.0001999600109197086,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 5.77265598109629e-05,
+        "eigen_residual": 1.5824961512569615e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 2,
+        "l": 0,
+        "energy": -0.49980015984011505,
+        "exact_energy": -0.5,
+        "energy_error": 0.0001998401598849453,
+        "norm": 1.0000000000000007,
+        "wavefunction_l2": 0.00076560036226248,
+        "eigen_residual": 1.15386623356884e-13,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 2,
+        "l": 0,
+        "energy": -0.49995000999724204,
+        "exact_energy": -0.5,
+        "energy_error": 4.9990002757960283e-05,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 0.00019146407322806567,
+        "eigen_residual": 4.476261512092323e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 2,
+        "l": 0,
+        "energy": -0.49998750062546254,
+        "exact_energy": -0.5,
+        "energy_error": 1.2499374537455754e-05,
+        "norm": 1.0000000000000007,
+        "wavefunction_l2": 4.787002091935902e-05,
+        "eigen_residual": 1.3126538175385397e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 2,
+        "l": 1,
+        "energy": -0.5000667318858198,
+        "exact_energy": -0.5,
+        "energy_error": 6.673188581984846e-05,
+        "norm": 1.0000000000000004,
+        "wavefunction_l2": 0.00025114078221111675,
+        "eigen_residual": 9.201426801495605e-14,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 2,
+        "l": 1,
+        "energy": -0.5000166707410081,
+        "exact_energy": -0.5,
+        "energy_error": 1.6670741008084633e-05,
+        "norm": 1.0000000000000004,
+        "wavefunction_l2": 6.274126821246693e-05,
+        "eigen_residual": 4.805127544225791e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 2,
+        "l": 1,
+        "energy": -0.500004166921105,
+        "exact_energy": -0.5,
+        "energy_error": 4.166921105053234e-06,
+        "norm": 0.9999999999999996,
+        "wavefunction_l2": 1.5682572567463148e-05,
+        "eigen_residual": 1.3762158288763509e-12,
+        "dr": 0.01,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 3,
+        "l": 2,
+        "energy": -0.22222485592938807,
+        "exact_energy": -0.2222222222222222,
+        "energy_error": 2.6337071658555367e-06,
+        "norm": 1.0000000000000002,
+        "wavefunction_l2": 3.23321883202654e-05,
+        "eigen_residual": 1.198210157460636e-13,
+        "dr": 0.04,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 3,
+        "l": 2,
+        "energy": -0.22222288065567325,
+        "exact_energy": -0.2222222222222222,
+        "energy_error": 6.584334510395529e-07,
+        "norm": 0.9999999999999999,
+        "wavefunction_l2": 8.0829997002833e-06,
+        "eigen_residual": 5.473742429450054e-13,
+        "dr": 0.02,
+        "r_max": 60
+      },
+      {
+        "Z": 2.0,
+        "n": 3,
+        "l": 2,
+        "energy": -0.22222238683130907,
+        "exact_energy": -0.2222222222222222,
+        "energy_error": 1.6460908686122266e-07,
+        "norm": 1.0000000000000018,
+        "wavefunction_l2": 2.020747461794149e-06,
+        "eigen_residual": 1.4502003553359513e-12,
+        "dr": 0.01,
+        "r_max": 60
+      }
+    ],
+    "domain_refinement": [
+      {
+        "r_max": 4,
+        "dr": 0.01,
+        "energy": -0.4832515654858495,
+        "energy_error": 0.01674843451415048
+      },
+      {
+        "r_max": 8,
+        "dr": 0.01,
+        "energy": -0.4999625958597633,
+        "energy_error": 3.7404140236674266e-05
+      },
+      {
+        "r_max": 16,
+        "dr": 0.01,
+        "energy": -0.49998750061194486,
+        "energy_error": 1.2499388055142724e-05
+      },
+      {
+        "r_max": 32,
+        "dr": 0.01,
+        "energy": -0.49998750062364294,
+        "energy_error": 1.249937635705578e-05
+      }
+    ]
+  },
+  "helium": {
+    "refinement": [
+      {
+        "model": "hf",
+        "energy": -2.860349157122985,
+        "orbital_energy": -0.9174482958410477,
+        "kinetic_energy": 2.8576899751227773,
+        "nuclear_energy": -6.743491697686652,
+        "hartree_energy": 2.050905130881779,
+        "exchange_energy": -1.0254525654408895,
+        "correlation_energy": 0.0,
+        "electron_count": 2.000000000000001,
+        "orbital_residual": 4.695098870537009e-11,
+        "density_residual": 7.298249888167601e-10,
+        "energy_identity_error": 0.0,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.02,
+        "r_max": 16.0,
+        "iterations": 43
+      },
+      {
+        "model": "hf",
+        "energy": -2.861347051927176,
+        "orbital_energy": -0.9178286418287956,
+        "kinetic_energy": 2.8606813207253214,
+        "nuclear_energy": -6.747718140922082,
+        "hartree_energy": 2.0513795365391685,
+        "exchange_energy": -1.0256897682695842,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000013,
+        "orbital_residual": 4.7038039700900065e-11,
+        "density_residual": 7.316610815340308e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.01,
+        "r_max": 16.0,
+        "iterations": 43
+      },
+      {
+        "model": "hf",
+        "energy": -2.861596745049548,
+        "orbital_energy": -0.9179238260772091,
+        "kinetic_energy": 2.8614302537070255,
+        "nuclear_energy": -6.748776091651703,
+        "hartree_energy": 2.0514981857902588,
+        "exchange_energy": -1.0257490928951294,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000004,
+        "orbital_residual": 4.7182351733513516e-11,
+        "density_residual": 7.316707064930232e-10,
+        "energy_identity_error": 0.0,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 43
+      },
+      {
+        "model": "hf",
+        "energy": -2.8616591820563495,
+        "orbital_energy": -0.9179476282547085,
+        "kinetic_energy": 2.8616175555748167,
+        "nuclear_energy": -6.749040663178099,
+        "hartree_energy": 2.0515278510938657,
+        "exchange_energy": -1.0257639255469329,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000004,
+        "orbital_residual": 5.1491767770429186e-11,
+        "density_residual": 7.323110498990301e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.0025,
+        "r_max": 16.0,
+        "iterations": 43
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7222884188092986,
+        "orbital_energy": -0.5165873086209762,
+        "kinetic_energy": 2.719588083788998,
+        "nuclear_energy": -6.562715816146185,
+        "hartree_energy": 1.9732510455770773,
+        "exchange_energy": -0.8524117320291887,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999987,
+        "orbital_residual": 1.0149884055190545e-11,
+        "density_residual": 6.952509607840008e-10,
+        "energy_identity_error": 1.7763568394002505e-15,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.02,
+        "r_max": 16.0,
+        "iterations": 45
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7233017228656884,
+        "orbital_energy": -0.5168728841504902,
+        "kinetic_energy": 2.7226257343838824,
+        "nuclear_energy": -6.567022921030569,
+        "hartree_energy": 1.9737861999565627,
+        "exchange_energy": -0.8526907361755648,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999971,
+        "orbital_residual": 1.025495451273947e-11,
+        "density_residual": 6.967106753784264e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.01,
+        "r_max": 16.0,
+        "iterations": 45
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7235552609861555,
+        "orbital_energy": -0.516944360659483,
+        "kinetic_energy": 2.72338620728451,
+        "nuclear_energy": -6.568101003765471,
+        "hartree_energy": 1.97392004175338,
+        "exchange_energy": -0.8527605062585746,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999978,
+        "orbital_residual": 1.1489290296974026e-11,
+        "density_residual": 6.974721705773261e-10,
+        "energy_identity_error": 8.881784197001252e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 45
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7236186587794364,
+        "orbital_energy": -0.5169622349552495,
+        "kinetic_energy": 2.723576391819197,
+        "nuclear_energy": -6.568370606159658,
+        "hartree_energy": 1.9739535055228936,
+        "exchange_energy": -0.852777949961869,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999991,
+        "orbital_residual": 2.4583100641605903e-11,
+        "density_residual": 6.978373585460334e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.0025,
+        "r_max": 16.0,
+        "iterations": 45
+      }
+    ],
+    "domain_refinement": [
+      {
+        "model": "hf",
+        "energy": -2.8585050221134938,
+        "orbital_energy": -0.9125509949400705,
+        "kinetic_energy": 2.8871047345211274,
+        "nuclear_energy": -6.779012788867973,
+        "hartree_energy": 2.0668060644667046,
+        "exchange_energy": -1.0334030322333523,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999996,
+        "orbital_residual": 4.5982033050286316e-11,
+        "density_residual": 7.296598928733976e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 4.0,
+        "iterations": 43
+      },
+      {
+        "model": "hf",
+        "energy": -2.861596566316175,
+        "orbital_energy": -0.917923086533458,
+        "kinetic_energy": 2.8614336745115954,
+        "nuclear_energy": -6.748780634077029,
+        "hartree_energy": 2.0515007864985177,
+        "exchange_energy": -1.0257503932492589,
+        "correlation_energy": 0.0,
+        "electron_count": 1.999999999999998,
+        "orbital_residual": 4.739706362200102e-11,
+        "density_residual": 7.321508888293848e-10,
+        "energy_identity_error": 0.0,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 8.0,
+        "iterations": 43
+      },
+      {
+        "model": "hf",
+        "energy": -2.8615967450430415,
+        "orbital_energy": -0.9179238260338645,
+        "kinetic_energy": 2.8614302539015086,
+        "nuclear_energy": -6.748776091919863,
+        "hartree_energy": 2.051498185950626,
+        "exchange_energy": -1.025749092975313,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000013,
+        "orbital_residual": 4.726095115348563e-11,
+        "density_residual": 7.320647396830409e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 12.0,
+        "iterations": 43
+      },
+      {
+        "model": "hf",
+        "energy": -2.861596745049548,
+        "orbital_energy": -0.9179238260772091,
+        "kinetic_energy": 2.8614302537070255,
+        "nuclear_energy": -6.748776091651703,
+        "hartree_energy": 2.0514981857902588,
+        "exchange_energy": -1.0257490928951294,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000004,
+        "orbital_residual": 4.7182351733513516e-11,
+        "density_residual": 7.316707064930232e-10,
+        "energy_identity_error": 0.0,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 43
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.718042618322267,
+        "orbital_energy": -0.5028519867582552,
+        "kinetic_energy": 2.7621696230647093,
+        "nuclear_energy": -6.617518635049578,
+        "hartree_energy": 1.9998547703773342,
+        "exchange_energy": -0.8625483767147322,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0,
+        "orbital_residual": 1.0792619071587018e-11,
+        "density_residual": 6.988864861777238e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 4.0,
+        "iterations": 45
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7235535513113907,
+        "orbital_energy": -0.5169325670793816,
+        "kinetic_energy": 2.723412266237229,
+        "nuclear_energy": -6.56814165109215,
+        "hartree_energy": 1.9739447089571758,
+        "exchange_energy": -0.8527688754136454,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000004,
+        "orbital_residual": 1.1310221172584305e-11,
+        "density_residual": 6.964794036783122e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 8.0,
+        "iterations": 45
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7235552604828404,
+        "orbital_energy": -0.516944354737161,
+        "kinetic_energy": 2.7233862190612173,
+        "nuclear_energy": -6.568101023673687,
+        "hartree_energy": 1.973920054447963,
+        "exchange_energy": -0.8527605103183331,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0,
+        "orbital_residual": 1.1298305264458778e-11,
+        "density_residual": 6.972245126024308e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 12.0,
+        "iterations": 45
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.7235552609861555,
+        "orbital_energy": -0.516944360659483,
+        "kinetic_energy": 2.72338620728451,
+        "nuclear_energy": -6.568101003765471,
+        "hartree_energy": 1.97392004175338,
+        "exchange_energy": -0.8527605062585746,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999978,
+        "orbital_residual": 1.1489290296974026e-11,
+        "density_residual": 6.974721705773261e-10,
+        "energy_identity_error": 8.881784197001252e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 45
+      }
+    ],
+    "independent_comparison": [
+      {
+        "model": "hf",
+        "finest_energy": -2.8616591820563495,
+        "reference_energy": -2.861679994991034,
+        "finest_reference_difference": 2.081293468458867e-05,
+        "richardson_h2_energy": -2.86167999439195,
+        "extrapolated_reference_difference": 5.990838936043019e-10,
+        "radial_density_l1_difference": 1.530884883674325e-05,
+        "note": "h^2 extrapolation is a consistency estimate, not a certified error bound. The Gaussian reference has its own basis/quadrature error."
+      },
+      {
+        "model": "lda_x",
+        "finest_energy": -2.7236186587794364,
+        "reference_energy": -2.723639791475126,
+        "finest_reference_difference": 2.113269568937426e-05,
+        "richardson_h2_energy": -2.7236397913771966,
+        "extrapolated_reference_difference": 9.792922028850626e-11,
+        "radial_density_l1_difference": 1.6870027832909943e-05,
+        "note": "h^2 extrapolation is a consistency estimate, not a certified error bound. The Gaussian reference has its own basis/quadrature error."
+      }
+    ],
+    "alternative_starts": [
+      {
+        "model": "hf",
+        "energy": -2.8615967450495545,
+        "orbital_energy": -0.9179238260752183,
+        "kinetic_energy": 2.861430253678973,
+        "nuclear_energy": -6.7487760916276445,
+        "hartree_energy": 2.051498185798234,
+        "exchange_energy": -1.025749092899117,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000004,
+        "orbital_residual": 1.9179979302803392e-11,
+        "density_residual": 9.44450857461967e-10,
+        "energy_identity_error": 8.881784197001252e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 17,
+        "history": [
+          {
+            "iteration": 1,
+            "energy": -2.824379760736967,
+            "energy_change": null,
+            "density_l1_residual": 1.5545040525153726,
+            "orbital_residual": 0.22266405480873458,
+            "electron_count": 2.000000000000002
+          },
+          {
+            "iteration": 2,
+            "energy": -2.860990283187564,
+            "energy_change": 0.03661052245059704,
+            "density_l1_residual": 0.2230310961973386,
+            "orbital_residual": 0.025426445483858553,
+            "electron_count": 2.000000000000003
+          },
+          {
+            "iteration": 3,
+            "energy": -2.861590186815895,
+            "energy_change": 0.0005999036283306225,
+            "density_l1_residual": 0.03865705669406846,
+            "orbital_residual": 0.0022937372097073462,
+            "electron_count": 2.0000000000000013
+          },
+          {
+            "iteration": 4,
+            "energy": -2.8615966424406736,
+            "energy_change": 6.4556247787450616e-06,
+            "density_l1_residual": 0.01012580622680998,
+            "orbital_residual": 0.0002912343054620378,
+            "electron_count": 2.0000000000000027
+          },
+          {
+            "iteration": 5,
+            "energy": -2.8615967407661698,
+            "energy_change": 9.83254961894886e-08,
+            "density_l1_residual": 0.002928201945981741,
+            "orbital_residual": 8.198066543749087e-05,
+            "electron_count": 2.000000000000001
+          },
+          {
+            "iteration": 6,
+            "energy": -2.861596744748838,
+            "energy_change": 3.982668417279456e-09,
+            "density_l1_residual": 0.0008410510013129188,
+            "orbital_residual": 2.4405522027537724e-05,
+            "electron_count": 2.000000000000002
+          },
+          {
+            "iteration": 7,
+            "energy": -2.861596745026378,
+            "energy_change": 2.7753976894473453e-10,
+            "density_l1_residual": 0.00024060489463016861,
+            "orbital_residual": 6.941879865698486e-06,
+            "electron_count": 2.0000000000000018
+          },
+          {
+            "iteration": 8,
+            "energy": -2.8615967450477098,
+            "energy_change": 2.1331825195147758e-11,
+            "density_l1_residual": 6.879111304197293e-05,
+            "orbital_residual": 1.9354467675122153e-06,
+            "electron_count": 2.0000000000000018
+          },
+          {
+            "iteration": 9,
+            "energy": -2.861596745049394,
+            "energy_change": 1.6844303729612875e-12,
+            "density_l1_residual": 1.9685863280318496e-05,
+            "orbital_residual": 5.357693249671619e-07,
+            "electron_count": 2.0000000000000027
+          },
+          {
+            "iteration": 10,
+            "energy": -2.8615967450495123,
+            "energy_change": 1.1812772982011666e-13,
+            "density_l1_residual": 5.641839347187433e-06,
+            "orbital_residual": 1.4796246134787526e-07,
+            "electron_count": 2.000000000000002
+          },
+          {
+            "iteration": 11,
+            "energy": -2.8615967450495354,
+            "energy_change": 2.3092638912203256e-14,
+            "density_l1_residual": 1.6197040515957923e-06,
+            "orbital_residual": 4.0838465394636135e-08,
+            "electron_count": 2.0000000000000036
+          },
+          {
+            "iteration": 12,
+            "energy": -2.8615967450495288,
+            "energy_change": 6.661338147750939e-15,
+            "density_l1_residual": 4.6584090725657285e-07,
+            "orbital_residual": 1.1272856350007943e-08,
+            "electron_count": 2.0000000000000018
+          },
+          {
+            "iteration": 13,
+            "energy": -2.8615967450495274,
+            "energy_change": 1.3322676295501878e-15,
+            "density_l1_residual": 1.3423438418275416e-07,
+            "orbital_residual": 3.1132299234375385e-09,
+            "electron_count": 2.0000000000000018
+          },
+          {
+            "iteration": 14,
+            "energy": -2.8615967450495576,
+            "energy_change": 3.019806626980426e-14,
+            "density_l1_residual": 3.875672414380598e-08,
+            "orbital_residual": 8.60412691466611e-10,
+            "electron_count": 2.000000000000004
+          },
+          {
+            "iteration": 15,
+            "energy": -2.8615967450495297,
+            "energy_change": 2.7977620220553945e-14,
+            "density_l1_residual": 1.1212453801042642e-08,
+            "orbital_residual": 2.3793052542209774e-10,
+            "electron_count": 2.0000000000000018
+          },
+          {
+            "iteration": 16,
+            "energy": -2.8615967450495217,
+            "energy_change": 7.993605777301127e-15,
+            "density_l1_residual": 3.250599452241961e-09,
+            "orbital_residual": 6.604790503151745e-11,
+            "electron_count": 2.000000000000002
+          },
+          {
+            "iteration": 17,
+            "energy": -2.8615967450495545,
+            "energy_change": 3.2862601528904634e-14,
+            "density_l1_residual": 9.44450857461967e-10,
+            "orbital_residual": 1.9179979302803392e-11,
+            "electron_count": 2.0000000000000004
+          }
+        ],
+        "mixing": 0.7,
+        "initial_exponent": 1.0
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.723555260986137,
+        "orbital_energy": -0.51694436065934,
+        "kinetic_energy": 2.7233862072788724,
+        "nuclear_energy": -6.568101003760114,
+        "hartree_energy": 1.9739200417536322,
+        "exchange_energy": -0.8527605062585272,
+        "correlation_energy": 0.0,
+        "electron_count": 1.9999999999999998,
+        "orbital_residual": 1.743214452182082e-11,
+        "density_residual": 5.335870217505439e-10,
+        "energy_identity_error": 4.440892098500626e-16,
+        "converged": true,
+        "reason": "density_energy_and_orbital_residual",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 18,
+        "history": [
+          {
+            "iteration": 1,
+            "energy": -2.664933247677962,
+            "energy_change": null,
+            "density_l1_residual": 1.542718504160584,
+            "orbital_residual": 0.2704165303694884,
+            "electron_count": 2.0000000000000053
+          },
+          {
+            "iteration": 2,
+            "energy": -2.723233458733368,
+            "energy_change": 0.05830021105540606,
+            "density_l1_residual": 0.12681146916267774,
+            "orbital_residual": 0.019005983754018567,
+            "electron_count": 1.9999999999999998
+          },
+          {
+            "iteration": 3,
+            "energy": -2.7235549675894823,
+            "energy_change": 0.0003215088561141499,
+            "density_l1_residual": 0.02586257810793562,
+            "orbital_residual": 0.000871410569292531,
+            "electron_count": 2.0000000000000013
+          },
+          {
+            "iteration": 4,
+            "energy": -2.7235552479294176,
+            "energy_change": 2.8033993526577206e-07,
+            "density_l1_residual": 0.007660740112119851,
+            "orbital_residual": 0.00020587829932014413,
+            "electron_count": 1.9999999999999991
+          },
+          {
+            "iteration": 5,
+            "energy": -2.723555259658061,
+            "energy_change": 1.172864338983004e-08,
+            "density_l1_residual": 0.002335828161712724,
+            "orbital_residual": 6.404951525014588e-05,
+            "electron_count": 2.0000000000000013
+          },
+          {
+            "iteration": 6,
+            "energy": -2.723555260853397,
+            "energy_change": 1.19533583031739e-09,
+            "density_l1_residual": 0.0007130060366886727,
+            "orbital_residual": 1.982259755706525e-05,
+            "electron_count": 2.0000000000000004
+          },
+          {
+            "iteration": 7,
+            "energy": -2.7235552609729505,
+            "energy_change": 1.195537002729452e-10,
+            "density_l1_residual": 0.00021811903998347434,
+            "orbital_residual": 6.149123275434939e-06,
+            "electron_count": 2.0000000000000013
+          },
+          {
+            "iteration": 8,
+            "energy": -2.7235552609848575,
+            "energy_change": 1.1906919894499879e-11,
+            "density_l1_residual": 6.684039796461573e-05,
+            "orbital_residual": 1.9095353562484835e-06,
+            "electron_count": 2.0000000000000004
+          },
+          {
+            "iteration": 9,
+            "energy": -2.7235552609860445,
+            "energy_change": 1.1870504579292174e-12,
+            "density_l1_residual": 2.051604024791472e-05,
+            "orbital_residual": 5.935269153534711e-07,
+            "electron_count": 2.0000000000000004
+          },
+          {
+            "iteration": 10,
+            "energy": -2.723555260986152,
+            "energy_change": 1.0746958878371515e-13,
+            "density_l1_residual": 6.307355608575817e-06,
+            "orbital_residual": 1.8463730943807326e-07,
+            "electron_count": 1.999999999999999
+          },
+          {
+            "iteration": 11,
+            "energy": -2.723555260986184,
+            "energy_change": 3.197442310920451e-14,
+            "density_l1_residual": 1.94223069600191e-06,
+            "orbital_residual": 5.7484161874824795e-08,
+            "electron_count": 2.0000000000000004
+          },
+          {
+            "iteration": 12,
+            "energy": -2.7235552609861675,
+            "energy_change": 1.6431300764452317e-14,
+            "density_l1_residual": 5.99039554725007e-07,
+            "orbital_residual": 1.7910593133750096e-08,
+            "electron_count": 1.9999999999999998
+          },
+          {
+            "iteration": 13,
+            "energy": -2.723555260986151,
+            "energy_change": 1.6431300764452317e-14,
+            "density_l1_residual": 1.850599102394028e-07,
+            "orbital_residual": 5.5848044187753775e-09,
+            "electron_count": 1.9999999999999984
+          },
+          {
+            "iteration": 14,
+            "energy": -2.7235552609861835,
+            "energy_change": 3.241851231905457e-14,
+            "density_l1_residual": 5.725999641350515e-08,
+            "orbital_residual": 1.7426456768758536e-09,
+            "electron_count": 2.000000000000001
+          },
+          {
+            "iteration": 15,
+            "energy": -2.7235552609861955,
+            "energy_change": 1.199040866595169e-14,
+            "density_l1_residual": 1.7744076464809883e-08,
+            "orbital_residual": 5.442561860600211e-10,
+            "electron_count": 1.9999999999999998
+          },
+          {
+            "iteration": 16,
+            "energy": -2.723555260986157,
+            "energy_change": 3.863576125695545e-14,
+            "density_l1_residual": 5.507568697940318e-09,
+            "orbital_residual": 1.7005592587555786e-10,
+            "electron_count": 1.9999999999999996
+          },
+          {
+            "iteration": 17,
+            "energy": -2.723555260986146,
+            "energy_change": 1.0658141036401503e-14,
+            "density_l1_residual": 1.7111398436382357e-09,
+            "orbital_residual": 5.3769677008172544e-11,
+            "electron_count": 1.9999999999999991
+          },
+          {
+            "iteration": 18,
+            "energy": -2.723555260986137,
+            "energy_change": 9.325873406851315e-15,
+            "density_l1_residual": 5.335870217505439e-10,
+            "orbital_residual": 1.743214452182082e-11,
+            "electron_count": 1.9999999999999998
+          }
+        ],
+        "mixing": 0.7,
+        "initial_exponent": 1.0
+      }
+    ],
+    "scf_histories": {
+      "hf": [
+        {
+          "iteration": 1,
+          "energy": -2.8615859241468264,
+          "energy_change": null,
+          "density_l1_residual": 0.13952970579416274,
+          "orbital_residual": 0.008146800862850953,
+          "electron_count": 2.000000000000005
+        },
+        {
+          "iteration": 2,
+          "energy": -2.861636340230512,
+          "energy_change": 5.041608368561157e-05,
+          "density_l1_residual": 0.08592307996863462,
+          "orbital_residual": 0.0046586095382790725,
+          "electron_count": 2.0000000000000053
+        },
+        {
+          "iteration": 3,
+          "energy": -2.8616519196785064,
+          "energy_change": 1.5579447994351625e-05,
+          "density_l1_residual": 0.05325594988583538,
+          "orbital_residual": 0.0027289513433964357,
+          "electron_count": 1.999999999999999
+        },
+        {
+          "iteration": 4,
+          "energy": -2.8616568253159818,
+          "energy_change": 4.905637475349778e-06,
+          "density_l1_residual": 0.03318050720921733,
+          "orbital_residual": 0.0016374269210594674,
+          "electron_count": 2.0000000000000018
+        },
+        {
+          "iteration": 5,
+          "energy": -2.8616584002481034,
+          "energy_change": 1.5749321216063095e-06,
+          "density_l1_residual": 0.020760063679841304,
+          "orbital_residual": 0.0010041439580911304,
+          "electron_count": 2.0000000000000053
+        },
+        {
+          "iteration": 6,
+          "energy": -2.8616589165462036,
+          "energy_change": 5.162981002726497e-07,
+          "density_l1_residual": 0.013033540012328496,
+          "orbital_residual": 0.0006269563724978599,
+          "electron_count": 2.000000000000001
+        },
+        {
+          "iteration": 7,
+          "energy": -2.86165908966463,
+          "energy_change": 1.731184262609986e-07,
+          "density_l1_residual": 0.008205688426056122,
+          "orbital_residual": 0.0003967852380303041,
+          "electron_count": 2.0000000000000044
+        },
+        {
+          "iteration": 8,
+          "energy": -2.861659149115358,
+          "energy_change": 5.945072789614869e-08,
+          "density_l1_residual": 0.0051780734548875764,
+          "orbital_residual": 0.0002534779921352179,
+          "electron_count": 2.0000000000000053
+        },
+        {
+          "iteration": 9,
+          "energy": -2.861659170035756,
+          "energy_change": 2.0920398302592957e-08,
+          "density_l1_residual": 0.003273730534240543,
+          "orbital_residual": 0.00016289784333619692,
+          "electron_count": 2.0000000000000075
+        },
+        {
+          "iteration": 10,
+          "energy": -2.8616591775755156,
+          "energy_change": 7.539759483421449e-09,
+          "density_l1_residual": 0.0020729806882370866,
+          "orbital_residual": 0.00010504804541360354,
+          "electron_count": 2.000000000000003
+        },
+        {
+          "iteration": 11,
+          "energy": -2.861659180354498,
+          "energy_change": 2.778982377549255e-09,
+          "density_l1_residual": 0.0013143567608399867,
+          "orbital_residual": 6.78585381805125e-05,
+          "electron_count": 2.000000000000006
+        },
+        {
+          "iteration": 12,
+          "energy": -2.861659181399604,
+          "energy_change": 1.0451062237848419e-09,
+          "density_l1_residual": 0.0008342501237710159,
+          "orbital_residual": 4.3860522036555806e-05,
+          "electron_count": 2.0000000000000053
+        },
+        {
+          "iteration": 13,
+          "energy": -2.8616591817995545,
+          "energy_change": 3.999502951046452e-10,
+          "density_l1_residual": 0.0005299893587080241,
+          "orbital_residual": 2.834606080338271e-05,
+          "electron_count": 2.000000000000006
+        },
+        {
+          "iteration": 14,
+          "energy": -2.861659181954933,
+          "energy_change": 1.5537837683154976e-10,
+          "density_l1_residual": 0.00033694909018444847,
+          "orbital_residual": 1.830989969967464e-05,
+          "electron_count": 2.0000000000000036
+        },
+        {
+          "iteration": 15,
+          "energy": -2.8616591820159214,
+          "energy_change": 6.09885475455485e-11,
+          "density_l1_residual": 0.00021435534759417404,
+          "orbital_residual": 1.181849266768962e-05,
+          "electron_count": 2.000000000000005
+        },
+        {
+          "iteration": 16,
+          "energy": -2.8616591820400963,
+          "energy_change": 2.417488431660786e-11,
+          "density_l1_residual": 0.00013643666239946206,
+          "orbital_residual": 7.622241727539849e-06,
+          "electron_count": 2.000000000000004
+        },
+        {
+          "iteration": 17,
+          "energy": -2.8616591820497326,
+          "energy_change": 9.636291764536509e-12,
+          "density_l1_residual": 8.687989231635543e-05,
+          "orbital_residual": 4.911819241427149e-06,
+          "electron_count": 2.0000000000000067
+        },
+        {
+          "iteration": 18,
+          "energy": -2.861659182053672,
+          "energy_change": 3.9395153805799055e-12,
+          "density_l1_residual": 5.534431168030317e-05,
+          "orbital_residual": 3.162675216203298e-06,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 19,
+          "energy": -2.8616591820552295,
+          "energy_change": 1.5574208589441696e-12,
+          "density_l1_residual": 3.526652949773324e-05,
+          "orbital_residual": 2.034901607395861e-06,
+          "electron_count": 2.000000000000002
+        },
+        {
+          "iteration": 20,
+          "energy": -2.8616591820558477,
+          "energy_change": 6.181721801112872e-13,
+          "density_l1_residual": 2.247854039983666e-05,
+          "orbital_residual": 1.3083928885796734e-06,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 21,
+          "energy": -2.861659182056108,
+          "energy_change": 2.602362769721367e-13,
+          "density_l1_residual": 1.4330855380622451e-05,
+          "orbital_residual": 8.407551827729793e-07,
+          "electron_count": 2.0000000000000075
+        },
+        {
+          "iteration": 22,
+          "energy": -2.861659182056211,
+          "energy_change": 1.0302869668521453e-13,
+          "density_l1_residual": 9.138189185980043e-06,
+          "orbital_residual": 5.39967759122693e-07,
+          "electron_count": 2.0000000000000013
+        },
+        {
+          "iteration": 23,
+          "energy": -2.861659182056181,
+          "energy_change": 2.9753977059954195e-14,
+          "density_l1_residual": 5.827999000438898e-06,
+          "orbital_residual": 3.4662644438976824e-07,
+          "electron_count": 2.0000000000000013
+        },
+        {
+          "iteration": 24,
+          "energy": -2.861659182056309,
+          "energy_change": 1.2789769243681803e-13,
+          "density_l1_residual": 3.717399898797237e-06,
+          "orbital_residual": 2.2242213576872763e-07,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 25,
+          "energy": -2.861659182056278,
+          "energy_change": 3.108624468950438e-14,
+          "density_l1_residual": 2.3714292762235805e-06,
+          "orbital_residual": 1.426718615363452e-07,
+          "electron_count": 2.0000000000000004
+        },
+        {
+          "iteration": 26,
+          "energy": -2.861659182056238,
+          "energy_change": 3.9968028886505635e-14,
+          "density_l1_residual": 1.5129477202525916e-06,
+          "orbital_residual": 9.148915701286109e-08,
+          "electron_count": 2.000000000000005
+        },
+        {
+          "iteration": 27,
+          "energy": -2.8616591820562434,
+          "energy_change": 5.329070518200751e-15,
+          "density_l1_residual": 9.65332286307871e-07,
+          "orbital_residual": 5.86524185115804e-08,
+          "electron_count": 2.000000000000005
+        },
+        {
+          "iteration": 28,
+          "energy": -2.861659182056277,
+          "energy_change": 3.375077994860476e-14,
+          "density_l1_residual": 6.15976071478364e-07,
+          "orbital_residual": 3.759247193175257e-08,
+          "electron_count": 2.0000000000000018
+        },
+        {
+          "iteration": 29,
+          "energy": -2.8616591820562483,
+          "energy_change": 2.886579864025407e-14,
+          "density_l1_residual": 3.93075851381529e-07,
+          "orbital_residual": 2.4090241562263326e-08,
+          "electron_count": 2.0000000000000036
+        },
+        {
+          "iteration": 30,
+          "energy": -2.8616591820562896,
+          "energy_change": 4.1300296516055823e-14,
+          "density_l1_residual": 2.5084821633285254e-07,
+          "orbital_residual": 1.543490270502748e-08,
+          "electron_count": 2.0000000000000013
+        },
+        {
+          "iteration": 31,
+          "energy": -2.8616591820562807,
+          "energy_change": 8.881784197001252e-15,
+          "density_l1_residual": 1.6009028234911875e-07,
+          "orbital_residual": 9.888503766114163e-09,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 32,
+          "energy": -2.861659182056327,
+          "energy_change": 4.618527782440651e-14,
+          "density_l1_residual": 1.0217449886719181e-07,
+          "orbital_residual": 6.334255704556306e-09,
+          "electron_count": 2.0
+        },
+        {
+          "iteration": 33,
+          "energy": -2.8616591820562665,
+          "energy_change": 6.039613253960852e-14,
+          "density_l1_residual": 6.521148914072071e-08,
+          "orbital_residual": 4.057268669331119e-09,
+          "electron_count": 2.0000000000000058
+        },
+        {
+          "iteration": 34,
+          "energy": -2.8616591820562673,
+          "energy_change": 8.881784197001252e-16,
+          "density_l1_residual": 4.162192527873711e-08,
+          "orbital_residual": 2.5983595189323427e-09,
+          "electron_count": 2.000000000000003
+        },
+        {
+          "iteration": 35,
+          "energy": -2.8616591820563055,
+          "energy_change": 3.8191672047105385e-14,
+          "density_l1_residual": 2.656627144240803e-08,
+          "orbital_residual": 1.6638855574218172e-09,
+          "electron_count": 2.0000000000000058
+        },
+        {
+          "iteration": 36,
+          "energy": -2.8616591820562682,
+          "energy_change": 3.730349362740526e-14,
+          "density_l1_residual": 1.6956372697465043e-08,
+          "orbital_residual": 1.0660074832095303e-09,
+          "electron_count": 2.0000000000000018
+        },
+        {
+          "iteration": 37,
+          "energy": -2.861659182056246,
+          "energy_change": 2.220446049250313e-14,
+          "density_l1_residual": 1.0823461396584562e-08,
+          "orbital_residual": 6.81759158773459e-10,
+          "electron_count": 2.000000000000004
+        },
+        {
+          "iteration": 38,
+          "energy": -2.8616591820563055,
+          "energy_change": 5.950795411990839e-14,
+          "density_l1_residual": 6.910199067417442e-09,
+          "orbital_residual": 4.384638159473353e-10,
+          "electron_count": 2.000000000000004
+        },
+        {
+          "iteration": 39,
+          "energy": -2.8616591820562816,
+          "energy_change": 2.398081733190338e-14,
+          "density_l1_residual": 4.409741471605176e-09,
+          "orbital_residual": 2.803858993822138e-10,
+          "electron_count": 2.0
+        },
+        {
+          "iteration": 40,
+          "energy": -2.8616591820562753,
+          "energy_change": 6.217248937900877e-15,
+          "density_l1_residual": 2.814666709337939e-09,
+          "orbital_residual": 1.8010268699482876e-10,
+          "electron_count": 2.0000000000000036
+        },
+        {
+          "iteration": 41,
+          "energy": -2.8616591820563073,
+          "energy_change": 3.197442310920451e-14,
+          "density_l1_residual": 1.7974706936975105e-09,
+          "orbital_residual": 1.172092558656896e-10,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 42,
+          "energy": -2.8616591820563073,
+          "energy_change": 0.0,
+          "density_l1_residual": 1.1469272020083826e-09,
+          "orbital_residual": 7.788655489915255e-11,
+          "electron_count": 2.0000000000000044
+        },
+        {
+          "iteration": 43,
+          "energy": -2.8616591820563495,
+          "energy_change": 4.218847493575595e-14,
+          "density_l1_residual": 7.323110498990301e-10,
+          "orbital_residual": 5.1491767770429186e-11,
+          "electron_count": 2.0000000000000004
+        }
+      ],
+      "lda_x": [
+        {
+          "iteration": 1,
+          "energy": -2.722237328326855,
+          "energy_change": null,
+          "density_l1_residual": 0.27469890446073364,
+          "orbital_residual": 0.03962989776309818,
+          "electron_count": 1.9999999999999996
+        },
+        {
+          "iteration": 2,
+          "energy": -2.7232822121153983,
+          "energy_change": 0.0010448837885435047,
+          "density_l1_residual": 0.14944993352793343,
+          "orbital_residual": 0.019463427614028,
+          "electron_count": 1.999999999999998
+        },
+        {
+          "iteration": 3,
+          "energy": -2.7235378906296455,
+          "energy_change": 0.0002556785142471263,
+          "density_l1_residual": 0.08404417714397591,
+          "orbital_residual": 0.009493361938751294,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 4,
+          "energy": -2.7235992703863565,
+          "energy_change": 6.137975671105522e-05,
+          "density_l1_residual": 0.04885555249113465,
+          "orbital_residual": 0.004620788708248577,
+          "electron_count": 1.9999999999999998
+        },
+        {
+          "iteration": 5,
+          "energy": -2.723613998385806,
+          "energy_change": 1.4727999449348772e-05,
+          "density_l1_residual": 0.029194899924957305,
+          "orbital_residual": 0.0022452646806369486,
+          "electron_count": 1.9999999999999996
+        },
+        {
+          "iteration": 6,
+          "energy": -2.7236175360043866,
+          "energy_change": 3.5376185807400873e-06,
+          "density_l1_residual": 0.017824023571892163,
+          "orbital_residual": 0.0010894074468954468,
+          "electron_count": 2.0000000000000004
+        },
+        {
+          "iteration": 7,
+          "energy": -2.7236183871550015,
+          "energy_change": 8.51150614877838e-07,
+          "density_l1_residual": 0.01105751787255604,
+          "orbital_residual": 0.000528281952389976,
+          "electron_count": 1.9999999999999978
+        },
+        {
+          "iteration": 8,
+          "energy": -2.7236185925686107,
+          "energy_change": 2.0541360923331808e-07,
+          "density_l1_residual": 0.00694080609942389,
+          "orbital_residual": 0.0002565873229233477,
+          "electron_count": 2.0000000000000018
+        },
+        {
+          "iteration": 9,
+          "energy": -2.7236186424241087,
+          "energy_change": 4.985549795222255e-08,
+          "density_l1_residual": 0.0043940111440612835,
+          "orbital_residual": 0.00012540105931252123,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 10,
+          "energy": -2.723618654647929,
+          "energy_change": 1.2223820178292044e-08,
+          "density_l1_residual": 0.0027989622546323667,
+          "orbital_residual": 6.220889420504383e-05,
+          "electron_count": 2.000000000000001
+        },
+        {
+          "iteration": 11,
+          "energy": -2.7236186576977337,
+          "energy_change": 3.0498048531057975e-09,
+          "density_l1_residual": 0.0017909734274466416,
+          "orbital_residual": 3.1768817914515106e-05,
+          "electron_count": 2.0000000000000004
+        },
+        {
+          "iteration": 12,
+          "energy": -2.7236186584808357,
+          "energy_change": 7.831020276682921e-10,
+          "density_l1_residual": 0.0011497620215280217,
+          "orbital_residual": 1.699277930420931e-05,
+          "electron_count": 1.999999999999998
+        },
+        {
+          "iteration": 13,
+          "energy": -2.7236186586910467,
+          "energy_change": 2.102109597501567e-10,
+          "density_l1_residual": 0.000739917160676878,
+          "orbital_residual": 9.638800674037735e-06,
+          "electron_count": 1.9999999999999998
+        },
+        {
+          "iteration": 14,
+          "energy": -2.7236186587510094,
+          "energy_change": 5.996270147079485e-11,
+          "density_l1_residual": 0.00047702089782757285,
+          "orbital_residual": 5.789586738318784e-06,
+          "electron_count": 1.9999999999999978
+        },
+        {
+          "iteration": 15,
+          "energy": -2.7236186587695617,
+          "energy_change": 1.8552270830696216e-11,
+          "density_l1_residual": 0.0003079458452361843,
+          "orbital_residual": 3.630905659189617e-06,
+          "electron_count": 1.9999999999999984
+        },
+        {
+          "iteration": 16,
+          "energy": -2.7236186587757953,
+          "energy_change": 6.233680238665329e-12,
+          "density_l1_residual": 0.00019899942995755821,
+          "orbital_residual": 2.337270839951271e-06,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 17,
+          "energy": -2.723618658778018,
+          "energy_change": 2.2226664952995634e-12,
+          "density_l1_residual": 0.00012869460367720103,
+          "orbital_residual": 1.5243662217268391e-06,
+          "electron_count": 2.0000000000000013
+        },
+        {
+          "iteration": 18,
+          "energy": -2.72361865877887,
+          "energy_change": 8.522071937022702e-13,
+          "density_l1_residual": 8.327627791784841e-05,
+          "orbital_residual": 9.995394876618914e-07,
+          "electron_count": 1.9999999999999991
+        },
+        {
+          "iteration": 19,
+          "energy": -2.723618658779273,
+          "energy_change": 4.027889133340068e-13,
+          "density_l1_residual": 5.391115844849007e-05,
+          "orbital_residual": 6.563408376139011e-07,
+          "electron_count": 1.9999999999999998
+        },
+        {
+          "iteration": 20,
+          "energy": -2.723618658779376,
+          "energy_change": 1.0302869668521453e-13,
+          "density_l1_residual": 3.491331865701699e-05,
+          "orbital_residual": 4.3083300031490777e-07,
+          "electron_count": 2.000000000000003
+        },
+        {
+          "iteration": 21,
+          "energy": -2.723618658779359,
+          "energy_change": 1.687538997430238e-14,
+          "density_l1_residual": 2.261635479180308e-05,
+          "orbital_residual": 2.825235892991185e-07,
+          "electron_count": 1.9999999999999991
+        },
+        {
+          "iteration": 22,
+          "energy": -2.723618658779472,
+          "energy_change": 1.127986593019159e-13,
+          "density_l1_residual": 1.4653845808102698e-05,
+          "orbital_residual": 1.8505866589516328e-07,
+          "electron_count": 1.9999999999999996
+        },
+        {
+          "iteration": 23,
+          "energy": -2.723618658779462,
+          "energy_change": 9.769962616701378e-15,
+          "density_l1_residual": 9.496379064394311e-06,
+          "orbital_residual": 1.2109232230476718e-07,
+          "electron_count": 2.000000000000002
+        },
+        {
+          "iteration": 24,
+          "energy": -2.723618658779437,
+          "energy_change": 2.531308496145357e-14,
+          "density_l1_residual": 6.155053677031836e-06,
+          "orbital_residual": 7.916783647069645e-08,
+          "electron_count": 1.9999999999999987
+        },
+        {
+          "iteration": 25,
+          "energy": -2.7236186587794804,
+          "energy_change": 4.3520742565306136e-14,
+          "density_l1_residual": 3.989895197870744e-06,
+          "orbital_residual": 5.172320014720782e-08,
+          "electron_count": 2.000000000000002
+        },
+        {
+          "iteration": 26,
+          "energy": -2.7236186587794275,
+          "energy_change": 5.284661597215745e-14,
+          "density_l1_residual": 2.5866683161702426e-06,
+          "orbital_residual": 3.3775520680449006e-08,
+          "electron_count": 1.9999999999999991
+        },
+        {
+          "iteration": 27,
+          "energy": -2.7236186587794204,
+          "energy_change": 7.105427357601002e-15,
+          "density_l1_residual": 1.6771165634906187e-06,
+          "orbital_residual": 2.204706283417345e-08,
+          "electron_count": 2.0000000000000027
+        },
+        {
+          "iteration": 28,
+          "energy": -2.7236186587794546,
+          "energy_change": 3.419486915845482e-14,
+          "density_l1_residual": 1.0874892592474487e-06,
+          "orbital_residual": 1.4387273178979421e-08,
+          "electron_count": 2.000000000000002
+        },
+        {
+          "iteration": 29,
+          "energy": -2.723618658779422,
+          "energy_change": 3.241851231905457e-14,
+          "density_l1_residual": 7.052210606001714e-07,
+          "orbital_residual": 9.387520802400224e-09,
+          "electron_count": 2.0000000000000004
+        },
+        {
+          "iteration": 30,
+          "energy": -2.723618658779437,
+          "energy_change": 1.4654943925052066e-14,
+          "density_l1_residual": 4.5736146653054707e-07,
+          "orbital_residual": 6.124678032976985e-09,
+          "electron_count": 1.9999999999999991
+        },
+        {
+          "iteration": 31,
+          "energy": -2.72361865877945,
+          "energy_change": 1.3322676295501878e-14,
+          "density_l1_residual": 2.966383191742342e-07,
+          "orbital_residual": 3.996034776395589e-09,
+          "electron_count": 1.9999999999999991
+        },
+        {
+          "iteration": 32,
+          "energy": -2.7236186587794102,
+          "energy_change": 3.9968028886505635e-14,
+          "density_l1_residual": 1.9241050999392017e-07,
+          "orbital_residual": 2.6066709337999555e-09,
+          "electron_count": 2.0000000000000013
+        },
+        {
+          "iteration": 33,
+          "energy": -2.7236186587794666,
+          "energy_change": 5.639932965095795e-14,
+          "density_l1_residual": 1.248150870546979e-07,
+          "orbital_residual": 1.7004712115983163e-09,
+          "electron_count": 1.9999999999999958
+        },
+        {
+          "iteration": 34,
+          "energy": -2.7236186587794826,
+          "energy_change": 1.5987211554602254e-14,
+          "density_l1_residual": 8.097064897622015e-08,
+          "orbital_residual": 1.1095641137390377e-09,
+          "electron_count": 1.9999999999999987
+        },
+        {
+          "iteration": 35,
+          "energy": -2.7236186587794595,
+          "energy_change": 2.3092638912203256e-14,
+          "density_l1_residual": 5.253496482750221e-08,
+          "orbital_residual": 7.240017564929969e-10,
+          "electron_count": 1.9999999999999998
+        },
+        {
+          "iteration": 36,
+          "energy": -2.723618658779483,
+          "energy_change": 2.353672812205332e-14,
+          "density_l1_residual": 3.4086334539237995e-08,
+          "orbital_residual": 4.724793322254211e-10,
+          "electron_count": 2.0000000000000018
+        },
+        {
+          "iteration": 37,
+          "energy": -2.7236186587794453,
+          "energy_change": 3.774758283725532e-14,
+          "density_l1_residual": 2.2118569146393025e-08,
+          "orbital_residual": 3.086922190724125e-10,
+          "electron_count": 1.9999999999999998
+        },
+        {
+          "iteration": 38,
+          "energy": -2.7236186587794915,
+          "energy_change": 4.618527782440651e-14,
+          "density_l1_residual": 1.4353024276048414e-08,
+          "orbital_residual": 2.0211996010442597e-10,
+          "electron_count": 1.9999999999999991
+        },
+        {
+          "iteration": 39,
+          "energy": -2.7236186587794005,
+          "energy_change": 9.103828801926284e-14,
+          "density_l1_residual": 9.315023824107097e-09,
+          "orbital_residual": 1.3303399645609947e-10,
+          "electron_count": 2.000000000000001
+        },
+        {
+          "iteration": 40,
+          "energy": -2.7236186587794844,
+          "energy_change": 8.393286066166183e-14,
+          "density_l1_residual": 6.0449584936636754e-09,
+          "orbital_residual": 8.845550696724182e-11,
+          "electron_count": 1.999999999999998
+        },
+        {
+          "iteration": 41,
+          "energy": -2.7236186587794924,
+          "energy_change": 7.993605777301127e-15,
+          "density_l1_residual": 3.924603967184646e-09,
+          "orbital_residual": 6.067472740953899e-11,
+          "electron_count": 2.0000000000000013
+        },
+        {
+          "iteration": 42,
+          "energy": -2.7236186587794737,
+          "energy_change": 1.865174681370263e-14,
+          "density_l1_residual": 2.5484453276326843e-09,
+          "orbital_residual": 4.468084227294908e-11,
+          "electron_count": 2.000000000000002
+        },
+        {
+          "iteration": 43,
+          "energy": -2.723618658779433,
+          "energy_change": 4.085620730620576e-14,
+          "density_l1_residual": 1.652346793583984e-09,
+          "orbital_residual": 3.358501768713554e-11,
+          "electron_count": 2.0000000000000004
+        },
+        {
+          "iteration": 44,
+          "energy": -2.7236186587794675,
+          "energy_change": 3.4638958368304884e-14,
+          "density_l1_residual": 1.0731890553231178e-09,
+          "orbital_residual": 2.5193718732557464e-11,
+          "electron_count": 1.999999999999998
+        },
+        {
+          "iteration": 45,
+          "energy": -2.7236186587794364,
+          "energy_change": 3.108624468950438e-14,
+          "density_l1_residual": 6.978373585460334e-10,
+          "orbital_residual": 2.4583100641605903e-11,
+          "electron_count": 1.9999999999999991
+        }
+      ]
+    },
+    "expected_nonconvergence": [
+      {
+        "model": "hf",
+        "energy": -2.8615233461017864,
+        "orbital_energy": -0.9206963975483147,
+        "kinetic_energy": 2.8388221454813425,
+        "nuclear_energy": -6.720476042588286,
+        "hartree_energy": 2.0402611020103154,
+        "exchange_energy": -1.0201305510051577,
+        "correlation_energy": 0.0,
+        "electron_count": 2.0000000000000013,
+        "orbital_residual": 0.008153689826409658,
+        "density_residual": 0.13955906024041298,
+        "energy_identity_error": 8.881784197001252e-16,
+        "converged": false,
+        "reason": "max_iterations",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 1,
+        "history": [
+          {
+            "iteration": 1,
+            "energy": -2.8615233461017864,
+            "energy_change": null,
+            "density_l1_residual": 0.13955906024041298,
+            "orbital_residual": 0.008153689826409658,
+            "electron_count": 2.0000000000000013
+          }
+        ]
+      },
+      {
+        "model": "lda_x",
+        "energy": -2.722172726833149,
+        "orbital_energy": -0.5377467616306921,
+        "kinetic_energy": 2.6103181014925014,
+        "nuclear_energy": -6.424653852996428,
+        "hartree_energy": 1.923937293022259,
+        "exchange_energy": -0.8317742683514809,
+        "correlation_energy": 0.0,
+        "electron_count": 1.999999999999999,
+        "orbital_residual": 0.039646478618267686,
+        "density_residual": 0.2747685039656995,
+        "energy_identity_error": 8.881784197001252e-16,
+        "converged": false,
+        "reason": "max_iterations",
+        "dr": 0.005,
+        "r_max": 16.0,
+        "iterations": 1,
+        "history": [
+          {
+            "iteration": 1,
+            "energy": -2.722172726833149,
+            "energy_change": null,
+            "density_l1_residual": 0.2747685039656995,
+            "orbital_residual": 0.039646478618267686,
+            "electron_count": 1.999999999999999
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "hydrogenic_exact_energy_errors_reduce": true,
+    "hydrogenic_normalization": true,
+    "hydrogenic_eigen_residual": true,
+    "helium_scf_converged": true,
+    "helium_electron_count": true,
+    "helium_energy_identity": true,
+    "independent_extrapolated_energies": true,
+    "independent_density_profiles": true,
+    "expected_failures_reported": true,
+    "independent_basis_refinement": true
+  }
+}

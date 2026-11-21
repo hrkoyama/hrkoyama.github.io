@@ -280,9 +280,18 @@
       },
       "priority": "P0",
       "progress": {
-        "ja": "15代表問題は公開registry・ZIP・入力・参照を取得して再実行し、新規Linux環境のCIでも全15問題が合格。環境・所要時間・数値合否・失敗ログを保存済み。今後の追加例への適用、人の日英導線とAIの外部発見・引用を含む全体確認は継続する。",
-        "en": "All fifteen representative cases were rerun from the public registry, ZIPs, inputs and references, and passed in fresh-Linux CI. Environments, durations, numerical decisions and failure logs are retained. Continue applying the checks to additions and broader human/AI discovery and citation paths."
-      }
+        "ja": "公開15問題は新規Linux CIで全例合格。別のAI受入確認では、サイト名・URLを含めない固定4検索の評価35エントリに対象が現れなかった。URL提示後は3エージェントが公開情報だけで5問題/4実行を再現し、数値条件・引用・利用条件の読み取りを確認。検索ツールのopen失敗とHTTP取得成功を分けて記録し、外部発見と今後の追加例の確認を継続する。",
+        "en": "All fifteen public examples passed fresh-Linux CI. A separate AI-use observation found no target among 35 evaluated entries from four fixed unbranded queries. After receiving a URL, three agents reproduced five cases in four executions using public information and checked numerical criteria, citations and terms. Web-open failure and HTTP success are recorded separately; external discovery and checks for future additions remain in progress."
+      },
+      "links": [
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22.json",
+          "label": {
+            "ja": "AIの外部検索・取得・実行・引用の観測 / JSON",
+            "en": "AI discovery, retrieval, execution and citation observation / JSON"
+          }
+        }
+      ]
     },
     {
       "id": "year-end-release",
