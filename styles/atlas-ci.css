@@ -1,0 +1,22 @@
+.atlas-ci-main{max-width:1000px}
+.atlas-ci-main .intro{max-width:82ch;font-size:19px;line-height:1.9}
+.ci-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin:22px 0;font-size:16px;line-height:1.8}
+.ci-panel{border-top:1px solid #cbd1c5;margin-top:34px;padding-top:4px}
+.ci-panel h2{font-size:clamp(22px,2.7vw,28px);line-height:1.5}
+.ci-badge{display:inline-flex;min-height:32px;align-items:center;margin:4px 0 8px}
+.ci-badge img{max-width:100%;height:auto;min-height:20px}
+.atlas-ci-main p.ci-note{font-size:14px;line-height:1.85;color:#4b6258}
+.ci-pending{border-left:3px solid #a34f30;padding:12px 20px;background:#eeeee4}
+.ci-pending p{margin:0}
+.ci-snapshot{border:1px solid #cbd1c5;padding:18px 22px;margin:24px 0;background:#f8f7ef}
+.ci-snapshot h3{font-size:20px;line-height:1.65;margin:0 0 12px}
+.ci-snapshot details{margin-top:18px}
+.ci-snapshot summary{cursor:pointer;font-size:15px;line-height:1.8}
+.ci-snapshot dl,.ci-operations{display:grid;grid-template-columns:minmax(130px,170px) minmax(0,1fr);gap:10px 22px;margin:22px 0}
+.ci-snapshot dt,.ci-operations dt{font-weight:600}
+.ci-snapshot dd,.ci-operations dd{margin:0;overflow-wrap:anywhere}
+.ci-snapshot code{font-size:14px}
+.ci-phases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 34px;padding:18px 0 18px 26px!important}
+.profile-main .ci-phases li{font-size:16px;line-height:1.8;margin:0}
+.atlas-ci-main a:focus-visible,.atlas-ci-main summary:focus-visible{outline:3px solid #a34f30;outline-offset:4px}
+@media(max-width:650px){.ci-snapshot dl,.ci-operations{grid-template-columns:1fr;gap:4px}.ci-snapshot dd,.ci-operations dd{margin-bottom:12px}.ci-phases{grid-template-columns:1fr}.ci-snapshot{padding:16px}.ci-pending{padding:12px 16px}}

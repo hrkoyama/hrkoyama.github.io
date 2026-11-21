@@ -1,0 +1,141 @@
+name: Atlas public Linux verification
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 1'
+  workflow_run:
+    workflows: ['pages build and deployment']
+    branches: [main]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-public-linux
+  cancel-in-progress: false
+
+jobs:
+  public-distributions:
+    if: >-
+      github.repository == 'hrkoyama/hrkoyama.github.io' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      ATLAS_BOOTSTRAP_SHA256: 'e93eb230ccf5c91b4200eb90941af4eed4f85949029ee1087f83882cf7b0b69d'
+      ATLAS_VERIFIER_SHA256: 'cb462806600e89bcc7701a1445f1314302c2cd5396a2e1252b21687ef844ac0a'
+      ATLAS_BUILDER_SHA256: '2163cbb852bd5f70dd76aaca13c1e7c6362e06f7666fcd46a988c9ee962dccaa'
+      ATLAS_REGISTRY_SHA256: 'ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632'
+      PYTHONNOUSERSITE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      MPLBACKEND: Agg
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      PIP_NO_CACHE_DIR: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - name: Initialize run context without a source checkout
+        env:
+          REPORT_DIR: ${{ runner.temp }}/atlas-public-linux-report
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          python3 - <<'PY'
+          import json, os, platform
+          from pathlib import Path
+          keys = ['GITHUB_REPOSITORY', 'GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT',
+                  'GITHUB_SHA', 'GITHUB_REF', 'GITHUB_EVENT_NAME',
+                  'GITHUB_SERVER_URL', 'GITHUB_WORKFLOW', 'RUNNER_OS', 'RUNNER_ARCH',
+                  'ImageOS', 'ImageVersion']
+          data = {key: os.environ.get(key, '') for key in keys}
+          data['source_checkout'] = False
+          data['host_python'] = platform.python_version()
+          Path(os.environ['REPORT_DIR'], 'workflow-context.json').write_text(json.dumps(data, indent=2) + '\n')
+          initial = {'phase': 'initializing', 'setup_passed': False,
+                     'scientific_passed': None, 'passed': False}
+          Path(os.environ['REPORT_DIR'], 'workflow-status.json').write_text(json.dumps(initial, indent=2) + '\n')
+          PY
+      - name: Prepare Python 3.12 without a dependency cache
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+          check-latest: false
+      - name: Download public verifier and run the fifteen fixed-input cases
+        env:
+          REPORT_DIR: ${{ runner.temp }}/atlas-public-linux-report
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            python - <<'PY'
+          import hashlib, os, urllib.error, urllib.request
+          from pathlib import Path
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, request, response, code, message, headers, new_url):
+                  raise ValueError('Bootstrap redirects are not accepted')
+          url = 'https://hrkoyama.github.io/scripts/run-atlas-public-ci.py'
+          opener = urllib.request.build_opener(NoRedirect())
+          request = urllib.request.Request(url, headers={'User-Agent': 'Atlas-public-Linux-CI/1.0'})
+          with opener.open(request, timeout=60) as response:
+              data = response.read(1_000_001)
+          if len(data) > 1_000_000 or hashlib.sha256(data).hexdigest() != os.environ['ATLAS_BOOTSTRAP_SHA256']:
+              raise ValueError('Public CI bootstrap SHA-256 mismatch')
+          Path(os.environ['RUNNER_TEMP'], 'atlas-public-bootstrap.py').write_bytes(data)
+          PY
+            cd "$(mktemp -d)"
+            python "$RUNNER_TEMP/atlas-public-bootstrap.py" \
+              --output-dir "$REPORT_DIR/verification" \
+              --registry-sha256 "$ATLAS_REGISTRY_SHA256" \
+              --verifier-sha256 "$ATLAS_VERIFIER_SHA256" \
+              --builder-sha256 "$ATLAS_BUILDER_SHA256" \
+              --timeout 120
+          } 2>&1 | tee "$REPORT_DIR/bootstrap.log"
+      - name: Write the run summary even when verification fails
+        if: always()
+        env:
+          REPORT_DIR: ${{ runner.temp }}/atlas-public-linux-report
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = Path(os.environ['REPORT_DIR']) / 'verification'
+          summary_path = report / 'ci-summary.json'
+          lines = ['## Public-distribution Linux verification', '',
+                   'Fresh Ubuntu 24.04 / Python 3.12; public artifacts only; no source checkout.', '']
+          if summary_path.is_file():
+              summary = json.loads(summary_path.read_text())
+              for key in ['phase', 'setup_passed', 'scientific_passed', 'passed', 'error']:
+                  if key in summary:
+                      lines.append(f'- {key}: {summary[key]}')
+          else:
+              summary = {'phase': 'workflow-bootstrap', 'setup_passed': False,
+                         'scientific_passed': None, 'passed': False,
+                         'error': 'Bootstrap or Python setup did not produce a verification summary'}
+              lines.append('- Bootstrap or Python setup did not produce a verification summary. See bootstrap.log and workflow-context.json.')
+          Path(os.environ['REPORT_DIR'], 'workflow-status.json').write_text(json.dumps(summary, indent=2) + '\n')
+          result_path = report / 'report.json'
+          if result_path.is_file():
+              result = json.loads(result_path.read_text())
+              lines += ['', '| Case | Outcome |', '| --- | --- |']
+              for case in result.get('examples', []):
+                  lines.append('| ' + case['id'] + ' | ' + ('pass' if case.get('passed') is True else 'failed / not completed') + ' |')
+              lines += ['', 'Registry SHA-256: ' + str(result.get('registry_sha256', 'unavailable'))]
+          lines += ['', 'Download the run artifact for logs, environments, hash records and generated JSON/CSV.']
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as handle:
+              handle.write('\n'.join(lines) + '\n')
+          PY
+      - name: Retain logs and numerical outputs on success or failure
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: atlas-public-linux-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/atlas-public-linux-report
+          if-no-files-found: error
+          retention-days: 90

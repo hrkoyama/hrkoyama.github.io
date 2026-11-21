@@ -55,7 +55,7 @@ assert not b.evaluate_check({'a':[]},{'id':'empty','pointer':'/a','field':'error
 test('independent download verification rejects a mismatched SHA-256',()=>{
   python(`class Response(io.BytesIO):
  def geturl(self):return 'https://hrkoyama.github.io/code/example/input.json'
-with mock.patch.object(v.urllib.request,'urlopen',return_value=Response(b'changed')):
+with mock.patch.object(v.PUBLIC_OPENER,'open',return_value=Response(b'changed')):
  try:v.checked_download('https://hrkoyama.github.io/code/example/input.json','0'*64)
  except ValueError:pass
  else:raise AssertionError('download hash mismatch accepted')

@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "route": "/numerical-methods-atlas/code-and-data/ci/",
+  "workflow": {
+    "name": "Atlas public Linux verification",
+    "file": "atlas-public-linux.yml",
+    "repository": "hrkoyama/hrkoyama.github.io",
+    "branch": "main",
+    "runs_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-public-linux.yml",
+    "runs_api": "https://api.github.com/repos/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-public-linux.yml/runs?branch=main&per_page=1",
+    "badge_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-public-linux.yml/badge.svg?branch=main",
+    "source_url": "https://github.com/hrkoyama/hrkoyama.github.io/blob/main/.github/workflows/atlas-public-linux.yml"
+  },
+  "cadence": {
+    "manual": true,
+    "weekly_cron_utc": "17 3 * * 1",
+    "weekly": {
+      "ja": "毎週月曜 03:17 UTC（12:17 日本時間）",
+      "en": "Mondays at 03:17 UTC (12:17 JST)"
+    },
+    "after_pages_success": true
+  },
+  "environment": {
+    "runner": "ubuntu-24.04",
+    "python": "3.12",
+    "fresh_virtual_environment": true,
+    "scientific_source": "public-site-distributions-only",
+    "dependency_policy": {
+      "ja": "公開requirementsのSHA-256を照合し、記載された固定版をPyPIのwheelから導入します。pipのキャッシュは使わず、実際に導入した依存版を記録します。",
+      "en": "Check the public requirements by SHA-256 and install their specified versions from PyPI wheels, without pip caching; record the dependencies actually installed."
+    },
+    "runner_timeout_seconds": 120,
+    "workflow_timeout_minutes": 40,
+    "artifact_retention_days": 90
+  },
+  "scope": {
+    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表15問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
+    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 15 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
+  },
+  "definitions": {
+    "latest": {
+      "ja": "バッジは指定ブランチのGitHub Actionsの状態です。最新の実行状態と、ここに保存した成功記録は別の時点の情報です。",
+      "en": "The badge shows GitHub Actions status for the specified branch. Current workflow status and a saved successful receipt refer to different points in time."
+    },
+    "saved": {
+      "ja": "保存された日時・環境・台帳ハッシュに対する成功記録です。現在の台帳との一致も表示し、過去の成功を現在の結果として扱いません。",
+      "en": "A successful receipt applies to its recorded time, environment and registry hash. Its match with the current registry is shown; historical success is not presented as the current result."
+    },
+    "artifact": {
+      "ja": "ログとJSON/CSVは各runのArtifactsに90日保存します。artifactの取得にはGitHubへのログインが必要です。",
+      "en": "Logs and JSON/CSV are retained in each run's Artifacts for 90 days. Downloading artifacts requires GitHub sign-in."
+    },
+    "limits": {
+      "ja": "数値判定は固定入力と既存の許容条件に対して行います。ZIPや入力はハッシュで照合しますが、再計算したCSV/画像のバイト一致を要求する検査ではありません。同梱pytestの全検査、アトラス全60問題、独立PySCF参照の再生成は別の確認です。",
+      "en": "Numerical acceptance uses fixed inputs and the existing tolerances. ZIP/input hashes are checked, but rerun CSVs/images are not required to be byte-identical. Full packaged pytest suites, all 60 atlas problems and regeneration of independent PySCF references are separate checks."
+    },
+    "atomic": {
+      "ja": "水素型原子とHeは同じ1回の実行を共有し、各問題の条件を別々に判定します。Heは保存済みの有限基底PySCF参照と比較します。",
+      "en": "Hydrogenic atoms and helium share one execution and receive separate numerical decisions. Helium is compared with the saved finite-basis PySCF reference."
+    },
+    "phases": [
+      {
+        "id": "download",
+        "label": {
+          "ja": "公開配布物の取得・ハッシュ照合",
+          "en": "Public download and hash checks"
+        }
+      },
+      {
+        "id": "setup",
+        "label": {
+          "ja": "新規環境への依存導入",
+          "en": "Fresh-environment dependency installation"
+        }
+      },
+      {
+        "id": "execution",
+        "label": {
+          "ja": "固定入力の計算",
+          "en": "Fixed-input execution"
+        }
+      },
+      {
+        "id": "validation",
+        "label": {
+          "ja": "数値条件と出力の判定",
+          "en": "Numerical acceptance and output checks"
+        }
+      }
+    ]
+  },
+  "snapshots": []
+}

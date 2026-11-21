@@ -94,6 +94,12 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 公開用の追加実行記録は `numerical-methods-atlas/code-and-data/verification/` に保存し、台帳の `verification_receipt` を対応するURLにする。registryの内容と記録内のSHA-256が一致することを生成時に確認する。通常のrefreshは保存済み記録を参照し、ネット取得や科学計算を繰り返さない。レシピを変えた場合は記録を取り直し、古い記録を新しい条件の成功と表示しない。コードのMIT、入力・数値データ・図・本文の個別条件、第三者資料の条件は別のまま保持する。
 
+公開15例のLinux継続検証は `.github/workflows/atlas-public-linux.yml`。Ubuntu 24.04 / Python 3.12の新しいジョブで、ソースcheckoutや依存キャッシュを使わず、公開URLから取得する `scripts/run-atlas-public-ci.py`・verifier・registry builder・実行台帳をSHA-256で固定する。`update-atlas-ci-pins.py` は通常refresh内でこの4つの期待値を更新するため、ツールや台帳を変更したらPagesの公開成功後にCIを実行する。公開manifestでrequirementsを照合し、新規venvへ固定依存を導入してから、公開ZIP・入力・参照だけで15例を14コマンド実行する。原子2例は同じrunnerを共有する。PySCF参照の再生成、全60問題、配布版pytest全件とは別の検証として記録する。
+
+実行契機は手動・毎週月曜12:17（日本時間）・mainのPages公開成功後。CIの権限は読み取りだけで、サイトへの自動commitは行わない。通常の取得・依存導入・実行・数値判定の失敗でも、段階・環境・ハッシュ・ログ・生成JSON/CSVをActions成果物として90日保持する。`verify-atlas-execution-examples.py --artifacts-dir ... --expected-registry-sha256 ... --output ...` は途中の失敗も保存し、元の数値判定基準を変更しない。公開済み配布版と過去の検証記録は上書きしない。
+
+CI案内の正本は `catalog/atlas-ci.json`、生成は `build-atlas-ci-page.py`。`numerical-methods-atlas/code-and-data/ci/` に最新状態への参照と、日付・run・registry SHAを持つ保存済み記録を分けて表示する。成功したrunのレポートを保存するときは、Actions成果物の `ci-summary.json` と `report.json` を確認し、新しい `ci/verification/` のJSONへrun URL等とともに収め、snapshotsへ追加して再生成する。古い成功記録を最新の成功と呼ばず、台帳SHAが変わった場合も履歴と現行条件を区別する。
+
 主要24手法の個別条件は `catalog/atlas-methods.json` の `priority_review` / `method_review` を正本とする。問題・実際の採用形・使う条件・避ける条件・単位・境界・制約を日英で記載し、`specified` / 理由付き `not-applicable` / `unknown` を区別する。原法・採用変種・定式化・参照解・背景の文献役割と、本文の該当箇所／抄録・書誌／書誌のみの確認範囲を保存する。この整理で数値検証済みの状態へ格上げしない。Ewald/PME/SPMEは実装前の比較仕様であり、重力PMの核・境界・符号と区別する。
 
 一次文献の書誌は `catalog/atlas-method-primary-references.json` から `build-atlas-method-sources.py` が統合する。DOI・既存ID・同じ題名と年を照合し、URL別名や複数手法からの引用を重複加算しない。文献統合を量子章生成より先に実行し、全体の文献数・BibTeX・日英文献一覧を揃える。`atlas_method_review.py` は条件の欠落と状態・文献の確認範囲を検査し、HTML/Markdownと `/numerical-methods-atlas/methods/reviewed.json` へ同じ内容を出す。
