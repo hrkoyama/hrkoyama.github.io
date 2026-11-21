@@ -36,6 +36,7 @@ for parent, dirs, files in os.walk(ROOT):
         if not name.endswith('.html') or name.startswith('google'): continue
         path = Path(parent) / name; relative = path.relative_to(ROOT).as_posix()
         text = path.read_text(); page = Page(); page.feed(text); pages[path.resolve()] = page
+        if re.search(r'(?m)^[ \t]*(?:<{7}|>{7})(?:[ \t]|$)', text): errors.append(relative + ': unresolved merge markers')
         if len(page.canonical) != 1: errors.append(relative + ': expected one canonical URL')
         else: canonicals.add(page.canonical[0])
         if any(text.count('<!-- ' + marker + ' -->') != 1 for marker in ['site-head', 'site-top', 'site-bottom']): errors.append(relative + ': missing or duplicate shared navigation')

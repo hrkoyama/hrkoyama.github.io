@@ -4,6 +4,12 @@ import fs from 'node:fs';
 import {makeSearch,safePath,normalize,excerpt} from '../search/engine.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../search/index.json',import.meta.url),'utf8'));
 const search=makeSearch(data.documents);
+test('the public search page has one search container and no merge markers',()=>{
+  const html=fs.readFileSync(new URL('../search/index.html',import.meta.url),'utf8');
+  assert.equal((html.match(/<main\b/g)||[]).length,1);
+  assert.equal((html.match(/data-search-index=/g)||[]).length,1);
+  assert.ok(!/^(?:<{7}|>{7})(?:\s|$)/m.test(html));
+});
 test('the named method map is the first result in Japanese and English',()=>{
   for(const [query,lang] of [['手法の見取り図','ja'],['手法 見取り図','ja'],['map of numerical methods','en']]){
     assert.equal(search(query,lang)[0]?.url,'/numerical-methods-atlas/methods/',query);
