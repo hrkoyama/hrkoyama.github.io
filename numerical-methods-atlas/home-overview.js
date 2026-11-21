@@ -1,28 +1,67 @@
-import {atlasPurpose,atlasMetrics,atlasExamples} from './atlas-purpose.js?v=ded85596c579';
+import {atlasPurpose,atlasMetrics,atlasExamples} from './atlas-purpose.js?v=bebe063d5b79';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=7b9b5ccba55e';
-import {t} from './i18n.js';
-import {homeAreas,homeCopy,homePaths} from './home-overview-data.js';
+import {t,currentLanguage} from './i18n.js';
+import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=42602b18cb1f';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=(key,values)=>esc(t(homeCopy[key],values));
-const link=(route,key,cls='')=>`<a href="#${esc(route)}"${cls?` class="${cls}"`:''}>${esc(t(key))}</a>`;
+const locale=lang=>['ja','en'].includes(lang)?lang:currentLanguage();
+
+function routeURL(route,lang=currentLanguage()){
+ lang=locale(lang);
+ if(route.startsWith('/read/')){
+  const [chapter,search='']=route.slice(6).split('?');
+  const edition=homeReadingLanguages[chapter]?.includes(lang)?lang:'en';
+  const section=new URLSearchParams(search).get('section');
+  return `/numerical-methods-atlas/${edition}/read/${chapter}/`+(section?'#'+encodeURIComponent(section):'');
+ }
+ if(route.startsWith('/numerical-methods-atlas/')){
+  const url=new URL(route,'https://hrkoyama.github.io');url.searchParams.set('lang',lang);
+  return url.pathname+url.search+url.hash;
+ }
+ return '#'+route;
+}
+const link=(route,key,cls='',lang=currentLanguage())=>`<a href="${esc(routeURL(route,lang))}"${cls?` class="${cls}"`:''}>${esc(t(key))}</a>`;
+const entryLink=(entry,lang)=>`<a href="${esc(routeURL(entry.route,lang))}" data-home-kind="${esc(entry.kind)}"><span>${esc(t(entry.name))}</span><span class="badge ${esc(entry.kind)}">${text(entry.kind)}</span></a>`;
+const connection=(entries,label,lang)=>`<section class="connection"><h4 class="connection-label">${text(label)}</h4><ul>${entries.map(entry=>`<li>${entryLink(entry,lang)}</li>`).join('')}</ul></section>`;
+
 export const resolveHomeArea=id=>homeAreas.find(area=>area.id===id)||homeAreas[0];
 export function homeAreaURL(href,area){
  const url=new URL(href),parts=url.hash.slice(1).split('?'),query=new URLSearchParams(parts[1]||'');
  query.set('area',resolveHomeArea(area).id);url.hash='/?'+query.toString();return url.href;
 }
-export function homeAreaDetail(id){
- const area=resolveHomeArea(id),number=String(homeAreas.indexOf(area)+1).padStart(2,'0');
- return `<p class="eyebrow">${number} / ${esc(t(area.name))}</p><h3 id="home-detail-title">${esc(t(area.question))}</h3><p class="detail-description">${esc(t(area.description))}</p>${area.groups.map((group,i)=>`<div class="connection"><div class="connection-label">${text(['models-label','methods-label','verify-label'][i])}</div><ul>${group.map(entry=>`<li><a href="#${esc(entry.route)}"><span>${esc(t(entry.name))} <span aria-hidden="true">↗</span></span><span class="badge ${entry.kind}">${text(entry.kind)}</span></a></li>`).join('')}</ul></div>`).join('')}<div class="detail-footer">${link(area.entry,homeCopy['start-area'])}${link('/coverage',homeCopy['inspect-scope'])}</div>`;
+export function homeAreaDetail(id,lang=currentLanguage(),{headingId='home-detail-title'}={}){
+ const area=resolveHomeArea(id);lang=locale(lang);
+ const groups=[area.groups[0],area.groups[1],area.execution||area.groups[2]];
+ const related=area.execution?`<details class="area-related"><summary>${text('related-exhibits')}</summary><ul>${area.groups[2].map(entry=>`<li>${entryLink(entry,lang)}</li>`).join('')}</ul></details>`:'';
+ const planned=area.plans?`<aside class="area-planned"><h4>${text('planned-label')}</h4><ul>${area.plans.map(entry=>`<li>${entryLink(entry,lang)}</li>`).join('')}</ul></aside>`:'';
+ return `<p class="eyebrow">${esc(t(area.name))}</p><h3 id="${esc(headingId)}">${esc(t(area.question))}</h3><p class="detail-description">${esc(t(area.description))}</p>${groups.map((group,i)=>connection(group,['models-label','methods-label','verify-label'][i],lang)).join('')}${related}${planned}<div class="detail-footer">${link(area.overview,homeCopy['area-reading'],'',lang)}${link('/numerical-methods-atlas/methods/',homeCopy['inspect-scope'],'',lang)}${area.entry.startsWith('/read/')?'':link(area.entry,homeCopy['start-area'],'quiet-link',lang)}</div>`;
 }
+
+/** Configure the locale first; lang selects real reading editions and stable links. */
+export function renderHomeMap(selected,lang=currentLanguage(),{staticMode=false}={}){
+ const area=resolveHomeArea(selected);lang=locale(lang);
+ const suffix=staticMode?'-'+lang:'';
+ const heading=`<div class="section-heading"><div><p class="eyebrow">${text('map-eyebrow')}</p><h2 id="home-map-title${suffix}">${text('map-title')}</h2></div><p>${text('map-description')}</p></div>`;
+ let body;
+ if(staticMode){
+  const directory=`<nav class="static-area-directory" aria-label="${text('static-directory')}"><ul>${homeAreas.map(entry=>`<li><a data-home-reading="${entry.id}" href="${esc(routeURL(entry.overview,lang))}">${esc(t(entry.name))}</a></li>`).join('')}</ul></nav>`;
+  body=`<p class="static-map-note">${text('static-map-note')}</p>${directory}<div class="home-static-areas">${homeAreas.map(entry=>`<details class="static-domain" data-static-area="${entry.id}" id="atlas-area-${entry.id}-${lang}"${entry.id===area.id?' open':''}><summary><strong>${esc(t(entry.name))}</strong><span>${esc(t(entry.hint))}</span></summary><div class="domain-panel">${homeAreaDetail(entry.id,lang,{headingId:`home-detail-title-${entry.id}-${lang}`})}</div></details>`).join('')}</div>`;
+ }else{
+  body=`<div class="map-layout"><div class="map-index"><div class="domain-grid" role="group" aria-label="${text('map-label')}">${homeAreas.map(entry=>`<div class="domain-choice"><button type="button" class="domain-button" data-home-area="${entry.id}" aria-pressed="${entry.id===area.id}" aria-controls="home-domain-detail"><strong>${esc(t(entry.name))}</strong><span class="domain-hint">${esc(t(entry.hint))}</span></button><a class="domain-reading" data-home-reading="${entry.id}" href="${esc(routeURL(entry.overview,lang))}" aria-label="${esc(t(entry.name))}: ${text('area-reading')}">${text('area-reading')}</a></div>`).join('')}</div></div><section class="domain-panel" id="home-domain-detail" aria-labelledby="home-detail-title">${homeAreaDetail(area.id,lang)}</section></div><p class="home-selection-status" role="status" aria-live="polite"></p>`;
+ }
+ const map=`<section class="page-width overview" id="atlas-map${suffix}" aria-labelledby="home-map-title${suffix}">${heading}<p class="map-scope">${text('scope')}</p>${body}</section>`;
+ return staticMode?`<div class="home-overview home-map-fallback" data-localize="false">${map}</div>`:map;
+}
+
 export function homeOverviewPage(coverage,selected){
- const area=resolveHomeArea(selected),c=coverage.counts;
+ const area=resolveHomeArea(selected),c=coverage.counts,lang=currentLanguage();
  return `<div class="home-overview" id="home-overview" data-area="${area.id}" data-localize="false">
- <section class="intro page-width"><div><p class="eyebrow">${text('eyebrow')}</p><h1>${text('title')}<br><em>${text('title-em')}</em></h1><p class="intro-description">${text('description')}</p></div><div class="intro-summary"><div><p class="summary-title">${text('coverage')}</p>${atlasMetrics()}<p class="flow">${['equation','discretize','solve','verify'].map(key=>`<span>${text(key)}</span>`).join('<span class="flow-arrow" aria-hidden="true">→</span>')}</p></div>${link('/coverage',homeCopy.counting,'quiet-link')}</div></section>
+ <section class="intro page-width"><div><p class="eyebrow">${text('eyebrow')}</p><h1>${text('title')}<br><em>${text('title-em')}</em></h1><p class="intro-description">${text('description')}</p><nav class="home-primary-actions" aria-label="${text('primary-actions')}"><a class="home-map-action" href="#/?section=atlas-map">${text('browse-map')}</a><a class="home-run-action" href="/numerical-methods-atlas/code-and-data/examples/?lang=${lang}">${text('run-examples')}</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang=${lang}">${text('share-label')}</a></p></div><div class="intro-summary"><div><p class="summary-title">${text('coverage')}</p>${atlasMetrics()}<p class="flow">${['equation','discretize','solve','verify'].map(key=>`<span>${text(key)}</span>`).join('<span class="flow-arrow" aria-hidden="true">→</span>')}</p></div>${link('/coverage',homeCopy.counting,'quiet-link')}</div></section>
  ${atlasPurpose()}
  ${homeSearchPage()}
  ${atlasExamples()}
 
- <section class="page-width overview" id="atlas-map" aria-labelledby="home-map-title"><div class="section-heading"><div><p class="eyebrow">THE MAP / 01–06</p><h2 id="home-map-title">${text('map-title')}</h2></div><p>${text('map-description')}</p></div><div class="map-layout"><div class="map-index"><div class="domain-grid" aria-label="${text('map-label')}">${homeAreas.map((entry,i)=>`<button class="domain-button" data-home-area="${entry.id}" aria-pressed="${entry.id===area.id}" aria-controls="home-domain-detail"><span class="domain-number">0${i+1}</span><strong>${esc(t(entry.name))}</strong><span class="domain-hint">${esc(t(entry.hint))}</span><span class="domain-arrow" aria-hidden="true">↗</span></button>`).join('')}</div><p>${text('scope')}</p></div><section class="domain-panel" id="home-domain-detail" aria-labelledby="home-detail-title">${homeAreaDetail(area.id)}</section></div><p class="home-selection-status" role="status" aria-live="polite"></p></section>
+ ${renderHomeMap(area.id,lang)}
  <section class="page-width guided" aria-labelledby="home-start-title"><h2 id="home-start-title">${text('start-title')}</h2><p class="guided-intro">${text('start-description')}</p><div class="guided-list">${homePaths.map(path=>`<article class="guided-route"><p class="eyebrow">${esc(t(path.tag))}</p><h3>${esc(t(path.title))}</h3><p>${esc(t(path.description))}</p><ol>${path.links.map(([route,key])=>`<li>${link(route,key)}</li>`).join('')}</ol></article>`).join('')}</div></section>
  <section class="page-width evidence"><div class="evidence-inner"><div><p class="eyebrow">KEEP THE EVIDENCE CLOSE</p><h2>${text('evidence-title')}</h2><p>${text('evidence-description',{chapters:c.reading_chapters,sources:c.references,biology:c.biological_entries})}</p></div><div class="evidence-links">${link('/coverage',homeCopy.inventory)}${link('/gallery',homeCopy.gallery)}${link('/glossary',homeCopy.glossary)}</div></div></section>
  <aside class="page-width future"><p>${text('future')} ${link('/read/roadmap?section=planned-quantum-chemistry-and-dft',homeCopy.roadmap)}</p></aside>

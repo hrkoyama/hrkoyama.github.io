@@ -1,4 +1,5 @@
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=a286962d5e61';
+const atlasIntroDescriptions = {"ja": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表15問題の固定入力・実行・結果照合を日英で案内します。", "en": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore fifteen fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=b28f19f9e1c7';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';
@@ -117,7 +118,7 @@ const eras = [
  ['1994–2026','Particles meet a Riemann problem','Inutsuka · Iwasaki · Kitajima · Seno','Trace GSPH through its detailed 2002 formulation, particle MHD, and special-relativistic SRGSPH. Literature and a staged implementation plan.','gsph','inutsuka2002']
 ].sort((a,b)=>parseInt(a[0],10)-parseInt(b[0],10));
 let documents, references, sod, experiments, foundations, coverage, translationStatus, localeCatalog, glossary;
-const atlasDocumentVersions = {"ja": "07a244805934", "en": "da8def0672a0"};
+const atlasDocumentVersions = {"ja": "ecfcac51fb04", "en": "e0bac585e7f8"};
 const documentCache = new Map();
 const originalShell = new Map([...document.querySelectorAll('.site-header,.site-footer,#figure-dialog,.skip-link')].map(element => [element, element.innerHTML]));
 let navigationVersion = 0, switching = false;
@@ -134,10 +135,15 @@ function renderShell() {
  });
  document.querySelector('.mobile-menu').addEventListener('click',event=>{const open=document.querySelector('.site-header').classList.toggle('menu-open');event.currentTarget.setAttribute('aria-expanded',String(open));});
  document.querySelector('.dialog-close').addEventListener('click',()=>document.querySelector('#figure-dialog').close());
- const description = currentLanguage()==='ja' ? '方程式、数値計算法、原論文、再現可能なテスト計算をつなぐ数値計算アトラス。' : 'A living atlas of numerical algorithms. Explore the original papers, understand the methods, and inspect reproducible benchmark results.';
+ const description = atlasIntroDescriptions[currentLanguage()];
  document.querySelector('meta[name="description"]').content=description;
  document.querySelector('meta[property="og:description"]').content=description;
  document.querySelector('meta[property="og:title"]').content=site.title[currentLanguage()];
+ // atlas-social-locale
+ for(const key of ['twitter:title','twitter:description'])document.querySelector('meta[name="'+key+'"]').content=key==='twitter:title'?site.title[currentLanguage()]:description;
+ document.querySelector('meta[property="og:image"]').content=new URL('share/atlas-intro-'+currentLanguage()+'.png',import.meta.url).href;
+ document.querySelector('meta[name="twitter:image"]').content=new URL('share/atlas-intro-'+currentLanguage()+'.png',import.meta.url).href;
+ // /atlas-social-locale
  document.querySelectorAll('[data-reading-index]').forEach(a=>{a.href=readingURL(new URL('.',import.meta.url), '', currentLanguage());});
  localizeTree(document.body);
 }
@@ -306,7 +312,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=d940c918f722','references.json?v=03e8aaeb8522','sod.json','experiments.json','foundations.json','coverage.json?v=d107be369287','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=03a5f4a54628','references.json?v=03e8aaeb8522','sod.json','experiments.json','foundations.json','coverage.json?v=d107be369287','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

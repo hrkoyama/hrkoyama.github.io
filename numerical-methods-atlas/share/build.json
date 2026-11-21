@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
+    "catalog/atlas-methods.json": "cb7e2793a16e81d202644d9c00fb35085d5a8b42c62d01d2b6a6b736cc12080a",
+    "numerical-methods-atlas/coverage.json": "d107be369287738bd40edd816e4804ffe147b66c7d8467269a4c998894f36b3d",
+    "catalog/atlas-execution-examples.json": "107e55e0805967153c83363514c4924e366d34d5fb2187de70c911230c653859",
+    "catalog/atlas-execution-discovery.json": "40a61a42f67357557c2cf95e058eb7ce1b5f663689cf209f73665fe7f9dfc134"
+  },
+  "builder_sha256": "87508c43c1d8998576804b775cada4da8f1e8c348af73a58d9755c76c867dad0",
+  "renderer": {
+    "name": "Pillow",
+    "version": "13.0.0",
+    "freetype": "2.14.3"
+  },
+  "font": {
+    "filename": "ヒラギノ角ゴシック W6.ttc",
+    "sha256": "790fe535987adc662e83489e162dc54c1e50be8de15169300082f6cc7a082e4e"
+  },
+  "images": {
+    "ja": {
+      "svg_sha256": "73d84cd13d44abbe6c7c5bfe45e86f91115292a921d24fd69d487d29fea8c724",
+      "png_sha256": "9fcdc8d60444606b78afa49efea25c5e16dbfd75776f8f96dce1eea897af8645",
+      "content_input_sha256": "ea122cbeb1ca56a3e288bf53244addcd9ea074ef8e2f72783dbd713d85277592",
+      "render_input_sha256": "2c8a3890b2f1b81ab5350eae13a072a9e56cd731c16f2c8a3bf413e2c61e6037",
+      "width": 1200,
+      "height": 630
+    },
+    "en": {
+      "svg_sha256": "38d92f129b37b100486b5218fc707da1774133f846ec80c0225a26fbac477b47",
+      "png_sha256": "9f7311e5abe0979dc4b2e4478626d07ee349d29ca4459a17cfc007dc3e444ce2",
+      "content_input_sha256": "37a5c61bed4b191cdbbfb03ddffe9698fb20c3b620d0bd442e4937cc4aa90c27",
+      "render_input_sha256": "293619ca2112cdd5e6e5b3af7c35661812bc6e7227cfc70c24ae67fb03689f28",
+      "width": 1200,
+      "height": 630
+    }
+  }
+}

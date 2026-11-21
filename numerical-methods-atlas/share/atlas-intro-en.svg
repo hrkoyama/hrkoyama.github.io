@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description" lang="en">
+<title id="title">Numerical methods.</title><desc id="description">From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and 15 scoped examples using text, images and links.</desc>
+<metadata>{&quot;source&quot;: &quot;https://hrkoyama.github.io/numerical-methods-atlas/share/&quot;, &quot;rights&quot;: &quot;https://hrkoyama.github.io/rights/&quot;, &quot;scope&quot;: &quot;Introduction graphic; not new simulation output&quot;, &quot;counts&quot;: {&quot;methods&quot;: 108, &quot;papers&quot;: 181, &quot;equations&quot;: 46, &quot;test_problems&quot;: 60, &quot;execution_examples&quot;: 15}}</metadata>
+<rect x="0" y="0" width="1200" height="630" fill="#f4f2e8"/>
+<rect x="60" y="28" width="54" height="5" fill="#a34f30"/>
+<text x="60" y="64" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="19" font-weight="600" text-anchor="start" fill="#183f34">NUMERICAL METHODS ATLAS · FOR PEOPLE &amp; AI</text>
+<text x="60" y="151" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="68" font-weight="600" text-anchor="start" fill="#183f34">Numerical methods.</text>
+<text x="60" y="207" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="28" font-weight="600" text-anchor="start" fill="#183f34">From method choices to reproducible checks.</text>
+<rect x="926" y="101" width="214" height="59" fill="#a34f30"/>
+<text x="1033" y="140" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="22" font-weight="600" text-anchor="middle" fill="#f4f2e8">15 examples</text>
+<rect x="60" y="258" width="320" height="116" fill="#183f34"/>
+<text x="82" y="304" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="23" font-weight="600" text-anchor="start" fill="#f4f2e8">Sources &amp; scope</text>
+<text x="82" y="344" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="19" font-weight="600" text-anchor="start" fill="#f4f2e8">Choose a method</text>
+<polyline points="399,315 422,315 415,308 422,315 415,322" fill="none" stroke="#a34f30" stroke-width="3"/>
+<rect x="440" y="258" width="320" height="116" fill="#183f34"/>
+<text x="462" y="304" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="23" font-weight="600" text-anchor="start" fill="#f4f2e8">Inputs &amp; code</text>
+<text x="462" y="344" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="19" font-weight="600" text-anchor="start" fill="#f4f2e8">Run an example</text>
+<polyline points="779,315 802,315 795,308 802,315 795,322" fill="none" stroke="#a34f30" stroke-width="3"/>
+<rect x="820" y="258" width="320" height="116" fill="#183f34"/>
+<text x="842" y="304" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="23" font-weight="600" text-anchor="start" fill="#f4f2e8">Result checks</text>
+<text x="842" y="344" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="19" font-weight="600" text-anchor="start" fill="#f4f2e8">Check the output</text>
+<text x="60" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">108</text>
+<text x="60" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">Methods &amp; components</text>
+<text x="340" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">181</text>
+<text x="340" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">Research publications</text>
+<text x="620" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">46</text>
+<text x="620" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">Equations &amp; models</text>
+<text x="900" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">60</text>
+<text x="900" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">Test problems</text>
+<rect x="60" y="533" width="1080" height="1" fill="#cbd1c5"/>
+<text x="60" y="569" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">15 fixed-input examples · Educational, reading-only and planned entries distinguished</text>
+<text x="60" y="607" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="22" font-weight="600" text-anchor="start" fill="#183f34">hrkoyama.github.io/numerical-methods-atlas/</text>
+</svg>

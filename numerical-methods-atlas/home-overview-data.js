@@ -1,4 +1,4 @@
-/** Navigation model: areas overlap; counted inventory remains in the shared catalog. */
+/** Navigation model: areas overlap; scientific inventories remain in their catalogs. */
 export const homeAreas = [
   {
     "id": "foundations",
@@ -44,7 +44,25 @@ export const homeAreas = [
         }
       ]
     ],
-    "entry": "/experiments"
+    "entry": "/experiments",
+    "overview": "/read/stability",
+    "execution": [
+      {
+        "name": "home-map.execution.advection-sine",
+        "route": "/numerical-methods-atlas/code-and-data/examples/advection-sine/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.harmonic-oscillator",
+        "route": "/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.stiff-cosine",
+        "route": "/numerical-methods-atlas/code-and-data/examples/stiff-cosine/",
+        "kind": "execution"
+      }
+    ]
   },
   {
     "id": "waves",
@@ -90,7 +108,20 @@ export const homeAreas = [
         }
       ]
     ],
-    "entry": "/equations"
+    "entry": "/equations",
+    "overview": "/read/benchmarks",
+    "execution": [
+      {
+        "name": "home-map.execution.sod",
+        "route": "/numerical-methods-atlas/code-and-data/examples/sod/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.shu-osher",
+        "route": "/numerical-methods-atlas/code-and-data/examples/shu-osher/",
+        "kind": "execution"
+      }
+    ]
   },
   {
     "id": "diffusion",
@@ -136,7 +167,25 @@ export const homeAreas = [
         }
       ]
     ],
-    "entry": "/poisson-comparison"
+    "entry": "/poisson-comparison",
+    "overview": "/read/elliptic",
+    "execution": [
+      {
+        "name": "home-map.execution.poisson-1d-dirichlet",
+        "route": "/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.poisson-2d-sine",
+        "route": "/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.bratu",
+        "route": "/numerical-methods-atlas/code-and-data/examples/bratu/",
+        "kind": "execution"
+      }
+    ]
   },
   {
     "id": "approximation",
@@ -182,7 +231,15 @@ export const homeAreas = [
         }
       ]
     ],
-    "entry": "/basis"
+    "entry": "/basis",
+    "overview": "/read/fem",
+    "execution": [
+      {
+        "name": "home-map.execution.smooth-function-projection",
+        "route": "/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/",
+        "kind": "execution"
+      }
+    ]
   },
   {
     "id": "particles",
@@ -228,7 +285,37 @@ export const homeAreas = [
         }
       ]
     ],
-    "entry": "/hamiltonian"
+    "entry": "/hamiltonian",
+    "overview": "/read/particle-gravity",
+    "execution": [
+      {
+        "name": "home-map.execution.barnes-hut",
+        "route": "/numerical-methods-atlas/code-and-data/examples/barnes-hut/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.periodic-particles",
+        "route": "/numerical-methods-atlas/code-and-data/examples/periodic-particles/",
+        "kind": "execution"
+      }
+    ],
+    "plans": [
+      {
+        "name": "home-map.planned.ewald",
+        "route": "/numerical-methods-atlas/methods/ewald/",
+        "kind": "planned"
+      },
+      {
+        "name": "home-map.planned.pme",
+        "route": "/numerical-methods-atlas/methods/pme/",
+        "kind": "planned"
+      },
+      {
+        "name": "home-map.planned.spme",
+        "route": "/numerical-methods-atlas/methods/spme/",
+        "kind": "planned"
+      }
+    ]
   },
   {
     "id": "coupled",
@@ -274,7 +361,104 @@ export const homeAreas = [
         }
       ]
     ],
-    "entry": "/mhd-tests"
+    "entry": "/mhd-tests",
+    "overview": "/read/mhd",
+    "execution": [
+      {
+        "name": "home-map.execution.taylor-green",
+        "route": "/numerical-methods-atlas/code-and-data/examples/taylor-green/",
+        "kind": "execution"
+      },
+      {
+        "name": "home-map.execution.brio-wu",
+        "route": "/numerical-methods-atlas/code-and-data/examples/brio-wu/",
+        "kind": "execution"
+      }
+    ]
+  },
+  {
+    "id": "quantum",
+    "name": "home-map.areas.6.name",
+    "hint": "home-map.areas.6.hint",
+    "question": "home-map.areas.6.question",
+    "description": "home-map.areas.6.description",
+    "overview": "/read/quantum-chemistry",
+    "entry": "/read/quantum-chemistry",
+    "groups": [
+      [
+        {
+          "name": "home-map.areas.6.groups.0.0.name",
+          "route": "/read/quantum-chemistry",
+          "kind": "reading"
+        },
+        {
+          "name": "home-map.areas.6.groups.0.1.name",
+          "route": "/read/quantum-atoms",
+          "kind": "reading"
+        }
+      ],
+      [
+        {
+          "name": "home-map.areas.6.groups.1.0.name",
+          "route": "/numerical-methods-atlas/methods/hartree-fock/",
+          "kind": "reading"
+        },
+        {
+          "name": "home-map.areas.6.groups.1.1.name",
+          "route": "/numerical-methods-atlas/methods/kohn-sham-dft/",
+          "kind": "reading"
+        }
+      ],
+      [
+        {
+          "name": "home-map.execution.hydrogenic-atoms",
+          "route": "/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/",
+          "kind": "execution"
+        },
+        {
+          "name": "home-map.execution.helium-ground-state",
+          "route": "/numerical-methods-atlas/code-and-data/examples/helium-ground-state/",
+          "kind": "execution"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "thermostats",
+    "name": "home-map.areas.7.name",
+    "hint": "home-map.areas.7.hint",
+    "question": "home-map.areas.7.question",
+    "description": "home-map.areas.7.description",
+    "overview": "/read/thermostats",
+    "entry": "/read/thermostats",
+    "groups": [
+      [
+        {
+          "name": "home-map.areas.7.groups.0.0.name",
+          "route": "/read/thermostats",
+          "kind": "reading"
+        }
+      ],
+      [
+        {
+          "name": "home-map.areas.7.groups.1.0.name",
+          "route": "/numerical-methods-atlas/methods/nose-hoover/",
+          "kind": "planned"
+        },
+        {
+          "name": "home-map.areas.7.groups.1.1.name",
+          "route": "/numerical-methods-atlas/methods/stochastic-velocity-rescaling/",
+          "kind": "planned"
+        }
+      ],
+      [
+        {
+          "name": "home-map.areas.7.groups.2.0.name",
+          "route": "/read/thermostats",
+          "kind": "reading"
+        }
+      ]
+    ]
   }
 ];
 export const homeCopy = {
@@ -295,7 +479,7 @@ export const homeCopy = {
   "map-description": "home-map.map-description",
   "map-label": "home-map.map-label",
   "models-label": "home-map.models-label",
-  "methods-label": "ui.methods.869662",
+  "methods-label": "home-map.methods-label",
   "verify-label": "home-map.verify-label",
   "reading": "home-map.reading",
   "interactive": "home-map.interactive",
@@ -331,7 +515,19 @@ export const homeCopy = {
   "future": "home-map.future",
   "roadmap": "home-map.roadmap",
   "sod-summary": "home-map.sod-summary",
-  "sod-description": "home-map.sod-description"
+  "sod-description": "home-map.sod-description",
+  "execution": "home-map.execution",
+  "planned": "home-map.planned",
+  "planned-label": "home-map.planned-label",
+  "area-reading": "home-map.area-reading",
+  "related-exhibits": "home-map.related-exhibits",
+  "browse-map": "home-map.browse-map",
+  "run-examples": "home-map.run-examples",
+  "share-label": "home-map.share-label",
+  "primary-actions": "home-map.primary-actions",
+  "static-map-note": "home-map.static-map-note",
+  "static-directory": "home-map.static-directory",
+  "map-eyebrow": "home-map.map-eyebrow"
 };
 export const homePaths = [
   {
@@ -392,3 +588,106 @@ export const homePaths = [
     ]
   }
 ];
+/** Existing reading editions used here; unknown chapters fall back to English. */
+export const homeReadingLanguages = {
+  "accuracy-stability": [
+    "ja",
+    "en"
+  ],
+  "advanced": [
+    "ja",
+    "en"
+  ],
+  "benchmarks": [
+    "ja",
+    "en"
+  ],
+  "biological-models": [
+    "ja",
+    "en"
+  ],
+  "chapman-enskog": [
+    "ja",
+    "en"
+  ],
+  "elliptic": [
+    "ja",
+    "en"
+  ],
+  "fem": [
+    "ja",
+    "en"
+  ],
+  "geophysical-grids": [
+    "ja",
+    "en"
+  ],
+  "gravity-boundaries": [
+    "ja",
+    "en"
+  ],
+  "gsph": [
+    "ja",
+    "en"
+  ],
+  "history": [
+    "ja",
+    "en"
+  ],
+  "hyperbolic-diffusion": [
+    "ja",
+    "en"
+  ],
+  "incompressible": [
+    "ja",
+    "en"
+  ],
+  "lattice-boltzmann": [
+    "ja",
+    "en"
+  ],
+  "mhd": [
+    "ja",
+    "en"
+  ],
+  "nasa-2d": [
+    "ja",
+    "en"
+  ],
+  "particle-gravity": [
+    "ja",
+    "en"
+  ],
+  "quantum-atoms": [
+    "ja",
+    "en"
+  ],
+  "quantum-chemistry": [
+    "ja",
+    "en"
+  ],
+  "relativistic-hydrodynamics": [
+    "ja",
+    "en"
+  ],
+  "roadmap": [
+    "ja",
+    "en"
+  ],
+  "sparse-nonlinear": [
+    "ja",
+    "en"
+  ],
+  "stability": [
+    "ja",
+    "en"
+  ],
+  "textbooks": [
+    "ja",
+    "en"
+  ],
+  "thermostats": [
+    "ja",
+    "en"
+  ]
+};

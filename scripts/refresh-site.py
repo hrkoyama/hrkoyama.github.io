@@ -19,6 +19,7 @@ for command in [
     [sys.executable, 'scripts/build-atlas-equations.py'],
     [sys.executable, 'scripts/build-atlas-gallery.py'],
     [sys.executable, 'scripts/build-atlas-search.py'],
+    [sys.executable, 'scripts/build-atlas-sharing.py'],
     [sys.executable, 'scripts/build-atlas-purpose.py'],
     ['node', 'scripts/build-site-chrome.mjs'],
     [sys.executable, 'scripts/build-sitemap.py'],

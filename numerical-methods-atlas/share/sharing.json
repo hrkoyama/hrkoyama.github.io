@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "atlas_url": "https://hrkoyama.github.io/numerical-methods-atlas/",
+  "route": "/numerical-methods-atlas/share/",
+  "copy": {
+    "ja": {
+      "title": "数値計算法アトラスの紹介・共有",
+      "headline": "数値計算を、根拠から。",
+      "lead": "手法を選ぶための条件と一次文献から、公開コード・入力・結果の確かめ方へ。大学院生・研究者と、その調査や実装を支援するAIのための資料集です。",
+      "short": "数値計算法アトラスは、手法の考え方・適用条件・一次文献から、公開コードと結果の確かめ方へ進める日英の資料集です。代表{execution_examples}問題は固定入力から実行できます。",
+      "paragraph": "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。文字・数式・絵の3つの入口から手法を探し、適用条件や一次文献を確認し、代表{execution_examples}問題の固定入力・公開コード・参照値と許容誤差へたどれます。解析解・独立な参照・高解像度の数値参照を区別して照合でき、教育用例・文献解説のみ・整備予定と、それぞれの確認範囲を明記しています。",
+      "description": "条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表{execution_examples}実行例を紹介する文章・画像・リンク。",
+      "workflow": [
+        {
+          "title": "原論文と適用条件",
+          "body": "その手法を使える条件と、近似・単位・境界を読む。"
+        },
+        {
+          "title": "固定入力と公開コード",
+          "body": "版と入力を残し、代表例を手元で実行する。"
+        },
+        {
+          "title": "結果と参照値を照合",
+          "body": "解析解・数値参照・保存則・残差を区別して確かめる。"
+        }
+      ],
+      "image": {
+        "title": "数値計算を、根拠から。",
+        "subtitle": "Methods, sources, code and reproducible checks.",
+        "eyebrow": "NUMERICAL METHODS ATLAS · 人とAIのために",
+        "badge": "{execution_examples}の実行例",
+        "steps": [
+          "原論文と適用条件",
+          "固定入力と公開コード",
+          "結果と参照値を照合"
+        ],
+        "step_notes": [
+          "手法を選ぶ",
+          "例を実行する",
+          "結果を確かめる"
+        ],
+        "metric_labels": [
+          "収録手法・構成要素",
+          "学術論文（重複除外）",
+          "方程式・モデル",
+          "テスト問題"
+        ],
+        "footer": "固定入力の実行例 {execution_examples}問題 ／ 教育用例・文献のみ・予定を区別"
+      }
+    },
+    "en": {
+      "title": "Introduce and share the Numerical Methods Atlas",
+      "headline": "Numerical methods. Evidence you can follow.",
+      "lead": "From assumptions and original papers to public code, fixed inputs and result checks. A resource for graduate students, researchers and the AI assistants supporting their work.",
+      "short": "A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for {execution_examples} representative problems.",
+      "paragraph": "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for {execution_examples} representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.",
+      "description": "From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and {execution_examples} scoped examples using text, images and links.",
+      "workflow": [
+        {
+          "title": "Sources and assumptions",
+          "body": "Read the applicability, approximations, units and boundaries."
+        },
+        {
+          "title": "Fixed inputs and public code",
+          "body": "Retain the edition and input, then run a representative example."
+        },
+        {
+          "title": "References and result checks",
+          "body": "Distinguish analytic and numerical references, conservation and residuals."
+        }
+      ],
+      "image": {
+        "title": "Numerical methods.",
+        "subtitle": "From method choices to reproducible checks.",
+        "eyebrow": "NUMERICAL METHODS ATLAS · FOR PEOPLE & AI",
+        "badge": "{execution_examples} examples",
+        "steps": [
+          "Sources & scope",
+          "Inputs & code",
+          "Result checks"
+        ],
+        "step_notes": [
+          "Choose a method",
+          "Run an example",
+          "Check the output"
+        ],
+        "metric_labels": [
+          "Methods & components",
+          "Research publications",
+          "Equations & models",
+          "Test problems"
+        ],
+        "footer": "{execution_examples} fixed-input examples · Educational, reading-only and planned entries distinguished"
+      }
+    }
+  },
+  "sharing_terms": {
+    "ja": "このページで用意した紹介文と紹介画像は、数値計算法アトラスの紹介に、サイト名とリンクを添えて共有できます。これはコードのMITとは別の、この素材に限る個別条件です。他の本文・図・データ・第三者資料は、各資料の利用条件に従ってください。",
+    "en": "You may share the introduction text and graphics provided on this page to introduce the Numerical Methods Atlas, with the site name and link. These item-specific terms apply to these materials separately from the code's MIT license. Other text, figures, data and third-party material retain their own terms."
+  },
+  "image": {
+    "width": 1200,
+    "height": 630,
+    "colors": {
+      "paper": "#f4f2e8",
+      "green": "#183f34",
+      "muted": "#4b6258",
+      "orange": "#a34f30",
+      "line": "#cbd1c5"
+    },
+    "font_family": "Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif"
+  },
+  "renderer": {
+    "dependency": "Pillow==13.0.0",
+    "font_note": {
+      "ja": "日本語を含むTrueType/OpenTypeフォントを--fontで指定できます。macOSのHiragino、LinuxのNoto Sans CJKを自動検出します。フォント本体は配布しません。",
+      "en": "Use --font for a Japanese-capable TrueType/OpenType font. Hiragino on macOS and Noto Sans CJK on Linux are detected automatically; font binaries are not redistributed."
+    }
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/share/",
+  "counts": {
+    "equations": 46,
+    "methods": 108,
+    "papers": 181,
+    "references": 218,
+    "journal_articles": 178,
+    "conference_papers": 3,
+    "books": 22,
+    "chapters": 2,
+    "reports": 3,
+    "other_sources": 10,
+    "local_equations": 18,
+    "reading_equations": 28,
+    "local_methods": 91,
+    "reading_methods": 17,
+    "biological_entries": 22,
+    "gallery_cases": 9,
+    "gallery_equations": 7,
+    "reading_chapters": 50,
+    "test_problems": 60,
+    "saved_test_problems": 60,
+    "code_test_problems": 0,
+    "method_records": 143,
+    "educational_examples": 91,
+    "reading_only": 17,
+    "planned": 35,
+    "execution_examples": 15
+  },
+  "sources": {
+    "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
+    "catalog/atlas-methods.json": "cb7e2793a16e81d202644d9c00fb35085d5a8b42c62d01d2b6a6b736cc12080a",
+    "numerical-methods-atlas/coverage.json": "d107be369287738bd40edd816e4804ffe147b66c7d8467269a4c998894f36b3d",
+    "catalog/atlas-execution-examples.json": "107e55e0805967153c83363514c4924e366d34d5fb2187de70c911230c653859",
+    "catalog/atlas-execution-discovery.json": "40a61a42f67357557c2cf95e058eb7ce1b5f663689cf209f73665fe7f9dfc134"
+  },
+  "introductions": {
+    "ja": {
+      "short": "数値計算法アトラスは、手法の考え方・適用条件・一次文献から、公開コードと結果の確かめ方へ進める日英の資料集です。代表15問題は固定入力から実行できます。",
+      "paragraph": "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。文字・数式・絵の3つの入口から手法を探し、適用条件や一次文献を確認し、代表15問題の固定入力・公開コード・参照値と許容誤差へたどれます。解析解・独立な参照・高解像度の数値参照を区別して照合でき、教育用例・文献解説のみ・整備予定と、それぞれの確認範囲を明記しています。",
+      "description": "条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表15実行例を紹介する文章・画像・リンク。"
+    },
+    "en": {
+      "short": "A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for 15 representative problems.",
+      "paragraph": "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for 15 representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.",
+      "description": "From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and 15 scoped examples using text, images and links."
+    }
+  },
+  "assets": {
+    "ja": {
+      "svg": "https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-ja.svg",
+      "png": "https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-ja.png",
+      "text": "https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-ja.txt",
+      "preview_url": "https://hrkoyama.github.io/numerical-methods-atlas/share/ja/"
+    },
+    "en": {
+      "svg": "https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-en.svg",
+      "png": "https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-en.png",
+      "text": "https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-en.txt",
+      "preview_url": "https://hrkoyama.github.io/numerical-methods-atlas/share/en/"
+    }
+  }
+}

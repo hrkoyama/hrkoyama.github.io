@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-21-91ddb32489
-Captured (UTC): 2026-11-21T17:18:10+00:00
+Snapshot: 2026-11-21-a2b9965517
+Captured (UTC): 2026-11-21T17:39:12+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -7197,14 +7197,14 @@ Current scope published and checked
 Select existing problems and provide paths from public inputs to result files, check values, tolerances and explicit failures. Reuse completed examples; these are not 15 new problems to add to the inventory.
 Run and validate fifteen representative problems · Common execution registry / JSON · Fifteen-case rerun from the public registry
 
-## Implementation roadmap — Connect problem, equation and picture entries to actual use [en]
+## Implementation roadmap — Entry points, field map and sharing materials for people and AI [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
-In progress / publication check pending
+Current scope published and checked
 Use Poisson, Barnes–Hut and hydrogenic/He examples to show useful decisions, conditions and paths to inputs and code in both languages. Update the field map and introductory copy, keeping reading, runnable examples and plans distinct.
-Filter methods by status and keywords · Dedicated entries for fifteen examples · From formulas to execution · Find fifteen examples by picture
+Explore the eight-area field map · Introduction and bilingual sharing materials · Filter methods by status and keywords · Dedicated entries for fifteen examples · From formulas to execution · Find fifteen examples by picture
 
 ## Implementation roadmap — Check execution, retrieval and citation using public releases only [en]
 
@@ -14639,14 +14639,14 @@ Coverage: reading
 既にある問題を選び、公開入力から結果ファイルを生成し、確認値・許容誤差・失敗を判定できる経路を揃える。既存の完成例を再利用し、新規15問題として総数へ加算しない。
 代表15問題の取得・実行・検証 · 実行例の共通台帳 / JSON · 公開一覧からの15問題の再実行記録
 
-## 実装ロードマップ — 問題・数式・画像から使い方へ進む入口 [ja]
+## 実装ロードマップ — 人とAIの入口・分野地図・共有用資料 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
-実装中・公開確認待ち
+今回の範囲を公開確認済み
 Poisson・Barnes–Hut・H/Heを代表例として、得られる判断、条件、入力・コードへの進み方を日英で示す。分野地図と紹介文を現状に合わせ、解説・実行例・予定を区別する。
-状態・キーワードで手法を絞る · 15問題の専用入口 · 式から実行例へ · 保存図から15例を探す
+8分野の地図から探す · 紹介文・日英の共有用素材 · 状態・キーワードで手法を絞る · 15問題の専用入口 · 式から実行例へ · 保存図から15例を探す
 
 ## 実装ロードマップ — 公開配布だけを使う実行・取得・引用の確認 [ja]
 

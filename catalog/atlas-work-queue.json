@@ -163,11 +163,11 @@
     {
       "id": "human-entry-points",
       "target_year": 2026,
-      "state": "in-progress",
+      "state": "published",
       "track": "current",
       "title": {
-        "ja": "問題・数式・画像から使い方へ進む入口",
-        "en": "Connect problem, equation and picture entries to actual use"
+        "ja": "人とAIの入口・分野地図・共有用資料",
+        "en": "Entry points, field map and sharing materials for people and AI"
       },
       "scope": {
         "ja": "Poisson・Barnes–Hut・H/Heを代表例として、得られる判断、条件、入力・コードへの進み方を日英で示す。分野地図と紹介文を現状に合わせ、解説・実行例・予定を区別する。",
@@ -175,10 +175,24 @@
       },
       "priority": "P0",
       "progress": {
-        "ja": "15問題の専用HTML/JSON/Markdownを用意し、文字検索・数式・保存図から直接開ける入口を公開。日英の実行意図付き30検索で対応例が先頭。ギャラリーは全60件表示と実行例15件への絞り込みを両立し、ホームにもPoisson・Barnes–Hut・H/Heの入口を追加。手法一覧143項目には状態と日英キーワードの絞り込み、件数、リセット、言語切替時の条件引き継ぎを追加。残る整備は分野地図の見せ方、共有用の説明・紹介素材等。",
-        "en": "Published dedicated HTML/JSON/Markdown for fifteen cases, reachable directly from word searches, formulas and saved illustrations. Thirty bilingual execution-intent searches resolve the intended case first. The gallery keeps all sixty by default and filters to fifteen runnable cases; the homepage adds Poisson, Barnes–Hut and H/He starting paths. All 143 method entries now support combined status and bilingual keyword filters, counts, reset and retained conditions across language changes. Remaining work includes field-map presentation and sharing copy/materials."
+        "ja": "文字・数式・全60問題の保存図から15問題の実行・検証例へ接続し、143手法の状態・日英キーワード絞り込みを公開。分野地図は量子化学・DFTと温度制御を含む8分野へ更新し、解説・ブラウザ展示・固定入力例・実装予定を区別。初訪問者向けの日英紹介、日英の短文・紹介画像・共有プレビューを用意しました。",
+        "en": "Published paths from words, formulas and saved illustrations for all sixty problems to fifteen runnable verification examples, plus status and bilingual keyword filters for 143 methods. The field map now includes eight areas, including quantum chemistry/DFT and thermostats, distinguishing reading, browser exhibits, fixed-input examples and planned implementations. Bilingual first-visit copy, short descriptions, images and sharing previews are available."
       },
       "links": [
+        {
+          "url": "/numerical-methods-atlas/?lang={lang}#/?section=atlas-map",
+          "label": {
+            "ja": "8分野の地図から探す",
+            "en": "Explore the eight-area field map"
+          }
+        },
+        {
+          "url": "/numerical-methods-atlas/share/?lang={lang}",
+          "label": {
+            "ja": "紹介文・日英の共有用素材",
+            "en": "Introduction and bilingual sharing materials"
+          }
+        },
         {
           "url": "/numerical-methods-atlas/methods/?lang={lang}",
           "label": {

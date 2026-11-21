@@ -66,6 +66,10 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 アトラス冒頭の日英の目的説明は `catalog/atlas-purpose.json`。`build-atlas-purpose.py` が取り込み後の動的ホームと静的本文に適用し、収録方針をロードマップにも反映する。`build-atlas-search.py` は既存章に公開手法台帳を加え、アトラス内の検索も更新する。サーモスタット比較は台帳の `thermostats` 群から `build-thermostat-reading.py` で生成する。比較解説を公開済みでも、専用コードと検証結果が揃うまでは `planned` のままにする。これらはすべて `refresh-site.py` に含まれ、教材の再取り込み後にも再生成できる。
 
+冒頭の8分野の地図は `numerical-methods-atlas/home-overview-data.js` と `locales/messages.json` を正本にする。`home-overview.js` の共通描画を `scripts/render-atlas-home-map.mjs` でも呼び、全分野を読める日英の静的本文を目的説明の生成処理へ渡す。量子化学は水素型・球対称Heの限定した実行例と一般の分子・周期系の解説を区別し、温度制御とEwald/PME/SPMEに未公開の実装を表示しない。ホーム用の文言・地図データ・CSSの変更時には生成処理で表示用ファイルの版も更新する。
+
+紹介・共有用素材は `catalog/atlas-sharing.json` と `scripts/build-atlas-sharing.py` から生成する。`numerical-methods-atlas/share/` に日英の短文、説明文、SVG/PNGと取得案内を公開し、`share/ja/`・`share/en/` は言語ごとの共有プレビューを持つ。素材の生成方法・フォント・依存関係は同じフォルダの案内に残す。メインページの説明・OG/Twitter画像は `build-atlas-purpose.py` で更新する。外部投稿や送信は行わず、素材の公開とその利用条件の案内までを整備範囲にする。15実行例と全60問題、108既存項目と予定を含む143レコードを混同せず、AIの外部検索・学習への採用を保証する文言や新しい一括ライセンスを追加しない。
+
 人向けの入口は文字・数式・絵の3つ。入口の文言も `catalog/atlas-purpose.json`、数式一覧の代表形と解説先は `catalog/atlas-equations.json` を編集する。数式一覧は `build-atlas-equations.py` で生成する。冒頭の数値は取り込み済み `coverage.json` の定義に従う。学術論文数を一次論文数と呼ばず、波形テスト数を全サイトのテスト問題総数や自動検査件数と混同しない。掲載する数式の行数と方程式・モデルの種類数も区別する。
 
 量子化学・DFTの正本は `catalog/atlas-quantum.json`。`build-atlas-quantum.py` が日英の導入、式、一次文献、収録数・ロードマップを更新する。水素型原子・Heの2問題群は固定入力で実行し、原子計算版の23検査と独立したPySCF/Libxc参照で確認済み。6手法・3モデルの状態を、この限定した範囲で実行例ありにする。他の量子手法・時間依存KS・予定するH₂・周期系は未実装のまま、計画を実行例に加算しない。テスト台帳と画像一覧は全60問題。文献はDOIで重複を除き、既存の公開コード版と元の検証記録は変更しない。基底・格子・SCFの数値誤差と物理近似の誤差、交換のみLDAと相関を含むLDA、局所KSと一般化KS、有限基底FCIと連続空間の厳密解を区別する。

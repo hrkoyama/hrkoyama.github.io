@@ -1,10 +1,10 @@
 {
   "ja": {
-    "title": "人とAIが、根拠をたどり、計算を確かめるために",
+    "title": "このアトラスでできること",
     "paragraphs": [
-      "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。広い分野の見取り図から、各手法の考え方・適用条件・一次文献へ、さらに実行できるコード・入力データ・検証結果へとたどれるアトラスを目指しています。",
-      "大切にするのは、手法を知ることに加え、「この条件で使えるか」「実装をどう確かめるか」を判断できることです。人が読んで理解でき、AIも調査中に発見・参照し、公開されたコードやデータを取得して確かめられる形を整えます。",
-      "解説のみ・実装あり・収録予定を区別して表示します。未収録の分野も含めて段階的に広げ、代表的な手法から実行・検証例を充実させていきます。"
+      "大学院生・研究者と、調査や実装を支援するAIのための数値計算資料集です。分野地図から手法を選び、適用条件・数式・一次文献を読み、公開コードとデータまでたどれます。",
+      "代表15問題には、固定入力・実行手順・JSON/CSV出力・結果の判定基準があります。Poisson方程式、Barnes–Hut、水素型原子・Heなどを手元で実行し、解析解・数値参照・残差などと照合できます。",
+      "AIからは、静的本文とJSON/Markdown、版を固定したコード・入力・検証記録を参照できます。人もAIも、使える条件と確認範囲を読み、出典を残して利用するための入口です。"
     ],
     "map": "手法の見取り図",
     "code": "公開コード・入力・検証",
@@ -15,19 +15,19 @@
         "id": "words",
         "title": "文字で検索",
         "description": "手法名・現象名を検索。固定入力の実行例も日英で探せます。",
-        "action": "キーワードで実行例を探す →"
+        "action": "キーワードで実行例を探す"
       },
       {
         "id": "equations",
         "title": "数式から探す",
         "description": "全{equations}方程式・モデルの式と、{execution_examples}問題の実行例から選べます。",
-        "action": "数式と実行例を見る →"
+        "action": "数式と実行例を見る"
       },
       {
         "id": "pictures",
         "title": "絵から探す",
         "description": "全{test_problems}問題の保存図を一覧。実行・検証例のある{execution_examples}問題に絞れます。",
-        "action": "図から実行例を選ぶ →"
+        "action": "図から実行例を選ぶ"
       }
     ],
     "metrics": {
@@ -47,14 +47,18 @@
         "label": "テスト計算",
         "note": "全分野の独立問題・重複を除く"
       }
-    }
+    },
+    "status_note": "教育用例・関連コードあり、解説のみ、収録予定を区別しています。15例は既存60問題から選んだ実行経路で、全手法の専用実装や、汎用の分子・周期DFT計算を提供するものではありません。",
+    "scope_toggle": "収録範囲と利用条件",
+    "share": "紹介文・共有用画像",
+    "meta_description": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表15問題の固定入力・実行・結果照合を日英で案内します。"
   },
   "en": {
-    "title": "For people and AI to trace evidence and check calculations",
+    "title": "What you can do with this atlas",
     "paragraphs": [
-      "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. The aim is to connect a cross-field method map with explanations, assumptions and original papers, then with runnable code, input data and verification results.",
-      "Beyond knowing a method, readers need to judge whether it fits their conditions and how to check an implementation. We are organizing material so people can understand it and AI agents can discover and cite it during research, retrieve public code and data, and check the results.",
-      "Reading-only entries, available implementations and planned coverage are labeled separately. Coverage will grow in stages, with runnable verification examples developed first for representative methods."
+      "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their work. Use the field map to choose a method, read its assumptions, equations and original papers, then follow the links to public code and data.",
+      "Fifteen representative problems include fixed inputs, execution steps, JSON/CSV outputs and acceptance criteria. Run examples such as Poisson, Barnes–Hut and hydrogenic/He atoms locally, and compare results with analytic solutions, numerical references or residual checks.",
+      "AI agents can consult static text and JSON/Markdown, and retrieve versioned code, inputs and verification records. Both people and AI can inspect the conditions and scope of each check and retain the sources when reusing the material."
     ],
     "map": "Method map",
     "code": "Public code, inputs and checks",
@@ -65,19 +69,19 @@
         "id": "words",
         "title": "Search by words",
         "description": "Search methods and phenomena, including fixed-input examples, in English or Japanese.",
-        "action": "Find runnable examples by keyword →"
+        "action": "Find runnable examples by keyword"
       },
       {
         "id": "equations",
         "title": "Browse by equation",
         "description": "Browse all {equations} equations/models and formula shortcuts to {execution_examples} runnable examples.",
-        "action": "See formulas and runnable examples →"
+        "action": "See formulas and runnable examples"
       },
       {
         "id": "pictures",
         "title": "Browse by picture",
         "description": "See saved illustrations for all {test_problems} problems and filter to {execution_examples} runnable examples.",
-        "action": "Choose examples by picture →"
+        "action": "Choose examples by picture"
       }
     ],
     "metrics": {
@@ -97,6 +101,10 @@
         "label": "Test problems",
         "note": "Independent problems; variants merged"
       }
-    }
+    },
+    "status_note": "Educational examples / related code, reading-only entries and planned coverage are labeled separately. The fifteen runnable cases are selected from sixty existing problems. Dedicated implementations are not available for every method; general molecular and periodic DFT are not supplied.",
+    "scope_toggle": "Coverage and use",
+    "share": "Introduction and sharing materials",
+    "meta_description": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore fifteen fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."
   }
 }
