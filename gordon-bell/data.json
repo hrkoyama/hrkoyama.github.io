@@ -3302,6 +3302,764 @@
       "label": "Existing SC08 vpic/md source-level paper audit",
       "kind": "existing_archive_audit",
       "local_reference": "evidence/SC08_vpic_md_audit.json"
+    },
+    "recovery_1988_simon_vu_yang_nasa_tm112081": {
+      "label": "Simon, Vu and Yang: Performance of A Supernodal General Sparse Solver on the CRAY Y-MP: 1.68 GFLOPS with Autotasking, NASA-TM-112081 / RNR-89-002, 6 April 1989; includes February manuscript and January submission-link memo",
+      "url": "https://www.researchgate.net/publication/24297802_Performance_of_a_supernodal_general_sparse_solver_on_the_CRAY_Y-MP_168_GFLOPS_with_autotasking",
+      "kind": "author_uploaded_institutional_technical_report_fulltext",
+      "checked_on": "2026-11-22",
+      "source_revision_date": "1989-02-24",
+      "source_revision_date_basis": "Dateline of internal manuscript; outer report cover is 1989-04-06 and appended memo is 1989-01-17. These are different document components.",
+      "publication_date": "1989-04-06",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1988_Simon_Vu_Yang_NASA_TM_112081_RNR_89_002_1989_author_upload.pdf",
+      "source_sha256": "14943519e1d3e96805fb23e47a390a0e63b9a3af874f187ecbc42479d43c095c",
+      "sha256": "14943519e1d3e96805fb23e47a390a0e63b9a3af874f187ecbc42479d43c095c",
+      "page_count": 16,
+      "media_type": "application/pdf",
+      "retrieval_method": "Parent agent downloaded the publicly displayed author-uploaded PDF using the ordinary browser Download PDF / CUA downloadMedia route. This agent read the local downloaded bytes and created the preserved copy.",
+      "download_filename": "Performance_of_a_supernodal_general_sparse_solver_.pdf",
+      "pdf_metadata": {
+        "/Producer": "Pdf.Capture version 5.2",
+        "/CreationDate": "D:00000101000000Z",
+        "/Author": "",
+        "/Title": "",
+        "/Subject": "",
+        "/Keywords": "",
+        "/ModDate": "D:20021127121632-05'00'"
+      },
+      "pdf_metadata_note": "CreationDate D:00000101000000 Z is invalid as a historical publication date; ModDate 2002-11-27 is scan-processing metadata, not a measurement or manuscript date."
+    },
+    "recovery_1988_committee_transcription_identity": {
+      "label": "1988 Gordon Bell Prize judges report: existing derived indexed transcription of Alan Karp author upload, IEEE Software 6(3), May 1989, pp 78–85; entry participants and historical context only",
+      "url": "https://www.researchgate.net/publication/3246676_1988_Gordon_Bell_Prize",
+      "kind": "contemporary_judges_report_author_upload_indexed_transcription_identity_only",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/1988_Gordon_Bell_Prize_author_upload_indexed_transcription.html",
+      "source_sha256": "bb4a5c2e7aa3b09baf4da933d1f5dd67eeee67b1d41989b780fed79f04b275e2",
+      "sha256": "bb4a5c2e7aa3b09baf4da933d1f5dd67eeee67b1d41989b780fed79f04b275e2",
+      "media_type": "text/html",
+      "inspection_scope": "Read opening, First place and solver discussion in the existing derived transcription; it is not an original report PDF. Used for entrant group identity and version/scope distinction, not to supply measurements in this paper audit."
+    },
+    "recovery_1990_f9_epfl_fulltext": {
+      "label": "Lenstra et al., The Factorization of the Ninth Fermat Number, Mathematics of Computation 61(203), 319–349 (July 1993); EPFL scan also appends the 1995 one-page Addendum",
+      "url": "https://infoscience.epfl.ch/bitstreams/526cd2e2-7813-4c92-b8d6-f89b994543fe/download",
+      "kind": "institutional_repository_published_article_fulltext",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_Lenstra_et_al_F9_MathComp1993_EPFL_with_1995_addendum.pdf",
+      "source_sha256": "f0fe71f10b510d6e896ef28effc81d8687ec59a1ba1cc66e2445b573ffdab871",
+      "sha256": "f0fe71f10b510d6e896ef28effc81d8687ec59a1ba1cc66e2445b573ffdab871",
+      "media_type": "application/pdf",
+      "source_revision_date": "1992-08-03",
+      "source_revision_date_basis": "Printed first-page statement: received 1991-03-04; revised 1992-08-03. This dates the main article, not the later scan or appended Addendum.",
+      "publication_date": "1993-07",
+      "page_count": 17,
+      "printed_pages": "319–349, followed by 1357 (1995 Addendum)",
+      "pdf_metadata": {
+        "/CreationDate": "D:20110405083209Z",
+        "/Creator": "Xerox WorkCentre 5638",
+        "/ModDate": "D:20110405133544+02'00'",
+        "/Producer": "PDFlib+PDI 7.0.2 (Linux-ia32)"
+      },
+      "scan_metadata_note": "PDF creation/modification timestamps are in 2011. They are scan/processing dates, not dates of the 1990 computations."
+    },
+    "recovery_1990_committee_identity": {
+      "label": "Dongarra, Karp, Miura and Simon, Gordon Bell Prize Lectures, SC1991, printed pp. 328 and 334: 1990 competition and F9-entry identity",
+      "url": "https://www.netlib.org/utk/people/JackDongarra/PAPERS/Gordon-Bell-Prize-Lectures.pdf",
+      "kind": "contemporary_judges_report_identity_only",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_Dongarra_et_al_SC1991_committee_identity.pdf",
+      "source_sha256": "8dfa0936c06c436ca6f54c2fada86d69a9085254b94faa3aea9eb5e6173b3875",
+      "sha256": "8dfa0936c06c436ca6f54c2fada86d69a9085254b94faa3aea9eb5e6173b3875",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "page_count": 10,
+      "inspection_scope": "PDF pages 1 and 7 / printed pp. 328 and 334 visually inspected for year, twelve entries, four names and the submitted 155-digit F9 factorization. This report is not treated as an entrant manuscript."
+    },
+    "recovery_1990_f9_crossref": {
+      "label": "Crossref exact DOI record deposited by the American Mathematical Society for the audited 1993 article",
+      "url": "https://api.crossref.org/works/10.1090/S0025-5718-1993-1182953-4",
+      "kind": "publisher_deposited_registry_exact_work_record",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_F9_MathComp1993_Crossref_20261122.json",
+      "source_sha256": "18c9f81a60c3253c27131e242b0f7ad3d2a0686f46232aa394c7322ffd5dde5c",
+      "sha256": "18c9f81a60c3253c27131e242b0f7ad3d2a0686f46232aa394c7322ffd5dde5c",
+      "media_type": "application/json",
+      "source_revision_date": null
+    },
+    "recovery_1990_lenstra_author_index": {
+      "label": "H. W. Lenstra Jr., author publication list: main article under 1993 and Addendum explicitly dated 1995",
+      "url": "https://pub.math.leidenuniv.nl/~lenstrahw/PUBLICATIONS/pub.html",
+      "kind": "author_hosted_publication_index",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_Lenstra_author_publications_index_20261122.html",
+      "source_sha256": "149e39177a1f807af00443cd4bfeba6cb03476c77ac6829af87749bd73995dfe",
+      "sha256": "149e39177a1f807af00443cd4bfeba6cb03476c77ac6829af87749bd73995dfe",
+      "media_type": "text/html",
+      "source_revision_date": null,
+      "inspection_scope": "1993 section identifies Mathematics of Computation 61, 319–349 and Addendum 64 (1995), 1357. The page header says October 20, 2008 but later entries exist, so no overall revision date is inferred."
+    },
+    "recovery_1990_superconductor_tr_citation": {
+      "label": "Sunderam and Geist, The PVM System: Supercomputer Level Concurrent Computation on a Network of IBM RS/6000 Powerstations, ORNL conference manuscript (1991), ref. 14",
+      "url": "https://www.osti.gov/servlets/purl/6274699",
+      "kind": "contemporary_author_manuscript_bibliographic_lead_only",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_Superconductor_ORNL_TR_citation_in_1991_PVM_paper.pdf",
+      "source_sha256": "94578ba5b1ea71ab45fa1e1b86f46c1453518b8fe8625ecfcccff0b0f637e751",
+      "sha256": "94578ba5b1ea71ab45fa1e1b86f46c1453518b8fe8625ecfcccff0b0f637e751",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "page_count": 28,
+      "inspection_scope": "Title page and PDF p. 17 / printed p. 16 ref. 14 read. Exact 1990 superconducting-code technical-memorandum title and December 1990 date recovered; no performance from this different PVM paper is attributed to the competition entry."
+    },
+    "recovery_1990_ginatempo_author_identity": {
+      "label": "B. Ginatempo author publication list explicitly links its theory subsection paper b to the 1990 Gordon Bell Prize",
+      "url": "https://www.beniaminoginatempo.cloud/ricerca/publist.html",
+      "kind": "author_hosted_publication_index_identity_lead_only",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_Ginatempo_author_publications_index_20261122.html",
+      "source_sha256": "10bfce24b8de42bfa0037642b3d35252bfc00045ab8996ac2812b9ecf8644025",
+      "sha256": "10bfce24b8de42bfa0037642b3d35252bfc00045ab8996ac2812b9ecf8644025",
+      "media_type": "text/html",
+      "source_revision_date": null,
+      "inspection_scope": "Theory and new algorithms implementation subsection read. It identifies Geist/Ginatempo/Shelton/Stocks, Journal of Supercomputing 6,153 but prints 1994; ORNL/Crossref publication metadata gives 1992. The index date is not accepted as publication evidence."
+    },
+    "early_recovery_1994_womble_author_page_19970214": {
+      "url": "https://web.archive.org/web/19970214043128id_/http://www.cs.sandia.gov:80/~dewombl/Gordon_Bell_94.html",
+      "label": "David Womble author-institution abstract/publication page, archived February 14, 1997",
+      "kind": "archived_author_institution_publication_page",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Womble_author_abstract_19970214043128.html",
+      "sha256": "349df0b964e49769fb821fc2d86bb0a1dd82ea413596ce2682de818afdf4fc31",
+      "source_sha256": "349df0b964e49769fb821fc2d86bb0a1dd82ea413596ce2682de818afdf4fc31",
+      "size_bytes": 1456,
+      "original_url": "http://www.cs.sandia.gov:80/~dewombl/Gordon_Bell_94.html",
+      "archive_timestamp": "19970214043128",
+      "page_displayed_date": "1995-04-04",
+      "page_displayed_date_note": "Date in the HTML address footer; not a manuscript revision or benchmark date.",
+      "media_type": "text/html",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_sandia_author_cdx": {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.sandia.gov%2F~dewombl%2F%2A&output=json&filter=statuscode%3A200&collapse=urlkey&to=2002&fl=timestamp%2Coriginal&limit=100",
+      "label": "Bounded Internet Archive index of Womble institution pages",
+      "kind": "web_archive_capture_index",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Womble_author_CDX_index_to2002.json",
+      "sha256": "420ed05970a1ee61b3bf4fe590dd1d9faccf5bfbf68a05401aba9aae6734eeb5",
+      "source_sha256": "420ed05970a1ee61b3bf4fe590dd1d9faccf5bfbf68a05401aba9aae6734eeb5",
+      "size_bytes": 7684,
+      "media_type": "application/json",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_osti_boundary_search": {
+      "url": "https://www.osti.gov/api/v1/records?search=%22Applications%20of%20boundary%20element%20methods%22&rows=20",
+      "label": "OSTI public repository search, boundary",
+      "kind": "institutional_bibliographic_search",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_OSTI_boundary_search_20261122.json",
+      "sha256": "c208da060eda07d570e1676f529a1aac6d28eca71e65405649e949f397731d62",
+      "source_sha256": "c208da060eda07d570e1676f529a1aac6d28eca71e65405649e949f397731d62",
+      "size_bytes": 41247,
+      "media_type": "application/json",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_osti_reacting_search": {
+      "url": "https://www.osti.gov/api/v1/records?search=%22Gflop%22%20%22reacting%22&rows=20",
+      "label": "OSTI public repository search, reacting",
+      "kind": "institutional_bibliographic_search",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_OSTI_reacting_search_20261122.json",
+      "sha256": "43149bba07f3bf8bc4de1b1ffb948e4db725740b7b359786d5cf467cac30bfea",
+      "source_sha256": "43149bba07f3bf8bc4de1b1ffb948e4db725740b7b359786d5cf467cac30bfea",
+      "size_bytes": 55210,
+      "media_type": "application/json",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_cdx_sandia_ftp_allstatus": {
+      "url": "https://web.archive.org/cdx/search/cdx?url=ftp%3A%2F%2Fftp.cs.sandia.gov%2Fpub%2Fpapers%2Fdewombl%2FGordon_Bell_94.ps.Z&output=json&collapse=urlkey&fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype&limit=100",
+      "label": "Sandia exact linked FTP manuscript, all status codes",
+      "kind": "web_archive_capture_index",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_cdx_sandia_ftp_allstatus_20261122.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size_bytes": 3,
+      "media_type": "application/json",
+      "full_manuscript": false,
+      "result": "HTTP 200, empty JSON capture list. This bounded index result is not proof that no copy exists elsewhere."
+    },
+    "early_recovery_1994_cdx_cornell_bitstreams": {
+      "url": "https://web.archive.org/cdx/search/cdx?url=ecommons.cornell.edu%2Fbitstream%2F1813%2F5520%2F%2A&output=json&filter=statuscode%3A200&collapse=urlkey&fl=timestamp%2Coriginal&limit=100",
+      "label": "Cornell old eCommons bitstream prefix",
+      "kind": "web_archive_capture_index",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_cdx_cornell_bitstreams_20261122.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size_bytes": 3,
+      "media_type": "application/json",
+      "full_manuscript": false,
+      "result": "HTTP 200, empty JSON capture list. This bounded index result is not proof that no copy exists elsewhere."
+    },
+    "early_recovery_1994_cdx_cornell_library_bitstreams": {
+      "url": "https://web.archive.org/cdx/search/cdx?url=ecommons.library.cornell.edu%2Fbitstream%2F1813%2F5520%2F%2A&output=json&filter=statuscode%3A200&collapse=urlkey&fl=timestamp%2Coriginal&limit=100",
+      "label": "Cornell old Library eCommons bitstream prefix",
+      "kind": "web_archive_capture_index",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_cdx_cornell_library_bitstreams_20261122.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "source_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size_bytes": 3,
+      "media_type": "application/json",
+      "full_manuscript": false,
+      "result": "HTTP 200, empty JSON capture list. This bounded index result is not proof that no copy exists elsewhere."
+    },
+    "early_recovery_1994_ntrs_nwt_search": {
+      "url": "https://ntrs.nasa.gov/api/citations/search?q=%22Development%20and%20achievement%22",
+      "label": "NASA NTRS public title search for the NWT proceedings wording",
+      "kind": "institutional_bibliographic_search",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_NASA_NTRS_title_search_20261122.json",
+      "sha256": "9f557f9673549fbe45c9e2ff6796814a2b36743a129dedc057c2e9435409b843",
+      "source_sha256": "9f557f9673549fbe45c9e2ff6796814a2b36743a129dedc057c2e9435409b843",
+      "size_bytes": 1181,
+      "media_type": "application/json",
+      "full_manuscript": false,
+      "result": "HTTP 200, total=0 for this query; not a global statement about all NASA holdings."
+    },
+    "early_recovery_1994_existing_osti_partial_scan": {
+      "url": "https://www.osti.gov/servlets/purl/10161914",
+      "label": "Previously preserved incomplete SAND-94-1566C candidate scan, inspected in the earlier receipt",
+      "kind": "institutional_public_manuscript_partial_scan",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/年度巡回20261122/SC94_boundary_elements_SAND94-1566C_OSTI10161914_partial.pdf",
+      "sha256": "fe1e0510a50300d99520f48eb431abc3c1a18991408ef91a901bd35f2e4ba0e3",
+      "source_sha256": "fe1e0510a50300d99520f48eb431abc3c1a18991408ef91a901bd35f2e4ba0e3",
+      "media_type": "application/pdf",
+      "page_count": 10,
+      "full_manuscript": false,
+      "note": "Existing file read-only; hash rechecked. No new full-text audit or completion claim in this recovery receipt."
+    },
+    "early_recovery_1994_cornell_current_landing": {
+      "url": "https://ecommons.cornell.edu/entities/publication/68a9d633-0fa1-4330-be4c-bce687f5f461",
+      "label": "Cornell current CTC94TR183 public landing page",
+      "kind": "institutional_repository_landing_page",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Cornell_CTC94TR183_current_landing_20261122.html",
+      "sha256": "ae97beae797317f144f7574d95544038eb37305342ed24d5287085540f6e57b8",
+      "source_sha256": "ae97beae797317f144f7574d95544038eb37305342ed24d5287085540f6e57b8",
+      "size_bytes": 456519,
+      "media_type": "text/html",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_cornell_current_item_metadata": {
+      "url": "https://ecommons.cornell.edu/server/api/core/items/68a9d633-0fa1-4330-be4c-bce687f5f461",
+      "label": "Cornell DSpace item metadata, handle 1813/5520",
+      "kind": "institutional_repository_metadata",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Cornell_CTC94TR183_item_metadata_20261122.json",
+      "sha256": "6ef66a7f621da7f140cb7234b3d831f6d750446bcd4de5c0ba2b8e05810d8719",
+      "source_sha256": "6ef66a7f621da7f140cb7234b3d831f6d750446bcd4de5c0ba2b8e05810d8719",
+      "size_bytes": 6574,
+      "media_type": "application/hal+json",
+      "repository_issued_date": "1994-06",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_cornell_current_bundles": {
+      "url": "https://ecommons.cornell.edu/server/api/core/items/68a9d633-0fa1-4330-be4c-bce687f5f461/bundles",
+      "label": "Cornell current ORIGINAL/TEXT/THUMBNAIL bundle metadata",
+      "kind": "institutional_repository_metadata",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Cornell_CTC94TR183_bundles_20261122.json",
+      "sha256": "7679f6116e002f2b9734f112babb18a4394c8a1868f435ca83d76b87b599217b",
+      "source_sha256": "7679f6116e002f2b9734f112babb18a4394c8a1868f435ca83d76b87b599217b",
+      "size_bytes": 3366,
+      "media_type": "application/hal+json",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_cornell_pdf_metadata": {
+      "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/220fa8ea-852a-4257-90ba-2f2a4e79bdae",
+      "label": "Cornell ORIGINAL-bundle PDF bitstream metadata and public content link",
+      "kind": "institutional_repository_metadata",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Cornell_CTC94TR183_PDF_metadata_20261122.json",
+      "sha256": "8db6a1d4a186e0139beb65d146d48422bae0dfe1f9520e978e84772f5cfc8ba9",
+      "source_sha256": "8db6a1d4a186e0139beb65d146d48422bae0dfe1f9520e978e84772f5cfc8ba9",
+      "size_bytes": 1579,
+      "media_type": "application/hal+json",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_goedecker_selfcitation_1998": {
+      "url": "https://api.crossref.org/works/10.1023/A%3A1008637113920",
+      "label": "Publisher-deposited reference CR37 in Kress, Goedecker et al. (1998), pairing CTC94TR183 with SC94",
+      "kind": "publisher_deposited_reference_metadata",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_CTC94TR183_SC94_paired_author_citation_Crossref_20261122.json",
+      "sha256": "fff770c41fad9e547bf62cd2056ad3a52a3f20beac70bdd33016ad089ff275ee",
+      "source_sha256": "fff770c41fad9e547bf62cd2056ad3a52a3f20beac70bdd33016ad089ff275ee",
+      "size_bytes": 16622,
+      "media_type": "application/json",
+      "full_manuscript": false,
+      "note": "Used only for direct technical-report/conference-publication relationship. No 1998 research results are used as 1994 observations. The DOI attached to reference CR37 is asserted by Crossref; the paired unstructured reference is retained in the raw record."
+    },
+    "early_recovery_1994_sc94_tight_acm_metadata": {
+      "url": "https://api.crossref.org/works/10.1145/602879.602880",
+      "label": "Publisher-deposited SC94 Tight binding molecular dynamics bibliographic identity",
+      "kind": "publisher_deposited_registry_metadata",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_Tight_binding_ACM_Crossref_identity_20261122.json",
+      "sha256": "d9a561a4e8dd5a19165f25a9c625319497301e8d2a0c0968b12268ea14feb1c8",
+      "source_sha256": "d9a561a4e8dd5a19165f25a9c625319497301e8d2a0c0968b12268ea14feb1c8",
+      "size_bytes": 1832,
+      "media_type": "application/json",
+      "full_manuscript": false
+    },
+    "early_recovery_1994_cornell_ctc94tr183_author_pdf": {
+      "url": "https://ecommons.cornell.edu/server/api/core/bitstreams/220fa8ea-852a-4257-90ba-2f2a4e79bdae/content",
+      "label": "CTC94TR183 author technical-report version, issued June 1994: Tight Binding Molecular Dynamics on Parallel Computers",
+      "kind": "institutional_author_technical_report_fulltext",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_CTC94TR183_Goedecker_Colombo_author_report.pdf",
+      "sha256": "072fef638044efb4b024af245b11b0b30a0656c26d6407d19a91f1f32f5e1477",
+      "source_sha256": "072fef638044efb4b024af245b11b0b30a0656c26d6407d19a91f1f32f5e1477",
+      "size_bytes": 92753,
+      "media_type": "application/pdf",
+      "full_manuscript": true,
+      "page_count": 5,
+      "repository_issued_date": "1994-06",
+      "repository_checksum": {
+        "algorithm": "MD5",
+        "value": "d72b0e3ba283f31aa243a2d8f1f995cb",
+        "verified": true
+      },
+      "technical_pdf_metadata": {
+        "Producer": "AFPL Ghostscript 7.0"
+      },
+      "note": "Complete 5-page Cornell author report; not the separately paginated SC94 printed version. Exact manuscript revision/measurement dates are not stated. PDF conversion software metadata are not revision dates."
+    },
+    "early_recovery_1994_cornell_ctc94tr183_vision_ocr": {
+      "url": null,
+      "label": "Search/reading derivative from the complete Cornell CTC94TR183 PDF, Apple Vision OCR",
+      "kind": "local_ocr_reading_derivative",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_CTC94TR183_Goedecker_Colombo_vision_ocr.txt",
+      "sha256": "527472011947bcfd0353061e118e15a769feff3954c638c40d31cfcafa2ff2ed",
+      "source_sha256": "527472011947bcfd0353061e118e15a769feff3954c638c40d31cfcafa2ff2ed",
+      "size_bytes": 12569,
+      "media_type": "text/plain",
+      "page_count": 5,
+      "origin_source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+      "origin_source_sha256": "072fef638044efb4b024af245b11b0b30a0656c26d6407d19a91f1f32f5e1477",
+      "method": "Apple Vision VNRecognizeTextRequest, accurate recognition, English, rendered PDF images at scale 2. OCR contains ordinary recognition/line-wrap errors and is for search only; every audited number and author was read on source images.",
+      "full_manuscript": false
+    },
+    "sc98_qcdsp_columbia_sc98_author_html": {
+      "url": "https://web.archive.org/web/20000711044110id_/http://phys.columbia.edu:80/~cqft/sc98/sc98.htm",
+      "label": "Columbia author-hosted SC98 paper: QCDSP Machines: Design, Performance and Cost; complete HTML with 25 figures/formula images",
+      "kind": "archived_author_html",
+      "media_type": "text/html",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/sc98.htm",
+      "sha256": "eb2387cb73b3e309bbc04746cc651ca2216014203cbed968b0145385e142bb2c",
+      "size_bytes": 24841,
+      "original_url": "http://phys.columbia.edu/~cqft/sc98/sc98.htm",
+      "archive_capture_timestamp": "20000711044110",
+      "html_conversion_date": "1998-08-06",
+      "source_revision_date_note": "Footer identifies Norman Christ and August 6, 1998 02:15:50 EDT; this is an HTML-generation marker. The paper revision date and equality with proceedings bytes are not established.",
+      "embedded_resources": [
+        {
+          "filename": "foot_motif.gif",
+          "source_url": "https://web.archive.org/web/20010915003240id_/http://phys.columbia.edu:80/~cqft/sc98/foot_motif.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/foot_motif.gif",
+          "archive_capture_timestamp": "20010915003240",
+          "media_type": "image/gif",
+          "width": 15,
+          "height": 15,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/foot_motif.gif",
+          "sha256": "fbbd5700cb9c261a48ac5eb4545b5f00ed397c80ee1855f0cdc7c94ee01dd555",
+          "size_bytes": 87
+        },
+        {
+          "filename": "img1.gif",
+          "source_url": "https://web.archive.org/web/20010915032435id_/http://phys.columbia.edu:80/~cqft/sc98/img1.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img1.gif",
+          "archive_capture_timestamp": "20010915032435",
+          "media_type": "image/gif",
+          "width": 143,
+          "height": 25,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img1.gif",
+          "sha256": "7d0e5234aba4d94a84c600652217fcd0a3f48071ae5d3bad47bbc481e04d3cea",
+          "size_bytes": 308
+        },
+        {
+          "filename": "img2.gif",
+          "source_url": "https://web.archive.org/web/20010915032507id_/http://phys.columbia.edu:80/~cqft/sc98/img2.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img2.gif",
+          "archive_capture_timestamp": "20010915032507",
+          "media_type": "image/gif",
+          "width": 78,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img2.gif",
+          "sha256": "7b808a8ba00254a8a23b3cf443774a776113668464b8199ff2c5896e784e7cd2",
+          "size_bytes": 216
+        },
+        {
+          "filename": "img3.gif",
+          "source_url": "https://web.archive.org/web/20010915032524id_/http://phys.columbia.edu:80/~cqft/sc98/img3.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img3.gif",
+          "archive_capture_timestamp": "20010915032524",
+          "media_type": "image/gif",
+          "width": 67,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img3.gif",
+          "sha256": "cbd5d74b832103c5e14391278685a5e7075dccbec76aad7c6fc4c85a0a754194",
+          "size_bytes": 199
+        },
+        {
+          "filename": "img4.gif",
+          "source_url": "https://web.archive.org/web/20010915070729id_/http://phys.columbia.edu:80/~cqft/sc98/img4.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img4.gif",
+          "archive_capture_timestamp": "20010915070729",
+          "media_type": "image/gif",
+          "width": 48,
+          "height": 30,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img4.gif",
+          "sha256": "2f64538e2ffa7674caa66357ce5b7ba4e95441d255f5c986221340ba0210cab8",
+          "size_bytes": 181
+        },
+        {
+          "filename": "img5.gif",
+          "source_url": "https://web.archive.org/web/20010915032647id_/http://phys.columbia.edu:80/~cqft/sc98/img5.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img5.gif",
+          "archive_capture_timestamp": "20010915032647",
+          "media_type": "image/gif",
+          "width": 63,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img5.gif",
+          "sha256": "043b00f68d1546fcfc7e04c1da86305ece3dc5cef925c5958a9ed15808412aff",
+          "size_bytes": 193
+        },
+        {
+          "filename": "img6.gif",
+          "source_url": "https://web.archive.org/web/20010915032753id_/http://phys.columbia.edu:80/~cqft/sc98/img6.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img6.gif",
+          "archive_capture_timestamp": "20010915032753",
+          "media_type": "image/gif",
+          "width": 800,
+          "height": 526,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img6.gif",
+          "sha256": "c085930f76cc7370bbf72647568f5375c54e136fd75aa628835a3a820abef7ad",
+          "size_bytes": 289383
+        },
+        {
+          "filename": "img7.gif",
+          "source_url": "https://web.archive.org/web/20010915032818id_/http://phys.columbia.edu:80/~cqft/sc98/img7.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img7.gif",
+          "archive_capture_timestamp": "20010915032818",
+          "media_type": "image/gif",
+          "width": 86,
+          "height": 25,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img7.gif",
+          "sha256": "2a84becb6461d98b29a6f3a788ca1ad450455f0f9a9233db94a702b4b14bff39",
+          "size_bytes": 209
+        },
+        {
+          "filename": "img8.gif",
+          "source_url": "https://web.archive.org/web/20010915032844id_/http://phys.columbia.edu:80/~cqft/sc98/img8.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img8.gif",
+          "archive_capture_timestamp": "20010915032844",
+          "media_type": "image/gif",
+          "width": 500,
+          "height": 514,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img8.gif",
+          "sha256": "b0dd46a1b6786a2504b52ec28d8778858f78e08a066c7647d2989f2dd1504e11",
+          "size_bytes": 99716
+        },
+        {
+          "filename": "img9.gif",
+          "source_url": "https://web.archive.org/web/20010915032933id_/http://phys.columbia.edu:80/~cqft/sc98/img9.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img9.gif",
+          "archive_capture_timestamp": "20010915032933",
+          "media_type": "image/gif",
+          "width": 91,
+          "height": 25,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img9.gif",
+          "sha256": "dd40bbc826706b2ced607b1aa94fdb189dbf4d0706cc1c2a7b0bfbe66256e20e",
+          "size_bytes": 227
+        },
+        {
+          "filename": "img10.gif",
+          "source_url": "https://web.archive.org/web/20010915041537id_/http://phys.columbia.edu:80/~cqft/sc98/img10.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img10.gif",
+          "archive_capture_timestamp": "20010915041537",
+          "media_type": "image/gif",
+          "width": 107,
+          "height": 24,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img10.gif",
+          "sha256": "a95b276a5d7964a381fe83d897baea42b598da5c0336fa1ba2db4a828458b6ad",
+          "size_bytes": 228
+        },
+        {
+          "filename": "img11.gif",
+          "source_url": "https://web.archive.org/web/20010915041629id_/http://phys.columbia.edu:80/~cqft/sc98/img11.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img11.gif",
+          "archive_capture_timestamp": "20010915041629",
+          "media_type": "image/gif",
+          "width": 550,
+          "height": 369,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img11.gif",
+          "sha256": "10a16d63481e95107e4e693e77550ce59c1b9266520a7fce1e0ba5c70449a0b4",
+          "size_bytes": 147534
+        },
+        {
+          "filename": "img12.gif",
+          "source_url": "https://web.archive.org/web/20010915041653id_/http://phys.columbia.edu:80/~cqft/sc98/img12.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img12.gif",
+          "archive_capture_timestamp": "20010915041653",
+          "media_type": "image/gif",
+          "width": 28,
+          "height": 14,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img12.gif",
+          "sha256": "cc95e36fd38e34c205eb01be5ef19e80ee8c50ab72d7f384c98728ecb78d4576",
+          "size_bytes": 95
+        },
+        {
+          "filename": "img13.gif",
+          "source_url": "https://web.archive.org/web/20010915041723id_/http://phys.columbia.edu:80/~cqft/sc98/img13.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img13.gif",
+          "archive_capture_timestamp": "20010915041723",
+          "media_type": "image/gif",
+          "width": 28,
+          "height": 14,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img13.gif",
+          "sha256": "cc95e36fd38e34c205eb01be5ef19e80ee8c50ab72d7f384c98728ecb78d4576",
+          "size_bytes": 95
+        },
+        {
+          "filename": "img14.gif",
+          "source_url": "https://web.archive.org/web/20010915041745id_/http://phys.columbia.edu:80/~cqft/sc98/img14.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img14.gif",
+          "archive_capture_timestamp": "20010915041745",
+          "media_type": "image/gif",
+          "width": 34,
+          "height": 16,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img14.gif",
+          "sha256": "4bce5db7e821bdc278c4bd2813d160675178bd4a1c3a203947548dc05c13b38c",
+          "size_bytes": 107
+        },
+        {
+          "filename": "img15.gif",
+          "source_url": "https://web.archive.org/web/20010915041838id_/http://phys.columbia.edu:80/~cqft/sc98/img15.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img15.gif",
+          "archive_capture_timestamp": "20010915041838",
+          "media_type": "image/gif",
+          "width": 34,
+          "height": 16,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img15.gif",
+          "sha256": "4bce5db7e821bdc278c4bd2813d160675178bd4a1c3a203947548dc05c13b38c",
+          "size_bytes": 107
+        },
+        {
+          "filename": "img16.gif",
+          "source_url": "https://web.archive.org/web/20010915041905id_/http://phys.columbia.edu:80/~cqft/sc98/img16.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img16.gif",
+          "archive_capture_timestamp": "20010915041905",
+          "media_type": "image/gif",
+          "width": 93,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img16.gif",
+          "sha256": "820a2790b970c5489c5e43560e4e148fec07e275bc5a3db6b9065f4cd2f30215",
+          "size_bytes": 236
+        },
+        {
+          "filename": "img17.gif",
+          "source_url": "https://web.archive.org/web/20010914235329id_/http://phys.columbia.edu:80/~cqft/sc98/img17.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img17.gif",
+          "archive_capture_timestamp": "20010914235329",
+          "media_type": "image/gif",
+          "width": 39,
+          "height": 33,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img17.gif",
+          "sha256": "b737be3be41b87c817ce59f8440e04e2e67f8349e769220700f04cececccd2a2",
+          "size_bytes": 156
+        },
+        {
+          "filename": "img18.gif",
+          "source_url": "https://web.archive.org/web/20010914235345id_/http://phys.columbia.edu:80/~cqft/sc98/img18.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img18.gif",
+          "archive_capture_timestamp": "20010914235345",
+          "media_type": "image/gif",
+          "width": 116,
+          "height": 25,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img18.gif",
+          "sha256": "d12e9c973c410ead6bebfcf5a0e2af4a4c83aaacd828ba84ea60b344b6580795",
+          "size_bytes": 251
+        },
+        {
+          "filename": "img19.gif",
+          "source_url": "https://web.archive.org/web/20010914235359id_/http://phys.columbia.edu:80/~cqft/sc98/img19.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img19.gif",
+          "archive_capture_timestamp": "20010914235359",
+          "media_type": "image/gif",
+          "width": 15,
+          "height": 16,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img19.gif",
+          "sha256": "eeeb6f3028751cbe8a10bc954eddff6c860ffd39f08ec29e62f43c74676e20d9",
+          "size_bytes": 79
+        },
+        {
+          "filename": "img20.gif",
+          "source_url": "https://web.archive.org/web/20010914235407id_/http://phys.columbia.edu:80/~cqft/sc98/img20.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img20.gif",
+          "archive_capture_timestamp": "20010914235407",
+          "media_type": "image/gif",
+          "width": 121,
+          "height": 32,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img20.gif",
+          "sha256": "0ccbf072612634f29e8a432697b7df7ad2fc1a1b42472e0fdb48c09f2174ef4a",
+          "size_bytes": 281
+        },
+        {
+          "filename": "img21.gif",
+          "source_url": "https://web.archive.org/web/20010914235419id_/http://phys.columbia.edu:80/~cqft/sc98/img21.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img21.gif",
+          "archive_capture_timestamp": "20010914235419",
+          "media_type": "image/gif",
+          "width": 78,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img21.gif",
+          "sha256": "7b808a8ba00254a8a23b3cf443774a776113668464b8199ff2c5896e784e7cd2",
+          "size_bytes": 216
+        },
+        {
+          "filename": "img22.gif",
+          "source_url": "https://web.archive.org/web/20010914235429id_/http://phys.columbia.edu:80/~cqft/sc98/img22.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img22.gif",
+          "archive_capture_timestamp": "20010914235429",
+          "media_type": "image/gif",
+          "width": 67,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img22.gif",
+          "sha256": "cbd5d74b832103c5e14391278685a5e7075dccbec76aad7c6fc4c85a0a754194",
+          "size_bytes": 199
+        },
+        {
+          "filename": "img23.gif",
+          "source_url": "https://web.archive.org/web/20010914235435id_/http://phys.columbia.edu:80/~cqft/sc98/img23.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img23.gif",
+          "archive_capture_timestamp": "20010914235435",
+          "media_type": "image/gif",
+          "width": 60,
+          "height": 29,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img23.gif",
+          "sha256": "60ccf49270289f0b31dacb61d05311656a815f0c819369866e200595189fb000",
+          "size_bytes": 169
+        },
+        {
+          "filename": "img24.gif",
+          "source_url": "https://web.archive.org/web/20010914235442id_/http://phys.columbia.edu:80/~cqft/sc98/img24.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img24.gif",
+          "archive_capture_timestamp": "20010914235442",
+          "media_type": "image/gif",
+          "width": 86,
+          "height": 14,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img24.gif",
+          "sha256": "d6e15872e9d66511db5c08f25da4515e2840c3612ff62f6e42e00935aaabe684",
+          "size_bytes": 183
+        },
+        {
+          "filename": "img25.gif",
+          "source_url": "https://web.archive.org/web/20010914235453id_/http://phys.columbia.edu:80/~cqft/sc98/img25.gif",
+          "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img25.gif",
+          "archive_capture_timestamp": "20010914235453",
+          "media_type": "image/gif",
+          "width": 63,
+          "height": 31,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img25.gif",
+          "sha256": "043b00f68d1546fcfc7e04c1da86305ece3dc5cef925c5958a9ed15808412aff",
+          "size_bytes": 193
+        }
+      ]
+    },
+    "sc98_qcdsp_columbia_sc98_references": {
+      "url": "https://web.archive.org/web/20001028153616id_/http://phys.columbia.edu:80/~cqft/sc98/node1.htm",
+      "label": "SC98 author manuscript reference list; August 6, 1998 HTML footer",
+      "kind": "archived_author_html",
+      "media_type": "text/html",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/node1.htm",
+      "sha256": "4a9151f488f82363dcfc7750c5060265e97aab954d92c2d29e62aef255202c3b",
+      "size_bytes": 2427
+    },
+    "sc98_qcdsp_columbia_sc98_footnotes": {
+      "url": "https://web.archive.org/web/20000711014922id_/http://phys.columbia.edu:80/~cqft/sc98/footnode.htm",
+      "label": "SC98 author manuscript footnote: Department of Energy support",
+      "kind": "archived_author_html",
+      "media_type": "text/html",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/footnode.htm",
+      "sha256": "d42611dbd1b083af2396ad3bc3a53323e879084da7eb146e6e67f93aa945fe8e",
+      "size_bytes": 548
+    },
+    "sc98_qcdsp_columbia_gordon_bell_linkage": {
+      "url": "https://web.archive.org/web/20000711071231id_/http://phys.columbia.edu:80/~cqft/gordonbell.htm",
+      "label": "Columbia official Gordon Bell page distinguishing committee submission from paper given at SC98",
+      "kind": "archived_institutional_manuscript_linkage",
+      "media_type": "text/html",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/gordonbell.htm",
+      "sha256": "32f94744137afa768ecb7c00d38546d666e1a40eef202efbe1905ae6ef2264cc",
+      "size_bytes": 1174
+    },
+    "sc98_qcdsp_columbia_updated_submission_text_only": {
+      "url": "https://web.archive.org/web/20000711023117id_/http://phys.columbia.edu:80/~cqft/98gbell/98gbell.html",
+      "label": "Separate three-author updated committee submission; not the audited 19-author SC98 paper",
+      "kind": "archived_author_submission_version_context",
+      "media_type": "text/html",
+      "checked_on": "2026-11-22",
+      "source_revision_date": null,
+      "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/98gbell/98gbell.html",
+      "sha256": "d7e1b38317a8e959e916db228f91f5c0d499d7a3179ac611388c143effa90b9b",
+      "size_bytes": 18868,
+      "html_conversion_date": "1998-12-04",
+      "not_counted_as_complete_manuscript": true,
+      "limits": "Only text/byline/version context inspected. Embedded GIFs for this separate document were not recovered; none of its performance values is added to the audited observations."
+    },
+    "sc98_qcdsp_related_lattice98_discovery_reference": {
+      "url": "https://arxiv.org/pdf/hep-lat/9810004v1",
+      "label": "Related October 1998 author preprint, Status of the QCDSP project; reference 2 identifies the separate SC98 paper",
+      "kind": "related_author_preprint_bibliographic_reference",
+      "media_type": "application/pdf",
+      "page_count": 3,
+      "source_revision_date": "1998-10-01",
+      "checked_on": "2026-11-22",
+      "not_candidate_manuscript": true,
+      "evidence_scope": "Discovery only: reference 2, PDF p. 3. No performance from this different paper is substituted for the candidate manuscript.",
+      "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/recovery/related_lattice98_status_9810004v1.pdf",
+      "sha256": "189387d7045460be01c9464f4a9d60343eafafbb8fa1bebc86722ca1b04d9805",
+      "size_bytes": 152420
     }
   },
   "papers": [
@@ -9959,6 +10717,253 @@
       ]
     },
     {
+      "title": "QCDSP Machines: Design, Performance and Cost",
+      "authors": [
+        "Dong Chen",
+        "Ping Chen",
+        "Norman H. Christ",
+        "Robert G. Edwards",
+        "George Fleming",
+        "Alan Gara",
+        "Sten Hansen",
+        "Chulwoo Jung",
+        "Adrian Kahler",
+        "Stephen Kasow",
+        "Anthony D. Kennedy",
+        "Greg Kilcup",
+        "Yubing Luo",
+        "Catalin Malureanu",
+        "Robert D. Mawhinney",
+        "John Parsons",
+        "ChengZhong Sui",
+        "Pavlos Vranas",
+        "Yuri Zhestkov"
+      ],
+      "doi": null,
+      "field": "Purpose-built parallel architecture and lattice quantum chromodynamics",
+      "award": null,
+      "summary": "QCDSP combines inexpensive digital signal processors with custom communications and memory-control ASICs in a four-dimensional torus. The paper explains the modular hardware, host-controlled C/C++ software environment and cost allocation, then measures a Wilson-Dirac chiral-condensate program and a full Hybrid Monte Carlo production program on different machine partitions.",
+      "machines": [
+        "QCDSP at RIKEN/Brookhaven",
+        "QCDSP at Columbia"
+      ],
+      "machine_configurations": [
+        {
+          "name": "QCDSP architecture",
+          "facility": "Columbia University and RIKEN Brookhaven Research Center",
+          "configuration": "TMS320C31-50 DSP nodes with 50 MFLOP/s native 32-bit hardware peak, 60-ns commodity DRAM, and a 250K-transistor custom ASIC with error detection/correction, 32-word programmable cache and eight DMA-controlled bidirectional serial-neighbor connections. 64 nodes form a 4×4×2×2 motherboard array; eight motherboards per backplane; larger four-dimensional torus configurations are cabled from these modules. UNIX host and SCSI tree supply boot, I/O and access to optional disks. Installed system counts are 8,192 Columbia nodes and 12,288 RIKEN/Brookhaven nodes; measured partitions are 1,024 and 2,048 nodes respectively.",
+          "source_id": "sc98_qcdsp_columbia_sc98_author_html",
+          "location": "HTML Introduction, Hardware and figure captions 1–3"
+        }
+      ],
+      "measurements": [
+        {
+          "value": 23.3,
+          "unit": "GFLOP/s",
+          "relation": "=",
+          "machine": "QCDSP at RIKEN/Brookhaven",
+          "precision": "The Hardware section specifies native 32-bit floating-point arithmetic on the TMS320C31-50 DSP. Benchmark sections do not separately enumerate every variable, reduction precision or possible software-emulated arithmetic; whole-program FP32 uniformity is not independently established. No FP64-equivalent conversion.",
+          "scope": "Sustained first production-program rate over its reported 49-minute run; exact I/O, initialization and timer start/stop boundaries not specified",
+          "scale": "2,048-node RIKEN/Brookhaven partition; 4×8×16×4 processor mesh, 16×32×64×16 lattice, 4^4 sites/node and 524,288 sites total; β=6/g²=6.0; four quark masses and 50 sampled diagonal elements/trace estimate.",
+          "measurement_method": "SUN processor-clock timing: 49 minutes. Author operation model counts 46,514 conjugate-gradient items called “inversions” in this version × 2,808 operations/site × 524,288 sites, approximately 6.8×10^13 operations. This is an analytical CG-based count, not a hardware counter. The displayed rate is author-reported; no extra precision is inferred from rounded minutes.",
+          "source_id": "sc98_qcdsp_columbia_sc98_author_html",
+          "location": "HTML section Benchmark, paragraphs 1–2; cost allocation in Cost; native arithmetic in Hardware",
+          "evidence_stage": "archived_author_manuscript",
+          "source_revision_date": null,
+          "source_version_description": "Columbia SC98 conference-paper HTML, captured July 11, 2000; August 6, 1998 HTML generation marker; exact manuscript revision date unstated",
+          "measurement_date": null,
+          "measurement_date_note": "Exact calendar run date not supplied. The paper refers to April 1998 machine completion and May 6–9, 1998 workshop work; these are not benchmark dates.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Separate updated committee submission found; not merged into this manuscript observation",
+          "final_score_status": "Not established",
+          "note": "Not 100/102.4 GFLOP/s hardware peak. The later three-author updated submission uses a different 492-minute run and reports 29.4 GFLOP/s; its value does not replace this source-version observation.",
+          "flops": 23300000000.0
+        },
+        {
+          "value": 13.2,
+          "unit": "1998 USD/(sustained MFLOP/s)",
+          "relation": "=",
+          "machine": "QCDSP at RIKEN/Brookhaven",
+          "precision": "The Hardware section specifies native 32-bit floating-point arithmetic on the TMS320C31-50 DSP. Benchmark sections do not separately enumerate every variable, reduction precision or possible software-emulated arithmetic; whole-program FP32 uniformity is not independently established. No FP64-equivalent conversion.",
+          "scope": "Cost/performance for the same 2,048-node benchmark, using prorated delivered-hardware cost",
+          "scale": "2,048-node RIKEN/Brookhaven partition; 4×8×16×4 processor mesh, 16×32×64×16 lattice, 4^4 sites/node and 524,288 sites total; β=6/g²=6.0; four quark masses and 50 sampled diagonal elements/trace estimate.",
+          "measurement_method": "Divide the prorated $308,000 cost by the same benchmark’s sustained MFLOP/s. Cost is 1/6 of the $1.85M RIKEN/Brookhaven machine: $1.8M procurement/manufacture/tested subassemblies and an estimated $50K for configuration/burn-in labor. Development/R&D and broader operating costs are not separately priced in this passage.",
+          "source_id": "sc98_qcdsp_columbia_sc98_author_html",
+          "location": "HTML section Benchmark, paragraphs 1–2; cost allocation in Cost; native arithmetic in Hardware",
+          "evidence_stage": "archived_author_manuscript",
+          "source_revision_date": null,
+          "source_version_description": "Columbia SC98 conference-paper HTML, captured July 11, 2000; August 6, 1998 HTML generation marker; exact manuscript revision date unstated",
+          "measurement_date": null,
+          "measurement_date_note": "Exact calendar run date not supplied. The paper refers to April 1998 machine completion and May 6–9, 1998 workshop work; these are not benchmark dates.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Separate updated committee submission found; not merged into this manuscript observation",
+          "final_score_status": "Not established",
+          "note": "The cost basis includes the full machine procurement package prorated by node fraction, not a separately invoiced 2,048-node system. It is not the later updated submission’s $10.50/MFLOP/s."
+        },
+        {
+          "value": 11.3,
+          "unit": "GFLOP/s",
+          "relation": "=",
+          "machine": "QCDSP at Columbia",
+          "precision": "The Hardware section specifies native 32-bit floating-point arithmetic on the TMS320C31-50 DSP. Benchmark sections do not separately enumerate every variable, reduction precision or possible software-emulated arithmetic; whole-program FP32 uniformity is not independently established. No FP64-equivalent conversion.",
+          "scope": "Sustained complete Hybrid Monte Carlo production run; exact I/O and initialization boundary not specified",
+          "scale": "1,024-node Columbia cabinet; 16^3×64 lattice; β=5.3 and κ=0.1675; two light Wilson-quark species.",
+          "measurement_method": "Reported complete HMC production run: 1,334 minutes, 1,232,496 conjugate-gradient items called “inversions”, and a reported operation total shown in img25. The text does not derive every HMC operation or restate an independent timer mechanism for this second run; do not assume the first benchmark’s per-site formula accounts for the entire HMC numerator. Inspected img25 reports 9×10^14 floating-point operations.",
+          "source_id": "sc98_qcdsp_columbia_sc98_author_html",
+          "location": "HTML section Benchmark, paragraphs 1–2; cost allocation in Cost; native arithmetic in Hardware",
+          "evidence_stage": "archived_author_manuscript",
+          "source_revision_date": null,
+          "source_version_description": "Columbia SC98 conference-paper HTML, captured July 11, 2000; August 6, 1998 HTML generation marker; exact manuscript revision date unstated",
+          "measurement_date": null,
+          "measurement_date_note": "Exact calendar run date not supplied. The paper refers to April 1998 machine completion and May 6–9, 1998 workshop work; these are not benchmark dates.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Separate updated committee submission found; not merged into this manuscript observation",
+          "final_score_status": "Not established",
+          "note": "Separate program, site and machine partition from the chiral-condensate benchmark. The two sustained rates must not be added as one concurrent-machine result.",
+          "flops": 11300000000.0
+        },
+        {
+          "value": 13.6,
+          "unit": "1998 USD/(sustained MFLOP/s)",
+          "relation": "=",
+          "machine": "QCDSP at Columbia",
+          "precision": "The Hardware section specifies native 32-bit floating-point arithmetic on the TMS320C31-50 DSP. Benchmark sections do not separately enumerate every variable, reduction precision or possible software-emulated arithmetic; whole-program FP32 uniformity is not independently established. No FP64-equivalent conversion.",
+          "scope": "Cost/performance for the same 1,024-node HMC run, priced by half of the larger benchmark partition cost",
+          "scale": "1,024-node Columbia cabinet; 16^3×64 lattice; β=5.3 and κ=0.1675; two light Wilson-quark species.",
+          "measurement_method": "Author assigns hardware one-half of the $308K cost basis used for 2,048 nodes (about $154K), and divides by the HMC sustained rate of 11.3 GFLOP/s. This is a normalized component-count allocation, not an independent total Columbia-project expenditure.",
+          "source_id": "sc98_qcdsp_columbia_sc98_author_html",
+          "location": "HTML section Benchmark, paragraphs 1–2; cost allocation in Cost; native arithmetic in Hardware",
+          "evidence_stage": "archived_author_manuscript",
+          "source_revision_date": null,
+          "source_version_description": "Columbia SC98 conference-paper HTML, captured July 11, 2000; August 6, 1998 HTML generation marker; exact manuscript revision date unstated",
+          "measurement_date": null,
+          "measurement_date_note": "Exact calendar run date not supplied. The paper refers to April 1998 machine completion and May 6–9, 1998 workshop work; these are not benchmark dates.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Separate updated committee submission found; not merged into this manuscript observation",
+          "final_score_status": "Not established",
+          "note": "Nominal contemporary USD, with no inflation adjustment; rate and hardware cost belong to this source version and do not establish a final conference score."
+        }
+      ],
+      "provenance": {
+        "abstract": [
+          "sc98_qcdsp_columbia_sc98_author_html"
+        ],
+        "authors": [
+          "sc98_qcdsp_columbia_sc98_author_html"
+        ],
+        "machines": [
+          "sc98_qcdsp_columbia_sc98_author_html"
+        ],
+        "performance": [
+          "sc98_qcdsp_columbia_sc98_author_html"
+        ],
+        "manuscript_linkage": [
+          "sc98_qcdsp_columbia_gordon_bell_linkage"
+        ],
+        "selection": [
+          "roster-1998-bnl98-qcdsp",
+          "roster-1998-nersc98",
+          "roster-1998-lbl98",
+          "roster-1998-paper98"
+        ],
+        "doi": [],
+        "award": []
+      },
+      "content_status": "Selected manuscript fields checked",
+      "final_score_status": "Not established from manuscript evidence",
+      "conference_update_status": "Not established from manuscript evidence",
+      "verification": {
+        "status": "Complete author-hosted conference-manuscript HTML read",
+        "checked_on": "2026-11-22",
+        "method": "Read the entire main HTML (abstract, Introduction, Hardware, Software, Cost, Benchmark, Conclusion), separate reference list and footnote. Verified all 26 referenced GIFs (25 content images plus footnote navigation icon) decode and match source dimensions. Visually checked all nineteen authors in browser rendering, all formula images and hardware photographs in Figures 1–3.",
+        "limits": "No manuscript PDF/CD-ROM bytes or DOI registration recovered. HTML generation date, archive capture dates and actual manuscript revision/run dates remain separate. No independent benchmark rerun or final conference-score determination."
+      },
+      "local_fulltext": {
+        "kind": "preserved_author_html_with_embedded_resources",
+        "media_type": "text/html",
+        "source_url": "https://web.archive.org/web/20000711044110id_/http://phys.columbia.edu:80/~cqft/sc98/sc98.htm",
+        "original_url": "http://phys.columbia.edu/~cqft/sc98/sc98.htm",
+        "filename": "sc98.htm",
+        "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/sc98.htm",
+        "sha256": "eb2387cb73b3e309bbc04746cc651ca2216014203cbed968b0145385e142bb2c",
+        "page_count": null,
+        "document_count": 3,
+        "content_image_count": 25,
+        "all_referenced_images_checked": true,
+        "source_revision_date": null,
+        "html_conversion_date": "1998-08-06",
+        "note": "Unpaginated complete main manuscript with two companion HTML documents (references and support footnote), 25 content GIFs and one footnote icon. HTML generation marker is not a verified manuscript revision date; IA captures date retrieval preservation."
+      },
+      "notes": [
+        "Columbia’s institutional Gordon Bell page explicitly links this as “Paper given at SC98”, separately from “Submission to the Gordon Bell Prize Committee”. That direct author/institution linkage identifies the candidate without substituting a later QCDSP/QCDOC overview.",
+        "The full title and ordered nineteen-author byline come from this manuscript, including Adrian Kahler, Stephen Kasow and Greg Kilcup exactly as printed. Other QCDSP publications or collaborator acknowledgments have different names/order and are not merged into this byline.",
+        "The existing annual editorial description, empty author field and unresolved DOI are preserved in new_bibliography_findings.before; this audit does not rewrite the annual roster itself.",
+        "The archive preserves main HTML from July 2000 and content GIFs/references from 2000–2001. Their matching paths, declared dimensions and coherent contents identify the complete saved author version; no assertion is made that all resources were captured simultaneously or equal the original proceedings bytes.",
+        "The main/reference/support-footnote HTML footer reads August 6, 1998. This is a conversion marker, not a uniquely established paper revision date. The audited rates are not labeled final conference scores.",
+        "The separate updated committee submission has three authors (Norman H. Christ, Robert Mawhinney, Pavlos Vranas), a December 4, 1998 HTML-generation marker, three benchmarks and different first-benchmark numbers. Its incomplete image bundle is not counted as another complete manuscript or added to performance totals.",
+        "The paper calls the CG count “inversions”; the updated committee text calls its different run’s count “iterations”. The terminology is retained; this audit does not silently claim that every counted item is a completed linear-system solve.",
+        "The first benchmark’s operation numerator is the explicit CG count model, while the timer is reported for the code run. Non-CG work is not independently counted here. The second HMC operation total is author-reported and not reconstructed by assuming identical per-site accounting.",
+        "Native DSP precision is explicitly 32-bit. The manuscript does not enumerate full-program precision or state exact I/O/initialization timing boundaries, so those remain qualified rather than inherited from other QCDSP papers.",
+        "The two machine peak capacities of 0.4 and 0.6 TFLOP/s describe hardware, not a measured combined 1-TFLOP/s application. Benchmarks run on smaller independent partitions and are not summed.",
+        "No DOI has been verified for this exact SC98 paper. The arXiv/Elsevier identifiers for Status of the QCDSP project and The 1 Teraflops QCDSP computer identify different papers and are not assigned to this record.",
+        "Existing 1998 magnetism institutional events (657 GFLOP/s and 1.02 TFLOP/s) are unchanged and remain separate from this QCDSP manuscript audit.",
+        "First complete manuscript audit for this competition year. The reviewed publication/author version and its dates are retained separately from the original submission and conference-day final score."
+      ],
+      "id": "SC98-qcdsp",
+      "year": 1998,
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Competition entry",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "doi_verification": {
+        "status": "unverified",
+        "source_id": null,
+        "checked_on": "2026-11-22",
+        "detail": "Publication identifier and competition-entry/manuscript version identity are separate checks."
+      },
+      "award_status": "Individual award result not established in this record",
+      "booktitle": "Proceedings of Supercomputing 1998",
+      "citation_title": "QCDSP Machines: Design, Performance and Cost",
+      "citation_authors": [
+        "Dong Chen",
+        "Ping Chen",
+        "Norman H. Christ",
+        "Robert G. Edwards",
+        "George Fleming",
+        "Alan Gara",
+        "Sten Hansen",
+        "Chulwoo Jung",
+        "Adrian Kahler",
+        "Stephen Kasow",
+        "Anthony D. Kennedy",
+        "Greg Kilcup",
+        "Yubing Luo",
+        "Catalin Malureanu",
+        "Robert D. Mawhinney",
+        "John Parsons",
+        "ChengZhong Sui",
+        "Pavlos Vranas",
+        "Yuri Zhestkov"
+      ],
+      "citation_year": 1998,
+      "citation_type": "inproceedings",
+      "title_aliases": [
+        {
+          "title": "Lattice quantum chromodynamics on the RIKEN-BNL QCD supercomputer",
+          "source_id": "roster-1998-bnl98-qcdsp"
+        }
+      ],
+      "reviewed_versions": [
+        {
+          "evidence_stage": "archived_author_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
       "year": 1997,
       "title": "Large Scale Simulation of Suspensions with PVM",
       "doi": "10.1109/SC.1997.10050",
@@ -10522,6 +11527,284 @@
       ]
     },
     {
+      "year": 1994,
+      "title": "Tight Binding Molecular Dynamics on Parallel Computers",
+      "published_title": "Tight binding molecular dynamics",
+      "doi": "10.1109/SUPERC.1994.344331",
+      "doi_note": "Existing roster IEEE publication DOI retained. Alternative ACM publication DOI 10.1145/602879.602880 is independently checked. Neither DOI is printed on this Cornell author-report PDF.",
+      "related_identifiers": [
+        {
+          "scheme": "report_number",
+          "value": "CTC94TR183",
+          "source_id": "early_recovery_1994_goedecker_selfcitation_1998"
+        },
+        {
+          "scheme": "handle",
+          "value": "1813/5520",
+          "source_id": "early_recovery_1994_cornell_current_item_metadata"
+        },
+        {
+          "scheme": "DOI",
+          "value": "10.1145/602879.602880",
+          "source_id": "early_recovery_1994_sc94_tight_acm_metadata"
+        }
+      ],
+      "authors": [
+        "S. Goedecker",
+        "L. Colombo"
+      ],
+      "authors_status": "Ordered author byline visually checked; initials retained exactly as printed.",
+      "field": "Quantum molecular dynamics and electronic-structure simulation",
+      "summary": "A localized-orbital tight-binding method replaces global diagonalization with independent Chebyshev-recursion calculations. Sparse Hamiltonian operations and spatial truncation reduce the large-system work to linear scaling, while a coarse-grained PVM decomposition assigns atoms and their orbitals to workstations. Cache reuse, dot-product loops and hand-tuned multiply-add assembly improve node performance. The author report benchmarks liquid silicon and compares elapsed timestep cost with conventional diagonalization, keeping algorithmic work reduction separate from raw machine throughput.",
+      "machines": [
+        "HP 9000/735 workstation cluster",
+        "NEC SX3/24R"
+      ],
+      "machine_configurations": [
+        {
+          "name": "HP 9000/735 workstation cluster",
+          "facility": "Swiss Supercomputing Center, Lugano, acknowledged for cluster access and standalone benchmark time",
+          "configuration": "Eight HP 9000/735 RISC workstations linked by FDDI and programmed with PVM. A localized orbital and associated matrix data fit in a workstation 256K cache. Atoms are distributed across processors; each computes its local electronic orbitals and forces. The master also advances atom trajectories and broadcasts new positions. Exact CPU clock, RAM capacity, operating system, PVM/compiler versions and floating-point precision are not specified.",
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+          "location": "PDF pp. 2-5, motivation, performance, optimizations and acknowledgements"
+        },
+        {
+          "name": "NEC SX3/24R",
+          "facility": null,
+          "configuration": "Conventional-diagonalization comparison for the same 216-atom system. The source reports five seconds per timestep at 1.2 Gflops; the new indirectly addressed method reaches only 50 Mflops on the NEC. Full machine configuration and facility are not given.",
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+          "location": "PDF p. 3"
+        }
+      ],
+      "methods": [
+        {
+          "description": "Localized electronic orbitals are generated using a Chebyshev recursion dominated by sparse Hamiltonian-matrix/vector operations. An 8-angstrom truncation radius in the benchmark makes the asymptotic work linear in atom count. Two index arrays identify atoms inside localization regions and nonzero Hamiltonian elements. Dot products, loop unrolling by four and cache reuse improve irregular sparse operations; relevant assembly is hand-optimized to generate floating multiply-add instructions.",
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+          "location": "PDF pp. 2-4"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "HP 9000/735 workstation cluster",
+          "value": 0.78,
+          "unit": "GFLOP/s",
+          "flops": 780000000.0,
+          "precision": "Floating-point precision not stated in the manuscript. The <1 meV/atom physical energy error is a numerical-accuracy comparison, not a declaration of FP32/FP64.",
+          "scope": "Tight-binding molecular-dynamics benchmark for one MD timestep; counted major-loop work over standalone elapsed time, lower-bound operation count",
+          "scale": "8 HP 9000/735 workstations; 216 liquid-silicon atoms at 2,000 K; Goodwin-Skinner TB scheme; localized-orbital cutoff radius 8 angstrom",
+          "measurement_method": "Program statements count operations only in the most important loops. The authors explicitly describe the resulting operation count as a lower bound; divide by elapsed time measured in a standalone benchmark. No exact total operation count or FMA weighting is printed. The report does not explicitly define inclusion/exclusion of I/O, setup or initialization.",
+          "location": "PDF pp. 3 and 5, Physical system considered and performances obtained; Price/Performance measurements",
+          "note": "Printed as 780 Mflops. Cluster theoretical peak 1.6 Gflops is a separate stated hardware figure. The conventional algorithm on NEC SX3/24R is a different algorithm and is not a pure machine-to-machine same-code comparison.",
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+          "evidence_stage": "Cornell Theory Center CTC94TR183 author technical-report version, repository-issued 1994-06, directly paired with the SC94 conference publication in an author self-citation; exact revision date not stated.",
+          "source_revision_date": null,
+          "source_issue_date": "1994-06",
+          "measurement_date": null,
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Not checked",
+          "final_score_status": "Not established",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        },
+        {
+          "machine": "HP 9000/735 workstation cluster",
+          "value": 5,
+          "unit": "seconds per MD timestep",
+          "precision": "Not stated",
+          "scope": "Elapsed per-timestep time for the 216-atom standalone TBMD benchmark; full-trajectory length and explicit I/O/setup boundary are not specified",
+          "scale": "8 HP 9000/735 workstations connected by FDDI; 216 liquid-silicon atoms, 2,000 K, 8-angstrom orbital cutoff",
+          "measurement_method": "The p. 3 performance section reports a five-second timestep; p. 5 states that benchmark times are elapsed standalone measurements. No number of repetitions or uncertainty is supplied.",
+          "location": "PDF p. 3, physical-system/performance discussion; p. 5, timing definition",
+          "note": "Retained as the rounded author-reported value. The separate NEC SX3/24R conventional-diagonalization run also takes five seconds at a reported 1.2 Gflops, illustrating algorithmic work differences rather than equal FLOP counts.",
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+          "evidence_stage": "Cornell Theory Center CTC94TR183 author technical-report version, repository-issued 1994-06, directly paired with the SC94 conference publication in an author self-citation; exact revision date not stated.",
+          "source_revision_date": null,
+          "source_issue_date": "1994-06",
+          "measurement_date": null,
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Not checked",
+          "final_score_status": "Not established",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        },
+        {
+          "machine": "HP 9000/735 workstation cluster",
+          "value": 3.4,
+          "unit": "GFLOP/s per US$ million",
+          "precision": "Not stated",
+          "scope": "Price/performance ratio for the reported 216-atom standalone TBMD benchmark, using declared cluster purchase price",
+          "scale": "8 workstations x US$28,790 = US$230,320 reported cluster price; same 216-atom benchmark reported at 780 Mflops",
+          "measurement_method": "Program statements count operations only in the most important loops. The authors explicitly describe the resulting operation count as a lower bound; divide by elapsed time measured in a standalone benchmark. No exact total operation count or FMA weighting is printed. The report does not explicitly define inclusion/exclusion of I/O, setup or initialization. The source divides the measured throughput by the reported purchase cost, normalized to one million dollars.",
+          "location": "PDF p. 5, Price/Performance measurements; abstract p. 1",
+          "note": "A monetary-normalized throughput ratio, not a 3.4-GFLOP/s sustained machine rate. The 3.4 value is retained as printed; network, software, support and lifecycle-cost components are not separately itemized. Not a conference-day or final score.",
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+          "evidence_stage": "Cornell Theory Center CTC94TR183 author technical-report version, repository-issued 1994-06, directly paired with the SC94 conference publication in an author self-citation; exact revision date not stated.",
+          "source_revision_date": null,
+          "source_issue_date": "1994-06",
+          "measurement_date": null,
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "Not checked",
+          "final_score_status": "Not established",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        }
+      ],
+      "award": null,
+      "publication_stage": "Institutional author technical-report version directly paired with the SC94 publication by an author self-citation",
+      "source_revision_date": null,
+      "source_issue_date": "1994-06",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "version_identity": {
+        "status": "direct_author_selfcitation_links_report_and_conference_publication",
+        "sources": [
+          "early_recovery_1994_cornell_current_item_metadata",
+          "early_recovery_1994_goedecker_selfcitation_1998",
+          "early_recovery_1994_sc94_tight_acm_metadata"
+        ],
+        "basis": "Kress, Goedecker et al. (1998), publisher-deposited reference 182333_CR37, cites CTC94TR183, Cornell Theory Center, June 1994, and Proceedings of the Supercomputing Conference, Washington DC, 1994, as one reference. The registered target DOI identifies the SC94 title and same ordered author initials. The source PDF matches the technical report title and benchmark.",
+        "version_difference": "Audited file is the complete five-page technical-report author version with longer title; it is not represented as a byte-identical copy of the SC94 three-page printed version (pp.670-672). Exact line-level revision differences remain unaudited.",
+        "claim_limit": "The source dates and measurements belong to this author-report version. No assertion that it is the delivered presentation or final submitted score."
+      },
+      "provenance": {
+        "title": [
+          "early_recovery_1994_cornell_ctc94tr183_author_pdf"
+        ],
+        "authors": [
+          "early_recovery_1994_cornell_ctc94tr183_author_pdf"
+        ],
+        "machines": [
+          "early_recovery_1994_cornell_ctc94tr183_author_pdf"
+        ],
+        "abstract": [
+          "early_recovery_1994_cornell_ctc94tr183_author_pdf"
+        ],
+        "measurements": [
+          "early_recovery_1994_cornell_ctc94tr183_author_pdf"
+        ],
+        "version_identity": [
+          "early_recovery_1994_cornell_current_item_metadata",
+          "early_recovery_1994_goedecker_selfcitation_1998",
+          "early_recovery_1994_sc94_tight_acm_metadata"
+        ],
+        "selection": [
+          "roster-1994-csdl94-toc",
+          "roster-1994-judges94"
+        ],
+        "doi": [
+          "roster-1994-csdl94-toc"
+        ],
+        "award": []
+      },
+      "notes": [
+        "The benchmark section specifies 2,000 K, while Figure 1 captions its illustrated liquid-Si pair correlation at 1,800 K. The figure is not relabeled as a plot of the 2,000 K timed benchmark.",
+        "The physical energy error is typically less than 1 meV/atom relative to exact diagonalization for the stated cutoff; it does not establish floating-point word length.",
+        "A reported 770-Mflop/s 64-atom run and the stated 1.6-Gflop/s hardware peak are not conflated with the 216-atom 780-Mflop/s observation.",
+        "The numerical operation count depends on trajectories and machine rounding; only major loops are counted and the report explicitly calls the total a lower bound. Exact operation totals, repeat counts and date of the measurements are absent.",
+        "The repository issue month is June 1994. Repository ingest/lastModified dates and Ghostscript conversion metadata are not interpreted as manuscript revisions or experiment dates.",
+        "The PDF uses a custom Type3 font without a Unicode map. Automated text extraction is corrupt, so all five pages were read as rendered images and every recorded name/value was checked visually.",
+        "Citation identity: this audited version is Cornell Theory Center technical report CTC94TR183 (1994). The retained IEEE DOI and alternative ACM DOI identify its related SC94 publication; no DOI for the technical report itself has been established.",
+        "First complete manuscript audit for this competition year. The reviewed publication/author version and its dates are retained separately from the original submission and conference-day final score."
+      ],
+      "verification": {
+        "checked_on": "2026-11-22",
+        "status": "Full text audited",
+        "all_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "visually_inspected_pages": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "method": "Rendered the complete five-page PDF with pypdfium2 at scale 2 and read every page visually, including byline, algorithms, complete performance and cost-counting sections, Figure 1, acknowledgements and references. Verified official repository MD5 and calculated SHA-256.",
+        "title_author_locations": "PDF p. 1",
+        "performance_locations": "PDF pp. 3 and 5",
+        "limits": "No comparison against every line of the printed SC94 version; no independent benchmark reproduction or presentation/final-score check. Arithmetic precision is unstated.",
+        "ocr_reading_derivative_available": true
+      },
+      "local_fulltext": {
+        "filename": "歴史一次資料/初期4年度回収_20261122/SC94_CTC94TR183_Goedecker_Colombo_author_report.pdf",
+        "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/SC94_CTC94TR183_Goedecker_Colombo_author_report.pdf",
+        "source_url": "https://ecommons.cornell.edu/server/api/core/bitstreams/220fa8ea-852a-4257-90ba-2f2a4e79bdae/content",
+        "sha256": "072fef638044efb4b024af245b11b0b30a0656c26d6407d19a91f1f32f5e1477",
+        "page_count": 5,
+        "media_type": "application/pdf",
+        "kind": "institutional_author_technical_report_pdf",
+        "complete": true,
+        "reading_derivative": {
+          "source_id": "early_recovery_1994_cornell_ctc94tr183_vision_ocr",
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC94_CTC94TR183_Goedecker_Colombo_vision_ocr.txt",
+          "sha256": "527472011947bcfd0353061e118e15a769feff3954c638c40d31cfcafa2ff2ed",
+          "media_type": "text/plain",
+          "method": "OCR reading/search aid; original rendered PDF is authoritative."
+        }
+      },
+      "citation_type": "techreport",
+      "citation_year": 1994,
+      "citation_title": "Tight Binding Molecular Dynamics on Parallel Computers",
+      "citation_authors": [
+        "S. Goedecker",
+        "L. Colombo"
+      ],
+      "institution": "Cornell Theory Center",
+      "report_number": "CTC94TR183",
+      "doi_linkage": {
+        "status": "verified_related_conference_publication_identifiers",
+        "reviewed_version_kind": "author_technical_report",
+        "reviewed_version_identifier": "CTC94TR183",
+        "reviewed_version_doi": null,
+        "reviewed_version_doi_status": "Not established",
+        "conference_identifiers": [
+          {
+            "scheme": "DOI",
+            "value": "10.1109/SUPERC.1994.344331",
+            "basis": "Existing publisher-verified SC94 roster; identifier of the conference publication, not the Cornell report."
+          },
+          {
+            "scheme": "DOI",
+            "value": "10.1145/602879.602880",
+            "source_id": "early_recovery_1994_sc94_tight_acm_metadata",
+            "basis": "Publisher-deposited SC94 conference record. Direct report/conference relation is supported by the paired author self-citation."
+          }
+        ],
+        "citation_rule": "Cite the audited file as Cornell Theory Center technical report CTC94TR183 (1994), using its institutional report URL. Do not put either conference DOI into the techreport DOI field. The related proceedings paper has a distinct title/pagination."
+      },
+      "id": "SC94-tight-binding",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Competition entry",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-1994-csdl94-toc",
+        "checked_on": "2026-11-22",
+        "detail": "Publication identifier and competition-entry/manuscript version identity are separate checks."
+      },
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [
+        {
+          "title": "Tight binding molecular dynamics",
+          "source_id": "roster-1994-csdl94-toc"
+        }
+      ],
+      "reviewed_versions": [
+        {
+          "evidence_stage": "Cornell Theory Center CTC94TR183 author technical-report version, repository-issued 1994-06, directly paired with the SC94 conference publication in an author self-citation; exact revision date not stated.",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
       "year": 1993,
       "title": "50 GFlops Molecular Dynamics on the Connection Machine 5",
       "doi": "10.1145/169627.169794",
@@ -10761,6 +12044,439 @@
           "source_revision_date": null
         }
       ]
+    },
+    {
+      "doi": "10.1090/S0025-5718-1993-1182953-4",
+      "title": "The Factorization of the Ninth Fermat Number",
+      "authors": [
+        "A. K. Lenstra",
+        "H. W. Lenstra, Jr.",
+        "M. S. Manasse",
+        "J. M. Pollard"
+      ],
+      "field": "Computational number theory and distributed integer factorization",
+      "summary": "A distributed number field sieve factors the ninth Fermat number using donated workstation cycles and a Connection Machine for the final linear algebra. The paper explains the arithmetic construction, relation collection, sparse-matrix reduction and verification of the resulting prime factors.",
+      "machines": [
+        "Distributed DEC3100, SPARC and DEC SRC Firefly workstations",
+        "65536-processor Connection Machine at SCRI, Florida State University",
+        "Cray X-MP (final primality proof; no audited timing)"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Distributed workstation network",
+          "facility": "Bellcore, DEC SRC and volunteer institutions worldwide",
+          "configuration": "Started on about 35 Bellcore DEC3100/SPARC workstations; DEC SRC Firefly network joined in mid-March 1990. About 700 DEC3100 equivalents are estimated for donated work, not an exact simultaneous processor count.",
+          "location": "Printed pp. 339–340 / PDF sheets 11–12"
+        },
+        {
+          "name": "Connection Machine",
+          "facility": "Supercomputer Computation Research Institute, Florida State University",
+          "configuration": "65536-processor machine; remote Gaussian elimination executed by Roger Frye and Mike McKenna of Thinking Machines. Machine model beyond Connection Machine is not specified in the audited paper.",
+          "location": "Printed p. 345 / PDF sheet 14"
+        },
+        {
+          "name": "DEC SRC matrix preprocessing and backup",
+          "facility": "DEC SRC, Palo Alto",
+          "configuration": "Fifteen workstations used to reconstruct factorizations/unit contributions; a four-processor Firefly supported backup elimination. Backup timing estimates are not treated as completed comparative benchmarks.",
+          "location": "Printed pp. 343–345 / PDF sheets 13–14"
+        }
+      ],
+      "method": {
+        "algorithm": "Number field sieve specialized to F9=2^512+1, factoring its 148-digit cofactor after removal of the known factor 2424833; uses the number ring Z[2^(1/5)] and two-large-prime partial relations. Structured Gaussian elimination reduces the relation matrix before dense elimination modulo 2.",
+        "workload": "155-digit ninth Fermat number; newly found factors have 49 and 99 decimal digits. This completed computation is dated 15 June 1990; it is not a general random 155-digit-number factoring benchmark.",
+        "decomposition": "Independent ranges of b values assigned to workstations; relations and completed-range reports sent by electronic mail to DEC SRC. Missing ranges were reassigned after approximately ten days. Relation cycles and matrix construction were centralized.",
+        "numerics": "Factoring and F2 linear algebra use exact integer/finite-field relations; the text also discusses limited-precision logarithms for recovering unit exponents and logarithmic sieve heuristics. It gives no overall floating-point precision specification or FLOP-count method.",
+        "counting_and_timing": "MIPS-years are explicitly estimated instruction equivalents. The three-hour duration is a reported matrix-stage run with no timer or complete I/O boundary specified. Primality of both factors was subsequently proved using a Cray X-MP Jacobi-sum implementation.",
+        "locations": [
+          "§§4–5 printed pp. 330–338 / PDF sheets 7–11",
+          "§6 printed pp. 339–343 / PDF sheets 11–13",
+          "§7 printed pp. 343–345 / PDF sheets 13–14"
+        ]
+      },
+      "measurements": [
+        {
+          "machine": "Distributed workstation network (DEC3100, SPARC and DEC SRC Firefly participants)",
+          "value": 340,
+          "unit": "MIPS-years",
+          "precision": "Integer factorization workload; floating-point precision is not a performance metric here. The estimate is in instruction equivalents; implementation word widths and exact use/precision of logarithmic sieving screens are not specified.",
+          "scope": "Estimated computational effort for the sieving/relation-collection stage; not total factorization elapsed time and not FLOP/s.",
+          "scale": "Approximately 2.2 million b values processed by 9 May 1990, each sieved over 10^8 a values. Authors estimate approximately 700 DEC3100 workstation equivalents, rather than claiming an audited physical host count.",
+          "source_id": "recovery_1990_f9_epfl_fulltext",
+          "measurement_method": "Authors estimate host equivalents from completed work and mostly night-time donated cycles. They define 1 MIPS-year as approximately 3.15×10^13 instructions. No hardware instruction-counter protocol or exact CPU-time accounting is supplied.",
+          "page": 12,
+          "location": "PDF sheet 12, left / printed p. 340, §6 Sieving",
+          "evidence_stage": "later_primary_journal_account_of_1990_computation_estimated_work",
+          "source_revision_date": "1992-08-03",
+          "measurement_date": null,
+          "measurement_date_context": "Sieving began in mid-February 1990 and the reported 2.2-million-b milestone is dated 9 May 1990; the exact accounting interval for 340 MIPS-years is not separately dated.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "No authenticated later competition/presentation update established.",
+          "final_score_status": "Not established",
+          "note": "The same paragraph reports >3000 MIPS over five weeks as an estimate. These instruction measures are not converted to floating-point throughput or promoted to a prize score.",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        },
+        {
+          "machine": "65536-processor Connection Machine at SCRI, Florida State University",
+          "value": 3,
+          "unit": "hours",
+          "precision": "Exact arithmetic over the two-element field F2 / modulo 2 for Gaussian elimination; no floating-point precision applies. Physical bit/word packing details are not given.",
+          "scope": "Reported duration of the successful dense Gaussian-elimination run only; not the whole factoring job or distributed sieving.",
+          "scale": "Structured elimination first reduced a 226688×199203 sparse F2 matrix to a dense 72413×72213 matrix, called the 72000-matrix in the narrative; a few hundred row dependencies were produced.",
+          "source_id": "recovery_1990_f9_epfl_fulltext",
+          "measurement_method": "Narrative reports three hours for a first solve followed by an output-routine crash and another three hours for the successful second run. Timer API and whether input/output are included in this duration are not stated. Workstation preprocessing, conversion of dependencies and final primality proofs are separate stages.",
+          "page": 14,
+          "location": "PDF sheet 14, right / printed p. 345, §7 Finding Dependencies; matrix dimensions on printed p. 344 / same sheet left",
+          "evidence_stage": "later_primary_journal_account_of_1990_computation_reported_stage_duration",
+          "source_revision_date": "1992-08-03",
+          "measurement_date": null,
+          "measurement_date_context": "Input was mounted on the evening of 14 June 1990; successful dependencies were sent to DEC SRC in the early morning of 15 June 1990. Exact start/end of the second run is not separately timestamped.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "No authenticated later competition/presentation update established.",
+          "final_score_status": "Not established",
+          "note": "Three hours is per run. The first failed run is not silently included in the successful-run value; no end-to-end six-hour runtime, speedup or MIPS/FLOP rate is inferred.",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        }
+      ],
+      "provenance": {
+        "title": [
+          "recovery_1990_f9_epfl_fulltext"
+        ],
+        "authors": [
+          "recovery_1990_f9_epfl_fulltext"
+        ],
+        "machines": [
+          "recovery_1990_f9_epfl_fulltext"
+        ],
+        "abstract": [
+          "recovery_1990_f9_epfl_fulltext"
+        ],
+        "doi": [
+          "recovery_1990_f9_crossref"
+        ],
+        "competition_identity": [
+          "recovery_1990_committee_identity",
+          "recovery_1990_f9_epfl_fulltext"
+        ],
+        "publication_version": [
+          "recovery_1990_f9_epfl_fulltext",
+          "recovery_1990_lenstra_author_index",
+          "recovery_1990_f9_crossref"
+        ],
+        "selection": [
+          "roster-1990-committee_1990_report_sc1991"
+        ],
+        "award": []
+      },
+      "notes": [
+        "Audited as the 1993 formal primary account of the same F9 factorization that the SC1991 committee report explicitly says was submitted to the 1990 competition. The formal original-submission title, submitted file and original-submission DOI have not been recovered. The DOI here belongs to the 1993 Mathematics of Computation article.",
+        "The source is 17 scanned PDF sheets: sheet 1 contains printed p. 319; sheets 2–16 contain printed pp. 320–349 in pairs; sheet 17 appends the one-page Addendum, printed p. 1357, independently dated 1995 by the author publication list. No performance update is present in the Addendum.",
+        "The title and all four ordered names were checked visually on the printed article. The EPFL web catalogue displays a different author order; the article byline and publisher-deposited Crossref order take precedence. Initials are retained as printed.",
+        "Only two representative observations are selected: estimated sieving work and successful dense-matrix run duration. The paper’s four-month overall project interval, roughly seven-week projected workstation elimination, approximately 40% hypothetical resieving cost and earlier failed factoring attempts are not promoted into completed application scores.",
+        "The paper reports factor discovery on 15 June 1990 at 11:15 PDT / 18:15 GMT and rigorous primality verification later that day. These dates identify the completed computation; they are not assumed to be manuscript submission or conference-presentation dates.",
+        "Award category and result remain delegated to the independently sourced annual roster. No prize status is inferred from this manuscript audit.",
+        "First complete manuscript audit for this competition year. The reviewed publication/author version and its dates are retained separately from the original submission and conference-day final score."
+      ],
+      "verification": "Read the complete main article, acknowledgments and bibliography across PDF sheets 1–16, and the appended Addendum on sheet 17. Visually inspected complete sheets 1,12,13,14,16,17: ordered byline and revision dates, native MIPS units, Table1, Figures1–2, matrix dimensions/timing, references/affiliations and Addendum. Committee PDF pp.1/7 were separately visually checked only for year/entry identity.",
+      "booktitle": "Mathematics of Computation 61(203), 319–349 (1993)",
+      "journal": "Mathematics of Computation",
+      "publication_year": 1993,
+      "publication_date": "1993-07",
+      "award": null,
+      "local_fulltext": {
+        "filename": "1990_Lenstra_et_al_F9_MathComp1993_EPFL_with_1995_addendum.pdf",
+        "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1990_Lenstra_et_al_F9_MathComp1993_EPFL_with_1995_addendum.pdf",
+        "source_url": "https://infoscience.epfl.ch/bitstreams/526cd2e2-7813-4c92-b8d6-f89b994543fe/download",
+        "sha256": "f0fe71f10b510d6e896ef28effc81d8687ec59a1ba1cc66e2445b573ffdab871",
+        "page_count": 17,
+        "media_type": "application/pdf"
+      },
+      "evidence_stage": "formal_primary_journal_publication_of_same_1990_submitted_computation",
+      "event_year": 1990,
+      "source_revision_date": "1992-08-03",
+      "version": {
+        "original_submission_recovered": false,
+        "audited_main_article": "Published July 1993; received 4 March 1991; revised 3 August 1992.",
+        "appended_document": "1995 Addendum, Mathematics of Computation64,p1357, on PDF sheet17; bibliographic clarification only.",
+        "file_scan_dates": {
+          "/CreationDate": "D:20110405083209Z",
+          "/Creator": "Xerox WorkCentre 5638",
+          "/ModDate": "D:20110405133544+02'00'",
+          "/Producer": "PDFlib+PDI 7.0.2 (Linux-ia32)"
+        }
+      },
+      "citation_authors": [
+        "A. K. Lenstra",
+        "Lenstra, Jr., H. W.",
+        "M. S. Manasse",
+        "J. M. Pollard"
+      ],
+      "volume": "61",
+      "issue": "203",
+      "pages": "319--349",
+      "id": "gb1990-fermat-factorization",
+      "year": 1990,
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "competition entries",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "recovery_1990_f9_crossref",
+        "checked_on": "2026-11-22",
+        "detail": "DOI verified for this later formal journal account; the annual competition-entry DOI remains unresolved."
+      },
+      "award_status": "Individual award result not established in this record",
+      "citation_title": "The Factorization of the Ninth Fermat Number",
+      "citation_year": 1993,
+      "citation_type": "article",
+      "title_aliases": [
+        {
+          "title": "Factorization of the ninth Fermat number",
+          "source_id": "roster-1990-committee_1990_report_sc1991"
+        }
+      ],
+      "reviewed_versions": [
+        {
+          "evidence_stage": "later_primary_journal_account_of_1990_computation_estimated_work",
+          "source_revision_date": "1992-08-03"
+        },
+        {
+          "evidence_stage": "later_primary_journal_account_of_1990_computation_reported_stage_duration",
+          "source_revision_date": "1992-08-03"
+        }
+      ]
+    },
+    {
+      "doi": null,
+      "title": "Performance of A Supernodal General Sparse Solver on the CRAY Y-MP: 1.68 GFLOPS with Autotasking",
+      "authors": [
+        "Horst D. Simon",
+        "Phuong Vu",
+        "Chao Yang"
+      ],
+      "field": "Sparse numerical linear algebra for structural analysis and scientific simulation",
+      "summary": "A production sparse solver groups columns with shared sparsity patterns into supernodes to reduce indirect memory traffic and preserve vector performance. Tuned matrix-vector kernels then use Cray microtasking and autotasking. Experiments separate real structural matrices from constructed three-dimensional model problems and show where limited supernode size restricts parallel gains.",
+      "machines": [
+        "Cray Y-MP 1001 at Cray Research (reported tests,6.49 ns)",
+        "Cray Y-MP 1002 at NASA Ames (selected repeat tests,6.3 ns)",
+        "Cray X-MP (earlier comparison results only)"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Cray Y-MP serial number 1001",
+          "facility": "Cray Research",
+          "configuration": "Eight-processor shared-memory vector system;6.49 ns cycle. Section 4 identifies dedicated-mode testing as the default for reported timings. Selected observations use 1 or 8 processors as stated.",
+          "location": "PDF p.9 / internal printed p.5, §4 Performance Results"
+        },
+        {
+          "name": "Cray Y-MP serial number 1002",
+          "facility": "NASA Ames Research Center",
+          "configuration": "6.3 ns cycle; several tests were repeated and observed to scale with clock cycle. The report deliberately tabulates the more complete slower 1001 results; no unlisted 1002 numbers are extrapolated.",
+          "location": "PDF p.9 / internal printed p.5"
+        },
+        {
+          "name": "Cray X-MP comparison",
+          "facility": "Not specified for the cited earlier X-MP result",
+          "configuration": "Earlier 9.5 ns Fortran performance and an 8.5 ns assembly-kernel result are discussed as comparisons. They are not the machine for selected 1989 Y-MP observations.",
+          "location": "PDF pp.7 and 9 / internal printed pp.3 and 5"
+        }
+      ],
+      "method": {
+        "algorithm": "Supernodal sparse factorization: columns with essentially common sparsity patterns are grouped, replacing separate gather-SAXPY-scatter operations with gather/multiple-SAXPY/scatter updates implemented as tuned matrix-vector multiplication.",
+        "parallelization": "Two costly matrix-vector kernels with indexed addressing are microtasked/autotasked by row strips. Runtime switch-over points choose sequential or parallel kernels according to supernode shape; preserving vectorization and tuning these thresholds are central.",
+        "implementation": "Production package developed by Boeing Computer Services researchers and available from Cray Research. Table 1 compares assembly SGEMVS+SGMVIS, unrolled Fortran SGEMV8+SGMVI8 and inline Fortran implementations.",
+        "workloads": "Sixteen matrix cases are tabulated: Boeing-Harwell structural problems, NASA Langley structural matrices and synthetic CUBE10/15/17 models. CUBE17 is not relabelled as a physical finite-element result.",
+        "counting_and_timing": "MFLOPS and factorization timing are reported, but no FLOP-count equation, profiler/counter protocol, timer name or overall arithmetic precision is supplied. Hardware peak, projected 6.0 ns clock improvement and kernel-stage rates are kept separate from application claims.",
+        "locations": [
+          "PDF pp.5–7 / printed pp.1–3, §§1–3",
+          "PDF p.8 / printed p.4, Figure 1",
+          "PDF pp.9–12 / printed pp.5–8, §4 and Tables 1–2"
+        ]
+      },
+      "measurements": [
+        {
+          "machine": "Cray Y-MP, serial number 1001, Cray Research",
+          "unit": "MFLOPS",
+          "precision": "Not stated in the report. No floating-point word length is inferred from Cray hardware or kernel names.",
+          "source_id": "recovery_1988_simon_vu_yang_nasa_tm112081",
+          "measurement_method": "Reported numerical-factorization rate in the tabulated experiments. Section 4 says dedicated-mode timings on the 6.49 ns Y-MP 1001 unless noted. Floating-point counting formula, hardware/software counter, timer API and whether setup/I/O enter this phase timing are not specified.",
+          "evidence_stage": "later_1989_technical_report_of_1988_entry_numeric_factorization_stage",
+          "source_revision_date": "1989-02-24",
+          "measurement_date": null,
+          "measurement_date_context": "Tests precede the dated internal manuscript; exact run dates are not provided.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "No authenticated 1988 competition-final or presentation-day update established by this later technical report.",
+          "final_score_status": "Not established",
+          "value": 1681.92,
+          "scope": "Numerical sparse-matrix factorization phase of the parallel supernodal solver; not a complete finite-element analysis or whole solver/application rate.",
+          "scale": "CUBE17;24565 equations, approximately 1.5 million nonzeros before factorization;17×17×17 cubic grid,27-point operator and 5 unknowns/grid point;8 processors.",
+          "page": 11,
+          "location": "PDF p.11 / internal printed p.7, Table 2, CUBE17 row,8 Proc column; problem construction on PDF p.9 / printed p.5.",
+          "note": "CUBE17 is an explicitly constructed model for implicit 3 D Navier–Stokes linear systems. It is a synthetic model matrix, distinct from the real structural-analysis matrices. The rounded 1682 MFLOPS/1.68 GFLOPS in abstract/title refers to this later factorization result.",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        },
+        {
+          "machine": "Cray Y-MP, serial number 1001, Cray Research",
+          "unit": "MFLOPS",
+          "precision": "Not stated in the report. No floating-point word length is inferred from Cray hardware or kernel names.",
+          "source_id": "recovery_1988_simon_vu_yang_nasa_tm112081",
+          "measurement_method": "Reported numerical-factorization rate in the tabulated experiments. Section 4 says dedicated-mode timings on the 6.49 ns Y-MP 1001 unless noted. Floating-point counting formula, hardware/software counter, timer API and whether setup/I/O enter this phase timing are not specified.",
+          "evidence_stage": "later_1989_technical_report_of_1988_entry_numeric_factorization_stage",
+          "source_revision_date": "1989-02-24",
+          "measurement_date": null,
+          "measurement_date_context": "Tests precede the dated internal manuscript; exact run dates are not provided.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "No authenticated 1988 competition-final or presentation-day update established by this later technical report.",
+          "final_score_status": "Not established",
+          "value": 280.75,
+          "scope": "Single-processor numerical factorization baseline, using assembly-coded SGEMVS+SGMVIS kernels.",
+          "scale": "CUBE17;24565 equations, same synthetic matrix family;1 processor on the same 6.49 ns Y-MP.",
+          "page": 10,
+          "location": "PDF p.10 / internal printed p.6, Table 1, CUBE17 row, NumFact with SGEMVS+SGMVIS MFLOPS column; repeated in Table 2 on PDF p.11.",
+          "note": "Retained as the matching 1 CPU factorization baseline, not as hardware peak. Table 1 also gives 115.24 in its Time column; no new runtime observation or more precise timer protocol is inferred.",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        },
+        {
+          "machine": "Cray Y-MP, serial number 1001, Cray Research",
+          "unit": "MFLOPS",
+          "precision": "Not stated in the report. No floating-point word length is inferred from Cray hardware or kernel names.",
+          "source_id": "recovery_1988_simon_vu_yang_nasa_tm112081",
+          "measurement_method": "Reported numerical-factorization rate in the tabulated experiments. Section 4 says dedicated-mode timings on the 6.49 ns Y-MP 1001 unless noted. Floating-point counting formula, hardware/software counter, timer API and whether setup/I/O enter this phase timing are not specified.",
+          "evidence_stage": "later_1989_technical_report_of_1988_entry_numeric_factorization_stage",
+          "source_revision_date": "1989-02-24",
+          "measurement_date": null,
+          "measurement_date_context": "Tests precede the dated internal manuscript; exact run dates are not provided.",
+          "presentation_date": null,
+          "checked_on": "2026-11-22",
+          "conference_update_status": "No authenticated 1988 competition-final or presentation-day update established by this later technical report.",
+          "final_score_status": "Not established",
+          "value": 578.02,
+          "scope": "Numerical factorization phase for a real structural-analysis matrix; not total space-shuttle finite-element application time.",
+          "scale": "NASASRB;54870 degrees of freedom; Space Shuttle Rocket Booster structural model supplied by Olaf Storaasli’s Computational Mechanics Group at NASA Langley;8 processors.",
+          "page": 11,
+          "location": "PDF p.11 / internal printed p.7, Table 2, NASASRB row,8 Proc column; matrix identity on PDF p.9 / printed p.5.",
+          "note": "Selected to distinguish actual structural data from the higher-throughput CUBE17 model. The approximately 20 seconds discussed nearby is the one-processor factorization in Table 1, not an 8 CPU runtime; no such substitution is made.",
+          "relation": "=",
+          "measurement_date_note": "Exact measurement date not established"
+        }
+      ],
+      "provenance": {
+        "title": [
+          "recovery_1988_simon_vu_yang_nasa_tm112081"
+        ],
+        "authors": [
+          "recovery_1988_simon_vu_yang_nasa_tm112081"
+        ],
+        "machines": [
+          "recovery_1988_simon_vu_yang_nasa_tm112081"
+        ],
+        "abstract": [
+          "recovery_1988_simon_vu_yang_nasa_tm112081"
+        ],
+        "competition_identity": [
+          "recovery_1988_simon_vu_yang_nasa_tm112081",
+          "recovery_1988_committee_transcription_identity"
+        ],
+        "entry_participants": [
+          "recovery_1988_committee_transcription_identity"
+        ],
+        "selection": [
+          "roster-1988-committee_1988_report_author_indexed"
+        ],
+        "doi": [],
+        "award": []
+      },
+      "entry_participants": [
+        "Phuong Vu",
+        "Horst Simon",
+        "Cleve Ashcraft",
+        "Roger Grimes",
+        "John Lewis",
+        "Barry Peyton"
+      ],
+      "entry_participants_status": "Six named competition participants preserved from the annual roster/judges-report transcription; these are not the byline of this three-author technical report.",
+      "notes": [
+        "This is a 1989 technical report describing the same supernodal solver entry family. Its appended 17 January 1989 Simon memo explicitly says an earlier version of the enclosed Sparse Matrix Factorization at 1.68 GFLOPS manuscript had already been submitted to the Gordon Bell Award Competition. The earlier submitted file has not been recovered.",
+        "The 1988 competition identity is established jointly by that direct earlier-version statement, the 1989 memo chronology and the contemporary judges report’s named Simon/Vu team, supernodal static-structures method and eight-processor 6.49 ns Y-MP. The memo itself does not print a competition-year label.",
+        "The report cover title differs from the internal manuscript title Sparse Matrix Factorization at 1.68 GFLOPS. Cover date 6 April 1989, body date 24 February 1989 and memo date 17 January 1989 are retained independently; none is a run date.",
+        "The three report authors are Horst D.Simon, Phuong Vu and Chao Yang. The six competition participants remain a separate group; Chao Yang is not retroactively inserted into the judges-report participant list.",
+        "All three observations are later report values for numerical factorization. The judges report separately distinguishes computation kernels from overall application timing and describes revisions after the original submission. No manuscript rate here is substituted for that application score or promoted to a 1988 final result.",
+        "No precision is inferred from the Y-MP architecture, and no cost/performance number, hardware peak or hypothetical 8% faster-clock result is added as a measured result.",
+        "First complete manuscript audit for this competition year. The reviewed publication/author version and its dates are retained separately from the original submission and conference-day final score."
+      ],
+      "verification": "Read all 16 PDF pages, including blank pages, report cover, internal title/abstract, nine numbered body pages, references and the appended Simon memo. Visually inspected complete PDF pp.1,3,8,10,11,15 for cover/report numbers, ordered byline/date, Figure 1, both numerical tables and direct competition-submission statement.",
+      "citation_type": "techreport",
+      "citation_year": 1989,
+      "institution": "NASA Ames Research Center, NAS Systems Division",
+      "report_number": "NASA-TM-112081; RNR-89-002",
+      "publication_date": "1989-04-06",
+      "booktitle": "NASA Technical Memorandum NASA-TM-112081; Report RNR-89-002 (1989)",
+      "award": null,
+      "local_fulltext": {
+        "filename": "1988_Simon_Vu_Yang_NASA_TM_112081_RNR_89_002_1989_author_upload.pdf",
+        "local_reference": "Gordon_Bell資料/歴史一次資料/初期4年度回収_20261122/1988_Simon_Vu_Yang_NASA_TM_112081_RNR_89_002_1989_author_upload.pdf",
+        "source_url": "https://www.researchgate.net/publication/24297802_Performance_of_a_supernodal_general_sparse_solver_on_the_CRAY_Y-MP_168_GFLOPS_with_autotasking",
+        "sha256": "14943519e1d3e96805fb23e47a390a0e63b9a3af874f187ecbc42479d43c095c",
+        "page_count": 16,
+        "media_type": "application/pdf"
+      },
+      "evidence_stage": "later_1989_institutional_technical_report_with_direct_earlier_submission_memo",
+      "event_year": 1988,
+      "source_revision_date": "1989-02-24",
+      "version": {
+        "cover_date": "1989-04-06",
+        "internal_manuscript_title": "Sparse Matrix Factorization at 1.68 GFLOPS",
+        "internal_manuscript_date": "1989-02-24",
+        "appended_memo_date": "1989-01-17",
+        "original_submitted_version_recovered": false,
+        "original_submitted_version_title": null,
+        "original_submitted_version_authors": null,
+        "scan_modification_date": "2002-11-27",
+        "checked_on": "2026-11-22"
+      },
+      "id": "gb1988-static-structures",
+      "year": 1988,
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "competition entries",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "unverified",
+        "source_id": null,
+        "checked_on": "2026-11-22",
+        "detail": "Publication identifier and competition-entry/manuscript version identity are separate checks."
+      },
+      "award_status": "Individual award result not established in this record",
+      "citation_title": "Performance of A Supernodal General Sparse Solver on the CRAY Y-MP: 1.68 GFLOPS with Autotasking",
+      "citation_authors": [
+        "Horst D. Simon",
+        "Phuong Vu",
+        "Chao Yang"
+      ],
+      "title_aliases": [
+        {
+          "title": "Static finite-element analysis on a Cray Y-MP",
+          "source_id": "roster-1988-committee_1988_report_author_indexed"
+        }
+      ],
+      "reviewed_versions": [
+        {
+          "evidence_stage": "later_1989_technical_report_of_1988_entry_numeric_factorization_stage",
+          "source_revision_date": "1989-02-24"
+        }
+      ]
     }
   ],
   "issues": [
@@ -10869,10 +12585,14 @@
       2017
     ],
     "detailed_years": [
+      1988,
+      1990,
       1993,
+      1994,
       1995,
       1996,
       1997,
+      1998,
       1999,
       2000,
       2001,
@@ -10902,7 +12622,7 @@
       2025,
       2026
     ],
-    "detailed_paper_count": 40
+    "detailed_paper_count": 44
   },
   "inventory_report": {
     "volume": "SC08_Proceedings",
@@ -12623,7 +14343,11 @@
       "author_hosted_unversioned_manuscript_156_variant",
       "Preserved SC97 official proceedings HTML with companion Mozilla HTML-to-PostScript file; exact revision date not stated",
       "author_manuscript_original_submission_baseline",
-      "author_reported_implementation_update_in_manuscript"
+      "author_reported_implementation_update_in_manuscript",
+      "Cornell Theory Center CTC94TR183 author technical-report version, repository-issued 1994-06, directly paired with the SC94 conference publication in an author self-citation; exact revision date not stated.",
+      "later_primary_journal_account_of_1990_computation_estimated_work",
+      "later_primary_journal_account_of_1990_computation_reported_stage_duration",
+      "later_1989_technical_report_of_1988_entry_numeric_factorization_stage"
     ],
     "rule": "A paper result is not automatically the conference-day or final annual score. Preserve each source-version result; do not overwrite manuscript values with later values.",
     "dates": "Keep source revision, measurement date, presentation date and audit date separate. Unknown dates remain null.",
@@ -12651,7 +14375,7 @@
         "website_url": null,
         "year": 1988
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "annual_review_year": 1988
     },
     {
@@ -12681,7 +14405,7 @@
         "website_url": null,
         "year": 1990
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "annual_review_year": 1990
     },
     {
@@ -12742,7 +14466,7 @@
         "website_url": "https://sc94.supercomputing.org/",
         "year": 1994
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "annual_review_year": 1994
     },
     {
@@ -12806,7 +14530,7 @@
         "website_url": null,
         "year": 1998
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "annual_review_year": 1998
     },
     {
@@ -23396,6 +25120,336 @@
           "local_reference": "歴史一次資料/GRAPE_Special_20261122/SC16_official_historical_winners.html",
           "source_sha256": "5ac2c7ed1b80710d8f10d0ec6f911c0a416c5d510db469eee875ba996f588ae4",
           "published_on": "2016-08-25"
+        },
+        {
+          "id": "sc98_qcdsp_columbia_sc98_author_html",
+          "url": "https://web.archive.org/web/20000711044110id_/http://phys.columbia.edu:80/~cqft/sc98/sc98.htm",
+          "label": "Columbia author-hosted SC98 paper: QCDSP Machines: Design, Performance and Cost; complete HTML with 25 figures/formula images",
+          "kind": "archived_author_html",
+          "media_type": "text/html",
+          "checked_on": "2026-11-22",
+          "source_revision_date": null,
+          "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/sc98.htm",
+          "sha256": "eb2387cb73b3e309bbc04746cc651ca2216014203cbed968b0145385e142bb2c",
+          "size_bytes": 24841,
+          "original_url": "http://phys.columbia.edu/~cqft/sc98/sc98.htm",
+          "archive_capture_timestamp": "20000711044110",
+          "html_conversion_date": "1998-08-06",
+          "source_revision_date_note": "Footer identifies Norman Christ and August 6, 1998 02:15:50 EDT; this is an HTML-generation marker. The paper revision date and equality with proceedings bytes are not established.",
+          "embedded_resources": [
+            {
+              "filename": "foot_motif.gif",
+              "source_url": "https://web.archive.org/web/20010915003240id_/http://phys.columbia.edu:80/~cqft/sc98/foot_motif.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/foot_motif.gif",
+              "archive_capture_timestamp": "20010915003240",
+              "media_type": "image/gif",
+              "width": 15,
+              "height": 15,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/foot_motif.gif",
+              "sha256": "fbbd5700cb9c261a48ac5eb4545b5f00ed397c80ee1855f0cdc7c94ee01dd555",
+              "size_bytes": 87
+            },
+            {
+              "filename": "img1.gif",
+              "source_url": "https://web.archive.org/web/20010915032435id_/http://phys.columbia.edu:80/~cqft/sc98/img1.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img1.gif",
+              "archive_capture_timestamp": "20010915032435",
+              "media_type": "image/gif",
+              "width": 143,
+              "height": 25,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img1.gif",
+              "sha256": "7d0e5234aba4d94a84c600652217fcd0a3f48071ae5d3bad47bbc481e04d3cea",
+              "size_bytes": 308
+            },
+            {
+              "filename": "img2.gif",
+              "source_url": "https://web.archive.org/web/20010915032507id_/http://phys.columbia.edu:80/~cqft/sc98/img2.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img2.gif",
+              "archive_capture_timestamp": "20010915032507",
+              "media_type": "image/gif",
+              "width": 78,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img2.gif",
+              "sha256": "7b808a8ba00254a8a23b3cf443774a776113668464b8199ff2c5896e784e7cd2",
+              "size_bytes": 216
+            },
+            {
+              "filename": "img3.gif",
+              "source_url": "https://web.archive.org/web/20010915032524id_/http://phys.columbia.edu:80/~cqft/sc98/img3.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img3.gif",
+              "archive_capture_timestamp": "20010915032524",
+              "media_type": "image/gif",
+              "width": 67,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img3.gif",
+              "sha256": "cbd5d74b832103c5e14391278685a5e7075dccbec76aad7c6fc4c85a0a754194",
+              "size_bytes": 199
+            },
+            {
+              "filename": "img4.gif",
+              "source_url": "https://web.archive.org/web/20010915070729id_/http://phys.columbia.edu:80/~cqft/sc98/img4.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img4.gif",
+              "archive_capture_timestamp": "20010915070729",
+              "media_type": "image/gif",
+              "width": 48,
+              "height": 30,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img4.gif",
+              "sha256": "2f64538e2ffa7674caa66357ce5b7ba4e95441d255f5c986221340ba0210cab8",
+              "size_bytes": 181
+            },
+            {
+              "filename": "img5.gif",
+              "source_url": "https://web.archive.org/web/20010915032647id_/http://phys.columbia.edu:80/~cqft/sc98/img5.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img5.gif",
+              "archive_capture_timestamp": "20010915032647",
+              "media_type": "image/gif",
+              "width": 63,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img5.gif",
+              "sha256": "043b00f68d1546fcfc7e04c1da86305ece3dc5cef925c5958a9ed15808412aff",
+              "size_bytes": 193
+            },
+            {
+              "filename": "img6.gif",
+              "source_url": "https://web.archive.org/web/20010915032753id_/http://phys.columbia.edu:80/~cqft/sc98/img6.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img6.gif",
+              "archive_capture_timestamp": "20010915032753",
+              "media_type": "image/gif",
+              "width": 800,
+              "height": 526,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img6.gif",
+              "sha256": "c085930f76cc7370bbf72647568f5375c54e136fd75aa628835a3a820abef7ad",
+              "size_bytes": 289383
+            },
+            {
+              "filename": "img7.gif",
+              "source_url": "https://web.archive.org/web/20010915032818id_/http://phys.columbia.edu:80/~cqft/sc98/img7.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img7.gif",
+              "archive_capture_timestamp": "20010915032818",
+              "media_type": "image/gif",
+              "width": 86,
+              "height": 25,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img7.gif",
+              "sha256": "2a84becb6461d98b29a6f3a788ca1ad450455f0f9a9233db94a702b4b14bff39",
+              "size_bytes": 209
+            },
+            {
+              "filename": "img8.gif",
+              "source_url": "https://web.archive.org/web/20010915032844id_/http://phys.columbia.edu:80/~cqft/sc98/img8.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img8.gif",
+              "archive_capture_timestamp": "20010915032844",
+              "media_type": "image/gif",
+              "width": 500,
+              "height": 514,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img8.gif",
+              "sha256": "b0dd46a1b6786a2504b52ec28d8778858f78e08a066c7647d2989f2dd1504e11",
+              "size_bytes": 99716
+            },
+            {
+              "filename": "img9.gif",
+              "source_url": "https://web.archive.org/web/20010915032933id_/http://phys.columbia.edu:80/~cqft/sc98/img9.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img9.gif",
+              "archive_capture_timestamp": "20010915032933",
+              "media_type": "image/gif",
+              "width": 91,
+              "height": 25,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img9.gif",
+              "sha256": "dd40bbc826706b2ced607b1aa94fdb189dbf4d0706cc1c2a7b0bfbe66256e20e",
+              "size_bytes": 227
+            },
+            {
+              "filename": "img10.gif",
+              "source_url": "https://web.archive.org/web/20010915041537id_/http://phys.columbia.edu:80/~cqft/sc98/img10.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img10.gif",
+              "archive_capture_timestamp": "20010915041537",
+              "media_type": "image/gif",
+              "width": 107,
+              "height": 24,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img10.gif",
+              "sha256": "a95b276a5d7964a381fe83d897baea42b598da5c0336fa1ba2db4a828458b6ad",
+              "size_bytes": 228
+            },
+            {
+              "filename": "img11.gif",
+              "source_url": "https://web.archive.org/web/20010915041629id_/http://phys.columbia.edu:80/~cqft/sc98/img11.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img11.gif",
+              "archive_capture_timestamp": "20010915041629",
+              "media_type": "image/gif",
+              "width": 550,
+              "height": 369,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img11.gif",
+              "sha256": "10a16d63481e95107e4e693e77550ce59c1b9266520a7fce1e0ba5c70449a0b4",
+              "size_bytes": 147534
+            },
+            {
+              "filename": "img12.gif",
+              "source_url": "https://web.archive.org/web/20010915041653id_/http://phys.columbia.edu:80/~cqft/sc98/img12.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img12.gif",
+              "archive_capture_timestamp": "20010915041653",
+              "media_type": "image/gif",
+              "width": 28,
+              "height": 14,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img12.gif",
+              "sha256": "cc95e36fd38e34c205eb01be5ef19e80ee8c50ab72d7f384c98728ecb78d4576",
+              "size_bytes": 95
+            },
+            {
+              "filename": "img13.gif",
+              "source_url": "https://web.archive.org/web/20010915041723id_/http://phys.columbia.edu:80/~cqft/sc98/img13.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img13.gif",
+              "archive_capture_timestamp": "20010915041723",
+              "media_type": "image/gif",
+              "width": 28,
+              "height": 14,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img13.gif",
+              "sha256": "cc95e36fd38e34c205eb01be5ef19e80ee8c50ab72d7f384c98728ecb78d4576",
+              "size_bytes": 95
+            },
+            {
+              "filename": "img14.gif",
+              "source_url": "https://web.archive.org/web/20010915041745id_/http://phys.columbia.edu:80/~cqft/sc98/img14.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img14.gif",
+              "archive_capture_timestamp": "20010915041745",
+              "media_type": "image/gif",
+              "width": 34,
+              "height": 16,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img14.gif",
+              "sha256": "4bce5db7e821bdc278c4bd2813d160675178bd4a1c3a203947548dc05c13b38c",
+              "size_bytes": 107
+            },
+            {
+              "filename": "img15.gif",
+              "source_url": "https://web.archive.org/web/20010915041838id_/http://phys.columbia.edu:80/~cqft/sc98/img15.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img15.gif",
+              "archive_capture_timestamp": "20010915041838",
+              "media_type": "image/gif",
+              "width": 34,
+              "height": 16,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img15.gif",
+              "sha256": "4bce5db7e821bdc278c4bd2813d160675178bd4a1c3a203947548dc05c13b38c",
+              "size_bytes": 107
+            },
+            {
+              "filename": "img16.gif",
+              "source_url": "https://web.archive.org/web/20010915041905id_/http://phys.columbia.edu:80/~cqft/sc98/img16.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img16.gif",
+              "archive_capture_timestamp": "20010915041905",
+              "media_type": "image/gif",
+              "width": 93,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img16.gif",
+              "sha256": "820a2790b970c5489c5e43560e4e148fec07e275bc5a3db6b9065f4cd2f30215",
+              "size_bytes": 236
+            },
+            {
+              "filename": "img17.gif",
+              "source_url": "https://web.archive.org/web/20010914235329id_/http://phys.columbia.edu:80/~cqft/sc98/img17.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img17.gif",
+              "archive_capture_timestamp": "20010914235329",
+              "media_type": "image/gif",
+              "width": 39,
+              "height": 33,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img17.gif",
+              "sha256": "b737be3be41b87c817ce59f8440e04e2e67f8349e769220700f04cececccd2a2",
+              "size_bytes": 156
+            },
+            {
+              "filename": "img18.gif",
+              "source_url": "https://web.archive.org/web/20010914235345id_/http://phys.columbia.edu:80/~cqft/sc98/img18.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img18.gif",
+              "archive_capture_timestamp": "20010914235345",
+              "media_type": "image/gif",
+              "width": 116,
+              "height": 25,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img18.gif",
+              "sha256": "d12e9c973c410ead6bebfcf5a0e2af4a4c83aaacd828ba84ea60b344b6580795",
+              "size_bytes": 251
+            },
+            {
+              "filename": "img19.gif",
+              "source_url": "https://web.archive.org/web/20010914235359id_/http://phys.columbia.edu:80/~cqft/sc98/img19.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img19.gif",
+              "archive_capture_timestamp": "20010914235359",
+              "media_type": "image/gif",
+              "width": 15,
+              "height": 16,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img19.gif",
+              "sha256": "eeeb6f3028751cbe8a10bc954eddff6c860ffd39f08ec29e62f43c74676e20d9",
+              "size_bytes": 79
+            },
+            {
+              "filename": "img20.gif",
+              "source_url": "https://web.archive.org/web/20010914235407id_/http://phys.columbia.edu:80/~cqft/sc98/img20.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img20.gif",
+              "archive_capture_timestamp": "20010914235407",
+              "media_type": "image/gif",
+              "width": 121,
+              "height": 32,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img20.gif",
+              "sha256": "0ccbf072612634f29e8a432697b7df7ad2fc1a1b42472e0fdb48c09f2174ef4a",
+              "size_bytes": 281
+            },
+            {
+              "filename": "img21.gif",
+              "source_url": "https://web.archive.org/web/20010914235419id_/http://phys.columbia.edu:80/~cqft/sc98/img21.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img21.gif",
+              "archive_capture_timestamp": "20010914235419",
+              "media_type": "image/gif",
+              "width": 78,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img21.gif",
+              "sha256": "7b808a8ba00254a8a23b3cf443774a776113668464b8199ff2c5896e784e7cd2",
+              "size_bytes": 216
+            },
+            {
+              "filename": "img22.gif",
+              "source_url": "https://web.archive.org/web/20010914235429id_/http://phys.columbia.edu:80/~cqft/sc98/img22.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img22.gif",
+              "archive_capture_timestamp": "20010914235429",
+              "media_type": "image/gif",
+              "width": 67,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img22.gif",
+              "sha256": "cbd5d74b832103c5e14391278685a5e7075dccbec76aad7c6fc4c85a0a754194",
+              "size_bytes": 199
+            },
+            {
+              "filename": "img23.gif",
+              "source_url": "https://web.archive.org/web/20010914235435id_/http://phys.columbia.edu:80/~cqft/sc98/img23.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img23.gif",
+              "archive_capture_timestamp": "20010914235435",
+              "media_type": "image/gif",
+              "width": 60,
+              "height": 29,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img23.gif",
+              "sha256": "60ccf49270289f0b31dacb61d05311656a815f0c819369866e200595189fb000",
+              "size_bytes": 169
+            },
+            {
+              "filename": "img24.gif",
+              "source_url": "https://web.archive.org/web/20010914235442id_/http://phys.columbia.edu:80/~cqft/sc98/img24.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img24.gif",
+              "archive_capture_timestamp": "20010914235442",
+              "media_type": "image/gif",
+              "width": 86,
+              "height": 14,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img24.gif",
+              "sha256": "d6e15872e9d66511db5c08f25da4515e2840c3612ff62f6e42e00935aaabe684",
+              "size_bytes": 183
+            },
+            {
+              "filename": "img25.gif",
+              "source_url": "https://web.archive.org/web/20010914235453id_/http://phys.columbia.edu:80/~cqft/sc98/img25.gif",
+              "original_url": "http://phys.columbia.edu:80/~cqft/sc98/img25.gif",
+              "archive_capture_timestamp": "20010914235453",
+              "media_type": "image/gif",
+              "width": 63,
+              "height": 31,
+              "local_reference": "歴史一次資料/初期4年度回収_20261122/SC98_QCDSP_Columbia_author_site/sc98/img25.gif",
+              "sha256": "043b00f68d1546fcfc7e04c1da86305ece3dc5cef925c5958a9ed15808412aff",
+              "size_bytes": 193
+            }
+          ]
         }
       ],
       "roster_completeness": {
@@ -23461,18 +25515,39 @@
         },
         {
           "id": "SC98-qcdsp",
-          "title": "Lattice quantum chromodynamics on the RIKEN-BNL QCD supercomputer",
-          "title_kind": "editorial_description",
-          "title_source_id": "bnl98-qcdsp",
+          "title": "QCDSP Machines: Design, Performance and Cost",
+          "title_kind": "author_hosted_conference_manuscript_title",
+          "title_source_id": "sc98_qcdsp_columbia_sc98_author_html",
           "doi": null,
           "doi_status": "not_checked",
           "doi_source_id": null,
           "publisher_title": null,
-          "authors": [],
-          "authors_status": "not_checked",
+          "authors": [
+            "Dong Chen",
+            "Ping Chen",
+            "Norman H. Christ",
+            "Robert G. Edwards",
+            "George Fleming",
+            "Alan Gara",
+            "Sten Hansen",
+            "Chulwoo Jung",
+            "Adrian Kahler",
+            "Stephen Kasow",
+            "Anthony D. Kennedy",
+            "Greg Kilcup",
+            "Yubing Luo",
+            "Catalin Malureanu",
+            "Robert D. Mawhinney",
+            "John Parsons",
+            "ChengZhong Sui",
+            "Pavlos Vranas",
+            "Yuri Zhestkov"
+          ],
+          "authors_status": "ordered_byline_checked_complete_author_manuscript",
           "publication_url": null,
           "notes": [
-            "Editorial description: the BNL bulletin PDF pp. 1–2 identifies the QCD machine and explicitly calls it a price/performance finalist at upcoming SC98. Formal entrant-paper title, DOI and full ordered byline remain unresolved."
+            "Editorial description: the BNL bulletin PDF pp. 1–2 identifies the QCD machine and explicitly calls it a price/performance finalist at upcoming SC98. Formal entrant-paper title, DOI and full ordered byline remain unresolved.",
+            "These are this author-hosted manuscript version’s fields. Publisher proceedings identity/registration and any normalization of names require a separate root decision."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -23482,6 +25557,30 @@
           },
           "bibliography_review": {
             "checked_on": "2026-11-22",
+            "status": "complete_author_manuscript_byline_checked",
+            "note": "The complete author-hosted conference manuscript supplies the title and nineteen-author byline. Earlier editorial fields are retained; the separate updated three-author submission is another version.",
+            "byline_scope": "Main HTML h1 and all nineteen ordered byline address blocks; institutional Gordon Bell page links this as Paper given at SC98",
+            "source_ids": [
+              "sc98_qcdsp_columbia_sc98_author_html"
+            ],
+            "performance_audit": "See the version-specific manuscript audit"
+          },
+          "detailed_paper_id": "SC98-qcdsp",
+          "content_status": "Selected manuscript fields checked",
+          "earlier_bibliography": {
+            "title": "Lattice quantum chromodynamics on the RIKEN-BNL QCD supercomputer",
+            "title_kind": "editorial_description",
+            "title_source_id": "bnl98-qcdsp",
+            "publisher_title": null,
+            "authors": [],
+            "authors_status": "not_checked",
+            "doi": null,
+            "doi_status": "not_checked",
+            "doi_source_id": null,
+            "publication_url": null
+          },
+          "earlier_bibliography_review": {
+            "checked_on": "2026-11-22",
             "status": "formal_title_and_byline_unresolved",
             "note": "The Brookhaven announcement identifies the computer project as a finalist, but does not supply an ordered paper byline or a uniquely matched formal candidate title.",
             "source_ids": [
@@ -23490,7 +25589,50 @@
             "performance_audit": "Not performed in this bibliography review",
             "doi_status": "unresolved",
             "next_evidence": "Original SC98 finalist paper or program giving the formal title and full byline. Do not assign a later QCDSP journal paper by similarity."
-          }
+          },
+          "authors_source_id": "sc98_qcdsp_columbia_sc98_author_html",
+          "bibliographic_versions": [
+            {
+              "kind": "SC98 conference paper linked by Columbia",
+              "title": "QCDSP Machines: Design, Performance and Cost",
+              "authors": [
+                "Dong Chen",
+                "Ping Chen",
+                "Norman H. Christ",
+                "Robert G. Edwards",
+                "George Fleming",
+                "Alan Gara",
+                "Sten Hansen",
+                "Chulwoo Jung",
+                "Adrian Kahler",
+                "Stephen Kasow",
+                "Anthony D. Kennedy",
+                "Greg Kilcup",
+                "Yubing Luo",
+                "Catalin Malureanu",
+                "Robert D. Mawhinney",
+                "John Parsons",
+                "ChengZhong Sui",
+                "Pavlos Vranas",
+                "Yuri Zhestkov"
+              ],
+              "source_id": "sc98_qcdsp_columbia_sc98_author_html"
+            },
+            {
+              "kind": "Separate updated committee submission",
+              "title": "QCDSP Submission to Gordon Bell Prize Committee — updated version",
+              "authors": [
+                "Norman H. Christ",
+                "Robert Mawhinney",
+                "Pavlos Vranas"
+              ],
+              "source_id": "sc98_qcdsp_columbia_updated_submission_text_only",
+              "not_counted_as_complete_manuscript": true
+            }
+          ],
+          "search_aliases": [
+            "Lattice quantum chromodynamics on the RIKEN-BNL QCD supercomputer"
+          ]
         }
       ],
       "notes": [
@@ -23507,7 +25649,7 @@
         "website_url": null,
         "year": 1998
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "historical_review": {
         "checked_on": "2026-11-22",
         "reviewed_record_ids": [
@@ -24525,7 +26667,9 @@
           "publication_url": null,
           "notes": [
             "The contemporary judges’ report identifies the Goedecker–Colombo tight-binding molecular-dynamics finalist. The matching 1994 publisher proceedings item establishes this title and DOI; publisher metadata supplies surnames only, preserved here. No original-paper byline audit is claimed."
-          ]
+          ],
+          "detailed_paper_id": "SC94-tight-binding",
+          "content_status": "Selected manuscript fields checked"
         },
         {
           "id": "SC94-nwt-turbulence",
@@ -24575,7 +26719,7 @@
         "website_url": "https://sc94.supercomputing.org/",
         "year": 1994
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "historical_review": {
         "checked_on": "2026-11-22",
         "reviewed_record_ids": [
@@ -25069,7 +27213,9 @@
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
           "event_label": "Gordon Bell Prize Lectures about the 1990 competition",
-          "conference_year": 1991
+          "conference_year": 1991,
+          "detailed_paper_id": "gb1990-fermat-factorization",
+          "content_status": "Selected manuscript fields checked"
         },
         {
           "id": "gb1990-f16-flow",
@@ -25197,7 +27343,7 @@
         "website_url": null,
         "year": 1991
       },
-      "detailed_paper_count": 0,
+      "detailed_paper_count": 1,
       "historical_review": {
         "checked_on": "2026-11-22",
         "reviewed_record_ids": [
@@ -25273,7 +27419,9 @@
             "Report opening section, printed p. 78; First place section, pp. 78–81. The label describes the entry, not a quoted original submission title.",
             "Names retain the named participant group in the report. No formal original-paper title or independently matched entrant-publication DOI was recovered.",
             "The judges’ report DOI 10.1109/52.28127 belongs only in source provenance and is not assigned as this entry’s DOI."
-          ]
+          ],
+          "detailed_paper_id": "gb1988-static-structures",
+          "content_status": "Selected manuscript fields checked"
         },
         {
           "id": "gb1988-spectral-fluid-flow",
@@ -25345,7 +27493,7 @@
         "website_url": null,
         "year": 1989
       },
-      "detailed_paper_count": 0
+      "detailed_paper_count": 1
     }
   ],
   "recent_rosters": [
@@ -26643,10 +28791,14 @@
     ]
   },
   "detailed_years": [
+    1988,
+    1990,
     1993,
+    1994,
     1995,
     1996,
     1997,
+    1998,
     1999,
     2000,
     2001,
@@ -26851,15 +29003,10 @@
     ],
     "summary": {
       "indexed_years": 36,
-      "manuscript_years": 32,
-      "manuscript_papers": 40,
-      "manuscript_observations": 110,
-      "awaiting_first_manuscript_years": [
-        1988,
-        1990,
-        1994,
-        1998
-      ],
+      "manuscript_years": 36,
+      "manuscript_papers": 44,
+      "manuscript_observations": 122,
+      "awaiting_first_manuscript_years": [],
       "missing_roster_years": [
         1987,
         1989,
@@ -26910,9 +29057,11 @@
         "year": 1988,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 0,
-        "manuscript_ids": [],
-        "performance_observations": 0,
+        "manuscript_audits": 1,
+        "manuscript_ids": [
+          "gb1988-static-structures"
+        ],
+        "performance_observations": 3,
         "offline_candidate_bodies": 0,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -26932,7 +29081,7 @@
           "named_entry_participants_from_contemporary_report_not_original_paper_byline": 3
         },
         "publication_byline_gaps": 0,
-        "manuscript_byline_checked_entries": 0,
+        "manuscript_byline_checked_entries": 1,
         "participants_only_entries": 3,
         "first_page_only_checks": 0,
         "award_supported_entries": 0,
@@ -26940,20 +29089,34 @@
         "other_entrant_entries": 0,
         "award_unestablished_entries": 3,
         "evidence_checked_on": [
-          "2026-11-12"
+          "2026-11-12",
+          "2026-11-22"
         ],
         "source_ids": [
           "roster-1988-committee_1988_report_author_indexed"
         ],
-        "queue_status": "needs_source_recovery",
-        "next_action": "Obtain the original committee report 1988 Gordon Bell Prize, DOI 10.1109/52.28127, via legitimate library/author access, identify report references or archived author papers for the finite-element, spectral-fluid and Crystal-compiler entries. Do not attach the report DOI as an entrant-paper DOI.",
+        "queue_status": "first_manuscript_checked",
+        "next_action": "Recover the earlier original competition submission for comparison with the 1989 author report, and identify the fourth competition entry. The later report does not establish the original or final prize score.",
         "recovery_review": {
           "year": 1988,
-          "status": "partial contemporary roster (3 of reported 4 entries); no original entrant manuscript recovered",
-          "reason": "Names and editorial descriptions come from an indexed author-upload transcription of the committee report; formal submission titles are not established. Original report requests were already unavailable in the prior pass and were not repeated.",
-          "next_primary_path": "Obtain the original committee report 1988 Gordon Bell Prize, DOI 10.1109/52.28127, via legitimate library/author access, identify report references or archived author papers for the finite-element, spectral-fluid and Crystal-compiler entries. Do not attach the report DOI as an entrant-paper DOI.",
-          "source_url": "https://www.researchgate.net/publication/3246676_1988_Gordon_Bell_Prize"
-        }
+          "status": "one_complete_later_primary_technical_report_audited_with_direct_original_submission_link",
+          "reason": "Full read of one author-uploaded NASA technical report corresponding to an 1988 competition entry. Audited report is the 1989 later version; the actual earlier submitted file and competition-final score remain unresolved.",
+          "next_action": "Recover the earlier original competition submission for comparison with the 1989 author report, and identify the fourth competition entry. The later report does not establish the original or final prize score.",
+          "evidence_file": "early_recovery_1988_manuscript_20261122.json",
+          "source_ids": [
+            "recovery_1988_simon_vu_yang_nasa_tm112081",
+            "recovery_1988_committee_transcription_identity"
+          ]
+        },
+        "earlier_recovery_reviews": [
+          {
+            "year": 1988,
+            "status": "partial contemporary roster (3 of reported 4 entries); no original entrant manuscript recovered",
+            "reason": "Names and editorial descriptions come from an indexed author-upload transcription of the committee report; formal submission titles are not established. Original report requests were already unavailable in the prior pass and were not repeated.",
+            "next_primary_path": "Obtain the original committee report 1988 Gordon Bell Prize, DOI 10.1109/52.28127, via legitimate library/author access, identify report references or archived author papers for the finite-element, spectral-fluid and Crystal-compiler entries. Do not attach the report DOI as an entrant-paper DOI.",
+            "source_url": "https://www.researchgate.net/publication/3246676_1988_Gordon_Bell_Prize"
+          }
+        ]
       },
       {
         "year": 1989,
@@ -27001,9 +29164,11 @@
         "year": 1990,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 0,
-        "manuscript_ids": [],
-        "performance_observations": 0,
+        "manuscript_audits": 1,
+        "manuscript_ids": [
+          "gb1990-fermat-factorization"
+        ],
+        "performance_observations": 2,
         "offline_candidate_bodies": 0,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -27024,7 +29189,7 @@
           "named_participants_from_primary_report_not_a_paper_byline": 8
         },
         "publication_byline_gaps": 0,
-        "manuscript_byline_checked_entries": 0,
+        "manuscript_byline_checked_entries": 1,
         "participants_only_entries": 8,
         "first_page_only_checks": 0,
         "award_supported_entries": 0,
@@ -27032,20 +29197,38 @@
         "other_entrant_entries": 0,
         "award_unestablished_entries": 12,
         "evidence_checked_on": [
-          "2026-11-12"
+          "2026-11-12",
+          "2026-11-22"
         ],
         "source_ids": [
           "roster-1990-committee_1990_report_sc1991"
         ],
-        "queue_status": "needs_source_recovery",
-        "next_action": "Legitimate author/library copy or archived Thinking Machines technical report for the exact elliptic-grid and seismic papers. Confirm original identity before using related 1992 superconductor DOI 10.1007/bf00129776 or 1993 Pascal DOI 10.1109/52.199740 as competition-paper full text.",
+        "queue_status": "first_manuscript_checked",
+        "next_action": "Recover the original 1990 competition submission and compare it with the 1993 journal account of the same F9 computation. Preserve the later publication year and journal DOI.",
         "recovery_review": {
           "year": 1990,
-          "status": "12 competition entries catalogued; first original-paper retrieval paths tried, no complete manuscript downloaded in this pass",
-          "reason": "Publisher PDF URL for Compiler parallelization of an elliptic grid generator, DOI 10.1145/125826.126020, returned HTTP 403/Cloudflare challenge. Seismic modeling, DOI 10.1145/125826.126004, failed via the web tool with HTTP 403. No challenge bypass or repeated retries. The open Netlib Gordon Bell Prize Lectures file is a judges’ report plus abstracts, not an entrant manuscript.",
-          "next_primary_path": "Legitimate author/library copy or archived Thinking Machines technical report for the exact elliptic-grid and seismic papers. Confirm original identity before using related 1992 superconductor DOI 10.1007/bf00129776 or 1993 Pascal DOI 10.1109/52.199740 as competition-paper full text.",
-          "source_url": "https://www.netlib.org/utk/people/JackDongarra/PAPERS/Gordon-Bell-Prize-Lectures.pdf"
-        }
+          "status": "one_complete_later_primary_publication_audited_original_submission_file_unrecovered",
+          "reason": "One complete primary journal account of a1990 competition entry, recovered through EPFL and identified by the contemporary committee entry description. Later publication version is explicit; submitted1990manuscript file is not recovered.",
+          "next_action": "Recover the original 1990 competition submission and compare it with the 1993 journal account of the same F9 computation. Preserve the later publication year and journal DOI.",
+          "evidence_file": "early_recovery_1990_manuscript_20261122.json",
+          "source_ids": [
+            "recovery_1990_f9_epfl_fulltext",
+            "recovery_1990_committee_identity",
+            "recovery_1990_f9_crossref",
+            "recovery_1990_lenstra_author_index",
+            "recovery_1990_superconductor_tr_citation",
+            "recovery_1990_ginatempo_author_identity"
+          ]
+        },
+        "earlier_recovery_reviews": [
+          {
+            "year": 1990,
+            "status": "12 competition entries catalogued; first original-paper retrieval paths tried, no complete manuscript downloaded in this pass",
+            "reason": "Publisher PDF URL for Compiler parallelization of an elliptic grid generator, DOI 10.1145/125826.126020, returned HTTP 403/Cloudflare challenge. Seismic modeling, DOI 10.1145/125826.126004, failed via the web tool with HTTP 403. No challenge bypass or repeated retries. The open Netlib Gordon Bell Prize Lectures file is a judges’ report plus abstracts, not an entrant manuscript.",
+            "next_primary_path": "Legitimate author/library copy or archived Thinking Machines technical report for the exact elliptic-grid and seismic papers. Confirm original identity before using related 1992 superconductor DOI 10.1007/bf00129776 or 1993 Pascal DOI 10.1109/52.199740 as competition-paper full text.",
+            "source_url": "https://www.netlib.org/utk/people/JackDongarra/PAPERS/Gordon-Bell-Prize-Lectures.pdf"
+          }
+        ]
       },
       {
         "year": 1991,
@@ -27177,7 +29360,7 @@
           "roster-1993-karp_1993_finalist_announcement"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit.",
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
         "recovery_review": {
           "year": 1993,
           "status": "first author-manuscript body audit completed for sc1993-molecular-dynamics",
@@ -27190,9 +29373,11 @@
         "year": 1994,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 0,
-        "manuscript_ids": [],
-        "performance_observations": 0,
+        "manuscript_audits": 1,
+        "manuscript_ids": [
+          "SC94-tight-binding"
+        ],
+        "performance_observations": 3,
         "offline_candidate_bodies": 0,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -27214,7 +29399,7 @@
           "not_checked": 1
         },
         "publication_byline_gaps": 1,
-        "manuscript_byline_checked_entries": 0,
+        "manuscript_byline_checked_entries": 1,
         "participants_only_entries": 0,
         "first_page_only_checks": 0,
         "award_supported_entries": 0,
@@ -27228,8 +29413,8 @@
         "source_ids": [
           "roster-1994-judges94"
         ],
-        "queue_status": "partial_scan_needs_complete_manuscript",
-        "next_action": "Obtain a complete original candidate version before adding a 1994 completed detailed paper. Continue the first-paper pass with preserved 1997 proceedings HTML.",
+        "queue_status": "first_manuscript_checked",
+        "next_action": "Compare the five-page CTC94TR183 author report with the three-page SC94 publication. Recover complete versions for the remaining candidates; the boundary-elements scan still lacks its opening body page.",
         "partial_manuscript_review": {
           "note": "An original-submission scan is missing its opening body page. Four selected performance observations were inspected, but this partial scan is excluded from completed manuscript and performance totals.",
           "source_ids": [
@@ -27267,6 +29452,32 @@
             ],
             "note": "Official program gives a formal NWT session title and participant order. This is program metadata, not an original-paper-byline or delivered-presentation audit; conflicts with publisher metadata are unresolved."
           }
+        },
+        "recovery_review": {
+          "year": 1994,
+          "status": "complete_author_report_recovered_and_audited",
+          "reason": "One complete 1994 candidate-work author technical report recovered and fully audited; all earlier failed routes and the other three candidate checks are retained. Direct author self-citation establishes the report/SC94-publication relationship; source-specific values are not final scores.",
+          "next_action": "Compare the five-page CTC94TR183 author report with the three-page SC94 publication. Recover complete versions for the remaining candidates; the boundary-elements scan still lacks its opening body page.",
+          "evidence_file": "early_recovery_1994_manuscript_20261122.json",
+          "source_ids": [
+            "early_recovery_1994_womble_author_page_19970214",
+            "early_recovery_1994_sandia_author_cdx",
+            "early_recovery_1994_osti_boundary_search",
+            "early_recovery_1994_osti_reacting_search",
+            "early_recovery_1994_cdx_sandia_ftp_allstatus",
+            "early_recovery_1994_cdx_cornell_bitstreams",
+            "early_recovery_1994_cdx_cornell_library_bitstreams",
+            "early_recovery_1994_ntrs_nwt_search",
+            "early_recovery_1994_existing_osti_partial_scan",
+            "early_recovery_1994_cornell_current_landing",
+            "early_recovery_1994_cornell_current_item_metadata",
+            "early_recovery_1994_cornell_current_bundles",
+            "early_recovery_1994_cornell_pdf_metadata",
+            "early_recovery_1994_goedecker_selfcitation_1998",
+            "early_recovery_1994_sc94_tight_acm_metadata",
+            "early_recovery_1994_cornell_ctc94tr183_author_pdf",
+            "early_recovery_1994_cornell_ctc94tr183_vision_ocr"
+          ]
         }
       },
       {
@@ -27313,7 +29524,7 @@
           "roster-1995-csdl95-toc"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 1996,
@@ -27359,7 +29570,7 @@
           "roster-1996-judges96"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 1997,
@@ -27407,15 +29618,17 @@
           "roster-1997-sc97-preserved-WARREN"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 1998,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 0,
-        "manuscript_ids": [],
-        "performance_observations": 0,
+        "manuscript_audits": 1,
+        "manuscript_ids": [
+          "SC98-qcdsp"
+        ],
+        "performance_observations": 4,
         "offline_candidate_bodies": 0,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -27432,10 +29645,11 @@
         "verified_dois": 0,
         "unresolved_dois": 2,
         "byline_status_counts": {
-          "not_checked": 2
+          "not_checked": 1,
+          "ordered_byline_checked_complete_author_manuscript": 1
         },
-        "publication_byline_gaps": 2,
-        "manuscript_byline_checked_entries": 0,
+        "publication_byline_gaps": 1,
+        "manuscript_byline_checked_entries": 1,
         "participants_only_entries": 0,
         "first_page_only_checks": 0,
         "award_supported_entries": 0,
@@ -27452,55 +29666,21 @@
           "roster-1998-paper98",
           "roster-1998-bnl98-qcdsp"
         ],
-        "queue_status": "needs_source_recovery",
-        "next_action": "Recover the original SC98 CD-ROM Gordon Bell section from an independently available public archive, or an author/institution copy explicitly identified as this submission.; Use official SC98 Gordon Bell session/CD-ROM candidate entry as the identity anchor.",
+        "queue_status": "first_manuscript_checked",
+        "next_action": "Recover the exact proceedings registration/DOI and compare with this nineteen-author conference paper. Check the separate three-author updated submission independently, and identify the other two candidates.",
         "recovery_review": {
           "year": 1998,
-          "status": "original_manuscript_not_acquired_dated_preconference_update_preserved",
-          "reason": "Complete original candidate manuscript not obtained after an author-associated route and independent OSTI searches. Institutional competition reports were not substituted for submitted papers.",
-          "next_primary_path": "Recover the original SC98 CD-ROM Gordon Bell section from an independently available public archive, or an author/institution copy explicitly identified as this submission.; Use official SC98 Gordon Bell session/CD-ROM candidate entry as the identity anchor.",
-          "candidate_statuses": [
-            {
-              "roster_id": "SC98-magnetism",
-              "formal_title": "High performance first principles method for complex magnetic properties",
-              "manuscript_status": "Identified from an author-associated publication page and a search-indexed original-submission excerpt; complete binary and page images not obtained.",
-              "doi_status": "unresolved_not_filled",
-              "attempts": [
-                {
-                  "route": "Author-associated manuscript page",
-                  "url": "https://www.researchgate.net/publication/234803976_High_performance_first_principles_method_for_complex_magnetic_properties",
-                  "result": "Search index exposes original-submission text and byline, but direct page open returned HTTP 429. No raw PDF hash, page-complete read, or full-text verification is claimed."
-                },
-                {
-                  "route": "Independent official OSTI search",
-                  "url": "https://www.osti.gov/api/v1/records?search=%22High%20performance%20first%20principles%22",
-                  "result": "Returned related reports, including NERSC annual report and Building the Teraflops/Petabytes Production Computing Center, but no matching original candidate manuscript."
-                },
-                {
-                  "route": "Independent official OSTI alternate-title-fragment search",
-                  "url": "https://www.osti.gov/api/v1/records?search=%22complex%20magnetic%20properties%22",
-                  "result": "Returned unrelated materials publications; no matching candidate manuscript."
-                },
-                {
-                  "route": "Official SC98 site",
-                  "url": "https://sc98.supercomputing.org/",
-                  "result": "Not accessible through the available web open tool. No URL guessing or inaccessible original full-text claim."
-                }
-              ],
-              "next_routes": [
-                "Recover the original SC98 CD-ROM Gordon Bell section from an independently available public archive, or an author/institution copy explicitly identified as this submission.",
-                "Use the nine-name original-submission byline as a discovery lead, but verify against the acquired manuscript before replacing the roster author field.",
-                "Locate a separately dated delivered-presentation source if establishing the final conference score."
-              ]
-            },
-            {
-              "roster_id": "SC98-qcdsp",
-              "manuscript_status": "Original entrant-paper title, ordered byline and DOI remain unresolved; bounded pass did not replace this with a later QCDSP/QCDOC overview.",
-              "next_routes": [
-                "Use official SC98 Gordon Bell session/CD-ROM candidate entry as the identity anchor.",
-                "Check contemporary Columbia/BNL author publication records after identifying the exact submission title."
-              ]
-            }
+          "status": "complete_author_hosted_sc98_conference_html_recovered",
+          "reason": "One first complete manuscript audit for an existing 1998 candidate; preserve all prior roster and institutional-event evidence.",
+          "next_action": "Recover the exact proceedings registration/DOI and compare with this nineteen-author conference paper. Check the separate three-author updated submission independently, and identify the other two candidates.",
+          "evidence_file": "early_recovery_1998_manuscript_20261122.json",
+          "source_ids": [
+            "sc98_qcdsp_columbia_sc98_author_html",
+            "sc98_qcdsp_columbia_sc98_references",
+            "sc98_qcdsp_columbia_sc98_footnotes",
+            "sc98_qcdsp_columbia_gordon_bell_linkage",
+            "sc98_qcdsp_columbia_updated_submission_text_only",
+            "sc98_qcdsp_related_lattice98_discovery_reference"
           ]
         },
         "separate_performance_events": [
@@ -27580,6 +29760,57 @@
             ],
             "note": "Separate retrospective event, not merged with the 1.02 TFLOP/s weekend update; this event is not a substitute for manuscript verification."
           }
+        ],
+        "earlier_recovery_reviews": [
+          {
+            "year": 1998,
+            "status": "original_manuscript_not_acquired_dated_preconference_update_preserved",
+            "reason": "Complete original candidate manuscript not obtained after an author-associated route and independent OSTI searches. Institutional competition reports were not substituted for submitted papers.",
+            "next_primary_path": "Recover the original SC98 CD-ROM Gordon Bell section from an independently available public archive, or an author/institution copy explicitly identified as this submission.; Use official SC98 Gordon Bell session/CD-ROM candidate entry as the identity anchor.",
+            "candidate_statuses": [
+              {
+                "roster_id": "SC98-magnetism",
+                "formal_title": "High performance first principles method for complex magnetic properties",
+                "manuscript_status": "Identified from an author-associated publication page and a search-indexed original-submission excerpt; complete binary and page images not obtained.",
+                "doi_status": "unresolved_not_filled",
+                "attempts": [
+                  {
+                    "route": "Author-associated manuscript page",
+                    "url": "https://www.researchgate.net/publication/234803976_High_performance_first_principles_method_for_complex_magnetic_properties",
+                    "result": "Search index exposes original-submission text and byline, but direct page open returned HTTP 429. No raw PDF hash, page-complete read, or full-text verification is claimed."
+                  },
+                  {
+                    "route": "Independent official OSTI search",
+                    "url": "https://www.osti.gov/api/v1/records?search=%22High%20performance%20first%20principles%22",
+                    "result": "Returned related reports, including NERSC annual report and Building the Teraflops/Petabytes Production Computing Center, but no matching original candidate manuscript."
+                  },
+                  {
+                    "route": "Independent official OSTI alternate-title-fragment search",
+                    "url": "https://www.osti.gov/api/v1/records?search=%22complex%20magnetic%20properties%22",
+                    "result": "Returned unrelated materials publications; no matching candidate manuscript."
+                  },
+                  {
+                    "route": "Official SC98 site",
+                    "url": "https://sc98.supercomputing.org/",
+                    "result": "Not accessible through the available web open tool. No URL guessing or inaccessible original full-text claim."
+                  }
+                ],
+                "next_routes": [
+                  "Recover the original SC98 CD-ROM Gordon Bell section from an independently available public archive, or an author/institution copy explicitly identified as this submission.",
+                  "Use the nine-name original-submission byline as a discovery lead, but verify against the acquired manuscript before replacing the roster author field.",
+                  "Locate a separately dated delivered-presentation source if establishing the final conference score."
+                ]
+              },
+              {
+                "roster_id": "SC98-qcdsp",
+                "manuscript_status": "Original entrant-paper title, ordered byline and DOI remain unresolved; bounded pass did not replace this with a later QCDSP/QCDOC overview.",
+                "next_routes": [
+                  "Use official SC98 Gordon Bell session/CD-ROM candidate entry as the identity anchor.",
+                  "Check contemporary Columbia/BNL author publication records after identifying the exact submission title."
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -27627,7 +29858,7 @@
           "roster-1999-csdl99-finalists"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2000,
@@ -27675,7 +29906,7 @@
           "roster-2000-csdl00-toc"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2001,
@@ -27723,7 +29954,7 @@
           "roster-2001-makino01-award-certificate"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2002,
@@ -27773,7 +30004,7 @@
           "roster-2002-sc02-preserved-pap331"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2003,
@@ -27821,7 +30052,7 @@
           "roster-2003-sc03_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2004,
@@ -27869,7 +30100,7 @@
           "roster-2004-sc04-preserved-pap231"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2005,
@@ -27920,7 +30151,7 @@
           "roster-2005-sc05-preserved-pap307"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2006,
@@ -27966,7 +30197,7 @@
           "roster-2006-sc06_preserved_finalist_announcement"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2007,
@@ -28011,7 +30242,7 @@
           "roster-2007-sc07_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2008,
@@ -28060,7 +30291,7 @@
           "roster-2008-sc08_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2009,
@@ -28105,7 +30336,7 @@
           "roster-2009-sc09_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2010,
@@ -28150,7 +30381,7 @@
           "roster-2010-sc10_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2011,
@@ -28195,7 +30426,7 @@
           "roster-2011-sc11_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2012,
@@ -28240,7 +30471,7 @@
           "roster-2012-sc12-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2013,
@@ -28285,7 +30516,7 @@
           "roster-2013-sc13-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2014,
@@ -28330,7 +30561,7 @@
           "roster-2014-sc14-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2015,
@@ -28375,7 +30606,7 @@
           "roster-2015-sc15-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2016,
@@ -28420,7 +30651,7 @@
           "roster-2016-sc16-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2017,
@@ -28465,7 +30696,7 @@
           "roster-2017-sc17-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2018,
@@ -28512,7 +30743,7 @@
           "roster-2018-sc18_count"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2019,
@@ -28558,7 +30789,7 @@
           "roster-2019-sc19_final_program_pdf"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2020,
@@ -28603,7 +30834,7 @@
           "roster-2020-sc20_awards"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2021,
@@ -28650,7 +30881,7 @@
           "roster-2021-sc21_awards"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2022,
@@ -28696,7 +30927,7 @@
           "roster-2022-sc22_s2"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2023,
@@ -28742,7 +30973,7 @@
           "roster-2023-sc23_program"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2024,
@@ -28788,7 +31019,7 @@
           "roster-2024-sc24-program"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2025,
@@ -28844,7 +31075,7 @@
           "roster-2025-sc25_session_590"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
       },
       {
         "year": 2026,
@@ -28899,7 +31130,7 @@
           "roster-2026-sc26-day-2026-11-21"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "First manuscript checked; defer further papers until other readable years have a first audit.",
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
         "doi_resolution_note": "Six publisher-assigned DOIs returned HTTP 404 in the separate 22 November postconference check; identifier matching and resolver availability are distinct.",
         "performance_history_note": "The earlier ElMerFold first-page baseline and institutional event remain separate evidence. A complete manuscript version now has its own detailed audit; none of these establishes a final conference score."
       }
@@ -29076,6 +31307,44 @@
       "blocked": [],
       "pending_years": [],
       "note": "One complete manuscript per previously untouched year. First-page checks, incomplete scans and institutional reports remain separate. Prior manuscript and conference-update evidence is preserved."
+    },
+    "early_recovery": {
+      "checked_on": "2026-11-22",
+      "target_years": [
+        1988,
+        1990,
+        1994,
+        1998
+      ],
+      "completed": [
+        {
+          "year": 1988,
+          "id": "gb1988-static-structures",
+          "observations": 3,
+          "evidence_file": "early_recovery_1988_manuscript_20261122.json"
+        },
+        {
+          "year": 1990,
+          "id": "gb1990-fermat-factorization",
+          "observations": 2,
+          "evidence_file": "early_recovery_1990_manuscript_20261122.json"
+        },
+        {
+          "year": 1994,
+          "id": "SC94-tight-binding",
+          "observations": 3,
+          "evidence_file": "early_recovery_1994_manuscript_20261122.json"
+        },
+        {
+          "year": 1998,
+          "id": "SC98-qcdsp",
+          "observations": 4,
+          "evidence_file": "early_recovery_1998_manuscript_20261122.json"
+        }
+      ],
+      "blocked": [],
+      "pending_years": [],
+      "note": "Complete reviewed versions are distinguished from original submissions, incomplete scans, institutional announcements and final conference scores."
     }
   }
 }
