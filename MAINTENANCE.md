@@ -96,7 +96,7 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 公開15例のLinux継続検証は `.github/workflows/atlas-public-linux.yml`。Ubuntu 24.04 / Python 3.12の新しいジョブで、ソースcheckoutや依存キャッシュを使わず、公開URLから取得する `scripts/run-atlas-public-ci.py`・verifier・registry builder・実行台帳をSHA-256で固定する。`update-atlas-ci-pins.py` は通常refresh内でこの4つの期待値を更新するため、ツールや台帳を変更したらPagesの公開成功後にCIを実行する。公開manifestでrequirementsを照合し、新規venvへ固定依存を導入してから、公開ZIP・入力・参照だけで15例を14コマンド実行する。原子2例は同じrunnerを共有する。PySCF参照の再生成、全60問題、配布版pytest全件とは別の検証として記録する。
 
-実行契機は手動・毎週月曜12:17（日本時間）・mainのPages公開成功後。CIの権限は読み取りだけで、サイトへの自動commitは行わない。通常の取得・依存導入・実行・数値判定の失敗でも、段階・環境・ハッシュ・ログ・生成JSON/CSVをActions成果物として90日保持する。`verify-atlas-execution-examples.py --artifacts-dir ... --expected-registry-sha256 ... --output ...` は途中の失敗も保存し、元の数値判定基準を変更しない。公開済み配布版と過去の検証記録は上書きしない。
+実行契機は手動・毎週月曜12:17（日本時間）・mainのPublic site checks成功後。公開ツールと台帳のSHA-256が揃うまで最大240秒待ってから実行する。CIの権限は読み取りだけで、サイトへの自動commitは行わない。通常の取得・依存導入・実行・数値判定の失敗でも、段階・環境・ハッシュ・ログ・生成JSON/CSVをActions成果物として90日保持する。`verify-atlas-execution-examples.py --artifacts-dir ... --expected-registry-sha256 ... --output ...` は途中の失敗も保存し、元の数値判定基準を変更しない。公開済み配布版と過去の検証記録は上書きしない。
 
 CI案内の正本は `catalog/atlas-ci.json`、生成は `build-atlas-ci-page.py`。`numerical-methods-atlas/code-and-data/ci/` に最新状態への参照と、日付・run・registry SHAを持つ保存済み記録を分けて表示する。成功したrunのレポートを保存するときは、Actions成果物の `ci-summary.json` と `report.json` を確認し、新しい `ci/verification/` のJSONへrun URL等とともに収め、snapshotsへ追加して再生成する。古い成功記録を最新の成功と呼ばず、台帳SHAが変わった場合も履歴と現行条件を区別する。
 

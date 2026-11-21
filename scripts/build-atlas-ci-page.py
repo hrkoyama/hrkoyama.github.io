@@ -189,7 +189,8 @@ def render(config,current,snapshots,lang):
     body+=paragraph(definitions['limits'][lang],'ci-note')
     body+='<dl class="ci-operations">'
     operations=[('実行環境' if ja else 'Environment',environment['runner']+' / Python '+environment['python']),
-                ('実行の契機' if ja else 'Triggers',('手動、'+config['cadence']['weekly'][lang]+'、Pages公開成功後' if ja else 'Manual, '+config['cadence']['weekly'][lang]+', and after successful Pages deployment')),
+                ('実行の契機' if ja else 'Triggers',('手動、'+config['cadence']['weekly'][lang]+'、サイト検査成功後（公開URLの版照合を待つ）' if ja else 'Manual, '+config['cadence']['weekly'][lang]+', and after successful site checks (waiting for matching public versions)')),
+                ('公開版の確認' if ja else 'Publication gate',config['cadence']['publication_gate'][lang]),
                 ('依存関係' if ja else 'Dependencies',environment['dependency_policy'][lang]),
                 ('時間上限' if ja else 'Timeouts',(f'各コマンド{environment["runner_timeout_seconds"]}秒、CI全体{environment["workflow_timeout_minutes"]}分' if ja else f'{environment["runner_timeout_seconds"]} seconds per command; {environment["workflow_timeout_minutes"]} minutes overall')),
                 ('台帳のSHA-256' if ja else 'Current registry SHA-256',current['sha256'])]

@@ -19,7 +19,13 @@
       "ja": "毎週月曜 03:17 UTC（12:17 日本時間）",
       "en": "Mondays at 03:17 UTC (12:17 JST)"
     },
-    "after_pages_success": true
+    "after_pages_success": false,
+    "after_site_checks_success": true,
+    "public_version_wait_seconds": 240,
+    "publication_gate": {
+      "ja": "サイト検査が成功した後に起動し、検査ツールと公開台帳のSHA-256が揃うまで最大240秒待って実行します。",
+      "en": "Start after successful site checks and wait up to 240 seconds for the public tools and registry to match their reviewed SHA-256 values."
+    }
   },
   "environment": {
     "runner": "ubuntu-24.04",
@@ -90,11 +96,44 @@
       }
     ]
   },
-  "snapshots": [],
+  "snapshots": [
+    {
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-linux.json",
+      "verified_on": "2026-11-21T23:12:59.026718+00:00",
+      "verified_utc": "2026-11-21 23:12 UTC",
+      "verified_jst": "2026-11-22 08:12 JST",
+      "run_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/44960654003",
+      "artifact_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/44960654003/artifacts/14729840437",
+      "run_id": "44960654003",
+      "attempt": 1,
+      "workflow_commit": "4de206d8d66542b51aace58bccd5cdffb67cc2f0",
+      "environment": {
+        "operating_system": "Linux",
+        "machine": "x86_64",
+        "thread_limits": {
+          "OPENBLAS_NUM_THREADS": 1,
+          "OMP_NUM_THREADS": 1,
+          "MKL_NUM_THREADS": 1
+        },
+        "python": "3.12.16",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.4"
+      },
+      "registry_sha256": "ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632",
+      "registry_matches_current": true,
+      "example_count": 15,
+      "runner_count": 14,
+      "example_ids_match_current": true,
+      "recorded_success": true,
+      "scope": "Only the 15 curated public execution examples. Atomic cases share one runner. Separate from packaged pytest checks, PySCF reference regeneration, all 60 atlas problems and general solver certification.",
+      "sha256": "e5c45fd29864fe858e2827381a55b5901b3b0e51b66cc2e182b4745bfb5c8422"
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "bb9dc86753715e70f61237a6b4316bcb0c26d5723b7913a24d2806453414c9d7"
+    "sha256": "474f3a9d683b61793db36f4f74e4346ad126899fe7fcdcbd782085080d4ee3b5"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",

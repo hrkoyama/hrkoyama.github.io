@@ -43,6 +43,57 @@ test('the Linux public-artifact job has matching immutable pins, no checkout, bo
   assert.doesNotMatch(workflow, /\$\{\{\s*secrets\./);
 });
 
+test('the embedded publication wait saves a bootstrap only after all four public hashes match and fails without saving it on timeout', () => {
+  python(String.raw`
+import re, textwrap, time
+workflow=(ROOT/'.github/workflows/atlas-public-linux.yml').read_text()
+blocks=re.findall(r"^\s*python - <<'PY'\n(.*?)^\s*PY\s*$",workflow,re.MULTILINE|re.DOTALL)
+assert len(blocks)==1,'Exercise the actual download block, not a duplicate implementation'
+block=compile(textwrap.dedent(blocks[0]),'workflow-publication-wait','exec')
+sources=[('scripts/run-atlas-public-ci.py','ATLAS_BOOTSTRAP_SHA256'),
+         ('scripts/verify-atlas-execution-examples.py','ATLAS_VERIFIER_SHA256'),
+         ('scripts/build-atlas-execution-examples.py','ATLAS_BUILDER_SHA256'),
+         ('numerical-methods-atlas/code-and-data/examples.json','ATLAS_REGISTRY_SHA256')]
+payloads={path:(ROOT/path).read_bytes() for path,key in sources}
+class Response(io.BytesIO):pass
+for scenario in ['matched','delayed-fourth','timeout']:
+ with tempfile.TemporaryDirectory() as tmp:
+  directory=pathlib.Path(tmp);report=directory/'report';report.mkdir();clock=[0.];calls=[];sleeps=[]
+  saved=directory/'atlas-public-bootstrap.py';receipt=report/'publication-checks.json'
+  environment={key:hashlib.sha256(payloads[path]).hexdigest() for path,key in sources}
+  environment.update(REPORT_DIR=str(report),RUNNER_TEMP=str(directory))
+  def open_public(request,**kwargs):
+   assert not saved.exists() and not receipt.exists(),'Never publish a partial acquisition'
+   assert kwargs['timeout']>0
+   path=request.full_url.removeprefix('https://hrkoyama.github.io/')
+   assert path in payloads,'Only the four expected public files may be requested'
+   calls.append(path);payload=payloads[path]
+   if path==sources[-1][0] and (scenario=='timeout' or (scenario=='delayed-fourth' and not sleeps)):
+    payload=b'previous public version'
+   return Response(payload)
+  def sleep(seconds):
+   assert not saved.exists() and not receipt.exists(),'A retry must not leave an executable bootstrap'
+   assert seconds>0;sleeps.append(seconds);clock[0]+=seconds
+  opener=mock.Mock();opener.open.side_effect=open_public
+  with mock.patch.dict(os.environ,environment,clear=True),mock.patch.object(urllib.request,'build_opener',return_value=opener),mock.patch.object(time,'monotonic',side_effect=lambda:clock[0]),mock.patch.object(time,'sleep',side_effect=sleep):
+   try:exec(block,{})
+   except RuntimeError as error:
+    assert scenario=='timeout',str(error)
+    assert 'expected versions' in str(error)
+   else:assert scenario!='timeout','Mismatched public files must not time out successfully'
+  assert calls[:4]==[path for path,key in sources]
+  if scenario=='timeout':
+   assert clock[0]>=240 and sleeps
+   assert not saved.exists() and not receipt.exists()
+  else:
+   assert saved.read_bytes()==payloads[sources[0][0]]
+   records=json.loads(receipt.read_text());assert len(records)==4
+   assert [(row['url'],row['sha256']) for row in records]==[('https://hrkoyama.github.io/'+path,environment[key]) for path,key in sources]
+   if scenario=='matched':assert not sleeps and len(calls)==4
+   else:assert sleeps and len(calls)==8
+`);
+});
+
 test('nonfinite or boolean numerical output cannot create a successful or unserializable failure receipt', () => {
   python(String.raw`
 example=json.loads((ROOT/'catalog/atlas-execution-examples.json').read_text())['examples'][0]

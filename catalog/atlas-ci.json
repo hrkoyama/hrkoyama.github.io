@@ -19,7 +19,13 @@
       "ja": "毎週月曜 03:17 UTC（12:17 日本時間）",
       "en": "Mondays at 03:17 UTC (12:17 JST)"
     },
-    "after_pages_success": true
+    "after_pages_success": false,
+    "after_site_checks_success": true,
+    "public_version_wait_seconds": 240,
+    "publication_gate": {
+      "ja": "サイト検査が成功した後に起動し、検査ツールと公開台帳のSHA-256が揃うまで最大240秒待って実行します。",
+      "en": "Start after successful site checks and wait up to 240 seconds for the public tools and registry to match their reviewed SHA-256 values."
+    }
   },
   "environment": {
     "runner": "ubuntu-24.04",
@@ -90,5 +96,7 @@
       }
     ]
   },
-  "snapshots": []
+  "snapshots": [
+    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-linux.json"
+  ]
 }

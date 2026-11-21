@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-21-3e61ebab27
-Captured (UTC): 2026-11-21T23:08:55+00:00
+Snapshot: 2026-11-21-a494c567a8
+Captured (UTC): 2026-11-21T23:16:16+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -7211,9 +7211,9 @@ Explore the eight-area field map · Introduction and bilingual sharing materials
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
-In progress / publication check pending
+Current scope published and checked
 Fetch the public registry, distribution ZIPs, fixed inputs and saved references in a fresh Ubuntu 24.04 / Python 3.12 job, recording dependency setup and numerical decisions for fifteen cases. Preserve the original criteria, immutable editions and historical verification records.
-Current CI status and dated verification records
+Current CI status and dated verification records · First successful Linux receipt / JSON · First Linux run in Actions
 
 ## Implementation roadmap — Check execution, retrieval and citation using public releases only [en]
 
@@ -14662,9 +14662,9 @@ Poisson・Barnes–Hut・H/Heを代表例として、得られる判断、条件
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
-実装中・公開確認待ち
+今回の範囲を公開確認済み
 Ubuntu 24.04・Python 3.12の新しい環境で公開台帳・配布ZIP・固定入力・保存参照を取得し、依存導入から15問題の数値判定までを記録。元の数値基準と公開済みコード版・検証記録を保持する。
-最新CI状態と日付付き確認記録
+最新CI状態と日付付き確認記録 · 初回Linux成功記録 / JSON · 初回Linux実行のActions記録
 
 ## 実装ロードマップ — 公開配布だけを使う実行・取得・引用の確認 [ja]
 

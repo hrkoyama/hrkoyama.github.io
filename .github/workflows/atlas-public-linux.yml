@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '17 3 * * 1'
   workflow_run:
-    workflows: ['pages build and deployment']
+    workflows: ['Public site checks']
     branches: [main]
     types: [completed]
 
@@ -74,19 +74,41 @@ jobs:
           set -euo pipefail
           {
             python - <<'PY'
-          import hashlib, os, urllib.error, urllib.request
+          import hashlib, json, os, time, urllib.error, urllib.request
           from pathlib import Path
           class NoRedirect(urllib.request.HTTPRedirectHandler):
               def redirect_request(self, request, response, code, message, headers, new_url):
                   raise ValueError('Bootstrap redirects are not accepted')
-          url = 'https://hrkoyama.github.io/scripts/run-atlas-public-ci.py'
           opener = urllib.request.build_opener(NoRedirect())
-          request = urllib.request.Request(url, headers={'User-Agent': 'Atlas-public-Linux-CI/1.0'})
-          with opener.open(request, timeout=60) as response:
-              data = response.read(1_000_001)
-          if len(data) > 1_000_000 or hashlib.sha256(data).hexdigest() != os.environ['ATLAS_BOOTSTRAP_SHA256']:
-              raise ValueError('Public CI bootstrap SHA-256 mismatch')
-          Path(os.environ['RUNNER_TEMP'], 'atlas-public-bootstrap.py').write_bytes(data)
+          sources = [
+              ('scripts/run-atlas-public-ci.py', 'ATLAS_BOOTSTRAP_SHA256'),
+              ('scripts/verify-atlas-execution-examples.py', 'ATLAS_VERIFIER_SHA256'),
+              ('scripts/build-atlas-execution-examples.py', 'ATLAS_BUILDER_SHA256'),
+              ('numerical-methods-atlas/code-and-data/examples.json', 'ATLAS_REGISTRY_SHA256')]
+          deadline = time.monotonic() + 240
+          attempt = 0
+          while True:
+              attempt += 1
+              receipts, payloads = [], {}
+              try:
+                  for path, key in sources:
+                      url = 'https://hrkoyama.github.io/' + path
+                      request = urllib.request.Request(url, headers={'User-Agent': 'Atlas-public-Linux-CI/1.0'})
+                      with opener.open(request, timeout=30) as response:
+                          data = response.read(1_000_001)
+                      sha = hashlib.sha256(data).hexdigest()
+                      if len(data) > 1_000_000 or sha != os.environ[key]:
+                          raise ValueError('Public version not yet matched: ' + path)
+                      payloads[path] = data
+                      receipts.append({'url': url, 'sha256': sha})
+                  break
+              except (OSError, ValueError, urllib.error.URLError):
+                  if time.monotonic() >= deadline:
+                      raise RuntimeError('Public artifacts did not reach the expected versions within 240 seconds')
+                  print('Waiting for the reviewed public artifacts, attempt ' + str(attempt), flush=True)
+                  time.sleep(10)
+          Path(os.environ['REPORT_DIR'], 'publication-checks.json').write_text(json.dumps(receipts, indent=2) + '\n')
+          Path(os.environ['RUNNER_TEMP'], 'atlas-public-bootstrap.py').write_bytes(payloads[sources[0][0]])
           PY
             cd "$(mktemp -d)"
             python "$RUNNER_TEMP/atlas-public-bootstrap.py" \
