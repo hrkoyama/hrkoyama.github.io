@@ -11,7 +11,8 @@ function awardLabel(p) { return p.award?.label || (p.award_status?.startsWith('S
 function reviewedVersions(p) { return (p.reviewed_versions || [{evidence_stage:'preserved_proceedings_manuscript',source_revision_date:null}]).map(v=>stageLabel(v)+(v.source_revision_date?' · '+v.source_revision_date:'')).join('; '); }
 function fillSelect(id, values) { for (const value of [...new Set(values)].sort()) { const o = document.createElement('option'); o.value = value; o.textContent = value; $(id).append(o); } }
 function catalogueMatches(p,r,q) {
-  return !q || [p.title,p.publisher_title,p.doi,r.year,...p.authors,...(p.search_aliases||[]),p.award_result?.label,p.award_result?.category,...(p.award_result?.recipients||[]),...(p.award_result?.claims||[]).flatMap(c=>[c.outcome,c.category,c.project_title_as_printed,...(c.recipients||[])]),...(p.bibliography_review?.named_participants||[]),...(p.bibliographic_versions||[]).flatMap(v=>v.authors||[]),...(db.papers.find(d=>d.id===p.detailed_paper_id)?.machines||[])].join(' ').toLowerCase().includes(q);
+  const detailed=db.papers.find(d=>d.id===p.detailed_paper_id);
+  return !q || [p.title,p.publisher_title,p.doi,r.year,...p.authors,...(p.search_aliases||[]),p.award_result?.label,p.award_result?.category,...(p.award_result?.recipients||[]),...(p.award_result?.claims||[]).flatMap(c=>[c.outcome,c.category,c.project_title_as_printed,...(c.recipients||[])]),...(p.bibliography_review?.named_participants||[]),...(p.bibliographic_versions||[]).flatMap(v=>v.authors||[]),detailed?.title,...(detailed?.authors||[]),...(detailed?.title_aliases||[]).map(a=>a.title),...(detailed?.machines||[])].join(' ').toLowerCase().includes(q);
 }
 function catalogueMatchCount(q) { return (db.annual_rosters||db.recent_rosters).reduce((n,r)=>n+r.records.filter(p=>catalogueMatches(p,r,q)).length,0); }
 function syncArchiveSearch(from) {
@@ -39,6 +40,10 @@ function manuscriptEvidence(e) {
   const format=html?'HTML manuscript':derivative?'PostScript original · '+e.page_count+' pages in a local PDF reading derivative':e.page_count?e.page_count+' PDF pages':'Source manuscript';
   return `<h3>Reviewed manuscript version</h3><p>${link(e.source_url,'Read source manuscript')} · ${esc(format)}</p>${e.companion_postscript?`<p>Companion PostScript: ${esc(e.companion_postscript.page_count)} pages. Local PDF reading derivative: ${esc(e.reading_derivative.page_count)} pages.</p>`:''}${e.note?`<p>${esc(e.note)}</p>`:''}<p>The title, ordered byline and selected machine/performance fields were checked against this version. A later proceedings or presentation version may differ.</p><details><summary>Verified file identity</summary><p>${derivative?'Reading derivative SHA-256':'Reviewed source SHA-256'}: <code>${esc(e.sha256)}</code></p>${e.original_sha256?`<p>Original PostScript SHA-256: <code>${esc(e.original_sha256)}</code></p>`:''}${e.companion_postscript?`<p>Companion PostScript SHA-256: <code>${esc(e.companion_postscript.sha256)}</code></p>`:''}</details>`;
 }
+function doiAvailability(p) {
+  const d=p.doi_verification;
+  return d?.resolver_http_status===404?`<p class="notice">Publisher-assigned DOI. The recorded resolver check returned HTTP 404 on ${esc(d.resolver_checked_on)}; identifier assignment and link availability are separate.</p>`:'';
+}
 function showPaper(id) {
   const p = db.papers.find(p => p.id === id); if (!p) return;
   const rows = p.measurements.map(m => `<tr><td><strong>${esc(measurement(m))}</strong><small>${esc(m.machine)}</small></td><td>${esc(m.precision)}</td><td>${esc(m.scope)}<small>${esc(m.scale)}</small>${m.note ? `<small>${esc(m.note)}</small>` : ''}<details><summary>Counting and timing method</summary><p>${esc(m.measurement_method || 'Not extracted')}</p></details></td><td>${esc(stageLabel(m))}<small>Revision: ${esc(m.source_revision_date || 'not stated')}</small><small>Measured: ${esc(m.measurement_date || m.measurement_date_note || 'not established')}</small><small>Conference update: ${esc(m.conference_update_status)}</small><small>Final score: ${esc(m.final_score_status)}</small><small>Checked: ${esc(m.checked_on)}</small></td><td>${src([m.source_id])}<small>${esc(m.location)}</small></td></tr>`).join('');
@@ -47,7 +52,7 @@ function showPaper(id) {
   const configurations = (p.machine_configurations || []).map(m => `<li><strong>${esc(m.name)}</strong> — ${esc(m.facility)}<p>${esc(m.configuration)}</p><small>${esc(m.location)} ${esc(m.note || '')}</small></li>`).join('');
   const abstractIds = p.provenance.abstract;
   const webEvidence = manuscriptEvidence(p.local_fulltext);
-  $('detail-body').innerHTML = `<span class="eyebrow">${p.year} / ${esc(p.field)}</span><h2 id="detail-title">${esc(p.title)}</h2><span class="tag ${p.award ? 'winner' : ''}">${esc(awardLabel(p))}</span><p class="detail-authors">${esc(p.authors.join(' · '))}</p><p>${link(doi(p), p.doi_verification?.status === 'unverified' ? 'DOI candidate: '+p.doi+' — direct verification pending' : 'DOI: '+p.doi)}</p><div class="notice">${verificationNotice(p.verification)}. Archive updated: ${esc(db.updated_on)}.</div><h3>Abstract & research summary</h3><p>${esc(p.summary)}</p><p class="source-links">Editorial summary. Read the original abstract: ${src(abstractIds)}</p><h3>Reported performance</h3>${rows ? `<div class="table-wrap"><table><thead><tr><th>REPORTED VALUE / MACHINE</th><th>PRECISION</th><th>SCOPE / SCALE / METHOD</th><th>RESULT STAGE / DATE</th><th>EVIDENCE</th></tr></thead><tbody>${rows}</tbody></table></div>` : '<p>No performance observation has been extracted. Hardware capacity is not substituted.</p>'}<h3>Machines and configuration</h3><ul>${configurations}</ul><p class="source-links">${src(p.provenance.machines)}</p>${p.title_aliases.length ? `<details class="aliases"><summary>Source title variants (${p.title_aliases.length})</summary><ul>${p.title_aliases.map(a => `<li>${esc(a.title)} — ${src([a.source_id])}</li>`).join('')}</ul></details>` : ''}${local}${webEvidence}<h3>Research notes</h3><ul>${p.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul><h3>Field-level evidence</h3><ul class="source-list">${sources}</ul><p class="source-links">Local manuscript bytes and cited fields have been checked. DOI/abstract links are publication references and do not guarantee unrestricted access. Manuscript performance is not automatically the final conference score.</p>`;
+  $('detail-body').innerHTML = `<span class="eyebrow">${p.year} / ${esc(p.field)}</span><h2 id="detail-title">${esc(p.title)}</h2><span class="tag ${p.award ? 'winner' : ''}">${esc(awardLabel(p))}</span><p class="detail-authors">${esc(p.authors.join(' · '))}</p><p>${link(doi(p), p.doi_verification?.status === 'unverified' ? 'DOI candidate: '+p.doi+' — direct verification pending' : 'DOI: '+p.doi)}</p>${doiAvailability(p)}<div class="notice">${verificationNotice(p.verification)}. Archive updated: ${esc(db.updated_on)}.</div><h3>Abstract & research summary</h3><p>${esc(p.summary)}</p><p class="source-links">Editorial summary. Read the original abstract: ${src(abstractIds)}</p><h3>Reported performance</h3>${rows ? `<div class="table-wrap"><table><thead><tr><th>REPORTED VALUE / MACHINE</th><th>PRECISION</th><th>SCOPE / SCALE / METHOD</th><th>RESULT STAGE / DATE</th><th>EVIDENCE</th></tr></thead><tbody>${rows}</tbody></table></div>` : '<p>No performance observation has been extracted. Hardware capacity is not substituted.</p>'}<h3>Machines and configuration</h3><ul>${configurations}</ul><p class="source-links">${src(p.provenance.machines)}</p>${p.title_aliases.length ? `<details class="aliases"><summary>Source title variants (${p.title_aliases.length})</summary><ul>${p.title_aliases.map(a => `<li>${esc(a.title)} — ${src([a.source_id])}</li>`).join('')}</ul></details>` : ''}${local}${webEvidence}<h3>Research notes</h3><ul>${p.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul><h3>Field-level evidence</h3><ul class="source-list">${sources}</ul><p class="source-links">Local manuscript bytes and cited fields have been checked. DOI/abstract links are publication references and do not guarantee unrestricted access. Manuscript performance is not automatically the final conference score.</p>`;
   $('detail').showModal();
 }
 function download(name, content, type) { const a = document.createElement('a'); const url = URL.createObjectURL(new Blob([content], {type})); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
@@ -62,11 +67,15 @@ function exportBib() {
   const bibEsc = s => s.replace(/[{}\\]/g, c => '\\'+c);
   download('gordon-bell-archive.bib', visible.map(p => `@inproceedings{${p.id},\n  title = {${bibEsc(p.citation_title || p.title)}},\n  author = {${(p.citation_authors || p.authors).map(bibEsc).join(' and ')}},\n  year = {${p.year}},\n  booktitle = {${bibEsc(p.booktitle || 'Proceedings of SC'+String(p.year).slice(-2))}},\n${p.doi_verification?.status === 'unverified' ? '  note = {DOI candidate ' + bibEsc(p.doi) + ' remains unverified; manuscript evidence audited},' : '  doi = {'+p.doi+'},\n  url = {'+doi(p)+'}'}\n}`).join('\n\n'), 'text/plain;charset=utf-8');
 }
+function auditedHolding(r) {
+  const hashes=new Set(r.body_files.map(f=>f.sha256));
+  return db.papers.find(p=>p.year===r.year&&[p.local_fulltext?.sha256,p.local_fulltext?.original_sha256,p.local_fulltext?.companion_postscript?.sha256,...(p.local_evidence||[]).map(e=>e.sha256)].some(h=>h&&hashes.has(h)));
+}
 function renderHoldings() {
   const q=$('holdings-search').value.trim().toLowerCase(), year=$('holdings-year').value;
   const rows=db.holdings.records.filter(r => (year==='all'||String(r.year)===year) && (!q||[r.title,r.year,r.code,...(r.authors||[])].join(' ').toLowerCase().includes(q)));
   $('holdings-count').textContent=`${rows.length} of ${db.holdings.records.length} local candidate records`;
-  $('holdings-list').innerHTML=rows.map(r=>`<details class="holding"><summary><span>${r.year} / ${esc(r.code)}</span> ${esc(r.title)}</summary><p>${esc(r.content_status)}</p>${r.authors?`<p>${esc(r.authors.join(' · '))}</p>`:''}${r.award_status?`<p>${esc(r.award_status)}</p>`:''}<p>Source volume: ${esc(r.source_directory)}</p><ul>${r.body_files.map(f=>`<li><code>${esc(f.relative_path)}</code> · ${f.size_bytes.toLocaleString('en-US')} bytes</li>`).join('')}</ul><p>SHA-256-verified local copies. Full text is retained offline; this site provides metadata, not manuscript downloads.</p></details>`).join('');
+  $('holdings-list').innerHTML=rows.map(r=>{const reviewed=auditedHolding(r);return `<details class="holding"><summary><span>${r.year} / ${esc(r.code)}</span> ${esc(r.title)}</summary><p>${esc(reviewed?reviewed.content_status:r.content_status)}</p>${reviewed?`<p><button data-paper="${esc(reviewed.id)}">Read manuscript audit for these verified bytes</button></p>`:''}${r.authors?`<p>${esc(r.authors.join(' · '))}</p>`:''}${r.award_status?`<p>${esc(r.award_status)}</p>`:''}<p>Source volume: ${esc(r.source_directory)}</p><ul>${r.body_files.map(f=>`<li><code>${esc(f.relative_path)}</code> · ${f.size_bytes.toLocaleString('en-US')} bytes</li>`).join('')}</ul><p>SHA-256-verified local copies. Full text is retained offline; this site provides metadata, not manuscript downloads.</p></details>`;}).join('');
 }
 function annualReviewNotes(y) {
   const p=y.partial_manuscript_review, r=y.recovery_review;
@@ -78,8 +87,10 @@ function annualReviewNotes(y) {
 }
 function renderYearCoverage() {
   const audit=db.annual_review, view=$('coverage-view').value;
-  const rows=audit.rows.filter(y=>view==='all'||(view==='untouched'&&y.queue_status!=='context_only'&&!y.manuscript_audits)||(view==='reviewed'&&y.manuscript_audits));
+  const rows=audit.rows.filter(y=>view==='all'||(view==='untouched'&&y.queue_status!=='context_only'&&!y.manuscript_audits)||(view==='reviewed'&&y.manuscript_audits)||(view==='continuation'&&audit.continuation?.target_years.includes(y.year)));
   $('annual-review-summary').textContent=`${audit.calendar_years} calendar years inventoried · ${audit.summary.indexed_years} annual index groups · ${audit.summary.manuscript_years} years with manuscript audits · ${audit.summary.awaiting_first_manuscript_years.length} indexed years await their first manuscript. Inventory reviewed ${audit.checked_on}; original source-check dates retained.`;
+  const continuation=audit.continuation;
+  $('continuation-summary').textContent=continuation?`Pass from ${continuation.start_year}: ${continuation.completed.length} of ${continuation.target_years.length} previously untouched years now have a first manuscript audit.${continuation.blocked.length?' '+continuation.blocked.length+' require source recovery.':''}${continuation.pending_years.length?' '+continuation.pending_years.length+' await review.':''}`:'';
   $('coverage-count').textContent=`${rows.length} of ${audit.calendar_years} calendar years shown`;
   $('year-coverage').innerHTML=rows.map(y=>{
     const context=y.queue_status==='context_only';
@@ -109,6 +120,7 @@ function historicalReview(p, ref) {
   return award+review+bibliography;
 }
 function authorEvidenceNote(p) {
+  if(p.detailed_paper_id) return 'This annual byline follows its cited bibliographic source. The linked manuscript audit has its own checked byline; versions may differ.';
   if(p.authors_status?.startsWith('ordered_byline_checked')) return 'Ordered names checked on the cited manuscript first page. This bibliography check does not include performance methodology.';
   if(p.detailed_paper_id) return 'Registry names are preserved here; the reviewed manuscript byline is shown in Manuscript details.';
   return /registry|crossref/i.test(p.authors_status)?'Names follow publisher-deposited registry order; the PDF byline has not been audited here.':'Names follow the cited source; the full publication byline has not been reconciled here.';
@@ -164,12 +176,12 @@ function rosterCSV() {
 
 async function init() {
   try {
-    const response = await fetch('data.json?v=annual-first-manuscripts-20261122'); if (!response.ok) throw new Error('Data request failed'); db = await response.json();
+    const response = await fetch('data.json?v=first-manuscripts-2000-onward-20261122'); if (!response.ok) throw new Error('Data request failed'); db = await response.json();
     $('catalogue-gaps').textContent='Membership lists not yet recovered for: '+db.catalogue_summary.uncovered_years.join(', ')+'. Historical year-label transition: '+db.catalogue_summary.context_years.map(y=>y+' → '+db.year_contexts.find(c=>c.year===y).target_year).join(', ')+'. Partial lists are labelled separately.'; $('stat-papers').textContent=db.papers.length; $('stat-roster-years').textContent=db.catalogue_summary.years; $('stat-candidates').textContent=db.catalogue_summary.records; $('stat-dois').textContent=db.catalogue_summary.verified_dois; $('detail-scope').textContent=`${db.papers.length} selected papers · ${db.papers.reduce((n,p)=>n+p.measurements.length,0)} performance observations · ${new Set(db.papers.map(p=>p.year)).size} conference years`;
     fillSelect('paper-year',db.papers.map(p=>String(p.year))); fillSelect('field',db.papers.map(p=>p.field)); fillSelect('machine',db.papers.flatMap(p=>p.machines));
     for (const id of ['paper-year','result','field','machine']) $(id).addEventListener('change',render);
     $('search').addEventListener('input',()=>syncArchiveSearch('search'));
-    for(const id of ['list','recent-list','year-coverage']) $(id).addEventListener('click',e=>{const b=e.target.closest('[data-paper]'); if(b) showPaper(b.dataset.paper);});
+    for(const id of ['list','recent-list','year-coverage','holdings-list']) $(id).addEventListener('click',e=>{const b=e.target.closest('[data-paper]'); if(b) showPaper(b.dataset.paper);});
     $('coverage-view').addEventListener('change',renderYearCoverage);
     $('close').addEventListener('click',()=> $('detail').close());
     $('detail').addEventListener('click',e=>{if(e.target===$('detail')){const r=$('detail').getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) $('detail').close();}});
