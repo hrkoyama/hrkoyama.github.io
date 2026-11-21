@@ -73,7 +73,8 @@ for url in urls:
 raw=(ROOT/'notebooks/catalog.js').read_text()
 notebooks=json.loads(raw.split('=',1)[1].strip().removesuffix(';'))['notebooks']
 for notebook in notebooks:
- fields={key:notebook.get(key) for key in ['display_title','lecture_title','lecturer','lecture_period','lecture_year','lecture_year_basis','notes','related_materials']}
+ fields={key:notebook.get(key) for key in ['display_title','lecture_title','lecturer','lecture_period','lecture_year','lecture_year_basis','notes']}
+ fields['related_materials']=[{key:material.get(key) for key in ['title','creator','label']} for material in notebook.get('related_materials',[])]
  assert re.fullmatch(r'n[0-9]+',notebook['id'])
  text='大学ノート 自筆ノート 講義ノート College Notes Handwritten lecture notebook '+flatten(fields)
  documents.append(record('/notebooks/notebook.html?id='+notebook['id'],notebook.get('lecture_title') or notebook['display_title'],'',text,'ja','notebooks'))

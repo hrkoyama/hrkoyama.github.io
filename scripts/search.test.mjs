@@ -42,6 +42,7 @@ test('confirmed material metadata finds its own notebook without indexing privat
   const nuclear=data.documents.find(row=>row.url==='/notebooks/notebook.html?id=n049');
   assert.equal(nuclear.title,'原子核物理学');
   assert.ok(!JSON.stringify(data).includes('private_reason'));
+  assert.ok(data.documents.filter(row=>row.url.startsWith('/notebooks/notebook.html?')).every(row=>!/(?:course_material|exercise_solution|same_source|reference_article)/.test(row.text)));
 });
 test('unknown and empty queries do not leak arbitrary fallback results',()=>{
   assert.deepEqual(search('zxqvnotfound123456789'),[]);
