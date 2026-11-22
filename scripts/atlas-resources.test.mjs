@@ -97,13 +97,11 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
   assert.ok(html.includes('/ja/read/thermostats/'));
 });
 
-test('the atlas purpose statement is available before and after client rendering',async()=>{
+test('the atlas purpose statement remains available on the detailed page and in its generated module',async()=>{
   const copy=JSON.parse(read('catalog/atlas-purpose.json'));
   const {configureLocale}=await import('../numerical-methods-atlas/i18n.js');
   const {atlasPurpose}=await import('../numerical-methods-atlas/atlas-purpose.js');
-  const fallback=read('numerical-methods-atlas/index.html');
-  const module=read('numerical-methods-atlas/home-overview.js');
-  assert.ok(module.indexOf('${atlasPurpose()}')<module.indexOf('${homeSearchPage()}'));
+  const fallback=read('numerical-methods-atlas/explore/index.html');
   for(const lang of ['ja','en']){
     configureLocale({},lang);
     assert.ok(fallback.includes(copy[lang].title));
@@ -128,7 +126,7 @@ test('efficiency techniques are excluded consistently from the map and roadmap',
   assert.ok(!existsSync(new URL('numerical-methods-atlas/methods/amr/index.html',root)));
   for(const lang of ['ja','en']){
     const statement=data.editorial_policy.statement[lang];
-    assert.ok(read('numerical-methods-atlas/index.html').includes(statement));
+    assert.ok(read('numerical-methods-atlas/explore/index.html').includes(statement));
     assert.ok(read('numerical-methods-atlas/methods/index.html').includes(statement));
     assert.ok(read(`numerical-methods-atlas/${lang}/read/roadmap/index.html`).includes(statement));
   }

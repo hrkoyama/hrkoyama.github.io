@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "landing": {
+    "ja": {
+      "title": "数値計算法アトラス",
+      "description": "知りたい手法を検索するか、3つの入口から選んでください。",
+      "entries": [
+        {"id": "goals", "title": "目的から探す", "description": "解きたい問題から、使える手法と条件を探します。", "href": "/numerical-methods-atlas/start/?lang=ja"},
+        {"id": "try", "title": "まず計算を試す", "description": "固定入力のコードを動かし、結果を確かめます。", "href": "/numerical-methods-atlas/code-and-data/examples/?lang=ja"},
+        {"id": "read", "title": "体系的に読む", "description": "分野の地図・読む順番・章の一覧から学びます。", "href": "/numerical-methods-atlas/explore/?lang=ja"}
+      ]
+    },
+    "en": {
+      "title": "An Atlas of Numerical Methods",
+      "description": "Search for a method, or choose where to begin.",
+      "entries": [
+        {"id": "goals", "title": "Find a goal", "description": "Find methods and their conditions for the problem you want to solve.", "href": "/numerical-methods-atlas/start/?lang=en"},
+        {"id": "try", "title": "Try a calculation", "description": "Run code with fixed inputs and check the results.", "href": "/numerical-methods-atlas/code-and-data/examples/?lang=en"},
+        {"id": "read", "title": "Read systematically", "description": "Follow the field map, reading paths and chapter index.", "href": "/numerical-methods-atlas/explore/?lang=en"}
+      ]
+    }
+  }
+}

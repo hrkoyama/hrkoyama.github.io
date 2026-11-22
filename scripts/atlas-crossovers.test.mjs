@@ -5,7 +5,6 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {matchCrossover, crossoverFilterURL, wireCrossovers} from '../numerical-methods-atlas/crossovers.mjs';
 import {homeOverviewPage} from '../numerical-methods-atlas/home-overview.js';
-import {atlasGoalStart} from '../numerical-methods-atlas/atlas-purpose.js';
 import {configureLocale} from '../numerical-methods-atlas/i18n.js';
 import {searchChapters} from '../numerical-methods-atlas/home-search.js';
 
@@ -282,27 +281,22 @@ print('validated source and rejected misleading catalogs')
   assert.match(execFileSync('python3', ['-c', program], {cwd: root, encoding: 'utf8'}), /validated source/);
 });
 
-test('the first home entrance keeps all fourteen goals and introduces crossovers before counts and directories', () => {
+test('cross-field routes remain on the detailed explore page rather than competing with the three landing entrances', () => {
   const home = text('numerical-methods-atlas/index.html');
+  const explore = text('numerical-methods-atlas/explore/index.html');
   for (const lang of ['ja', 'en']) {
     configureLocale(json('numerical-methods-atlas/locales/messages.json'), lang);
-    const start = atlasGoalStart();
     const runtime = homeOverviewPage(json('numerical-methods-atlas/coverage.json'));
-    const intro = start.match(/<section\b[^>]*class="intro[^>]*>[\s\S]*?<\/section>/)?.[0];
-    assert.ok(intro, lang + ' goal introduction');
-    assert.equal((intro.match(/class="home-goal-choice"/g) || []).length, 14);
-    assert.ok(start.indexOf('atlas-crossover-teaser') > start.indexOf('</section>'));
-    assert.ok(runtime.indexOf('atlas-crossover-teaser') < runtime.indexOf('atlas-metrics'));
-    assert.ok(runtime.indexOf('atlas-crossover-teaser') < runtime.indexOf('atlas-ways'));
+    assert.ok(runtime.includes(`/numerical-methods-atlas/explore/?lang=${lang}`));
+    assert.ok(!runtime.includes('atlas-crossover-teaser'));
     for (const id of routeIDs) {
       const href = `/numerical-methods-atlas/connections/?lang=${lang}#${id}-${lang}`;
-      assert.ok(start.includes(href), 'generated ' + href);
-      assert.ok(runtime.includes(href), 'live ' + href);
-      assert.ok(home.includes(href), 'static ' + href);
+      assert.ok(explore.includes(href), 'detailed static route ' + href);
     }
-    assert.ok(intro.includes(`/numerical-methods-atlas/connections/?lang=${lang}`), 'primary action');
+    assert.ok(explore.includes(`/numerical-methods-atlas/connections/?lang=${lang}`), 'complete connections directory');
   }
-  assert.equal((home.match(/class="atlas-crossover-teaser"/g) || []).length, 2);
+  assert.equal((home.match(/class="atlas-crossover-teaser"/g) || []).length, 0);
+  assert.equal((explore.match(/class="atlas-crossover-teaser"/g) || []).length, 2);
 });
 
 test('bilingual local search reaches the exact route fragments and global search indexes one canonical page', () => {

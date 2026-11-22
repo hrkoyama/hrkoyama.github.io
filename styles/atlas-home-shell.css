@@ -1,0 +1,17 @@
+/* The atlas landing has one language bar and one primary search. Other routes
+   retain the full atlas navigation. Detailed indexes live on their own pages. */
+body.atlas-home .site-header,
+body.atlas-home nav[aria-label="Public atlas resources"],
+body.atlas-home .site-top .site-nav,
+body.atlas-home .site-top .site-search,
+body.atlas-home .site-footer {display:none}
+body.atlas-home [aria-label="Public atlas resources"] {display:none!important}
+body.atlas-home .home-search [hidden] {display:none!important}
+body.atlas-home .site-top .site-inner {min-height:60px;gap:16px}
+body.atlas-home .site-languages {margin-left:auto}
+body.atlas-home main {min-height:62vh}
+.atlas-explore .study-shortcuts {display:flex;flex-wrap:wrap;gap:10px 24px;margin:24px 0}
+.atlas-explore .study-shortcuts a {min-height:44px;display:inline-flex;align-items:center;text-decoration:underline}
+.atlas-explore .explore-catalogue {margin-block:40px;border-top:1px solid var(--line,#d2d3c8);padding-top:16px}
+.atlas-explore .explore-catalogue>summary {font-size:1.15rem;min-height:48px;cursor:pointer}
+.atlas-explore .explore-catalogue .page-width {width:100%;padding-inline:0}

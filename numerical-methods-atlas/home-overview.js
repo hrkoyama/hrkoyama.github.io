@@ -1,8 +1,7 @@
-import {wireGoalFilters} from './goal-filters.mjs?v=4b109b47d93c';
-import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=af699f35f77f';
-import {homeSearchPage,wireHomeSearch} from './home-search.js?v=efe18ece1ed3';
+import {homeLandingCopy} from './atlas-home-data.js?v=c4da2d83fbfd';
+import {homeSearchPage,wireHomeSearch} from './home-search.js?v=2aa5d03049aa';
 import {t,currentLanguage} from './i18n.js';
-import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=e1228a79f331';
+import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=7c51190ec1c6';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=(key,values)=>esc(t(homeCopy[key],values));
 const locale=lang=>['ja','en'].includes(lang)?lang:currentLanguage();
@@ -54,30 +53,22 @@ export function renderHomeMap(selected,lang=currentLanguage(),{staticMode=false}
  return staticMode?`<div class="home-overview home-map-fallback" data-localize="false">${map}</div>`:map;
 }
 
-export function homeOverviewPage(coverage,selected){
- const area=resolveHomeArea(selected),c=coverage.counts,lang=currentLanguage();
- return `<div class="home-overview" id="home-overview" data-area="${area.id}" data-localize="false">
- ${atlasGoalStart()}
- <section class="page-width home-scope-summary" aria-label="${lang==='ja'?'現在の収録範囲':'Current coverage'}">${atlasMetrics()}</section>
- ${atlasPurpose()}
- ${homeSearchPage()}
- ${atlasExamples()}
+/** Retain the learning routes on the detailed exploration page. */
+export function renderHomeGuides(lang=currentLanguage()){
+ lang=locale(lang);
+ return `<section class="page-width guided" aria-labelledby="home-start-title-${lang}"><h2 id="home-start-title-${lang}">${text('start-title')}</h2><p class="guided-intro">${text('start-description')}</p><div class="guided-list">${homePaths.map(path=>`<article class="guided-route"><p class="eyebrow">${esc(t(path.tag))}</p><h3>${esc(t(path.title))}</h3><p>${esc(t(path.description))}</p><ol>${path.links.map(([route,key])=>`<li>${link(route,key,'',lang)}</li>`).join('')}</ol></article>`).join('')}</div></section>`;
+}
 
- ${renderHomeMap(area.id,lang)}
- <section class="page-width guided" aria-labelledby="home-start-title"><h2 id="home-start-title">${text('start-title')}</h2><p class="guided-intro">${text('start-description')}</p><div class="guided-list">${homePaths.map(path=>`<article class="guided-route"><p class="eyebrow">${esc(t(path.tag))}</p><h3>${esc(t(path.title))}</h3><p>${esc(t(path.description))}</p><ol>${path.links.map(([route,key])=>`<li>${link(route,key)}</li>`).join('')}</ol></article>`).join('')}</div></section>
- <section class="page-width evidence"><div class="evidence-inner"><div><p class="eyebrow">KEEP THE EVIDENCE CLOSE</p><h2>${text('evidence-title')}</h2><p>${text('evidence-description',{chapters:c.reading_chapters,sources:c.references,biology:c.biological_entries})}</p></div><div class="evidence-links">${link('/coverage',homeCopy.inventory)}${link('/gallery',homeCopy.gallery)}${link('/glossary',homeCopy.glossary)}</div></div></section>
- <aside class="page-width future"><p>${text('future')} ${link('/read/roadmap?section=planned-quantum-chemistry-and-dft',homeCopy.roadmap)}</p></aside>
+/** The front door offers one search and three paths; inventories live beyond it. */
+export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
+ const lang=currentLanguage(),copy=homeLandingCopy[lang],suffix=staticMode?'-'+lang:'';
+ return `<div class="home-overview home-landing" id="home-overview${suffix}" data-localize="false">
+ <header class="page-width landing-heading"><h1 id="home-landing-title${suffix}">${esc(copy.title)}</h1><p class="landing-description">${esc(copy.description)}</p></header>
+ ${homeSearchPage({compact:true,staticMode})}
+ <nav class="page-width home-entrypoints" aria-label="${lang==='ja'?'3つの入口':'Three ways to begin'}"><ul class="home-entry-grid">${copy.entries.map(entry=>`<li><a class="home-entry" data-home-entry="${esc(entry.id)}" href="${esc(entry.href)}"><h2>${esc(entry.title)}</h2><p>${esc(entry.description)}</p><span class="home-entry-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ul></nav>
  </div>`;
 }
 export function wireHomeOverview({rewriteLinks=html=>html}={}){
  const root=document.getElementById('home-overview');if(!root)return;
- wireHomeSearch();wireGoalFilters(root);
- for(const button of root.querySelectorAll('[data-home-area]'))button.addEventListener('click',()=>{
-  const area=resolveHomeArea(button.dataset.homeArea);root.dataset.area=area.id;
-  history.replaceState(null,'',homeAreaURL(location.href,area.id));
-  root.querySelector('#home-domain-detail').innerHTML=rewriteLinks(homeAreaDetail(area.id));
-  root.querySelectorAll('[data-home-area]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-  root.querySelector('.home-selection-status').textContent=t(homeCopy.selected,{area:t(area.name)});
-  if(matchMedia('(max-width:700px)').matches)root.querySelector('#home-domain-detail').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});
- });
+ wireHomeSearch();
 }

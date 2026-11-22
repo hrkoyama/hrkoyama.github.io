@@ -629,7 +629,31 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "adjoint": [
+    "ja",
+    "en"
+  ],
   "advanced": [
+    "ja",
+    "en"
+  ],
+  "advanced-limiters": [
+    "ja",
+    "en"
+  ],
+  "ale": [
+    "ja",
+    "en"
+  ],
+  "amg": [
+    "ja",
+    "en"
+  ],
+  "automatic-differentiation": [
+    "ja",
+    "en"
+  ],
+  "basis-functions": [
     "ja",
     "en"
   ],
@@ -641,11 +665,67 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "bratu-inverse": [
+    "ja",
+    "en"
+  ],
+  "bratu-multi-inverse": [
+    "ja",
+    "en"
+  ],
+  "carbuncle": [
+    "ja",
+    "en"
+  ],
   "chapman-enskog": [
     "ja",
     "en"
   ],
+  "chebyshev": [
+    "ja",
+    "en"
+  ],
+  "cip": [
+    "ja",
+    "en"
+  ],
+  "coordinates-viscosity": [
+    "ja",
+    "en"
+  ],
+  "dae": [
+    "ja",
+    "en"
+  ],
+  "double-mach": [
+    "ja",
+    "en"
+  ],
+  "dsmc": [
+    "ja",
+    "en"
+  ],
+  "eigensolvers": [
+    "ja",
+    "en"
+  ],
   "elliptic": [
+    "ja",
+    "en"
+  ],
+  "equation-gallery": [
+    "ja",
+    "en"
+  ],
+  "ewald": [
+    "ja",
+    "en"
+  ],
+  "experiments": [
+    "ja",
+    "en"
+  ],
+  "fdtd": [
     "ja",
     "en"
   ],
@@ -665,6 +745,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "h2-hf": [
+    "ja",
+    "en"
+  ],
   "history": [
     "ja",
     "en"
@@ -677,7 +761,27 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "keep": [
+    "ja",
+    "en"
+  ],
   "lattice-boltzmann": [
+    "ja",
+    "en"
+  ],
+  "limiters": [
+    "ja",
+    "en"
+  ],
+  "low-mach-preconditioning": [
+    "ja",
+    "en"
+  ],
+  "mcmc": [
+    "ja",
+    "en"
+  ],
+  "meshes": [
     "ja",
     "en"
   ],
@@ -685,11 +789,55 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "monte-carlo": [
+    "ja",
+    "en"
+  ],
+  "movies": [
+    "ja",
+    "en"
+  ],
   "nasa-2d": [
     "ja",
     "en"
   ],
+  "optimization": [
+    "ja",
+    "en"
+  ],
   "particle-gravity": [
+    "ja",
+    "en"
+  ],
+  "particles-sph": [
+    "ja",
+    "en"
+  ],
+  "periodic-dft": [
+    "ja",
+    "en"
+  ],
+  "periodic-forces": [
+    "ja",
+    "en"
+  ],
+  "pic": [
+    "ja",
+    "en"
+  ],
+  "pinn-operators": [
+    "ja",
+    "en"
+  ],
+  "pme": [
+    "ja",
+    "en"
+  ],
+  "qr-svd": [
+    "ja",
+    "en"
+  ],
+  "quadrature": [
     "ja",
     "en"
   ],
@@ -701,7 +849,27 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "radiation-transport": [
+    "ja",
+    "en"
+  ],
+  "reconstruction": [
+    "ja",
+    "en"
+  ],
+  "reference-solutions": [
+    "ja",
+    "en"
+  ],
+  "references": [
+    "ja",
+    "en"
+  ],
   "relativistic-hydrodynamics": [
+    "ja",
+    "en"
+  ],
+  "release-notes-v0.1.0": [
     "ja",
     "en"
   ],
@@ -709,11 +877,59 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "roe-memorial": [
+    "ja",
+    "en"
+  ],
+  "rotated-hybrid": [
+    "ja",
+    "en"
+  ],
+  "runge-kutta": [
+    "ja",
+    "en"
+  ],
+  "sde": [
+    "ja",
+    "en"
+  ],
+  "shock-expansion": [
+    "ja",
+    "en"
+  ],
+  "site-coverage": [
+    "ja",
+    "en"
+  ],
+  "slab-ewald": [
+    "ja",
+    "en"
+  ],
   "sparse-nonlinear": [
     "ja",
     "en"
   ],
+  "splines": [
+    "ja",
+    "en"
+  ],
+  "spme": [
+    "ja",
+    "en"
+  ],
   "stability": [
+    "ja",
+    "en"
+  ],
+  "steady-runge-kutta": [
+    "ja",
+    "en"
+  ],
+  "stiff-integration": [
+    "ja",
+    "en"
+  ],
+  "symplectic": [
     "ja",
     "en"
   ],
@@ -722,6 +938,30 @@ export const homeReadingLanguages = {
     "en"
   ],
   "thermostats": [
+    "ja",
+    "en"
+  ],
+  "time-integration": [
+    "ja",
+    "en"
+  ],
+  "validation-foundations": [
+    "ja",
+    "en"
+  ],
+  "validation-mhd": [
+    "ja",
+    "en"
+  ],
+  "validation-models": [
+    "ja",
+    "en"
+  ],
+  "validation-particles": [
+    "ja",
+    "en"
+  ],
+  "wavelets": [
     "ja",
     "en"
   ]

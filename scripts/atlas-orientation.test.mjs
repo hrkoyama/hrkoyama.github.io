@@ -116,13 +116,16 @@ test('the eight actual areas render in both languages with real reading/executio
   }
 });
 
-test('the read-only map renderer and static homepage retain all eight fields with unique language-specific IDs', () => {
+test('the read-only map renderer and detailed explore page retain all eight fields with unique language-specific IDs', () => {
   const rendered = JSON.parse(execFileSync(process.execPath, ['scripts/render-atlas-home-map.mjs'], {cwd: fileURLToPath(root), encoding: 'utf8', maxBuffer: 2_000_000}));
   assert.deepEqual(Object.keys(rendered).sort(), ['en', 'ja']);
   const homepage = read('numerical-methods-atlas/index.html');
-  const fallback = homepage.match(/<!-- atlas-purpose-fallback -->([\s\S]*?)<!-- \/atlas-purpose-fallback -->/)[1];
+  const fallback = read('numerical-methods-atlas/explore/index.html');
   assert.equal(staticAreas(fallback).length, 16);
-  const allIds = ids(homepage); assert.equal(allIds.length, new Set(allIds).size);
+  for (const page of [homepage, fallback]) {
+    const allIds = ids(page); assert.equal(allIds.length, new Set(allIds).size);
+  }
+  assert.equal(staticAreas(homepage).length, 0, 'the detailed map has moved off the landing page');
   for (const lang of ['ja', 'en']) {
     assert.deepEqual(staticAreas(rendered[lang]).map(area => area.id), expectedAreas);
     assert.ok(ids(fallback).includes('atlas-map-' + lang));
@@ -132,6 +135,7 @@ test('the read-only map renderer and static homepage retain all eight fields wit
 
 test('present-tense purpose, scope and introductory metadata derive from the same bilingual copy', () => {
   const homepage = read('numerical-methods-atlas/index.html');
+  const explore = read('numerical-methods-atlas/explore/index.html');
   const description = meta(homepage, 'description');
   const descriptions = read('numerical-methods-atlas/app.js').match(/^const atlasIntroDescriptions = (.*);$/m);
   assert.ok(descriptions, 'runtime descriptions are an explicit localized data object');
@@ -141,17 +145,15 @@ test('present-tense purpose, scope and introductory metadata derive from the sam
     const source = atlasPurpose();
     for (const paragraph of purpose[lang].paragraphs) {
       assert.ok(text(source).includes(paragraph), `${lang}: runtime purpose`);
-      assert.ok(text(homepage).includes(paragraph), `${lang}: static purpose`);
+      assert.ok(text(explore).includes(paragraph), `${lang}: detailed static purpose`);
     }
     assert.ok(text(source).includes(purpose[lang].status_note));
     assert.ok(source.includes('<details>') && source.includes('<summary>'));
     assert.equal(description['data-description-' + lang], purpose[lang].meta_description);
     const runtime = homeOverviewPage(coverage, 'quantum');
-    const hero = runtime.match(/<section\b[^>]*class="[^\"]*\bintro\b[^\"]*"[^>]*>([\s\S]*?)<\/section>/)?.[1];
-    assert.ok(hero, `${lang}: live introductory section`);
-    assert.ok(hrefs(hero).includes('#/?section=atlas-map'), `${lang}: hero map action`);
-    assert.ok(hrefs(hero).some(href => new URL(href, atlas).pathname === '/numerical-methods-atlas/code-and-data/examples/'));
-    assert.ok(hrefs(hero).some(href => new URL(href, atlas).pathname === '/numerical-methods-atlas/share/'));
+    assert.ok(hrefs(runtime).some(href => new URL(href, atlas).pathname === '/numerical-methods-atlas/explore/'), `${lang}: direct detailed reading entrance`);
+    assert.ok(hrefs(runtime).some(href => new URL(href, atlas).pathname === '/numerical-methods-atlas/code-and-data/examples/'));
+    assert.ok(hrefs(explore).some(href => new URL(href, atlas).pathname === '/numerical-methods-atlas/share/'), `${lang}: sharing remains discoverable on the detail page`);
   }
   assert.doesNotMatch(homepage, /An English atlas/i);
 });

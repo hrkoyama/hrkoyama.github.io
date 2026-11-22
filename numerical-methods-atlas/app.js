@@ -1,5 +1,6 @@
 const atlasIntroDescriptions = {"ja": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表22問題の固定入力・実行・結果照合を日英で案内します。", "en": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty-two fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=94f89d80c2c8';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=a315cd3d49b8';
+import {resolveHomeLegacyURL} from './home-navigation.mjs?v=bd706a24ea39';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';
@@ -183,7 +184,7 @@ function plot(flux = 'roe') {
  return `<svg class="sod-plot" viewBox="0 0 ${width} ${height}" role="img" aria-label="Computed ${flux.toUpperCase()} and exact Sod shock-tube density at t=0.2"><title>Sod density: ${flux.toUpperCase()} and exact Riemann solution</title>${ticks.map(v=>`<line x1="${left}" x2="${width-right}" y1="${y(v)}" y2="${y(v)}" class="grid-line"/><text x="${left-12}" y="${y(v)+4}" text-anchor="end">${v.toFixed(2)}</text><text x="${x(v)}" y="${height-10}" text-anchor="middle">${v}</text>`).join('')}<text x="${left}" y="13" class="axis-title">DENSITY ρ</text><text x="${width-right}" y="13" text-anchor="end" class="axis-title">POSITION x</text><path d="${path(sod.exact)}" class="exact-line"/><path d="${path(sod.curves[flux])}" class="numerical-line"/></svg>`;
 }
 function home(selected) {
- return `${homeOverviewPage(coverage,selected)}<section class="page-width home-example"><details id="home-sod-example"><summary>${t('home-map.sod-summary')}</summary><div class="hero-experiment"><div class="experiment-heading"><span class="eyebrow">A CLASSIC, COMPUTED</span><span class="small-mono">1978 / SOD</span></div><h2>One problem.<br>Different numerical lenses.</h2><p class="home-example-description">${t('home-map.sod-description')}</p><div id="sod-chart">${plot()}</div><div class="chart-legend"><span class="legend-exact">Exact solution</span><span class="legend-numerical">MUSCL + <span id="flux-label">Roe</span></span></div><div class="flux-controls" aria-label="Choose Riemann flux">${['roe','hllc','hll','rusanov'].map((s,i)=>`<button data-flux="${s}" aria-pressed="${i===0}">${s==='roe'?'Roe':s==='rusanov'?'Rusanov':s.toUpperCase()}</button>`).join('')}</div><p class="experiment-note">N = 200 · t = 0.20 · pointwise density comparison</p><a class="experiment-source" href="#/read/benchmarks">See the setup & verification ${arrow}</a></div></details></section>`;
+ return homeOverviewPage(coverage,selected);
 }
 
 function atlas() {
@@ -259,6 +260,8 @@ function wire() {
 }
 async function route(options={}) {
  const version=++navigationVersion;
+ const legacyHome=resolveHomeLegacyURL(location.href,currentLanguage());
+ if(legacyHome){location.replace(legacyHome);return;}
  disposeMovies();disposeEquations();disposeComparisons();
  const [path,queryString='']=(location.hash.slice(1)||'/').split('?');
  const parts=path.split('/').filter(Boolean),type=parts[0]||'home',query=new URLSearchParams(queryString);
@@ -273,6 +276,7 @@ async function route(options={}) {
   return;
  }
  const renderers={home:()=>home(query.get('area')),atlas,'exact-solutions':exactPage,'shock-expansion':expansionPage,glossary:glossaryPage,coverage:()=>coveragePage(coverage),equations:equationsPage,methods:methodPage,gallery,figures:gallery,movies:moviesPage,'flow-comparison':flowPage,'mhd-tests':mhdPage,reconstruction:reconstructionPage,'shock-robustness':robustnessPage,'poisson-comparison':poissonPage,limiters:limiterPage,'runge-kutta':rkPage,cip:cipPage,basis:basisPage,experiments:stabilityPage,convergence:convergencePage,'time-integration':timePage,meshes:meshPage,hamiltonian:hamiltonianPage,references:()=>referencePage(query.get('q')||''),read:()=>chapter(parts[1])};
+ document.body.classList.toggle('atlas-home',type==='home');
  main.innerHTML=rewriteReadingLinks((renderers[type]||notFound)(),new URL('.',import.meta.url),currentLanguage(),currentLanguage()==='ja'?Object.keys(documents).filter(id=>documents[id].locale==='ja'):[]);
  document.body.dataset.page=type;
  main.lang=currentLanguage();main.removeAttribute('data-localize');

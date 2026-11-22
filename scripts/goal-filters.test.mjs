@@ -61,8 +61,9 @@ test('blocked storage, invalid values and zero matches remain usable',()=>enviro
  f.reset.fire('click');assert.equal(f.visible().length,1);assert.equal(f.empty.hidden,true);
  f.choose('invalid');f.chooseDomain('invalid');assert.equal(f.field.value,'all');assert.equal(f.domain.value,'all');
 },true));
-test('generated bilingual home and goal pages provide all filters, matching attributes and progressive enhancement',()=>{
- for(const path of ['numerical-methods-atlas/index.html','numerical-methods-atlas/start/index.html']){
+test('the full bilingual goal page retains filters and progressive enhancement while the landing stays concise',()=>{
+ assert.ok(!fs.readFileSync(new URL('numerical-methods-atlas/index.html',root),'utf8').includes('data-goal-controls'));
+ for(const path of ['numerical-methods-atlas/start/index.html']){
   const html=fs.readFileSync(new URL(path,root),'utf8');
   assert.ok(html.includes('data-goal-controls hidden'),'no dead controls without JavaScript');
   assert.ok(html.includes('data-goal-copy>共有リンクをコピー')&&html.includes('data-goal-copy>Copy share link'));

@@ -45,21 +45,18 @@ test('static new-domain sections have status labels and do not advertise atomic 
  assert.ok(html.includes('Langevin') && html.includes('BAOAB'));
  assert.ok(html.includes('Reading only; no dedicated implementation'));
 });
-test('first-time visitors reach every goal from the introductory section before counts and directories',()=>{
- const page=fs.readFileSync(new URL('../numerical-methods-atlas/index.html',import.meta.url),'utf8');
+test('the concise landing leads to the complete goal selector without duplicating its choices',()=>{
+ const page=fs.readFileSync(new URL('../numerical-methods-atlas/start/index.html',import.meta.url),'utf8');
  for(const lang of ['ja','en']){
   configureLocale(read('numerical-methods-atlas/locales/messages.json'),lang);
   const runtime=homeOverviewPage(read('numerical-methods-atlas/coverage.json'));
-  const intro=runtime.match(/<section class="intro[^>]*>([\s\S]*?)<\/section>/)?.[1];
-  assert.ok(intro);
-  assert.equal((intro.match(/class="home-goal-choice"/g)||[]).length,goals.length);
+  assert.ok(runtime.includes(`/numerical-methods-atlas/start/?lang=${lang}`));
+  assert.equal((runtime.match(/class="home-goal-choice"/g)||[]).length,0);
   for(const g of goals){
-   const route=`/numerical-methods-atlas/start/?lang=${lang}#${g.id}-${lang}`;
-   assert.ok(intro.includes(route),route);
-   assert.ok(page.includes(route),'static route '+route);
+   assert.ok(page.includes(`id="${g.id}-${lang}"`),'complete goal '+g.id);
+   assert.ok(page.includes(`href="#${g.id}-${lang}"`),'direct goal '+g.id);
   }
-  assert.ok(runtime.indexOf('home-goal-choice')<runtime.indexOf('atlas-metrics'));
-  assert.ok(runtime.indexOf('home-goal-choice')<runtime.indexOf('atlas-ways'));
+  assert.ok(!runtime.includes('atlas-metrics')&&!runtime.includes('atlas-ways'));
  }
 });
 test('natural goal phrases reach conditional candidate methods through both searches',()=>{

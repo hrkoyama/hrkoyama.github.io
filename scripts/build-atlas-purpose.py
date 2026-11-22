@@ -20,6 +20,17 @@ coverage=json.loads((ATLAS/'coverage.json').read_text())
 discovery=load_discovery(ROOT)
 discovery_by_id={x['id']:x for x in discovery['examples']}
 format_counts={**coverage['counts'],'execution_examples':len(discovery['examples']),'gallery_runnable_problems':json.loads((ATLAS/'gallery/index.json').read_text())['counts']['runnable_problems']}
+home=json.loads((ROOT/'catalog/atlas-home.json').read_text())
+goals=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
+(ATLAS/'atlas-home-data.js').write_text('// Generated from catalog/atlas-home.json; navigation copy only.\nexport const homeLandingCopy='+json.dumps(home['landing'],ensure_ascii=False)+';\nexport const homeNavigationData='+json.dumps({'goalDomains':[x['id'] for x in goals['domains']]},ensure_ascii=False)+';\n')
+# Reading links follow the editions that actually exist, including new chapters.
+reading_languages={}
+for language in ['ja','en']:
+    for path in (ATLAS/language/'read').glob('*/index.html'):
+        reading_languages.setdefault(path.parent.name,[]).append(language)
+home_data=ATLAS/'home-overview-data.js'
+source=re.sub(r'export const homeReadingLanguages = \{.*?\};', 'export const homeReadingLanguages = '+json.dumps(dict(sorted(reading_languages.items())),ensure_ascii=False,indent=2)+';', home_data.read_text(),flags=re.S)
+home_data.write_text(source)
 map_fallback=json.loads(subprocess.check_output(['node','scripts/render-atlas-home-map.mjs'],cwd=ROOT,text=True))
 def validation_teaser(lang):
     ja=lang=='ja'
@@ -81,44 +92,12 @@ sections={lang:render(lang) for lang in copy}
 module=ATLAS/'atlas-purpose.js'
 module.write_text("// Generated from atlas purpose, coverage and verified execution discovery.\nimport {currentLanguage} from './i18n.js';\nconst sections="+json.dumps(sections,ensure_ascii=False)+";\nconst metrics="+json.dumps({lang:metrics(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasPurpose=()=>sections[currentLanguage()];\nexport const atlasMetrics=()=>metrics[currentLanguage()];\nconst featured="+json.dumps({lang:featured(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasExamples=()=>featured[currentLanguage()];\nconst goalStarts="+json.dumps({lang:goal_start(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasGoalStart=()=>goalStarts[currentLanguage()];\n")
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
-overview=ATLAS/'home-overview.js';text=overview.read_text()
-text=re.sub(r"from './home-overview-data[.]js(?:[?]v=[a-f0-9]+)?'","from './home-overview-data.js?v="+digest(ATLAS/'home-overview-data.js')+"'",text)
-text=re.sub(r"import \{atlasPurpose[^}]*\} from './atlas-purpose[.]js(?:[?]v=[a-f0-9]+)?';\n?",'',text)
-marker=' ${homeSearchPage()}'
-text=re.sub(r'^[ \t]*\$\{atlasPurpose\(\)\}[ \t]*\n(?:[ \t]*\n)*','',text,flags=re.M)
-text=re.sub(r'^[ \t]*\$\{atlasExamples\(\)\}[ \t]*\n(?:[ \t]*\n)*','',text,flags=re.M)
-assert text.count(marker)==1,'Review upstream homepage layout before adapting'
-text="import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v="+digest(module)+"';\n"+text.replace(marker,' ${atlasPurpose()}\n'+marker+'\n ${atlasExamples()}\n')
-if '${atlasMetrics()}' not in text:
-    text,count=re.subn(r'<div class="summary-counts">.*?</div><p class="flow">','${atlasMetrics()}<p class="flow">',text,count=1)
-    assert count==1,'Review upstream coverage presentation'
-filter_version=digest(ATLAS/'goal-filters.mjs')
-text=re.sub(r"import \{wireGoalFilters\} from './goal-filters[.]mjs(?:[?]v=[a-f0-9]+)?';\n?",'',text)
-text="import {wireGoalFilters} from './goal-filters.mjs?v="+filter_version+"';\n"+text
-overview.write_text(text)
-app=ATLAS/'app.js';text=app.read_text()
-text,count=re.subn(r"from './home-overview[.]js(?:[?]v=[a-f0-9]+)?'","from './home-overview.js?v="+digest(overview)+"'",text)
-assert count==1,'Review upstream homepage module import'
-app.write_text(text)
-page=ATLAS/'index.html';text=page.read_text()
-text=re.sub(r'<!-- atlas-purpose-fallback -->.*?<!-- /atlas-purpose-fallback -->','',text,flags=re.S)
-text=re.sub(r'<!-- atlas-intro-fallback -->.*?<!-- /atlas-intro-fallback -->','',text,flags=re.S)
-text=re.sub(r'(<main\b[^>]*>)\s*<section class="page-intro page-width">.*?</section>',r'\1',text,count=1,flags=re.S)
-intro='<!-- atlas-intro-fallback -->'+''.join('<div class="home-overview" data-site-language="'+lang+'" lang="'+lang+'">'+goal_start(lang,True)+'</div>' for lang in copy)+'<!-- /atlas-intro-fallback -->'
-fallback='<!-- atlas-purpose-fallback -->'+''.join('<div class="home-overview atlas-static" data-site-language="'+lang+'" lang="'+lang+'"><section class="page-width">'+metrics(lang)+'</section>'+sections[lang]+featured(lang)+map_fallback[lang]+'</div>' for lang in copy)+'<!-- /atlas-purpose-fallback -->'
-text=re.sub(r'(<main\b[^>]*>)',lambda m:m[1]+intro,text,count=1)
-text=text.replace('</main>',fallback+'</main>')
-text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-goal-filters[.]css[^"]*">\n?','',text)
-text=re.sub(r'<script type="module" src="/numerical-methods-atlas/goal-filters[.]mjs[^"]*"></script>\n?','',text)
-text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-depth[.]css[^"]*">\n?','',text)
-text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-crossovers[.]css[^"]*">\n?','',text)
-text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-validation[.]css[^"]*">\n?','',text)
-text=text.replace('</head>',goal_filter_assets(ROOT)+depth_assets(ROOT)+crossover_assets(ROOT)+'<link rel="stylesheet" href="/styles/atlas-validation.css?v='+digest(ROOT/'styles/atlas-validation.css')+'">'+'</head>')
-text=re.sub(r'href="home-overview.css(?:[?]v=[a-f0-9]+)?"','href="home-overview.css?v='+digest(ATLAS/'home-overview.css')+'"',text)
-text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-purpose.css(?:[?]v=[a-f0-9]+)?">\n?','',text)
-text=text.replace('</head>','<link rel="stylesheet" href="/styles/atlas-purpose.css?v='+digest(ROOT/'styles/atlas-purpose.css')+'">\n</head>')
-text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-discovery.css(?:[?]v=[a-f0-9]+)?">\n?','',text)
-text=text.replace('</head>','<link rel="stylesheet" href="/styles/atlas-discovery.css?v='+digest(ROOT/'styles/atlas-discovery.css')+'">\n</head>')
+from atlas_home_layout import build_home_layout
+build_home_layout(ROOT,copy,sections,{l:metrics(l) for l in copy},{l:featured(l) for l in copy},map_fallback,{l:depth_teaser(ROOT,l)+validation_teaser(l)+'<section class=\"page-width crossover-home\">'+crossover_teaser(ROOT,l)+'</section>' for l in copy})
+overview=ATLAS/'home-overview.js'
+app=ATLAS/'app.js'
+page=ATLAS/'index.html'
+text=page.read_text()
 titles={'ja':'数値計算法アトラス','en':'An Atlas of Numerical Methods'}
 text=re.sub(r'<title(?:\s[^>]*)?>.*?</title>','<title data-page-title-ja="'+titles['ja']+'" data-page-title-en="'+titles['en']+'">'+titles['ja']+' | '+titles['en']+'</title>',text,count=1,flags=re.S)
 text=re.sub(r'<meta name="description"[^>]*>','<meta name="description" data-description-ja="'+html.escape(copy['ja']['meta_description'],quote=True)+'" data-description-en="'+html.escape(copy['en']['meta_description'],quote=True)+'" content="'+html.escape(copy['en']['meta_description'],quote=True)+'">',text,count=1)
@@ -174,8 +153,8 @@ assert 'fetch(`content.${language}.json?v=${atlasDocumentVersions[language]}`)' 
 app.write_text(text)
 text=page.read_text();text=re.sub(r'src="app.js(?:[?]v=[a-f0-9]+)?"','src="app.js?v='+digest(app)+'"',text);page.write_text(text)
 guide=ROOT/'llms.txt';text=re.sub(r'^- \[Atlas introduction and sharing\].*\n?','',guide.read_text(),flags=re.M)
-guide.write_text(text.rstrip()+'\n- [Atlas introduction and sharing](https://hrkoyama.github.io/numerical-methods-atlas/share/): Bilingual first-visit explanation, eight-area map in the homepage static text, and shareable introduction text and PNG/SVG cards. [Sharing metadata / JSON](https://hrkoyama.github.io/numerical-methods-atlas/share/sharing.json) derives counts from the existing catalogs. Introductory materials have their own limited sharing terms; scientific records and verification scope are unchanged.\n')
-print('Built bilingual atlas purpose statement for the live homepage and static fallback.')
+guide.write_text(text.rstrip()+'\n- [Atlas introduction and sharing](https://hrkoyama.github.io/numerical-methods-atlas/share/): Bilingual first-visit explanation, eight-area map and reading paths on /numerical-methods-atlas/explore/, and shareable introduction text and PNG/SVG cards. [Sharing metadata / JSON](https://hrkoyama.github.io/numerical-methods-atlas/share/sharing.json) derives counts from the existing catalogs. Introductory materials have their own limited sharing terms; scientific records and verification scope are unchanged.\n')
+print('Built concise bilingual atlas landing and separate reading directory.')
 
 text=re.sub(r'^- \[Cross-field connections\].*\n?','',guide.read_text(),flags=re.M)
 guide.write_text(text.rstrip()+'\n- [Cross-field connections](https://hrkoyama.github.io/numerical-methods-atlas/connections/): bilingual routes from DFT to first-principles MD and thermostats, reaction–diffusion to biology and fluids, and Poisson operators to pressure, Hartree and gravity. Shared mathematics, transferred quantities and distinct validation requirements are explicit; component examples do not establish a validated coupled pipeline. Canonical metadata: /catalog/atlas-crossovers.json.\n')

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source": "/catalog/atlas-home.json",
+  "title": {
+    "ja": "体系的に読む",
+    "en": "Read systematically"
+  },
+  "home": {
+    "ja": "/numerical-methods-atlas/?lang=ja",
+    "en": "/numerical-methods-atlas/?lang=en"
+  },
+  "chapters": {
+    "ja": "/numerical-methods-atlas/ja/read/",
+    "en": "/numerical-methods-atlas/en/read/"
+  },
+  "methods": "/numerical-methods-atlas/methods/index.json",
+  "field_map": {
+    "ja": "/numerical-methods-atlas/explore/?lang=ja#atlas-map-ja",
+    "en": "/numerical-methods-atlas/explore/?lang=en#atlas-map-en"
+  }
+}

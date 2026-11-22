@@ -276,3 +276,11 @@ PMLの電場・磁場の仕事は場と係数から直接集計し、修正離�
 辺へ向かう波と斜めに角へ向かう波を別の組として確認する。四辺それぞれの流束、角領域の寄与、初期PML内の微小な場、参照の周期/領域と観測窓を記録する。有限厚・有限時間・選んだ波束の検証であり、任意の角度/周波数で反射ゼロ、一般媒質、分散物質、媒質界面への斜め入射、3次元の実証とは表示しない。参照の構成とその検査範囲は日英解説・コード・結果JSONで明示する。
 
 日英の正本は従来のfdtd章とし、`pml-corners` 節とr3の取得先を追加する。旧節ID・旧版ZIP・r2の取得先は保持する。共通22実行例・固有67問題へ加算せず、FDTD補助配布版の5入力として案内する。通常のrefresh・全Node検査・日英と狭い画面の確認後、指定されたhrkoyama/hrkoyama.github.ioのmainだけへ公開する。公開後に本文・図・ZIPを匿名取得し、検証済み版と照合する。
+
+## アトラスの検索と3つの入口
+
+トップの文言と3入口は `catalog/atlas-home.json` が正本。「目的から探す」は `/numerical-methods-atlas/start/`、「まず計算を試す」は `/numerical-methods-atlas/code-and-data/examples/`、「体系的に読む」は `/numerical-methods-atlas/explore/` へ進む。トップに全目的・分野地図・収録件数・検証範囲を再び並べない。
+
+`build-atlas-purpose.py` と `atlas_home_layout.py` が日英の静的トップと次の階層を生成する。ライブ表示は `home-overview.js` と `home-search.js`、静的表示は同じレンダラーの `render-atlas-landing.mjs` を使う。詳細な地図と読む順番はexplore、目的フィルターはstartに保持する。科学的な台帳、既存のJSON・Markdown、固定配布版はこの表示整理で変更しない。`home-navigation.mjs` は以前の地図・分野・絞り込みURLを適切な次ページへ案内する。全条件がallのトップURLはトップのままとする。
+
+ホームの外枠は `body.atlas-home` と `atlas-home-shell.css` で簡素化し、他の展示のナビゲーションを保持する。検索語は従来どおりブラウザ内だけで処理する。JavaScriptなしでは3入口と専用検索ページへのリンクを使える。通常のrefreshと全サイト検査後、日英・390px・検索・3入口・既存ブックマークを確認して公開する。

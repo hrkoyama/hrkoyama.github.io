@@ -100,14 +100,12 @@ test('every verified example is reachable from words, formulas and its image wit
   assert.equal(gallery.items.length,80);
 });
 
-test('the static and live homepage give bounded starting calculations and all execution entry pages',()=>{
+test('the concise homepage leads to the full execution chooser with the existing starting calculations',()=>{
   const home=read('numerical-methods-atlas/index.html');
-  const purpose=read('numerical-methods-atlas/atlas-purpose.js');
-  const overview=read('numerical-methods-atlas/home-overview.js');
-  assert.ok(overview.includes('${atlasExamples()}'));
+  const chooser=read('numerical-methods-atlas/code-and-data/examples/index.html');
   for(const lang of ['ja','en']){
-    for(const id of ['poisson-2d-sine','barnes-hut','helium-ground-state','hydrogenic-atoms'])assert.ok(home.includes(base+id+'/?lang='+lang),id+' home route');
+    for(const id of ['poisson-2d-sine','barnes-hut','helium-ground-state','hydrogenic-atoms'])assert.ok(chooser.includes(base+id+'/?lang='+lang),id+' chooser route');
     assert.ok(home.includes(base.replace('https://hrkoyama.github.io','')+'?lang='+lang));
   }
-  assert.ok(purpose.includes('atlasExamples=()=>'));
+  assert.ok(!home.includes('data-featured-example='), 'the choices live one page beyond the compact landing');
 });
