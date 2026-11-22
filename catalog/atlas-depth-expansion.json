@@ -3,8 +3,8 @@
   "reviewed_on": "2026-11-22",
   "edition": "2026-11-22",
   "title": {
-    "ja": "6分野の小規模実装・検証をたどる",
-    "en": "Small implemented validations across six fields"
+    "ja": "分野ごとの小規模実装・検証をたどる",
+    "en": "Explore small implemented validations by field"
   },
   "policy": {
     "ja": "各ケースの条件・採用変種・独立参照または解析解・残差・収束・失敗の扱いを確認します。共通22実行例とは別の補助配布版です。量子DFTの全走査は通常の軽量確認へ含めません。",
@@ -92,6 +92,21 @@
         "ja": "二峰性分布で、局所的な閉じ込めと峰間の移動を比べます。自己相関・有効標本数・収束診断の計算を独立実装と照合し、診断値だけでは見逃す探索不足も示します。",
         "en": "Compare local trapping and between-mode movement on a bimodal target. Check autocorrelation, effective sample size and convergence diagnostics against an independent implementation, and expose missed exploration that diagnostics alone cannot detect."
       }
+    },
+    {
+      "id": "mhd-convergence",
+      "title": {
+        "ja": "CTとGLM：同条件の独立照合・格子・時間収束",
+        "en": "CT and GLM: matched controls, independent checks and grid/time convergence"
+      },
+      "fields": [
+        "fluid",
+        "mhd"
+      ],
+      "intro": {
+        "ja": "数値流束族・LLF係数・時間刻み・物理減衰率を固定し、CTとGLMの離散化を比較します。構成した滑らかな厳密解と独立Athena++参照を使い、格子誤差・時間積分誤差・参照自身の差を分けて確かめます。",
+        "en": "Compare CT and GLM discretizations with a matched flux family, LLF coefficient, time steps and fixed physical damping. Use a constructed smooth exact solution and independent Athena++ results to separate spatial, time-integration and reference differences."
+      }
     }
   ],
   "case_problem_ids": {
@@ -120,11 +135,14 @@
     "schnakenberg-nonlinear": "turing-schnakenberg",
     "schnakenberg-pattern": "turing-schnakenberg",
     "mcmc-multimodal-mixing": "mcmc-bimodal-mixture",
-    "mcmc-diagnostic-reference": null
+    "mcmc-diagnostic-reference": null,
+    "ct-glm-smooth-convergence": "advected-magnetostatic-equilibrium",
+    "ct-glm-ot-convergence": "orszag-tang",
+    "ct-glm-constraint-control": null
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する7グループです。独立ライブラリの診断参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs seven NumPy/SciPy/pytest groups, comparing independent-library diagnostic references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する8グループです。独立ライブラリの診断参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs eight NumPy/SciPy/pytest groups, comparing independent-library diagnostic references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {
@@ -146,6 +164,18 @@
     "mcmc-diagnostic-reference": {
       "ja": "独立ライブラリとの一致は診断値の計算の照合であり、目標分布を十分探索した証明ではありません。定数や峰指示関数の変動不足は数値のESSへ置き換えず、状態と理由を併記します。負の自己相関ではESSが標本数を超える場合があり、旧Gaussian例の保守的な下限規約とは区別します。",
       "en": "Agreement with an independent library checks diagnostic computation; it does not prove adequate target exploration. Constants and insufficiently varying mode indicators carry explicit states and reasons rather than a reassuring numeric ESS. Negative autocorrelation can yield ESS above the draw count; this is distinct from the conservative floor used in the earlier Gaussian example."
+    },
+    "ct-glm-smooth-convergence": {
+      "ja": "この滑らかな移流平衡はアトラスで構成した厳密解です。保存量のセル平均を比較し、そのセル平均から回復する圧力と圧力自体の厳密なセル平均を区別します。同じ半離散空間演算子に別の時間積分を適用した参照は、時間誤差の照合であり独立PDEソルバーとは呼びません。",
+      "en": "This translating smooth equilibrium is an exact solution constructed for the Atlas. Compare conserved cell averages, distinguishing pressure recovered from them from the exact cell average of pressure. A separate time integrator on the same spatial semidiscretization checks time error; it is not an independent PDE solver."
+    },
+    "ct-glm-ot-convergence": {
+      "ja": "共通の数値流束族・速度上限・時間刻み・物理減衰率を固定しますが、CTの面磁場とGLMのセル磁場、法線磁場の扱いは異なります。離散化全体の比較であり、差のすべてを発散処理だけの効果とはしません。CT固有の面発散と共通のセル中心発散は別の演算子として報告します。",
+      "en": "Match the flux family, signal bound, time steps and physical damping, while retaining intrinsic differences in face versus cell magnetic fields and normal-field treatment. Compare the whole discretizations; do not attribute every difference solely to divergence control. Report native CT face divergence separately from a common cell-centered divergence."
+    },
+    "ct-glm-constraint-control": {
+      "ja": "発散制約を意図的に破った初期場を共通のセル磁場として与える診断です。正当な発散ゼロ初期条件のCT計算とは区別し、CTが初期制約誤差を保持する性質を確認します。GLMは減衰なしの対照とも比較し、磁場とpsiの波エネルギーを使って輸送の位相変化や数値拡散を物理減衰と混同しません。",
+      "en": "This diagnostic deliberately violates the divergence constraint while giving both methods the same initial cell magnetic field. It is separate from legitimate divergence-free CT initial data and checks CT preservation of an existing constraint error. Compare GLM with an undamped control using magnetic-plus-psi wave energy, distinguishing wave phase and numerical diffusion from physical damping."
     }
   }
 }

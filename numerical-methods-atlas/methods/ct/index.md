@@ -28,9 +28,9 @@ Other names: CT法, constrained transport, 制約輸送, 制約輸送法
 
 ## Small fixed-input validation supplements
 
-Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.
+Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.
 
-同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。
+Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。
 
 - Orszag–Tang: CT, GLM and independent Athena++: https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/
 
@@ -38,7 +38,15 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atla
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json
 
-Common execution records: [{"id": "ct-glm-independent", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"}, "kind": "dedicated-supplement"}]
+- CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/
+- Orszag–Tang: matched CT/GLM and converged independent references: https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/
+- Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-constraint-control/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/results/result.json
+
+Common execution records: [{"id": "ct-glm-independent", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "ct-glm-smooth-convergence", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "ct-glm-ot-convergence", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "ct-glm-constraint-control", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-constraint-control/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-constraint-control/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/ct/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

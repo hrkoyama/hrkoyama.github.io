@@ -961,6 +961,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-mhd-convergence": [
+    "ja",
+    "en"
+  ],
   "validation-models": [
     "ja",
     "en"

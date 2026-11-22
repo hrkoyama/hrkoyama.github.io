@@ -785,6 +785,15 @@
         "ja": "同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。",
         "en": "Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration."
       }
+    },
+    {
+      "id": "advected-magnetostatic-equilibrium",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png",
+      "caption": {
+        "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
+        "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
+      }
     }
   ]
 }

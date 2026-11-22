@@ -37,7 +37,7 @@ test('the two new nonlinear cases deepen the existing biological scope without p
  assert.match(biology.reference.en,/same finite-difference semidiscretization/);
  assert.match(biology.refinement.en,/implicit-midpoint/);
  assert.match(biology.next.en,/reflection-symmetric/);
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,82);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,83);
 });
 
 test('nonlinear reaction-diffusion remains component evidence and cannot certify the transport bridge',()=>{

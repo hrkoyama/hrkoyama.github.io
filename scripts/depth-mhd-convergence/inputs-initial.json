@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "model": {"gamma": 1.6666666666666667, "wave_speed_bound": 3.0, "cleaning_rate": 2.0, "cfl_sum_maximum": 0.4, "maximum_seconds": 110.0},
+  "smooth": {
+    "case_id": "ct-glm-smooth-convergence", "time": 0.1, "grids": [16,32,64], "spatial_steps": 384,
+    "amplitude": 0.05, "base_pressure": 0.1, "density": 1.0, "velocity": [0.3,0.2],
+    "time_grid": 8, "time_steps": [16,32,64,128],
+    "acceptance": {"finest_scaled_l2": 0.15, "minimum_spatial_order": 0.7, "finest_time_scaled_l2": 0.001, "minimum_temporal_order": 0.8, "time_contamination_ratio": 0.1, "reference_time_ratio": 0.01, "ct_native_divergence_linf": 2e-11, "finest_common_divergence_dimensionless": 0.02, "relative_conservation_drift": 2e-12, "initial_cell_state_difference": 2e-14}
+  },
+  "ot": {
+    "case_id": "ct-glm-ot-convergence", "time": 0.05, "grids": [16,32,64], "spatial_steps": 192,
+    "time_grid": 16, "time_steps": [16,32,64,128], "reference_grids": [128,256,512],
+    "acceptance": {"finest_density_relative_l1": 0.08, "finest_magnetic_relative_l1": 0.25, "last_spatial_error_ratio": 0.9, "finest_time_scaled_l2": 0.001, "minimum_temporal_order": 0.8, "time_contamination_ratio": 0.1, "reference_time_ratio": 0.01, "ct_native_divergence_linf": 2e-11, "relative_conservation_drift": 2e-12, "initial_cell_state_difference": 2e-14, "independent_density_increment_l1": 0.0006, "independent_magnetic_increment_l1": 0.001, "independent_time_increment_l1": 0.00005, "independent_reference_to_primary_ratio": 0.1}
+  },
+  "time_reference": {"method": "DOP853", "rtol": [1e-10,2e-12], "atol": [1e-12,2e-14], "maximum_step_divisors": [64,128]},
+  "policy": "Inputs and acceptance fixed before the first new solver pilot. Forward Euler spatial studies use an identical fixed time-step sequence for CT and GLM and fixed dt across all spatial grids. Finest-grid step doubling bounds time contamination; independent time-integration references share the spatial RHS and are not independent spatial solvers. GLM wave speed and damping rate are fixed physical parameters across grids."
+}

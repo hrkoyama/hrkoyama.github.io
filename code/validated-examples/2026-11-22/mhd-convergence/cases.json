@@ -1,0 +1,286 @@
+[
+  {
+    "method_ids": [
+      "ct",
+      "glm"
+    ],
+    "id": "ct-glm-smooth-convergence",
+    "title": {
+      "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+      "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+    },
+    "summary": {
+      "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
+      "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
+    },
+    "assumptions": {
+      "ja": "周期単位正方形、γ=5/3、μ₀=1、平面MHD。A=.05[cos2π(x−.3t)+cos2π(y−.2t)]、B=(Ay,−Ax)、ρ=1、v=(.3,.2)、p=.1+(2π)²A²/2、t=.1。保存変数の解析的セル平均を比較します。公刊の標準問題名を借りない構成検証例です。",
+      "en": "Periodic unit square, gamma5/3, mu0=1, planar MHD. A=.05[cos2pi(x−.3t)+cos2pi(y−.2t)], B=(Ay,−Ax), rho1, v=(.3,.2), p=.1+(2pi)²A²/2 at t=.1. Compare analytic conserved cell averages. This is a constructed verification case, not a claimed published standard benchmark."
+    },
+    "algorithm": {
+      "ja": "両法とも区分定数・同じ固定Rusanov速度α=3・前進Eulerです。CTは面Bと共有算術corner EMF、GLMはcell B/ψとch=3・物理減衰率κ=2を使用。全格子で同じ384刻み、両法のdt列も同一です。CT面平均から復元した初期cell BとGLM初期Bが一致します。",
+      "en": "Both use piecewise constants, the same fixed Rusanov speed alpha3 and forward Euler. CT uses face B/shared arithmetic corner EMFs; GLM uses cell B/psi with fixed ch3 and physical damping rate kappa2. All meshes use384 steps and identical CT/GLM dt sequences; initial reconstructed CT cell B matches GLM cell B."
+    },
+    "validation": {
+      "ja": "16²/32²/64²の保存変数L1/L2/L∞誤差と観測次数を測ります。最細格子の刻み倍増差を空間誤差の.1以下と比較。時間収束は固定8²で16/32/64/128刻みを、許容誤差・最大刻みを二重に細分したDOP853へ照合します。質量・E、正値性、native CT divと共通cell div、ψも記録します。",
+      "en": "Measure conserved-variable L1/L2/Linf errors and observed orders at16²/32²/64². Compare finest-grid step doubling with.1 of the spatial error. At fixed8², compare16/32/64/128 steps with doubly refined DOP853 tolerances/max steps. Record mass/E, positivity, native CT divergence, common cell divergence and psi."
+    },
+    "limits": {
+      "ja": "定数LLF粘性・周期中心演算子では、GLMのdiv=ψ=0部分空間は丸めまで保たれます。本例は結合MHDの精度を調べ、能動的cleaningは別の非物理診断対照で調べます。p(q平均)はpの厳密平均と同一ではありません。DOP853は時間だけ独立で空間RHSは共有します。刻み倍増差は経験的汚染目安で厳密誤差上界ではなく、CT/GLMの内部表現差を含む有限離散化全体の比較です。",
+      "en": "With constant LLF viscosity and periodic centered operators, the GLM div=psi=0 subspace remains invariant up to roundoff. This tests coupled-MHD accuracy; a separate nonphysical control activates cleaning. p(q-average) is not the exact averaged p. DOP853 is independent in time only and shares the spatial RHS. Step differences are empirical contamination indicators, not rigorous bounds; face/cell representation differences remain part of the comparison."
+    },
+    "references": [
+      {
+        "id": "dedner2002",
+        "author": "A. Dedner et al.",
+        "year": 2002,
+        "title": "Hyperbolic Divergence Cleaning for the MHD Equations",
+        "doi": "10.1006/jcph.2001.6961",
+        "url": "https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf",
+        "review_level": "author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651",
+        "review": {
+          "ja": "通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。",
+          "en": "Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit."
+        }
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "T. A. Gardiner and J. M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "review_level": "author preprint; selected section2.2/equations13–20",
+        "review": {
+          "ja": "面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。",
+          "en": "Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm."
+        }
+      },
+      {
+        "id": "toth2000-divb",
+        "author": "G. Tóth",
+        "year": 2000,
+        "title": "The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes",
+        "doi": "10.1006/jcph.2000.6519",
+        "url": "https://doi.org/10.1006/jcph.2000.6519",
+        "review_level": "author paper abstract and bibliographic metadata",
+        "review": {
+          "ja": "div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。",
+          "en": "Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium."
+        }
+      },
+      {
+        "id": "scipy-dop853-official",
+        "author": "SciPy developers",
+        "year": 2024,
+        "title": "scipy.integrate.solve_ivp: DOP853",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "review_level": "official versioned API and actual independent time-integrator execution",
+        "review": {
+          "ja": "DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。",
+          "en": "Execute DOP853 as a separate time integrator; shared spatial RHS means it is not an independent spatial discretization."
+        }
+      }
+    ],
+    "equations": [
+      "A=a[\\cos k(x-ut)+\\cos k(y-vt)],\\quad\\mathbf B=(A_y,-A_x),\\quad J_z=-\\Delta A=k^2A",
+      "p=p_0+\\tfrac12k^2A^2,\\qquad\\nabla p=J_z\\nabla A=\\mathbf J\\times\\mathbf B",
+      "\\bar{\\mathbf U}_{ij}=\\frac1{\\Delta x\\Delta y}\\int_{K_{ij}}\\mathbf U\\,dx\\,dy,\\qquad p(\\bar{\\mathbf U})\\ne\\bar p",
+      "\\mathbf U^{m+1}=\\mathbf U^m+\\Delta t\\,L_h(\\mathbf U^m),\\qquad C_{\\rm sum}=\\alpha\\Delta t(\\Delta x^{-1}+\\Delta y^{-1})"
+    ],
+    "code_files": [
+      "solver.py",
+      "experiments.py",
+      "run.py"
+    ]
+  },
+  {
+    "method_ids": [
+      "ct",
+      "glm"
+    ],
+    "id": "ct-glm-ot-convergence",
+    "title": {
+      "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+      "en": "Orszag–Tang: matched CT/GLM and converged independent references"
+    },
+    "summary": {
+      "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
+      "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
+    },
+    "assumptions": {
+      "ja": "標準周期OT、γ=5/3、ρ=25/(36π)、p=5/(12π)、v=(−sin2πy,sin2πx)、B=(−sin2πy,sin4πx)/√(4π)、t=.05。16²/32²/64²の両法に192刻みを共用します。旧配布版を改変しない追加検証です。",
+      "en": "Standard periodic OT: gamma5/3, rho25/(36pi), p5/(12pi), v=(−sin2piy,sin2pix), B=(−sin2piy,sin4pix)/sqrt(4pi), t=.05. Both methods share192 steps on16²/32²/64². This supplements the previous immutable release."
+    },
+    "algorithm": {
+      "ja": "主計算は固定α=ch=3のRusanovと前進Euler、GLMκ=2は格子に依存しません。独立C++ Athena++はHLLD・PLM・RK2・upwind CTです。同じ連続初期値を用いますが、Athenaのface/primitive離散化は主計算と完全同一ではありません。",
+      "en": "Primary runs use fixed alpha=ch=3 Rusanov/forward Euler and grid-independent GLM kappa2. Independent C++ Athena++ uses HLLD/PLM/RK2/upwind CT. Continuous initial fields agree; Athena’s face/primitive discretization is not identical."
+    },
+    "validation": {
+      "ja": "密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。",
+      "en": "Measure density/magnetic L1 error, mesh improvement, positivity, conservation and div/psi. Athena256²/512² both useCFL.15; fixed512² CFL.3/.15 checks reference time sensitivity, with increments compared against.1 of primary error. At fixed16², compare primary time refinement with separately executed DOP853 and check finest-grid step doubling."
+    },
+    "limits": {
+      "ja": "短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。",
+      "en": "Short smooth OT, not certification of post-shock,3D or general cleaning behavior. Athena is a finite-grid numerical reference; increments are not error bounds. Historical128²/CFL.3 is not paired with256²/CFL.15 to infer a pure spatial order. Constant-LLF preservation of GLM div=psi=0 is not evidence of active cleaning. Native face and common centered divergences differ; centered checkerboard blind spots remain."
+    },
+    "references": [
+      {
+        "id": "dedner2002",
+        "author": "A. Dedner et al.",
+        "year": 2002,
+        "title": "Hyperbolic Divergence Cleaning for the MHD Equations",
+        "doi": "10.1006/jcph.2001.6961",
+        "url": "https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf",
+        "review_level": "author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651",
+        "review": {
+          "ja": "通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。",
+          "en": "Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit."
+        }
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "T. A. Gardiner and J. M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "review_level": "author preprint; selected section2.2/equations13–20",
+        "review": {
+          "ja": "面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。",
+          "en": "Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm."
+        }
+      },
+      {
+        "id": "toth2000-divb",
+        "author": "G. Tóth",
+        "year": 2000,
+        "title": "The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes",
+        "doi": "10.1006/jcph.2000.6519",
+        "url": "https://doi.org/10.1006/jcph.2000.6519",
+        "review_level": "author paper abstract and bibliographic metadata",
+        "review": {
+          "ja": "div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。",
+          "en": "Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium."
+        }
+      },
+      {
+        "id": "stone2020athena",
+        "author": "J. M. Stone, K. Tomida, C. J. White and K. G. Felker",
+        "year": 2020,
+        "title": "The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers",
+        "doi": "10.3847/1538-4365/ab929b",
+        "url": "https://doi.org/10.3847/1538-4365/ab929b",
+        "review_level": "official source at pinned commit actually compiled/executed; paper metadata",
+        "review": {
+          "ja": "以前に別構築しハッシュを確認した公式commit1395e2f543f4368d448cb1a2cf92ba1f910e3416のC++バイナリーを再利用して新しい参照を実行し、入力・出力・binary/source SHAを保存しました。論文全文監査ではありません。",
+          "en": "Executed new reference runs with the previously independently built, hashed official C++ commit1395e2f543f4368d448cb1a2cf92ba1f910e3416 binary, retaining input/output/binary/source hashes; not a full-paper audit."
+        }
+      },
+      {
+        "id": "scipy-dop853-official",
+        "author": "SciPy developers",
+        "year": 2024,
+        "title": "scipy.integrate.solve_ivp: DOP853",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "review_level": "official versioned API and actual independent time-integrator execution",
+        "review": {
+          "ja": "DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。",
+          "en": "Execute DOP853 as a separate time integrator; shared spatial RHS means it is not an independent spatial discretization."
+        }
+      }
+    ],
+    "equations": [
+      "F_{i+1/2}=\\tfrac12[F(U_L)+F(U_R)-\\alpha(U_R-U_L)],\\qquad\\alpha=3",
+      "(B_x)_t+\\partial_x\\psi+\\partial_y(v_yB_x-v_xB_y)=0,\\quad\\psi_t+c_h^2\\nabla\\cdot\\mathbf B=-\\kappa\\psi",
+      "D_h^{\\rm face}\\,\\operatorname{curl}_h E=0,\\qquad D_h^{\\rm cell}\\ne D_h^{\\rm face}"
+    ],
+    "code_files": [
+      "solver.py",
+      "experiments.py",
+      "run.py"
+    ]
+  },
+  {
+    "method_ids": [
+      "ct",
+      "glm"
+    ],
+    "id": "ct-glm-constraint-control",
+    "title": {
+      "ja": "CTの初期制約保持とGLMの能動的cleaning：非物理診断対照",
+      "en": "Initial-constraint preservation by CT and active GLM cleaning: nonphysical control"
+    },
+    "summary": {
+      "ja": "故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。",
+      "en": "Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem."
+    },
+    "assumptions": {
+      "ja": "32²周期格子、t=.1、128刻み、ρ=p=1、v=0、By=ψ=0。CT face Bx=.01cos[2π(i+1)/32]、GLM cell Bxはその左右face平均と同一です。CT初期native div≠0は意図的に無効な物理初期値で、CTの正しい物理計算例とは区別します。",
+      "en": "Periodic32² grid,t=.1,128 steps,rho=p=1,v=0,By=psi=0. CT faceBx=.01cos[2pi(i+1)/32]; GLM cellBx equals the adjacent-face average. The intentional nonzero native CT divergence violates valid physical CT initial data and is treated solely as a diagnostic."
+    },
+    "algorithm": {
+      "ja": "同じ完全結合MHDコードを使用。y不変・By=vy=0ではGLMのBx/ψ系が流体応答から独立するため、離散Fourier記号の2×2行列と前進Euler行列冪を別に構成します。κ=2とκ=0を同じdt・LLF粘性で比較し、Bxだけの減少を物理減衰と取り違えません。",
+      "en": "Use the same fully coupled MHD code. With y-invariance andBy=vy=0, the GLM Bx/psi subsystem decouples from fluid feedback, allowing a separately constructed2x2 discrete Fourier symbol and forward-Euler matrix power. Compare kappa2/0 at identical dt and LLF viscosity, separating B/psi phase exchange from physical damping."
+    },
+    "validation": {
+      "ja": "CT native divの初期違反保持、GLMのψ励起、Bx/ψ双方の独立FE参照一致、密度・圧力正値性、物理的総E/質量保存を確認。補助波エネルギーW=〈Bx²+ψ²/ch²〉のκ2/κ0比を判定し、半離散行列指数と連続Fourier解も区別して表示します。",
+      "en": "Check preservation of the initial CT defect, nonzero GLM psi, independent FE agreement for bothBx/psi, positive density/pressure, and conserved physical E/mass. Test the kappa2/0 ratio of auxiliary wave energy W=mean(Bx²+psi²/ch²), separating FE, semidiscrete-exponential and continuum-Fourier references."
+    },
+    "limits": {
+      "ja": "対照の合格は「期待したCTの非除去とGLMの線形応答を正しく検出した」という意味です。非零CT divを許す物理計算を推奨しません。Wは診断用ノルムで、ψを含まない物理的総エネルギーEとは別です。GLMのBx減少には位相交換とLLF拡散も含まれ、κ0対照なしに減衰成功とは呼びません。一般非線形・境界流出・衝撃波のcleaning性能へ広げません。",
+      "en": "Passing means correctly detecting expected CT non-removal and the calibrated GLM response, not recommending non-solenoidal CT physical initial data. W is an auxiliary diagnostic norm, distinct from conserved physical total energy E without psi. B decay includes phase exchange and LLF diffusion; damping is assessed with the kappa0 control. No general nonlinear,boundary or shock cleaning guarantee is claimed."
+    },
+    "references": [
+      {
+        "id": "dedner2002",
+        "author": "A. Dedner et al.",
+        "year": 2002,
+        "title": "Hyperbolic Divergence Cleaning for the MHD Equations",
+        "doi": "10.1006/jcph.2001.6961",
+        "url": "https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf",
+        "review_level": "author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651",
+        "review": {
+          "ja": "通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。",
+          "en": "Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit."
+        }
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "T. A. Gardiner and J. M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "review_level": "author preprint; selected section2.2/equations13–20",
+        "review": {
+          "ja": "面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。",
+          "en": "Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm."
+        }
+      },
+      {
+        "id": "toth2000-divb",
+        "author": "G. Tóth",
+        "year": 2000,
+        "title": "The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes",
+        "doi": "10.1006/jcph.2000.6519",
+        "url": "https://doi.org/10.1006/jcph.2000.6519",
+        "review_level": "author paper abstract and bibliographic metadata",
+        "review": {
+          "ja": "div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。",
+          "en": "Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium."
+        }
+      }
+    ],
+    "equations": [
+      "\\widehat{U}^{m+1}=(I+\\Delta t M_h)\\widehat{U}^{m},\\quad M_h=\\begin{pmatrix}\\nu_h&-i\\widetilde{k}\\\\-ic_h^2\\widetilde{k}&\\nu_h-\\kappa\\end{pmatrix}",
+      "\\nu_h=\\alpha N[\\cos(2\\pi/N)-1],\\quad\\widetilde{k}=N\\sin(2\\pi/N)",
+      "W=\\langle B_x^2+\\psi^2/c_h^2\\rangle,\\qquad W_{\\kappa=2}/W_{\\kappa=0}<0.95"
+    ],
+    "code_files": [
+      "solver.py",
+      "experiments.py",
+      "run.py"
+    ]
+  }
+]

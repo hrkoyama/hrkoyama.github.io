@@ -23,6 +23,25 @@ const common=json('catalog/atlas-execution-examples.json').examples;
 const supplements=json('catalog/atlas-depth-expansion.json').case_problem_ids;
 const byId=rows=>new Map(rows.map(row=>[row.id,row]));
 
+test('the constructed MHD equilibrium has its own hub and keeps active-cleaning controls outside physical problems',()=>{
+  const physical='advected-magnetostatic-equilibrium';
+  const source=mapping.problems.find(row=>row.id===physical);
+  const problem=index.problems.find(row=>row.id===physical);
+  assert.deepEqual(source.equation_ids,['mhd']);
+  assert.deepEqual(source.method_ids,['ct','glm']);
+  assert.deepEqual(source.references,[],'no different reference-library problem is borrowed');
+  assert.deepEqual(problem.executions.map(row=>row.id),['ct-glm-smooth-convergence']);
+  assert.deepEqual(problem.methods.map(row=>row.id),['ct','glm']);
+  assert.deepEqual(problem.formulations.map(row=>row.id),['supplement-ct-glm-smooth-convergence']);
+  assert.ok(problem.executions[0].download.includes('/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip'));
+  assert.ok(problem.reference_note.en.includes('not a separate spatial solver'));
+  assert.ok(problem.method_note.en.includes('whole discretizations'));
+  assert.equal(supplements['ct-glm-constraint-control'],null);
+  assert.ok(!index.problems.some(row=>row.id==='ct-glm-constraint-control'));
+  const ot=index.problems.find(row=>row.id==='orszag-tang');
+  assert.deepEqual(ot.executions.map(row=>row.id),['ct-glm-independent','ct-glm-ot-convergence']);
+});
+
 function blocks(html,attribute,value){
   const result=[];
   for(const opening of html.matchAll(/<([a-z][\w:-]*)\b[^>]*>/gi)){
@@ -58,7 +77,7 @@ function links(html){
 }
 
 test('the reviewed problem links and generated hub inventory cover every physical problem exactly once',()=>{
-  assert.equal(inventory.length,82);
+  assert.equal(inventory.length,83);
   const expected=inventory.map(row=>row.id);
   for(const rows of [mapping.problems,index.problems]){
     assert.deepEqual(rows.map(row=>row.id),expected);

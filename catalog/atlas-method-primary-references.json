@@ -1505,6 +1505,21 @@
         "en": "Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied."
       },
       "source": "https://python.arviz.org/en/v0.20.0/api/generated/arviz.rhat.html"
+    },
+    {
+      "id": "gardiner-stone2005",
+      "author": "T. A. Gardiner and J. M. Stone",
+      "year": 2005,
+      "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+      "doi": "10.1016/j.jcp.2004.11.016",
+      "url": "https://arxiv.org/abs/astro-ph/0501557",
+      "review_level": "author preprint; selected section2.2/equations13–20",
+      "review": {
+        "ja": "面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。",
+        "en": "Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm."
+      },
+      "source": "https://arxiv.org/abs/astro-ph/0501557",
+      "type": "article"
     }
   ]
 }

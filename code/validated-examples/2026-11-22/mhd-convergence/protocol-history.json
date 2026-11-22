@@ -1,0 +1,10 @@
+{
+  "initial_input_sha256": "274e3e30d1abfb15efaef12e1e53cdd8176d3bc7229a3a89bcd5fa9e3b67d67d",
+  "current_input_sha256": "ef1066846f52a270af0ee89282843ef6ea39279bedac758a1e13a0970c639734",
+  "numerical_pilot_before_revision": false,
+  "physical_case_inputs_and_acceptance_changed": false,
+  "revision_reason": "Independent pre-pilot algebraic review: with a constant scalar LLF viscosity on a periodic mesh, the collocated centered divergence commutes with both the discrete curl and Laplacian. Solenoidal initial fields with psi=0 remain in that subspace up to roundoff; they cannot validate active divergence cleaning. Add a separately counted diagnostic control with an intentionally non-solenoidal CT initial field, expected CT preservation of its initial defect, and GLM cleaning checked by an independent discrete Fourier matrix. This is not a valid CT physical initial condition or a new physical benchmark.",
+  "constraint_control_before_damping_pair_sha256": "090a73051efe4640aa6c9c6de169f3e04e2ca68ab9cd72a58ab0b2e517f1ee27",
+  "damping_pair_addition_before_any_pilot": true,
+  "damping_pair_reason": "A decrease of B alone can be wave-phase exchange with psi. Compare the matched undamped GLM wave energy with the physically damped run, retaining the same LLF viscosity, initial cell states and time steps. Both are checked against independent discrete Fourier FE powers."
+}

@@ -427,6 +427,7 @@ Schnakenbergは1次元周期の線形発現・有限振幅発展・成長後パ�
 核の運動、反応、移流、拡散はいずれも離散化後の時間積分へつながる。安定性、剛性、保存量と分割誤差は対象ごとに確認する。
 
 - [Runge–Kutta法](/numerical-methods-atlas/ja/read/runge-kutta/)
+- [CT／GLM：格子誤差と時間積分誤差を分ける](/numerical-methods-atlas/ja/read/validation-mhd-convergence/)
 
 ### 楕円型境界値問題・疎行列
 
@@ -891,6 +892,7 @@ Scope of the operator correspondence: A correspondence through a shared Poisson 
 Nuclear motion, reactions, advection and diffusion lead to time integration after discretization. Stability, stiffness, balances and splitting error require problem-specific checks.
 
 - [Runge–Kutta methods](/numerical-methods-atlas/en/read/runge-kutta/)
+- [CT/GLM: separate spatial and time-integration errors](/numerical-methods-atlas/en/read/validation-mhd-convergence/)
 
 ### Elliptic boundary problems and sparse systems
 

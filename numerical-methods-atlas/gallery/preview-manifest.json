@@ -985,10 +985,22 @@
         "ja": "同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。",
         "en": "Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration."
       }
+    },
+    {
+      "id": "advected-magnetostatic-equilibrium",
+      "image": "/code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png",
+      "image_sha256": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+      "width": 2015,
+      "height": 1147,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
+        "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "c7e6546164ee274303c2deffedfe185196658b7f9465850fae074d288bceab70",
+    "catalog/atlas-gallery.json": "97fac070569b9dc585aed0138d3e861bc0413996b04c5019205f171e42f2a57a",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1035,8 +1047,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "b916648f2913c2300dd05c8f9b8257b40d7c9b2d1ab6f2f88a98e0f85e776bfc",
-    "catalog/atlas-depth-expansion.json": "9b5f02038f79e4db4b35a96a26d89c17e0f1b918e07e1b5a5d195b32e4594856",
+    "catalog/atlas-test-problems.json": "50d09c172de1187a6f25b13ac63abf872de840c98219e45f2783ed56b23c0331",
+    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1097,7 +1109,15 @@
     "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
     "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
     "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
-    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67"
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/inputs.json": "ef1066846f52a270af0ee89282843ef6ea39279bedac758a1e13a0970c639734",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

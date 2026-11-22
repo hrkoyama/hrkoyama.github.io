@@ -99,7 +99,7 @@ python run.py --input inputs.json --output output
 
 このコマンドは配布グループの全例を実行します。
 
-初回の不合格と刻み細分化の記録：https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
+入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
 
 https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs-initial.json
 
@@ -219,7 +219,7 @@ python run.py --input inputs.json --output output
 
 This command executes every fixed case in the distribution group.
 
-Initial failure and step-refinement record: https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
+Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
 
 https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs-initial.json
 

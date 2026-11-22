@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "mhd-convergence",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+  "archive": {
+    "file": "atlas-mhd-convergence-2026-11-22.zip",
+    "sha256": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "bytes": 33273613,
+    "archive_directory": "atlas-mhd-convergence-2026-11-22"
+  },
+  "archive_sha256": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+  "returncode": 0,
+  "passed_tests": 46,
+  "tests": 46,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "ct-glm-constraint-control",
+    "ct-glm-ot-convergence",
+    "ct-glm-smooth-convergence"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.402819834002003,
+  "independent_rerun_seconds": 6.494947082999715,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

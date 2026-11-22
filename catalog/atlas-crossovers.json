@@ -52,6 +52,16 @@
             "ja": "Runge–Kutta法",
             "en": "Runge–Kutta methods"
           }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/validation-mhd-convergence/",
+            "en": "/numerical-methods-atlas/en/read/validation-mhd-convergence/"
+          },
+          "label": {
+            "ja": "CT／GLM：格子誤差と時間積分誤差を分ける",
+            "en": "CT/GLM: separate spatial and time-integration errors"
+          }
         }
       ]
     },

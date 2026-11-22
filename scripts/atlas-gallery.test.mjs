@@ -14,6 +14,27 @@ const inventory = json('numerical-methods-atlas/test-cases/index.json');
 const gallery = json('numerical-methods-atlas/gallery/index.json');
 const html = read('numerical-methods-atlas/gallery/index.html');
 
+test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illustration and add only the equilibrium card',()=>{
+ const base='code/validated-examples/2026-11-22/mhd-convergence/';
+ const cases=json(base+'cases.json');
+ const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
+ const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
+ assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
+ assert.equal(gallery.counts.supplemental_release_case_count,29);
+ assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
+ assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
+ assert.deepEqual(item.caption,metadata.summary);
+ assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['ct-glm-smooth-convergence']);
+ const ot=gallery.items.find(x=>x.id==='orszag-tang');
+ assert.equal(ot.image,'/numerical-methods-atlas/assets/movies/orszag-tang-ct/frame-080.webp');
+ assert.equal(ot.image_sha256,'38c260ae5d3a5031e733b365eb00c6ea04c9182a059a317bd1735e0c3dc0e6af');
+ assert.deepEqual(ot.supplemental_execution_entries.map(x=>x.id),['ct-glm-independent','ct-glm-ot-convergence']);
+ assert.ok(!gallery.items.some(x=>x.id==='ct-glm-constraint-control'));
+ const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
+ assert.equal(Object.keys(manifest.source_sha256).length,118);
+ for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
+});
+
 test('optional domain buttons and image policies start collapsed while names, reset and current count remain visible', () => {
   const protectedFiles = ['preview-manifest.json','calculations.json','verification.json'].map(name => 'numerical-methods-atlas/gallery/'+name).concat('catalog/atlas-gallery.json');
   const before = protectedFiles.map(digest);
@@ -112,7 +133,7 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
   const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
   const quartic=gallery.items.find(x=>x.id==='thermostatted-quartic');
   const metadata=cases.find(x=>x.id==='csvr-langevin-quartic');
-  assert.equal(gallery.items.length,82);
+  assert.equal(gallery.items.length,83);
   assert.equal(quartic.image,'/'+base+'results/csvr-langevin-quartic.png');
   assert.equal(quartic.image_sha256,digest(base+'results/csvr-langevin-quartic.png'));
   assert.deepEqual(quartic.caption,metadata.summary);
@@ -132,8 +153,8 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
 test('nonlinear Schnakenberg runs are additional entrances and retain the saved onset illustration',()=>{
   const identifiers=['schnakenberg-nonlinear','schnakenberg-pattern'];
   const item=gallery.items.find(x=>x.id==='turing-schnakenberg');
-  assert.equal(gallery.items.length,82);
-  assert.equal(gallery.counts.runnable_problems,38);
+  assert.equal(gallery.items.length,83);
+  assert.equal(gallery.counts.runnable_problems,39);
   assert.equal(item.image,'/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
   assert.equal(item.image_sha256,'d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893');
   assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers]);
@@ -147,7 +168,7 @@ test('the bimodal MCMC visual is one new physical target and preserves the old s
   const base='code/validated-examples/2026-11-22/mcmc/';
   const metadata=json(base+'cases.json').find(x=>x.id==='mcmc-multimodal-mixing');
   const problem=gallery.items.find(x=>x.id==='mcmc-bimodal-mixture');
-  assert.equal(gallery.items.length,82);assert.equal(gallery.counts.runnable_problems,38);
+  assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
   assert.equal(problem.image,'/'+base+'results/mcmc-multimodal-mixing.png');
   assert.equal(problem.image_sha256,digest(base+'results/mcmc-multimodal-mixing.png'));
   assert.deepEqual(problem.caption,metadata.summary);

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "actually_executed": true,
+  "athena_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+  "source_url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+  "source_archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+  "binary_sha256": "00bc9ec5bb39885a33e706a045d3f0a9fa6d9e18994dcb2f9ff0dc9d4a472410",
+  "equations": "IdealMHD,mu0=1,gamma5/3; Athena++HLLD+upwindCT,xorder2,RK2,periodic[-.5,.5]^2,t=.05",
+  "independence": "Separate official C++ implementation, not a refined run of Atlas Python. Shared ideal-MHD model and continuous initial fields; discretization and finite-grid primitive/face averages differ.",
+  "coordinate_map": "Athena x1/x2 plus0.5 equal Atlas unit-box coordinates; tablex1fastest.",
+  "data_semantics": "Official primitive table,12columns: i,x1v,j,x2v,rho,press,vx,vy,vz,Bccx,Bccy,Bccz. rho/Bcc cell data are nested-block averaged for comparisons; primitive pressure is not a conserved cell-average pressure reference.",
+  "datasets": {
+    "128": {
+      "file": "athena-ot-128.npz",
+      "n": 128,
+      "time": 0.05,
+      "cfl": 0.3,
+      "historical_only": true,
+      "input": "athinput-ot-128-cfl03"
+    },
+    "256": {
+      "file": "athena-ot-256-cfl015.npz",
+      "n": 256,
+      "time": 0.05,
+      "cfl": 0.15,
+      "input": "athinput-ot-256-cfl015"
+    },
+    "512": {
+      "file": "athena-ot-512-cfl015.npz",
+      "n": 512,
+      "time": 0.05,
+      "cfl": 0.15,
+      "input": "athinput-ot-512-cfl015"
+    },
+    "512-cfl03": {
+      "file": "athena-ot-512-cfl03.npz",
+      "n": 512,
+      "time": 0.05,
+      "cfl": 0.3,
+      "input": "athinput-ot-512-cfl03"
+    }
+  },
+  "provenance_files": [
+    "athena-ot-original-provenance.json",
+    "athena-ot-new-provenance.json"
+  ],
+  "reference_refinement_policy": "Final spatial increment uses256/512 bothCFL.15. 128CFL.3 is historical context only. Fixed512CFL.3/.15 isolates reference time-step sensitivity. Increments are empirical diagnostics, not rigorous error bounds.",
+  "files": {
+    "ATHENA-LICENSE.txt": "31194975612df51ccb646ed5d43d3eeb5f7996e8a1725b409fb3e34f93059d32",
+    "athena-ot-128.npz": "2927d0a4b319acecf1a2488a36570c87a80180105b608b5a1de3d2c5915acd4f",
+    "athena-ot-256-cfl015.npz": "0e2a790f7de3a14d81efc42b79c255ae1c4b03ef4821593293a849125eeec2c8",
+    "athena-ot-512-cfl015.npz": "9b067f1263f8d593d70f3bd55385b4c13abcc531cf8e7d7ba7d7cdd74770003a",
+    "athena-ot-512-cfl03.npz": "ac959f9409c649a9a38c78ba7402513a12ca3eb1781db9fed237b53533791ff9",
+    "athena-ot-new-provenance.json": "caec74acf80c74cf2d0711b87bd4f4d10283b36cf7bde6055ec2a3b4ab4143d9",
+    "athena-ot-original-provenance.json": "56d2ac4c37ca54253bec921edb316628060c7a98f7eb2016a2229999389a83e9",
+    "athinput-ot-128-cfl03": "8e42489f00bd560ea21ee131a283c18ad552283fd9faa51e4e43b6be862b844a",
+    "athinput-ot-256-cfl015": "efe50a692f5d59843cb39e4c7d112999f945cd3ff0c1df36809c934b2606eb4b",
+    "athinput-ot-512-cfl015": "a9a3575cfd90a541947670dfd494e189be9cdce4962615c9debe5e0a440f8218",
+    "athinput-ot-512-cfl03": "f052e6ef208a61e5e78f0bf3ff59f3fa71a898ee8bbf4752555a5f76e0ed8b7d"
+  }
+}

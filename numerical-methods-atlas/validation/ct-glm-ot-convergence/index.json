@@ -1,0 +1,723 @@
+{
+  "method_ids": [
+    "ct",
+    "glm"
+  ],
+  "id": "ct-glm-ot-convergence",
+  "title": {
+    "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+    "en": "Orszag–Tang: matched CT/GLM and converged independent references"
+  },
+  "summary": {
+    "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
+    "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
+  },
+  "assumptions": {
+    "ja": "標準周期OT、γ=5/3、ρ=25/(36π)、p=5/(12π)、v=(−sin2πy,sin2πx)、B=(−sin2πy,sin4πx)/√(4π)、t=.05。16²/32²/64²の両法に192刻みを共用します。旧配布版を改変しない追加検証です。",
+    "en": "Standard periodic OT: gamma5/3, rho25/(36pi), p5/(12pi), v=(−sin2piy,sin2pix), B=(−sin2piy,sin4pix)/sqrt(4pi), t=.05. Both methods share192 steps on16²/32²/64². This supplements the previous immutable release."
+  },
+  "algorithm": {
+    "ja": "主計算は固定α=ch=3のRusanovと前進Euler、GLMκ=2は格子に依存しません。独立C++ Athena++はHLLD・PLM・RK2・upwind CTです。同じ連続初期値を用いますが、Athenaのface/primitive離散化は主計算と完全同一ではありません。",
+    "en": "Primary runs use fixed alpha=ch=3 Rusanov/forward Euler and grid-independent GLM kappa2. Independent C++ Athena++ uses HLLD/PLM/RK2/upwind CT. Continuous initial fields agree; Athena’s face/primitive discretization is not identical."
+  },
+  "validation": {
+    "ja": "密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。",
+    "en": "Measure density/magnetic L1 error, mesh improvement, positivity, conservation and div/psi. Athena256²/512² both useCFL.15; fixed512² CFL.3/.15 checks reference time sensitivity, with increments compared against.1 of primary error. At fixed16², compare primary time refinement with separately executed DOP853 and check finest-grid step doubling."
+  },
+  "limits": {
+    "ja": "短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。",
+    "en": "Short smooth OT, not certification of post-shock,3D or general cleaning behavior. Athena is a finite-grid numerical reference; increments are not error bounds. Historical128²/CFL.3 is not paired with256²/CFL.15 to infer a pure spatial order. Constant-LLF preservation of GLM div=psi=0 is not evidence of active cleaning. Native face and common centered divergences differ; centered checkerboard blind spots remain."
+  },
+  "references": [
+    {
+      "id": "dedner2002",
+      "author": "A. Dedner et al.",
+      "year": 2002,
+      "title": "Hyperbolic Divergence Cleaning for the MHD Equations",
+      "doi": "10.1006/jcph.2001.6961",
+      "url": "https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf",
+      "review_level": "author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651",
+      "review": {
+        "ja": "通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。",
+        "en": "Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit."
+      }
+    },
+    {
+      "id": "gardiner-stone2005",
+      "author": "T. A. Gardiner and J. M. Stone",
+      "year": 2005,
+      "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+      "doi": "10.1016/j.jcp.2004.11.016",
+      "url": "https://arxiv.org/abs/astro-ph/0501557",
+      "review_level": "author preprint; selected section2.2/equations13–20",
+      "review": {
+        "ja": "面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。",
+        "en": "Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm."
+      }
+    },
+    {
+      "id": "toth2000-divb",
+      "author": "G. Tóth",
+      "year": 2000,
+      "title": "The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes",
+      "doi": "10.1006/jcph.2000.6519",
+      "url": "https://doi.org/10.1006/jcph.2000.6519",
+      "review_level": "author paper abstract and bibliographic metadata",
+      "review": {
+        "ja": "div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。",
+        "en": "Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium."
+      }
+    },
+    {
+      "id": "stone2020athena",
+      "author": "J. M. Stone, K. Tomida, C. J. White and K. G. Felker",
+      "year": 2020,
+      "title": "The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers",
+      "doi": "10.3847/1538-4365/ab929b",
+      "url": "https://doi.org/10.3847/1538-4365/ab929b",
+      "review_level": "official source at pinned commit actually compiled/executed; paper metadata",
+      "review": {
+        "ja": "以前に別構築しハッシュを確認した公式commit1395e2f543f4368d448cb1a2cf92ba1f910e3416のC++バイナリーを再利用して新しい参照を実行し、入力・出力・binary/source SHAを保存しました。論文全文監査ではありません。",
+        "en": "Executed new reference runs with the previously independently built, hashed official C++ commit1395e2f543f4368d448cb1a2cf92ba1f910e3416 binary, retaining input/output/binary/source hashes; not a full-paper audit."
+      }
+    },
+    {
+      "id": "scipy-dop853-official",
+      "author": "SciPy developers",
+      "year": 2024,
+      "title": "scipy.integrate.solve_ivp: DOP853",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+      "review_level": "official versioned API and actual independent time-integrator execution",
+      "review": {
+        "ja": "DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。",
+        "en": "Execute DOP853 as a separate time integrator; shared spatial RHS means it is not an independent spatial discretization."
+      }
+    }
+  ],
+  "equations": [
+    "F_{i+1/2}=\\tfrac12[F(U_L)+F(U_R)-\\alpha(U_R-U_L)],\\qquad\\alpha=3",
+    "(B_x)_t+\\partial_x\\psi+\\partial_y(v_yB_x-v_xB_y)=0,\\quad\\psi_t+c_h^2\\nabla\\cdot\\mathbf B=-\\kappa\\psi",
+    "D_h^{\\rm face}\\,\\operatorname{curl}_h E=0,\\qquad D_h^{\\rm cell}\\ne D_h^{\\rm face}"
+  ],
+  "code_files": [
+    "solver.py",
+    "experiments.py",
+    "run.py"
+  ],
+  "group": "mhd-convergence",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "ct-glm-ot-convergence",
+    "passed": true,
+    "checks": {
+      "identical_initial_cell_states": true,
+      "independent_reference_density_refinement": true,
+      "independent_reference_magnetic_refinement": true,
+      "independent_reference_time_refinement": true,
+      "ct_native_constraint_n16": true,
+      "ct_native_constraint_n32": true,
+      "ct_native_constraint_n64": true,
+      "ct_spatial_refinement": true,
+      "ct_density_error": true,
+      "ct_magnetic_error": true,
+      "ct_independent_reference_resolved": true,
+      "ct_time_contamination_bounded": true,
+      "ct_positive_states": true,
+      "ct_conservative_mass_energy": true,
+      "glm_spatial_refinement": true,
+      "glm_density_error": true,
+      "glm_magnetic_error": true,
+      "glm_independent_reference_resolved": true,
+      "glm_time_contamination_bounded": true,
+      "glm_positive_states": true,
+      "glm_conservative_mass_energy": true,
+      "ct_temporal_order": true,
+      "ct_temporal_error": true,
+      "ct_temporal_reference_resolved": true,
+      "glm_temporal_order": true,
+      "glm_temporal_error": true,
+      "glm_temporal_reference_resolved": true
+    },
+    "metrics": {
+      "initial_cell_state_linf_difference": 0.0,
+      "ct_finest_spatial_error": 0.04131948399815993,
+      "ct_minimum_spatial_order": 0.7441584435125685,
+      "ct_time_contamination_ratio": 0.005452472133120275,
+      "ct_finest_temporal_scaled_l2": 0.0006451024853786959,
+      "ct_minimum_temporal_order": 1.0051663785429696,
+      "ct_time_reference_to_primary_ratio": 4.610829174194673e-13,
+      "glm_finest_spatial_error": 0.06851242841151672,
+      "glm_minimum_spatial_order": 0.6819406396313236,
+      "glm_time_contamination_ratio": 0.003289333276474019,
+      "glm_finest_temporal_scaled_l2": 0.0007617954701608142,
+      "glm_minimum_temporal_order": 1.0056569861410107,
+      "glm_time_reference_to_primary_ratio": 3.179752402329314e-13
+    },
+    "records": [
+      {
+        "method": "ct",
+        "n": 16,
+        "steps": 192,
+        "dt": 0.00026041666666666666,
+        "cfl_sum": 0.025,
+        "maximum_psi_linf": 0.0,
+        "minimum_density": 0.2041890084526789,
+        "minimum_derived_pressure": 0.1331303532825803,
+        "native_divergence_linf": 1.4654943925052066e-14,
+        "common_centered_divergence_linf": 0.06778576731314301,
+        "common_centered_divergence_final_l2": 0.032540142153569936,
+        "common_divergence_final_dimensionless": 0.008970168625065063,
+        "mass_relative_drift": 3.7668979778493237e-16,
+        "energy_relative_drift": 3.178816858944575e-16,
+        "density_l1": 0.008407456562862363,
+        "magnetic_l1": 0.03720545102206835,
+        "density_relative_l1": 0.03803443743349972,
+        "magnetic_relative_l1": 0.21171154159990624,
+        "combined_relative_l1": 0.12487298951670298
+      },
+      {
+        "method": "ct",
+        "n": 32,
+        "steps": 192,
+        "dt": 0.00026041666666666666,
+        "cfl_sum": 0.05,
+        "maximum_psi_linf": 0.0,
+        "minimum_density": 0.20089003217826723,
+        "minimum_derived_pressure": 0.1273610606862988,
+        "native_divergence_linf": 3.730349362740526e-14,
+        "common_centered_divergence_linf": 0.04181461772825401,
+        "common_centered_divergence_final_l2": 0.013312596176518155,
+        "common_divergence_final_dimensionless": 0.0016541608620747692,
+        "mass_relative_drift": 3.7668979778493237e-16,
+        "energy_relative_drift": 1.589408429472288e-16,
+        "density_l1": 0.006914340655672055,
+        "magnetic_l1": 0.020962473020616545,
+        "density_relative_l1": 0.031279740203918244,
+        "magnetic_relative_l1": 0.11782261092054361,
+        "combined_relative_l1": 0.07455117556223093,
+        "spatial_order_from_previous": 0.7441584435125685
+      },
+      {
+        "method": "ct",
+        "n": 64,
+        "steps": 192,
+        "dt": 0.00026041666666666666,
+        "cfl_sum": 0.1,
+        "maximum_psi_linf": 0.0,
+        "minimum_density": 0.1993474223554591,
+        "minimum_derived_pressure": 0.12030050114124821,
+        "native_divergence_linf": 1.0302869668521453e-13,
+        "common_centered_divergence_linf": 0.02155785477190819,
+        "common_centered_divergence_final_l2": 0.0048284437021297215,
+        "common_divergence_final_dimensionless": 0.0002840323965106276,
+        "mass_relative_drift": 3.7668979778493237e-16,
+        "energy_relative_drift": 1.589408429472288e-16,
+        "density_l1": 0.0046347960476998094,
+        "magnetic_l1": 0.011023783647067924,
+        "density_relative_l1": 0.02096732334865065,
+        "magnetic_relative_l1": 0.0616716446476692,
+        "combined_relative_l1": 0.04131948399815993,
+        "spatial_order_from_previous": 0.8514088640680966,
+        "reference_spatial_density_to_primary_ratio": 0.002213710798678584,
+        "reference_spatial_magnetic_to_primary_ratio": 0.0014601016579211977,
+        "reference_time_density_to_primary_ratio": 5.789453820537048e-05,
+        "reference_time_magnetic_to_primary_ratio": 3.2044894452537326e-05
+      },
+      {
+        "method": "glm",
+        "n": 16,
+        "steps": 192,
+        "dt": 0.00026041666666666666,
+        "cfl_sum": 0.025,
+        "maximum_psi_linf": 2.2933316125381527e-16,
+        "minimum_density": 0.20481344530314863,
+        "minimum_derived_pressure": 0.13317794054569101,
+        "native_divergence_linf": 2.6645352591003757e-15,
+        "common_centered_divergence_linf": 2.6645352591003757e-15,
+        "common_centered_divergence_final_l2": 4.478607026952266e-16,
+        "common_divergence_final_dimensionless": 1.4614941758170942e-16,
+        "mass_relative_drift": 6.278163296415539e-16,
+        "energy_relative_drift": 3.178816858944575e-16,
+        "density_l1": 0.008597213404398257,
+        "magnetic_l1": 0.06132772032324514,
+        "density_relative_l1": 0.03889287716054581,
+        "magnetic_relative_l1": 0.34897537473046136,
+        "combined_relative_l1": 0.19393412594550358
+      },
+      {
+        "method": "glm",
+        "n": 32,
+        "steps": 192,
+        "dt": 0.00026041666666666666,
+        "cfl_sum": 0.05,
+        "maximum_psi_linf": 2.794143892339755e-16,
+        "minimum_density": 0.20129011765712684,
+        "minimum_derived_pressure": 0.13274130216555916,
+        "native_divergence_linf": 5.329070518200751e-15,
+        "common_centered_divergence_linf": 5.329070518200751e-15,
+        "common_centered_divergence_final_l2": 7.539965524097894e-16,
+        "common_divergence_final_dimensionless": 1.0347130810947567e-16,
+        "mass_relative_drift": 3.7668979778493237e-16,
+        "energy_relative_drift": 1.589408429472288e-16,
+        "density_l1": 0.007097338864144052,
+        "magnetic_l1": 0.03730192363566416,
+        "density_relative_l1": 0.032107604595310486,
+        "magnetic_relative_l1": 0.2096608558918695,
+        "combined_relative_l1": 0.12088423024358999,
+        "spatial_order_from_previous": 0.6819406396313236
+      },
+      {
+        "method": "glm",
+        "n": 64,
+        "steps": 192,
+        "dt": 0.00026041666666666666,
+        "cfl_sum": 0.1,
+        "maximum_psi_linf": 3.3371465331751396e-16,
+        "minimum_density": 0.19960351564186143,
+        "minimum_derived_pressure": 0.12447197209274538,
+        "native_divergence_linf": 1.0658141036401503e-14,
+        "common_centered_divergence_linf": 1.0658141036401503e-14,
+        "common_centered_divergence_final_l2": 1.495607713085622e-15,
+        "common_divergence_final_dimensionless": 9.284629418240514e-17,
+        "mass_relative_drift": 5.022530637132432e-16,
+        "energy_relative_drift": 1.589408429472288e-16,
+        "density_l1": 0.004780368518212603,
+        "magnetic_l1": 0.020627524793921038,
+        "density_relative_l1": 0.02162587769030684,
+        "magnetic_relative_l1": 0.11539897913272659,
+        "combined_relative_l1": 0.06851242841151672,
+        "spatial_order_from_previous": 0.8191884251991729,
+        "reference_spatial_density_to_primary_ratio": 0.002146298558652164,
+        "reference_spatial_magnetic_to_primary_ratio": 0.0007803090744262217,
+        "reference_time_density_to_primary_ratio": 5.6131525390847075e-05,
+        "reference_time_magnetic_to_primary_ratio": 1.7125466432211183e-05
+      }
+    ],
+    "temporal_records": [
+      {
+        "method": "ct",
+        "n": 16,
+        "steps": 16,
+        "dt": 0.003125,
+        "cfl_sum": 0.30000000000000004,
+        "scaled_l2": 0.00529387809714443,
+        "l1": {
+          "density": 0.00013140877366016714,
+          "momentum_x": 0.00058520477688598,
+          "momentum_y": 0.0006940350148780224,
+          "total_energy": 0.0009493970896010439,
+          "magnetic_x": 0.0007249708878185132,
+          "magnetic_y": 0.0013870147400928989
+        },
+        "l2": {
+          "density": 0.00016210552144674283,
+          "momentum_x": 0.0007595599812620017,
+          "momentum_y": 0.0008730839563515572,
+          "total_energy": 0.001167066340354459,
+          "magnetic_x": 0.0009517325885543792,
+          "magnetic_y": 0.0017194041324423625
+        },
+        "linf": {
+          "density": 0.0004121847378308341,
+          "momentum_x": 0.0016584825496150854,
+          "momentum_y": 0.002349398970036363,
+          "total_energy": 0.002839380775741196,
+          "magnetic_x": 0.002395605795108724,
+          "magnetic_y": 0.004278015303149932
+        }
+      },
+      {
+        "method": "ct",
+        "n": 16,
+        "steps": 32,
+        "dt": 0.0015625,
+        "cfl_sum": 0.15000000000000002,
+        "scaled_l2": 0.0026084227658347944,
+        "l1": {
+          "density": 6.309661871707129e-05,
+          "momentum_x": 0.00028806288252245264,
+          "momentum_y": 0.0003414358727899529,
+          "total_energy": 0.00046329029162055354,
+          "magnetic_x": 0.0003571356966743438,
+          "magnetic_y": 0.0006859734627029665
+        },
+        "l2": {
+          "density": 7.793861795242423e-05,
+          "momentum_x": 0.0003739313423670676,
+          "momentum_y": 0.0004292107814612712,
+          "total_energy": 0.0005684200341254888,
+          "magnetic_x": 0.0004697023162622263,
+          "magnetic_y": 0.0008492620177857869
+        },
+        "linf": {
+          "density": 0.00019940844451432627,
+          "momentum_x": 0.0008133868501620806,
+          "momentum_y": 0.0011544017349637385,
+          "total_energy": 0.0013721625145033944,
+          "magnetic_x": 0.0011823955787424456,
+          "magnetic_y": 0.002113091002644521
+        },
+        "order_from_previous": 1.02114725759981
+      },
+      {
+        "method": "ct",
+        "n": 16,
+        "steps": 64,
+        "dt": 0.00078125,
+        "cfl_sum": 0.07500000000000001,
+        "scaled_l2": 0.0012948335557754953,
+        "l1": {
+          "density": 3.093642565993619e-05,
+          "momentum_x": 0.00014296836216645003,
+          "momentum_y": 0.00016935556956715797,
+          "total_energy": 0.00022889542432249122,
+          "magnetic_x": 0.00017726775545535284,
+          "magnetic_y": 0.0003411163930963539
+        },
+        "l2": {
+          "density": 3.8235206403092896e-05,
+          "momentum_x": 0.0001855477300495384,
+          "momentum_y": 0.00021282457601653224,
+          "total_energy": 0.00028061850248747676,
+          "magnetic_x": 0.0002333407526971974,
+          "magnetic_y": 0.00042206261348763673
+        },
+        "linf": {
+          "density": 9.80836421377862e-05,
+          "momentum_x": 0.00040281645592225683,
+          "momentum_y": 0.0005722571951948703,
+          "total_energy": 0.0006749085307234948,
+          "magnetic_x": 0.0005873803680372935,
+          "magnetic_y": 0.0010501541197330128
+        },
+        "order_from_previous": 1.010411057711024
+      },
+      {
+        "method": "ct",
+        "n": 16,
+        "steps": 128,
+        "dt": 0.000390625,
+        "cfl_sum": 0.037500000000000006,
+        "scaled_l2": 0.0006451024853786959,
+        "l1": {
+          "density": 1.531768453494429e-05,
+          "momentum_x": 7.122178557782659e-05,
+          "momentum_y": 8.434325566384352e-05,
+          "total_energy": 0.00011377263304991917,
+          "magnetic_x": 8.831465719369571e-05,
+          "magnetic_y": 0.00017009238708786485
+        },
+        "l2": {
+          "density": 1.8939354146018053e-05,
+          "momentum_x": 9.242460872727976e-05,
+          "momentum_y": 0.000105973350916227,
+          "total_energy": 0.00013943325557432766,
+          "magnetic_x": 0.0001162965219913288,
+          "magnetic_y": 0.00021039437739706475
+        },
+        "linf": {
+          "density": 4.864290402448179e-05,
+          "momentum_x": 0.0002004502916181667,
+          "momentum_y": 0.0002849085446436188,
+          "total_energy": 0.00033474311610587337,
+          "magnetic_x": 0.00029274051888728003,
+          "magnetic_y": 0.0005234903371536814
+        },
+        "order_from_previous": 1.0051663785429696
+      },
+      {
+        "method": "glm",
+        "n": 16,
+        "steps": 16,
+        "dt": 0.003125,
+        "cfl_sum": 0.30000000000000004,
+        "scaled_l2": 0.006267323260196891,
+        "l1": {
+          "density": 0.00013705198702701753,
+          "momentum_x": 0.0005781446555849514,
+          "momentum_y": 0.0006727402815757707,
+          "total_energy": 0.0009380982684654342,
+          "magnetic_x": 0.000754404965341153,
+          "magnetic_y": 0.0020131408192467434
+        },
+        "l2": {
+          "density": 0.0001729366778179688,
+          "momentum_x": 0.0007395729753551515,
+          "momentum_y": 0.0008409418039675801,
+          "total_energy": 0.0011564701481335453,
+          "magnetic_x": 0.0010343446241118204,
+          "magnetic_y": 0.0023425994806457974
+        },
+        "linf": {
+          "density": 0.0004143398723314706,
+          "momentum_x": 0.0015838748992685406,
+          "momentum_y": 0.002235235663209125,
+          "total_energy": 0.0027270922869830905,
+          "magnetic_x": 0.002526382070082725,
+          "magnetic_y": 0.004906734724959384
+        }
+      },
+      {
+        "method": "glm",
+        "n": 16,
+        "steps": 32,
+        "dt": 0.0015625,
+        "cfl_sum": 0.15000000000000002,
+        "scaled_l2": 0.003083469713736259,
+        "l1": {
+          "density": 6.591982380561249e-05,
+          "momentum_x": 0.0002845242588831623,
+          "momentum_y": 0.00033063970977997034,
+          "total_energy": 0.0004568458814414155,
+          "magnetic_x": 0.00037026800159322326,
+          "magnetic_y": 0.0009923526811458387
+        },
+        "l2": {
+          "density": 8.307085433020336e-05,
+          "momentum_x": 0.00036397419170753487,
+          "momentum_y": 0.0004129875411930856,
+          "total_energy": 0.0005629436009165855,
+          "magnetic_x": 0.0005084964292394609,
+          "magnetic_y": 0.0011540700752112171
+        },
+        "linf": {
+          "density": 0.000198279692160519,
+          "momentum_x": 0.000776519221703062,
+          "momentum_y": 0.0010962979199844736,
+          "total_energy": 0.0013173949766047133,
+          "magnetic_x": 0.0012444646422849898,
+          "magnetic_y": 0.002418623121202494
+        },
+        "order_from_previous": 1.0232947313000558
+      },
+      {
+        "method": "glm",
+        "n": 16,
+        "steps": 64,
+        "dt": 0.00078125,
+        "cfl_sum": 0.07500000000000001,
+        "scaled_l2": 0.0015295768574069236,
+        "l1": {
+          "density": 3.2378077501475405e-05,
+          "momentum_x": 0.00014120221579854526,
+          "momentum_y": 0.00016392099140991547,
+          "total_energy": 0.000225543088164887,
+          "magnetic_x": 0.00018346271045602047,
+          "magnetic_y": 0.000492701453596117
+        },
+        "l2": {
+          "density": 4.0727358295956453e-05,
+          "momentum_x": 0.0001805854856793664,
+          "momentum_y": 0.0002046865715507254,
+          "total_energy": 0.0002778350640761561,
+          "magnetic_x": 0.00025215094429084493,
+          "magnetic_y": 0.0005728401214328705
+        },
+        "linf": {
+          "density": 9.708314585604727e-05,
+          "momentum_x": 0.00038452560730476565,
+          "momentum_y": 0.0005430049351056107,
+          "total_energy": 0.000647886481388471,
+          "magnetic_x": 0.0006176284615811642,
+          "magnetic_y": 0.0012008442625088649
+        },
+        "order_from_previous": 1.0114220755057055
+      },
+      {
+        "method": "glm",
+        "n": 16,
+        "steps": 128,
+        "dt": 0.000390625,
+        "cfl_sum": 0.037500000000000006,
+        "scaled_l2": 0.0007617954701608142,
+        "l1": {
+          "density": 1.6046329510522195e-05,
+          "momentum_x": 7.033973101540833e-05,
+          "momentum_y": 8.162156870560339e-05,
+          "total_energy": 0.00011208109839561304,
+          "magnetic_x": 9.132048209001896e-05,
+          "magnetic_y": 0.00024549174754840894
+        },
+        "l2": {
+          "density": 2.0166654979573375e-05,
+          "momentum_x": 8.994833059524875e-05,
+          "momentum_y": 0.00010189905363886427,
+          "total_energy": 0.00013803020175011567,
+          "magnetic_x": 0.00012555970444776279,
+          "magnetic_y": 0.00028538493229392925
+        },
+        "linf": {
+          "density": 4.808427293392925e-05,
+          "momentum_x": 0.00019134412991107796,
+          "momentum_y": 0.0002702384750770878,
+          "total_energy": 0.0003213238185139078,
+          "magnetic_x": 0.00030767327504827024,
+          "magnetic_y": 0.0005983317611531445
+        },
+        "order_from_previous": 1.0056569861410107
+      }
+    ],
+    "temporal_reference_records": [
+      {
+        "method": "ct",
+        "grid": 16,
+        "rtol": 1e-10,
+        "atol": 1e-12,
+        "maximum_step": 0.00078125,
+        "nfev": 782,
+        "accepted_nodes": 66,
+        "success": true
+      },
+      {
+        "method": "ct",
+        "grid": 16,
+        "rtol": 2e-12,
+        "atol": 2e-14,
+        "maximum_step": 0.000390625,
+        "nfev": 1550,
+        "accepted_nodes": 130,
+        "success": true,
+        "two_reference_scaled_l2_difference": 2.974457359929584e-16
+      },
+      {
+        "method": "glm",
+        "grid": 16,
+        "rtol": 1e-10,
+        "atol": 1e-12,
+        "maximum_step": 0.00078125,
+        "nfev": 782,
+        "accepted_nodes": 66,
+        "success": true
+      },
+      {
+        "method": "glm",
+        "grid": 16,
+        "rtol": 2e-12,
+        "atol": 2e-14,
+        "maximum_step": 0.000390625,
+        "nfev": 1550,
+        "accepted_nodes": 130,
+        "success": true,
+        "two_reference_scaled_l2_difference": 2.422320976327438e-16
+      }
+    ],
+    "independent_reference_records": [
+      {
+        "coarse_n": 128,
+        "fine_n": 256,
+        "density_increment_l1": 4.6652394547138585e-05,
+        "magnetic_increment_l1": 7.786209989590136e-05,
+        "bx_increment_l1": 4.8304460367881935e-05,
+        "by_increment_l1": 0.00010741973942392078,
+        "coarse_cfl": 0.3,
+        "fine_cfl": 0.15,
+        "historical_mixed_cfl_only": true
+      },
+      {
+        "coarse_n": 256,
+        "fine_n": 512,
+        "density_increment_l1": 1.026009806046589e-05,
+        "magnetic_increment_l1": 1.6095844779648464e-05,
+        "bx_increment_l1": 9.844764949284487e-06,
+        "by_increment_l1": 2.2346924610012437e-05,
+        "coarse_cfl": 0.15,
+        "fine_cfl": 0.15,
+        "historical_mixed_cfl_only": false
+      },
+      {
+        "n": 512,
+        "cfl_coarse": 0.3,
+        "cfl_fine": 0.15,
+        "density_increment_l1": 2.6832937685765673e-07,
+        "magnetic_increment_l1": 3.5325598343789863e-07,
+        "bx_increment_l1": 2.6514207236668967e-07,
+        "by_increment_l1": 4.413698945091076e-07,
+        "maximum_density_magnetic_l1_increment": 3.5325598343789863e-07
+      }
+    ]
+  },
+  "problem_id": "orszag-tang",
+  "editorial_note": {
+    "ja": "共通の数値流束族・速度上限・時間刻み・物理減衰率を固定しますが、CTの面磁場とGLMのセル磁場、法線磁場の扱いは異なります。離散化全体の比較であり、差のすべてを発散処理だけの効果とはしません。CT固有の面発散と共通のセル中心発散は別の演算子として報告します。",
+    "en": "Match the flux family, signal bound, time steps and physical damping, while retaining intrinsic differences in face versus cell magnetic fields and normal-field treatment. Compare the whole discretizations; do not attribute every difference solely to divergence control. Report native CT face divergence separately from a common cell-centered divergence."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/",
+    "archive": {
+      "file": "atlas-mhd-convergence-2026-11-22.zip",
+      "sha256": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+      "bytes": 33273613,
+      "archive_directory": "atlas-mhd-convergence-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py"
+    ],
+    "passed_tests": 46
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

@@ -1,6 +1,6 @@
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=d6bdf6f12dd8';
+import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=f58e0a7bd481';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
@@ -64,7 +64,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=8c0f0f032199',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=039408fb56e6',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

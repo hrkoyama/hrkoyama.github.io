@@ -889,6 +889,25 @@
         {
           "path": "code/validated-examples/2026-11-22/mhd/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ct-glm-ot-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+          "json_pointer": "/ot"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
@@ -899,6 +918,14 @@
           "name": {
             "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
             "en": "Orszag–Tang: CT, GLM and independent Athena++"
+          }
+        },
+        {
+          "id": "ct-glm-ot-convergence",
+          "url": "/numerical-methods-atlas/validation/ct-glm-ot-convergence/",
+          "name": {
+            "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+            "en": "Orszag–Tang: matched CT/GLM and converged independent references"
           }
         }
       ],
@@ -3282,6 +3309,65 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "advected-magnetostatic-equilibrium",
+      "group": "mhd",
+      "name": {
+        "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+        "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+      },
+      "chapter": "validation-mhd-convergence",
+      "reading_section": "ct-glm-smooth-convergence",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/mhd-convergence/",
+      "verification": "/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ct-glm-smooth-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+          "json_pointer": "/smooth"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "ct-glm-smooth-convergence",
+          "url": "/numerical-methods-atlas/validation/ct-glm-smooth-convergence/",
+          "name": {
+            "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+            "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#advected-magnetostatic-equilibrium",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -3308,13 +3394,13 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 82,
-    "saved_test_problems": 82,
+    "test_problems": 83,
+    "saved_test_problems": 83,
     "code_test_problems": 0,
     "groups": {
       "transport": 9,
       "fluid": 16,
-      "mhd": 4,
+      "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
       "gravity": 7,
@@ -3327,7 +3413,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "b916648f2913c2300dd05c8f9b8257b40d7c9b2d1ab6f2f88a98e0f85e776bfc",
+    "catalog/atlas-test-problems.json": "50d09c172de1187a6f25b13ac63abf872de840c98219e45f2783ed56b23c0331",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3353,6 +3439,10 @@
     "numerical-methods-atlas/assets/keep-vortex.json": "73388410dbf21de395e76207b4bb5907e0165b226f96f8ab9bc13968b5f416e3",
     "numerical-methods-atlas/assets/movies/catalog.json": "fa81fc551ccd179b17a08679c393b35732ad6f0096eecda53ec64f8abea6d687",
     "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
+    "code/validated-examples/2026-11-22/mhd-convergence/inputs.json": "ef1066846f52a270af0ee89282843ef6ea39279bedac758a1e13a0970c639734",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
     "numerical-methods-atlas/assets/mhd-tests/mhd-tests.json": "ba734cda6200ff01fc2d12b67f4d1e6af7d84bb395c3dd39d7c09478d106ca89",
     "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
     "numerical-methods-atlas/assets/solver-foundations.json": "fc6b4e20bcc9635b8a6e14527caa4993d86ec255325652945dddf4118360f9fd",
@@ -3414,7 +3504,8 @@
     "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
     "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
     "code/validated-examples/2026-11-22/mcmc/inputs.json": "b20b594ab2d001426fbc58d1fe86fe4719bd42455f6a10f502966f85fb6eb49a",
-    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e"
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

@@ -1,0 +1,1392 @@
+{
+  "title": "CTとGLM：同条件の独立照合・格子・時間収束",
+  "html": "<h1>CTとGLM：同条件の独立照合・格子・時間収束</h1><p>数値流束族・LLF係数・時間刻み・物理減衰率を固定し、CTとGLMの離散化を比較します。構成した滑らかな厳密解と独立Athena++参照を使い、格子誤差・時間積分誤差・参照自身の差を分けて確かめます。</p><aside class=\"validation-scope\"><p>共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。</p><p>通常の補助例CIはNumPy・SciPy・pytestで実行する8グループです。独立ライブラリの診断参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。</p></aside><nav class=\"validation-actions\"><a href=\"/numerical-methods-atlas/validation/?lang=ja\">追加検証の一覧</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip\">コード・テスト / ZIP</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/verification.json\">独立展開の検証記録</a></nav><nav class=\"validation-toc\" aria-label=\"この章の例\"><a href=\"#ct-glm-smooth-convergence\">CT・GLM：移動する磁気静力学平衡の格子・時間収束</a><a href=\"#ct-glm-ot-convergence\">Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束</a><a href=\"#ct-glm-constraint-control\">CTの初期制約保持とGLMの能動的cleaning：非物理診断対照</a></nav><section><h2 id=\"run-all\">配布版を取得して実行する</h2><p>ZIPの atlas-mhd-convergence-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。</p><pre><code>python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output</code></pre><p>Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。</p></section><article class=\"validation-case\" data-validation-case=\"ct-glm-smooth-convergence\" id=\"ct-glm-smooth-convergence\"><h2>CT・GLM：移動する磁気静力学平衡の格子・時間収束</h2><p>非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/verification.json\">独立展開の検証記録</a></nav><p><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/protocol-history.json\">入力・検証手順の履歴</a> · <a href=\"/code/validated-examples/2026-11-22/mhd-convergence/inputs-initial.json\">初回の入力</a></p><h3 id=\"ct-glm-smooth-convergence-assumptions\">前提・単位・境界</h3><p>周期単位正方形、γ=5/3、μ₀=1、平面MHD。A=.05[cos2π(x−.3t)+cos2π(y−.2t)]、B=(Ay,−Ax)、ρ=1、v=(.3,.2)、p=.1+(2π)²A²/2、t=.1。保存変数の解析的セル平均を比較します。公刊の標準問題名を借りない構成検証例です。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>この滑らかな移流平衡はアトラスで構成した厳密解です。保存量のセル平均を比較し、そのセル平均から回復する圧力と圧力自体の厳密なセル平均を区別します。同じ半離散空間演算子に別の時間積分を適用した参照は、時間誤差の照合であり独立PDEソルバーとは呼びません。</p></aside><h3 id=\"ct-glm-smooth-convergence-algorithm\">採用した計算法</h3><p>両法とも区分定数・同じ固定Rusanov速度α=3・前進Eulerです。CTは面Bと共有算術corner EMF、GLMはcell B/ψとch=3・物理減衰率κ=2を使用。全格子で同じ384刻み、両法のdt列も同一です。CT面平均から復元した初期cell BとGLM初期Bが一致します。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>A</mi><mo>=</mo><mi>a</mi><mo stretchy=\"false\">[</mo><mi>cos</mi><mo>⁡</mo><mi>k</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo>−</mo><mi>u</mi><mi>t</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>cos</mi><mo>⁡</mo><mi>k</mi><mo stretchy=\"false\">(</mo><mi>y</mi><mo>−</mo><mi>v</mi><mi>t</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">]</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi mathvariant=\"bold\">B</mi><mo>=</mo><mo stretchy=\"false\">(</mo><msub><mi>A</mi><mi>y</mi></msub><mo separator=\"true\">,</mo><mo>−</mo><msub><mi>A</mi><mi>x</mi></msub><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>J</mi><mi>z</mi></msub><mo>=</mo><mo>−</mo><mi mathvariant=\"normal\">Δ</mi><mi>A</mi><mo>=</mo><msup><mi>k</mi><mn>2</mn></msup><mi>A</mi></mrow><annotation encoding=\"application/x-tex\">A=a[\\cos k(x-ut)+\\cos k(y-vt)],\\quad\\mathbf B=(A_y,-A_x),\\quad J_z=-\\Delta A=k^2A</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">a</span><span class=\"mopen\">[</span><span class=\"mop\">cos</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">u</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mop\">cos</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">y</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">v</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)]</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathbf\">B</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7667em;vertical-align:-0.0833em;\"></span><span class=\"mord\">−</span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8641em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">A</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>p</mi><mo>=</mo><msub><mi>p</mi><mn>0</mn></msub><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msup><mi>k</mi><mn>2</mn></msup><msup><mi>A</mi><mn>2</mn></msup><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi mathvariant=\"normal\">∇</mi><mi>p</mi><mo>=</mo><msub><mi>J</mi><mi>z</mi></msub><mi mathvariant=\"normal\">∇</mi><mi>A</mi><mo>=</mo><mi mathvariant=\"bold\">J</mi><mo>×</mo><mi mathvariant=\"bold\">B</mi></mrow><annotation encoding=\"application/x-tex\">p=p_0+\\tfrac12k^2A^2,\\qquad\\nabla p=J_z\\nabla A=\\mathbf J\\times\\mathbf B</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7778em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">p</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2091em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">∇</span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\">∇</span><span class=\"mord mathnormal\">A</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7694em;vertical-align:-0.0833em;\"></span><span class=\"mord mathbf\">J</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">×</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">B</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mover accent=\"true\"><mi mathvariant=\"bold\">U</mi><mo>ˉ</mo></mover><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mi mathvariant=\"normal\">Δ</mi><mi>x</mi><mi mathvariant=\"normal\">Δ</mi><mi>y</mi></mrow></mfrac><msub><mo>∫</mo><msub><mi>K</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></msub><mi mathvariant=\"bold\">U</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mtext> </mtext><mi>d</mi><mi>y</mi><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi>p</mi><mo stretchy=\"false\">(</mo><mover accent=\"true\"><mi mathvariant=\"bold\">U</mi><mo>ˉ</mo></mover><mo stretchy=\"false\">)</mo><mo mathvariant=\"normal\">≠</mo><mover accent=\"true\"><mi>p</mi><mo>ˉ</mo></mover></mrow><annotation encoding=\"application/x-tex\">\\bar{\\mathbf U}_{ij}=\\frac1{\\Delta x\\Delta y}\\int_{K_{ij}}\\mathbf U\\,dx\\,dy,\\qquad p(\\bar{\\mathbf U})\\ne\\bar p</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.109em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8229em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathbf\">U</span></span><span style=\"top:-3.2551em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.25em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0572em;\">ij</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.4693em;vertical-align:-1.1093em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">x</span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">y</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8804em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mop\"><span class=\"mop op-symbol large-op\" style=\"margin-right:0.4445em;position:relative;top:-0.0011em;\">∫</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:-0.4336em;\"><span style=\"top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3281em;\"><span style=\"top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"katex-sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0572em;\">ij</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2819em;\"><span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.1093em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathbf\">U</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">x</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">y</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mopen\">(</span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8229em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathbf\">U</span></span><span style=\"top:-3.2551em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.25em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\"><span class=\"mrel\"><span class=\"mord katex-vbox\"><span class=\"katex-thinbox\"><span class=\"rlap\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"katex-inner\"><span class=\"mord\"><span class=\"mrel\"></span></span></span><span class=\"katex-fix\"></span></span></span></span></span><span class=\"mspace nobreak\"></span><span class=\"mrel\">=</span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7622em;vertical-align:-0.1944em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5678em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">p</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1667em;\"><span class=\"mord\">ˉ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1944em;\"><span></span></span></span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msup><mi mathvariant=\"bold\">U</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mi mathvariant=\"bold\">U</mi><mi>m</mi></msup><mo>+</mo><mi mathvariant=\"normal\">Δ</mi><mi>t</mi><mtext> </mtext><msub><mi>L</mi><mi>h</mi></msub><mo stretchy=\"false\">(</mo><msup><mi mathvariant=\"bold\">U</mi><mi>m</mi></msup><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msub><mi>C</mi><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">u</mi><mi mathvariant=\"normal\">m</mi></mrow></msub><mo>=</mo><mi>α</mi><mi mathvariant=\"normal\">Δ</mi><mi>t</mi><mo stretchy=\"false\">(</mo><mi mathvariant=\"normal\">Δ</mi><msup><mi>x</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>+</mo><mi mathvariant=\"normal\">Δ</mi><msup><mi>y</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\mathbf U^{m+1}=\\mathbf U^m+\\Delta t\\,L_h(\\mathbf U^m),\\qquad C_{\\rm sum}=\\alpha\\Delta t(\\Delta x^{-1}+\\Delta y^{-1})</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8641em;\"></span><span class=\"mord\"><span class=\"mord mathbf\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">m</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7977em;vertical-align:-0.0833em;\"></span><span class=\"mord\"><span class=\"mord mathbf\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">L</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathbf\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0715em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">sum</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">t</span><span class=\"mopen\">(</span><span class=\"mord\">Δ</span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">−</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\">Δ</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">y</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">−</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span></span></div><h3 id=\"ct-glm-smooth-convergence-validation\">何と比較し、何を測るか</h3><p>16²/32²/64²の保存変数L1/L2/L∞誤差と観測次数を測ります。最細格子の刻み倍増差を空間誤差の.1以下と比較。時間収束は固定8²で16/32/64/128刻みを、許容誤差・最大刻みを二重に細分したDOP853へ照合します。質量・E、正値性、native CT divと共通cell div、ψも記録します。</p><h3 id=\"ct-glm-smooth-convergence-limits\">確認の限界と失敗条件</h3><p>定数LLF粘性・周期中心演算子では、GLMのdiv=ψ=0部分空間は丸めまで保たれます。本例は結合MHDの精度を調べ、能動的cleaningは別の非物理診断対照で調べます。p(q平均)はpの厳密平均と同一ではありません。DOP853は時間だけ独立で空間RHSは共有します。刻み倍増差は経験的汚染目安で厳密誤差上界ではなく、CT/GLMの内部表現差を含む有限離散化全体の比較です。</p><h3 id=\"ct-glm-smooth-convergence-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"CT・GLM：移動する磁気静力学平衡の格子・時間収束：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>initial_cell_state_linf_difference</td><td>0</td></tr><tr><td>ct_finest_spatial_error</td><td>0.0304348627607</td></tr><tr><td>ct_minimum_spatial_order</td><td>0.879200269525</td></tr><tr><td>ct_time_contamination_ratio</td><td>0.000422408361305</td></tr><tr><td>ct_finest_temporal_scaled_l2</td><td>0.000286916663465</td></tr><tr><td>ct_minimum_temporal_order</td><td>1.00358823788</td></tr><tr><td>ct_time_reference_to_primary_ratio</td><td>1.04802816693e-12</td></tr><tr><td>glm_finest_spatial_error</td><td>0.0532729417125</td></tr><tr><td>glm_minimum_spatial_order</td><td>0.851997090204</td></tr><tr><td>glm_time_contamination_ratio</td><td>0.000249774662907</td></tr><tr><td>glm_finest_temporal_scaled_l2</td><td>0.000600545564843</td></tr><tr><td>glm_minimum_temporal_order</td><td>1.00407413474</td></tr><tr><td>glm_time_reference_to_primary_ratio</td><td>4.04925531535e-13</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"CT・GLM：移動する磁気静力学平衡の格子・時間収束：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>identical_initial_cell_states</td><td>true</td></tr><tr><td>ct_native_constraint_n16</td><td>true</td></tr><tr><td>ct_native_constraint_n32</td><td>true</td></tr><tr><td>ct_native_constraint_n64</td><td>true</td></tr><tr><td>ct_spatial_order</td><td>true</td></tr><tr><td>ct_continuum_error</td><td>true</td></tr><tr><td>ct_common_divergence_bounded</td><td>true</td></tr><tr><td>ct_time_contamination_bounded</td><td>true</td></tr><tr><td>ct_positive_states</td><td>true</td></tr><tr><td>ct_conservative_mass_energy</td><td>true</td></tr><tr><td>glm_spatial_order</td><td>true</td></tr><tr><td>glm_continuum_error</td><td>true</td></tr><tr><td>glm_common_divergence_bounded</td><td>true</td></tr><tr><td>glm_time_contamination_bounded</td><td>true</td></tr><tr><td>glm_positive_states</td><td>true</td></tr><tr><td>glm_conservative_mass_energy</td><td>true</td></tr><tr><td>ct_temporal_order</td><td>true</td></tr><tr><td>ct_temporal_error</td><td>true</td></tr><tr><td>ct_temporal_reference_resolved</td><td>true</td></tr><tr><td>glm_temporal_order</td><td>true</td></tr><tr><td>glm_temporal_error</td><td>true</td></tr><tr><td>glm_temporal_reference_resolved</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png\" width=\"2015\" height=\"1147\" alt=\"CT・GLM：移動する磁気静力学平衡の格子・時間収束の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"ct-glm-smooth-convergence records\"><table><thead><tr><th scope=\"col\">method</th><th scope=\"col\">n</th><th scope=\"col\">steps</th><th scope=\"col\">dt</th><th scope=\"col\">cfl_sum</th><th scope=\"col\">maximum_psi_linf</th><th scope=\"col\">minimum_density</th><th scope=\"col\">minimum_derived_pressure</th><th scope=\"col\">native_divergence_linf</th><th scope=\"col\">common_centered_divergence_linf</th><th scope=\"col\">common_centered_divergence_final_l2</th><th scope=\"col\">common_divergence_final_dimensionless</th><th scope=\"col\">mass_relative_drift</th><th scope=\"col\">energy_relative_drift</th><th scope=\"col\">scaled_l2</th><th scope=\"col\">l1</th><th scope=\"col\">l2</th><th scope=\"col\">linf</th><th scope=\"col\">spatial_order_from_previous</th></tr></thead><tbody><tr><td>ct</td><td>16</td><td>384</td><td>0.000260416666667</td><td>0.025</td><td>0</td><td>0.998826145627</td><td>0.100858237539</td><td>2.26485497024e-14</td><td>0.000276919895811</td><td>0.000133088661766</td><td>3.20195712724e-05</td><td>2.22044604925e-16</td><td>3.28109124367e-16</td><td>0.107161593677</td><td>{&quot;density&quot;:0.001073119293049853,&quot;momentum_x&quot;:0.0025163490321296936,&quot;momentum_y&quot;:0.0024777658202256177,&quot;total_energy&quot;:0.03155022374611582,&quot;magnetic_x&quot;:0.033202591095261046,&quot;magnetic_y&quot;:0.03299522129824546}</td><td>{&quot;density&quot;:0.0012982749027710405,&quot;momentum_x&quot;:0.0031693013426847176,&quot;momentum_y&quot;:0.00315569753753268,&quot;total_energy&quot;:0.038299629508899764,&quot;magnetic_x&quot;:0.03703549103191751,&quot;magnetic_y&quot;:0.03703778557839965}</td><td>{&quot;density&quot;:0.0034801638226686915,&quot;momentum_x&quot;:0.006872548296427583,&quot;momentum_y&quot;:0.006803457137341512,&quot;total_energy&quot;:0.09169465519054343,&quot;magnetic_x&quot;:0.05252701141377786,&quot;magnetic_y&quot;:0.05260482583761156}</td><td>—</td></tr><tr><td>ct</td><td>32</td><td>384</td><td>0.000260416666667</td><td>0.05</td><td>0</td><td>0.998780174798</td><td>0.100212200454</td><td>5.86197757002e-14</td><td>6.46250592284e-05</td><td>2.9644854179e-05</td><td>3.24096623324e-06</td><td>1.11022302463e-16</td><td>3.28109124367e-16</td><td>0.0582604064815</td><td>{&quot;density&quot;:0.0008429459413238587,&quot;momentum_x&quot;:0.001830138452080753,&quot;momentum_y&quot;:0.0018231063430067067,&quot;total_energy&quot;:0.019178332225188277,&quot;magnetic_x&quot;:0.017676556052469938,&quot;magnetic_y&quot;:0.0177067944082099}</td><td>{&quot;density&quot;:0.0010369442355467446,&quot;momentum_x&quot;:0.0023276281082723347,&quot;momentum_y&quot;:0.0023159153538658502,&quot;total_energy&quot;:0.02309237876522467,&quot;magnetic_x&quot;:0.019671170246409495,&quot;magnetic_y&quot;:0.019666894718304122}</td><td>{&quot;density&quot;:0.002874533283603986,&quot;momentum_x&quot;:0.005180653577533778,&quot;momentum_y&quot;:0.005055794429550842,&quot;total_energy&quot;:0.0560429966109634,&quot;magnetic_x&quot;:0.028042683133004787,&quot;magnetic_y&quot;:0.027927135692894955}</td><td>0.879200269525</td></tr><tr><td>ct</td><td>64</td><td>384</td><td>0.000260416666667</td><td>0.1</td><td>0</td><td>0.999143964489</td><td>0.10005289866</td><td>1.31450406116e-13</td><td>1.05718828021e-05</td><td>4.77037861285e-06</td><td>2.48670607212e-07</td><td>2.22044604925e-16</td><td>3.28109124367e-16</td><td>0.0304348627607</td><td>{&quot;density&quot;:0.0005235865358320256,&quot;momentum_x&quot;:0.0011068023960548437,&quot;momentum_y&quot;:0.0010999266522574908,&quot;total_energy&quot;:0.01056719219741668,&quot;magnetic_x&quot;:0.009079198378650889,&quot;magnetic_y&quot;:0.009078801683551676}</td><td>{&quot;density&quot;:0.0006555547182800827,&quot;momentum_x&quot;:0.0014118690449652013,&quot;momentum_y&quot;:0.0014042077705071967,&quot;total_energy&quot;:0.01270356274251507,&quot;magnetic_x&quot;:0.010108336518170495,&quot;magnetic_y&quot;:0.01010300191145563}</td><td>{&quot;density&quot;:0.0018363752694459112,&quot;momentum_x&quot;:0.0031704710293902205,&quot;momentum_y&quot;:0.00309170595345698,&quot;total_energy&quot;:0.031229515769343408,&quot;magnetic_x&quot;:0.014461609138610831,&quot;magnetic_y&quot;:0.014440037520672688}</td><td>0.936790906849</td></tr><tr><td>glm</td><td>16</td><td>384</td><td>0.000260416666667</td><td>0.025</td><td>2.70967987173e-16</td><td>0.999296710755</td><td>0.100858237539</td><td>3.5527136788e-15</td><td>3.5527136788e-15</td><td>4.62921673479e-16</td><td>1.33609160437e-16</td><td>2.22044604925e-16</td><td>3.28109124367e-16</td><td>0.182691641022</td><td>{&quot;density&quot;:0.00028500993550114803,&quot;momentum_x&quot;:0.0006100149738445392,&quot;momentum_y&quot;:0.0005996545639025122,&quot;total_energy&quot;:0.032080878371250864,&quot;magnetic_x&quot;:0.0607099716253392,&quot;magnetic_y&quot;:0.06010299549071679}</td><td>{&quot;density&quot;:0.00035265122492272335,&quot;momentum_x&quot;:0.0006924716146384543,&quot;momentum_y&quot;:0.0006875026235449205,&quot;total_energy&quot;:0.03892103641702646,&quot;magnetic_x&quot;:0.06760222473790248,&quot;magnetic_y&quot;:0.06760146959762867}</td><td>{&quot;density&quot;:0.0007032892454169604,&quot;momentum_x&quot;:0.001076721601783348,&quot;momentum_y&quot;:0.001043030461966049,&quot;total_energy&quot;:0.09331290775790341,&quot;magnetic_x&quot;:0.09544751027185824,&quot;magnetic_y&quot;:0.0956408274320657}</td><td>—</td></tr><tr><td>glm</td><td>32</td><td>384</td><td>0.000260416666667</td><td>0.05</td><td>4.52910566393e-16</td><td>0.999222332491</td><td>0.100212200454</td><td>7.1054273576e-15</td><td>7.1054273576e-15</td><td>1.03744440964e-15</td><td>1.2431701806e-16</td><td>2.22044604925e-16</td><td>1.64054562183e-16</td><td>0.101214328109</td><td>{&quot;density&quot;:0.0003180965791756431,&quot;momentum_x&quot;:0.0006243460216066629,&quot;momentum_y&quot;:0.0006233366546554387,&quot;total_energy&quot;:0.019554670493359023,&quot;magnetic_x&quot;:0.03362502516635294,&quot;magnetic_y&quot;:0.03369640617869707}</td><td>{&quot;density&quot;:0.00039155465194442955,&quot;momentum_x&quot;:0.0006967907260140852,&quot;momentum_y&quot;:0.0006911571414950945,&quot;total_energy&quot;:0.02356394627313575,&quot;magnetic_x&quot;:0.037386600818828185,&quot;magnetic_y&quot;:0.03738229815324449}</td><td>{&quot;density&quot;:0.0007788807161011047,&quot;momentum_x&quot;:0.0010993949280888038,&quot;momentum_y&quot;:0.0010500438011581958,&quot;total_energy&quot;:0.057362393845580784,&quot;magnetic_x&quot;:0.052909669590111896,&quot;magnetic_y&quot;:0.052684516132438464}</td><td>0.851997090204</td></tr><tr><td>glm</td><td>64</td><td>384</td><td>0.000260416666667</td><td>0.1</td><td>4.07595976827e-16</td><td>0.999438300292</td><td>0.10005289866</td><td>1.06581410364e-14</td><td>1.06581410364e-14</td><td>1.72123582557e-15</td><td>9.39421899186e-17</td><td>2.22044604925e-16</td><td>1.64054562183e-16</td><td>0.0532729417125</td><td>{&quot;density&quot;:0.00022724037800232738,&quot;momentum_x&quot;:0.0004341940903612204,&quot;momentum_y&quot;:0.00043121404976120527,&quot;total_energy&quot;:0.010797966278489366,&quot;magnetic_x&quot;:0.017654870465604232,&quot;magnetic_y&quot;:0.017657522167611083}</td><td>{&quot;density&quot;:0.0002802390977863017,&quot;momentum_x&quot;:0.0004838285839329712,&quot;momentum_y&quot;:0.00047979436136559497,&quot;total_energy&quot;:0.012991553258170882,&quot;magnetic_x&quot;:0.019623025563423737,&quot;magnetic_y&quot;:0.019617875908586106}</td><td>{&quot;density&quot;:0.0005632355449693982,&quot;momentum_x&quot;:0.0007698616360558574,&quot;momentum_y&quot;:0.0007389762548461187,&quot;total_energy&quot;:0.03211753356101893,&quot;magnetic_x&quot;:0.027800332108093018,&quot;magnetic_y&quot;:0.027771444953284263}</td><td>0.92593868207</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/ct-glm-smooth-convergence/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"ct-glm-smooth-convergence-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"ct-glm-smooth-convergence-source-dedner2002\"><a href=\"https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf\">A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations</a> · <a href=\"https://doi.org/10.1006/jcph.2001.6961\">DOI: 10.1006/jcph.2001.6961</a><p>確認範囲 / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651</p><p>通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。</p></li><li id=\"ct-glm-smooth-convergence-source-gardiner-stone2005\"><a href=\"https://arxiv.org/abs/astro-ph/0501557\">T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport</a> · <a href=\"https://doi.org/10.1016/j.jcp.2004.11.016\">DOI: 10.1016/j.jcp.2004.11.016</a><p>確認範囲 / review_level: author preprint; selected section2.2/equations13–20</p><p>面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。</p></li><li id=\"ct-glm-smooth-convergence-source-toth2000-divb\"><a href=\"https://doi.org/10.1006/jcph.2000.6519\">G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes</a> · <a href=\"https://doi.org/10.1006/jcph.2000.6519\">DOI: 10.1006/jcph.2000.6519</a><p>確認範囲 / review_level: author paper abstract and bibliographic metadata</p><p>div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。</p></li><li id=\"ct-glm-smooth-convergence-source-scipy-dop853-official\"><a href=\"https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html\">SciPy developers (2024). scipy.integrate.solve_ivp: DOP853</a><p>確認範囲 / review_level: official versioned API and actual independent time-integrator execution</p><p>DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。</p></li></ol></article><article class=\"validation-case\" data-validation-case=\"ct-glm-ot-convergence\" id=\"ct-glm-ot-convergence\"><h2>Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束</h2><p>同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/verification.json\">独立展開の検証記録</a></nav><p><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/protocol-history.json\">入力・検証手順の履歴</a> · <a href=\"/code/validated-examples/2026-11-22/mhd-convergence/inputs-initial.json\">初回の入力</a></p><h3 id=\"ct-glm-ot-convergence-assumptions\">前提・単位・境界</h3><p>標準周期OT、γ=5/3、ρ=25/(36π)、p=5/(12π)、v=(−sin2πy,sin2πx)、B=(−sin2πy,sin4πx)/√(4π)、t=.05。16²/32²/64²の両法に192刻みを共用します。旧配布版を改変しない追加検証です。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>共通の数値流束族・速度上限・時間刻み・物理減衰率を固定しますが、CTの面磁場とGLMのセル磁場、法線磁場の扱いは異なります。離散化全体の比較であり、差のすべてを発散処理だけの効果とはしません。CT固有の面発散と共通のセル中心発散は別の演算子として報告します。</p></aside><h3 id=\"ct-glm-ot-convergence-algorithm\">採用した計算法</h3><p>主計算は固定α=ch=3のRusanovと前進Euler、GLMκ=2は格子に依存しません。独立C++ Athena++はHLLD・PLM・RK2・upwind CTです。同じ連続初期値を用いますが、Athenaのface/primitive離散化は主計算と完全同一ではありません。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>F</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo stretchy=\"false\">[</mo><mi>F</mi><mo stretchy=\"false\">(</mo><msub><mi>U</mi><mi>L</mi></msub><mo stretchy=\"false\">)</mo><mo>+</mo><mi>F</mi><mo stretchy=\"false\">(</mo><msub><mi>U</mi><mi>R</mi></msub><mo stretchy=\"false\">)</mo><mo>−</mo><mi>α</mi><mo stretchy=\"false\">(</mo><msub><mi>U</mi><mi>R</mi></msub><mo>−</mo><msub><mi>U</mi><mi>L</mi></msub><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">]</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi>α</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding=\"application/x-tex\">F_{i+1/2}=\\tfrac12[F(U_L)+F(U_R)-\\alpha(U_R-U_L)],\\qquad\\alpha=3</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0385em;vertical-align:-0.3552em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1901em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mopen\">[</span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0077em;\">R</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0077em;\">R</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)]</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">3</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mo stretchy=\"false\">(</mo><msub><mi>B</mi><mi>x</mi></msub><msub><mo stretchy=\"false\">)</mo><mi>t</mi></msub><mo>+</mo><msub><mi mathvariant=\"normal\">∂</mi><mi>x</mi></msub><mi>ψ</mi><mo>+</mo><msub><mi mathvariant=\"normal\">∂</mi><mi>y</mi></msub><mo stretchy=\"false\">(</mo><msub><mi>v</mi><mi>y</mi></msub><msub><mi>B</mi><mi>x</mi></msub><mo>−</mo><msub><mi>v</mi><mi>x</mi></msub><msub><mi>B</mi><mi>y</mi></msub><mo stretchy=\"false\">)</mo><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>ψ</mi><mi>t</mi></msub><mo>+</mo><msubsup><mi>c</mi><mi>h</mi><mn>2</mn></msubsup><mi mathvariant=\"normal\">∇</mi><mo>⋅</mo><mi mathvariant=\"bold\">B</mi><mo>=</mo><mo>−</mo><mi>κ</mi><mi>ψ</mi></mrow><annotation encoding=\"application/x-tex\">(B_x)_t+\\partial_x\\psi+\\partial_y(v_yB_x-v_xB_y)=0,\\quad\\psi_t+c_h^2\\nabla\\cdot\\mathbf B=-\\kappa\\psi</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0502em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">ψ</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">v</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0502em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">v</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0502em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">ψ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1111em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mord\">∇</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">B</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">−</span><span class=\"mord mathnormal\">κ</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">ψ</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msubsup><mi>D</mi><mi>h</mi><mrow><mi mathvariant=\"normal\">f</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">c</mi><mi mathvariant=\"normal\">e</mi></mrow></msubsup><mtext> </mtext><msub><mrow><mi mathvariant=\"normal\">curl</mi><mo>⁡</mo></mrow><mi>h</mi></msub><mi>E</mi><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msubsup><mi>D</mi><mi>h</mi><mrow><mi mathvariant=\"normal\">c</mi><mi mathvariant=\"normal\">e</mi><mi mathvariant=\"normal\">l</mi><mi mathvariant=\"normal\">l</mi></mrow></msubsup><mo mathvariant=\"normal\">≠</mo><msubsup><mi>D</mi><mi>h</mi><mrow><mi mathvariant=\"normal\">f</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">c</mi><mi mathvariant=\"normal\">e</mi></mrow></msubsup></mrow><annotation encoding=\"application/x-tex\">D_h^{\\rm face}\\,\\operatorname{curl}_h E=0,\\qquad D_h^{\\rm cell}\\ne D_h^{\\rm face}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1461em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">D</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">face</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mop\"><span class=\"mop\"><span class=\"mord mathrm\">curl</span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1461em;vertical-align:-0.247em;\"></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">D</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">cell</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\"><span class=\"mrel\"><span class=\"mord katex-vbox\"><span class=\"katex-thinbox\"><span class=\"rlap\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"katex-inner\"><span class=\"mord\"><span class=\"mrel\"></span></span></span><span class=\"katex-fix\"></span></span></span></span></span><span class=\"mspace nobreak\"></span><span class=\"mrel\">=</span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1461em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">D</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">face</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span></span></span></span></span></div><h3 id=\"ct-glm-ot-convergence-validation\">何と比較し、何を測るか</h3><p>密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。</p><h3 id=\"ct-glm-ot-convergence-limits\">確認の限界と失敗条件</h3><p>短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。</p><h3 id=\"ct-glm-ot-convergence-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>initial_cell_state_linf_difference</td><td>0</td></tr><tr><td>ct_finest_spatial_error</td><td>0.0413194839982</td></tr><tr><td>ct_minimum_spatial_order</td><td>0.744158443513</td></tr><tr><td>ct_time_contamination_ratio</td><td>0.00545247213312</td></tr><tr><td>ct_finest_temporal_scaled_l2</td><td>0.000645102485379</td></tr><tr><td>ct_minimum_temporal_order</td><td>1.00516637854</td></tr><tr><td>ct_time_reference_to_primary_ratio</td><td>4.61082917419e-13</td></tr><tr><td>glm_finest_spatial_error</td><td>0.0685124284115</td></tr><tr><td>glm_minimum_spatial_order</td><td>0.681940639631</td></tr><tr><td>glm_time_contamination_ratio</td><td>0.00328933327647</td></tr><tr><td>glm_finest_temporal_scaled_l2</td><td>0.000761795470161</td></tr><tr><td>glm_minimum_temporal_order</td><td>1.00565698614</td></tr><tr><td>glm_time_reference_to_primary_ratio</td><td>3.17975240233e-13</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>identical_initial_cell_states</td><td>true</td></tr><tr><td>independent_reference_density_refinement</td><td>true</td></tr><tr><td>independent_reference_magnetic_refinement</td><td>true</td></tr><tr><td>independent_reference_time_refinement</td><td>true</td></tr><tr><td>ct_native_constraint_n16</td><td>true</td></tr><tr><td>ct_native_constraint_n32</td><td>true</td></tr><tr><td>ct_native_constraint_n64</td><td>true</td></tr><tr><td>ct_spatial_refinement</td><td>true</td></tr><tr><td>ct_density_error</td><td>true</td></tr><tr><td>ct_magnetic_error</td><td>true</td></tr><tr><td>ct_independent_reference_resolved</td><td>true</td></tr><tr><td>ct_time_contamination_bounded</td><td>true</td></tr><tr><td>ct_positive_states</td><td>true</td></tr><tr><td>ct_conservative_mass_energy</td><td>true</td></tr><tr><td>glm_spatial_refinement</td><td>true</td></tr><tr><td>glm_density_error</td><td>true</td></tr><tr><td>glm_magnetic_error</td><td>true</td></tr><tr><td>glm_independent_reference_resolved</td><td>true</td></tr><tr><td>glm_time_contamination_bounded</td><td>true</td></tr><tr><td>glm_positive_states</td><td>true</td></tr><tr><td>glm_conservative_mass_energy</td><td>true</td></tr><tr><td>ct_temporal_order</td><td>true</td></tr><tr><td>ct_temporal_error</td><td>true</td></tr><tr><td>ct_temporal_reference_resolved</td><td>true</td></tr><tr><td>glm_temporal_order</td><td>true</td></tr><tr><td>glm_temporal_error</td><td>true</td></tr><tr><td>glm_temporal_reference_resolved</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png\" width=\"2015\" height=\"1147\" alt=\"Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"ct-glm-ot-convergence records\"><table><thead><tr><th scope=\"col\">method</th><th scope=\"col\">n</th><th scope=\"col\">steps</th><th scope=\"col\">dt</th><th scope=\"col\">cfl_sum</th><th scope=\"col\">maximum_psi_linf</th><th scope=\"col\">minimum_density</th><th scope=\"col\">minimum_derived_pressure</th><th scope=\"col\">native_divergence_linf</th><th scope=\"col\">common_centered_divergence_linf</th><th scope=\"col\">common_centered_divergence_final_l2</th><th scope=\"col\">common_divergence_final_dimensionless</th><th scope=\"col\">mass_relative_drift</th><th scope=\"col\">energy_relative_drift</th><th scope=\"col\">density_l1</th><th scope=\"col\">magnetic_l1</th><th scope=\"col\">density_relative_l1</th><th scope=\"col\">magnetic_relative_l1</th><th scope=\"col\">combined_relative_l1</th><th scope=\"col\">spatial_order_from_previous</th><th scope=\"col\">reference_spatial_density_to_primary_ratio</th><th scope=\"col\">reference_spatial_magnetic_to_primary_ratio</th><th scope=\"col\">reference_time_density_to_primary_ratio</th><th scope=\"col\">reference_time_magnetic_to_primary_ratio</th></tr></thead><tbody><tr><td>ct</td><td>16</td><td>192</td><td>0.000260416666667</td><td>0.025</td><td>0</td><td>0.204189008453</td><td>0.133130353283</td><td>1.46549439251e-14</td><td>0.0677857673131</td><td>0.0325401421536</td><td>0.00897016862507</td><td>3.76689797785e-16</td><td>3.17881685894e-16</td><td>0.00840745656286</td><td>0.0372054510221</td><td>0.0380344374335</td><td>0.2117115416</td><td>0.124872989517</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>ct</td><td>32</td><td>192</td><td>0.000260416666667</td><td>0.05</td><td>0</td><td>0.200890032178</td><td>0.127361060686</td><td>3.73034936274e-14</td><td>0.0418146177283</td><td>0.0133125961765</td><td>0.00165416086207</td><td>3.76689797785e-16</td><td>1.58940842947e-16</td><td>0.00691434065567</td><td>0.0209624730206</td><td>0.0312797402039</td><td>0.117822610921</td><td>0.0745511755622</td><td>0.744158443513</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>ct</td><td>64</td><td>192</td><td>0.000260416666667</td><td>0.1</td><td>0</td><td>0.199347422355</td><td>0.120300501141</td><td>1.03028696685e-13</td><td>0.0215578547719</td><td>0.00482844370213</td><td>0.000284032396511</td><td>3.76689797785e-16</td><td>1.58940842947e-16</td><td>0.0046347960477</td><td>0.0110237836471</td><td>0.0209673233487</td><td>0.0616716446477</td><td>0.0413194839982</td><td>0.851408864068</td><td>0.00221371079868</td><td>0.00146010165792</td><td>5.78945382054e-05</td><td>3.20448944525e-05</td></tr><tr><td>glm</td><td>16</td><td>192</td><td>0.000260416666667</td><td>0.025</td><td>2.29333161254e-16</td><td>0.204813445303</td><td>0.133177940546</td><td>2.6645352591e-15</td><td>2.6645352591e-15</td><td>4.47860702695e-16</td><td>1.46149417582e-16</td><td>6.27816329642e-16</td><td>3.17881685894e-16</td><td>0.0085972134044</td><td>0.0613277203232</td><td>0.0388928771605</td><td>0.34897537473</td><td>0.193934125946</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>glm</td><td>32</td><td>192</td><td>0.000260416666667</td><td>0.05</td><td>2.79414389234e-16</td><td>0.201290117657</td><td>0.132741302166</td><td>5.3290705182e-15</td><td>5.3290705182e-15</td><td>7.5399655241e-16</td><td>1.03471308109e-16</td><td>3.76689797785e-16</td><td>1.58940842947e-16</td><td>0.00709733886414</td><td>0.0373019236357</td><td>0.0321076045953</td><td>0.209660855892</td><td>0.120884230244</td><td>0.681940639631</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>glm</td><td>64</td><td>192</td><td>0.000260416666667</td><td>0.1</td><td>3.33714653318e-16</td><td>0.199603515642</td><td>0.124471972093</td><td>1.06581410364e-14</td><td>1.06581410364e-14</td><td>1.49560771309e-15</td><td>9.28462941824e-17</td><td>5.02253063713e-16</td><td>1.58940842947e-16</td><td>0.00478036851821</td><td>0.0206275247939</td><td>0.0216258776903</td><td>0.115398979133</td><td>0.0685124284115</td><td>0.819188425199</td><td>0.00214629855865</td><td>0.000780309074426</td><td>5.61315253908e-05</td><td>1.71254664322e-05</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/ct-glm-ot-convergence/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"ct-glm-ot-convergence-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"ct-glm-ot-convergence-source-dedner2002\"><a href=\"https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf\">A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations</a> · <a href=\"https://doi.org/10.1006/jcph.2001.6961\">DOI: 10.1006/jcph.2001.6961</a><p>確認範囲 / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651</p><p>通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。</p></li><li id=\"ct-glm-ot-convergence-source-gardiner-stone2005\"><a href=\"https://arxiv.org/abs/astro-ph/0501557\">T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport</a> · <a href=\"https://doi.org/10.1016/j.jcp.2004.11.016\">DOI: 10.1016/j.jcp.2004.11.016</a><p>確認範囲 / review_level: author preprint; selected section2.2/equations13–20</p><p>面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。</p></li><li id=\"ct-glm-ot-convergence-source-toth2000-divb\"><a href=\"https://doi.org/10.1006/jcph.2000.6519\">G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes</a> · <a href=\"https://doi.org/10.1006/jcph.2000.6519\">DOI: 10.1006/jcph.2000.6519</a><p>確認範囲 / review_level: author paper abstract and bibliographic metadata</p><p>div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。</p></li><li id=\"ct-glm-ot-convergence-source-stone2020athena\"><a href=\"https://doi.org/10.3847/1538-4365/ab929b\">J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers</a> · <a href=\"https://doi.org/10.3847/1538-4365/ab929b\">DOI: 10.3847/1538-4365/ab929b</a><p>確認範囲 / review_level: official source at pinned commit actually compiled/executed; paper metadata</p><p>以前に別構築しハッシュを確認した公式commit1395e2f543f4368d448cb1a2cf92ba1f910e3416のC++バイナリーを再利用して新しい参照を実行し、入力・出力・binary/source SHAを保存しました。論文全文監査ではありません。</p></li><li id=\"ct-glm-ot-convergence-source-scipy-dop853-official\"><a href=\"https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html\">SciPy developers (2024). scipy.integrate.solve_ivp: DOP853</a><p>確認範囲 / review_level: official versioned API and actual independent time-integrator execution</p><p>DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。</p></li></ol></article><article class=\"validation-case\" data-validation-case=\"ct-glm-constraint-control\" id=\"ct-glm-constraint-control\"><h2>CTの初期制約保持とGLMの能動的cleaning：非物理診断対照</h2><p>故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/ct-glm-constraint-control/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/verification.json\">独立展開の検証記録</a></nav><p><a href=\"/code/validated-examples/2026-11-22/mhd-convergence/protocol-history.json\">入力・検証手順の履歴</a> · <a href=\"/code/validated-examples/2026-11-22/mhd-convergence/inputs-initial.json\">初回の入力</a></p><h3 id=\"ct-glm-constraint-control-assumptions\">前提・単位・境界</h3><p>32²周期格子、t=.1、128刻み、ρ=p=1、v=0、By=ψ=0。CT face Bx=.01cos[2π(i+1)/32]、GLM cell Bxはその左右face平均と同一です。CT初期native div≠0は意図的に無効な物理初期値で、CTの正しい物理計算例とは区別します。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>発散制約を意図的に破った初期場を共通のセル磁場として与える診断です。正当な発散ゼロ初期条件のCT計算とは区別し、CTが初期制約誤差を保持する性質を確認します。GLMは減衰なしの対照とも比較し、磁場とpsiの波エネルギーを使って輸送の位相変化や数値拡散を物理減衰と混同しません。</p></aside><h3 id=\"ct-glm-constraint-control-algorithm\">採用した計算法</h3><p>同じ完全結合MHDコードを使用。y不変・By=vy=0ではGLMのBx/ψ系が流体応答から独立するため、離散Fourier記号の2×2行列と前進Euler行列冪を別に構成します。κ=2とκ=0を同じdt・LLF粘性で比較し、Bxだけの減少を物理減衰と取り違えません。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><mo stretchy=\"false\">(</mo><mi>I</mi><mo>+</mo><mi mathvariant=\"normal\">Δ</mi><mi>t</mi><msub><mi>M</mi><mi>h</mi></msub><mo stretchy=\"false\">)</mo><msup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>m</mi></msup><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>M</mi><mi>h</mi></msub><mo>=</mo><mrow><mo fence=\"true\">(</mo><mtable rowspacing=\"0.16em\" columnalign=\"center center\" columnspacing=\"1em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><msub><mi>ν</mi><mi>h</mi></msub></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mrow><mo>−</mo><mi>i</mi><mover accent=\"true\"><mi>k</mi><mo stretchy=\"true\">~</mo></mover></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mrow><mo>−</mo><mi>i</mi><msubsup><mi>c</mi><mi>h</mi><mn>2</mn></msubsup><mover accent=\"true\"><mi>k</mi><mo stretchy=\"true\">~</mo></mover></mrow></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mrow><msub><mi>ν</mi><mi>h</mi></msub><mo>−</mo><mi>κ</mi></mrow></mstyle></mtd></mtr></mtable><mo fence=\"true\">)</mo></mrow></mrow><annotation encoding=\"application/x-tex\">\\widehat{U}^{m+1}=(I+\\Delta t M_h)\\widehat{U}^{m},\\quad M_h=\\begin{pmatrix}\\nu_h&amp;-i\\widetilde{k}\\\\-ic_h^2\\widetilde{k}&amp;\\nu_h-\\kappa\\end{pmatrix}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9233em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">m</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0785em;\">I</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1733em;vertical-align:-0.25em;\"></span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">t</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.6289em;vertical-align:-1.0644em;\"></span><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">(</span></span><span class=\"mord\"><span class=\"mtable\"><span class=\"col-align-c\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.5644em;\"><span style=\"top:-3.61em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0637em;\">ν</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0637em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span><span style=\"top:-2.2956em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">−</span><span class=\"mord mathnormal\">i</span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-2.4169em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2831em;\"><span></span></span></span></span></span></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9544em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span></span><span class=\"svg-align\" style=\"top:-3.6944em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.26em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.26em\" viewBox=\"0 0 600 260\" preserveAspectRatio=\"none\"><path d=\"M200 55.538c-77 0-168 73.953-177 73.953-3 0-7\n-2.175-9-5.437L2 97c-1-2-2-4-2-6 0-4 2-7 5-9l20-12C116 12 171 0 207 0c86 0\n 114 68 191 68 78 0 168-68 177-68 4 0 7 2 9 5l12 19c1 2.175 2 4.35 2 6.525 0\n 4.35-2 7.613-5 9.788l-19 13.05c-92 63.077-116.937 75.308-183 76.128\n-68.267.847-113-73.952-191-73.952z\"/></svg></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.0644em;\"><span></span></span></span></span></span><span class=\"arraycolsep\" style=\"width:0.5em;\"></span><span class=\"arraycolsep\" style=\"width:0.5em;\"></span><span class=\"col-align-c\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.5644em;\"><span style=\"top:-3.61em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">−</span><span class=\"mord mathnormal\">i</span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9544em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span></span><span class=\"svg-align\" style=\"top:-3.6944em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.26em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.26em\" viewBox=\"0 0 600 260\" preserveAspectRatio=\"none\"><path d=\"M200 55.538c-77 0-168 73.953-177 73.953-3 0-7\n-2.175-9-5.437L2 97c-1-2-2-4-2-6 0-4 2-7 5-9l20-12C116 12 171 0 207 0c86 0\n 114 68 191 68 78 0 168-68 177-68 4 0 7 2 9 5l12 19c1 2.175 2 4.35 2 6.525 0\n 4.35-2 7.613-5 9.788l-19 13.05c-92 63.077-116.937 75.308-183 76.128\n-68.267.847-113-73.952-191-73.952z\"/></svg></span></span></span></span></span></span></span></span><span style=\"top:-2.2956em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0637em;\">ν</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0637em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\">κ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.0644em;\"><span></span></span></span></span></span></span></span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">)</span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>ν</mi><mi>h</mi></msub><mo>=</mo><mi>α</mi><mi>N</mi><mo stretchy=\"false\">[</mo><mi>cos</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mn>2</mn><mi>π</mi><mi mathvariant=\"normal\">/</mi><mi>N</mi><mo stretchy=\"false\">)</mo><mo>−</mo><mn>1</mn><mo stretchy=\"false\">]</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mover accent=\"true\"><mi>k</mi><mo stretchy=\"true\">~</mo></mover><mo>=</mo><mi>N</mi><mi>sin</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mn>2</mn><mi>π</mi><mi mathvariant=\"normal\">/</mi><mi>N</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\nu_h=\\alpha N[\\cos(2\\pi/N)-1],\\quad\\widetilde{k}=N\\sin(2\\pi/N)</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.5806em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0637em;\">ν</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.0637em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">N</span><span class=\"mopen\">[</span><span class=\"mop\">cos</span><span class=\"mopen\">(</span><span class=\"mord\">2</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">π</span><span class=\"mord\">/</span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">N</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2044em;vertical-align:-0.25em;\"></span><span class=\"mord\">1</span><span class=\"mclose\">]</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9544em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0315em;\">k</span></span><span class=\"svg-align\" style=\"top:-3.6944em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.26em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.26em\" viewBox=\"0 0 600 260\" preserveAspectRatio=\"none\"><path d=\"M200 55.538c-77 0-168 73.953-177 73.953-3 0-7\n-2.175-9-5.437L2 97c-1-2-2-4-2-6 0-4 2-7 5-9l20-12C116 12 171 0 207 0c86 0\n 114 68 191 68 78 0 168-68 177-68 4 0 7 2 9 5l12 19c1 2.175 2 4.35 2 6.525 0\n 4.35-2 7.613-5 9.788l-19 13.05c-92 63.077-116.937 75.308-183 76.128\n-68.267.847-113-73.952-191-73.952z\"/></svg></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">N</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mop\">sin</span><span class=\"mopen\">(</span><span class=\"mord\">2</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">π</span><span class=\"mord\">/</span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">N</span><span class=\"mclose\">)</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>W</mi><mo>=</mo><mo stretchy=\"false\">⟨</mo><msubsup><mi>B</mi><mi>x</mi><mn>2</mn></msubsup><mo>+</mo><msup><mi>ψ</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><msubsup><mi>c</mi><mi>h</mi><mn>2</mn></msubsup><mo stretchy=\"false\">⟩</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msub><mi>W</mi><mrow><mi>κ</mi><mo>=</mo><mn>2</mn></mrow></msub><mi mathvariant=\"normal\">/</mi><msub><mi>W</mi><mrow><mi>κ</mi><mo>=</mo><mn>0</mn></mrow></msub><mo>&lt;</mo><mn>0.95</mn></mrow><annotation encoding=\"application/x-tex\">W=\\langle B_x^2+\\psi^2/c_h^2\\rangle,\\qquad W_{\\kappa=2}/W_{\\kappa=0}&lt;0.95</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">W</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mopen\">⟨</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0502em;\">B</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">ψ</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">h</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mclose\">⟩</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">W</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">κ</span><span class=\"mrel mtight\">=</span><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">W</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">κ</span><span class=\"mrel mtight\">=</span><span class=\"mord mtight\">0</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0.95</span></span></span></span></span></div><h3 id=\"ct-glm-constraint-control-validation\">何と比較し、何を測るか</h3><p>CT native divの初期違反保持、GLMのψ励起、Bx/ψ双方の独立FE参照一致、密度・圧力正値性、物理的総E/質量保存を確認。補助波エネルギーW=〈Bx²+ψ²/ch²〉のκ2/κ0比を判定し、半離散行列指数と連続Fourier解も区別して表示します。</p><h3 id=\"ct-glm-constraint-control-limits\">確認の限界と失敗条件</h3><p>対照の合格は「期待したCTの非除去とGLMの線形応答を正しく検出した」という意味です。非零CT divを許す物理計算を推奨しません。Wは診断用ノルムで、ψを含まない物理的総エネルギーEとは別です。GLMのBx減少には位相交換とLLF拡散も含まれ、κ0対照なしに減衰成功とは呼びません。一般非線形・境界流出・衝撃波のcleaning性能へ広げません。</p><h3 id=\"ct-glm-constraint-control-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"CTの初期制約保持とGLMの能動的cleaning：非物理診断対照：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>damped_to_undamped_B_psi_wave_energy_ratio</td><td>0.797707175434</td></tr><tr><td>ct_native_divergence_linf_change</td><td>0</td></tr><tr><td>ct_common_divergence_linf_change</td><td>1.45716771982e-16</td></tr><tr><td>initial_common_divergence_l2</td><td>0.0439313357377</td></tr><tr><td>initial_cell_state_difference</td><td>4.77048955894e-18</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"CTの初期制約保持とGLMの能動的cleaning：非物理診断対照：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>ct_preserves_initial_constraint_defect</td><td>true</td></tr><tr><td>ct_does_not_clean_common_initial_defect</td><td>true</td></tr><tr><td>ct_initial_constraint_is_deliberately_nonzero</td><td>true</td></tr><tr><td>damped_independent_discrete_fourier_agreement</td><td>true</td></tr><tr><td>damped_positive_states</td><td>true</td></tr><tr><td>damped_conservative_mass_energy</td><td>true</td></tr><tr><td>damped_psi_is_activated</td><td>true</td></tr><tr><td>glm_final_B_divergence_reduced</td><td>true</td></tr><tr><td>undamped_independent_discrete_fourier_agreement</td><td>true</td></tr><tr><td>undamped_positive_states</td><td>true</td></tr><tr><td>undamped_conservative_mass_energy</td><td>true</td></tr><tr><td>undamped_psi_is_activated</td><td>true</td></tr><tr><td>physical_damping_separated_from_phase_and_LLF_viscosity</td><td>true</td></tr><tr><td>ct_positive_states</td><td>true</td></tr><tr><td>ct_conservative_mass_energy</td><td>true</td></tr><tr><td>matched_initial_cell_states</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png\" width=\"1705\" height=\"1116\" alt=\"CTの初期制約保持とGLMの能動的cleaning：非物理診断対照の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"ct-glm-constraint-control records\"><table><thead><tr><th scope=\"col\">method</th><th scope=\"col\">cleaning_rate</th><th scope=\"col\">initial_native_divergence_linf</th><th scope=\"col\">native_divergence_change_linf</th><th scope=\"col\">common_divergence_change_linf</th><th scope=\"col\">mass_relative_drift</th><th scope=\"col\">energy_relative_drift</th><th scope=\"col\">n</th><th scope=\"col\">steps</th><th scope=\"col\">dt</th><th scope=\"col\">cfl_sum</th><th scope=\"col\">fourier_FE_reference_linf</th><th scope=\"col\">final_common_divergence_ratio</th><th scope=\"col\">maximum_psi_linf</th><th scope=\"col\">B_psi_wave_energy</th><th scope=\"col\">reference_wave_energy</th><th scope=\"col\">LLF_diffusion_eigenvalue</th><th scope=\"col\">centered_derivative_wavenumber</th><th scope=\"col\">FE_B_amplitude_real</th><th scope=\"col\">FE_psi_amplitude_imaginary</th><th scope=\"col\">semidiscrete_B_amplitude_real</th><th scope=\"col\">continuous_B_amplitude_real</th><th scope=\"col\">minimum_density</th><th scope=\"col\">minimum_derived_pressure</th></tr></thead><tbody><tr><td>ct</td><td>—</td><td>0.0624289030452</td><td>0</td><td>1.45716771982e-16</td><td>2.22044604925e-16</td><td>7.40136465988e-16</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>glm</td><td>2</td><td>—</td><td>—</td><td>—</td><td>4.4408920985e-16</td><td>7.40136465988e-16</td><td>32</td><td>128</td><td>0.00078125</td><td>0.15</td><td>1.04083408559e-17</td><td>0.188941626082</td><td>0.0239554522826</td><td>2.80684556781e-05</td><td>2.80684556781e-05</td><td>-1.84461308129</td><td>6.24289030452</td><td>-0.0018803182051</td><td>-0.021758029167</td><td>-0.0018259735252</td><td>-0.00230452476008</td><td>0.999996450122</td><td>1</td></tr><tr><td>glm</td><td>0</td><td>—</td><td>—</td><td>—</td><td>4.4408920985e-16</td><td>2.96054586395e-16</td><td>32</td><td>128</td><td>0.00078125</td><td>0.15</td><td>5.55111512313e-17</td><td>0.252840457316</td><td>0.0258571210642</td><td>3.51864149433e-05</td><td>3.51864149433e-05</td><td>-1.84461308129</td><td>6.24289030452</td><td>-0.00251622961406</td><td>-0.0240077646969</td><td>-0.00246193738557</td><td>-0.00307528993084</td><td>0.99999651086</td><td>1</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/ct-glm-constraint-control/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"ct-glm-constraint-control-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"ct-glm-constraint-control-source-dedner2002\"><a href=\"https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf\">A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations</a> · <a href=\"https://doi.org/10.1006/jcph.2001.6961\">DOI: 10.1006/jcph.2001.6961</a><p>確認範囲 / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651</p><p>通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。</p></li><li id=\"ct-glm-constraint-control-source-gardiner-stone2005\"><a href=\"https://arxiv.org/abs/astro-ph/0501557\">T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport</a> · <a href=\"https://doi.org/10.1016/j.jcp.2004.11.016\">DOI: 10.1016/j.jcp.2004.11.016</a><p>確認範囲 / review_level: author preprint; selected section2.2/equations13–20</p><p>面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。</p></li><li id=\"ct-glm-constraint-control-source-toth2000-divb\"><a href=\"https://doi.org/10.1006/jcph.2000.6519\">G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes</a> · <a href=\"https://doi.org/10.1006/jcph.2000.6519\">DOI: 10.1006/jcph.2000.6519</a><p>確認範囲 / review_level: author paper abstract and bibliographic metadata</p><p>div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。</p></li></ol></article><aside class=\"validation-terms\"><p>オリジナルコードはMIT。本文・図・固定入力・数値データと第三者資料は、それぞれの利用条件に従います。</p><p><a href=\"/LICENSING.md\">LICENSING.md</a> · <a href=\"/rights/?lang=ja\">利用条件・AI方針</a></p></aside>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "run-all",
+      "title": "配布版を取得して実行する"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-smooth-convergence-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-smooth-convergence-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-smooth-convergence-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-smooth-convergence-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-smooth-convergence-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-smooth-convergence-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-ot-convergence-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-ot-convergence-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-ot-convergence-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-ot-convergence-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-ot-convergence-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-ot-convergence-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-constraint-control-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-constraint-control-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-constraint-control-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-constraint-control-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-constraint-control-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "ct-glm-constraint-control-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 2,
+      "id": "ct-glm-smooth-convergence",
+      "title": "CT・GLM：移動する磁気静力学平衡の格子・時間収束"
+    },
+    {
+      "level": 2,
+      "id": "ct-glm-ot-convergence",
+      "title": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束"
+    },
+    {
+      "level": 2,
+      "id": "ct-glm-constraint-control",
+      "title": "CTの初期制約保持とGLMの能動的cleaning：非物理診断対照"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/code/validated-examples/2026-11-22/mhd-convergence/cases.json",
+  "updated_on": "2026-11-22",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/",
+  "group": "mhd-convergence",
+  "case_ids": [
+    "ct-glm-smooth-convergence",
+    "ct-glm-ot-convergence",
+    "ct-glm-constraint-control"
+  ],
+  "measurements": [
+    {
+      "id": "ct-glm-smooth-convergence",
+      "passed": true,
+      "checks": {
+        "identical_initial_cell_states": true,
+        "ct_native_constraint_n16": true,
+        "ct_native_constraint_n32": true,
+        "ct_native_constraint_n64": true,
+        "ct_spatial_order": true,
+        "ct_continuum_error": true,
+        "ct_common_divergence_bounded": true,
+        "ct_time_contamination_bounded": true,
+        "ct_positive_states": true,
+        "ct_conservative_mass_energy": true,
+        "glm_spatial_order": true,
+        "glm_continuum_error": true,
+        "glm_common_divergence_bounded": true,
+        "glm_time_contamination_bounded": true,
+        "glm_positive_states": true,
+        "glm_conservative_mass_energy": true,
+        "ct_temporal_order": true,
+        "ct_temporal_error": true,
+        "ct_temporal_reference_resolved": true,
+        "glm_temporal_order": true,
+        "glm_temporal_error": true,
+        "glm_temporal_reference_resolved": true
+      },
+      "metrics": {
+        "initial_cell_state_linf_difference": 0.0,
+        "ct_finest_spatial_error": 0.030434862760674048,
+        "ct_minimum_spatial_order": 0.8792002695252499,
+        "ct_time_contamination_ratio": 0.00042240836130500326,
+        "ct_finest_temporal_scaled_l2": 0.00028691666346522787,
+        "ct_minimum_temporal_order": 1.003588237880181,
+        "ct_time_reference_to_primary_ratio": 1.0480281669324549e-12,
+        "glm_finest_spatial_error": 0.053272941712543334,
+        "glm_minimum_spatial_order": 0.8519970902037858,
+        "glm_time_contamination_ratio": 0.0002497746629066176,
+        "glm_finest_temporal_scaled_l2": 0.0006005455648426271,
+        "glm_minimum_temporal_order": 1.004074134741654,
+        "glm_time_reference_to_primary_ratio": 4.049255315353574e-13
+      },
+      "records": [
+        {
+          "method": "ct",
+          "n": 16,
+          "steps": 384,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.025,
+          "maximum_psi_linf": 0.0,
+          "minimum_density": 0.9988261456273406,
+          "minimum_derived_pressure": 0.10085823753913566,
+          "native_divergence_linf": 2.2648549702353193e-14,
+          "common_centered_divergence_linf": 0.00027691989581102305,
+          "common_centered_divergence_final_l2": 0.0001330886617664916,
+          "common_divergence_final_dimensionless": 3.2019571272417466e-05,
+          "mass_relative_drift": 2.220446049250313e-16,
+          "energy_relative_drift": 3.2810912436695325e-16,
+          "scaled_l2": 0.10716159367663128,
+          "l1": {
+            "density": 0.001073119293049853,
+            "momentum_x": 0.0025163490321296936,
+            "momentum_y": 0.0024777658202256177,
+            "total_energy": 0.03155022374611582,
+            "magnetic_x": 0.033202591095261046,
+            "magnetic_y": 0.03299522129824546
+          },
+          "l2": {
+            "density": 0.0012982749027710405,
+            "momentum_x": 0.0031693013426847176,
+            "momentum_y": 0.00315569753753268,
+            "total_energy": 0.038299629508899764,
+            "magnetic_x": 0.03703549103191751,
+            "magnetic_y": 0.03703778557839965
+          },
+          "linf": {
+            "density": 0.0034801638226686915,
+            "momentum_x": 0.006872548296427583,
+            "momentum_y": 0.006803457137341512,
+            "total_energy": 0.09169465519054343,
+            "magnetic_x": 0.05252701141377786,
+            "magnetic_y": 0.05260482583761156
+          }
+        },
+        {
+          "method": "ct",
+          "n": 32,
+          "steps": 384,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.05,
+          "maximum_psi_linf": 0.0,
+          "minimum_density": 0.9987801747980393,
+          "minimum_derived_pressure": 0.10021220045383615,
+          "native_divergence_linf": 5.861977570020827e-14,
+          "common_centered_divergence_linf": 6.462505922844031e-05,
+          "common_centered_divergence_final_l2": 2.9644854179031102e-05,
+          "common_divergence_final_dimensionless": 3.240966233237763e-06,
+          "mass_relative_drift": 1.1102230246251565e-16,
+          "energy_relative_drift": 3.2810912436695325e-16,
+          "scaled_l2": 0.058260406481512456,
+          "l1": {
+            "density": 0.0008429459413238587,
+            "momentum_x": 0.001830138452080753,
+            "momentum_y": 0.0018231063430067067,
+            "total_energy": 0.019178332225188277,
+            "magnetic_x": 0.017676556052469938,
+            "magnetic_y": 0.0177067944082099
+          },
+          "l2": {
+            "density": 0.0010369442355467446,
+            "momentum_x": 0.0023276281082723347,
+            "momentum_y": 0.0023159153538658502,
+            "total_energy": 0.02309237876522467,
+            "magnetic_x": 0.019671170246409495,
+            "magnetic_y": 0.019666894718304122
+          },
+          "linf": {
+            "density": 0.002874533283603986,
+            "momentum_x": 0.005180653577533778,
+            "momentum_y": 0.005055794429550842,
+            "total_energy": 0.0560429966109634,
+            "magnetic_x": 0.028042683133004787,
+            "magnetic_y": 0.027927135692894955
+          },
+          "spatial_order_from_previous": 0.8792002695252499
+        },
+        {
+          "method": "ct",
+          "n": 64,
+          "steps": 384,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.1,
+          "maximum_psi_linf": 0.0,
+          "minimum_density": 0.9991439644888321,
+          "minimum_derived_pressure": 0.10005289865984839,
+          "native_divergence_linf": 1.3145040611561853e-13,
+          "common_centered_divergence_linf": 1.0571882802068444e-05,
+          "common_centered_divergence_final_l2": 4.770378612850451e-06,
+          "common_divergence_final_dimensionless": 2.4867060721152577e-07,
+          "mass_relative_drift": 2.220446049250313e-16,
+          "energy_relative_drift": 3.2810912436695325e-16,
+          "scaled_l2": 0.030434862760674048,
+          "l1": {
+            "density": 0.0005235865358320256,
+            "momentum_x": 0.0011068023960548437,
+            "momentum_y": 0.0010999266522574908,
+            "total_energy": 0.01056719219741668,
+            "magnetic_x": 0.009079198378650889,
+            "magnetic_y": 0.009078801683551676
+          },
+          "l2": {
+            "density": 0.0006555547182800827,
+            "momentum_x": 0.0014118690449652013,
+            "momentum_y": 0.0014042077705071967,
+            "total_energy": 0.01270356274251507,
+            "magnetic_x": 0.010108336518170495,
+            "magnetic_y": 0.01010300191145563
+          },
+          "linf": {
+            "density": 0.0018363752694459112,
+            "momentum_x": 0.0031704710293902205,
+            "momentum_y": 0.00309170595345698,
+            "total_energy": 0.031229515769343408,
+            "magnetic_x": 0.014461609138610831,
+            "magnetic_y": 0.014440037520672688
+          },
+          "spatial_order_from_previous": 0.9367909068492828
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "steps": 384,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.025,
+          "maximum_psi_linf": 2.70967987172575e-16,
+          "minimum_density": 0.999296710754583,
+          "minimum_derived_pressure": 0.10085823753913566,
+          "native_divergence_linf": 3.552713678800501e-15,
+          "common_centered_divergence_linf": 3.552713678800501e-15,
+          "common_centered_divergence_final_l2": 4.629216734787579e-16,
+          "common_divergence_final_dimensionless": 1.3360916043651073e-16,
+          "mass_relative_drift": 2.220446049250313e-16,
+          "energy_relative_drift": 3.2810912436695325e-16,
+          "scaled_l2": 0.1826916410223664,
+          "l1": {
+            "density": 0.00028500993550114803,
+            "momentum_x": 0.0006100149738445392,
+            "momentum_y": 0.0005996545639025122,
+            "total_energy": 0.032080878371250864,
+            "magnetic_x": 0.0607099716253392,
+            "magnetic_y": 0.06010299549071679
+          },
+          "l2": {
+            "density": 0.00035265122492272335,
+            "momentum_x": 0.0006924716146384543,
+            "momentum_y": 0.0006875026235449205,
+            "total_energy": 0.03892103641702646,
+            "magnetic_x": 0.06760222473790248,
+            "magnetic_y": 0.06760146959762867
+          },
+          "linf": {
+            "density": 0.0007032892454169604,
+            "momentum_x": 0.001076721601783348,
+            "momentum_y": 0.001043030461966049,
+            "total_energy": 0.09331290775790341,
+            "magnetic_x": 0.09544751027185824,
+            "magnetic_y": 0.0956408274320657
+          }
+        },
+        {
+          "method": "glm",
+          "n": 32,
+          "steps": 384,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.05,
+          "maximum_psi_linf": 4.529105663934953e-16,
+          "minimum_density": 0.9992223324911371,
+          "minimum_derived_pressure": 0.10021220045383615,
+          "native_divergence_linf": 7.105427357601002e-15,
+          "common_centered_divergence_linf": 7.105427357601002e-15,
+          "common_centered_divergence_final_l2": 1.037444409639917e-15,
+          "common_divergence_final_dimensionless": 1.2431701806014593e-16,
+          "mass_relative_drift": 2.220446049250313e-16,
+          "energy_relative_drift": 1.6405456218347663e-16,
+          "scaled_l2": 0.10121432810935181,
+          "l1": {
+            "density": 0.0003180965791756431,
+            "momentum_x": 0.0006243460216066629,
+            "momentum_y": 0.0006233366546554387,
+            "total_energy": 0.019554670493359023,
+            "magnetic_x": 0.03362502516635294,
+            "magnetic_y": 0.03369640617869707
+          },
+          "l2": {
+            "density": 0.00039155465194442955,
+            "momentum_x": 0.0006967907260140852,
+            "momentum_y": 0.0006911571414950945,
+            "total_energy": 0.02356394627313575,
+            "magnetic_x": 0.037386600818828185,
+            "magnetic_y": 0.03738229815324449
+          },
+          "linf": {
+            "density": 0.0007788807161011047,
+            "momentum_x": 0.0010993949280888038,
+            "momentum_y": 0.0010500438011581958,
+            "total_energy": 0.057362393845580784,
+            "magnetic_x": 0.052909669590111896,
+            "magnetic_y": 0.052684516132438464
+          },
+          "spatial_order_from_previous": 0.8519970902037858
+        },
+        {
+          "method": "glm",
+          "n": 64,
+          "steps": 384,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.1,
+          "maximum_psi_linf": 4.0759597682655333e-16,
+          "minimum_density": 0.9994383002918721,
+          "minimum_derived_pressure": 0.10005289865984839,
+          "native_divergence_linf": 1.0658141036401503e-14,
+          "common_centered_divergence_linf": 1.0658141036401503e-14,
+          "common_centered_divergence_final_l2": 1.7212358255730657e-15,
+          "common_divergence_final_dimensionless": 9.394218991855878e-17,
+          "mass_relative_drift": 2.220446049250313e-16,
+          "energy_relative_drift": 1.6405456218347663e-16,
+          "scaled_l2": 0.053272941712543334,
+          "l1": {
+            "density": 0.00022724037800232738,
+            "momentum_x": 0.0004341940903612204,
+            "momentum_y": 0.00043121404976120527,
+            "total_energy": 0.010797966278489366,
+            "magnetic_x": 0.017654870465604232,
+            "magnetic_y": 0.017657522167611083
+          },
+          "l2": {
+            "density": 0.0002802390977863017,
+            "momentum_x": 0.0004838285839329712,
+            "momentum_y": 0.00047979436136559497,
+            "total_energy": 0.012991553258170882,
+            "magnetic_x": 0.019623025563423737,
+            "magnetic_y": 0.019617875908586106
+          },
+          "linf": {
+            "density": 0.0005632355449693982,
+            "momentum_x": 0.0007698616360558574,
+            "momentum_y": 0.0007389762548461187,
+            "total_energy": 0.03211753356101893,
+            "magnetic_x": 0.027800332108093018,
+            "magnetic_y": 0.027771444953284263
+          },
+          "spatial_order_from_previous": 0.9259386820703636
+        }
+      ],
+      "temporal_records": [
+        {
+          "method": "ct",
+          "n": 8,
+          "steps": 16,
+          "dt": 0.00625,
+          "cfl_sum": 0.30000000000000004,
+          "scaled_l2": 0.0023363981225292076,
+          "l1": {
+            "density": 3.175323610415427e-05,
+            "momentum_x": 0.0001607402715995028,
+            "momentum_y": 0.00015702798315206032,
+            "total_energy": 0.0009532046376139617,
+            "magnetic_x": 0.0005853900891553653,
+            "magnetic_y": 0.0006795788539759748
+          },
+          "l2": {
+            "density": 3.6430726187800426e-05,
+            "momentum_x": 0.00019264014763885998,
+            "momentum_y": 0.00018833673414390135,
+            "total_energy": 0.0011308946278572299,
+            "magnetic_x": 0.0006564673405512647,
+            "magnetic_y": 0.0007359994748683234
+          },
+          "linf": {
+            "density": 7.23108247202564e-05,
+            "momentum_x": 0.00038290264506818383,
+            "momentum_y": 0.00037368811255808487,
+            "total_energy": 0.0021697696313851544,
+            "magnetic_x": 0.0009265609483101733,
+            "magnetic_y": 0.0009826480125697812
+          }
+        },
+        {
+          "method": "ct",
+          "n": 8,
+          "steps": 32,
+          "dt": 0.003125,
+          "cfl_sum": 0.15000000000000002,
+          "scaled_l2": 0.0011563137724900756,
+          "l1": {
+            "density": 1.549643098280526e-05,
+            "momentum_x": 7.821542947663868e-05,
+            "momentum_y": 7.645313219597745e-05,
+            "total_energy": 0.0004688855197239501,
+            "magnetic_x": 0.0002907533893596584,
+            "magnetic_y": 0.0003375929660049432
+          },
+          "l2": {
+            "density": 1.792896175197819e-05,
+            "momentum_x": 9.368095735571271e-05,
+            "momentum_y": 9.16432363724987e-05,
+            "total_energy": 0.0005564598205308276,
+            "magnetic_x": 0.00032624984615178294,
+            "magnetic_y": 0.0003656739944336746
+          },
+          "linf": {
+            "density": 3.6865778744399336e-05,
+            "momentum_x": 0.00018537968374643388,
+            "momentum_y": 0.0001810933013848548,
+            "total_energy": 0.0010675871190209962,
+            "magnetic_x": 0.00046048835740702954,
+            "magnetic_y": 0.0004886639839718487
+          },
+          "order_from_previous": 1.0147531958966114
+        },
+        {
+          "method": "ct",
+          "n": 8,
+          "steps": 64,
+          "dt": 0.0015625,
+          "cfl_sum": 0.07500000000000001,
+          "scaled_l2": 0.000575262328318731,
+          "l1": {
+            "density": 7.678541982586093e-06,
+            "momentum_x": 3.8591928226724796e-05,
+            "momentum_y": 3.7733262024117545e-05,
+            "total_energy": 0.00023257641289218915,
+            "magnetic_x": 0.0001448949740708715,
+            "magnetic_y": 0.00016825079551829934
+          },
+          "l2": {
+            "density": 8.90605609580181e-06,
+            "momentum_x": 4.621183369175801e-05,
+            "momentum_y": 4.521961204587669e-05,
+            "total_energy": 0.0002760543469397427,
+            "magnetic_x": 0.00016263207350850287,
+            "magnetic_y": 0.00018225956362076038
+          },
+          "linf": {
+            "density": 1.8577324320201427e-05,
+            "momentum_x": 9.125116412606049e-05,
+            "momentum_y": 8.918294810927874e-05,
+            "total_energy": 0.0005295997664290786,
+            "magnetic_x": 0.00022955044638844901,
+            "magnetic_y": 0.0002436689291869243
+          },
+          "order_from_previous": 1.0072410327132435
+        },
+        {
+          "method": "ct",
+          "n": 8,
+          "steps": 128,
+          "dt": 0.00078125,
+          "cfl_sum": 0.037500000000000006,
+          "scaled_l2": 0.00028691666346522787,
+          "l1": {
+            "density": 3.821519147823027e-06,
+            "momentum_x": 1.9169737407613574e-05,
+            "momentum_y": 1.874590452974464e-05,
+            "total_energy": 0.00011582909442476533,
+            "magnetic_x": 7.232752656114426e-05,
+            "magnetic_y": 8.3989417767893e-05
+          },
+          "l2": {
+            "density": 4.439783384283568e-06,
+            "momentum_x": 2.2952412380826325e-05,
+            "momentum_y": 2.2462745932079728e-05,
+            "total_energy": 0.00013749177205225657,
+            "magnetic_x": 8.119322417073092e-05,
+            "magnetic_y": 9.098593497312435e-05
+          },
+          "linf": {
+            "density": 9.321050212784954e-06,
+            "momentum_x": 4.527517661501168e-05,
+            "momentum_y": 4.425920128128813e-05,
+            "total_energy": 0.00026376709056380454,
+            "magnetic_x": 0.00011460234898710842,
+            "magnetic_y": 0.0001216689720434927
+          },
+          "order_from_previous": 1.003588237880181
+        },
+        {
+          "method": "glm",
+          "n": 8,
+          "steps": 16,
+          "dt": 0.00625,
+          "cfl_sum": 0.30000000000000004,
+          "scaled_l2": 0.004901445506297303,
+          "l1": {
+            "density": 3.5528664332337354e-05,
+            "momentum_x": 9.473552155063805e-05,
+            "momentum_y": 9.44561554499482e-05,
+            "total_energy": 0.0009368113152880128,
+            "magnetic_x": 0.001572267424053086,
+            "magnetic_y": 0.0015804196510890932
+          },
+          "l2": {
+            "density": 4.1961678372688454e-05,
+            "momentum_x": 0.00011528438843323499,
+            "momentum_y": 0.00011470045960053681,
+            "total_energy": 0.00111287674203764,
+            "magnetic_x": 0.0017394977144229943,
+            "magnetic_y": 0.0017948092554912168
+          },
+          "linf": {
+            "density": 8.957344308391235e-05,
+            "momentum_x": 0.00022641874682916008,
+            "momentum_y": 0.0002263808862153216,
+            "total_energy": 0.0021387045259431137,
+            "magnetic_x": 0.0024212856734327215,
+            "magnetic_y": 0.0025319251548699684
+          }
+        },
+        {
+          "method": "glm",
+          "n": 8,
+          "steps": 32,
+          "dt": 0.003125,
+          "cfl_sum": 0.15000000000000002,
+          "scaled_l2": 0.0024227009745195465,
+          "l1": {
+            "density": 1.7512974295180034e-05,
+            "momentum_x": 4.571248880781004e-05,
+            "momentum_y": 4.560144844660292e-05,
+            "total_energy": 0.00046143940948994815,
+            "magnetic_x": 0.0007776490340441635,
+            "magnetic_y": 0.0007818226988942327
+          },
+          "l2": {
+            "density": 2.0688195348548843e-05,
+            "momentum_x": 5.5644929213156836e-05,
+            "momentum_y": 5.53777084456934e-05,
+            "total_energy": 0.0005483545385361055,
+            "magnetic_x": 0.0008601426599873862,
+            "magnetic_y": 0.0008873748381567965
+          },
+          "linf": {
+            "density": 4.371627559174307e-05,
+            "momentum_x": 0.00010884507491143447,
+            "momentum_y": 0.00010893207436651897,
+            "total_energy": 0.0010564465593020933,
+            "magnetic_x": 0.0011969748104197209,
+            "magnetic_y": 0.0012515932284416498
+          },
+          "order_from_previous": 1.0165909343648352
+        },
+        {
+          "method": "glm",
+          "n": 8,
+          "steps": 64,
+          "dt": 0.0015625,
+          "cfl_sum": 0.07500000000000001,
+          "scaled_l2": 0.0012044877747826243,
+          "l1": {
+            "density": 8.690397655577303e-06,
+            "momentum_x": 2.2462630445144877e-05,
+            "momentum_y": 2.2413915872038573e-05,
+            "total_energy": 0.00022902832476928616,
+            "magnetic_x": 0.0003867425308969551,
+            "magnetic_y": 0.0003888517884923293
+          },
+          "l2": {
+            "density": 1.0267505884359758e-05,
+            "momentum_x": 2.7348277154180123e-05,
+            "momentum_y": 2.722037706321463e-05,
+            "total_energy": 0.00027221200457767193,
+            "magnetic_x": 0.00042771566382879945,
+            "magnetic_y": 0.0004412280724428944
+          },
+          "linf": {
+            "density": 2.159379375132886e-05,
+            "momentum_x": 5.339329041725849e-05,
+            "momentum_y": 5.3460423032225535e-05,
+            "total_energy": 0.0005250420531875966,
+            "magnetic_x": 0.0005951370669894374,
+            "magnetic_y": 0.0006222737319879212
+          },
+          "order_from_previous": 1.0081965982951706
+        },
+        {
+          "method": "glm",
+          "n": 8,
+          "steps": 128,
+          "dt": 0.00078125,
+          "cfl_sum": 0.037500000000000006,
+          "scaled_l2": 0.0006005455648426271,
+          "l1": {
+            "density": 4.3283465508917734e-06,
+            "momentum_x": 1.1135293781918722e-05,
+            "momentum_y": 1.1112592594860523e-05,
+            "total_energy": 0.00011409731730853672,
+            "magnetic_x": 0.00019285555837113906,
+            "magnetic_y": 0.00019391556222177566
+          },
+          "l2": {
+            "density": 5.114253761934966e-06,
+            "momentum_x": 1.355853814425748e-05,
+            "momentum_y": 1.3495961172887194e-05,
+            "total_energy": 0.00013562135972574485,
+            "magnetic_x": 0.00021327451633356757,
+            "magnetic_y": 0.00022000507264092572
+          },
+          "linf": {
+            "density": 1.0731279438624952e-05,
+            "momentum_x": 2.6446529328538748e-05,
+            "momentum_y": 2.6485681127702554e-05,
+            "total_energy": 0.0002617315108925933,
+            "magnetic_x": 0.0002967390828598204,
+            "magnetic_y": 0.0003102646260854103
+          },
+          "order_from_previous": 1.004074134741654
+        }
+      ],
+      "temporal_reference_records": [
+        {
+          "method": "ct",
+          "grid": 8,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "maximum_step": 0.0015625,
+          "nfev": 782,
+          "accepted_nodes": 66,
+          "success": true
+        },
+        {
+          "method": "ct",
+          "grid": 8,
+          "rtol": 2e-12,
+          "atol": 2e-14,
+          "maximum_step": 0.00078125,
+          "nfev": 1550,
+          "accepted_nodes": 130,
+          "success": true,
+          "two_reference_scaled_l2_difference": 3.006967448738388e-16
+        },
+        {
+          "method": "glm",
+          "grid": 8,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "maximum_step": 0.0015625,
+          "nfev": 782,
+          "accepted_nodes": 66,
+          "success": true
+        },
+        {
+          "method": "glm",
+          "grid": 8,
+          "rtol": 2e-12,
+          "atol": 2e-14,
+          "maximum_step": 0.00078125,
+          "nfev": 1550,
+          "accepted_nodes": 130,
+          "success": true,
+          "two_reference_scaled_l2_difference": 2.431762320551022e-16
+        }
+      ],
+      "independent_reference_records": []
+    },
+    {
+      "id": "ct-glm-ot-convergence",
+      "passed": true,
+      "checks": {
+        "identical_initial_cell_states": true,
+        "independent_reference_density_refinement": true,
+        "independent_reference_magnetic_refinement": true,
+        "independent_reference_time_refinement": true,
+        "ct_native_constraint_n16": true,
+        "ct_native_constraint_n32": true,
+        "ct_native_constraint_n64": true,
+        "ct_spatial_refinement": true,
+        "ct_density_error": true,
+        "ct_magnetic_error": true,
+        "ct_independent_reference_resolved": true,
+        "ct_time_contamination_bounded": true,
+        "ct_positive_states": true,
+        "ct_conservative_mass_energy": true,
+        "glm_spatial_refinement": true,
+        "glm_density_error": true,
+        "glm_magnetic_error": true,
+        "glm_independent_reference_resolved": true,
+        "glm_time_contamination_bounded": true,
+        "glm_positive_states": true,
+        "glm_conservative_mass_energy": true,
+        "ct_temporal_order": true,
+        "ct_temporal_error": true,
+        "ct_temporal_reference_resolved": true,
+        "glm_temporal_order": true,
+        "glm_temporal_error": true,
+        "glm_temporal_reference_resolved": true
+      },
+      "metrics": {
+        "initial_cell_state_linf_difference": 0.0,
+        "ct_finest_spatial_error": 0.04131948399815993,
+        "ct_minimum_spatial_order": 0.7441584435125685,
+        "ct_time_contamination_ratio": 0.005452472133120275,
+        "ct_finest_temporal_scaled_l2": 0.0006451024853786959,
+        "ct_minimum_temporal_order": 1.0051663785429696,
+        "ct_time_reference_to_primary_ratio": 4.610829174194673e-13,
+        "glm_finest_spatial_error": 0.06851242841151672,
+        "glm_minimum_spatial_order": 0.6819406396313236,
+        "glm_time_contamination_ratio": 0.003289333276474019,
+        "glm_finest_temporal_scaled_l2": 0.0007617954701608142,
+        "glm_minimum_temporal_order": 1.0056569861410107,
+        "glm_time_reference_to_primary_ratio": 3.179752402329314e-13
+      },
+      "records": [
+        {
+          "method": "ct",
+          "n": 16,
+          "steps": 192,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.025,
+          "maximum_psi_linf": 0.0,
+          "minimum_density": 0.2041890084526789,
+          "minimum_derived_pressure": 0.1331303532825803,
+          "native_divergence_linf": 1.4654943925052066e-14,
+          "common_centered_divergence_linf": 0.06778576731314301,
+          "common_centered_divergence_final_l2": 0.032540142153569936,
+          "common_divergence_final_dimensionless": 0.008970168625065063,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 3.178816858944575e-16,
+          "density_l1": 0.008407456562862363,
+          "magnetic_l1": 0.03720545102206835,
+          "density_relative_l1": 0.03803443743349972,
+          "magnetic_relative_l1": 0.21171154159990624,
+          "combined_relative_l1": 0.12487298951670298
+        },
+        {
+          "method": "ct",
+          "n": 32,
+          "steps": 192,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.05,
+          "maximum_psi_linf": 0.0,
+          "minimum_density": 0.20089003217826723,
+          "minimum_derived_pressure": 0.1273610606862988,
+          "native_divergence_linf": 3.730349362740526e-14,
+          "common_centered_divergence_linf": 0.04181461772825401,
+          "common_centered_divergence_final_l2": 0.013312596176518155,
+          "common_divergence_final_dimensionless": 0.0016541608620747692,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "density_l1": 0.006914340655672055,
+          "magnetic_l1": 0.020962473020616545,
+          "density_relative_l1": 0.031279740203918244,
+          "magnetic_relative_l1": 0.11782261092054361,
+          "combined_relative_l1": 0.07455117556223093,
+          "spatial_order_from_previous": 0.7441584435125685
+        },
+        {
+          "method": "ct",
+          "n": 64,
+          "steps": 192,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.1,
+          "maximum_psi_linf": 0.0,
+          "minimum_density": 0.1993474223554591,
+          "minimum_derived_pressure": 0.12030050114124821,
+          "native_divergence_linf": 1.0302869668521453e-13,
+          "common_centered_divergence_linf": 0.02155785477190819,
+          "common_centered_divergence_final_l2": 0.0048284437021297215,
+          "common_divergence_final_dimensionless": 0.0002840323965106276,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "density_l1": 0.0046347960476998094,
+          "magnetic_l1": 0.011023783647067924,
+          "density_relative_l1": 0.02096732334865065,
+          "magnetic_relative_l1": 0.0616716446476692,
+          "combined_relative_l1": 0.04131948399815993,
+          "spatial_order_from_previous": 0.8514088640680966,
+          "reference_spatial_density_to_primary_ratio": 0.002213710798678584,
+          "reference_spatial_magnetic_to_primary_ratio": 0.0014601016579211977,
+          "reference_time_density_to_primary_ratio": 5.789453820537048e-05,
+          "reference_time_magnetic_to_primary_ratio": 3.2044894452537326e-05
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "steps": 192,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.025,
+          "maximum_psi_linf": 2.2933316125381527e-16,
+          "minimum_density": 0.20481344530314863,
+          "minimum_derived_pressure": 0.13317794054569101,
+          "native_divergence_linf": 2.6645352591003757e-15,
+          "common_centered_divergence_linf": 2.6645352591003757e-15,
+          "common_centered_divergence_final_l2": 4.478607026952266e-16,
+          "common_divergence_final_dimensionless": 1.4614941758170942e-16,
+          "mass_relative_drift": 6.278163296415539e-16,
+          "energy_relative_drift": 3.178816858944575e-16,
+          "density_l1": 0.008597213404398257,
+          "magnetic_l1": 0.06132772032324514,
+          "density_relative_l1": 0.03889287716054581,
+          "magnetic_relative_l1": 0.34897537473046136,
+          "combined_relative_l1": 0.19393412594550358
+        },
+        {
+          "method": "glm",
+          "n": 32,
+          "steps": 192,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.05,
+          "maximum_psi_linf": 2.794143892339755e-16,
+          "minimum_density": 0.20129011765712684,
+          "minimum_derived_pressure": 0.13274130216555916,
+          "native_divergence_linf": 5.329070518200751e-15,
+          "common_centered_divergence_linf": 5.329070518200751e-15,
+          "common_centered_divergence_final_l2": 7.539965524097894e-16,
+          "common_divergence_final_dimensionless": 1.0347130810947567e-16,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "density_l1": 0.007097338864144052,
+          "magnetic_l1": 0.03730192363566416,
+          "density_relative_l1": 0.032107604595310486,
+          "magnetic_relative_l1": 0.2096608558918695,
+          "combined_relative_l1": 0.12088423024358999,
+          "spatial_order_from_previous": 0.6819406396313236
+        },
+        {
+          "method": "glm",
+          "n": 64,
+          "steps": 192,
+          "dt": 0.00026041666666666666,
+          "cfl_sum": 0.1,
+          "maximum_psi_linf": 3.3371465331751396e-16,
+          "minimum_density": 0.19960351564186143,
+          "minimum_derived_pressure": 0.12447197209274538,
+          "native_divergence_linf": 1.0658141036401503e-14,
+          "common_centered_divergence_linf": 1.0658141036401503e-14,
+          "common_centered_divergence_final_l2": 1.495607713085622e-15,
+          "common_divergence_final_dimensionless": 9.284629418240514e-17,
+          "mass_relative_drift": 5.022530637132432e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "density_l1": 0.004780368518212603,
+          "magnetic_l1": 0.020627524793921038,
+          "density_relative_l1": 0.02162587769030684,
+          "magnetic_relative_l1": 0.11539897913272659,
+          "combined_relative_l1": 0.06851242841151672,
+          "spatial_order_from_previous": 0.8191884251991729,
+          "reference_spatial_density_to_primary_ratio": 0.002146298558652164,
+          "reference_spatial_magnetic_to_primary_ratio": 0.0007803090744262217,
+          "reference_time_density_to_primary_ratio": 5.6131525390847075e-05,
+          "reference_time_magnetic_to_primary_ratio": 1.7125466432211183e-05
+        }
+      ],
+      "temporal_records": [
+        {
+          "method": "ct",
+          "n": 16,
+          "steps": 16,
+          "dt": 0.003125,
+          "cfl_sum": 0.30000000000000004,
+          "scaled_l2": 0.00529387809714443,
+          "l1": {
+            "density": 0.00013140877366016714,
+            "momentum_x": 0.00058520477688598,
+            "momentum_y": 0.0006940350148780224,
+            "total_energy": 0.0009493970896010439,
+            "magnetic_x": 0.0007249708878185132,
+            "magnetic_y": 0.0013870147400928989
+          },
+          "l2": {
+            "density": 0.00016210552144674283,
+            "momentum_x": 0.0007595599812620017,
+            "momentum_y": 0.0008730839563515572,
+            "total_energy": 0.001167066340354459,
+            "magnetic_x": 0.0009517325885543792,
+            "magnetic_y": 0.0017194041324423625
+          },
+          "linf": {
+            "density": 0.0004121847378308341,
+            "momentum_x": 0.0016584825496150854,
+            "momentum_y": 0.002349398970036363,
+            "total_energy": 0.002839380775741196,
+            "magnetic_x": 0.002395605795108724,
+            "magnetic_y": 0.004278015303149932
+          }
+        },
+        {
+          "method": "ct",
+          "n": 16,
+          "steps": 32,
+          "dt": 0.0015625,
+          "cfl_sum": 0.15000000000000002,
+          "scaled_l2": 0.0026084227658347944,
+          "l1": {
+            "density": 6.309661871707129e-05,
+            "momentum_x": 0.00028806288252245264,
+            "momentum_y": 0.0003414358727899529,
+            "total_energy": 0.00046329029162055354,
+            "magnetic_x": 0.0003571356966743438,
+            "magnetic_y": 0.0006859734627029665
+          },
+          "l2": {
+            "density": 7.793861795242423e-05,
+            "momentum_x": 0.0003739313423670676,
+            "momentum_y": 0.0004292107814612712,
+            "total_energy": 0.0005684200341254888,
+            "magnetic_x": 0.0004697023162622263,
+            "magnetic_y": 0.0008492620177857869
+          },
+          "linf": {
+            "density": 0.00019940844451432627,
+            "momentum_x": 0.0008133868501620806,
+            "momentum_y": 0.0011544017349637385,
+            "total_energy": 0.0013721625145033944,
+            "magnetic_x": 0.0011823955787424456,
+            "magnetic_y": 0.002113091002644521
+          },
+          "order_from_previous": 1.02114725759981
+        },
+        {
+          "method": "ct",
+          "n": 16,
+          "steps": 64,
+          "dt": 0.00078125,
+          "cfl_sum": 0.07500000000000001,
+          "scaled_l2": 0.0012948335557754953,
+          "l1": {
+            "density": 3.093642565993619e-05,
+            "momentum_x": 0.00014296836216645003,
+            "momentum_y": 0.00016935556956715797,
+            "total_energy": 0.00022889542432249122,
+            "magnetic_x": 0.00017726775545535284,
+            "magnetic_y": 0.0003411163930963539
+          },
+          "l2": {
+            "density": 3.8235206403092896e-05,
+            "momentum_x": 0.0001855477300495384,
+            "momentum_y": 0.00021282457601653224,
+            "total_energy": 0.00028061850248747676,
+            "magnetic_x": 0.0002333407526971974,
+            "magnetic_y": 0.00042206261348763673
+          },
+          "linf": {
+            "density": 9.80836421377862e-05,
+            "momentum_x": 0.00040281645592225683,
+            "momentum_y": 0.0005722571951948703,
+            "total_energy": 0.0006749085307234948,
+            "magnetic_x": 0.0005873803680372935,
+            "magnetic_y": 0.0010501541197330128
+          },
+          "order_from_previous": 1.010411057711024
+        },
+        {
+          "method": "ct",
+          "n": 16,
+          "steps": 128,
+          "dt": 0.000390625,
+          "cfl_sum": 0.037500000000000006,
+          "scaled_l2": 0.0006451024853786959,
+          "l1": {
+            "density": 1.531768453494429e-05,
+            "momentum_x": 7.122178557782659e-05,
+            "momentum_y": 8.434325566384352e-05,
+            "total_energy": 0.00011377263304991917,
+            "magnetic_x": 8.831465719369571e-05,
+            "magnetic_y": 0.00017009238708786485
+          },
+          "l2": {
+            "density": 1.8939354146018053e-05,
+            "momentum_x": 9.242460872727976e-05,
+            "momentum_y": 0.000105973350916227,
+            "total_energy": 0.00013943325557432766,
+            "magnetic_x": 0.0001162965219913288,
+            "magnetic_y": 0.00021039437739706475
+          },
+          "linf": {
+            "density": 4.864290402448179e-05,
+            "momentum_x": 0.0002004502916181667,
+            "momentum_y": 0.0002849085446436188,
+            "total_energy": 0.00033474311610587337,
+            "magnetic_x": 0.00029274051888728003,
+            "magnetic_y": 0.0005234903371536814
+          },
+          "order_from_previous": 1.0051663785429696
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "steps": 16,
+          "dt": 0.003125,
+          "cfl_sum": 0.30000000000000004,
+          "scaled_l2": 0.006267323260196891,
+          "l1": {
+            "density": 0.00013705198702701753,
+            "momentum_x": 0.0005781446555849514,
+            "momentum_y": 0.0006727402815757707,
+            "total_energy": 0.0009380982684654342,
+            "magnetic_x": 0.000754404965341153,
+            "magnetic_y": 0.0020131408192467434
+          },
+          "l2": {
+            "density": 0.0001729366778179688,
+            "momentum_x": 0.0007395729753551515,
+            "momentum_y": 0.0008409418039675801,
+            "total_energy": 0.0011564701481335453,
+            "magnetic_x": 0.0010343446241118204,
+            "magnetic_y": 0.0023425994806457974
+          },
+          "linf": {
+            "density": 0.0004143398723314706,
+            "momentum_x": 0.0015838748992685406,
+            "momentum_y": 0.002235235663209125,
+            "total_energy": 0.0027270922869830905,
+            "magnetic_x": 0.002526382070082725,
+            "magnetic_y": 0.004906734724959384
+          }
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "steps": 32,
+          "dt": 0.0015625,
+          "cfl_sum": 0.15000000000000002,
+          "scaled_l2": 0.003083469713736259,
+          "l1": {
+            "density": 6.591982380561249e-05,
+            "momentum_x": 0.0002845242588831623,
+            "momentum_y": 0.00033063970977997034,
+            "total_energy": 0.0004568458814414155,
+            "magnetic_x": 0.00037026800159322326,
+            "magnetic_y": 0.0009923526811458387
+          },
+          "l2": {
+            "density": 8.307085433020336e-05,
+            "momentum_x": 0.00036397419170753487,
+            "momentum_y": 0.0004129875411930856,
+            "total_energy": 0.0005629436009165855,
+            "magnetic_x": 0.0005084964292394609,
+            "magnetic_y": 0.0011540700752112171
+          },
+          "linf": {
+            "density": 0.000198279692160519,
+            "momentum_x": 0.000776519221703062,
+            "momentum_y": 0.0010962979199844736,
+            "total_energy": 0.0013173949766047133,
+            "magnetic_x": 0.0012444646422849898,
+            "magnetic_y": 0.002418623121202494
+          },
+          "order_from_previous": 1.0232947313000558
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "steps": 64,
+          "dt": 0.00078125,
+          "cfl_sum": 0.07500000000000001,
+          "scaled_l2": 0.0015295768574069236,
+          "l1": {
+            "density": 3.2378077501475405e-05,
+            "momentum_x": 0.00014120221579854526,
+            "momentum_y": 0.00016392099140991547,
+            "total_energy": 0.000225543088164887,
+            "magnetic_x": 0.00018346271045602047,
+            "magnetic_y": 0.000492701453596117
+          },
+          "l2": {
+            "density": 4.0727358295956453e-05,
+            "momentum_x": 0.0001805854856793664,
+            "momentum_y": 0.0002046865715507254,
+            "total_energy": 0.0002778350640761561,
+            "magnetic_x": 0.00025215094429084493,
+            "magnetic_y": 0.0005728401214328705
+          },
+          "linf": {
+            "density": 9.708314585604727e-05,
+            "momentum_x": 0.00038452560730476565,
+            "momentum_y": 0.0005430049351056107,
+            "total_energy": 0.000647886481388471,
+            "magnetic_x": 0.0006176284615811642,
+            "magnetic_y": 0.0012008442625088649
+          },
+          "order_from_previous": 1.0114220755057055
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "steps": 128,
+          "dt": 0.000390625,
+          "cfl_sum": 0.037500000000000006,
+          "scaled_l2": 0.0007617954701608142,
+          "l1": {
+            "density": 1.6046329510522195e-05,
+            "momentum_x": 7.033973101540833e-05,
+            "momentum_y": 8.162156870560339e-05,
+            "total_energy": 0.00011208109839561304,
+            "magnetic_x": 9.132048209001896e-05,
+            "magnetic_y": 0.00024549174754840894
+          },
+          "l2": {
+            "density": 2.0166654979573375e-05,
+            "momentum_x": 8.994833059524875e-05,
+            "momentum_y": 0.00010189905363886427,
+            "total_energy": 0.00013803020175011567,
+            "magnetic_x": 0.00012555970444776279,
+            "magnetic_y": 0.00028538493229392925
+          },
+          "linf": {
+            "density": 4.808427293392925e-05,
+            "momentum_x": 0.00019134412991107796,
+            "momentum_y": 0.0002702384750770878,
+            "total_energy": 0.0003213238185139078,
+            "magnetic_x": 0.00030767327504827024,
+            "magnetic_y": 0.0005983317611531445
+          },
+          "order_from_previous": 1.0056569861410107
+        }
+      ],
+      "temporal_reference_records": [
+        {
+          "method": "ct",
+          "grid": 16,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "maximum_step": 0.00078125,
+          "nfev": 782,
+          "accepted_nodes": 66,
+          "success": true
+        },
+        {
+          "method": "ct",
+          "grid": 16,
+          "rtol": 2e-12,
+          "atol": 2e-14,
+          "maximum_step": 0.000390625,
+          "nfev": 1550,
+          "accepted_nodes": 130,
+          "success": true,
+          "two_reference_scaled_l2_difference": 2.974457359929584e-16
+        },
+        {
+          "method": "glm",
+          "grid": 16,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "maximum_step": 0.00078125,
+          "nfev": 782,
+          "accepted_nodes": 66,
+          "success": true
+        },
+        {
+          "method": "glm",
+          "grid": 16,
+          "rtol": 2e-12,
+          "atol": 2e-14,
+          "maximum_step": 0.000390625,
+          "nfev": 1550,
+          "accepted_nodes": 130,
+          "success": true,
+          "two_reference_scaled_l2_difference": 2.422320976327438e-16
+        }
+      ],
+      "independent_reference_records": [
+        {
+          "coarse_n": 128,
+          "fine_n": 256,
+          "density_increment_l1": 4.6652394547138585e-05,
+          "magnetic_increment_l1": 7.786209989590136e-05,
+          "bx_increment_l1": 4.8304460367881935e-05,
+          "by_increment_l1": 0.00010741973942392078,
+          "coarse_cfl": 0.3,
+          "fine_cfl": 0.15,
+          "historical_mixed_cfl_only": true
+        },
+        {
+          "coarse_n": 256,
+          "fine_n": 512,
+          "density_increment_l1": 1.026009806046589e-05,
+          "magnetic_increment_l1": 1.6095844779648464e-05,
+          "bx_increment_l1": 9.844764949284487e-06,
+          "by_increment_l1": 2.2346924610012437e-05,
+          "coarse_cfl": 0.15,
+          "fine_cfl": 0.15,
+          "historical_mixed_cfl_only": false
+        },
+        {
+          "n": 512,
+          "cfl_coarse": 0.3,
+          "cfl_fine": 0.15,
+          "density_increment_l1": 2.6832937685765673e-07,
+          "magnetic_increment_l1": 3.5325598343789863e-07,
+          "bx_increment_l1": 2.6514207236668967e-07,
+          "by_increment_l1": 4.413698945091076e-07,
+          "maximum_density_magnetic_l1_increment": 3.5325598343789863e-07
+        }
+      ]
+    },
+    {
+      "id": "ct-glm-constraint-control",
+      "passed": true,
+      "checks": {
+        "ct_preserves_initial_constraint_defect": true,
+        "ct_does_not_clean_common_initial_defect": true,
+        "ct_initial_constraint_is_deliberately_nonzero": true,
+        "damped_independent_discrete_fourier_agreement": true,
+        "damped_positive_states": true,
+        "damped_conservative_mass_energy": true,
+        "damped_psi_is_activated": true,
+        "glm_final_B_divergence_reduced": true,
+        "undamped_independent_discrete_fourier_agreement": true,
+        "undamped_positive_states": true,
+        "undamped_conservative_mass_energy": true,
+        "undamped_psi_is_activated": true,
+        "physical_damping_separated_from_phase_and_LLF_viscosity": true,
+        "ct_positive_states": true,
+        "ct_conservative_mass_energy": true,
+        "matched_initial_cell_states": true
+      },
+      "metrics": {
+        "damped_to_undamped_B_psi_wave_energy_ratio": 0.797707175433604,
+        "ct_native_divergence_linf_change": 0.0,
+        "ct_common_divergence_linf_change": 1.457167719820518e-16,
+        "initial_common_divergence_l2": 0.04393133573771591,
+        "initial_cell_state_difference": 4.7704895589362195e-18
+      },
+      "records": [
+        {
+          "method": "ct",
+          "cleaning_rate": null,
+          "initial_native_divergence_linf": 0.06242890304516112,
+          "native_divergence_change_linf": 0.0,
+          "common_divergence_change_linf": 1.457167719820518e-16,
+          "mass_relative_drift": 2.220446049250313e-16,
+          "energy_relative_drift": 7.401364659882936e-16
+        },
+        {
+          "method": "glm",
+          "cleaning_rate": 2.0,
+          "n": 32,
+          "steps": 128,
+          "dt": 0.00078125,
+          "cfl_sum": 0.15000000000000002,
+          "fourier_FE_reference_linf": 1.0408340855860843e-17,
+          "final_common_divergence_ratio": 0.18894162608239154,
+          "maximum_psi_linf": 0.023955452282618615,
+          "B_psi_wave_energy": 2.8068455678079227e-05,
+          "reference_wave_energy": 2.8068455678079203e-05,
+          "LLF_diffusion_eigenvalue": -1.8446130812898787,
+          "centered_derivative_wavenumber": 6.242890304516104,
+          "FE_B_amplitude_real": -0.00188031820509805,
+          "FE_psi_amplitude_imaginary": -0.021758029167036643,
+          "semidiscrete_B_amplitude_real": -0.0018259735251958983,
+          "continuous_B_amplitude_real": -0.0023045247600847235,
+          "minimum_density": 0.9999964501219721,
+          "minimum_derived_pressure": 1.0,
+          "mass_relative_drift": 4.440892098500626e-16,
+          "energy_relative_drift": 7.401364659882936e-16
+        },
+        {
+          "method": "glm",
+          "cleaning_rate": 0.0,
+          "n": 32,
+          "steps": 128,
+          "dt": 0.00078125,
+          "cfl_sum": 0.15000000000000002,
+          "fourier_FE_reference_linf": 5.551115123125783e-17,
+          "final_common_divergence_ratio": 0.25284045731583726,
+          "maximum_psi_linf": 0.02585712106419648,
+          "B_psi_wave_energy": 3.5186414943330874e-05,
+          "reference_wave_energy": 3.5186414943331016e-05,
+          "LLF_diffusion_eigenvalue": -1.8446130812898787,
+          "centered_derivative_wavenumber": 6.242890304516104,
+          "FE_B_amplitude_real": -0.002516229614055348,
+          "FE_psi_amplitude_imaginary": -0.024007764696949947,
+          "semidiscrete_B_amplitude_real": -0.00246193738556783,
+          "continuous_B_amplitude_real": -0.0030752899308409587,
+          "minimum_density": 0.999996510860186,
+          "minimum_derived_pressure": 1.0,
+          "mass_relative_drift": 4.440892098500626e-16,
+          "energy_relative_drift": 2.9605458639531746e-16
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866"
+  }
+}

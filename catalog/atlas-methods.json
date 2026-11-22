@@ -5476,8 +5476,8 @@
         "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
       },
       "metadata_review": {
-        "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "level": "scoped CT/GLM whole-discretization comparisons under matched controls, conserved-average exact solutions and independent Athena references; separate grid and time errors",
+        "on": "2026-11-22"
       },
       "aliases": [
         "CT法",
@@ -5494,9 +5494,20 @@
         ]
       },
       "depth_scope": {
-        "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
-        "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
-      }
+        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。",
+        "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "mhd-convergence",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "ct-glm-smooth-convergence",
+            "ct-glm-ot-convergence",
+            "ct-glm-constraint-control"
+          ]
+        }
+      ]
     },
     {
       "id": "glm",
@@ -5578,8 +5589,8 @@
         "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
       },
       "metadata_review": {
-        "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "level": "scoped CT/GLM whole-discretization comparisons under matched controls, conserved-average exact solutions and independent Athena references; separate grid and time errors",
+        "on": "2026-11-22"
       },
       "aliases": [
         "GLM法",
@@ -5598,9 +5609,20 @@
         ]
       },
       "depth_scope": {
-        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 GLMの磁気単極子モード：解析的減衰: GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。",
-        "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution."
-      }
+        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 GLMの磁気単極子モード：解析的減衰: GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。",
+        "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "mhd-convergence",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "ct-glm-smooth-convergence",
+            "ct-glm-ot-convergence",
+            "ct-glm-constraint-control"
+          ]
+        }
+      ]
     },
     {
       "id": "projection",

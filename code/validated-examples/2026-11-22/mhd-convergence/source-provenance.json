@@ -1,0 +1,15 @@
+{
+  "source": "Original matched planar implementation, informed by earlier Atlas MIT planar ideal-MHD solver",
+  "earlier_source_path": "scripts/depth-mhd/legacy/mhd.py",
+  "earlier_source_sha256": "f9fecdf6dd920cbbebec1d8ce226b4e3fcfceac6e98eed7dc55ce324e481634f",
+  "earlier_source_modified": false,
+  "new_choices": [
+    "constant identical LLF bound/ch=3 and fixed physical kappa=2",
+    "matched analytic conserved initial averages",
+    "identical fixed time-step sequences",
+    "CT state stores fluid4 plus unique face2; cell B explicitly derived",
+    "independent analytic/DOP853/Athena references scoped separately",
+    "nonphysical initial-constraint control with kappa0 companion"
+  ],
+  "independent_reference_manifest_sha256": "bacb294db8b40e50aa814dc6704efebb9eecdbe295e3b957600a9a9d677c928c"
+}

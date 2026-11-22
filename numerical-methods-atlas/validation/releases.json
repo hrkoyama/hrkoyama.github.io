@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 26,
+  "case_count": 29,
   "releases": [
     {
       "group": "foundations",
@@ -119,6 +119,22 @@
         "mcmc-multimodal-mixing"
       ],
       "tests": 39
+    },
+    {
+      "group": "mhd-convergence",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/",
+      "archive": "atlas-mhd-convergence-2026-11-22.zip",
+      "archive_sha256": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+      "manifest_sha256": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+      "verification_sha256": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "ct-glm-constraint-control",
+        "ct-glm-ot-convergence",
+        "ct-glm-smooth-convergence"
+      ],
+      "tests": 46
     }
   ]
 }

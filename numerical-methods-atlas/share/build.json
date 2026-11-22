@@ -2,8 +2,8 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "59cddd024215a156427bb6299b6bdb616ff1649584b12068c2c9a54b00485c50",
-    "numerical-methods-atlas/coverage.json": "c6cda2c43791991d4efaa6ce801b98e503a583cf0b21503111d75566ecfcc8ba",
+    "catalog/atlas-methods.json": "cc325168a36eba044df5a6312d6fbedf313f2c494a34b95fa44f419e3c372414",
+    "numerical-methods-atlas/coverage.json": "e537a7dec924b69d41130a6fee76e0d0d8aca87e27383f109bb8cf7b58dcbde0",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f"
   },
@@ -19,18 +19,18 @@
   },
   "images": {
     "ja": {
-      "svg_sha256": "dc42827b7dfc1f625a6c0c2ee14b879ad281a2858abbd5854f761d2fa35a4a98",
-      "png_sha256": "506a0c08aab1bde504c9a5d4ab1d7a29df029a0edaad783b9e3c244d88965880",
-      "content_input_sha256": "a68474cb7138d48129670d7801b4937013ae6c34e5a1b1d2b7b0e100a0ecfe5b",
-      "render_input_sha256": "1fefb9da9eb41bdb0eeaedf465a772276845451739a14b66343d0095c7306347",
+      "svg_sha256": "c722f88e89dccc4c6f2913509299e300c4fdc87941061bbbbf9228cfce04835f",
+      "png_sha256": "cb2e114412558553a5cd02f89acacaece0e6f9ae6211142d3d47f05da0a442c7",
+      "content_input_sha256": "239035f0bc527756ef76b7946add44c7c077f70585135159d906236a4a7d78d7",
+      "render_input_sha256": "7a9481d823d907d66f54429c5da7b4415f63dc4452533f14d1d44bf7a96622b2",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "1e4440f8547efdccfb648c1c15f7f8252c05adc6ed83108e71362e5f7d2f6155",
-      "png_sha256": "3f13d9c6c22743a2f8d8bab381ed163318e4c6ccb9a5a9255a1537549c2deb14",
-      "content_input_sha256": "9d4c9704a2ea03b325e9031d61414be5497c2a443551fee0adea700e5a9062f5",
-      "render_input_sha256": "79316e8cf22488fa619be929dada79d8b2bb820b6de6cef7caffe571f7d390a7",
+      "svg_sha256": "dff805c4eb98639ac6f0aab83b85b4e0eb09aed0e09cc82fe4e1aa5ba22ab4e1",
+      "png_sha256": "dcd7b004d0cb0c7647d31c131fe182f8628117d4d16f8bf90eb1a62d59a1c609",
+      "content_input_sha256": "1b7172bb120a1c6e59b7e5c8cee0475e177db91b169bf235ace475bcdf3bd126",
+      "render_input_sha256": "89780d9b51badfb53b774262f13577e6101607018c19029ffac8f6efbad023d1",
       "width": 1200,
       "height": 630
     }

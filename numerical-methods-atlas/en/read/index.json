@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "9e91d81ce2b9e0a1f22cdff3159345418a25e7efdc2cd808f1349ddb891d20b8",
-  "chapter_count": 88,
+  "source_sha256": "dea97ce8d91460bd136744a136cbac533283209e2fbb99544b1bbbb86e47e823",
+  "chapter_count": 89,
   "groups": [
     {
       "id": "foundations-time",
@@ -556,6 +556,17 @@
             "en"
           ],
           "search_text": "validation-mhd 流体・MHDの独立照合とCT／GLM Independent fluid/MHD comparisons and CT/GLM 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-mhd-convergence",
+          "title": "CT and GLM: matched controls, independent checks and grid/time convergence",
+          "url": "/numerical-methods-atlas/en/read/validation-mhd-convergence/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-mhd-convergence CTとGLM：同条件の独立照合・格子・時間収束 CT and GLM: matched controls, independent checks and grid/time convergence 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
         }
       ]
     },

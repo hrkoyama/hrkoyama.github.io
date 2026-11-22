@@ -1,0 +1,131 @@
+{
+  "source_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+  "source_archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+  "binary_sha256": "00bc9ec5bb39885a33e706a045d3f0a9fa6d9e18994dcb2f9ff0dc9d4a472410",
+  "binary_history": "Reuse the independently compiled and hashed official Athena++ OT binary from the earlier reference; no new claim of recompilation.",
+  "physical_time": 0.05,
+  "integrator": "rk2",
+  "xorder": 2,
+  "boundary": "periodic",
+  "gamma": 1.6666666666666667,
+  "before_execution_inputs": {
+    "athinput-ot-256-cfl015": "efe50a692f5d59843cb39e4c7d112999f945cd3ff0c1df36809c934b2606eb4b",
+    "athinput-ot-512-cfl015": "a9a3575cfd90a541947670dfd494e189be9cdce4962615c9debe5e0a440f8218",
+    "athinput-ot-512-cfl03": "f052e6ef208a61e5e78f0bf3ff59f3fa71a898ee8bbf4752555a5f76e0ed8b7d"
+  },
+  "comparisons": [
+    "256/512 both CFL0.15 spatial reference difference",
+    "512 CFL0.3/0.15 temporal reference difference",
+    "Old256 CFL0.3 vs newly executed256 CFL0.15; raw old edition unchanged"
+  ],
+  "criteria_scope": "Reference generation plan saved before any new binary execution. Primary acceptance lives in the separately predeclared science inputs; this file does not loosen any published criterion.",
+  "actually_executed": true,
+  "executed_at_utc": "2026-11-22T12:52:10.864877+00:00",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.16",
+  "numpy": "2.0.2",
+  "generator_sha256": "498eb2cab99ed9caf1c59552c6448d78c5001ca1c9492de6e301dcc8d5cfc725",
+  "records": [
+    {
+      "id": "ot-256-cfl0p15",
+      "n": 256,
+      "cfl": 0.15,
+      "input": "athinput-ot-256-cfl015",
+      "input_sha256": "efe50a692f5d59843cb39e4c7d112999f945cd3ff0c1df36809c934b2606eb4b",
+      "elapsed_seconds": 2.377434000001813,
+      "command": [
+        "athena",
+        "-i",
+        "athinput-ot-256-cfl015"
+      ],
+      "returncode": 0,
+      "raw_table_file": "ot-256-cfl0p15.block0.out1.00001.tab",
+      "raw_table_sha256": "6e6be8ef1b817208c8cbdb718b10b9324c99c6166ccd1ddf2114510e4c9a0f67",
+      "raw_table_gzip": "ot-256-cfl0p15.final.tab.gz",
+      "raw_table_gzip_sha256": "cc4a8f19e231fafe4885441605f5b5894e09294bd20f64a278b4d90d1bf069ef",
+      "header": [
+        "# Athena++ data at time=5.000000e-02  cycle=195  variables=prim ",
+        "# i       x1v      j       x2v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     "
+      ],
+      "npz_file": "athena-ot-256-cfl015.npz",
+      "npz_sha256": "0e2a790f7de3a14d81efc42b79c255ae1c4b03ef4821593293a849125eeec2c8",
+      "shape": [
+        65536,
+        12
+      ],
+      "data_validation": {
+        "all_finite": true,
+        "positive_density_pressure": true
+      },
+      "original_input_name": "ot-256-cfl0p15.in"
+    },
+    {
+      "id": "ot-512-cfl0p15",
+      "n": 512,
+      "cfl": 0.15,
+      "input": "athinput-ot-512-cfl015",
+      "input_sha256": "a9a3575cfd90a541947670dfd494e189be9cdce4962615c9debe5e0a440f8218",
+      "elapsed_seconds": 18.266228125001362,
+      "command": [
+        "athena",
+        "-i",
+        "athinput-ot-512-cfl015"
+      ],
+      "returncode": 0,
+      "raw_table_file": "ot-512-cfl0p15.block0.out1.00001.tab",
+      "raw_table_sha256": "f72c4a1e731019d5ce1f8441fb8c1fbbd1efcd1f859a457afb40b0aaaa36de33",
+      "raw_table_gzip": "ot-512-cfl0p15.final.tab.gz",
+      "raw_table_gzip_sha256": "e8980af0eb86c4b42d965a14a704cd3b430cb9b9add6f5fd251223a7838b0526",
+      "header": [
+        "# Athena++ data at time=5.000000e-02  cycle=390  variables=prim ",
+        "# i       x1v      j       x2v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     "
+      ],
+      "npz_file": "athena-ot-512-cfl015.npz",
+      "npz_sha256": "9b067f1263f8d593d70f3bd55385b4c13abcc531cf8e7d7ba7d7cdd74770003a",
+      "shape": [
+        262144,
+        12
+      ],
+      "data_validation": {
+        "all_finite": true,
+        "positive_density_pressure": true
+      },
+      "original_input_name": "ot-512-cfl0p15.in"
+    },
+    {
+      "id": "ot-512-cfl0p3",
+      "n": 512,
+      "cfl": 0.3,
+      "input": "athinput-ot-512-cfl03",
+      "input_sha256": "f052e6ef208a61e5e78f0bf3ff59f3fa71a898ee8bbf4752555a5f76e0ed8b7d",
+      "elapsed_seconds": 9.692377249997662,
+      "command": [
+        "athena",
+        "-i",
+        "athinput-ot-512-cfl03"
+      ],
+      "returncode": 0,
+      "raw_table_file": "ot-512-cfl0p3.block0.out1.00001.tab",
+      "raw_table_sha256": "26b62f23c6107894a584bde59909b74679d27fb10dce568620c0e7442da32b4e",
+      "raw_table_gzip": "ot-512-cfl0p3.final.tab.gz",
+      "raw_table_gzip_sha256": "a27f7d009ccc855f284fa92d356ae9c31a10a9f2536738c2315f1feb4cb1572f",
+      "header": [
+        "# Athena++ data at time=5.000000e-02  cycle=195  variables=prim ",
+        "# i       x1v      j       x2v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     "
+      ],
+      "npz_file": "athena-ot-512-cfl03.npz",
+      "npz_sha256": "ac959f9409c649a9a38c78ba7402513a12ca3eb1781db9fed237b53533791ff9",
+      "shape": [
+        262144,
+        12
+      ],
+      "data_validation": {
+        "all_finite": true,
+        "positive_density_pressure": true
+      },
+      "original_input_name": "ot-512-cfl0p3.in"
+    }
+  ],
+  "command_path_note": "Actual executions used the previously hashed official Athena++ binary in an external audit workspace. Command paths are normalized here; no executable or official source archive is redistributed.",
+  "retention": "The frozen package retains input bytes and losslessly parsed numeric tables; raw table SHA256 is recorded. Full raw table gzip and original execution audit are retained by the site publisher separately."
+}

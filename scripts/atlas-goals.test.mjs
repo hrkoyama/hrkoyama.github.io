@@ -82,7 +82,10 @@ test('explicit scopes distinguish Euler shocks, smooth KEEP, magnetic operators 
  assert.ok(!matchGoals('MHDを低散逸で解きたい').some(g=>g.id==='smooth-vortex'));
  assert.ok(!matchGoals('非圧縮の渦を低散逸で解きたい').some(g=>g.id==='smooth-vortex'));
  assert.match(goals.find(g=>g.id==='smooth-vortex').scope.en,/neither a shock stabilizer/);
- assert.match(goals.find(g=>g.id==='magnetic-divergence').scope.en,/does not validate multidimensional/);
+ const magneticScope=goals.find(g=>g.id==='magnetic-divergence').scope.en;
+ assert.match(magneticScope,/Brio.*1D fluxes/);
+ assert.match(magneticScope,/GLM Fourier case is a constraint diagnostic, separately from general multidimensional MHD validation/);
+ assert.match(magneticScope,/Separate spatial and time-integration errors/);
 });
 test('all goal resources exist and the bilingual static entry remains usable without script',()=>{
  const examples=read('catalog/atlas-execution-examples.json').examples;

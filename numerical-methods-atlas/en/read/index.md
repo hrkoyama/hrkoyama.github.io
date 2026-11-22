@@ -73,6 +73,7 @@ Organize spatial discretization and coordinates, then examine incompressible flo
 - [MHD: constrained transport and divergence cleaning](https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/)
 - [Relativistic hydrodynamics: SRHD, GRHD, and GRMHD](https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/)
 - [Independent fluid/MHD comparisons and CT/GLM](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/)
+- [CT and GLM: matched controls, independent checks and grid/time convergence](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/)
 
 ## Particles, kinetic methods and transport
 

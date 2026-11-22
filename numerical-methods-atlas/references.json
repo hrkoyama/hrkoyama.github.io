@@ -3392,6 +3392,22 @@
     "origin": "curated-method-metadata"
   },
   {
+    "id": "gardiner-stone2005",
+    "author": "T. A. Gardiner and J. M. Stone",
+    "year": 2005,
+    "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+    "doi": "10.1016/j.jcp.2004.11.016",
+    "url": "https://arxiv.org/abs/astro-ph/0501557",
+    "review_level": "author preprint; selected section2.2/equations13–20",
+    "review": {
+      "ja": "面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。",
+      "en": "Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm."
+    },
+    "source": "https://arxiv.org/abs/astro-ph/0501557",
+    "type": "article",
+    "origin": "curated-method-metadata"
+  },
+  {
     "id": "schrodinger1926",
     "year": 1926,
     "author": "Schrödinger, E.",

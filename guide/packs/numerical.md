@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-ffa135a6a4
-Captured (UTC): 2026-11-22T12:31:23+00:00
+Snapshot: 2026-11-22-e8541c8fcb
+Captured (UTC): 2026-11-22T13:13:49+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -6062,7 +6062,7 @@ Coverage: reading
 Tests check periodic mass and total energy, density and pressure positivity
 on selected cases, CT divergence preservation, and GLM injected-error cleaning.
 The HLLD section below adds Brio–Wu, Alfvén-wave refinement and field loops.
-External reference-code comparisons remain future work. The low-resolution, first-order OT figures
+The initial teaching edition did not include external reference-code comparisons. The scoped additional releases are linked below. The low-resolution, first-order OT figures
 are introductory demonstrations of magnetic-constraint handling.
 
 ## MHD: constrained transport and divergence cleaning — Time evolution# [en]
@@ -6151,15 +6151,92 @@ Coverage: reading
 CT preserves native maximum divergence below 4 × 10⁻¹⁶ in these runs;
 GLM's centered maximum is about 3.7 × 10⁻⁴. These operator-dependent numbers
 have units of B/length. All published loop runs have zero HLLE fallbacks and
-zero retries. External reference-code comparisons, stronger-field loop tests
-and UCT-HLLD remain future work.
+zero retries. External-code validation of this earlier loop example, stronger-field loops
+and UCT-HLLD remain unverified. Additional checks of other fixed problems
+do not supply independent validation of this loop example.
 Reproduce with python scripts/build_mhd_tests.py. Download
 definitions, diagnostics and hashes and
 computed conservative arrays.
 
-## MHD: constrained transport and divergence cleaning — CT-Contact and GLM scope in the loop test# [en]
+## MHD: constrained transport and divergence cleaning — Additional independent checks: matched conditions and separate errors [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/#ct-contact-and-glm-scope-in-the-loop-test
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/#scoped-mhd-validation
+Coverage: reading
+
+These additional checks state their fixed inputs, independent references, and spatial and temporal refinement scope. Preserve the earlier teaching examples and their saved results without conflating discretizations or validation evidence.
+The new comparisons use the same piecewise-constant reconstruction, LLF speed bound and actual forward-Euler step sequence, with GLM wave speed and physical damping rate fixed across grids. Discrete-system differences remain: face versus cell magnetic fields, CT shared electric fields and normal-field handling. The constructed exact solution is an educational advected magnetostatic equilibrium, not the existing standard Alfvén-wave test. A separate DOP853 integration of the same spatial RHS is distinguished from independent spatial-solver validation. Matching the LLF coefficient does not imply equal effective CT/GLM viscosity: CT corner averaging changes the discrete dissipation. Compare CT and GLM as whole discretizations; matched-viscosity damping controls apply only to the kappa=2/kappa=0 GLM companions.
+
+## MHD: constrained transport and divergence cleaning — Additional independent checks: matched conditions and separate errors [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/#scoped-mhd-validation
+Coverage: reading
+
+For the adopted constant-LLF-speed periodic discretization, commuting operators preserve the common centered zero divergence of the two physical cases. These cases check coupled-MHD accuracy and do not demonstrate active GLM damping. A separate constraint control supplies the same initial longitudinal divergence error. Preserving the initial face divergence is the expected CT result, while GLM wave transport and damping are checked against analytic references. An undamped companion and B²+psi²/ch² distinguish damping from wave phase and LLF numerical diffusion. This initially non-solenoidal control is not a physical solenoidal initial state or an additional physical problem. The earlier stand-alone GLM example’s phrase “a monopole mode that CT cannot represent” means it cannot arise from a CT initial state satisfying its divergence constraint; the new control deliberately violates that initial constraint.
+
+## MHD: constrained transport and divergence cleaning — Orszag–Tang: CT, GLM and independent Athena++ [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
+Coverage: reading
+
+Validation of a fixed physical problem
+Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.
+Face CT divergence and centered GLM divergence use different operators; common cell-centered diagnostics are also reported. Athena initializes face-averaged magnetic fields by differencing a vector potential, so comparison includes discretization differences of identical continuous data. This is a short planar test, not validation of shocks, 3D, UCT or CTU.
+Inputs, results and checks · Reading, equations and primary sources · Code: run.py · Code: mhd.py · Code: hlld.py · Code: mhd_tests.py · Code: solvers.py · Code: riemann.py · Code: benchmarks.py · Code: equations.py · Code: limited.py · Code: limiters.py · Code: snapshots.py · Tests: test_validation.py · Release ZIP · Saved results · Independent-extraction receipt
+
+## MHD: constrained transport and divergence cleaning — Brio–Wu against an independent HLLD implementation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
+Coverage: reading
+
+Validation of a fixed physical problem
+Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit.
+This compares numerical solutions including the Brio–Wu compound wave; it is not a claim of a unique exact solution for arbitrary MHD Riemann problems. Reference regeneration requires C++ compilation; routine Python runs use the stored reference.
+Inputs, results and checks · Reading, equations and primary sources · Code: run.py · Code: hlld.py · Code: mhd_tests.py · Code: mhd.py · Code: solvers.py · Code: riemann.py · Code: benchmarks.py · Code: equations.py · Code: limited.py · Code: limiters.py · Code: snapshots.py · Tests: test_validation.py · Release ZIP · Saved results · Independent-extraction receipt
+
+## MHD: constrained transport and divergence cleaning — GLM longitudinal mode: analytic damping [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
+Coverage: reading
+
+Diagnostic control; no additional physical problem
+Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.
+Linear-mode damping does not guarantee divergence control or global accuracy for every nonlinear MHD problem. A monopole mode that CT cannot represent is not used as a matched CT comparison.
+Inputs, results and checks · Reading, equations and primary sources · Code: run.py · Code: mhd.py · Code: hlld.py · Code: mhd_tests.py · Code: solvers.py · Code: riemann.py · Code: benchmarks.py · Code: equations.py · Code: limited.py · Code: limiters.py · Code: snapshots.py · Tests: test_validation.py · Release ZIP · Saved results · Independent-extraction receipt
+
+## MHD: constrained transport and divergence cleaning — CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
+Coverage: reading
+
+Validation of a fixed physical problem
+Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence.
+With constant LLF viscosity and periodic centered operators, the GLM div=psi=0 subspace remains invariant up to roundoff. This tests coupled-MHD accuracy; a separate nonphysical control activates cleaning. p(q-average) is not the exact averaged p. DOP853 is independent in time only and shares the spatial RHS. Step differences are empirical contamination indicators, not rigorous bounds; face/cell representation differences remain part of the comparison.
+Inputs, results and checks · Reading, equations and primary sources · Code: run.py · Code: solver.py · Code: experiments.py · Tests: test_convergence.py · Release ZIP · Saved results · Independent-extraction receipt
+
+## MHD: constrained transport and divergence cleaning — Orszag–Tang: matched CT/GLM and converged independent references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
+Coverage: reading
+
+Validation of a fixed physical problem
+Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated.
+Short smooth OT, not certification of post-shock,3D or general cleaning behavior. Athena is a finite-grid numerical reference; increments are not error bounds. Historical128²/CFL.3 is not paired with256²/CFL.15 to infer a pure spatial order. Constant-LLF preservation of GLM div=psi=0 is not evidence of active cleaning. Native face and common centered divergences differ; centered checkerboard blind spots remain.
+Inputs, results and checks · Reading, equations and primary sources · Code: run.py · Code: solver.py · Code: experiments.py · Tests: test_convergence.py · Release ZIP · Saved results · Independent-extraction receipt
+
+## MHD: constrained transport and divergence cleaning — Initial-constraint preservation by CT and active GLM cleaning: nonphysical control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
+Coverage: reading
+
+Diagnostic control; no additional physical problem
+Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.
+Passing means correctly detecting expected CT non-removal and the calibrated GLM response, not recommending non-solenoidal CT physical initial data. W is an auxiliary diagnostic norm, distinct from conserved physical total energy E without psi. B decay includes phase exchange and LLF diffusion; damping is assessed with the kappa0 control. No general nonlinear,boundary or shock cleaning guarantee is claimed.
+Inputs, results and checks · Reading, equations and primary sources · Code: run.py · Code: solver.py · Code: experiments.py · Tests: test_convergence.py · Release ZIP · Saved results · Independent-extraction receipt
+Supplement metadata / JSON · Editable source
+
+## MHD: constrained transport and divergence cleaning — Initial-constraint preservation by CT and active GLM cleaning: nonphysical control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
 Coverage: reading
 
 Historical atlas →Computed gallery →
@@ -8277,7 +8354,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 82-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 83-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -10459,6 +10536,7 @@ Coverage: reading
 A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion). 10.1214/20-BA1221
 A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. 10.1214/ss/1177011136
 The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. Original source
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. 10.1016/j.jcp.2004.11.016
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -11833,8 +11911,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 129 methods and building blocks · 238 journal/conference papers · 290 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 88 reading chapters including this inventory.
+46 equation/model entries · 129 methods and building blocks · 239 journal/conference papers · 291 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 89 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12081,7 +12159,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-232 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+233 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -13614,7 +13692,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bi
 Coverage: reading
 
 Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics.
-Initial failure and step-refinement record · Initial input
+Input and validation protocol history · Initial input
 
 ## Independent validation of nonlinear reaction–diffusion and pattern formation — Assumptions, units and boundaries [en]
 
@@ -13851,7 +13929,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bi
 Coverage: reading
 
 Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
-Initial failure and step-refinement record · Initial input
+Input and validation protocol history · Initial input
 
 ## Independent validation of nonlinear reaction–diffusion and pattern formation — Assumptions, units and boundaries [en]
 
@@ -15977,6 +16055,405 @@ Checked the original introduction/section2 on multiple sequences and overdispers
 The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source
 Review scope / review_level: official-versioned-source-and-actual-independent-execution
 Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — CT and GLM: matched controls, independent checks and grid/time convergence [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Compare CT and GLM discretizations with a matched flux family, LLF coefficient, time steps and fixed physical damping. Use a constructed smooth exact solution and independent Athena++ results to separate spatial, time-integration and reference differences.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#run-all
+Coverage: reading
+
+Run inside atlas-mhd-convergence-2026-11-22 from the ZIP. This command executes all 3 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence.
+Input and validation protocol history · Initial input
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-assumptions
+Coverage: reading
+
+Periodic unit square, gamma5/3, mu0=1, planar MHD. A=.05[cos2pi(x−.3t)+cos2pi(y−.2t)], B=(Ay,−Ax), rho1, v=(.3,.2), p=.1+(2pi)²A²/2 at t=.1. Compare analytic conserved cell averages. This is a constructed verification case, not a claimed published standard benchmark.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-algorithm
+Coverage: reading
+
+Both use piecewise constants, the same fixed Rusanov speed alpha3 and forward Euler. CT uses face B/shared arithmetic corner EMFs; GLM uses cell B/psi with fixed ch3 and physical damping rate kappa2. All meshes use384 steps and identical CT/GLM dt sequences; initial reconstructed CT cell B matches GLM cell B.
+A=a[\cos k(x-ut)+\cos k(y-vt)],\quad\mathbf B=(A_y,-A_x),\quad J_z=-\Delta A=k^2Ap=p_0+\tfrac12k^2A^2,\qquad\nabla p=J_z\nabla A=\mathbf J\times\mathbf B\bar{\mathbf U}_{ij}=\frac1{\Delta x\Delta y}\int_{K_{ij}}\mathbf U\,dx\,dy,\qquad p(\bar{\mathbf U})\ne\bar p\mathbf U^{m+1}=\mathbf U^m+\Delta t\,L_h(\mathbf U^m),\qquad C_{\rm sum}=\alpha\Delta t(\Delta x^{-1}+\Delta y^{-1})
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-validation
+Coverage: reading
+
+Measure conserved-variable L1/L2/Linf errors and observed orders at16²/32²/64². Compare finest-grid step doubling with.1 of the spatial error. At fixed8², compare16/32/64/128 steps with doubly refined DOP853 tolerances/max steps. Record mass/E, positivity, native CT divergence, common cell divergence and psi.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-limits
+Coverage: reading
+
+With constant LLF viscosity and periodic centered operators, the GLM div=psi=0 subspace remains invariant up to roundoff. This tests coupled-MHD accuracy; a separate nonphysical control activates cleaning. p(q-average) is not the exact averaged p. DOP853 is independent in time only and shares the spatial RHS. Step differences are empirical contamination indicators, not rigorous bounds; face/cell representation differences remain part of the comparison.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+initial_cell_state_linf_difference0
+ct_finest_spatial_error0.0304348627607
+ct_minimum_spatial_order0.879200269525
+ct_time_contamination_ratio0.000422408361305
+ct_finest_temporal_scaled_l20.000286916663465
+ct_minimum_temporal_order1.00358823788
+ct_time_reference_to_primary_ratio1.04802816693e-12
+glm_finest_spatial_error0.0532729417125
+glm_minimum_spatial_order0.851997090204
+glm_time_contamination_ratio0.000249774662907
+glm_finest_temporal_scaled_l20.000600545564843
+glm_minimum_temporal_order1.00407413474
+glm_time_reference_to_primary_ratio4.04925531535e-13
+判定 / checkPassed
+identical_initial_cell_statestrue
+ct_native_constraint_n16true
+ct_native_constraint_n32true
+ct_native_constraint_n64true
+ct_spatial_ordertrue
+ct_continuum_errortrue
+ct_common_divergence_boundedtrue
+ct_time_contamination_boundedtrue
+ct_positive_statestrue
+ct_conservative_mass_energytrue
+glm_spatial_ordertrue
+glm_continuum_errortrue
+glm_common_divergence_boundedtrue
+glm_time_contamination_boundedtrue
+glm_positive_statestrue
+glm_conservative_mass_energytrue
+ct_temporal_ordertrue
+ct_temporal_errortrue
+ct_temporal_reference_resolvedtrue
+glm_temporal_ordertrue
+glm_temporal_errortrue
+glm_temporal_reference_resolvedtrue
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodnstepsdtcfl_summaximum_psi_linfminimum_densityminimum_derived_pressurenative_divergence_linfcommon_centered_divergence_linfcommon_centered_divergence_final_l2common_divergence_final_dimensionlessmass_relative_driftenergy_relative_driftscaled_l2l1l2linfspatial_order_from_previous
+ct163840.0002604166666670.02500.9988261456270.1008582375392.26485497024e-140.0002769198958110.0001330886617663.20195712724e-052.22044604925e-163.28109124367e-160.107161593677{"density":0.001073119293049853,"momentum_x":0.0025163490321296936,"momentum_y":0.0024777658202256177,"total_energy":0.03155022374611582,"magnetic_x":0.033202591095261046,"magnetic_y":0.03299522129824546}{"density":0.0012982749027710405,"momentum_x":0.0031693013426847176,"momentum_y":0.00315569753753268,"total_energy":0.038299629508899764,"magnetic_x":0.03703549103191751,"magnetic_y":0.03703778557839965}{"density":0.0034801638226686915,"momentum_x":0.006872548296427583,"momentum_y":0.006803457137341512,"total_energy":0.09169465519054343,"magnetic_x":0.05252701141377786,"magnetic_y":0.05260482583761156}—
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+ct323840.0002604166666670.0500.9987801747980.1002122004545.86197757002e-146.46250592284e-052.9644854179e-053.24096623324e-061.11022302463e-163.28109124367e-160.0582604064815{"density":0.0008429459413238587,"momentum_x":0.001830138452080753,"momentum_y":0.0018231063430067067,"total_energy":0.019178332225188277,"magnetic_x":0.017676556052469938,"magnetic_y":0.0177067944082099}{"density":0.0010369442355467446,"momentum_x":0.0023276281082723347,"momentum_y":0.0023159153538658502,"total_energy":0.02309237876522467,"magnetic_x":0.019671170246409495,"magnetic_y":0.019666894718304122}{"density":0.002874533283603986,"momentum_x":0.005180653577533778,"momentum_y":0.005055794429550842,"total_energy":0.0560429966109634,"magnetic_x":0.028042683133004787,"magnetic_y":0.027927135692894955}0.879200269525
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+ct643840.0002604166666670.100.9991439644890.100052898661.31450406116e-131.05718828021e-054.77037861285e-062.48670607212e-072.22044604925e-163.28109124367e-160.0304348627607{"density":0.0005235865358320256,"momentum_x":0.0011068023960548437,"momentum_y":0.0010999266522574908,"total_energy":0.01056719219741668,"magnetic_x":0.009079198378650889,"magnetic_y":0.009078801683551676}{"density":0.0006555547182800827,"momentum_x":0.0014118690449652013,"momentum_y":0.0014042077705071967,"total_energy":0.01270356274251507,"magnetic_x":0.010108336518170495,"magnetic_y":0.01010300191145563}{"density":0.0018363752694459112,"momentum_x":0.0031704710293902205,"momentum_y":0.00309170595345698,"total_energy":0.031229515769343408,"magnetic_x":0.014461609138610831,"magnetic_y":0.014440037520672688}0.936790906849
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+glm163840.0002604166666670.0252.70967987173e-160.9992967107550.1008582375393.5527136788e-153.5527136788e-154.62921673479e-161.33609160437e-162.22044604925e-163.28109124367e-160.182691641022{"density":0.00028500993550114803,"momentum_x":0.0006100149738445392,"momentum_y":0.0005996545639025122,"total_energy":0.032080878371250864,"magnetic_x":0.0607099716253392,"magnetic_y":0.06010299549071679}{"density":0.00035265122492272335,"momentum_x":0.0006924716146384543,"momentum_y":0.0006875026235449205,"total_energy":0.03892103641702646,"magnetic_x":0.06760222473790248,"magnetic_y":0.06760146959762867}{"density":0.0007032892454169604,"momentum_x":0.001076721601783348,"momentum_y":0.001043030461966049,"total_energy":0.09331290775790341,"magnetic_x":0.09544751027185824,"magnetic_y":0.0956408274320657}—
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+glm323840.0002604166666670.054.52910566393e-160.9992223324910.1002122004547.1054273576e-157.1054273576e-151.03744440964e-151.2431701806e-162.22044604925e-161.64054562183e-160.101214328109{"density":0.0003180965791756431,"momentum_x":0.0006243460216066629,"momentum_y":0.0006233366546554387,"total_energy":0.019554670493359023,"magnetic_x":0.03362502516635294,"magnetic_y":0.03369640617869707}{"density":0.00039155465194442955,"momentum_x":0.0006967907260140852,"momentum_y":0.0006911571414950945,"total_energy":0.02356394627313575,"magnetic_x":0.037386600818828185,"magnetic_y":0.03738229815324449}{"density":0.0007788807161011047,"momentum_x":0.0010993949280888038,"momentum_y":0.0010500438011581958,"total_energy":0.057362393845580784,"magnetic_x":0.052909669590111896,"magnetic_y":0.052684516132438464}0.851997090204
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+glm643840.0002604166666670.14.07595976827e-160.9994383002920.100052898661.06581410364e-141.06581410364e-141.72123582557e-159.39421899186e-172.22044604925e-161.64054562183e-160.0532729417125{"density":0.00022724037800232738,"momentum_x":0.0004341940903612204,"momentum_y":0.00043121404976120527,"total_energy":0.010797966278489366,"magnetic_x":0.017654870465604232,"magnetic_y":0.017657522167611083}{"density":0.0002802390977863017,"momentum_x":0.0004838285839329712,"momentum_y":0.00047979436136559497,"total_energy":0.012991553258170882,"magnetic_x":0.019623025563423737,"magnetic_y":0.019617875908586106}{"density":0.0005632355449693982,"momentum_x":0.0007698616360558574,"momentum_y":0.0007389762548461187,"total_energy":0.03211753356101893,"magnetic_x":0.027800332108093018,"magnetic_y":0.027771444953284263}0.92593868207
+Measurements and complete records / JSON
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+Review scope / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651
+Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit.
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Review scope / review_level: author preprint; selected section2.2/equations13–20
+Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm.
+G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes · DOI: 10.1006/jcph.2000.6519
+Review scope / review_level: author paper abstract and bibliographic metadata
+Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium.
+SciPy developers (2024). scipy.integrate.solve_ivp: DOP853
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence-references
+Coverage: reading
+
+Review scope / review_level: official versioned API and actual independent time-integrator execution
+Execute DOP853 as a separate time integrator; shared spatial RHS means it is not an independent spatial discretization.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Orszag–Tang: matched CT/GLM and converged independent references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated.
+Input and validation protocol history · Initial input
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-assumptions
+Coverage: reading
+
+Standard periodic OT: gamma5/3, rho25/(36pi), p5/(12pi), v=(−sin2piy,sin2pix), B=(−sin2piy,sin4pix)/sqrt(4pi), t=.05. Both methods share192 steps on16²/32²/64². This supplements the previous immutable release.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-algorithm
+Coverage: reading
+
+Primary runs use fixed alpha=ch=3 Rusanov/forward Euler and grid-independent GLM kappa2. Independent C++ Athena++ uses HLLD/PLM/RK2/upwind CT. Continuous initial fields agree; Athena’s face/primitive discretization is not identical.
+F_{i+1/2}=\tfrac12[F(U_L)+F(U_R)-\alpha(U_R-U_L)],\qquad\alpha=3(B_x)_t+\partial_x\psi+\partial_y(v_yB_x-v_xB_y)=0,\quad\psi_t+c_h^2\nabla\cdot\mathbf B=-\kappa\psiD_h^{\rm face}\,\operatorname{curl}_h E=0,\qquad D_h^{\rm cell}\ne D_h^{\rm face}
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-validation
+Coverage: reading
+
+Measure density/magnetic L1 error, mesh improvement, positivity, conservation and div/psi. Athena256²/512² both useCFL.15; fixed512² CFL.3/.15 checks reference time sensitivity, with increments compared against.1 of primary error. At fixed16², compare primary time refinement with separately executed DOP853 and check finest-grid step doubling.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-limits
+Coverage: reading
+
+Short smooth OT, not certification of post-shock,3D or general cleaning behavior. Athena is a finite-grid numerical reference; increments are not error bounds. Historical128²/CFL.3 is not paired with256²/CFL.15 to infer a pure spatial order. Constant-LLF preservation of GLM div=psi=0 is not evidence of active cleaning. Native face and common centered divergences differ; centered checkerboard blind spots remain.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+initial_cell_state_linf_difference0
+ct_finest_spatial_error0.0413194839982
+ct_minimum_spatial_order0.744158443513
+ct_time_contamination_ratio0.00545247213312
+ct_finest_temporal_scaled_l20.000645102485379
+ct_minimum_temporal_order1.00516637854
+ct_time_reference_to_primary_ratio4.61082917419e-13
+glm_finest_spatial_error0.0685124284115
+glm_minimum_spatial_order0.681940639631
+glm_time_contamination_ratio0.00328933327647
+glm_finest_temporal_scaled_l20.000761795470161
+glm_minimum_temporal_order1.00565698614
+glm_time_reference_to_primary_ratio3.17975240233e-13
+判定 / checkPassed
+identical_initial_cell_statestrue
+independent_reference_density_refinementtrue
+independent_reference_magnetic_refinementtrue
+independent_reference_time_refinementtrue
+ct_native_constraint_n16true
+ct_native_constraint_n32true
+ct_native_constraint_n64true
+ct_spatial_refinementtrue
+ct_density_errortrue
+ct_magnetic_errortrue
+ct_independent_reference_resolvedtrue
+ct_time_contamination_boundedtrue
+ct_positive_statestrue
+ct_conservative_mass_energytrue
+glm_spatial_refinementtrue
+glm_density_errortrue
+glm_magnetic_errortrue
+glm_independent_reference_resolvedtrue
+glm_time_contamination_boundedtrue
+glm_positive_statestrue
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-measurements
+Coverage: reading
+
+glm_conservative_mass_energytrue
+ct_temporal_ordertrue
+ct_temporal_errortrue
+ct_temporal_reference_resolvedtrue
+glm_temporal_ordertrue
+glm_temporal_errortrue
+glm_temporal_reference_resolvedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodnstepsdtcfl_summaximum_psi_linfminimum_densityminimum_derived_pressurenative_divergence_linfcommon_centered_divergence_linfcommon_centered_divergence_final_l2common_divergence_final_dimensionlessmass_relative_driftenergy_relative_driftdensity_l1magnetic_l1density_relative_l1magnetic_relative_l1combined_relative_l1spatial_order_from_previousreference_spatial_density_to_primary_ratioreference_spatial_magnetic_to_primary_ratioreference_time_density_to_primary_ratioreference_time_magnetic_to_primary_ratio
+ct161920.0002604166666670.02500.2041890084530.1331303532831.46549439251e-140.06778576731310.03254014215360.008970168625073.76689797785e-163.17881685894e-160.008407456562860.03720545102210.03803443743350.21171154160.124872989517—————
+ct321920.0002604166666670.0500.2008900321780.1273610606863.73034936274e-140.04181461772830.01331259617650.001654160862073.76689797785e-161.58940842947e-160.006914340655670.02096247302060.03127974020390.1178226109210.07455117556220.744158443513————
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-measurements
+Coverage: reading
+
+ct641920.0002604166666670.100.1993474223550.1203005011411.03028696685e-130.02155785477190.004828443702130.0002840323965113.76689797785e-161.58940842947e-160.00463479604770.01102378364710.02096732334870.06167164464770.04131948399820.8514088640680.002213710798680.001460101657925.78945382054e-053.20448944525e-05
+glm161920.0002604166666670.0252.29333161254e-160.2048134453030.1331779405462.6645352591e-152.6645352591e-154.47860702695e-161.46149417582e-166.27816329642e-163.17881685894e-160.00859721340440.06132772032320.03889287716050.348975374730.193934125946—————
+glm321920.0002604166666670.052.79414389234e-160.2012901176570.1327413021665.3290705182e-155.3290705182e-157.5399655241e-161.03471308109e-163.76689797785e-161.58940842947e-160.007097338864140.03730192363570.03210760459530.2096608558920.1208842302440.681940639631————
+glm641920.0002604166666670.13.33714653318e-160.1996035156420.1244719720931.06581410364e-141.06581410364e-141.49560771309e-159.28462941824e-175.02253063713e-161.58940842947e-160.004780368518210.02062752479390.02162587769030.1153989791330.06851242841150.8191884251990.002146298558650.0007803090744265.61315253908e-051.71254664322e-05
+Measurements and complete records / JSON
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+Review scope / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651
+Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit.
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Review scope / review_level: author preprint; selected section2.2/equations13–20
+Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm.
+G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes · DOI: 10.1006/jcph.2000.6519
+Review scope / review_level: author paper abstract and bibliographic metadata
+Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence-references
+Coverage: reading
+
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+Review scope / review_level: official source at pinned commit actually compiled/executed; paper metadata
+Executed new reference runs with the previously independently built, hashed official C++ commit1395e2f543f4368d448cb1a2cf92ba1f910e3416 binary, retaining input/output/binary/source hashes; not a full-paper audit.
+SciPy developers (2024). scipy.integrate.solve_ivp: DOP853
+Review scope / review_level: official versioned API and actual independent time-integrator execution
+Execute DOP853 as a separate time integrator; shared spatial RHS means it is not an independent spatial discretization.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Initial-constraint preservation by CT and active GLM cleaning: nonphysical control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.
+Input and validation protocol history · Initial input
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-assumptions
+Coverage: reading
+
+Periodic32² grid,t=.1,128 steps,rho=p=1,v=0,By=psi=0. CT faceBx=.01cos[2pi(i+1)/32]; GLM cellBx equals the adjacent-face average. The intentional nonzero native CT divergence violates valid physical CT initial data and is treated solely as a diagnostic.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-algorithm
+Coverage: reading
+
+Use the same fully coupled MHD code. With y-invariance andBy=vy=0, the GLM Bx/psi subsystem decouples from fluid feedback, allowing a separately constructed2x2 discrete Fourier symbol and forward-Euler matrix power. Compare kappa2/0 at identical dt and LLF viscosity, separating B/psi phase exchange from physical damping.
+\widehat{U}^{m+1}=(I+\Delta t M_h)\widehat{U}^{m},\quad M_h=\begin{pmatrix}\nu_h&-i\widetilde{k}\\-ic_h^2\widetilde{k}&\nu_h-\kappa\end{pmatrix}\nu_h=\alpha N[\cos(2\pi/N)-1],\quad\widetilde{k}=N\sin(2\pi/N)W=\langle B_x^2+\psi^2/c_h^2\rangle,\qquad W_{\kappa=2}/W_{\kappa=0}<0.95
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-validation
+Coverage: reading
+
+Check preservation of the initial CT defect, nonzero GLM psi, independent FE agreement for bothBx/psi, positive density/pressure, and conserved physical E/mass. Test the kappa2/0 ratio of auxiliary wave energy W=mean(Bx²+psi²/ch²), separating FE, semidiscrete-exponential and continuum-Fourier references.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-limits
+Coverage: reading
+
+Passing means correctly detecting expected CT non-removal and the calibrated GLM response, not recommending non-solenoidal CT physical initial data. W is an auxiliary diagnostic norm, distinct from conserved physical total energy E without psi. B decay includes phase exchange and LLF diffusion; damping is assessed with the kappa0 control. No general nonlinear,boundary or shock cleaning guarantee is claimed.
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+damped_to_undamped_B_psi_wave_energy_ratio0.797707175434
+ct_native_divergence_linf_change0
+ct_common_divergence_linf_change1.45716771982e-16
+initial_common_divergence_l20.0439313357377
+initial_cell_state_difference4.77048955894e-18
+判定 / checkPassed
+ct_preserves_initial_constraint_defecttrue
+ct_does_not_clean_common_initial_defecttrue
+ct_initial_constraint_is_deliberately_nonzerotrue
+damped_independent_discrete_fourier_agreementtrue
+damped_positive_statestrue
+damped_conservative_mass_energytrue
+damped_psi_is_activatedtrue
+glm_final_B_divergence_reducedtrue
+undamped_independent_discrete_fourier_agreementtrue
+undamped_positive_statestrue
+undamped_conservative_mass_energytrue
+undamped_psi_is_activatedtrue
+physical_damping_separated_from_phase_and_LLF_viscositytrue
+ct_positive_statestrue
+ct_conservative_mass_energytrue
+matched_initial_cell_statestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-measurements
+Coverage: reading
+
+methodcleaning_rateinitial_native_divergence_linfnative_divergence_change_linfcommon_divergence_change_linfmass_relative_driftenergy_relative_driftnstepsdtcfl_sumfourier_FE_reference_linffinal_common_divergence_ratiomaximum_psi_linfB_psi_wave_energyreference_wave_energyLLF_diffusion_eigenvaluecentered_derivative_wavenumberFE_B_amplitude_realFE_psi_amplitude_imaginarysemidiscrete_B_amplitude_realcontinuous_B_amplitude_realminimum_densityminimum_derived_pressure
+ct—0.062428903045201.45716771982e-162.22044604925e-167.40136465988e-16—————————————————
+glm2———4.4408920985e-167.40136465988e-16321280.000781250.151.04083408559e-170.1889416260820.02395545228262.80684556781e-052.80684556781e-05-1.844613081296.24289030452-0.0018803182051-0.021758029167-0.0018259735252-0.002304524760080.9999964501221
+glm0———4.4408920985e-162.96054586395e-16321280.000781250.155.55111512313e-170.2528404573160.02585712106423.51864149433e-053.51864149433e-05-1.844613081296.24289030452-0.00251622961406-0.0240077646969-0.00246193738557-0.003075289930840.999996510861
+Measurements and complete records / JSON
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+Review scope / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651
+Checked selected original GLM B/psi and damping equations, conserved physical energy, and the distinction from extra EGLM source terms; not a full-paper audit.
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Review scope / review_level: author preprint; selected section2.2/equations13–20
+Checked the face-average/shared-corner-EMF structure. The present arithmetic flux-CT is not identified with the paper’s upwind CT/CTU algorithm.
+G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes · DOI: 10.1006/jcph.2000.6519
+Review scope / review_level: author paper abstract and bibliographic metadata
+Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Independent fluid/MHD comparisons and CT/GLM [en]
 
@@ -23796,7 +24273,7 @@ CTは面磁場の差分、GLMはセル中心磁場の中心差分を使います
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/#verification-scope
 Coverage: reading
 
-テストでは周期質量・全エネルギー、選定ケースの密度・圧力の正値性、CTの発散保存、GLMの注入誤差除去を確認します。後述のHLLD節にBrio–Wu、Alfvén波の格子細分化、磁場ループを追加しました。外部参照コードとの比較は今後の課題です。低解像度・1次OT図は、磁場制約の処理を学ぶ導入例です。
+テストでは周期質量・全エネルギー、選定ケースの密度・圧力の正値性、CTの発散保存、GLMの注入誤差除去を確認します。後述のHLLD節にBrio–Wu、Alfvén波の格子細分化、磁場ループを追加しました。初期教材には外部参照コードとの比較を含めていませんでした。現在の追加検証は後掲の限定配布版を参照してください。低解像度・1次OT図は、磁場制約の処理を学ぶ導入例です。
 
 ## MHD：制約輸送法と発散クリーニング — 時間発展# [ja]
 
@@ -23826,8 +24303,78 @@ GLMはセルAzの中心差分回転からセル磁場を初期化し、面で縦
  B_n^*=\frac{B_{n,L}+B_{n,R}}2-\frac{\psi_R-\psi_L}{2c_h},\qquad
  \psi^*=\frac{\psi_L+\psi_R}2-\frac{c_h(B_{n,R}-B_{n,L})}2.
 HLLD／HLLEへ共通のBnを渡し、面の基本変数圧力を保ちます。Bn・ψの流束はψ・ch²Bn*です。ch=4、減衰率0.18ch/hでSSPRK2の前後にψを半刻みずつ指数減衰させます。Eにはψのエネルギーを含めません。Mignone–Tzeferacos（2010）の縦方向解法を参考にした保存的GLMモデルであり、同論文のCTU積分やEGLM変種ではありません。固定クリーニング速度は時間刻み数にも影響します。
-初期磁場の離散化と離散発散演算子が異なり、磁気エネルギー比は各計算自身の初期セル磁場エネルギーで規格化します。同一精度・同一計算費用でのCT／GLMの順位は導けません。128 × 64ではCTの最大面発散は4 × 10⁻¹⁶未満、GLMの最大中心差分発散は約3.7 × 10⁻⁴です。これらは演算子に依存するB/長さの次元の数値です。公開ループ計算のHLLE切替・再試行はすべて0でした。外部コードとの比較、強磁場ループ、UCT-HLLDは今後の課題です。
+初期磁場の離散化と離散発散演算子が異なり、磁気エネルギー比は各計算自身の初期セル磁場エネルギーで規格化します。同一精度・同一計算費用でのCT／GLMの順位は導けません。128 × 64ではCTの最大面発散は4 × 10⁻¹⁶未満、GLMの最大中心差分発散は約3.7 × 10⁻⁴です。これらは演算子に依存するB/長さの次元の数値です。公開ループ計算のHLLE切替・再試行はすべて0でした。この旧ループ例の外部コード照合、強磁場ループ、UCT-HLLDは未検証です。別の固定問題で得た追加検証を、このループ例の独立検証へ流用しません。
 再現はpython scripts/build_mhd_tests.pyです。設定・診断・ハッシュと計算済み保存変数配列を取得できます。
+
+## MHD：制約輸送法と発散クリーニング — 追加の独立検証：同条件比較と誤差の分離 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/#scoped-mhd-validation
+Coverage: reading
+
+以下の追加検証は、それぞれの固定入力・独立参照・格子と時間刻みの確認範囲を示します。上の初期教材とその保存結果は保持し、異なる離散化や検証の根拠を同一視しません。
+新しい比較は同じ区分一定再構成・LLF係数（波速上界）・前進Eulerの実刻み列を使い、GLMの波速と物理的減衰率を格子間で固定します。それでも面磁場とセル磁場、CTの共有電場、法線場の扱いという離散系の違いは残ります。構成厳密解は教材として定義した移流する磁気流体静力学的平衡で、既存の標準Alfvén波テストではありません。同じ空間RHSを別のDOP853時間積分で解く比較は、独立した空間ソルバーの照合とは区別します。 同じLLF係数でも、CTの角電場平均によって有効な数値散逸まで同じになるとは限りません。CT／GLMは離散系全体として比較し、数値粘性を揃えた減衰比較はGLMのκ=2とκ=0の伴走計算の間に限ります。
+一定のLLF波速と周期格子を用いる採用離散化では、発散ゼロから始めた物理2例の共通中心差分発散は演算子の可換性で維持されます。この2例は連成MHDの精度確認であり、GLM減衰が実際に働いた証拠ではありません。別の制約対照では同じ初期縦磁場の発散誤差を与えます。CTが初期の面発散を保持することを期待結果とし、GLMの波動輸送・減衰を解析参照と比較します。減衰なしの対照とB²+ψ²/ch²の量も用い、波の位相やLLF数値拡散を物理的減衰と取り違えません。非ゼロ発散の対照を物理的なソレノイダル初期値や追加物理問題として数えません。 旧GLM単独例の「CTで表せない」は、発散制約を満たすCT初期値では表せないという意味であり、新対照は意図的にその初期制約を破ります。
+
+## MHD：制約輸送法と発散クリーニング — Orszag–Tang：CT・GLMと独立Athena++比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
+Coverage: reading
+
+固定した物理問題の検証
+同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。
+CTの面上divergenceとGLMの中心差分divergenceは異なる演算子です。共通cell演算子の値も別記します。Athenaの初期磁場はベクトルポテンシャルの差分による面平均で、同じ連続場の離散化差を含みます。短時間の平面MHD比較であり、衝撃波・3D・UCTやCTUの検証ではありません。
+入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：mhd.py · コード：hlld.py · コード：mhd_tests.py · コード：solvers.py · コード：riemann.py · コード：benchmarks.py · コード：equations.py · コード：limited.py · コード：limiters.py · コード：snapshots.py · テスト：test_validation.py · 配布ZIP · 保存結果 · 独立展開の追試記録
+
+## MHD：制約輸送法と発散クリーニング — Brio–Wu：別実装HLLDとの照合 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
+Coverage: reading
+
+固定した物理問題の検証
+公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。
+Brio–Wuの複合波を含む数値解との照合であり、一般MHD Riemann問題の唯一の厳密解とは呼びません。参照の再生成にはC++コンパイルが必要で、通常Python実行は同梱参照を使います。
+入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：hlld.py · コード：mhd_tests.py · コード：mhd.py · コード：solvers.py · コード：riemann.py · コード：benchmarks.py · コード：equations.py · コード：limited.py · コード：limiters.py · コード：snapshots.py · テスト：test_validation.py · 配布ZIP · 保存結果 · 独立展開の追試記録
+
+## MHD：制約輸送法と発散クリーニング — GLMの磁気単極子モード：解析的減衰 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
+Coverage: reading
+
+診断対照・物理問題数へ非加算
+GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。
+この線形モードの減衰を、非線形MHDの全divergenceや大域的な精度の保証とはしません。CTで表せない単極子モードをCTとの同条件比較には用いません。
+入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：mhd.py · コード：hlld.py · コード：mhd_tests.py · コード：solvers.py · コード：riemann.py · コード：benchmarks.py · コード：equations.py · コード：limited.py · コード：limiters.py · コード：snapshots.py · テスト：test_validation.py · 配布ZIP · 保存結果 · 独立展開の追試記録
+
+## MHD：制約輸送法と発散クリーニング — CT・GLM：移動する磁気静力学平衡の格子・時間収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
+Coverage: reading
+
+固定した物理問題の検証
+非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。
+定数LLF粘性・周期中心演算子では、GLMのdiv=ψ=0部分空間は丸めまで保たれます。本例は結合MHDの精度を調べ、能動的cleaningは別の非物理診断対照で調べます。p(q平均)はpの厳密平均と同一ではありません。DOP853は時間だけ独立で空間RHSは共有します。刻み倍増差は経験的汚染目安で厳密誤差上界ではなく、CT/GLMの内部表現差を含む有限離散化全体の比較です。
+入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：solver.py · コード：experiments.py · テスト：test_convergence.py · 配布ZIP · 保存結果 · 独立展開の追試記録
+
+## MHD：制約輸送法と発散クリーニング — Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
+Coverage: reading
+
+固定した物理問題の検証
+同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。
+短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。
+入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：solver.py · コード：experiments.py · テスト：test_convergence.py · 配布ZIP · 保存結果 · 独立展開の追試記録
+
+## MHD：制約輸送法と発散クリーニング — CTの初期制約保持とGLMの能動的cleaning：非物理診断対照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
+Coverage: reading
+
+診断対照・物理問題数へ非加算
+故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。
+対照の合格は「期待したCTの非除去とGLMの線形応答を正しく検出した」という意味です。非零CT divを許す物理計算を推奨しません。Wは診断用ノルムで、ψを含まない物理的総エネルギーEとは別です。GLMのBx減少には位相交換とLLF拡散も含まれ、κ0対照なしに減衰成功とは呼びません。一般非線形・境界流出・衝撃波のcleaning性能へ広げません。
+入力・結果・判定 · 解説・式・一次文献 · コード：run.py · コード：solver.py · コード：experiments.py · テスト：test_convergence.py · 配布ZIP · 保存結果 · 独立展開の追試記録
+追加検証のJSON · 編集用正本
 
 ## Monte Carlo積分 — Monte Carlo積分 [ja]
 
@@ -25660,7 +26207,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全82問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全83問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -27748,6 +28295,7 @@ Coverage: reading
 A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion). 10.1214/20-BA1221
 A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. 10.1214/ss/1177011136
 The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. Original source
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. 10.1016/j.jcp.2004.11.016
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -28717,8 +29265,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文238件・全参考資料290件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め88章です。
+方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文239件・全参考資料291件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め89章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -28965,7 +29513,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-232件：学術誌論文（総説・翻訳・採録済み論文を含む）
+233件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -30361,7 +30909,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bi
 Coverage: reading
 
 t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。
-初回の不合格と刻み細分化の記録 · 初回の入力
+入力・検証手順の履歴 · 初回の入力
 
 ## 非線形反応拡散・パターン形成の独立検証 — 前提・単位・境界 [ja]
 
@@ -30592,7 +31140,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bi
 Coverage: reading
 
 t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
-初回の不合格と刻み細分化の記録 · 初回の入力
+入力・検証手順の履歴 · 初回の入力
 
 ## 非線形反応拡散・パターン形成の独立検証 — 前提・単位・境界 [ja]
 
@@ -32700,6 +33248,399 @@ A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Mult
 The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source
 確認範囲 / review_level: official-versioned-source-and-actual-independent-execution
 公式v0.20.0のrhat/ess API、diagnostics.py/stats_utils.pyでsplit・rank・Type7 quantile・端点・定数規約を確認。commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1と導入ソースSHAを照合し、atlas診断をimportしない別環境で同じ62datasetを実計算。元コード本文は転載せず、参照値・版・hash・再生成コードを同梱します。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — CTとGLM：同条件の独立照合・格子・時間収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/
+Coverage: reading
+
+数値流束族・LLF係数・時間刻み・物理減衰率を固定し、CTとGLMの離散化を比較します。構成した滑らかな厳密解と独立Athena++参照を使い、格子誤差・時間積分誤差・参照自身の差を分けて確かめます。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#run-all
+Coverage: reading
+
+ZIPの atlas-mhd-convergence-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — CT・GLM：移動する磁気静力学平衡の格子・時間収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/
+Coverage: reading
+
+非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。
+入力・検証手順の履歴 · 初回の入力
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-assumptions
+Coverage: reading
+
+周期単位正方形、γ=5/3、μ₀=1、平面MHD。A=.05[cos2π(x−.3t)+cos2π(y−.2t)]、B=(Ay,−Ax)、ρ=1、v=(.3,.2)、p=.1+(2π)²A²/2、t=.1。保存変数の解析的セル平均を比較します。公刊の標準問題名を借りない構成検証例です。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-algorithm
+Coverage: reading
+
+両法とも区分定数・同じ固定Rusanov速度α=3・前進Eulerです。CTは面Bと共有算術corner EMF、GLMはcell B/ψとch=3・物理減衰率κ=2を使用。全格子で同じ384刻み、両法のdt列も同一です。CT面平均から復元した初期cell BとGLM初期Bが一致します。
+A=a[\cos k(x-ut)+\cos k(y-vt)],\quad\mathbf B=(A_y,-A_x),\quad J_z=-\Delta A=k^2Ap=p_0+\tfrac12k^2A^2,\qquad\nabla p=J_z\nabla A=\mathbf J\times\mathbf B\bar{\mathbf U}_{ij}=\frac1{\Delta x\Delta y}\int_{K_{ij}}\mathbf U\,dx\,dy,\qquad p(\bar{\mathbf U})\ne\bar p\mathbf U^{m+1}=\mathbf U^m+\Delta t\,L_h(\mathbf U^m),\qquad C_{\rm sum}=\alpha\Delta t(\Delta x^{-1}+\Delta y^{-1})
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-validation
+Coverage: reading
+
+16²/32²/64²の保存変数L1/L2/L∞誤差と観測次数を測ります。最細格子の刻み倍増差を空間誤差の.1以下と比較。時間収束は固定8²で16/32/64/128刻みを、許容誤差・最大刻みを二重に細分したDOP853へ照合します。質量・E、正値性、native CT divと共通cell div、ψも記録します。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-limits
+Coverage: reading
+
+定数LLF粘性・周期中心演算子では、GLMのdiv=ψ=0部分空間は丸めまで保たれます。本例は結合MHDの精度を調べ、能動的cleaningは別の非物理診断対照で調べます。p(q平均)はpの厳密平均と同一ではありません。DOP853は時間だけ独立で空間RHSは共有します。刻み倍増差は経験的汚染目安で厳密誤差上界ではなく、CT/GLMの内部表現差を含む有限離散化全体の比較です。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+initial_cell_state_linf_difference0
+ct_finest_spatial_error0.0304348627607
+ct_minimum_spatial_order0.879200269525
+ct_time_contamination_ratio0.000422408361305
+ct_finest_temporal_scaled_l20.000286916663465
+ct_minimum_temporal_order1.00358823788
+ct_time_reference_to_primary_ratio1.04802816693e-12
+glm_finest_spatial_error0.0532729417125
+glm_minimum_spatial_order0.851997090204
+glm_time_contamination_ratio0.000249774662907
+glm_finest_temporal_scaled_l20.000600545564843
+glm_minimum_temporal_order1.00407413474
+glm_time_reference_to_primary_ratio4.04925531535e-13
+判定 / check合格
+identical_initial_cell_statestrue
+ct_native_constraint_n16true
+ct_native_constraint_n32true
+ct_native_constraint_n64true
+ct_spatial_ordertrue
+ct_continuum_errortrue
+ct_common_divergence_boundedtrue
+ct_time_contamination_boundedtrue
+ct_positive_statestrue
+ct_conservative_mass_energytrue
+glm_spatial_ordertrue
+glm_continuum_errortrue
+glm_common_divergence_boundedtrue
+glm_time_contamination_boundedtrue
+glm_positive_statestrue
+glm_conservative_mass_energytrue
+ct_temporal_ordertrue
+ct_temporal_errortrue
+ct_temporal_reference_resolvedtrue
+glm_temporal_ordertrue
+glm_temporal_errortrue
+glm_temporal_reference_resolvedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+methodnstepsdtcfl_summaximum_psi_linfminimum_densityminimum_derived_pressurenative_divergence_linfcommon_centered_divergence_linfcommon_centered_divergence_final_l2common_divergence_final_dimensionlessmass_relative_driftenergy_relative_driftscaled_l2l1l2linfspatial_order_from_previous
+ct163840.0002604166666670.02500.9988261456270.1008582375392.26485497024e-140.0002769198958110.0001330886617663.20195712724e-052.22044604925e-163.28109124367e-160.107161593677{"density":0.001073119293049853,"momentum_x":0.0025163490321296936,"momentum_y":0.0024777658202256177,"total_energy":0.03155022374611582,"magnetic_x":0.033202591095261046,"magnetic_y":0.03299522129824546}{"density":0.0012982749027710405,"momentum_x":0.0031693013426847176,"momentum_y":0.00315569753753268,"total_energy":0.038299629508899764,"magnetic_x":0.03703549103191751,"magnetic_y":0.03703778557839965}{"density":0.0034801638226686915,"momentum_x":0.006872548296427583,"momentum_y":0.006803457137341512,"total_energy":0.09169465519054343,"magnetic_x":0.05252701141377786,"magnetic_y":0.05260482583761156}—
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+ct323840.0002604166666670.0500.9987801747980.1002122004545.86197757002e-146.46250592284e-052.9644854179e-053.24096623324e-061.11022302463e-163.28109124367e-160.0582604064815{"density":0.0008429459413238587,"momentum_x":0.001830138452080753,"momentum_y":0.0018231063430067067,"total_energy":0.019178332225188277,"magnetic_x":0.017676556052469938,"magnetic_y":0.0177067944082099}{"density":0.0010369442355467446,"momentum_x":0.0023276281082723347,"momentum_y":0.0023159153538658502,"total_energy":0.02309237876522467,"magnetic_x":0.019671170246409495,"magnetic_y":0.019666894718304122}{"density":0.002874533283603986,"momentum_x":0.005180653577533778,"momentum_y":0.005055794429550842,"total_energy":0.0560429966109634,"magnetic_x":0.028042683133004787,"magnetic_y":0.027927135692894955}0.879200269525
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+ct643840.0002604166666670.100.9991439644890.100052898661.31450406116e-131.05718828021e-054.77037861285e-062.48670607212e-072.22044604925e-163.28109124367e-160.0304348627607{"density":0.0005235865358320256,"momentum_x":0.0011068023960548437,"momentum_y":0.0010999266522574908,"total_energy":0.01056719219741668,"magnetic_x":0.009079198378650889,"magnetic_y":0.009078801683551676}{"density":0.0006555547182800827,"momentum_x":0.0014118690449652013,"momentum_y":0.0014042077705071967,"total_energy":0.01270356274251507,"magnetic_x":0.010108336518170495,"magnetic_y":0.01010300191145563}{"density":0.0018363752694459112,"momentum_x":0.0031704710293902205,"momentum_y":0.00309170595345698,"total_energy":0.031229515769343408,"magnetic_x":0.014461609138610831,"magnetic_y":0.014440037520672688}0.936790906849
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+glm163840.0002604166666670.0252.70967987173e-160.9992967107550.1008582375393.5527136788e-153.5527136788e-154.62921673479e-161.33609160437e-162.22044604925e-163.28109124367e-160.182691641022{"density":0.00028500993550114803,"momentum_x":0.0006100149738445392,"momentum_y":0.0005996545639025122,"total_energy":0.032080878371250864,"magnetic_x":0.0607099716253392,"magnetic_y":0.06010299549071679}{"density":0.00035265122492272335,"momentum_x":0.0006924716146384543,"momentum_y":0.0006875026235449205,"total_energy":0.03892103641702646,"magnetic_x":0.06760222473790248,"magnetic_y":0.06760146959762867}{"density":0.0007032892454169604,"momentum_x":0.001076721601783348,"momentum_y":0.001043030461966049,"total_energy":0.09331290775790341,"magnetic_x":0.09544751027185824,"magnetic_y":0.0956408274320657}—
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+glm323840.0002604166666670.054.52910566393e-160.9992223324910.1002122004547.1054273576e-157.1054273576e-151.03744440964e-151.2431701806e-162.22044604925e-161.64054562183e-160.101214328109{"density":0.0003180965791756431,"momentum_x":0.0006243460216066629,"momentum_y":0.0006233366546554387,"total_energy":0.019554670493359023,"magnetic_x":0.03362502516635294,"magnetic_y":0.03369640617869707}{"density":0.00039155465194442955,"momentum_x":0.0006967907260140852,"momentum_y":0.0006911571414950945,"total_energy":0.02356394627313575,"magnetic_x":0.037386600818828185,"magnetic_y":0.03738229815324449}{"density":0.0007788807161011047,"momentum_x":0.0010993949280888038,"momentum_y":0.0010500438011581958,"total_energy":0.057362393845580784,"magnetic_x":0.052909669590111896,"magnetic_y":0.052684516132438464}0.851997090204
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-measurements
+Coverage: reading
+
+glm643840.0002604166666670.14.07595976827e-160.9994383002920.100052898661.06581410364e-141.06581410364e-141.72123582557e-159.39421899186e-172.22044604925e-161.64054562183e-160.0532729417125{"density":0.00022724037800232738,"momentum_x":0.0004341940903612204,"momentum_y":0.00043121404976120527,"total_energy":0.010797966278489366,"magnetic_x":0.017654870465604232,"magnetic_y":0.017657522167611083}{"density":0.0002802390977863017,"momentum_x":0.0004838285839329712,"momentum_y":0.00047979436136559497,"total_energy":0.012991553258170882,"magnetic_x":0.019623025563423737,"magnetic_y":0.019617875908586106}{"density":0.0005632355449693982,"momentum_x":0.0007698616360558574,"momentum_y":0.0007389762548461187,"total_energy":0.03211753356101893,"magnetic_x":0.027800332108093018,"magnetic_y":0.027771444953284263}0.92593868207
+この例の実測値・全記録 / JSON
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+確認範囲 / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651
+通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+確認範囲 / review_level: author preprint; selected section2.2/equations13–20
+面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。
+G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes · DOI: 10.1006/jcph.2000.6519
+確認範囲 / review_level: author paper abstract and bibliographic metadata
+div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。
+SciPy developers (2024). scipy.integrate.solve_ivp: DOP853
+確認範囲 / review_level: official versioned API and actual independent time-integrator execution
+DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/
+Coverage: reading
+
+同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。
+入力・検証手順の履歴 · 初回の入力
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-assumptions
+Coverage: reading
+
+標準周期OT、γ=5/3、ρ=25/(36π)、p=5/(12π)、v=(−sin2πy,sin2πx)、B=(−sin2πy,sin4πx)/√(4π)、t=.05。16²/32²/64²の両法に192刻みを共用します。旧配布版を改変しない追加検証です。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-algorithm
+Coverage: reading
+
+主計算は固定α=ch=3のRusanovと前進Euler、GLMκ=2は格子に依存しません。独立C++ Athena++はHLLD・PLM・RK2・upwind CTです。同じ連続初期値を用いますが、Athenaのface/primitive離散化は主計算と完全同一ではありません。
+F_{i+1/2}=\tfrac12[F(U_L)+F(U_R)-\alpha(U_R-U_L)],\qquad\alpha=3(B_x)_t+\partial_x\psi+\partial_y(v_yB_x-v_xB_y)=0,\quad\psi_t+c_h^2\nabla\cdot\mathbf B=-\kappa\psiD_h^{\rm face}\,\operatorname{curl}_h E=0,\qquad D_h^{\rm cell}\ne D_h^{\rm face}
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-validation
+Coverage: reading
+
+密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-limits
+Coverage: reading
+
+短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+initial_cell_state_linf_difference0
+ct_finest_spatial_error0.0413194839982
+ct_minimum_spatial_order0.744158443513
+ct_time_contamination_ratio0.00545247213312
+ct_finest_temporal_scaled_l20.000645102485379
+ct_minimum_temporal_order1.00516637854
+ct_time_reference_to_primary_ratio4.61082917419e-13
+glm_finest_spatial_error0.0685124284115
+glm_minimum_spatial_order0.681940639631
+glm_time_contamination_ratio0.00328933327647
+glm_finest_temporal_scaled_l20.000761795470161
+glm_minimum_temporal_order1.00565698614
+glm_time_reference_to_primary_ratio3.17975240233e-13
+判定 / check合格
+identical_initial_cell_statestrue
+independent_reference_density_refinementtrue
+independent_reference_magnetic_refinementtrue
+independent_reference_time_refinementtrue
+ct_native_constraint_n16true
+ct_native_constraint_n32true
+ct_native_constraint_n64true
+ct_spatial_refinementtrue
+ct_density_errortrue
+ct_magnetic_errortrue
+ct_independent_reference_resolvedtrue
+ct_time_contamination_boundedtrue
+ct_positive_statestrue
+ct_conservative_mass_energytrue
+glm_spatial_refinementtrue
+glm_density_errortrue
+glm_magnetic_errortrue
+glm_independent_reference_resolvedtrue
+glm_time_contamination_boundedtrue
+glm_positive_statestrue
+glm_conservative_mass_energytrue
+ct_temporal_ordertrue
+ct_temporal_errortrue
+ct_temporal_reference_resolvedtrue
+glm_temporal_ordertrue
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-measurements
+Coverage: reading
+
+glm_temporal_errortrue
+glm_temporal_reference_resolvedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+methodnstepsdtcfl_summaximum_psi_linfminimum_densityminimum_derived_pressurenative_divergence_linfcommon_centered_divergence_linfcommon_centered_divergence_final_l2common_divergence_final_dimensionlessmass_relative_driftenergy_relative_driftdensity_l1magnetic_l1density_relative_l1magnetic_relative_l1combined_relative_l1spatial_order_from_previousreference_spatial_density_to_primary_ratioreference_spatial_magnetic_to_primary_ratioreference_time_density_to_primary_ratioreference_time_magnetic_to_primary_ratio
+ct161920.0002604166666670.02500.2041890084530.1331303532831.46549439251e-140.06778576731310.03254014215360.008970168625073.76689797785e-163.17881685894e-160.008407456562860.03720545102210.03803443743350.21171154160.124872989517—————
+ct321920.0002604166666670.0500.2008900321780.1273610606863.73034936274e-140.04181461772830.01331259617650.001654160862073.76689797785e-161.58940842947e-160.006914340655670.02096247302060.03127974020390.1178226109210.07455117556220.744158443513————
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-measurements
+Coverage: reading
+
+ct641920.0002604166666670.100.1993474223550.1203005011411.03028696685e-130.02155785477190.004828443702130.0002840323965113.76689797785e-161.58940842947e-160.00463479604770.01102378364710.02096732334870.06167164464770.04131948399820.8514088640680.002213710798680.001460101657925.78945382054e-053.20448944525e-05
+glm161920.0002604166666670.0252.29333161254e-160.2048134453030.1331779405462.6645352591e-152.6645352591e-154.47860702695e-161.46149417582e-166.27816329642e-163.17881685894e-160.00859721340440.06132772032320.03889287716050.348975374730.193934125946—————
+glm321920.0002604166666670.052.79414389234e-160.2012901176570.1327413021665.3290705182e-155.3290705182e-157.5399655241e-161.03471308109e-163.76689797785e-161.58940842947e-160.007097338864140.03730192363570.03210760459530.2096608558920.1208842302440.681940639631————
+glm641920.0002604166666670.13.33714653318e-160.1996035156420.1244719720931.06581410364e-141.06581410364e-141.49560771309e-159.28462941824e-175.02253063713e-161.58940842947e-160.004780368518210.02062752479390.02162587769030.1153989791330.06851242841150.8191884251990.002146298558650.0007803090744265.61315253908e-051.71254664322e-05
+この例の実測値・全記録 / JSON
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+確認範囲 / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651
+通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+確認範囲 / review_level: author preprint; selected section2.2/equations13–20
+面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。
+G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes · DOI: 10.1006/jcph.2000.6519
+確認範囲 / review_level: author paper abstract and bibliographic metadata
+div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+確認範囲 / review_level: official source at pinned commit actually compiled/executed; paper metadata
+以前に別構築しハッシュを確認した公式commit1395e2f543f4368d448cb1a2cf92ba1f910e3416のC++バイナリーを再利用して新しい参照を実行し、入力・出力・binary/source SHAを保存しました。論文全文監査ではありません。
+SciPy developers (2024). scipy.integrate.solve_ivp: DOP853
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence-references
+Coverage: reading
+
+確認範囲 / review_level: official versioned API and actual independent time-integrator execution
+DOP853を別の時間積分器として実行します。空間RHSを共有するため、独立した空間離散化とは呼びません。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — CTの初期制約保持とGLMの能動的cleaning：非物理診断対照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/
+Coverage: reading
+
+故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。
+入力・検証手順の履歴 · 初回の入力
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-assumptions
+Coverage: reading
+
+32²周期格子、t=.1、128刻み、ρ=p=1、v=0、By=ψ=0。CT face Bx=.01cos[2π(i+1)/32]、GLM cell Bxはその左右face平均と同一です。CT初期native div≠0は意図的に無効な物理初期値で、CTの正しい物理計算例とは区別します。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-algorithm
+Coverage: reading
+
+同じ完全結合MHDコードを使用。y不変・By=vy=0ではGLMのBx/ψ系が流体応答から独立するため、離散Fourier記号の2×2行列と前進Euler行列冪を別に構成します。κ=2とκ=0を同じdt・LLF粘性で比較し、Bxだけの減少を物理減衰と取り違えません。
+\widehat{U}^{m+1}=(I+\Delta t M_h)\widehat{U}^{m},\quad M_h=\begin{pmatrix}\nu_h&-i\widetilde{k}\\-ic_h^2\widetilde{k}&\nu_h-\kappa\end{pmatrix}\nu_h=\alpha N[\cos(2\pi/N)-1],\quad\widetilde{k}=N\sin(2\pi/N)W=\langle B_x^2+\psi^2/c_h^2\rangle,\qquad W_{\kappa=2}/W_{\kappa=0}<0.95
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-validation
+Coverage: reading
+
+CT native divの初期違反保持、GLMのψ励起、Bx/ψ双方の独立FE参照一致、密度・圧力正値性、物理的総E/質量保存を確認。補助波エネルギーW=〈Bx²+ψ²/ch²〉のκ2/κ0比を判定し、半離散行列指数と連続Fourier解も区別して表示します。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-limits
+Coverage: reading
+
+対照の合格は「期待したCTの非除去とGLMの線形応答を正しく検出した」という意味です。非零CT divを許す物理計算を推奨しません。Wは診断用ノルムで、ψを含まない物理的総エネルギーEとは別です。GLMのBx減少には位相交換とLLF拡散も含まれ、κ0対照なしに減衰成功とは呼びません。一般非線形・境界流出・衝撃波のcleaning性能へ広げません。
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+damped_to_undamped_B_psi_wave_energy_ratio0.797707175434
+ct_native_divergence_linf_change0
+ct_common_divergence_linf_change1.45716771982e-16
+initial_common_divergence_l20.0439313357377
+initial_cell_state_difference4.77048955894e-18
+判定 / check合格
+ct_preserves_initial_constraint_defecttrue
+ct_does_not_clean_common_initial_defecttrue
+ct_initial_constraint_is_deliberately_nonzerotrue
+damped_independent_discrete_fourier_agreementtrue
+damped_positive_statestrue
+damped_conservative_mass_energytrue
+damped_psi_is_activatedtrue
+glm_final_B_divergence_reducedtrue
+undamped_independent_discrete_fourier_agreementtrue
+undamped_positive_statestrue
+undamped_conservative_mass_energytrue
+undamped_psi_is_activatedtrue
+physical_damping_separated_from_phase_and_LLF_viscositytrue
+ct_positive_statestrue
+ct_conservative_mass_energytrue
+matched_initial_cell_statestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-measurements
+Coverage: reading
+
+methodcleaning_rateinitial_native_divergence_linfnative_divergence_change_linfcommon_divergence_change_linfmass_relative_driftenergy_relative_driftnstepsdtcfl_sumfourier_FE_reference_linffinal_common_divergence_ratiomaximum_psi_linfB_psi_wave_energyreference_wave_energyLLF_diffusion_eigenvaluecentered_derivative_wavenumberFE_B_amplitude_realFE_psi_amplitude_imaginarysemidiscrete_B_amplitude_realcontinuous_B_amplitude_realminimum_densityminimum_derived_pressure
+ct—0.062428903045201.45716771982e-162.22044604925e-167.40136465988e-16—————————————————
+glm2———4.4408920985e-167.40136465988e-16321280.000781250.151.04083408559e-170.1889416260820.02395545228262.80684556781e-052.80684556781e-05-1.844613081296.24289030452-0.0018803182051-0.021758029167-0.0018259735252-0.002304524760080.9999964501221
+glm0———4.4408920985e-162.96054586395e-16321280.000781250.155.55111512313e-170.2528404573160.02585712106423.51864149433e-053.51864149433e-05-1.844613081296.24289030452-0.00251622961406-0.0240077646969-0.00246193738557-0.003075289930840.999996510861
+この例の実測値・全記録 / JSON
+
+## CTとGLM：同条件の独立照合・格子・時間収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+確認範囲 / review_level: author-hosted primary paper; selected original equations 17–19 and 24, pp.650–651
+通常のGLMのB/ψ式と減衰、エネルギー保存、追加のEGLM項との区別を原著の選択式で確認しました。全文監査ではありません。
+T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+確認範囲 / review_level: author preprint; selected section2.2/equations13–20
+面平均Bと共有corner EMFの構造を確認しました。今回の算術flux-CTを、論文のupwind CT・CTU実装そのものとは呼びません。
+G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics Codes · DOI: 10.1006/jcph.2000.6519
+確認範囲 / review_level: author paper abstract and bibliographic metadata
+div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。
 
 ## 流体・MHDの独立照合とCT／GLM — 流体・MHDの独立照合とCT／GLM [ja]
 

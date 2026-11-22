@@ -42,6 +42,24 @@ $$
 
 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。
 
+#### Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束
+
+補助実行例 · 実行例の定義・検証式
+
+$$
+F_{i+1/2}=\tfrac12[F(U_L)+F(U_R)-\alpha(U_R-U_L)],\qquad\alpha=3
+$$
+
+$$
+(B_x)_t+\partial_x\psi+\partial_y(v_yB_x-v_xB_y)=0,\quad\psi_t+c_h^2\nabla\cdot\mathbf B=-\kappa\psi
+$$
+
+$$
+D_h^{\rm face}\,\operatorname{curl}_h E=0,\qquad D_h^{\rm cell}\ne D_h^{\rm face}
+$$
+
+同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。
+
 ### 厳密解・参照解
 
 保存則・各離散配置に対応する磁場発散と、別実行のAthena++数値参照を確認します。この非線形MHD問題の厳密解を提供するものではありません。
@@ -53,6 +71,14 @@ $$
 - [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json)
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja)
+
+#### Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束
+
+密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。
+
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/results/result.json)
+
+[参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja)
 
 ### 計算法
 
@@ -92,6 +118,37 @@ CTの面上divergenceとGLMの中心差分divergenceは異なる演算子です�
 - [/code/validated-examples/2026-11-22/mhd/legacy/mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py)
 - [/code/validated-examples/2026-11-22/mhd/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py)
 - [/code/validated-examples/2026-11-22/mhd/test_validation.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py)
+
+#### [Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja)
+
+補助実行例
+
+同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。
+
+標準周期OT、γ=5/3、ρ=25/(36π)、p=5/(12π)、v=(−sin2πy,sin2πx)、B=(−sin2πy,sin4πx)/√(4π)、t=.05。16²/32²/64²の両法に192刻みを共用します。旧配布版を改変しない追加検証です。
+
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json)
+
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json)
+
+ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。
+
+同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
+
+- [/code/validated-examples/2026-11-22/mhd-convergence/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py)
+- [/code/validated-examples/2026-11-22/mhd-convergence/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py)
+- [/code/validated-examples/2026-11-22/mhd-convergence/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py)
+- [/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py)
 
 ## English
 
@@ -133,6 +190,24 @@ $$
 
 Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.
 
+#### Orszag–Tang: matched CT/GLM and converged independent references
+
+Supplementary execution example · Example definition or validation formula
+
+$$
+F_{i+1/2}=\tfrac12[F(U_L)+F(U_R)-\alpha(U_R-U_L)],\qquad\alpha=3
+$$
+
+$$
+(B_x)_t+\partial_x\psi+\partial_y(v_yB_x-v_xB_y)=0,\quad\psi_t+c_h^2\nabla\cdot\mathbf B=-\kappa\psi
+$$
+
+$$
+D_h^{\rm face}\,\operatorname{curl}_h E=0,\qquad D_h^{\rm cell}\ne D_h^{\rm face}
+$$
+
+Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated.
+
 ### Exact and reference solutions
 
 Check conservation, divergence appropriate to each discrete layout, and separately run Athena++ numerical references. These are not exact solutions of the nonlinear MHD problem.
@@ -144,6 +219,14 @@ Measure density/By L1 error, mass/energy drift and positivity on 16²/32²/64².
 - [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json)
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en)
+
+#### Orszag–Tang: matched CT/GLM and converged independent references
+
+Measure density/magnetic L1 error, mesh improvement, positivity, conservation and div/psi. Athena256²/512² both useCFL.15; fixed512² CFL.3/.15 checks reference time sensitivity, with increments compared against.1 of primary error. At fixed16², compare primary time refinement with separately executed DOP853 and check finest-grid step doubling.
+
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/results/result.json)
+
+[Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en)
 
 ### Numerical methods
 
@@ -183,3 +266,34 @@ These source and test lists include files shared across the package; they are no
 - [/code/validated-examples/2026-11-22/mhd/legacy/mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py)
 - [/code/validated-examples/2026-11-22/mhd/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py)
 - [/code/validated-examples/2026-11-22/mhd/test_validation.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py)
+
+#### [Orszag–Tang: matched CT/GLM and converged independent references](https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en)
+
+Supplementary execution example
+
+Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated.
+
+Standard periodic OT: gamma5/3, rho25/(36pi), p5/(12pi), v=(−sin2piy,sin2pix), B=(−sin2piy,sin4pix)/sqrt(4pi), t=.05. Both methods share192 steps on16²/32²/64². This supplements the previous immutable release.
+
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json)
+
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json)
+
+After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+Short smooth OT, not certification of post-shock,3D or general cleaning behavior. Athena is a finite-grid numerical reference; increments are not error bounds. Historical128²/CFL.3 is not paired with256²/CFL.15 to infer a pure spatial order. Constant-LLF preservation of GLM div=psi=0 is not evidence of active cleaning. Native face and common centered divergences differ; centered checkerboard blind spots remain.
+
+These source and test lists include files shared across the package; they are not all dedicated to this problem.
+
+- [/code/validated-examples/2026-11-22/mhd-convergence/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py)
+- [/code/validated-examples/2026-11-22/mhd-convergence/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py)
+- [/code/validated-examples/2026-11-22/mhd-convergence/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py)
+- [/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py)

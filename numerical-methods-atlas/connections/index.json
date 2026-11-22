@@ -52,6 +52,16 @@
             "ja": "Runge–Kutta法",
             "en": "Runge–Kutta methods"
           }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/validation-mhd-convergence/",
+            "en": "/numerical-methods-atlas/en/read/validation-mhd-convergence/"
+          },
+          "label": {
+            "ja": "CT／GLM：格子誤差と時間積分誤差を分ける",
+            "en": "CT/GLM: separate spatial and time-integration errors"
+          }
         }
       ]
     },
@@ -3568,15 +3578,15 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-crossovers.json": "7fa40b5af1c17e2fca72c771ddbb744803b6031f10c929d55c85aee6ee5e1864",
-    "catalog/atlas-methods.json": "59cddd024215a156427bb6299b6bdb616ff1649584b12068c2c9a54b00485c50",
-    "numerical-methods-atlas/methods/index.json": "6243f7142203e56474b7bf33ba58ac420a3363c9af8fc55444d24f4b16924d20",
+    "catalog/atlas-crossovers.json": "ac181e89adacd93e4d20767de849aaf1a9b3dca9840e40216155ba2eae365dba",
+    "catalog/atlas-methods.json": "cc325168a36eba044df5a6312d6fbedf313f2c494a34b95fa44f419e3c372414",
+    "numerical-methods-atlas/methods/index.json": "45d4d82cd73212b7fd1a9d1dad106db30ab877d892a8d2efb41cb41762504e44",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "9b5f02038f79e4db4b35a96a26d89c17e0f1b918e07e1b5a5d195b32e4594856",
+    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

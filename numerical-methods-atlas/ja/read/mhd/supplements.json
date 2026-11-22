@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "locale": "ja",
+  "chapter": "mhd",
+  "title": "追加の独立検証：同条件比較と誤差の分離",
+  "supplements": [
+    {
+      "id": "ct-glm-independent",
+      "group": "mhd",
+      "title": {
+        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+        "en": "Orszag–Tang: CT, GLM and independent Athena++"
+      },
+      "summary": {
+        "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
+        "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
+      },
+      "limits": {
+        "ja": "CTの面上divergenceとGLMの中心差分divergenceは異なる演算子です。共通cell演算子の値も別記します。Athenaの初期磁場はベクトルポテンシャルの差分による面平均で、同じ連続場の離散化差を含みます。短時間の平面MHD比較であり、衝撃波・3D・UCTやCTUの検証ではありません。",
+        "en": "Face CT divergence and centered GLM divergence use different operators; common cell-centered diagnostics are also reported. Athena initializes face-averaged magnetic fields by differencing a vector potential, so comparison includes discretization differences of identical continuous data. This is a short planar test, not validation of shocks, 3D, UCT or CTU."
+      },
+      "url": "/numerical-methods-atlas/validation/ct-glm-independent/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/mhd/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/mhd/verification.json",
+      "problem_id": "orszag-tang"
+    },
+    {
+      "id": "brio-independent",
+      "group": "mhd",
+      "title": {
+        "ja": "Brio–Wu：別実装HLLDとの照合",
+        "en": "Brio–Wu against an independent HLLD implementation"
+      },
+      "summary": {
+        "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。",
+        "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit."
+      },
+      "limits": {
+        "ja": "Brio–Wuの複合波を含む数値解との照合であり、一般MHD Riemann問題の唯一の厳密解とは呼びません。参照の再生成にはC++コンパイルが必要で、通常Python実行は同梱参照を使います。",
+        "en": "This compares numerical solutions including the Brio–Wu compound wave; it is not a claim of a unique exact solution for arbitrary MHD Riemann problems. Reference regeneration requires C++ compilation; routine Python runs use the stored reference."
+      },
+      "url": "/numerical-methods-atlas/validation/brio-independent/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd/#brio-independent"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/mhd/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/mhd/verification.json",
+      "problem_id": "brio-wu"
+    },
+    {
+      "id": "glm-fourier-mode",
+      "group": "mhd",
+      "title": {
+        "ja": "GLMの磁気単極子モード：解析的減衰",
+        "en": "GLM longitudinal mode: analytic damping"
+      },
+      "summary": {
+        "ja": "GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。",
+        "en": "Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution."
+      },
+      "limits": {
+        "ja": "この線形モードの減衰を、非線形MHDの全divergenceや大域的な精度の保証とはしません。CTで表せない単極子モードをCTとの同条件比較には用いません。",
+        "en": "Linear-mode damping does not guarantee divergence control or global accuracy for every nonlinear MHD problem. A monopole mode that CT cannot represent is not used as a matched CT comparison."
+      },
+      "url": "/numerical-methods-atlas/validation/glm-fourier-mode/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/mhd/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/mhd/verification.json",
+      "problem_id": null
+    },
+    {
+      "id": "ct-glm-smooth-convergence",
+      "group": "mhd-convergence",
+      "title": {
+        "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+        "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+      },
+      "summary": {
+        "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
+        "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
+      },
+      "limits": {
+        "ja": "定数LLF粘性・周期中心演算子では、GLMのdiv=ψ=0部分空間は丸めまで保たれます。本例は結合MHDの精度を調べ、能動的cleaningは別の非物理診断対照で調べます。p(q平均)はpの厳密平均と同一ではありません。DOP853は時間だけ独立で空間RHSは共有します。刻み倍増差は経験的汚染目安で厳密誤差上界ではなく、CT/GLMの内部表現差を含む有限離散化全体の比較です。",
+        "en": "With constant LLF viscosity and periodic centered operators, the GLM div=psi=0 subspace remains invariant up to roundoff. This tests coupled-MHD accuracy; a separate nonphysical control activates cleaning. p(q-average) is not the exact averaged p. DOP853 is independent in time only and shares the spatial RHS. Step differences are empirical contamination indicators, not rigorous bounds; face/cell representation differences remain part of the comparison."
+      },
+      "url": "/numerical-methods-atlas/validation/ct-glm-smooth-convergence/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-smooth-convergence",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-smooth-convergence"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "problem_id": "advected-magnetostatic-equilibrium"
+    },
+    {
+      "id": "ct-glm-ot-convergence",
+      "group": "mhd-convergence",
+      "title": {
+        "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+        "en": "Orszag–Tang: matched CT/GLM and converged independent references"
+      },
+      "summary": {
+        "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
+        "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
+      },
+      "limits": {
+        "ja": "短時間の滑らかなOTで、衝撃波後・3D・一般のcleaning性能の認証ではありません。独立Athena参照も有限格子数値解で、増分は誤差上界ではありません。旧128²/CFL.3は履歴だけで256²/CFL.15との組を純粋な格子次数に使いません。定数LLFによるGLMのdiv=ψ=0保存をcleaning成功とは呼びません。native面divと共通中心divを区別し、中心演算子のcheckerboard盲点も残します。",
+        "en": "Short smooth OT, not certification of post-shock,3D or general cleaning behavior. Athena is a finite-grid numerical reference; increments are not error bounds. Historical128²/CFL.3 is not paired with256²/CFL.15 to infer a pure spatial order. Constant-LLF preservation of GLM div=psi=0 is not evidence of active cleaning. Native face and common centered divergences differ; centered checkerboard blind spots remain."
+      },
+      "url": "/numerical-methods-atlas/validation/ct-glm-ot-convergence/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-ot-convergence",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-ot-convergence"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "problem_id": "orszag-tang"
+    },
+    {
+      "id": "ct-glm-constraint-control",
+      "group": "mhd-convergence",
+      "title": {
+        "ja": "CTの初期制約保持とGLMの能動的cleaning：非物理診断対照",
+        "en": "Initial-constraint preservation by CT and active GLM cleaning: nonphysical control"
+      },
+      "summary": {
+        "ja": "故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。",
+        "en": "Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem."
+      },
+      "limits": {
+        "ja": "対照の合格は「期待したCTの非除去とGLMの線形応答を正しく検出した」という意味です。非零CT divを許す物理計算を推奨しません。Wは診断用ノルムで、ψを含まない物理的総エネルギーEとは別です。GLMのBx減少には位相交換とLLF拡散も含まれ、κ0対照なしに減衰成功とは呼びません。一般非線形・境界流出・衝撃波のcleaning性能へ広げません。",
+        "en": "Passing means correctly detecting expected CT non-removal and the calibrated GLM response, not recommending non-solenoidal CT physical initial data. W is an auxiliary diagnostic norm, distinct from conserved physical total energy E without psi. B decay includes phase exchange and LLF diffusion; damping is assessed with the kappa0 control. No general nonlinear,boundary or shock cleaning guarantee is claimed."
+      },
+      "url": "/numerical-methods-atlas/validation/ct-glm-constraint-control/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-convergence/#ct-glm-constraint-control",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-convergence/#ct-glm-constraint-control"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "problem_id": null
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-mhd-supplements.json": "aaa8a9070c0376bbc5fab7fad5debe0ada17244cdefd4a914cfb98594a97e17b",
+    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866"
+  }
+}

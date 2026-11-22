@@ -105,7 +105,7 @@ python run.py --input inputs.json --output output
 
 This command executes every fixed case in the distribution group.
 
-Initial failure and step-refinement record: https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
+Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
 
 https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs-initial.json
 
@@ -233,7 +233,7 @@ python run.py --input inputs.json --output output
 
 This command executes every fixed case in the distribution group.
 
-Initial failure and step-refinement record: https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
+Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
 
 https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs-initial.json
 

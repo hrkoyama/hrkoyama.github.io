@@ -12,9 +12,9 @@
   "counts": {
     "equations": 46,
     "methods": 129,
-    "papers": 238,
-    "references": 290,
-    "journal_articles": 232,
+    "papers": 239,
+    "references": 291,
+    "journal_articles": 233,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
@@ -27,9 +27,9 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 88,
-    "test_problems": 82,
-    "saved_test_problems": 82,
+    "reading_chapters": 89,
+    "test_problems": 83,
+    "saved_test_problems": 83,
     "code_test_problems": 0
   },
   "items": [
@@ -1496,7 +1496,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.",
+      "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.",
       "origin": "curated-depth-example"
     },
     {
@@ -1506,7 +1506,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.",
+      "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.",
       "origin": "curated-depth-example"
     },
     {
@@ -3009,6 +3009,12 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "gardiner-stone2005",
+      "type": "article",
+      "identity": "doi:10.1016/j.jcp.2004.11.016",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3239,9 +3245,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "59cddd024215a156427bb6299b6bdb616ff1649584b12068c2c9a54b00485c50",
+    "catalog/atlas-methods.json": "cc325168a36eba044df5a6312d6fbedf313f2c494a34b95fa44f419e3c372414",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
-    "catalog/atlas-method-primary-references.json": "3e3d4080f33c6e97372717ec81c73463a4e1573619710aee26fc331579fa2083"
+    "catalog/atlas-method-primary-references.json": "ed4b32888fdf168f743562aa297b0ffc4db244ef768e62bcccfc8e9e2c2de864"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",

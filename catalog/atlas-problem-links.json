@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "scope": {
-    "ja": "既存82問題の図・モデル・参照資料・実証された手法を結ぶ編集用対応表です。同じ初期値・境界・パラメータを持つ参照をsame-problem、条件や表示が異なる同系統の例をrelated-modelと区別します。実行・コードの公開範囲は既存の共通・補助実行台帳から別に解決し、この表はコード公開状態・科学計算の合否・問題数を変更しません。",
-    "en": "Editorial links connecting figures, models, reference material and demonstrated methods for the existing 82 problems. same-problem requires matching initial/boundary data and parameters; related-model identifies a family with different conditions or presentation. Execution/code scope is resolved separately from existing common/supplemental registries; this table changes no code status, scientific acceptance or problem counts."
+    "ja": "既存83問題の図・モデル・参照資料・実証された手法を結ぶ編集用対応表です。同じ初期値・境界・パラメータを持つ参照をsame-problem、条件や表示が異なる同系統の例をrelated-modelと区別します。実行・コードの公開範囲は既存の共通・補助実行台帳から別に解決し、この表はコード公開状態・科学計算の合否・問題数を変更しません。",
+    "en": "Editorial links connecting figures, models, reference material and demonstrated methods for the existing 83 problems. same-problem requires matching initial/boundary data and parameters; related-model identifies a family with different conditions or presentation. Execution/code scope is resolved separately from existing common/supplemental registries; this table changes no code status, scientific acceptance or problem counts."
   },
   "problems": [
     {
@@ -1921,6 +1921,29 @@
       "equation_note": {
         "ja": "2峰Gaussian混合分布を標的とするMarkov連鎖の標本化問題です。既存の方程式一覧には専用項目がありません。",
         "en": "Markov-chain sampling of a bimodal Gaussian-mixture target; the equation registry has no dedicated entry."
+      }
+    },
+    {
+      "id": "advected-magnetostatic-equilibrium",
+      "equation_ids": [
+        "mhd"
+      ],
+      "equation_note": {
+        "ja": "周期単位正方形・γ=5/3・μ0=1の平面理想MHDを扱います。構成した磁気静力学平衡を一定速度で移流する厳密解で、外力による製造解や標準円偏光Alfvén波とは異なります。GLMの補助方程式と具体的な保存変数セル平均は、実行例の式・入力・コードを参照してください。",
+        "en": "Planar ideal MHD on a periodic unit square with gamma=5/3 and mu0=1. The exact solution translates a constructed magnetostatic equilibrium at constant velocity; it is neither a forced manufactured solution nor the standard circularly polarized Alfvén wave. The execution example supplies the GLM auxiliary equation and explicit conserved cell averages."
+      },
+      "reference_note": {
+        "ja": "構成厳密解の保存変数セル平均と格子誤差を比較します。固定した空間RHSを独立DOP853時間積分で解いた参照は時間誤差の確認用であり、別の空間ソルバーとは呼びません。18件の既存参照解ライブラリにはこの構成解のカードがないため、別問題の参照カードを流用せず、該当実行例の式・結果・ソースへ案内します。",
+        "en": "Compare spatial errors against conserved cell averages of the constructed exact solution. Independent DOP853 integration of the same fixed spatial RHS checks temporal error and is not a separate spatial solver. The existing 18-case reference-solution library has no card for this constructed solution, so use the bound example’s equations, results and source rather than borrowing another problem’s reference card."
+      },
+      "references": [],
+      "method_ids": [
+        "ct",
+        "glm"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に対応するct-glm-smooth-convergence配布例のCTとGLMです。同じLLF係数と時間刻みを使っても、磁場配置・角電場平均・法線場の扱いが異なる離散系全体の比較です。この発散ゼロの物理例を、別の非物理制約対照で測った能動的なcleaning性能と同一視しません。",
+        "en": "CT and GLM are explicitly bound by the ct-glm-smooth-convergence release example. Matching LLF coefficients and time steps still compares whole discretizations with different magnetic placement, corner EMF averaging and normal-field handling. This solenoidal physical example is distinct from active-cleaning measurements in the separate nonphysical constraint control."
       }
     }
   ]

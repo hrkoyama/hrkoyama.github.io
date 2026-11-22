@@ -52,8 +52,8 @@
         "en": "MHD"
       },
       "scope": {
-        "ja": "既存Brio–Wuに加え、Brio–WuとOrszag–Tangの独立Athena++参照照合、同じ連続初期場・終了時刻・CFLでのCT／採用GLM比較を追加。GLM Fourier例はdiv B制約診断で、物理問題数に重複加算しません。",
-        "en": "In addition to the shared Brio–Wu example, compare Brio–Wu and Orszag–Tang with independent Athena++ references and CT/adopted GLM at the same continuous initial field, final time and CFL. The GLM Fourier case is a divergence-constraint diagnostic, not an additional physical problem."
+        "ja": "旧Brio–Wu・Orszag–Tangと独立Athena++照合を保持し、移流する磁気流体静力学的平衡の構成厳密解と、同じOT初期場を使うCT／GLM比較を追加します。連続初期条件・最終時刻・実際の時間刻みを揃えた限定比較です。 物理2例の精度と、非ゼロ発散を与える制約対照での能動的なGLM輸送・減衰を分けます。",
+        "en": "Preserve the earlier Brio–Wu/Orszag–Tang independent Athena++ comparisons and add CT/GLM comparisons of a constructed exact advected magnetostatic equilibrium and the same OT data. The scoped comparisons match continuous initial conditions, final time and actual time steps. Separate accuracy in the two physical cases from active GLM transport/damping in an initially nonzero-divergence constraint control."
       },
       "examples": [
         "brio-wu"
@@ -63,21 +63,24 @@
         "en": "/numerical-methods-atlas/en/read/mhd/"
       },
       "reference": {
-        "ja": "保存済みAthena++参照は別実装。GLM Fourier振幅は解析解。同一条件比較でもCT／GLMのdiv Bのnative演算子と実ステップ数は異なります。",
-        "en": "Stored Athena++ results are from an independent implementation; GLM Fourier amplitudes have an analytic reference. CT/GLM use different native div B operators and actual step counts even in the stated matched comparison."
+        "ja": "移流する磁気流体静力学的平衡には構成厳密解、OTには別に実行したAthena++の保存参照を使います。同じ離散系の細かい時間積分を連続PDEの独立厳密解とは呼ばず、CT固有と共通の発散診断を区別します。 制約対照はFourier解・独立した離散更新と減衰なしの伴走計算に照合し、物理問題数へ加算しません。",
+        "en": "Use a constructed exact solution for advected magnetostatic equilibrium and separately executed stored Athena++ references for OT. A finer time integration of the same discrete system is not an independent exact continuous-PDE reference; distinguish native CT and common divergence diagnostics. The constraint control compares Fourier solutions, an independently formed discrete update and an undamped companion; it adds no physical problem."
       },
       "refinement": {
-        "ja": "固定格子系列の誤差・保存量・正値性を確認。採用GLMはch=3、κ=0.18 ch nの格子依存減衰です。一般のGLMや発散尺度の同一性を保証しません。",
-        "en": "Check errors, conservation and positivity over fixed grids. The adopted GLM has ch=3 and grid-dependent damping κ=0.18 ch n. This does not certify general GLM variants or equivalence of divergence measures."
+        "ja": "格子・時間刻み・独立参照自身の差を別々に測り、保存量・正値性とCT／GLM差を確認します。旧GLMの格子依存減衰と新配布版の条件を区別し、全MHD変種の保証や同一精度・同一費用の順位を付けません。",
+        "en": "Measure grid, time-step and independent-reference differences separately, together with conservation, positivity and CT/GLM differences. Distinguish the earlier grid-dependent GLM damping from the new release conditions; do not claim all MHD variants or an equal-accuracy/cost ranking."
       },
       "next": {
-        "ja": "より高分解能・長時間、別の発散診断、別変種は独立に検証する。",
-        "en": "Validate higher resolutions, longer runs, other divergence diagnostics and other variants separately."
+        "ja": "長時間の衝撃波・乱流、強磁場ループ、3次元・一般境界、別のCT／GLM変種は個別に検証する。",
+        "en": "Validate long-time shocks/turbulence, strong-field loops, three dimensions, general boundaries and other CT/GLM variants separately."
       },
       "supplemental_examples": [
         "ct-glm-independent",
         "brio-independent",
-        "glm-fourier-mode"
+        "glm-fourier-mode",
+        "ct-glm-smooth-convergence",
+        "ct-glm-ot-convergence",
+        "ct-glm-constraint-control"
       ]
     },
     {
@@ -427,15 +430,20 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "f809ce9d7935d7aa6bea48f3cef0edab09ad2b0a9b4ce6a155794ccca35c543f",
+    "catalog/atlas-depth.json": "335c5bc6d0bcbd5a48b089582be9d0d76654bd0a9fc2c379015c88fca0b949ba",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "9b5f02038f79e4db4b35a96a26d89c17e0f1b918e07e1b5a5d195b32e4594856",
+    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
     "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
     "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",

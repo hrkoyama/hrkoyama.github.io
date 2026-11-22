@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "chapter": "mhd",
+  "section_id": "scoped-mhd-validation",
+  "title": {
+    "ja": "追加の独立検証：同条件比較と誤差の分離",
+    "en": "Additional independent checks: matched conditions and separate errors"
+  },
+  "intro": {
+    "ja": "以下の追加検証は、それぞれの固定入力・独立参照・格子と時間刻みの確認範囲を示します。上の初期教材とその保存結果は保持し、異なる離散化や検証の根拠を同一視しません。",
+    "en": "These additional checks state their fixed inputs, independent references, and spatial and temporal refinement scope. Preserve the earlier teaching examples and their saved results without conflating discretizations or validation evidence."
+  },
+  "supplemental_examples": [
+    "ct-glm-independent",
+    "brio-independent",
+    "glm-fourier-mode",
+    "ct-glm-smooth-convergence",
+    "ct-glm-ot-convergence",
+    "ct-glm-constraint-control"
+  ],
+  "historical_replacements": {
+    "ja": [
+      {
+        "old": "外部参照コードとの比較は今後の課題です。",
+        "new": "初期教材には外部参照コードとの比較を含めていませんでした。現在の追加検証は後掲の限定配布版を参照してください。"
+      },
+      {
+        "old": "外部コードとの比較、強磁場ループ、UCT-HLLDは今後の課題です。",
+        "new": "この旧ループ例の外部コード照合、強磁場ループ、UCT-HLLDは未検証です。別の固定問題で得た追加検証を、このループ例の独立検証へ流用しません。"
+      }
+    ],
+    "en": [
+      {
+        "old": "External reference-code comparisons remain future work.",
+        "new": "The initial teaching edition did not include external reference-code comparisons. The scoped additional releases are linked below."
+      },
+      {
+        "old": "External reference-code comparisons, stronger-field loop tests\nand UCT-HLLD remain future work.",
+        "new": "External-code validation of this earlier loop example, stronger-field loops\nand UCT-HLLD remain unverified. Additional checks of other fixed problems\ndo not supply independent validation of this loop example."
+      }
+    ]
+  },
+  "historical_sha256": {
+    "ja": {
+      "content": "34624dd62380e42d0eba9ff2c27161c28bfc13f10b05e025006206ad938b7616",
+      "static_article": "2915834890a353052c152ceac57ed0d7fccf6111b7b38751efd337477a4d6eb2"
+    },
+    "en": {
+      "content": "a417516ffd8921893bb447a808b4d422691a928933a0c3ff4177413a1f058876",
+      "static_article": "1dc01218661ed057f941ff8d5b89bff1acd3ea52b7a8657e0d6b56fb0da6ebae"
+    }
+  },
+  "comparison_note": {
+    "ja": "新しい比較は同じ区分一定再構成・LLF係数（波速上界）・前進Eulerの実刻み列を使い、GLMの波速と物理的減衰率を格子間で固定します。それでも面磁場とセル磁場、CTの共有電場、法線場の扱いという離散系の違いは残ります。構成厳密解は教材として定義した移流する磁気流体静力学的平衡で、既存の標準Alfvén波テストではありません。同じ空間RHSを別のDOP853時間積分で解く比較は、独立した空間ソルバーの照合とは区別します。 同じLLF係数でも、CTの角電場平均によって有効な数値散逸まで同じになるとは限りません。CT／GLMは離散系全体として比較し、数値粘性を揃えた減衰比較はGLMのκ=2とκ=0の伴走計算の間に限ります。",
+    "en": "The new comparisons use the same piecewise-constant reconstruction, LLF speed bound and actual forward-Euler step sequence, with GLM wave speed and physical damping rate fixed across grids. Discrete-system differences remain: face versus cell magnetic fields, CT shared electric fields and normal-field handling. The constructed exact solution is an educational advected magnetostatic equilibrium, not the existing standard Alfvén-wave test. A separate DOP853 integration of the same spatial RHS is distinguished from independent spatial-solver validation. Matching the LLF coefficient does not imply equal effective CT/GLM viscosity: CT corner averaging changes the discrete dissipation. Compare CT and GLM as whole discretizations; matched-viscosity damping controls apply only to the kappa=2/kappa=0 GLM companions."
+  },
+  "cleaning_note": {
+    "ja": "一定のLLF波速と周期格子を用いる採用離散化では、発散ゼロから始めた物理2例の共通中心差分発散は演算子の可換性で維持されます。この2例は連成MHDの精度確認であり、GLM減衰が実際に働いた証拠ではありません。別の制約対照では同じ初期縦磁場の発散誤差を与えます。CTが初期の面発散を保持することを期待結果とし、GLMの波動輸送・減衰を解析参照と比較します。減衰なしの対照とB²+ψ²/ch²の量も用い、波の位相やLLF数値拡散を物理的減衰と取り違えません。非ゼロ発散の対照を物理的なソレノイダル初期値や追加物理問題として数えません。 旧GLM単独例の「CTで表せない」は、発散制約を満たすCT初期値では表せないという意味であり、新対照は意図的にその初期制約を破ります。",
+    "en": "For the adopted constant-LLF-speed periodic discretization, commuting operators preserve the common centered zero divergence of the two physical cases. These cases check coupled-MHD accuracy and do not demonstrate active GLM damping. A separate constraint control supplies the same initial longitudinal divergence error. Preserving the initial face divergence is the expected CT result, while GLM wave transport and damping are checked against analytic references. An undamped companion and B²+psi²/ch² distinguish damping from wave phase and LLF numerical diffusion. This initially non-solenoidal control is not a physical solenoidal initial state or an additional physical problem. The earlier stand-alone GLM example’s phrase “a monopole mode that CT cannot represent” means it cannot arise from a CT initial state satisfying its divergence constraint; the new control deliberately violates that initial constraint."
+  }
+}

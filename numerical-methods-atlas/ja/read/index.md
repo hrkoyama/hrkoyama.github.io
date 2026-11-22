@@ -73,6 +73,7 @@
 - [MHD：制約輸送法と発散クリーニング](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/)
 - [相対論的流体力学：SRHD、GRHD、GRMHD](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/)
 - [流体・MHDの独立照合とCT／GLM](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/)
+- [CTとGLM：同条件の独立照合・格子・時間収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/)
 
 ## 粒子・運動論・輸送
 

@@ -673,6 +673,25 @@
         {
           "path": "code/validated-examples/2026-11-22/mhd/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ct-glm-ot-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+          "json_pointer": "/ot"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
@@ -683,6 +702,14 @@
           "name": {
             "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
             "en": "Orszag–Tang: CT, GLM and independent Athena++"
+          }
+        },
+        {
+          "id": "ct-glm-ot-convergence",
+          "url": "/numerical-methods-atlas/validation/ct-glm-ot-convergence/",
+          "name": {
+            "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+            "en": "Orszag–Tang: matched CT/GLM and converged independent references"
           }
         }
       ]
@@ -2344,6 +2371,54 @@
           "name": {
             "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
             "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "advected-magnetostatic-equilibrium",
+      "group": "mhd",
+      "name": {
+        "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+        "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+      },
+      "chapter": "validation-mhd-convergence",
+      "reading_section": "ct-glm-smooth-convergence",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/mhd-convergence/",
+      "verification": "/code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ct-glm-smooth-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+          "json_pointer": "/smooth"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd-convergence/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "ct-glm-smooth-convergence",
+          "url": "/numerical-methods-atlas/validation/ct-glm-smooth-convergence/",
+          "name": {
+            "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+            "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
           }
         }
       ]
