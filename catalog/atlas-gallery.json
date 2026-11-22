@@ -604,6 +604,15 @@
         "ja": "固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。",
         "en": "Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits."
       }
+    },
+    {
+      "id": "periodic-he-dft",
+      "kind": "image",
+      "source": "/code/periodic-dft/2026-11-22/results/preview.png",
+      "caption": {
+        "ja": "固定Heセルの周期LDA：Γ点とkメッシュ、Gaussian軌道基底・FFT格子・SCFを分離。DFTK平面波参照の打切り収束と差も表示。",
+        "en": "Periodic LDA for fixed He: separate Gamma/k sampling, Gaussian orbital basis, FFT grid and SCF. Includes independently converged DFTK plane-wave reference differences."
+      }
     }
   ]
 }

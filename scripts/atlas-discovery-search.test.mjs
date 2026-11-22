@@ -31,12 +31,13 @@ const queries={
   'sir-epidemic':{ja:'SIR 実行',en:'SIR code'},
   'mc-integral':{ja:'mc-integral 実行',en:'mc-integral code'},
   'h2-rhf':{ja:'H2 実行',en:'H2 RHF code'},
+  'periodic-he-dft':{ja:'周期DFT 実行',en:'periodic DFT code'},
   'gbm-sde':{ja:'幾何Brown運動 実行',en:'gbm-sde code'},
 };
 
-test('all fifteen individual execution entries preserve curated names, outcomes and stable bilingual routes',()=>{
+test('all twenty-one individual execution entries preserve curated names, outcomes and stable bilingual routes',()=>{
   const entries=index.entries.filter(entry=>entry.origin==='public-execution-discovery');
-  assert.equal(entries.length,20);
+  assert.equal(entries.length,21);
   assert.equal(new Set(index.entries.map(entry=>entry.id)).size,index.entries.length);
   assert.deepEqual(entries.map(entry=>entry.id.replace(/^execution-/,'' )).sort(),Object.keys(queries).sort());
   for(const item of discovery.examples){

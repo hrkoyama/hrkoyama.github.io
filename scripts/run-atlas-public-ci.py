@@ -24,7 +24,7 @@ ORIGIN = 'https://hrkoyama.github.io'
 REGISTRY_URL = ORIGIN+'/numerical-methods-atlas/code-and-data/examples.json'
 VERIFIER_URL = ORIGIN+'/scripts/verify-atlas-execution-examples.py'
 BUILDER_URL = ORIGIN+'/scripts/build-atlas-execution-examples.py'
-REQUIRED_PINS = {'numpy':'2.0.2','scipy':'1.14.1','matplotlib':'3.9.4','pytest':'8.3.5'}
+REQUIRED_PINS = {'numpy':'2.0.2','scipy':'1.14.1','matplotlib':'3.9.4','pytest':'8.3.5','pyscf':'2.11.0'}
 
 
 def digest(data):return hashlib.sha256(data).hexdigest()
@@ -126,7 +126,7 @@ def github_metadata(parent=None):
 
 
 def parse_requirements(text):
-    """Accept only the four approved exact pins, not pip options or URLs."""
+    """Accept only the five approved exact pins, not pip options or URLs."""
     if not isinstance(text,str):raise ValueError('Requirements must be UTF-8 text')
     pins={}
     for number,line in enumerate(text.splitlines(),1):
@@ -160,7 +160,7 @@ def collect_requirements(registry, downloads_dir, acquisitions):
         release=example['release'];key=(release['family'],release['version'],release['manifest_sha256'])
         item=editions.setdefault(key,{'release':release,'core':example['dependencies']['core']})
         if item['core']!=example['dependencies']['core']:raise ValueError('One edition has inconsistent core requirements')
-    if len(editions)!=5:raise ValueError('Expected the five public code editions')
+    if len(editions)!=6:raise ValueError('Expected the six public code editions')
     pins={};downloads_dir=Path(downloads_dir)
     for index,item in enumerate(editions.values()):
         release=item['release'];valid_hash(release['manifest_sha256'])
@@ -176,7 +176,7 @@ def collect_requirements(registry, downloads_dir, acquisitions):
         for name,version in parse_requirements(payload.decode('utf-8')).items():
             if name in pins and pins[name]!=version:raise ValueError('Conflicting pinned requirements')
             pins[name]=version
-    if pins!=REQUIRED_PINS:raise ValueError('The three core requirements do not define the approved four packages')
+    if pins!=REQUIRED_PINS:raise ValueError('Core requirements do not define the approved five packages')
     return pins
 
 
@@ -224,9 +224,9 @@ def validate_registry(registry):
             or not isinstance(registry.get('catalog_source'),dict)):
         raise ValueError('Expected a canonical public registry')
     records=registry.get('examples')
-    if not isinstance(records,list) or len(records)!=20:raise ValueError('Expected all twenty public examples')
+    if not isinstance(records,list) or len(records)!=21:raise ValueError('Expected all twenty-one public examples')
     ids=[row['id'] for row in records]
-    if len(set(ids))!=20 or any(not re.fullmatch('[a-z0-9-]+',ident) for ident in ids):raise ValueError('Invalid example inventory')
+    if len(set(ids))!=21 or any(not re.fullmatch('[a-z0-9-]+',ident) for ident in ids):raise ValueError('Invalid example inventory')
 
 
 def validate_scientific_report(report, registry, expected):
@@ -239,7 +239,7 @@ def validate_scientific_report(report, registry, expected):
     if tool.get('verifier_sha256')!=expected['verifier'] or tool.get('registry_builder_sha256')!=expected['builder']:return False
     groups={example['execution_group'] for example in registry['examples']}
     releases=report.get('releases',[])
-    if (len(groups)!=19 or type(report.get('unique_runner_executions')) is not int
+    if (len(groups)!=20 or type(report.get('unique_runner_executions')) is not int
             or report['unique_runner_executions']!=len(groups) or not isinstance(releases,list)
             or len(releases)!=len(groups)):
         return False
@@ -293,7 +293,7 @@ def main(argv=None):
     parser.add_argument('--registry-sha256',required=True)
     parser.add_argument('--verifier-sha256',required=True)
     parser.add_argument('--builder-sha256',required=True)
-    parser.add_argument('--timeout',type=int,default=120)
+    parser.add_argument('--timeout',type=int,default=900)
     args=parser.parse_args(argv)
     output=args.output_dir.resolve()
     if output.exists() and (not output.is_dir() or any(output.iterdir())):
@@ -347,7 +347,7 @@ def main(argv=None):
             require_success(result,'pip freeze')
             result=run_logged([str(python),'-m','pip','check'],work,env,60,output/'logs/pip-check.stdout.log',output/'logs/pip-check.stderr.log')
             require_success(result,'pip dependency check')
-            probe='import json,platform,importlib.metadata as m;print(json.dumps({"python":platform.python_version(),"operating_system":platform.system(),"machine":platform.machine(),"packages":{k:m.version(k) for k in ["numpy","scipy","matplotlib","pytest"]}}))'
+            probe='import json,platform,importlib.metadata as m;print(json.dumps({"python":platform.python_version(),"operating_system":platform.system(),"machine":platform.machine(),"packages":{k:m.version(k) for k in ["numpy","scipy","matplotlib","pytest","pyscf"]}}))'
             result=run_logged([str(python),'-c',probe],work,env,30,output/'logs/environment.stdout.log',output/'logs/environment.stderr.log')
             require_success(result,'environment probe')
             environment=strict_json((output/'logs/environment.stdout.log').read_bytes())

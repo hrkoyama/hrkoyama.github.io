@@ -239,7 +239,8 @@
         "perdew1996",
         "sun2015",
         "becke1993",
-        "adamo1999"
+        "adamo1999",
+        "vwn1980"
       ],
       "caution": {
         "ja": "基底・格子・SCFが収束しても汎関数の近似誤差は消えません。自己相互作用、電荷移動、強相関、分散の扱いは対象と近似に応じて評価します。",
@@ -263,7 +264,8 @@
       "references": [
         "hamann1979",
         "vanderbilt1990",
-        "blochl1994"
+        "blochl1994",
+        "gth1996"
       ],
       "caution": {
         "ja": "異なる擬ポテンシャルの全エネルギーの零点を無条件に比較しません。平面波カットオフの収束だけで移植性が証明されるわけではありません。",
@@ -287,7 +289,8 @@
         "\\psi_{n\\mathbf k}(\\mathbf r)=e^{i\\mathbf k\\cdot\\mathbf r}u_{n\\mathbf k}(\\mathbf r),\\qquad \\int_{\\rm BZ}g(\\mathbf k)\\,d\\mathbf k\\approx\\sum_\\nu w_\\nu g(\\mathbf k_\\nu)"
       ],
       "references": [
-        "monkhorst1976"
+        "monkhorst1976",
+        "bloch1929"
       ],
       "caution": {
         "ja": "金属の占有とsmearing幅の依存、有限温度の自由エネルギーと零温度エネルギーを区別します。Γ点だけで十分かは系とセルに依存します。",
@@ -572,6 +575,55 @@
       "caution": {
         "ja": "小さい打切り指標だけで物理的な活性空間の妥当性は保証されません。有限bond dimensionの誤差と、活性空間・基底の誤差を分けます。",
         "en": "A small truncation measure does not establish the physical adequacy of an active space. Separate finite-bond-dimension error from active-space and basis error."
+      }
+    },
+    {
+      "id": "born-oppenheimer-md",
+      "lane": "excited",
+      "paragraphs": {
+        "ja": [
+          "BOMDは各核配置で電子エネルギーを最小化し、Born–Oppenheimer面の勾配を力として核運動を積分します。エネルギーの公差と力の精度は同じ判定ではなく、有限の移動基底では基底の位置依存も考慮します。",
+          "静的DFTの収束からMD軌道の正しさは結論できません。力の独立照合、刻み幅とSCF公差の感度、NVEのエネルギードリフトを今後の検証対象とします。周期DFT章の第一原理MD節でCPMDとの違いを説明します。"
+        ],
+        "en": [
+          "BOMD minimizes electronic energy at each nuclear configuration and integrates nuclear motion with the gradient of the Born–Oppenheimer surface. Energy tolerances and force accuracy are separate criteria; a moving finite basis also contributes position derivatives.",
+          "Static DFT convergence does not establish a correct MD trajectory. Independent force comparisons, timestep/SCF sensitivity and NVE energy drift remain future validation tasks. The periodic-DFT chapter contrasts BOMD with CPMD."
+        ]
+      },
+      "formula": [
+        "E_{\\mathrm{BO}}(\\mathbf R)=\\min_{\\langle\\psi_i|\\psi_j\\rangle=\\delta_{ij}}E_{\\mathrm{KS}}[\\{\\psi_i\\};\\mathbf R],\\qquad M_I\\ddot{\\mathbf R}_I=\\mathbf F_I=-\\nabla_{\\mathbf R_I}E_{\\mathrm{BO}}(\\mathbf R)"
+      ],
+      "references": [
+        "born-oppenheimer1927",
+        "car-parrinello1985"
+      ],
+      "caution": {
+        "ja": "解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。",
+        "en": "Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats."
+      }
+    },
+    {
+      "id": "car-parrinello-md",
+      "lane": "excited",
+      "paragraphs": {
+        "ja": [
+          "カー–パリネロ法は電子軌道と核を拡張ラグランジアンで同時に進めます。電子の仮想質量μと直交制約を導入しますが、この電子運動をTDDFTの実時間発展や物理的な電子励起と同一視しません。",
+          "μ・時間刻み・直交性の許容誤差、仮想運動エネルギーを点検し、BO面の近傍に保つ必要があります。専用コードは未実装で、周期Heの静的なエネルギー比較をCPMD検証として数えません。"
+        ],
+        "en": [
+          "Car–Parrinello dynamics propagates orbitals and nuclei through an extended Lagrangian with fictitious orbital inertia μ and orthonormality constraints. This electronic motion is distinct from real-time TDDFT and physical electronic excitation.",
+          "Inspect μ, timestep, orthogonality tolerance and fictitious kinetic energy to maintain proximity to the BO surface. No dedicated implementation is provided; static periodic-He energy agreement is not CPMD validation."
+        ]
+      },
+      "formula": [
+        "L_{\\mathrm{CP}}=\\frac12\\sum_I M_I|\\dot{\\mathbf R}_I|^2+\\frac{\\mu}{2}\\sum_i\\langle\\dot\\psi_i|\\dot\\psi_i\\rangle-E_{\\mathrm{KS}}+\\sum_{ij}\\Lambda_{ij}\\bigl(\\langle\\psi_i|\\psi_j\\rangle-\\delta_{ij}\\bigr)"
+      ],
+      "references": [
+        "car-parrinello1985"
+      ],
+      "caution": {
+        "ja": "解説のみ。仮想電子運動の断熱性、エネルギー移動、長時間軌道は未検証です。",
+        "en": "Reading only. Adiabatic separation, fictitious-to-nuclear energy transfer and long trajectories are unvalidated."
       }
     }
   ],
@@ -935,6 +987,78 @@
       "source": "https://doi.org/10.1063/1.1672392",
       "origin": "curated-quantum-reading",
       "note": "Publisher-deposited DOI metadata verified, not the full paper. STO-3G coefficients are checked against Basis Set Exchange version 1, which supplies more digits than the original publication."
+    },
+    {
+      "id": "bloch1929",
+      "year": 1929,
+      "author": "Bloch, F.",
+      "title": "Über die Quantenmechanik der Elektronen in Kristallgittern",
+      "journal": "Zeitschrift für Physik",
+      "doi": "10.1007/BF01339455",
+      "type": "article",
+      "source": "https://doi.org/10.1007/BF01339455",
+      "origin": "curated-quantum-reading",
+      "note": "Publisher abstract and metadata checked; not a full-paper audit."
+    },
+    {
+      "id": "gth1996",
+      "year": 1996,
+      "author": "Goedecker, S. and Teter, M. and Hutter, J.",
+      "title": "Separable dual-space Gaussian pseudopotentials",
+      "journal": "Physical Review B",
+      "doi": "10.1103/PhysRevB.54.1703",
+      "type": "article",
+      "source": "https://doi.org/10.1103/PhysRevB.54.1703",
+      "origin": "curated-quantum-reading",
+      "note": "Publisher abstract and metadata checked; exact selected He parameters are recorded separately."
+    },
+    {
+      "id": "vwn1980",
+      "year": 1980,
+      "author": "Vosko, S. H. and Wilk, L. and Nusair, M.",
+      "title": "Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis",
+      "journal": "Canadian Journal of Physics",
+      "doi": "10.1139/p80-159",
+      "type": "article",
+      "source": "https://doi.org/10.1139/p80-159",
+      "origin": "curated-quantum-reading",
+      "note": "Functional identity and bibliography verified in official Libxc documentation: LDA_C_VWN is VWN5, functional id 7. Publisher full text not consulted."
+    },
+    {
+      "id": "dftk2021",
+      "year": 2021,
+      "author": "Herbst, M. F. and Levitt, A. and Cancès, E.",
+      "title": "DFTK: A Julian approach for simulating electrons in solids",
+      "journal": "Proceedings of the JuliaCon Conferences",
+      "doi": "10.21105/jcon.00069",
+      "type": "article",
+      "source": "https://doi.org/10.21105/jcon.00069",
+      "origin": "curated-quantum-reading",
+      "note": "Official publication metadata and introductory passages checked; independent numerical execution is recorded separately."
+    },
+    {
+      "id": "born-oppenheimer1927",
+      "author": "M. Born and R. Oppenheimer",
+      "year": 1927,
+      "title": "Zur Quantentheorie der Molekeln",
+      "journal": "Annalen der Physik 389(20), 457–484",
+      "doi": "10.1002/andp.19273892002",
+      "source": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+      "type": "article",
+      "origin": "curated-quantum-reading",
+      "note": "Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation."
+    },
+    {
+      "id": "car-parrinello1985",
+      "author": "R. Car and M. Parrinello",
+      "year": 1985,
+      "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+      "journal": "Physical Review Letters 55, 2471–2474",
+      "doi": "10.1103/PhysRevLett.55.2471",
+      "source": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+      "type": "article",
+      "origin": "curated-quantum-reading",
+      "note": "Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced."
     }
   ],
   "verification_plan": [
@@ -988,14 +1112,18 @@
     },
     {
       "id": "periodic",
-      "state": "planned",
+      "state": "verified-educational-example",
       "title": {
-        "ja": "周期系：基底・k点・セルの収束",
-        "en": "Periodic systems: basis, k-mesh and cell convergence"
+        "ja": "周期系：固定HeセルのLDAとk点・基底・SCF",
+        "en": "Periodic: fixed-He LDA with k/basis/SCF checks"
       },
       "check": {
-        "ja": "擬ポテンシャルの識別子と価電子、カットオフ、k点、電荷中性、占有の扱いを保存して誤差要因を一つずつ変える。",
-        "en": "Record pseudopotential identity and valence, cutoff, k mesh, neutrality and occupations; vary one numerical source at a time."
+        "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+        "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+      },
+      "url": {
+        "ja": "/numerical-methods-atlas/ja/read/periodic-dft/",
+        "en": "/numerical-methods-atlas/en/read/periodic-dft/"
       }
     }
   ],
@@ -1057,6 +1185,10 @@
     {
       "label": "Quantum ESPRESSO: bands.x symmetry classification",
       "url": "https://www.quantum-espresso.org/Doc/INPUT_BANDS.html"
+    },
+    {
+      "label": "Quantum ESPRESSO: CP/Born–Oppenheimer electron and ion dynamics, fictitious mass and orthogonalization",
+      "url": "https://www.quantum-espresso.org/Doc/INPUT_CP.html"
     }
   ]
 }

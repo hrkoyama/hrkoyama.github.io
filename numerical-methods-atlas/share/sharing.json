@@ -121,10 +121,10 @@
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/share/",
   "counts": {
     "equations": 46,
-    "methods": 110,
-    "papers": 215,
-    "references": 256,
-    "journal_articles": 209,
+    "methods": 112,
+    "papers": 221,
+    "references": 262,
+    "journal_articles": 215,
     "conference_papers": 6,
     "books": 24,
     "chapters": 3,
@@ -132,38 +132,38 @@
     "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 94,
+    "local_methods": 96,
     "reading_methods": 16,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 77,
-    "test_problems": 65,
-    "saved_test_problems": 65,
+    "reading_chapters": 78,
+    "test_problems": 66,
+    "saved_test_problems": 66,
     "code_test_problems": 0,
-    "method_records": 143,
-    "educational_examples": 94,
+    "method_records": 145,
+    "educational_examples": 96,
     "reading_only": 16,
     "planned": 33,
-    "execution_examples": 20
+    "execution_examples": 21
   },
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "edf50d39137c806f10211e9eff0491fae8f864d07c4002e7a9a810436a6c5cf6",
-    "numerical-methods-atlas/coverage.json": "b61dc0beff5afc9dd09a9a6d29d9a144fd1462b4cc0760de05c18c2d00e8f882",
-    "catalog/atlas-execution-examples.json": "effcca46134ef46fc23cacab52c3c1e69359ad04e7cddfa716ca06f06467170d",
-    "catalog/atlas-execution-discovery.json": "c659286a515f68c8a21128b385c6758f5fed1d066e35b775f4dadde20288f128"
+    "catalog/atlas-methods.json": "c93f0b7b7a5d8dd1ee929dd99656ddc2b81df509ced1343d3bd37f053a456fde",
+    "numerical-methods-atlas/coverage.json": "7311bbaa31b2900f052b0fd529f42b1633359e0c618b08bcd6ce6e46b32b9de9",
+    "catalog/atlas-execution-examples.json": "6072b8b1c04a471a8d2c51cb455094cb22018e92f2788c59108682ec6af62cd3",
+    "catalog/atlas-execution-discovery.json": "1a1713b0a88feb5c1576f12f31a37d4a52e209b61f0028c084727532fc780c81"
   },
   "introductions": {
     "ja": {
-      "short": "数値計算法アトラスは、手法の考え方・適用条件・一次文献から、公開コードと結果の確かめ方へ進める日英の資料集です。代表20問題は固定入力から実行できます。",
-      "paragraph": "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。文字・数式・絵の3つの入口から手法を探し、適用条件や一次文献を確認し、代表20問題の固定入力・公開コード・参照値と許容誤差へたどれます。解析解・独立な参照・高解像度の数値参照を区別して照合でき、教育用例・文献解説のみ・整備予定と、それぞれの確認範囲を明記しています。",
-      "description": "条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表20実行例を紹介する文章・画像・リンク。"
+      "short": "数値計算法アトラスは、手法の考え方・適用条件・一次文献から、公開コードと結果の確かめ方へ進める日英の資料集です。代表21問題は固定入力から実行できます。",
+      "paragraph": "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。文字・数式・絵の3つの入口から手法を探し、適用条件や一次文献を確認し、代表21問題の固定入力・公開コード・参照値と許容誤差へたどれます。解析解・独立な参照・高解像度の数値参照を区別して照合でき、教育用例・文献解説のみ・整備予定と、それぞれの確認範囲を明記しています。",
+      "description": "条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表21実行例を紹介する文章・画像・リンク。"
     },
     "en": {
-      "short": "A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for 20 representative problems.",
-      "paragraph": "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for 20 representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.",
-      "description": "From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and 20 scoped examples using text, images and links."
+      "short": "A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for 21 representative problems.",
+      "paragraph": "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for 21 representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.",
+      "description": "From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and 21 scoped examples using text, images and links."
     }
   },
   "assets": {

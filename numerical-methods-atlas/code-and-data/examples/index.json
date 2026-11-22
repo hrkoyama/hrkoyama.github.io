@@ -2,12 +2,12 @@
   "schema_version": 1,
   "reviewed_on": "2026-11-22",
   "scope": {
-    "ja": "公開済み20問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
-    "en": "Discovery metadata for the twenty published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
+    "ja": "公開済み21問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
+    "en": "Discovery metadata for the twenty-one published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
   },
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c",
-  "source_sha256": "c659286a515f68c8a21128b385c6758f5fed1d066e35b775f4dadde20288f128",
+  "registry_sha256": "696af1d8f81f8750332ba462ddd2145aeb30e44cf6e35b8fed94fea4c10cb3ca",
+  "source_sha256": "1a1713b0a88feb5c1576f12f31a37d4a52e209b61f0028c084727532fc780c81",
   "examples": [
     {
       "id": "advection-sine",
@@ -1097,6 +1097,68 @@
         "hartree-fock",
         "electronic-bases",
         "scf"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "periodic-he-dft",
+      "problem_id": "periodic-he-dft",
+      "equation_ids": [
+        "kohn-sham-model"
+      ],
+      "keywords": [
+        "周期DFT",
+        "periodic DFT",
+        "He",
+        "helium",
+        "Γ点",
+        "Gamma point",
+        "k点",
+        "k-point mesh",
+        "Monkhorst Pack",
+        "Bloch",
+        "LDA",
+        "VWN5",
+        "GTH",
+        "DFTK",
+        "PySCF",
+        "基底収束",
+        "SCF convergence"
+      ],
+      "outcome": {
+        "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
+        "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
+      },
+      "formula": {
+        "role": "approximation",
+        "latex": [
+          "\\psi_{n\\mathbf k}(\\mathbf r)=e^{i\\mathbf k\\cdot\\mathbf r}u_{n\\mathbf k}(\\mathbf r)",
+          "n(\\mathbf r)=2\\sum_{n\\mathbf k}w_{\\mathbf k}f_{n\\mathbf k}|\\psi_{n\\mathbf k}(\\mathbf r)|^2"
+        ],
+        "note": {
+          "ja": "3次元周期・固定HeセルのKS-LDA。BZ積分メッシュとバンド経路、数値収束と物理近似を区別。",
+          "en": "KS-LDA for a fixed 3D periodic He cell. BZ integration meshes differ from band paths; numerical convergence differs from physical-model accuracy."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+        "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
+      "method_ids": [
+        "kohn-sham-dft",
+        "electronic-bases",
+        "scf",
+        "xc-functionals",
+        "pseudopotentials",
+        "k-point"
       ],
       "reference_type": null
     }

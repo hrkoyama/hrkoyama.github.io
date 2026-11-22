@@ -13,7 +13,7 @@
     "ja": "周期境界、Bloch表現、Brillouin領域の積分をつなぐ。",
     "en": "Connect periodic boundaries, Bloch representations and Brillouin-zone integration."
   },
-  "status": "reading-only",
+  "status": "educational-example",
   "origin": "curated-quantum-reading",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#k-point",
@@ -31,22 +31,23 @@
     }
   ],
   "assumptions": [
-    "Introductory formulation and comparison, not a verified executable solver.",
-    "Representative electronic-structure formulas use nonrelativistic Born–Oppenheimer theory unless the section explicitly states otherwise."
+    "Fixed neutral simple-cubic He cell, two valence electrons, unpolarized LDA_X + LDA_C_VWN (VWN5), selected local GTH potential.",
+    "Uniform Gamma-centered 3D fractional k meshes and weights are explicit in input.",
+    "This is an original PySCF driver and validation workflow, not an independently authored DFT engine. Independent reference is separately executed DFTK."
   ],
-  "units": "Atomic units in the displayed electronic equations (hbar = m_e = e = 4 pi epsilon_0 = 1); dimensionless conventions are stated where needed.",
-  "boundary_conditions": "Isolated or periodic conditions must be selected for each physical system; no numerical boundary-value example is published here yet.",
+  "units": "Atomic units: bohr, inverse bohr, hartree per neutral primitive cell; k fractions use reciprocal-lattice coordinates.",
+  "boundary_conditions": "Three-dimensional Bloch periodic boundary conditions; explicit neutral one-atom cell, two electrons.",
   "next_deliverable": {
-    "ja": "k点・基底・セルの収束を分離する最小例。",
-    "en": "A minimal case separating k-point, basis and cell convergence."
+    "ja": "別の絶縁体とバンド経路、金属の占有・smearingを、それぞれ独立参照と収束検査付きで追加する。",
+    "en": "Add another insulator, band paths and metallic occupations/smearing with their own independent references and refinement checks."
   },
   "limitations": {
-    "ja": "日英の導入・代表式・一次文献を公開。専用の実装・数値検証はUnder construction。金属の占有とsmearing幅の依存、有限温度の自由エネルギーと零温度エネルギーを区別します。Γ点だけで十分かは系とセルに依存します。",
-    "en": "Introductory bilingual reading, representative equations and primary references are available. No dedicated implementation or numerical verification result is provided yet. Distinguish metallic occupation/smearing dependence, finite-temperature free energy and zero-temperature energy. Whether Γ-only sampling is adequate depends on the system and cell."
+    "ja": "選択した局所GTHと固定Heセルでの実行例に限定。非局所・PAW・他元素への移植性、金属・smearing、完全基底極限や実験値との一致は未検証。k点はBZ積分用で、バンド経路とは区別。",
+    "en": "Limited to a selected local GTH and fixed He cell. Nonlocal/PAW/general-element transferability, metals/smearing, a complete-basis limit and agreement with experiment are unvalidated. BZ quadrature meshes are distinct from band paths."
   },
   "metadata_review": {
-    "level": "curated introductory formulation with primary publication and official-documentation entry points; full derivation audit and numerical examples pending",
-    "on": "2026-11-21"
+    "level": "scoped library-backed periodic-He execution and independent-reference checks; general-material validation is not implied",
+    "on": "2026-11-22"
   },
   "aliases": [
     "k点",
@@ -55,23 +56,80 @@
     "Brillouin zone"
   ],
   "assumptions_ja": [
-    "定式化と比較の導入解説であり、実行・検証済みソルバーではありません。",
-    "代表式は、各節に別記する場合を除き非相対論・Born–Oppenheimerの電子状態問題を想定します。"
+    "固定した中性単純立方Heセル・価電子2・スピン非偏極LDA_X＋LDA_C_VWN（VWN5）・選択した局所GTH。",
+    "Γを含む3次元一様kメッシュの分率座標と重みを入力に明示。",
+    "独自のPySCF実行・検証ワークフローであり、自作DFTエンジンではない。独立参照は別実行のDFTK。"
   ],
-  "units_ja": "表示する電子状態の式は原子単位系（ℏ = m_e = e = 4πε₀ = 1）。無次元量や占有の規約は各節に明記。",
-  "boundary_conditions_ja": "孤立・周期を対象系ごとに選ぶ必要があります。この導入には実行済みの境界値計算例はまだありません。",
+  "units_ja": "原子単位系：bohr、逆bohr、中性基本セル当たりhartree。k点の分率値は逆格子基底での座標。",
+  "boundary_conditions_ja": "3次元Bloch周期境界条件。明示した中性1原子セル・価電子2。",
   "caution": {
     "ja": "金属の占有とsmearing幅の依存、有限温度の自由エネルギーと零温度エネルギーを区別します。Γ点だけで十分かは系とセルに依存します。",
     "en": "Distinguish metallic occupation/smearing dependence, finite-temperature free energy and zero-temperature energy. Whether Γ-only sampling is adequate depends on the system and cell."
   },
+  "periodic_examples": [
+    "periodic-he-dft"
+  ],
+  "periodic_scope": {
+    "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+    "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+  },
+  "example_scope": {
+    "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+    "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
+    "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+  ],
+  "run_commands": [
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "Extracted periodic-dft edition directory",
+  "code_base": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/",
+  "code_edition": "2026-11-22",
+  "periodic_release": {
+    "release": {
+      "family": "periodic-dft",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+      "sha256": "f331515e3ad419b5435dbf851553c6b853b28b2432801fc13c84109faa362df8",
+      "manifest": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/source-manifest.json",
+      "manifest_sha256": "1ac7fe2531934a598b7d9b69930c5a8a83f6b5bf2a67ae9f0616f35aa63f34fd",
+      "verification": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/verification.json",
+      "archive_directory": "periodic-dft-2026-11-22"
+    },
+    "code_base": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/",
+    "examples": [
+      "periodic-he-dft"
+    ],
+    "run_commands": [
+      "python run.py --input inputs.json --output output"
+    ],
+    "scope": {
+      "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+      "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+    },
+    "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
+  },
+  "code_download": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+  "code_verification": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/verification.json",
+  "inputs": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
+  "results": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/result.json",
+  "independent_reference": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/reference-dftk.json",
+  "execution_examples": [
+    {
+      "id": "periodic-he-dft",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+      }
+    }
+  ]
 }

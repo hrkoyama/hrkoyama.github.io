@@ -1,0 +1,381 @@
+{
+  "id": "periodic-he-dft",
+  "name": {
+    "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+    "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+  },
+  "problem_id": "periodic-he-dft",
+  "method_ids": [
+    "kohn-sham-dft",
+    "electronic-bases",
+    "scf",
+    "xc-functionals",
+    "pseudopotentials",
+    "k-point"
+  ],
+  "scope": {
+    "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
+    "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
+  },
+  "assumptions": {
+    "ja": "固定中性セル・2電子閉殻、整数占有。Γ中心の分率k座標と一様重みを保存。同一のGTH係数・Libxc汎関数で独立DFTKと比較し、エネルギー原点のフィットはしない。",
+    "en": "Fixed neutral two-electron closed-shell cell with integer occupations. Explicit Gamma-centered fractional k coordinates and equal weights. Independent DFTK uses identical GTH coefficients and Libxc functionals; no fitted energy shifts."
+  },
+  "units": {
+    "ja": "原子単位系：距離bohr、エネルギーhartree／基本セル、波数は逆bohr。分率k座標は逆格子基底での値。",
+    "en": "Atomic units: distances in bohr, energies in hartree per primitive cell and wavevectors in inverse bohr. Fractional k coordinates use reciprocal-lattice units."
+  },
+  "boundaries": {
+    "ja": "3次元Bloch周期境界。セル内He 1原子、価電子2、点電荷イオンのEwald項を含む中性セル。",
+    "en": "Three-dimensional Bloch periodic boundaries. One He atom and two valence electrons per neutral primitive cell, including the ionic Ewald term."
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/"
+  },
+  "release": {
+    "family": "periodic-dft",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+    "sha256": "f331515e3ad419b5435dbf851553c6b853b28b2432801fc13c84109faa362df8",
+    "manifest": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/source-manifest.json",
+    "manifest_sha256": "1ac7fe2531934a598b7d9b69930c5a8a83f6b5bf2a67ae9f0616f35aa63f34fd",
+    "verification": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/verification.json",
+    "archive_directory": "periodic-dft-2026-11-22"
+  },
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+      "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/",
+    "method_publications": [
+      "https://doi.org/10.1007/BF01339455",
+      "https://doi.org/10.1103/PhysRevB.13.5188",
+      "https://doi.org/10.1103/PhysRevB.54.1703",
+      "https://doi.org/10.1139/p80-159",
+      "https://doi.org/10.1063/5.0006074",
+      "https://doi.org/10.21105/jcon.00069"
+    ]
+  },
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作ドライバー・検証コードはMIT。PySCF・DFTK・LibxcとGTH／Gaussian基底データはそれぞれの条件を保持。入力・数値・図・本文は個別条件。本台帳は一括許諾を追加しません。",
+      "en": "Original driver and validation code is MIT. PySCF, DFTK, Libxc and GTH/Gaussian basis data retain their own terms. Inputs, numerical data, figures and prose retain item-specific terms; this registry adds no blanket permission."
+    }
+  },
+  "execution_group": "periodic-he-dft",
+  "shared_runner_cases": [
+    "periodic-he-dft"
+  ],
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
+    "path": "inputs.json",
+    "sha256": "d8558a1e6dec13e2c2246d82d387223bf8bbe4d151e41ef3afb993ddbbafea84"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run.py --input inputs.json --output output",
+    "tests": "python -m pytest -q test_periodic_dft.py",
+    "run_argv": [
+      "python",
+      "run.py",
+      "--input",
+      "inputs.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "test_periodic_dft.py"
+    ]
+  },
+  "outputs": [
+    {
+      "id": "results",
+      "format": "json",
+      "url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/result.json",
+      "path": "results/result.json",
+      "sha256": "50bdae51c0ce0779a0bfd283e0caa5fa0d9e47837ded3e4c610c9153240f2d7e",
+      "generated_path": "result.json"
+    },
+    {
+      "id": "solution",
+      "format": "csv",
+      "url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/solution.csv",
+      "path": "results/solution.csv",
+      "sha256": "1e6268f7f5d16a99852279f09472d7b223215d4ac87fc1f8ebe281184d3b75b2",
+      "generated_path": "solution.csv"
+    },
+    {
+      "id": "scf",
+      "format": "csv",
+      "url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/scf.csv",
+      "path": "results/scf.csv",
+      "sha256": "eccfd069ffc168e3e400e25ccfa48a57cd3c5a974d2f434d596fd4a29163ea58",
+      "generated_path": "scf.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "numerical-flags",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "固定入力の全数値判定",
+        "en": "All fixed-input numerical checks"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "d8558a1e6dec13e2c2246d82d387223bf8bbe4d151e41ef3afb993ddbbafea84",
+      "description": {
+        "ja": "入力SHA-256",
+        "en": "Input SHA-256"
+      }
+    },
+    {
+      "id": "kpoint_last_change",
+      "pointer": "/metrics/kpoint_last_change",
+      "comparison": "maximum",
+      "tolerance": 0.001,
+      "description": {
+        "ja": "kpoint_last_change（定義・単位は解説）",
+        "en": "kpoint_last_change (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "basis_last_change",
+      "pointer": "/metrics/basis_last_change",
+      "comparison": "maximum",
+      "tolerance": 0.001,
+      "description": {
+        "ja": "basis_last_change（定義・単位は解説）",
+        "en": "basis_last_change (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "auxiliary_last_change",
+      "pointer": "/metrics/auxiliary_last_change",
+      "comparison": "maximum",
+      "tolerance": 0.0001,
+      "description": {
+        "ja": "auxiliary_last_change（定義・単位は解説）",
+        "en": "auxiliary_last_change (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "scf_last_change",
+      "pointer": "/metrics/scf_last_change",
+      "comparison": "maximum",
+      "tolerance": 1e-07,
+      "description": {
+        "ja": "scf_last_change（定義・単位は解説）",
+        "en": "scf_last_change (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "max_reference_energy_error",
+      "pointer": "/metrics/max_reference_energy_error",
+      "comparison": "maximum",
+      "tolerance": 0.001,
+      "description": {
+        "ja": "max_reference_energy_error（定義・単位は解説）",
+        "en": "max_reference_energy_error (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "max_tight_scf_commutator",
+      "pointer": "/metrics/max_tight_scf_commutator",
+      "comparison": "maximum",
+      "tolerance": 1e-05,
+      "description": {
+        "ja": "max_tight_scf_commutator（定義・単位は解説）",
+        "en": "max_tight_scf_commutator (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "max_electron_count_error",
+      "pointer": "/metrics/max_electron_count_error",
+      "comparison": "maximum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "max_electron_count_error（定義・単位は解説）",
+        "en": "max_electron_count_error (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "max_orthogonality_error",
+      "pointer": "/metrics/max_orthogonality_error",
+      "comparison": "maximum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "max_orthogonality_error（定義・単位は解説）",
+        "en": "max_orthogonality_error (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "max_energy_reconstruction_error",
+      "pointer": "/metrics/max_energy_reconstruction_error",
+      "comparison": "maximum",
+      "tolerance": 1e-08,
+      "description": {
+        "ja": "max_energy_reconstruction_error（定義・単位は解説）",
+        "en": "max_energy_reconstruction_error (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "min_sampled_ks_gap",
+      "pointer": "/metrics/min_sampled_ks_gap",
+      "comparison": "minimum",
+      "tolerance": 0.1,
+      "description": {
+        "ja": "min_sampled_ks_gap（定義・単位は解説）",
+        "en": "min_sampled_ks_gap (definitions and units in reading)"
+      }
+    },
+    {
+      "id": "max_overlap_condition",
+      "pointer": "/metrics/max_overlap_condition",
+      "comparison": "maximum",
+      "tolerance": 10000000000.0,
+      "description": {
+        "ja": "max_overlap_condition（定義・単位は解説）",
+        "en": "max_overlap_condition (definitions and units in reading)"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "references": [
+    {
+      "type": "independent-numerical-reference",
+      "url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/reference-dftk.json",
+      "path": "reference-dftk.json",
+      "sha256": "ca0538ef07976b8aea55e715e60445c3637fe39c36abe0fc250c4115bf6a0731",
+      "description": {
+        "ja": "別実行のDFTK平面波KS-LDA。Γ／2³で同一モデルを比較し、平面波打切り収束を保存。異なる有限軌道基底のため機械精度一致は要求しない。",
+        "en": "Separately executed DFTK plane-wave KS-LDA at Gamma and 2³ for the same model, with cutoff convergence saved. Different finite orbital bases are compared within a stated tolerance, without machine-precision claims."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1007/BF01339455",
+      "description": {
+        "ja": "原法・独立実装の文献。確認深度は解説に明記。",
+        "en": "Primary formulation or independent implementation; reading states review depth."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1103/PhysRevB.13.5188",
+      "description": {
+        "ja": "原法・独立実装の文献。確認深度は解説に明記。",
+        "en": "Primary formulation or independent implementation; reading states review depth."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1103/PhysRevB.54.1703",
+      "description": {
+        "ja": "原法・独立実装の文献。確認深度は解説に明記。",
+        "en": "Primary formulation or independent implementation; reading states review depth."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1139/p80-159",
+      "description": {
+        "ja": "原法・独立実装の文献。確認深度は解説に明記。",
+        "en": "Primary formulation or independent implementation; reading states review depth."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1063/5.0006074",
+      "description": {
+        "ja": "原法・独立実装の文献。確認深度は解説に明記。",
+        "en": "Primary formulation or independent implementation; reading states review depth."
+      }
+    },
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.21105/jcon.00069",
+      "description": {
+        "ja": "原法・独立実装の文献。確認深度は解説に明記。",
+        "en": "Primary formulation or independent implementation; reading states review depth."
+      }
+    }
+  ],
+  "failure_scope": {
+    "ja": "不正入力・重なり行列の悪条件・SCF未収束・公差不達を明示して失敗。低い残差だけでk点／基底収束や物理モデルを保証しない。",
+    "en": "Invalid inputs, excessive overlap conditioning, SCF nonconvergence and missed tolerances fail explicitly. Small residuals alone do not establish k/basis convergence or physical-model accuracy."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en"
+  },
+  "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+  "registry_sha256": "696af1d8f81f8750332ba462ddd2145aeb30e44cf6e35b8fed94fea4c10cb3ca",
+  "discovery": {
+    "id": "periodic-he-dft",
+    "problem_id": "periodic-he-dft",
+    "equation_ids": [
+      "kohn-sham-model"
+    ],
+    "keywords": [
+      "周期DFT",
+      "periodic DFT",
+      "He",
+      "helium",
+      "Γ点",
+      "Gamma point",
+      "k点",
+      "k-point mesh",
+      "Monkhorst Pack",
+      "Bloch",
+      "LDA",
+      "VWN5",
+      "GTH",
+      "DFTK",
+      "PySCF",
+      "基底収束",
+      "SCF convergence"
+    ],
+    "outcome": {
+      "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
+      "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
+    },
+    "formula": {
+      "role": "approximation",
+      "latex": [
+        "\\psi_{n\\mathbf k}(\\mathbf r)=e^{i\\mathbf k\\cdot\\mathbf r}u_{n\\mathbf k}(\\mathbf r)",
+        "n(\\mathbf r)=2\\sum_{n\\mathbf k}w_{\\mathbf k}f_{n\\mathbf k}|\\psi_{n\\mathbf k}(\\mathbf r)|^2"
+      ],
+      "note": {
+        "ja": "3次元周期・固定HeセルのKS-LDA。BZ積分メッシュとバンド経路、数値収束と物理近似を区別。",
+        "en": "KS-LDA for a fixed 3D periodic He cell. BZ integration meshes differ from band paths; numerical convergence differs from physical-model accuracy."
+      }
+    },
+    "featured": false
+  },
+  "public_rerun": {
+    "passed": true,
+    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json",
+    "execution_group": "periodic-he-dft"
+  }
+}

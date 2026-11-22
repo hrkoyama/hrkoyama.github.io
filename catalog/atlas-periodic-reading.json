@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-11-22",
+  "id": "periodic-dft",
+  "example_id": "periodic-he-dft",
+  "title": {
+    "ja": "周期DFT：Γ点・k点積分・基底・SCFと独立参照",
+    "en": "Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference"
+  },
+  "intro": {
+    "ja": "Heを1個含む小さな周期セルを例に、Blochの定理からk点積分、周期Gaussian基底、補助FFT格子、SCF反復までをつなぎます。PySCFを用いる実行例と独立した平面波DFTKの参照を比較し、同じモデルを異なる離散化で解くときに必要な整合条件を確かめます。",
+    "en": "A small periodic cell containing one He atom connects Bloch’s theorem, k-point integration, periodic Gaussian bases, auxiliary FFT grids and SCF iteration. A PySCF-backed example is compared with an independent plane-wave DFTK reference, exposing the conventions needed to solve the same model with different discretizations."
+  },
+  "scope": {
+    "ja": "固定した単純立方Heセルの非相対論・スピン非分極LDAを扱う教育用の周期境界問題です。実装はPySCFを利用するドライバーであり、DFTエンジンを一から自作したものではありません。結晶構造の最適化や実在の固体Heの平衡状態の予測は行いません。",
+    "en": "This educational periodic problem uses nonrelativistic, spin-unpolarized LDA for a fixed simple-cubic He cell. The implementation is a driver using PySCF, rather than a DFT engine written from scratch. It does not optimize crystal structure or predict equilibrium solid helium."
+  },
+  "methods": [
+    "kohn-sham-dft",
+    "electronic-bases",
+    "scf",
+    "xc-functionals",
+    "pseudopotentials",
+    "k-point"
+  ],
+  "package": {
+    "base": "/code/periodic-dft/2026-11-22/",
+    "archive": "periodic-dft-2026-11-22.zip",
+    "results": "results/result.json",
+    "preview": "results/preview.png",
+    "input": "inputs.json",
+    "reference": "reference-dftk.json"
+  },
+  "keywords": [
+    "periodic DFT",
+    "周期DFT",
+    "結晶",
+    "Bloch",
+    "ブロッホ",
+    "Γ点",
+    "Gamma point",
+    "k点",
+    "k-point mesh",
+    "Brillouin zone",
+    "ブリルアンゾーン",
+    "Monkhorst Pack",
+    "GTH",
+    "VWN",
+    "PySCF",
+    "DFTK",
+    "SCF convergence",
+    "Gaussian basis",
+    "plane waves",
+    "平面波",
+    "独立参照",
+    "絶縁体",
+    "AIMD",
+    "BOMD",
+    "CPMD",
+    "Born Oppenheimer",
+    "Car Parrinello",
+    "第一原理分子動力学",
+    "カー–パリネロ法",
+    "ボルン–オッペンハイマー"
+  ],
+  "sections": [
+    {
+      "id": "model-and-scope",
+      "title": {
+        "ja": "固定する物理モデルと、調べる数値誤差",
+        "en": "The fixed physical model and the numerical errors being tested"
+      },
+      "paragraphs": {
+        "ja": [
+          "入力は一辺4 bohrの単純立方セルと原点のHe原子1個です。GTH–PADEの局所擬ポテンシャルにより価電子数を2とし、閉殻・スピン非分極のKohn–Sham問題を解きます。このHeポテンシャルには非局所射影子がありません。そのため一般の多元素結晶や非局所擬ポテンシャルの検証をこの1例で代表させません。幾何は収束実験のために固定した教材用の配置です。",
+          "交換相関汎関数はLibxcのLDA_XとLDA_C_VWN（VWN5）を明示的に指定します。「LDA」という略称だけでは、VWN、Perdew–Wangなどの相関の選択がそろいません。GTH–PADEは採用した擬ポテンシャルの名称であり、その生成時の近似と今回指定するVWN5が同一であるという意味ではありません。比較する両エンジンには同じ擬ポテンシャルの係数と同じ交換相関を渡します。",
+          "原子単位系を用い、格子長はbohr、エネルギーはhartreeで保存します。全エネルギーは単位胞あたりで、電子項と周期イオン間相互作用を含む値を比較します。SCFの解き残し、k点積分、軌道基底、密度・ポテンシャルの補助格子を別々に変えます。これらを小さくしても、LDAや擬ポテンシャルなどの物理近似の誤差を評価したことにはなりません。"
+        ],
+        "en": [
+          "The input is a simple-cubic cell of side 4 bohr containing one He atom at the origin. A local GTH–PADE pseudopotential supplies two valence electrons for a closed-shell, spin-unpolarized Kohn–Sham problem. This He potential has no nonlocal projectors. One example therefore does not validate general multielement crystals or nonlocal pseudopotentials. The geometry is fixed as a teaching configuration for convergence experiments.",
+          "The exchange-correlation functional is specified explicitly as Libxc LDA_X plus LDA_C_VWN (VWN5). The label LDA alone does not align choices such as VWN and Perdew–Wang correlation. GTH–PADE names the chosen pseudopotential; it does not assert that its generation approximation is identical to the VWN5 used here. Both engines receive the same pseudopotential coefficients and exchange-correlation choice.",
+          "Atomic units are used, with lattice lengths in bohr and energies in hartree. Total energies are compared per unit cell, including electronic terms and periodic ion–ion interactions. SCF solution error, k-point quadrature, the orbital basis and the auxiliary density/potential grid are varied separately. Reducing these numerical effects does not measure the physical error of LDA or the pseudopotential approximation."
+        ]
+      },
+      "formulas": [
+        "periodic-ks"
+      ],
+      "references": [
+        "hohenberg-kohn1964",
+        "kohn-sham1965",
+        "gth1996",
+        "vwn1980",
+        "libxc-functionals"
+      ]
+    },
+    {
+      "id": "bloch-and-reciprocal-space",
+      "title": {
+        "ja": "Blochの定理と、k点の単位",
+        "en": "Bloch’s theorem and the units of a k point"
+      },
+      "paragraphs": {
+        "ja": [
+          "周期ポテンシャルでは、軌道を平面波因子と格子周期関数の積として表せます。周期関数uと一般のBloch軌道ψを区別します。uは単位胞の端で周期的ですが、ψはk点に応じた位相を伴う境界条件を満たします。Γ点はk=0で、この位相が1となる特別な点です。",
+          "ここでは実格子ベクトルを列にもつ行列Aと逆格子ベクトルを列にもつBを用い、AᵀB=2πIと定義します。分率座標κから物理的な波数へはk=Bκで変換します。κは無次元、格子をbohrで定義したkはbohr⁻¹です。PySCFのセル行列は格子ベクトルを行に置き、SCFへ渡すk点は物理的な波数です。DFTKの格子行列の列規約と取り違えないように、入力の格子と分率k点を共通の正本にします。"
+        ],
+        "en": [
+          "For a periodic potential, an orbital can be written as a plane-wave phase times a lattice-periodic function. The periodic function u and the Bloch orbital ψ are distinct: u is periodic across cell boundaries, whereas ψ satisfies a k-dependent phase boundary condition. Γ is the special point k=0, where this phase is one.",
+          "Here A contains direct lattice vectors as columns and B contains reciprocal vectors as columns, with AᵀB=2πI. Fractional coordinates κ give the physical wavevector k=Bκ. The coordinates κ are dimensionless; k is in bohr⁻¹ when the lattice is in bohr. PySCF stores cell vectors as rows and passes physical wavevectors to SCF. A shared input lattice and fractional k-point list prevent confusion with DFTK’s column convention."
+        ]
+      },
+      "formulas": [
+        "periodic-bloch",
+        "periodic-reciprocal"
+      ],
+      "references": [
+        "bloch1929",
+        "pyscf-pbc-cell-docs",
+        "dftk-api-docs"
+      ]
+    },
+    {
+      "id": "kpoint-quadrature",
+      "title": {
+        "ja": "Γ点とk点メッシュ：積分とバンド経路を分ける",
+        "en": "Γ points and k meshes: quadrature versus band paths"
+      },
+      "paragraphs": {
+        "ja": [
+          "無限結晶の密度やエネルギーにはBrillouinゾーンの積分が現れます。有限のk点と重みでこの積分を近似します。この例では全点と等しい重みを明示したΓを含む一様メッシュを用い、重みの和を1にします。偶数分割でもΓを含む規約であり、ソフトウェアの既定値や、偶数分割で半格子だけずれるMonkhorst–Packの規約と無条件に同一視しません。整数逆格子ベクトルだけ異なる分率k点は同じ点を表します。",
+          "Γ点だけの計算はBrillouinゾーン積分の1点近似です。大きな実空間セルや局在した軌道で十分になる場合もありますが、この小さなセルで十分かは実測する必要があります。Γのみと複数のメッシュを同じ基底・補助格子・SCF条件で比較します。異なるメッシュは必ずしも入れ子でなく、エネルギー差の単調な減少は仮定しません。",
+          "高対称点を結ぶバンド経路は分散関係の可視化に使う点列です。通常、その点列を等しい重みで平均してもBrillouinゾーン積分にはなりません。本例の目的は全エネルギーと密度の積分を確かめることであり、バンド経路の描画をk点収束の代用にしません。"
+        ],
+        "en": [
+          "Densities and energies of an infinite crystal involve integrals over the Brillouin zone. A finite set of k points and weights approximates these integrals. This example explicitly lists all points of a uniform mesh containing Γ and equal weights summing to one. Γ is included even for even subdivisions. This convention is not automatically identical to software defaults or the half-grid displacement of an even Monkhorst–Pack mesh. Fractional k points differing by an integer reciprocal vector represent the same point.",
+          "A Γ-only calculation is a one-point quadrature of the Brillouin zone. It can be adequate for some large real-space cells or localized orbitals, but adequacy for this small cell must be measured. Γ-only and several meshes are compared with the same orbital basis, auxiliary grid and SCF settings. Different meshes need not be nested, and monotonically decreasing energy differences are not assumed.",
+          "A band path joins high-symmetry points to visualize dispersion. Giving its points equal weights generally does not produce a Brillouin-zone quadrature. This example tests integrated energy and density; drawing a band path does not replace k-point convergence."
+        ]
+      },
+      "formulas": [
+        "periodic-quadrature",
+        "periodic-gamma-mesh"
+      ],
+      "references": [
+        "monkhorst-pack1976",
+        "pyscf-pbc-cell-docs"
+      ]
+    },
+    {
+      "id": "orbital-and-auxiliary-bases",
+      "title": {
+        "ja": "軌道基底と補助FFT格子は別の収束軸",
+        "en": "The orbital basis and auxiliary FFT grid are separate convergence axes"
+      },
+      "paragraphs": {
+        "ja": [
+          "PySCF側の軌道は、Gaussian基底の格子和にBlochの位相を付けて展開します。gth-dzvなどの基底名、実際の関数数、重なり行列の条件数を結果に残します。名称のzeta数を増やす操作は完全基底極限の証明ではなく、異なる縮約・偏極関数を含む基底がすべて数学的に入れ子になるとも限りません。基底差は公開した有限系列に対する感度として読みます。",
+          "FFT density fitting（FFTDF）は、密度やCoulombポテンシャルなどを扱う補助的な平面波・FFT表現です。FFTメッシュを細かくしてもGaussianの軌道空間は広がりません。逆に軌道基底だけを増やしても、粗い補助格子による誤差は消えません。PySCFの補助格子、DFTKの軌道平面波カットオフ、それに付随する密度格子を混同せず、単位もhartreeとrydbergを区別します。",
+          "周期Coulomb相互作用のG=0成分は、電子、局所擬ポテンシャル、周期イオン項を合わせた規約で扱います。平均ポテンシャルの変更は軌道固有値の原点も変えます。同じ計算物理モデルでも、G=0定数や擬ポテンシャル補正、Ewald項、単位胞あたりと原子あたりの違いをそろえなければ全エネルギーを直接比較できません。差を合わせるために結果へ経験的な定数を後付けするのではなく、採用した規約とエネルギー成分を確認します。"
+        ],
+        "en": [
+          "The PySCF orbitals expand Bloch sums of Gaussian functions. Results retain basis names such as gth-dzv, the actual function count and overlap conditioning. Increasing a basis’s zeta label does not prove a complete-basis limit; bases with different contractions and polarization functions are not necessarily mathematically nested. Basis differences measure sensitivity within the published finite sequence.",
+          "FFT density fitting (FFTDF) is an auxiliary plane-wave/FFT representation used for quantities such as density and Coulomb potentials. Refining its mesh does not enlarge the Gaussian orbital space. Conversely, enlarging only the orbital basis cannot remove errors from a coarse auxiliary grid. The PySCF auxiliary grid, DFTK orbital plane-wave cutoff and its associated density grid are distinct, and hartree must not be confused with rydberg.",
+          "The periodic Coulomb G=0 component is handled with a convention combining electrons, the local pseudopotential and periodic ionic terms. A change in the mean potential also shifts the orbital eigenvalue origin. Even the same physical model needs aligned G=0 constants, pseudopotential corrections, Ewald terms and per-cell versus per-atom units for direct total-energy comparison. Conventions and energy components are checked rather than adding an empirical constant to force agreement."
+        ]
+      },
+      "formulas": [
+        "periodic-gaussian",
+        "periodic-separate-errors"
+      ],
+      "references": [
+        "gth1996",
+        "pyscf-pbc-scf-docs",
+        "dftk2021"
+      ]
+    },
+    {
+      "id": "scf-and-gap",
+      "title": {
+        "ja": "SCF残差、電子数と、標本点上のKSギャップ",
+        "en": "SCF residuals, electron count and a sampled KS gap"
+      },
+      "paragraphs": {
+        "ja": [
+          "Kohn–Sham方程式の有効ポテンシャルは密度に依存するため、固有値問題と密度更新を反復します。エネルギー変化だけでなく、最終密度から再構築した行列による交換子残差、軌道固有方程式の残差、直交性と電子数を検査します。交換子は対称直交化X=S⁻¹ᐟ²を用いたX(FPS−SPF)XのFrobeniusノルムを各k点で求め、その最大値です。軌道残差も同じ最終密度のFを用います。結果には反復履歴、停止理由、許容誤差を残します。反復回数の上限への到達を収束と表示しません。",
+          "同じ離散化でSCF許容誤差だけを変え、厳しい設定のエネルギーとの違いを測ります。これは非線形方程式の解き残しの検査です。SCFが収束したことと、基底・補助格子・k点が十分であること、また物理モデルが正確であることは別の判定です。",
+          "閉殻の占有と非占有を分け、計算した全k点の占有準位の最大値と非占有準位の最小値から標本点上のKSギャップを求めます。正の値は、このメッシュ上で占有が分離していることを示します。Brillouinゾーン全域の真の最小ギャップを保証するものでも、電子の追加・除去で定義する多体の基本ギャップや実験の光学ギャップでもありません。非占有状態の基底依存性にも注意が必要です。本例ではGaussianと平面波の標本点ギャップに目に見える差が残ります。独立比較で検証する量は全エネルギーであり、ギャップの収束・一致を達成したとは扱いません。"
+        ],
+        "en": [
+          "The Kohn–Sham potential depends on density, so an eigenproblem and density update are iterated. Energy changes are supplemented by a commutator residual built from the final density, orbital-equation residuals, orthogonality and electron count. The commutator measure is the maximum over k points of the Frobenius norm of X(FPS−SPF)X, with symmetric orthogonalization X=S⁻¹ᐟ². Orbital residuals use the same final-density F. Results retain iteration histories, stopping reasons and tolerances. Reaching an iteration cap is not labeled convergence.",
+          "A tolerance sweep changes only SCF settings at fixed discretization and measures the energy difference from a tight solution. This checks the remaining nonlinear solution error. SCF convergence is separate from sufficient orbital bases, auxiliary grids and k points, and from physical-model accuracy.",
+          "For closed-shell occupations, a sampled KS gap is obtained from the largest occupied and smallest unoccupied eigenvalues over all calculated k points. A positive value indicates separated occupations on that mesh. It neither guarantees the true minimum over the full Brillouin zone nor equals the many-body fundamental gap defined by adding/removing an electron or an experimental optical gap. Unoccupied states also depend on the orbital basis. A visible difference remains between the Gaussian and plane-wave sampled gaps in this example. The independent comparison validates total energies; gap convergence or agreement is not established."
+        ]
+      },
+      "formulas": [
+        "periodic-electrons",
+        "periodic-sampled-gap"
+      ],
+      "references": [
+        "kohn-sham1965",
+        "pyscf-pbc-scf-docs",
+        "dftk-api-docs"
+      ]
+    },
+    {
+      "id": "independent-reference",
+      "title": {
+        "ja": "異なる基底を使う独立DFTK参照と比較する",
+        "en": "Comparison with an independent DFTK reference in a different basis"
+      },
+      "paragraphs": {
+        "ja": [
+          "実行例はPySCFの周期積分・FFTDF・SCFを利用します。参照は独立したJuliaのDFTKで平面波Kohn–Sham問題を解き、教材のPySCFソルバーを呼び出しません。PySCF内で補助表現だけを変更した計算を独立実装の比較と数えません。交換相関の評価には両者でLibxcを使うため、その部分まで完全に独立した検証という意味ではありません。",
+          "同一の格子、原子位置、価電子数、スピン、擬ポテンシャル係数、LDA_X＋LDA_C_VWN、分率k点と重みを照合します。DFTK側では平面波カットオフとSCFの収束も確認します。Gaussianと平面波は異なる有限空間なので、有限基底同士の全エネルギーに機械精度の一致を要求しません。公開入力の判定幅の中で、Gaussian基底・補助格子の感度と参照のカットオフ依存性を併記して一致を評価します。判定幅を満たすことは、真の誤差の厳密な上限や化学精度を証明するものではありません。",
+          "保存済み参照を使った通常の追試と、Julia環境を用いる参照の再生成を別の工程にします。入力、参照、ソースのハッシュと依存関係の版を固定し、ZIPを別フォルダへ展開した実行も検査します。結果JSONの合否だけでなく、差の実数値、判定条件、収束系列を確かめられる形で配布します。"
+        ],
+        "en": [
+          "The example uses PySCF’s periodic integrals, FFTDF and SCF. The independent Julia package DFTK supplies a plane-wave Kohn–Sham reference without calling the teaching PySCF solver. Merely changing an auxiliary representation within PySCF would not be an independent-implementation comparison. Both engines use Libxc for exchange-correlation evaluation, so that component is not independently implemented in this comparison.",
+          "The lattice, atomic positions, valence count, spin, pseudopotential coefficients, LDA_X plus LDA_C_VWN, fractional k points and weights are aligned. Plane-wave cutoff and SCF convergence are checked on the DFTK side. Gaussian and plane-wave calculations use different finite spaces, so machine-precision agreement is not demanded between their finite-basis energies. Agreement is assessed against the published acceptance width alongside Gaussian-basis and auxiliary-grid sensitivities and reference-cutoff dependence. Meeting this width establishes neither a rigorous bound on true error nor chemical accuracy.",
+          "Ordinary reproduction against the saved reference and reference regeneration in Julia are separate operations. Input, reference and source hashes and dependency versions are fixed, and execution from an independently extracted ZIP is checked. The release exposes numerical differences, acceptance criteria and convergence sequences as well as the result JSON’s pass flag."
+        ]
+      },
+      "formulas": [],
+      "references": [
+        "sun2020pyscf",
+        "dftk2021",
+        "libxc-functionals"
+      ]
+    },
+    {
+      "id": "first-principles-md",
+      "title": {
+        "ja": "第一原理MD：Born–Oppenheimer法とカー–パリネロ法",
+        "en": "First-principles MD: Born–Oppenheimer and Car–Parrinello methods"
+      },
+      "paragraphs": {
+        "ja": [
+          "周期DFTの次に原子核を動かすのが第一原理分子動力学（AIMD）です。Born–Oppenheimer分子動力学（BOMD）は、各核配置で電子状態を基底状態へ十分に収束させ、そのエネルギー面の力で核の古典運動を積分します。下のE_BOはイオン間項を含む全エネルギーです。1927年のBorn–Oppenheimer論文は電子と核の分離の基礎として引用するもので、現代のBOMDプログラムを発表した論文という意味ではありません。",
+          "BOMDではSCFの許容誤差をエネルギーだけでなく力と軌道の再現性でも決めます。原子に追随する有限Gaussian基底を使う場合は、基底の位置依存に由来する力の項（Pulay項）も必要です。力の有限差分照合、時間刻みの細分化、無温度制御のNVEでのエネルギードリフトを別々に検査します。予測した電子状態を次の初期値に使っても、各配置で必要な精度まで最適化するというBOMDの要件は変わりません。",
+          "カー–パリネロ分子動力学（CPMD）は、核の座標と電子軌道を拡張ラグランジアンで同時に進めます。μは電子軌道に与える数値的な仮想質量で、実在の電子の質量そのものではありません。直交制約はLagrange乗数Λで課します。表示式は固定セル・固定占有を想定し、軌道の速度項をμ/2と定義する規約です。周期k点を使う一般化では電子項に重みと占有を一貫して含めます。",
+          "CPMDで電子軌道を時間発展させることは、TDDFTで実在の電子励起を追うことではありません。電子の仮想運動と核運動の時間尺度を分離し、軌道をBO面の近傍に保つ必要があります。μ・時間刻み・直交性許容誤差を変えて、仮想運動エネルギーと核運動へのエネルギー移動を監視します。温度制御を加えない理想的な拡張系の保存量E_extと、核の運動エネルギー＋BOエネルギーを区別します。狭いギャップや金属への適用をこの説明だけで保証しません。",
+          "この節は解説のみです。今回の固定Heセルで検証したのは静的な全エネルギー、積分・基底・補助格子・SCFの収束です。原子間力、BOMD/CPMD軌道、時間積分、温度制御の実行・検証は含みません。実装を追加する場合は、多原子系で力と独立参照をまず照合し、その後にMDの保存量と刻み幅・SCF公差・μへの感度を確かめます。"
+        ],
+        "en": [
+          "First-principles molecular dynamics (AIMD) moves nuclei using electronic-structure calculations. Born–Oppenheimer molecular dynamics (BOMD) converges the electronic ground state at each nuclear configuration, then integrates classical nuclear motion using forces on that energy surface. E_BO below includes ionic interactions. The 1927 Born–Oppenheimer paper is cited for electronic–nuclear separation, not as the publication of a modern BOMD program.",
+          "In BOMD, SCF tolerances must control forces and trajectory reproducibility as well as energies. Atom-centered finite Gaussian bases require force contributions from basis-position dependence (Pulay terms). Finite-difference force checks, timestep refinement and energy drift in unthermostatted NVE trajectories are separate tests. Predicting an electronic initial guess does not remove the requirement to optimize each configuration to adequate accuracy.",
+          "Car–Parrinello molecular dynamics (CPMD) propagates nuclear coordinates and electronic orbitals together through an extended Lagrangian. The fictitious orbital mass μ is a numerical parameter, rather than the physical electron mass. Lagrange multipliers Λ enforce orthonormality. The displayed convention uses a μ/2 orbital-velocity term at fixed cell and occupations. Generalization to periodic k sampling must consistently include weights and occupations in electronic terms.",
+          "CPMD orbital propagation does not represent real electronic excitations as in TDDFT. Electronic fictitious motion must remain separated in timescale from nuclear motion, keeping orbitals near the BO surface. Vary μ, timestep and orthogonality tolerance while monitoring fictitious kinetic energy and energy transfer to nuclei. Distinguish the ideal unthermostatted extended-system conserved energy E_ext from nuclear kinetic plus BO energy. These statements do not establish applicability to narrow-gap systems or metals.",
+          "This section is reading only. The fixed-He example validates static total energies and quadrature, basis, auxiliary-grid and SCF convergence. It does not execute or validate atomic forces, BOMD/CPMD trajectories, time integration or thermostatting. A future implementation should first compare multiatom forces with independent references, then test MD conservation and sensitivity to timestep, SCF tolerances and μ."
+        ]
+      },
+      "formulas": [
+        "periodic-bo-forces",
+        "periodic-cp-lagrangian",
+        "periodic-cp-constraint-energy"
+      ],
+      "references": [
+        "born-oppenheimer1927",
+        "car-parrinello1985",
+        "qe-cp-docs"
+      ]
+    }
+  ],
+  "formulas": {
+    "periodic-ks": "\\left[-\\tfrac12\\nabla^2+V_{\\mathrm{loc}}+V_H[n]+V_{\\mathrm{xc}}[n]\\right]\\psi_{n\\mathbf k}=\\varepsilon_{n\\mathbf k}\\psi_{n\\mathbf k}",
+    "periodic-bloch": "\\psi_{n\\mathbf k}(\\mathbf r)=e^{i\\mathbf k\\cdot\\mathbf r}u_{n\\mathbf k}(\\mathbf r),\\qquad u_{n\\mathbf k}(\\mathbf r+\\mathbf R)=u_{n\\mathbf k}(\\mathbf r),\\qquad\\psi_{n\\mathbf k}(\\mathbf r+\\mathbf R)=e^{i\\mathbf k\\cdot\\mathbf R}\\psi_{n\\mathbf k}(\\mathbf r)",
+    "periodic-reciprocal": "A=(\\mathbf a_1,\\mathbf a_2,\\mathbf a_3),\\qquad B=2\\pi A^{-\\mathsf T},\\qquad\\mathbf k=B\\boldsymbol\\kappa,\\qquad\\Omega=|\\det A|",
+    "periodic-quadrature": "\\frac{1}{|\\mathrm{BZ}|}\\int_{\\mathrm{BZ}}f(\\mathbf k)\\,d\\mathbf k\\simeq\\sum_{q=1}^{N_k}w_qf(\\mathbf k_q),\\qquad\\sum_qw_q=1,\\qquad n(\\mathbf r)=2\\sum_qw_q\\sum_{n\\in\\mathrm{occ}}|\\psi_{n\\mathbf k_q}(\\mathbf r)|^2",
+    "periodic-gamma-mesh": "\\boldsymbol\\kappa_{\\mathbf j}=\\left(\\frac{j_1}{N_1},\\frac{j_2}{N_2},\\frac{j_3}{N_3}\\right)\\bmod\\mathbb Z^3,\\quad j_i=0,\\ldots,N_i-1,\\quad w_{\\mathbf j}=\\frac{1}{N_1N_2N_3}",
+    "periodic-gaussian": "\\chi_{\\mu\\mathbf k}(\\mathbf r)=\\sum_{\\mathbf R}e^{i\\mathbf k\\cdot\\mathbf R}\\chi_\\mu(\\mathbf r-\\mathbf R),\\qquad\\psi_{n\\mathbf k}=\\sum_\\mu C_{\\mu n}(\\mathbf k)\\chi_{\\mu\\mathbf k}",
+    "periodic-separate-errors": "\\Delta_kE,\\qquad\\Delta_{\\mathrm{orbital\\ basis}}E,\\qquad\\Delta_{\\mathrm{auxiliary\\ grid}}E,\\qquad E_{\\tau}-E_{\\mathrm{tight}},\\qquad E_{\\mathrm{PySCF}}-E_{\\mathrm{DFTK}}",
+    "periodic-electrons": "F_{\\mathbf k}C_{\\mathbf k}=S_{\\mathbf k}C_{\\mathbf k}\\varepsilon_{\\mathbf k},\\qquad C_{\\mathbf k}^{\\dagger}S_{\\mathbf k}C_{\\mathbf k}=I,\\qquad\\sum_qw_q\\operatorname{Tr}(P_{\\mathbf k_q}S_{\\mathbf k_q})=N_e=2",
+    "periodic-sampled-gap": "E_{g,\\mathcal K}^{\\mathrm{KS}}=\\min_{\\mathbf k\\in\\mathcal K,n\\in\\mathrm{unocc}}\\varepsilon_{n\\mathbf k}-\\max_{\\mathbf k\\in\\mathcal K,n\\in\\mathrm{occ}}\\varepsilon_{n\\mathbf k}",
+    "periodic-bo-forces": "E_{\\mathrm{BO}}(\\mathbf R)=\\min_{\\langle\\psi_i|\\psi_j\\rangle=\\delta_{ij}}E_{\\mathrm{KS}}[\\{\\psi_i\\};\\mathbf R],\\qquad M_I\\ddot{\\mathbf R}_I=\\mathbf F_I=-\\nabla_{\\mathbf R_I}E_{\\mathrm{BO}}(\\mathbf R)",
+    "periodic-cp-lagrangian": "L_{\\mathrm{CP}}=\\frac12\\sum_I M_I|\\dot{\\mathbf R}_I|^2+\\frac{\\mu}{2}\\sum_i\\langle\\dot\\psi_i|\\dot\\psi_i\\rangle-E_{\\mathrm{KS}}+\\sum_{ij}\\Lambda_{ij}\\bigl(\\langle\\psi_i|\\psi_j\\rangle-\\delta_{ij}\\bigr)",
+    "periodic-cp-constraint-energy": "\\langle\\psi_i|\\psi_j\\rangle=\\delta_{ij},\\qquad K_{\\mathrm{fict}}=\\frac{\\mu}{2}\\sum_i\\langle\\dot\\psi_i|\\dot\\psi_i\\rangle,\\qquad E_{\\mathrm{ext}}=\\sum_I\\frac{M_I}{2}|\\dot{\\mathbf R}_I|^2+E_{\\mathrm{KS}}+K_{\\mathrm{fict}}"
+  },
+  "references": [
+    {
+      "id": "bloch1929",
+      "author": "Felix Bloch",
+      "year": 1929,
+      "title": "Über die Quantenmechanik der Elektronen in Kristallgittern",
+      "journal": "Zeitschrift für Physik 52, 555–600",
+      "doi": "10.1007/BF01339455",
+      "source": "https://link.springer.com/article/10.1007/BF01339455",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録を確認。受理年1928と掲載年1929を区別しました。原論文全体の再現・監査ではありません。",
+        "en": "Publisher bibliography and abstract consulted, distinguishing receipt in 1928 from publication in 1929. No full-paper reproduction or audit claimed."
+      }
+    },
+    {
+      "id": "hohenberg-kohn1964",
+      "author": "P. Hohenberg and W. Kohn",
+      "year": 1964,
+      "title": "Inhomogeneous Electron Gas",
+      "journal": "Physical Review 136, B864–B871",
+      "doi": "10.1103/PhysRev.136.B864",
+      "source": "https://doi.org/10.1103/PhysRev.136.B864",
+      "review_level": "metadata",
+      "review": {
+        "ja": "既存アトラスの原著書誌・DOIを確認。基礎理論の出典であり、この有限基底計算による定理の証明ではありません。",
+        "en": "Original bibliography and DOI checked against the existing Atlas. Cited for the theoretical foundation, not as a proof of the theorem by this finite-basis calculation."
+      }
+    },
+    {
+      "id": "kohn-sham1965",
+      "author": "W. Kohn and L. J. Sham",
+      "year": 1965,
+      "title": "Self-Consistent Equations Including Exchange and Correlation Effects",
+      "journal": "Physical Review 140, A1133–A1138",
+      "doi": "10.1103/PhysRev.140.A1133",
+      "source": "https://doi.org/10.1103/PhysRev.140.A1133",
+      "review_level": "metadata",
+      "review": {
+        "ja": "既存アトラスの原著書誌・DOIを確認。Kohn–Sham法の原著として引用し、論文全体の数値再現は主張しません。",
+        "en": "Original bibliography and DOI checked against the existing Atlas. Cited as the Kohn–Sham source without claiming numerical reproduction of the entire paper."
+      }
+    },
+    {
+      "id": "monkhorst-pack1976",
+      "author": "H. J. Monkhorst and J. D. Pack",
+      "year": 1976,
+      "title": "Special points for Brillouin-zone integrations",
+      "journal": "Physical Review B 13, 5188–5192",
+      "doi": "10.1103/PhysRevB.13.5188",
+      "source": "https://doi.org/10.1103/PhysRevB.13.5188",
+      "review_level": "metadata",
+      "review": {
+        "ja": "既存アトラスの原著書誌・DOIを確認。本例のΓを含むメッシュ規約は本文と入力に明記し、原論文の全メッシュと同一とは扱いません。",
+        "en": "Original bibliography and DOI checked against the existing Atlas. The example’s Γ-containing mesh convention is specified in the text/input rather than equated with every mesh in the paper."
+      }
+    },
+    {
+      "id": "vwn1980",
+      "author": "S. H. Vosko, L. Wilk and M. Nusair",
+      "year": 1980,
+      "title": "Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis",
+      "journal": "Canadian Journal of Physics 58, 1200–1211",
+      "doi": "10.1139/p80-159",
+      "source": "https://doi.org/10.1139/p80-159",
+      "review_level": "metadata",
+      "review": {
+        "ja": "公式Libxc資料のLDA_C_VWN（VWN5）の原著DOIと書誌を確認。出版社本文へはアクセスできず、全文や表の監査は行っていません。",
+        "en": "Original DOI and bibliography checked through official Libxc documentation identifying LDA_C_VWN as VWN5. Publisher text was inaccessible; no full-text or table audit was performed."
+      }
+    },
+    {
+      "id": "gth1996",
+      "author": "S. Goedecker, M. Teter and J. Hutter",
+      "year": 1996,
+      "title": "Separable dual-space Gaussian pseudopotentials",
+      "journal": "Physical Review B 54, 1703–1710",
+      "doi": "10.1103/PhysRevB.54.1703",
+      "source": "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.54.1703",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録を確認。実際のHe係数は同梱データと両ライブラリで照合し、原論文の表からの全桁の直接転記とは扱いません。",
+        "en": "Publisher bibliography and abstract consulted. Actual He coefficients are aligned through the packaged data and libraries, not presented as a full-precision transcription from the paper’s tables."
+      }
+    },
+    {
+      "id": "sun2020pyscf",
+      "author": "Qiming Sun et al.",
+      "year": 2020,
+      "title": "Recent developments in the PySCF program package",
+      "journal": "The Journal of Chemical Physics 153, 024109",
+      "doi": "10.1063/5.0006074",
+      "source": "https://doi.org/10.1063/5.0006074",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録と既存アトラスの登録を確認。今回使用する周期APIは下記の公式資料と固定版コードでも確認します。",
+        "en": "Publisher bibliography/abstract and the existing Atlas entry consulted. The periodic APIs used here are additionally checked against official documentation and pinned code."
+      }
+    },
+    {
+      "id": "dftk2021",
+      "author": "M. F. Herbst, A. Levitt and E. Cancès",
+      "year": 2021,
+      "title": "DFTK: A Julian approach for simulating electrons in solids",
+      "journal": "Proceedings of the JuliaCon Conferences 3(26), 69",
+      "doi": "10.21105/jcon.00069",
+      "source": "https://proceedings.juliacon.org/papers/10.21105/jcon.00069",
+      "review_level": "selected-full-text",
+      "review": {
+        "ja": "出版社の書誌と公開論文の導入部を確認。今回の参照計算は独立した数値検査であり、論文中の全例の再現ではありません。",
+        "en": "Publisher bibliography and the introduction of the open paper consulted. The reference calculation is a separate numerical check, not a reproduction of all paper examples."
+      }
+    },
+    {
+      "id": "pyscf-pbc-cell-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "Crystal structure",
+      "journal": "Official PySCF periodic-boundary-condition user documentation",
+      "source": "https://pyscf.org/user/pbcgto.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "格子ベクトル、単位、GTH基底・擬ポテンシャル、k点生成の該当箇所を参照。原法の論文とは区別します。",
+        "en": "Relevant sections on lattice vectors, units, GTH basis/pseudopotential pairing and k-point generation consulted; distinct from an original-method publication."
+      }
+    },
+    {
+      "id": "pyscf-pbc-scf-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "Periodic SCF and density fitting",
+      "journal": "Official PySCF periodic-boundary-condition user documentation",
+      "source": "https://pyscf.org/user/pbc/scf.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "周期SCF、DFT、FFTDF、カットオフ、Coulomb発散の取り扱いの該当箇所を参照。",
+        "en": "Relevant sections on periodic SCF, DFT, FFTDF, cutoffs and Coulomb-divergence handling consulted."
+      }
+    },
+    {
+      "id": "dftk-api-docs",
+      "author": "DFTK developers",
+      "year": 2026,
+      "title": "DFTK API and pseudopotentials",
+      "journal": "Official DFTK documentation",
+      "source": "https://docs.dftk.org/stable/api/",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "格子・k点・汎関数・SCFの該当APIと公式擬ポテンシャル解説を参照。配布物には実際に使用した版を別途固定します。",
+        "en": "Relevant lattice, k-point, functional and SCF APIs and the official pseudopotential discussion consulted. The release separately pins the versions actually executed."
+      }
+    },
+    {
+      "id": "libxc-functionals",
+      "author": "Libxc developers",
+      "year": 2026,
+      "title": "Libxc functionals: LDA_X and LDA_C_VWN",
+      "journal": "Official Libxc functional registry",
+      "source": "https://libxc.gitlab.io/functionals/",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "LDA_X（id 1）とLDA_C_VWN（id 7、VWN5）の識別・原著リンクを確認。両エンジンが共用する評価ライブラリとして明記します。",
+        "en": "Identities and original-source links for LDA_X (id 1) and LDA_C_VWN (id 7, VWN5) checked. Identified as an evaluation library shared by both engines."
+      }
+    },
+    {
+      "id": "born-oppenheimer1927",
+      "author": "M. Born and R. Oppenheimer",
+      "year": 1927,
+      "title": "Zur Quantentheorie der Molekeln",
+      "journal": "Annalen der Physik 389(20), 457–484",
+      "doi": "10.1002/andp.19273892002",
+      "source": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+      "review_level": "metadata",
+      "review": {
+        "ja": "出版社の書誌・DOIを確認。Born–Oppenheimer分離の歴史的基礎として引用し、原文全文の監査や現代のMD実装の再現は主張しません。",
+        "en": "Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation."
+      }
+    },
+    {
+      "id": "car-parrinello1985",
+      "author": "R. Car and M. Parrinello",
+      "year": 1985,
+      "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+      "journal": "Physical Review Letters 55, 2471–2474",
+      "doi": "10.1103/PhysRevLett.55.2471",
+      "source": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+      "review_level": "selected-full-text",
+      "review": {
+        "ja": "出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。",
+        "en": "Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced."
+      }
+    },
+    {
+      "id": "qe-cp-docs",
+      "author": "Quantum ESPRESSO developers",
+      "year": 2026,
+      "title": "cp.x input description: electron dynamics, emass and orthogonalization",
+      "journal": "Official Quantum ESPRESSO documentation, version 7.5",
+      "source": "https://www.quantum-espresso.org/Doc/INPUT_CP.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "仮想質量、電子と核の運動、時間刻み、直交化と断熱性に関する入力項目を参照。ソフトウェアの実行検証は行っていません。",
+        "en": "Selected input entries on fictitious mass, electronic/ionic dynamics, timestep, orthogonalization and adiabaticity consulted. No execution of the software is claimed."
+      }
+    }
+  ],
+  "reading_only_methods": [
+    "born-oppenheimer-md",
+    "car-parrinello-md"
+  ]
+}

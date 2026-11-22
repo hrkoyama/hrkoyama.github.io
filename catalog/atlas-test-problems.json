@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-21",
+  "reviewed_on": "2026-11-22",
   "policy": {
     "ja": "アトラス全体の公開済み計算データ、および検証済み公開コード版の独立したテスト問題を数えます。方程式・次元・境界条件・名前を付けた初期値やソースの違いで問題を区別し、同じ問題の手法・格子数・刻み幅・パラメータ走査・乱数種・表示形式の違いは統合します。Sodの重複掲載、楔のMach数違い、CT/GLMの違いも加算しません。参照式の評価のみ、予定・文献調査のみ、図のみ、局所的な恒等式・不変量・入力エラー等の単体検査は総数に含めません。静的な力・境界値・関数近似・代数方程式の問題を含み、全件が時間発展シミュレーションという意味ではありません。",
     "en": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
@@ -1462,6 +1462,33 @@
         },
         {
           "path": "code/molecular-hf/2026-11-22/test_molecular_hf.py",
+          "python_symbol": "test_fixed_input_validation"
+        }
+      ]
+    },
+    {
+      "id": "periodic-he-dft",
+      "group": "quantum",
+      "name": {
+        "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+        "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+      },
+      "chapter": "periodic-dft",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/periodic-dft/2026-11-22/",
+      "verification": "/code/periodic-dft/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_periodic_dft.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/periodic-dft/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/periodic-dft/2026-11-22/test_periodic_dft.py",
           "python_symbol": "test_fixed_input_validation"
         }
       ]

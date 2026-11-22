@@ -33,7 +33,7 @@ test('molecular DFT and thermostats cannot borrow atomic or oscillator execution
  }
 });
 test('four scoped cases preserve model inputs, independent/analytic references and measured convergence rather than promoting full method families',()=>{
- assert.equal(methods.length,143);
+ assert.equal(methods.length,145);
  const base='code/model-benchmarks/2026-11-22/';const verification=read(base+'verification.json');
  assert.equal(verification.passed,11);assert.equal(verification.recipes.length,4);
  for(const id of ['logistic-growth','sir-epidemic','mc-integral','gbm-sde']){

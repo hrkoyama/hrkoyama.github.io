@@ -36,13 +36,13 @@
       "ja": "公開requirementsのSHA-256を照合し、記載された固定版をPyPIのwheelから導入します。pipのキャッシュは使わず、実際に導入した依存版を記録します。",
       "en": "Check the public requirements by SHA-256 and install their specified versions from PyPI wheels, without pip caching; record the dependencies actually installed."
     },
-    "runner_timeout_seconds": 120,
+    "runner_timeout_seconds": 900,
     "workflow_timeout_minutes": 40,
     "artifact_retention_days": 90
   },
   "scope": {
-    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表20問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
-    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 20 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
+    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表21問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
+    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 21 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
   },
   "definitions": {
     "latest": {
@@ -58,8 +58,8 @@
       "en": "Logs and JSON/CSV are retained in each run's Artifacts for 90 days. Downloading artifacts requires GitHub sign-in."
     },
     "limits": {
-      "ja": "数値判定は固定入力と既存の許容条件に対して行います。ZIPや入力はハッシュで照合しますが、再計算したCSV/画像のバイト一致を要求する検査ではありません。同梱pytestの全検査、アトラス全60問題、独立PySCF参照の再生成は別の確認です。",
-      "en": "Numerical acceptance uses fixed inputs and the existing tolerances. ZIP/input hashes are checked, but rerun CSVs/images are not required to be byte-identical. Full packaged pytest suites, all 60 atlas problems and regeneration of independent PySCF references are separate checks."
+      "ja": "固定入力と記載した数値公差を判定します。ZIP／入力をハッシュで照合し、再計算CSV／画像のバイト一致は求めません。配布版pytest全件、全66問題、独立PySCF／DFTK参照の再生成は別の確認です。周期Heは保存済みDFTK参照と比較します。",
+      "en": "Evaluate fixed inputs against stated numerical tolerances and check ZIP/input hashes, without requiring byte-identical rerun CSV/images. Full packaged pytest suites, all 66 problems and regeneration of independent PySCF/DFTK references are separate checks. Periodic He is compared against its saved DFTK reference."
     },
     "atomic": {
       "ja": "水素型原子とHeは同じ1回の実行を共有し、各問題の条件を別々に判定します。Heは保存済みの有限基底PySCF参照と比較します。",

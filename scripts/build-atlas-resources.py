@@ -102,7 +102,25 @@ def public_record(x):
             'scope':x['molecular_scope']}
         if not x.get('quantum_examples'):
             record.update(code_base=molecular_base,code_edition=cases[0]['release']['version'],
+                          code_download=cases[0]['release']['download'],code_verification=cases[0]['release']['verification'],
+                          inputs=molecular_base+'inputs.json',results=molecular_base+'results/result.json',
+                          independent_reference=molecular_base+'reference-pyscf.json',
                           run_commands=[e['commands']['run'] for e in cases],run_from='Extracted molecular-hf edition directory')
+    if x.get('periodic_examples'):
+        cases=[e for e in EXECUTION_RECORDS if e['id'] in x['periodic_examples']]
+        assert {e['id'] for e in cases}==set(x['periodic_examples']) and x['status']=='educational-example'
+        assert all(e['release']['family']=='periodic-dft' and x['id'] in e['method_ids'] for e in cases)
+        base=cases[0]['release']['manifest'].rsplit('/',1)[0]+'/'
+        record['code_urls'] += [base+'periodic_dft.py',base+'run.py']
+        record['test_urls'] += [base+'test_periodic_dft.py']
+        record['periodic_release']={'release':cases[0]['release'],'code_base':base,'examples':x['periodic_examples'],
+            'run_commands':[e['commands']['run'] for e in cases],'scope':x['periodic_scope'],
+            'implementation':'Original educational workflow using PySCF; independent reference uses DFTK.'}
+        if not x.get('quantum_examples') and not x.get('molecular_examples'):
+            record.update(code_base=base,code_edition=cases[0]['release']['version'],
+                          code_download=cases[0]['release']['download'],code_verification=cases[0]['release']['verification'],
+                          inputs=base+'inputs.json',results=base+'results/result.json',independent_reference=base+'reference-dftk.json',
+                          run_commands=[e['commands']['run'] for e in cases],run_from='Extracted periodic-dft edition directory')
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -211,6 +229,9 @@ for x in METHODS:
         if x.get('molecular_examples'):
             molecular=record['molecular_release'];molecular_base=molecular['code_base']
             body+='<h2>'+('H₂の有限Gaussian基底RHF' if ja else 'H₂ RHF in finite Gaussian bases')+'</h2><p>'+esc(x['molecular_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/h2-hf/','独立参照・SCF・基底の収束' if ja else 'Independent reference, SCF and basis refinement')+' · '+link(molecular_base+'molecular_hf.py','Python solver')+' · '+link(molecular_base+'test_molecular_hf.py','Tests')+' · '+link(molecular['release']['download'],'ZIP')+'</p>'
+        if x.get('periodic_examples'):
+            periodic=record['periodic_release'];base=periodic['code_base']
+            body+='<h2>'+('周期HeセルのDFT：PySCFの実行・収束検査' if ja else 'Periodic-He DFT: PySCF execution and convergence checks')+'</h2><p>'+esc(x['periodic_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/periodic-dft/','Γ点・k点・基底・SCFと独立参照' if ja else 'Gamma, k mesh, basis, SCF and independent reference')+' · '+link(base+'periodic_dft.py','Python driver')+' · '+link(base+'test_periodic_dft.py','Tests')+' · '+link(periodic['release']['download'],'ZIP')+'</p>'
         for common in execution_links(x['id']):
             body+='<p class="resource-summary">'+link(common['guide'][lang],'入力・実行・結果判定・引用の共通手順' if ja else 'Shared input, execution, validation and citation steps')+'</p>'
         if x.get('example'):
@@ -242,6 +263,7 @@ for x in METHODS:
     if x.get('model_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\nCode: '+record['code_urls'][0]+'\nTests: '+record['test_urls'][0]+'\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\n\n'
     if x.get('quantum_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\n'+json.dumps(record['code_examples'],ensure_ascii=False,indent=2)+'\n\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\nSource: '+record['code_urls'][0]+'\nResults: '+record['results']+'\nCommands (from extracted atomic edition):\n\n'+ '\n'.join(record['run_commands'])+'\n\n'
     if x.get('molecular_examples'):md+='Molecular scope: '+x['molecular_scope']['en']+'\n\n'+json.dumps(record['molecular_release'],ensure_ascii=False,indent=2)+'\n\n'
+    if x.get('periodic_examples'):md+='Periodic scope: '+x['periodic_scope']['en']+'\n\n'+json.dumps(record['periodic_release'],ensure_ascii=False,indent=2)+'\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'
     if x.get('example'):md+='Runnable example:\n\n'+json.dumps(x['example'],ensure_ascii=False,indent=2)+'\n\n'
@@ -305,7 +327,7 @@ block=f'''\n## Method records and executable code
 - [Code edition manifest]({ORIGIN}{CODE}source-manifest.json): Direct file URLs are the public_base_url plus each listed path. The archive contains no Git history or private manuscripts.
 - [Code edition verification]({ORIGIN}{CODE}verification.json): {verification['passed']} passed, {verification['skipped']} intentionally inapplicable cases skipped in an independent extraction. No Ewald/PME/SPME or DFT implementation is included in this edition.
 - [Runnable atomic examples]({ORIGIN}/numerical-methods-atlas/en/read/quantum-atoms/): two hydrogenic/He problem families, {AVER["passed"]} independently extracted package checks passed; code, fixed inputs, CSV profiles, SCF histories and PySCF reference results. [Atomic source manifest]({ORIGIN}{ACODE}source-manifest.json) and [verification]({ORIGIN}{ACODE}verification.json). Only spherical 1s² HF and Dirac exchange-only LDA for He; not general molecular or periodic DFT.
-- [Quantum chemistry and DFT]({ORIGIN}/numerical-methods-atlas/en/read/quantum-chemistry/): {sum(x['group']['id']=='quantum' for x in METHODS)} bilingual introductory topics, primary references, representative formulas and scoped hydrogenic/helium calculations and explicitly pending molecular/periodic checks. Canonical text and references: /catalog/atlas-quantum.json. Atlas-based specialist AI is deferred to 2027 or later in /catalog/atlas-work-queue.json.
+- [Quantum chemistry and DFT]({ORIGIN}/numerical-methods-atlas/en/read/quantum-chemistry/): {sum(x['group']['id']=='quantum' for x in METHODS)} bilingual introductory topics, primary references, representative formulas and scoped atomic, H2 RHF and fixed-He periodic-LDA calculations; general molecular DFT and other periodic materials remain unvalidated. Canonical text and references: /catalog/atlas-quantum.json. Atlas-based specialist AI is deferred to 2027 or later in /catalog/atlas-work-queue.json.
 '''
 text=guide.read_text()
 text=re.sub(r'\n## Method records and executable code\n.*?(?=\n## |\Z)',lambda _:block,text,flags=re.S) if '\n## Method records and executable code\n' in text else text+block

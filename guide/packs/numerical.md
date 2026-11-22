@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-8c31ceeb01
-Captured (UTC): 2026-11-22T04:12:49+00:00
+Snapshot: 2026-11-22-3357a3aecb
+Captured (UTC): 2026-11-22T04:42:37+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -5492,6 +5492,307 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/
+Coverage: reading
+
+A small periodic cell containing one He atom connects Bloch’s theorem, k-point integration, periodic Gaussian bases, auxiliary FFT grids and SCF iteration. A PySCF-backed example is compared with an independent plane-wave DFTK reference, exposing the conventions needed to solve the same model with different discretizations.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Measurements: what was checked, and to what tolerance [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#measured-results
+Coverage: reading
+
+These stored measurements come from fixed inputs. Case counts describe calculation settings, not distinct physical test problems. Convergence sequences reuse a common baseline. Acceptance uses unrounded JSON values; a final increment is not a bound on true error.
+Measured quantityValue
+Maximum difference from DFTK / hartree per cell4.71162763809e-05
+Maximum commutator residual, tight SCF settings1.00490076615e-08
+Maximum commutator residual, including tolerance sweeps3.48433764277e-07
+Maximum orbital residual, including tolerance sweeps7.43065453612e-07
+Maximum electron-count error4.4408920985e-16
+Maximum orbital orthogonality error4.86132023525e-10
+Maximum energy reconstruction difference from final density / hartree0
+Minimum sampled KS gap over all cases / hartree0.656519700269
+Maximum overlap condition number508833030.474
+Minimum overlap eigenvalue4.14810500792e-09
+Final k-mesh |ΔE| / hartree per cell0.000525013074401
+Final Gaussian-basis |ΔE| / hartree per cell3.34202303871e-05
+Final auxiliary-grid |ΔE| / hartree per cell2.52654341004e-07
+Final SCF-setting |ΔE| / hartree per cell1.86517468137e-14
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Reading four separate convergence axes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#convergence-targets
+Coverage: reading
+
+Changed quantityFinal |ΔE| / hartreeInput target / hartreeTarget met
+k-point mesh0.0005250130744010.001true
+Gaussian orbital basis3.34202303871e-050.001true
+Auxiliary FFT grid2.52654341004e-070.0001true
+SCF tolerances1.86517468137e-141e-07true
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — k-point mesh results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#results-kpoint
+Coverage: reading
+
+Casek meshBasisFunctionsAuxiliary FFTE / hartree per cellKS gap / hartree||R(SCF)||
+k-11 × 1 × 1gth-qzv3p1339 × 39 × 39-3.024406426210.9276339960295.00414382272e-09
+k-22 × 2 × 2gth-qzv3p1339 × 39 × 39-2.825599987010.7170347936682.19366033257e-10
+k-33 × 3 × 3gth-qzv3p1339 × 39 × 39-2.833568661510.6565397971952.03889342014e-10
+k-44 × 4 × 4gth-qzv3p1339 × 39 × 39-2.833043648430.6565197002692.07710612723e-10
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Gaussian orbital basis results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#results-basis
+Coverage: reading
+
+Casek meshBasisFunctionsAuxiliary FFTE / hartree per cellKS gap / hartree||R(SCF)||
+basis-gth-dzv3 × 3 × 3gth-dzv239 × 39 × 39-2.832962518740.8054627677933.92687052501e-10
+basis-gth-dzvp3 × 3 × 3gth-dzvp539 × 39 × 39-2.833201932210.8056501301931.00490076615e-08
+basis-gth-tzv2p3 × 3 × 3gth-tzv2p939 × 39 × 39-2.833535241280.7266364526313.66295641242e-10
+k-33 × 3 × 3gth-qzv3p1339 × 39 × 39-2.833568661510.6565397971952.03889342014e-10
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Auxiliary FFT grid results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#results-auxiliary
+Coverage: reading
+
+Casek meshBasisFunctionsAuxiliary FFTE / hartree per cellKS gap / hartree||R(SCF)||
+fft-253 × 3 × 3gth-qzv3p1325 × 25 × 25-2.833597708370.6565427846921.98973674317e-10
+fft-313 × 3 × 3gth-qzv3p1331 × 31 × 31-2.833568914160.6565398216192.03659808765e-10
+k-33 × 3 × 3gth-qzv3p1339 × 39 × 39-2.833568661510.6565397971952.03889342014e-10
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — SCF tolerances results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#results-scf
+Coverage: reading
+
+CaseEnergy toleranceGradient toleranceE / hartree per cell||R(SCF)||IterationsTermination
+scf-loose1e-050.001-2.833568661513.48433764277e-074converged
+scf-medium1e-081e-05-2.833568661513.48433764277e-074converged
+k-31e-101e-07-2.833568661512.03889342014e-105converged
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Total-energy comparison with independent DFTK [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#reference-results
+Coverage: reading
+
+Finite Gaussian and plane-wave orbital spaces differ, so these differences are not rounding errors for the same finite matrix. The model and constant conventions are aligned, and the published acceptance width is assessed together with convergence on both sides.
+k meshPySCF / hartree per cellDFTK / hartree per cell|Difference| / hartreeAcceptance width / hartreePassed
+1 × 1 × 1-3.02440642621-3.024415789939.36372572991e-060.001true
+2 × 2 × 2-2.82559998701-2.825647103284.71162763809e-050.001true
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Plane-wave cutoff convergence on the DFTK side [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#reference-cutoff-results
+Coverage: reading
+
+Cutoffs are in hartree. If initial coarse settings miss the target, additional cutoffs are tested against the final increment. The table includes all settings in the fixed edition; intermediate values are not treated as converged references.
+k meshOrbital cutoff / hartreeE / hartree per cellKS gap / hartreeDensity residualSCF iterationsConverged
+1 × 1 × 160-3.015437404170.927327995127.10737613371e-1116true
+1 × 1 × 190-3.022780085460.9271592482522.75239975202e-1020true
+1 × 1 × 1120-3.024091830940.9271185148994.87316147476e-1018true
+1 × 1 × 1180-3.024399415590.9271060552262.39068554566e-1017true
+1 × 1 × 1240-3.024415789930.9271052684321.08825768472e-1017true
+2 × 2 × 260-2.815968392060.5261943147529.91949957922e-1013true
+2 × 2 × 290-2.823843983230.5292594090938.25081344235e-1013true
+2 × 2 × 2120-2.825292133260.5297286850395.01312024631e-1013true
+2 × 2 × 2180-2.825629671010.5298373410653.73819968201e-1012true
+2 × 2 × 2240-2.825647103280.5298424637685.96487433745e-1012true
+k meshFinal cutoff / hartreeFinal |ΔE| / hartree per cellTarget / hartree per cellTarget met
+1 × 1 × 12401.63743465871e-050.0001true
+2 × 2 × 22401.74322793534e-050.0001true
+DFTK cutoff convergence and reference / JSON
+A visualization of stored results. Acceptance uses the numerical values and criteria in the input/result JSON.
+Full results / JSON · Settings and energies / CSV · SCF histories / CSV
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — The fixed physical model and the numerical errors being tested [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#model-and-scope
+Coverage: reading
+
+The input is a simple-cubic cell of side 4 bohr containing one He atom at the origin. A local GTH–PADE pseudopotential supplies two valence electrons for a closed-shell, spin-unpolarized Kohn–Sham problem. This He potential has no nonlocal projectors. One example therefore does not validate general multielement crystals or nonlocal pseudopotentials. The geometry is fixed as a teaching configuration for convergence experiments.
+The exchange-correlation functional is specified explicitly as Libxc LDA_X plus LDA_C_VWN (VWN5). The label LDA alone does not align choices such as VWN and Perdew–Wang correlation. GTH–PADE names the chosen pseudopotential; it does not assert that its generation approximation is identical to the VWN5 used here. Both engines receive the same pseudopotential coefficients and exchange-correlation choice.
+Atomic units are used, with lattice lengths in bohr and energies in hartree. Total energies are compared per unit cell, including electronic terms and periodic ion–ion interactions. SCF solution error, k-point quadrature, the orbital basis and the auxiliary density/potential grid are varied separately. Reducing these numerical effects does not measure the physical error of LDA or the pseudopotential approximation.
+\left[-\tfrac12\nabla^2+V_{\mathrm{loc}}+V_H[n]+V_{\mathrm{xc}}[n]\right]\psi_{n\mathbf k}=\varepsilon_{n\mathbf k}\psi_{n\mathbf k}
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — The fixed physical model and the numerical errors being tested [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#model-and-scope
+Coverage: reading
+
+Sources: P. Hohenberg and W. Kohn (1964), W. Kohn and L. J. Sham (1965), S. Goedecker, M. Teter and J. Hutter (1996), S. H. Vosko, L. Wilk and M. Nusair (1980), Libxc developers (2026)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Bloch’s theorem and the units of a k point [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#bloch-and-reciprocal-space
+Coverage: reading
+
+For a periodic potential, an orbital can be written as a plane-wave phase times a lattice-periodic function. The periodic function u and the Bloch orbital ψ are distinct: u is periodic across cell boundaries, whereas ψ satisfies a k-dependent phase boundary condition. Γ is the special point k=0, where this phase is one.
+Here A contains direct lattice vectors as columns and B contains reciprocal vectors as columns, with AᵀB=2πI. Fractional coordinates κ give the physical wavevector k=Bκ. The coordinates κ are dimensionless; k is in bohr⁻¹ when the lattice is in bohr. PySCF stores cell vectors as rows and passes physical wavevectors to SCF. A shared input lattice and fractional k-point list prevent confusion with DFTK’s column convention.
+\psi_{n\mathbf k}(\mathbf r)=e^{i\mathbf k\cdot\mathbf r}u_{n\mathbf k}(\mathbf r),\qquad u_{n\mathbf k}(\mathbf r+\mathbf R)=u_{n\mathbf k}(\mathbf r),\qquad\psi_{n\mathbf k}(\mathbf r+\mathbf R)=e^{i\mathbf k\cdot\mathbf R}\psi_{n\mathbf k}(\mathbf r)A=(\mathbf a_1,\mathbf a_2,\mathbf a_3),\qquad B=2\pi A^{-\mathsf T},\qquad\mathbf k=B\boldsymbol\kappa,\qquad\Omega=|\det A|
+Sources: Felix Bloch (1929), PySCF developers (2026), DFTK developers (2026)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Γ points and k meshes: quadrature versus band paths [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#kpoint-quadrature
+Coverage: reading
+
+Densities and energies of an infinite crystal involve integrals over the Brillouin zone. A finite set of k points and weights approximates these integrals. This example explicitly lists all points of a uniform mesh containing Γ and equal weights summing to one. Γ is included even for even subdivisions. This convention is not automatically identical to software defaults or the half-grid displacement of an even Monkhorst–Pack mesh. Fractional k points differing by an integer reciprocal vector represent the same point.
+A Γ-only calculation is a one-point quadrature of the Brillouin zone. It can be adequate for some large real-space cells or localized orbitals, but adequacy for this small cell must be measured. Γ-only and several meshes are compared with the same orbital basis, auxiliary grid and SCF settings. Different meshes need not be nested, and monotonically decreasing energy differences are not assumed.
+A band path joins high-symmetry points to visualize dispersion. Giving its points equal weights generally does not produce a Brillouin-zone quadrature. This example tests integrated energy and density; drawing a band path does not replace k-point convergence.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Γ points and k meshes: quadrature versus band paths [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#kpoint-quadrature
+Coverage: reading
+
+Two-dimensional schematic of Γ-only and uniform k-point sampling. Actual calculations are three-dimensional.\frac{1}{|\mathrm{BZ}|}\int_{\mathrm{BZ}}f(\mathbf k)\,d\mathbf k\simeq\sum_{q=1}^{N_k}w_qf(\mathbf k_q),\qquad\sum_qw_q=1,\qquad n(\mathbf r)=2\sum_qw_q\sum_{n\in\mathrm{occ}}|\psi_{n\mathbf k_q}(\mathbf r)|^2\boldsymbol\kappa_{\mathbf j}=\left(\frac{j_1}{N_1},\frac{j_2}{N_2},\frac{j_3}{N_3}\right)\bmod\mathbb Z^3,\quad j_i=0,\ldots,N_i-1,\quad w_{\mathbf j}=\frac{1}{N_1N_2N_3}
+Sources: H. J. Monkhorst and J. D. Pack (1976), PySCF developers (2026)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — The orbital basis and auxiliary FFT grid are separate convergence axes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#orbital-and-auxiliary-bases
+Coverage: reading
+
+The PySCF orbitals expand Bloch sums of Gaussian functions. Results retain basis names such as gth-dzv, the actual function count and overlap conditioning. Increasing a basis’s zeta label does not prove a complete-basis limit; bases with different contractions and polarization functions are not necessarily mathematically nested. Basis differences measure sensitivity within the published finite sequence.
+FFT density fitting (FFTDF) is an auxiliary plane-wave/FFT representation used for quantities such as density and Coulomb potentials. Refining its mesh does not enlarge the Gaussian orbital space. Conversely, enlarging only the orbital basis cannot remove errors from a coarse auxiliary grid. The PySCF auxiliary grid, DFTK orbital plane-wave cutoff and its associated density grid are distinct, and hartree must not be confused with rydberg.
+The periodic Coulomb G=0 component is handled with a convention combining electrons, the local pseudopotential and periodic ionic terms. A change in the mean potential also shifts the orbital eigenvalue origin. Even the same physical model needs aligned G=0 constants, pseudopotential corrections, Ewald terms and per-cell versus per-atom units for direct total-energy comparison. Conventions and energy components are checked rather than adding an empirical constant to force agreement.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — The orbital basis and auxiliary FFT grid are separate convergence axes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#orbital-and-auxiliary-bases
+Coverage: reading
+
+\chi_{\mu\mathbf k}(\mathbf r)=\sum_{\mathbf R}e^{i\mathbf k\cdot\mathbf R}\chi_\mu(\mathbf r-\mathbf R),\qquad\psi_{n\mathbf k}=\sum_\mu C_{\mu n}(\mathbf k)\chi_{\mu\mathbf k}\Delta_kE,\qquad\Delta_{\mathrm{orbital\ basis}}E,\qquad\Delta_{\mathrm{auxiliary\ grid}}E,\qquad E_{\tau}-E_{\mathrm{tight}},\qquad E_{\mathrm{PySCF}}-E_{\mathrm{DFTK}}
+Sources: S. Goedecker, M. Teter and J. Hutter (1996), PySCF developers (2026), M. F. Herbst, A. Levitt and E. Cancès (2021)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — SCF residuals, electron count and a sampled KS gap [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#scf-and-gap
+Coverage: reading
+
+The Kohn–Sham potential depends on density, so an eigenproblem and density update are iterated. Energy changes are supplemented by a commutator residual built from the final density, orbital-equation residuals, orthogonality and electron count. The commutator measure is the maximum over k points of the Frobenius norm of X(FPS−SPF)X, with symmetric orthogonalization X=S⁻¹ᐟ². Orbital residuals use the same final-density F. Results retain iteration histories, stopping reasons and tolerances. Reaching an iteration cap is not labeled convergence.
+A tolerance sweep changes only SCF settings at fixed discretization and measures the energy difference from a tight solution. This checks the remaining nonlinear solution error. SCF convergence is separate from sufficient orbital bases, auxiliary grids and k points, and from physical-model accuracy.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — SCF residuals, electron count and a sampled KS gap [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#scf-and-gap
+Coverage: reading
+
+For closed-shell occupations, a sampled KS gap is obtained from the largest occupied and smallest unoccupied eigenvalues over all calculated k points. A positive value indicates separated occupations on that mesh. It neither guarantees the true minimum over the full Brillouin zone nor equals the many-body fundamental gap defined by adding/removing an electron or an experimental optical gap. Unoccupied states also depend on the orbital basis. A visible difference remains between the Gaussian and plane-wave sampled gaps in this example. The independent comparison validates total energies; gap convergence or agreement is not established.
+F_{\mathbf k}C_{\mathbf k}=S_{\mathbf k}C_{\mathbf k}\varepsilon_{\mathbf k},\qquad C_{\mathbf k}^{\dagger}S_{\mathbf k}C_{\mathbf k}=I,\qquad\sum_qw_q\operatorname{Tr}(P_{\mathbf k_q}S_{\mathbf k_q})=N_e=2E_{g,\mathcal K}^{\mathrm{KS}}=\min_{\mathbf k\in\mathcal K,n\in\mathrm{unocc}}\varepsilon_{n\mathbf k}-\max_{\mathbf k\in\mathcal K,n\in\mathrm{occ}}\varepsilon_{n\mathbf k}
+Sources: W. Kohn and L. J. Sham (1965), PySCF developers (2026), DFTK developers (2026)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Comparison with an independent DFTK reference in a different basis [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#independent-reference
+Coverage: reading
+
+The example uses PySCF’s periodic integrals, FFTDF and SCF. The independent Julia package DFTK supplies a plane-wave Kohn–Sham reference without calling the teaching PySCF solver. Merely changing an auxiliary representation within PySCF would not be an independent-implementation comparison. Both engines use Libxc for exchange-correlation evaluation, so that component is not independently implemented in this comparison.
+The lattice, atomic positions, valence count, spin, pseudopotential coefficients, LDA_X plus LDA_C_VWN, fractional k points and weights are aligned. Plane-wave cutoff and SCF convergence are checked on the DFTK side. Gaussian and plane-wave calculations use different finite spaces, so machine-precision agreement is not demanded between their finite-basis energies. Agreement is assessed against the published acceptance width alongside Gaussian-basis and auxiliary-grid sensitivities and reference-cutoff dependence. Meeting this width establishes neither a rigorous bound on true error nor chemical accuracy.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Comparison with an independent DFTK reference in a different basis [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#independent-reference
+Coverage: reading
+
+Ordinary reproduction against the saved reference and reference regeneration in Julia are separate operations. Input, reference and source hashes and dependency versions are fixed, and execution from an independently extracted ZIP is checked. The release exposes numerical differences, acceptance criteria and convergence sequences as well as the result JSON’s pass flag.
+Sources: Qiming Sun et al. (2020), M. F. Herbst, A. Levitt and E. Cancès (2021), Libxc developers (2026)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — First-principles MD: Born–Oppenheimer and Car–Parrinello methods [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md
+Coverage: reading
+
+First-principles molecular dynamics (AIMD) moves nuclei using electronic-structure calculations. Born–Oppenheimer molecular dynamics (BOMD) converges the electronic ground state at each nuclear configuration, then integrates classical nuclear motion using forces on that energy surface. E_BO below includes ionic interactions. The 1927 Born–Oppenheimer paper is cited for electronic–nuclear separation, not as the publication of a modern BOMD program.
+In BOMD, SCF tolerances must control forces and trajectory reproducibility as well as energies. Atom-centered finite Gaussian bases require force contributions from basis-position dependence (Pulay terms). Finite-difference force checks, timestep refinement and energy drift in unthermostatted NVE trajectories are separate tests. Predicting an electronic initial guess does not remove the requirement to optimize each configuration to adequate accuracy.
+Car–Parrinello molecular dynamics (CPMD) propagates nuclear coordinates and electronic orbitals together through an extended Lagrangian. The fictitious orbital mass μ is a numerical parameter, rather than the physical electron mass. Lagrange multipliers Λ enforce orthonormality. The displayed convention uses a μ/2 orbital-velocity term at fixed cell and occupations. Generalization to periodic k sampling must consistently include weights and occupations in electronic terms.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — First-principles MD: Born–Oppenheimer and Car–Parrinello methods [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md
+Coverage: reading
+
+CPMD orbital propagation does not represent real electronic excitations as in TDDFT. Electronic fictitious motion must remain separated in timescale from nuclear motion, keeping orbitals near the BO surface. Vary μ, timestep and orthogonality tolerance while monitoring fictitious kinetic energy and energy transfer to nuclei. Distinguish the ideal unthermostatted extended-system conserved energy E_ext from nuclear kinetic plus BO energy. These statements do not establish applicability to narrow-gap systems or metals.
+This section is reading only. The fixed-He example validates static total energies and quadrature, basis, auxiliary-grid and SCF convergence. It does not execute or validate atomic forces, BOMD/CPMD trajectories, time integration or thermostatting. A future implementation should first compare multiatom forces with independent references, then test MD conservation and sensitivity to timestep, SCF tolerances and μ.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — First-principles MD: Born–Oppenheimer and Car–Parrinello methods [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md
+Coverage: reading
+
+E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)L_{\mathrm{CP}}=\frac12\sum_I M_I|\dot{\mathbf R}_I|^2+\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle-E_{\mathrm{KS}}+\sum_{ij}\Lambda_{ij}\bigl(\langle\psi_i|\psi_j\rangle-\delta_{ij}\bigr)\langle\psi_i|\psi_j\rangle=\delta_{ij},\qquad K_{\mathrm{fict}}=\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle,\qquad E_{\mathrm{ext}}=\sum_I\frac{M_I}{2}|\dot{\mathbf R}_I|^2+E_{\mathrm{KS}}+K_{\mathrm{fict}}
+Sources: M. Born and R. Oppenheimer (1927), R. Car and M. Parrinello (1985), Quantum ESPRESSO developers (2026)
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Download and verify the results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#run-and-check
+Coverage: reading
+
+Install dependencies in the extracted edition directory and use its fixed input. Choose a new or empty output directory. The ordinary runner compares with the saved DFTK reference. Regenerating that reference in Julia is a separate operation with its own packaged environment and instructions.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Fixed input / JSON · Runner · Independent DFTK reference / JSON · Edition, acceptance criteria and citation
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#sources
+Coverage: reading
+
+Bibliographic, abstract, selected full-text and official API checks are distinguished below. They do not claim reproduction or audit of an entire paper. Full papers and third-party source code are not reprinted in this tutorial.
+Felix Bloch (1929). Über die Quantenmechanik der Elektronen in Kristallgittern. Zeitschrift für Physik 52, 555–600
+Publisher bibliography and abstract consulted, distinguishing receipt in 1928 from publication in 1929. No full-paper reproduction or audit claimed.
+P. Hohenberg and W. Kohn (1964). Inhomogeneous Electron Gas. Physical Review 136, B864–B871
+Original bibliography and DOI checked against the existing Atlas. Cited for the theoretical foundation, not as a proof of the theorem by this finite-basis calculation.
+W. Kohn and L. J. Sham (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review 140, A1133–A1138
+Original bibliography and DOI checked against the existing Atlas. Cited as the Kohn–Sham source without claiming numerical reproduction of the entire paper.
+H. J. Monkhorst and J. D. Pack (1976). Special points for Brillouin-zone integrations. Physical Review B 13, 5188–5192
+Original bibliography and DOI checked against the existing Atlas. The example’s Γ-containing mesh convention is specified in the text/input rather than equated with every mesh in the paper.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#sources
+Coverage: reading
+
+S. H. Vosko, L. Wilk and M. Nusair (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics 58, 1200–1211
+Original DOI and bibliography checked through official Libxc documentation identifying LDA_C_VWN as VWN5. Publisher text was inaccessible; no full-text or table audit was performed.
+S. Goedecker, M. Teter and J. Hutter (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B 54, 1703–1710
+Publisher bibliography and abstract consulted. Actual He coefficients are aligned through the packaged data and libraries, not presented as a full-precision transcription from the paper’s tables.
+Qiming Sun et al. (2020). Recent developments in the PySCF program package. The Journal of Chemical Physics 153, 024109
+Publisher bibliography/abstract and the existing Atlas entry consulted. The periodic APIs used here are additionally checked against official documentation and pinned code.
+M. F. Herbst, A. Levitt and E. Cancès (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences 3(26), 69
+Publisher bibliography and the introduction of the open paper consulted. The reference calculation is a separate numerical check, not a reproduction of all paper examples.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#sources
+Coverage: reading
+
+PySCF developers (2026). Crystal structure. Official PySCF periodic-boundary-condition user documentation
+Relevant sections on lattice vectors, units, GTH basis/pseudopotential pairing and k-point generation consulted; distinct from an original-method publication.
+PySCF developers (2026). Periodic SCF and density fitting. Official PySCF periodic-boundary-condition user documentation
+Relevant sections on periodic SCF, DFT, FFTDF, cutoffs and Coulomb-divergence handling consulted.
+DFTK developers (2026). DFTK API and pseudopotentials. Official DFTK documentation
+Relevant lattice, k-point, functional and SCF APIs and the official pseudopotential discussion consulted. The release separately pins the versions actually executed.
+Libxc developers (2026). Libxc functionals: LDA_X and LDA_C_VWN. Official Libxc functional registry
+Identities and original-source links for LDA_X (id 1) and LDA_C_VWN (id 7, VWN5) checked. Identified as an evaluation library shared by both engines.
+M. Born and R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484
+Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation.
+
+## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#sources
+Coverage: reading
+
+R. Car and M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474
+Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced.
+Quantum ESPRESSO developers (2026). cp.x input description: electron dynamics, emass and orthogonalization. Official Quantum ESPRESSO documentation, version 7.5
+Selected input entries on fictitious mass, electronic/ionic dynamics, timestep, orthogonalization and adiabaticity consulted. No execution of the software is claimed.
+
 ## Particle-in-cell / PIC — Particle-in-cell / PIC [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/pic/
@@ -5921,7 +6222,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemi
 Coverage: reading
 
 From Schrödinger, HF and DFT to bases, SCF and correlation, including space groups, little-group irreps, SOC and time reversal in band calculations.
-Bilingual reading for 18 entries and 30 primary publications. Runnable validation covers two hydrogenic/He families and scoped finite-basis H₂ RHF. Molecular DFT and periodic systems remain unimplemented.
+Bilingual reading for 20 entries and 36 primary publications. Runnable validation covers two hydrogenic/He families and scoped finite-basis H₂ RHF. A fixed periodic-He LDA workflow is also available; general molecular DFT and other periodic materials remain unvalidated.
 
 ## Quantum chemistry and DFT: approximations and equations — Physical model and approximation [en]
 
@@ -5991,14 +6292,15 @@ Here DFT means density functional theory, rather than the discrete Fourier trans
 T_s is the auxiliary kinetic energy and E_H the classical Coulomb energy. E_xc includes exchange, correlation and the difference between interacting kinetic energy and T_s. Updating density to potential and orbitals back to density produces the nonlinear SCF problem.
 The representative local KS equation below assumes a differentiable density functional. Distinguish generalized KS treatments of nonlocal hybrid exchange and orbital-dependent meta-GGAs.
 Spin-unpolarized exchange-only Dirac LDA for spherical helium; correlation, GGA, hybrids, molecules, periodic systems and excitations are not implemented. Fixed inputs, code and measured checks
-E[n]=T_s[n]+\int v_{\rm ext}n\,d\mathbf r+E_H[n]+E_{\rm xc}[n]+E_{NN}[-\tfrac12\nabla^2+v_{\rm ext}+v_H+v_{\rm xc}]\phi_i=\varepsilon_i\phi_in(\mathbf r)=\sum_i f_i|\phi_i(\mathbf r)|^2,\quad \int n\,d\mathbf r=N,\quad v_{\rm xc}=\frac{\delta E_{\rm xc}}{\delta n}
-Long equations scroll horizontally.
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
 
 ## Quantum chemistry and DFT: approximations and equations — Kohn–Sham density functional theory / DFT [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#kohn-sham-dft
 Coverage: reading
 
+E[n]=T_s[n]+\int v_{\rm ext}n\,d\mathbf r+E_H[n]+E_{\rm xc}[n]+E_{NN}[-\tfrac12\nabla^2+v_{\rm ext}+v_H+v_{\rm xc}]\phi_i=\varepsilon_i\phi_in(\mathbf r)=\sum_i f_i|\phi_i(\mathbf r)|^2,\quad \int n\,d\mathbf r=N,\quad v_{\rm xc}=\frac{\delta E_{\rm xc}}{\delta n}
+Long equations scroll horizontally.
 Distinguish exact-functional theory from calculations with approximate functionals. KS eigenvalues are not generally excitation energies; ground-state DFT alone does not guarantee excited-state accuracy.
 Assumptions, implementation status and JSON
 Hohenberg, P.; Kohn, W. (1964)
@@ -6012,7 +6314,14 @@ Coverage: reading
 The same HF or DFT model can use Gaussian or Slater atomic orbitals, plane waves, or a real-space grid. Nonorthogonal bases retain an overlap matrix S and require a generalized eigenproblem.
 Vary basis size, polarization and diffuse functions for atomic orbitals; cutoff and cell size for plane waves; spacing and domain for real-space grids. Boys provides an original entry point for Gaussian integral methods.
 New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation. H₂ inputs, code, independent references and refinement
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
 \phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
+
+## Quantum chemistry and DFT: approximations and equations — Electronic-structure basis sets [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#electronic-bases
+Coverage: reading
+
 Changing the basis is different from changing electron correlation or the functional. Check near-linear dependence, basis-set superposition error and pseudopotential compatibility.
 Assumptions, implementation status and JSON
 Boys, S. F. (1950)
@@ -6028,6 +6337,13 @@ SCF is an iteration for self-consistency in HF or KS, rather than a physical mod
 Save density differences, electron number and eigenpair or orbital-gradient residuals as well as energy changes. Record mixing, initial density, occupations, iteration limits and an explicit nonconvergence termination reason.
 Helium linear density mixing with density/energy/orbital-residual checks, alternative starts/mixing and explicit failure; no DIIS. A separate edition adds H₂ RHF in finite s-Gaussian bases. Fixed inputs, code and measured checks
 New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation. H₂ inputs, code, independent references and refinement
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
+
+## Quantum chemistry and DFT: approximations and equations — Self-consistent field iteration / SCF [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#scf
+Coverage: reading
+
 n_{k+1}=(1-\alpha)n_k+\alpha\mathcal M[n_k],\qquad 0<\alpha\le1\mathrm{Tr}(\mathbf P\mathbf S)=N,\qquad \mathbf R=\mathbf F\mathbf P\mathbf S-\mathbf S\mathbf P\mathbf F
 Long equations scroll horizontally.
 A small energy change alone is insufficient. Convergence also does not establish the lowest-energy stable electronic solution.
@@ -6070,14 +6386,22 @@ Coverage: reading
 LDA depends on local density, GGA on density and its gradient, and meta-GGA on quantities such as orbital kinetic-energy density. Hybrids mix in HF-type exchange. PBE, SCAN, B3 variants and PBE0 are approximation choices rather than a universal ranking.
 The formula below is spin-unpolarized Dirac exchange only. Distinguish it from LDA including correlation. State functional components, parameters, library/version and the density integration grid.
 Only spin-unpolarized Dirac exchange energy and its functional derivative are verified; LDA correlation, GGA, meta-GGA and hybrids remain reading-only. Fixed inputs, code and measured checks
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
 E_x^{\rm LDA}[n]=-\frac34\left(\frac3\pi\right)^{1/3}\int n^{4/3}\,d\mathbf rv_x^{\rm LDA}=-\left(\frac{3n}{\pi}\right)^{1/3}
 Basis, grid and SCF convergence do not remove functional error. Assess self-interaction, charge transfer, strong correlation and dispersion for the chosen system and approximation.
+
+## Quantum chemistry and DFT: approximations and equations — LDA, GGA and hybrid functionals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#xc-functionals
+Coverage: reading
+
 Assumptions, implementation status and JSON
 Dirac, P. A. M. (1930)
 Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996)
 Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015)
 Becke, A. D. (1993)
 Adamo, C.; Barone, V. (1999)
+Vosko, S. H.; Wilk, L.; Nusair, M. (1980)
 
 ## Quantum chemistry and DFT: approximations and equations — Pseudopotentials and PAW [en]
 
@@ -6086,11 +6410,13 @@ Coverage: reading
 
 Pseudopotentials represent core effects effectively while focusing on valence electrons. Distinguish norm-conserving, ultrasoft and PAW approaches. PAW uses a transformation and reconstruction; describing it as only a smooth local replacement is inadequate.
 Save the element, valence configuration, generating functional, relativistic treatment, dataset version and cutoff guidance. Compare against all-electron calculations under matched physical conditions and observables.
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
 Do not compare absolute energy zeroes across different pseudopotentials without alignment. Cutoff convergence alone does not establish transferability.
 Assumptions, implementation status and JSON
 Hamann, D. R.; Schlüter, M.; Chiang, C. (1979)
 Vanderbilt, D. (1990)
 Blöchl, P. E. (1994)
+Goedecker, S.; Teter, M.; Hutter, J. (1996)
 
 ## Quantum chemistry and DFT: approximations and equations — Periodic electronic structure and k-point sampling [en]
 
@@ -6099,11 +6425,13 @@ Coverage: reading
 
 For a periodic potential, Bloch orbitals reduce Brillouin-zone integrals to weighted k-point sums. u_nk is lattice periodic. Monkhorst–Pack supplies an original entry point for special-point integration.
 Save k-mesh density and shift, symmetry, occupations/smearing, cell and basis cutoff. A molecule in a large periodic cell must also be distinguished from an isolated-boundary calculation.
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
 \psi_{n\mathbf k}(\mathbf r)=e^{i\mathbf k\cdot\mathbf r}u_{n\mathbf k}(\mathbf r),\qquad \int_{\rm BZ}g(\mathbf k)\,d\mathbf k\approx\sum_\nu w_\nu g(\mathbf k_\nu)
 Long equations scroll horizontally.
 Distinguish metallic occupation/smearing dependence, finite-temperature free energy and zero-temperature energy. Whether Γ-only sampling is adequate depends on the system and cell.
 Assumptions, implementation status and JSON
 Monkhorst, H. J.; Pack, J. D. (1976)
+Bloch, F. (1929)
 
 ## Quantum chemistry and DFT: approximations and equations — Band symmetry groups and irreducible representations [en]
 
@@ -6250,12 +6578,39 @@ Assumptions, implementation status and JSON
 White, S. R. (1992)
 White, S. R.; Martin, R. L. (1999)
 
+## Quantum chemistry and DFT: approximations and equations — Born–Oppenheimer molecular dynamics / BOMD [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#born-oppenheimer-md
+Coverage: reading
+
+BOMD minimizes electronic energy at each nuclear configuration and integrates nuclear motion with the gradient of the Born–Oppenheimer surface. Energy tolerances and force accuracy are separate criteria; a moving finite basis also contributes position derivatives.
+Static DFT convergence does not establish a correct MD trajectory. Independent force comparisons, timestep/SCF sensitivity and NVE energy drift remain future validation tasks. The periodic-DFT chapter contrasts BOMD with CPMD.
+E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)
+Long equations scroll horizontally.
+Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats.
+Assumptions, implementation status and JSON
+M. Born; R. Oppenheimer (1927)
+R. Car; M. Parrinello (1985)
+
+## Quantum chemistry and DFT: approximations and equations — Car–Parrinello molecular dynamics / CPMD [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#car-parrinello-md
+Coverage: reading
+
+Car–Parrinello dynamics propagates orbitals and nuclei through an extended Lagrangian with fictitious orbital inertia μ and orthonormality constraints. This electronic motion is distinct from real-time TDDFT and physical electronic excitation.
+Inspect μ, timestep, orthogonality tolerance and fictitious kinetic energy to maintain proximity to the BO surface. No dedicated implementation is provided; static periodic-He energy agreement is not CPMD validation.
+L_{\mathrm{CP}}=\frac12\sum_I M_I|\dot{\mathbf R}_I|^2+\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle-E_{\mathrm{KS}}+\sum_{ij}\Lambda_{ij}\bigl(\langle\psi_i|\psi_j\rangle-\delta_{ij}\bigr)
+Long equations scroll horizontally.
+Reading only. Adiabatic separation, fictitious-to-nuclear energy transfer and long trajectories are unvalidated.
+Assumptions, implementation status and JSON
+R. Car; M. Parrinello (1985)
+
 ## Quantum chemistry and DFT: approximations and equations — Runnable validation examples and next plans [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 65-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. Molecular DFT, FCI and periodic systems remain unimplemented and are not counted.
+Two hydrogenic/He problem families were executed, independently compared and added to the 66-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -6282,12 +6637,13 @@ Coverage: reading
 Compare with independent PySCF at identical geometries/s-type bases. Check joint SCF residuals, stopping, nested-basis energy changes and stated tolerance. Correct RHF dissociation and angular/complete-basis convergence remain separate.
 Results and reproduction
 
-## Quantum chemistry and DFT: approximations and equations — Periodic systems: basis, k-mesh and cell convergence [en]
+## Quantum chemistry and DFT: approximations and equations — Periodic: fixed-He LDA with k/basis/SCF checks [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/
 Coverage: reading
 
-Record pseudopotential identity and valence, cutoff, k mesh, neutrality and occupations; vary one numerical source at a time.
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals.
+Results and reproduction
 
 ## Quantum chemistry and DFT: approximations and equations — Further topics to develop [en]
 
@@ -6309,18 +6665,20 @@ Coverage: reading
 
 An original introductory synthesis of standard representative equations. Bibliographic metadata and conceptual entry points are checked against primary publication information and official documentation. Full-paper equation audits and numerical reproduction have not been performed. A separate scoped hydrogenic/He code edition supplies actual execution records and analytic/independent-reference comparisons.
 Schrödinger, E. (1926). Quantisierung als Eigenwertproblem. Annalen der Physik.
+M. Born; R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484.
 Hartree, D. R. (1928). The Wave Mechanics of an Atom with a Non-Coulomb Central Field. Part I. Theory and Methods. Mathematical Proceedings of the Cambridge Philosophical Society.
+Bloch, F. (1929). Über die Quantenmechanik der Elektronen in Kristallgittern. Zeitschrift für Physik.
 Dirac, P. A. M. (1930). Note on Exchange Phenomena in the Thomas Atom. Mathematical Proceedings of the Cambridge Philosophical Society.
 Møller, C.; Plesset, M. S. (1934). Note on an Approximation Treatment for Many-Electron Systems. Physical Review.
 Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
-Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A.
-Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics.
 
 ## Quantum chemistry and DFT: approximations and equations — Primary publications and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#sources
 Coverage: reading
 
+Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A.
+Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics.
 Hohenberg, P.; Kohn, W. (1964). Inhomogeneous Electron Gas. Physical Review.
 Kohn, W.; Sham, L. J. (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review.
 Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
@@ -6329,33 +6687,37 @@ Hamann, D. R.; Schlüter, M.; Chiang, C. (1979). Norm-Conserving Pseudopotential
 Ceperley, D. M.; Alder, B. J. (1980). Ground State of the Electron Gas by a Stochastic Method. Physical Review Letters.
 Pulay, P. (1980). Convergence acceleration of iterative sequences. The case of SCF iteration. Chemical Physics Letters.
 Roos, B. O.; Taylor, P. R.; Siegbahn, P. E. M. (1980). A complete active space SCF method (CASSCF) using a density matrix formulated super-CI approach. Chemical Physics.
-Knowles, P. J.; Handy, N. C. (1984). A new determinant-based full configuration interaction method. Chemical Physics Letters.
-Runge, E.; Gross, E. K. U. (1984). Density-Functional Theory for Time-Dependent Systems. Physical Review Letters.
 
 ## Quantum chemistry and DFT: approximations and equations — Primary publications and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#sources
 Coverage: reading
 
+Vosko, S. H.; Wilk, L.; Nusair, M. (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics.
+Knowles, P. J.; Handy, N. C. (1984). A new determinant-based full configuration interaction method. Chemical Physics Letters.
+Runge, E.; Gross, E. K. U. (1984). Density-Functional Theory for Time-Dependent Systems. Physical Review Letters.
+R. Car; M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474.
 Raghavachari, K.; Trucks, G. W.; Pople, J. A.; Head-Gordon, M. (1989). A fifth-order perturbation comparison of electron correlation theories. Chemical Physics Letters.
 Vanderbilt, D. (1990). Soft self-consistent pseudopotentials in a generalized eigenvalue formalism. Physical Review B.
 White, S. R. (1992). Density matrix formulation for quantum renormalization groups. Physical Review Letters.
 Becke, A. D. (1993). Density-functional thermochemistry. III. The role of exact exchange. The Journal of Chemical Physics.
 Blöchl, P. E. (1994). Projector augmented-wave method. Physical Review B.
+Goedecker, S.; Teter, M.; Hutter, J. (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B.
 Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996). Generalized Gradient Approximation Made Simple. Physical Review Letters.
-Adamo, C.; Barone, V. (1999). Toward reliable density functional methods without adjustable parameters: The PBE0 model. The Journal of Chemical Physics.
-White, S. R.; Martin, R. L. (1999). Ab initio quantum chemistry using the density matrix renormalization group. The Journal of Chemical Physics.
-Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006). Bilbao Crystallographic Server. II. Representations of crystallographic point groups and space groups. Acta Crystallographica Section A.
-Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
 
 ## Quantum chemistry and DFT: approximations and equations — Primary publications and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#sources
 Coverage: reading
 
+Adamo, C.; Barone, V. (1999). Toward reliable density functional methods without adjustable parameters: The PBE0 model. The Journal of Chemical Physics.
+White, S. R.; Martin, R. L. (1999). Ab initio quantum chemistry using the density matrix renormalization group. The Journal of Chemical Physics.
+Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006). Bilbao Crystallographic Server. II. Representations of crystallographic point groups and space groups. Acta Crystallographica Section A.
+Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
 Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015). Strongly Constrained and Appropriately Normed Semilocal Density Functional. Physical Review Letters.
 Elcoro, L.; Bradlyn, B.; Wang, Z.; Vergniory, M. G.; Cano, J.; Felser, C.; Bernevig, B. A.; Orobengoa, D.; de la Flor, G.; Aroyo, M. I. (2017). Double crystallographic groups and their representations on the Bilbao Crystallographic Server. Journal of Applied Crystallography.
 Hinuma, Y.; Pizzi, G.; Kumagai, Y.; Oba, F.; Tanaka, I. (2017). Band structure diagram paths based on crystallography. Computational Materials Science.
+Herbst, M. F.; Levitt, A.; Cancès, E. (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences.
 
 ## Quantum chemistry and DFT: approximations and equations — Official implementation documentation [en]
 
@@ -6372,6 +6734,7 @@ PySCF: MCSCF
 Bilbao: space-group representations / REPRES
 SeeK-path: conventions and standardized cells
 Quantum ESPRESSO: bands.x symmetry classification
+Quantum ESPRESSO: CP/Born–Oppenheimer electron and ion dynamics, fictitious mass and orthogonalization
 
 ## Quantum chemistry and DFT: approximations and equations — Official implementation documentation [en]
 
@@ -8424,6 +8787,18 @@ Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Phys
 Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
 Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
 
+## References by original publication year — Added quantum-chemistry primary publications [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
+Coverage: reading
+
+Bloch, F. (1929). Über die Quantenmechanik der Elektronen in Kristallgittern. Zeitschrift für Physik.
+Goedecker, S.; Teter, M.; Hutter, J. (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B.
+Vosko, S. H.; Wilk, L.; Nusair, M. (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics.
+Herbst, M. F.; Levitt, A.; Cancès, E. (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences.
+M. Born; R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484.
+R. Car; M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474.
+
 ## Relativistic hydrodynamics: SRHD, GRHD, and GRMHD [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/
@@ -8755,17 +9130,17 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 In progress / publication check pending
-Following the two biology/two stochastic first-batch examples, add H₂ RHF in finite s-Gaussian spaces. All 20 current examples were rerun from the public registry/ZIPs. Periodic DFT is the next quantum priority; other candidates are reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations. Follow-ups remain unimplemented, without promised completion dates.
+Following two biology/two stochastic examples and H₂ RHF, add fixed-He periodic LDA, bringing the current execution paths to 21. Periodic He checks k sampling, orbital basis, FFT and SCF refinement against independent DFTK total energies. Other insulators, reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations remain unimplemented candidates.
 Field evidence and unimplemented scope
 
-## Implementation roadmap — Prioritize periodic DFT and k-point convergence next [en]
+## Implementation roadmap — Implement and validate fixed-He periodic DFT and k-point refinement [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
-Planned
-After completing H₂ publication/validation, develop periodic KS-DFT for a small neutral insulating cell. Connect Bloch conditions, reciprocal lattices, the first Brillouin zone and Monkhorst–Pack sampling to Gamma versus k-mesh checks, SCF/basis/auxiliary-grid convergence and independent references. Fix pseudopotentials, XC and units; metallic occupations/smearing follow later. Periodic DFT is not currently implemented.
-Existing k-point reading
+Scoped verified example published
+Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals.
+Fixed-He periodic-DFT numerical checks
 
 ## Implementation roadmap — Separate the current plan from development history [en]
 
@@ -8878,7 +9253,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 Scoped verified examples published
-Published hydrogenic/He closed-shell HF and exchange-only LDA inputs, code, results and independent references. A separate edition now adds H₂ RHF in finite s-Gaussian spaces. Molecular DFT, periodic systems and correlated energies remain future validation tasks.
+Alongside hydrogenic/spherical-He and finite-s-basis H₂ RHF, a separate edition validates fixed one-atom periodic-He LDA. This PySCF workflow checks Gamma/k meshes, basis and SCF refinement against independent DFTK total energies. General molecular DFT, other materials and metals remain unvalidated.
 Runnable hydrogenic / helium checks
 
 ## Implementation roadmap — Atlas-based specialist AI and model research [en]
@@ -9173,7 +9548,7 @@ extracting symbolic models from deep learning.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#planned-quantum-chemistry-and-dft
 Coverage: reading
 
-Introductions, representative formulas and primary references are available for 18 entries. Hydrogenic/He examples supply fixed inputs, code and independent reference comparisons. Scoped finite-basis H₂ RHF is now included; molecular DFT and periodic validation remain separate tasks.
+Introductions, representative formulas and primary references are available for 20 entries. Hydrogenic/He examples supply fixed inputs, code and independent reference comparisons. Scoped finite-basis H₂ RHF is now included; periodic-He LDA validation is now added, while general molecular DFT and other periodic systems remain separate tasks.
 Bilingual overview, runnable examples and next plans
 
 ## Implementation roadmap — Verified Euler and MHD comparisons# [en]
@@ -9731,8 +10106,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 110 methods and building blocks · 215 journal/conference papers · 256 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 77 reading chapters including this inventory.
+46 equation/model entries · 112 methods and building blocks · 221 journal/conference papers · 262 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 78 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -9826,7 +10201,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-94 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+96 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -9979,7 +10354,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-209 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+215 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -10026,6 +10401,8 @@ CASSCF and multireference methods
 Time-dependent density functional theory / TDDFT
 Quantum Monte Carlo
 DMRG and tensor networks
+Born–Oppenheimer molecular dynamics / BOMD
+Car–Parrinello molecular dynamics / CPMD
 
 ## Slab electrostatics and 2D-periodic Ewald — Slab electrostatics and 2D-periodic Ewald [en]
 
@@ -15345,6 +15722,265 @@ Coverage: reading
 
 InutsukaのGSPHは粒子流体と粒子対のリーマン問題を結び付けます。2002年の畳み込みによる導出、1994年の先行研究、Iwasaki・Inutsukaの2011年MHD拡張をたどる文献ノートと実装計画です。上のカーネル再構成はGSPH流体計算ではありません。
 
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 周期DFT：Γ点・k点積分・基底・SCFと独立参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/
+Coverage: reading
+
+Heを1個含む小さな周期セルを例に、Blochの定理からk点積分、周期Gaussian基底、補助FFT格子、SCF反復までをつなぎます。PySCFを用いる実行例と独立した平面波DFTKの参照を比較し、同じモデルを異なる離散化で解くときに必要な整合条件を確かめます。
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 実測結果：何を、どの幅で確かめたか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#measured-results
+Coverage: reading
+
+次の値は固定入力から得た保存済み結果です。ケース数は計算条件の数で、別々の物理テスト問題の数ではありません。各収束系列は同じ基準ケースを再利用します。公差との判定には丸める前のJSON値を用い、末尾の差を真の誤差の上限とは解釈しません。
+測定量値
+DFTKとの差の最大値 / hartree・cell⁻¹4.71162763809e-05
+厳しいSCF設定の最大交換子残差1.00490076615e-08
+許容誤差走査を含む最大交換子残差3.48433764277e-07
+許容誤差走査を含む最大軌道残差7.43065453612e-07
+最大電子数誤差4.4408920985e-16
+最大軌道直交性誤差4.86132023525e-10
+最終密度からの最大エネルギー再構成差 / hartree0
+全ケースの標本点KSギャップ最小値 / hartree0.656519700269
+最大重なり行列条件数508833030.474
+最小重なり行列固有値4.14810500792e-09
+最後のk点メッシュ間の|ΔE| / hartree・cell⁻¹0.000525013074401
+最後のGaussian基底間の|ΔE| / hartree・cell⁻¹3.34202303871e-05
+最後の補助FFT格子間の|ΔE| / hartree・cell⁻¹2.52654341004e-07
+最後のSCF設定間の|ΔE| / hartree・cell⁻¹1.86517468137e-14
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 4つの収束軸を分けて読む [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#convergence-targets
+Coverage: reading
+
+変更した量最後の|ΔE| / hartree入力の目標 / hartree目標達成
+k点メッシュ0.0005250130744010.001true
+Gaussian軌道基底3.34202303871e-050.001true
+補助FFT格子2.52654341004e-070.0001true
+SCF許容誤差1.86517468137e-141e-07true
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — k点メッシュの結果 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#results-kpoint
+Coverage: reading
+
+ケースkメッシュ基底関数数補助FFTE / hartree・cell⁻¹KS gap / hartree||R(SCF)||
+k-11 × 1 × 1gth-qzv3p1339 × 39 × 39-3.024406426210.9276339960295.00414382272e-09
+k-22 × 2 × 2gth-qzv3p1339 × 39 × 39-2.825599987010.7170347936682.19366033257e-10
+k-33 × 3 × 3gth-qzv3p1339 × 39 × 39-2.833568661510.6565397971952.03889342014e-10
+k-44 × 4 × 4gth-qzv3p1339 × 39 × 39-2.833043648430.6565197002692.07710612723e-10
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — Gaussian軌道基底の結果 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#results-basis
+Coverage: reading
+
+ケースkメッシュ基底関数数補助FFTE / hartree・cell⁻¹KS gap / hartree||R(SCF)||
+basis-gth-dzv3 × 3 × 3gth-dzv239 × 39 × 39-2.832962518740.8054627677933.92687052501e-10
+basis-gth-dzvp3 × 3 × 3gth-dzvp539 × 39 × 39-2.833201932210.8056501301931.00490076615e-08
+basis-gth-tzv2p3 × 3 × 3gth-tzv2p939 × 39 × 39-2.833535241280.7266364526313.66295641242e-10
+k-33 × 3 × 3gth-qzv3p1339 × 39 × 39-2.833568661510.6565397971952.03889342014e-10
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 補助FFT格子の結果 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#results-auxiliary
+Coverage: reading
+
+ケースkメッシュ基底関数数補助FFTE / hartree・cell⁻¹KS gap / hartree||R(SCF)||
+fft-253 × 3 × 3gth-qzv3p1325 × 25 × 25-2.833597708370.6565427846921.98973674317e-10
+fft-313 × 3 × 3gth-qzv3p1331 × 31 × 31-2.833568914160.6565398216192.03659808765e-10
+k-33 × 3 × 3gth-qzv3p1339 × 39 × 39-2.833568661510.6565397971952.03889342014e-10
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — SCF許容誤差の結果 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#results-scf
+Coverage: reading
+
+ケースΔE公差勾配公差E / hartree・cell⁻¹||R(SCF)||反復終了理由
+scf-loose1e-050.001-2.833568661513.48433764277e-074converged
+scf-medium1e-081e-05-2.833568661513.48433764277e-074converged
+k-31e-101e-07-2.833568661512.03889342014e-105converged
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 独立したDFTKとの全エネルギー比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#reference-results
+Coverage: reading
+
+有限のGaussian軌道基底と平面波基底は異なるため、下の差は同じ有限行列の丸め誤差ではありません。モデルと定数規約をそろえ、公開した判定幅と両側の収束を合わせて評価します。
+kメッシュPySCF / hartree・cell⁻¹DFTK / hartree・cell⁻¹|差| / hartree判定幅 / hartree合格
+1 × 1 × 1-3.02440642621-3.024415789939.36372572991e-060.001true
+2 × 2 × 2-2.82559998701-2.825647103284.71162763809e-050.001true
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — DFTK側の平面波カットオフ収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#reference-cutoff-results
+Coverage: reading
+
+カットオフの単位はhartreeです。初期の粗い設定が目標を満たさなければ、設定を追加して末尾の変化を再検査します。下の表は採用した固定版の全設定であり、途中の値を収束済みの参照とは扱いません。
+kメッシュ軌道カットオフ / hartreeE / hartree・cell⁻¹KS gap / hartree密度残差SCF反復収束
+1 × 1 × 160-3.015437404170.927327995127.10737613371e-1116true
+1 × 1 × 190-3.022780085460.9271592482522.75239975202e-1020true
+1 × 1 × 1120-3.024091830940.9271185148994.87316147476e-1018true
+1 × 1 × 1180-3.024399415590.9271060552262.39068554566e-1017true
+1 × 1 × 1240-3.024415789930.9271052684321.08825768472e-1017true
+2 × 2 × 260-2.815968392060.5261943147529.91949957922e-1013true
+2 × 2 × 290-2.823843983230.5292594090938.25081344235e-1013true
+2 × 2 × 2120-2.825292133260.5297286850395.01312024631e-1013true
+2 × 2 × 2180-2.825629671010.5298373410653.73819968201e-1012true
+2 × 2 × 2240-2.825647103280.5298424637685.96487433745e-1012true
+kメッシュ最後のカットオフ / hartree最後の|ΔE| / hartree・cell⁻¹目標 / hartree・cell⁻¹目標達成
+1 × 1 × 12401.63743465871e-050.0001true
+2 × 2 × 22401.74322793534e-050.0001true
+DFTKのカットオフ収束と参照 / JSON
+保存済み結果の可視化です。合否は入力・結果JSONの数値と条件で判定します。
+全結果 / JSON · 条件とエネルギー / CSV · SCF履歴 / CSV
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 固定する物理モデルと、調べる数値誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#model-and-scope
+Coverage: reading
+
+入力は一辺4 bohrの単純立方セルと原点のHe原子1個です。GTH–PADEの局所擬ポテンシャルにより価電子数を2とし、閉殻・スピン非分極のKohn–Sham問題を解きます。このHeポテンシャルには非局所射影子がありません。そのため一般の多元素結晶や非局所擬ポテンシャルの検証をこの1例で代表させません。幾何は収束実験のために固定した教材用の配置です。
+交換相関汎関数はLibxcのLDA_XとLDA_C_VWN（VWN5）を明示的に指定します。「LDA」という略称だけでは、VWN、Perdew–Wangなどの相関の選択がそろいません。GTH–PADEは採用した擬ポテンシャルの名称であり、その生成時の近似と今回指定するVWN5が同一であるという意味ではありません。比較する両エンジンには同じ擬ポテンシャルの係数と同じ交換相関を渡します。
+原子単位系を用い、格子長はbohr、エネルギーはhartreeで保存します。全エネルギーは単位胞あたりで、電子項と周期イオン間相互作用を含む値を比較します。SCFの解き残し、k点積分、軌道基底、密度・ポテンシャルの補助格子を別々に変えます。これらを小さくしても、LDAや擬ポテンシャルなどの物理近似の誤差を評価したことにはなりません。
+\left[-\tfrac12\nabla^2+V_{\mathrm{loc}}+V_H[n]+V_{\mathrm{xc}}[n]\right]\psi_{n\mathbf k}=\varepsilon_{n\mathbf k}\psi_{n\mathbf k}
+関連出典：P. Hohenberg and W. Kohn (1964), W. Kohn and L. J. Sham (1965), S. Goedecker, M. Teter and J. Hutter (1996), S. H. Vosko, L. Wilk and M. Nusair (1980), Libxc developers (2026)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — Blochの定理と、k点の単位 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#bloch-and-reciprocal-space
+Coverage: reading
+
+周期ポテンシャルでは、軌道を平面波因子と格子周期関数の積として表せます。周期関数uと一般のBloch軌道ψを区別します。uは単位胞の端で周期的ですが、ψはk点に応じた位相を伴う境界条件を満たします。Γ点はk=0で、この位相が1となる特別な点です。
+ここでは実格子ベクトルを列にもつ行列Aと逆格子ベクトルを列にもつBを用い、AᵀB=2πIと定義します。分率座標κから物理的な波数へはk=Bκで変換します。κは無次元、格子をbohrで定義したkはbohr⁻¹です。PySCFのセル行列は格子ベクトルを行に置き、SCFへ渡すk点は物理的な波数です。DFTKの格子行列の列規約と取り違えないように、入力の格子と分率k点を共通の正本にします。
+\psi_{n\mathbf k}(\mathbf r)=e^{i\mathbf k\cdot\mathbf r}u_{n\mathbf k}(\mathbf r),\qquad u_{n\mathbf k}(\mathbf r+\mathbf R)=u_{n\mathbf k}(\mathbf r),\qquad\psi_{n\mathbf k}(\mathbf r+\mathbf R)=e^{i\mathbf k\cdot\mathbf R}\psi_{n\mathbf k}(\mathbf r)A=(\mathbf a_1,\mathbf a_2,\mathbf a_3),\qquad B=2\pi A^{-\mathsf T},\qquad\mathbf k=B\boldsymbol\kappa,\qquad\Omega=|\det A|
+関連出典：Felix Bloch (1929), PySCF developers (2026), DFTK developers (2026)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — Γ点とk点メッシュ：積分とバンド経路を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#kpoint-quadrature
+Coverage: reading
+
+無限結晶の密度やエネルギーにはBrillouinゾーンの積分が現れます。有限のk点と重みでこの積分を近似します。この例では全点と等しい重みを明示したΓを含む一様メッシュを用い、重みの和を1にします。偶数分割でもΓを含む規約であり、ソフトウェアの既定値や、偶数分割で半格子だけずれるMonkhorst–Packの規約と無条件に同一視しません。整数逆格子ベクトルだけ異なる分率k点は同じ点を表します。
+Γ点だけの計算はBrillouinゾーン積分の1点近似です。大きな実空間セルや局在した軌道で十分になる場合もありますが、この小さなセルで十分かは実測する必要があります。Γのみと複数のメッシュを同じ基底・補助格子・SCF条件で比較します。異なるメッシュは必ずしも入れ子でなく、エネルギー差の単調な減少は仮定しません。
+高対称点を結ぶバンド経路は分散関係の可視化に使う点列です。通常、その点列を等しい重みで平均してもBrillouinゾーン積分にはなりません。本例の目的は全エネルギーと密度の積分を確かめることであり、バンド経路の描画をk点収束の代用にしません。
+Γ点のみと一様k点メッシュの2次元模式図。実際の計算は3次元。\frac{1}{|\mathrm{BZ}|}\int_{\mathrm{BZ}}f(\mathbf k)\,d\mathbf k\simeq\sum_{q=1}^{N_k}w_qf(\mathbf k_q),\qquad\sum_qw_q=1,\qquad n(\mathbf r)=2\sum_qw_q\sum_{n\in\mathrm{occ}}|\psi_{n\mathbf k_q}(\mathbf r)|^2\boldsymbol\kappa_{\mathbf j}=\left(\frac{j_1}{N_1},\frac{j_2}{N_2},\frac{j_3}{N_3}\right)\bmod\mathbb Z^3,\quad j_i=0,\ldots,N_i-1,\quad w_{\mathbf j}=\frac{1}{N_1N_2N_3}
+関連出典：H. J. Monkhorst and J. D. Pack (1976), PySCF developers (2026)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 軌道基底と補助FFT格子は別の収束軸 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#orbital-and-auxiliary-bases
+Coverage: reading
+
+PySCF側の軌道は、Gaussian基底の格子和にBlochの位相を付けて展開します。gth-dzvなどの基底名、実際の関数数、重なり行列の条件数を結果に残します。名称のzeta数を増やす操作は完全基底極限の証明ではなく、異なる縮約・偏極関数を含む基底がすべて数学的に入れ子になるとも限りません。基底差は公開した有限系列に対する感度として読みます。
+FFT density fitting（FFTDF）は、密度やCoulombポテンシャルなどを扱う補助的な平面波・FFT表現です。FFTメッシュを細かくしてもGaussianの軌道空間は広がりません。逆に軌道基底だけを増やしても、粗い補助格子による誤差は消えません。PySCFの補助格子、DFTKの軌道平面波カットオフ、それに付随する密度格子を混同せず、単位もhartreeとrydbergを区別します。
+周期Coulomb相互作用のG=0成分は、電子、局所擬ポテンシャル、周期イオン項を合わせた規約で扱います。平均ポテンシャルの変更は軌道固有値の原点も変えます。同じ計算物理モデルでも、G=0定数や擬ポテンシャル補正、Ewald項、単位胞あたりと原子あたりの違いをそろえなければ全エネルギーを直接比較できません。差を合わせるために結果へ経験的な定数を後付けするのではなく、採用した規約とエネルギー成分を確認します。
+\chi_{\mu\mathbf k}(\mathbf r)=\sum_{\mathbf R}e^{i\mathbf k\cdot\mathbf R}\chi_\mu(\mathbf r-\mathbf R),\qquad\psi_{n\mathbf k}=\sum_\mu C_{\mu n}(\mathbf k)\chi_{\mu\mathbf k}\Delta_kE,\qquad\Delta_{\mathrm{orbital\ basis}}E,\qquad\Delta_{\mathrm{auxiliary\ grid}}E,\qquad E_{\tau}-E_{\mathrm{tight}},\qquad E_{\mathrm{PySCF}}-E_{\mathrm{DFTK}}
+関連出典：S. Goedecker, M. Teter and J. Hutter (1996), PySCF developers (2026), M. F. Herbst, A. Levitt and E. Cancès (2021)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — SCF残差、電子数と、標本点上のKSギャップ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#scf-and-gap
+Coverage: reading
+
+Kohn–Sham方程式の有効ポテンシャルは密度に依存するため、固有値問題と密度更新を反復します。エネルギー変化だけでなく、最終密度から再構築した行列による交換子残差、軌道固有方程式の残差、直交性と電子数を検査します。交換子は対称直交化X=S⁻¹ᐟ²を用いたX(FPS−SPF)XのFrobeniusノルムを各k点で求め、その最大値です。軌道残差も同じ最終密度のFを用います。結果には反復履歴、停止理由、許容誤差を残します。反復回数の上限への到達を収束と表示しません。
+同じ離散化でSCF許容誤差だけを変え、厳しい設定のエネルギーとの違いを測ります。これは非線形方程式の解き残しの検査です。SCFが収束したことと、基底・補助格子・k点が十分であること、また物理モデルが正確であることは別の判定です。
+閉殻の占有と非占有を分け、計算した全k点の占有準位の最大値と非占有準位の最小値から標本点上のKSギャップを求めます。正の値は、このメッシュ上で占有が分離していることを示します。Brillouinゾーン全域の真の最小ギャップを保証するものでも、電子の追加・除去で定義する多体の基本ギャップや実験の光学ギャップでもありません。非占有状態の基底依存性にも注意が必要です。本例ではGaussianと平面波の標本点ギャップに目に見える差が残ります。独立比較で検証する量は全エネルギーであり、ギャップの収束・一致を達成したとは扱いません。
+F_{\mathbf k}C_{\mathbf k}=S_{\mathbf k}C_{\mathbf k}\varepsilon_{\mathbf k},\qquad C_{\mathbf k}^{\dagger}S_{\mathbf k}C_{\mathbf k}=I,\qquad\sum_qw_q\operatorname{Tr}(P_{\mathbf k_q}S_{\mathbf k_q})=N_e=2E_{g,\mathcal K}^{\mathrm{KS}}=\min_{\mathbf k\in\mathcal K,n\in\mathrm{unocc}}\varepsilon_{n\mathbf k}-\max_{\mathbf k\in\mathcal K,n\in\mathrm{occ}}\varepsilon_{n\mathbf k}
+関連出典：W. Kohn and L. J. Sham (1965), PySCF developers (2026), DFTK developers (2026)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 異なる基底を使う独立DFTK参照と比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#independent-reference
+Coverage: reading
+
+実行例はPySCFの周期積分・FFTDF・SCFを利用します。参照は独立したJuliaのDFTKで平面波Kohn–Sham問題を解き、教材のPySCFソルバーを呼び出しません。PySCF内で補助表現だけを変更した計算を独立実装の比較と数えません。交換相関の評価には両者でLibxcを使うため、その部分まで完全に独立した検証という意味ではありません。
+同一の格子、原子位置、価電子数、スピン、擬ポテンシャル係数、LDA_X＋LDA_C_VWN、分率k点と重みを照合します。DFTK側では平面波カットオフとSCFの収束も確認します。Gaussianと平面波は異なる有限空間なので、有限基底同士の全エネルギーに機械精度の一致を要求しません。公開入力の判定幅の中で、Gaussian基底・補助格子の感度と参照のカットオフ依存性を併記して一致を評価します。判定幅を満たすことは、真の誤差の厳密な上限や化学精度を証明するものではありません。
+保存済み参照を使った通常の追試と、Julia環境を用いる参照の再生成を別の工程にします。入力、参照、ソースのハッシュと依存関係の版を固定し、ZIPを別フォルダへ展開した実行も検査します。結果JSONの合否だけでなく、差の実数値、判定条件、収束系列を確かめられる形で配布します。
+関連出典：Qiming Sun et al. (2020), M. F. Herbst, A. Levitt and E. Cancès (2021), Libxc developers (2026)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 第一原理MD：Born–Oppenheimer法とカー–パリネロ法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md
+Coverage: reading
+
+周期DFTの次に原子核を動かすのが第一原理分子動力学（AIMD）です。Born–Oppenheimer分子動力学（BOMD）は、各核配置で電子状態を基底状態へ十分に収束させ、そのエネルギー面の力で核の古典運動を積分します。下のE_BOはイオン間項を含む全エネルギーです。1927年のBorn–Oppenheimer論文は電子と核の分離の基礎として引用するもので、現代のBOMDプログラムを発表した論文という意味ではありません。
+BOMDではSCFの許容誤差をエネルギーだけでなく力と軌道の再現性でも決めます。原子に追随する有限Gaussian基底を使う場合は、基底の位置依存に由来する力の項（Pulay項）も必要です。力の有限差分照合、時間刻みの細分化、無温度制御のNVEでのエネルギードリフトを別々に検査します。予測した電子状態を次の初期値に使っても、各配置で必要な精度まで最適化するというBOMDの要件は変わりません。
+カー–パリネロ分子動力学（CPMD）は、核の座標と電子軌道を拡張ラグランジアンで同時に進めます。μは電子軌道に与える数値的な仮想質量で、実在の電子の質量そのものではありません。直交制約はLagrange乗数Λで課します。表示式は固定セル・固定占有を想定し、軌道の速度項をμ/2と定義する規約です。周期k点を使う一般化では電子項に重みと占有を一貫して含めます。
+CPMDで電子軌道を時間発展させることは、TDDFTで実在の電子励起を追うことではありません。電子の仮想運動と核運動の時間尺度を分離し、軌道をBO面の近傍に保つ必要があります。μ・時間刻み・直交性許容誤差を変えて、仮想運動エネルギーと核運動へのエネルギー移動を監視します。温度制御を加えない理想的な拡張系の保存量E_extと、核の運動エネルギー＋BOエネルギーを区別します。狭いギャップや金属への適用をこの説明だけで保証しません。
+この節は解説のみです。今回の固定Heセルで検証したのは静的な全エネルギー、積分・基底・補助格子・SCFの収束です。原子間力、BOMD/CPMD軌道、時間積分、温度制御の実行・検証は含みません。実装を追加する場合は、多原子系で力と独立参照をまず照合し、その後にMDの保存量と刻み幅・SCF公差・μへの感度を確かめます。
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 第一原理MD：Born–Oppenheimer法とカー–パリネロ法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md
+Coverage: reading
+
+E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)L_{\mathrm{CP}}=\frac12\sum_I M_I|\dot{\mathbf R}_I|^2+\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle-E_{\mathrm{KS}}+\sum_{ij}\Lambda_{ij}\bigl(\langle\psi_i|\psi_j\rangle-\delta_{ij}\bigr)\langle\psi_i|\psi_j\rangle=\delta_{ij},\qquad K_{\mathrm{fict}}=\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle,\qquad E_{\mathrm{ext}}=\sum_I\frac{M_I}{2}|\dot{\mathbf R}_I|^2+E_{\mathrm{KS}}+K_{\mathrm{fict}}
+関連出典：M. Born and R. Oppenheimer (1927), R. Car and M. Parrinello (1985), Quantum ESPRESSO developers (2026)
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 取得して結果を確かめる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#run-and-check
+Coverage: reading
+
+ZIP内の配布版フォルダで依存関係を導入し、同梱の固定入力を使います。出力先は新規または空のディレクトリにします。通常のrunnerは保存済みDFTK参照を照合します。Juliaによる参照の再生成は別工程で、参照用環境と手順を同梱しています。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+固定入力 / JSON · Runner · DFTK独立参照 / JSON · 版・受入条件・引用の共通手順
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#sources
+Coverage: reading
+
+書誌、抄録、原文の一部、公式APIの確認を区別して示します。原論文全体の再現や全文監査を行ったという意味ではありません。論文の全文や第三者のソースコードはこの教材に転載しません。
+Felix Bloch (1929). Über die Quantenmechanik der Elektronen in Kristallgittern. Zeitschrift für Physik 52, 555–600
+出版社の書誌・抄録を確認。受理年1928と掲載年1929を区別しました。原論文全体の再現・監査ではありません。
+P. Hohenberg and W. Kohn (1964). Inhomogeneous Electron Gas. Physical Review 136, B864–B871
+既存アトラスの原著書誌・DOIを確認。基礎理論の出典であり、この有限基底計算による定理の証明ではありません。
+W. Kohn and L. J. Sham (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review 140, A1133–A1138
+既存アトラスの原著書誌・DOIを確認。Kohn–Sham法の原著として引用し、論文全体の数値再現は主張しません。
+H. J. Monkhorst and J. D. Pack (1976). Special points for Brillouin-zone integrations. Physical Review B 13, 5188–5192
+既存アトラスの原著書誌・DOIを確認。本例のΓを含むメッシュ規約は本文と入力に明記し、原論文の全メッシュと同一とは扱いません。
+S. H. Vosko, L. Wilk and M. Nusair (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics 58, 1200–1211
+公式Libxc資料のLDA_C_VWN（VWN5）の原著DOIと書誌を確認。出版社本文へはアクセスできず、全文や表の監査は行っていません。
+S. Goedecker, M. Teter and J. Hutter (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B 54, 1703–1710
+出版社の書誌・抄録を確認。実際のHe係数は同梱データと両ライブラリで照合し、原論文の表からの全桁の直接転記とは扱いません。
+Qiming Sun et al. (2020). Recent developments in the PySCF program package. The Journal of Chemical Physics 153, 024109
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#sources
+Coverage: reading
+
+出版社の書誌・抄録と既存アトラスの登録を確認。今回使用する周期APIは下記の公式資料と固定版コードでも確認します。
+M. F. Herbst, A. Levitt and E. Cancès (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences 3(26), 69
+出版社の書誌と公開論文の導入部を確認。今回の参照計算は独立した数値検査であり、論文中の全例の再現ではありません。
+PySCF developers (2026). Crystal structure. Official PySCF periodic-boundary-condition user documentation
+格子ベクトル、単位、GTH基底・擬ポテンシャル、k点生成の該当箇所を参照。原法の論文とは区別します。
+PySCF developers (2026). Periodic SCF and density fitting. Official PySCF periodic-boundary-condition user documentation
+周期SCF、DFT、FFTDF、カットオフ、Coulomb発散の取り扱いの該当箇所を参照。
+DFTK developers (2026). DFTK API and pseudopotentials. Official DFTK documentation
+格子・k点・汎関数・SCFの該当APIと公式擬ポテンシャル解説を参照。配布物には実際に使用した版を別途固定します。
+Libxc developers (2026). Libxc functionals: LDA_X and LDA_C_VWN. Official Libxc functional registry
+LDA_X（id 1）とLDA_C_VWN（id 7、VWN5）の識別・原著リンクを確認。両エンジンが共用する評価ライブラリとして明記します。
+M. Born and R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484
+出版社の書誌・DOIを確認。Born–Oppenheimer分離の歴史的基礎として引用し、原文全文の監査や現代のMD実装の再現は主張しません。
+R. Car and M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474
+出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。
+
+## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#sources
+Coverage: reading
+
+Quantum ESPRESSO developers (2026). cp.x input description: electron dynamics, emass and orthogonalization. Official Quantum ESPRESSO documentation, version 7.5
+仮想質量、電子と核の運動、時間刻み、直交化と断熱性に関する入力項目を参照。ソフトウェアの実行検証は行っていません。
+
 ## Particle-in-Cell（PIC） — Particle-in-Cell（PIC） [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pic/
@@ -15767,7 +16403,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemi
 Coverage: reading
 
 Schrödinger、HF・DFTから基底・SCF・電子相関へ。周期系の空間群、小群、既約表現、SOCと時間反転もたどる。
-18項目の日英解説と30件の一次文献を公開。水素型原子・Heの2問題群と、H₂の限定した有限基底RHFに実行・検証例があります。分子DFT・周期系は未実装です。
+20項目の日英解説と36件の一次文献を公開。水素型原子・Heの2問題群と、H₂の限定した有限基底RHFに実行・検証例があります。周期He固定セルのLDA実行例も公開。一般の分子DFT・他の周期物質は未検証です。
 
 ## 量子化学・DFT：何を近似し、何を解くか — 物理モデル・近似 [ja]
 
@@ -15831,6 +16467,7 @@ DFTはここでは密度汎関数理論で、離散Fourier変換の略称とは�
 T_sは補助系の運動エネルギー、E_Hは古典的Coulombエネルギーです。E_xcには交換と相関に加え、相互作用系の運動エネルギーとT_sとの差も含まれます。密度からポテンシャル、軌道から密度へと更新する非線形問題をSCFで解きます。
 下式は密度のみに依存する微分可能な汎関数に対する局所KSの代表形です。hybridの非局所交換や軌道依存meta-GGA等では一般化KSの扱いを区別します。
 球対称Heのスピン非偏極・交換のみDirac LDA。相関・GGA・hybrid・分子・周期系・励起は未実装。 固定入力・コード・検証結果
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
 E[n]=T_s[n]+\int v_{\rm ext}n\,d\mathbf r+E_H[n]+E_{\rm xc}[n]+E_{NN}[-\tfrac12\nabla^2+v_{\rm ext}+v_H+v_{\rm xc}]\phi_i=\varepsilon_i\phi_in(\mathbf r)=\sum_i f_i|\phi_i(\mathbf r)|^2,\quad \int n\,d\mathbf r=N,\quad v_{\rm xc}=\frac{\delta E_{\rm xc}}{\delta n}
 長い式は横にスクロールできます。
 正確な汎関数の理論と、近似汎関数による実計算を分けます。KS固有値を一般に励起エネルギーと同一視せず、基底状態DFTだけで励起状態まで保証しません。
@@ -15846,6 +16483,7 @@ Coverage: reading
 同じHF・DFTでも、Gaussian型・Slater型の原子軌道、平面波、実空間格子などで離散問題が変わります。非直交基底の重なり行列Sを残し、一般化固有値問題を解く必要があります。
 原子軌道では基底の大きさ・分極・diffuse関数、平面波ではカットオフとセル、実空間では格子幅と領域を別々に変えます。Gaussian基底の積分評価はBoysの一次文献への入口を付けています。
 新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
 \phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
 基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。
 条件・実装状況・JSON
@@ -15862,6 +16500,7 @@ SCFは物理モデル名ではなく、HFやKSで現れる自己無撞着条件�
 エネルギー変化だけでなく、密度差、電子数、固有値または軌道勾配の残差を保存します。混合率、初期密度、占有の扱い、最大反復数、未収束という終了理由も出力に残します。
 Heの線形密度混合、密度・エネルギー・軌道残差、初期値・混合率の比較と未収束を検証。DIISは含みません。 別配布版にH₂の有限s型Gaussian基底RHFの例を追加。 固定入力・コード・検証結果
 新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
 n_{k+1}=(1-\alpha)n_k+\alpha\mathcal M[n_k],\qquad 0<\alpha\le1\mathrm{Tr}(\mathbf P\mathbf S)=N,\qquad \mathbf R=\mathbf F\mathbf P\mathbf S-\mathbf S\mathbf P\mathbf F
 長い式は横にスクロールできます。
 小さいエネルギー変化だけで収束を宣言しません。収束した解が最低エネルギーの安定な電子状態である保証も別に検査します。
@@ -15904,6 +16543,7 @@ Coverage: reading
 LDAは局所密度、GGAは密度と勾配、meta-GGAは軌道の運動エネルギー密度などにも依存します。hybridはHF型交換を一部混合します。PBE、SCAN、B3系、PBE0等は交換相関近似の選択で、単なる精度の順位表ではありません。
 下式はスピン非偏極のDirac交換のみです。相関項を含むLDAと区別し、汎関数名、成分、パラメータ、ライブラリと版を明示します。電子密度の求積格子も結果を変え得ます。
 スピン非偏極Dirac交換のエネルギーと汎関数微分のみを検証。LDA相関、GGA、meta-GGA、hybridは解説のみ。 固定入力・コード・検証結果
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
 E_x^{\rm LDA}[n]=-\frac34\left(\frac3\pi\right)^{1/3}\int n^{4/3}\,d\mathbf rv_x^{\rm LDA}=-\left(\frac{3n}{\pi}\right)^{1/3}
 基底・格子・SCFが収束しても汎関数の近似誤差は消えません。自己相互作用、電荷移動、強相関、分散の扱いは対象と近似に応じて評価します。
 条件・実装状況・JSON
@@ -15912,6 +16552,7 @@ Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996)
 Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015)
 Becke, A. D. (1993)
 Adamo, C.; Barone, V. (1999)
+Vosko, S. H.; Wilk, L.; Nusair, M. (1980)
 
 ## 量子化学・DFT：何を近似し、何を解くか — 擬ポテンシャル・PAW [ja]
 
@@ -15920,11 +16561,13 @@ Coverage: reading
 
 擬ポテンシャルは内殻の効果を有効的に扱い、価電子を主に解く表現です。norm-conserving、ultrasoft、PAWを区別します。PAWは変換と再構成を使う方法で、単に滑らかな局所ポテンシャルに置き換える説明では不十分です。
 元素、価電子配置、生成した汎関数、相対論の扱い、データセットの版と推奨カットオフを保存します。全電子計算との比較は同じ物理条件・観測量で行います。
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
 異なる擬ポテンシャルの全エネルギーの零点を無条件に比較しません。平面波カットオフの収束だけで移植性が証明されるわけではありません。
 条件・実装状況・JSON
 Hamann, D. R.; Schlüter, M.; Chiang, C. (1979)
 Vanderbilt, D. (1990)
 Blöchl, P. E. (1994)
+Goedecker, S.; Teter, M.; Hutter, J. (1996)
 
 ## 量子化学・DFT：何を近似し、何を解くか — 周期電子状態とk点 [ja]
 
@@ -15933,11 +16576,13 @@ Coverage: reading
 
 周期ポテンシャルではBloch軌道を用い、Brillouin領域の積分を重み付きk点和で近似します。u_nkは格子周期関数です。Monkhorst–Pack法は特殊点による積分の一次文献への入口です。
 k点密度とシフト、対称性、占有・smearing、セル、基底カットオフを保存します。孤立分子を大きな周期セルに置くことと、孤立境界で解くことも区別します。
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
 \psi_{n\mathbf k}(\mathbf r)=e^{i\mathbf k\cdot\mathbf r}u_{n\mathbf k}(\mathbf r),\qquad \int_{\rm BZ}g(\mathbf k)\,d\mathbf k\approx\sum_\nu w_\nu g(\mathbf k_\nu)
 長い式は横にスクロールできます。
 金属の占有とsmearing幅の依存、有限温度の自由エネルギーと零温度エネルギーを区別します。Γ点だけで十分かは系とセルに依存します。
 条件・実装状況・JSON
 Monkhorst, H. J.; Pack, J. D. (1976)
+Bloch, F. (1929)
 
 ## 量子化学・DFT：何を近似し、何を解くか — バンド計算の対称群・既約表現 [ja]
 
@@ -16084,12 +16729,39 @@ c_{n_1\cdots n_L}\approx\mathbf A_1^{n_1}\mathbf A_2^{n_2}\cdots\mathbf A_L^{n_L
 White, S. R. (1992)
 White, S. R.; Martin, R. L. (1999)
 
+## 量子化学・DFT：何を近似し、何を解くか — Born–Oppenheimer分子動力学（BOMD） [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#born-oppenheimer-md
+Coverage: reading
+
+BOMDは各核配置で電子エネルギーを最小化し、Born–Oppenheimer面の勾配を力として核運動を積分します。エネルギーの公差と力の精度は同じ判定ではなく、有限の移動基底では基底の位置依存も考慮します。
+静的DFTの収束からMD軌道の正しさは結論できません。力の独立照合、刻み幅とSCF公差の感度、NVEのエネルギードリフトを今後の検証対象とします。周期DFT章の第一原理MD節でCPMDとの違いを説明します。
+E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)
+長い式は横にスクロールできます。
+解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。
+条件・実装状況・JSON
+M. Born; R. Oppenheimer (1927)
+R. Car; M. Parrinello (1985)
+
+## 量子化学・DFT：何を近似し、何を解くか — カー–パリネロ法（CPMD） [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#car-parrinello-md
+Coverage: reading
+
+カー–パリネロ法は電子軌道と核を拡張ラグランジアンで同時に進めます。電子の仮想質量μと直交制約を導入しますが、この電子運動をTDDFTの実時間発展や物理的な電子励起と同一視しません。
+μ・時間刻み・直交性の許容誤差、仮想運動エネルギーを点検し、BO面の近傍に保つ必要があります。専用コードは未実装で、周期Heの静的なエネルギー比較をCPMD検証として数えません。
+L_{\mathrm{CP}}=\frac12\sum_I M_I|\dot{\mathbf R}_I|^2+\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle-E_{\mathrm{KS}}+\sum_{ij}\Lambda_{ij}\bigl(\langle\psi_i|\psi_j\rangle-\delta_{ij}\bigr)
+長い式は横にスクロールできます。
+解説のみ。仮想電子運動の断熱性、エネルギー移動、長時間軌道は未検証です。
+条件・実装状況・JSON
+R. Car; M. Parrinello (1985)
+
 ## 量子化学・DFT：何を近似し、何を解くか — 実行・検証例と次の計画 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全65問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。分子DFT・FCI・周期系は未実装で、件数に加えません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全66問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -16116,12 +16788,13 @@ Coverage: reading
 同じ核間距離・同じs型基底で独立PySCFと照合。SCFの複数残差・停止条件、入れ子基底のエネルギー差と指定公差を確認。RHFの解離限界と角運動量を含む完全基底収束は別。
 結果・実行手順
 
-## 量子化学・DFT：何を近似し、何を解くか — 周期系：基底・k点・セルの収束 [ja]
+## 量子化学・DFT：何を近似し、何を解くか — 周期系：固定HeセルのLDAとk点・基底・SCF [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
 Coverage: reading
 
-擬ポテンシャルの識別子と価電子、カットオフ、k点、電荷中性、占有の扱いを保存して誤差要因を一つずつ変える。
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。
+結果・実行手順
 
 ## 量子化学・DFT：何を近似し、何を解くか — 今後広げる項目 [ja]
 
@@ -16143,53 +16816,59 @@ Coverage: reading
 
 標準的な代表式を独自に要約した導入です。一次文献の書誌を照合し、理論の位置付けは原論文の公開情報と公式資料で確認しています。原論文の全式の監査や数値再現は未実施です。 水素型原子・Heの限定実装については、別配布版に実行記録・解析解と独立参照の照合を公開しています。
 Schrödinger, E. (1926). Quantisierung als Eigenwertproblem. Annalen der Physik.
+M. Born; R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484.
 Hartree, D. R. (1928). The Wave Mechanics of an Atom with a Non-Coulomb Central Field. Part I. Theory and Methods. Mathematical Proceedings of the Cambridge Philosophical Society.
+Bloch, F. (1929). Über die Quantenmechanik der Elektronen in Kristallgittern. Zeitschrift für Physik.
 Dirac, P. A. M. (1930). Note on Exchange Phenomena in the Thomas Atom. Mathematical Proceedings of the Cambridge Philosophical Society.
 Møller, C.; Plesset, M. S. (1934). Note on an Approximation Treatment for Many-Electron Systems. Physical Review.
 Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
 Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A.
 Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics.
 Hohenberg, P.; Kohn, W. (1964). Inhomogeneous Electron Gas. Physical Review.
-Kohn, W.; Sham, L. J. (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review.
 
 ## 量子化学・DFT：何を近似し、何を解くか — 一次文献と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#sources
 Coverage: reading
 
+Kohn, W.; Sham, L. J. (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review.
 Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
 Monkhorst, H. J.; Pack, J. D. (1976). Special points for Brillouin-zone integrations. Physical Review B.
 Hamann, D. R.; Schlüter, M.; Chiang, C. (1979). Norm-Conserving Pseudopotentials. Physical Review Letters.
 Ceperley, D. M.; Alder, B. J. (1980). Ground State of the Electron Gas by a Stochastic Method. Physical Review Letters.
 Pulay, P. (1980). Convergence acceleration of iterative sequences. The case of SCF iteration. Chemical Physics Letters.
 Roos, B. O.; Taylor, P. R.; Siegbahn, P. E. M. (1980). A complete active space SCF method (CASSCF) using a density matrix formulated super-CI approach. Chemical Physics.
+Vosko, S. H.; Wilk, L.; Nusair, M. (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics.
 Knowles, P. J.; Handy, N. C. (1984). A new determinant-based full configuration interaction method. Chemical Physics Letters.
 Runge, E.; Gross, E. K. U. (1984). Density-Functional Theory for Time-Dependent Systems. Physical Review Letters.
-Raghavachari, K.; Trucks, G. W.; Pople, J. A.; Head-Gordon, M. (1989). A fifth-order perturbation comparison of electron correlation theories. Chemical Physics Letters.
-Vanderbilt, D. (1990). Soft self-consistent pseudopotentials in a generalized eigenvalue formalism. Physical Review B.
 
 ## 量子化学・DFT：何を近似し、何を解くか — 一次文献と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#sources
 Coverage: reading
 
+R. Car; M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474.
+Raghavachari, K.; Trucks, G. W.; Pople, J. A.; Head-Gordon, M. (1989). A fifth-order perturbation comparison of electron correlation theories. Chemical Physics Letters.
+Vanderbilt, D. (1990). Soft self-consistent pseudopotentials in a generalized eigenvalue formalism. Physical Review B.
 White, S. R. (1992). Density matrix formulation for quantum renormalization groups. Physical Review Letters.
 Becke, A. D. (1993). Density-functional thermochemistry. III. The role of exact exchange. The Journal of Chemical Physics.
 Blöchl, P. E. (1994). Projector augmented-wave method. Physical Review B.
+Goedecker, S.; Teter, M.; Hutter, J. (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B.
 Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996). Generalized Gradient Approximation Made Simple. Physical Review Letters.
 Adamo, C.; Barone, V. (1999). Toward reliable density functional methods without adjustable parameters: The PBE0 model. The Journal of Chemical Physics.
 White, S. R.; Martin, R. L. (1999). Ab initio quantum chemistry using the density matrix renormalization group. The Journal of Chemical Physics.
-Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006). Bilbao Crystallographic Server. II. Representations of crystallographic point groups and space groups. Acta Crystallographica Section A.
-Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
-Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015). Strongly Constrained and Appropriately Normed Semilocal Density Functional. Physical Review Letters.
 
 ## 量子化学・DFT：何を近似し、何を解くか — 一次文献と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#sources
 Coverage: reading
 
+Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006). Bilbao Crystallographic Server. II. Representations of crystallographic point groups and space groups. Acta Crystallographica Section A.
+Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
+Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015). Strongly Constrained and Appropriately Normed Semilocal Density Functional. Physical Review Letters.
 Elcoro, L.; Bradlyn, B.; Wang, Z.; Vergniory, M. G.; Cano, J.; Felser, C.; Bernevig, B. A.; Orobengoa, D.; de la Flor, G.; Aroyo, M. I. (2017). Double crystallographic groups and their representations on the Bilbao Crystallographic Server. Journal of Applied Crystallography.
 Hinuma, Y.; Pizzi, G.; Kumagai, Y.; Oba, F.; Tanaka, I. (2017). Band structure diagram paths based on crystallography. Computational Materials Science.
+Herbst, M. F.; Levitt, A.; Cancès, E. (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences.
 
 ## 量子化学・DFT：何を近似し、何を解くか — 実装を調べるための公式資料 [ja]
 
@@ -16206,6 +16885,7 @@ PySCF: MCSCF
 Bilbao: space-group representations / REPRES
 SeeK-path: conventions and standardized cells
 Quantum ESPRESSO: bands.x symmetry classification
+Quantum ESPRESSO: CP/Born–Oppenheimer electron and ion dynamics, fictitious mass and orthogonalization
 
 ## 放射輸送・モーメント法 — 放射輸送・モーメント法 [ja]
 
@@ -18164,6 +18844,18 @@ Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Phys
 Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
 Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
 
+## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
+Coverage: reading
+
+Bloch, F. (1929). Über die Quantenmechanik der Elektronen in Kristallgittern. Zeitschrift für Physik.
+Goedecker, S.; Teter, M.; Hutter, J. (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B.
+Vosko, S. H.; Wilk, L.; Nusair, M. (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics.
+Herbst, M. F.; Levitt, A.; Cancès, E. (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences.
+M. Born; R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484.
+R. Car; M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474.
+
 ## 相対論的流体力学：SRHD、GRHD、GRMHD [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/
@@ -18362,17 +19054,17 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 実装中・公開確認待ち
-第1弾の生物2例・確率2例に続き、H₂の有限s型基底RHFを追加。現行20実行例を公開台帳・ZIPから追試。量子では周期DFTを次の優先課題とし、生物・確率の後続候補は反応拡散、既知分布MCMC、温度制御の分布・相関。後続は未実装で、完了日は未定。
+生物2例・確率2例・H₂ RHFに続き、固定Heセルの周期LDAを追加。現行21例の実行経路を整備。周期Heはk点・軌道基底・FFT・SCF収束と独立DFTK全エネルギーを確認。次候補は他の絶縁体、反応拡散、既知分布MCMC、温度制御の分布・相関で、これらは未実装。
 分野ごとの根拠と未実装範囲
 
-## 実装ロードマップ — 周期DFTとk点収束を次の量子計算の優先課題にする [ja]
+## 実装ロードマップ — 固定Heセルの周期DFT・k点収束を実装・検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
-予定
-H₂の公開・検証を完了した後、絶縁体の小さな中性セルで周期KS-DFTを整備。Bloch条件・逆格子・第一Brillouin域・Monkhorst–Packの解説から、Γ点と複数kメッシュ、SCF・基底／補助格子の収束、独立参照へつなぐ。擬ポテンシャル・XC・単位を固定し、金属の占有数・smearingは後続。現時点で周期DFT実装済みとは表示しない。
-k点の既存解説
+検証した限定例を公開済み
+固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。
+固定He周期DFTの数値検証
 
 ## 実装ロードマップ — 現行計画と履歴を分ける [ja]
 
@@ -18485,7 +19177,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 検証した限定例を公開済み
-水素型原子・球対称Heの閉殻HF・交換のみLDAの固定入力、コード、結果、独立参照を公開済み。別配布版でH₂の有限s型Gaussian基底RHFを追加。分子DFT・周期系・相関エネルギーの検証は今後の課題。
+水素型原子・球対称He、H₂の有限s型基底RHFに加え、固定1原子Heセルの周期LDAを別配布版で検証。周期側はPySCFを使う実行ワークフローで、Γ／k点と基底・SCFの収束を独立DFTKの全エネルギーと照合。一般分子DFT・他物質・金属は未検証。
 水素型原子・Heの実行検証例
 
 ## 実装ロードマップ — アトラスを核とする専門AI・モデル研究 [ja]
@@ -18648,7 +19340,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/#planned-quantum-chemistry-and-dft
 Coverage: reading
 
-18項目の導入解説・代表式・一次文献を公開しました。水素型原子・Heには固定入力、コード、独立参照との比較があります。H₂の有限基底RHFを追加しました。分子DFT・周期系の実行検証は別課題です。
+20項目の導入解説・代表式・一次文献を公開しました。水素型原子・Heには固定入力、コード、独立参照との比較があります。H₂の有限基底RHFを追加しました。周期HeセルのLDAを検証例へ追加。一般の分子DFT・他の周期系は別課題です。
 日英の解説・計算例と今後の計画
 
 ## 実装ロードマップ — 検証付きEuler・MHD比較# [ja]
@@ -19057,8 +19749,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素110項目・学術誌／会議論文215件・全参考資料256件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め77章です。
+方程式・モデル46項目・計算法と構成要素112項目・学術誌／会議論文221件・全参考資料262件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め78章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -19153,7 +19845,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は94、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は96、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -19305,7 +19997,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-209件：学術誌論文（総説・翻訳・採録済み論文を含む）
+215件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -19345,6 +20037,8 @@ CASSCF・多参照法
 時間依存DFT
 量子Monte Carlo
 DMRG・テンソルネットワーク
+Born–Oppenheimer分子動力学（BOMD）
+カー–パリネロ法（CPMD）
 
 ## スラブ静電場と2次元周期Ewald — スラブ静電場と2次元周期Ewald [ja]
 

@@ -203,10 +203,11 @@ for host,download in [(v,v.checked_download),(c,c.download)]:
 `);
 });
 
-test('core dependencies accept only the four published fixed pins and never executable requirement options or URLs', () => {
+test('core dependencies accept only the five published fixed pins and never executable requirement options or URLs', () => {
   python(String.raw`
 c=module('public_ci_bootstrap',ROOT/'scripts/run-atlas-public-ci.py')
-expected={'numpy':'2.0.2','scipy':'1.14.1','matplotlib':'3.9.4','pytest':'8.3.5'}
+expected={'numpy':'2.0.2','scipy':'1.14.1','matplotlib':'3.9.4','pytest':'8.3.5','pyscf':'2.11.0'}
+assert c.REQUIRED_PINS==expected
 text=chr(10).join(name+'=='+version for name,version in expected.items())+chr(10)
 assert c.parse_requirements(text)==expected
 for bad in ['numpy>=2','numpy==2.1.0','unreviewed-package==1.0','numpy @ https://other.example/a.whl','-r requirements.txt','--extra-index-url https://other.example','-e .','numpy==2.0.2 --index-url https://other.example','git+https://other.example/repo']:
@@ -285,7 +286,7 @@ with tempfile.TemporaryDirectory() as tmp:
  output=pathlib.Path(tmp)/'new-output'
  args=['--output-dir',str(output),'--registry-sha256',hashlib.sha256(registry).hexdigest(),
        '--verifier-sha256',hashlib.sha256(verifier).hexdigest(),'--builder-sha256',hashlib.sha256(builder).hexdigest()]
- with mock.patch.object(c,'download',side_effect=download),mock.patch.object(c,'collect_requirements',return_value={'numpy':'2.0.2','scipy':'1.14.1','matplotlib':'3.9.4','pytest':'8.3.5'}),mock.patch.object(c,'create_environment',side_effect=RuntimeError('simulated wheel installation failure')),mock.patch.object(c,'run_logged',side_effect=AssertionError('Do not run science after failed setup')):
+ with mock.patch.object(c,'download',side_effect=download),mock.patch.object(c,'collect_requirements',return_value=dict(c.REQUIRED_PINS)),mock.patch.object(c,'create_environment',side_effect=RuntimeError('simulated wheel installation failure')),mock.patch.object(c,'run_logged',side_effect=AssertionError('Do not run science after failed setup')):
   code=c.main(args)
  assert code!=0
  summary=json.loads((output/'ci-summary.json').read_text())
@@ -301,7 +302,7 @@ c=module('public_ci_bootstrap',ROOT/'scripts/run-atlas-public-ci.py')
 registry=(ROOT/'numerical-methods-atlas/code-and-data/examples.json').read_bytes()
 verifier=(ROOT/'scripts/verify-atlas-execution-examples.py').read_bytes()
 builder=(ROOT/'scripts/build-atlas-execution-examples.py').read_bytes()
-good=json.loads((ROOT/'numerical-methods-atlas/code-and-data/verification/2026-11-22-h2.json').read_text())
+good=json.loads((ROOT/'numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json').read_text())
 good['verification_tool']['verifier_sha256']=hashlib.sha256(verifier).hexdigest()
 good['verification_tool']['registry_builder_sha256']=hashlib.sha256(builder).hexdigest()
 # Adapt the old saved success to the new diagnostic field in memory only.
@@ -340,7 +341,7 @@ for scenario in ['process-failed','timed-out','numerical-failed','wrong-registry
     pathlib.Path(argv[argv.index('--output')+1]).write_text(json.dumps(report))
    verification='--output' in argv
    return {'exit_code':7 if verification and scenario=='process-failed' else 0,'timed_out':verification and scenario=='timed-out','duration_seconds':0.01}
-  with mock.patch.object(c,'download',side_effect=download),mock.patch.object(c,'collect_requirements',return_value={'numpy':'2.0.2','scipy':'1.14.1','matplotlib':'3.9.4','pytest':'8.3.5'}),mock.patch.object(c,'create_environment',return_value=pathlib.Path(sys.executable)),mock.patch.object(c,'run_logged',side_effect=logged):
+  with mock.patch.object(c,'download',side_effect=download),mock.patch.object(c,'collect_requirements',return_value=dict(c.REQUIRED_PINS)),mock.patch.object(c,'create_environment',return_value=pathlib.Path(sys.executable)),mock.patch.object(c,'run_logged',side_effect=logged):
    code=c.main(args)
   summary=json.loads((output/'ci-summary.json').read_text())
   assert any('--output' in command for command in calls) and summary['setup_passed'] is True,(scenario,summary)
@@ -380,7 +381,7 @@ test('a saved Linux success rechecks observations and rejects failed setup, anot
 p=module('ci_page',ROOT/'scripts/build-atlas-ci-page.py')
 config=json.loads((ROOT/'catalog/atlas-ci.json').read_text())
 raw=(ROOT/'numerical-methods-atlas/code-and-data/examples.json').read_bytes();registry=json.loads(raw);sha=hashlib.sha256(raw).hexdigest()
-report=json.loads((ROOT/'numerical-methods-atlas/code-and-data/verification/2026-11-22-h2.json').read_text())
+report=json.loads((ROOT/'numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json').read_text())
 report['environment']['operating_system']='Linux'
 url='https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/unit-fixture.json'
 envelope={'schema_version':1,'ci':{'setup_passed':True,'scientific_passed':True,'passed':True,'error':None},'verification':report,
@@ -389,7 +390,7 @@ envelope={'schema_version':1,'ci':{'setup_passed':True,'scientific_passed':True,
           'artifact_url':'https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/12345/artifacts/67890'}
 valid=p.validate_snapshot(url,envelope,registry,sha,config,b)
 assert valid['recorded_success'] is True and valid['registry_matches_current'] is True
-assert valid['example_count']==20 and valid['runner_count']==19
+assert valid['example_count']==21 and valid['runner_count']==20
 for scenario in ['setup','science','overall','os','incomplete','criterion']:
  bad=copy.deepcopy(envelope)
  if scenario in ['setup','science','overall']:bad['ci'][{'setup':'setup_passed','science':'scientific_passed','overall':'passed'}[scenario]]=False

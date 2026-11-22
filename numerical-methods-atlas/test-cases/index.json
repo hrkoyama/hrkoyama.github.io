@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-21",
+  "reviewed_on": "2026-11-22",
   "policy": {
     "ja": "アトラス全体の公開済み計算データ、および検証済み公開コード版の独立したテスト問題を数えます。方程式・次元・境界条件・名前を付けた初期値やソースの違いで問題を区別し、同じ問題の手法・格子数・刻み幅・パラメータ走査・乱数種・表示形式の違いは統合します。Sodの重複掲載、楔のMach数違い、CT/GLMの違いも加算しません。参照式の評価のみ、予定・文献調査のみ、図のみ、局所的な恒等式・不変量・入力エラー等の単体検査は総数に含めません。静的な力・境界値・関数近似・代数方程式の問題を含み、全件が時間発展シミュレーションという意味ではありません。",
     "en": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
@@ -2195,6 +2195,53 @@
         "python -m pytest -q test_molecular_hf.py",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "periodic-he-dft",
+      "group": "quantum",
+      "name": {
+        "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+        "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+      },
+      "chapter": "periodic-dft",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/periodic-dft/2026-11-22/",
+      "verification": "/code/periodic-dft/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_periodic_dft.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/periodic-dft/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/periodic-dft/2026-11-22/test_periodic_dft.py",
+          "python_symbol": "test_fixed_input_validation"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#measured-results",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#measured-results"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "periodic-he-dft",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#periodic-he-dft",
+      "run_commands": [
+        "python -m pytest -q test_periodic_dft.py",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -2215,8 +2262,8 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 65,
-    "saved_test_problems": 65,
+    "test_problems": 66,
+    "saved_test_problems": 66,
     "code_test_problems": 0,
     "groups": {
       "transport": 8,
@@ -2227,13 +2274,13 @@
       "gravity": 5,
       "time": 6,
       "approximation": 3,
-      "quantum": 3,
+      "quantum": 4,
       "biology": 2,
       "probability": 2
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "9112474d3ee4afba968162511d882d71b93265c93ffa9985a44146b0cb9e908a",
+    "catalog/atlas-test-problems.json": "0dbafe724fcde526266a879ac6a48fbba566bc5391c1d4a53d4141e0841b5abb",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -2279,7 +2326,9 @@
     "code/model-benchmarks/2026-11-22/results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",
     "code/model-benchmarks/2026-11-22/results/gbm-sde/result.json": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126",
     "code/molecular-hf/2026-11-22/results/result.json": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
-    "code/molecular-hf/2026-11-22/test_molecular_hf.py": "294a1dbd836929e3be2bec265c2e323bda189f3dd1ce40e064bd2bd49489c5e0"
+    "code/molecular-hf/2026-11-22/test_molecular_hf.py": "294a1dbd836929e3be2bec265c2e323bda189f3dd1ce40e064bd2bd49489c5e0",
+    "code/periodic-dft/2026-11-22/results/result.json": "50bdae51c0ce0779a0bfd283e0caa5fa0d9e47837ded3e4c610c9153240f2d7e",
+    "code/periodic-dft/2026-11-22/test_periodic_dft.py": "6213ed9499b2f2ba038dc45398879bf4e351f290d80d23e533be128b315e38e3"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

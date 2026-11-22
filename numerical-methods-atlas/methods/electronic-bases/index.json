@@ -38,19 +38,20 @@
     }
   ],
   "assumptions": [
-    "Born–Oppenheimer, nonrelativistic isolated H2 closed-shell RHF, two electrons.",
-    "STO-3G comparison and nested atom-centered s-type Gaussian spaces; angular polarization is not included.",
-    "Overlap eigenvalues and condition numbers are checked; nearly dependent inputs fail instead of silently deleting functions."
+    "Atomic/molecular examples: Born–Oppenheimer, nonrelativistic isolated H2 closed-shell RHF, two electrons.",
+    "Atomic/molecular examples: STO-3G comparison and nested atom-centered s-type Gaussian spaces; angular polarization is not included.",
+    "Atomic/molecular examples: Overlap eigenvalues and condition numbers are checked; nearly dependent inputs fail instead of silently deleting functions.",
+    "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
   ],
-  "units": "Atomic units in the displayed electronic equations (hbar = m_e = e = 4 pi epsilon_0 = 1); dimensionless conventions are stated where needed.",
-  "boundary_conditions": "Isolated finite molecule; analytic whole-space Gaussian integrals with no finite spatial box.",
+  "units": "Atomic/molecular examples: Atomic units in the displayed electronic equations (hbar = m_e = e = 4 pi epsilon_0 = 1); dimensionless conventions are stated where needed. Periodic He: bohr, inverse bohr and hartree per neutral primitive cell; reciprocal-lattice fractional k coordinates.",
+  "boundary_conditions": "Atomic/molecular examples: Isolated finite molecule; analytic whole-space Gaussian integrals with no finite spatial box. Periodic He: three-dimensional Bloch boundaries in the fixed one-atom simple-cubic cell.",
   "next_deliverable": {
     "ja": "重なり行列と一般化固有値問題を含む比較解説。",
     "en": "A comparison including overlap matrices and generalized eigenproblems."
   },
   "limitations": {
-    "ja": "H₂のs型Gaussian部分空間での基底拡大試験です。エネルギーの単調低下だけでは収束とせず、最終差と指定公差を示します。完全基底極限、角運動量収束、BSSEの系統評価は未検証。",
-    "en": "Basis refinement in an H₂ s-Gaussian subspace. Monotone energy lowering alone is not convergence: report the last change and stated tolerance. No complete-basis, angular-momentum or systematic BSSE validation."
+    "ja": "原子・分子の実行例の範囲：H₂のs型Gaussian部分空間での基底拡大試験です。エネルギーの単調低下だけでは収束とせず、最終差と指定公差を示します。完全基底極限、角運動量収束、BSSEの系統評価は未検証。 周期He側では別のPySCFドライバーがVWN5相関と周期k点積分を扱う。",
+    "en": "Atomic/molecular example scope: Basis refinement in an H₂ s-Gaussian subspace. Monotone energy lowering alone is not convergence: report the last change and stated tolerance. No complete-basis, angular-momentum or systematic BSSE validation. A separate PySCF periodic-He driver additionally uses VWN5 correlation and periodic k-point quadrature."
   },
   "metadata_review": {
     "level": "scoped H2 implementation with independent-reference and finite-s-subspace convergence evidence; full angular/complete-basis convergence untested",
@@ -68,12 +69,13 @@
     "basis set"
   ],
   "assumptions_ja": [
-    "Born–Oppenheimer・非相対論・孤立H₂、2電子の閉殻RHF。",
-    "STO-3Gと入れ子の原子中心s型Gaussian基底を比較。角運動量を増やす分極関数は含まない。",
-    "重なり行列の固有値・条件数を確認。線形従属に近い入力は基底を黙って削らず失敗させる。"
+    "原子・分子の実行例：Born–Oppenheimer・非相対論・孤立H₂、2電子の閉殻RHF。",
+    "原子・分子の実行例：STO-3Gと入れ子の原子中心s型Gaussian基底を比較。角運動量を増やす分極関数は含まない。",
+    "原子・分子の実行例：重なり行列の固有値・条件数を確認。線形従属に近い入力は基底を黙って削らず失敗させる。",
+    "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。"
   ],
-  "units_ja": "原子単位系：距離bohr、エネルギーhartree。Gaussian基底は空間全域で規格化。",
-  "boundary_conditions_ja": "孤立した有限分子。空間全域の解析Gaussian積分で、有限箱の境界は設けない。",
+  "units_ja": "原子・分子の実行例：原子単位系：距離bohr、エネルギーhartree。Gaussian基底は空間全域で規格化。 周期He：bohr・逆bohr・中性基本セル当たりhartree、逆格子での分率k座標。",
+  "boundary_conditions_ja": "原子・分子の実行例：孤立した有限分子。空間全域の解析Gaussian積分で、有限箱の境界は設けない。 周期He：固定1原子単純立方セルの3次元Bloch境界。",
   "caution": {
     "ja": "基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。",
     "en": "Changing the basis is different from changing electron correlation or the functional. Check near-linear dependence, basis-set superposition error and pseudopotential compatibility."
@@ -89,15 +91,25 @@
     "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
     "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
   },
+  "periodic_examples": [
+    "periodic-he-dft"
+  ],
+  "periodic_scope": {
+    "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+    "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular_hf.py",
-    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/run.py"
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/run.py",
+    "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
+    "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py"
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
+    "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
   ],
   "run_commands": [
     "python run.py --input inputs.json --output output"
@@ -128,6 +140,35 @@
       "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
     }
   },
+  "code_download": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip",
+  "code_verification": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/verification.json",
+  "inputs": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/inputs.json",
+  "results": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/result.json",
+  "independent_reference": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/reference-pyscf.json",
+  "periodic_release": {
+    "release": {
+      "family": "periodic-dft",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+      "sha256": "f331515e3ad419b5435dbf851553c6b853b28b2432801fc13c84109faa362df8",
+      "manifest": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/source-manifest.json",
+      "manifest_sha256": "1ac7fe2531934a598b7d9b69930c5a8a83f6b5bf2a67ae9f0616f35aa63f34fd",
+      "verification": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/verification.json",
+      "archive_directory": "periodic-dft-2026-11-22"
+    },
+    "code_base": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/",
+    "examples": [
+      "periodic-he-dft"
+    ],
+    "run_commands": [
+      "python run.py --input inputs.json --output output"
+    ],
+    "scope": {
+      "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+      "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+    },
+    "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
+  },
   "execution_examples": [
     {
       "id": "h2-rhf",
@@ -135,6 +176,14 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#h2-rhf-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#h2-rhf-en"
+      }
+    },
+    {
+      "id": "periodic-he-dft",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
       }
     }
   ]

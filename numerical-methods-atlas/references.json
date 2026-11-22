@@ -3312,5 +3312,77 @@
     "source": "https://doi.org/10.1063/1.1672392",
     "origin": "curated-quantum-reading",
     "note": "Publisher-deposited DOI metadata verified, not the full paper. STO-3G coefficients are checked against Basis Set Exchange version 1, which supplies more digits than the original publication."
+  },
+  {
+    "id": "bloch1929",
+    "year": 1929,
+    "author": "Bloch, F.",
+    "title": "Über die Quantenmechanik der Elektronen in Kristallgittern",
+    "journal": "Zeitschrift für Physik",
+    "doi": "10.1007/BF01339455",
+    "type": "article",
+    "source": "https://doi.org/10.1007/BF01339455",
+    "origin": "curated-quantum-reading",
+    "note": "Publisher abstract and metadata checked; not a full-paper audit."
+  },
+  {
+    "id": "gth1996",
+    "year": 1996,
+    "author": "Goedecker, S. and Teter, M. and Hutter, J.",
+    "title": "Separable dual-space Gaussian pseudopotentials",
+    "journal": "Physical Review B",
+    "doi": "10.1103/PhysRevB.54.1703",
+    "type": "article",
+    "source": "https://doi.org/10.1103/PhysRevB.54.1703",
+    "origin": "curated-quantum-reading",
+    "note": "Publisher abstract and metadata checked; exact selected He parameters are recorded separately."
+  },
+  {
+    "id": "vwn1980",
+    "year": 1980,
+    "author": "Vosko, S. H. and Wilk, L. and Nusair, M.",
+    "title": "Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis",
+    "journal": "Canadian Journal of Physics",
+    "doi": "10.1139/p80-159",
+    "type": "article",
+    "source": "https://doi.org/10.1139/p80-159",
+    "origin": "curated-quantum-reading",
+    "note": "Functional identity and bibliography verified in official Libxc documentation: LDA_C_VWN is VWN5, functional id 7. Publisher full text not consulted."
+  },
+  {
+    "id": "dftk2021",
+    "year": 2021,
+    "author": "Herbst, M. F. and Levitt, A. and Cancès, E.",
+    "title": "DFTK: A Julian approach for simulating electrons in solids",
+    "journal": "Proceedings of the JuliaCon Conferences",
+    "doi": "10.21105/jcon.00069",
+    "type": "article",
+    "source": "https://doi.org/10.21105/jcon.00069",
+    "origin": "curated-quantum-reading",
+    "note": "Official publication metadata and introductory passages checked; independent numerical execution is recorded separately."
+  },
+  {
+    "id": "born-oppenheimer1927",
+    "author": "M. Born and R. Oppenheimer",
+    "year": 1927,
+    "title": "Zur Quantentheorie der Molekeln",
+    "journal": "Annalen der Physik 389(20), 457–484",
+    "doi": "10.1002/andp.19273892002",
+    "source": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+    "type": "article",
+    "origin": "curated-quantum-reading",
+    "note": "Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation."
+  },
+  {
+    "id": "car-parrinello1985",
+    "author": "R. Car and M. Parrinello",
+    "year": 1985,
+    "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+    "journal": "Physical Review Letters 55, 2471–2474",
+    "doi": "10.1103/PhysRevLett.55.2471",
+    "source": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+    "type": "article",
+    "origin": "curated-quantum-reading",
+    "note": "Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced."
   }
 ]

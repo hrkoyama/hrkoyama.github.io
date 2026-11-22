@@ -26,10 +26,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
-      ATLAS_BOOTSTRAP_SHA256: 'e3c5f7c76bf34d8a9063bb5192f01009c264a71c2ddf9fd5d5cab8e0e2f591f3'
-      ATLAS_VERIFIER_SHA256: 'fca9955b89f2f53453ff879e5c118d723def5047ac005497269c34952a3e7a05'
+      ATLAS_BOOTSTRAP_SHA256: '71923ee9e9be62fce9549d3273bbfaaee405f5f6409cfc6cf8461c26e885ce06'
+      ATLAS_VERIFIER_SHA256: '4e612dbecaead4f95c4a524a9bcf9ea1ab566b326fdac2c23b5424f2e5da9033'
       ATLAS_BUILDER_SHA256: '2163cbb852bd5f70dd76aaca13c1e7c6362e06f7666fcd46a988c9ee962dccaa'
-      ATLAS_REGISTRY_SHA256: '0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c'
+      ATLAS_REGISTRY_SHA256: '696af1d8f81f8750332ba462ddd2145aeb30e44cf6e35b8fed94fea4c10cb3ca'
       PYTHONNOUSERSITE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
       MPLBACKEND: Agg
@@ -116,7 +116,7 @@ jobs:
               --registry-sha256 "$ATLAS_REGISTRY_SHA256" \
               --verifier-sha256 "$ATLAS_VERIFIER_SHA256" \
               --builder-sha256 "$ATLAS_BUILDER_SHA256" \
-              --timeout 120
+              --timeout 900
           } 2>&1 | tee "$REPORT_DIR/bootstrap.log"
       - name: Write the run summary even when verification fails
         if: always()

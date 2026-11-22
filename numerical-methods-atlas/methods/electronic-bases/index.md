@@ -6,7 +6,7 @@ Connect atomic, Gaussian, Slater, plane-wave and real-space representations.
 
 原子軌道・Gaussian・Slater・平面波・実空間格子をつなぐ。
 
-Basis refinement in an H₂ s-Gaussian subspace. Monotone energy lowering alone is not convergence: report the last change and stated tolerance. No complete-basis, angular-momentum or systematic BSSE validation.
+Atomic/molecular example scope: Basis refinement in an H₂ s-Gaussian subspace. Monotone energy lowering alone is not convergence: report the last change and stated tolerance. No complete-basis, angular-momentum or systematic BSSE validation. A separate PySCF periodic-He driver additionally uses VWN5 correlation and periodic k-point quadrature.
 
 Other names: Gaussian, Slater, 平面波, plane waves, basis set
 
@@ -48,7 +48,34 @@ Molecular scope: New H₂ closed-shell RHF example: original s-Gaussian integral
   }
 }
 
-Common execution records: [{"id": "h2-rhf", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#h2-rhf-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#h2-rhf-en"}}]
+Periodic scope: Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals.
+
+{
+  "release": {
+    "family": "periodic-dft",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+    "sha256": "f331515e3ad419b5435dbf851553c6b853b28b2432801fc13c84109faa362df8",
+    "manifest": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/source-manifest.json",
+    "manifest_sha256": "1ac7fe2531934a598b7d9b69930c5a8a83f6b5bf2a67ae9f0616f35aa63f34fd",
+    "verification": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/verification.json",
+    "archive_directory": "periodic-dft-2026-11-22"
+  },
+  "code_base": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/",
+  "examples": [
+    "periodic-he-dft"
+  ],
+  "run_commands": [
+    "python run.py --input inputs.json --output output"
+  ],
+  "scope": {
+    "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+    "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+  },
+  "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
+}
+
+Common execution records: [{"id": "h2-rhf", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#h2-rhf-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#h2-rhf-en"}}, {"id": "periodic-he-dft", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"}}]
 
 Next: A comparison including overlap matrices and generalized eigenproblems.
 

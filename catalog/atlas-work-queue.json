@@ -25,8 +25,8 @@
         "en": "Close validation gaps between fields"
       },
       "scope": {
-        "ja": "第1弾の生物2例・確率2例に続き、H₂の有限s型基底RHFを追加。現行20実行例を公開台帳・ZIPから追試。量子では周期DFTを次の優先課題とし、生物・確率の後続候補は反応拡散、既知分布MCMC、温度制御の分布・相関。後続は未実装で、完了日は未定。",
-        "en": "Following the two biology/two stochastic first-batch examples, add H₂ RHF in finite s-Gaussian spaces. All 20 current examples were rerun from the public registry/ZIPs. Periodic DFT is the next quantum priority; other candidates are reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations. Follow-ups remain unimplemented, without promised completion dates."
+        "ja": "生物2例・確率2例・H₂ RHFに続き、固定Heセルの周期LDAを追加。現行21例の実行経路を整備。周期Heはk点・軌道基底・FFT・SCF収束と独立DFTK全エネルギーを確認。次候補は他の絶縁体、反応拡散、既知分布MCMC、温度制御の分布・相関で、これらは未実装。",
+        "en": "Following two biology/two stochastic examples and H₂ RHF, add fixed-He periodic LDA, bringing the current execution paths to 21. Periodic He checks k sampling, orbital basis, FFT and SCF refinement against independent DFTK total energies. Other insulators, reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations remain unimplemented candidates."
       },
       "links": [
         {
@@ -41,23 +41,23 @@
     {
       "id": "periodic-dft-validation",
       "target_year": 2026,
-      "state": "planned",
+      "state": "published-verified-example",
       "track": "current",
       "priority": "P0",
       "title": {
-        "ja": "周期DFTとk点収束を次の量子計算の優先課題にする",
-        "en": "Prioritize periodic DFT and k-point convergence next"
+        "ja": "固定Heセルの周期DFT・k点収束を実装・検証",
+        "en": "Implement and validate fixed-He periodic DFT and k-point refinement"
       },
       "scope": {
-        "ja": "H₂の公開・検証を完了した後、絶縁体の小さな中性セルで周期KS-DFTを整備。Bloch条件・逆格子・第一Brillouin域・Monkhorst–Packの解説から、Γ点と複数kメッシュ、SCF・基底／補助格子の収束、独立参照へつなぐ。擬ポテンシャル・XC・単位を固定し、金属の占有数・smearingは後続。現時点で周期DFT実装済みとは表示しない。",
-        "en": "After completing H₂ publication/validation, develop periodic KS-DFT for a small neutral insulating cell. Connect Bloch conditions, reciprocal lattices, the first Brillouin zone and Monkhorst–Pack sampling to Gamma versus k-mesh checks, SCF/basis/auxiliary-grid convergence and independent references. Fix pseudopotentials, XC and units; metallic occupations/smearing follow later. Periodic DFT is not currently implemented."
+        "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+        "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
       "links": [
         {
-          "url": "/numerical-methods-atlas/ja/read/quantum-chemistry/#k-point",
+          "url": "/numerical-methods-atlas/ja/read/periodic-dft/",
           "label": {
-            "ja": "k点の既存解説",
-            "en": "Existing k-point reading"
+            "ja": "固定He周期DFTの数値検証",
+            "en": "Fixed-He periodic-DFT numerical checks"
           }
         }
       ]
@@ -441,8 +441,8 @@
         "en": "Representative runnable quantum-chemistry and DFT checks"
       },
       "scope": {
-        "ja": "水素型原子・球対称Heの閉殻HF・交換のみLDAの固定入力、コード、結果、独立参照を公開済み。別配布版でH₂の有限s型Gaussian基底RHFを追加。分子DFT・周期系・相関エネルギーの検証は今後の課題。",
-        "en": "Published hydrogenic/He closed-shell HF and exchange-only LDA inputs, code, results and independent references. A separate edition now adds H₂ RHF in finite s-Gaussian spaces. Molecular DFT, periodic systems and correlated energies remain future validation tasks."
+        "ja": "水素型原子・球対称He、H₂の有限s型基底RHFに加え、固定1原子Heセルの周期LDAを別配布版で検証。周期側はPySCFを使う実行ワークフローで、Γ／k点と基底・SCFの収束を独立DFTKの全エネルギーと照合。一般分子DFT・他物質・金属は未検証。",
+        "en": "Alongside hydrogenic/spherical-He and finite-s-basis H₂ RHF, a separate edition validates fixed one-atom periodic-He LDA. This PySCF workflow checks Gamma/k meshes, basis and SCF refinement against independent DFTK total energies. General molecular DFT, other materials and metals remain unvalidated."
       },
       "track": "published",
       "links": [

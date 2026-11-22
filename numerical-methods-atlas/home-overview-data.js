@@ -424,6 +424,11 @@ export const homeAreas = [
           "name": "home-map.execution.h2-rhf",
           "route": "/numerical-methods-atlas/code-and-data/examples/h2-rhf/",
           "kind": "execution"
+        },
+        {
+          "name": "home-map.execution.periodic-he-dft",
+          "route": "/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/",
+          "kind": "execution"
         }
       ]
     ]

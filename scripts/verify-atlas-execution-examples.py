@@ -306,7 +306,7 @@ def main(argv=None):
     parser.add_argument('--registry', default=REGISTRY_URL)
     parser.add_argument('--python', default=sys.executable)
     parser.add_argument('--output', type=Path, required=True, help='New report JSON; existing receipts are never overwritten')
-    parser.add_argument('--timeout', type=int, default=300)
+    parser.add_argument('--timeout', type=int, default=900)
     parser.add_argument('--artifacts-dir', type=Path, help='Retain group logs and partial JSON/CSV outputs')
     parser.add_argument('--expected-registry-sha256', help='Pin remote or local registry bytes')
     args = parser.parse_args(argv)

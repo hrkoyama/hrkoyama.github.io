@@ -1,0 +1,80 @@
+{
+  "id": "car-parrinello-md",
+  "name": {
+    "ja": "カー–パリネロ法（CPMD）",
+    "en": "Car–Parrinello molecular dynamics / CPMD"
+  },
+  "group": {
+    "id": "quantum",
+    "ja": "電子状態・量子化学",
+    "en": "Electronic structure & quantum chemistry"
+  },
+  "summary": {
+    "ja": "電子軌道に仮想質量を与え、直交制約付きの拡張系で核と同時に進める。",
+    "en": "Assign fictitious inertia to orbitals and propagate an orthonormality-constrained extended system with the nuclei."
+  },
+  "status": "reading-only",
+  "origin": "curated-quantum-reading",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "references": [
+    {
+      "id": "car-parrinello1985",
+      "label": "R. Car and M. Parrinello (1985), Unified Approach for Molecular Dynamics and Density-Functional Theory",
+      "url": "https://doi.org/10.1103/PhysRevLett.55.2471",
+      "kind": "primary-paper",
+      "scope": "Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced."
+    }
+  ],
+  "assumptions": [
+    "Classical nuclei and a selected adiabatic electronic ground-state model; no verified MD implementation.",
+    "Displayed extended-Lagrangian formulas assume fixed cell and fixed occupations."
+  ],
+  "assumptions_ja": [
+    "核は古典力学、電子は選択した断熱的基底状態モデル。MDの実装・検証は未実施。",
+    "表示する拡張ラグランジアンは固定セル・固定占有を仮定。"
+  ],
+  "units": "Atomic units for energies/forces/time with nuclear masses stated explicitly; CP orbital mass is a numerical convention.",
+  "units_ja": "エネルギー・力・時間は原子単位系とし、核質量を明示。CPの軌道仮想質量は数値的な規約。",
+  "boundary_conditions": "Choose isolated or periodic boundaries for the target system; no executed MD case is published.",
+  "boundary_conditions_ja": "対象に応じて孤立・周期境界を選びます。実行済みのMD例は未公開。",
+  "next_deliverable": {
+    "ja": "多原子の力を独立参照と照合し、時間刻み・SCF公差または仮想質量への感度とNVEドリフトを測る。",
+    "en": "Compare multiatom forces with an independent reference, then measure timestep/SCF or fictitious-mass sensitivity and NVE drift."
+  },
+  "limitations": {
+    "ja": "解説のみ。仮想電子運動の断熱性、エネルギー移動、長時間軌道は未検証です。",
+    "en": "Reading only. Adiabatic separation, fictitious-to-nuclear energy transfer and long trajectories are unvalidated."
+  },
+  "caution": {
+    "ja": "解説のみ。仮想電子運動の断熱性、エネルギー移動、長時間軌道は未検証です。",
+    "en": "Reading only. Adiabatic separation, fictitious-to-nuclear energy transfer and long trajectories are unvalidated."
+  },
+  "aliases": [
+    "CPMD",
+    "Car Parrinello",
+    "Car–Parrinello",
+    "Car Parrinello MD",
+    "カー・パリネロ法",
+    "カーパリネロ法",
+    "第一原理分子動力学"
+  ],
+  "metadata_review": {
+    "level": "Primary publisher metadata and selected Car–Parrinello equations reviewed; explanatory reading only, no force or trajectory validation.",
+    "on": "2026-11-22"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/index.md",
+  "code_urls": [],
+  "test_urls": [],
+  "run_commands": [],
+  "run_from": null,
+  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
+  "code_edition": null,
+  "execution_examples": []
+}

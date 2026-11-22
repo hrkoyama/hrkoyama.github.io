@@ -117,8 +117,8 @@
         "密度汎関数"
       ],
       "scope": {
-        "ja": "この目的では解説のみを案内します。分子・周期系、k点、基底、汎関数の選び方を読みます。原子用の公開コードを、分子・固体やGGA・hybridの検証済み実装と表示しません。",
-        "en": "This route provides reading only: molecular/periodic formulations, k points, bases and functional choices. The atomic code is not a validated implementation for molecules, solids, GGA or hybrids."
+        "ja": "この目的では解説のみを案内します。分子・周期系、k点、基底、汎関数の選び方を読みます。原子用の公開コードを、分子・固体やGGA・hybridの検証済み実装と表示しません。 固定He周期LDAの実行例は別の「周期DFT」の目的に限定して掲載。",
+        "en": "This route provides reading only: molecular/periodic formulations, k points, bases and functional choices. The atomic code is not a validated implementation for molecules, solids, GGA or hybrids. The fixed-He periodic LDA example is presented separately under the scoped periodic-DFT goal."
       },
       "methods": [
         "kohn-sham-dft",
@@ -536,6 +536,75 @@
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
+              }
+            }
+          ]
+        }
+      ],
+      "domains": [
+        "quantum"
+      ]
+    },
+    {
+      "id": "periodic-dft",
+      "title": {
+        "ja": "周期DFTでΓ点・k点・収束を確かめたい",
+        "en": "Check Gamma, k meshes and convergence in periodic DFT"
+      },
+      "terms": [
+        "周期DFT",
+        "周期dft",
+        "periodic dft",
+        "周期セル",
+        "Γ点",
+        "ガンマ点",
+        "k点の収束",
+        "k-point convergence",
+        "helium crystal",
+        "He結晶",
+        "周期境界のDFT"
+      ],
+      "scope": {
+        "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+        "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+      },
+      "methods": [],
+      "examples": [
+        "periodic-he-dft"
+      ],
+      "resources": [
+        {
+          "id": "periodic-he-dft-resource",
+          "name": {
+            "ja": "固定HeセルのLDA（PySCF実行例）",
+            "en": "Fixed-He LDA (PySCF workflow)"
+          },
+          "group": {
+            "ja": "周期DFTの限定例",
+            "en": "Scoped periodic DFT"
+          },
+          "summary": {
+            "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
+            "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+          },
+          "status": "educational-example",
+          "resource_type": "scoped-example",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+          ],
+          "execution_examples": [
+            {
+              "id": "periodic-he-dft",
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en"
               }
             }
           ]

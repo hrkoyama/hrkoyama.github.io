@@ -5121,8 +5121,8 @@
     "en": "From basis functions to electronic structure."
   },
   "planned.quantum.scope": {
-    "ja": "Schrödinger、HF・DFT、基底・SCF、バンドの対称群、電子相関・励起まで18項目の導入を日英で公開しています。",
-    "en": "Bilingual introductions to 18 entries cover Schrödinger, HF and DFT, bases, SCF, band symmetry, correlation and excitations."
+    "ja": "Schrödinger、HF・DFT、基底・SCF、バンドの対称群、電子相関・励起まで20項目の導入を日英で公開しています。",
+    "en": "Bilingual introductions to 20 entries cover Schrödinger, HF and DFT, bases, SCF, band symmetry, correlation and excitations."
   },
   "planned.quantum.status": {
     "ja": "導入解説・一次文献と水素型原子・Heの実行検証例を公開。小分子・周期系はUnder constructionです。",
@@ -7297,8 +7297,8 @@
     "ja": "電子の何を近似し、何で確かめる？"
   },
   "home-map.areas.6.description": {
-    "en": "Read the distinctions between wavefunctions, density and approximations, then the SCF, boundary and unit conventions. Runnable examples cover one-electron hydrogenic atoms and spherical He 1s² closed-shell HF / exchange-only LDA. General molecular and periodic DFT examples are not implemented. A separate H₂ closed-shell RHF edition checks an independent reference, SCF and finite s-basis refinement.",
-    "ja": "波動関数・電子密度と近似の違いを読み、SCFと境界・単位の条件へ進みます。実行例は水素型1電子原子と球対称He 1s²の閉殻HF・交換のみLDAです。一般分子・周期DFTの実行例は未実装です。 別配布のH₂閉殻RHFでは、独立参照・SCF・有限s型基底の拡大を確認できます。"
+    "ja": "原子・限定したH₂ RHF・固定Heセルの周期LDAを実行できます。一般分子DFTや他の周期物質は解説と実装の差を確認してください。",
+    "en": "Run atoms, scoped H₂ RHF and periodic LDA for one fixed He cell. See the separate reading and implementation limits for general molecular DFT and other periodic materials."
   },
   "home-map.areas.6.groups.0.0.name": {
     "en": "Read electronic-state models and approximations",
@@ -7423,5 +7423,9 @@
   "home-map.execution.h2-rhf": {
     "ja": "H₂分子HF：独立参照・SCF・基底拡大",
     "en": "H₂ molecular HF: independent reference, SCF and basis refinement"
+  },
+  "home-map.execution.periodic-he-dft": {
+    "ja": "周期HeのDFT",
+    "en": "Periodic-He DFT"
   }
 }
