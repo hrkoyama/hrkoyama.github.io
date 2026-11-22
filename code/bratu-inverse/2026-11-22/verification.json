@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "archive_sha256": "a32c45d2818abf135b63d2f496666166c2460d0600b04a314dee2944d7c53c33",
+  "archive": {
+    "file": "bratu-inverse-2026-11-22.zip",
+    "sha256": "a32c45d2818abf135b63d2f496666166c2460d0600b04a314dee2944d7c53c33",
+    "bytes": 284349,
+    "archive_directory": "bratu-inverse-2026-11-22"
+  },
+  "source_manifest_sha256": "7007a453ba28b587761142e013ca198618d3d0958d676273518e07eb400495db",
+  "command": "python -m pytest -q tests/test_bratu_inverse.py",
+  "returncode": 0,
+  "summary": "23 passed; independently extracted package rebuilt identical numerical evidence and figure.",
+  "tests": 23,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 23,
+  "passed_tests": 23,
+  "environment": {
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4",
+    "pytest": "8.4.2"
+  },
+  "execution": "ZIP independently extracted; dedicated tests and builder executed without source checkout or network.",
+  "rerun_checks": {
+    "all_source_hashes_match": true,
+    "numerical_evidence_identical": true,
+    "figure_identical": true,
+    "all_eight_adjoint_fits_converged": true,
+    "primal_residuals_within_tolerance": true,
+    "projected_gradients_within_tolerance": true,
+    "independent_parameter_refinement": true,
+    "objective_only_reference_agrees": true,
+    "boundary_only_zero_information": true
+  }
+}

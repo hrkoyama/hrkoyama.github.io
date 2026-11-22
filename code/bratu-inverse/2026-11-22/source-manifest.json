@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "family": "bratu-inverse",
+  "edition": "2026-11-22",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "LICENSING.md": "8515f2961e3433ab0df36e85b208ea46445f74f723d4acf08595d6fd4ae09b38",
+    "README.md": "14ceb95ae3c49ced2f98e71c7e4093543debeb8f2138b50a9cc307850c18cfc3",
+    "docs/figures/bratu-inverse.json": "31b12780b38ac8cca2c6d0df42d6a2f1e58acae67318967960416a40027900aa",
+    "docs/figures/bratu-inverse.png": "f657ec92e2bf42cad567da851e67f5a727fb9a3b378738471232f6c3e006b3c2",
+    "inputs/synthetic-observations.json": "f5a0c9be08a71004830032a7d6717f9d10c517ff98444dec6d9e2579bd72deca",
+    "numart/__init__.py": "6a862f988b8427909a680684e26a3e8db19a838d8c11b7ce3bba4b69942719d1",
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/bratu_inverse.py": "aea8b5710c8574118ea2db5f7c77b4cf47ceecfde994ba1ce3418f22e57ec9f4",
+    "numart/bratu_sensitivity.py": "31f694599475892c75bcff9b4e9bd08921716bb48d6a78d48d12f1484a023609",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "provenance.json": "22508d54dbd1ffa69cd106716e497ccc14ae4328cf930815eda22dec9c67da02",
+    "requirements.txt": "632938dad94f057903cb9517a2c610c983966e68d68b4ade87ae5e38dc07fa3c",
+    "scripts/build_bratu_inverse.py": "03dc8de335162dcad6dfc15e6359ce9d455d20d3c2295724992d807114dd0f43",
+    "tests/test_bratu_inverse.py": "29803beb468046353324dd262c897df62f88226b87b8978eabfa1db5f2a89595"
+  },
+  "scope": "Bounded scalar lower-branch Bratu inverse estimation with discrete-adjoint projected Armijo optimization, fixed synthetic observations, independent continuous-data refinement and deterministic perturbations."
+}

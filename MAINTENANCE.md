@@ -201,3 +201,11 @@ DFTから力・第一原理MD・温度制御、反応拡散から生物・流体
 `catalog/atlas-detailed-reading.json` の `adjoint` 章と `catalog/atlas-methods.json` が正本。既存の章URL・節IDを保持し、一般の逆問題最適化や時間依存随伴を実装済みと表示しない。新しい不変配布版 `/code/bratu-sensitivity/2026-11-22/` は、解析的な連続感度、陰関数感度、離散随伴勾配、パラメータを変えて解き直した有限差分を照合する。Bratuの対称性だけに頼らず、非対称・複数パラメータの独立した転置検査を含める。
 
 `atlas_sensitivity_release.py` が配布ファイル・ZIP・検証記録のハッシュを照合し、`build-atlas-autodiff.py` が図・JSONと章間リンクを配置する。古い自動微分配布版は上書きしない。通常の `refresh-site.py` で本文・手法台帳・検索・ホームを再生成する。この補助比較を共通の21実行例・66テスト問題へ加算しない。
+
+## Bratuの合成観測による逆問題
+
+`catalog/atlas-detailed-reading.json` の `bratu-inverse` が日英解説の正本。既存の `optimization` 手法項目を、区間制約付きの1パラメータ推定だけの教育用実装へ昇格する。従来の `/read/optimization/` と節IDは残す。準Newton法全般を実装済みとしない。感度解析の既存章・不変配布版も保持する。
+
+新しい不変配布版は `/code/bratu-inverse/2026-11-22/`。観測位置・重み・真値・固定ノイズを保存し、離散随伴勾配を使った射影勾配法とArmijo線探索でλを推定する。同じ離散モデルの合成データによる回復はコード整合性の検査に限定し、連続解析解の固定観測を用いた格子細分化と固定ノイズによる推定値のずれを別々に示す。目的関数だけを使う独立した区間探索、解き直した有限差分、接線感度で照合する。収束判定、パラメータ誤差、主問題・随伴残差を区別し、実測データや統計的信頼区間の検証を主張しない。
+
+`scripts/package-bratu-inverse.py` はZIPを独立展開して検査・結果再生成を行い、目録と検証記録を作る。`scripts/atlas_inverse_release.py` が配布ファイル・ZIP・記録のハッシュを照合する。図とJSONの配置は `build-atlas-autodiff.py`、本文・手法・検索・ホームの再生成は通常の `refresh-site.py` に従う。共通実行例21件・固有テスト問題66件には加算しない。公開は本書冒頭と `AGENTS.md` のとおり `hrkoyama/hrkoyama.github.io` の `main` だけへ行う。

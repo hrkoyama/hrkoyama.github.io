@@ -18,6 +18,11 @@ sensitivity_release = ROOT / adjoint['sensitivity_release']['base'].lstrip('/')
 for extension in ('json', 'png'):
     shutil.copyfile(sensitivity_release / f'docs/figures/bratu-sensitivity.{extension}',
                     ATLAS / f'assets/bratu-sensitivity.{extension}')
+inverse = next(m for m in methods if m['id'] == 'optimization')
+inverse_release = ROOT / inverse['inverse_release']['base'].lstrip('/')
+for extension in ('json', 'png'):
+    shutil.copyfile(inverse_release / f'docs/figures/bratu-inverse.{extension}',
+                    ATLAS / f'assets/bratu-inverse.{extension}')
 
 start, end = '<!-- autodiff-foundation -->', '<!-- /autodiff-foundation -->'
 for lang in ('en', 'ja'):
@@ -26,7 +31,8 @@ for lang in ('en', 'ja'):
               if lang == 'ja' else
               'Compare analytic, finite-difference and forward-mode AD with the same residual, initial state and Newton stopping controls. Derivative error, nonlinear residual and spatial discretization error are reported separately, with dedicated code, eight tests and reproduction commands. A separate Bratu parameter-sensitivity chapter verifies implicit differentiation and discrete adjoints. A reverse-mode AD engine remains unimplemented.')
     sensitivity_label = '陰関数微分・随伴法とBratuのパラメータ感度' if lang == 'ja' else 'Implicit differentiation, adjoints and Bratu parameter sensitivity'
-    note = start + '<aside class="resource-summary"><p><a href="/numerical-methods-atlas/' + lang + '/read/automatic-differentiation/">' + label + '</a></p><p>' + detail + '</p><p><a href="/numerical-methods-atlas/' + lang + '/read/adjoint/">' + sensitivity_label + '</a></p></aside>' + end
+    inverse_label = 'Bratuの逆問題：合成観測から随伴勾配でλを推定する' if lang == 'ja' else 'Bratu inverse problem: estimate lambda from synthetic observations with adjoint gradients'
+    note = start + '<aside class="resource-summary"><p><a href="/numerical-methods-atlas/' + lang + '/read/automatic-differentiation/">' + label + '</a></p><p>' + detail + '</p><p><a href="/numerical-methods-atlas/' + lang + '/read/adjoint/">' + sensitivity_label + '</a></p><p><a href="/numerical-methods-atlas/' + lang + '/read/bratu-inverse/">' + inverse_label + '</a></p></aside>' + end
     path = ATLAS / f'content.{lang}.json'
     documents = json.loads(path.read_text())
     for chapter in ('sparse-nonlinear', 'stiff-integration', 'roadmap'):

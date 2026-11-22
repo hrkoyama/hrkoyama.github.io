@@ -39,6 +39,11 @@ export const homeAreas = [
           "name": "sensitivity.home-title",
           "route": "/read/adjoint",
           "kind": "reading"
+        },
+        {
+          "name": "inverse.home-title",
+          "route": "/read/bratu-inverse",
+          "kind": "reading"
         }
       ],
       [

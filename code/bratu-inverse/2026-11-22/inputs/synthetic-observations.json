@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "truth_alpha": 1.5,
+  "truth_lambda": 2.6846361372659913,
+  "observation_positions": [
+    0.125,
+    0.25,
+    0.5,
+    0.75,
+    0.875
+  ],
+  "weights": [
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2
+  ],
+  "same_discrete": {
+    "n": 31,
+    "data": [
+      0.21561914385248573,
+      0.3792609562307516,
+      0.516789152519013,
+      0.3792609562307516,
+      0.21561914385248585
+    ],
+    "definition": "Generated once by the same discrete lower-branch forward solver; code-consistency / inverse-crime control only."
+  },
+  "continuous_noiseless": [
+    0.21552628346887534,
+    0.379084543735705,
+    0.5165321948456144,
+    0.379084543735705,
+    0.21552628346887534
+  ],
+  "fixed_perturbations": [
+    0.001,
+    -0.0006,
+    0.0004,
+    -0.001,
+    0.0003
+  ],
+  "continuous_perturbed": [
+    0.21652628346887534,
+    0.378484543735705,
+    0.5169321948456144,
+    0.378084543735705,
+    0.21582628346887534
+  ],
+  "continuous_definition": "u_alpha(x)=-2 log(cosh(alpha*(x-.5))/cosh(alpha/2)); alpha=1.5; no inverse-grid forward solve used.",
+  "perturbation_definition": "Fixed deterministic sensor perturbations, used without resampling; not a probability model."
+}
