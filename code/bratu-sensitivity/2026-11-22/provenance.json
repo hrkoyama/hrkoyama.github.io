@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "unchanged_source_release": "https://hrkoyama.github.io/code/autodiff/2026-11-22/",
+  "unchanged_source_sha256": {
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d"
+  },
+  "adaptations": [
+    "Original AD and Armijo-Newton modules retained byte-for-byte.",
+    "New implicit/discrete-adjoint helpers, exact-family references, tests and evidence builder.",
+    "Minimal package initializer avoids unrelated solver imports."
+  ]
+}

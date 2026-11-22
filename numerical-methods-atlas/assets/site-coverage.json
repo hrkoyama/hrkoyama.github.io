@@ -11,7 +11,7 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 113,
+    "methods": 114,
     "papers": 221,
     "references": 262,
     "journal_articles": 215,
@@ -22,7 +22,7 @@
     "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 97,
+    "local_methods": 98,
     "reading_methods": 16,
     "biological_entries": 22,
     "gallery_cases": 9,
@@ -1488,8 +1488,18 @@
       "chapter": "automatic-differentiation",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
-      "scope": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs, implicit sensitivities and matrix-free Newton–Krylov are explanatory only. This does not validate a general AD library or shock sensitivities.",
+      "scope": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs and matrix-free Newton–Krylov remain explanatory only. A separate dedicated supplement verifies implicit sensitivities and discrete adjoints.",
       "origin": "curated-autodiff-example"
+    },
+    {
+      "kind": "method",
+      "id": "adjoint",
+      "label": "Implicit differentiation and adjoint methods",
+      "chapter": "adjoint",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented.",
+      "origin": "curated-sensitivity-example"
     }
   ],
   "publications": [
@@ -2903,7 +2913,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "22ba356f826fcbf95ba84ba169ae75e29134c9adb6313da6591b801ba4940ba4",
-    "catalog/atlas-methods.json": "db573608a41361dfa9399cb55c09a97df448c1f83ee711a60aa4ea0ea33ca819",
+    "catalog/atlas-methods.json": "ec981f747547ca26e0b4bc668ab5129b12413228aa688d2bf2ee33ea88e64e13",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
     "catalog/atlas-method-primary-references.json": "e388cfbb852195fc7683b3d1688557e7b00dd5d443b2c0c1d0ce199b0be79f94"
   }

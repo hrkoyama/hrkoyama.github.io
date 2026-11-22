@@ -13,14 +13,20 @@ release = ROOT / method['autodiff_release']['base'].lstrip('/')
 for extension in ('json', 'png'):
     shutil.copyfile(release / f'docs/figures/autodiff-bratu.{extension}',
                     ATLAS / f'assets/autodiff-bratu.{extension}')
+adjoint = next(m for m in methods if m['id'] == 'adjoint')
+sensitivity_release = ROOT / adjoint['sensitivity_release']['base'].lstrip('/')
+for extension in ('json', 'png'):
+    shutil.copyfile(sensitivity_release / f'docs/figures/bratu-sensitivity.{extension}',
+                    ATLAS / f'assets/bratu-sensitivity.{extension}')
 
 start, end = '<!-- autodiff-foundation -->', '<!-- /autodiff-foundation -->'
 for lang in ('en', 'ja'):
     label = '共通基盤：自動微分とBratuの検証' if lang == 'ja' else 'Shared foundation: automatic differentiation and Bratu verification'
-    detail = ('同じ残差・初期値・Newton停止条件で解析微分・有限差分・前進モード自動微分を比較します。微分誤差・非線形残差・空間離散化誤差を分け、専用コード・8件のテスト・再生成手順を公開しています。逆モードと陰関数感度の実行検証は今後の課題です。'
+    detail = ('同じ残差・初期値・Newton停止条件で解析微分・有限差分・前進モード自動微分を比較します。微分誤差・非線形残差・空間離散化誤差を分け、専用コード・8件のテスト・再生成手順を公開しています。陰関数微分と離散随伴は、別のBratuパラメータ感度の章で検証します。逆モード自動微分エンジンは未実装です。'
               if lang == 'ja' else
-              'Compare analytic, finite-difference and forward-mode AD with the same residual, initial state and Newton stopping controls. Derivative error, nonlinear residual and spatial discretization error are reported separately, with dedicated code, eight tests and reproduction commands. Executable reverse-mode and implicit-sensitivity checks remain future work.')
-    note = start + '<aside class="resource-summary"><p><a href="/numerical-methods-atlas/' + lang + '/read/automatic-differentiation/">' + label + '</a></p><p>' + detail + '</p></aside>' + end
+              'Compare analytic, finite-difference and forward-mode AD with the same residual, initial state and Newton stopping controls. Derivative error, nonlinear residual and spatial discretization error are reported separately, with dedicated code, eight tests and reproduction commands. A separate Bratu parameter-sensitivity chapter verifies implicit differentiation and discrete adjoints. A reverse-mode AD engine remains unimplemented.')
+    sensitivity_label = '陰関数微分・随伴法とBratuのパラメータ感度' if lang == 'ja' else 'Implicit differentiation, adjoints and Bratu parameter sensitivity'
+    note = start + '<aside class="resource-summary"><p><a href="/numerical-methods-atlas/' + lang + '/read/automatic-differentiation/">' + label + '</a></p><p>' + detail + '</p><p><a href="/numerical-methods-atlas/' + lang + '/read/adjoint/">' + sensitivity_label + '</a></p></aside>' + end
     path = ATLAS / f'content.{lang}.json'
     documents = json.loads(path.read_text())
     for chapter in ('sparse-nonlinear', 'stiff-integration', 'roadmap'):

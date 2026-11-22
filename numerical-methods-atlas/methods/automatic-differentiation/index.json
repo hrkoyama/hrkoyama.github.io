@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "逆モード、陰関数感度、随伴法の独立した実行検証。",
-    "en": "Separate executable verification for reverse mode, implicit sensitivities and adjoints."
+    "ja": "逆モードとHessian–vector積の独立した実行検証。陰関数微分・随伴法は専用のBratu感度章を参照。",
+    "en": "Separate executable checks for reverse mode and Hessian-vector products. Implicit differentiation and adjoints now have a separate Bratu sensitivity chapter."
   },
   "limitations": {
-    "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、陰関数感度、行列不要Newton–Krylovは解説のみ。汎用自動微分ライブラリや衝撃波の感度を検証するものではありません。",
-    "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs, implicit sensitivities and matrix-free Newton–Krylov are explanatory only. This does not validate a general AD library or shock sensitivities."
+    "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、行列不要Newton–Krylovは解説のみ。陰関数微分・随伴法の実行検証は別の専用配布版で扱う。",
+    "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs and matrix-free Newton–Krylov remain explanatory only. A separate dedicated supplement verifies implicit sensitivities and discrete adjoints."
   },
   "metadata_review": {
     "level": "scoped forward-mode implementation; analytic/finite-difference/AD derivatives and Bratu refinement checked",

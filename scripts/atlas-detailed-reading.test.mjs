@@ -8,17 +8,46 @@ const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
  assert.equal(source.chapters.length,27);
- assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,32);assert.equal(methods.filter(m=>m.status==='educational-example').length,97);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
+ assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,31);assert.equal(methods.filter(m=>m.status==='educational-example').length,98);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
  for(const id of originalPlanned){
-  const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation'].includes(id)?'educational-example':'planned');
-  if(id!=='automatic-differentiation'){assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);}
+  const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation','adjoint'].includes(id)?'educational-example':'planned');
+  if(!['automatic-differentiation','adjoint'].includes(id)){assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);}
   for(const lang of ['ja','en']){
-   if(id==='automatic-differentiation')assert.ok(chapter.html[lang].length>6000);
+   if(['automatic-differentiation','adjoint'].includes(id))assert.ok(chapter.html[lang].length>6000);
    else{assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);}
    assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id}/`);
   }
  }
  for(const m of methods)assert.ok(m.reading.ja&&m.reading.en,m.id+' has both languages');
+});
+test('implicit differentiation and discrete adjoints publish the verified Bratu sensitivity without losing old anchors',()=>{
+ const chapter=source.chapters.find(c=>c.id==='adjoint');
+ const sections=['implicit-root','forward-sensitivity','discrete-adjoint','bratu-family','bratu-objective','sensitivity-verification','solver-errors','continuous-limit','reproduce'];
+ const aliases=['model','algorithm','conditions','verification'];
+ const release='/code/bratu-sensitivity/2026-11-22/';
+ assert.equal(methods.find(m=>m.id==='adjoint').status,'educational-example');
+ assert.deepEqual(chapter.references,['jameson1988','linnainmaa1976','blondel2022implicit','jaxopt-implicit-diff']);
+ assert.ok(source.formulas['implicit-adjoint'].includes('J^Tp=q'));
+ assert.ok(source.formulas['implicit-adjoint'].includes('r-B^Tp'));
+ assert.ok(source.formulas['implicit-bratu-partials'].includes('F_\\lambda=-e^u'));
+ assert.ok(source.formulas['implicit-bratu-objective'].includes('\\beta=0.05'));
+ assert.ok(source.formulas['implicit-continuum-gradient'].includes('\\int_0^1'));
+ const formulaIds=Object.keys(source.formulas).filter(id=>id.startsWith('implicit-'));
+ assert.equal(formulaIds.length,15);
+ for(const lang of ['ja','en']){
+  const html=chapter.html[lang],doc=read(`numerical-methods-atlas/${lang}/read/adjoint/index.json`);
+  assert.deepEqual([...html.matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]),sections);
+  assert.deepEqual(doc.headings.map(h=>h.id),[...sections,'publication-scope','sources']);
+  for(const id of aliases){assert.ok(html.includes(`id="${id}"`));assert.ok(doc.html.includes(`id="${id}"`));}
+  for(const suffix of ['bratu-sensitivity-2026-11-22.zip','README.md','numart/bratu_sensitivity.py','scripts/build_bratu_sensitivity.py','tests/test_bratu_sensitivity.py','verification.json','source-manifest.json'])assert.ok(html.includes(release+suffix),lang+' '+suffix);
+  for(const suffix of ['png','json'])assert.ok(html.includes('/numerical-methods-atlas/assets/bratu-sensitivity.'+suffix));
+  assert.ok(html.includes('Bratu')&&html.includes('1.4×10⁻¹⁵')&&html.includes('1.8704×10⁻⁵'));
+  assert.ok(html.includes('0.1027083914')&&html.includes('0.5857608186'));
+  assert.ok(html.includes('python scripts/build_bratu_sensitivity.py'));
+  assert.ok(!html.includes('katex-mathml')&&!html.includes('koyamarium'));
+  assert.equal(doc.implementation_status.adjoint,'educational-example');
+  assert.ok(source.chapters.find(c=>c.id==='automatic-differentiation').html[lang].includes(`/numerical-methods-atlas/${lang}/read/adjoint/`));
+ }
 });
 test('automatic differentiation publishes the foundation chapter and Bratu evidence at its existing bilingual addresses',()=>{
  const chapter=source.chapters.find(c=>c.id==='automatic-differentiation');

@@ -284,6 +284,11 @@ Read the [AD engine and Bratu residual](/code/autodiff/2026-11-22/numart/autodif
 
 The builder writes the figure and a JSON manifest containing grids, parameters, finite-difference steps, stopping controls, norms, solver histories, the numerical environment and source SHA-256 hashes. Evidence is generated from the numerical implementation independently of the website build. The dated supplement includes the forward-mode engine, Bratu comparison, tests and saved results introduced here. Reverse-mode and adjoint solvers remain outside this implementation. Continue with [Newton and conditioning](/numerical-methods-atlas/en/read/sparse-nonlinear/#newton-and-conditioning), [stiff integration](/numerical-methods-atlas/en/read/stiff-integration/), or the [error-norm guide](/numerical-methods-atlas/en/read/accuracy-stability/).
 
+
+[Implicit differentiation and adjoints: verified Bratu sensitivity](/numerical-methods-atlas/en/read/adjoint/)
+
+Executable implicit state sensitivities and discrete adjoints are now provided in the separate Bratu parameter-sensitivity chapter. This does not expand the earlier forward-mode release; a separate dated supplement checks root sensitivity and total objective derivatives.
+
 ## Publication scope
 
 An educational forward-mode dual-number, JVP and assembled-Jacobian implementation is checked against analytic and finite-difference derivatives for Bratu's equation. A separate November 22, 2026 supplement fixes its source, tests, figure and JSON evidence. Reverse mode, Hessian-vector products, implicit sensitivities and adjoints are reading connections rather than implemented solvers in this exhibit. Existing releases and measurements of other methods are preserved.

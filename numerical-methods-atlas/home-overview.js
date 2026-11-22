@@ -1,8 +1,8 @@
 import {wireGoalFilters} from './goal-filters.mjs?v=4b109b47d93c';
-import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=3fec3efb7729';
-import {homeSearchPage,wireHomeSearch} from './home-search.js?v=a99302eea02e';
+import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=97391ddbd46f';
+import {homeSearchPage,wireHomeSearch} from './home-search.js?v=8dc8b77a878e';
 import {t,currentLanguage} from './i18n.js';
-import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=b3c48fb42801';
+import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=61fd8843eaf2';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=(key,values)=>esc(t(homeCopy[key],values));
 const locale=lang=>['ja','en'].includes(lang)?lang:currentLanguage();

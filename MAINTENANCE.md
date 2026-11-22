@@ -2,6 +2,12 @@
 
 このリポジトリの `main` 直下を GitHub Pages で公開する。公開先は https://hrkoyama.github.io/ 。作業開始時に `git status` とリモートの最新版を確認し、他の未完了変更を上書きしない。
 
+## 公開先の固定ルール
+
+2026年11月22日のユーザー指示により、公開先は `https://hrkoyama.github.io/` 配下だけ。公開用リポジトリは `hrkoyama/hrkoyama.github.io` の `main` とする。`koyamarium` 配下へのpush・PR作成／マージ・リリース・アップロード・公開／デプロイ操作は行わない。旧サイトと過去の移行手順は読み取りの参考に限定する。常時適用ルールは `AGENTS.md` に記録する。
+
+公開直前に `git remote get-url --push origin` と配信URLを照合する。他作業の未コミット変更と公開側の独自拡張を保持し、今回の変更だけを統合する。上流ビルド全体で公開サイトを置き換えない。
+
 ## 通常の更新
 
 Python 3.10以上とNode.js 22以上を使う。以下はPython標準ライブラリとNode標準機能だけで実行でき、ChatGPTやEnterpriseへの接続、推論APIキーは不要。
@@ -10,7 +16,7 @@ Python 3.10以上とNode.js 22以上を使う。以下はPython標準ライブ�
 2. `python3 scripts/refresh-site.py` を実行する。公開用の進捗と取得案内、共通ナビゲーション、サイトマップ、研究相談索引、サイト内検索を順に更新する。
 3. `node --test scripts/*.test.mjs` を実行する。`python3 scripts/check-site.py` は更新コマンド内でも実行される。
 4. `python3 -m http.server 4180 --bind 127.0.0.1` で見本を開き、日本語・英語と狭い画面を確認する。終了時はサーバーを停止する。
-5. `git diff --check` と差分を確認してコミットし、`git push origin main` で公開する。
+5. `git diff --check` と差分を確認してコミットし、`git remote get-url --push origin` が `hrkoyama/hrkoyama.github.io` を指すことを確認し、`git push origin main` で公開する。
 6. GitHubのPages公開処理の成功後、変更したURLとダウンロード先をログアウトした状態で開き、本文・ファイル・版を確認する。
 
 検索語や訪問者入力を集めるアクセス解析は追加しない。GitHubの通常の配信記録は別。Googleの反映・検索順位は公開完了と区別する。
@@ -189,3 +195,9 @@ DFTから力・第一原理MD・温度制御、反応拡散から生物・流体
 `automatic-differentiation` の正本は既存の `catalog/atlas-detailed-reading.json` と `catalog/atlas-methods.json`。前進モードの教育用実装だけを実装済みとし、逆モード・陰関数感度・随伴法の説明と実行検証を区別する。既存の章URLと節IDを保持する。
 
 専用の不変配布版は `/code/autodiff/2026-11-22/`。旧コード版は上書きしない。`scripts/package-autodiff.py` が明示した公開ソースだけを梱包し、8件のテスト、manifest、ZIPとBratuの測定記録を残す。`build-atlas-autodiff.py` が専用版の図・JSONをアトラスへ配置し、疎行列・陰的積分・ロードマップへつなぐ。通常の `refresh-site.py` で本文・手法台帳・検索・ホームへの導線を再生成する。この補助比較を既存の21実行例・66テスト問題の件数へ加算しない。
+
+## Bratuの陰関数感度と離散随伴
+
+`catalog/atlas-detailed-reading.json` の `adjoint` 章と `catalog/atlas-methods.json` が正本。既存の章URL・節IDを保持し、一般の逆問題最適化や時間依存随伴を実装済みと表示しない。新しい不変配布版 `/code/bratu-sensitivity/2026-11-22/` は、解析的な連続感度、陰関数感度、離散随伴勾配、パラメータを変えて解き直した有限差分を照合する。Bratuの対称性だけに頼らず、非対称・複数パラメータの独立した転置検査を含める。
+
+`atlas_sensitivity_release.py` が配布ファイル・ZIP・検証記録のハッシュを照合し、`build-atlas-autodiff.py` が図・JSONと章間リンクを配置する。古い自動微分配布版は上書きしない。通常の `refresh-site.py` で本文・手法台帳・検索・ホームを再生成する。この補助比較を共通の21実行例・66テスト問題へ加算しない。

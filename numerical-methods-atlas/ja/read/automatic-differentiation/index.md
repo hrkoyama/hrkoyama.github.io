@@ -166,6 +166,11 @@ python -m pytest tests/test_autodiff.py
 
 ビルダーは図とJSON記録を生成し、格子、パラメータ、有限差分の幅、停止条件、ノルム、ソルバー履歴、数値環境、ソースのSHA-256ハッシュを保存します。検証記録はWebビルドとは独立に数値実装から生成します。日付を固定した配布物に、今回の前進モードとBratu比較の実装・検査・保存結果が含まれます。逆モードや随伴ソルバーは今回の実装範囲に含めません。[Newton法と条件数](/numerical-methods-atlas/ja/read/sparse-nonlinear/#newton-and-conditioning)、[硬い積分](/numerical-methods-atlas/ja/read/stiff-integration/)、[誤差ノルムの解説](/numerical-methods-atlas/ja/read/accuracy-stability/)へ進めます。
 
+
+[陰関数微分と随伴法：Bratu感度の検証](/numerical-methods-atlas/ja/read/adjoint/)
+
+陰関数による状態感度と離散随伴の実行検証は、別章のBratuパラメータ感度として追加しました。元の前進モード配布版の実装範囲を広げるものではなく、独立した配布版で根の感度と目的関数の総微分を確認できます。
+
 ## 公開範囲
 
 前進モードの双対数・JVP・ヤコビ行列組立てを、Bratu方程式の解析微分・有限差分との比較で検証した教育用実装です。2026年11月22日の独立した配布物にソース、検査、図、JSON記録を固定しています。逆モード・ヘッセ行列積・陰関数による感度・随伴法は関連する解説であり、この実装の完成範囲には含めません。既存の別手法の配布版・計算結果は変更しません。

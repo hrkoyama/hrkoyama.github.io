@@ -34,6 +34,11 @@ export const homeAreas = [
           "name": "autodiff.home-title",
           "route": "/read/automatic-differentiation",
           "kind": "reading"
+        },
+        {
+          "name": "sensitivity.home-title",
+          "route": "/read/adjoint",
+          "kind": "reading"
         }
       ],
       [

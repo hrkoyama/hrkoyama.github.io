@@ -11377,19 +11377,19 @@
     {
       "id": "adjoint",
       "name": {
-        "ja": "随伴法・逆問題",
-        "en": "Adjoint methods and inverse problems"
+        "ja": "陰関数微分・随伴法",
+        "en": "Implicit differentiation and adjoint methods"
       },
       "group": {
-        "id": "stochastic",
-        "ja": "最適化・確率・逆問題",
-        "en": "Optimization & stochastic methods"
+        "id": "solvers",
+        "ja": "線形・非線形解法",
+        "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "感度計算、観測、パラメータ同定を結び付ける。",
-        "en": "Connect sensitivities, observations and parameter identification."
+        "ja": "Bratu方程式のパラメータ感度で、陰関数の感度方程式・離散随伴勾配・解析的な連続感度・解き直した有限差分を検証する。",
+        "en": "Verify implicit state sensitivities and discrete-adjoint gradients on Bratu against analytic continuous sensitivities and finite differences with fresh nonlinear solves."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/adjoint/",
@@ -11407,29 +11407,66 @@
           "url": "https://doi.org/10.1007/bf01931367",
           "label": "Taylor expansion of the accumulated rounding error (1976)",
           "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://jaxopt.github.io/stable/implicit_diff.html",
+          "label": "JAXopt implicit differentiation documentation",
+          "scope": "Official explanation of root-equation differentiation versus unrolling; the local NumPy supplement is an independent implementation."
+        },
+        {
+          "url": "https://papers.neurips.cc/paper_files/paper/2022/hash/228b9279ecf9bbafe582406850c57115-Abstract-Conference.html",
+          "label": "Efficient and Modular Implicit Differentiation (2022)",
+          "scope": "Selected implicit-root and JVP/VJP passages support the formulation; no reproduction of the full paper is claimed."
         }
       ],
-      "assumptions": null,
-      "units": null,
-      "boundary_conditions": null,
+      "assumptions": [
+        "Smooth residual and scalar objective; locally nonsingular state Jacobian.",
+        "Fixed mesh and boundary data independent of the parameter; lower-branch Bratu at alpha=1 and alpha=2.",
+        "Converged discrete equations are differentiated; finite Newton iterations are not unrolled."
+      ],
+      "units": "Dimensionless Bratu variables and parameter; objective quadrature h=1/(n+1) is explicit.",
+      "boundary_conditions": "u(0)=u(1)=0 on [0,1], fixed independently of lambda; corresponding boundary sensitivity is zero.",
       "next_deliverable": {
-        "ja": "差分勾配との照合と小規模逆問題。",
-        "en": "Finite-difference gradient checks and a small inverse problem."
+        "ja": "時間依存の随伴、複数観測の逆問題最適化、非滑らかな問題への独立した検証。",
+        "en": "Separate verification for time-dependent adjoints, inverse optimization with multiple observations and nonsmooth problems."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴はEuclid内積で定義し、目的関数の積分重みを明記する。逆問題の最適化や時間依存随伴、衝撃波感度は実装しない。",
+        "en": "Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "implicit and discrete-adjoint implementation; analytic, re-solved finite-difference and spatial-refinement checks",
+        "on": "2026-11-22"
       },
       "aliases": [
         "随伴法",
         "随伴解析",
         "adjoint method",
-        "adjoint analysis"
-      ]
+        "adjoint analysis",
+        "陰関数微分",
+        "implicit differentiation",
+        "parameter sensitivity",
+        "パラメータ感度",
+        "Bratu",
+        "随伴法・逆問題",
+        "Adjoint methods and inverse problems"
+      ],
+      "code_mapping_scope": "Separate immutable Bratu sensitivity supplement. General multi-parameter linear sensitivity and transpose adjoint solves; original Bratu residual and zero-start damped Newton, AD residual derivatives, analytic family reference, nonlinear parameter perturbations and a nonsymmetric manufactured check.",
+      "sensitivity_release": {
+        "base": "/code/bratu-sensitivity/2026-11-22/",
+        "edition": "2026-11-22",
+        "archive": "bratu-sensitivity-2026-11-22.zip",
+        "manifest": "source-manifest.json",
+        "verification": "verification.json",
+        "evidence": "docs/figures/bratu-sensitivity.json"
+      },
+      "assumptions_ja": [
+        "滑らかな残差とスカラー目的関数を用い、状態ヤコビ行列が局所的に可逆である。",
+        "格子と境界値はパラメータに依存しない。Bratuの下側分枝のalpha=1、2を使う。",
+        "収束した離散方程式を微分し、有限回のNewton反復は展開して微分しない。"
+      ],
+      "boundary_conditions_ja": "区間[0,1]でu(0)=u(1)=0をlambdaに依存せず固定し、境界の感度はゼロとする。",
+      "units_ja": "Bratuの変数とパラメータは無次元。目的関数の求積重みh=1/(n+1)を明記する。"
     },
     {
       "id": "radiation-transport",
@@ -11629,12 +11666,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "逆モード、陰関数感度、随伴法の独立した実行検証。",
-        "en": "Separate executable verification for reverse mode, implicit sensitivities and adjoints."
+        "ja": "逆モードとHessian–vector積の独立した実行検証。陰関数微分・随伴法は専用のBratu感度章を参照。",
+        "en": "Separate executable checks for reverse mode and Hessian-vector products. Implicit differentiation and adjoints now have a separate Bratu sensitivity chapter."
       },
       "limitations": {
-        "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、陰関数感度、行列不要Newton–Krylovは解説のみ。汎用自動微分ライブラリや衝撃波の感度を検証するものではありません。",
-        "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs, implicit sensitivities and matrix-free Newton–Krylov are explanatory only. This does not validate a general AD library or shock sensitivities."
+        "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、行列不要Newton–Krylovは解説のみ。陰関数微分・随伴法の実行検証は別の専用配布版で扱う。",
+        "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs and matrix-free Newton–Krylov remain explanatory only. A separate dedicated supplement verifies implicit sensitivities and discrete adjoints."
       },
       "metadata_review": {
         "level": "scoped forward-mode implementation; analytic/finite-difference/AD derivatives and Bratu refinement checked",

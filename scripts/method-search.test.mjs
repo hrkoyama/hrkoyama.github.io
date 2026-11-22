@@ -124,7 +124,7 @@ function withDOM(run){
 
 test('published method cards expose every real related code/test URL and preserve availability',()=>withDOM(({render})=>{
   assert.equal(published.length,145);
-  assert.equal(published.filter(method=>method.status==='educational-example').length,97);
+  assert.equal(published.filter(method=>method.status==='educational-example').length,98);
   for(const method of published){
     for(const language of ['ja','en']){
       const card=render(method,language),anchors=links(card),urls=anchors.map(anchor=>new URL(anchor.href,origin));
