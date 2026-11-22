@@ -55,7 +55,7 @@
 <li><strong>第1段階を追加</strong>：制限付き放物線FV、保存特性変数、FD WENO-ZのSod・接触面・Shu–Osher比較。直接Euler型の波追跡・急峻化・平坦化は<a href="/numerical-methods-atlas/ja/read/shock-expansion/">第2段階</a>に追加しました。Lagrange/remapは別課題です。</li>
 <li>従来のAUSM共通音速基準例を維持し、<a href="/numerical-methods-atlas/ja/read/shock-expansion/">第2段階</a>に定義を明示したAUSM+／AUSM+-up、波追跡PPM条件を揃えた比較、許容状態を保てない停止例を追加しました。</li>
 <li><strong>Web実装済み</strong>：HLLD、Brio–Wu、Alfvén波の格子細分化、弱い磁場ループのCT-Contact／GLM比較。<a href="/numerical-methods-atlas/?lang=ja#/mhd-tests">MHDテスト</a>を参照。</li>
-<li id="fdtd-verified-scope"><strong>限定実装・検証済み — Yee FDTD</strong>：2次元TMz・一様真空の周期平面波と長方形PEC空洞を実装。解析解、格子・時間細分化、数値分散、12周期の離散エネルギー保存を専用コードと固定入力で確認しました。<a href="/numerical-methods-atlas/ja/read/fdtd/">日英解説・コード・結果</a>。従来の媒質界面・四辺と角のPMLに加え、無損失誘電体界面への斜め入射を検証しました。光学のs偏光に相当するTMzの有限帯域波束で、Fresnel解析解、反射・透過エネルギー、独立したエネルギー・流束収支と格子収束を確認します。検証した条件と一般媒質・他偏光・3次元の範囲を区別します。</li>
+<li id="fdtd-verified-scope"><strong>限定実装・検証済み — Yee FDTD</strong>：2次元TMz・一様真空の周期平面波と長方形PEC空洞を実装。解析解、格子・時間細分化、数値分散、12周期の離散エネルギー保存を専用コードと固定入力で確認しました。<a href="/numerical-methods-atlas/ja/read/fdtd/">日英解説・コード・結果</a>。従来のs偏光界面・PMLに加え、光学のp偏光に対応するTEzの固定例を追加しました。Brewster角の単色係数と有限帯域波束の反射率、全反射時のエバネッセント場と正味法線流束を区別し、Fresnel解析解、エネルギー収支、格子収束を確認します。選定した無損失・非磁性の条件に範囲を限定します。</li>
 <li><strong>予定 — プラズマPIC（Particle-in-Cell法）</strong>：静電的な粒子–Poisson連成から、電磁的な粒子–Maxwell連成へ進みます。粒子形状、格子への割当てと場の補間、Boris法、電荷保存電流割当て、Gauss則の診断を扱います。プラズマ振動、two-stream不安定性、Landau減衰を検証候補とし、エネルギー・ノイズ・格子／時間／粒子数依存性を確認します。既存の重力PM例とは適用範囲を分けます。<a href="https://warpx.readthedocs.io/en/25.11/theory/pic.html">WarpXのPIC理論ノート</a>を出発点とし、プラズマPICソルバーは現時点では未実装です。</li>
 <li>硬い積分：BE／BDF2／SDIRK2／IMEX Eulerを超える高次IMEX、埋込みDIRK、可変BDF、演算子分割。</li>
 <li>疎行列・非線形：固定右GMRES／BiCGSTAB・ILU(0)を超える行列不要Newton–Krylov、頑健な並べ替え・フィル、可変前処理、広い非線形テスト。</li>

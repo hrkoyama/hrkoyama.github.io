@@ -1455,7 +1455,7 @@
       "chapter": "fdtd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D.",
+      "scope": "Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D.",
       "origin": "curated-fdtd-example"
     },
     {
@@ -3208,9 +3208,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "86d8a97874746420beee41a486fd94ea18f867cd602a2f1aa28d2c4825a5b355",
+    "catalog/atlas-methods.json": "32ec853c10b7e049da02324f55bf5856248e31fdbe7bb93f4cd6a37b3e42b313",
     "catalog/atlas-equations.json": "5ca32ef73b869b25924bcbac13dec95e692952edf207dd0359b01582b431481d",
-    "catalog/atlas-method-primary-references.json": "f0d19e755e9ebb9478989ca75ed84ee23dbf9d3e270375b659a4568bc8c404df"
+    "catalog/atlas-method-primary-references.json": "5d9dcc3e87bb146403a79d5bae94959a6ebe17f3c78bd3cb221854698ccee174"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "a6d4834d379e36d4b55fba48ec881a8a813fc5156056a9c86ca5c17b43fbe6ae",

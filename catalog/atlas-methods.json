@@ -10854,8 +10854,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "2次元TMzの真空・斜めFresnel界面・四辺と角のPMLを固定入力で検証。",
-        "en": "Validate 2D TMz vacuum, oblique Fresnel interfaces and four-side/corner PML with fixed inputs."
+        "ja": "Yee FDTDのTMz/TEz、s/p偏光のFresnel界面、Brewster・全反射とPMLを固定入力で検証。",
+        "en": "Validate Yee TMz/TEz, s/p Fresnel interfaces, Brewster/TIR and PML with fixed inputs."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -10884,29 +10884,29 @@
         {
           "url": "https://arxiv.org/abs/2108.05348v1",
           "label": "Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs)",
-          "scope": "Author notes, selected sections 4.1–4.2 and 7.1–7.3: matching electric and magnetic damping, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation."
+          "scope": "Author notes, selected sections3.4,4.1–4.2 and7.1–7.3: independent x/y coordinate stretches and simultaneous corner damping, matching electric/magnetic rates, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation."
         },
         {
           "url": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/",
           "label": "Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach",
-          "scope": "Author textbook, selected sections 7-6-1 and 7-6-2, printed pages 522–524 (PDF pages 36–38): tangential E/H continuity, normal-incidence field reflection/transmission and impedance weighting of power. A textbook exposition, not an original Fresnel publication."
+          "scope": "Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit."
         }
       ],
       "assumptions": [
-        "Selected lossless nonmagnetic s-polarized dielectric packets with propagating transmission; retained vacuum and PML cases."
+        "Selected lossless nonmagnetic planar-interface single-ky TEz p packets; retained TMz vacuum, s-polarized and PML cases."
       ],
       "units": "Dimensionless normalized length, time and fields.",
-      "boundary_conditions": "Oblique interface: periodic y and distant PEC x caps before main return, no PML. Retained periodic/PEC and x/four-side/corner PML cases.",
+      "boundary_conditions": "New TEz cases: periodic y, distant PEC x caps, no PML; exact single-mode Yee reduction with full-2D equivalence tests. Retained TMz periodic/PEC and x/four-side/corner PML cases.",
       "next_deliverable": {
-        "ja": "p偏光、全反射、損失・分散媒質と3次元を別に検証。",
-        "en": "Separately validate p polarization, total internal reflection, loss/dispersion and 3D."
+        "ja": "損失・分散媒質、多モード界面とエバネッセント場のPMLを別に検証。",
+        "en": "Separately validate loss/dispersion, multimode interfaces and PML for evanescent fields."
       },
       "limitations": {
-        "ja": "2次元TMzの教育用例。真空モード、垂直誘電体界面、左右x方向PML、四辺・角PMLに加え、第4版で指定した無損失非磁性界面へのs偏光斜め波束をFresnel解・反射透過エネルギー・流束収支・格子収束で検証。p偏光・全反射・損失分散・一般媒質・3次元の包括的な実証ではない。",
-        "en": "Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D."
+        "ja": "教育用Yee FDTD。既存TMzの真空・界面・PMLに加え、第5版でTEzのp偏光・Brewster条件・全反射を、指定した単一横モードの波束で検証。一般2次元更新との同値性、連続Fresnel参照、有限窓の反射透過流束・複素振幅・エバネッセント減衰と蓄積、離散保存量・物理収支を区別。一般媒質・多モード・損失分散・3次元の包括的な実証ではない。",
+        "en": "Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D."
       },
       "metadata_review": {
-        "level": "Original educational 2D TMz code with continuum/discrete analytic checks, refinement, energy and independent ZIP rerun.",
+        "level": "Original educational Yee TMz/TEz code: continuum Fresnel checks, exact single-mode/full-2D equivalence, refinement, independent energy/flux budgets and ZIP reruns.",
         "on": "2026-11-22"
       },
       "aliases": [
@@ -10916,9 +10916,9 @@
         "Yee法"
       ],
       "fdtd_release": {
-        "base": "/code/fdtd/2026-11-22-r4/",
-        "edition": "2026-11-22-r4",
-        "archive": "fdtd-2026-11-22-r4.zip",
+        "base": "/code/fdtd/2026-11-22-r5/",
+        "edition": "2026-11-22-r5",
+        "archive": "fdtd-2026-11-22-r5.zip",
         "manifest": "source-manifest.json",
         "verification": "verification.json",
         "cases": [
@@ -10927,14 +10927,15 @@
           "dielectric-interface",
           "pml-pulse",
           "pml-corners",
-          "dielectric-oblique"
+          "dielectric-oblique",
+          "p-polarization"
         ]
       },
       "assumptions_ja": [
-        "指定した無損失・非磁性界面のs偏光波束と伝播する透過波。従来の真空・PML例も保持。"
+        "指定した無損失・非磁性平面界面の単一ky TEz p偏光波束。既存TMzの真空・s偏光・PML例も保持。"
       ],
       "units_ja": "無次元。長さ・時間・場を規格化。",
-      "boundary_conditions_ja": "斜め界面：y周期、主要な戻り波より前の時間窓で遠方PEC x外端、PMLなし。従来の周期/PEC・左右x方向/四辺/角PMLも保持。"
+      "boundary_conditions_ja": "新TEz例：y周期、遠方PEC x外端、PMLなし。単一モードへ厳密縮約し全2次元更新との同値性を検査。既存TMz周期/PEC・左右x/四辺/角PMLも保持。"
     },
     {
       "id": "pic",

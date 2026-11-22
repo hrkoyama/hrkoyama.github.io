@@ -26,7 +26,15 @@ for lang in ['ja', 'en']:
         'fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. ')
     replacement += '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">'+(
         '日英解説・コード・結果' if ja else 'Reading, code and results')+'</a>。' if ja else '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">Reading, code and results</a>. '
-    if 'dielectric-oblique' in record['cases']:
+    if 'p-polarization' in record['cases']:
+        replacement += ('従来のs偏光界面・PMLに加え、光学のp偏光に対応するTEzの固定例を追加しました。'
+                        'Brewster角の単色係数と有限帯域波束の反射率、全反射時のエバネッセント場と正味法線流束を区別し、'
+                        'Fresnel解析解、エネルギー収支、格子収束を確認します。選定した無損失・非磁性の条件に範囲を限定します。</li>' if ja else
+                        'The retained s-polarized interface and PML examples are joined by selected TEz cases for optical p polarization. '
+                        'Monochromatic Brewster coefficients are distinguished from finite-band packet reflectance, and evanescent fields '
+                        'under total internal reflection from net normal energy flux. Fresnel fields, energy budgets and refinement are '
+                        'checked for the specified lossless, nonmagnetic cases.</li>')
+    elif 'dielectric-oblique' in record['cases']:
         replacement += ('従来の媒質界面・四辺と角のPMLに加え、無損失誘電体界面への斜め入射を検証しました。'
                         '光学のs偏光に相当するTMzの有限帯域波束で、Fresnel解析解、反射・透過エネルギー、'
                         '独立したエネルギー・流束収支と格子収束を確認します。検証した条件と一般媒質・他偏光・3次元の範囲を区別します。</li>' if ja else
