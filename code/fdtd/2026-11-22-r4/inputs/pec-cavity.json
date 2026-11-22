@@ -1,0 +1,19 @@
+{
+  "case": "pec-cavity",
+  "boundary": "pec",
+  "lengths": [1.0, 1.5],
+  "mode": [1, 1],
+  "meshes": [[16,24], [32,48], [64,96]],
+  "courant": 0.7,
+  "error_periods": 1.1,
+  "energy_periods": 12.0,
+  "acceptance": {
+    "max_field_error": 0.01,
+    "min_order": 1.8,
+    "max_frequency_error": 0.002,
+    "max_dispersion_identity_error": 1e-9,
+    "max_modified_energy_drift": 2e-11,
+    "max_divergence_drift": 2e-10,
+    "max_finest_energy_error": 0.003
+  }
+}

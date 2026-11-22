@@ -26,7 +26,15 @@ for lang in ['ja', 'en']:
         'fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. ')
     replacement += '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">'+(
         '日英解説・コード・結果' if ja else 'Reading, code and results')+'</a>。' if ja else '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">Reading, code and results</a>. '
-    if 'pml-corners' in record['cases']:
+    if 'dielectric-oblique' in record['cases']:
+        replacement += ('従来の媒質界面・四辺と角のPMLに加え、無損失誘電体界面への斜め入射を検証しました。'
+                        '光学のs偏光に相当するTMzの有限帯域波束で、Fresnel解析解、反射・透過エネルギー、'
+                        '独立したエネルギー・流束収支と格子収束を確認します。検証した条件と一般媒質・他偏光・3次元の範囲を区別します。</li>' if ja else
+                        'Alongside the retained interface and four-side/corner PML cases, an oblique lossless-dielectric '
+                        'interface packet is checked against s-polarized Fresnel solutions. Reflected/transmitted packet '
+                        'energies, independent energy/flux balances and grid refinement are distinct checks. The reading '
+                        'separates tested conditions from general matter, other polarization and three-dimensional cases.</li>')
+    elif 'pml-corners' in record['cases']:
         replacement += ('媒質界面・左右x方向PMLに続き、四辺・角部を含む2次元PMLの固定入力例を追加しました。'
                         '反射誤差、独立したエネルギー・仕事・流束収支、格子細分化を別々に確認します。'
                         '実行した入射方向・時間窓と未検証の一般媒質・3次元は同じ章で区別します。</li>' if ja else

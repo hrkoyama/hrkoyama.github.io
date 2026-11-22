@@ -10854,8 +10854,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "2次元TMzの真空・媒質界面・四辺と角のPMLを固定入力で検証。",
-        "en": "Validate 2D TMz vacuum, a dielectric interface and four-side/corner PML with fixed inputs."
+        "ja": "2次元TMzの真空・斜めFresnel界面・四辺と角のPMLを固定入力で検証。",
+        "en": "Validate 2D TMz vacuum, oblique Fresnel interfaces and four-side/corner PML with fixed inputs."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -10893,17 +10893,17 @@
         }
       ],
       "assumptions": [
-        "Selected vacuum 2D TMz packets with four-side/corner PML, retained vacuum modes and normal-incidence lossless dielectric interface."
+        "Selected lossless nonmagnetic s-polarized dielectric packets with propagating transmission; retained vacuum and PML cases."
       ],
       "units": "Dimensionless normalized length, time and fields.",
-      "boundary_conditions": "Retained periodic/PEC and x-PML cases; four-side/corner PML rectangle has outer PEC caps on every side.",
+      "boundary_conditions": "Oblique interface: periodic y and distant PEC x caps before main return, no PML. Retained periodic/PEC and x/four-side/corner PML cases.",
       "next_deliverable": {
-        "ja": "媒質界面への斜め入射、掠れ入射、分散物質・3次元のPMLを別に検証。",
-        "en": "Separately validate oblique material-interface incidence, grazing incidence and PML for dispersive media/3D."
+        "ja": "p偏光、全反射、損失・分散媒質と3次元を別に検証。",
+        "en": "Separately validate p polarization, total internal reflection, loss/dispersion and 3D."
       },
       "limitations": {
-        "ja": "2次元TMzの教育用実装。初版の真空モード、第2版の垂直誘電体界面・左右x方向PML、第3版の四辺・四つの角PMLを、指定した固定波束・格子・観測窓で検証。連続参照・離散Fourier参照・自己収束・独立集計した仕事・物理流束を区別。一般媒質・任意入射・3次元の包括的な認証ではない。",
-        "en": "Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D."
+        "ja": "2次元TMzの教育用例。真空モード、垂直誘電体界面、左右x方向PML、四辺・角PMLに加え、第4版で指定した無損失非磁性界面へのs偏光斜め波束をFresnel解・反射透過エネルギー・流束収支・格子収束で検証。p偏光・全反射・損失分散・一般媒質・3次元の包括的な実証ではない。",
+        "en": "Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D."
       },
       "metadata_review": {
         "level": "Original educational 2D TMz code with continuum/discrete analytic checks, refinement, energy and independent ZIP rerun.",
@@ -10916,9 +10916,9 @@
         "Yee法"
       ],
       "fdtd_release": {
-        "base": "/code/fdtd/2026-11-22-r3/",
-        "edition": "2026-11-22-r3",
-        "archive": "fdtd-2026-11-22-r3.zip",
+        "base": "/code/fdtd/2026-11-22-r4/",
+        "edition": "2026-11-22-r4",
+        "archive": "fdtd-2026-11-22-r4.zip",
         "manifest": "source-manifest.json",
         "verification": "verification.json",
         "cases": [
@@ -10926,14 +10926,15 @@
           "pec-cavity",
           "dielectric-interface",
           "pml-pulse",
-          "pml-corners"
+          "pml-corners",
+          "dielectric-oblique"
         ]
       },
       "assumptions_ja": [
-        "選定した真空2次元TMz波束の四辺・角PML。従来の真空モードと垂直入射の無損失誘電体界面も保持。"
+        "指定した無損失・非磁性界面のs偏光波束と伝播する透過波。従来の真空・PML例も保持。"
       ],
       "units_ja": "無次元。長さ・時間・場を規格化。",
-      "boundary_conditions_ja": "従来の周期/PEC・左右x方向PMLの例を保持。四辺・角PMLの矩形はすべての外端がPEC。"
+      "boundary_conditions_ja": "斜め界面：y周期、主要な戻り波より前の時間窓で遠方PEC x外端、PMLなし。従来の周期/PEC・左右x方向/四辺/角PMLも保持。"
     },
     {
       "id": "pic",

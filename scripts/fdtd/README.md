@@ -1,7 +1,7 @@
-# Yee FDTD: vacuum, interfaces and four-side/corner PML / 真空・界面・四辺と角のPML
-Revision r3 contains five fixed inputs. The first sections retain the original
-vacuum examples; see the r2 and r3 sections below for interface and PML scopes.
-The two earlier frozen editions are preserved.
+# Yee FDTD: vacuum, Fresnel interfaces and PML / 真空・Fresnel界面・PML
+Revision r4 contains six fixed inputs. The first sections retain the original
+vacuum examples; see the r2, r3 and r4 sections below for each added scope.
+All three earlier frozen editions are preserved.
 
 Original educational **two-dimensional TMz** Maxwell solver. Python 3.12;
 NumPy performs the update, Matplotlib draws saved results, pytest runs tests.
@@ -264,3 +264,73 @@ Johnson's PML notes, section3.4, explicitly discuss independent directional
 coordinate stretches and simultaneous conductivities at corners:
 https://arxiv.org/html/2108.05348v1 . The current discrete updates and work
 identity are independently tested; no external FDTD solver is bundled.
+
+## Revision r4: oblique dielectric incidence / 第4版：媒質界面への斜め入射
+
+The new `oblique.py`, `run_oblique.py` and `test_oblique.py` extend the
+interface validation to finite-band oblique packets. All earlier numerical
+source, tests and five fixed inputs remain byte-for-byte unchanged. The
+existing lossless Yee update in `scattering.py` supplies the numerical fields.
+
+```sh
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py
+python run_oblique.py --input inputs/dielectric-oblique.json --output output-oblique
+```
+
+The interface is normal to x, periodic in y, with positive constant epsilon
+on each side and mu=1. Ez is perpendicular to the xy plane of incidence:
+this TMz convention corresponds to optical **s/TE polarization**, not the
+optical p polarization. A normal-incidence packet is a separate control.
+The x caps are PEC and the chosen observation window precedes their main
+return; this experiment does not combine material scattering with PML loss.
+
+For each positive incident longitudinal wave number k and fixed transverse
+wave number ky, frequency and ky agree across the interface:
+
+    omega = sqrt((k^2+ky^2)/epsilon1)
+    q = sqrt(epsilon2*omega^2-ky^2)
+    r_s = (k-q)/(k+q),  t_s = 2*k/(k+q)
+    R_s = r_s^2,  T_s = (q/k)*t_s^2,  R_s+T_s=1.
+
+These formulas assume propagating transmitted waves. Electric and magnetic
+fields are evaluated as a Fresnel spectral superposition at their own Yee
+positions and times. The finite quadrature is a continuum reference, not
+another time-stepping solver. Its doubled quadrature period controls sampling
+error at the final field-comparison time and in the packet-energy integrals;
+it does not make the refracted packet periodic in x.
+
+For A(k)=width/sqrt(2*pi)*exp[-width^2*(k-k0)^2/2], coefficients
+a_m=A(k_m)*dk and dk=2*pi/P, incident energy is
+Uinc=pi*epsilon1*Ly*integral_0^infinity |A(k)|^2 dk, approximated by
+(epsilon1*Ly*P/2)*sum_m a_m^2.
+
+Packet energy R and T use incident spectral-energy weights. They differ from
+the coefficients at the carrier angle. The transmitted-coordinate Jacobian
+dq/dk=(epsilon2/epsilon1)*k/q gives the same T_s factor above. Saved results
+distinguish carrier r/t and Snell angles, broadband template gains (whose
+analytic target is 1), field-shape errors, and integrated packet energies.
+The reference R/T quadrature and finite-box field-energy checks have distinct
+roles. Consult the input and chapter for actual parameters and tolerances.
+
+The checks separately assess continuum field error, reflected/transmitted
+packet energies and their refinement, global modified-energy conservation,
+physical-region Poynting-flux balance, reference quadrature and initial/cap
+tails. A small R+T closure error alone does not establish agreement with
+Fresnel scattering. The interface electric node retains the arithmetic
+permittivity average. Grid and time refinement preserve the physical packet.
+
+第4版では、無損失・非磁性の平面誘電体界面へ有限帯域の波束を斜めに入射させます。
+このTMz配置のEzは光学のs偏光です。Fresnel解析解を各スペクトル成分へ適用し、
+中心角の係数、波束全体の反射・透過エネルギー、解析波形に対する振幅倍率と形の
+誤差を分けます。連続参照の場・格子収束・修正離散エネルギー・Poynting流束に加え、
+参照積分の細分化と初期場・外端の微小な裾も確認します。旧5入力と旧3配布版を保持します。
+
+Scope is the selected s-polarized, propagating, lossless/nonmagnetic packets
+and finite time window. Optical p polarization, Brewster-angle behavior,
+total internal reflection, lossy/dispersive matter and 3D need separate tests.
+Zahn's textbook, Chapter7 section7-9-1 (pp538–540), supplies the oblique
+boundary conditions, Snell law and s-polarized amplitudes; notation is adapted
+so lowercase r/t denote amplitudes and uppercase R/T denote energy fractions.
+
+Primary textbook section inspected for r4:
+https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/85a1dfee83863a0bad0dee5c7305ec30_MITRES_6_002S08_chapter7.pdf#page=52

@@ -1455,7 +1455,7 @@
       "chapter": "fdtd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D.",
+      "scope": "Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D.",
       "origin": "curated-fdtd-example"
     },
     {
@@ -3180,8 +3180,8 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "eaa16c7a3fd6513f7eb347c90b8e67c0009a6a118406da1b51374c68321dc634",
+    "catalog/atlas-methods.json": "bb5f78aa5610b11bdd97772b7e9a65a94c1842d2c111293f5d715962ee2412f5",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "bb74159621ec8d84c8413b71c7e32dbee44b2c949dbe328dbd02e7653e0bab67"
+    "catalog/atlas-method-primary-references.json": "82352d8c0333145a9466c65bb0af308044fa1b1ecab5b002860de05a2c25a5b9"
   }
 }
