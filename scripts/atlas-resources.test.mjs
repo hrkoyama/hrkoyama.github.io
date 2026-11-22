@@ -76,7 +76,7 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
     assert.ok(JSON.parse(read('guide/index.json')).pages.some(x=>x.url==='https://hrkoyama.github.io'+route));
   }
   const html=read('numerical-methods-atlas/methods/nose-hoover/index.html');
-  assert.ok(html.includes('のせフーバー')&&html.includes('比較解説あり・実装予定'));
+  assert.ok(html.includes('のせフーバー')&&html.includes('解説あり・実装予定'));
   assert.ok(html.includes('/ja/read/thermostats/'));
 });
 

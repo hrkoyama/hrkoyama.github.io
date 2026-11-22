@@ -15,10 +15,19 @@
   },
   "status": "planned",
   "origin": "development-candidate",
-  "reading": {},
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/"
+  },
   "code_modules": [],
   "test_files": [],
-  "references": [],
+  "references": [
+    {
+      "url": "https://doi.org/10.1093/comjnl/13.3.317",
+      "label": "A new approach to variable metric algorithms (1970)",
+      "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+    }
+  ],
   "assumptions": null,
   "units": null,
   "boundary_conditions": null,
@@ -27,8 +36,8 @@
     "en": "Known-solution objectives and explicit failure cases."
   },
   "limitations": {
-    "ja": "Under construction。専用の実装・検証結果はまだありません。",
-    "en": "Under construction. No dedicated implementation or verification result is provided yet."
+    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",

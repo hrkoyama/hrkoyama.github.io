@@ -1,0 +1,88 @@
+{
+  "title": "Adjoint methods and inverse problems",
+  "html": "<h1>Adjoint methods and inverse problems</h1><p>Adjoints efficiently compute sensitivities when state and parameter dimensions are large but there are few objectives. Obtaining a gradient does not establish uniqueness of an inverse problem.</p><h2 id=\"model\">Problem and representative equations</h2><p>For a discrete state equation R(u,m)=0 and scalar objective J, define L=J−λᵀR. With suitable invertibility of R_u, solve R_uᵀλ=J_uᵀ to avoid explicit state sensitivities for every parameter. Subscripts denote partial derivatives; the signs follow this Lagrangian convention.</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msubsup><mi>R</mi><mi>u</mi><mi>T</mi></msubsup><mi>λ</mi><mo>=</mo><msubsup><mi>J</mi><mi>u</mi><mi>T</mi></msubsup><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mfrac><mrow><mi>d</mi><mi>J</mi></mrow><mrow><mi>d</mi><mi>m</mi></mrow></mfrac><mo>=</mo><msub><mi>J</mi><mi>m</mi></msub><mo>−</mo><msup><mi>λ</mi><mi>T</mi></msup><msub><mi>R</mi><mi>m</mi></msub><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">R_u^T\\lambda=J_u^T,\\qquad \\frac{dJ}{dm}=J_m-\\lambda^TR_m.</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1383em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0077em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-2.453em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">u</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">λ</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0574em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-2.453em;margin-left:-0.0962em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">u</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3714em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">m</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">dJ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0413em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">λ</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0077em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">Algorithm</h2><p>Solve the forward state, solve the adjoint using residual/objective derivatives, then assemble the gradient. Transient problems need forward-state history and a storage/recomputation strategy. Discretizing a continuous adjoint and differentiating a discretization need not agree on a finite mesh.</p><h2 id=\"conditions\">Conditions and pitfalls</h2><p>Differentiate boundary conditions, mesh/coordinate dependence, observations and regularization consistently. Nonsmooth limiters and moving shocks challenge ordinary differentiability assumptions. Incomplete forward or adjoint convergence contaminates gradients.</p><h2 id=\"verification\">What to check</h2><p>Use directional Taylor tests: J(m+hv)−J(m)−h∇J·v should behave as O(h²) in a smooth, sufficiently converged regime. Add adjoint inner-product and finite-difference tests. Assess identifiability, regularization and data error separately for the inverse problem.</p><h2 id=\"publication-scope\">Publication scope and related entries</h2><p>Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.</p><ul><li><a href=\"/numerical-methods-atlas/methods/adjoint/?lang=en\">Adjoint methods and inverse problems</a></li></ul><h2 id=\"sources\">Primary publications, supporting sources and review scope</h2><p>Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.</p><ol class=\"reading-sources\"><li id=\"source-jameson1988\"><a href=\"https://doi.org/10.1007/bf01061285\">Antony Jameson (1988). Aerodynamic design via control theory</a>. Journal of Scientific Computing<p>Research publication: proposal or related formulation · Abstract and bibliography checked · <a href=\"https://doi.org/10.1007/BF01061285\">Consulted record</a></p><p>Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian here is a generic discrete derivation.</p></li><li id=\"source-linnainmaa1976\"><a href=\"https://doi.org/10.1007/bf01931367\">Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error</a>. BIT<p>Research publication: proposal or related formulation · Bibliography checked · <a href=\"https://api.crossref.org/works/10.1007%2FBF01931367\">Consulted record</a></p><p>Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "Problem and representative equations"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "Algorithm"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "Conditions and pitfalls"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "What to check"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "Publication scope and related entries"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "Primary publications, supporting sources and review scope"
+    }
+  ],
+  "locale": "en",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/",
+  "methods": [
+    "adjoint"
+  ],
+  "implementation_status": {
+    "adjoint": "planned"
+  },
+  "references": [
+    {
+      "id": "jameson1988",
+      "author": "Antony Jameson",
+      "title": "Aerodynamic design via control theory",
+      "year": 1988,
+      "doi": "10.1007/bf01061285",
+      "type": "article",
+      "journal": "Journal of Scientific Computing",
+      "volume": "3",
+      "pages": "233-260",
+      "source": "https://doi.org/10.1007/bf01061285",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "url": "https://doi.org/10.1007/BF01061285",
+        "checked_on": "2026-11-22",
+        "scope": "Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian here is a generic discrete derivation.",
+        "scope_ja": "出版社の概要・結論を空力設計の随伴法の文脈で参照。ここでの離散残差のLagrangianは一般形で説明しています。"
+      }
+    },
+    {
+      "id": "linnainmaa1976",
+      "author": "Seppo Linnainmaa",
+      "title": "Taylor expansion of the accumulated rounding error",
+      "year": 1976,
+      "doi": "10.1007/bf01931367",
+      "type": "article",
+      "journal": "BIT",
+      "volume": "16",
+      "pages": "146-160",
+      "source": "https://doi.org/10.1007/bf01931367",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://api.crossref.org/works/10.1007%2FBF01931367",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

@@ -106,6 +106,7 @@ References:
   full-text (2026-11-22); Author preprint: Section 2, equations (1)–(18), and Section 3.1, equations (19)–(23); journal DOI/year/pages checked against publisher metadata.; https://arxiv.org/html/1412.2276
 
 
+- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/basis-functions/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/
 
 - Code: https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/basis.py

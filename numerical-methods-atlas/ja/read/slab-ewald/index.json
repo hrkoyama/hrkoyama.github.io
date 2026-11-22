@@ -1,0 +1,91 @@
+{
+  "title": "スラブ静電場と2次元周期Ewald",
+  "html": "<h1>スラブ静電場と2次元周期Ewald</h1><p>薄膜や界面では、面内2方向は周期でも法線方向は孤立という境界が重要です。3次元周期セルを長くする操作と、厳密な2次元周期Green関数を使う操作は同じではありません。</p><h2 id=\"model\">対象と代表式</h2><p>中性セル、法線z、体積V、Coulomb定数1とします。Yeh–Berkowitzのslab補正は、適切な3次元Ewald和に双極子M_zの補正を加える構成です。位置微分から法線方向の力補正を得ます。式は導体境界の3次元基準と中性条件を前提とします。</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>M</mi><mi>z</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>q</mi><mi>i</mi></msub><msub><mi>z</mi><mi>i</mi></msub><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi mathvariant=\"normal\">Δ</mi><mi>E</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mi>V</mi></mfrac><msubsup><mi>M</mi><mi>z</mi><mn>2</mn></msubsup><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi mathvariant=\"normal\">Δ</mi><msub><mi>F</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>z</mi></mrow></msub><mo>=</mo><mo>−</mo><mfrac><mrow><mn>4</mn><mi>π</mi></mrow><mi>V</mi></mfrac><msub><mi>q</mi><mi>i</mi></msub><msub><mi>M</mi><mi>z</mi></msub><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">M_z=\\sum_iq_i z_i,\\qquad \\Delta E=\\frac{2\\pi}{V}M_z^2,\\qquad \\Delta F_{i,z}=-\\frac{4\\pi}{V}q_iM_z.</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.3277em;vertical-align:-1.2777em;\"></span><span class=\"mop op-limits\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.05em;\"><span style=\"top:-1.8723em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3.05em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.05em;\"><span class=\"pstrut\" style=\"height:3.05em;\"></span><span><span class=\"mop op-symbol large-op\">∑</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.2777em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.044em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0074em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.2222em;\">V</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">π</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-2.453em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">Δ</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mpunct mtight\">,</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0074em;vertical-align:-0.686em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.2222em;\">V</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">4</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">π</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">M</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">計算の流れ</h2><p>slabを真空領域で隔てたセルに入れ、3次元の実空間・逆空間和を収束させ、双極子補正を加えます。真空の高さをさらに増やして残留する像相互作用を評価します。これは有限真空幅で厳密な2次元和になったと主張する手順ではありません。</p><h2 id=\"conditions\">適用条件と落とし穴</h2><p>中性でない系、異なる外部誘電境界、電極や印加電場には追加の定式化が必要です。自己項とk=0の扱いを補正項に混ぜません。中性セルではM_zは原点移動に不変ですが、正味電荷があるとその性質は失われます。</p><h2 id=\"verification\">検証するときに見る量</h2><p>中性の対電荷や双極子層で、真空高さと格子/波数打切りを独立に変えます。可能なら独立した2次元周期参照と比較し、法線の力をエネルギー差分で確認します。未補正3次元和との比較だけで誤差をゼロとは判定しません。</p><h2 id=\"publication-scope\">公開範囲と関連項目</h2><p>解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。</p><ul><li><a href=\"/numerical-methods-atlas/methods/slab-ewald/?lang=ja\">スラブ静電場と2次元周期Ewald</a></li></ul><h2 id=\"sources\">一次文献・関連資料と確認範囲</h2><p>原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。</p><ol class=\"reading-sources\"><li id=\"source-yeh1999\"><a href=\"https://doi.org/10.1063/1.479595\">In-Chul Yeh and Max L. Berkowitz (1999). Ewald summation for systems with slab geometry</a>. The Journal of Chemical Physics<p>研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · <a href=\"https://is.muni.cz/el/sci/jaro2017/C9926/um/BoxDipole.pdf\">確認した資料</a></p><p>抄録とslab補正の構成に関係する箇所を参照。数値表全体の監査や追試は未実施です。</p></li><li id=\"source-ewald1921\"><a href=\"https://doi.org/10.1002/andp.19213690304\">Ewald, P. P. (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale</a>. Annalen der Physik<p>研究論文・提案または関連する定式化 · 書誌確認 · <a href=\"https://onlinelibrary.wiley.com/doi/10.1002/andp.19213690304\">確認した資料</a></p><p>DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "対象と代表式"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "計算の流れ"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "適用条件と落とし穴"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "検証するときに見る量"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "公開範囲と関連項目"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "一次文献・関連資料と確認範囲"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/slab-ewald/",
+  "methods": [
+    "slab-ewald"
+  ],
+  "implementation_status": {
+    "slab-ewald": "planned"
+  },
+  "references": [
+    {
+      "id": "yeh1999",
+      "author": "In-Chul Yeh and Max L. Berkowitz",
+      "title": "Ewald summation for systems with slab geometry",
+      "year": 1999,
+      "doi": "10.1063/1.479595",
+      "type": "article",
+      "journal": "The Journal of Chemical Physics",
+      "volume": "111",
+      "pages": "3155-3162",
+      "source": "https://doi.org/10.1063/1.479595",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "full-text",
+        "url": "https://is.muni.cz/el/sci/jaro2017/C9926/um/BoxDipole.pdf",
+        "checked_on": "2026-11-22",
+        "scope": "Abstract and the slab correction construction; not an audit of all numerical tables.",
+        "scope_ja": "抄録とslab補正の構成に関係する箇所を参照。数値表全体の監査や追試は未実施です。"
+      }
+    },
+    {
+      "id": "ewald1921",
+      "year": 1921,
+      "author": "Ewald, P. P.",
+      "title": "Die Berechnung optischer und elektrostatischer Gitterpotentiale",
+      "journal": "Annalen der Physik",
+      "volume": "369",
+      "number": "3",
+      "pages": "253--287",
+      "doi": "10.1002/andp.19213690304",
+      "type": "article",
+      "source": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19213690304",
+      "note": "Reviewed as a source for priority-method metadata. The individual method records distinguish reference roles, relevant full-text passages, abstracts and bibliographic checks; this does not imply a new numerical validation.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19213690304",
+        "scope": "Reviewed as a source for priority-method metadata. The individual method records distinguish reference roles, relevant full-text passages, abstracts and bibliographic checks; this does not imply a new numerical validation.",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

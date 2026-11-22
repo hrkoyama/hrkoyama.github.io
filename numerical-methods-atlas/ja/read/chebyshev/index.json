@@ -1,0 +1,84 @@
+{
+  "title": "Chebyshev近似",
+  "html": "<h1>Chebyshev近似</h1><p>Chebyshev近似は端点に密な節点と三角関数との関係を使う多項式近似です。Chebyshev補間、重み付き射影、最良一様近似は同じではありません。</p><h2 id=\"model\">対象と代表式</h2><p>Tₖ(cosθ)=cos(kθ)とし、区間[−1,1]でf≈ΣaₖTₖを表します。Lobatto節点xⱼ=cos(jπ/n)を用いると離散cosine変換で補間係数を求められます。直交性の重みは(1−x²)⁻¹/²で、Legendreの重み1とは異なります。</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>T</mi><mn>0</mn></msub><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mn>1</mn><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>T</mi><mn>1</mn></msub><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>x</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>T</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mn>2</mn><mi>x</mi><msub><mi>T</mi><mi>k</mi></msub><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>−</mo><msub><mi>T</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msub><mi>x</mi><mi>j</mi></msub><mo>=</mo><mi>cos</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mi>j</mi><mi>π</mi><mi mathvariant=\"normal\">/</mi><mi>n</mi><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">T_0(x)=1,\\quad T_1(x)=x,\\quad T_{k+1}(x)=2xT_k(x)-T_{k-1}(x),\\qquad x_j=\\cos(j\\pi/n).</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">x</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0315em;\">k</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2083em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">2</span><span class=\"mord mathnormal\">x</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0315em;\">k</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">T</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3361em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0315em;\">k</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2083em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0572em;\">j</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mop\">cos</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0572em;\">j</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">π</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">n</span><span class=\"mclose\">)</span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">計算の流れ</h2><p>物理区間を[−1,1]へ写像し、節点で関数を評価して係数を求め、漸化式で級数を評価します。Clenshaw–Curtis積分はこの補間多項式を積分する方式で、一般の関数に対するGauss則とは節点も厳密次数も同一ではありません。</p><h2 id=\"conditions\">適用条件と落とし穴</h2><p>解析的な関数では速い係数減衰が期待できますが、不連続にはGibbs振動が現れ、滑らかさが有限なら減衰も遅くなります。高階微分は係数誤差を増幅します。最高次付近の係数が小さいことだけで、未サンプルの細い構造がないとは言えません。</p><h2 id=\"verification\">検証するときに見る量</h2><p>Tₖ自身の再現と節点補間、exp(x)の誤差、絶対値や段差での収束の変化を調べます。節点とは異なる点で誤差を測り、区間変換の微分係数も確認します。</p><h2 id=\"publication-scope\">公開範囲と関連項目</h2><p>解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。</p><ul><li><a href=\"/numerical-methods-atlas/methods/chebyshev/?lang=ja\">Chebyshev近似</a></li></ul><h2 id=\"sources\">一次文献・関連資料と確認範囲</h2><p>原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。</p><ol class=\"reading-sources\"><li id=\"source-clenshaw1960\"><a href=\"https://doi.org/10.1007/bf01386223\">C. W. Clenshaw and A. R. Curtis (1960). A method for numerical integration on an automatic computer</a>. Numerische Mathematik<p>研究論文・提案または関連する定式化 · 書誌確認 · <a href=\"https://api.crossref.org/works/10.1007%2FBF01386223\">確認した資料</a></p><p>DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。</p></li><li id=\"source-dlmf\"><a href=\"https://dlmf.nist.gov/\">F. W. J. Olver and A. B. Olde Daalhuis and D. W. Lozier and B. I. Schneider and R. F. Boisvert and C. W. Clark and B. R. Miller and B. V. Saunders and H. S. Cohl and M. A. McClain (eds.) (2010). NIST Digital Library of Mathematical Functions</a>. <p>公式の参照資料 · 原文の該当箇所を参照 · <a href=\"https://dlmf.nist.gov/18.3\">確認した資料</a></p><p>公式の数式資料。§3.5と§18.2・18.3・18.9を求積・直交多項式の規約の参照先にしています。原発見論文ではありません。</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "対象と代表式"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "計算の流れ"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "適用条件と落とし穴"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "検証するときに見る量"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "公開範囲と関連項目"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "一次文献・関連資料と確認範囲"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/chebyshev/",
+  "methods": [
+    "chebyshev"
+  ],
+  "implementation_status": {
+    "chebyshev": "planned"
+  },
+  "references": [
+    {
+      "id": "clenshaw1960",
+      "author": "C. W. Clenshaw and A. R. Curtis",
+      "title": "A method for numerical integration on an automatic computer",
+      "year": 1960,
+      "doi": "10.1007/bf01386223",
+      "type": "article",
+      "journal": "Numerische Mathematik",
+      "volume": "2",
+      "pages": "197-205",
+      "source": "https://doi.org/10.1007/bf01386223",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://api.crossref.org/works/10.1007%2FBF01386223",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    },
+    {
+      "id": "dlmf",
+      "author": "F. W. J. Olver and A. B. Olde Daalhuis and D. W. Lozier and B. I. Schneider and R. F. Boisvert and C. W. Clark and B. R. Miller and B. V. Saunders and H. S. Cohl and M. A. McClain (eds.)",
+      "title": "NIST Digital Library of Mathematical Functions",
+      "year": 2010,
+      "type": "misc",
+      "source": "https://dlmf.nist.gov/",
+      "note": "Living official reference, not the original discovery papers. Sections 3.5 and 18.2/18.3/18.9 supply quadrature and orthogonal-polynomial conventions. The year is initial release, not a claim that the current version dates from 2010.",
+      "source_review": {
+        "level": "full-text",
+        "url": "https://dlmf.nist.gov/18.3",
+        "checked_on": "2026-11-22",
+        "scope_ja": "公式の数式資料。§3.5と§18.2・18.3・18.9を求積・直交多項式の規約の参照先にしています。原発見論文ではありません。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

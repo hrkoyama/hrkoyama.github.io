@@ -10,8 +10,8 @@ See the chapter and implementation for equations, boundaries and checked scope. 
 
 Other names: low Mach preconditioning, 低マッハ数前処理, 低Mach数前処理, PDE preconditioning
 
-- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/
-- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/
+- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/
+- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/
 
 
 

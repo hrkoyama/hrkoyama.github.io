@@ -10,8 +10,8 @@ See the chapter and implementation for equations, boundaries and checked scope. 
 
 Other names: entropy fix, エントロピー修正, エントロピーフィックス, Roe entropy fix, Roeエントロピー修正
 
-- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/
-- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/
+- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/
+- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/
 
 - Code: https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py
 - Code: https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/roe_properties.py

@@ -74,7 +74,7 @@ export function appendMethodCard(item,result,language='ja') {
   item.classList.add('method-search-card');item.dataset.methodId=m.id;
   const meta=document.createElement('p');meta.className='method-search-meta';
   const type=m.resource_type==='model'?(language==='ja'?'モデル':'Model'):c.method;
-  const state=result.purposeScope&&m.status==='planned'&&Object.keys(m.reading||{}).length?(language==='ja'?'解説あり・実装予定':'Reading available; implementation planned'):c.status[m.status] || m.status;
+  const state=m.status==='planned'&&Object.keys(m.reading||{}).length?(language==='ja'?'解説あり・実装予定':'Reading available; implementation planned'):c.status[m.status] || m.status;
   meta.textContent=[type,m.group?.[language],result.purposeScope?(language==='ja'?'この目的：':'For this goal: ')+state:state].filter(Boolean).join(' · ');
   const heading=document.createElement('h2');
   const link=(url,text,lang) => {

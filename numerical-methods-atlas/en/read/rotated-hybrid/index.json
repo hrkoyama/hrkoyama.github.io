@@ -1,0 +1,126 @@
+{
+  "title": "Rotated-hybrid Riemann solver",
+  "html": "<h1>Rotated-hybrid Riemann solver</h1><p>Rotated Riemann methods construct dissipation using directions beyond the face normal. Ren’s rotated Roe method (2003) and Nishikawa–Kitamura’s rotated-hybrid method (2008) are related but distinct.</p><h2 id=\"model\">Problem and representative equations</h2><p>For 2D Euler states U_L,U_R and unit face normal n, resolve n into orthogonal unit directions n₁,n₂ with weights αᵢ=n·nᵢ. The formula below defines this atlas’s educational HLLE/Roe experiment, not the optimized dissipation formula in the 2008 paper.</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"bold\">n</mi><mo>=</mo><msub><mi>α</mi><mn>1</mn></msub><msub><mi mathvariant=\"bold\">n</mi><mn>1</mn></msub><mo>+</mo><msub><mi>α</mi><mn>2</mn></msub><msub><mi mathvariant=\"bold\">n</mi><mn>2</mn></msub><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mo stretchy=\"false\">(</mo><mi mathvariant=\"bold\">n</mi><mo stretchy=\"false\">)</mo><mo>=</mo><msub><mi>α</mi><mn>1</mn></msub><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi mathvariant=\"normal\">H</mi><mi mathvariant=\"normal\">L</mi><mi mathvariant=\"normal\">L</mi><mi mathvariant=\"normal\">E</mi></mrow></msub><mo stretchy=\"false\">(</mo><msub><mi mathvariant=\"bold\">n</mi><mn>1</mn></msub><mo stretchy=\"false\">)</mo><mo>+</mo><msub><mi>α</mi><mn>2</mn></msub><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi mathvariant=\"normal\">R</mi><mi mathvariant=\"normal\">o</mi><mi mathvariant=\"normal\">e</mi></mrow></msub><mo stretchy=\"false\">(</mo><msub><mi mathvariant=\"bold\">n</mi><mn>2</mn></msub><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">\\mathbf n=\\alpha_1\\mathbf n_1+\\alpha_2\\mathbf n_2,\\qquad\\widehat F(\\mathbf n)=\\alpha_1\\widehat F_{\\rm HLLE}(\\mathbf n_1)+\\alpha_2\\widehat F_{\\rm Roe}(\\mathbf n_2).</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4444em;\"></span><span class=\"mord mathbf\">n</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathbf\">n</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1733em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathbf\">n</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathbf\">n</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1733em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">HLLE</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathbf\">n</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1733em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">Roe</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathbf\">n</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">Algorithm</h2><p>The implementation aligns n₁ with the velocity jump, orienting directions to have nonnegative projections on the face normal. A tiny jump falls back to the face tangent. Rotate the same states into each frame, evaluate HLLE/Roe, rotate momentum fluxes back and combine. This differs from a pressure-sensor flux blend.</p><h2 id=\"conditions\">Conditions and pitfalls</h2><p>Roe (1981) supplies the component approximate solver. The 2003 rotated-method paper is by Y.-X. Ren; the 2008 rotated-hybrid paper is by Hiroaki Nishikawa and Keiichi Kitamura. Roe, Nishikawa, Ismail and Scalabrin (2005) is related carbuncle research, not the authorship/date of that 2008 paper. No universal carbuncle or positivity guarantee is claimed here.</p><h2 id=\"verification\">What to check</h2><p>Check constant states, flux reversal under state/normal exchange and rotational covariance. Separate normal compression from pure tangential shear, then compare perturbed planar shocks and blunt-body cases under fixed conditions. Link the dated package’s actual tests/results without claiming a new reproduction of the papers.</p><h2 id=\"publication-scope\">Publication scope and related entries</h2><p>Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.</p><ul><li><a href=\"/numerical-methods-atlas/methods/rotated-hybrid/?lang=en\">Rotated-hybrid Riemann solver</a></li></ul><h2 id=\"sources\">Primary publications, supporting sources and review scope</h2><p>Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.</p><ol class=\"reading-sources\"><li id=\"source-ren2003\"><a href=\"https://doi.org/10.1016/s0045-7930(02)00114-7\">Yu-Xin Ren (2003). A robust shock-capturing scheme based on rotated Riemann solvers</a>. Computers &amp;amp; Fluids<p>Research publication: proposal or related formulation · Abstract and bibliography checked · <a href=\"https://www.sciencedirect.com/science/article/pii/S0045793002001147\">Consulted record</a></p><p>Publisher abstract identifies the rotated Roe method and velocity-difference directions; distinguish it from the 2008 hybrid.</p></li><li id=\"source-nishikawa2008\"><a href=\"https://doi.org/10.1016/j.jcp.2007.11.003\">Nishikawa, Hiroaki and Kitamura, Keiichi (2008). Very simple, carbuncle-free, boundary-layer-resolving, rotated-hybrid Riemann solvers</a>. Journal of Computational Physics<p>Research publication: proposal or related formulation · Abstract and bibliography checked · <a href=\"https://www.sciencedirect.com/science/article/abs/pii/S0021999107004822\">Consulted record</a></p><p>Publisher abstract identifies Nishikawa and Kitamura and the 2008 rotated hybrid. The atlas code is an explicitly separate educational experiment.</p></li><li id=\"source-roe2005carbuncle\"><a href=\"https://doi.org/10.2514/6.2005-4872\">Philip Roe and Hiroaki Nishikawa and Farzad Ismail and Leonardo Scalabrin (2005). On Carbuncles and Other Excrescences</a>. 17th AIAA Computational Fluid Dynamics Conference<p>Research publication: proposal or related formulation · Bibliography checked · <a href=\"https://api.crossref.org/works/10.2514%2F6.2005-4872\">Consulted record</a></p><p>Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.</p></li><li id=\"source-roe1981\"><a href=\"https://doi.org/10.1016/0021-9991(81)90128-5\">Roe, Philip L. (1981). Approximate Riemann solvers, parameter vectors, and difference schemes</a>. Journal of Computational Physics<p>Research publication: proposal or related formulation · Bibliography checked · <a href=\"https://www.researchgate.net/publication/222453065_Approximate_Riemann_Solvers_Parameter_Vector_and_Difference_Schemes\">Consulted record</a></p><p>Author-uploaded original full text inspected, including the four Property U conditions on pp.359-360. Independent ideal-gas parameter-vector, eigenbasis, jump and consistency checks accompany single discontinuities and an expansion counterexample. Acoustic entropy smoothing is a separate flux modification.</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "Problem and representative equations"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "Algorithm"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "Conditions and pitfalls"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "What to check"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "Publication scope and related entries"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "Primary publications, supporting sources and review scope"
+    }
+  ],
+  "locale": "en",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/rotated-hybrid/",
+  "methods": [
+    "rotated-hybrid"
+  ],
+  "implementation_status": {
+    "rotated-hybrid": "educational-example"
+  },
+  "references": [
+    {
+      "id": "ren2003",
+      "author": "Yu-Xin Ren",
+      "title": "A robust shock-capturing scheme based on rotated Riemann solvers",
+      "year": 2003,
+      "doi": "10.1016/s0045-7930(02)00114-7",
+      "type": "article",
+      "journal": "Computers &amp; Fluids",
+      "volume": "32",
+      "pages": "1379-1403",
+      "source": "https://doi.org/10.1016/s0045-7930(02)00114-7",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0045793002001147",
+        "checked_on": "2026-11-22",
+        "scope": "Publisher abstract identifies the rotated Roe method and velocity-difference directions; distinguish it from the 2008 hybrid.",
+        "scope_ja": "出版社の抄録・書誌から、速度差で回転方向を決めるrotated Roeを確認。2008年のrotated-hybridとは区別します。"
+      }
+    },
+    {
+      "id": "nishikawa2008",
+      "year": 2008,
+      "author": "Nishikawa, Hiroaki and Kitamura, Keiichi",
+      "title": "Very simple, carbuncle-free, boundary-layer-resolving, rotated-hybrid Riemann solvers",
+      "journal": "Journal of Computational Physics",
+      "volume": "227",
+      "pages": "2560--2581",
+      "doi": "10.1016/j.jcp.2007.11.003",
+      "source": "https://www.sciencedirect.com/science/article/abs/pii/S0021999107004822",
+      "note": "Nishikawa and Kitamura (2008), not a 2003 Nishikawa–Roe coauthored paper. The existing atlas experiment is not the publication’s optimized Rotated-RHLL formula.",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0021999107004822",
+        "scope": "Publisher abstract identifies Nishikawa and Kitamura and the 2008 rotated hybrid. The atlas code is an explicitly separate educational experiment.",
+        "scope_ja": "出版社の抄録と著者の文献一覧で著者・2008年の刊行を確認。アトラスの実装は別に明示した教育用実験です。"
+      }
+    },
+    {
+      "id": "roe2005carbuncle",
+      "author": "Philip Roe and Hiroaki Nishikawa and Farzad Ismail and Leonardo Scalabrin",
+      "title": "On Carbuncles and Other Excrescences",
+      "year": 2005,
+      "doi": "10.2514/6.2005-4872",
+      "type": "inproceedings",
+      "volume": "",
+      "pages": "",
+      "source": "https://doi.org/10.2514/6.2005-4872",
+      "booktitle": "17th AIAA Computational Fluid Dynamics Conference",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://api.crossref.org/works/10.2514%2F6.2005-4872",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    },
+    {
+      "id": "roe1981",
+      "year": 1981,
+      "author": "Roe, Philip L.",
+      "title": "Approximate Riemann solvers, parameter vectors, and difference schemes",
+      "journal": "Journal of Computational Physics",
+      "volume": "43",
+      "pages": "357--372",
+      "doi": "10.1016/0021-9991(81)90128-5",
+      "source": "https://www.researchgate.net/publication/222453065_Approximate_Riemann_Solvers_Parameter_Vector_and_Difference_Schemes",
+      "note": "Author-uploaded original full text inspected, including the four Property U conditions on pp.359-360. Independent ideal-gas parameter-vector, eigenbasis, jump and consistency checks accompany single discontinuities and an expansion counterexample. Acoustic entropy smoothing is a separate flux modification.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://www.researchgate.net/publication/222453065_Approximate_Riemann_Solvers_Parameter_Vector_and_Difference_Schemes",
+        "scope": "Author-uploaded original full text inspected, including the four Property U conditions on pp.359-360. Independent ideal-gas parameter-vector, eigenbasis, jump and consistency checks accompany single discontinuities and an expansion counterexample. Acoustic entropy smoothing is a separate flux modification.",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

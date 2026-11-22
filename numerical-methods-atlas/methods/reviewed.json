@@ -2425,6 +2425,7 @@
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/basis-functions/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/"
       },
       "code_modules": [
@@ -2617,6 +2618,7 @@
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/basis-functions/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/"
       },
       "code_modules": [
@@ -4897,7 +4899,10 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ewald/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/ewald/"
+      },
       "code_modules": [],
       "test_files": [],
       "references": [
@@ -4950,8 +4955,8 @@
         "en": "A neutral small-system reference with explicit self, zero-mode and boundary conventions."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、打切り収束・エネルギーと力・自己項を含む数値比較は今後の作業です。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet. Cutoff convergence and numerical energy/force/self-term comparisons remain future work."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -5078,7 +5083,10 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pme/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/pme/"
+      },
       "code_modules": [],
       "test_files": [],
       "references": [
@@ -5132,8 +5140,8 @@
         "en": "A same-condition Ewald comparison and reproducible reference-code inputs."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、長距離分散力や分子内除外、一般格子、slab補正、実行速度の比較は未確認です。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -5262,7 +5270,10 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spme/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/spme/"
+      },
       "code_modules": [],
       "test_files": [],
       "references": [
@@ -5316,8 +5327,8 @@
         "en": "A comparison with explicit interpolation order, mesh and force convention."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、長距離分散力や分子内除外、一般格子、slab補正、実行速度の比較は未確認です。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",

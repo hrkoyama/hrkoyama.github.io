@@ -70,7 +70,7 @@ test('all 143 canonical records retain exact IDs, statuses, scientific metadata 
       assert.ok(decode(row.source).includes(method.name[lang]), row.id);
       const label = method.status === 'planned'
         ? (Object.keys(method.reading).length
-          ? (lang === 'ja' ? '比較解説あり・実装予定' : 'Comparative reading / implementation planned')
+          ? (lang === 'ja' ? '解説あり・実装予定' : 'Reading / implementation planned')
           : (lang === 'ja' ? 'Under construction / 収録予定' : 'Under construction / planned'))
         : labels[method.status][lang];
       assert.ok(decode(row.source).includes(label), `${row.id}: canonical status has the correct display label`);

@@ -6,7 +6,7 @@ Original PME approximates the reciprocal Ewald contribution using Lagrange inter
 
 Ewaldの逆空間項をLagrange補間・格子上の畳み込み・FFTで近似する原PMEです。一般の粒子格子重力法やB-spline版SPMEとは、核と補間・力の定義を区別します。
 
-Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified.
+Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
 
 Other names: PME法, particle mesh Ewald, 粒子メッシュEwald法
 
@@ -42,7 +42,7 @@ boundary_conditions [specified]:
 ここでは実装前の比較仕様として記載し、計算済みの条件とは区別します。
 
 limitations [specified]:
-Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、長距離分散力や分子内除外、一般格子、slab補正、実行速度の比較は未確認です。
+日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。
 文献整理と専用実装・数値検証の完了を区別します。
 
 Review: 原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。
@@ -93,7 +93,7 @@ Triply periodic neutral cell; the initial comparison specifies a conducting (tin
 Specified here as a pre-implementation comparison convention, not an executed setup.
 
 limitations [specified]:
-Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified.
+Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
 Source curation is separate from completion of implementation and numerical validation.
 
 Review: Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review.
@@ -114,7 +114,8 @@ References:
   full-text (2026-11-22); Sections II–IV, Eqs. (2.1)–(2.5), (4.1)–(4.8), and Appendix A surface-term discussion; https://biomolmd.org/mw/images/e/e0/Spme.pdf
 
 
-
+- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pme/
+- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/pme/
 
 
 

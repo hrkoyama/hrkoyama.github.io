@@ -154,7 +154,7 @@ test('planned and reading-only cards refuse borrowed educational files and execu
 }));
 
 test('missing Japanese explanations link to the real English page and identify that language',()=>withDOM(({render})=>{
-  const englishOnly=published.filter(method=>method.reading?.en&&!method.reading?.ja);
+  const englishOnly=[{...published.find(method=>method.reading?.en),reading:{en:published.find(method=>method.reading?.en).reading.en}}];
   assert.ok(englishOnly.length>0);
   for(const method of englishOnly){
     const explanation=links(render(method,'ja')).find(anchor=>anchor.textContent==='解説（英語）');
@@ -177,4 +177,10 @@ test('untrusted method labels stay text and hostile destinations never become ac
     assert.ok(card.textContent.includes(markup),'literal label retained');
   }
   assert.ok(created.every(node=>!['script','img','iframe'].includes(node.tag)));
+}));
+
+test('planned methods with new detailed reading advertise reading without implying available code',()=>withDOM(({render})=>{
+ for(const id of ['ewald','fdtd','quadrature']){
+  const m=published.find(m=>m.id===id),card=render(m,'ja');assert.ok(card.textContent.includes('解説あり・実装予定'));assert.ok(links(card).some(a=>a.textContent==='解説'));assert.ok(!links(card).some(a=>a.href.startsWith('/code/')));
+ }
 }));

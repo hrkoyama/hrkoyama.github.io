@@ -1,0 +1,89 @@
+{
+  "title": "随伴法・逆問題",
+  "html": "<h1>随伴法・逆問題</h1><p>随伴法は、状態変数が多く目的関数が少ない問題で、パラメータ感度を効率よく計算する方法です。感度を得ることと、逆問題が一意に解けることは別です。</p><h2 id=\"model\">対象と代表式</h2><p>離散状態方程式R(u,m)=0とスカラー目的J(u,m)を考え、L=J−λᵀRと定義します。R_uが適切に可逆なら、R_uᵀλ=J_uᵀを解くことで、uの各パラメータ微分を明示的に求めずにdJ/dmを計算できます。添字は偏微分で、符号はこのLの規約に対応します。</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msubsup><mi>R</mi><mi>u</mi><mi>T</mi></msubsup><mi>λ</mi><mo>=</mo><msubsup><mi>J</mi><mi>u</mi><mi>T</mi></msubsup><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mfrac><mrow><mi>d</mi><mi>J</mi></mrow><mrow><mi>d</mi><mi>m</mi></mrow></mfrac><mo>=</mo><msub><mi>J</mi><mi>m</mi></msub><mo>−</mo><msup><mi>λ</mi><mi>T</mi></msup><msub><mi>R</mi><mi>m</mi></msub><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">R_u^T\\lambda=J_u^T,\\qquad \\frac{dJ}{dm}=J_m-\\lambda^TR_m.</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1383em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0077em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-2.453em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">u</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">λ</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0574em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-2.453em;margin-left:-0.0962em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">u</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3714em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">m</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">dJ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0962em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0413em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">λ</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0077em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">m</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">計算の流れ</h2><p>順問題を解き、残差Jacobianと目的微分から随伴問題を解き、勾配を組み立てます。非定常問題では順方向の状態履歴が必要になり、保存・再計算の設計が加わります。連続随伴を離散化する方法と、離散方程式を微分する方法は有限格子上で一致するとは限りません。</p><h2 id=\"conditions\">適用条件と落とし穴</h2><p>境界条件、座標・格子のパラメータ依存、観測演算子、正則化を微分対象に含めます。非滑らかなlimitersや衝撃波位置の変化では通常の微分仮定に注意します。順問題・随伴問題の未収束は勾配誤差へ伝わります。</p><h2 id=\"verification\">検証するときに見る量</h2><p>方向vについてTaylor剰余J(m+hv)−J(m)−h∇J·vが、滑らかな問題でO(h²)になる範囲を調べます。随伴内積試験と方向差分も使います。逆問題では同定可能性・正則化依存・データ誤差を別途評価します。</p><h2 id=\"publication-scope\">公開範囲と関連項目</h2><p>解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。</p><ul><li><a href=\"/numerical-methods-atlas/methods/adjoint/?lang=ja\">随伴法・逆問題</a></li></ul><h2 id=\"sources\">一次文献・関連資料と確認範囲</h2><p>原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。</p><ol class=\"reading-sources\"><li id=\"source-jameson1988\"><a href=\"https://doi.org/10.1007/bf01061285\">Antony Jameson (1988). Aerodynamic design via control theory</a>. Journal of Scientific Computing<p>研究論文・提案または関連する定式化 · 抄録・書誌確認 · <a href=\"https://doi.org/10.1007/BF01061285\">確認した資料</a></p><p>出版社の概要・結論を空力設計の随伴法の文脈で参照。ここでの離散残差のLagrangianは一般形で説明しています。</p></li><li id=\"source-linnainmaa1976\"><a href=\"https://doi.org/10.1007/bf01931367\">Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error</a>. BIT<p>研究論文・提案または関連する定式化 · 書誌確認 · <a href=\"https://api.crossref.org/works/10.1007%2FBF01931367\">確認した資料</a></p><p>DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "対象と代表式"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "計算の流れ"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "適用条件と落とし穴"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "検証するときに見る量"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "公開範囲と関連項目"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "一次文献・関連資料と確認範囲"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/",
+  "methods": [
+    "adjoint"
+  ],
+  "implementation_status": {
+    "adjoint": "planned"
+  },
+  "references": [
+    {
+      "id": "jameson1988",
+      "author": "Antony Jameson",
+      "title": "Aerodynamic design via control theory",
+      "year": 1988,
+      "doi": "10.1007/bf01061285",
+      "type": "article",
+      "journal": "Journal of Scientific Computing",
+      "volume": "3",
+      "pages": "233-260",
+      "source": "https://doi.org/10.1007/bf01061285",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "url": "https://doi.org/10.1007/BF01061285",
+        "checked_on": "2026-11-22",
+        "scope": "Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian here is a generic discrete derivation.",
+        "scope_ja": "出版社の概要・結論を空力設計の随伴法の文脈で参照。ここでの離散残差のLagrangianは一般形で説明しています。"
+      }
+    },
+    {
+      "id": "linnainmaa1976",
+      "author": "Seppo Linnainmaa",
+      "title": "Taylor expansion of the accumulated rounding error",
+      "year": 1976,
+      "doi": "10.1007/bf01931367",
+      "type": "article",
+      "journal": "BIT",
+      "volume": "16",
+      "pages": "146-160",
+      "source": "https://doi.org/10.1007/bf01931367",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://api.crossref.org/works/10.1007%2FBF01931367",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

@@ -12,14 +12,14 @@
   "counts": {
     "equations": 46,
     "methods": 108,
-    "papers": 181,
-    "references": 218,
-    "journal_articles": 178,
-    "conference_papers": 3,
-    "books": 22,
-    "chapters": 2,
+    "papers": 213,
+    "references": 254,
+    "journal_articles": 207,
+    "conference_papers": 6,
+    "books": 24,
+    "chapters": 3,
     "reports": 3,
-    "other_sources": 10,
+    "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
     "local_methods": 91,
@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 50,
+    "reading_chapters": 76,
     "test_problems": 60,
     "saved_test_problems": 60,
     "code_test_problems": 0
@@ -2407,6 +2407,222 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "yeh1999",
+      "type": "article",
+      "identity": "doi:10.1063/1.479595",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "yee1966",
+      "type": "article",
+      "identity": "doi:10.1109/tap.1966.1138693",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "dawson1962",
+      "type": "article",
+      "identity": "doi:10.1063/1.1706638",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "ruge1987",
+      "type": "incollection",
+      "identity": "doi:10.1137/1.9781611971057.ch4",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "householder1958",
+      "type": "article",
+      "identity": "doi:10.1145/320941.320947",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "golub1970",
+      "type": "article",
+      "identity": "doi:10.1007/bf02163027",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "arnoldi1951",
+      "type": "article",
+      "identity": "doi:10.1090/qam/42792",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "deboor1972",
+      "type": "article",
+      "identity": "doi:10.1016/0021-9045(72)90080-9",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "golub1969",
+      "type": "article",
+      "identity": "doi:10.1090/s0025-5718-69-99647-1",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "clenshaw1960",
+      "type": "article",
+      "identity": "doi:10.1007/bf01386223",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "mallat1989",
+      "type": "article",
+      "identity": "doi:10.1109/34.192463",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "fletcher1970",
+      "type": "article",
+      "identity": "doi:10.1093/comjnl/13.3.317",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "metropolis1949",
+      "type": "article",
+      "identity": "doi:10.1080/01621459.1949.10483310",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "metropolis1953",
+      "type": "article",
+      "identity": "doi:10.1063/1.1699114",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "hastings1970",
+      "type": "article",
+      "identity": "doi:10.1093/biomet/57.1.97",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "maruyama1955",
+      "type": "article",
+      "identity": "doi:10.1007/bf02846028",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "higham2001",
+      "type": "article",
+      "identity": "doi:10.1137/s0036144500378302",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "jameson1988",
+      "type": "article",
+      "identity": "doi:10.1007/bf01061285",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "levermore1984",
+      "type": "article",
+      "identity": "doi:10.1016/0022-4073(84)90112-2",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "bird1963",
+      "type": "article",
+      "identity": "doi:10.1063/1.1710976",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "gear1971",
+      "type": "article",
+      "identity": "doi:10.1109/tct.1971.1083221",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "wengert1964",
+      "type": "article",
+      "identity": "doi:10.1145/355586.364791",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "linnainmaa1976",
+      "type": "article",
+      "identity": "doi:10.1007/bf01931367",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "raissi2019",
+      "type": "article",
+      "identity": "doi:10.1016/j.jcp.2018.10.045",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "dubiner1991",
+      "type": "article",
+      "identity": "doi:10.1007/bf01060030",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "lanczos1950",
+      "type": "article",
+      "identity": "doi:10.6028/jres.045.026",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "quadpack1983",
+      "type": "book",
+      "identity": "doi:10.1007/978-3-642-61786-7",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "ren2003",
+      "type": "article",
+      "identity": "doi:10.1016/s0045-7930(02)00114-7",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "roe2005carbuncle",
+      "type": "inproceedings",
+      "identity": "doi:10.2514/6.2005-4872",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "li2021fno",
+      "type": "inproceedings",
+      "identity": "openreview:c8P9NQVtmnO",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "bird1994",
+      "type": "book",
+      "identity": "url:https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "dlmf",
+      "type": "misc",
+      "identity": "url:https://dlmf.nist.gov/",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "weiss1995",
+      "type": "article",
+      "identity": "doi:10.2514/3.12946",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "darmofal2000",
+      "type": "article",
+      "identity": "doi:10.1006/jcph.2000.6472",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "harten1983entropy",
+      "type": "article",
+      "identity": "doi:10.1016/0021-9991(83)90136-5",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "jameson1981",
+      "type": "inproceedings",
+      "identity": "doi:10.2514/6.1981-1259",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -2589,8 +2805,8 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "7fa67bfbe031fe39dc59847a77021ef3c9ce0cb750e0455dfac850975c6af672",
-    "catalog/atlas-methods.json": "556ce4017c846b2f9f756a2bfa69ffde88ff649a564ff07afae6b096d50972b3",
+    "catalog/atlas-methods.json": "e69800e084992f0805d1fe40bec885506cc3640c148d5231bd3b7b103a0d6ade",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "e946aabc548e150d0e0aadd61f3ab61d95af6e67393370fff1b2400509b7c39b"
+    "catalog/atlas-method-primary-references.json": "e388cfbb852195fc7683b3d1688557e7b00dd5d443b2c0c1d0ce199b0be79f94"
   }
 }

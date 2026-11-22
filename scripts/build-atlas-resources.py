@@ -55,7 +55,7 @@ esc=html.escape
 STATUS={'educational-example':{'ja':'教育用例・関連コードあり','en':'Educational example / related code'},'reading-only':{'ja':'解説あり・専用実装なし','en':'Reading only / no dedicated implementation'},'planned':{'ja':'Under construction / 収録予定','en':'Under construction / planned'}}
 def status(x,lang):
     if x['status']=='planned' and x['reading']:
-        return '比較解説あり・実装予定' if lang=='ja' else 'Comparative reading / implementation planned'
+        return '解説あり・実装予定' if lang=='ja' else 'Reading / implementation planned'
     return STATUS[x['status']][lang]
 def link(url,label):return '<a href="'+esc(url)+'">'+esc(label)+'</a>'
 def page(title_ja,title_en,url,sections,structured=None,extra_head=''):
@@ -97,7 +97,7 @@ def method_filter_controls(lang):
         'all':('すべて','All'),
         'educational-example':('教育用例・関連コードあり','Educational examples / related code'),
         'reading-only':('解説のみ・専用実装なし','Reading only / no dedicated implementation'),
-        'planned':('収録予定（比較解説を含む）','Planned (including comparative reading)'),
+        'planned':('実装予定（解説ありを含む）','Implementation planned (including published reading)'),
     }
     counts={'all':len(METHODS),'educational-example':example_count,'reading-only':reading_count,'planned':planned_count}
     body='<form class="method-map-controls" data-method-controls hidden role="search" aria-label="'+('手法を絞り込む' if ja else 'Filter methods')+'">'

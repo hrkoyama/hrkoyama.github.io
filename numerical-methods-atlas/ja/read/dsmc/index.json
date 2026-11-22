@@ -1,0 +1,85 @@
+{
+  "title": "DSMC・運動論輸送",
+  "html": "<h1>DSMC・運動論輸送</h1><p>DSMCは希薄気体のBoltzmann衝突を代表粒子の確率的な二体衝突で近似します。分子動力学の決定論的な粒子対ポテンシャル計算とも、場を解くプラズマPICとも異なります。</p><h2 id=\"model\">対象と代表式</h2><p>Boltzmann方程式の分布f、分子速度v、外力加速度a、衝突積分Qを考えます。1代表粒子がF_N個の実分子を表し、体積V_cのセル内で断面積σ_Tと相対速度gに応じて衝突を標本化します。fは位相空間の粒子数密度の規約で定義します。</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>f</mi><mo>+</mo><mi mathvariant=\"bold\">v</mi><mo>⋅</mo><msub><mi mathvariant=\"normal\">∇</mi><mi>x</mi></msub><mi>f</mi><mo>+</mo><mi mathvariant=\"bold\">a</mi><mo>⋅</mo><msub><mi mathvariant=\"normal\">∇</mi><mi>v</mi></msub><mi>f</mi><mo>=</mo><mi>Q</mi><mo stretchy=\"false\">(</mo><mi>f</mi><mo separator=\"true\">,</mo><mi>f</mi><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msub><mi>P</mi><mrow><mi mathvariant=\"normal\">p</mi><mi mathvariant=\"normal\">a</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">r</mi></mrow></msub><mo>∼</mo><mfrac><mrow><msub><mi>F</mi><mi>N</mi></msub><msub><mi>σ</mi><mi>T</mi></msub><mi>g</mi><mtext> </mtext><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow><msub><mi>V</mi><mi>c</mi></msub></mfrac><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">\\partial_t f+\\mathbf v\\cdot\\nabla_x f+\\mathbf a\\cdot\\nabla_v f=Q(f,f),\\qquad P_{\\rm pair}\\sim \\frac{F_N\\sigma_T g\\,\\Delta t}{V_c}.</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4445em;\"></span><span class=\"mord mathbf\" style=\"margin-right:0.016em;\">v</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">∇</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4445em;\"></span><span class=\"mord mathbf\">a</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\">∇</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">v</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0361em;vertical-align:-0.2861em;\"></span><span class=\"mord mathnormal\">Q</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3175em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">pair</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">∼</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.1963em;vertical-align:-0.836em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3603em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.2222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">c</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.109em;\">N</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">σ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.836em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">計算の流れ</h2><p>粒子を移動し、境界との相互作用を処理し、セル内で衝突候補を選んで散乱を標本化します。代表的なno-time-counter方式ではgσ_Tの上界に基づく候補数と棄却を使います。衝突モデルはhard sphere、VHSなどを明示し、Birdの初期の提案と後続アルゴリズムを区別します。</p><h2 id=\"conditions\">適用条件と落とし穴</h2><p>希薄気体と分子混沌の仮定を用い、一般にはセル幅を平均自由行程、時間刻みを平均衝突時間と比較します。必要な解像は問題依存です。低速流では巨視的信号が熱運動の雑音に埋もれやすく、平均化時間を増やしてもバイアスは消えません。</p><h2 id=\"verification\">検証するときに見る量</h2><p>一様気体の速度緩和、Maxwell分布、壁面Couette流や希薄衝撃波で試します。衝突ごとの運動量・エネルギー保存、セル/刻み/粒子数依存、標本相関を含む不確かさを確認します。</p><h2 id=\"publication-scope\">公開範囲と関連項目</h2><p>解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。</p><ul><li><a href=\"/numerical-methods-atlas/methods/dsmc/?lang=ja\">DSMC・運動論輸送</a></li></ul><h2 id=\"sources\">一次文献・関連資料と確認範囲</h2><p>原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。</p><ol class=\"reading-sources\"><li id=\"source-bird1963\"><a href=\"https://doi.org/10.1063/1.1710976\">G. A. Bird (1963). Approach to Translational Equilibrium in a Rigid Sphere Gas</a>. The Physics of Fluids<p>研究論文・提案または関連する定式化 · 書誌確認 · <a href=\"https://api.crossref.org/works/10.1063%2F1.1710976\">確認した資料</a></p><p>DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。</p></li><li id=\"source-bird1994\"><a href=\"https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958\">G. A. Bird (1994). Molecular Gas Dynamics and the Direct Simulation of Gas Flows</a>. Clarendon Press<p>著者による著書・関連資料 · 書誌確認 · <a href=\"https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958\">確認した資料</a></p><p>提案者による成熟したDSMCの著書を参照先にしています。初期の1963年論文とは区別し、全巻監査は主張しません。</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "対象と代表式"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "計算の流れ"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "適用条件と落とし穴"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "検証するときに見る量"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "公開範囲と関連項目"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "一次文献・関連資料と確認範囲"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dsmc/",
+  "methods": [
+    "dsmc"
+  ],
+  "implementation_status": {
+    "dsmc": "planned"
+  },
+  "references": [
+    {
+      "id": "bird1963",
+      "author": "G. A. Bird",
+      "title": "Approach to Translational Equilibrium in a Rigid Sphere Gas",
+      "year": 1963,
+      "doi": "10.1063/1.1710976",
+      "type": "article",
+      "journal": "The Physics of Fluids",
+      "volume": "6",
+      "pages": "1518-1519",
+      "source": "https://doi.org/10.1063/1.1710976",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://api.crossref.org/works/10.1063%2F1.1710976",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    },
+    {
+      "id": "bird1994",
+      "author": "G. A. Bird",
+      "title": "Molecular Gas Dynamics and the Direct Simulation of Gas Flows",
+      "year": 1994,
+      "type": "book",
+      "publisher": "Clarendon Press",
+      "source": "https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958",
+      "note": "Originator-authored monograph for the mature DSMC algorithm and no-time-counter context; distinct from the early 1963 paper. Bibliographic reference, not a full-book audit.",
+      "source_review": {
+        "level": "metadata",
+        "url": "https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958",
+        "checked_on": "2026-11-22",
+        "scope_ja": "提案者による成熟したDSMCの著書を参照先にしています。初期の1963年論文とは区別し、全巻監査は主張しません。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

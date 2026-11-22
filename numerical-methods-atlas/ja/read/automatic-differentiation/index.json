@@ -1,0 +1,89 @@
+{
+  "title": "自動微分",
+  "html": "<h1>自動微分</h1><p>自動微分はプログラムの基本演算へ連鎖律を適用して導関数を計算します。数式の記号微分でも、有限差分で刻みを選ぶ数値微分でもありません。</p><h2 id=\"model\">対象と代表式</h2><p>中間変数z=φ(x)に対し、forward modeは方向微分ż=φ_x ẋを、reverse modeは出力側の随伴量z̄からx̄へφ_xᵀz̄を足し戻します。浮動小数点の丸めを伴うため「完全に誤差ゼロ」ではありませんが、有限差分の打切り誤差は導入しません。</p><div class=\"math-block\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mover accent=\"true\"><mi>z</mi><mo>˙</mo></mover><mo>=</mo><mfrac><mrow><mi mathvariant=\"normal\">∂</mi><mi>ϕ</mi></mrow><mrow><mi mathvariant=\"normal\">∂</mi><mi>x</mi></mrow></mfrac><mover accent=\"true\"><mi>x</mi><mo>˙</mo></mover><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><mo>+</mo><mo>=</mo><msup><mrow><mo fence=\"true\">(</mo><mfrac><mrow><mi mathvariant=\"normal\">∂</mi><mi>ϕ</mi></mrow><mrow><mi mathvariant=\"normal\">∂</mi><mi>x</mi></mrow></mfrac><mo fence=\"true\">)</mo></mrow><mi>T</mi></msup><mover accent=\"true\"><mi>z</mi><mo>ˉ</mo></mover><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msup><mi>w</mi><mi>T</mi></msup><mo stretchy=\"false\">(</mo><mi>J</mi><mi>v</mi><mo stretchy=\"false\">)</mo><mo>=</mo><msup><mi>v</mi><mi>T</mi></msup><mo stretchy=\"false\">(</mo><msup><mi>J</mi><mi>T</mi></msup><mi>w</mi><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">.</mi></mrow><annotation encoding=\"application/x-tex\">\\dot z=\\frac{\\partial\\phi}{\\partial x}\\dot x,\\qquad \\bar x\\mathrel{+}=\\left(\\frac{\\partial\\phi}{\\partial x}\\right)^T\\bar z,\\qquad w^T(Jv)=v^T(J^Tw).</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6679em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6679em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.0833em;\"><span class=\"mord\">˙</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0574em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3714em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"mord mathnormal\">x</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"mord mathnormal\">ϕ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6679em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">x</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1111em;\"><span class=\"mord\">˙</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5678em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">x</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\"><span class=\"mord\">+</span></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.3669em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.6313em;vertical-align:-0.95em;\"></span><span class=\"minner\"><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">(</span></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3714em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"mord mathnormal\">x</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"mord mathnormal\">ϕ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">)</span></span></span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.6812em;\"><span style=\"top:-3.9029em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5678em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1944em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0269em;\">w</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">v</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1413em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">v</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0962em;\">J</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0269em;\">w</span><span class=\"mclose\">)</span><span class=\"mord\">.</span></span></span></span></span></div><h2 id=\"algorithm\">計算の流れ</h2><p>計算を基本演算へ分解し、値とtangentまたは逆伝播に必要な履歴を記録します。少数入力ならforward、スカラー出力・多数入力ならreverseが有利な典型例です。暗黙に定まる収束解を微分する場合は、反復列の微分と暗黙関数の微分を区別します。</p><h2 id=\"conditions\">適用条件と落とし穴</h2><p>分岐では実行された経路の微分を計算します。絶対値、max、limiters、接触やイベントでは微分不能性と採用した規約を確認します。stop-gradient、外部演算、反復停止条件の扱いにも注意します。丸め誤差を含む不連続なビット操作全体の古典微分を保証する技術ではありません。</p><h2 id=\"verification\">検証するときに見る量</h2><p>解析微分のある小関数、方向Taylor試験、forward/reverseの内積恒等式wᵀ(Jv)=vᵀ(Jᵀw)で検査します。有限差分との比較では丸めが支配するほど刻みを小さくしません。PDE残差への適用では境界・パラメータ依存も含めます。</p><h2 id=\"publication-scope\">公開範囲と関連項目</h2><p>解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。</p><ul><li><a href=\"/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja\">自動微分</a></li></ul><h2 id=\"sources\">一次文献・関連資料と確認範囲</h2><p>原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。</p><ol class=\"reading-sources\"><li id=\"source-wengert1964\"><a href=\"https://doi.org/10.1145/355586.364791\">R. E. Wengert (1964). A simple automatic derivative evaluation program</a>. Communications of the ACM<p>研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · <a href=\"https://www.cs.princeton.edu/courses/archive/fall19/cos597C/files/wengert1964.pdf\">確認した資料</a></p><p>基本演算への分解とforward微分の説明を参照。reverse modeはLinnainmaaの論文も別に引用します。</p></li><li id=\"source-linnainmaa1976\"><a href=\"https://doi.org/10.1007/bf01931367\">Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error</a>. BIT<p>研究論文・提案または関連する定式化 · 書誌確認 · <a href=\"https://api.crossref.org/works/10.1007%2FBF01931367\">確認した資料</a></p><p>DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。</p></li></ol>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "model",
+      "title": "対象と代表式"
+    },
+    {
+      "level": 2,
+      "id": "algorithm",
+      "title": "計算の流れ"
+    },
+    {
+      "level": 2,
+      "id": "conditions",
+      "title": "適用条件と落とし穴"
+    },
+    {
+      "level": 2,
+      "id": "verification",
+      "title": "検証するときに見る量"
+    },
+    {
+      "level": 2,
+      "id": "publication-scope",
+      "title": "公開範囲と関連項目"
+    },
+    {
+      "level": 2,
+      "id": "sources",
+      "title": "一次文献・関連資料と確認範囲"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/catalog/atlas-detailed-reading.json",
+  "updated_on": "2026-11-22",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/",
+  "methods": [
+    "automatic-differentiation"
+  ],
+  "implementation_status": {
+    "automatic-differentiation": "planned"
+  },
+  "references": [
+    {
+      "id": "wengert1964",
+      "author": "R. E. Wengert",
+      "title": "A simple automatic derivative evaluation program",
+      "year": 1964,
+      "doi": "10.1145/355586.364791",
+      "type": "article",
+      "journal": "Communications of the ACM",
+      "volume": "7",
+      "pages": "463-464",
+      "source": "https://doi.org/10.1145/355586.364791",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "full-text",
+        "url": "https://www.cs.princeton.edu/courses/archive/fall19/cos597C/files/wengert1964.pdf",
+        "checked_on": "2026-11-22",
+        "scope": "Elementary-operation decomposition and forward differentiation discussion; reverse mode is separately linked to Linnainmaa.",
+        "scope_ja": "基本演算への分解とforward微分の説明を参照。reverse modeはLinnainmaaの論文も別に引用します。"
+      }
+    },
+    {
+      "id": "linnainmaa1976",
+      "author": "Seppo Linnainmaa",
+      "title": "Taylor expansion of the accumulated rounding error",
+      "year": 1976,
+      "doi": "10.1007/bf01931367",
+      "type": "article",
+      "journal": "BIT",
+      "volume": "16",
+      "pages": "146-160",
+      "source": "https://doi.org/10.1007/bf01931367",
+      "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-22",
+        "url": "https://api.crossref.org/works/10.1007%2FBF01931367",
+        "scope_ja": "DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。"
+      }
+    }
+  ],
+  "source_sha256": "0a37be542e95fb09e0bb3ed32ce050a8dacb49328e3fc45467231edc1bf51906"
+}

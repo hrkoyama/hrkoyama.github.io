@@ -1,0 +1,144 @@
+# 直交多項式と格子上の基底関数
+
+直交多項式と格子上の基底関数
+
+格子はセルの形状と接続を、基底（basis）はセル上の場を表す関数を定めます。基底の選択は、セル形状や変数のstaggeringとは別です。[基底関数の展示](/numerical-methods-atlas/?lang=ja#/basis)ではモード、節点、質量行列を比較できます。既存DG移流のLegendreモードの代数を、ここで明示します。
+
+参照要素から始める
+
+長さh、中心x_cの物理区間を参照区間へ写します。Jはこのアフィン写像のJacobianです。
+
+
+$$
+
+x=x_c+J\xi,\qquad J=h/2,\qquad -1\leq\xi\leq1,
+\qquad u_h(x)=\sum_{j=0}^{p}a_j\phi_j(\xi).
+
+$$
+p+1個の係数が要素の自由度です。連続有限要素法では隣接要素が境界自由度を共有し、DGでは要素ごとの係数を独立に持ち数値流束で結合します。同じ局所多項式基底をどちらにも使えます。定係数・アフィン写像の質量行列と拡散剛性行列は
+
+
+$$
+
+M_{ij}=J\int_{-1}^{1}\phi_i\phi_j\,d\xi,
+\qquad K_{ij}=J^{-1}\int_{-1}^{1}\phi_i'\phi_j'\,d\xi.
+
+$$
+です。曲線写像の可変Jacobianや密度・係数が積分へ入ると、参照要素での直交性だけでは物理行列の対角性は保証されません。
+
+Legendreモードと正規直交モード
+
+重み1の区間[−1,1]に対するLegendre多項式は、漸化式
+
+
+$$
+
+P_0=1,\quad P_1=\xi,\quad P_2=(3\xi^2-1)/2,
+\qquad (n+1)P_{n+1}=(2n+1)\xi P_n-nP_{n-1},
+
+$$
+
+$$
+
+\int_{-1}^{1}P_iP_j\,d\xi=\frac{2}{2i+1}\delta_{ij},
+\qquad \widehat P_i=\sqrt{\frac{2i+1}{2}}P_i.
+
+$$
+を満たします。通常のLegendre質量行列は対角ですが、対角成分は異なります。正規直交化すると参照質量は単位行列になります。同じ多項式空間でも係数の値は変わります。定数モードは要素平均を表し、高次Legendreモードの平均は0です。規格化と漸化式は[DLMF §18.3](https://dlmf.nist.gov/18.3)と[§18.9](https://dlmf.nist.gov/18.9)で確認できます。
+
+Lagrange節点基底も同じ空間を表す
+
+相異なる節点に対してcardinal多項式を定義します。
+
+
+$$
+
+\ell_j(\xi)=\prod_{k\ne j}\frac{\xi-\xi_k}{\xi_j-\xi_k},
+\qquad \ell_j(\xi_i)=\delta_{ij},\qquad
+u_h=\sum_j u_j\ell_j.
+
+$$
+係数u_jは節点値、モード展開のa_jは多項式の振幅です。同じ関数の表現はLegendre Vandermonde行列Vを使って変換できます。実計算では逆行列を明示的に作らず線形系を解きます。
+
+
+$$
+
+u_i=\sum_j V_{ij}a_j,\qquad V_{ij}=P_j(\xi_i),\qquad a=V^{-1}u.
+
+$$
+展示は等間隔節点とGauss–Lobatto–Legendre（GLL）節点を比較します。このVの条件数は規格化に依存し、PDE全体の行列の条件数ではありません。端点への節点集中は補間に有利でも、不連続でのGibbs振動を取り除くものではありません。
+
+求積と「対角質量」の注意点
+
+p+1点のGauss–Legendre則は次数2p+1まで、端点を含むGLL則は2p−1まで厳密です。GLL内部節点はP′_pの零点で、重みは
+
+
+$$
+
+w_i=\frac{2}{p(p+1)P_p(\xi_i)^2},\qquad p\geq1.
+
+$$
+です。次数pの基底の積は次数2pになり得るため、GLL求積で得るdiag(w)と厳密積分した節点質量行列は一般には異なります。重み1・アフィン区間では差はrank oneです。最高Legendreモードの二乗ノルムは、GLL求積では2/p、厳密値は2/(2p+1)になります。この区別と補正は[Teukolsky（2015）](https://doi.org/10.1016/j.jcp.2014.12.012)の原著を参照してください。
+
+定係数の剛性積分の次数は高々2p−2なので、同じGLL則で十分です。非線形流束や可変計量では追加求積や適切なsplit formが必要になる場合があり、対角質量だけで非線形安定性は保証できません。一般のGaussian求積は[DLMF §3.5](https://dlmf.nist.gov/3.5)も参照できます。
+
+射影と補間を区別する
+
+重みなしL2 Legendre射影は積分モーメントから係数を求めます。
+
+
+$$
+
+a_k=\frac{2k+1}{2}\int_{-1}^{1}f(\xi)P_k(\xi)\,d\xi.
+
+$$
+節点補間は選んだ点でfに一致させます。次数p以下の多項式では同じ結果ですが、それ以外では一致する必要はありません。展示のexp(ξ)では次数とともに誤差が急減し、sign(ξ)ではovershootと遅い収束が見えます。どちらも衝撃波用のlimiterではありません。段差は2つの半区間に分けて積分し、補間ではsign(0)=0、L2誤差は各半区間の80点Gauss則で評価しています。
+
+四角形と三角形では多項式空間が異なる
+
+四角形では1次元関数のテンソル積を使えます。
+
+
+$$
+
+\phi_{ij}(\xi,\eta)=\ell_i(\xi)\ell_j(\eta),\qquad
+0\leq i,j\leq p.
+
+$$
+Q_pは(p+1)²個、三角形の全次数P_pは(p+1)(p+2)/2個の関数を持ちます。したがって四角形Q2は9自由度、三角形P2は6自由度です。セルの位相が参照写像と境界の接続を定めます。[DefElementのLagrange要素の定義](https://defelement.org/elements/lagrange.html)は空間と節点変種を区別しています。
+
+参照三角形(0,0),(1,0),(0,1)の重心座標はλ₀=1−ξ−η、λ₁=ξ、λ₂=ηです。P1頂点関数はλ_i、P2は頂点λ_i(2λ_i−1)と辺4λ_iλ_jです。和は1で二次場を再現しますが、直交基底ではありません。展示は6つの形状関数を三角形上に表示します。
+
+三角形の直交モードには、縮約座標と重み付きJacobi多項式による[Dubiner（1991）](https://doi.org/10.1007/BF01060030)の構成があります。長方形のLegendreテンソル積を三角形へ制限しても直交性は自動では残りません。公開例はP1/P2節点三角形と四角形テンソル積で、Dubinerの実装は含みません。
+
+直交族には領域と重みがある
+
+直交性は領域・重みと組にして定義します。展示はChebyshev Tモードが重み1の内積では一般に直交しないことも示します。以下のうち、その他の族は数学的な関連事項であり実装済みの主張ではありません。規約はDLMF §18.2・§18.3によります。
+
+Chebyshev T_n：T_n(cosθ)=cos(nθ)、[−1,1]、重み(1−ξ²)⁻¹/²。端点に密なスペクトル補間と結び付きます。
+
+Jacobi P_n^(α,β)：[−1,1]、重み(1−ξ)^α(1+ξ)^β、α,β>−1。規格化を含めLegendre・Chebyshevと関係し、単体要素の重み付き座標変換にも使います。
+
+Hermite：物理学のH_nは実数全域でexp(−ξ²)、確率論のHe_nはexp(−ξ²/2)の重みです。CIPの端点値・微分を使うHermite補間とは別です。
+
+一般化Laguerre L_n^(α)：[0,∞)、重みξ^α exp(−ξ)、α>−1。半無限領域の族です。
+
+Fourier exp(ikx)：周期区間と整合する整数波数に対して直交します。格子局所多項式ではなく全域の周期基底です。
+
+
+
+公開実装と検証の範囲
+
+公開版のnumart.basisはLegendre/Chebyshevと節点基底、微分、アフィン区間行列、GLL求積、射影、P1/P2三角形、テンソル積を扱います。既存検査はLegendre直交性、GLLの厳密次数、補間・多項式再現、分割1、微分再現、GLLのsummation-by-parts、rank-one質量差、Jacobianのスケーリングを対象にします。DGソルバーは周期スカラーP0/P1/P2移流に限定されます。
+
+[Legendre基底の手法記録](/numerical-methods-atlas/methods/legendre-basis/?lang=ja)と[節点基底の記録](/numerical-methods-atlas/methods/nodal-basis/?lang=ja)から、既存の版を固定したコード・検査へ進めます。保存配列と図の元の検証範囲を保持しています。参照要素の構成要素であり、汎用の曲線格子組立や高次流体ソルバーの完成を意味しません。
+
+## 公開範囲
+
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+
+## 文献
+
+- Saul A. Teukolsky (2015). Short note on the mass matrix for Gauss–Lobatto grid points. https://doi.org/10.1016/j.jcp.2014.12.012
+- Moshe Dubiner (1991). Spectral methods on triangles and other domains. https://doi.org/10.1007/bf01060030
+- F. W. J. Olver and A. B. Olde Daalhuis and D. W. Lozier and B. I. Schneider and R. F. Boisvert and C. W. Clark and B. R. Miller and B. V. Saunders and H. S. Cohl and M. A. McClain (eds.) (2010). NIST Digital Library of Mathematical Functions. https://dlmf.nist.gov/

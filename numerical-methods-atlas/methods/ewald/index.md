@@ -6,7 +6,7 @@ Split a periodic Coulomb sum into real, reciprocal and self-correction terms. Th
 
 周期Coulomb和を実空間・逆空間・自己補正に分けます。中性セル、単位、ゼロモードと表面規約を揃えるための基準を整理した段階です。
 
-Under construction. No dedicated implementation or verification result is provided yet. Cutoff convergence and numerical energy/force/self-term comparisons remain future work.
+Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
 
 Other names: Ewald summation, エワルド法, エバルト法, エワルド和
 
@@ -40,7 +40,7 @@ boundary_conditions [specified]:
 ここでは実装前の比較仕様として記載し、計算済みの条件とは区別します。
 
 limitations [specified]:
-Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、打切り収束・エネルギーと力・自己項を含む数値比較は今後の作業です。
+日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。
 文献整理と専用実装・数値検証の完了を区別します。
 
 Review: 原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。
@@ -89,7 +89,7 @@ Triply periodic neutral cell; the initial comparison specifies a conducting (tin
 Specified here as a pre-implementation comparison convention, not an executed setup.
 
 limitations [specified]:
-Under construction. No dedicated implementation or verification result is provided yet. Cutoff convergence and numerical energy/force/self-term comparisons remain future work.
+Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
 Source curation is separate from completion of implementation and numerical validation.
 
 Review: Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review.
@@ -110,7 +110,8 @@ References:
   full-text (2026-11-22); Sections II–IV, Eqs. (2.1)–(2.5), (4.1)–(4.8), and Appendix A surface-term discussion; https://biomolmd.org/mw/images/e/e0/Spme.pdf
 
 
-
+- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ewald/
+- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/ewald/
 
 
 

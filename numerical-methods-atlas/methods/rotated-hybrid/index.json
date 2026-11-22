@@ -10,51 +10,42 @@
     "en": "Riemann fluxes & corrections"
   },
   "summary": {
-    "ja": "「回転ハイブリッド・リーマンソルバー」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-    "en": "Read about Rotated-hybrid Riemann solver, follow the original references and inspect related educational code and checks."
+    "ja": "速度差に合わせた方向と直交方向で散逸を組む回転ハイブリッド法。Ren（2003）、西川–北村（2008）、Roe・西川ら（2005）の関連研究を区別し、公開HLLE/Roe実験の範囲を明示します。",
+    "en": "Construct directional dissipation using a velocity-jump frame. Distinguish Ren (2003), Nishikawa–Kitamura (2008) and related Roe–Nishikawa et al. (2005) research, and state the scope of the published HLLE/Roe experiment."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
   "reading": {
-    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/",
-    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/"
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/rotated-hybrid/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/rotated-hybrid/"
   },
   "code_modules": [
-    "ppm_traced",
-    "ausm_plus",
-    "ausm",
-    "rotated_flux",
-    "blunt_body"
+    "rotated_flux"
   ],
   "test_files": [
     "test_shock_expansion"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Educational directional HLLE/Roe construction; not the optimized Rotated-RHLL dissipation formula in Nishikawa–Kitamura (2008). Other chapter flux modules are separate methods.",
   "references": [
     {
-      "url": "https://doi.org/10.1016/0021-9991(84)90143-8",
-      "label": "The Piecewise Parabolic Method (PPM) for gas-dynamical simulations (1984)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
-    },
-    {
-      "url": "https://arxiv.org/abs/1410.4194",
-      "label": "Cholla: A New Massively-Parallel Hydrodynamics Code for Astrophysical Simulation (2015)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
-    },
-    {
-      "url": "https://doi.org/10.1006/jcph.1996.0256",
-      "label": "A Sequel to AUSM: AUSM+ (1996)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
-    },
-    {
-      "url": "https://doi.org/10.1016/j.jcp.2005.09.020",
-      "label": "A sequel to AUSM, Part II: AUSM+-up for all speeds (2006)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+      "url": "https://doi.org/10.1016/s0045-7930(02)00114-7",
+      "label": "A robust shock-capturing scheme based on rotated Riemann solvers (2003)",
+      "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
     },
     {
       "url": "https://doi.org/10.1016/j.jcp.2007.11.003",
       "label": "Very simple, carbuncle-free, boundary-layer-resolving, rotated-hybrid Riemann solvers (2008)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+      "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+    },
+    {
+      "url": "https://doi.org/10.2514/6.2005-4872",
+      "label": "On Carbuncles and Other Excrescences (2005)",
+      "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+    },
+    {
+      "url": "https://doi.org/10.1016/0021-9991(81)90128-5",
+      "label": "Approximate Riemann solvers, parameter vectors, and difference schemes (1981)",
+      "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
     }
   ],
   "assumptions": null,
@@ -78,11 +69,7 @@
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rotated-hybrid/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rotated-hybrid/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/ppm_traced.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/ausm_plus.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/ausm.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/rotated_flux.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/blunt_body.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/rotated_flux.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_shock_expansion.py"

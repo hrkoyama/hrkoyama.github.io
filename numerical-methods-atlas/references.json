@@ -583,7 +583,7 @@
     "pages": "2560--2581",
     "doi": "10.1016/j.jcp.2007.11.003",
     "source": "https://www.sciencedirect.com/science/article/abs/pii/S0021999107004822",
-    "note": "Publisher bibliographic record and abstract. The 2D rotated solver and carbuncle tests are future work."
+    "note": "Publisher bibliographic record and abstract. Nishikawa and Kitamura (2008) is distinct from Ren (2003) and Roe–Nishikawa et al. (2005). The atlas now links an educational directional HLLE/Roe experiment, explicitly not the paper’s optimized Rotated-RHLL formula. See the dated code verification for tested scope."
   },
   {
     "id": "koyama2009",
@@ -2255,6 +2255,702 @@
     "type": "article",
     "source": "https://biomolmd.org/mw/images/e/e0/Spme.pdf",
     "note": "Reviewed as a source for priority-method metadata. The individual method records distinguish reference roles, relevant full-text passages, abstracts and bibliographic checks; this does not imply a new numerical validation.",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "yeh1999",
+    "author": "In-Chul Yeh and Max L. Berkowitz",
+    "title": "Ewald summation for systems with slab geometry",
+    "year": 1999,
+    "doi": "10.1063/1.479595",
+    "type": "article",
+    "journal": "The Journal of Chemical Physics",
+    "volume": "111",
+    "pages": "3155-3162",
+    "source": "https://doi.org/10.1063/1.479595",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://is.muni.cz/el/sci/jaro2017/C9926/um/BoxDipole.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Abstract and the slab correction construction; not an audit of all numerical tables."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "yee1966",
+    "author": "Kane Yee",
+    "title": "Numerical solution of initial boundary value problems involving maxwell's equations in isotropic media",
+    "year": 1966,
+    "doi": "10.1109/tap.1966.1138693",
+    "type": "article",
+    "journal": "IEEE Transactions on Antennas and Propagation",
+    "volume": "14",
+    "pages": "302-307",
+    "source": "https://doi.org/10.1109/tap.1966.1138693",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1109%2FTAP.1966.1138693"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "dawson1962",
+    "author": "John Dawson",
+    "title": "One-Dimensional Plasma Model",
+    "year": 1962,
+    "doi": "10.1063/1.1706638",
+    "type": "article",
+    "journal": "The Physics of Fluids",
+    "volume": "5",
+    "pages": "445-459",
+    "source": "https://doi.org/10.1063/1.1706638",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1063%2F1.1706638"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "ruge1987",
+    "author": "J. W. Ruge and K. Stüben",
+    "title": "4. Algebraic Multigrid",
+    "year": 1987,
+    "doi": "10.1137/1.9781611971057.ch4",
+    "type": "incollection",
+    "volume": "",
+    "pages": "73-130",
+    "source": "https://doi.org/10.1137/1.9781611971057.ch4",
+    "booktitle": "Multigrid Methods",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1137%2F1.9781611971057.ch4"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "householder1958",
+    "author": "Alston S. Householder",
+    "title": "Unitary Triangularization of a Nonsymmetric Matrix",
+    "year": 1958,
+    "doi": "10.1145/320941.320947",
+    "type": "article",
+    "journal": "Journal of the ACM",
+    "volume": "5",
+    "pages": "339-342",
+    "source": "https://doi.org/10.1145/320941.320947",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1145%2F320941.320947"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "golub1970",
+    "author": "G. H. Golub and C. Reinsch",
+    "title": "Singular value decomposition and least squares solutions",
+    "year": 1970,
+    "doi": "10.1007/bf02163027",
+    "type": "article",
+    "journal": "Numerische Mathematik",
+    "volume": "14",
+    "pages": "403-420",
+    "source": "https://doi.org/10.1007/bf02163027",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1007%2FBF02163027"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "arnoldi1951",
+    "author": "W. E. Arnoldi",
+    "title": "The principle of minimized iterations in the solution of the matrix eigenvalue problem",
+    "year": 1951,
+    "doi": "10.1090/qam/42792",
+    "type": "article",
+    "journal": "Quarterly of Applied Mathematics",
+    "volume": "9",
+    "pages": "17-29",
+    "source": "https://doi.org/10.1090/qam/42792",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1090%2Fqam%2F42792"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "deboor1972",
+    "author": "Carl de Boor",
+    "title": "On calculating with B-splines",
+    "year": 1972,
+    "doi": "10.1016/0021-9045(72)90080-9",
+    "type": "article",
+    "journal": "Journal of Approximation Theory",
+    "volume": "6",
+    "pages": "50-62",
+    "source": "https://doi.org/10.1016/0021-9045(72)90080-9",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://assets.ctfassets.net/0vvalmm98slw/3gJpOmFpK4xixKnmlwCsT2/d1c9ac3769af37697b5ee3eb76fcba1d/deboor.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Introduction and basis/recurrence setting; not a full algorithm reproduction."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "golub1969",
+    "author": "Gene H. Golub and John H. Welsch",
+    "title": "Calculation of Gauss quadrature rules",
+    "year": 1969,
+    "doi": "10.1090/s0025-5718-69-99647-1",
+    "type": "article",
+    "journal": "Mathematics of Computation",
+    "volume": "23",
+    "pages": "221-230",
+    "source": "https://doi.org/10.1090/s0025-5718-69-99647-1",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1090%2FS0025-5718-69-99647-1"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "clenshaw1960",
+    "author": "C. W. Clenshaw and A. R. Curtis",
+    "title": "A method for numerical integration on an automatic computer",
+    "year": 1960,
+    "doi": "10.1007/bf01386223",
+    "type": "article",
+    "journal": "Numerische Mathematik",
+    "volume": "2",
+    "pages": "197-205",
+    "source": "https://doi.org/10.1007/bf01386223",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1007%2FBF01386223"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "mallat1989",
+    "author": "S.G. Mallat",
+    "title": "A theory for multiresolution signal decomposition: the wavelet representation",
+    "year": 1989,
+    "doi": "10.1109/34.192463",
+    "type": "article",
+    "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "volume": "11",
+    "pages": "674-693",
+    "source": "https://doi.org/10.1109/34.192463",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Abstract/introduction and multiresolution/filter-bank construction; not the full proof set."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "fletcher1970",
+    "author": "R. Fletcher",
+    "title": "A new approach to variable metric algorithms",
+    "year": 1970,
+    "doi": "10.1093/comjnl/13.3.317",
+    "type": "article",
+    "journal": "The Computer Journal",
+    "volume": "13",
+    "pages": "317-322",
+    "source": "https://doi.org/10.1093/comjnl/13.3.317",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1093%2Fcomjnl%2F13.3.317"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "metropolis1949",
+    "author": "Nicholas Metropolis and S. Ulam",
+    "title": "The Monte Carlo Method",
+    "year": 1949,
+    "doi": "10.1080/01621459.1949.10483310",
+    "type": "article",
+    "journal": "Journal of the American Statistical Association",
+    "volume": "44",
+    "pages": "335-341",
+    "source": "https://doi.org/10.1080/01621459.1949.10483310",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://doi.org/10.1080/01621459.1949.10483310",
+      "checked_on": "2026-11-22",
+      "scope": "Publisher abstract and bibliographic identity; independent-sample estimator shown in modern notation."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "metropolis1953",
+    "author": "Nicholas Metropolis and Arianna W. Rosenbluth and Marshall N. Rosenbluth and Augusta H. Teller and Edward Teller",
+    "title": "Equation of State Calculations by Fast Computing Machines",
+    "year": 1953,
+    "doi": "10.1063/1.1699114",
+    "type": "article",
+    "journal": "The Journal of Chemical Physics",
+    "volume": "21",
+    "pages": "1087-1092",
+    "source": "https://doi.org/10.1063/1.1699114",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://people.umass.edu/bvs/The_1953_paper.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Abstract/introduction for historical Metropolis sampling; no numerical reproduction."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "hastings1970",
+    "author": "W. K. Hastings",
+    "title": "Monte Carlo sampling methods using Markov chains and their applications",
+    "year": 1970,
+    "doi": "10.1093/biomet/57.1.97",
+    "type": "article",
+    "journal": "Biometrika",
+    "volume": "57",
+    "pages": "97-109",
+    "source": "https://doi.org/10.1093/biomet/57.1.97",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://academic.oup.com/biomet/article-abstract/57/1/97/284580",
+      "checked_on": "2026-11-22",
+      "scope": "Publisher summary, including asymmetric proposals and error-assessment scope."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "maruyama1955",
+    "author": "Gisiro Maruyama",
+    "title": "Continuous Markov processes and stochastic equations",
+    "year": 1955,
+    "doi": "10.1007/bf02846028",
+    "type": "article",
+    "journal": "Rendiconti del Circolo Matematico di Palermo",
+    "volume": "4",
+    "pages": "48-90",
+    "source": "https://doi.org/10.1007/bf02846028",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1007%2FBF02846028"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "higham2001",
+    "author": "Desmond J. Higham",
+    "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+    "year": 2001,
+    "doi": "10.1137/s0036144500378302",
+    "type": "article",
+    "journal": "SIAM Review",
+    "volume": "43",
+    "pages": "525-546",
+    "source": "https://doi.org/10.1137/s0036144500378302",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://epubs.siam.org/doi/pdf/10.1137/S0036144500378302",
+      "checked_on": "2026-11-22",
+      "scope": "Introductory methods and convergence distinctions; this is pedagogical supporting literature, not the original Euler–Maruyama proposal."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "jameson1988",
+    "author": "Antony Jameson",
+    "title": "Aerodynamic design via control theory",
+    "year": 1988,
+    "doi": "10.1007/bf01061285",
+    "type": "article",
+    "journal": "Journal of Scientific Computing",
+    "volume": "3",
+    "pages": "233-260",
+    "source": "https://doi.org/10.1007/bf01061285",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://doi.org/10.1007/BF01061285",
+      "checked_on": "2026-11-22",
+      "scope": "Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian here is a generic discrete derivation."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "levermore1984",
+    "author": "C.D. Levermore",
+    "title": "Relating Eddington factors to flux limiters",
+    "year": 1984,
+    "doi": "10.1016/0022-4073(84)90112-2",
+    "type": "article",
+    "journal": "Journal of Quantitative Spectroscopy and Radiative Transfer",
+    "volume": "31",
+    "pages": "149-160",
+    "source": "https://doi.org/10.1016/0022-4073(84)90112-2",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://www.sciencedirect.com/science/article/pii/0022407384901122",
+      "checked_on": "2026-11-22",
+      "scope": "Publisher abstract for distinctions between Eddington closure and flux limiting."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "bird1963",
+    "author": "G. A. Bird",
+    "title": "Approach to Translational Equilibrium in a Rigid Sphere Gas",
+    "year": 1963,
+    "doi": "10.1063/1.1710976",
+    "type": "article",
+    "journal": "The Physics of Fluids",
+    "volume": "6",
+    "pages": "1518-1519",
+    "source": "https://doi.org/10.1063/1.1710976",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1063%2F1.1710976"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "gear1971",
+    "author": "C. Gear",
+    "title": "Simultaneous Numerical Solution of Differential-Algebraic Equations",
+    "year": 1971,
+    "doi": "10.1109/tct.1971.1083221",
+    "type": "article",
+    "journal": "IEEE Transactions on Circuit Theory",
+    "volume": "18",
+    "pages": "89-95",
+    "source": "https://doi.org/10.1109/tct.1971.1083221",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://www.crl.nitech.ac.jp/~ida/education/ComputerScience/Gear1970/slac-pub-0723.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Author report title/introductory formulation. The journal year is 1971; the report was revised in 1970."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "wengert1964",
+    "author": "R. E. Wengert",
+    "title": "A simple automatic derivative evaluation program",
+    "year": 1964,
+    "doi": "10.1145/355586.364791",
+    "type": "article",
+    "journal": "Communications of the ACM",
+    "volume": "7",
+    "pages": "463-464",
+    "source": "https://doi.org/10.1145/355586.364791",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://www.cs.princeton.edu/courses/archive/fall19/cos597C/files/wengert1964.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Elementary-operation decomposition and forward differentiation discussion; reverse mode is separately linked to Linnainmaa."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "linnainmaa1976",
+    "author": "Seppo Linnainmaa",
+    "title": "Taylor expansion of the accumulated rounding error",
+    "year": 1976,
+    "doi": "10.1007/bf01931367",
+    "type": "article",
+    "journal": "BIT",
+    "volume": "16",
+    "pages": "146-160",
+    "source": "https://doi.org/10.1007/bf01931367",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1007%2FBF01931367"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "raissi2019",
+    "author": "M. Raissi and P. Perdikaris and G.E. Karniadakis",
+    "title": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations",
+    "year": 2019,
+    "doi": "10.1016/j.jcp.2018.10.045",
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "378",
+    "pages": "686-707",
+    "source": "https://doi.org/10.1016/j.jcp.2018.10.045",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0021999118307125",
+      "checked_on": "2026-11-22",
+      "scope": "Publisher abstract and method framing; no claim to reproduce the paper benchmarks."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "dubiner1991",
+    "author": "Moshe Dubiner",
+    "title": "Spectral methods on triangles and other domains",
+    "year": 1991,
+    "doi": "10.1007/bf01060030",
+    "type": "article",
+    "journal": "Journal of Scientific Computing",
+    "volume": "6",
+    "pages": "345-390",
+    "source": "https://doi.org/10.1007/bf01060030",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1007%2FBF01060030"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "lanczos1950",
+    "author": "C. Lanczos",
+    "title": "An iteration method for the solution of the eigenvalue problem of linear differential and integral operators",
+    "year": 1950,
+    "doi": "10.6028/jres.045.026",
+    "type": "article",
+    "journal": "Journal of Research of the National Bureau of Standards",
+    "volume": "45",
+    "pages": "255",
+    "source": "https://doi.org/10.6028/jres.045.026",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.6028%2Fjres.045.026"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "quadpack1983",
+    "author": "Robert Piessens and Elise de Doncker-Kapenga and Christoph W. Überhuber and David K. Kahaner",
+    "title": "QUADPACK: A Subroutine Package for Automatic Integration",
+    "year": 1983,
+    "doi": "10.1007/978-3-642-61786-7",
+    "type": "book",
+    "volume": "",
+    "pages": "",
+    "source": "https://doi.org/10.1007/978-3-642-61786-7",
+    "publisher": "Springer",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.1007%2F978-3-642-61786-7"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "ren2003",
+    "author": "Yu-Xin Ren",
+    "title": "A robust shock-capturing scheme based on rotated Riemann solvers",
+    "year": 2003,
+    "doi": "10.1016/s0045-7930(02)00114-7",
+    "type": "article",
+    "journal": "Computers &amp; Fluids",
+    "volume": "32",
+    "pages": "1379-1403",
+    "source": "https://doi.org/10.1016/s0045-7930(02)00114-7",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0045793002001147",
+      "checked_on": "2026-11-22",
+      "scope": "Publisher abstract identifies the rotated Roe method and velocity-difference directions; distinguish it from the 2008 hybrid."
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "roe2005carbuncle",
+    "author": "Philip Roe and Hiroaki Nishikawa and Farzad Ismail and Leonardo Scalabrin",
+    "title": "On Carbuncles and Other Excrescences",
+    "year": 2005,
+    "doi": "10.2514/6.2005-4872",
+    "type": "inproceedings",
+    "volume": "",
+    "pages": "",
+    "source": "https://doi.org/10.2514/6.2005-4872",
+    "booktitle": "17th AIAA Computational Fluid Dynamics Conference",
+    "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
+    "source_review": {
+      "level": "metadata",
+      "checked_on": "2026-11-22",
+      "url": "https://api.crossref.org/works/10.2514%2F6.2005-4872"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "li2021fno",
+    "author": "Zongyi Li and Nikola Kovachki and Kamyar Azizzadenesheli and Burigede Liu and Kaushik Bhattacharya and Andrew Stuart and Anima Anandkumar",
+    "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+    "year": 2021,
+    "type": "inproceedings",
+    "booktitle": "International Conference on Learning Representations",
+    "source": "https://openreview.net/forum?id=c8P9NQVtmnO",
+    "identity": "openreview:c8P9NQVtmnO",
+    "note": "Conference version; the 2020 arXiv preprint is the same work and is not counted again. Conference manuscript abstract/introduction consulted, not numerically reproduced.",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://openreview.net/pdf?id=c8P9NQVtmnO",
+      "checked_on": "2026-11-22"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "bird1994",
+    "author": "G. A. Bird",
+    "title": "Molecular Gas Dynamics and the Direct Simulation of Gas Flows",
+    "year": 1994,
+    "type": "book",
+    "publisher": "Clarendon Press",
+    "source": "https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958",
+    "note": "Originator-authored monograph for the mature DSMC algorithm and no-time-counter context; distinct from the early 1963 paper. Bibliographic reference, not a full-book audit.",
+    "source_review": {
+      "level": "metadata",
+      "url": "https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958",
+      "checked_on": "2026-11-22"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "dlmf",
+    "author": "F. W. J. Olver and A. B. Olde Daalhuis and D. W. Lozier and B. I. Schneider and R. F. Boisvert and C. W. Clark and B. R. Miller and B. V. Saunders and H. S. Cohl and M. A. McClain (eds.)",
+    "title": "NIST Digital Library of Mathematical Functions",
+    "year": 2010,
+    "type": "misc",
+    "source": "https://dlmf.nist.gov/",
+    "note": "Living official reference, not the original discovery papers. Sections 3.5 and 18.2/18.3/18.9 supply quadrature and orthogonal-polynomial conventions. The year is initial release, not a claim that the current version dates from 2010.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://dlmf.nist.gov/18.3",
+      "checked_on": "2026-11-22"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "weiss1995",
+    "author": "Jonathan M. Weiss and Wayne A. Smith",
+    "title": "Preconditioning applied to variable and constant density flows",
+    "year": 1995,
+    "doi": "10.2514/3.12946",
+    "type": "article",
+    "journal": "AIAA Journal",
+    "volume": "33",
+    "pages": "2050-2057",
+    "source": "https://doi.org/10.2514/3.12946",
+    "source_review": {
+      "level": "metadata",
+      "url": "https://api.crossref.org/works/10.2514%2F3.12946",
+      "checked_on": "2026-11-22",
+      "scope": "DOI registration checked against title and authors; this is not a full-paper audit.",
+      "scope_ja": "DOI登録の題名・著者を照合。原文全体の監査を意味しません。"
+    },
+    "note": "Original publication for the detailed discussion. Bibliographic identity checked; access scope is stated in the bilingual chapter.",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "darmofal2000",
+    "author": "David L. Darmofal and Pierre Moinier and Michael B. Giles",
+    "title": "Eigenmode Analysis of Boundary Conditions for the One-Dimensional Preconditioned Euler Equations",
+    "year": 2000,
+    "doi": "10.1006/jcph.2000.6472",
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "160",
+    "pages": "369-384",
+    "source": "https://doi.org/10.1006/jcph.2000.6472",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://people.maths.ox.ac.uk/gilesm/files/jcp00.pdf",
+      "checked_on": "2026-11-22",
+      "scope": "Abstract, introduction and §3.3 eigenvalue/boundary analysis consulted.",
+      "scope_ja": "抄録・序論と§3.3の前処理固有値・境界条件の議論を参照。全数値結果の再現は未実施です。"
+    },
+    "note": "Original publication for the detailed discussion. Bibliographic identity checked; access scope is stated in the bilingual chapter.",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "harten1983entropy",
+    "author": "Ami Harten",
+    "title": "High resolution schemes for hyperbolic conservation laws",
+    "year": 1983,
+    "doi": "10.1016/0021-9991(83)90136-5",
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "49",
+    "pages": "357-393",
+    "source": "https://doi.org/10.1016/0021-9991(83)90136-5",
+    "source_review": {
+      "level": "metadata",
+      "url": "https://api.crossref.org/works/10.1016%2F0021-9991%2883%2990136-5",
+      "checked_on": "2026-11-22",
+      "scope": "DOI registration checked against title and authors; this is not a full-paper audit.",
+      "scope_ja": "DOI登録の題名・著者を照合。原文全体の監査を意味しません。"
+    },
+    "note": "Original publication for the detailed discussion. Bibliographic identity checked; access scope is stated in the bilingual chapter.",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "jameson1981",
+    "author": "A. JAMESON and WOLFGANG SCHMIDT and ELI TURKEL",
+    "title": "Numerical solution of the Euler equations by finite volume methods using Runge Kutta time stepping schemes",
+    "year": 1981,
+    "doi": "10.2514/6.1981-1259",
+    "type": "inproceedings",
+    "volume": "",
+    "pages": "",
+    "source": "https://doi.org/10.2514/6.1981-1259",
+    "source_review": {
+      "level": "metadata",
+      "url": "https://api.crossref.org/works/10.2514%2F6.1981-1259",
+      "checked_on": "2026-11-22",
+      "scope": "DOI registration checked against title and authors; this is not a full-paper audit.",
+      "scope_ja": "DOI登録の題名・著者を照合。原文全体の監査を意味しません。"
+    },
+    "booktitle": "14th Fluid and Plasma Dynamics Conference",
+    "note": "Original publication for the detailed discussion. Bibliographic identity checked; access scope is stated in the bilingual chapter.",
     "origin": "curated-method-metadata"
   },
   {

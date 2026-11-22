@@ -2241,8 +2241,8 @@
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/"
       },
       "code_modules": [
         "advection",
@@ -2336,51 +2336,42 @@
         "en": "Riemann fluxes & corrections"
       },
       "summary": {
-        "ja": "「回転ハイブリッド・リーマンソルバー」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about Rotated-hybrid Riemann solver, follow the original references and inspect related educational code and checks."
+        "ja": "速度差に合わせた方向と直交方向で散逸を組む回転ハイブリッド法。Ren（2003）、西川–北村（2008）、Roe・西川ら（2005）の関連研究を区別し、公開HLLE/Roe実験の範囲を明示します。",
+        "en": "Construct directional dissipation using a velocity-jump frame. Distinguish Ren (2003), Nishikawa–Kitamura (2008) and related Roe–Nishikawa et al. (2005) research, and state the scope of the published HLLE/Roe experiment."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/rotated-hybrid/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/rotated-hybrid/"
       },
       "code_modules": [
-        "ppm_traced",
-        "ausm_plus",
-        "ausm",
-        "rotated_flux",
-        "blunt_body"
+        "rotated_flux"
       ],
       "test_files": [
         "test_shock_expansion"
       ],
-      "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+      "code_mapping_scope": "Educational directional HLLE/Roe construction; not the optimized Rotated-RHLL dissipation formula in Nishikawa–Kitamura (2008). Other chapter flux modules are separate methods.",
       "references": [
         {
-          "url": "https://doi.org/10.1016/0021-9991(84)90143-8",
-          "label": "The Piecewise Parabolic Method (PPM) for gas-dynamical simulations (1984)",
-          "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
-        },
-        {
-          "url": "https://arxiv.org/abs/1410.4194",
-          "label": "Cholla: A New Massively-Parallel Hydrodynamics Code for Astrophysical Simulation (2015)",
-          "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
-        },
-        {
-          "url": "https://doi.org/10.1006/jcph.1996.0256",
-          "label": "A Sequel to AUSM: AUSM+ (1996)",
-          "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
-        },
-        {
-          "url": "https://doi.org/10.1016/j.jcp.2005.09.020",
-          "label": "A sequel to AUSM, Part II: AUSM+-up for all speeds (2006)",
-          "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+          "url": "https://doi.org/10.1016/s0045-7930(02)00114-7",
+          "label": "A robust shock-capturing scheme based on rotated Riemann solvers (2003)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
         },
         {
           "url": "https://doi.org/10.1016/j.jcp.2007.11.003",
           "label": "Very simple, carbuncle-free, boundary-layer-resolving, rotated-hybrid Riemann solvers (2008)",
-          "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.2514/6.2005-4872",
+          "label": "On Carbuncles and Other Excrescences (2005)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1016/0021-9991(81)90128-5",
+          "label": "Approximate Riemann solvers, parameter vectors, and difference schemes (1981)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
         }
       ],
       "assumptions": null,
@@ -2404,11 +2395,7 @@
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rotated-hybrid/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rotated-hybrid/index.md",
       "code_urls": [
-        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/ppm_traced.py",
-        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/ausm_plus.py",
-        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/ausm.py",
-        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/rotated_flux.py",
-        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/blunt_body.py"
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/rotated_flux.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_shock_expansion.py"
@@ -6527,8 +6514,8 @@
       "status": "reading-only",
       "origin": "existing-coverage-catalog",
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/"
       },
       "code_modules": [],
       "test_files": [],
@@ -8448,6 +8435,7 @@
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/basis-functions/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/"
       },
       "code_modules": [
@@ -8640,6 +8628,7 @@
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/basis-functions/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/basis-functions/"
       },
       "code_modules": [
@@ -9464,7 +9453,10 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ewald/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/ewald/"
+      },
       "code_modules": [],
       "test_files": [],
       "references": [
@@ -9517,8 +9509,8 @@
         "en": "A neutral small-system reference with explicit self, zero-mode and boundary conventions."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、打切り収束・エネルギーと力・自己項を含む数値比較は今後の作業です。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet. Cutoff convergence and numerical energy/force/self-term comparisons remain future work."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -9645,7 +9637,10 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pme/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/pme/"
+      },
       "code_modules": [],
       "test_files": [],
       "references": [
@@ -9699,8 +9694,8 @@
         "en": "A same-condition Ewald comparison and reproducible reference-code inputs."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、長距離分散力や分子内除外、一般格子、slab補正、実行速度の比較は未確認です。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -9829,7 +9824,10 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spme/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/spme/"
+      },
       "code_modules": [],
       "test_files": [],
       "references": [
@@ -9883,8 +9881,8 @@
         "en": "A comparison with explicit interpolation order, mesh and force convention."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。条件と原典を整理した段階で、長距離分散力や分子内除外、一般格子、slab補正、実行速度の比較は未確認です。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -10013,10 +10011,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/slab-ewald/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/slab-ewald/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1063/1.479595",
+          "label": "Ewald summation for systems with slab geometry (1999)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1002/andp.19213690304",
+          "label": "Die Berechnung optischer und elektrostatischer Gitterpotentiale (1921)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -10025,8 +10037,8 @@
         "en": "Select references and a neutral benchmark with explicit boundaries."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -12733,10 +12745,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1109/tap.1966.1138693",
+          "label": "Numerical solution of initial boundary value problems involving maxwell's equations in isotropic media (1966)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -12745,8 +12766,8 @@
         "en": "Check CFL and dispersion with vacuum waves and a conducting cavity."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -12786,10 +12807,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pic/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/pic/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1063/1.1706638",
+          "label": "One-Dimensional Plasma Model (1962)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1201/9780367806934",
+          "label": "Computer Simulation Using Particles (1981)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -12798,8 +12833,8 @@
         "en": "A small electrostatic particle–Poisson example."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -12839,10 +12874,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1137/1.9781611971057.ch4",
+          "label": "4. Algebraic Multigrid (1987)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -12851,8 +12895,8 @@
         "en": "A same-matrix comparison with matched residual criteria."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -12892,10 +12936,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1145/320941.320947",
+          "label": "Unitary Triangularization of a Nonsymmetric Matrix (1958)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1007/bf02163027",
+          "label": "Singular value decomposition and least squares solutions (1970)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -12904,8 +12962,8 @@
         "en": "Small-matrix comparisons with controlled conditioning."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -12947,10 +13005,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1090/qam/42792",
+          "label": "The principle of minimized iterations in the solution of the matrix eigenvalue problem (1951)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.6028/jres.045.026",
+          "label": "An iteration method for the solution of the eigenvalue problem of linear differential and integral operators (1950)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -12959,8 +13031,8 @@
         "en": "A benchmark with eigen-residual and orthogonality diagnostics."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13000,10 +13072,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/splines/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/splines/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1016/0021-9045(72)90080-9",
+          "label": "On calculating with B-splines (1972)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13012,8 +13093,8 @@
         "en": "Known-function interpolation and boundary comparisons."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13052,10 +13133,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1090/s0025-5718-69-99647-1",
+          "label": "Calculation of Gauss quadrature rules (1969)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1007/978-3-642-61786-7",
+          "label": "QUADPACK: A Subroutine Package for Automatic Integration (1983)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13064,8 +13159,8 @@
         "en": "Comparisons with known integrals and singular behavior."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13107,10 +13202,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/chebyshev/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/chebyshev/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1007/bf01386223",
+          "label": "A method for numerical integration on an automatic computer (1960)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://dlmf.nist.gov/",
+          "label": "NIST Digital Library of Mathematical Functions (2010)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13119,8 +13228,8 @@
         "en": "Compare smooth and nonsmooth approximation errors."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13160,10 +13269,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wavelets/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/wavelets/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1109/34.192463",
+          "label": "A theory for multiresolution signal decomposition: the wavelet representation (1989)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13172,8 +13290,8 @@
         "en": "A small transform/reconstruction and truncation example."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13212,10 +13330,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1093/comjnl/13.3.317",
+          "label": "A new approach to variable metric algorithms (1970)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13224,8 +13351,8 @@
         "en": "Known-solution objectives and explicit failure cases."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13267,10 +13394,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/monte-carlo/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/monte-carlo/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1080/01621459.1949.10483310",
+          "label": "The Monte Carlo Method (1949)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13279,8 +13415,8 @@
         "en": "Seeded examples with uncertainty and independent repetitions."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13320,10 +13456,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1063/1.1699114",
+          "label": "Equation of State Calculations by Fast Computing Machines (1953)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1093/biomet/57.1.97",
+          "label": "Monte Carlo sampling methods using Markov chains and their applications (1970)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13332,8 +13482,8 @@
         "en": "A known distribution with convergence diagnostics."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13373,10 +13523,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sde/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sde/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1007/bf02846028",
+          "label": "Continuous Markov processes and stochastic equations (1955)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1137/s0036144500378302",
+          "label": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations (2001)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13385,8 +13549,8 @@
         "en": "A model with known statistical observables."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13426,10 +13590,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1007/bf01061285",
+          "label": "Aerodynamic design via control theory (1988)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1007/bf01931367",
+          "label": "Taylor expansion of the accumulated rounding error (1976)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13438,8 +13616,8 @@
         "en": "Finite-difference gradient checks and a small inverse problem."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13479,10 +13657,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1016/0022-4073(84)90112-2",
+          "label": "Relating Eddington factors to flux limiters (1984)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13491,8 +13678,8 @@
         "en": "Separate free-streaming and diffusion-limit benchmarks."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13532,10 +13719,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dsmc/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/dsmc/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1063/1.1710976",
+          "label": "Approach to Translational Equilibrium in a Rigid Sphere Gas (1963)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958",
+          "label": "Molecular Gas Dynamics and the Direct Simulation of Gas Flows (1994)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13544,8 +13745,8 @@
         "en": "A small model recording statistical error and conservation."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13584,10 +13785,19 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dae/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/dae/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1109/tct.1971.1083221",
+          "label": "Simultaneous Numerical Solution of Differential-Algebraic Equations (1971)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13596,8 +13806,8 @@
         "en": "An example with consistent initialization and constraint residuals."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13636,10 +13846,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1145/355586.364791",
+          "label": "A simple automatic derivative evaluation program (1964)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.1007/bf01931367",
+          "label": "Taylor expansion of the accumulated rounding error (1976)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13648,8 +13872,8 @@
         "en": "Compare analytic, finite-difference and automatic derivatives."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -13689,10 +13913,24 @@
       },
       "status": "planned",
       "origin": "development-candidate",
-      "reading": {},
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pinn-operators/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/pinn-operators/"
+      },
       "code_modules": [],
       "test_files": [],
-      "references": [],
+      "references": [
+        {
+          "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+          "label": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations (2019)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://openreview.net/forum?id=c8P9NQVtmnO",
+          "label": "Fourier Neural Operator for Parametric Partial Differential Equations (2021)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ],
       "assumptions": null,
       "units": null,
       "boundary_conditions": null,
@@ -13701,8 +13939,8 @@
         "en": "A comparison with classical solvers on the same problems and observables."
       },
       "limitations": {
-        "ja": "Under construction。専用の実装・検証結果はまだありません。",
-        "en": "Under construction. No dedicated implementation or verification result is provided yet."
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
