@@ -4364,6 +4364,100 @@
         "/Producer": "Mac OS X 10.3.3 Quartz PDFContext"
       },
       "inspection_scope": "All 13 PDF pages read through references. Complete critical pages 1,3,11,12,13 visually inspected. SHA-256, size and modification time checked unchanged before and after review. PDF metadata timestamps are distinguished from the printed July 26 manuscript date."
+    },
+    "sc2005-batch-pap200-manuscript": {
+      "label": "Preserved SC05 candidate manuscript: Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap200.pdf",
+      "sha256": "b5cabd6946ca607102ed3396dc198bcb9ed1d80630292c9038d2f17335e2cfdc",
+      "source_sha256": "b5cabd6946ca607102ed3396dc198bcb9ed1d80630292c9038d2f17335e2cfdc",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20050725230304-07'00'",
+        "/Author": "gygi1",
+        "/Creator": "PScript5.dll Version 5.2",
+        "/Producer": "Acrobat Distiller 5.0 (Windows)",
+        "/ModDate": "D:20050804120939-07'00'",
+        "/Title": "Microsoft Word - SC_Qbox_v16.doc"
+      },
+      "inspection_scope": "All 8 text pages read through references and any appendices. Full critical pages 1, 3, 6, 7 rendered and visually inspected. Original hash, size and modification time unchanged. PDF metadata timestamps are not scientific revision or measurement dates."
+    },
+    "sc2005-batch-pap188-manuscript": {
+      "label": "Preserved SC05 candidate manuscript: 16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap188.pdf",
+      "sha256": "c0bb9daa0cbd2f13e37eee8c941b5b787a4928ff374d5960115e46635f2485e6",
+      "source_sha256": "c0bb9daa0cbd2f13e37eee8c941b5b787a4928ff374d5960115e46635f2485e6",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20050725224118+09'00'",
+        "/ModDate": "D:20050725224118+09'00'",
+        "/Producer": "Acrobat Distiller 5.0.5 (Windows)"
+      },
+      "inspection_scope": "All 10 text pages read through references and any appendices. Full critical pages 1, 3, 5, 6 rendered and visually inspected. Original hash, size and modification time unchanged. PDF metadata timestamps are not scientific revision or measurement dates."
+    },
+    "sc2005-batch-pap122-manuscript": {
+      "label": "Preserved SC05 candidate manuscript: 25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap122.pdf",
+      "sha256": "e5e6038273d3a5b2095f16c2c34b573b0114d6bfc597c8a44b0890b19de26092",
+      "source_sha256": "e5e6038273d3a5b2095f16c2c34b573b0114d6bfc597c8a44b0890b19de26092",
+      "size_bytes": 934922,
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/Producer": "ESP Ghostscript 7.07",
+        "/Creator": "dvips(k) 5.94b Copyright 2004 Radical Eye Software",
+        "/Title": "Bell05.dvi"
+      },
+      "inspection_scope": "All 13 PDF pages read through references; complete critical pages 1, 2, 4, 5, 6, 7, 8, 10, 11, 12, 13 rendered and visually inspected. Original SHA-256, size and mtime unchanged. Metadata generation timestamps are not manuscript revision or measurement dates."
+    },
+    "sc2005-batch-pap260-manuscript": {
+      "label": "Preserved SC05 candidate manuscript: Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap260.pdf",
+      "sha256": "073eaf8d6a1762ffce7eee31bee7dd85617ba2721cb9a18c295d2cd0c9cf7e38",
+      "source_sha256": "073eaf8d6a1762ffce7eee31bee7dd85617ba2721cb9a18c295d2cd0c9cf7e38",
+      "size_bytes": 813374,
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20050829205438-07'00'",
+        "/Author": "",
+        "/Creator": "Acrobat PDFMaker 7.0 for Word",
+        "/Producer": "Acrobat Distiller 7.0 (Windows)",
+        "/ModDate": "D:20050829205446-07'00'",
+        "/Title": "Microsoft Word - lbmhd_acm"
+      },
+      "inspection_scope": "All 9 PDF pages read through references. Complete critical pages 1,3,4,5,6,7,8,9 rendered and visually inspected. The metadata timestamp is not authenticated as a scientific revision or measurement date. Source SHA-256, size and modification time unchanged after review."
+    },
+    "sc2005-batch-pap307-manuscript": {
+      "label": "Preserved SC05 candidate manuscript: 100+ TFlop Solidification Simulations on BlueGene/L",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap307.pdf",
+      "sha256": "1f225ea010b4ad1a1b6efffe3772c65a0292b3e8839402e3b9ea8767851ebe02",
+      "source_sha256": "1f225ea010b4ad1a1b6efffe3772c65a0292b3e8839402e3b9ea8767851ebe02",
+      "size_bytes": 1473147,
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/Producer": "pdfTeX-1.11b",
+        "/Creator": "TeX",
+        "/CreationDate": "D:20050830154011-07'00'"
+      },
+      "inspection_scope": "All 14 PDF pages read through references; complete critical pages 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 rendered and visually inspected. Original SHA-256, size and mtime unchanged. Metadata generation timestamps are not manuscript revision or measurement dates."
     }
   },
   "papers": [
@@ -9864,6 +9958,1145 @@
       ]
     },
     {
+      "year": 2005,
+      "title": "25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+      "authors": [
+        "Timothy C. Germann",
+        "Kai Kadau",
+        "Peter S. Lomdahl"
+      ],
+      "field": "Classical molecular dynamics; cell-decomposed short-range interactions, shock physics and parallel visualization",
+      "summary": "SPaSM uses cell-based spatial decomposition and synchronous neighbor exchanges for classical molecular dynamics. Short analytic Lennard-Jones benchmarks test large particle counts, while separate many-body copper simulations study shock-driven void collapse and spallation. On-the-fly rendering avoids prohibitive checkpoint traffic. The manuscript also carries a later, explicitly preliminary full-system benchmark update in a footnote; it is retained separately from the main April half-system tables.",
+      "machines": [
+        "BlueGene/L"
+      ],
+      "machine_configurations": [
+        {
+          "name": "BlueGene/L",
+          "facility": "Lawrence Livermore National Laboratory",
+          "configuration": "PowerPC 440 dual-core nodes at 700 MHz, 512 MB per node, 3-D torus plus collective/barrier networks. April benchmarks use up to 32,768 nodes and 65,536 processors in virtual-node mode; production runs use 16,384 nodes and 32,768 processors. August footnote benchmarks use the full 65,536-node / 131,072-processor machine. The SPaSM LJ force loop is C, fourfold unrolled, with IBM xlc -O2 -qarch=440d -qtune=440; the August software stack differs.",
+          "location": "PDF pp. 2,4-5,7, Section 2 and Sections 3.3-3.4/5; p. 4 footnote"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "BlueGene/L",
+          "value": 25.49,
+          "unit": "Tflop/s",
+          "precision": "The timed SPaSM arithmetic formats are not explicitly declared. The checkpoint discussion describes double-precision position and velocity vectors plus mixed auxiliary fields, but does not certify a uniform FP64 or FP32 arithmetic format for the timed runs.",
+          "scope": "Short Lennard-Jones benchmark timestep throughput, cutoff 5.0 sigma",
+          "scale": "64 billion atoms; 32,768 nodes / 65,536 processors in virtual-node mode",
+          "measurement_method": "April 2005 benchmarks average wall-clock time over 10 MD timesteps, including force calculation, velocity-Verlet integration and particle redistribution. The numerator counts 9*N_all + 20*N_interact + 65*N operations per step, with each divide counted as five FLOPs; N_all counts all considered pairs and N_interact only pairs within cutoff. This is a conventional software operation count for force/integration, not a hardware-event count; redistribution adds time but no numerator work. Timer API, repetitions and initialization/I/O boundaries beyond this stated timestep scope are not specified. Table 2 pairs this value with 48.32 s per timestep.",
+          "page": 5,
+          "location": "PDF p. 5 Table 2, 64-billion row, 32,768-node column; method and period p. 4 Section 3.4",
+          "note": "This is the highest listed Table-2 value on the half machine, rounded to 25.5 in the abstract/conclusion. It is not the copper production-run rate.",
+          "source_id": "sc2005-batch-pap122-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "April 2005 benchmark series; exact day not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 25490000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 24.69,
+          "unit": "Tflop/s",
+          "precision": "The timed SPaSM arithmetic formats are not explicitly declared. The checkpoint discussion describes double-precision position and velocity vectors plus mixed auxiliary fields, but does not certify a uniform FP64 or FP32 arithmetic format for the timed runs.",
+          "scope": "Largest listed half-system Lennard-Jones benchmark, cutoff 5.0 sigma",
+          "scale": "160 billion atoms; 32,768 nodes / 65,536 processors in virtual-node mode",
+          "measurement_method": "April 2005 benchmarks average wall-clock time over 10 MD timesteps, including force calculation, velocity-Verlet integration and particle redistribution. The numerator counts 9*N_all + 20*N_interact + 65*N operations per step, with each divide counted as five FLOPs; N_all counts all considered pairs and N_interact only pairs within cutoff. This is a conventional software operation count for force/integration, not a hardware-event count; redistribution adds time but no numerator work. Timer API, repetitions and initialization/I/O boundaries beyond this stated timestep scope are not specified. Table 2 reports 118.75 s per timestep for this case.",
+          "page": 5,
+          "location": "PDF p. 5 Table 2, 160-billion row, 32,768-node column; method p. 4 Section 3.4",
+          "note": "Particle count and case-specific rate are kept together; the best 25.49 result belongs to 64 billion atoms.",
+          "source_id": "sc2005-batch-pap122-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "April 2005 benchmark series; exact day not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 24690000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 27.17,
+          "unit": "Tflop/s",
+          "precision": "The timed SPaSM arithmetic formats are not explicitly declared. The checkpoint discussion describes double-precision position and velocity vectors plus mixed auxiliary fields, but does not certify a uniform FP64 or FP32 arithmetic format for the timed runs.",
+          "scope": "Preliminary full-system Lennard-Jones benchmark maximum, cutoff 2.5 sigma",
+          "scale": "65,536 nodes / 131,072 processors; cohort includes up to 320 billion atoms, exact maximum-rate case size unspecified",
+          "measurement_method": "The page-4 footnote reports preliminary August 2005 full-system benchmarks, with OS, compiler and SPaSM code differences from the April half-system series. The nearby April method counts 9*N_all + 20*N_interact + 65*N operations per step and weights division as five FLOPs; no separate detailed August counting/timer protocol, case-specific particle count or raw time denominator is provided. The footnote's up-to-320-billion-atom cohort is not asserted as the exact size for each reported maximum.",
+          "page": 4,
+          "location": "PDF p. 4 footnote to Section 3.4",
+          "note": "This is an achieved but explicitly preliminary footnote result, separate from the April tables and from the 36 Tflop/s expected value.",
+          "source_id": "sc2005-batch-pap122-manuscript",
+          "evidence_stage": "author_reported_implementation_update_in_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "August 2005 preliminary benchmark series; exact day not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 27170000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 43.31,
+          "unit": "Tflop/s",
+          "precision": "The timed SPaSM arithmetic formats are not explicitly declared. The checkpoint discussion describes double-precision position and velocity vectors plus mixed auxiliary fields, but does not certify a uniform FP64 or FP32 arithmetic format for the timed runs.",
+          "scope": "Preliminary full-system Lennard-Jones benchmark maximum, cutoff 5.0 sigma",
+          "scale": "65,536 nodes / 131,072 processors; cohort includes up to 320 billion atoms, exact maximum-rate case size unspecified",
+          "measurement_method": "The page-4 footnote reports preliminary August 2005 full-system benchmarks, with OS, compiler and SPaSM code differences from the April half-system series. The nearby April method counts 9*N_all + 20*N_interact + 65*N operations per step and weights division as five FLOPs; no separate detailed August counting/timer protocol, case-specific particle count or raw time denominator is provided. The footnote's up-to-320-billion-atom cohort is not asserted as the exact size for each reported maximum.",
+          "page": 4,
+          "location": "PDF p. 4 footnote to Section 3.4",
+          "note": "This is an achieved but explicitly preliminary footnote result, separate from the April tables and from the 50 Tflop/s expected value.",
+          "source_id": "sc2005-batch-pap122-manuscript",
+          "evidence_stage": "author_reported_implementation_update_in_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "August 2005 preliminary benchmark series; exact day not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 43310000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 13,
+          "unit": "h",
+          "precision": "The timed SPaSM arithmetic formats are not explicitly declared. The checkpoint discussion describes double-precision position and velocity vectors plus mixed auxiliary fields, but does not certify a uniform FP64 or FP32 arithmetic format for the timed runs.",
+          "scope": "Sustained EAM copper shock-compression/release production run with on-the-fly analysis and rendering",
+          "scale": "2,131,656,770 atoms; 7,030 timesteps; 16,384 nodes / 32,768 processors; 59 images at 4,800 x 3,600 pixels",
+          "measurement_method": "Section 5 reports a 13-hour wall-clock run, with stress/temperature/dislocation profiles and 59 generated images. This is a production duration, not the 10-step LJ benchmark timing. Detailed timer boundaries and separate analysis/rendering/output fractions are not supplied; no synthetic FLOP rate is inferred.",
+          "page": 7,
+          "location": "PDF p. 7 Section 5, first production example; Figures 3-4 pp. 10-11",
+          "note": "The February run used EAM copper, a slower shock and 150 initial voids. It is distinct from the April EAM production example and the analytic LJ benchmarks.",
+          "source_id": "sc2005-batch-pap122-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": "2005-02-02",
+          "measurement_date_note": "Run date explicitly stated as 2 February 2005",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "≈"
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 8,
+          "unit": "h",
+          "precision": "The timed SPaSM arithmetic formats are not explicitly declared. The checkpoint discussion describes double-precision position and velocity vectors plus mixed auxiliary fields, but does not certify a uniform FP64 or FP32 arithmetic format for the timed runs.",
+          "scope": "Queue-limited sustained EAM copper production run with on-the-fly analysis and rendering",
+          "scale": "204,655,465 atoms; 25,917 timesteps; 16,384 nodes / 32,768 processors; 54 images",
+          "measurement_method": "Section 5 reports an eight-hour wall-clock duration limited by the SLURM queue, covering 25,917 timesteps and generation of 54 images. Detailed timer APIs and component fractions are not specified. The source states 10-11 April 2005, but does not give a unique start date/time or continuous per-stage trace.",
+          "page": 7,
+          "location": "PDF p. 7 Section 5, second production example; Figures 5-6 pp. 12-13",
+          "note": "This case uses a stronger shock and ten initial voids, so the 13-hour/2.13-billion-atom run is not a performance baseline at identical scientific conditions.",
+          "source_id": "sc2005-batch-pap122-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Run dated 10-11 April 2005 in the manuscript",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "≈"
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2005-batch-pap122-manuscript"
+        ],
+        "authors": [
+          "sc2005-batch-pap122-manuscript"
+        ],
+        "machines": [
+          "sc2005-batch-pap122-manuscript"
+        ],
+        "abstract": [
+          "sc2005-batch-pap122-manuscript"
+        ],
+        "selection": [
+          "roster-2005-sc05-preserved-pap122",
+          "roster-2005-sc05-preserved-pap200",
+          "roster-2005-sc05-preserved-pap346",
+          "roster-2005-sc05-preserved-pap188",
+          "roster-2005-sc05-preserved-pap260",
+          "roster-2005-sc05-preserved-pap307"
+        ],
+        "doi": [],
+        "award": []
+      },
+      "notes": [
+        "The first page explicitly states submission for the 2005 Gordon Bell Performance Prize and shows the three authors in the stated order. The footer identifies SC05, 12-18 November 2005, but no exact scientific revision date is printed. The August benchmark footnote demonstrates that this preserved text includes a later update; it does not authenticate a conference-day update.",
+        "Short-range LJ forces and velocity-Verlet integration use a software count with divide weighted as five operations. Rate comparisons to hardware FLOP counters or uniform-precision peaks require that convention to remain visible. The tables include particle redistribution in elapsed time while its operations are uncounted.",
+        "The 25.49 Tflop/s result belongs to the 64-billion-atom half-system case, whereas the largest 160-billion-atom half-system row gives 24.69. Table 1 uses a different cutoff (2.5 sigma) and includes a separate coprocessor-mode column; these are not one homogeneous rate series.",
+        "The August footnote's 27.17/43.31 Tflop/s observations are explicitly preliminary, because the OS, compiler and code differ. Its 36/50 Tflop/s numbers are expected performance, not achieved measurements. The 367 Tflop/s full-machine hardware peak, cited Linpack results and the conclusion's 45 Tflop/s informal application target are not SPaSM observations.",
+        "The copper production simulations use tabulated EAM functions and produce on-the-fly analysis/images, while the headline rate is for analytic LJ. Atomic coordinates and velocities are described as double precision for checkpoint-size estimates; this does not establish all timed arithmetic formats.",
+        "Visualization renders parameterized spheres/cells per MPI rank and merges images by depth using a binary-tree reduction. Typical frames take minutes; the 145-second and 81-second examples differ in represented objects, image resolution and anti-aliasing, so they are not compared as identical workloads.",
+        "The scientific examples examine partial-dislocation-mediated void collapse and subsequent void nucleation/coalescence during release. Simulation images are qualitative evidence for these modeled processes, not an experimental validation or a claim that the short 10-step LJ timing case melted.",
+        "All 13 text pages and the references were read. Original bytes, size and mtime were checked unchanged; PDF, extracted text and rendered figures remain private."
+      ],
+      "booktitle": "SC05 proceedings",
+      "event_year": 2005,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 13 PDF pages read through references; 11 complete critical pages visually inspected for ordered byline, methods, equations, result tables, timing scope and measured versus preliminary/projected claims. Selected observations; no independent numerical reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap122.pdf",
+        "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap122.pdf",
+        "source_url": null,
+        "sha256": "e5e6038273d3a5b2095f16c2c34b573b0114d6bfc597c8a44b0890b19de26092",
+        "page_count": 13,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      "id": "sc2005-pap122",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": null,
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "unresolved",
+        "source_id": null,
+        "checked_on": "2026-11-22",
+        "detail": "No candidate-publication DOI is verified. Preserved manuscript identity is checked separately; related later publications do not supply this missing identifier."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [],
+      "citation_title": "25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+      "citation_authors": [
+        "Timothy C. Germann",
+        "Kai Kadau",
+        "Peter S. Lomdahl"
+      ],
+      "citation_year": 2005,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        },
+        {
+          "evidence_stage": "author_reported_implementation_update_in_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2005,
+      "title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+      "authors": [
+        "Susumu Yamada",
+        "Toshiyuki Imamura",
+        "Masahiko Machida"
+      ],
+      "field": "Many-body quantum physics; sparse eigensolvers for a trapped fermion-Hubbard model",
+      "summary": "An exact-diagonalization application studies a repulsive one-dimensional fermion-Hubbard model in a harmonic trap. Preconditioned conjugate gradients accelerate the ground-state solve, while a memory-saving Lanczos implementation reaches a larger Hamiltonian dimension. Hybrid MPI and intra-node tasks overlap communication with sparse matrix products. The highest solver rate and the largest matrix are results of different algorithms and problem sizes.",
+      "machines": [
+        "Earth Simulator"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Earth Simulator",
+          "facility": "Earth Simulator Center",
+          "configuration": "Distributed-memory vector system with eight shared-memory vector processor elements per node. Main comparisons use 128, 256 and 512 nodes; measured 512-node configurations have 4,096 PEs and a 32.768 Tflop/s nominal peak. MPI is used between nodes, CDIR automatic parallelization within nodes. Task assignment dedicates one PE per node to blocking MPI_Put and seven to calculation, saving a full communication buffer. A smaller algorithm comparison uses ten nodes / 80 PEs.",
+          "location": "PDF pp.2-5 Sections 1-3; p.6 Tables 3-4"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "Earth Simulator",
+          "value": 16.447,
+          "unit": "Tflop/s",
+          "relation": "=",
+          "precision": "Floating-point word length of the measured runs is not explicitly stated. Real-symmetric mathematics, memory words and ES hardware capabilities do not establish uniform FP32 or FP64 arithmetic.",
+          "scope": "Solver-only PCG throughput, analytically counted work over solver time",
+          "scale": "Model 3: 22 sites with eight up-spin and eight down-spin fermions; Hamiltonian dimension 102,252,852,900; 512 ES nodes x eight processor elements = 4,096 PEs; PCG with task assignment; 109 iterations, residual 2.4e-9; memory 6.9 TB",
+          "measurement_method": "Section 4 measures solver elapsed time with MPI_Wtime and divides an analytical operation count by that time, rather than using the whole-program FLOP-rate instrumentation. Let ndim be Hamiltonian dimension, itr iterations, and nnz the number of its nonzero elements. PCG work = 35*ndim + 46*itr*ndim + (itr+2)*(2*nnz-ndim). Table 4a gives 59.510 s solver time; Table 4b gives 16.447 TF and 50.2% of peak. The enclosing total calculation takes 66.819 s and has a separately measured lower rate.",
+          "page": 6,
+          "location": "PDF p.6 Table 4b Model 3, PCG Solver; Table 4a and Section 4 formula",
+          "note": "The title's 16.447 TF is not the whole-program rate and does not belong to the 159-billion-dimensional Model 4.",
+          "source_id": "sc2005-batch-pap188-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "flops": 16447000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 14.763,
+          "unit": "Tflop/s",
+          "relation": "=",
+          "precision": "Floating-point word length of the measured runs is not explicitly stated. Real-symmetric mathematics, memory words and ES hardware capabilities do not establish uniform FP32 or FP64 arithmetic.",
+          "scope": "Total PCG calculation rate from ES performance-analysis routines",
+          "scale": "Model 3: 22 sites with eight up-spin and eight down-spin fermions; Hamiltonian dimension 102,252,852,900; 512 ES nodes x eight processor elements = 4,096 PEs; PCG with task assignment; 109 iterations, residual 2.4e-9; memory 6.9 TB",
+          "measurement_method": "Section 4 identifies the Earth Simulator installed performance-analysis routines (NEC FORTRAN90/ES Programmer's Guide) for total elapsed time and FLOP rates. The exact instrumentation entry points, counter-event weighting, timing start/end, input/output policy and repeat count are not specified. The total row is separate from solver-only MPI_Wtime and analytic-count measurements. Table 4a gives 66.819 s total elapsed time for Model 3; Table 4b gives 14.763 TF and 45.1% of peak. Raw total operation count is not supplied.",
+          "page": 6,
+          "location": "PDF p.6 Table 4a-b Model 3, PCG Total; Section 4 measurement paragraph",
+          "note": "Retain total and solver quantities separately instead of transferring the solver's 59.510 s denominator.",
+          "source_id": "sc2005-batch-pap188-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "flops": 14763000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 13.363,
+          "unit": "Tflop/s",
+          "relation": "=",
+          "precision": "Floating-point word length of the measured runs is not explicitly stated. Real-symmetric mathematics, memory words and ES hardware capabilities do not establish uniform FP32 or FP64 arithmetic.",
+          "scope": "Total Lanczos calculation rate for the largest Hamiltonian solved in this manuscript",
+          "scale": "Model 4: 22 sites with nine up-spin and eight down-spin fermions; Hamiltonian dimension 159,059,993,400; 512 ES nodes / 4,096 PEs; Lanczos with task assignment; 300 first-pass iterations, residual 4.2e-8; memory 7.1 TB",
+          "measurement_method": "Section 4 identifies the Earth Simulator installed performance-analysis routines (NEC FORTRAN90/ES Programmer's Guide) for total elapsed time and FLOP rates. The exact instrumentation entry points, counter-event weighting, timing start/end, input/output policy and repeat count are not specified. The total row is separate from solver-only MPI_Wtime and analytic-count measurements. Table 4a gives total elapsed time 362.635 s; Table 4b gives 13.363 TF and 40.8% of peak. Eigenvector reconstruction needs a second Lanczos pass; the listed 300 iterations refer to the first recursion as defined on p.2.",
+          "page": 6,
+          "location": "PDF p.6 Tables 3-4 Model 4, Lanczos Total; p.2 footnote 2; p.9 Appendix B",
+          "note": "This is the 159,059,993,400-dimensional result. PCG for the same case would require 10.7 TB, exceeding memory on the 512-node partition, and is not reported as executed.",
+          "source_id": "sc2005-batch-pap188-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "flops": 13363000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 13.694,
+          "unit": "Tflop/s",
+          "relation": "=",
+          "precision": "Floating-point word length of the measured runs is not explicitly stated. Real-symmetric mathematics, memory words and ES hardware capabilities do not establish uniform FP32 or FP64 arithmetic.",
+          "scope": "Solver-only Lanczos throughput for the largest Hamiltonian, using analytical operations and solver time",
+          "scale": "Model 4: 22 sites with nine up-spin and eight down-spin fermions; Hamiltonian dimension 159,059,993,400; 512 ES nodes / 4,096 PEs; Lanczos with task assignment; 300 first-pass iterations, residual 4.2e-8; memory 7.1 TB",
+          "measurement_method": "Section 4 measures solver elapsed time with MPI_Wtime and divides an analytical operation count by that time, rather than using the whole-program FLOP-rate instrumentation. Let ndim be Hamiltonian dimension, itr iterations, and nnz the number of its nonzero elements. Lanczos work = 5*ndim + 16*itr*ndim + 2*itr*(2*nnz-ndim). Table 4a gives 352.944 s solver time; Table 4b gives 13.694 TF and 41.8% of peak. The 300 listed iterations follow the paper's first-recursion convention; the eigenvector requires a second recursion.",
+          "page": 6,
+          "location": "PDF p.6 Table 4 Model 4, Lanczos Solver and Section 4 formula; p.9 Appendix B",
+          "note": "The solver-only 13.694 TF is distinct from the total 13.363 TF and from the smaller-model PCG title value.",
+          "source_id": "sc2005-batch-pap188-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "flops": 13694000000000.0
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2005-batch-pap188-manuscript"
+        ],
+        "authors": [
+          "sc2005-batch-pap188-manuscript"
+        ],
+        "machines": [
+          "sc2005-batch-pap188-manuscript"
+        ],
+        "abstract": [
+          "sc2005-batch-pap188-manuscript"
+        ],
+        "selection": [
+          "roster-2005-sc05-preserved-pap188",
+          "roster-2005-sc05-preserved-pap200",
+          "roster-2005-sc05-preserved-pap346",
+          "roster-2005-sc05-preserved-pap122",
+          "roster-2005-sc05-preserved-pap260",
+          "roster-2005-sc05-preserved-pap307"
+        ],
+        "doi": [
+          "roster-2005-sc05-crossref-pap188"
+        ],
+        "award": []
+      },
+      "notes": [
+        "The first-page byline has three authors in the recorded order. SC05 appears in the footer. PDF metadata dated July 25, 2005 is not an authenticated scientific revision or exact measurement date.",
+        "The method solves the smallest eigenvalue and corresponding eigenvector of a sparse real-symmetric Hubbard Hamiltonian. PCG minimizes a Rayleigh quotient using a zero-shift point-Jacobi preconditioner. Lanczos consumes fewer vectors but requires a repeated recursion to reconstruct the eigenvector. Table 1 compares different convergence/iteration controls, not an equal-fixed-iteration microbenchmark.",
+        "Task assignment reserves one of the eight PEs on each node for blocking MPI_Put, allowing seven computation tasks to overlap communication while reusing a send buffer. Algorithmic node/PE peak ratios use the reported full-node peak; do not relabel the runs as 3,584-PE machines.",
+        "Section 3.3 discusses MPI overlap support introduced in April 2005, but its footnote says the overlap function is presently unsupported in July 2005. This source-level tension is retained; no exact functioning nonblocking-MPI implementation/version is certified. The principal Table 4 observations use the blocking-plus-task-assignment implementation.",
+        "Sixteen fermions in Model 3 yield the maximum PCG solver rate. Seventeen fermions in Model 4 yield the 159-billion-dimensional Lanczos result. These are different problems; the title combines two achievements rather than a single run satisfying both.",
+        "The physical study scans interaction and trap strengths and uses binding energy as a diagnostic for proposed pairing near Mott-core edges. The numerical model and pairing interpretation do not independently establish an experimental superfluid transition temperature.",
+        "Appendix C compares preconditioners; Appendix D demonstrates a separate matrix-vector-product overlap test on ten nodes. Their timings are not transferred to the large solver or counted as independent annual final scores. Arithmetic precision, exact timing boundaries, raw counters and repeats remain unestablished.",
+        "All ten text pages, references and Appendices A-D were read; critical full pages were visually inspected. Original SHA-256, size and modification time were unchanged. Third-party PDF, extracted text and renderings remain private."
+      ],
+      "booktitle": "SC05 proceedings",
+      "event_year": 2005,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 10 PDF text pages read through references and any appendices; complete critical pages 1, 3, 5, 6 visually checked for ordered byline, methods, units and results. Selected source-located observations; no independent reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap188.pdf",
+        "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap188.pdf",
+        "source_url": null,
+        "sha256": "c0bb9daa0cbd2f13e37eee8c941b5b787a4928ff374d5960115e46635f2485e6",
+        "page_count": 10,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          3,
+          5,
+          6
+        ]
+      },
+      "id": "sc2005-pap188",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2005.1",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2005-sc05-crossref-pap188",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [],
+      "citation_title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+      "citation_authors": [
+        "Susumu Yamada",
+        "Toshiyuki Imamura",
+        "Masahiko Machida"
+      ],
+      "citation_year": 2005,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2005,
+      "title": "Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+      "authors": [
+        "François Gygi",
+        "Robert K. Yates",
+        "Juergen Lorenz",
+        "Erik W. Draeger",
+        "Franz Franchetti",
+        "Christoph W. Ueberhuber",
+        "Bronis R. de Supinski",
+        "Stefan Kral",
+        "John A. Gunnels",
+        "James C. Sexton"
+      ],
+      "field": "First-principles molecular dynamics; plane-wave density-functional electronic structure",
+      "summary": "Qbox solves plane-wave Kohn-Sham electronic states for first-principles molecular dynamics using a two-dimensional process grid. Optimized dense matrix multiplication, FFT kernels and node mappings address BlueGene/L communication and memory constraints. A fixed 1,000-atom molybdenum problem demonstrates strong scaling. Its reported iteration throughput excludes initialization, and the counter-based floating-point rates are lower-bound estimates with incomplete FFT SIMD counts.",
+      "machines": [
+        "BlueGene/L"
+      ],
+      "machine_configurations": [
+        {
+          "name": "BlueGene/L",
+          "facility": "Lawrence Livermore National Laboratory",
+          "configuration": "Up to 32,768 compute nodes in coprocessor mode: one 700 MHz PowerPC 440 core per node computes while the other supports communication. Each core has a double FPU capable of four floating-point operations per cycle with SIMD FMA. Qbox uses MPI/BLACS/ScaLAPACK with hand-tuned DGEMM and FFTW-GEL. Node mappings are selected separately for each partition. The planned 65,536-node final machine and 360 TF peak are distinct from these measured partitions.",
+          "location": "PDF p.3 Sections 4-5; p.6 Section 7.2; p.7 Table 1"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "BlueGene/L",
+          "value": 22.02,
+          "unit": "Tflop/s",
+          "relation": "≥",
+          "precision": "Double-precision DGEMM and double-FPU SIMD FFT kernels are described explicitly; the manuscript does not enumerate every arithmetic/storage format in the complete Qbox run.",
+          "scope": "Lower-bound aggregate rate for the timed electronic steepest-descent iteration loop; not an end-to-end molecular-dynamics trajectory",
+          "scale": "1,000 molybdenum atoms; 12,000 electrons; one k-point; 32,768 coprocessor-mode nodes; 44 Ry plane-wave cutoff; 64 nonlocal projectors per atom",
+          "measurement_method": "APC calls bracket the main Qbox iteration loop, excluding opening/reading inputs and allocating large objects. APC_SIZE requests a counter file per task, and apc_scan aggregates operation counts and cycles. Because SIMD add/multiply events are incomplete, Section 7.1 separates the operation count from a -qarch=440 build and the cycle/time measurement from an optimized -qarch=440d build. Hand-coded DGEMM SIMD FMA counts were checked against standard BLAS; FFTW-GEL counts remain incomplete and are used without a proposed 25% correction. The authors therefore call the resulting rate a lower bound. Table 1 reports wall-clock time per single electronic steepest-descent iteration using the best node mapping at each partition size. Total run initialization, MD-trajectory length, averaging/repetition and output policy are not fully specified. The Table 1 denominator is 38 s per electronic iteration, and the reported peak fraction is 0.24 for a coprocessor-mode peak of 91.75 TF.",
+          "page": 7,
+          "location": "PDF p.7 Table 1, 32,768-node row; counting/timing pp.6-7 Section 7; problem p.2 Section 2",
+          "note": "Retain the reported lower bound without inventing a corrected operation count. The 38 s quantity is an electronic-state iteration, not a complete ionic MD timestep.",
+          "source_id": "sc2005-batch-pap200-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "flops": 22020000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 4.13,
+          "unit": "Tflop/s",
+          "relation": "≥",
+          "precision": "Double-precision DGEMM and double-FPU SIMD FFT kernels are described explicitly; the manuscript does not enumerate every arithmetic/storage format in the complete Qbox run.",
+          "scope": "Lower-bound aggregate electronic-iteration rate at the partition with the highest reported fraction of peak",
+          "scale": "Same fixed 1,000-Mo-atom / 12,000-electron single-k-point problem; 4,096 coprocessor-mode nodes",
+          "measurement_method": "APC calls bracket the main Qbox iteration loop, excluding opening/reading inputs and allocating large objects. APC_SIZE requests a counter file per task, and apc_scan aggregates operation counts and cycles. Because SIMD add/multiply events are incomplete, Section 7.1 separates the operation count from a -qarch=440 build and the cycle/time measurement from an optimized -qarch=440d build. Hand-coded DGEMM SIMD FMA counts were checked against standard BLAS; FFTW-GEL counts remain incomplete and are used without a proposed 25% correction. The authors therefore call the resulting rate a lower bound. Table 1 reports wall-clock time per single electronic steepest-descent iteration using the best node mapping at each partition size. Total run initialization, MD-trajectory length, averaging/repetition and output policy are not fully specified. Table 1 gives 210 s per electronic iteration and 0.36 of peak on this partition. The 36% value from the abstract belongs to 4,096 nodes, not to the 32,768-node rate.",
+          "page": 7,
+          "location": "PDF p.7 Table 1, 4,096-node row; abstract p.2 and Section 7 pp.6-7",
+          "note": "This is the same fixed problem at another partition size, not a separate MD system or the largest machine's 36% efficiency.",
+          "source_id": "sc2005-batch-pap200-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "flops": 4130000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 86,
+          "unit": "% strong-scaling efficiency",
+          "relation": "≈",
+          "precision": "Double-precision DGEMM and double-FPU SIMD FFT kernels are described explicitly; the manuscript does not enumerate every arithmetic/storage format in the complete Qbox run.",
+          "scope": "Strong-scaling efficiency relative to the 1,024-node timed-iteration baseline",
+          "scale": "Fixed 1,000 molybdenum atoms and 12,000 electrons at one k-point; 1,024 to 32,768 coprocessor-mode nodes",
+          "measurement_method": "Table 1 reports wall-clock iteration time 1,040 s on 1,024 nodes and 38 s on 32,768 nodes. Its speedup is 27.37 and fractional speedup is 0.86 relative to the 32-fold node increase. Figure 3 and the conclusion round this to 86%. Each partition uses its best developed mapping; independent k-point or path-integral replicas are not the source of parallelism. Timing repetition and uncertainty are not supplied.",
+          "page": 7,
+          "location": "PDF p.7 Table 1 and Figure 3; p.8 conclusion; p.2 Section 3",
+          "note": "This scaling ratio is distinct from the hardware peak-performance fraction. Superlinear intermediate rows are attributed to cache and communication mapping effects.",
+          "source_id": "sc2005-batch-pap200-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22"
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2005-batch-pap200-manuscript"
+        ],
+        "authors": [
+          "sc2005-batch-pap200-manuscript"
+        ],
+        "machines": [
+          "sc2005-batch-pap200-manuscript"
+        ],
+        "abstract": [
+          "sc2005-batch-pap200-manuscript"
+        ],
+        "selection": [
+          "roster-2005-sc05-preserved-pap200",
+          "roster-2005-sc05-preserved-pap346",
+          "roster-2005-sc05-preserved-pap188",
+          "roster-2005-sc05-preserved-pap122",
+          "roster-2005-sc05-preserved-pap260",
+          "roster-2005-sc05-preserved-pap307"
+        ],
+        "doi": [
+          "roster-2005-sc05-crossref-pap200"
+        ],
+        "award": []
+      },
+      "notes": [
+        "The first-page author blocks are read down the three columns and then the final centered Sexton block, consistent with the existing registry ordering. Exact printed spellings are retained; no contact details are reproduced. The paper's title/capitalization differs slightly from the earlier selection/registration title.",
+        "The physical benchmark uses norm-conserving semilocal pseudopotentials, 1,000 molybdenum atoms, 12,000 electrons, 44 Ry cutoff and a single Gamma k-point. The reported elapsed unit is one steepest-descent electronic-state iteration, not a full ionic step or an equilibrated trajectory.",
+        "Table 1 separates maximum aggregate rate (22.02 TF on 32,768 nodes), highest peak fraction (36% on 4,096 nodes) and strong-scaling efficiency (86% from 1,024 to 32,768 nodes). The counts are version-specific lower bounds because some SIMD FFT operations are not counted.",
+        "Kernel-only DGEMM rates of 95-100% when data are in L3 and FFTW-GEL hot-cache speedups do not establish whole-application throughput. The preliminary dual-core DGEMM improvement of 20-25% and anticipated compiler/MPI developments are not substituted for Table 1.",
+        "The manuscript says optimized MPI collectives had to be disabled at some sizes to obtain correct results. Proposed improvements and the future final machine are not achieved additional observations.",
+        "All eight text pages including references were read, and complete key pages were visually inspected. Scientific revision and measurement dates are not printed; PDF creation July 25 and modification August 4 are metadata only. Source bytes, size and modification time were unchanged."
+      ],
+      "booktitle": "SC05 proceedings",
+      "event_year": 2005,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 8 PDF text pages read through references and any appendices; complete critical pages 1, 3, 6, 7 visually checked for ordered byline, methods, units and results. Selected source-located observations; no independent reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap200.pdf",
+        "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap200.pdf",
+        "source_url": null,
+        "sha256": "b5cabd6946ca607102ed3396dc198bcb9ed1d80630292c9038d2f17335e2cfdc",
+        "page_count": 8,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          3,
+          6,
+          7
+        ]
+      },
+      "id": "sc2005-pap200",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2005.40",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2005-sc05-crossref-pap200",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [
+        {
+          "title": "Large-Scale First-Principles Molecular Dynamics Simulations on the BlueGene/L Platform using the Qbox Code",
+          "source_id": "roster-2005-sc05-preserved-pap200"
+        }
+      ],
+      "citation_title": "Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+      "citation_authors": [
+        "François Gygi",
+        "Robert K. Yates",
+        "Juergen Lorenz",
+        "Erik W. Draeger",
+        "Franz Franchetti",
+        "Christoph W. Ueberhuber",
+        "Bronis R. de Supinski",
+        "Stefan Kral",
+        "John A. Gunnels",
+        "James C. Sexton"
+      ],
+      "citation_year": 2005,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2005,
+      "title": "Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+      "authors": [
+        "Jonathan Carter",
+        "Min Soe",
+        "Leonid Oliker",
+        "Yoshinori Tsuda",
+        "George Vahala",
+        "Linda Vahala",
+        "Angus Macnab"
+      ],
+      "field": "Resistive magnetohydrodynamic turbulence; three-dimensional lattice Boltzmann simulation",
+      "summary": "An explicit lattice Boltzmann formulation couples a scalar distribution for fluid motion to a vector distribution for the magnetic field. A gather-based collision/streaming scheme, vector-friendly loops and Cartesian MPI decomposition support periodic three-dimensional turbulence calculations. The large production run uses a 1440-cubed spatial grid. Its reported aggregate throughput is an ftrace user-time metric, while wall time and communication overhead have separate scopes.",
+      "machines": [
+        "Earth Simulator"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Earth Simulator",
+          "facility": "Earth Simulator Center, JAMSTEC, Yokohama, Japan",
+          "configuration": "The full system has 640 shared-memory nodes with eight 1 GHz vector processors per node, a single-stage crossbar and Super-UX. The stated per-processor vector peak is 8 Gflop/s. Vector registers hold 256 64-bit words. The selected large run uses 4,800 MPI processes/processors; Table 1 benchmarks use 256-4,096 processors. Arrays are distributed over a three-dimensional Cartesian processor grid. No uniform floating-point word length for the actual application evaluations is explicitly declared.",
+          "location": "PDF p. 3 Sections 3-4; pp. 4-6 implementation and performance"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "Earth Simulator",
+          "value": 26.25,
+          "unit": "Tflop/s",
+          "precision": "The manuscript does not explicitly declare the arithmetic word length of the simulation. Its 64-bit vector-register description and approximate storage requirement do not independently establish a uniform IEEE FP64 or FP32 application run.",
+          "scope": "Aggregate production-run throughput reported by ftrace relative to user time; distinct from a wall-clock-normalized throughput",
+          "scale": "1440 x 1440 x 1440 spatial grid; 4,800 processors/MPI processes; one extended turbulence run lasting almost two hours",
+          "measurement_method": "The text reports 5.47 Gflop/s per processor and 26.25 Tflop/s aggregate. The ftrace box prints an average FLOP Count of 38,290,765,607,203 per process and average User Time of 7,002.136 s; its Overall Data explicitly labels 26,248.517 GFLOPS as relative to User Time. Overall Real Time is separately 7,014.524 s, while summed User Time is 33,610,251.045 s. The exact cross-rank aggregation formula, hardware event weighting, repetition protocol and timed-region boundaries are not fully described. Preserve the reported CPU-time metric rather than silently dividing by wall time. Table 1 benchmarks explicitly disable I/O, but the extended run's I/O inclusion is not stated with equal clarity.",
+          "page": 6,
+          "location": "PDF p. 6 extended-run paragraph and ftrace output box; box caption on PDF p. 7, Figure 5",
+          "note": "The textual 26.25 Tflop/s is the rounded form of the ftrace 26,248.517 Gflop/s value, not a second independent observation. Real time, average user time and sum of process user times are different denominators. The 8 Gflop/s per-processor hardware peak is not an achieved application rate.",
+          "source_id": "sc2005-batch-pap260-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Section 3 places the reported experiments during an October 2004 visit and later local runs by Yoshinori Tsuda; the exact date of this observation is not identified",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 26250000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 5.44,
+          "unit": "Gflop/s per processor",
+          "precision": "Application arithmetic word length is not explicitly specified. The hardware register width is not treated as a declaration of run precision.",
+          "scope": "Per-processor application benchmark throughput from ftrace with I/O disabled, at the lower concurrency of a fixed 1024-cubed grid series",
+          "scale": "1024 x 1024 x 1024 spatial grid; 1,024 processors; processor-grid decomposition 16 x 16 x 4",
+          "measurement_method": "Table 1 reports ftrace performance per processor directly. The text explicitly states that these previously discussed benchmark experiments had all I/O turned off. The exact operation-count numerator, timer API, run length, averaging/repetition protocol and precise timing denominator for these table entries are not separately published; the user-time label in the extended-run output is not silently imposed on the table. MPI communication takes 5.1% of the reported time, with VOR 99.62% and AVL 254.5; these vector metrics are not whole-application parallel efficiencies.",
+          "page": 6,
+          "location": "PDF p. 6 Table 1, 1,024-processor/1,024-grid row, and discussion below the table",
+          "note": "The native per-processor rate is retained without manufacturing an independently measured aggregate FLOP/s value. This fixed spatial grid differs from the 1440-cubed extended run.",
+          "source_id": "sc2005-batch-pap260-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Reported experiments occurred during an October 2004 visit and later local runs; exact benchmark date is not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "="
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 5.16,
+          "unit": "Gflop/s per processor",
+          "precision": "Application arithmetic word length is not explicitly specified. The hardware register width is not treated as a declaration of run precision.",
+          "scope": "Per-processor application benchmark throughput from ftrace with I/O disabled, at the higher concurrency of the fixed 1024-cubed grid series",
+          "scale": "1024 x 1024 x 1024 spatial grid; 4,096 processors; processor-grid decomposition 32 x 32 x 4",
+          "measurement_method": "Table 1 reports ftrace performance per processor directly. The text explicitly states that the benchmark experiments had all I/O turned off. The exact operation-count numerator, timer API, run length, averaging/repetition protocol and precise timing denominator for these table entries are not separately published. Table 1 gives VOR 99.58% and AVL 253.3, while its MPI-time cell is a dash; that missing communication percentage is not zero and those vector metrics are not overall parallel efficiencies. A separate I/O experiment reports 1.5 s of additional full-field output within 315 s for 5,000 iterations, not the complete timing protocol of this table row.",
+          "page": 6,
+          "location": "PDF p. 6 Table 1, 4,096-processor/1,024-grid row, and I/O paragraph",
+          "note": "Keep this 4,096-processor benchmark separate from the 4,800-processor production run and from the separate output-cost experiment. Do not assign the extended-run wall or user time to this measurement.",
+          "source_id": "sc2005-batch-pap260-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Reported experiments occurred during an October 2004 visit and later local runs; exact benchmark date is not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "="
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2005-batch-pap260-manuscript"
+        ],
+        "authors": [
+          "sc2005-batch-pap260-manuscript"
+        ],
+        "machines": [
+          "sc2005-batch-pap260-manuscript"
+        ],
+        "abstract": [
+          "sc2005-batch-pap260-manuscript"
+        ],
+        "selection": [
+          "roster-2005-sc05-preserved-pap260",
+          "roster-2005-sc05-preserved-pap200",
+          "roster-2005-sc05-preserved-pap346",
+          "roster-2005-sc05-preserved-pap188",
+          "roster-2005-sc05-preserved-pap122",
+          "roster-2005-sc05-preserved-pap307"
+        ],
+        "doi": [],
+        "award": []
+      },
+      "notes": [
+        "The seven-author byline is read row by row from the first-page layout: Carter, Soe, Oliker; Tsuda, George Vahala, Linda Vahala; Macnab. Extraction order alone interleaves the columns. The SC05 November 12-18 footer establishes conference context but not a scientific revision or measurement date. PDF creation on August 29, 2005 remains metadata only.",
+        "The coupled scalar/vector BGK scheme uses 27 fluid velocities and 15 magnetic velocities, is explicit and second order in space and time, and uses an isothermal closure. The reported production calculations use periodic spatial boundaries. Gather-based combination of streaming and collision reduces data traffic; MPI ghost exchanges reduce 26 neighbors to six messages through staged coordinate directions. Entropic positivity preservation for MHD is proposed future work, not a demonstrated capability of this calculation.",
+        "The initial vectorization changes raise the reported per-processor performance from roughly 330 Mflop/s to 3.97 Gflop/s. A separate 256-cubed/16-processor experiment reports 4.8 Gflop/s per processor and a 12% time reduction. Those optimization-stage results are not additional large-production-run rates. MPI sendrecv/global-memory experiments remain within about 4% observed run variability rather than establishing a new robust speedup.",
+        "The per-processor numbers across Table 1 do not represent weak scaling: at each selected grid size the spatial problem is fixed while processor count changes. Vector operation ratio and vector length characterize the computational kernel and do not equal whole-application parallel efficiency. The 1.978 doubling speedup in the text belongs to the separate 512-cubed, 256-to-512-processor comparison.",
+        "The physical illustrations show three-dimensional vorticity structures from Kelvin-Helmholtz-like layers constrained by a Taylor-Green magnetic field at Reynolds numbers around 100. The paper cites earlier two-dimensional comparisons with conventional spectral CFD; it does not supply a new three-dimensional power-spectrum validation here. Quantitative divergence tolerances are not supplied for the statement that magnetic divergence stays within acceptable bounds without cleaning.",
+        "For the middle vorticity image, the running text and plot title identify 40K iterations but the Figure 7 caption says 30K. This internal labeling difference is retained rather than resolved by inference. It does not change the separate ftrace throughput observation.",
+        "All 9 text pages through references were read and 8 critical pages were visually inspected. Original SHA-256, size and modification time were unchanged. No live full-text source, original-submission byte identity or conference-day score update was authenticated. PDF, extracted text and rendered pages remain private."
+      ],
+      "booktitle": "SC05 proceedings",
+      "event_year": 2005,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 9 PDF pages read through references; complete critical pages 1,3,4,5,6,7,8,9 rendered and visually inspected for ordered byline, equations, array layouts, performance table, ftrace numerator/timing labels, visualization labels and limitations. Selected source-located observations; no independent reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap260.pdf",
+        "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap260.pdf",
+        "source_url": null,
+        "sha256": "073eaf8d6a1762ffce7eee31bee7dd85617ba2721cb9a18c295d2cd0c9cf7e38",
+        "page_count": 9,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "id": "sc2005-pap260",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": null,
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "unresolved",
+        "source_id": null,
+        "checked_on": "2026-11-22",
+        "detail": "No candidate-publication DOI is verified. Preserved manuscript identity is checked separately; related later publications do not supply this missing identifier."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [],
+      "citation_title": "Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+      "citation_authors": [
+        "Jonathan Carter",
+        "Min Soe",
+        "Leonid Oliker",
+        "Yoshinori Tsuda",
+        "George Vahala",
+        "Linda Vahala",
+        "Angus Macnab"
+      ],
+      "citation_year": 2005,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2005,
+      "title": "100+ TFlop Solidification Simulations on BlueGene/L",
+      "authors": [
+        "Frederick H. Streitz",
+        "James N. Glosli",
+        "Mehul V. Patel",
+        "Bor Chan",
+        "Robert K. Yates",
+        "Bronis R. de Supinski",
+        "James Sexton",
+        "John A. Gunnels"
+      ],
+      "field": "Classical molecular dynamics; MGPT many-body metal potentials, particle-based decomposition and solidification",
+      "summary": "ddcMD combines explicit particle ownership and communication lists with tuned small-matrix kernels for many-body MGPT potentials. Tantalum simulations test finite-size effects during nucleation, growth and coalescence, while a much larger uranium quench demonstrates sustained application performance. Short benchmark rates, long-run throughput including I/O and the same run with I/O removed are retained as distinct observations.",
+      "machines": [
+        "BlueGene/L"
+      ],
+      "machine_configurations": [
+        {
+          "name": "BlueGene/L",
+          "facility": "Lawrence Livermore National Laboratory",
+          "configuration": "The full machine uses 65,536 dual-core nodes / 131,072 PowerPC 440 processors at 700 MHz. Virtual-node mode runs two MPI tasks per node. Tuned ddcMD kernels fuse small matrix multiplications with dot products, using an aligned unpadded 5 x 5 layout for tantalum and padded 7 x 7 layout for uranium. The architecture discussion's 2.8 Gflop/s per-node wording conflicts with its 367 Tflop/s system peak; the figure labels the compute chip as 5.6 Gflop/s. These peak descriptions are not used to reconstruct application rates.",
+          "location": "PDF pp. 1-2 architecture/Figure 1; pp. 4-6 kernel implementation; p. 8 full-system results"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "BlueGene/L",
+          "value": 101.7,
+          "unit": "Tflop/s",
+          "precision": "The optimized MGPT matrix kernels are double precision: the discussion identifies DGEMM/DDOT-equivalent operations and eight-byte scalar loads, then tunes SIMD FMA kernels. An exhaustive arithmetic-format declaration for every other dynamics, communication and I/O field is not supplied.",
+          "scope": "Long uranium production-run aggregate throughput including snapshot disk I/O",
+          "scale": "524,288,000 uranium atoms; 131,072 processors / 65,536 nodes in virtual-node mode; approximately seven hours",
+          "measurement_method": "BG/L hardware counters were unavailable to user applications. Software instrumentation counts calls to two-, three- and four-body graphs and hopping-matrix evaluations, multiplied by hand-counted kernel FLOPs. This is a kernel-work lower bound divided by application elapsed time, with other code FLOPs omitted; it is not an independent hardware counter. The printed uranium formula uses coefficients 44/3059/73/5419/2623, whereas Table VI uses 48/3187/73/5676/2623. The source does not reconcile this discrepancy; no silent correction is made. Timer API and repeat protocol are unspecified. Table VI gives 2,567.7 x 10^15 counted operations and 25,244 s total runtime. This includes 1,038 s of disk I/O; Table II reports the corresponding whole-run time breakdown.",
+          "page": 9,
+          "location": "PDF p. 9 Table VI and surrounding text; profile p. 7 Table II; configuration pp. 1,8,14",
+          "note": "The same physical trajectory remains molten at the end of this version; its throughput does not establish completed uranium solidification. The table/final figure size is used instead of the inconsistent 525,828,000 in the p. 9 prose.",
+          "source_id": "sc2005-batch-pap307-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 101700000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 106.1,
+          "unit": "Tflop/s",
+          "precision": "The optimized MGPT matrix kernels are double precision: the discussion identifies DGEMM/DDOT-equivalent operations and eight-byte scalar loads, then tunes SIMD FMA kernels. An exhaustive arithmetic-format declaration for every other dynamics, communication and I/O field is not supplied.",
+          "scope": "The same uranium production run with disk-I/O time excluded from the denominator",
+          "scale": "524,288,000 uranium atoms; 131,072 processors / 65,536 nodes; same seven-hour run as the 101.7 Tflop/s observation",
+          "measurement_method": "BG/L hardware counters were unavailable to user applications. Software instrumentation counts calls to two-, three- and four-body graphs and hopping-matrix evaluations, multiplied by hand-counted kernel FLOPs. This is a kernel-work lower bound divided by application elapsed time, with other code FLOPs omitted; it is not an independent hardware counter. The printed uranium formula uses coefficients 44/3059/73/5419/2623, whereas Table VI uses 48/3187/73/5676/2623. The source does not reconcile this discrepancy; no silent correction is made. Timer API and repeat protocol are unspecified. The source removes 1,038 s of disk I/O from the 25,244 s total while retaining the Table-VI numerator, producing its reported 106.1 Tflop/s computational rate.",
+          "page": 9,
+          "location": "PDF p. 9 following Table VI",
+          "note": "This is a different accounting window for the same trajectory, not an additional independent seven-hour experiment and not the end-to-end rate.",
+          "source_id": "sc2005-batch-pap307-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 106100000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 107.63,
+          "unit": "Tflop/s",
+          "precision": "The optimized MGPT matrix kernels are double precision: the discussion identifies DGEMM/DDOT-equivalent operations and eight-byte scalar loads, then tunes SIMD FMA kernels. An exhaustive arithmetic-format declaration for every other dynamics, communication and I/O field is not supplied.",
+          "scope": "Short uranium weak-scaling benchmark throughput",
+          "scale": "524,288,000 uranium atoms; 4,000 local atoms per processor; 131,072 processors; 200 timesteps",
+          "measurement_method": "BG/L hardware counters were unavailable to user applications. Software instrumentation counts calls to two-, three- and four-body graphs and hopping-matrix evaluations, multiplied by hand-counted kernel FLOPs. This is a kernel-work lower bound divided by application elapsed time, with other code FLOPs omitted; it is not an independent hardware counter. The printed uranium formula uses coefficients 44/3059/73/5419/2623, whereas Table VI uses 48/3187/73/5676/2623. The source does not reconcile this discrepancy; no silent correction is made. Timer API and repeat protocol are unspecified. Table IV lists 886.00 s for the complete 200-step benchmark and reports 107.63 Tflop/s. Initialization and I/O boundaries for this short benchmark are not separately stated; do not transfer the 1,038-second I/O subtraction from the long run.",
+          "page": 8,
+          "location": "PDF p. 8 Table IV, last row; 200-step definition same page; counting p. 9",
+          "note": "The abstract says as high as 103 TFlops, while Table IV reports 107.63 for this short benchmark. Preserve both source statements without replacing the 101.7 end-to-end production result.",
+          "source_id": "sc2005-batch-pap307-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 107630000000000.0
+        },
+        {
+          "machine": "BlueGene/L",
+          "value": 61.39,
+          "unit": "Tflop/s",
+          "precision": "The optimized MGPT matrix kernels are double precision: the discussion identifies DGEMM/DDOT-equivalent operations and eight-byte scalar loads, then tunes SIMD FMA kernels. An exhaustive arithmetic-format declaration for every other dynamics, communication and I/O field is not supplied.",
+          "scope": "Short tantalum weak-scaling benchmark throughput",
+          "scale": "524,288,000 tantalum atoms; 4,000 local atoms per processor; 131,072 processors; 200 timesteps",
+          "measurement_method": "BG/L hardware counters were unavailable to user applications. Software instrumentation counts calls to two-, three- and four-body graphs and hopping-matrix evaluations, multiplied by hand-counted kernel FLOPs. This is a kernel-work lower bound divided by application elapsed time, with other code FLOPs omitted; it is not an independent hardware counter. The printed uranium formula uses coefficients 44/3059/73/5419/2623, whereas Table VI uses 48/3187/73/5676/2623. The source does not reconcile this discrepancy; no silent correction is made. Timer API and repeat protocol are unspecified. Table III reports 624.64 s for the 200-step benchmark and a rate of 61.39 Tflop/s. Tantalum uses 5 x 5 hopping matrices, unlike uranium's 7 x 7 matrices, and has its own hand-counted work expression.",
+          "page": 8,
+          "location": "PDF p. 8 Table III, last row; counting-method discussion p. 9",
+          "note": "The tables label local size per CPU, although adjacent prose says atoms per node. The selected record uses the table's explicit CPU count; tantalum and uranium have different operation costs.",
+          "source_id": "sc2005-batch-pap307-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 61390000000000.0
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2005-batch-pap307-manuscript"
+        ],
+        "authors": [
+          "sc2005-batch-pap307-manuscript"
+        ],
+        "machines": [
+          "sc2005-batch-pap307-manuscript"
+        ],
+        "abstract": [
+          "sc2005-batch-pap307-manuscript"
+        ],
+        "selection": [
+          "roster-2005-sc05-preserved-pap307",
+          "roster-2005-sc05-preserved-pap200",
+          "roster-2005-sc05-preserved-pap346",
+          "roster-2005-sc05-preserved-pap188",
+          "roster-2005-sc05-preserved-pap122",
+          "roster-2005-sc05-preserved-pap260"
+        ],
+        "doi": [],
+        "award": [
+          "roster-2005-sc16-historical-winners"
+        ]
+      },
+      "notes": [
+        "The first-page byline contains eight authors in the stated order, with the first six affiliated with LLNL and Sexton/Gunnels with IBM. The report identifier is UCRL-CONF-211681. No scientific revision date is printed; the PDF's 30 August 2005 creation metadata is not a measurement or manuscript-revision date.",
+        "MGPT derives many-body interactions from a generalized pseudopotential/DFT framework but the timed ddcMD evolution is classical molecular dynamics, not an on-the-fly first-principles electronic-structure solve. It retains interactions through quadruples and evaluates 5 x 5 tantalum or 7 x 7 uranium hopping matrices.",
+        "The particle-based decomposition explicitly tracks remote domains/particles and exchanges partial forces to reduce redundant expensive work. This can lower FLOP/s while improving time to solution. Future dynamic load balancing is described but not demonstrated as implemented in these runs.",
+        "The p. 9 uranium operation formula and Table VI give different coefficients: formula 44,3059,73,5419,2623 versus table 48,3187,73,5676,2623 for the same categories. The aggregate 2,567.7 x 10^15 and reported rates are preserved as source claims; the archive does not silently repair or independently certify the numerator.",
+        "The abstract's as-high-as-103 statement differs from the 107.63 short benchmark in Table IV. The production run is reported as 101.7 including I/O and 106.1 excluding I/O. These rates have different scopes and do not identify an authenticated conference-day final score.",
+        "Tables IV-VI/Figure 13 identify the large uranium system as 524,288,000 atoms, but the p. 9 results paragraph gives 525,828,000. Page 8 says 65,538 nodes beside 131,072 processors, whereas the architecture/figure gives 65,536 nodes. Table local counts are per CPU although nearby prose says per node. These source inconsistencies remain noted rather than merged into a new configuration.",
+        "The solidification study uses a Langevin thermostat with 1 ps thermal constant and a symplectic scheme with 1.5 fs steps. A local Q6 bond-order measure separates liquid, solid and interfacial atoms. Tantalum is isothermally compressed; finite-size comparisons and grain scaling suggest that 8M-16M atoms avoid the observed smaller-box effects under the studied conditions, rather than proving size independence for all materials.",
+        "The uranium trajectory is still molten when this version goes to press, so a completed uranium nucleation/coarsening result is prospective. The introduction and performance section call it an isochoric quench while p. 13/Figure 7 use isobaric wording; the thermodynamic constraint is not silently reconciled.",
+        "The earlier 60-hour run on 32,768 processors and subsequent week of file-management trouble are a separate workflow experience, not the full-machine seven-hour performance denominator. Large checkpoint I/O and metadata limitations remain part of the reported operational scope.",
+        "All 14 text pages including references were read; critical complete pages, figures and result tables were visually checked. Original PDF hash, size and mtime are unchanged. Source PDFs, OCR/text and page images remain private."
+      ],
+      "booktitle": "SC05 proceedings",
+      "event_year": 2005,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 14 PDF pages read through references; 13 complete critical pages visually inspected for ordered byline, methods, equations, result tables, timing scope and measured versus preliminary/projected claims. Selected observations; no independent numerical reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap307.pdf",
+        "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap307.pdf",
+        "source_url": null,
+        "sha256": "1f225ea010b4ad1a1b6efffe3772c65a0292b3e8839402e3b9ea8767851ebe02",
+        "page_count": 14,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      "id": "sc2005-pap307",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": null,
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "unresolved",
+        "source_id": null,
+        "checked_on": "2026-11-22",
+        "detail": "No candidate-publication DOI is verified. Preserved manuscript identity is checked separately; related later publications do not supply this missing identifier."
+      },
+      "award": {
+        "label": "Winner — Peak Performance",
+        "category": "Peak Performance",
+        "source_id": "roster-2005-sc16-historical-winners"
+      },
+      "award_status": "Official award result checked in existing evidence",
+      "title_aliases": [],
+      "citation_title": "100+ TFlop Solidification Simulations on BlueGene/L",
+      "citation_authors": [
+        "Frederick H. Streitz",
+        "James N. Glosli",
+        "Mehul V. Patel",
+        "Bor Chan",
+        "Robert K. Yates",
+        "Bronis R. de Supinski",
+        "James Sexton",
+        "John A. Gunnels"
+      ],
+      "citation_year": 2005,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
       "doi": "10.1109/sc.2005.4",
       "title": "A Scalable Distributed Parallel Breadth-First Search Algorithm on BlueGene/L",
       "authors": [
@@ -14442,9 +15675,9 @@
     },
     {
       "id": "year-batch-manuscripts",
-      "state": "2002, 2004 indexed cohorts checked",
+      "state": "2002, 2004, 2005 indexed cohorts checked",
       "title": "Available manuscript candidates reviewed in complete year batches",
-      "detail": "All indexed candidates in 2002, 2004 have selected fields checked against complete preserved versions. Precision, operation counts, timing scope and measured versus projected results remain distinct. Earlier manuscript evidence and final conference scores remain separate."
+      "detail": "All indexed candidates in 2002, 2004, 2005 have selected fields checked against complete preserved versions. Precision, operation counts, timing scope and measured versus projected results remain distinct. Earlier manuscript evidence and final conference scores remain separate."
     }
   ],
   "coverage": {
@@ -14528,7 +15761,7 @@
       2025,
       2026
     ],
-    "detailed_paper_count": 52
+    "detailed_paper_count": 57
   },
   "inventory_report": {
     "volume": "SC08_Proceedings",
@@ -16544,7 +17777,7 @@
     {
       "year": 2005,
       "local_candidate_count": 6,
-      "status": "Annual source indexed; 3 DOI matches verified. Manuscript review is tracked separately.",
+      "status": "All 6 indexed candidate manuscripts have selected fields checked against complete preserved versions; final conference scores remain unestablished.",
       "candidate_count": 6,
       "verified_doi_count": 3,
       "sc_links": {
@@ -16554,7 +17787,7 @@
         "website_url": "https://sc05.supercomputing.org/",
         "year": 2005
       },
-      "detailed_paper_count": 1,
+      "detailed_paper_count": 6,
       "annual_review_year": 2005
     },
     {
@@ -24773,6 +26006,105 @@
           "inspection_scope": "Title and ordered byline on PDF p. 1 only; local copy identified by SHA-256",
           "mirror_checked_on": "2026-11-22",
           "mirror_bytes_match_preserved_pdf": true
+        },
+        {
+          "id": "sc2005-batch-pap200-manuscript",
+          "label": "Preserved SC05 candidate manuscript: Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap200.pdf",
+          "sha256": "b5cabd6946ca607102ed3396dc198bcb9ed1d80630292c9038d2f17335e2cfdc",
+          "source_sha256": "b5cabd6946ca607102ed3396dc198bcb9ed1d80630292c9038d2f17335e2cfdc",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20050725230304-07'00'",
+            "/Author": "gygi1",
+            "/Creator": "PScript5.dll Version 5.2",
+            "/Producer": "Acrobat Distiller 5.0 (Windows)",
+            "/ModDate": "D:20050804120939-07'00'",
+            "/Title": "Microsoft Word - SC_Qbox_v16.doc"
+          },
+          "inspection_scope": "All 8 text pages read through references and any appendices. Full critical pages 1, 3, 6, 7 rendered and visually inspected. Original hash, size and modification time unchanged. PDF metadata timestamps are not scientific revision or measurement dates."
+        },
+        {
+          "id": "sc2005-batch-pap188-manuscript",
+          "label": "Preserved SC05 candidate manuscript: 16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap188.pdf",
+          "sha256": "c0bb9daa0cbd2f13e37eee8c941b5b787a4928ff374d5960115e46635f2485e6",
+          "source_sha256": "c0bb9daa0cbd2f13e37eee8c941b5b787a4928ff374d5960115e46635f2485e6",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20050725224118+09'00'",
+            "/ModDate": "D:20050725224118+09'00'",
+            "/Producer": "Acrobat Distiller 5.0.5 (Windows)"
+          },
+          "inspection_scope": "All 10 text pages read through references and any appendices. Full critical pages 1, 3, 5, 6 rendered and visually inspected. Original hash, size and modification time unchanged. PDF metadata timestamps are not scientific revision or measurement dates."
+        },
+        {
+          "id": "sc2005-batch-pap122-manuscript",
+          "label": "Preserved SC05 candidate manuscript: 25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap122.pdf",
+          "sha256": "e5e6038273d3a5b2095f16c2c34b573b0114d6bfc597c8a44b0890b19de26092",
+          "source_sha256": "e5e6038273d3a5b2095f16c2c34b573b0114d6bfc597c8a44b0890b19de26092",
+          "size_bytes": 934922,
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/Producer": "ESP Ghostscript 7.07",
+            "/Creator": "dvips(k) 5.94b Copyright 2004 Radical Eye Software",
+            "/Title": "Bell05.dvi"
+          },
+          "inspection_scope": "All 13 PDF pages read through references; complete critical pages 1, 2, 4, 5, 6, 7, 8, 10, 11, 12, 13 rendered and visually inspected. Original SHA-256, size and mtime unchanged. Metadata generation timestamps are not manuscript revision or measurement dates."
+        },
+        {
+          "id": "sc2005-batch-pap260-manuscript",
+          "label": "Preserved SC05 candidate manuscript: Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap260.pdf",
+          "sha256": "073eaf8d6a1762ffce7eee31bee7dd85617ba2721cb9a18c295d2cd0c9cf7e38",
+          "source_sha256": "073eaf8d6a1762ffce7eee31bee7dd85617ba2721cb9a18c295d2cd0c9cf7e38",
+          "size_bytes": 813374,
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20050829205438-07'00'",
+            "/Author": "",
+            "/Creator": "Acrobat PDFMaker 7.0 for Word",
+            "/Producer": "Acrobat Distiller 7.0 (Windows)",
+            "/ModDate": "D:20050829205446-07'00'",
+            "/Title": "Microsoft Word - lbmhd_acm"
+          },
+          "inspection_scope": "All 9 PDF pages read through references. Complete critical pages 1,3,4,5,6,7,8,9 rendered and visually inspected. The metadata timestamp is not authenticated as a scientific revision or measurement date. Source SHA-256, size and modification time unchanged after review."
+        },
+        {
+          "id": "sc2005-batch-pap307-manuscript",
+          "label": "Preserved SC05 candidate manuscript: 100+ TFlop Solidification Simulations on BlueGene/L",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2005/original/schedule/pdf/pap307.pdf",
+          "sha256": "1f225ea010b4ad1a1b6efffe3772c65a0292b3e8839402e3b9ea8767851ebe02",
+          "source_sha256": "1f225ea010b4ad1a1b6efffe3772c65a0292b3e8839402e3b9ea8767851ebe02",
+          "size_bytes": 1473147,
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/Producer": "pdfTeX-1.11b",
+            "/Creator": "TeX",
+            "/CreationDate": "D:20050830154011-07'00'"
+          },
+          "inspection_scope": "All 14 PDF pages read through references; complete critical pages 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 rendered and visually inspected. Original SHA-256, size and mtime unchanged. Metadata generation timestamps are not manuscript revision or measurement dates."
         }
       ],
       "roster_completeness": {
@@ -24799,25 +26131,95 @@
           "doi_source_id": "sc05-crossref-pap200",
           "publisher_title": "Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
           "authors": [
-            "F. Gygi",
-            "R.K. Yates",
-            "J. Lorenz",
-            "E.W. Draeger",
-            "F. Franchetti",
-            "C.W. Ueberhuber",
-            "B.R. de Supinski",
-            "S. Kral",
-            "J.A. Gunnels",
-            "J.C. Sexton"
+            "François Gygi",
+            "Robert K. Yates",
+            "Juergen Lorenz",
+            "Erik W. Draeger",
+            "Franz Franchetti",
+            "Christoph W. Ueberhuber",
+            "Bronis R. de Supinski",
+            "Stefan Kral",
+            "John A. Gunnels",
+            "James C. Sexton"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1559976/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained.",
             "An OSTI technical-report DOI with the same title was also returned; the SC2005 conference-publication DOI is used here, not the report DOI."
-          ]
+          ],
+          "detailed_paper_id": "sc2005-pap200",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "Large-Scale First-Principles Molecular Dynamics Simulations on the BlueGene/L Platform using the Qbox Code",
+            "title_kind": null,
+            "title_source_id": "sc05-preserved-pap200",
+            "publisher_title": "Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+            "authors": [
+              "F. Gygi",
+              "R.K. Yates",
+              "J. Lorenz",
+              "E.W. Draeger",
+              "F. Franchetti",
+              "C.W. Ueberhuber",
+              "B.R. de Supinski",
+              "S. Kral",
+              "J.A. Gunnels",
+              "J.C. Sexton"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2005-batch-pap200-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc05-crossref-pap200",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+              "authors": [
+                "F. Gygi",
+                "R.K. Yates",
+                "J. Lorenz",
+                "E.W. Draeger",
+                "F. Franchetti",
+                "C.W. Ueberhuber",
+                "B.R. de Supinski",
+                "S. Kral",
+                "J.A. Gunnels",
+                "J.C. Sexton"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2005-batch-pap200-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "Large-Scale First-Principles Molecular Dynamics simulations on the BlueGene/L Platform using the Qbox code",
+              "authors": [
+                "François Gygi",
+                "Robert K. Yates",
+                "Juergen Lorenz",
+                "Erik W. Draeger",
+                "Franz Franchetti",
+                "Christoph W. Ueberhuber",
+                "Bronis R. de Supinski",
+                "Stefan Kral",
+                "John A. Gunnels",
+                "James C. Sexton"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2005-batch-pap200-manuscript"
+            ]
+          }
         },
         {
           "id": "sc2005-pap346",
@@ -24853,16 +26255,65 @@
           "doi_source_id": "sc05-crossref-pap188",
           "publisher_title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
           "authors": [
-            "S. Yamada",
-            "T. Imamura",
-            "M. Machida"
+            "Susumu Yamada",
+            "Toshiyuki Imamura",
+            "Masahiko Machida"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1559996/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
-          ]
+          ],
+          "detailed_paper_id": "sc2005-pap188",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+            "title_kind": null,
+            "title_source_id": "sc05-preserved-pap188",
+            "publisher_title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+            "authors": [
+              "S. Yamada",
+              "T. Imamura",
+              "M. Machida"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2005-batch-pap188-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc05-crossref-pap188",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+              "authors": [
+                "S. Yamada",
+                "T. Imamura",
+                "M. Machida"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2005-batch-pap188-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "16.447 TFlops and 159-Billion-dimensional Exact-diagonalization for Trapped Fermion-Hubbard Model on the Earth Simulator",
+              "authors": [
+                "Susumu Yamada",
+                "Toshiyuki Imamura",
+                "Masahiko Machida"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2005-batch-pap188-manuscript"
+            ]
+          }
         },
         {
           "id": "sc2005-pap122",
@@ -24877,7 +26328,7 @@
             "Kai Kadau",
             "Peter S. Lomdahl"
           ],
-          "authors_status": "ordered_byline_checked_preserved_manuscript_first_page",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": null,
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24893,22 +26344,55 @@
               "bibliography_review": null
             }
           },
-          "authors_source_id": "sc05-pap122-byline",
+          "authors_source_id": "sc2005-batch-pap122-manuscript",
           "bibliography_review": {
             "checked_on": "2026-11-22",
-            "status": "byline_checked_doi_unresolved",
-            "note": "Title and ordered byline checked in the preserved conference PDF. Archived exact-title Crossref and publisher-catalog searches did not establish a matching identifier; no DOI is inferred from a nearby regular-paper record.",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; the earlier preserved first-page check and selection title remain in version history. Candidate-publication DOI remains unresolved.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
             "source_ids": [
-              "sc05-pap122-byline",
-              "sc05_csdl_toc",
-              "sc05_csdl_alt_toc"
+              "sc2005-batch-pap122-manuscript"
+            ]
+          },
+          "detailed_paper_id": "sc2005-pap122",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+            "title_kind": null,
+            "title_source_id": "sc05-preserved-pap122",
+            "publisher_title": null,
+            "authors": [
+              "Timothy C. Germann",
+              "Kai Kadau",
+              "Peter S. Lomdahl"
             ],
-            "performance_audit": "Not performed in this bibliography review",
-            "byline_scope": "Preserved conference PDF p. 1",
-            "doi_status": "unresolved",
-            "registry_lookup_date": "2026-11-12",
-            "next_evidence": "An exact article-level publisher registration or an authoritative proceedings citation containing an identifier."
-          }
+            "authors_status": "ordered_byline_checked_preserved_manuscript_first_page",
+            "authors_source_id": "sc05-pap122-byline"
+          },
+          "bibliographic_versions": [
+            {
+              "source_id": "sc05-pap122-byline",
+              "version_label": "Earlier preserved first-page byline",
+              "title": "25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+              "authors": [
+                "Timothy C. Germann",
+                "Kai Kadau",
+                "Peter S. Lomdahl"
+              ],
+              "authors_status": "ordered_byline_checked_preserved_manuscript_first_page"
+            },
+            {
+              "source_id": "sc2005-batch-pap122-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "25 Tflop/s Multibillion-Atom Molecular Dynamics Simulations and Visualization/Analysis on BlueGene/L",
+              "authors": [
+                "Timothy C. Germann",
+                "Kai Kadau",
+                "Peter S. Lomdahl"
+              ]
+            }
+          ]
         },
         {
           "id": "sc2005-pap260",
@@ -24927,7 +26411,7 @@
             "Linda Vahala",
             "Angus Macnab"
           ],
-          "authors_status": "ordered_byline_checked_preserved_manuscript_first_page",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": null,
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24943,22 +26427,67 @@
               "bibliography_review": null
             }
           },
-          "authors_source_id": "sc05-pap260-byline",
+          "authors_source_id": "sc2005-batch-pap260-manuscript",
           "bibliography_review": {
             "checked_on": "2026-11-22",
-            "status": "byline_checked_doi_unresolved",
-            "note": "Title and ordered byline checked in the preserved conference PDF. Archived exact-title Crossref and publisher-catalog searches did not establish a matching identifier; no DOI is inferred from a nearby regular-paper record.",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; the earlier preserved first-page check and selection title remain in version history. Candidate-publication DOI remains unresolved.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
             "source_ids": [
-              "sc05-pap260-byline",
-              "sc05_csdl_toc",
-              "sc05_csdl_alt_toc"
+              "sc2005-batch-pap260-manuscript"
+            ]
+          },
+          "detailed_paper_id": "sc2005-pap260",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+            "title_kind": null,
+            "title_source_id": "sc05-preserved-pap260",
+            "publisher_title": null,
+            "authors": [
+              "Jonathan Carter",
+              "Min Soe",
+              "Leonid Oliker",
+              "Yoshinori Tsuda",
+              "George Vahala",
+              "Linda Vahala",
+              "Angus Macnab"
             ],
-            "performance_audit": "Not performed in this bibliography review",
-            "byline_scope": "Preserved conference PDF p. 1",
-            "doi_status": "unresolved",
-            "registry_lookup_date": "2026-11-12",
-            "next_evidence": "An exact article-level publisher registration or an authoritative proceedings citation containing an identifier."
-          }
+            "authors_status": "ordered_byline_checked_preserved_manuscript_first_page",
+            "authors_source_id": "sc05-pap260-byline"
+          },
+          "bibliographic_versions": [
+            {
+              "source_id": "sc05-pap260-byline",
+              "version_label": "Earlier preserved first-page byline",
+              "title": "Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+              "authors": [
+                "Jonathan Carter",
+                "Min Soe",
+                "Leonid Oliker",
+                "Yoshinori Tsuda",
+                "George Vahala",
+                "Linda Vahala",
+                "Angus Macnab"
+              ],
+              "authors_status": "ordered_byline_checked_preserved_manuscript_first_page"
+            },
+            {
+              "source_id": "sc2005-batch-pap260-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "Magnetohydrodynamic Turbulence Simulations on the Earth Simulator Using the Lattice Boltzmann Method",
+              "authors": [
+                "Jonathan Carter",
+                "Min Soe",
+                "Leonid Oliker",
+                "Yoshinori Tsuda",
+                "George Vahala",
+                "Linda Vahala",
+                "Angus Macnab"
+              ]
+            }
+          ]
         },
         {
           "id": "sc2005-pap307",
@@ -24978,7 +26507,7 @@
             "James Sexton",
             "John A. Gunnels"
           ],
-          "authors_status": "ordered_byline_checked_preserved_manuscript_first_page",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": null,
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -25014,22 +26543,70 @@
             ],
             "checked_on": "2026-11-22"
           },
-          "authors_source_id": "sc05-pap307-byline",
+          "authors_source_id": "sc2005-batch-pap307-manuscript",
           "bibliography_review": {
             "checked_on": "2026-11-22",
-            "status": "byline_checked_doi_unresolved",
-            "note": "Title and ordered byline checked in the preserved conference PDF. Archived exact-title Crossref and publisher-catalog searches did not establish a matching identifier; no DOI is inferred from a nearby regular-paper record.",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; the earlier preserved first-page check and selection title remain in version history. Candidate-publication DOI remains unresolved.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
             "source_ids": [
-              "sc05-pap307-byline",
-              "sc05_csdl_toc",
-              "sc05_csdl_alt_toc"
+              "sc2005-batch-pap307-manuscript"
+            ]
+          },
+          "detailed_paper_id": "sc2005-pap307",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "100+ TFlop Solidification Simulations on BlueGene/L",
+            "title_kind": null,
+            "title_source_id": "sc05-preserved-pap307",
+            "publisher_title": null,
+            "authors": [
+              "Frederick H. Streitz",
+              "James N. Glosli",
+              "Mehul V. Patel",
+              "Bor Chan",
+              "Robert K. Yates",
+              "Bronis R. de Supinski",
+              "James Sexton",
+              "John A. Gunnels"
             ],
-            "performance_audit": "Not performed in this bibliography review",
-            "byline_scope": "Preserved conference PDF p. 1",
-            "doi_status": "unresolved",
-            "registry_lookup_date": "2026-11-12",
-            "next_evidence": "An exact article-level publisher registration or an authoritative proceedings citation containing an identifier."
-          }
+            "authors_status": "ordered_byline_checked_preserved_manuscript_first_page",
+            "authors_source_id": "sc05-pap307-byline"
+          },
+          "bibliographic_versions": [
+            {
+              "source_id": "sc05-pap307-byline",
+              "version_label": "Earlier preserved first-page byline",
+              "title": "100+ TFlop Solidification Simulations on BlueGene/L",
+              "authors": [
+                "Frederick H. Streitz",
+                "James N. Glosli",
+                "Mehul V. Patel",
+                "Bor Chan",
+                "Robert K. Yates",
+                "Bronis R. de Supinski",
+                "James Sexton",
+                "John A. Gunnels"
+              ],
+              "authors_status": "ordered_byline_checked_preserved_manuscript_first_page"
+            },
+            {
+              "source_id": "sc2005-batch-pap307-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "100+ TFlop Solidification Simulations on BlueGene/L",
+              "authors": [
+                "Frederick H. Streitz",
+                "James N. Glosli",
+                "Mehul V. Patel",
+                "Bor Chan",
+                "Robert K. Yates",
+                "Bronis R. de Supinski",
+                "James Sexton",
+                "John A. Gunnels"
+              ]
+            }
+          ]
         }
       ],
       "notes": [
@@ -25044,7 +26621,7 @@
         "website_url": "https://sc05.supercomputing.org/",
         "year": 2005
       },
-      "detailed_paper_count": 1,
+      "detailed_paper_count": 6,
       "historical_review": {
         "checked_on": "2026-11-22",
         "reviewed_record_ids": [
@@ -25053,6 +26630,18 @@
           "sc2005-pap260"
         ],
         "note": "Dated award and bibliography review; roster membership and full performance audits remain separate."
+      },
+      "manuscript_batch_review": {
+        "checked_on": "2026-11-22",
+        "added_record_ids": [
+          "sc2005-pap200",
+          "sc2005-pap188",
+          "sc2005-pap122",
+          "sc2005-pap260",
+          "sc2005-pap307"
+        ],
+        "indexed_manuscripts_checked": 6,
+        "note": "The five pending SC05 candidates were reviewed together from complete preserved manuscripts. All six candidates in the preserved official index have selected manuscript fields checked. Lower bounds, rounding, solver versus whole-run rates, CPU versus wall time and in-manuscript update notes retain their individual scope."
       }
     },
     {
@@ -32356,8 +33945,8 @@
     "summary": {
       "indexed_years": 39,
       "manuscript_years": 36,
-      "manuscript_papers": 52,
-      "manuscript_observations": 141,
+      "manuscript_papers": 57,
+      "manuscript_observations": 161,
       "awaiting_first_manuscript_years": [
         1987,
         1989,
@@ -33516,7 +35105,7 @@
           "queue_status": "first_manuscript_checked",
           "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
         },
-        "batch_next_action": "All indexed manuscript versions for this year have selected fields checked. Continue publication-version comparisons and authenticated conference-day updates separately. More recent completed year batches: 2004."
+        "batch_next_action": "All indexed manuscript versions for this year have selected fields checked. Continue publication-version comparisons and authenticated conference-day updates separately. More recent completed year batches: 2004, 2005."
       },
       {
         "year": 2003,
@@ -33668,17 +35257,23 @@
           ],
           "queue_status": "first_manuscript_checked",
           "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
-        }
+        },
+        "batch_next_action": "All indexed manuscript versions for this year have selected fields checked. Continue publication-version comparisons and authenticated conference-day updates separately. More recent completed year batches: 2005."
       },
       {
         "year": 2005,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 1,
+        "manuscript_audits": 6,
         "manuscript_ids": [
-          "sc2005-pap346"
+          "sc2005-pap346",
+          "sc2005-pap200",
+          "sc2005-pap188",
+          "sc2005-pap122",
+          "sc2005-pap260",
+          "sc2005-pap307"
         ],
-        "performance_observations": 1,
+        "performance_observations": 21,
         "offline_candidate_bodies": 6,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -33695,11 +35290,11 @@
         "verified_dois": 3,
         "unresolved_dois": 3,
         "byline_status_counts": {
-          "registry_order_not_pdf_audited": 3,
-          "ordered_byline_checked_preserved_manuscript_first_page": 3
+          "ordered_byline_checked_complete_preserved_manuscript": 5,
+          "registry_order_not_pdf_audited": 1
         },
         "publication_byline_gaps": 0,
-        "manuscript_byline_checked_entries": 4,
+        "manuscript_byline_checked_entries": 6,
         "participants_only_entries": 0,
         "first_page_only_checks": 3,
         "award_supported_entries": 1,
@@ -33716,11 +35311,66 @@
           "roster-2005-sc05-preserved-pap188",
           "roster-2005-sc05-preserved-pap122",
           "roster-2005-sc05-preserved-pap260",
-          "roster-2005-sc05-preserved-pap307"
+          "roster-2005-sc05-preserved-pap307",
+          "sc2005-batch-pap200-manuscript",
+          "sc2005-batch-pap188-manuscript",
+          "sc2005-batch-pap122-manuscript",
+          "sc2005-batch-pap260-manuscript",
+          "sc2005-batch-pap307-manuscript"
         ],
-        "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
-        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
+        "queue_status": "indexed_year_manuscript_batch_checked",
+        "next_action": "All six indexed SC05 manuscript versions have selected fields checked. Compare original submissions, later publications and separately authenticated conference-day updates; recover the three unresolved candidate DOIs without substituting later related articles.",
+        "before_year_batch": {
+          "year": 2005,
+          "inventory_reviewed_on": "2026-11-22",
+          "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
+          "manuscript_audits": 1,
+          "manuscript_ids": [
+            "sc2005-pap346"
+          ],
+          "performance_observations": 1,
+          "offline_candidate_bodies": 6,
+          "conference_final_score_status": "Not established",
+          "sc_links": {
+            "history_pdf_url": "https://supercomputing.org/app/uploads/2023/10/SC2005.pdf",
+            "label": "SC05",
+            "proceedings_url": "https://dl.acm.org/doi/proceedings/10.5555/1105760",
+            "website_url": "https://sc05.supercomputing.org/",
+            "year": 2005
+          },
+          "roster_status": "complete_against_preserved_official_index",
+          "indexed_entries": 6,
+          "expected_entries": 6,
+          "membership_label": "candidates",
+          "verified_dois": 3,
+          "unresolved_dois": 3,
+          "byline_status_counts": {
+            "registry_order_not_pdf_audited": 3,
+            "ordered_byline_checked_preserved_manuscript_first_page": 3
+          },
+          "publication_byline_gaps": 0,
+          "manuscript_byline_checked_entries": 4,
+          "participants_only_entries": 0,
+          "first_page_only_checks": 3,
+          "award_supported_entries": 1,
+          "award_conflicts": 0,
+          "other_entrant_entries": 0,
+          "award_unestablished_entries": 5,
+          "evidence_checked_on": [
+            "2026-11-12",
+            "2026-11-22"
+          ],
+          "source_ids": [
+            "roster-2005-sc05-preserved-pap200",
+            "roster-2005-sc05-preserved-pap346",
+            "roster-2005-sc05-preserved-pap188",
+            "roster-2005-sc05-preserved-pap122",
+            "roster-2005-sc05-preserved-pap260",
+            "roster-2005-sc05-preserved-pap307"
+          ],
+          "queue_status": "first_manuscript_checked",
+          "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        }
       },
       {
         "year": 2006,
@@ -35001,6 +36651,23 @@
           "new_manuscript_pages": 38,
           "next_action": "All four indexed SC04 manuscripts have selected fields checked. Recover authenticated conference-day updates and compare publication/submission versions separately; QCDOC large-system throughput and price/performance in this July version are projections.",
           "evidence_file": "batch_2004_manuscripts_20261122.json"
+        },
+        {
+          "year": 2005,
+          "checked_on": "2026-11-22",
+          "added_record_ids": [
+            "sc2005-pap200",
+            "sc2005-pap188",
+            "sc2005-pap122",
+            "sc2005-pap260",
+            "sc2005-pap307"
+          ],
+          "new_manuscripts": 5,
+          "indexed_manuscripts_checked": 6,
+          "new_observations": 20,
+          "new_manuscript_pages": 54,
+          "next_action": "All six indexed SC05 manuscript versions have selected fields checked. Compare original submissions, later publications and separately authenticated conference-day updates; recover the three unresolved candidate DOIs without substituting later related articles.",
+          "evidence_file": "batch_2005_manuscripts_20261122.json"
         }
       ],
       "note": "Pending candidates are grouped by year for shared acquisition, extraction and publication; scientific scope and version evidence remain individual records."
