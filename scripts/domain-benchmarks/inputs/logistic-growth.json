@@ -1,0 +1,16 @@
+{
+  "case": "logistic-growth",
+  "rate": 0.7,
+  "capacity": 1.0,
+  "initial": 0.1,
+  "end": 10.0,
+  "steps": [
+    10,
+    20,
+    40
+  ],
+  "acceptance": {
+    "max_error": 2e-06,
+    "min_order": 3.7
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "archive_sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+  "source_manifest_sha256": "34e5f7a2af86103ff8b3333aaf912eae7e2f6e67a8e25753a84e9587a30989a2",
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 11,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5",
+    "matplotlib": "3.9.4"
+  },
+  "execution": "ZIP independently extracted; all packaged tests and all four fixed-input recipes executed without network or private source.",
+  "recipes": [
+    {
+      "id": "gbm-sde",
+      "passed": true,
+      "result_sha256": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126",
+      "csv_sha256": "5d551dec0e9ad699110e23c8ecc4aff157b917bef2df95877024671f0b8636f3"
+    },
+    {
+      "id": "logistic-growth",
+      "passed": true,
+      "result_sha256": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
+      "csv_sha256": "bff920222491f9c2622b527b9495ef25c497df1c14a6009656fa581be08e2104"
+    },
+    {
+      "id": "mc-integral",
+      "passed": true,
+      "result_sha256": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",
+      "csv_sha256": "97031d8a979afc163e107629caaff2e412e70fe6647e1016ef503b0cfa8478e7"
+    },
+    {
+      "id": "sir-epidemic",
+      "passed": true,
+      "result_sha256": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
+      "csv_sha256": "a237ae9303fa39749ea9cb59c1c4a47b2a369afe0aac14b0324949ab3c592b25"
+    }
+  ],
+  "independent_reference": "SIR uses separately coded SciPy DOP853; logistic/MC/GBM use analytic references.",
+  "scope": "Fixed dimensionless logistic/SIR, IID x-squared integration and scalar Ito GBM only; stochastic thresholds apply to the published seeds/budgets."
+}

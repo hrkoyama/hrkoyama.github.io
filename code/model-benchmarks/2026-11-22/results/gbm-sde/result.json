@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case": "gbm-sde",
+  "input_sha256": "5ecd024be23c56e943bae1d33a0b9ea335b27de994fad86bb03df8caff0152bc",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2"
+  },
+  "termination": "fixed_budget_completed",
+  "metrics": {
+    "strong_rms_errors": [
+      0.037048043787632164,
+      0.025631809270115134,
+      0.01793362858956404,
+      0.012726854699098065
+    ],
+    "observed_orders": [
+      0.5314620496946866,
+      0.5152678930595793,
+      0.494791507322397
+    ],
+    "finest_rms_error": 0.012726854699098065,
+    "exact_sample_mean_z": 1.446270507928748,
+    "paths": 4096
+  },
+  "checks": {
+    "strong_accuracy": true,
+    "strong_refinement": true,
+    "brownian_sample_mean": true
+  },
+  "passed": true
+}

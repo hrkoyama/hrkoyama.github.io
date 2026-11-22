@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "case": "logistic-growth",
+  "input_sha256": "17fba8b04671f6d5e28e5d296c221ce90377a0947c0c96a80d5d4c3a81fa07cb",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2"
+  },
+  "termination": "fixed_budget_completed",
+  "metrics": {
+    "errors": [
+      0.00022200974732544676,
+      1.6162139177877677e-05,
+      1.0857086456539378e-06
+    ],
+    "observed_orders": [
+      3.7799329522806246,
+      3.8959092549266208
+    ],
+    "finest_max_error": 1.0857086456539378e-06,
+    "minimum_state": 0.1
+  },
+  "checks": {
+    "accuracy": true,
+    "refinement": true,
+    "nonnegative": true
+  },
+  "passed": true
+}

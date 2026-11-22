@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case": "sir-epidemic",
+  "input_sha256": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2"
+  },
+  "termination": "fixed_budget_completed",
+  "metrics": {
+    "errors": [
+      5.8160422936270884e-05,
+      4.173121259110069e-06,
+      2.795866945737302e-07
+    ],
+    "observed_orders": [
+      3.8008390134534316,
+      3.899759231709047
+    ],
+    "finest_max_error": 2.795866945737302e-07,
+    "minimum_state": 0.0,
+    "mass_balance_max": 8.881784197001252e-16,
+    "reference_sha256": "9f36f31aac2e4c3c37923c26fb355430e4eacba42bfe55bc597846dbc8c028d5"
+  },
+  "checks": {
+    "accuracy": true,
+    "refinement": true,
+    "nonnegative": true,
+    "mass_balance": true
+  },
+  "passed": true
+}

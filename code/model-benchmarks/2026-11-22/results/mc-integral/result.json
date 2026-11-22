@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "case": "mc-integral",
+  "input_sha256": "a4a88a51f4b89bc972cd6f9fb81662333ab992647b6355c5e705c966d4c3042f",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2"
+  },
+  "termination": "fixed_budget_completed",
+  "metrics": {
+    "rms_errors": [
+      0.010114995599710104,
+      0.004580537738763795,
+      0.002316563504415484
+    ],
+    "rms_over_theory": [
+      1.0856552521470262,
+      0.9832698007083858,
+      0.994558746253086
+    ],
+    "coverage_95": [
+      0.921875,
+      0.96484375,
+      0.9375
+    ],
+    "refinement_ratio": 0.22902269027995195,
+    "replications": 256
+  },
+  "checks": {
+    "rms_scale": true,
+    "statistical_refinement": true,
+    "interval_calibration": true
+  },
+  "passed": true
+}

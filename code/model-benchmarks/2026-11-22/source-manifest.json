@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "family": "model-benchmarks",
+  "edition": "2026-11-22",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "4b70b0280e75ad25f575616d58012df2f5196e622fb3040df1b1754b8ac25762",
+    "inputs/gbm-sde.json": "5ecd024be23c56e943bae1d33a0b9ea335b27de994fad86bb03df8caff0152bc",
+    "inputs/logistic-growth.json": "17fba8b04671f6d5e28e5d296c221ce90377a0947c0c96a80d5d4c3a81fa07cb",
+    "inputs/mc-integral.json": "a4a88a51f4b89bc972cd6f9fb81662333ab992647b6355c5e705c966d4c3042f",
+    "inputs/sir-epidemic.json": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327",
+    "models.py": "ef7e70e199a3e0ad91a755ce7906b92782b01bebff7144a11288b86ac2097db4",
+    "reference_sir.py": "0067afb0179c93677e1869f8e39d3cccd203ec0a7f2097e94a9bb2b95ea50bb2",
+    "references/sir.json": "9f36f31aac2e4c3c37923c26fb355430e4eacba42bfe55bc597846dbc8c028d5",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/gbm-sde/preview.png": "461bf8078b5c177d33dd8242126da6ede72e71f9a190478c636b61aff3308c05",
+    "results/gbm-sde/result.json": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126",
+    "results/gbm-sde/solution.csv": "5d551dec0e9ad699110e23c8ecc4aff157b917bef2df95877024671f0b8636f3",
+    "results/logistic-growth/preview.png": "9c758ad2a09ed78fb7c1624ce1e30f56d02e35deb25c0956e884ae1982819080",
+    "results/logistic-growth/result.json": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
+    "results/logistic-growth/solution.csv": "bff920222491f9c2622b527b9495ef25c497df1c14a6009656fa581be08e2104",
+    "results/mc-integral/preview.png": "4cf13e6caa8b077ba142098a66b8a065a8fae2aee3f24f06fcd8d0ef1bce6cf9",
+    "results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",
+    "results/mc-integral/solution.csv": "97031d8a979afc163e107629caaff2e412e70fe6647e1016ef503b0cfa8478e7",
+    "results/sir-epidemic/preview.png": "4ff50b55a65540eea559f089a1585c9fd894a15f2d1be47d03bfecbfab099c41",
+    "results/sir-epidemic/result.json": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
+    "results/sir-epidemic/solution.csv": "a237ae9303fa39749ea9cb59c1c4a47b2a369afe0aac14b0324949ab3c592b25",
+    "run.py": "27047e28a80065af820b20e0ee2e76811cecb54bab62c14483a44a45b1fc050f",
+    "test_models.py": "917d70041b12e62512d5430c4d5b1040bc9010999f7c883d05eafe1a51b373fc"
+  },
+  "public_base_url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/",
+  "scope": "Four dimensionless educational fixed-input cases; no general biological or stochastic solver certification."
+}
