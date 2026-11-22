@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "id": "poisson-2d-localized",
+  "name": {
+    "ja": "2次元Poisson・局在ソース",
+    "en": "2D Poisson / localized source"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-localized/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-localized/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-localized/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/poisson-comparison/localized-63-fields.png",
+    "sha256": "27aae7390f2a8ba4560de1b57fa56f2aa24c256423f37e8cd6ac39d3bc443716",
+    "width": 1375,
+    "height": 562,
+    "caption": {
+      "ja": "保存済み局在ソースと離散Poisson解。",
+      "en": "Stored localized forcing and discrete Poisson solution."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#poisson-2d-localized",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#poisson-2d-localized-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "局在ソースに対する離散直接解と真の残差を基準に反復法を比較します。公開資料にこのソースの閉形式連続解は添付されていません。",
+    "en": "Compare iterations against a discrete direct solution and true residual for the localized source. This publication attaches no closed-form continuum solution for that source."
+  },
+  "methods": [
+    {
+      "id": "jacobi-iteration",
+      "name": {
+        "ja": "Jacobi反復",
+        "en": "Jacobi iteration"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jacobi-iteration/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jacobi-iteration/?lang=en"
+      }
+    },
+    {
+      "id": "rbgs",
+      "name": {
+        "ja": "赤黒Gauss–Seidel法",
+        "en": "Red-black Gauss–Seidel"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rbgs/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rbgs/?lang=en"
+      }
+    },
+    {
+      "id": "sor",
+      "name": {
+        "ja": "逐次過緩和法／SOR",
+        "en": "Successive over-relaxation / SOR"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sor/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sor/?lang=en"
+      }
+    },
+    {
+      "id": "cg",
+      "name": {
+        "ja": "共役勾配法",
+        "en": "Conjugate gradients"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=en"
+      }
+    },
+    {
+      "id": "multigrid",
+      "name": {
+        "ja": "幾何マルチグリッドVサイクル",
+        "en": "Geometric multigrid V-cycle"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=en"
+      }
+    },
+    {
+      "id": "thomas",
+      "name": {
+        "ja": "Thomas法／三重対角消去",
+        "en": "Thomas tridiagonal elimination"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en"
+      }
+    },
+    {
+      "id": "fourier",
+      "name": {
+        "ja": "Fourier微分と時間発展",
+        "en": "Fourier differentiation and evolution"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fourier/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

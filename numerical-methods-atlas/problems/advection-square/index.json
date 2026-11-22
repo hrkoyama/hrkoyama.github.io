@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "id": "advection-square",
+  "name": {
+    "ja": "周期矩形波の線形移流",
+    "en": "Periodic square-wave advection"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-square.png",
+    "sha256": "62bacd52d45e0d6565506a14eda09f70add1c364fdd111584e867184c5907544",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+      "en": "Stored CIP, linear-interpolation and exact advection profiles."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#advection-square",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#advection-square-en"
+  },
+  "equations": [
+    {
+      "id": "linear-advection",
+      "name": {
+        "ja": "線形移流",
+        "en": "Linear advection"
+      },
+      "formula": [
+        "\\partial_t u+a\\,\\partial_xu=0"
+      ],
+      "note": {
+        "ja": "一定速度aによる輸送。波形の移動、数値拡散、安定性へ。",
+        "en": "Transport at constant speed a: translation, numerical diffusion and stability."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "sine-advection",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "移流／正弦波の平行移動",
+        "en": "Advection / sine translation"
+      },
+      "formula": "u = 1 + 0.25 sin[2π(x−t)]",
+      "assumptions": {
+        "ja": "単位区間の周期境界、一定移流速度1。",
+        "en": "Periodic unit interval; constant advection speed 1."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "方程式と周期輸送は共通ですが、参照カードは滑らかな正弦初期値であり、この矩形初期値の参照値ではありません。",
+        "en": "The equation and periodic transport are shared, but the reference uses smooth sine initial data and is not a numerical reference for this square profile."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "矩形波を周期的に平行移動した不連続解が基準です。参照解一覧の正弦波は同じ移流モデルの別初期値です。",
+    "en": "The standard is periodic translation of the discontinuous square profile. The library sine wave uses different initial data for the same transport model."
+  },
+  "methods": [
+    {
+      "id": "cip",
+      "name": {
+        "ja": "3次Hermite CIP",
+        "en": "Cubic-Hermite CIP"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cip/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cip/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "minmod",
+      "name": {
+        "ja": "Minmod",
+        "en": "Minmod"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+      }
+    },
+    {
+      "id": "superbee",
+      "name": {
+        "ja": "Superbee",
+        "en": "Superbee"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/superbee/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/superbee/?lang=en"
+      }
+    },
+    {
+      "id": "mc",
+      "name": {
+        "ja": "単調中心勾配制限／MC",
+        "en": "Monotonized central / MC"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mc/?lang=en"
+      }
+    },
+    {
+      "id": "van-leer",
+      "name": {
+        "ja": "Van Leer勾配制限",
+        "en": "Van Leer limiter"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/van-leer/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/van-leer/?lang=en"
+      }
+    },
+    {
+      "id": "van-albada",
+      "name": {
+        "ja": "切り詰めたVan Albada勾配制限",
+        "en": "Clipped Van Albada limiter"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/van-albada/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/van-albada/?lang=en"
+      }
+    },
+    {
+      "id": "upwind",
+      "name": {
+        "ja": "風上差分（upwind）",
+        "en": "Upwind finite differences"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=en"
+      }
+    },
+    {
+      "id": "tvb",
+      "name": {
+        "ja": "TVB修正minmod",
+        "en": "TVB modified minmod"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/tvb/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/tvb/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "保存済みCIPおよびリミター比較の矩形波ケースで使われる手法です。",
+    "en": "Methods used by the stored square-wave CIP and limiter comparisons."
+  },
+  "executions": [],
+  "code_checks": []
+}

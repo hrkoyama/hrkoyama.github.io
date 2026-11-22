@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "cylinder-forebody",
+  "name": {
+    "ja": "円柱前面の弓形衝撃波",
+    "en": "Cylinder-forebody bow shock"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/shock-expansion/forebody-48-0-density.png",
+    "sha256": "a5889e8683e3bbb451234074da81773e32210d7d349523d2611fac2c90414595",
+    "width": 1755,
+    "height": 1215,
+    "caption": {
+      "ja": "保存済み円柱前面の密度比較。有限時刻の結果で、定常収束の認定ではありません。",
+      "en": "Stored finite-time forebody density comparison; not steady-state certification."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#cylinder-forebody",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#cylinder-forebody-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "曲面適合格子上の保存済み数値場、壁面圧力、2格子・擾乱ありなしの履歴が基準資料です。定常収束やカーバンクル消失の認定ではありません。",
+    "en": "Reference material consists of stored body-fitted fields, wall pressure and histories for two grids with and without perturbations. It certifies neither a steady state nor elimination of carbuncles."
+  },
+  "methods": [
+    {
+      "id": "roe",
+      "name": {
+        "ja": "Roe法",
+        "en": "Roe"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+      }
+    },
+    {
+      "id": "hlle",
+      "name": {
+        "ja": "HLLE／Einfeldt波速",
+        "en": "HLLE / Einfeldt wave speeds"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+      }
+    },
+    {
+      "id": "ausm",
+      "name": {
+        "ja": "AUSM系列の流束分割",
+        "en": "AUSM-family flux splitting"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ausm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ausm/?lang=en"
+      }
+    },
+    {
+      "id": "rotated-hybrid",
+      "name": {
+        "ja": "回転ハイブリッド・リーマンソルバー",
+        "en": "Rotated-hybrid Riemann solver"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rotated-hybrid/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rotated-hybrid/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "保存された曲面前方衝撃波の流束比較です。Rotated項目は方向別HLLE/Roeの教育用実験で、最適化Rotated-RHLLの完成検証ではありません。",
+    "en": "Flux comparisons stored for the body-fitted bow shock. The rotated entry is the educational directional HLLE/Roe experiment, not completed validation of optimized Rotated-RHLL."
+  },
+  "executions": [],
+  "code_checks": []
+}

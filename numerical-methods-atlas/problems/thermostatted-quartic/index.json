@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "id": "thermostatted-quartic",
+  "name": {
+    "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+    "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+    "sha256": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "width": 1690,
+    "height": 936,
+    "caption": {
+      "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+      "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#thermostatted-quartic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#thermostatted-quartic-en"
+  },
+  "equations": [
+    {
+      "id": "hamiltonian",
+      "name": {
+        "ja": "Hamilton系・振動子",
+        "en": "Hamiltonian systems and oscillators"
+      },
+      "formula": [
+        "\\dot q=\\frac{\\partial H}{\\partial p},\\qquad\\dot p=-\\frac{\\partial H}{\\partial q}",
+        "H=\\frac{p^2}{2}+V(q)"
+      ],
+      "note": {
+        "ja": "正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。",
+        "en": "Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "Hamilton系へのリンクは非調和ポテンシャルの力学部分です。確率温度浴を加えたCSVR・Langevinの分布検証を行います。",
+    "en": "The Hamiltonian link identifies the anharmonic mechanical part; validation concerns distributions with added stochastic CSVR/Langevin heat baths."
+  },
+  "formulations": [
+    {
+      "id": "supplement-csvr-langevin-quartic",
+      "name": {
+        "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+        "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "U(q)=\\sum_{i=1}^2\\left(\\frac{\\omega_i^2q_i^2}{2}+\\frac{\\lambda q_i^4}{4}\\right),\\quad\\rho(q)=Z^{-1}e^{-U(q)/T}",
+        "F_H(E)=\\int_{U(q)\\le E}\\rho(q)\\left[1-e^{-(E-U(q))/T}\\right]dq,\\qquad N_f=2",
+        "\\mathbb E H=\\mathbb E K+\\mathbb E U,\\quad\\operatorname{Var}H=\\operatorname{Var}K+\\operatorname{Var}U"
+      ],
+      "note": {
+        "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+        "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "非調和ポテンシャルのBoltzmann分布を独立数値求積し、CSVR・Langevinの有限刻み分布とモーメントを比較します。厳密な確率軌道の比較ではありません。",
+    "en": "Independently integrate the anharmonic Boltzmann distribution and compare finite-step CSVR/Langevin distributions and moments, not exact stochastic trajectories."
+  },
+  "methods": [
+    {
+      "id": "stochastic-velocity-rescaling",
+      "name": {
+        "ja": "確率的速度リスケーリング（CSVR）",
+        "en": "Stochastic velocity rescaling (CSVR)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en"
+      }
+    },
+    {
+      "id": "langevin-thermostat",
+      "name": {
+        "ja": "Langevinサーモスタット",
+        "en": "Langevin thermostat"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "csvr-langevin-quartic",
+      "kind": "supplement",
+      "name": {
+        "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+        "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+      },
+      "method_ids": [
+        "stochastic-velocity-rescaling",
+        "langevin-thermostat"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en"
+      },
+      "scope": {
+        "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+        "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+      },
+      "assumptions": {
+        "ja": "m=kB=T=1、ω=(1,1.7)、λ=0.2、U=Σ(ω²q²/2+λq⁴/4)。正準8192複製、温度摂動4096複製、t=20、τ=0.25/1、h=0.1/0.05、lag=0/0.5/1/2/4。",
+        "en": "m=kB=T=1, omega=(1,1.7), lambda=0.2, U=sum(omega²q²/2+lambda q⁴/4). Use 8192 canonical and 4096 heated replicas, t=20, tau=0.25/1, h=0.1/0.05, lags 0/0.5/1/2/4."
+      },
+      "limits": {
+        "ja": "特定の分離可能な四次2自由度・固定seedだけの小さな例です。Hを調和系のGamma分布と扱いません。全系相関には独立な厳密動力学参照がなく、相関一致や統計誤差に隠れる時間次数を合格主張しません。成熟分子系・輸送係数・量子・第一原理MDの検証ではありません。",
+        "en": "A small example for one separable two-mode quartic potential and fixed seeds. H is not treated as harmonic Gamma. No independent exact full-system dynamical reference is claimed, and neither matching correlations nor time order hidden by sampling noise is an acceptance claim. Molecular transport, quantum and ab initio MD are outside scope."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。",
+        "en": "Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

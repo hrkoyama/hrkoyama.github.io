@@ -6,6 +6,7 @@ export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowe
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
 const executionIntents=new Set(['実行','コード','入力','検証','再現','ダウンロード','run','code','execute','execution','runnable','reproduce','validation','input','download','example']);
 const kindLabels={
+ problem:{ja:'テスト問題',en:'Test problem'},
  connection:{ja:'分野間のつながり',en:'Cross-field connection'},
  'execution-example':{ja:'実行例',en:'Runnable example'},
  method:{ja:'手法',en:'Method'},
@@ -63,7 +64,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=7a391f8c4278',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=8c0f0f032199',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

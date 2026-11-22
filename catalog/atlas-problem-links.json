@@ -1,0 +1,1927 @@
+{
+  "schema_version": 1,
+  "scope": {
+    "ja": "既存82問題の図・モデル・参照資料・実証された手法を結ぶ編集用対応表です。同じ初期値・境界・パラメータを持つ参照をsame-problem、条件や表示が異なる同系統の例をrelated-modelと区別します。実行・コードの公開範囲は既存の共通・補助実行台帳から別に解決し、この表はコード公開状態・科学計算の合否・問題数を変更しません。",
+    "en": "Editorial links connecting figures, models, reference material and demonstrated methods for the existing 82 problems. same-problem requires matching initial/boundary data and parameters; related-model identifies a family with different conditions or presentation. Execution/code scope is resolved separately from existing common/supplemental registries; this table changes no code status, scientific acceptance or problem counts."
+  },
+  "problems": [
+    {
+      "id": "advection-sine",
+      "equation_ids": [
+        "linear-advection"
+      ],
+      "reference_note": {
+        "ja": "周期正弦波の解析的な平行移動が基準です。問題台帳には振幅や離散表現の異なる比較を統合しており、参照解一覧の振幅0.25を全実行例に流用しません。",
+        "en": "Analytic translation of a periodic sine is the standard. The problem merges different amplitudes and representations; the reference-library amplitude 0.25 is not the input for every execution example."
+      },
+      "references": [
+        {
+          "id": "sine-advection",
+          "relation": "related-model",
+          "note": {
+            "ja": "同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+            "en": "Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+          }
+        }
+      ],
+      "method_ids": [
+        "upwind"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "advection-square",
+      "equation_ids": [
+        "linear-advection"
+      ],
+      "reference_note": {
+        "ja": "矩形波を周期的に平行移動した不連続解が基準です。参照解一覧の正弦波は同じ移流モデルの別初期値です。",
+        "en": "The standard is periodic translation of the discontinuous square profile. The library sine wave uses different initial data for the same transport model."
+      },
+      "references": [
+        {
+          "id": "sine-advection",
+          "relation": "related-model",
+          "note": {
+            "ja": "方程式と周期輸送は共通ですが、参照カードは滑らかな正弦初期値であり、この矩形初期値の参照値ではありません。",
+            "en": "The equation and periodic transport are shared, but the reference uses smooth sine initial data and is not a numerical reference for this square profile."
+          }
+        }
+      ],
+      "method_ids": [
+        "cip",
+        "muscl",
+        "minmod",
+        "superbee",
+        "mc",
+        "van-leer",
+        "van-albada",
+        "upwind",
+        "tvb"
+      ],
+      "method_note": {
+        "ja": "保存済みCIPおよびリミター比較の矩形波ケースで使われる手法です。",
+        "en": "Methods used by the stored square-wave CIP and limiter comparisons."
+      }
+    },
+    {
+      "id": "burgers-shock",
+      "equation_ids": [
+        "burgers"
+      ],
+      "reference_note": {
+        "ja": "左右状態1と0、x=0.5の段差から生じるエントロピー衝撃波の解析解と比較します。有限体積誤差では点値とセル平均を区別します。",
+        "en": "Compare with the analytic entropy shock for states 1 and 0 separated at x=0.5. Distinguish point values from conserved cell averages in finite-volume errors."
+      },
+      "references": [
+        {
+          "id": "burgers-shock",
+          "relation": "related-model",
+          "note": {
+            "ja": "左右状態(1,0)、段差位置0.5、端点継続が一致します。点値とセル平均の評価は区別します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "States (1,0), jump position 0.5 and endpoint continuation match; distinguish point and cell-average evaluation. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "godunov",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "burgers-fan",
+      "equation_ids": [
+        "burgers"
+      ],
+      "reference_note": {
+        "ja": "左右状態0と1、x=0.5の段差から広がるエントロピー希薄波の解析解が基準です。",
+        "en": "The standard is the analytic entropy rarefaction for states 0 and 1 separated at x=0.5."
+      },
+      "references": [
+        {
+          "id": "burgers-fan",
+          "relation": "related-model",
+          "note": {
+            "ja": "左右状態(0,1)、段差位置0.5、端点継続が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "States (0,1), jump position 0.5 and endpoint continuation match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "godunov",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "traffic-jam",
+      "equation_ids": [
+        "traffic"
+      ],
+      "reference_note": {
+        "ja": "密度0.3と0.9のRiemann問題のエントロピー衝撃波を解析的に評価します。車の進行方向と波の速度を区別します。",
+        "en": "Analytically evaluate the entropy shock for Riemann densities 0.3 and 0.9. Distinguish vehicle motion from the shock speed."
+      },
+      "references": [
+        {
+          "id": "traffic-jam",
+          "relation": "related-model",
+          "note": {
+            "ja": "流束ρ(1-ρ)、左右密度(0.3,0.9)、段差位置0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Flux ρ(1-ρ), left/right densities (0.3,0.9) and jump position 0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "godunov",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "traffic-fan",
+      "equation_ids": [
+        "traffic"
+      ],
+      "reference_note": {
+        "ja": "密度0.9と0.1のRiemann問題に対する解析的なエントロピー希薄波が基準です。",
+        "en": "The standard is the analytic entropy rarefaction for Riemann densities 0.9 and 0.1."
+      },
+      "references": [
+        {
+          "id": "traffic-fan",
+          "relation": "related-model",
+          "note": {
+            "ja": "流束ρ(1-ρ)、左右密度(0.9,0.1)、段差位置0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Flux ρ(1-ρ), left/right densities (0.9,0.1) and jump position 0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "godunov",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "heat-periodic",
+      "equation_ids": [
+        "heat"
+      ],
+      "reference_note": {
+        "ja": "周期区間の単一Fourierモードの指数減衰が解析基準です。保存図の振幅0.25・粘性0.02の条件を、別周波数のコード検査と区別します。",
+        "en": "Analytic exponential decay of a periodic Fourier mode is the standard. Distinguish the saved figure's amplitude 0.25 and viscosity 0.02 from code checks using other frequencies."
+      },
+      "references": [
+        {
+          "id": "sine-heat",
+          "relation": "related-model",
+          "note": {
+            "ja": "保存ギャラリーの周期[0,1]、1+0.25sin(2πx)、ν=0.02、最終時刻1が一致します。別周波数のコード検査への一致は意味しません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "The saved gallery matches periodic [0,1], 1+0.25sin(2πx), ν=0.02 and final time one; this does not assert a match to separate-frequency code checks. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "centered-difference",
+        "forward-euler"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "heat-dirichlet",
+      "equation_ids": [
+        "heat"
+      ],
+      "reference_note": {
+        "ja": "零Dirichlet境界でのsin(πx)の指数減衰と格子収束を確認します。周期境界・平均値1の参照解一覧の熱モードとは別条件です。",
+        "en": "Check exponential decay of sin(πx) with zero Dirichlet endpoints and mesh refinement. The library heat mode instead has periodic boundaries and mean one."
+      },
+      "references": [
+        {
+          "id": "sine-heat",
+          "relation": "related-model",
+          "note": {
+            "ja": "こちらは零Dirichlet・sin(πx)、参照カードは周期境界・1+0.25sin(2πx)・ν=0.02です。",
+            "en": "This test has zero Dirichlet endpoints and sin(πx); the card has periodic boundaries, 1+0.25sin(2πx) and ν=0.02."
+          }
+        }
+      ],
+      "method_ids": [
+        "centered-difference",
+        "forward-euler",
+        "backward-euler",
+        "crank-nicolson",
+        "thomas"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "sod",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "理想気体γ=1.4の標準Sod初期値に対する半解析的Riemann解が基準です。同じ問題でも点値・保存変数のセル平均・格子と誤差ノルムは同一とは限りません。",
+        "en": "Use the semi-analytic Riemann solution for standard Sod data with γ=1.4. A matching problem does not imply identical point/cell-average sampling, grid or error norm."
+      },
+      "references": [
+        {
+          "id": "euler-sod",
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "godunov",
+        "hllc"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "lax",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "左右状態(0.445,0.698,3.528)と(0.5,0,0.571)、γ=1.4の半解析的Riemann解が基準です。",
+        "en": "Use the semi-analytic Riemann solution for primitive states (0.445,0.698,3.528) and (0.5,0,0.571), γ=1.4."
+      },
+      "references": [
+        {
+          "id": "euler-lax",
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=1.4、左右(0.445,0.698,3.528)/(0.5,0,0.571)、[-5,5]、x0=0、t=1.3が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "γ=1.4, states (0.445,0.698,3.528)/(0.5,0,0.571), [-5,5], x0=0 and t=1.3 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "muscl",
+        "hllc"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "shu-osher",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "保存された高解像度WENO-Z数値参照と、別配布の独立Athena++参照を区別します。どちらもこの衝撃波・密度波相互作用の厳密解という主張ではありません。",
+        "en": "Distinguish the stored high-resolution WENO-Z numerical reference from the separately distributed independent Athena++ reference. Neither is claimed as an exact solution of this shock–density-wave interaction."
+      },
+      "references": [],
+      "method_ids": [
+        "weno-z",
+        "muscl"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      }
+    },
+    {
+      "id": "entropy-1d",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "一定速度・圧力のもとで正弦状密度を運ぶEulerエントロピー波の解析解と比較します。専用の参照解一覧カードは未収録です。",
+        "en": "Compare with analytic translation of a sinusoidal Euler entropy wave at constant velocity and pressure. No dedicated card is included in the reference-solution library."
+      },
+      "references": [],
+      "method_ids": [
+        "muscl",
+        "weno-js"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "moving-contact",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "一定圧力・速度の周期接触不連続の解析的な平行移動が基準です。Sodの波構造全体を代用しません。",
+        "en": "The standard is analytic translation of a periodic contact discontinuity at constant pressure and velocity. The complete Sod wave pattern is not a substitute."
+      },
+      "references": [],
+      "method_ids": [
+        "muscl",
+        "ppm",
+        "weno-js",
+        "weno-z",
+        "characteristic-reconstruction"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "strong-shock",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "この強い圧力段差の初期値を使った半解析的Riemann参照を保存しています。参照解一覧の標準Sodとは初期値が異なります。",
+        "en": "A semi-analytic Riemann reference is stored for this strong pressure jump. Its initial states differ from the library's standard Sod problem."
+      },
+      "references": [],
+      "method_ids": [
+        "ppm",
+        "hllc",
+        "hlle",
+        "ausm"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "double-rarefaction",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "左右状態(1,-2,0.4)と(1,2,0.4)、γ=1.4の低密度中央状態を持つ半解析的Riemann解が基準です。真空生成の別初期値とは区別します。",
+        "en": "Use the semi-analytic Riemann solution for states (1,-2,0.4) and (1,2,0.4), γ=1.4, with a low-density middle state. Distinguish the separate vacuum-generating data."
+      },
+      "references": [
+        {
+          "id": "euler-double-rarefaction",
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "godunov",
+        "hlle"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "dam-break",
+      "equation_ids": [
+        "shallow-water"
+      ],
+      "reference_note": {
+        "ja": "水深2と1、静止状態、g=1の湿潤河床Riemann解を半解析的に評価します。乾燥河床解の収録は、この有限体積コードの乾燥状態対応を意味しません。",
+        "en": "Use the semi-analytic wet-bed Riemann solution for depths 2 and 1, initially at rest, g=1. Library dry-bed formulas do not establish dry-state support in this finite-volume code."
+      },
+      "references": [
+        {
+          "id": "swe-dam-break",
+          "relation": "related-model",
+          "note": {
+            "ja": "湿潤河床、g=1、左右水深(2,1)・速度0、x0=0.5が一致します。乾燥河床例への対応ではありません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Wet bed, g=1, depths (2,1), zero velocities and x0=0.5 match; this is not a dry-bed correspondence. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "muscl",
+        "minmod",
+        "ssprk33",
+        "hll"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "isothermal-jump",
+      "equation_ids": [
+        "isothermal"
+      ],
+      "reference_note": {
+        "ja": "音速1、静止した左右密度1と0.125の等温Riemann解が半解析的な基準です。Eulerのエネルギー方程式を含むSodとは別モデルです。",
+        "en": "Use the semi-analytic isothermal Riemann solution with sound speed one and stationary densities 1 and 0.125. This differs from Sod with an Euler energy equation."
+      },
+      "references": [
+        {
+          "id": "isothermal-jump",
+          "relation": "related-model",
+          "note": {
+            "ja": "p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "p=ρ, sound speed one, densities (1,0.125), zero velocities and x0=0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ],
+      "method_ids": [
+        "muscl",
+        "minmod",
+        "ssprk33",
+        "hll"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "double-mach",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "保存済みの2次元Mach-10反射計算と境界条件・正値性を確認する教育用ベンチマークです。公開例には全場の厳密解オーバーレイを設けていません。",
+        "en": "This is a stored educational 2D Mach-10 reflection benchmark with documented boundaries and positivity. The published example supplies no exact full-field overlay."
+      },
+      "references": [],
+      "method_ids": [
+        "godunov",
+        "hll"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "nasa-wedge",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "斜め衝撃波の弱い枝に対する衝撃波角・状態比の解析関係と、格子収束を用います。Mach数別の条件は統合せず確認します。",
+        "en": "Use analytic weak-branch oblique-shock angles and state ratios together with mesh refinement. Inspect the conditions separately for each Mach-number variant."
+      },
+      "references": [],
+      "method_ids": [
+        "hll",
+        "muscl",
+        "minmod",
+        "mc"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "forward-step",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "段差回りの保存済み数値場・格子比較・時間履歴を参照します。この公開例に全場の厳密解は添付されていません。",
+        "en": "Use saved numerical fields, grid comparisons and time histories around the step. This publication does not attach an exact solution for the entire field."
+      },
+      "references": [],
+      "method_ids": [
+        "hll",
+        "muscl",
+        "minmod",
+        "mc"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "entropy-2d",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "速度(0.7,0.3)・圧力一定の2次元周期正弦密度波について、解析的な保存変数セル平均と格子収束を確認します。",
+        "en": "Check analytic conserved cell averages and mesh refinement for the 2D periodic sine-density wave with velocity (0.7,0.3) and constant pressure."
+      },
+      "references": [],
+      "method_ids": [
+        "hll",
+        "muscl",
+        "minmod",
+        "mc"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "cylinder-forebody",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "曲面適合格子上の保存済み数値場、壁面圧力、2格子・擾乱ありなしの履歴が基準資料です。定常収束やカーバンクル消失の認定ではありません。",
+        "en": "Reference material consists of stored body-fitted fields, wall pressure and histories for two grids with and without perturbations. It certifies neither a steady state nor elimination of carbuncles."
+      },
+      "references": [],
+      "method_ids": [
+        "roe",
+        "hlle",
+        "ausm",
+        "rotated-hybrid"
+      ],
+      "method_note": {
+        "ja": "保存された曲面前方衝撃波の流束比較です。Rotated項目は方向別HLLE/Roeの教育用実験で、最適化Rotated-RHLLの完成検証ではありません。",
+        "en": "Flux comparisons stored for the body-fitted bow shock. The rotated entry is the educational directional HLLE/Roe experiment, not completed validation of optimized Rotated-RHLL."
+      }
+    },
+    {
+      "id": "odd-even",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "Mach-6定常垂直衝撃波の解析的下流状態と、種を与えた行デカップリング指標・無擾乱対照を比較します。一般的な横方向不安定性全体の検証ではありません。",
+        "en": "Compare analytic downstream states of a stationary Mach-6 normal shock with seeded row-decoupling diagnostics and unperturbed controls. This is not validation of every transverse instability."
+      },
+      "references": [],
+      "method_ids": [
+        "roe",
+        "entropy-fix",
+        "hll",
+        "hlle",
+        "ausm"
+      ],
+      "method_note": {
+        "ja": "保存された垂直衝撃波診断の流束とRoe音響エントロピー平滑化です。圧力センサー混合法をRotated-RHLLと同一視しません。",
+        "en": "Fluxes and Roe acoustic entropy smoothing used in the stored normal-shock diagnostic. The pressure-sensor blend is not identified as Rotated-RHLL."
+      }
+    },
+    {
+      "id": "isentropic-vortex",
+      "equation_ids": [
+        "euler"
+      ],
+      "reference_note": {
+        "ja": "滑らかな周期等エントロピー渦の解析的移動解と格子・時間刻みの収束を確認します。非圧縮Taylor–Green渦の参照式とは別問題です。",
+        "en": "Check analytic transport of a smooth periodic isentropic vortex with space/time refinement. This differs from the incompressible Taylor–Green reference."
+      },
+      "references": [],
+      "method_ids": [
+        "keep",
+        "rk4"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "orszag-tang",
+      "equation_ids": [
+        "mhd"
+      ],
+      "reference_note": {
+        "ja": "保存則・各離散配置に対応する磁場発散と、別実行のAthena++数値参照を確認します。この非線形MHD問題の厳密解を提供するものではありません。",
+        "en": "Check conservation, divergence appropriate to each discrete layout, and separately run Athena++ numerical references. These are not exact solutions of the nonlinear MHD problem."
+      },
+      "references": [],
+      "method_ids": [
+        "ct",
+        "glm"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      }
+    },
+    {
+      "id": "brio-wu",
+      "equation_ids": [
+        "mhd"
+      ],
+      "reference_note": {
+        "ja": "同一コードの細格子数値参照と独立Athena++参照を区別します。共平面γ=2のBrio–Wuについて、厳密解や普遍的一意性を主張しません。",
+        "en": "Distinguish a finer-grid reference from the same code and an independent Athena++ reference. For coplanar γ=2 Brio–Wu, no exact solution or universal uniqueness is claimed."
+      },
+      "references": [],
+      "method_ids": [
+        "hlld",
+        "muscl"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      }
+    },
+    {
+      "id": "circular-alfven",
+      "equation_ids": [
+        "mhd"
+      ],
+      "reference_note": {
+        "ja": "円偏光Alfvén波の解析解を、一定の全エネルギーを含む保存変数セル平均で評価します。",
+        "en": "Evaluate the analytic circularly polarized Alfvén wave using conserved cell averages, including its constant total energy."
+      },
+      "references": [],
+      "method_ids": [
+        "hlld",
+        "hlle",
+        "muscl"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "magnetic-loop",
+      "equation_ids": [
+        "mhd"
+      ],
+      "reference_note": {
+        "ja": "弱磁場ループが1周期で戻る初期場との誤差、磁気エネルギー、配置固有の磁場発散を確認します。任意強度のMHDループの厳密解を主張しません。",
+        "en": "Check return error against the initial weak-field loop, magnetic energy and layout-specific divergence after one transit. No exact solution is claimed for arbitrary finite-strength MHD loops."
+      },
+      "references": [],
+      "method_ids": [
+        "ct",
+        "glm",
+        "hlld",
+        "hlle"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "taylor-green",
+      "equation_ids": [
+        "navier-stokes"
+      ],
+      "reference_note": {
+        "ja": "2次元周期Taylor–Green渦の速度・圧力の解析解、粘性減衰と離散発散を確認します。参照解一覧の表示はy=π/4の断面であり、2次元計算全体のデータではありません。",
+        "en": "Check analytic 2D periodic Taylor–Green velocity/pressure, viscous decay and discrete divergence. The library display is a y=π/4 slice rather than the full 2D computed field."
+      },
+      "references": [
+        {
+          "id": "taylor-green",
+          "relation": "related-model",
+          "note": {
+            "ja": "同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。",
+            "en": "The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays."
+          }
+        }
+      ],
+      "method_ids": [
+        "projection"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "lbm-shear",
+      "equation_ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "reference_note": {
+        "ja": "低Mach数の周期せん断波について、粘性Fourier減衰から測定した粘性と収束を確認します。熱方程式の参照カードは同型の減衰の関連例です。",
+        "en": "For a low-Mach periodic shear wave, infer viscosity from Fourier decay and check refinement. The heat reference card is a related scalar decay model."
+      },
+      "references": [
+        {
+          "id": "sine-heat",
+          "relation": "related-model",
+          "note": {
+            "ja": "周期せん断速度の線形粘性減衰とスカラー熱モードは同型ですが、LBMの格子単位・波数・粘性と参照カードのν=0.02は異なります。",
+            "en": "Linear viscous shear decay and scalar heat modes have the same form, but LBM lattice units, wavenumber and viscosity differ from the card’s ν=0.02."
+          }
+        }
+      ],
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "格子BGKが計算モデル、非圧縮Navier–Stokesは低Mach数で比較する巨視的な減衰モデルです。",
+        "en": "Lattice BGK is the computed model; incompressible Navier–Stokes supplies the low-Mach macroscopic decay comparison."
+      }
+    },
+    {
+      "id": "channel-poiseuille",
+      "equation_ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "reference_note": {
+        "ja": "半格子bounce-back壁とGuo体積力を使う格子単位の放物線速度が解析基準です。参照解一覧の単位幅・G=1の流路とは駆動力と長さが異なります。",
+        "en": "The analytic standard is the lattice-unit parabola with halfway bounce-back walls and Guo body forcing. The library unit-width channel with G=1 uses a different length and drive."
+      },
+      "references": [
+        {
+          "id": "poiseuille",
+          "relation": "related-model",
+          "note": {
+            "ja": "放物線形は共通ですが、計算は格子幅ny・目標最大速度0.01に応じた体積力、カードは単位幅・G=1・ν=0.1です。",
+            "en": "Both have parabolic profiles, but the computation uses lattice height ny and forcing for peak speed 0.01; the card uses unit width, G=1 and ν=0.1."
+          }
+        }
+      ],
+      "method_ids": [
+        "d2q9-bgk",
+        "guo",
+        "bounce-back"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "格子BGK・体積力・半格子壁を使う計算と、巨視的な定常非圧縮流路解を結びます。",
+        "en": "Links the lattice-BGK/body-force/halfway-wall calculation to its macroscopic steady incompressible channel solution."
+      }
+    },
+    {
+      "id": "poisson-1d-dirichlet",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "零Dirichlet境界の製造正弦解、複合正弦の比較例、および離散残差で確認します。単一sin(πx)の参照カードが全ソース条件を表すわけではありません。",
+        "en": "Use manufactured sine solutions, the composite-sine comparison and discrete residuals with zero Dirichlet endpoints. The single sin(πx) reference does not represent every forcing variant."
+      },
+      "references": [
+        {
+          "id": "poisson-manufactured",
+          "relation": "related-model",
+          "note": {
+            "ja": "単一sin(πx)の共通固定入力とは一致しますが、保存比較図は複合正弦製造解も含みます。同じ零Dirichletでも全ソースが同一ではありません。",
+            "en": "It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical."
+          }
+        }
+      ],
+      "method_ids": [
+        "thomas"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "poisson-1d-neumann",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "f=-2、外向き微分(0,2)に対するx²から離散平均を除いた解と、Neumann整合条件・平均値ゲージを確認します。",
+        "en": "Check x² with its discrete mean removed for f=-2 and outward derivatives (0,2), together with Neumann compatibility and the mean gauge."
+      },
+      "references": [
+        {
+          "id": "poisson-manufactured",
+          "relation": "related-model",
+          "note": {
+            "ja": "参照カードはsin(πx)・零Dirichlet、こちらはf=-2・純Neumann・平均ゲージです。",
+            "en": "The card is sin(πx) with zero Dirichlet boundaries; this test uses f=-2, pure Neumann data and a mean gauge."
+          }
+        }
+      ],
+      "method_ids": [
+        "thomas"
+      ],
+      "method_note": {
+        "ja": "公開境界値実装のThomas消去と離散平均ゲージを使います。",
+        "en": "Uses Thomas elimination and the discrete mean gauge in the public boundary-value implementation."
+      }
+    },
+    {
+      "id": "poisson-1d-mixed",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "f=-2、左Dirichlet値1・右外向き微分2の製造解u=1+x²と比較します。",
+        "en": "Compare with the manufactured solution u=1+x² for f=-2, left Dirichlet value one and right outward derivative two."
+      },
+      "references": [
+        {
+          "id": "poisson-manufactured",
+          "relation": "related-model",
+          "note": {
+            "ja": "参照カードは零Dirichletの正弦解、こちらは混合境界の1+x²です。",
+            "en": "The card is a zero-Dirichlet sine solution; this test uses mixed boundaries and 1+x²."
+          }
+        }
+      ],
+      "method_ids": [
+        "thomas"
+      ],
+      "method_note": {
+        "ja": "公開の混合境界Poisson検査で使うThomas消去です。",
+        "en": "Thomas elimination used by the public mixed-boundary Poisson check."
+      }
+    },
+    {
+      "id": "poisson-1d-robin",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "f=-exp(x)と指定Robin係数を満たすu=exp(x)が製造解です。境界処理を含む2次収束を確認します。",
+        "en": "Use the manufactured solution u=exp(x) for f=-exp(x) and the specified Robin coefficients; check second-order convergence including boundary treatment."
+      },
+      "references": [
+        {
+          "id": "poisson-manufactured",
+          "relation": "related-model",
+          "note": {
+            "ja": "参照カードは零Dirichletの正弦解、こちらはRobin境界のexp(x)です。",
+            "en": "The card is a zero-Dirichlet sine solution; this test uses Robin boundaries and exp(x)."
+          }
+        }
+      ],
+      "method_ids": [
+        "thomas"
+      ],
+      "method_note": {
+        "ja": "公開のRobin境界Poisson検査で使うThomas消去です。",
+        "en": "Thomas elimination used by the public Robin-boundary Poisson check."
+      }
+    },
+    {
+      "id": "poisson-2d-broad",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "比較資料の滑らかな製造解から選んだ右辺と、分離変数の離散直接解を区別し、連続誤差と代数誤差を確認します。",
+        "en": "Distinguish forcing chosen from the comparison's smooth manufactured solution from a separable discrete direct solution; check continuous and algebraic errors separately."
+      },
+      "references": [
+        {
+          "id": "poisson-manufactured",
+          "relation": "related-model",
+          "note": {
+            "ja": "同じPoisson製造解の考え方ですが、カードは1次元単一正弦、こちらは2次元の滑らかな複合ソースです。",
+            "en": "Both use manufactured Poisson solutions, but the card is a 1D single sine while this test uses a smooth composite 2D source."
+          }
+        }
+      ],
+      "method_ids": [
+        "jacobi-iteration",
+        "rbgs",
+        "sor",
+        "cg",
+        "multigrid",
+        "thomas",
+        "fourier"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "poisson-2d-localized",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "局在ソースに対する離散直接解と真の残差を基準に反復法を比較します。公開資料にこのソースの閉形式連続解は添付されていません。",
+        "en": "Compare iterations against a discrete direct solution and true residual for the localized source. This publication attaches no closed-form continuum solution for that source."
+      },
+      "references": [],
+      "method_ids": [
+        "jacobi-iteration",
+        "rbgs",
+        "sor",
+        "cg",
+        "multigrid",
+        "thomas",
+        "fourier"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "poisson-2d-sine",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。",
+        "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference."
+      },
+      "references": [
+        {
+          "id": "poisson-manufactured",
+          "relation": "related-model",
+          "note": {
+            "ja": "カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+            "en": "The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+          }
+        }
+      ],
+      "method_ids": [
+        "cg",
+        "multigrid",
+        "p1-fem",
+        "amg"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      }
+    },
+    {
+      "id": "poisson-2d-uniform",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "一様右辺・零Dirichletの離散Poisson問題について、保存した多重格子の真の残差と、緩和法との残差低下の違いを確認します。連続厳密解との誤差照合とは区別します。",
+        "en": "For the uniform-source, zero-Dirichlet discrete Poisson problem, check stored true multigrid residuals and compare residual reduction with relaxation. Distinguish this from error against an exact continuum solution."
+      },
+      "references": [],
+      "method_ids": [
+        "multigrid"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "code_evidence": [
+        {
+          "path": "code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
+          "python_symbol": "test_multigrid_removes_smooth_error_faster_than_relaxation",
+          "note": {
+            "ja": "一様右辺f=1・零Dirichlet境界の31×31離散Poisson問題で、多重格子の真の残差と、対応する回数の赤黒Gauss–Seidel緩和の残差低下を比較する既存検査です。",
+            "en": "Existing check for the 31×31 discrete Poisson problem with uniform forcing f=1 and zero Dirichlet boundaries, comparing the true multigrid residual with residual reduction after a corresponding number of red-black Gauss–Seidel sweeps."
+          }
+        }
+      ]
+    },
+    {
+      "id": "poisson-2d-random",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "固定seedのランダム右辺に対する離散残差を直接評価します。残差の小ささを、未知の連続解との誤差と同一視しません。",
+        "en": "Directly evaluate the discrete residual for fixed-seed random forcing. A small residual is not equated with error against an unavailable continuum reference."
+      },
+      "references": [],
+      "method_ids": [
+        "cg"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "poisson-3d-periodic",
+      "equation_ids": [
+        "poisson-laplace",
+        "particle-gravity"
+      ],
+      "reference_note": {
+        "ja": "平均密度を除いた周期Poissonの単一Fourier製造モードと比較します。格子場の検証であり、周期粒子の直接和の検証とは別です。",
+        "en": "Compare against a single manufactured Fourier mode for periodic Poisson with mean density removed. This validates the mesh field rather than a periodic particle direct sum."
+      },
+      "references": [],
+      "method_ids": [
+        "fourier",
+        "pm"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "poisson-1d-periodic",
+      "equation_ids": [
+        "poisson-laplace",
+        "hyperbolic-diffusion"
+      ],
+      "reference_note": {
+        "ja": "周期正弦製造解に向かう補助双曲系の擬似時間残差、零平均と格子収束を確認します。",
+        "en": "Check pseudo-time residual, zero mean and mesh refinement toward the periodic sine manufactured solution of the auxiliary hyperbolic system."
+      },
+      "references": [],
+      "method_ids": [
+        "hyperbolic-diffusion"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "bratu",
+      "equation_ids": [
+        "bratu"
+      ],
+      "reference_note": {
+        "ja": "小さい枝の双曲線関数による連続解と格子収束を確認します。感度・逆問題の追補では微分・目的関数を別に検証し、18件の参照解一覧にBratu専用カードはありません。",
+        "en": "Check a hyperbolic-function continuum solution on the lower branch and mesh refinement. Follow-on sensitivity/inverse examples validate derivatives and objectives separately; Bratu has no card in the 18-case reference library."
+      },
+      "references": [],
+      "method_ids": [
+        "newton",
+        "automatic-differentiation",
+        "adjoint",
+        "optimization"
+      ],
+      "method_note": {
+        "ja": "共通実行例では減衰Newton法で前進の境界値問題を解きます。関連する自動微分・感度・随伴・係数推定の検証は各手法の別配布版へ進めます。感度・逆問題（1個または2個の係数）の入力と判定は別であり、共通の前進実行例に合算しません。",
+        "en": "The common example solves the forward boundary-value problem with damped Newton. Related method pages lead to separate editions for automatic differentiation, sensitivities, adjoints and coefficient fitting. Sensitivity and inverse problems with one or two coefficients have separate inputs and acceptance checks; they are not added to the common forward execution entry."
+      }
+    },
+    {
+      "id": "sparse-advection-diffusion",
+      "equation_ids": [
+        "linear-advection",
+        "heat"
+      ],
+      "reference_note": {
+        "ja": "既知の離散ベクトルからb=A xを構成する製造系で、真の残差と解誤差を確認します。連続移流拡散方程式の厳密解を使った検証とは区別します。",
+        "en": "Use a manufactured discrete system b=A x from a known vector to check true residual and solution error. Distinguish this from verification against an exact continuum advection-diffusion solution."
+      },
+      "references": [],
+      "method_ids": [
+        "gmres",
+        "bicgstab",
+        "jacobi-preconditioner",
+        "ilu0"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "定常の離散移流拡散行列です。リンク先は移流項と拡散項の基礎であり、各単独式がこの行列問題全体を表すわけではありません。",
+        "en": "This is a steady discrete advection-diffusion matrix. Linked entries explain its transport and diffusion components; neither alone represents the complete matrix problem."
+      }
+    },
+    {
+      "id": "isolated-particles",
+      "equation_ids": [
+        "particle-gravity"
+      ],
+      "reference_note": {
+        "ja": "同一粒子・同一Plummer軟化の直接対和が数値基準です。ツリー開き角と多重極次数ごとの力誤差を比較します。",
+        "en": "Direct pair summation with identical particles and Plummer softening is the numerical standard. Compare force errors by tree opening angle and multipole order."
+      },
+      "references": [],
+      "method_ids": [
+        "barnes-hut"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "periodic-particles",
+      "equation_ids": [
+        "particle-gravity",
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "質量保存・質量重み付き内力と、格子PoissonのFourier製造解を確認します。一般の周期粒子直接和との力比較を行ったという意味ではありません。",
+        "en": "Check mass conservation, mass-weighted internal force and a manufactured Fourier solution of mesh Poisson. This does not establish force accuracy against a general periodic particle direct sum."
+      },
+      "references": [],
+      "method_ids": [
+        "cic",
+        "pm"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "isolated-convolution",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "同じ離散核・セル体積・自己項を使う非周期直接畳み込みと、ゼロ埋めFFTの一致を確認します。連続核の離散化誤差とは別です。",
+        "en": "Check zero-padded FFT against nonperiodic direct convolution using the same discrete kernel, cell volumes and self term. This is separate from continuum-kernel discretization error."
+      },
+      "references": [],
+      "method_ids": [
+        "hockney"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "重力Poisson方程式の孤立境界に対応する密度場の畳み込み問題です。粒子の軟化二体力や全方向周期Poissonの例とは区別し、この図ではゼロ埋めFFTと同じ離散核の非周期直接畳み込みを照合します。",
+        "en": "A density-field convolution for the gravitational Poisson equation with isolated boundaries, distinct from softened particle-pair forces or fully periodic Poisson examples. This visual compares zero-padded FFT with nonperiodic direct convolution using the same discrete kernel."
+      }
+    },
+    {
+      "id": "uniform-slab",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "一様平板のφ=2πz²を定数ゲージ調整後に比較し、加速度-4πzと零水平モードを確認します。",
+        "en": "Compare with φ=2πz² after aligning the additive gauge; check acceleration -4πz and the zero horizontal mode."
+      },
+      "references": [],
+      "method_ids": [
+        "slab"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "水平周期・鉛直孤立の重力Poisson問題で、一様平板の零水平モードを扱います。下のPoisson代表式に対し、ここでの右辺は4πGρです。全方向周期境界や軟化粒子系とは区別します。",
+        "en": "A gravitational Poisson problem periodic horizontally and isolated vertically, using the zero horizontal mode of a uniform slab. The right-hand side of the representative Poisson equation below is 4πGρ here; fully periodic boundaries and softened particle systems are different cases."
+      }
+    },
+    {
+      "id": "sinusoidal-sheet",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "正弦状面密度の指数減衰核と一様面の絶対値核を足した解析式で、水平周期・鉛直孤立の場を確認します。",
+        "en": "Check the horizontally periodic, vertically isolated field using the analytic exponential kernel for sinusoidal sheet density plus the absolute-value kernel for its uniform part."
+      },
+      "references": [],
+      "method_ids": [
+        "slab"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "水平周期・鉛直孤立の重力Poisson問題で、面密度の非零水平モードと零モードを扱います。Poisson代表式の右辺は4πGρです。全方向周期場や軟化粒子の二体力とは区別します。",
+        "en": "A gravitational Poisson problem periodic horizontally and isolated vertically, combining nonzero and zero horizontal modes of a sheet density. The Poisson right-hand side is 4πGρ; this differs from fully periodic fields or softened particle-pair forces."
+      }
+    },
+    {
+      "id": "harmonic-oscillator",
+      "equation_ids": [
+        "hamiltonian"
+      ],
+      "reference_note": {
+        "ja": "正弦・余弦の解析軌道（複素ODE表現を含む）と比較し、位相・エネルギー・写像の幾何学的性質を区別します。専用参照解カードは未収録です。",
+        "en": "Compare with analytic sine/cosine trajectories, including complex-ODE form, and distinguish phase, energy and geometric map properties. No dedicated reference-library card is included."
+      },
+      "references": [],
+      "method_ids": [
+        "verlet"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "quartic-oscillator",
+      "equation_ids": [
+        "hamiltonian"
+      ],
+      "reference_note": {
+        "ja": "非線形ポテンシャルの保存エネルギーと長時間の数値軌道・写像の性質を比較します。保存図を閉形式の厳密軌道と呼びません。",
+        "en": "Compare conserved energy and long-time numerical trajectories/map properties in the nonlinear potential. The stored figure is not labeled a closed-form exact trajectory."
+      },
+      "references": [],
+      "method_ids": [
+        "symplectic-euler",
+        "verlet",
+        "yoshida4",
+        "implicit-midpoint",
+        "rk4"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      }
+    },
+    {
+      "id": "nonlinear-exp-ode",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "非自律非線形方程式y′=-y²+exp(2t)+exp(t)、y(0)=1の製造厳密解y=exp(t)と時間収束を確認します。",
+        "en": "Check temporal refinement against the manufactured exact solution y=exp(t) for y′=-y²+exp(2t)+exp(t), y(0)=1."
+      },
+      "references": [],
+      "method_ids": [
+        "forward-euler",
+        "heun",
+        "explicit-midpoint",
+        "ralston",
+        "kutta3",
+        "ssprk33",
+        "ssprk43",
+        "rk4",
+        "ssprk54"
+      ],
+      "method_note": {
+        "ja": "公開の全陽的RK tableauに対する非自律・非線形製造解の検査です。保存プレビューはRK4を使います。",
+        "en": "Public nonautonomous/nonlinear manufactured-solution checks exercise every explicit RK tableau; the saved preview uses RK4."
+      },
+      "equation_note": {
+        "ja": "非自律スカラーODE y′=-y²+exp(2t)+exp(t)。既存46項目に対応する専用モデル式はありません。",
+        "en": "Nonautonomous scalar ODE y′=-y²+exp(2t)+exp(t); no dedicated model in the existing 46-entry equation registry."
+      }
+    },
+    {
+      "id": "stiff-cosine",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "y′=-1000(y-cos t)-sin t、y(0)=1の厳密解cos tと、固定刻み・適応刻みの誤差を確認します。",
+        "en": "Check fixed/adaptive-step errors against cos t for y′=-1000(y-cos t)-sin t with y(0)=1."
+      },
+      "references": [],
+      "method_ids": [
+        "sdirk2"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      },
+      "equation_note": {
+        "ja": "硬い非自律スカラーODE y′=-1000(y-cos t)-sin t。既存の方程式一覧には専用項目がありません。",
+        "en": "Stiff nonautonomous scalar ODE y′=-1000(y-cos t)-sin t; the equation registry has no dedicated entry."
+      }
+    },
+    {
+      "id": "nonlinear-rational-ode",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "y′=-y²+sin(t)[y-1/(1+t)]、y(0)=1の製造厳密解1/(1+t)と時間収束を確認します。",
+        "en": "Check temporal refinement against the manufactured exact solution 1/(1+t) for y′=-y²+sin(t)[y-1/(1+t)], y(0)=1."
+      },
+      "references": [],
+      "method_ids": [
+        "backward-euler",
+        "bdf2",
+        "sdirk2",
+        "imex-euler"
+      ],
+      "method_note": {
+        "ja": "公開検査に後退Euler・BDF2・SDIRK2・IMEX Eulerがあり、保存プレビューはSDIRK2です。",
+        "en": "Public checks include backward Euler, BDF2, SDIRK2 and IMEX Euler; the saved preview uses SDIRK2."
+      },
+      "equation_note": {
+        "ja": "非自律スカラーODE y′=-y²+sin(t)[y-1/(1+t)]。方程式一覧に専用項目はありません。",
+        "en": "Nonautonomous scalar ODE y′=-y²+sin(t)[y-1/(1+t)]; no dedicated equation-registry entry."
+      }
+    },
+    {
+      "id": "smooth-function-projection",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "指定された滑らかな対象関数の既知値を基準に、Legendre射影・節点補間の誤差を比較します。方程式を解いたデータではありません。",
+        "en": "Compare Legendre-projection and nodal-interpolation errors against known values of the specified smooth function. These data do not solve a governing equation."
+      },
+      "references": [],
+      "method_ids": [
+        "legendre-basis",
+        "nodal-basis"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      },
+      "equation_note": {
+        "ja": "指定関数の多項式射影・補間であり、支配方程式の求解ではありません。",
+        "en": "Polynomial projection/interpolation of a prescribed function, rather than a governing-equation solve."
+      }
+    },
+    {
+      "id": "jump-function-projection",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "指定された段差関数の既知値と比較し、射影・補間の振動と収束を確認します。滑らかな関数の誤差評価とは区別します。",
+        "en": "Compare with known values of the specified jump function to inspect projection/interpolation oscillations and convergence, separately from smooth-function error behavior."
+      },
+      "references": [],
+      "method_ids": [
+        "legendre-basis",
+        "nodal-basis"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "不連続な指定関数の射影・補間問題であり、移流方程式を進める問題ではありません。",
+        "en": "Projection/interpolation of a prescribed discontinuous function, rather than an advection evolution problem."
+      }
+    },
+    {
+      "id": "cubic-root",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "x³-1=0の既知の実根x=1と残差を用い、Armijo減衰Newtonの収束を確認します。",
+        "en": "Use the known real root x=1 of x³-1=0 and its residual to check Armijo-damped Newton convergence."
+      },
+      "references": [],
+      "method_ids": [
+        "newton"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "スカラー代数方程式x³-1=0。非線形境界値問題Bratuとは別の検証です。",
+        "en": "Scalar algebraic equation x³-1=0, a distinct test from the nonlinear Bratu boundary-value problem."
+      }
+    },
+    {
+      "id": "nonlinear-rational-decay",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "y′=-y²、y(0)=1の厳密解1/(1+t)を使い、複数の陽的Runge–Kutta法の非線形誤差と次数を確認します。",
+        "en": "Use the exact solution 1/(1+t) for y′=-y², y(0)=1, to check nonlinear errors and orders of several explicit Runge–Kutta methods."
+      },
+      "references": [],
+      "method_ids": [
+        "forward-euler",
+        "heun",
+        "explicit-midpoint",
+        "ralston",
+        "kutta3",
+        "ssprk33",
+        "ssprk43",
+        "rk4",
+        "ssprk54"
+      ],
+      "method_note": {
+        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+      },
+      "equation_note": {
+        "ja": "非線形スカラーODE y′=-y²、y(0)=1。既存の方程式一覧には専用項目がありません。",
+        "en": "Nonlinear scalar ODE y′=-y², y(0)=1; no dedicated equation-registry entry."
+      }
+    },
+    {
+      "id": "hydrogenic-atoms",
+      "equation_ids": [
+        "stationary-schrodinger"
+      ],
+      "reference_note": {
+        "ja": "水素型原子の解析的な固有エネルギー・軌道と比較し、有限半径打切りと格子誤差を分けます。既存の固定入力・保存結果を参照します。",
+        "en": "Compare with analytic hydrogenic eigenenergies/orbitals and separate finite-radius truncation from mesh error using existing fixed inputs and stored results."
+      },
+      "references": [],
+      "method_ids": [
+        "schrodinger"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "helium-ground-state",
+      "equation_ids": [
+        "hartree-fock-model",
+        "kohn-sham-model"
+      ],
+      "reference_note": {
+        "ja": "閉殻HF・交換のみLDAの独立参照、SCF残差・電子数・格子収束を確認します。近似汎関数の解を厳密なHe多体解とは呼びません。",
+        "en": "Check independent closed-shell HF/exchange-only LDA references, SCF residuals, electron number and mesh refinement. Approximate-functional solutions are not labeled exact many-body helium solutions."
+      },
+      "references": [],
+      "method_ids": [
+        "hartree-fock",
+        "kohn-sham-dft",
+        "scf",
+        "hartree-poisson",
+        "xc-functionals"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "logistic-growth",
+      "equation_ids": [
+        "bio-logistic"
+      ],
+      "reference_note": {
+        "ja": "指定r・K・初期値のロジスティック解析解と時間刻み収束が基準です。18件の参照解一覧とは別の固定入力で検証しています。",
+        "en": "Use the logistic analytic solution for the specified r, K and initial value and check time refinement. Validation uses its own fixed inputs outside the 18-case reference library."
+      },
+      "references": [],
+      "method_ids": [
+        "rk4"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "sir-epidemic",
+      "equation_ids": [
+        "bio-sir"
+      ],
+      "reference_note": {
+        "ja": "同一入力の独立DOP853数値参照、人口保存、非負性と時間収束を確認します。一般的な閉形式SIR解の提供ではありません。",
+        "en": "Check an independent DOP853 numerical reference for identical inputs, population conservation, nonnegativity and time refinement. This is not a general closed-form SIR solution."
+      },
+      "references": [],
+      "method_ids": [
+        "rk4"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "mc-integral",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "既知の積分値を基準に256 seedの誤差・標準誤差・区間被覆を確認します。個々の乱数軌道の決定論的な解との比較ではありません。",
+        "en": "Check errors, standard errors and interval coverage across 256 seeds against the known integral. This does not compare individual random realizations with a deterministic trajectory."
+      },
+      "references": [],
+      "method_ids": [
+        "monte-carlo"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      },
+      "equation_note": {
+        "ja": "一様乱数による積分の統計推定問題です。既存一覧の物理方程式を解く例ではありません。",
+        "en": "Statistical integral estimation with uniform random samples, not a solve of one of the registry’s physical equations."
+      }
+    },
+    {
+      "id": "gbm-sde",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "幾何Brown運動の解析的なItô解を同じBrown増分で結び、強収束とモーメントを確認します。決定論ODEの厳密解とは区別します。",
+        "en": "Couple geometric Brownian motion to its analytic Itô solution using the same Brownian increments to check strong convergence and moments, separately from deterministic ODE exactness."
+      },
+      "references": [],
+      "method_ids": [
+        "sde"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      },
+      "equation_note": {
+        "ja": "幾何Brown運動のItô SDE dX=μXdt+σXdW。既存46式にはSDEの専用項目がありません。",
+        "en": "Geometric-Brownian Itô SDE dX=μXdt+σXdW; no SDE-specific entry exists among the 46 equations."
+      }
+    },
+    {
+      "id": "h2-rhf",
+      "equation_ids": [
+        "hartree-fock-model",
+        "stationary-schrodinger"
+      ],
+      "reference_note": {
+        "ja": "小さな固定H₂モデルの独立RHF参照とSCF・s型基底の検査を使います。有限基底RHFの一致は完全な電子相関を含む厳密分子解の一致ではありません。",
+        "en": "Use independent RHF references and SCF/s-type-basis checks for a small fixed H₂ model. Agreement in finite-basis RHF is not agreement with a fully correlated exact molecular solution."
+      },
+      "references": [],
+      "method_ids": [
+        "hartree-fock",
+        "electronic-bases",
+        "scf"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "periodic-he-dft",
+      "equation_ids": [
+        "kohn-sham-model"
+      ],
+      "reference_note": {
+        "ja": "固定した小周期Heセルの独立DFTK参照・SCF・基底・k点の保存検査を使います。擬ポテンシャルと交換のみLDAのモデル範囲に限定します。",
+        "en": "Use stored independent DFTK, SCF, basis and k-point checks for a fixed small periodic He cell, limited to the pseudopotential and exchange-only LDA model."
+      },
+      "references": [],
+      "method_ids": [
+        "kohn-sham-dft",
+        "electronic-bases",
+        "scf",
+        "xc-functionals",
+        "pseudopotentials",
+        "k-point"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "periodic-he-forces",
+      "equation_ids": [
+        "kohn-sham-model"
+      ],
+      "reference_note": {
+        "ja": "固定He₂配置のエネルギー有限差分と解析力、独立DFTK参照と保存された収束検査を区別します。長時間の第一原理MD精度を認定するものではありません。",
+        "en": "Distinguish energy finite differences versus analytic forces, independent DFTK references and stored convergence checks for fixed He₂ configurations. This certifies no long-time first-principles MD accuracy."
+      },
+      "references": [],
+      "method_ids": [
+        "kohn-sham-dft",
+        "electronic-bases",
+        "scf",
+        "xc-functionals",
+        "pseudopotentials",
+        "k-point"
+      ],
+      "method_note": {
+        "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+        "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+      }
+    },
+    {
+      "id": "matrix-factorization",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "独立NumPy/SciPy参照、行列再構成・直交性・特異値・階数・最小二乗残差を確認します。PDEの参照解カードとは別の線形代数検証です。",
+        "en": "Check independent NumPy/SciPy references, reconstruction, orthogonality, singular values, rank and least-squares residuals. This is linear-algebra validation rather than a PDE reference-solution card."
+      },
+      "references": [],
+      "method_ids": [
+        "qr-svd"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "QR・SVDによる行列分解・最小二乗問題です。独立した物理モデル式は割り当てません。",
+        "en": "QR/SVD matrix factorization and least squares; no physical-model equation is assigned."
+      }
+    },
+    {
+      "id": "krylov-spectrum",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "独立固有値参照と、各Ritz値・固有対の残差、直交性と反復収束を確認します。",
+        "en": "Check independent eigenvalue references together with Ritz/eigenpair residuals, orthogonality and iterative convergence."
+      },
+      "references": [],
+      "method_ids": [
+        "eigensolvers"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "行列固有値問題Av=λvをLanczos・Arnoldiで近似する線形代数の例です。",
+        "en": "Linear-algebra example approximating Av=λv with Lanczos/Arnoldi."
+      }
+    },
+    {
+      "id": "quadrature-moments",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "多項式モーメントの既知積分値と独立求積参照を使い、厳密性・推定誤差・評価回数制限を確認します。",
+        "en": "Use known polynomial integrals and independent quadrature references to check exactness, estimated errors and evaluation budgets."
+      },
+      "references": [],
+      "method_ids": [
+        "quadrature"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "定積分と多項式モーメントの求積問題です。支配PDEの求解ではありません。",
+        "en": "Definite-integral and polynomial-moment quadrature, rather than a governing-PDE solve."
+      }
+    },
+    {
+      "id": "gaussian-mcmc",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "既知のGaussian標的分布・モーメントを基準に、標本分布・自己相関・ESSを確認します。18件の参照解一覧にMCMC軌道の厳密解カードはありません。",
+        "en": "Use the known Gaussian target and moments to check sampled distributions, autocorrelation and ESS. The 18-case reference library has no exact MCMC-trajectory card."
+      },
+      "references": [],
+      "method_ids": [
+        "mcmc"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "Gaussian標的分布を不変分布とするMarkov連鎖の標本化問題です。既存の物理方程式一覧に専用項目はありません。",
+        "en": "Markov-chain sampling with a Gaussian invariant target; the physical-equation registry has no dedicated entry."
+      }
+    },
+    {
+      "id": "langevin-harmonic",
+      "equation_ids": [
+        "hamiltonian"
+      ],
+      "reference_note": {
+        "ja": "調和ポテンシャルの正準分布・モーメントと相関の解析基準を使い、刻み幅バイアスを確認します。摩擦・雑音を持たない調和軌道とは区別します。",
+        "en": "Use analytic canonical-distribution, moment and correlation standards for the harmonic potential to check timestep bias, separately from frictionless, noiseless harmonic trajectories."
+      },
+      "references": [],
+      "method_ids": [
+        "langevin-thermostat",
+        "stochastic-velocity-rescaling"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "Hamilton系へのリンクは調和ポテンシャルの力学部分です。計算には摩擦・雑音またはCSVRの温度浴が追加されます。",
+        "en": "The Hamiltonian link identifies the harmonic mechanical part; the calculations add friction/noise or a CSVR heat bath."
+      }
+    },
+    {
+      "id": "reaction-diffusion-fourier",
+      "equation_ids": [
+        "heat"
+      ],
+      "reference_note": {
+        "ja": "線形反応拡散の連続Fourier解と半離散Fourier解を分け、空間2次・時間4次の収束を確認します。純拡散カードの指数率をそのまま使いません。",
+        "en": "Separate continuous and semidiscrete Fourier solutions of linear reaction-diffusion to check second-order space/fourth-order time. Do not reuse the pure-diffusion card's decay rate unchanged."
+      },
+      "references": [],
+      "method_ids": [
+        "centered-difference",
+        "rk4"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "線形反応拡散u_t=D u_xx+r u（公開入力はD=0.1、r=0.1）です。熱方程式へのリンクは拡散部分で、反応項を含む固有値r-Dk²で比較します。",
+        "en": "Linear reaction-diffusion u_t=D u_xx+r u, with published D=0.1 and r=0.1. The heat link covers diffusion; compare using the eigenvalue r-Dk² including reaction."
+      }
+    },
+    {
+      "id": "turing-schnakenberg",
+      "equation_ids": [
+        "bio-schnakenberg",
+        "bio-turing"
+      ],
+      "reference_note": {
+        "ja": "小振幅では行列指数の線形成長率を使い、非線形追補では独立Radau参照と正値性・収束を確認します。線形近似を非線形飽和パターンの厳密解と呼びません。",
+        "en": "Use matrix-exponential linear growth rates at small amplitude; nonlinear supplements check independent Radau references, positivity and refinement. A linearization is not an exact saturated nonlinear pattern."
+      },
+      "references": [],
+      "method_ids": [
+        "centered-difference",
+        "rk4",
+        "implicit-midpoint"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      }
+    },
+    {
+      "id": "fitzhugh-nagumo",
+      "equation_ids": [
+        "bio-fitzhugh-nagumo"
+      ],
+      "reference_note": {
+        "ja": "電流パルスを与えた2変数縮約ODEを独立DOP853参照と比較し、全出力時刻の誤差・時間収束・回復を確認します。",
+        "en": "Compare the two-variable reduced ODE under a current pulse with an independent DOP853 reference, checking all-output-time errors, temporal refinement and recovery."
+      },
+      "references": [],
+      "method_ids": [
+        "rk4"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "公開固定入力は空間拡散を含まない2変数ODEの極限です。一般の伝播PDEを検証したという意味ではありません。",
+        "en": "The published fixed input is the two-variable ODE limit without spatial diffusion; it does not validate the general propagation PDE."
+      }
+    },
+    {
+      "id": "neutral-periodic-charges",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "同じ中性周期電荷・規約の収束したEwald和、力の有限差分とカットオフ・格子収束を確認します。孤立重力粒子の直接和とは境界・相互作用が異なります。",
+        "en": "Check converged Ewald sums for identical neutral periodic charges/conventions, force finite differences and cutoff/mesh refinement. Boundaries and interactions differ from isolated gravitational direct sums."
+      },
+      "references": [],
+      "method_ids": [
+        "ewald",
+        "pme",
+        "spme"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "リンクは静電Poisson/Laplace場です。中性周期Coulomb電荷のEwald/PME問題であり、重力の質量・符号・境界を流用しません。",
+        "en": "The link is the electrostatic Poisson/Laplace field. This is neutral periodic Coulomb Ewald/PME, not an interchange of gravitational masses, signs or boundaries."
+      }
+    },
+    {
+      "id": "logarithmic-particles",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "同じ2次元対数核と粒子配置の直接和を数値基準に、多重極の次数・階層変換・力誤差を確認します。3次元1/r核の基準は流用しません。",
+        "en": "Use direct summation with the same 2D logarithmic kernel and particles to check expansion order, hierarchical translations and force error. Do not reuse a 3D 1/r reference."
+      },
+      "references": [],
+      "method_ids": [
+        "fmm"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "2次元Poisson/Laplaceの対数Green核を用いる粒子和です。3次元軟化重力1/rモデルとは区別します。",
+        "en": "A particle sum with the logarithmic Green kernel of 2D Poisson/Laplace, distinct from softened 3D 1/r gravity."
+      }
+    },
+    {
+      "id": "cold-plasma-pic",
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "reference_note": {
+        "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。",
+        "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories."
+      },
+      "references": [],
+      "method_ids": [
+        "pic"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "Poissonへのリンクは自己無撞着な静電場の部分です。粒子の運動・CIC補間を結合したPIC全体の式が一覧に揃っているわけではありません。",
+        "en": "Poisson identifies the self-consistent electrostatic field; the registry does not list the complete coupled particle-motion/CIC PIC system."
+      }
+    },
+    {
+      "id": "maxwell-collisions",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。",
+        "en": "Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation."
+      },
+      "references": [],
+      "method_ids": [
+        "dsmc"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "等質Boltzmann衝突演算子をDSMCで標本化する成分検査です。格子BGKとは異なる衝突モデルのため代用リンクを設けません。",
+        "en": "A component test sampling the homogeneous Boltzmann collision operator by DSMC. Lattice BGK uses a different collision model and is not substituted."
+      }
+    },
+    {
+      "id": "absorbing-slab",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。",
+        "en": "Compare discrete ordinates with analytic directional exponential attenuation through a purely absorbing slab with specified inflow. This differs from relativistic M1 moment closure."
+      },
+      "references": [],
+      "method_ids": [
+        "radiation-transport"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "定常離散座標輸送 μ∂xI=-κI、純吸収・指定流入。相対論的M1の式ではなく、既存一覧に同じ専用式はありません。",
+        "en": "Steady discrete-ordinate transport μ∂xI=-κI with pure absorption and specified inflow, distinct from relativistic M1 and absent as a dedicated registry equation."
+      }
+    },
+    {
+      "id": "thermostatted-quartic",
+      "equation_ids": [
+        "hamiltonian"
+      ],
+      "reference_note": {
+        "ja": "非調和ポテンシャルのBoltzmann分布を独立数値求積し、CSVR・Langevinの有限刻み分布とモーメントを比較します。厳密な確率軌道の比較ではありません。",
+        "en": "Independently integrate the anharmonic Boltzmann distribution and compare finite-step CSVR/Langevin distributions and moments, not exact stochastic trajectories."
+      },
+      "references": [],
+      "method_ids": [
+        "stochastic-velocity-rescaling",
+        "langevin-thermostat"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "Hamilton系へのリンクは非調和ポテンシャルの力学部分です。確率温度浴を加えたCSVR・Langevinの分布検証を行います。",
+        "en": "The Hamiltonian link identifies the anharmonic mechanical part; validation concerns distributions with added stochastic CSVR/Langevin heat baths."
+      }
+    },
+    {
+      "id": "mcmc-bimodal-mixture",
+      "equation_ids": [],
+      "reference_note": {
+        "ja": "既知の2峰Gaussian混合の解析的な密度・モーメント・指定点CDF・正側占有と照合し、診断量は独立ArviZ参照で確認します。峰への閉じ込めと多鎖診断の限界を区別し、局所診断の良さを全体混合の保証にしません。",
+        "en": "Compare with the known bimodal Gaussian mixture’s analytic density, moments, declared CDF points and positive occupancy, and check diagnostics against independent ArviZ references. Distinguish trapping from diagnostic limitations; reassuring local diagnostics do not guarantee global mixing."
+      },
+      "references": [],
+      "method_ids": [
+        "mcmc"
+      ],
+      "method_note": {
+        "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+        "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+      },
+      "equation_note": {
+        "ja": "2峰Gaussian混合分布を標的とするMarkov連鎖の標本化問題です。既存の方程式一覧には専用項目がありません。",
+        "en": "Markov-chain sampling of a bimodal Gaussian-mixture target; the equation registry has no dedicated entry."
+      }
+    }
+  ]
+}

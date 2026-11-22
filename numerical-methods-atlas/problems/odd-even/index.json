@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "id": "odd-even",
+  "name": {
+    "ja": "定常平面衝撃波のodd–even診断",
+    "en": "Stationary-shock odd–even diagnostic"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/shock-methods/planar-128-0.png",
+    "sha256": "bd795bce6943a209b564e085844c53b372d77e33c597d213a39fa9f9f3c3cfcf",
+    "width": 1820,
+    "height": 1040,
+    "caption": {
+      "ja": "保存済み定常平面衝撃波のodd–even診断。",
+      "en": "Stored odd–even diagnostic for a stationary planar shock."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/carbuncle/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/carbuncle/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#odd-even",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#odd-even-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "Mach-6定常垂直衝撃波の解析的下流状態と、種を与えた行デカップリング指標・無擾乱対照を比較します。一般的な横方向不安定性全体の検証ではありません。",
+    "en": "Compare analytic downstream states of a stationary Mach-6 normal shock with seeded row-decoupling diagnostics and unperturbed controls. This is not validation of every transverse instability."
+  },
+  "methods": [
+    {
+      "id": "roe",
+      "name": {
+        "ja": "Roe法",
+        "en": "Roe"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+      }
+    },
+    {
+      "id": "entropy-fix",
+      "name": {
+        "ja": "Roe音響波のエントロピー修正",
+        "en": "Acoustic Roe entropy correction"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/entropy-fix/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/entropy-fix/?lang=en"
+      }
+    },
+    {
+      "id": "hll",
+      "name": {
+        "ja": "HLL",
+        "en": "HLL"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+      }
+    },
+    {
+      "id": "hlle",
+      "name": {
+        "ja": "HLLE／Einfeldt波速",
+        "en": "HLLE / Einfeldt wave speeds"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+      }
+    },
+    {
+      "id": "ausm",
+      "name": {
+        "ja": "AUSM系列の流束分割",
+        "en": "AUSM-family flux splitting"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ausm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ausm/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "保存された垂直衝撃波診断の流束とRoe音響エントロピー平滑化です。圧力センサー混合法をRotated-RHLLと同一視しません。",
+    "en": "Fluxes and Roe acoustic entropy smoothing used in the stored normal-shock diagnostic. The pressure-sensor blend is not identified as Rotated-RHLL."
+  },
+  "executions": [],
+  "code_checks": []
+}

@@ -1,0 +1,66 @@
+.atlas-problem{margin:0;background:#f5f3ed;color:#25352e;font-family:Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;line-height:1.75}
+.problem-hub{max-width:1080px;margin:auto;padding:30px 32px 64px;overflow-wrap:anywhere}
+.problem-hub *{box-sizing:border-box}
+.problem-hub a{color:inherit;text-decoration:underline;text-underline-offset:4px}
+.problem-hub a:focus-visible,.problem-hub summary:focus-visible{outline:3px solid #986044;outline-offset:4px}
+.problem-hub h1,.problem-hub h2,.problem-hub h3,.problem-hub h4,.problem-hub h5{color:#25352e;line-height:1.45}
+.problem-hub h1{font:400 clamp(1.8rem,4.3vw,2.9rem)/1.4 Georgia,"Hiragino Mincho ProN",serif;margin:0 0 14px}
+.problem-hub h2{font-size:1.65rem;font-weight:500;margin:0 0 18px;scroll-margin-top:28px}
+.problem-hub h3{font-size:1.16rem;font-weight:500;margin:8px 0 12px}
+.problem-hub h4{font-size:1.02rem;font-weight:500;margin:8px 0 12px}
+.problem-hub h5{font-size:.9rem;font-weight:600;margin:14px 0 8px}
+.problem-hub p{margin:0 0 15px}
+.problem-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;font-size:.9rem;margin-bottom:20px}
+.problem-breadcrumb a{display:inline-flex;align-items:center;min-height:44px}
+.problem-heading{max-width:850px;margin-bottom:20px}
+.problem-heading>p:last-child{color:#58635c;margin-bottom:0}
+.problem-eyebrow{font-size:.73rem;letter-spacing:.11em;margin-bottom:8px!important;color:#795b44}
+.problem-jump{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 26px}
+.problem-jump a{display:flex;align-items:center;justify-content:center;text-align:center;min-width:0;min-height:48px;padding:10px 14px;border:1px solid #bac8bd;background:#fcfbf7;font-size:.95rem;line-height:1.55}
+.problem-jump a:hover{background:#e9eee7}
+.problem-hero{margin:0 0 14px;padding:18px;border:1px solid #d1d7ce;background:#fcfbf7}
+.problem-hero>a{display:block;min-width:0}
+.problem-hero img{display:block;width:100%;height:auto;max-height:480px;object-fit:contain}
+.problem-hero figcaption{font-size:.85rem;line-height:1.75;margin-top:12px;color:#58635c}
+.problem-meta{font-size:.82rem;color:#58635c}
+.problem-actions{display:flex;flex-wrap:wrap;gap:2px 24px;margin:8px 0 12px;font-size:.9rem}
+.problem-actions a,.problem-text-link{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
+.problem-reading{padding-bottom:16px;margin-bottom:28px;border-bottom:1px solid #d1d7ce}
+.problem-section{padding-top:20px;margin-top:32px;border-top:1px solid #bac8bd;min-width:0}
+.problem-section>p{max-width:88ch}
+.problem-entry{min-width:0;margin:18px 0;padding:20px 22px;border:1px solid #d1d7ce;background:#fcfbf7}
+.problem-entry>p:last-child{margin-bottom:0}
+.problem-badges{display:flex;flex-wrap:wrap;gap:8px 12px}
+.problem-badge{display:inline-block;padding:2px 8px;border:1px solid #c8d1c6;background:#edf0e9;color:#435649;font-size:.78rem;line-height:1.7}
+.problem-relation{background:#f2ebdf;border-color:#d8cbb6;color:#70543d}
+.problem-subheading{margin-top:28px!important}
+.problem-math{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:14px 0;padding:2px}
+.problem-math .katex-display{margin:.5em 0;text-align:left}
+.problem-math .katex-display>.katex{text-align:left}
+.problem-reference-formula{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;line-height:1.8;white-space:pre-wrap;padding:12px 14px;background:#edf0e9}
+.problem-reference-note{padding-left:12px;border-left:3px solid #baa17d}
+.problem-reference-links{padding-left:22px;margin:12px 0}
+.problem-reference-links li{margin:8px 0}
+.problem-reference-links a{display:inline-block;padding:5px 0;min-height:38px}
+.problem-methods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
+.problem-methods li{padding:16px 18px;border:1px solid #d1d7ce;background:#fcfbf7;min-width:0}
+.problem-methods h4{margin:0}
+.problem-methods h4 a{display:inline-flex;align-items:center;min-height:44px}
+.problem-methods p{margin:6px 0 0}
+.problem-details{margin-top:14px;border-top:1px solid #d1d7ce;padding-top:8px}
+.problem-details summary{display:flex;align-items:center;min-height:44px;cursor:pointer;font-size:.9rem;font-weight:500;list-style-position:inside}
+.problem-details summary:before{content:'＋';font-size:1rem;font-weight:400;margin-right:10px}
+.problem-details[open]>summary:before{content:'−'}
+.problem-details[open]>summary{margin-bottom:10px}
+.problem-hub pre{max-width:100%;overflow-x:auto;white-space:pre;padding:15px 16px;background:#edf0e9;border:1px solid #d4dbcf;font: .8rem/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}
+.problem-hub code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.85em}
+.problem-hub pre code{font-size:inherit}
+.problem-source-list{padding-left:22px;font-size:.8rem}
+.problem-source-list li{margin:8px 0}
+.problem-empty{padding:18px 20px;background:#edf0e9;border-left:3px solid #aab9ad}
+.problem-empty p:last-child{margin-bottom:0}
+.problem-code-check h4{font-size:.88rem}
+.problem-footer{display:flex;flex-wrap:wrap;gap:3px 24px;border-top:1px solid #bac8bd;margin-top:36px;padding-top:18px;font-size:.9rem}
+.problem-footer a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:700px){.problem-hub{padding:20px 18px 44px}.problem-jump{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.problem-jump a{padding:10px;font-size:.9rem}.problem-hero{padding:12px}.problem-hero img{max-height:360px}.problem-entry{padding:16px}.problem-methods{grid-template-columns:minmax(0,1fr)}.problem-hub h2{font-size:1.4rem}.problem-section{margin-top:26px;padding-top:18px}}
+@media(max-width:360px){.problem-jump{grid-template-columns:minmax(0,1fr)}.problem-hub{padding-inline:14px}}

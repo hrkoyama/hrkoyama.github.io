@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "id": "cold-plasma-pic",
+  "name": {
+    "ja": "CIC静電PICの冷たいプラズマ振動",
+    "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/pic.png",
+    "sha256": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "width": 2250,
+    "height": 510,
+    "caption": {
+      "ja": "1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。",
+      "en": "One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#cold-plasma-pic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#cold-plasma-pic-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "Poissonへのリンクは自己無撞着な静電場の部分です。粒子の運動・CIC補間を結合したPIC全体の式が一覧に揃っているわけではありません。",
+    "en": "Poisson identifies the self-consistent electrostatic field; the registry does not list the complete coupled particle-motion/CIC PIC system."
+  },
+  "formulations": [
+    {
+      "id": "supplement-pic",
+      "name": {
+        "ja": "CIC静電PICの冷たいプラズマ振動",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\dot x_i=v_i,\\quad\\dot v_i=-E_h(x_i),\\quad-\\phi_{xx}=\\rho,\\quad E=-\\phi_x",
+        "A(t)/A(0)\\simeq\\cos(\\omega_pt),\\qquad\\omega_p=1"
+      ],
+      "note": {
+        "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+        "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。",
+    "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories."
+  },
+  "methods": [
+    {
+      "id": "pic",
+      "name": {
+        "ja": "Particle-in-Cell（PIC）",
+        "en": "Particle-in-cell / PIC"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "pic",
+      "kind": "supplement",
+      "name": {
+        "ja": "CIC静電PICの冷たいプラズマ振動",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+      },
+      "method_ids": [
+        "pic"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en"
+      },
+      "scope": {
+        "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+        "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+      },
+      "assumptions": {
+        "ja": "長さ2pi、電子の電荷質量比−1、静止イオン背景密度1、plasma frequency=1の無次元系。quiet startから振幅0.001の微小正弦変位を与えます。",
+        "en": "Dimensionless length 2pi, electron charge/mass −1, stationary ion density one and plasma frequency one. A quiet start receives a small sinusoidal displacement of amplitude 0.001."
+      },
+      "limits": {
+        "ja": "有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。",
+        "en": "Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。",
+        "en": "Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

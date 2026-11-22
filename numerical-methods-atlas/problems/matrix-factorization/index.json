@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "matrix-factorization",
+  "name": {
+    "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+    "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/matrix-factorization/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/matrix-factorization/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/matrix-factorization/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+    "sha256": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "width": 1760,
+    "height": 560,
+    "caption": {
+      "ja": "固定した満階数・階数落ち行列で、Householder QR・片側Jacobi SVDの再構成、保持階数の直交性、LAPACKとの差を保存値から図示。丸めゼロは1e−16へ置いて表示。",
+      "en": "Saved reconstruction, retained-rank orthogonality and LAPACK differences for fixed full/rank-deficient Householder-QR and one-sided-Jacobi-SVD inputs. Roundoff zeros are displayed at 1e-16."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#matrix-factorization",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#matrix-factorization-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "QR・SVDによる行列分解・最小二乗問題です。独立した物理モデル式は割り当てません。",
+    "en": "QR/SVD matrix factorization and least squares; no physical-model equation is assigned."
+  },
+  "formulations": [
+    {
+      "id": "supplement-qr-svd-factorization",
+      "name": {
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "A=QR,\\quad Q^TQ=I",
+        "A\\simeq U_r\\Sigma_rV_r^T,\\quad x_{\\min}=V_r\\Sigma_r^{-1}U_r^Tb"
+      ],
+      "note": {
+        "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+        "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "独立NumPy/SciPy参照、行列再構成・直交性・特異値・階数・最小二乗残差を確認します。PDEの参照解カードとは別の線形代数検証です。",
+    "en": "Check independent NumPy/SciPy references, reconstruction, orthogonality, singular values, rank and least-squares residuals. This is linear-algebra validation rather than a PDE reference-solution card."
+  },
+  "methods": [
+    {
+      "id": "qr-svd",
+      "name": {
+        "ja": "QR・SVD・最小二乗",
+        "en": "QR, SVD and least squares"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/qr-svd/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/qr-svd/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "qr-svd-factorization",
+      "kind": "supplement",
+      "name": {
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+      },
+      "method_ids": [
+        "qr-svd"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=en"
+      },
+      "scope": {
+        "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+        "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+      },
+      "assumptions": {
+        "ja": "m≥nの小さな実行列が対象です。SVDの数値階数は最大特異値に対する相対しきい値10⁻¹²で定義し、零特異値方向を除くcompact因子を返します。QRは列ピボットなしで、階数判定には用いません。",
+        "en": "Small real matrices with m≥n. Numerical rank uses a 10⁻¹² threshold relative to the largest singular value; compact factors omit null directions. QR has no column pivoting and is not used as a rank-revealing method."
+      },
+      "limits": {
+        "ja": "完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。",
+        "en": "Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "QR/SVDの相対再構成誤差、Q/U/Vの直交性、SciPy LAPACK gesddの特異値、gelsd/gelsyの最小二乗解・階数、正規方程式の停留残差を比較します。特異ベクトルの符号は比較せず、零行列と予算切れも検査します。",
+        "en": "Compare QR/SVD relative reconstruction, Q/U/V orthogonality, singular values from SciPy LAPACK gesdd, least-squares solutions/ranks from gelsd/gelsy and normal-equation stationarity residuals. Singular-vector signs are not compared; zero matrices and budget exhaustion are tested."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

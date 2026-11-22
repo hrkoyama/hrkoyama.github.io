@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "double-mach",
+  "name": {
+    "ja": "二重Mach反射",
+    "en": "Double Mach reflection"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/double-mach/frame-080.webp",
+    "sha256": "c25e7e545607ec4e2f8d56186d6d963956c28d7e9e28b2a45b504f60c42e8eec",
+    "width": 960,
+    "height": 640,
+    "caption": {
+      "ja": "保存済み2次元Double Mach反射の最終フレーム。",
+      "en": "Stored final frame of 2D Double Mach reflection."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/double-mach/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/double-mach/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#double-mach",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#double-mach-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "保存済みの2次元Mach-10反射計算と境界条件・正値性を確認する教育用ベンチマークです。公開例には全場の厳密解オーバーレイを設けていません。",
+    "en": "This is a stored educational 2D Mach-10 reflection benchmark with documented boundaries and positivity. The published example supplies no exact full-field overlay."
+  },
+  "methods": [
+    {
+      "id": "godunov",
+      "name": {
+        "ja": "Godunov型有限体積法",
+        "en": "Godunov-type finite volumes"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en"
+      }
+    },
+    {
+      "id": "hll",
+      "name": {
+        "ja": "HLL",
+        "en": "HLL"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

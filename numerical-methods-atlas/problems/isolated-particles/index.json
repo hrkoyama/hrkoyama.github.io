@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "id": "isolated-particles",
+  "name": {
+    "ja": "孤立粒子群の軟化重力（ツリー・直接和）",
+    "en": "Isolated softened particle gravity: tree versus direct sum"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/isolated-particles.png",
+    "sha256": "2ed17564aa4a2ceb5570b27b3374d39fc1fec762a9419c939f0f1d329d232722",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済みツリー力と直接和の相対誤差。開き角・展開次数を比較。",
+      "en": "Stored relative tree/direct-sum force errors versus opening angle and expansion order."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#isolated-particles",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#isolated-particles-en"
+  },
+  "equations": [
+    {
+      "id": "particle-gravity",
+      "name": {
+        "ja": "重力粒子モデル",
+        "en": "Gravitational particle model"
+      },
+      "formula": [
+        "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+        "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+      ],
+      "note": {
+        "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+        "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-barnes-hut",
+      "name": {
+        "ja": "Barnes–Hut：192粒子と直接和の比較",
+        "en": "Barnes–Hut: 192 particles against direct summation"
+      },
+      "source": "common",
+      "role": "approximation",
+      "latex": [
+        "\\boldsymbol a_i=-\\sum_{j\\ne i}m_j\\frac{\\boldsymbol r_{ij}}{(r_{ij}^{2}+\\epsilon^{2})^{3/2}},\\qquad G=1,\\quad \\epsilon=0.03",
+        "\\boldsymbol a_{\\rm cell}\\simeq-\\frac{M\\boldsymbol r}{s^3}+\\frac{3\\mathbf S\\boldsymbol r}{s^5}-\\frac{15(\\boldsymbol r^{\\mathsf T}\\mathbf S\\boldsymbol r)\\boldsymbol r}{2s^7}+\\frac{3\\operatorname{tr}(\\mathbf S)\\boldsymbol r}{2s^5}",
+        "s^2=r^2+\\epsilon^2,\\qquad \\mathbf S=\\sum_jm_j\\boldsymbol\\delta_j\\boldsymbol\\delta_j^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "孤立Plummer核。rᵢⱼ=xᵢ−xⱼ、セルのrは対象点と質量中心の差、δは質量中心からの偏差。order=2では同じ軟化核の完全二次項を使い、trace項を残す。周期重力や軌道計算ではない。",
+        "en": "Isolated Plummer kernel: rᵢⱼ=xᵢ−xⱼ, cell r is target minus center of mass, and δ is the central offset. order=2 retains the softened kernel's full second-moment term, including its trace. No periodic gravity or trajectories."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "同一粒子・同一Plummer軟化の直接対和が数値基準です。ツリー開き角と多重極次数ごとの力誤差を比較します。",
+    "en": "Direct pair summation with identical particles and Plummer softening is the numerical standard. Compare force errors by tree opening angle and multipole order."
+  },
+  "methods": [
+    {
+      "id": "barnes-hut",
+      "name": {
+        "ja": "Barnes–Hut八分木",
+        "en": "Barnes–Hut octree"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "barnes-hut",
+      "kind": "common",
+      "name": {
+        "ja": "Barnes–Hut：192粒子と直接和の比較",
+        "en": "Barnes–Hut: 192 particles against direct summation"
+      },
+      "method_ids": [
+        "barnes-hut"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=en"
+      },
+      "scope": {
+        "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
+        "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
+      },
+      "assumptions": {
+        "ja": "正の質量を持つ固定192粒子。Plummer軟化、traceを含む完全な二次モーメント項を使い、同じ核の直接和を参照。",
+        "en": "192 fixed particles with positive masses; Plummer softening and the complete second-moment term including its trace, compared with direct summation using the identical kernel."
+      },
+      "limits": {
+        "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
+        "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/input.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python examples/barnes-hut/run.py --input examples/barnes-hut/input.json --output output",
+        "python -m pytest -q tests/test_particle_gravity.py"
+      ],
+      "reference_note": {
+        "ja": "同じPlummer核の直接和。完全に開いたツリーとの一致と近似力の誤差を分ける。",
+        "en": "Same-Plummer-kernel direct sum, distinguishing fully opened tree agreement from approximation error."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+          "type": "same-kernel-direct-sum",
+          "description": {
+            "ja": "同じPlummer核の直接和。完全に開いたツリーとの一致と近似力の誤差を分ける。",
+            "en": "Same-Plummer-kernel direct sum, distinguishing fully opened tree agreement from approximation error."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/forces.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

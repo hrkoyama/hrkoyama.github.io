@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "id": "helium-ground-state",
+  "name": {
+    "ja": "He基底状態：閉殻HF・交換のみLDA",
+    "en": "Helium ground state: closed-shell HF and exchange-only LDA"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/helium.png",
+    "sha256": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6",
+    "width": 960,
+    "height": 570,
+    "caption": {
+      "ja": "公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。",
+      "en": "Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/#helium",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#helium"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#helium-ground-state",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#helium-ground-state-en"
+  },
+  "equations": [
+    {
+      "id": "hartree-fock-model",
+      "name": {
+        "ja": "閉殻Hartree–Fock方程式",
+        "en": "Closed-shell Hartree–Fock equations"
+      },
+      "formula": [
+        "\\hat F=\\hat h+\\sum_{j\\in\\mathrm{occ}}(2\\hat J_j-\\hat K_j),\\qquad \\hat F\\phi_i=\\varepsilon_i\\phi_i",
+        "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
+      ],
+      "note": {
+        "ja": "閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。",
+        "en": "Closed-shell RHF spatial-orbital equations, generally with nonlocal exchange. Runnable code is restricted to the spherical 1s² helium local reduction; general molecular/many-electron Fock-matrix construction is not implemented."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hartree-fock-model-en"
+      }
+    },
+    {
+      "id": "kohn-sham-model",
+      "name": {
+        "ja": "局所Kohn–Sham DFT",
+        "en": "Local Kohn–Sham DFT"
+      },
+      "formula": [
+        "E[n]=T_s[n]+\\int v_{\\rm ext}n\\,d\\mathbf r+E_H[n]+E_{\\rm xc}[n]+E_{NN}",
+        "[-\\tfrac12\\nabla^2+v_{\\rm ext}+v_H+v_{\\rm xc}]\\phi_i=\\varepsilon_i\\phi_i",
+        "n(\\mathbf r)=\\sum_i f_i|\\phi_i(\\mathbf r)|^2,\\quad \\int n\\,d\\mathbf r=N,\\quad v_{\\rm xc}=\\frac{\\delta E_{\\rm xc}}{\\delta n}"
+      ],
+      "note": {
+        "ja": "密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。",
+        "en": "Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kohn-sham-model-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-helium-ground-state",
+      "name": {
+        "ja": "He：閉殻HF・交換のみLDA",
+        "en": "Helium: closed-shell HF and exchange-only LDA"
+      },
+      "source": "common",
+      "role": "approximation",
+      "latex": [
+        "\\left[\\hat h_r+\\frac12v_H[n]\\right]u=\\varepsilon u\\quad(\\mathrm{He}\\;1s^2\\ \\mathrm{RHF})",
+        "\\left[\\hat h_r+v_H[n]+v_x^{\\rm LDA}(n)\\right]u=\\varepsilon u,\\qquad v_x^{\\rm LDA}=-\\left(\\frac{3n}{\\pi}\\right)^{1/3}",
+        "\\hat h_r=-\\frac12\\frac{d^2}{dr^2}-\\frac2r,\\qquad n(r)=\\frac{2|u(r)|^2}{4\\pi r^2}"
+      ],
+      "note": {
+        "ja": "孤立・球対称・閉殻1s²に限定した原子単位の動径式。RHFのvH/2は2電子同一空間軌道に特有。LDAは交換のみで相関なし。UHF、GGA、hybrid、一般分子・周期DFTの実行例ではない。",
+        "en": "Atomic-unit radial equations restricted to isolated spherical closed-shell 1s² helium. The RHF vH/2 form is specific to two electrons sharing one spatial orbital. LDA is exchange-only, without correlation; no UHF, GGA, hybrid, general molecular or periodic-DFT example."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "閉殻HF・交換のみLDAの独立参照、SCF残差・電子数・格子収束を確認します。近似汎関数の解を厳密なHe多体解とは呼びません。",
+    "en": "Check independent closed-shell HF/exchange-only LDA references, SCF residuals, electron number and mesh refinement. Approximate-functional solutions are not labeled exact many-body helium solutions."
+  },
+  "methods": [
+    {
+      "id": "hartree-fock",
+      "name": {
+        "ja": "Hartree–Fock法",
+        "en": "Hartree–Fock"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=en"
+      }
+    },
+    {
+      "id": "kohn-sham-dft",
+      "name": {
+        "ja": "Kohn–Sham密度汎関数法",
+        "en": "Kohn–Sham density functional theory / DFT"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/?lang=en"
+      }
+    },
+    {
+      "id": "scf",
+      "name": {
+        "ja": "自己無撞着場反復（SCF）",
+        "en": "Self-consistent field iteration / SCF"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=en"
+      }
+    },
+    {
+      "id": "hartree-poisson",
+      "name": {
+        "ja": "Coulomb・Hartreeポテンシャル",
+        "en": "Coulomb and Hartree potentials"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-poisson/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-poisson/?lang=en"
+      }
+    },
+    {
+      "id": "xc-functionals",
+      "name": {
+        "ja": "LDA・GGA・hybrid汎関数",
+        "en": "LDA, GGA and hybrid functionals"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/xc-functionals/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/xc-functionals/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "helium-ground-state",
+      "kind": "common",
+      "name": {
+        "ja": "He：閉殻HF・交換のみLDA",
+        "en": "Helium: closed-shell HF and exchange-only LDA"
+      },
+      "method_ids": [
+        "hartree-fock",
+        "kohn-sham-dft",
+        "scf",
+        "hartree-poisson",
+        "xc-functionals"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=en"
+      },
+      "scope": {
+        "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
+        "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
+      },
+      "assumptions": {
+        "ja": "非相対論・無限質量の点核、2電子が単一1s空間軌道を二重占有。2次中心差分と線形密度混合。HF交換の局所還元はこの2電子問題に限定。",
+        "en": "Nonrelativistic infinite-mass point nucleus, two electrons doubly occupying a single 1s spatial orbital. Second-order central differences and linear density mixing. Local HF exchange reduction is specific to this two-electron problem."
+      },
+      "limits": {
+        "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
+        "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
+      },
+      "input": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+      "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements-dev.txt",
+        "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "python -m pytest -q"
+      ],
+      "reference_note": {
+        "ja": "PySCF 2.11.0 / LibxcのGaussian基底参照。外挿値・有限格子値・参照を区別。参照scriptの再実行は今回の共通runnerの測定に含まない。",
+        "en": "PySCF 2.11.0 / Libxc finite-Gaussian references. Distinguish extrapolation, finite-grid values and references. Regenerating the independent reference is outside this measured runner."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/reference-pyscf.json",
+          "type": "independently-computed-finite-basis",
+          "description": {
+            "ja": "PySCF 2.11.0 / LibxcのGaussian基底参照。外挿値・有限格子値・参照を区別。参照scriptの再実行は今回の共通runnerの測定に含まない。",
+            "en": "PySCF 2.11.0 / Libxc finite-Gaussian references. Distinguish extrapolation, finite-grid values and references. Regenerating the independent reference is outside this measured runner."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-hf.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-lda_x.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/run.py"
+      ],
+      "test_urls": [],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
+      "path": "code/quantum-atoms/2026-11-21/test_atomic_radial.py",
+      "symbol": "test_helium_scf_and_independent_reference",
+      "commands": [
+        "python -m pytest -q test_atomic_radial.py -k test_helium_scf_and_independent_reference"
+      ],
+      "run_from": "quantum-atoms-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip"
+    }
+  ]
+}

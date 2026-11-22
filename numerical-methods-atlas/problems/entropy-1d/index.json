@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "id": "entropy-1d",
+  "name": {
+    "ja": "1次元Eulerエントロピー波",
+    "en": "One-dimensional Euler entropy wave"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/entropy-1d.png",
+    "sha256": "3692f625a80465194b490f915bde2ab5f33f28d9ef868da9df9a59fcc2bdb06f",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済みの1次元エントロピー波の密度誤差・格子収束。",
+      "en": "Stored density-error refinement for a 1D entropy wave."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/experiments/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/experiments/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#entropy-1d",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#entropy-1d-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "一定速度・圧力のもとで正弦状密度を運ぶEulerエントロピー波の解析解と比較します。専用の参照解一覧カードは未収録です。",
+    "en": "Compare with analytic translation of a sinusoidal Euler entropy wave at constant velocity and pressure. No dedicated card is included in the reference-solution library."
+  },
+  "methods": [
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "weno-js",
+      "name": {
+        "ja": "WENO5-JS",
+        "en": "WENO5-JS"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

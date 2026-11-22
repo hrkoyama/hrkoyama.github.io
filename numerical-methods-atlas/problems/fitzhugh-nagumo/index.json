@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "id": "fitzhugh-nagumo",
+  "name": {
+    "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+    "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+    "sha256": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "width": 1680,
+    "height": 504,
+    "caption": {
+      "ja": "無次元の2変数FHN型ODEにt=10〜20の電流パルス。DOP853参照とRK4の興奮・回復、刻み0.1/0.05/0.025の収束と全出力点の差を保存結果から表示。",
+      "en": "A dimensionless two-variable FHN-type ODE with a t=10..20 current pulse: stored RK4/DOP853 excitation and recovery, steps 0.1/0.05/0.025 and all-output-time differences."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#fitzhugh-nagumo",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#fitzhugh-nagumo-en"
+  },
+  "equations": [
+    {
+      "id": "bio-fitzhugh-nagumo",
+      "name": {
+        "ja": "FitzHugh–Nagumoの興奮と回復",
+        "en": "FitzHugh–Nagumo excitation and recovery"
+      },
+      "formula": [
+        "v_t=D\\Delta v+v-v^3/3-w+I",
+        "w_t=\\epsilon(v+a-bw)"
+      ],
+      "note": {
+        "ja": "高速の興奮と低速の回復を結ぶ規格化した代表形。係数・符号・空間拡張には複数の規約があります。 限定した実行例：公開実行例はD=0の空間なしの縮約ODEです。FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space. This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations. Scoped executed example: The executed case has D=0 and no spatial coordinate. Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fitzhugh-nagumo-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fitzhugh-nagumo-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "公開固定入力は空間拡散を含まない2変数ODEの極限です。一般の伝播PDEを検証したという意味ではありません。",
+    "en": "The published fixed input is the two-variable ODE limit without spatial diffusion; it does not validate the general propagation PDE."
+  },
+  "formulations": [
+    {
+      "id": "supplement-fitzhugh-nagumo",
+      "name": {
+        "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+        "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\dot v=v-v^3/3-w+I(t),\\qquad \\dot w=(v+a-bw)/\\tau"
+      ],
+      "note": {
+        "ja": "2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
+        "en": "Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "電流パルスを与えた2変数縮約ODEを独立DOP853参照と比較し、全出力時刻の誤差・時間収束・回復を確認します。",
+    "en": "Compare the two-variable reduced ODE under a current pulse with an independent DOP853 reference, checking all-output-time errors, temporal refinement and recovery."
+  },
+  "methods": [
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "fitzhugh-nagumo",
+      "kind": "supplement",
+      "name": {
+        "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+        "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+      },
+      "method_ids": [
+        "rk4"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"
+      },
+      "scope": {
+        "ja": "2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
+        "en": "Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
+      },
+      "assumptions": {
+        "ja": "無次元a=0.7,b=0.8,tau=12.5。I=0の休止平衡からt=10〜20だけI=0.8を与え、t=80まで進めます。生理学的な物理単位への較正はしません。",
+        "en": "Dimensionless a=0.7,b=0.8,tau=12.5. Start at resting equilibrium for I=0, apply I=0.8 only during t=10..20 and integrate to t=80. No calibration to physiological physical units."
+      },
+      "limits": {
+        "ja": "FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "別実装SciPy DOP853のrtol1e-11と1e-13を比較して参照の感度を確認し、厳しい参照への最大解誤差と時間次数を評価します。ピーク時刻は出力格子上の精度です。",
+        "en": "Compare separate SciPy DOP853 at rtol=1e-11 and 1e-13 to check reference sensitivity; measure maximum solution error and time order against the tighter reference. Peak time is resolved only on the output grid."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "isolated-convolution",
+  "name": {
+    "ja": "孤立FFTと非周期直接畳み込み",
+    "en": "Isolated FFT versus direct nonperiodic convolution"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-convolution/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-convolution/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-convolution/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/gravity-boundaries.png",
+    "sha256": "d660c26c162d156dba24026b81efa2b78a4b02924f72d16594aa63c19038103c",
+    "width": 1670,
+    "height": 969,
+    "caption": {
+      "ja": "境界核の共有図。このカードは「孤立畳み込み」の問題を案内します。",
+      "en": "Shared boundary-kernel figure; this card links specifically to isolated-convolution."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gravity-boundaries/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/gravity-boundaries/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#isolated-convolution",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#isolated-convolution-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "重力Poisson方程式の孤立境界に対応する密度場の畳み込み問題です。粒子の軟化二体力や全方向周期Poissonの例とは区別し、この図ではゼロ埋めFFTと同じ離散核の非周期直接畳み込みを照合します。",
+    "en": "A density-field convolution for the gravitational Poisson equation with isolated boundaries, distinct from softened particle-pair forces or fully periodic Poisson examples. This visual compares zero-padded FFT with nonperiodic direct convolution using the same discrete kernel."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "同じ離散核・セル体積・自己項を使う非周期直接畳み込みと、ゼロ埋めFFTの一致を確認します。連続核の離散化誤差とは別です。",
+    "en": "Check zero-padded FFT against nonperiodic direct convolution using the same discrete kernel, cell volumes and self term. This is separate from continuum-kernel discretization error."
+  },
+  "methods": [
+    {
+      "id": "hockney",
+      "name": {
+        "ja": "孤立境界の倍格子FFT畳み込み",
+        "en": "Isolated doubled-grid FFT convolution"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hockney/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hockney/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_gravity_boundaries.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_gravity_boundaries.py",
+      "symbol": "test_isolated_doubling_equals_direct_nonperiodic_discrete_convolution",
+      "commands": [
+        "python -m pytest -q tests/test_gravity_boundaries.py -k test_isolated_doubling_equals_direct_nonperiodic_discrete_convolution"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

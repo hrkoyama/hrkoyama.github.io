@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "id": "strong-shock",
+  "name": {
+    "ja": "1次元の強い圧力ジャンプ",
+    "en": "One-dimensional strong pressure jump"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/strong-shock.png",
+    "sha256": "50ec1a3a9f99ff8a6c3d0a45f77b89f15237ac3ed8eb3b083bcd8df1686becd8",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "完了したPPM計算の保存密度。停止した他の変種とは区別しています。",
+      "en": "Stored density from a completed PPM run, distinct from variants that stopped."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#strong-shock",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#strong-shock-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "この強い圧力段差の初期値を使った半解析的Riemann参照を保存しています。参照解一覧の標準Sodとは初期値が異なります。",
+    "en": "A semi-analytic Riemann reference is stored for this strong pressure jump. Its initial states differ from the library's standard Sod problem."
+  },
+  "methods": [
+    {
+      "id": "ppm",
+      "name": {
+        "ja": "制限付きPPM再構成",
+        "en": "Limited PPM reconstruction"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ppm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ppm/?lang=en"
+      }
+    },
+    {
+      "id": "hllc",
+      "name": {
+        "ja": "HLLC",
+        "en": "HLLC"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en"
+      }
+    },
+    {
+      "id": "hlle",
+      "name": {
+        "ja": "HLLE／Einfeldt波速",
+        "en": "HLLE / Einfeldt wave speeds"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+      }
+    },
+    {
+      "id": "ausm",
+      "name": {
+        "ja": "AUSM系列の流束分割",
+        "en": "AUSM-family flux splitting"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ausm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ausm/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

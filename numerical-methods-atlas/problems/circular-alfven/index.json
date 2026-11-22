@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "id": "circular-alfven",
+  "name": {
+    "ja": "円偏波Alfvén波",
+    "en": "Circularly polarized Alfvén wave"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/alfven.png",
+    "sha256": "59a8cd9131e3b5ea278b3bda97b9995f7324315c11c9a6606eb411cca3917e9e",
+    "width": 1400,
+    "height": 630,
+    "caption": {
+      "ja": "保存済み円偏波Alfvén波の誤差・収束比較。",
+      "en": "Stored circularly polarized Alfvén-wave comparison."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#circular-alfven",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#circular-alfven-en"
+  },
+  "equations": [
+    {
+      "id": "mhd",
+      "name": {
+        "ja": "理想MHD",
+        "en": "Ideal magnetohydrodynamics"
+      },
+      "formula": [
+        "\\rho_t+\\nabla\\cdot(\\rho\\boldsymbol v)=0",
+        "(\\rho\\boldsymbol v)_t+\\nabla\\cdot[\\rho\\boldsymbol v\\otimes\\boldsymbol v+(p+B^2/2)I-\\boldsymbol B\\otimes\\boldsymbol B]=0",
+        "E_t+\\nabla\\cdot[(E+p+B^2/2)\\boldsymbol v-(\\boldsymbol v\\cdot\\boldsymbol B)\\boldsymbol B]=0",
+        "\\boldsymbol B_t=\\nabla\\times(\\boldsymbol v\\times\\boldsymbol B),\\quad\\nabla\\cdot\\boldsymbol B=0"
+      ],
+      "note": {
+        "ja": "透磁率を1とする理想MHDの代表形。Eは熱・運動・磁場を含む全エネルギー密度。解説でCT・GLMと発散の測り方、HLLDテストへ進めます。",
+        "en": "Representative ideal MHD with magnetic permeability set to one. E is total thermal, kinetic and magnetic energy density. Follow CT/GLM, divergence conventions and HLLD tests."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#mhd-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#mhd-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "円偏光Alfvén波の解析解を、一定の全エネルギーを含む保存変数セル平均で評価します。",
+    "en": "Evaluate the analytic circularly polarized Alfvén wave using conserved cell averages, including its constant total energy."
+  },
+  "methods": [
+    {
+      "id": "hlld",
+      "name": {
+        "ja": "HLLDのMHDリーマン解法",
+        "en": "HLLD MHD Riemann solver"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=en"
+      }
+    },
+    {
+      "id": "hlle",
+      "name": {
+        "ja": "HLLE／Einfeldt波速",
+        "en": "HLLE / Einfeldt wave speeds"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

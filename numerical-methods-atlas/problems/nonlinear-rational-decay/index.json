@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "id": "nonlinear-rational-decay",
+  "name": {
+    "ja": "有理減衰ODE（y′ = −y²）",
+    "en": "Rational-decay ODE (y′ = −y²)"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/nonlinear-rational-decay.png",
+    "sha256": "56f8efda8e60babc21a818fa91bce6ff95b6d5f3baf3450caa09cf58178421bf",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済み有理減衰ODEの時間刻み収束（代表3手法）。",
+      "en": "Stored time-refinement errors for rational decay, showing three methods."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/runge-kutta/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/runge-kutta/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#nonlinear-rational-decay",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#nonlinear-rational-decay-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "非線形スカラーODE y′=-y²、y(0)=1。既存の方程式一覧には専用項目がありません。",
+    "en": "Nonlinear scalar ODE y′=-y², y(0)=1; no dedicated equation-registry entry."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "y′=-y²、y(0)=1の厳密解1/(1+t)を使い、複数の陽的Runge–Kutta法の非線形誤差と次数を確認します。",
+    "en": "Use the exact solution 1/(1+t) for y′=-y², y(0)=1, to check nonlinear errors and orders of several explicit Runge–Kutta methods."
+  },
+  "methods": [
+    {
+      "id": "forward-euler",
+      "name": {
+        "ja": "前進Euler法",
+        "en": "Forward Euler"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en"
+      }
+    },
+    {
+      "id": "heun",
+      "name": {
+        "ja": "Heun法／SSPRK(2,2)",
+        "en": "Heun / SSPRK(2,2)"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+      }
+    },
+    {
+      "id": "explicit-midpoint",
+      "name": {
+        "ja": "陽的中点RK2",
+        "en": "Explicit midpoint RK2"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/explicit-midpoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/explicit-midpoint/?lang=en"
+      }
+    },
+    {
+      "id": "ralston",
+      "name": {
+        "ja": "Ralston RK2",
+        "en": "Ralston RK2"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ralston/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ralston/?lang=en"
+      }
+    },
+    {
+      "id": "kutta3",
+      "name": {
+        "ja": "Kutta RK3",
+        "en": "Kutta RK3"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kutta3/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kutta3/?lang=en"
+      }
+    },
+    {
+      "id": "ssprk33",
+      "name": {
+        "ja": "SSPRK(3,3)",
+        "en": "SSPRK(3,3)"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+      }
+    },
+    {
+      "id": "ssprk43",
+      "name": {
+        "ja": "SSPRK(4,3)",
+        "en": "SSPRK(4,3)"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk43/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk43/?lang=en"
+      }
+    },
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    },
+    {
+      "id": "ssprk54",
+      "name": {
+        "ja": "SSPRK(5,4)",
+        "en": "SSPRK(5,4)"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk54/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk54/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

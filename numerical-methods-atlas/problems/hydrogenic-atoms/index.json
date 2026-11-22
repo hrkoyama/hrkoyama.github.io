@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "id": "hydrogenic-atoms",
+  "name": {
+    "ja": "水素型原子の動径固有値問題",
+    "en": "Hydrogenic radial eigenproblems"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png",
+    "sha256": "2f1ea60a391f26c8fd086999e56155ed1bf3bc5c5b80c6d9f2c44ee2c5dca1cf",
+    "width": 960,
+    "height": 570,
+    "caption": {
+      "ja": "公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。",
+      "en": "Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/#hydrogenic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#hydrogenic-atoms",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#hydrogenic-atoms-en"
+  },
+  "equations": [
+    {
+      "id": "stationary-schrodinger",
+      "name": {
+        "ja": "電子の定常Schrödinger方程式",
+        "en": "Stationary electronic Schrödinger equation"
+      },
+      "formula": [
+        "\\hat H_{\\rm el}\\Psi=E_{\\rm el}\\Psi,\\qquad E_{\\rm tot}=E_{\\rm el}+\\sum_{A<B}\\frac{Z_AZ_B}{R_{AB}}"
+      ],
+      "note": {
+        "ja": "固定核・非相対論の電子多体固有値問題。核間反発は電子Hamiltonianの外に加える。実行例は1電子の孤立水素型原子に限定。一般の多電子直接解法は未実装。",
+        "en": "Fixed-nuclei nonrelativistic electronic many-body eigenproblem; add nuclear repulsion separately. Runnable examples cover only isolated one-electron hydrogenic atoms, not direct general many-electron solutions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#stationary-schrodinger-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#stationary-schrodinger-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-hydrogenic-atoms",
+      "name": {
+        "ja": "水素型原子：解析解と格子収束",
+        "en": "Hydrogenic atoms: analytic references and grid refinement"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "\\left[-\\frac12\\frac{d^2}{dr^2}+\\frac{\\ell(\\ell+1)}{2r^2}-\\frac Zr\\right]u_{n\\ell}=E_{n\\ell}u_{n\\ell}",
+        "E_n^{\\rm ref}=-\\frac{Z^2}{2n^2},\\qquad Z\\in\\{1,2\\}"
+      ],
+      "note": {
+        "ja": "原子単位の1電子・定常動径問題。計算は有限半径箱の零Dirichlet境界を使い、無限領域の水素型解析解と比較する。一般多電子・分子・周期系の解法を意味しない。",
+        "en": "One-electron stationary radial problem in atomic units. A finite radial box with zero Dirichlet boundaries is compared with infinite-domain hydrogenic analytic references; not a general many-electron, molecular or periodic solver."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "水素型原子の解析的な固有エネルギー・軌道と比較し、有限半径打切りと格子誤差を分けます。既存の固定入力・保存結果を参照します。",
+    "en": "Compare with analytic hydrogenic eigenenergies/orbitals and separate finite-radius truncation from mesh error using existing fixed inputs and stored results."
+  },
+  "methods": [
+    {
+      "id": "schrodinger",
+      "name": {
+        "ja": "Schrödinger固有値問題",
+        "en": "Schrodinger eigenproblems"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/schrodinger/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/schrodinger/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "hydrogenic-atoms",
+      "kind": "common",
+      "name": {
+        "ja": "水素型原子：解析解と格子収束",
+        "en": "Hydrogenic atoms: analytic references and grid refinement"
+      },
+      "method_ids": [
+        "schrodinger"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en"
+      },
+      "scope": {
+        "ja": "孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。",
+        "en": "Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver."
+      },
+      "assumptions": {
+        "ja": "非相対論・無限質量の点核。核電荷Z=1,2。縮約動径軌道を一様格子の2次中心差分で離散化。",
+        "en": "Nonrelativistic infinite-mass point nucleus, Z=1,2. Reduced radial orbitals use second-order central differences on a uniform mesh."
+      },
+      "limits": {
+        "ja": "孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。",
+        "en": "Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver."
+      },
+      "input": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+      "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements-dev.txt",
+        "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "python -m pytest -q"
+      ],
+      "reference_note": {
+        "ja": "E_n=−Z²/(2n²)とLaguerre動径解。有限格子の誤差と箱の誤差を分ける。",
+        "en": "E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic",
+          "type": "analytic",
+          "description": {
+            "ja": "E_n=−Z²/(2n²)とLaguerre動径解。有限格子の誤差と箱の誤差を分ける。",
+            "en": "E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n1-l0.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l0.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l1.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n3-l2.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n1-l0.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l0.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l1.csv",
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n3-l2.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/run.py"
+      ],
+      "test_urls": [],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
+      "path": "code/quantum-atoms/2026-11-21/test_atomic_radial.py",
+      "symbol": "test_hydrogenic_refinement_and_normalization",
+      "commands": [
+        "python -m pytest -q test_atomic_radial.py -k test_hydrogenic_refinement_and_normalization"
+      ],
+      "run_from": "quantum-atoms-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip"
+    }
+  ]
+}

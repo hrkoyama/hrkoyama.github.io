@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "magnetic-loop",
+  "name": {
+    "ja": "磁場ループの移流",
+    "en": "Magnetic field-loop advection"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/field-loop.png",
+    "sha256": "ae99ce992228c257747d74ebbcbea8c1ecf61acf64185bb7fc1718e2857c9655",
+    "width": 1540,
+    "height": 896,
+    "caption": {
+      "ja": "保存済み磁場ループ移流の計算場。",
+      "en": "Stored computed fields for magnetic-loop advection."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#magnetic-loop",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#magnetic-loop-en"
+  },
+  "equations": [
+    {
+      "id": "mhd",
+      "name": {
+        "ja": "理想MHD",
+        "en": "Ideal magnetohydrodynamics"
+      },
+      "formula": [
+        "\\rho_t+\\nabla\\cdot(\\rho\\boldsymbol v)=0",
+        "(\\rho\\boldsymbol v)_t+\\nabla\\cdot[\\rho\\boldsymbol v\\otimes\\boldsymbol v+(p+B^2/2)I-\\boldsymbol B\\otimes\\boldsymbol B]=0",
+        "E_t+\\nabla\\cdot[(E+p+B^2/2)\\boldsymbol v-(\\boldsymbol v\\cdot\\boldsymbol B)\\boldsymbol B]=0",
+        "\\boldsymbol B_t=\\nabla\\times(\\boldsymbol v\\times\\boldsymbol B),\\quad\\nabla\\cdot\\boldsymbol B=0"
+      ],
+      "note": {
+        "ja": "透磁率を1とする理想MHDの代表形。Eは熱・運動・磁場を含む全エネルギー密度。解説でCT・GLMと発散の測り方、HLLDテストへ進めます。",
+        "en": "Representative ideal MHD with magnetic permeability set to one. E is total thermal, kinetic and magnetic energy density. Follow CT/GLM, divergence conventions and HLLD tests."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#mhd-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#mhd-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [],
+  "reference_note": {
+    "ja": "弱磁場ループが1周期で戻る初期場との誤差、磁気エネルギー、配置固有の磁場発散を確認します。任意強度のMHDループの厳密解を主張しません。",
+    "en": "Check return error against the initial weak-field loop, magnetic energy and layout-specific divergence after one transit. No exact solution is claimed for arbitrary finite-strength MHD loops."
+  },
+  "methods": [
+    {
+      "id": "ct",
+      "name": {
+        "ja": "制約輸送法／CT",
+        "en": "Constrained transport / CT"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ct/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ct/?lang=en"
+      }
+    },
+    {
+      "id": "glm",
+      "name": {
+        "ja": "GLM発散クリーニング",
+        "en": "GLM divergence cleaning"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/?lang=en"
+      }
+    },
+    {
+      "id": "hlld",
+      "name": {
+        "ja": "HLLDのMHDリーマン解法",
+        "en": "HLLD MHD Riemann solver"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=en"
+      }
+    },
+    {
+      "id": "hlle",
+      "name": {
+        "ja": "HLLE／Einfeldt波速",
+        "en": "HLLE / Einfeldt wave speeds"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": []
+}

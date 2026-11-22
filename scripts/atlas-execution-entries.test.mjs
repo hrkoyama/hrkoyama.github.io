@@ -79,7 +79,7 @@ test('Markdown retains array selectors and result fields, so H/He acceptance cri
   }
 });
 
-test('every verified example is reachable from words, formulas and its image without adding models or problems',()=>{
+test('every verified example is reachable from words, formulas and its image through the matching problem page',()=>{
   const search=json('numerical-methods-atlas/home-search-index.json');
   const formulas=read('numerical-methods-atlas/equations/index.html');
   const gallery=json('numerical-methods-atlas/gallery/index.json');
@@ -93,7 +93,17 @@ test('every verified example is reachable from words, formulas and its image wit
       assert.ok(locale(formulas,lang).includes('href="'+target+'"'),item.id+' formula route');
       assert.equal(visual.execution_entry.url[lang],target);
       const tile=galleryHtml.split(`id="${item.problem_id}-${lang}"`)[1].split('</li>')[0];
-      assert.ok(tile.includes('class="gallery-image-link" href="'+target+'"'),item.id+' image route');
+      const imageTarget=tile.match(/<a\b[^>]*class="gallery-image-link"[^>]*href="([^"]+)"/)?.[1];
+      assert.ok(imageTarget,item.id+' image route');
+      const hub=new URL(imageTarget,'https://hrkoyama.github.io');
+      assert.equal(hub.pathname,`/numerical-methods-atlas/problems/${item.problem_id}/`);
+      assert.equal(hub.searchParams.get('lang'),lang);
+      const problem=json(hub.pathname.slice(1)+'index.json');
+      const verified=problem.executions.find(example=>example.id===item.id&&example.kind==='common');
+      assert.equal(verified?.guide[lang],target,item.id+' hub retains the same verified execution');
+      assert.ok(locale(read(hub.pathname.slice(1)+'index.html'),lang).includes('href="'+target+'"'),item.id+' visible hub execution route');
+      const badge=tile.match(/<p class="gallery-execution-badge">([\s\S]*?)<\/p>/)?.[1];
+      assert.ok(badge?.includes('href="'+target+'"'),item.id+' direct run badge');
     }
   }
   assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,46);

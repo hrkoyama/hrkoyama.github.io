@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "absorbing-slab",
+  "name": {
+    "ja": "純吸収平板の離散座標放射輸送",
+    "en": "Discrete-ordinate radiation transport through an absorbing slab"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+    "sha256": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "width": 1500,
+    "height": 510,
+    "caption": {
+      "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
+      "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#absorbing-slab",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#absorbing-slab-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "定常離散座標輸送 μ∂xI=-κI、純吸収・指定流入。相対論的M1の式ではなく、既存一覧に同じ専用式はありません。",
+    "en": "Steady discrete-ordinate transport μ∂xI=-κI with pure absorption and specified inflow, distinct from relativistic M1 and absent as a dedicated registry equation."
+  },
+  "formulations": [
+    {
+      "id": "supplement-radiation-transport",
+      "name": {
+        "ja": "純吸収平板の離散座標放射輸送",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\mu\\frac{dI}{d\\tau}+I=0,\\qquad I(\\tau,\\mu)=e^{-\\tau/\\mu}",
+        "F_{\\rm out}=2\\pi\\int_0^1\\mu e^{-\\tau/\\mu}d\\mu=2\\pi E_3(\\tau)"
+      ],
+      "note": {
+        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。",
+    "en": "Compare discrete ordinates with analytic directional exponential attenuation through a purely absorbing slab with specified inflow. This differs from relativistic M1 moment closure."
+  },
+  "methods": [
+    {
+      "id": "radiation-transport",
+      "name": {
+        "ja": "放射輸送・モーメント法",
+        "en": "Radiation transport and moment methods"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "radiation-transport",
+      "kind": "supplement",
+      "name": {
+        "ja": "純吸収平板の離散座標放射輸送",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab"
+      },
+      "method_ids": [
+        "radiation-transport"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=en"
+      },
+      "scope": {
+        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
+      },
+      "assumptions": {
+        "ja": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。",
+        "en": "A uniform slab of optical depth 0.7 receives unit intensity over the positive hemisphere, with zero reverse inflow, scattering and emission."
+      },
+      "limits": {
+        "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+        "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。",
+        "en": "With 32–512 cells, check all ray intensities, spatial flux error, positivity and discrete absorption balance. A separate 4–32-ordinate sweep compares exit flux with the analytic 2pi E3(tau) representation."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

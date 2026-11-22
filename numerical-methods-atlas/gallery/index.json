@@ -105,6 +105,10 @@
         "profile": "sine"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#advection-sine-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "advection-sine",
@@ -171,6 +175,10 @@
         "profile": "square"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#advection-square-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -220,6 +228,10 @@
         "case": "burgers-shock"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#burgers-shock-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -269,6 +281,10 @@
         "case": "burgers-rarefaction"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#burgers-fan-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -318,6 +334,10 @@
         "case": "traffic-upstream-jam"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#traffic-jam-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -367,6 +387,10 @@
         "case": "traffic-clearing-fan"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#traffic-fan-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -422,6 +446,10 @@
         "case": "heat"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#heat-periodic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -473,6 +501,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#heat-dirichlet-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -551,6 +583,10 @@
         "case": "sod"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sod-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "sod",
@@ -617,6 +653,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#lax-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -709,6 +749,10 @@
         "problem": "shu-osher"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#shu-osher-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "shu-osher",
@@ -800,6 +844,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#entropy-1d-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -856,6 +904,10 @@
         "problem": "moving-contact"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#moving-contact-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -913,6 +965,10 @@
         "problem": "strong-shock"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#strong-shock-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -964,6 +1020,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#double-rarefaction-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1019,6 +1079,10 @@
         "case": "dam-break"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#dam-break-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1074,6 +1138,10 @@
         "case": "isothermal"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isothermal-jump-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1123,6 +1191,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#double-mach-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1175,6 +1247,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nasa-wedge-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1227,6 +1303,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#forward-step-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1278,6 +1358,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#entropy-2d-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1323,6 +1407,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#cylinder-forebody-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1368,6 +1456,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#odd-even-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1413,6 +1505,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isentropic-vortex-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1494,6 +1590,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#orszag-tang-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -1607,6 +1707,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#brio-wu-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/brio-wu/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/brio-wu/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "brio-wu",
@@ -1694,6 +1798,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#circular-alfven-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1739,6 +1847,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#magnetic-loop-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1799,6 +1911,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#taylor-green-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "taylor-green",
@@ -1860,6 +1976,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#lbm-shear-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1911,6 +2031,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#channel-poiseuille-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -1971,6 +2095,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-dirichlet-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "poisson-1d-dirichlet",
@@ -2032,6 +2160,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-neumann-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2083,6 +2215,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-mixed-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-mixed/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-mixed/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2134,6 +2270,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-robin-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-robin/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-robin/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2182,6 +2322,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-broad-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-broad/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-broad/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2230,6 +2374,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-localized-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-localized/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-localized/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2322,6 +2470,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-sine-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "poisson-2d-sine",
@@ -2406,6 +2558,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-uniform-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-uniform/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-uniform/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2457,6 +2613,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-random-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-random/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-random/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2506,6 +2666,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-3d-periodic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2557,6 +2721,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-periodic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-periodic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-periodic/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2629,6 +2797,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#bratu-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "bratu",
@@ -2690,6 +2862,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sparse-advection-diffusion-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sparse-advection-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sparse-advection-diffusion/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2746,6 +2922,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isolated-particles-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "barnes-hut",
@@ -2816,6 +2996,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#periodic-particles-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "periodic-particles",
@@ -2877,6 +3061,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isolated-convolution-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-convolution/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-convolution/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2922,6 +3110,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#uniform-slab-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -2967,6 +3159,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sinusoidal-sheet-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3031,6 +3227,10 @@
         "system": "harmonic"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#harmonic-oscillator-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "harmonic-oscillator",
@@ -3090,6 +3290,10 @@
         "system": "quartic"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#quartic-oscillator-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3141,6 +3345,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nonlinear-exp-ode-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3205,6 +3413,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#stiff-cosine-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "stiff-cosine",
@@ -3266,6 +3478,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nonlinear-rational-ode-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3326,6 +3542,10 @@
         "profile": "smooth"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#smooth-function-projection-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "smooth-function-projection",
@@ -3385,6 +3605,10 @@
         "profile": "jump"
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#jump-function-projection-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3436,6 +3660,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#cubic-root-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3485,6 +3713,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nonlinear-rational-decay-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en"
+      },
       "runnable": false,
       "execution_entry": null,
       "supplemental_execution_entries": []
@@ -3554,6 +3786,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#hydrogenic-atoms-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "hydrogenic-atoms",
@@ -3633,6 +3869,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#helium-ground-state-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "helium-ground-state",
@@ -3712,6 +3952,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#logistic-growth-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "logistic-growth",
@@ -3791,6 +4035,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sir-epidemic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "sir-epidemic",
@@ -3870,6 +4118,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#mc-integral-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mc-integral/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mc-integral/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "mc-integral",
@@ -3949,6 +4201,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#gbm-sde-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "gbm-sde",
@@ -4028,6 +4284,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#h2-rhf-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "h2-rhf",
@@ -4107,6 +4367,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#periodic-he-dft-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "periodic-he-dft",
@@ -4186,6 +4450,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#periodic-he-forces-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en"
+      },
       "runnable": true,
       "execution_entry": {
         "id": "periodic-he-forces",
@@ -4273,6 +4541,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#matrix-factorization-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/matrix-factorization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/matrix-factorization/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -4373,6 +4645,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#krylov-spectrum-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -4473,6 +4749,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#quadrature-moments-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -4573,6 +4853,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#gaussian-mcmc-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -4681,6 +4965,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#langevin-harmonic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -4803,6 +5091,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#reaction-diffusion-fourier-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -4919,6 +5211,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#turing-schnakenberg-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5063,6 +5359,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#fitzhugh-nagumo-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5210,6 +5510,10 @@
         ]
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#neutral-periodic-charges-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5336,6 +5640,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#logarithmic-particles-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5438,6 +5746,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#cold-plasma-pic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5540,6 +5852,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#maxwell-collisions-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5642,6 +5958,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#absorbing-slab-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5748,6 +6068,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#thermostatted-quartic-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [
@@ -5852,6 +6176,10 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#mcmc-bimodal-mixture-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=en"
+      },
       "runnable": true,
       "execution_entry": null,
       "supplemental_execution_entries": [

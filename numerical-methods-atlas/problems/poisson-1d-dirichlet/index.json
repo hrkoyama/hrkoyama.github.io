@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "id": "poisson-1d-dirichlet",
+  "name": {
+    "ja": "1次元Poisson・Dirichlet製造解",
+    "en": "1D Poisson / smooth Dirichlet manufactured solutions"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-dirichlet.png",
+    "sha256": "981d432e8b2d984d5716570f9ecb747e06d92e9a1d2e68577e3f051846930d89",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済み1次元Dirichlet製造解の誤差と格子数。",
+      "en": "Stored error versus resolution for the 1D Dirichlet manufactured solution."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#poisson-1d-dirichlet",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#poisson-1d-dirichlet-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-poisson-1d-dirichlet",
+      "name": {
+        "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+        "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "-u''(x)=\\pi^2\\sin(\\pi x),\\qquad u(0)=u(1)=0",
+        "u_{\\rm ref}(x)=\\sin(\\pi x)"
+      ],
+      "note": {
+        "ja": "一様格子の3点差分を15/31/63内部点で解く。残差が小さいことと連続解に近いことは別々に判定する。",
+        "en": "Three-point differences on 15/31/63 uniform interior nodes; a small residual and proximity to the continuous solution are separate checks."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "poisson-manufactured",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "Poisson／正弦波の製造解",
+        "en": "Poisson / manufactured sine"
+      },
+      "formula": "u = sin(πx); −u_xx = f = π² sin(πx)",
+      "assumptions": {
+        "ja": "両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。",
+        "en": "Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "単一sin(πx)の共通固定入力とは一致しますが、保存比較図は複合正弦製造解も含みます。同じ零Dirichletでも全ソースが同一ではありません。",
+        "en": "It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "零Dirichlet境界の製造正弦解、複合正弦の比較例、および離散残差で確認します。単一sin(πx)の参照カードが全ソース条件を表すわけではありません。",
+    "en": "Use manufactured sine solutions, the composite-sine comparison and discrete residuals with zero Dirichlet endpoints. The single sin(πx) reference does not represent every forcing variant."
+  },
+  "methods": [
+    {
+      "id": "thomas",
+      "name": {
+        "ja": "Thomas法／三重対角消去",
+        "en": "Thomas tridiagonal elimination"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "poisson-1d-dirichlet",
+      "kind": "common",
+      "name": {
+        "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+        "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+      },
+      "method_ids": [
+        "thomas"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en"
+      },
+      "scope": {
+        "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
+        "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
+      },
+      "assumptions": {
+        "ja": "定係数・一様格子の3点差分。入力で領域、境界、右辺、格子、解法を固定。ピボットなしThomasに適した正定値三重対角行列で、任意の三重対角行列を検証するものではない。",
+        "en": "Constant-coefficient three-point differences on a uniform mesh. Inputs fix domain, boundaries, forcing, grids and solver. The SPD tridiagonal system suits unpivoted Thomas; this does not validate arbitrary tridiagonal matrices."
+      },
+      "limits": {
+        "ja": "非零境界、別の右辺、異なる領域や不正格子を拒否。有限差分の滑らかな単一解の検査で、Robin/Neumann、可変係数、ピボットの一般的安全性を保証しない。",
+        "en": "Reject different forcing/domain, nonzero boundaries and invalid meshes. This smooth finite-difference case does not validate Robin/Neumann data, variable coefficients or general pivot safety."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run_recipe.py --input recipes/poisson-1d-dirichlet.json --output output-poisson-1d-dirichlet",
+        "python -m pytest -q tests/test_recipes.py"
+      ],
+      "reference_note": {
+        "ja": "CSVは最細格子でx・数値解・解析解・誤差を整列。全3格子の誤差と残差、隣接格子間の次数はresult.jsonに保存。Thomasの原報告は既存台帳でも直接確認未済のため、未検証の一次文献を新たに掲げない。",
+        "en": "CSV aligns finest-grid x, numerical/analytic values and error. JSON retains all three errors/residuals and adjacent-level orders. The Thomas original report remains unverified in the existing catalog, so no newly verified primary-source claim is added."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "CSVは最細格子でx・数値解・解析解・誤差を整列。全3格子の誤差と残差、隣接格子間の次数はresult.jsonに保存。Thomasの原報告は既存台帳でも直接確認未済のため、未検証の一次文献を新たに掲げない。",
+            "en": "CSV aligns finest-grid x, numerical/analytic values and error. JSON retains all three errors/residuals and adjacent-level orders. The Thomas original report remains unverified in the existing catalog, so no newly verified primary-source claim is added."
+          }
+        },
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "独立にsin(πx)と右辺を評価する。小残差と連続解誤差は分けて報告する。",
+            "en": "Evaluate sin(πx) and its forcing independently; report continuous-solution error separately from a small discrete residual."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "symbol": "test_poisson_second_order",
+      "commands": [
+        "python -m pytest -q tests/test_linear.py -k test_poisson_second_order"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

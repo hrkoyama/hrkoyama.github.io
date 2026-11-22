@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "h2-rhf",
+  "name": {
+    "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+    "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/preview.png",
+    "sha256": "ba6a00cf70bfffc53f66b874a12c783388858aa5277a44e7d5e323132b4bb31d",
+    "width": 1120,
+    "height": 570,
+    "caption": {
+      "ja": "固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。",
+      "en": "Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#measured-results",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#measured-results"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#h2-rhf",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#h2-rhf-en"
+  },
+  "equations": [
+    {
+      "id": "hartree-fock-model",
+      "name": {
+        "ja": "閉殻Hartree–Fock方程式",
+        "en": "Closed-shell Hartree–Fock equations"
+      },
+      "formula": [
+        "\\hat F=\\hat h+\\sum_{j\\in\\mathrm{occ}}(2\\hat J_j-\\hat K_j),\\qquad \\hat F\\phi_i=\\varepsilon_i\\phi_i",
+        "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
+      ],
+      "note": {
+        "ja": "閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。",
+        "en": "Closed-shell RHF spatial-orbital equations, generally with nonlocal exchange. Runnable code is restricted to the spherical 1s² helium local reduction; general molecular/many-electron Fock-matrix construction is not implemented."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hartree-fock-model-en"
+      }
+    },
+    {
+      "id": "stationary-schrodinger",
+      "name": {
+        "ja": "電子の定常Schrödinger方程式",
+        "en": "Stationary electronic Schrödinger equation"
+      },
+      "formula": [
+        "\\hat H_{\\rm el}\\Psi=E_{\\rm el}\\Psi,\\qquad E_{\\rm tot}=E_{\\rm el}+\\sum_{A<B}\\frac{Z_AZ_B}{R_{AB}}"
+      ],
+      "note": {
+        "ja": "固定核・非相対論の電子多体固有値問題。核間反発は電子Hamiltonianの外に加える。実行例は1電子の孤立水素型原子に限定。一般の多電子直接解法は未実装。",
+        "en": "Fixed-nuclei nonrelativistic electronic many-body eigenproblem; add nuclear repulsion separately. Runnable examples cover only isolated one-electron hydrogenic atoms, not direct general many-electron solutions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#stationary-schrodinger-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#stationary-schrodinger-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-h2-rhf",
+      "name": {
+        "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+        "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+      },
+      "source": "common",
+      "role": "approximation",
+      "latex": [
+        "F(P)C=SC\\varepsilon,\\quad P=2C_oC_o^T",
+        "E_{\\rm RHF}=\\tfrac12\\operatorname{Tr}[P(h+F)]+1/R"
+      ],
+      "note": {
+        "ja": "孤立2電子RHF・有限s型Gaussian基底。数値収束とRHF近似の誤差は別。",
+        "en": "Isolated two-electron RHF in finite s-Gaussian bases. Numerical convergence differs from RHF model error."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "小さな固定H₂モデルの独立RHF参照とSCF・s型基底の検査を使います。有限基底RHFの一致は完全な電子相関を含む厳密分子解の一致ではありません。",
+    "en": "Use independent RHF references and SCF/s-type-basis checks for a small fixed H₂ model. Agreement in finite-basis RHF is not agreement with a fully correlated exact molecular solution."
+  },
+  "methods": [
+    {
+      "id": "hartree-fock",
+      "name": {
+        "ja": "Hartree–Fock法",
+        "en": "Hartree–Fock"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=en"
+      }
+    },
+    {
+      "id": "electronic-bases",
+      "name": {
+        "ja": "電子状態計算の基底",
+        "en": "Electronic-structure basis sets"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/?lang=en"
+      }
+    },
+    {
+      "id": "scf",
+      "name": {
+        "ja": "自己無撞着場反復（SCF）",
+        "en": "Self-consistent field iteration / SCF"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "h2-rhf",
+      "kind": "common",
+      "name": {
+        "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+        "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+      },
+      "method_ids": [
+        "hartree-fock",
+        "electronic-bases",
+        "scf"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
+      },
+      "scope": {
+        "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
+        "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
+      },
+      "assumptions": {
+        "ja": "固定核・一重項の制限HF、1空間軌道の二重占有。自作Gaussian積分と別実装PySCFで同じ幾何・基底を使用。",
+        "en": "Fixed nuclei, singlet restricted HF, one doubly occupied spatial orbital. Original Gaussian integrals and independent PySCF use identical geometries and bases."
+      },
+      "limits": {
+        "ja": "最大反復・特異な重なり・不適切入力は失敗として扱う。SCF停止と基底公差、物理近似の妥当性を区別する。",
+        "en": "Iteration limits, singular overlap and invalid inputs fail explicitly. SCF stopping, basis tolerance and physical adequacy remain distinct."
+      },
+      "input": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/inputs.json",
+      "download": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run.py --input inputs.json --output output",
+        "python -m pytest -q test_molecular_hf.py"
+      ],
+      "reference_note": {
+        "ja": "教育用コードをimportしない独立PySCF。同一幾何・同一有限基底のRHFであり、相関を含む厳密解ではありません。",
+        "en": "Independent PySCF imports no educational solver. Same-geometry, same-finite-basis RHF, not an exact correlated solution."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/reference-pyscf.json",
+          "type": "independent-numerical-reference",
+          "description": {
+            "ja": "教育用コードをimportしない独立PySCF。同一幾何・同一有限基底のRHFであり、相関を含む厳密解ではありません。",
+            "en": "Independent PySCF imports no educational solver. Same-geometry, same-finite-basis RHF, not an exact correlated solution."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/result.json",
+        "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/solution.csv",
+        "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/scf.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
+      "path": "code/molecular-hf/2026-11-22/test_molecular_hf.py",
+      "symbol": "test_fixed_input_validation",
+      "commands": [
+        "python -m pytest -q test_molecular_hf.py -k test_fixed_input_validation"
+      ],
+      "run_from": "molecular-hf-2026-11-22/",
+      "download": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip"
+    }
+  ]
+}

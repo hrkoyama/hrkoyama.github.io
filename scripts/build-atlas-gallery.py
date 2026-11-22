@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish every independent test problem as a bilingual image-to-reading card.
+"""Publish every independent test problem as a bilingual image-to-problem card.
 
 No numerical runtime is needed: verify the saved scientific-preview receipts.
 """
@@ -13,6 +13,7 @@ import struct
 import xml.etree.ElementTree as ET
 from atlas_execution_discovery import load_discovery, entry_url
 from atlas_goal_availability import load_supplemental_examples
+from atlas_problem_links import problem_url
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS = ROOT / 'numerical-methods-atlas'
@@ -78,6 +79,7 @@ for problem in inventory['problems']:
             **{key: ORIGIN + supplement[key] for key in ['download', 'results', 'verification']}})
     items.append({**problem, **image, 'visual_input': inputs[problem['id']], 'width': width, 'height': height,
                   'gallery_url': ORIGIN + ROUTE + '#' + problem['id'] + '-ja',
+                  'problem_page': {lang: problem_url(problem['id'], lang) for lang in ['ja', 'en']},
                   'runnable': example is not None or bool(extra_entries), 'execution_entry': entry,
                   'supplemental_execution_entries': extra_entries})
 runnable_problem_ids = {x['id'] for x in items if x['runnable']}
@@ -97,7 +99,7 @@ for lang in ['ja', 'en']:
     ja = lang == 'ja'
     body = '<section data-site-language="' + lang + '" data-gallery lang="' + lang + '">'
     body += '<p class="eyebrow">NUMERICAL METHODS ATLAS · VISUAL INDEX</p><h1>' + ('絵から探す：全' + str(len(ids)) + 'のテスト計算' if ja else 'Browse by picture: all ' + str(len(ids)) + ' test problems') + '</h1>'
-    body += '<p class="intro gallery-intro">' + (f'波形、衝撃波、渦、重力場、境界値問題、時間積分、関数近似まで。実行・検証例がある{len(runnable_problem_ids)}問題は、画像から固定入力・コード・結果の確かめ方へ進めます。各カードから解説も読めます。' if ja else f'Explore profiles, shocks, vortices, gravity, boundary-value problems, time integration and approximation. For {len(runnable_problem_ids)} runnable problems, select the image to find fixed inputs, code and validation. Every card also links to the reading.') + '</p>'
+    body += '<p class="intro gallery-intro">' + (f'図を選ぶと、その問題の方程式・厳密解や参照解・計算法・公開コードをまとめて確認できます。実行・検証例がある{len(runnable_problem_ids)}問題には、固定入力・コード・結果の確かめ方も案内します。' if ja else f'Select a picture to explore the problem’s equations, exact or reference solutions, methods and published code. For {len(runnable_problem_ids)} runnable problems, find fixed inputs and validation as well.') + '</p>'
     body += '<nav class="resource-nav">' + ''.join(link(url, label) for url, label in [
         ('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'),
         ('/numerical-methods-atlas/equations/?lang=' + lang, '数式から探す' if ja else 'Browse by equation'),
@@ -122,16 +124,17 @@ for lang in ['ja', 'en']:
                            *(['実行・検証例あり 実行 検証 runnable execution validated'] if x['runnable'] else [])])
         reading = x['reading'][lang]
         destination = entry_url(example['id'], lang) if example else (extras[0]['url'][lang] if extras else reading)
+        hub = x['problem_page'][lang]
         fallback = ja and '/en/read/' in reading
         body += '<li class="gallery-tile" id="' + x['id'] + '-' + lang + '" data-problem-id="' + x['id'] + '" data-group="' + x['group'] + '" data-runnable="' + str(x['runnable']).lower() + '" data-search="' + esc(search) + '">'
-        image_label = ('の固定入力・実行・検証へ' if ja else ': open fixed inputs, execution and validation') if x['runnable'] else ('の解説へ' if ja else ': open reading')
-        body += '<a class="gallery-image-link" href="' + esc(destination) + '" aria-label="' + esc(x['name'][lang] + image_label) + '"><img src="' + esc(x['image']) + '" alt="' + esc(x['name'][lang] + ' — ' + x['caption'][lang]) + '" width="' + str(x['width']) + '" height="' + str(x['height']) + '" loading="lazy" decoding="async"></a>'
+        image_label = 'の方程式・参照解・手法・コードへ' if ja else ': open equations, references, methods and code'
+        body += '<a class="gallery-image-link" href="' + esc(hub) + '" aria-label="' + esc(x['name'][lang] + image_label) + '"><img src="' + esc(x['image']) + '" alt="' + esc(x['name'][lang] + ' — ' + x['caption'][lang]) + '" width="' + str(x['width']) + '" height="' + str(x['height']) + '" loading="lazy" decoding="async"></a>'
         body += '<div class="gallery-card-body"><p class="gallery-meta">' + esc(groups[x['group']][lang]) + '</p>'
         if example:
             body += '<p class="gallery-execution-badge">' + link(destination, '実行・検証例あり →' if ja else 'Run and validate →') + '</p>'
         for extra in extras:
             body += '<p class="gallery-execution-badge gallery-supplemental-badge" data-supplemental-execution="' + extra['id'] + '">' + link(extra['url'][lang], ('補助実行例：' if ja else 'Supplementary run: ') + extra['title'][lang]) + '</p>'
-        body += '<h2>' + link(destination, x['name'][lang]) + '</h2><p>' + esc(x['caption'][lang]) + '</p><p class="gallery-meta">' + source_labels[x['source_kind']][lang] + (' · 英語の解説（日本語版未公開）' if fallback else '') + '</p><nav class="gallery-card-links">'
+        body += '<h2>' + link(hub, x['name'][lang]) + '</h2><p>' + esc(x['caption'][lang]) + '</p><p class="gallery-meta">' + source_labels[x['source_kind']][lang] + (' · 英語の解説（日本語版未公開）' if fallback else '') + '</p><nav class="gallery-card-links">'
         body += link(reading, '解説へ →' if ja else 'Read →') + link('/numerical-methods-atlas/test-cases/?lang=' + lang + '#' + x['id'] + ('' if ja else '-en'), '条件・根拠' if ja else 'Conditions and evidence') + link(x['image'], '画像を拡大' if ja else 'Full-size image') + '</nav></div></li>'
     body += '</ul><p class="gallery-empty" data-gallery-empty hidden>' + ('該当する問題がありません。検索語や分野を変えてください。' if ja else 'No matching problems. Try another query or domain.') + '</p><p>'
     body += link('index.json', '画像・解説・出典の全件JSON' if ja else 'All images, readings and sources / JSON') + ' · ' + link('calculations.json', '図示用9計算の入力・値・数値検査' if ja else 'Inputs, values and checks for nine preview calculations') + ' · ' + link('verification.json', 'プレビューの実行確認' if ja else 'Preview verification') + ' · ' + link('/scripts/render-atlas-gallery.py', '図の再生成スクリプト' if ja else 'Preview reproduction script')

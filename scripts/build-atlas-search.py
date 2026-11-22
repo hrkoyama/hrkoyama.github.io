@@ -151,8 +151,8 @@ def main(root=ROOT):
     index={'version':1,'entries':build_chapter_entries(ROOT)}
     page_cache={}
     def add(ident,title,keywords,routes,kind='resource'):
-        entry={'id':ident,'title':title,'headings':{'ja':[],'en':[]},'keywords':keywords,'routes':routes,'origin':'public-method-registry','kind':kind}
-        if kind=='resource':
+        entry={'id':ident,'title':title,'headings':{'ja':[],'en':[]},'keywords':keywords,'routes':routes,'origin':'public-problem-registry' if kind=='problem' else 'public-method-registry','kind':kind}
+        if kind in {'resource','problem'}:
             # Resource names and prose also follow their current public pages.
             entry['keywords']=list(dict.fromkeys([*keywords,*title.values()]))
             editions={}
@@ -187,6 +187,15 @@ def main(root=ROOT):
     add('test-inventory',{'ja':'テスト計算の全体一覧','en':'Atlas-wide test-problem inventory'},['テスト計算','検証問題','benchmark','test problems'],{lang:'/numerical-methods-atlas/test-cases/?lang='+lang for lang in ['ja','en']})
     total=len(json.loads((ROOT/'catalog/atlas-test-problems.json').read_text())['problems'])
     add('visual-test-index',{'ja':f'絵から探す：全{total}のテスト計算','en':f'Browse all {total} test problems by picture'},['絵から探す','画像','ギャラリー','テスト計算','visual index','gallery'],{lang:'/numerical-methods-atlas/gallery/?lang='+lang for lang in ['ja','en']})
+    # Problem identities and evidence come from the generated reviewed registry;
+    # searchable titles, headings and prose come from the actual hub pages.
+    for problem in read_json(ATLAS/'problems/index.json', {'problems': []})['problems']:
+        keywords=[problem['id'],problem['id'].replace('-',' '),*problem['name'].values(),
+                  'テスト問題','方程式','厳密解','参照解','計算法','コード',
+                  'test problem','equation','reference solution','code']
+        keywords += [name for method in problem['methods'] for name in method['name'].values()]
+        add('problem-'+problem['id'],problem['name'],keywords,
+            {lang:urlsplit(problem['hub'][lang]).path+'?lang='+lang for lang in ['ja','en']},'problem')
     # Pick up newly published top-level guides without another hand-maintained list.
     indexed_paths={urlsplit(route).path for entry in index['entries'] for route in entry.get('routes',{}).values()}
     for resource in sorted(ATLAS.glob('*/index.html')):
@@ -242,7 +251,7 @@ def main(root=ROOT):
             'routes':{lang:item['url']+'?lang='+lang for lang in ['ja','en']},
             'kind':'execution-example','origin':'public-depth-validation',
         })
-    index['scope']='Current published chapter and guide titles, section headings and main text; model/method identities, glossary aliases, reviewed applicability, 22 common runnable examples, '+str(len(supplements))+' separately verified supplements and cross-field routes. Supplements do not add entries to the common execution registry.'
+    index['scope']='Current published chapter, guide and problem-hub titles, section headings and main text; model/method identities, glossary aliases, reviewed applicability, 22 common runnable examples, '+str(len(supplements))+' separately verified supplements and cross-field routes. Supplements do not add entries to the common execution registry.'
     path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
     module=ATLAS/'home-search.js';text=module.read_text()
     text=text.replace("[...titles,...headings.map(h=>h.title),...keys].join(' ')","[...titles,...headings.map(h=>h.title),...keys,...Object.values(entry.text||{})].join(' ')")

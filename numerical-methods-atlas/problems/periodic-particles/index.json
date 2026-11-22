@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "id": "periodic-particles",
+  "name": {
+    "ja": "周期PM粒子群の質量・内力",
+    "en": "Periodic PM particle mass and internal force"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/particle-gravity.png",
+    "sha256": "1f3660258f393a6cc54438864c79ce8c48a099b7fd2175047e2387bf4f5612f3",
+    "width": 1669,
+    "height": 969,
+    "caption": {
+      "ja": "共有図の周期PM部分。孤立ツリーの比較は別問題です。",
+      "en": "Periodic-PM part of a shared figure; isolated-tree comparisons are a separate problem."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#periodic-particles",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#periodic-particles-en"
+  },
+  "equations": [
+    {
+      "id": "particle-gravity",
+      "name": {
+        "ja": "重力粒子モデル",
+        "en": "Gravitational particle model"
+      },
+      "formula": [
+        "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+        "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+      ],
+      "note": {
+        "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+        "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+      }
+    },
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-periodic-particles",
+      "name": {
+        "ja": "周期PM粒子群：質量・内力・格子場",
+        "en": "Periodic PM particles: mass, internal force and mesh field"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "\\nabla^2\\phi=4\\pi(\\rho-\\overline\\rho),\\qquad\\widehat\\phi_{\\boldsymbol0}=0,\\qquad\\boldsymbol a=-\\nabla\\phi",
+        "\\widehat\\phi_{\\boldsymbol k}=-\\frac{4\\pi}{k^2}\\widehat\\rho_{\\boldsymbol k}\\quad(\\boldsymbol k\\ne0),\\qquad G=1"
+      ],
+      "note": {
+        "ja": "3次元周期箱L=1、24³格子、同じCIC配置・補間と連続k²のFourier記号。孤立直接和・Ewald・PME・SPMEではない。正弦密度の解析格子解は粒子近接力全体の精度保証ではない。",
+        "en": "3D periodic L=1 box and 24³ grid, matched CIC and continuum-k² Fourier symbol. Not isolated summation, Ewald, PME or SPME. The analytic sinusoidal mesh check does not certify all close-pair particle forces."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "質量保存・質量重み付き内力と、格子PoissonのFourier製造解を確認します。一般の周期粒子直接和との力比較を行ったという意味ではありません。",
+    "en": "Check mass conservation, mass-weighted internal force and a manufactured Fourier solution of mesh Poisson. This does not establish force accuracy against a general periodic particle direct sum."
+  },
+  "methods": [
+    {
+      "id": "cic",
+      "name": {
+        "ja": "Cloud-in-cellの割当てと補間",
+        "en": "Cloud-in-cell assignment and interpolation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en"
+      }
+    },
+    {
+      "id": "pm",
+      "name": {
+        "ja": "FFT粒子格子力",
+        "en": "FFT particle–mesh forces"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "periodic-particles",
+      "kind": "common",
+      "name": {
+        "ja": "周期PM粒子群：質量・内力・格子場",
+        "en": "Periodic PM particles: mass, internal force and mesh field"
+      },
+      "method_ids": [
+        "cic",
+        "pm"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
+      },
+      "scope": {
+        "ja": "入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。",
+        "en": "Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields."
+      },
+      "assumptions": {
+        "ja": "3次元立方周期箱L=1、G=1、24³格子、正の質量で総和1。座標・質量は全値を入力に保存し、実行時の乱数生成はない。連続k²のFFT逆演算と同じCIC配置・補間を用いる。",
+        "en": "Three-dimensional periodic cube L=1, G=1, 24³ mesh and positive masses summing to one. All positions/masses are stored explicitly; no runtime random generation. Continuum-k² FFT inversion with matched CIC assignment/interpolation."
+      },
+      "limits": {
+        "ja": "非正質量、非有限入力、G≠1、不適切な格子・正弦モード、非整数箱長移動を拒否。質量・内力和・自己力の一致だけでは個々の粒子力の精度を保証しない。周期直接和、短距離補正、Ewald・P3M・PME・SPME、粒子時間発展は実装しない。",
+        "en": "Reject nonpositive masses, nonfinite inputs, G!=1, invalid grids/sinusoidal modes and noninteger box shifts. Mass/net-force/self-force consistency alone does not establish individual particle-force accuracy. No periodic pair-sum reference, short-range correction, Ewald/P3M/PME/SPME or particle evolution."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/periodic-particles.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run_recipe.py --input recipes/periodic-particles.json --output output-periodic-particles",
+        "python -m pytest -q tests/test_recipes.py"
+      ],
+      "reference_note": {
+        "ja": "CSVは粒子ごとの座標・質量・加速度・力。正弦密度の独立解析場検査はJSONの集計値に保存。PM格子細分化を粒子力の解析誤差として誤表示しない。",
+        "en": "CSV stores each particle's coordinates, mass, acceleration and force. Independent sinusoidal-field diagnostics are JSON metrics. No mesh refinement is misrepresented as analytic particle-force error."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/result.json",
+          "type": "analytic-mesh-solution",
+          "description": {
+            "ja": "CSVは粒子ごとの座標・質量・加速度・力。正弦密度の独立解析場検査はJSONの集計値に保存。PM格子細分化を粒子力の解析誤差として誤表示しない。",
+            "en": "CSV stores each particle's coordinates, mass, acceleration and force. Independent sinusoidal-field diagnostics are JSON metrics. No mesh refinement is misrepresented as analytic particle-force error."
+          }
+        },
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
+          "type": "analytic-mesh-solution",
+          "description": {
+            "ja": "別入力密度ρ=ρ₀+A cos(kx)に対するφ=−4πGA cos(kx)/k²、a_x=−4πGA sin(kx)/k。粒子群の厳密な周期力参照ではない。",
+            "en": "For separate rho=rho0+A*cos(k*x), phi=-4*pi*G*A*cos(k*x)/k² and ax=-4*pi*G*A*sin(k*x)/k. Not an exact periodic particle-force reference."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/solution.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py",
+      "symbol": "test_pm_self_force_and_total_internal_force_with_matched_cic",
+      "commands": [
+        "python -m pytest -q tests/test_particle_gravity.py -k test_pm_self_force_and_total_internal_force_with_matched_cic"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

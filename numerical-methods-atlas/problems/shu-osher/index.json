@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "id": "shu-osher",
+  "name": {
+    "ja": "Shu–Osher衝撃波・エントロピー波干渉",
+    "en": "Shu–Osher shock/entropy interaction"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/shu-osher.png",
+    "sha256": "0c7f01545cc9c22517f3ec3b332612d8b2e7d4943b145ae646ca377ac40e81f5",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存したEuler密度波形（1つの手法を代表表示）。",
+      "en": "Stored Euler density profile, showing one representative method."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reconstruction/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/reconstruction/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#shu-osher",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#shu-osher-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-shu-osher",
+      "name": {
+        "ja": "Shu–Osher：特性WENO-Zと高解像度参照",
+        "en": "Shu–Osher: characteristic WENO-Z and a numerical reference"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "U_t+F(U)_x=0,\\qquad \\gamma=1.4,\\qquad -5\\leq x\\leq5",
+        "\\rho_R(x,0)=1+0.2\\sin(5x),\\quad v_R=0,\\quad p_R=1,\\qquad t_{\\rm final}=1.8"
+      ],
+      "note": {
+        "ja": "初期不連続x=−4、左状態は固定入力を参照。特性有限差分WENO5-Zの点値を比較する。800点参照は同一方式の数値解であり、厳密解・独立ソルバーではない。",
+        "en": "Initial jump at x=−4; see the fixed input for the left state. Compares characteristic finite-difference WENO5-Z point values. The 800-point reference is neither exact nor an independent solver."
+      }
+    },
+    {
+      "id": "supplement-shu-independent",
+      "name": {
+        "ja": "Shu–Osher：独立参照と格子収束",
+        "en": "Shu–Osher: independent reference and mesh refinement"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\rho(x,0)=1+0.2\\sin(5x)\\quad(x\\geq-4)"
+      ],
+      "note": {
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "保存された高解像度WENO-Z数値参照と、別配布の独立Athena++参照を区別します。どちらもこの衝撃波・密度波相互作用の厳密解という主張ではありません。",
+    "en": "Distinguish the stored high-resolution WENO-Z numerical reference from the separately distributed independent Athena++ reference. Neither is claimed as an exact solution of this shock–density-wave interaction."
+  },
+  "methods": [
+    {
+      "id": "weno-z",
+      "name": {
+        "ja": "有限差分WENO5-Z",
+        "en": "FD WENO5-Z"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "shu-osher",
+      "kind": "common",
+      "name": {
+        "ja": "Shu–Osher：特性WENO-Zと高解像度参照",
+        "en": "Shu–Osher: characteristic WENO-Z and a numerical reference"
+      },
+      "method_ids": [
+        "weno-z"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en"
+      },
+      "scope": {
+        "ja": "[-5,5]で衝撃波と密度正弦波の干渉をt=1.8まで計算。100/200点の特性FD WENO-Zを800点の同じ実装と比較し、参照との差と近似境界収支を別々に記録する。",
+        "en": "Evolve shock/entropy-wave interaction on [-5,5] to t=1.8. Compare characteristic FD WENO-Z at 100/200 points with the same implementation at 800 points, separately recording reference disagreement and approximate boundary balance."
+      },
+      "assumptions": {
+        "ja": "γ=1.4、初期不連続x=−4、左(ρ,u,p)=(3.857143,2.629369,10.33333)、右ρ=1+0.2sin(5x),u=0,p=1。初期不連続を各格子の界面へ合わせる。点値FD、大域LF分割、界面固定Roe特性基底、WENO-Z指数2、ε=10^-6、SSPRK3、CFL=0.3。",
+        "en": "γ=1.4, initial jump x=−4, left (ρ,u,p)=(3.857143,2.629369,10.33333), and right ρ=1+0.2sin(5x), u=0, p=1. The initial jump aligns with a face on every grid. Pointwise FD, global LF splitting, face-frozen Roe characteristics, WENO-Z exponent 2, ε=10^-6, SSPRK3 and CFL=0.3 are used."
+      },
+      "limits": {
+        "ja": "800点は同一手法の数値参照で、厳密解や独立solverではない。0.15の平均密度差は構造の再現を見る教材用の解像度基準であり、高精度認証ではない。格子倍増で差が減ることだけを判定し、形式次数は付与しない。正の出力と棄却回数を記録しても、全入力の正値性定理にはならない。",
+        "en": "The 800-point solution is a same-method numerical reference, not an exact solution or independent solver. The mean-density difference bound of 0.15 is an educational structure-resolution criterion, not a high-accuracy certification. Only decreasing discrepancy under grid doubling is tested; no formal order is assigned. Positive outputs and counted rejections do not establish positivity for every input."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/shu-osher.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run_recipe.py --input recipes/shu-osher.json --output output-shu-osher",
+        "python -m pytest -q tests/test_recipes.py"
+      ],
+      "reference_note": {
+        "ja": "高解像度の保存変数の点値を各100/200点の格子中心へ線形補間する。誤差はそれぞれ同じ場所・t=1.8で平均する。CSVは200点の計算・参照を並べる。近似収支の許容値0.2%は固定境界の離散化誤差を許すためであり、密度誤差0.15の判定とは別。",
+        "en": "Higher-resolution conserved point values are linearly interpolated to each 100/200-point grid's centers. Errors are averaged at matching locations and t=1.8; CSV pairs the 200-point solution and reference. The 0.2% approximate-balance allowance accommodates fixed-boundary discretization and is separate from the density-error bound of 0.15."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/shu-osher/result.json",
+          "type": "numerical-refinement",
+          "description": {
+            "ja": "高解像度の保存変数の点値を各100/200点の格子中心へ線形補間する。誤差はそれぞれ同じ場所・t=1.8で平均する。CSVは200点の計算・参照を並べる。近似収支の許容値0.2%は固定境界の離散化誤差を許すためであり、密度誤差0.15の判定とは別。",
+            "en": "Higher-resolution conserved point values are linearly interpolated to each 100/200-point grid's centers. Errors are averaged at matching locations and t=1.8; CSV pairs the 200-point solution and reference. The 0.2% approximate-balance allowance accommodates fixed-boundary discretization and is separate from the density-error bound of 0.15."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/shu-osher/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/shu-osher/solution.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "shu-independent",
+      "kind": "supplement",
+      "name": {
+        "ja": "Shu–Osher：独立参照と格子収束",
+        "en": "Shu–Osher: independent reference and mesh refinement"
+      },
+      "method_ids": [
+        "muscl"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
+      },
+      "scope": {
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+      },
+      "assumptions": {
+        "ja": "γ=1.4、[-5,5]、t=1.8。x<-4は(rho,u,p)=(3.857143,2.629369,10.33333)、右はrho=1+0.2sin5x,u=0,p=1。",
+        "en": "gamma=1.4, [-5,5], t=1.8. For x<-4, (rho,u,p)=(3.857143,2.629369,10.33333); to the right rho=1+0.2sin5x,u=0,p=1."
+      },
+      "limits": {
+        "ja": "参照は厳密解ではなく独立した有限格子数値解です。異なる流束系列すべての優劣、WENOの一般的高次数、負圧防止の保証には広げません。 参照2048→4096のL1差0.005346は事前幅0.005を満たさず、8192へ細分しました。途中の未達記録も残します。",
+        "en": "The reference is an independent finite-grid numerical solution, not an exact solution. No universal flux ranking, WENO-order claim or positivity guarantee is inferred. The 2048-to-4096 reference L1 increment0.005346 missed the predeclared0.005 bound, so8192 cells were added. The earlier miss remains recorded."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "100/200/400セルの密度L1誤差と改善率、正値性を測り、参照2048/4096/8192セルの差も事前幅と比較します。境界へ衝撃波が届かない固定時刻で比較します。",
+        "en": "Measure density L1 error, refinement and positivity on 100/200/400 cells; also compare 2048/4096/8192 reference differences with a predeclared bound. The shock has not reached the boundaries at the fixed comparison time."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

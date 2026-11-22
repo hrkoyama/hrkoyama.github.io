@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "krylov-spectrum",
+  "name": {
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+    "sha256": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "width": 1760,
+    "height": 560,
+    "caption": {
+      "ja": "再直交化Lanczos・ArnoldiのKrylov次元を変え、固有対残差と独立した密行列固有値との差を保存結果から比較。",
+      "en": "Stored eigenpair residuals and differences from independent dense eigenvalues as reorthogonalized Lanczos/Arnoldi Krylov dimensions increase."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#krylov-spectrum",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#krylov-spectrum-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "行列固有値問題Av=λvをLanczos・Arnoldiで近似する線形代数の例です。",
+    "en": "Linear-algebra example approximating Av=λv with Lanczos/Arnoldi."
+  },
+  "formulations": [
+    {
+      "id": "supplement-krylov-eigenvalues",
+      "name": {
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "AV_m=V_mH_m+h_{m+1,m}v_{m+1}e_m^T",
+        "H_my=\\theta y,\\quad v=V_my,\\quad r=Av-\\theta v"
+      ],
+      "note": {
+        "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+        "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "独立固有値参照と、各Ritz値・固有対の残差、直交性と反復収束を確認します。",
+    "en": "Check independent eigenvalue references together with Ritz/eigenpair residuals, orthogonality and iterative convergence."
+  },
+  "methods": [
+    {
+      "id": "eigensolvers",
+      "name": {
+        "ja": "Krylov固有値解法",
+        "en": "Krylov eigenvalue solvers"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "krylov-eigenvalues",
+      "kind": "supplement",
+      "name": {
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+      },
+      "method_ids": [
+        "eigensolvers"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=en"
+      },
+      "scope": {
+        "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+        "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+      },
+      "assumptions": {
+        "ja": "対称問題では実対称行列、非対称問題では既知の分離した最大固有値5を持つ実行列を使います。初期ベクトルは固定seedです。非対称Ritz値は複素数を許し、最大実部で選びます。",
+        "en": "The symmetric case is real symmetric; the nonsymmetric case is real with a known separated largest eigenvalue 5. Starting vectors use fixed seeds. Nonsymmetric Ritz values may be complex and are selected by largest real part."
+      },
+      "limits": {
+        "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
+        "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "||Av−λv||₂、独立密行列固有値との差、基底の直交性を保存し、Krylov次元を増やした末尾の改善を確認します。非対称Ritz値の単調収束は仮定しません。恒等行列のhappy breakdown、零初期ベクトル拒否、次元予算不足も検査します。",
+        "en": "Store ||Av−λv||₂, differences from independently solved dense eigenvalues and basis orthogonality; verify final improvement as Krylov dimension grows. Nonsymmetric Ritz convergence is not assumed monotone. Tests include identity-matrix happy breakdown, zero-start rejection and insufficient dimension budgets."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

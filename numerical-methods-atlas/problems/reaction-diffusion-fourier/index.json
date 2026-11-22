@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "id": "reaction-diffusion-fourier",
+  "name": {
+    "ja": "反応拡散：空間2次と時間4次を分けて測る",
+    "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+    "sha256": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "width": 1680,
+    "height": 504,
+    "caption": {
+      "ja": "周期Fourierモードの線形反応拡散。16/32/64格子の連続解誤差と、固定格子での半離散厳密解に対する時間誤差を分けた保存収束図。",
+      "en": "Stored linear periodic Fourier reaction–diffusion refinement separates continuum errors on 16/32/64 grids from temporal errors against a fixed-grid semidiscrete exact solution."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#reaction-diffusion-fourier",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#reaction-diffusion-fourier-en"
+  },
+  "equations": [
+    {
+      "id": "heat",
+      "name": {
+        "ja": "熱・拡散方程式",
+        "en": "Heat / diffusion equation"
+      },
+      "formula": [
+        "\\partial_tu=\\nu\\nabla^2u"
+      ],
+      "note": {
+        "ja": "一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。",
+        "en": "A representative constant-diffusivity form: mode decay, time integration and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "線形反応拡散u_t=D u_xx+r u（公開入力はD=0.1、r=0.1）です。熱方程式へのリンクは拡散部分で、反応項を含む固有値r-Dk²で比較します。",
+    "en": "Linear reaction-diffusion u_t=D u_xx+r u, with published D=0.1 and r=0.1. The heat link covers diffusion; compare using the eigenvalue r-Dk² including reaction."
+  },
+  "formulations": [
+    {
+      "id": "supplement-reaction-diffusion-fourier",
+      "name": {
+        "ja": "反応拡散：空間2次と時間4次を分けて測る",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "u_t=D u_{xx}+r u,\\qquad u(x,t)=e^{(r-Dk^2)t}\\cos(kx)",
+        "\\lambda_h=r-\\frac{4D}{\\Delta x^2}\\sin^2(k\\Delta x/2)"
+      ],
+      "note": {
+        "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
+        "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "線形反応拡散の連続Fourier解と半離散Fourier解を分け、空間2次・時間4次の収束を確認します。純拡散カードの指数率をそのまま使いません。",
+    "en": "Separate continuous and semidiscrete Fourier solutions of linear reaction-diffusion to check second-order space/fourth-order time. Do not reuse the pure-diffusion card's decay rate unchanged."
+  },
+  "methods": [
+    {
+      "id": "centered-difference",
+      "name": {
+        "ja": "空間中心差分",
+        "en": "Centered spatial difference"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+      }
+    },
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "reaction-diffusion-fourier",
+      "kind": "supplement",
+      "name": {
+        "ja": "反応拡散：空間2次と時間4次を分けて測る",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+      },
+      "method_ids": [
+        "centered-difference",
+        "rk4"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"
+      },
+      "scope": {
+        "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
+        "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
+      },
+      "assumptions": {
+        "ja": "周期区間[0,2pi)、D=0.1、r=0.1、初期cos(2x)、終了t=2。格子16/32/64と、別の固定格子で刻み0.5/0.25/0.125を用います。",
+        "en": "Periodic[0,2pi), D=0.1,r=0.1, initial cos(2x), final t=2. Use grids 16/32/64 and a separate fixed-grid timestep sequence 0.5/0.25/0.125."
+      },
+      "limits": {
+        "ja": "線形・周期・滑らかな単一モードだけを検証します。非線形のFisher前線、複雑境界、空間生態系や一般の反応ネットワークの検証ではありません。",
+        "en": "Only a linear, periodic, smooth single mode is verified. Nonlinear Fisher fronts, complex boundaries, spatial ecosystems and general reaction networks remain outside scope."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "連続固有値r-Dk²への最大誤差で空間次数、半離散固有値r-4Dsin²(kdx/2)/dx²への最大誤差で時間次数を測ります。独立した解析参照であり同じ実装の細格子値を参照にしません。",
+        "en": "Measure spatial order against r-Dk² and temporal order against r-4Dsin²(kdx/2)/dx². Both are independent analytic references, rather than a finer-grid run of the same solver."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "gaussian-mcmc",
+  "name": {
+    "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+    "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+    "sha256": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "width": 1680,
+    "height": 504,
+    "caption": {
+      "ja": "標準正規標的・固定seedの32連鎖。保存したCDF検査点、標本予算ごとの連鎖平均RMSE・平均観測量のESSを表示。全seedの保証ではない。",
+      "en": "Standard-normal target and 32 fixed-seed chains: stored CDF checkpoints, chain-mean RMSE and mean-observable ESS by sample budget. Not an every-seed guarantee."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#gaussian-mcmc",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#gaussian-mcmc-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "Gaussian標的分布を不変分布とするMarkov連鎖の標本化問題です。既存の物理方程式一覧に専用項目はありません。",
+    "en": "Markov-chain sampling with a Gaussian invariant target; the physical-equation registry has no dedicated entry."
+  },
+  "formulations": [
+    {
+      "id": "supplement-gaussian-mcmc",
+      "name": {
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\pi(x)=(2\\pi)^{-1/2}e^{-x^2/2},\\quad \\alpha=\\min(1,e^{-(y^2-x^2)/2})",
+        "\\tau=-1+2\\sum_{k=0}^{K}(\\rho_{2k}+\\rho_{2k+1}),\\qquad N_{\\rm eff}=MN/\\max(1,\\tau)"
+      ],
+      "note": {
+        "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+        "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "既知のGaussian標的分布・モーメントを基準に、標本分布・自己相関・ESSを確認します。18件の参照解一覧にMCMC軌道の厳密解カードはありません。",
+    "en": "Use the known Gaussian target and moments to check sampled distributions, autocorrelation and ESS. The 18-case reference library has no exact MCMC-trajectory card."
+  },
+  "methods": [
+    {
+      "id": "mcmc",
+      "name": {
+        "ja": "Markov連鎖Monte Carlo",
+        "en": "Markov-chain Monte Carlo / MCMC"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "gaussian-mcmc",
+      "kind": "supplement",
+      "name": {
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+      },
+      "method_ids": [
+        "mcmc"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=en"
+      },
+      "scope": {
+        "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+        "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+      },
+      "assumptions": {
+        "ja": "無次元1変数、対称Gaussianランダムウォーク提案幅1.5。固定master seedから32の別PCG64ストリームを生成し、1024回のburn-in後に各8192標本を保持します。",
+        "en": "One dimensionless variable and symmetric Gaussian random-walk width1.5. Spawn 32 separate PCG64 streams from a fixed master seed; retain 8192 samples per chain after 1024 burn-in steps."
+      },
+      "limits": {
+        "ja": "固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。",
+        "en": "Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "正規CDFを独立参照とし、標本数1024/2048/8192の連鎖平均RMSEを比較。別の定常AR(1)系列と厳密tau=(1+rho)/(1-rho)で診断量を照合します。公差は固定入力で事前指定します。",
+        "en": "Use the normal CDF as an independent analytic reference and compare chain-mean RMSE at 1024/2048/8192 retained samples. A separate stationary AR(1) sequence and exact tau=(1+rho)/(1-rho) check the diagnostic. Acceptance is predeclared in fixed inputs."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

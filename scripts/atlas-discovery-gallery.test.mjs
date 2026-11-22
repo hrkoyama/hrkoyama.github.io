@@ -33,16 +33,20 @@ test('the shared22 and separate supplements have distinct runnable entrances; al
     assert.equal(item.image, previews.get(item.id).image, `${item.id}: preserve illustration`);
     for (const lang of ['ja', 'en']) {
       const tile = html.split(`id="${item.id}-${lang}"`)[1].split('</li>')[0];
-      const target = example
-        ? `https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/${example.id}/?lang=${lang}`
-        : extra.length ? `https://hrkoyama.github.io${extra[0].url}?lang=${lang}` : item.reading[lang];
-      assert.ok(tile.includes(`class="gallery-image-link" href="${target}"`), item.id);
+      const primary = tile.match(/<a\b[^>]*class="gallery-image-link"[^>]*href="([^"]+)"/)?.[1];
+      assert.ok(primary,item.id+' image retains a direct problem entrance');
+      const hub = new URL(primary,'https://hrkoyama.github.io');
+      assert.equal(hub.pathname,`/numerical-methods-atlas/problems/${item.id}/`);
+      assert.equal(hub.searchParams.get('lang'),lang);
       assert.equal(tile.includes('class="gallery-execution-badge"'), Boolean(example), item.id);
       assert.ok(tile.includes(`data-runnable="${Boolean(example || extra.length)}"`), item.id);
       assert.ok(tile.includes(`href="${item.reading[lang]}"`), `${item.id}: keep reading link`);
       assert.ok(tile.includes(`href="${item.image}"`), `${item.id}: full-size illustration remains available`);
       if (example) {
+        const target = `https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/${example.id}/?lang=${lang}`;
         assert.equal(item.execution_entry.url[lang], target);
+        const badge = tile.match(/<p class="gallery-execution-badge">([\s\S]*?)<\/p>/)?.[1];
+        assert.ok(badge?.includes(`href="${target}"`),item.id+' direct run badge is preserved');
         assert.ok(read(new URL(target).pathname.slice(1) + 'index.html').includes('<main'));
       } else assert.equal(item.execution_entry, null);
       for (const entry of item.supplemental_execution_entries) {

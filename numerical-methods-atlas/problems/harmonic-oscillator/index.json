@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "id": "harmonic-oscillator",
+  "name": {
+    "ja": "調和振動子（複素ODE表示も統合）",
+    "en": "Harmonic oscillator, including complex-ODE form"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/harmonic-oscillator.png",
+    "sha256": "7b2eedfce8ba315a2062cfa67b1c1645bd97ac12f9c07d2d190f65f81aa8089a",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済みのt≤10の正準位相軌道。手法違いは同一問題の比較。",
+      "en": "Stored canonical phase orbits for t≤10; methods remain variants of one problem."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#harmonic-oscillator",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#harmonic-oscillator-en"
+  },
+  "equations": [
+    {
+      "id": "hamiltonian",
+      "name": {
+        "ja": "Hamilton系・振動子",
+        "en": "Hamiltonian systems and oscillators"
+      },
+      "formula": [
+        "\\dot q=\\frac{\\partial H}{\\partial p},\\qquad\\dot p=-\\frac{\\partial H}{\\partial q}",
+        "H=\\frac{p^2}{2}+V(q)"
+      ],
+      "note": {
+        "ja": "正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。",
+        "en": "Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-harmonic-oscillator",
+      "name": {
+        "ja": "調和振動子：Verletの位相誤差とエネルギー",
+        "en": "Harmonic oscillator: Verlet phase error and energy"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "\\dot q=p,\\qquad\\dot p=-q,\\qquad H(q,p)=\\frac{q^2+p^2}{2}",
+        "q(0)=1,\\quad p(0)=0.2,\\qquad q_{\\rm ref}(t)=\\cos t+0.2\\sin t"
+      ],
+      "note": {
+        "ja": "単位質量・単位角振動数、t=20。速度Verletで200/400/800刻み。時間反転の一致やシンプレクティック性は元のエネルギーの厳密保存を意味しない。",
+        "en": "Unit mass/frequency, t=20, velocity Verlet with 200/400/800 steps. Reversibility or symplecticity does not imply exact conservation of the original energy."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "正弦・余弦の解析軌道（複素ODE表現を含む）と比較し、位相・エネルギー・写像の幾何学的性質を区別します。専用参照解カードは未収録です。",
+    "en": "Compare with analytic sine/cosine trajectories, including complex-ODE form, and distinguish phase, energy and geometric map properties. No dedicated reference-library card is included."
+  },
+  "methods": [
+    {
+      "id": "verlet",
+      "name": {
+        "ja": "速度Verlet／粒子leapfrog法",
+        "en": "Velocity Verlet / particle leapfrog"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "harmonic-oscillator",
+      "kind": "common",
+      "name": {
+        "ja": "調和振動子：Verletの位相誤差とエネルギー",
+        "en": "Harmonic oscillator: Verlet phase error and energy"
+      },
+      "method_ids": [
+        "verlet"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en"
+      },
+      "scope": {
+        "ja": "既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。",
+        "en": "Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal."
+      },
+      "assumptions": {
+        "ja": "H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。",
+        "en": "H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2."
+      },
+      "limits": {
+        "ja": "hω≥2、非有限入力、不明な方式・系、倍増でない刻み一覧を拒否。反転が良くても長時間位相誤差や元のHamiltonianの厳密保存を保証しない。非線形振動子・多体系への検証ではない。",
+        "en": "Reject h*omega>=2, nonfinite inputs, unknown method/system and non-doubling counts. Accurate reversal does not establish long-time phase accuracy or exact original-Hamiltonian conservation. Not validation of nonlinear oscillators or many-body systems."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/harmonic-oscillator.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run_recipe.py --input recipes/harmonic-oscillator.json --output output-harmonic-oscillator",
+        "python -m pytest -q tests/test_recipes.py"
+      ],
+      "reference_note": {
+        "ja": "CSVは最細刻みの時刻ごとに数値・解析のq,pとエネルギーを整列。観測次数は終端状態誤差から、エネルギー偏差は全保存時刻から計算。",
+        "en": "CSV aligns numerical/analytic q,p and energy on the finest time grid. Observed order uses endpoint-state errors; energy deviation uses all recorded times."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/result.json",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "CSVは最細刻みの時刻ごとに数値・解析のq,pとエネルギーを整列。観測次数は終端状態誤差から、エネルギー偏差は全保存時刻から計算。",
+            "en": "CSV aligns numerical/analytic q,p and energy on the finest time grid. Observed order uses endpoint-state errors; energy deviation uses all recorded times."
+          }
+        },
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "独立な解析式q=q₀cos t+p₀sin t、p=−q₀sin t+p₀cos t。数値解の細格子値を厳密解とは呼ばない。",
+            "en": "Independent analytic q=q0*cos(t)+p0*sin(t), p=-q0*sin(t)+p0*cos(t); no fine numerical solution is called exact."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/solution.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

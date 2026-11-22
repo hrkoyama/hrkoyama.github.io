@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "id": "neutral-periodic-charges",
+  "name": {
+    "ja": "中性周期点電荷：Ewald・smooth PME",
+    "en": "Neutral periodic charges: Ewald and smooth PME"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/ewald.png",
+    "sha256": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "width": 1500,
+    "height": 510,
+    "caption": {
+      "ja": "中性立方セルの非対称8点電荷。Ewaldの実空間・逆空間打切りに対する力の差を保存値から表示。smooth PMEの格子・Bスプライン次数比較は同じ問題の補助例へ接続。",
+      "en": "Asymmetric eight-charge neutral cubic cell: saved force differences over Ewald real/reciprocal cutoffs. The same problem links to a smooth-PME mesh/B-spline-order supplement."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#neutral-periodic-charges",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#neutral-periodic-charges-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "リンクは静電Poisson/Laplace場です。中性周期Coulomb電荷のEwald/PME問題であり、重力の質量・符号・境界を流用しません。",
+    "en": "The link is the electrostatic Poisson/Laplace field. This is neutral periodic Coulomb Ewald/PME, not an interchange of gravitational masses, signs or boundaries."
+  },
+  "formulations": [
+    {
+      "id": "supplement-ewald",
+      "name": {
+        "ja": "中性周期セルのEwald和と独立theta積分",
+        "en": "Neutral-cell Ewald sums and an independent theta integral"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "E=\\frac12\\sum_{ij\\mathbf n}^{\\prime}q_iq_j\\frac{\\operatorname{erfc}(\\alpha r_{ij\\mathbf n})}{r_{ij\\mathbf n}}+\\frac{2\\pi}{V}\\sum_{\\mathbf k\\ne0}\\frac{e^{-k^2/(4\\alpha^2)}}{k^2}|S(\\mathbf k)|^2-\\frac{\\alpha}{\\sqrt\\pi}\\sum_iq_i^2",
+        "M_{\\rm NaCl}=\\frac2{\\sqrt\\pi}\\int_0^\\infty[1-\\vartheta_4(0,e^{-u^2})^3]du"
+      ],
+      "note": {
+        "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+        "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+      }
+    },
+    {
+      "id": "supplement-spme",
+      "name": {
+        "ja": "Bスプラインsmooth PMEの格子・次数収束",
+        "en": "Mesh/order convergence of B-spline smooth PME"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "Q_{\\mathbf j}=\\sum_iq_i\\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)",
+        "\\mathbf F_i=-\\partial E_h/\\partial\\mathbf r_i"
+      ],
+      "note": {
+        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "同じ中性周期電荷・規約の収束したEwald和、力の有限差分とカットオフ・格子収束を確認します。孤立重力粒子の直接和とは境界・相互作用が異なります。",
+    "en": "Check converged Ewald sums for identical neutral periodic charges/conventions, force finite differences and cutoff/mesh refinement. Boundaries and interactions differ from isolated gravitational direct sums."
+  },
+  "methods": [
+    {
+      "id": "ewald",
+      "name": {
+        "ja": "Ewald法",
+        "en": "Ewald summation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=en"
+      }
+    },
+    {
+      "id": "pme",
+      "name": {
+        "ja": "Particle Mesh Ewald（PME）",
+        "en": "Particle mesh Ewald / PME"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/?lang=en"
+      }
+    },
+    {
+      "id": "spme",
+      "name": {
+        "ja": "Smooth PME（SPME）",
+        "en": "Smooth particle mesh Ewald / SPME"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "ewald",
+      "kind": "supplement",
+      "name": {
+        "ja": "中性周期セルのEwald和と独立theta積分",
+        "en": "Neutral-cell Ewald sums and an independent theta integral"
+      },
+      "method_ids": [
+        "ewald"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en"
+      },
+      "scope": {
+        "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+        "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+      },
+      "assumptions": {
+        "ja": "立方セル・全電荷ゼロ・Coulomb定数1・導体境界（tin foil）。主例は非対称な8点電荷で、NaClの8イオン配置は別の解析照合用です。",
+        "en": "Cubic cell, zero total charge, Coulomb constant one and conducting/tin-foil boundary. An asymmetric eight-charge case is distinct from the eight-ion NaCl reference cell."
+      },
+      "limits": {
+        "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+        "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。",
+        "en": "Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "spme",
+      "kind": "supplement",
+      "name": {
+        "ja": "Bスプラインsmooth PMEの格子・次数収束",
+        "en": "Mesh/order convergence of B-spline smooth PME"
+      },
+      "method_ids": [
+        "pme",
+        "spme"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"
+      },
+      "scope": {
+        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+      },
+      "assumptions": {
+        "ja": "Ewaldと同じ中性立方セルと実空間項を使います。PME族のうちEssmannらのBスプライン変種を採用し、Dardenらの原法のLagrange補間とは区別します。",
+        "en": "The neutral cubic cell and real-space term match the Ewald example. The adopted PME-family variant uses Essmann-type B-splines, distinct from Darden’s original Lagrange interpolation."
+      },
+      "limits": {
+        "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+        "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。",
+        "en": "Meshes 16³/24³/40³ and two orders are compared with directly summed Ewald reciprocal terms. Shared real/self terms are stated. Check finest-grid force derivatives by energy differences and verify assigned total charge."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

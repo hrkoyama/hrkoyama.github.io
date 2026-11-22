@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "id": "logarithmic-particles",
+  "name": {
+    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+    "en": "2D logarithmic FMM with M2M, M2L and L2L"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/fmm.png",
+    "sha256": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "width": 1500,
+    "height": 510,
+    "caption": {
+      "ja": "固定seedの128粒子、2次元自由空間の対数核。FMMの展開次数2/4/8/12を独立した全対直接和と比べたポテンシャル・電場誤差の保存図。",
+      "en": "Stored potential/field errors for 128 fixed-seed particles with a 2D free-space log kernel: FMM orders 2/4/8/12 versus a separate all-pairs sum."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#logarithmic-particles",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#logarithmic-particles-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "2次元Poisson/Laplaceの対数Green核を用いる粒子和です。3次元軟化重力1/rモデルとは区別します。",
+    "en": "A particle sum with the logarithmic Green kernel of 2D Poisson/Laplace, distinct from softened 3D 1/r gravity."
+  },
+  "formulations": [
+    {
+      "id": "supplement-fmm",
+      "name": {
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "M_k(c)=\\sum_jq_j(z_j-c)^k",
+        "f(z)=M_0\\log(z-c)-\\sum_{k=1}^p\\frac{M_k}{k(z-c)^k},\\qquad\\phi=-\\Re f"
+      ],
+      "note": {
+        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "同じ2次元対数核と粒子配置の直接和を数値基準に、多重極の次数・階層変換・力誤差を確認します。3次元1/r核の基準は流用しません。",
+    "en": "Use direct summation with the same 2D logarithmic kernel and particles to check expansion order, hierarchical translations and force error. Do not reuse a 3D 1/r reference."
+  },
+  "methods": [
+    {
+      "id": "fmm",
+      "name": {
+        "ja": "高速多重極法の移動演算",
+        "en": "Fast multipole translations"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "fmm",
+      "kind": "supplement",
+      "name": {
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L"
+      },
+      "method_ids": [
+        "fmm"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"
+      },
+      "scope": {
+        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+      },
+      "assumptions": {
+        "ja": "単位正方形内の有限点電荷ですが、境界は壁でなく木を作る包囲領域です。核はphi=−sum(q log r)、電場は−grad(phi)。自己項を除外し、周期像はありません。",
+        "en": "Particles lie in a unit-square bounding box, not a physical wall boundary. The kernel is phi=−sum(q log r), with field −grad(phi); self terms are excluded and no periodic images are used."
+      },
+      "limits": {
+        "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
+        "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。",
+        "en": "For 128 fixed-seed particles, sweep orders 2/4/8/12 and compare every potential/field component with a separate all-pairs calculation. Also check two-source signs, permutation invariance and potential derivatives."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

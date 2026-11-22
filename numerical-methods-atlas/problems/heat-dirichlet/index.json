@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "id": "heat-dirichlet",
+  "name": {
+    "ja": "Dirichlet境界の熱拡散",
+    "en": "Heat decay with Dirichlet boundaries"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/diffusion-boundaries.png",
+    "sha256": "d2fa0bbcb07693a80ea9f0c4b2289c0199d11e5101d36fae730718cb64a92c68",
+    "width": 1386,
+    "height": 518,
+    "caption": {
+      "ja": "共有図の左パネル：Dirichlet境界の熱拡散。右パネルは別のPoisson境界問題。",
+      "en": "Shared figure, left: Dirichlet heat decay. Right: separate Poisson boundary problems."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#heat-dirichlet",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#heat-dirichlet-en"
+  },
+  "equations": [
+    {
+      "id": "heat",
+      "name": {
+        "ja": "熱・拡散方程式",
+        "en": "Heat / diffusion equation"
+      },
+      "formula": [
+        "\\partial_tu=\\nu\\nabla^2u"
+      ],
+      "note": {
+        "ja": "一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。",
+        "en": "A representative constant-diffusivity form: mode decay, time integration and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "sine-heat",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "熱拡散／Fourierモードの減衰",
+        "en": "Heat / Fourier-mode decay"
+      },
+      "formula": "u = 1 + 0.25 sin(2πx) exp[−0.02(2π)²t]",
+      "assumptions": {
+        "ja": "単位区間の周期境界、拡散係数0.02。",
+        "en": "Periodic unit interval; viscosity 0.02."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "こちらは零Dirichlet・sin(πx)、参照カードは周期境界・1+0.25sin(2πx)・ν=0.02です。",
+        "en": "This test has zero Dirichlet endpoints and sin(πx); the card has periodic boundaries, 1+0.25sin(2πx) and ν=0.02."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "零Dirichlet境界でのsin(πx)の指数減衰と格子収束を確認します。周期境界・平均値1の参照解一覧の熱モードとは別条件です。",
+    "en": "Check exponential decay of sin(πx) with zero Dirichlet endpoints and mesh refinement. The library heat mode instead has periodic boundaries and mean one."
+  },
+  "methods": [
+    {
+      "id": "centered-difference",
+      "name": {
+        "ja": "空間中心差分",
+        "en": "Centered spatial difference"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+      }
+    },
+    {
+      "id": "forward-euler",
+      "name": {
+        "ja": "前進Euler法",
+        "en": "Forward Euler"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en"
+      }
+    },
+    {
+      "id": "backward-euler",
+      "name": {
+        "ja": "後退Euler法",
+        "en": "Backward Euler"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=en"
+      }
+    },
+    {
+      "id": "crank-nicolson",
+      "name": {
+        "ja": "Crank–Nicolson法",
+        "en": "Crank–Nicolson"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=en"
+      }
+    },
+    {
+      "id": "thomas",
+      "name": {
+        "ja": "Thomas法／三重対角消去",
+        "en": "Thomas tridiagonal elimination"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
+      "symbol": "test_diffusion_matches_exact_and_refines",
+      "commands": [
+        "python -m pytest -q tests/test_linear.py -k test_diffusion_matches_exact_and_refines"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

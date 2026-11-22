@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "bratu",
+  "name": {
+    "ja": "1次元Bratu非線形境界値問題",
+    "en": "One-dimensional Bratu boundary-value problem"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/bratu.png",
+    "sha256": "e34f1dd633d24164a9f9b10d8c691aa4d8abbe13699ceefbf9ce4262d2a544e1",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+      "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+    },
+    "source_kind": "computed-preview"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bratu",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bratu-en"
+  },
+  "equations": [
+    {
+      "id": "bratu",
+      "name": {
+        "ja": "Bratu非線形境界値問題",
+        "en": "Bratu nonlinear boundary-value problem"
+      },
+      "formula": [
+        "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+        "u(0)=u(1)=0"
+      ],
+      "note": {
+        "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+        "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [
+    {
+      "id": "common-bratu",
+      "name": {
+        "ja": "1次元Bratu：小さい枝のNewton–GMRES",
+        "en": "1D Bratu: Newton–GMRES on the lower branch"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "-u''=\\lambda e^u,\\qquad u(0)=u(1)=0",
+        "u_{\\rm ref}(x)=2\\log\\frac{\\cosh(\\beta/2)}{\\cosh[\\beta(x-1/2)]},\\qquad \\lambda=\\frac{2\\beta^2}{\\cosh^2(\\beta/2)},\\quad\\beta=1"
+      ],
+      "note": {
+        "ja": "31/63/127内部点、零初期値で小さい枝を選ぶ。βtanh(β/2)<2の枝を対象とし、大きい枝や分岐点の追跡を行わない。",
+        "en": "31/63/127 interior nodes and a zero initial guess select the lower branch with βtanh(β/2)<2; no upper-branch or bifurcation tracking."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "小さい枝の双曲線関数による連続解と格子収束を確認します。感度・逆問題の追補では微分・目的関数を別に検証し、18件の参照解一覧にBratu専用カードはありません。",
+    "en": "Check a hyperbolic-function continuum solution on the lower branch and mesh refinement. Follow-on sensitivity/inverse examples validate derivatives and objectives separately; Bratu has no card in the 18-case reference library."
+  },
+  "methods": [
+    {
+      "id": "newton",
+      "name": {
+        "ja": "Armijo減衰Newton法",
+        "en": "Armijo-damped Newton"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+      }
+    },
+    {
+      "id": "automatic-differentiation",
+      "name": {
+        "ja": "自動微分",
+        "en": "Automatic differentiation"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=en"
+      }
+    },
+    {
+      "id": "adjoint",
+      "name": {
+        "ja": "陰関数微分・随伴法",
+        "en": "Implicit differentiation and adjoint methods"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en"
+      }
+    },
+    {
+      "id": "optimization",
+      "name": {
+        "ja": "勾配法・準Newton法",
+        "en": "Gradient and quasi-Newton optimization"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "共通実行例では減衰Newton法で前進の境界値問題を解きます。関連する自動微分・感度・随伴・係数推定の検証は各手法の別配布版へ進めます。感度・逆問題（1個または2個の係数）の入力と判定は別であり、共通の前進実行例に合算しません。",
+    "en": "The common example solves the forward boundary-value problem with damped Newton. Related method pages lead to separate editions for automatic differentiation, sensitivities, adjoints and coefficient fitting. Sensitivity and inverse problems with one or two coefficients have separate inputs and acceptance checks; they are not added to the common forward execution entry."
+  },
+  "executions": [
+    {
+      "id": "bratu",
+      "kind": "common",
+      "name": {
+        "ja": "1次元Bratu：小さい枝のNewton–GMRES",
+        "en": "1D Bratu: Newton–GMRES on the lower branch"
+      },
+      "method_ids": [
+        "newton"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en"
+      },
+      "scope": {
+        "ja": "−u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。",
+        "en": "Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes."
+      },
+      "assumptions": {
+        "ja": "既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。",
+        "en": "Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations."
+      },
+      "limits": {
+        "ja": "小さい枝・零初期値・固定境界の指定を要求する。大きい枝、臨界点近傍の追跡、分岐、任意初期値からの大域収束は保証しない。解の細格子値を解析解とは呼ばない。",
+        "en": "Require the lower-branch declaration, zero initial guess and fixed boundaries. No upper-branch continuation, critical-point tracking, bifurcation or global-convergence guarantee. Fine-grid solutions are not called analytic references."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/bratu.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run_recipe.py --input recipes/bratu.json --output output-bratu",
+        "python -m pytest -q tests/test_recipes.py"
+      ],
+      "reference_note": {
+        "ja": "CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。",
+        "en": "CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。",
+            "en": "CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length."
+          }
+        },
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "λと解析解を同じβから独立に評価し、2β²の係数を落とさない。",
+            "en": "Evaluate λ and the analytic solution independently from β, retaining the factor 2β²."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/solution.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+      "symbol": "test_bratu_newton_krylov_refines_to_continuous_reference",
+      "commands": [
+        "python -m pytest -q tests/test_sparse_fem.py -k test_bratu_newton_krylov_refines_to_continuous_reference"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "id": "stiff-cosine",
+  "name": {
+    "ja": "硬い余弦追従ODE",
+    "en": "Stiff cosine-tracking ODE"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/stiff-cosine.png",
+    "sha256": "2627f7779b6ac5bf9dd4ef5726f7b95dd0c91805fd5ead1ca5b0132cdd7ad230",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "保存済みの硬い余弦追従ODEの固定刻み誤差。",
+      "en": "Stored fixed-step errors for the stiff cosine-tracking ODE."
+    },
+    "source_kind": "stored-data-plot"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#stiff-cosine",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#stiff-cosine-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "硬い非自律スカラーODE y′=-1000(y-cos t)-sin t。既存の方程式一覧には専用項目がありません。",
+    "en": "Stiff nonautonomous scalar ODE y′=-1000(y-cos t)-sin t; the equation registry has no dedicated entry."
+  },
+  "formulations": [
+    {
+      "id": "common-stiff-cosine",
+      "name": {
+        "ja": "硬い余弦追従ODE：SDIRK2",
+        "en": "Stiff cosine-tracking ODE: SDIRK2"
+      },
+      "source": "common",
+      "role": "problem",
+      "latex": [
+        "y'=-1000(y-\\cos t)-\\sin t,\\qquad y(0)=1,\\qquad y_{\\rm ref}(t)=\\cos t",
+        "z'=-10^8z,\\qquad z(0)=1\\quad\\text{(separate one-step decay check)}"
+      ],
+      "note": {
+        "ja": "既存2段SDIRK2を使う時間初期値問題。主問題はt=1、1000/2000/4000刻み。46モデル台帳とは別の実行例の式で、熱PDEや汎用硬い系の新規モデルとして数えない。",
+        "en": "Temporal initial-value problems using the existing two-stage SDIRK2. Main case: t=1 and 1000/2000/4000 steps. These example formulas are separate from the 46-model inventory, not new heat-PDE or general stiff-system entries."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "y′=-1000(y-cos t)-sin t、y(0)=1の厳密解cos tと、固定刻み・適応刻みの誤差を確認します。",
+    "en": "Check fixed/adaptive-step errors against cos t for y′=-1000(y-cos t)-sin t with y(0)=1."
+  },
+  "methods": [
+    {
+      "id": "sdirk2",
+      "name": {
+        "ja": "L安定なSDIRK2",
+        "en": "L-stable SDIRK2"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+    "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+  },
+  "executions": [
+    {
+      "id": "stiff-cosine",
+      "kind": "common",
+      "name": {
+        "ja": "硬い余弦追従ODE：SDIRK2",
+        "en": "Stiff cosine-tracking ODE: SDIRK2"
+      },
+      "method_ids": [
+        "sdirk2"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=en"
+      },
+      "scope": {
+        "ja": "既存のL安定2段SDIRK2でy′=−1000(y−cos t)−sin t、y(0)=1をt=1まで解く。解析解、固定刻み細分化、別の強減衰1段問題を検査。",
+        "en": "Use the existing two-stage L-stable SDIRK2 for y'=-1000(y-cos(t))-sin(t), y(0)=1 up to t=1. Check its analytic solution, fixed-step refinement and a separate very stiff one-step decay."
+      },
+      "assumptions": {
+        "ja": "rate=1000、1000/2000/4000ステップでrate*h=1,0.5,0.25。固定γ=1−1/√2と既存Newton段階解法を使用。別の減衰はy′=−10⁸y、y(0)=1、h=1。適応刻み法ではない。",
+        "en": "rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping."
+      },
+      "limits": {
+        "ja": "方式違い、非有限入力、非正の率や刻み数、倍増でない列を拒否。Newton段階失敗は例外のまま伝える。粗い硬い刻みで一律2次収束を主張せず、今回の細分化で測定する。L安定でも正値を厳密に保つとは限らない。一般DAE・硬いPDEの検証ではない。",
+        "en": "Reject other methods, nonfinite inputs, nonpositive rates/counts and non-doubling levels. Propagate implicit-stage failures. Do not claim uniform second order on coarse stiff steps; measure this supplied refinement. L-stability does not imply exact positivity. Not validation of general DAEs or stiff PDEs."
+      },
+      "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/stiff-cosine.json",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python run_recipe.py --input recipes/stiff-cosine.json --output output-stiff-cosine",
+        "python -m pytest -q tests/test_recipes.py"
+      ],
+      "reference_note": {
+        "ja": "CSVは最細刻みの数値解・解析解・絶対誤差。観測次数は全時刻最大誤差から計算。旧保存例の粗格子で約1台になる挙動と、今回の解像した刻みでの次数を混同しない。",
+        "en": "CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here."
+      },
+      "reference_data": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/result.json",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "CSVは最細刻みの数値解・解析解・絶対誤差。観測次数は全時刻最大誤差から計算。旧保存例の粗格子で約1台になる挙動と、今回の解像した刻みでの次数を混同しない。",
+            "en": "CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here."
+          }
+        },
+        {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/",
+          "type": "analytic-solution",
+          "description": {
+            "ja": "解析解y=cos t+(y₀−1)e^(−rate*t)。別の同次減衰も指数関数を参照。",
+            "en": "Analytic y=cos(t)+(y0-1)*exp(-rate*t); the separate homogeneous decay also uses an exponential reference."
+          }
+        }
+      ],
+      "results": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/result.json",
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/solution.csv"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+      "symbol": "test_stiff_decay_and_local_error_control",
+      "commands": [
+        "python -m pytest -q tests/test_new_models.py -k test_stiff_decay_and_local_error_control"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

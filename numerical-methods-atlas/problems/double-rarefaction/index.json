@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "id": "double-rarefaction",
+  "name": {
+    "ja": "Euler二重膨張波",
+    "en": "Euler double rarefaction"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/double-rarefaction.png",
+    "sha256": "2a843bf673dc414287780b54bea9f5a5bd48644c98c43630caa00a32b891ee6f",
+    "width": 832,
+    "height": 494,
+    "caption": {
+      "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+      "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+    },
+    "source_kind": "computed-preview"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#double-rarefaction",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#double-rarefaction-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "euler-double-rarefaction",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "Euler／二重膨張波",
+        "en": "Euler / double rarefaction"
+      },
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "assumptions": {
+        "ja": "比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。",
+        "en": "Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+        "en": "γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-double-rarefaction",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-double-rarefaction"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "左右状態(1,-2,0.4)と(1,2,0.4)、γ=1.4の低密度中央状態を持つ半解析的Riemann解が基準です。真空生成の別初期値とは区別します。",
+    "en": "Use the semi-analytic Riemann solution for states (1,-2,0.4) and (1,2,0.4), γ=1.4, with a low-density middle state. Distinguish the separate vacuum-generating data."
+  },
+  "methods": [
+    {
+      "id": "godunov",
+      "name": {
+        "ja": "Godunov型有限体積法",
+        "en": "Godunov-type finite volumes"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en"
+      }
+    },
+    {
+      "id": "hlle",
+      "name": {
+        "ja": "HLLE／Einfeldt波速",
+        "en": "HLLE / Einfeldt wave speeds"
+      },
+      "status": "educational-example",
+      "role": "related",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+  },
+  "executions": [],
+  "code_checks": [
+    {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+      "path": "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+      "symbol": "test_benchmark_default_horizon_smoke",
+      "commands": [
+        "python -m pytest -q tests/test_numerics.py -k test_benchmark_default_horizon_smoke"
+      ],
+      "run_from": "atlas-code-2026-11-21/",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip"
+    }
+  ]
+}

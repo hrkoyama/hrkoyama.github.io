@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "maxwell-collisions",
+  "name": {
+    "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+    "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/dsmc.png",
+    "sha256": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "width": 1500,
+    "height": 510,
+    "caption": {
+      "ja": "等質なMaxwell分子の衝突成分。512/2048/8192粒子・16seedの保存モーメント誤差・標本不確かさと、物理時刻ではない衝突roundごとの異方性緩和。",
+      "en": "Homogeneous Maxwell-molecule collision component: stored moment errors/seed uncertainty for 512/2048/8192 particles over 16 seeds, and anisotropy per collision round, not physical time."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#maxwell-collisions",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#maxwell-collisions-en"
+  },
+  "equations": [],
+  "equation_note": {
+    "ja": "等質Boltzmann衝突演算子をDSMCで標本化する成分検査です。格子BGKとは異なる衝突モデルのため代用リンクを設けません。",
+    "en": "A component test sampling the homogeneous Boltzmann collision operator by DSMC. Lattice BGK uses a different collision model and is not substituted."
+  },
+  "formulations": [
+    {
+      "id": "supplement-dsmc",
+      "name": {
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\mathbf v_{1,2}^{\\prime}=\\mathbf V\\pm\\frac{|\\mathbf g|}{2}\\mathbf n,\\qquad|\\mathbf n|=1",
+        "\\mathbb E[D_{r+1}]=\\frac{N-2}{2(N-1)}\\mathbb E[D_r]"
+      ],
+      "note": {
+        "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+        "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+      }
+    }
+  ],
+  "references": [],
+  "reference_note": {
+    "ja": "等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。",
+    "en": "Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation."
+  },
+  "methods": [
+    {
+      "id": "dsmc",
+      "name": {
+        "ja": "DSMC・運動論輸送",
+        "en": "DSMC and kinetic transport"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+  },
+  "executions": [
+    {
+      "id": "dsmc",
+      "kind": "supplement",
+      "name": {
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+      },
+      "method_ids": [
+        "dsmc"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"
+      },
+      "scope": {
+        "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+        "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+      },
+      "assumptions": {
+        "ja": "等質・等質量・等方散乱・一定衝突率。各roundで全粒子を一度ずつランダムに組み合わせます。初期は±sqrt(3)の二つのビームで、温度の目標は1です。 各seedは総運動量0・総エネルギー固定のmicrocanonical系で、Maxwell/Gammaは大粒子数極限の参照です。",
+        "en": "Homogeneous, equal masses, isotropic scattering and constant collision rate. Each round randomly matches every particle once. Two initial beams at ±sqrt(3) give target temperature one. Each seed has zero total momentum and fixed total energy: its finite-N equilibrium is microcanonical, while Maxwell/Gamma are large-N references."
+      },
+      "limits": {
+        "ja": "DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。",
+        "en": "This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。",
+        "en": "Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}
