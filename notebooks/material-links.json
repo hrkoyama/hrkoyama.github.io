@@ -7,7 +7,7 @@
     "course_material": "講義資料との対応確認",
     "same_source": "同じ原本に添付された資料",
     "reference_article": "同じ講師・著者の参考記事",
-    "reference_book": "ノートに参考書として記載",
+    "reference_book": "参考書としての参照を確認",
     "content_correspondence": "記述の対応を確認（同一講義は未確認）"
   },
   "links": [
@@ -304,6 +304,14 @@
       "notebook_id": "n094",
       "material_id": "b092",
       "relation": "content_correspondence",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n074-b014",
+      "notebook_id": "n074",
+      "material_id": "b014",
+      "relation": "reference_book",
       "status": "confirmed",
       "confirmed_on": "2026-11-22"
     }

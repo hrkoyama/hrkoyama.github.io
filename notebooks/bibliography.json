@@ -150,12 +150,16 @@
       "title": "大学演習 熱学・統計力学 ― 第5章「統計力学の原理」",
       "creator": "久保亮五 編",
       "kind": "書籍",
-      "note": "同じ章の２資料。章題・内容と出版社目次を照合。手元の版の確定は継続。N063には参考書として書名の記載あり。",
+      "note": "同じ章の２資料。章題・内容と出版社目次を照合。手元の版の確定は継続。N063は原本の書名表記、N074は作成者の確認により参考書としての参照を確認。N074全体の出典や講義の同定を意味しません。",
       "title_status": "identified",
       "reference_url": "https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-8032-8.htm",
       "related_notebooks": [
         {
           "notebook_id": "n063",
+          "relation": "reference_book"
+        },
+        {
+          "notebook_id": "n074",
           "relation": "reference_book"
         }
       ]
