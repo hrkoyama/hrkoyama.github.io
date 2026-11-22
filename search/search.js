@@ -1,5 +1,6 @@
-import {makeSearch,excerpt,safePath} from './engine.mjs?v=6c387e799382';
-import {appendMethodCard} from './method-search.mjs?v=31c82abc5908';
+import {makeSearch,excerpt,safePath} from './engine.mjs?v=ed9589aa2b85';
+import {appendMethodCard} from './method-search.mjs?v=691f618aefac';
+import {appendSearchNavigation,publicNavigationPath} from './navigation.mjs?v=460334bf824e';
 const main = document.querySelector('[data-search-index]');
 const input = document.querySelector('#search-query');
 const status = document.querySelector('#search-status');
@@ -23,28 +24,29 @@ function readQuery() {
 }
 function label(doc) { return locale()==='en' && doc.titleEn ? doc.titleEn : doc.title; }
 function showRows() {
-  const direct=matches.filter(doc=>doc.kind==='method' || doc.executionPriority);
-  const pages=matches.filter(doc=>doc.kind!=='method' && !doc.executionPriority);
+  const direct=matches.filter(doc=>doc.kind==='method' || doc.executionPriority || doc.entityPriority);
+  const pages=matches.filter(doc=>doc.kind!=='method' && !doc.executionPriority && !doc.entityPriority);
   const fragment = document.createDocumentFragment(),secondary=document.createDocumentFragment();
   for (const doc of [...direct,...pages.slice(0,shown)]) {
     if(doc.kind==='method'){
       const item=document.createElement('li');appendMethodCard(item,doc,locale());fragment.append(item);continue;
     }
-    const path = safePath(doc.url);
+    const path = publicNavigationPath(doc.routes?.[locale()] || doc.url);
     if (!path) continue;
     const item=document.createElement('li');
     const heading=document.createElement('h2');
     const link=document.createElement('a');
     const url=new URL(path,location.origin);
-    url.searchParams.set('lang',locale());
+    if(!doc.routes?.[locale()])url.searchParams.set('lang',locale());
     link.href=url.pathname+url.search+url.hash;
     link.textContent=label(doc);
     heading.append(link);
     const meta=document.createElement('p');meta.className='search-meta';
-    meta.textContent=doc.executionPriority?(locale()==='ja'?'固定入力の実行・検証例':'Runnable input and validation example'):(locale()==='en' ? doc.categoryEn : doc.categoryJa)+' · '+words(doc.lang);
+    const entityType={equation:{ja:'方程式',en:'Equation'},reference:{ja:'厳密解・参照解',en:'Exact / reference solution'}}[doc.kind];
+    meta.textContent=doc.executionPriority?(locale()==='ja'?'固定入力の実行・検証例':'Runnable input and validation example'):entityType?entityType[locale()]:(locale()==='en' ? doc.categoryEn : doc.categoryJa)+' · '+words(doc.lang);
     const summary=document.createElement('p');summary.className='search-excerpt';
     summary.textContent=doc.executionPriority && doc.execution?.snippet?.[locale()] ? doc.execution.snippet[locale()] : excerpt(doc.text,query);
-    item.append(meta,heading,summary);(direct.length&&!doc.executionPriority?secondary:fragment).append(item);
+    item.append(meta,heading,summary);appendSearchNavigation(item,doc,locale());(direct.length&&!doc.executionPriority&&!doc.entityPriority?secondary:fragment).append(item);
   }
   results.replaceChildren(fragment);
   relatedRows.replaceChildren(secondary);
@@ -83,9 +85,11 @@ async function render() {
   matches=query ? engine(query,locale(),scope) : [];
   const methods=matches.filter(row=>row.kind==='method').length;
   const executions=matches.filter(row=>row.executionPriority).length;
+  const equations=matches.filter(row=>row.entityPriority&&row.kind==='equation').length;
+  const references=matches.filter(row=>row.entityPriority&&row.kind==='reference').length;
   const purpose=matches.some(row=>row.purposeScope);
-  const counts=locale()==='ja'?[methods?`${purpose?'候補':'手法'} ${methods}件`:'',executions?`実行例 ${executions}件`:'']:[methods?`${methods} ${purpose?'candidate'+(methods===1?'':'s'):'method'+(methods===1?'':'s')}`:'',executions?`${executions} runnable example${executions===1?'':'s'}`:''];
-  status.textContent=query ? methods||executions ? (locale()==='ja'?`「${query}」：${counts.filter(Boolean).join('・')}。公開済みの資料へ直接進めます。`:`${counts.filter(Boolean).join(', ')} for “${query}”. Open the available resources directly.`) : words(matches.length?'found':'none',{query,count:matches.length}) : words('ready',{count:scope==='atlas'?atlasCount:count});
+  const counts=locale()==='ja'?[methods?`${purpose?'候補':'手法'} ${methods}件`:'',executions?`実行例 ${executions}件`:'',equations?`方程式 ${equations}件`:'',references?`厳密解・参照解 ${references}件`:'']:[methods?`${methods} ${purpose?'candidate'+(methods===1?'':'s'):'method'+(methods===1?'':'s')}`:'',executions?`${executions} runnable example${executions===1?'':'s'}`:'',equations?`${equations} equation${equations===1?'':'s'}`:'',references?`${references} exact / reference solution${references===1?'':'s'}`:''];
+  status.textContent=query ? methods||executions||equations||references ? (locale()==='ja'?`「${query}」：${counts.filter(Boolean).join('・')}。公開済みの資料へ直接進めます。`:`${counts.filter(Boolean).join(', ')} for “${query}”. Open the available resources directly.`) : words(matches.length?'found':'none',{query,count:matches.length}) : words('ready',{count:scope==='atlas'?atlasCount:count});
   if(query && !matches.length && scope==='atlas')status.textContent+=(locale()==='ja'?' 検索範囲を「サイト全体」に変えることもできます。':' You can also change the scope to the whole site.');
   showRows();
 }

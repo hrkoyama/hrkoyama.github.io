@@ -43,7 +43,8 @@ function fixture() {
   // Poisoned seed proves that the previous generated index is never an input.
   write(directory, 'numerical-methods-atlas/home-search-index.json', {version:1,entries:[{id:'ghost',title:{ja:'GhostSeedToken',en:'GhostSeedToken'},headings:{ja:[],en:[]},keywords:['GhostSeedToken'],routes:{en:'/numerical-methods-atlas/en/read/ghost/'}}]});
   write(directory, 'package.json', {type:'module'});
-  for (const file of ['numerical-methods-atlas/home-search.js','numerical-methods-atlas/i18n.js','numerical-methods-atlas/reading-urls.js','search/method-search.mjs','search/methods.css','search/goals-data.mjs']) {
+  write(directory, 'llms.txt', '');
+  for (const file of ['numerical-methods-atlas/home-search.js','numerical-methods-atlas/i18n.js','numerical-methods-atlas/reading-urls.js','search/method-search.mjs','search/methods.css','search/goals-data.mjs','search/navigation.mjs','search/navigation.css']) {
     const target = join(directory,file); mkdirSync(join(target,'..'),{recursive:true}); copyFileSync(join(root,file),target);
   }
   write(directory, 'numerical-methods-atlas/home-overview.js', "import {} from './home-search.js';\n");
@@ -54,7 +55,7 @@ function rebuild(directory) {
   // Isolate the two validated execution registries: these tests exercise their
   // integration shape without opening or rerunning frozen scientific releases.
   execFileSync('python3', ['-B','-c', `
-import runpy, sys
+import json, runpy, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(sys.argv[1]).parent))
 module = runpy.run_path(sys.argv[1])
@@ -65,7 +66,15 @@ main.__globals__['load_discovery'] = lambda root: {'examples': [{
     'keywords': ['fixture-execution'], 'outcome': {'ja': '保存結果', 'en': 'Stored result'},
 }]}
 main.__globals__['load_supplemental_examples'] = lambda root, ids: []
-main(Path(sys.argv[2]))
+root=Path(sys.argv[2])
+def graph(kind,ident):return {'kind':kind,'id':ident,'note':{'ja':'明示した試験用対応','en':'Explicit fixture association'},'groups':{key:[] for key in ['methods','equations','figures','references','code']}}
+nodes={'execution:fixture-run':graph('execution','fixture-run')}
+for method in json.loads((root/'numerical-methods-atlas/methods/index.json').read_text())['methods']:
+    nodes['method:'+method['id']]=graph('method',method['id'])
+for language in ['ja','en']:
+    for path in (root/'numerical-methods-atlas'/language/'read').glob('*/index.html'):
+        ident=path.parent.name;nodes['chapter:'+ident]=graph('chapter',ident)
+main(root,navigation={'nodes':nodes,'entities':[],'method_goals':{},'source_sha256':{}})
 `, join(root,'scripts/build-atlas-search.py'), directory], {cwd:directory,encoding:'utf8'});
   return JSON.parse(read(join(directory,'numerical-methods-atlas/home-search-index.json')));
 }
@@ -108,7 +117,10 @@ test('rebuild follows published H1, sections and body after edits, additions and
   }
   assert.deepEqual(protectedFiles.map(path => hash(join(directory,path))),before,'search generation never rewrites scientific catalogs, status or content metadata');
   const methods = JSON.parse(read(join(directory,'numerical-methods-atlas/methods/index.json'))).methods;
-  assert.deepEqual(index.entries.find(entry => entry.id === 'registry-fixture-newton').method,methods[0]);
+  const indexedMethod=index.entries.find(entry => entry.id === 'registry-fixture-newton').method;
+  for(const [key,value]of Object.entries(methods[0]))assert.deepEqual(indexedMethod[key],value);
+  assert.equal(indexedMethod.search_navigation.id,methods[0].id);
+  assert.deepEqual(indexedMethod.search_navigation_by_goal,{});
   assert.equal(index.entries.filter(entry => entry.origin === 'public-execution-discovery').length,1);
   const {searchChapters} = await import(pathToFileURL(join(directory,'numerical-methods-atlas/home-search.js')).href);
   for (const [query,chapter] of [['FreshBodyToken','ordinary'],['ordinarysynonym','ordinary'],['NewBodyToken','new-chapter']]) {

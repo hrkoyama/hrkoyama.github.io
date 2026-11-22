@@ -1,4 +1,5 @@
-import {matchGoals} from './goals-data.mjs?v=85674444c6ad';
+import {matchGoals} from './goals-data.mjs?v=cf03d1b26af0';
+import {appendSearchNavigation} from './navigation.mjs?v=460334bf824e';
 // Both the atlas and the site search use these identities and availability links.
 export const normalizeMethodQuery = value => String(value).normalize('NFKC').toLowerCase()
   .replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
@@ -31,7 +32,8 @@ export function findMethods(methods, query, language='ja') {
       }
       const method={...original,url:original.url || original.reading?.[language] || original.reading?.en,
         ...(restricted?{status:'reading-only',code_urls:[],test_urls:[]}:{}),
-        execution_examples:[...examples.values()]};
+        execution_examples:[...examples.values()],search_navigation:original.search_navigation_by_goal?.[goal.id]||null};
+      delete method.search_navigation_by_goal;
       // A restricted purpose never inherits a runnable claim from another route.
       if(!candidates.has(method.id) || restricted)candidates.set(method.id,{id:method.id,kind:'method',title:method.name[language] || method.name.en,locale:language,method,exactMethod:false,score:9000,purposeScope:goal.scope[language]});
     }
@@ -125,5 +127,6 @@ export function appendMethodCard(item,result,language='ja') {
     }
     item.append(details);
   }
+  appendSearchNavigation(item,result,language);
   return item;
 }

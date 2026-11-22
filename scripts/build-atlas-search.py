@@ -7,7 +7,7 @@ import hashlib
 import json
 import re
 from atlas_execution_discovery import load_discovery, entry_path
-from atlas_search_methods import search_methods, version_method_search
+from atlas_search_methods import search_methods, version_method_search, version_navigation_imports
 from atlas_goal_availability import load_supplemental_examples
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -42,7 +42,8 @@ class PublishedText(HTMLParser):
         inside = parent[1] or tag == 'main'
         classes = set(attrs.get('class', '').split())
         blocked = (parent[2] or tag in self.blocked_tags or
-                   bool(classes & {'site-chrome', 'reading-nav', 'chapter-toc'}) or
+                   bool(classes & {'site-chrome', 'reading-nav', 'chapter-toc', 'search-navigation',
+                                   'execution-resource-navigation', 'method-route-navigation', 'problem-routes'}) or
                    'hidden' in attrs or attrs.get('aria-hidden') == 'true' or
                    attrs.get('data-site-language', self.language) != self.language)
         if tag not in self.voids:
@@ -141,12 +142,52 @@ def build_chapter_entries(root):
     return entries
 
 
-def main(root=ROOT):
+def attach_navigation(index, navigation):
+    """Use explicit entity identities, never infer scientific links from prose."""
+    for entry in index['entries']:
+        kind = entry.get('kind')
+        if kind == 'method':
+            key = 'method:' + entry['method']['id']
+        elif kind == 'chapter':
+            key = 'chapter:' + entry['chapter']
+            if key not in navigation['nodes']:
+                continue
+        elif kind == 'problem':
+            key = 'problem:' + entry['id'].removeprefix('problem-')
+        elif kind == 'execution-example':
+            ident = entry['id'].removeprefix('execution-').removeprefix('supplement-')
+            key = 'execution:' + ident
+        elif kind in {'equation', 'reference'}:
+            key = kind + ':' + entry['id'].removeprefix(kind + '-')
+        else:
+            continue
+        entry['search_navigation'] = navigation['nodes'][key]
+    index['navigation_source_sha256'] = navigation['source_sha256']
+
+
+def update_goal_resource_navigation(root, navigation):
+    """Enrich generated scoped resources without changing the source goal catalog."""
+    path = root / 'search/goals-data.mjs'
+    first, newline, rest = path.read_text().partition('\n')
+    prefix = 'export const goals='
+    if not first.startswith(prefix) or not first.endswith(';') or not newline:
+        raise ValueError('Review generated goal module format: ' + str(path))
+    goals = json.loads(first[len(prefix):-1])
+    for goal in goals:
+        for resource in goal.get('resources', []):
+            resource['search_navigation_by_goal'] = navigation['method_goals'].get(resource['id'], {})
+    path.write_text(prefix + json.dumps(goals, ensure_ascii=False, separators=(',', ':')) + ';\n' + rest)
+
+
+def main(root=ROOT, navigation=None):
     global ROOT, ATLAS
-    ROOT = root
+    ROOT = Path(root)
     ATLAS = ROOT/'numerical-methods-atlas'
+    if navigation is None:
+        from atlas_search_routes import load_search_routes
+        navigation = load_search_routes(ROOT)
     catalog=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
-    method_records={method['id']:method for method in search_methods(ROOT)}
+    method_records={method['id']:method for method in search_methods(ROOT, navigation)}
     path=ATLAS/'home-search-index.json'
     index={'version':1,'entries':build_chapter_entries(ROOT)}
     page_cache={}
@@ -252,12 +293,22 @@ def main(root=ROOT):
             'routes':{lang:item['url']+'?lang='+lang for lang in ['ja','en']},
             'kind':'execution-example','origin':'public-depth-validation',
         })
-    index['scope']='Current published chapter, guide and problem-hub titles, section headings and main text; model/method identities, glossary aliases, reviewed applicability, 22 common runnable examples, '+str(len(supplements))+' separately verified supplements and cross-field routes. Supplements do not add entries to the common execution registry.'
+    index['entries'].extend(dict(entity) for entity in navigation['entities'])
+    attach_navigation(index, navigation)
+    index['scope']='Current published chapter, guide and problem-hub titles, section headings and main text; individual equation/reference identities and their own definitions; model/method identities, glossary aliases, reviewed applicability, 22 common runnable examples, '+str(len(supplements))+' separately verified supplements and cross-field routes. Navigation follows reviewed source associations, not prose mentions. Supplements do not add entries to the common execution registry.'
+    (ROOT/'search/atlas-navigation.json').write_text(json.dumps(navigation,ensure_ascii=False,separators=(',',':'))+'\n')
+    llms = ROOT/'llms.txt'
+    marker = '- [Atlas search resource connections]('
+    lines = [line for line in llms.read_text().splitlines() if not line.startswith(marker)]
+    lines.append(marker+'https://hrkoyama.github.io/search/atlas-navigation.json): explicit method, equation, problem-picture, reference and execution routes for search results; purpose restrictions and original verification scopes are retained.')
+    llms.write_text('\n'.join(lines)+'\n')
     path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
+    update_goal_resource_navigation(ROOT, navigation)
     module=ATLAS/'home-search.js';text=module.read_text()
     text=text.replace("[...titles,...headings.map(h=>h.title),...keys].join(' ')","[...titles,...headings.map(h=>h.title),...keys,...Object.values(entry.text||{})].join(' ')")
     text=text.replace("const locale=language==='ja'&&entry.title.ja?'ja':'en';","const locale=language==='ja'&&entry.title.ja?'ja':entry.title.en?'en':'ja';")
     text=re.sub(r"from '../search/method-search[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/method-search.mjs?v="+version_method_search(ROOT)+"'", text)
+    text=version_navigation_imports(ROOT, text)
     marker=' // Public word-search entry\n'
     if marker not in text:
         target=" const schedule=()=>"

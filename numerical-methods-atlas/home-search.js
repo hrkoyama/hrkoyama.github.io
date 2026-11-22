@@ -1,11 +1,14 @@
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=31c82abc5908';
+import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=691f618aefac';
+import {appendSearchNavigation,publicNavigationPath} from '../search/navigation.mjs?v=460334bf824e';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
 const executionIntents=new Set(['実行','コード','入力','検証','再現','ダウンロード','run','code','execute','execution','runnable','reproduce','validation','input','download','example']);
 const kindLabels={
+ equation:{ja:'方程式',en:'Equation'},
+ reference:{ja:'厳密解・参照解',en:'Exact / reference solution'},
  problem:{ja:'テスト問題',en:'Test problem'},
  connection:{ja:'分野間のつながり',en:'Cross-field connection'},
  'execution-example':{ja:'実行例',en:'Runnable example'},
@@ -21,6 +24,14 @@ export function buildHomeSearchIndex(english,japanese,coverage,glossary){
   return {id,title:{en:plain(en.title||id),ja:ja?plain(ja.title||en.title):null},headings:{en:en.headings.map(h=>({id:h.id,title:plain(h.title)})),ja:ja?ja.headings.map(h=>({id:h.id,title:plain(h.title)})):[]},keywords:[...new Set([...items.flatMap(item=>[item.label,item.group]),...terms.flatMap(term=>[term.en,term.ja,...(term.aliases||[])])].filter(Boolean))]};
  })};
 }
+function localSearchURL(entry,locale){
+ const raw=entry.routes?.[locale],path=publicNavigationPath(raw);if(!path)return null;
+ if(/^\/numerical-methods-atlas\/[a-z0-9/?=.-]+$/.test(path)&&!path.includes('..'))return path;
+ if(entry.kind==='connection'&&/^\/numerical-methods-atlas\/connections\/\?lang=(ja|en)#(?:dft-md|reaction-transport|poisson-fields)-\1$/.test(path)&&path.startsWith('/numerical-methods-atlas/connections/?lang='+locale+'#'))return path;
+ if(entry.kind==='equation'&&new RegExp('^/numerical-methods-atlas/equations/\\?lang='+locale+'#[a-z0-9-]+-'+locale+'$').test(path))return path;
+ if(entry.kind==='reference'&&new RegExp('^/numerical-methods-atlas/solutions/\\?lang='+locale+'#solution-[a-z0-9-]+-'+locale+'$').test(path))return path;
+ return null;
+}
 export function searchChapters(index,query,language='en'){
  const q=normalizeSearch(query);if(!q)return [];
  const words=q.split(' ');
@@ -30,11 +41,12 @@ export function searchChapters(index,query,language='en'){
   // the old registry corpus would reintroduce ordinary English "keep" hits.
   if(entry.method)return [];
   const titles=[entry.title.en,entry.title.ja].filter(Boolean),headings=[...entry.headings.en,...entry.headings.ja],keys=entry.keywords;
+  const kind=Object.hasOwn(kindLabels,entry.kind)?entry.kind:'chapter';
+  const entityPriority=['equation','reference'].includes(kind)&&[entry.id.replace(/^(?:equation|reference)-/,''),...titles,...Object.values(entry.name||{})].some(identity=>normalizeSearch(plain(identity))===q);
   const hay=normalizeSearch([...titles,...headings.map(h=>h.title),...keys,...Object.values(entry.text||{})].join(' '));
-  if(!words.every(word=>hay.includes(word)))return [];
+  if(!entityPriority&&!words.every(word=>hay.includes(word)))return [];
   const titleHit=titles.some(title=>normalizeSearch(title).includes(q));
   const heading=headings.find(h=>normalizeSearch(h.title).includes(q))||headings.find(h=>words.every(word=>normalizeSearch(h.title).includes(word)));
-  const kind=Object.hasOwn(kindLabels,entry.kind)?entry.kind:'chapter';
   const intent=words.some(word=>executionIntents.has(word));
   const focusWords=words.filter(word=>!executionIntents.has(word));
   const focus=normalizeSearch((entry.focus_keywords||[]).join(' '));
@@ -46,12 +58,15 @@ export function searchChapters(index,query,language='en'){
   const locale=language==='ja'&&entry.title.ja?'ja':entry.title.en?'en':'ja';
   const shownHeading=heading?(entry.headings[locale].find(h=>h.id===heading.id)||heading):null;
   const snippet=typeof entry.snippet?.[locale]==='string'?plain(entry.snippet[locale]):'';
-  return [{id:entry.id,title:entry.title[locale],locale,section:titleHit?'':heading?.id||'',kind,badge:kindLabels[kind][locale],detail:snippet||shownHeading?.title||(keys.filter(key=>words.every(word=>normalizeSearch(key).includes(word))).slice(0,3).join(' · ')||keys.slice(0,4).join(' · ')),score,executionPriority:namedExecution&&(intent||(compoundName&&!methodResults.some(result=>result.exactMethod))),url:(/^\/numerical-methods-atlas\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')||entry.kind==='connection'&&/^\/numerical-methods-atlas\/connections\/\?lang=(ja|en)#(?:dft-md|reaction-transport|poisson-fields)-\1$/.test(entry.routes?.[locale]||'')&&entry.routes[locale].startsWith('/numerical-methods-atlas/connections/?lang='+locale+'#'))&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];
+  return [{id:entry.id,title:entry.title[locale],locale,section:titleHit?'':heading?.id||'',kind,badge:kindLabels[kind][locale],detail:snippet||shownHeading?.title||(keys.filter(key=>words.every(word=>normalizeSearch(key).includes(word))).slice(0,3).join(' · ')||keys.slice(0,4).join(' · ')),score,entityPriority,executionPriority:namedExecution&&(intent||(compoundName&&!methodResults.some(result=>result.exactMethod))),url:localSearchURL(entry,locale),routes:entry.routes,search_navigation:entry.search_navigation}];
  }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
- if(!methodResults.length)return chapters;
+ const executions=chapters.filter(result=>result.executionPriority);
+ const entities=chapters.filter(result=>result.entityPriority&&!result.executionPriority).map(result=>({...result,related:false}));
+ const pages=chapters.filter(result=>!result.executionPriority&&!result.entityPriority);
+ if(!methodResults.length)return [...executions,...entities,...pages];
  // A request for a particular runnable problem still opens that problem.
  // Named methods get one direct card; mentions in other chapters stay below.
- return [...chapters.filter(result=>result.executionPriority),...methodResults,...chapters.filter(result=>!result.executionPriority).map(result=>({...result,related:true}))];
+ return [...executions,...methodResults.filter(result=>result.exactMethod),...entities,...methodResults.filter(result=>!result.exactMethod),...pages.map(result=>({...result,related:true}))];
 }
 const copy={ja:{label:'アトラスを検索',placeholder:'例：KEEP法、Roe、WENO-Z、Sod 実行',hint:'手法の解説・公開コード・テストへ直接進めます。日英の名称・別名に対応し、検索語はこのブラウザ内で処理します。',related:'関連資料',all:'すべての結果をアトラス内で検索',button:'検索',empty:'キーワードを入力してください。',loading:'検索データを読み込んでいます…',none:'該当する項目がありません。別の用語や英語名でもお試しください。',failed:'検索データを読み込めませんでした。もう一度「検索」を押してください。',english:'英語の解説',count:(n,m)=>`${n}件が該当${n>m?`（上位${m}件を表示）`:''}`},en:{label:'Search the atlas',placeholder:'e.g. KEEP, Roe, WENO-Z, Sod run',hint:'Go directly to method explanations, published code and tests. Search English or Japanese names and aliases; search terms stay in this browser.',related:'Related resources',all:'View all atlas search results',button:'Search',empty:'Enter a keyword to find an entry.',loading:'Loading the search index…',none:'No entries match. Try another term or its Japanese name.',failed:'The search index could not load. Press Search to try again.',english:'English chapter',count:(n,m)=>`${n} matching entr${n===1?'y':'ies'}${n>m?` (showing ${m})`:''}`}};
 export function homeSearchPage({compact=false,staticMode=false}={}){
@@ -64,7 +79,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=f256abfefd44',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=99cd6c87c581',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){
@@ -78,6 +93,7 @@ export function wireHomeSearch(){
   const badge=document.createElement('small');badge.className='home-search-kind';badge.textContent=result.badge;li.prepend(badge,document.createTextNode(' '));
   if(result.detail){const p=document.createElement('p');p.textContent=result.detail;li.append(p);}
   if(language==='ja'&&result.locale==='en'){const note=document.createElement('small');note.textContent=c.english;li.append(note);}
+  appendSearchNavigation(li,result,language);
   target.append(li);
  }
  let version=0,timer,composing=false;

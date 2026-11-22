@@ -1,4 +1,4 @@
-import {findMethods,tokenIncludes} from './method-search.mjs?v=31c82abc5908';
+import {findMethods,tokenIncludes} from './method-search.mjs?v=691f618aefac';
 const ORIGIN = 'https://hrkoyama.github.io';
 export function safePath(value) {
   try {
@@ -39,18 +39,23 @@ export function makeSearch(documents) {
     for (const entry of scoped) {
       if(executionPaths.has(entry.doc.url))continue;
       if(methods.length && entry.doc.method)continue;
+      const entityPriority=['equation','reference'].includes(entry.doc.kind)&&[
+        String(entry.doc.id||entry.doc.search_navigation?.id||'').replace(/^(?:equation|reference)-/,''),
+        entry.doc.title,entry.doc.titleEn,...Object.values(entry.doc.name||{})
+      ].filter(value=>typeof value==='string'&&value).some(identity=>normalize(identity)===phrase);
       const haystack = entry.title + ' ' + entry.category + ' ' + entry.text;
-      if (!terms.every(term => tokenIncludes(haystack,term))) continue;
+      if (!entityPriority&&!terms.every(term => tokenIncludes(haystack,term))) continue;
       let score = terms.reduce((total,term) => total + (entry.title.includes(term) ? 30 : entry.headings.includes(term) ? 16 : entry.category.includes(term) ? 12 : 1) + Math.min(8,Math.log2(1+entry.text.split(term).length-1)),0);
       if (entry.title.includes(phrase)) score += 50;
       if (entry.headings.includes(phrase)) score += 20;
       if (entry.text.includes(phrase)) score += 4;
       if (entry.category.includes(phrase) && /^\/[^/]+\/$/.test(safePath(entry.doc.url))) score += 45;
       if (entry.doc.lang === language || entry.doc.lang === 'both') score += 3;
-      const result = { ...entry.doc, url:safePath(entry.doc.url), score };
+      const result = { ...entry.doc, url:safePath(entry.doc.url), score, entityPriority };
       if (!best.has(entry.family) || best.get(entry.family).score < score) best.set(entry.family,result);
     }
-    return [...executions,...methods,...[...best.values()].sort((a,b) => b.score-a.score || a.url.localeCompare(b.url))];
+    const pages=[...best.values()].sort((a,b) => b.score-a.score || a.url.localeCompare(b.url));
+    return [...executions,...methods.filter(result=>result.exactMethod),...pages.filter(result=>result.entityPriority),...methods.filter(result=>!result.exactMethod),...pages.filter(result=>!result.entityPriority)];
   };
 }
 export function excerpt(text, query, limit = 180) {

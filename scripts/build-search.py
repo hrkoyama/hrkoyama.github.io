@@ -3,7 +3,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlparse,unquote
-from atlas_search_methods import search_methods
+from atlas_search_methods import search_methods,version_method_search,version_navigation_imports
 import re,json,hashlib,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 ORIGIN='https://hrkoyama.github.io'
@@ -29,7 +29,7 @@ class PublicText(HTMLParser):
   if tag=='title' and any(entry[0]=='head' for entry in self.stack):self.titles={lang:a.get('data-page-title-'+lang,'') for lang in ['ja','en']}
   parent=self.stack[-1] if self.stack else ('',False,False)
   inside=parent[1] or tag=='main'
-  blocked=parent[2] or tag in {'script','style','noscript','nav','header','footer','button','input','textarea','select','option','svg','canvas','template','annotation','annotation-xml'} or 'site-chrome' in a.get('class','').split()
+  blocked=parent[2] or tag in {'script','style','noscript','nav','header','footer','button','input','textarea','select','option','svg','canvas','template','annotation','annotation-xml'} or bool(set(a.get('class','').split()) & {'site-chrome','search-navigation','execution-resource-navigation','method-route-navigation','problem-routes'})
   if tag not in {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}:self.stack.append((tag,inside,blocked))
   if inside and not blocked and tag in {'p','h1','h2','h3','h4','li','tr','section','article','br','div'}:self.parts.append(' ')
  def handle_endtag(self,tag):
@@ -49,9 +49,21 @@ def record(url,title,title_en,text,lang,category):
  ja,en=CATEGORIES[category]
  return {'url':url,'title':title,'titleEn':title_en,'text':re.sub(r'\s+',' ',text).strip(),'lang':lang,'categoryJa':ja,'categoryEn':en,'categoryText':ja+' '+en}
 documents=[]
-method_records={urlparse(method['url']).path:method for method in search_methods(ROOT)}
+navigation=json.loads((ROOT/'search/atlas-navigation.json').read_text())
+method_records={urlparse(method['url']).path:method for method in search_methods(ROOT,navigation)}
 atlas_index=json.loads((ROOT/'numerical-methods-atlas/home-search-index.json').read_text())
 execution_records={urlparse(entry['routes']['en']).path:entry for entry in atlas_index['entries'] if entry.get('kind')=='execution-example'}
+atlas_records={}
+for entry in atlas_index['entries']:
+ if 'search_navigation' not in entry:continue
+ for route in entry['routes'].values():
+  parsed_route=urlparse(route)
+  # Equation/reference entities share an index page but keep distinct fragments.
+  if parsed_route.fragment:continue
+  previous=atlas_records.get(parsed_route.path)
+  if previous is not None and previous['search_navigation']!=entry['search_navigation']:
+   raise ValueError('Conflicting canonical atlas navigation: '+parsed_route.path)
+  atlas_records[parsed_route.path]=entry
 urls=sorted({node.text for node in ET.parse(ROOT/'sitemap.xml').findall('.//{*}loc')})
 for url in urls:
  parsed=urlparse(url)
@@ -76,6 +88,28 @@ for url in urls:
  doc=record(parsed.path,title,parser.titles.get('en',''),text,lang,category);doc['headings']=''.join(parser.headings).strip()
  if parsed.path in method_records:doc['method']=method_records[parsed.path]
  if parsed.path in execution_records:doc['execution']=execution_records[parsed.path]
+ if parsed.path in atlas_records:
+  entry=atlas_records[parsed.path]
+  doc['kind']=entry['kind'];doc['routes']=entry['routes'];doc['search_navigation']=entry['search_navigation']
+ documents.append(doc)
+for entity in navigation['entities']:
+ kind=entity['kind']
+ if kind not in {'equation','reference'}:raise ValueError('Unexpected fragment entity: '+entity['id'])
+ identity=entity['id'].removeprefix(kind+'-')
+ route=entity['routes'].get('ja') or entity['routes']['en']
+ parsed_route=urlparse(route)
+ if parsed_route.netloc and (parsed_route.scheme!='https' or parsed_route.netloc!='hrkoyama.github.io'):
+  raise ValueError('Non-public search entity route: '+route)
+ if not parsed_route.path.startswith('/numerical-methods-atlas/') or not parsed_route.fragment:
+  raise ValueError('Missing atlas entity fragment: '+route)
+ # The source-built entity text contains only this definition and its notes.
+ # Never reuse all of the neighboring equation/reference index page's prose.
+ text=' '.join([flatten(entity['title']),flatten(entity.get('text',{})),flatten(entity.get('keywords',[])),flatten(entity.get('headings',{}))])
+ doc=record(parsed_route.path+('?' + parsed_route.query if parsed_route.query else '')+'#'+parsed_route.fragment,
+            entity['title'].get('ja') or entity['title']['en'],entity['title'].get('en',''),text,'both','numerical-methods-atlas')
+ doc.update({'id':entity['id'],'kind':kind,'routes':entity['routes'],
+             'headings':flatten(entity.get('headings',{})),
+             'search_navigation':navigation['nodes'][kind+':'+identity]})
  documents.append(doc)
 raw=(ROOT/'notebooks/catalog.js').read_text()
 notebooks=json.loads(raw.split('=',1)[1].strip().removesuffix(';'))['notebooks']
@@ -90,6 +124,7 @@ assert all(not re.search(r'koyam(?:arium|ahr)@gmail[.]com',doc['text']) for doc 
 inputs={'sitemap.xml','notebooks/catalog.js','gordon-bell/data.json'}
 inputs.add('numerical-methods-atlas/methods/index.json')
 inputs.add('numerical-methods-atlas/home-search-index.json')
+inputs.add('search/atlas-navigation.json')
 inputs.update('hpci-policy/'+name for name in ['content.json','committees.json','comparison.json','history.json'])
 for url in urls:
  parsed=urlparse(url)
@@ -98,14 +133,15 @@ for url in urls:
  if path.is_dir():path=path/'index.html'
  if path.suffix=='.html':inputs.add(path.relative_to(ROOT).as_posix())
 receipts={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sorted(inputs)}
-data=json.dumps({'version':1,'documents':documents,'sourceSha256':receipts},ensure_ascii=False,separators=(',',':'))+'\n'
+data=json.dumps({'version':1,'documents':documents,'sourceSha256':receipts,'navigation_source_sha256':navigation['source_sha256']},ensure_ascii=False,separators=(',',':'))+'\n'
 (ROOT/'search/index.json').write_text(data)
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
 js=ROOT/'search/search.js'
 shared=ROOT/'search/method-search.mjs'
-shared.write_text(re.sub(r"new URL\('./methods[.]css(?:\?v=[a-f0-9]+)?',import.meta.url\)","new URL('./methods.css?v="+digest(ROOT/'search/methods.css')+"',import.meta.url)",shared.read_text()))
+shared_hash=version_method_search(ROOT)
 for module in [ROOT/'search/engine.mjs',js]:
- module.write_text(re.sub(r"from './method-search[.]mjs(?:\?v=[a-f0-9]+)?'","from './method-search.mjs?v="+digest(shared)+"'",module.read_text()))
+ text=re.sub(r"from './method-search[.]mjs(?:\?v=[a-f0-9]+)?'","from './method-search.mjs?v="+shared_hash+"'",module.read_text())
+ module.write_text(version_navigation_imports(ROOT,text))
 js.write_text(re.sub(r"from './engine\.mjs(?:\?v=[a-f0-9]+)?'", "from './engine.mjs?v="+digest(ROOT/'search/engine.mjs')+"'",js.read_text()))
 page=ROOT/'search/index.html';html=page.read_text()
 for name in ['search.js','search.css']:

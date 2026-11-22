@@ -281,6 +281,10 @@ PMLの電場・磁場の仕事は場と係数から直接集計し、修正離�
 
 ## アトラスの検索と3つの入口
 
+検索結果の5つの入口は `scripts/atlas_search_routes.py` が公開済みの手法・問題・式・参照解台帳と検証済み実行例、明示的な章の対応から生成する。アトラス内検索とサイト全体検索は `search/navigation.mjs` の表示を共用し、方程式・参照解の個別項目も言語に対応した節へ直接つなぐ。複数候補と図の確認は折りたたみ、問題ごとの参照条件を集約時にも保持する。目的別の検索にはその目的で許可された実行例だけを渡し、予定手法や診断例へ他の実装・物理問題を割り当てない。検索語は従来どおりブラウザ内だけで処理する。
+
+対応JSONは `/search/atlas-navigation.json`。本文の検索語と関連資料の対応情報を分け、隣接するカードの案内文から科学的な対応や実装を推測しない。通常refresh・コミット前の生成・CIで両検索と対応JSONを更新し、`scripts/atlas-search-navigation.test.mjs` が元の対応、図の出典、目的の制限、日英のリンク、表示と検索語の非送信を検査する。
+
 トップの文言と3入口は `catalog/atlas-home.json` が正本。「目的から探す」は `/numerical-methods-atlas/start/`、「まず計算を試す」は `/numerical-methods-atlas/code-and-data/examples/`、「体系的に読む」は `/numerical-methods-atlas/explore/` へ進む。トップに全目的・分野地図・収録件数・検証範囲を再び並べない。
 
 `build-atlas-purpose.py` と `atlas_home_layout.py` が日英の静的トップと次の階層を生成する。ライブ表示は `home-overview.js` と `home-search.js`、静的表示は同じレンダラーの `render-atlas-landing.mjs` を使う。詳細な地図と読む順番はexplore、目的フィルターはstartに保持する。科学的な台帳、既存のJSON・Markdown、固定配布版はこの表示整理で変更しない。`home-navigation.mjs` は以前の地図・分野・絞り込みURLを適切な次ページへ案内する。全条件がallのトップURLはトップのままとする。
