@@ -101,7 +101,8 @@ def main():
     assert books['n063']['lecture_year'] == 1993 and books['n063']['lecture_year_status'] == 'confirmed'
     assert books['n064']['lecture_year'] == 1992 and books['n064']['lecture_year_status'] == 'provisional'
     assert books['n056']['lecturer'] == '九後汰一郎・政池明'
-    assert {(n, m) for n, m in pairs if m == 'b014'} == {('n063', 'b014')}
+    assert {(n, m) for n, m in pairs if m == 'b014'} == {('n063', 'b014'), ('n074', 'b014')}
+    assert books['n074']['lecturer'] is None, 'A confirmed reference-book editor is not a course instructor'
     assert {(n, m) for n, m in pairs if m == 'b009'} == {('n060', 'b009')}
     assert next(l for l in links['links'] if l['id'] == 'n060-b009')['relation'] == 'reference_book'
     assert books['n060']['lecturer'] is None, 'A named reference-book author is not the course instructor'
