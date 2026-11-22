@@ -13,8 +13,10 @@ for g in data['goals']:
     assert all(x in methods for x in g['methods']),g['id']
     assert all(x in examples for x in g['examples']),g['id']
     assert g.get('availability') in [None,'reading-only']
+    if g.get('availability')=='reading-only' or not any(m['status']=='educational-example' for m in goal_methods(g,methods)):
+        assert not g['examples'],g['id']+' cannot advertise runnable examples'
     for resource in g.get('resources',[]):
-        assert resource['status']=='reading-only' and not resource.get('code_urls') and not resource.get('test_urls')
+        assert resource['status']=='reading-only' and not resource.get('code_urls') and not resource.get('test_urls') and not resource.get('execution_examples')
     assert all(g['scope'][lang] and g['title'][lang] for lang in ['ja','en'])
 module='export const goals='+json.dumps(data['goals'],ensure_ascii=False,separators=(',',':'))+';\n'
 module+='''export function matchGoals(query){
