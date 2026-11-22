@@ -33515,7 +33515,8 @@
           ],
           "queue_status": "first_manuscript_checked",
           "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
-        }
+        },
+        "batch_next_action": "All indexed manuscript versions for this year have selected fields checked. Continue publication-version comparisons and authenticated conference-day updates separately. More recent completed year batches: 2004."
       },
       {
         "year": 2003,
