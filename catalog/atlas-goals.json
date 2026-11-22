@@ -52,6 +52,227 @@
       "examples": []
     },
     {
+      "id": "atomic-electrons",
+      "title": {
+        "ja": "原子の電子状態を計算したい",
+        "en": "Compute atomic electronic states"
+      },
+      "terms": [
+        "原子の電子",
+        "原子を計算",
+        "原子計算",
+        "ヘリウムを",
+        "水素原子を",
+        "atomic electronic",
+        "compute atoms",
+        "atomic dft",
+        "量子化学を",
+        "quantum chemistry",
+        "原子のdft",
+        "水素型原子",
+        "ヘリウム原子"
+      ],
+      "scope": {
+        "ja": "公開実行例は水素型原子と球対称Heに限定します。Heは閉殻Hartree–Fockと交換のみLDAの比較です。一般の分子・固体、GGA・hybridの実装ではありません。基底・格子・SCFの数値誤差と、物理近似の誤差を分けて確認します。",
+        "en": "Published runs are limited to hydrogenic atoms and spherical helium: closed-shell Hartree–Fock and exchange-only LDA for He. They are not implementations for general molecules, solids, GGA or hybrids. Separate grid/basis/SCF errors from physical approximation errors."
+      },
+      "methods": [
+        "schrodinger",
+        "hartree-fock",
+        "kohn-sham-dft",
+        "scf"
+      ],
+      "examples": [
+        "hydrogenic-atoms",
+        "helium-ground-state"
+      ]
+    },
+    {
+      "id": "molecular-dft",
+      "title": {
+        "ja": "分子・固体のDFTを学びたい",
+        "en": "Explore molecular and solid-state DFT"
+      },
+      "terms": [
+        "分子の電子",
+        "分子を計算",
+        "分子のdft",
+        "固体のdft",
+        "周期系のdft",
+        "dftを",
+        "dftで",
+        "molecular dft",
+        "solid state dft",
+        "periodic dft",
+        "density functional",
+        "密度汎関数"
+      ],
+      "scope": {
+        "ja": "この目的では解説のみを案内します。分子・周期系、k点、基底、汎関数の選び方を読みます。原子用の公開コードを、分子・固体やGGA・hybridの検証済み実装と表示しません。",
+        "en": "This route provides reading only: molecular/periodic formulations, k points, bases and functional choices. The atomic code is not a validated implementation for molecules, solids, GGA or hybrids."
+      },
+      "methods": [
+        "kohn-sham-dft",
+        "electronic-bases",
+        "k-point",
+        "xc-functionals"
+      ],
+      "examples": [],
+      "availability": "reading-only"
+    },
+    {
+      "id": "temperature-control",
+      "title": {
+        "ja": "温度を制御したい",
+        "en": "Control temperature in molecular dynamics"
+      },
+      "terms": [
+        "温度を制御",
+        "温度制御",
+        "サーモスタット",
+        "thermostat",
+        "control temperature",
+        "temperature control",
+        "nvt"
+      ],
+      "scope": {
+        "ja": "温度制御法の比較解説は公開済みですが、このアトラスの専用実装・テストは未公開です。平均温度だけでなく正準分布・温度揺らぎ・動力学への影響を比較します。Berendsen弱結合や単純な速度スケーリングを、一般の正準分布の保証と扱いません。",
+        "en": "Comparative reading is published; dedicated atlas implementations and tests are not. Compare canonical sampling, temperature fluctuations and dynamical effects, not only mean temperature. Berendsen coupling and simple rescaling do not generally guarantee canonical sampling."
+      },
+      "methods": [
+        "nose-hoover",
+        "stochastic-velocity-rescaling",
+        "langevin-thermostat",
+        "berendsen-thermostat"
+      ],
+      "examples": []
+    },
+    {
+      "id": "biological-models",
+      "title": {
+        "ja": "生物のモデル方程式を調べたい",
+        "en": "Explore biological model equations"
+      },
+      "terms": [
+        "生物モデル",
+        "生物のモデル",
+        "生物の方程式",
+        "個体群",
+        "感染症",
+        "反応拡散で模様",
+        "神経のモデル",
+        "biological model",
+        "biology model",
+        "population growth",
+        "epidemic model",
+        "turing pattern"
+      ],
+      "scope": {
+        "ja": "22のモデル族の文献解説と検証計画です。生物専用ソルバー、計算結果、実行用コード・テストは公開していません。個体群・感染症・反応拡散・膜興奮を選び、非負性、保存量、境界条件や尺度を確認します。",
+        "en": "A literature survey and proposed verification designs for 22 model families. No biological solver, computed result, runnable code or tests are published. Explore populations, epidemics, reaction–diffusion and membrane excitation, checking nonnegativity, balances, boundaries and scales."
+      },
+      "methods": [],
+      "examples": [],
+      "resources": [
+        {
+          "id": "bio-populations",
+          "name": {
+            "ja": "個体群増殖モデル",
+            "en": "Population growth model"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
+            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+          },
+          "status": "reading-only",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#01-1838-logistic-population-growth",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#01-1838-logistic-population-growth"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": []
+        },
+        {
+          "id": "bio-epidemics",
+          "name": {
+            "ja": "SIR・SEIR感染症モデル",
+            "en": "SIR and SEIR epidemic models"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
+            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+          },
+          "status": "reading-only",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": []
+        },
+        {
+          "id": "bio-patterns",
+          "name": {
+            "ja": "Turing反応拡散・パターン形成",
+            "en": "Turing reaction–diffusion patterns"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
+            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+          },
+          "status": "reading-only",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#09-1952-turing-reactiondiffusion-framework",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#09-1952-turing-reactiondiffusion-framework"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": []
+        },
+        {
+          "id": "bio-excitation",
+          "name": {
+            "ja": "Hodgkin–Huxley膜興奮",
+            "en": "Hodgkin–Huxley membrane excitation"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
+            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+          },
+          "status": "reading-only",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#08-1952-hodgkinhuxley-membrane-dynamics",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#08-1952-hodgkinhuxley-membrane-dynamics"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": []
+        }
+      ]
+    },
+    {
       "id": "poisson",
       "title": {
         "ja": "拡散・Poisson方程式を解きたい",
@@ -163,14 +384,14 @@
   "home": {
     "ja": {
       "title": "何を計算したいですか？",
-      "description": "手法名が分からなくても大丈夫。目的を選び、使える条件を確認して、解説・コード・テストへ進めます。",
-      "all": "6つの目的と適用条件を見る",
+      "description": "目的と公開状況を選び、適用条件を確認して、解説や公開済みのコード・テストへ進めます。",
+      "all": "全{count}目的と公開状況を見る",
       "label": "目的から探す"
     },
     "en": {
       "title": "What would you like to compute?",
-      "description": "Start with a goal, even without a method name. Check its conditions, then open explanations, code and tests.",
-      "all": "View all six goals and their conditions",
+      "description": "Choose a goal and check its availability and assumptions, then open reading or published code and tests.",
+      "all": "View all {count} goals and availability",
       "label": "Find by goal"
     }
   }

@@ -1,5 +1,5 @@
-import {makeSearch,excerpt,safePath} from './engine.mjs?v=0b1b31575564';
-import {appendMethodCard} from './method-search.mjs?v=f24e8d2412c6';
+import {makeSearch,excerpt,safePath} from './engine.mjs?v=4aadec0d5123';
+import {appendMethodCard} from './method-search.mjs?v=d08b319ec987';
 const main = document.querySelector('[data-search-index]');
 const input = document.querySelector('#search-query');
 const status = document.querySelector('#search-status');
@@ -83,7 +83,8 @@ async function render() {
   matches=query ? engine(query,locale(),scope) : [];
   const methods=matches.filter(row=>row.kind==='method').length;
   const executions=matches.filter(row=>row.executionPriority).length;
-  const counts=locale()==='ja'?[methods?`手法 ${methods}件`:'',executions?`実行例 ${executions}件`:'']:[methods?`${methods} method${methods===1?'':'s'}`:'',executions?`${executions} runnable example${executions===1?'':'s'}`:''];
+  const purpose=matches.some(row=>row.purposeScope);
+  const counts=locale()==='ja'?[methods?`${purpose?'候補':'手法'} ${methods}件`:'',executions?`実行例 ${executions}件`:'']:[methods?`${methods} ${purpose?'candidate'+(methods===1?'':'s'):'method'+(methods===1?'':'s')}`:'',executions?`${executions} runnable example${executions===1?'':'s'}`:''];
   status.textContent=query ? methods||executions ? (locale()==='ja'?`「${query}」：${counts.filter(Boolean).join('・')}。公開済みの資料へ直接進めます。`:`${counts.filter(Boolean).join(', ')} for “${query}”. Open the available resources directly.`) : words(matches.length?'found':'none',{query,count:matches.length}) : words('ready',{count:scope==='atlas'?atlasCount:count});
   if(query && !matches.length && scope==='atlas')status.textContent+=(locale()==='ja'?' 検索範囲を「サイト全体」に変えることもできます。':' You can also change the scope to the whole site.');
   showRows();

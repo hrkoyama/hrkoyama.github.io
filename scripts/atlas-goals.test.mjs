@@ -11,6 +11,37 @@ const read=p=>JSON.parse(fs.readFileSync(new URL('../'+p,import.meta.url)));
 const methods=read('numerical-methods-atlas/methods/index.json').methods;
 const global=makeSearch(read('search/index.json').documents);
 const local=read('numerical-methods-atlas/home-search-index.json');
+test('new domains distinguish runnable atoms, reading-only molecular DFT, planned thermostats and model surveys',()=>{
+ for(const lang of ['ja','en']){
+  for(const query of ['原子の電子状態を計算したい','compute atomic electronic states']){
+   const rows=findMethods(methods,query,lang);assert.ok(rows.some(x=>x.method.id==='hartree-fock'));
+   assert.ok(rows.some(x=>x.method.execution_examples.some(e=>e.id==='helium-ground-state')));
+  }
+  for(const query of ['分子のDFTを学びたい','explore molecular DFT','温度を制御したい','control temperature in molecular dynamics','生物のモデル方程式を調べたい','explore biological model equations']){
+   for(const rows of [findMethods(methods,query,lang),global(query,lang,'atlas'),searchChapters(local,query,lang)]){
+    const candidates=rows.filter(x=>x.purposeScope);assert.ok(candidates.length,query);
+    for(const x of candidates){
+     assert.notEqual(x.method.status,'educational-example',query);
+     assert.equal(x.method.code_urls.length,0,query);assert.equal(x.method.test_urls.length,0,query);
+     assert.equal(x.method.execution_examples.length,0,query);assert.ok(x.method.reading[lang]);
+    }
+   }
+  }
+ }
+ assert.equal(methods.find(m=>m.id==='kohn-sham-dft').status,'educational-example','goal restrictions do not change the canonical atomic implementation status');
+ assert.ok(findMethods(methods,'温度を制御したい').every(x=>x.method.status==='planned'));
+ assert.ok(findMethods(methods,'生物モデルを調べたい').every(x=>x.method.resource_type==='model'&&x.method.status==='reading-only'));
+});
+test('static new-domain sections have status labels and do not advertise atomic code for molecules or simulations for surveys',()=>{
+ const html=fs.readFileSync(new URL('../numerical-methods-atlas/start/index.html',import.meta.url),'utf8');
+ for(const id of ['molecular-dft','temperature-control','biological-models'])for(const lang of ['ja','en']){
+  const section=html.match(new RegExp(`<article[^>]+id="${id}-${lang}"[\\s\\S]*?</article>`))?.[0];assert.ok(section,id);
+  assert.ok(section.includes('goal-availability'));assert.ok(!section.includes('href="https://hrkoyama.github.io/code/'));
+  assert.ok(!section.includes('/code-and-data/examples/'));
+ }
+ assert.ok(html.includes('Reading available; implementation planned'));
+ assert.ok(html.includes('Reading only; no dedicated implementation'));
+});
 test('first-time visitors reach every goal from the introductory section before counts and directories',()=>{
  const page=fs.readFileSync(new URL('../numerical-methods-atlas/index.html',import.meta.url),'utf8');
  for(const lang of ['ja','en']){
@@ -18,7 +49,7 @@ test('first-time visitors reach every goal from the introductory section before 
   const runtime=homeOverviewPage(read('numerical-methods-atlas/coverage.json'));
   const intro=runtime.match(/<section class="intro[^>]*>([\s\S]*?)<\/section>/)?.[1];
   assert.ok(intro);
-  assert.equal((intro.match(/class="home-goal-choice"/g)||[]).length,6);
+  assert.equal((intro.match(/class="home-goal-choice"/g)||[]).length,goals.length);
   for(const g of goals){
    const route=`/numerical-methods-atlas/start/?lang=${lang}#${g.id}-${lang}`;
    assert.ok(intro.includes(route),route);

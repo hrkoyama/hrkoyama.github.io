@@ -1,4 +1,4 @@
-import {matchGoals} from './goals-data.mjs?v=35853b904094';
+import {matchGoals} from './goals-data.mjs?v=462f82c0fade';
 // Both the atlas and the site search use these identities and availability links.
 export const normalizeMethodQuery = value => String(value).normalize('NFKC').toLowerCase()
   .replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
@@ -14,13 +14,19 @@ export function methodIdentities(method) {
     .filter(value => typeof value === 'string' && value.trim()).map(normalizeMethodQuery))];
 }
 export function findMethods(methods, query, language='ja') {
-  const goals=matchGoals(query);
+  const exactName=methods.some(method=>methodIdentities(method).includes(normalizeMethodQuery(query)));
+  const goals=exactName?[]:matchGoals(query);
   if(goals.length){
-    const ids=[...new Set(goals.flatMap(goal=>goal.methods))];
-    const exampleIds=new Set(goals.flatMap(goal=>goal.examples));
-    return ids.flatMap(id=>{const original=methods.find(m=>m.id===id);if(!original)return [];
-      const method={...original,execution_examples:(original.execution_examples || []).filter(example=>exampleIds.has(example.id))};
-      return [{id,kind:'method',title:method.name[language] || method.name.en,locale:language,method,exactMethod:false,score:9000,purposeScope:goals.filter(g=>g.methods.includes(id)).map(g=>g.scope[language]).join(' ')}];});
+    const candidates=new Map();
+    for(const goal of goals)for(const original of [...goal.methods.map(id=>methods.find(m=>m.id===id)).filter(Boolean),...(goal.resources||[])]){
+      const restricted=goal.availability==='reading-only';
+      const method={...original,url:original.url || original.reading?.[language] || original.reading?.en,
+        ...(restricted?{status:'reading-only',code_urls:[],test_urls:[]}:{}),
+        execution_examples:restricted?[]:(original.execution_examples||[]).filter(example=>goal.examples.includes(example.id))};
+      // A restricted purpose never inherits a runnable claim from another route.
+      if(!candidates.has(method.id) || restricted)candidates.set(method.id,{id:method.id,kind:'method',title:method.name[language] || method.name.en,locale:language,method,exactMethod:false,score:9000,purposeScope:goal.scope[language]});
+    }
+    return [...candidates.values()];
   }
   const phrase = normalizeMethodQuery(String(query).slice(0,200));
   if (!phrase) return [];
@@ -67,7 +73,9 @@ export function appendMethodCard(item,result,language='ja') {
   const m=result.method,c=labels[language] || labels.ja;
   item.classList.add('method-search-card');item.dataset.methodId=m.id;
   const meta=document.createElement('p');meta.className='method-search-meta';
-  meta.textContent=[c.method,m.group?.[language],c.status[m.status] || m.status].filter(Boolean).join(' · ');
+  const type=m.resource_type==='model'?(language==='ja'?'モデル':'Model'):c.method;
+  const state=result.purposeScope&&m.status==='planned'&&Object.keys(m.reading||{}).length?(language==='ja'?'解説あり・実装予定':'Reading available; implementation planned'):c.status[m.status] || m.status;
+  meta.textContent=[type,m.group?.[language],result.purposeScope?(language==='ja'?'この目的：':'For this goal: ')+state:state].filter(Boolean).join(' · ');
   const heading=document.createElement('h2');
   const link=(url,text,lang) => {
     const path=publicPath(url);if (!path) return null;
@@ -97,7 +105,7 @@ export function appendMethodCard(item,result,language='ja') {
   item.append(meta,heading);if(otherName.textContent)item.append(otherName);if(summary.textContent)item.append(summary);item.append(actions);
   if(result.purposeScope){const scope=document.createElement('p');scope.className='method-search-note';scope.textContent=result.purposeScope;item.insertBefore(scope,heading);}
   const note=document.createElement('p');note.className='method-search-note';
-  note.textContent=code.length || tests.length ? c.scope : c.missing;
+  note.textContent=code.length || tests.length ? c.scope : (result.purposeScope?(language==='ja'?'この目的の':'For this goal: '):'')+c.missing;
   if(!reading)note.textContent+=' · '+c.noReading;
   item.append(note);
   if(code.length>1 || tests.length>1) {

@@ -64,7 +64,9 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 目的別の入口は `catalog/atlas-goals.json` が正本。`build-atlas-goals.py` が日英の静的な `/numerical-methods-atlas/start/` と共通検索用の照合データを生成する。目的は適用モデル・制約・候補手法ID・公開実行例IDを伴い、未検証の万能推奨や未公開コードのリンクを作らない。検索で認識できる代表表現を追加するときも、衝撃波と滑らかな低散逸流、相対論/MHDとEulerの範囲を混同しない。`scripts/atlas-goals.test.mjs` が両検索入口と実在するリンクを確認する。
 
-ホーム冒頭も同じ台帳の `home` と6目的から `build-atlas-purpose.py` で生成する。目的のリンクは適用条件の節へ直接進める。収録数と資料一覧はその後に置き、日英の静的本文と動的ホームの両方でこの順番を保持する。
+ホーム冒頭も同じ台帳の `home` と目的の台帳から `build-atlas-purpose.py` で生成する。目的のリンクは適用条件の節へ直接進める。収録数と資料一覧はその後に置き、日英の静的本文と動的ホームの両方でこの順番を保持する。
+
+目的別の公開状況は `atlas_goal_availability.py` で算出する。原子の実装を分子・周期DFTへ転用して実装済みと表示しない。温度制御の比較解説は公開済みでも実装はplannedのまま、生物モデルの読書用resourcesは手法台帳や実装数へ加算しない。生物の検証案と実行済みテストを区別する。
 
 安定性・散逸・分散とA/L安定性の解説の正本は `catalog/atlas-stability-foundations.json`、KEEP詳説は `catalog/atlas-keep-explanation.json`。`build-atlas-stability.py` と `build-atlas-keep.py` が通常のrefresh内で同梱KaTeXを使い、日英の静的ページ・SPA本文・目次を同じ正本から生成する。追加・修正は生成HTMLだけでなく正本へ反映し、既存の節IDと章間リンクを保持する。
 

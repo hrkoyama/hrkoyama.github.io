@@ -1,6 +1,6 @@
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=f24e8d2412c6';
+import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=d08b319ec987';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
@@ -22,7 +22,7 @@ export function buildHomeSearchIndex(english,japanese,coverage,glossary){
 export function searchChapters(index,query,language='en'){
  const q=normalizeSearch(query);if(!q)return [];
  const words=q.split(' ');
- const methodResults=findMethods(index.entries.filter(entry=>entry.method).map(entry=>entry.method),query,language).map(result=>({...result,badge:kindLabels.method[result.locale],url:`/numerical-methods-atlas/methods/${result.method.id}/?lang=${result.locale}`}));
+ const methodResults=findMethods(index.entries.filter(entry=>entry.method).map(entry=>entry.method),query,language).map(result=>({...result,badge:kindLabels.method[result.locale],url:result.method.resource_type==='model'?new URL(result.method.url).pathname+new URL(result.method.url).hash:`/numerical-methods-atlas/methods/${result.method.id}/?lang=${result.locale}`}));
  const chapters=index.entries.flatMap(entry=>{
   // The shared matcher owns method-name and alias matching. Falling back to
   // the old registry corpus would reintroduce ordinary English "keep" hits.
