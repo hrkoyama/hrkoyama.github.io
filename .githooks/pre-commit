@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+atlas_index_python=${ATLAS_INDEX_PYTHON:-}
+if [ -z "$atlas_index_python" ]; then
+    atlas_index_python=$(git config --get atlas.indexPython || :)
+fi
+exec "${atlas_index_python:-python3}" scripts/prepare-indexes.py

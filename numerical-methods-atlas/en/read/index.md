@@ -96,7 +96,7 @@ Follow periodic electrostatics and electromagnetic fields, then atomic, molecula
 - [Particle mesh Ewald / PME](https://hrkoyama.github.io/numerical-methods-atlas/en/read/pme/)
 - [Smooth particle mesh Ewald / SPME](https://hrkoyama.github.io/numerical-methods-atlas/en/read/spme/)
 - [Slab electrostatics and 2D-periodic Ewald](https://hrkoyama.github.io/numerical-methods-atlas/en/read/slab-ewald/)
-- [Yee finite-difference time-domain method](https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/)
+- [Yee FDTD: s/p polarization, Fresnel interfaces and PML](https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/)
 - [Particle-in-cell / PIC](https://hrkoyama.github.io/numerical-methods-atlas/en/read/pic/)
 - [Quantum chemistry and DFT: approximations and equations](https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/)
 - [Hydrogenic atoms and helium: runnable validation examples](https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/)

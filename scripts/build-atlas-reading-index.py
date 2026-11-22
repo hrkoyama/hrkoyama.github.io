@@ -47,6 +47,11 @@ def plain(value):
 
 def chapter_title(atlas, ident, language, documents):
     directory = atlas / language / 'read' / ident
+    parser = ChapterHeading()
+    parser.feed((directory / 'index.html').read_text())
+    title = plain(''.join(parser.parts))
+    if title:
+        return title
     metadata = directory / 'index.json'
     if metadata.is_file():
         title = json.loads(metadata.read_text()).get('title')
@@ -57,12 +62,7 @@ def chapter_title(atlas, ident, language, documents):
     title = documents[language].get(ident, {}).get('title')
     if isinstance(title, str) and plain(title):
         return plain(title)
-    parser = ChapterHeading()
-    parser.feed((directory / 'index.html').read_text())
-    title = plain(''.join(parser.parts))
-    if not title:
-        raise ValueError('Missing chapter title: '+language+'/'+ident)
-    return title
+    raise ValueError('Missing chapter title: '+language+'/'+ident)
 
 
 def build(root=ROOT):

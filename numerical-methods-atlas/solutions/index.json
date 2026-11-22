@@ -1,0 +1,890 @@
+{
+  "schema_version": 1,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/",
+  "source": "/numerical-methods-atlas/assets/reference-solutions.json",
+  "source_sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
+  "translations_source": "/numerical-methods-atlas/locales/messages.json",
+  "translations_source_sha256": "246d3e8a6828d9129aa9938b30fab341acc62aaa8e6c81222f4dc83edf8002d4",
+  "count": 18,
+  "counts": {
+    "analytic": 12,
+    "semi-analytic": 5,
+    "manufactured": 1
+  },
+  "cases": [
+    {
+      "id": "sine-advection",
+      "model": "advection",
+      "kind": "analytic",
+      "formula": "u = 1 + 0.25 sin[2π(x−t)]",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {},
+      "sources": [
+        "https://doi.org/10.1137/1.9780898717839"
+      ],
+      "title": {
+        "ja": "移流／正弦波の平行移動",
+        "en": "Advection / sine translation"
+      },
+      "assumptions": {
+        "ja": "単位区間の周期境界、一定移流速度1。",
+        "en": "Periodic unit interval; constant advection speed 1."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "sine-heat",
+      "model": "heat",
+      "kind": "analytic",
+      "formula": "u = 1 + 0.25 sin(2πx) exp[−0.02(2π)²t]",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {},
+      "sources": [
+        "https://doi.org/10.1137/1.9780898717839"
+      ],
+      "title": {
+        "ja": "熱拡散／Fourierモードの減衰",
+        "en": "Heat / Fourier-mode decay"
+      },
+      "assumptions": {
+        "ja": "単位区間の周期境界、拡散係数0.02。",
+        "en": "Periodic unit interval; viscosity 0.02."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "burgers-shock",
+      "model": "burgers",
+      "kind": "analytic",
+      "formula": "u_t + (u²/2)_x = 0",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.0,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Burgers.html"
+      ],
+      "title": {
+        "ja": "Burgers／衝撃波",
+        "en": "Burgers / shock"
+      },
+      "assumptions": {
+        "ja": "全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。",
+        "en": "Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=burgers-shock",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=burgers-shock"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "burgers-fan",
+      "model": "burgers",
+      "kind": "analytic",
+      "formula": "u_t + (u²/2)_x = 0",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Burgers.html"
+      ],
+      "title": {
+        "ja": "Burgers／膨張波",
+        "en": "Burgers / rarefaction"
+      },
+      "assumptions": {
+        "ja": "全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。",
+        "en": "Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=burgers-fan",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=burgers-fan"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "traffic-jam",
+      "model": "traffic",
+      "kind": "analytic",
+      "formula": "rho_t + [rho(1−rho)]_x = 0",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "rho"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "left": 0.3,
+        "right": 0.9,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Traffic_flow.html"
+      ],
+      "title": {
+        "ja": "交通流／上流へ進む衝撃波",
+        "en": "Traffic / upstream shock"
+      },
+      "assumptions": {
+        "ja": "全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。",
+        "en": "Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=traffic-jam",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=traffic-jam"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "traffic-fan",
+      "model": "traffic",
+      "kind": "analytic",
+      "formula": "rho_t + [rho(1−rho)]_x = 0",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "rho"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "left": 0.9,
+        "right": 0.1,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Traffic_flow.html"
+      ],
+      "title": {
+        "ja": "交通流／渋滞解消の膨張波",
+        "en": "Traffic / clearing fan"
+      },
+      "assumptions": {
+        "ja": "全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。",
+        "en": "Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=traffic-fan",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=traffic-fan"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "euler-sod",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "rho",
+        "rho u",
+        "E"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          1.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          0.125,
+          0.0,
+          0.1
+        ],
+        "parameter": 1.4,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Euler.html"
+      ],
+      "title": {
+        "ja": "Euler／Sod問題",
+        "en": "Euler / Sod"
+      },
+      "assumptions": {
+        "ja": "比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。",
+        "en": "Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-sod",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-sod"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "euler-lax",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          -5.0,
+          5.0
+        ]
+      ],
+      "components": [
+        "rho",
+        "rho u",
+        "E"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          0.445,
+          0.698,
+          3.528
+        ],
+        "right": [
+          0.5,
+          0.0,
+          0.571
+        ],
+        "parameter": 1.4,
+        "origin": 0.0
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Euler.html"
+      ],
+      "title": {
+        "ja": "Euler／Lax問題",
+        "en": "Euler / Lax"
+      },
+      "assumptions": {
+        "ja": "比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。",
+        "en": "Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-lax",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-lax"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "euler-double-rarefaction",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "rho",
+        "rho u",
+        "E"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          1.0,
+          -2.0,
+          0.4
+        ],
+        "right": [
+          1.0,
+          2.0,
+          0.4
+        ],
+        "parameter": 1.4,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Euler.html"
+      ],
+      "title": {
+        "ja": "Euler／二重膨張波",
+        "en": "Euler / double rarefaction"
+      },
+      "assumptions": {
+        "ja": "比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。",
+        "en": "Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-double-rarefaction",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-double-rarefaction"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "euler-vacuum",
+      "model": "euler",
+      "kind": "analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "rho",
+        "rho u",
+        "E"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          1.0,
+          -4.0,
+          0.4
+        ],
+        "right": [
+          1.0,
+          4.0,
+          0.4
+        ],
+        "parameter": 1.4,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Euler.html"
+      ],
+      "title": {
+        "ja": "Euler／生成される真空",
+        "en": "Euler / generated vacuum"
+      },
+      "assumptions": {
+        "ja": "比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。",
+        "en": "Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-vacuum",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-vacuum"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "swe-dam-break",
+      "model": "shallow-water",
+      "kind": "semi-analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "h",
+        "h u"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          2.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0
+        ],
+        "parameter": 1.0,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Shallow_water.html"
+      ],
+      "title": {
+        "ja": "浅水流／水深が正のダム崩壊",
+        "en": "Shallow water / wet dam break"
+      },
+      "assumptions": {
+        "ja": "平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。",
+        "en": "Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=swe-dam-break",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=swe-dam-break"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "swe-dry-bed",
+      "model": "shallow-water",
+      "kind": "analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "h",
+        "h u"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          1.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0
+        ],
+        "parameter": 1.0,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Shallow_water.html"
+      ],
+      "title": {
+        "ja": "浅水／乾床への膨張波",
+        "en": "Shallow water / dry-bed fan"
+      },
+      "assumptions": {
+        "ja": "平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。",
+        "en": "Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=swe-dry-bed",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=swe-dry-bed"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "swe-vacuum",
+      "model": "shallow-water",
+      "kind": "analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "h",
+        "h u"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          1.0,
+          -3.0
+        ],
+        "right": [
+          1.0,
+          3.0
+        ],
+        "parameter": 1.0,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.clawpack.org/riemann_book/html/Shallow_water.html"
+      ],
+      "title": {
+        "ja": "浅水／中央の乾燥領域",
+        "en": "Shallow water / dry middle state"
+      },
+      "assumptions": {
+        "ja": "平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。",
+        "en": "Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=swe-vacuum",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=swe-vacuum"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "isothermal-jump",
+      "model": "isothermal",
+      "kind": "semi-analytic",
+      "formula": "U(x,t) = R((x−x0)/t)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "rho",
+        "rho u"
+      ],
+      "field_type": "conserved",
+      "parameters": {
+        "left": [
+          1.0,
+          0.0
+        ],
+        "right": [
+          0.125,
+          0.0
+        ],
+        "parameter": 1.0,
+        "origin": 0.5
+      },
+      "sources": [
+        "https://www.sfu.ca/~van/papers/Riemann-inv.pdf"
+      ],
+      "title": {
+        "ja": "等温流／密度跳躍",
+        "en": "Isothermal / density jump"
+      },
+      "assumptions": {
+        "ja": "p = c_s² rho、一定の音速c_s。初期密度は厳密に正とし、真空状態とエネルギー方程式はありません。",
+        "en": "p = c_s² rho; constant c_s; strictly positive initial density; no vacuum state or energy equation."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=isothermal-jump",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=isothermal-jump"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "poisson-manufactured",
+      "model": "poisson",
+      "kind": "manufactured",
+      "formula": "u = sin(πx); −u_xx = f = π² sin(πx)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {},
+      "sources": [
+        "https://doi.org/10.1137/1.9780898717839"
+      ],
+      "title": {
+        "ja": "Poisson／正弦波の製造解",
+        "en": "Poisson / manufactured sine"
+      },
+      "assumptions": {
+        "ja": "両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。",
+        "en": "Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution."
+      },
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "couette",
+      "model": "steady incompressible channel",
+      "kind": "analytic",
+      "formula": "u(y) = y",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "velocity profile",
+      "parameters": {},
+      "sources": [
+        "https://doi.org/10.1007/978-3-319-99693-6"
+      ],
+      "title": {
+        "ja": "粘性チャネル／Couette流",
+        "en": "Viscous channel / Couette"
+      },
+      "assumptions": {
+        "ja": "十分に発達した平面定常チャネル。壁速度u(0)=0、u(1)=1、圧力勾配ゼロ。",
+        "en": "Fully developed planar steady channel; walls u(0)=0,u(1)=1; zero pressure gradient."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=couette",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=couette"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "poiseuille",
+      "model": "steady incompressible channel",
+      "kind": "analytic",
+      "formula": "u(y) = G y(1−y)/(2ν); G=1, ν=0.1",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "velocity profile",
+      "parameters": {},
+      "sources": [
+        "https://doi.org/10.1007/978-3-319-99693-6"
+      ],
+      "title": {
+        "ja": "粘性チャネル／Poiseuille流",
+        "en": "Viscous channel / Poiseuille"
+      },
+      "assumptions": {
+        "ja": "十分に発達した平面定常チャネル、no-slip、単位密度。−dp/dx=G、または体積力加速度G。",
+        "en": "Fully developed planar steady channel, no slip, unit density; −dp/dx=G or body acceleration G."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poiseuille",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=poiseuille"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      }
+    },
+    {
+      "id": "taylor-green",
+      "model": "incompressible Navier–Stokes",
+      "kind": "analytic",
+      "formula": "(u,v)=(sin x cos y,−cos x sin y)e^(−2νt); p=(cos 2x+cos 2y)e^(−4νt)/4",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          6.283185307179586
+        ],
+        [
+          0.0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "u",
+        "v",
+        "p"
+      ],
+      "field_type": "velocity and pressure",
+      "parameters": {
+        "viscosity": 0.1
+      },
+      "sources": [
+        "https://doi.org/10.1090/S0025-5718-1968-0242392-2"
+      ],
+      "title": {
+        "ja": "粘性流／2次元Taylor–Green渦",
+        "en": "Viscous flow / 2D Taylor–Green"
+      },
+      "assumptions": {
+        "ja": "周期領域[0,2π]²、単位密度、動粘性係数0.1、圧力平均ゼロ。Webではy=π/4のx方向断面を表示します。",
+        "en": "Periodic [0,2π]²; unit density; viscosity 0.1; zero mean pressure. Web profile is an x-slice at y=π/4."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/?lang=ja#/exact-solutions?case=taylor-green",
+        "en": "/numerical-methods-atlas/?lang=en#/exact-solutions?case=taylor-green"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
+        "en": "/numerical-methods-atlas/en/read/reference-solutions/"
+      },
+      "sampling_note": {
+        "ja": "Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではなく点値を表示します。",
+        "en": "Taylor–Green: x-slice at y = π/4. These are point values, not two-dimensional cell averages."
+      }
+    }
+  ]
+}

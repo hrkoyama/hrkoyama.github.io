@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://hrkoyama.github.io'
 subprocess.run([sys.executable, str(ROOT / 'scripts/check-notebook-material-links.py')], cwd=ROOT, check=True)
+subprocess.run([sys.executable, str(ROOT / 'scripts/check-atlas-indexes.py')], cwd=ROOT, check=True)
 errors = []
 def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def local(url):

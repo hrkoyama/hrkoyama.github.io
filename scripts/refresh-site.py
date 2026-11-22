@@ -31,6 +31,7 @@ for command in [
     [sys.executable, 'scripts/build-atlas-test-problems.py'],
     [sys.executable, 'scripts/build-atlas-equations.py'],
     [sys.executable, 'scripts/build-atlas-gallery.py'],
+    [sys.executable, 'scripts/build-atlas-solutions.py'],
     [sys.executable, 'scripts/build-atlas-goals.py'],
     [sys.executable, 'scripts/build-atlas-depth.py'],
     [sys.executable, 'scripts/build-atlas-crossovers.py'],

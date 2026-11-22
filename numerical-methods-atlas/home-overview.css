@@ -141,6 +141,20 @@
 .home-landing .home-entry p{font-size:1rem;line-height:1.8;color:var(--muted);margin:0 0 18px}
 .home-entry-arrow{font-size:1.375rem;line-height:1;margin-top:auto;align-self:flex-end;color:var(--orange)}
 
+/* Smaller secondary routes, using formulas and an existing computed field. */
+.home-overview .home-browse{margin-top:28px}
+.home-overview .home-browse h2{font:500 1rem/1.7 var(--sans);margin:0 0 12px}
+.home-browse-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;padding:0;margin:0}
+.home-browse-grid>li{min-width:0;border-top:1px solid var(--line)}
+.home-overview .home-browse-card{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:14px;min-height:116px;padding:14px 0}
+.home-browse-visual{display:flex;align-items:center;justify-content:center;min-width:0;height:72px;background:var(--cream);overflow:hidden}
+.home-browse-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.home-browse-formula{font:1.1rem/1.65 var(--serif);text-align:center;color:var(--ink);white-space:nowrap}
+.home-browse-formula sub{font-size:.65em}
+.home-browse-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.home-browse-copy strong{font-size:1rem;font-weight:500;line-height:1.65;text-decoration:underline;text-underline-offset:4px}
+.home-browse-copy>span{font-size:.875rem;line-height:1.75;color:var(--muted)}
+
 @media(max-width:1000px){
  .home-overview .intro{grid-template-columns:1fr;gap:24px}
  .home-overview .intro-summary{border-left:0;border-top:1px solid var(--line);padding:22px 0 0}
@@ -185,5 +199,7 @@
  .home-landing .home-entry h2{font-size:1.25rem;margin-bottom:8px}
  .home-landing .home-entry p{font-size:.9375rem;margin-bottom:0}
  .home-entry-arrow{position:absolute;right:20px;top:24px;margin:0}
+ .home-browse-grid{grid-template-columns:1fr;gap:0}
+ .home-overview .home-browse-card{grid-template-columns:76px minmax(0,1fr);min-height:100px;padding-block:12px}
 }
 @media(prefers-reduced-motion:reduce){.home-overview *{scroll-behavior:auto}}

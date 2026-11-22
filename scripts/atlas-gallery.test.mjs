@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {galleryMatches} from '../atlas-gallery.mjs';
 const root = new URL('../', import.meta.url);
 const bytes = p => readFileSync(new URL(p, root));
@@ -11,6 +13,51 @@ const digest = p => createHash('sha256').update(bytes(p)).digest('hex');
 const inventory = json('numerical-methods-atlas/test-cases/index.json');
 const gallery = json('numerical-methods-atlas/gallery/index.json');
 const html = read('numerical-methods-atlas/gallery/index.html');
+
+test('optional domain buttons and image policies start collapsed while names, reset and current count remain visible', () => {
+  const protectedFiles = ['preview-manifest.json','calculations.json','verification.json'].map(name => 'numerical-methods-atlas/gallery/'+name).concat('catalog/atlas-gallery.json');
+  const before = protectedFiles.map(digest);
+  // Execute only the HTML/index builder with filesystem writes intercepted.
+  // Preview calculation and rendering scripts are never invoked.
+  const generated = JSON.parse(execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',`
+from contextlib import redirect_stdout
+from io import StringIO
+from pathlib import Path
+import json, runpy, sys
+from unittest.mock import patch
+from xml.etree import ElementTree as ET
+root = Path(sys.argv[1]).resolve()
+sys.path.insert(0, str(root/'scripts'))
+writes = {}
+def capture(path, text, *args, **kwargs):
+    writes[str(path.resolve().relative_to(root))] = text
+    return len(text)
+with patch.object(Path, 'write_text', capture), patch.object(ET.ElementTree, 'write', lambda *args, **kwargs: None), redirect_stdout(StringIO()):
+    runpy.run_path(str(root/'scripts/build-atlas-gallery.py'))
+print(json.dumps({'html': writes['numerical-methods-atlas/gallery/index.html'], 'index': json.loads(writes['numerical-methods-atlas/gallery/index.json'])}))
+`,fileURLToPath(root)],{encoding:'utf8',maxBuffer:8*1024*1024}));
+  assert.deepEqual(generated.index,gallery,'all catalog cards, names, images, status and source receipts remain identical');
+  assert.deepEqual(generated.html.match(/<li class="gallery-tile"[\s\S]*?<\/li>/g),html.match(/<li class="gallery-tile"[\s\S]*?<\/li>/g),'the complete rendered cards are unchanged');
+  assert.deepEqual(generated.html.match(/<p class="gallery-note"[\s\S]*?<\/p>/g),html.match(/<p class="gallery-note"[\s\S]*?<\/p>/g),'all image-condition and counting explanations are retained');
+  const sections = [...generated.html.matchAll(/<section\b[^>]*data-gallery\b[^>]*>([\s\S]*?)<\/section>/g)];
+  assert.equal(sections.length,2);
+  for (const [index,match] of sections.entries()) {
+    const section = match[1], ja = index === 0;
+    const disclosures = [...section.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)];
+    assert.equal(disclosures.length,2);
+    assert.ok(disclosures.every(row => !/\bopen(?:\s|=|$)/.test(row[1])),'both native disclosures are closed by default');
+    assert.ok(disclosures[0][1].includes('gallery-domain-filter'));
+    assert.ok(disclosures[0][2].includes('<summary>'+(ja?'分野で絞り込む':'Filter by domain')+'</summary>'));
+    assert.equal((disclosures[0][2].match(/data-gallery-group=/g)||[]).length,inventory.groups.length+1);
+    assert.ok(disclosures[1][1].includes('gallery-policy'));
+    assert.ok(disclosures[1][2].includes('<summary>'+(ja?'図の条件・検証範囲・数え方':'Image conditions, validation scope and counting rules')+'</summary>'));
+    assert.equal((disclosures[1][2].match(/class="gallery-note"/g)||[]).length,3);
+    const visible = section.replace(/<details\b[^>]*>[\s\S]*?<\/details>/g,'');
+    for (const selector of ['type="search"','data-gallery-reset','data-gallery-runnable','data-gallery-count','class="gallery-grid"']) assert.ok(visible.includes(selector),selector+' is visible without expanding optional controls');
+    assert.ok(!visible.includes('data-gallery-group='));
+  }
+  assert.deepEqual(protectedFiles.map(digest),before,'no preview receipts or image mapping files need regeneration');
+});
 
 test('the visual index covers the exact atlas-wide inventory with one card per language and working image-to-entry or reading links', () => {
   assert.deepEqual(gallery.items.map(x => x.id), inventory.problems.map(x => x.id));

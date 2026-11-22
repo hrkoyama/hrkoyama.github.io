@@ -29,7 +29,7 @@ export function searchChapters(index,query,language='en'){
   // the old registry corpus would reintroduce ordinary English "keep" hits.
   if(entry.method)return [];
   const titles=[entry.title.en,entry.title.ja].filter(Boolean),headings=[...entry.headings.en,...entry.headings.ja],keys=entry.keywords;
-  const hay=normalizeSearch([...titles,...headings.map(h=>h.title),...keys].join(' '));
+  const hay=normalizeSearch([...titles,...headings.map(h=>h.title),...keys,...Object.values(entry.text||{})].join(' '));
   if(!words.every(word=>hay.includes(word)))return [];
   const titleHit=titles.some(title=>normalizeSearch(title).includes(q));
   const heading=headings.find(h=>normalizeSearch(h.title).includes(q))||headings.find(h=>words.every(word=>normalizeSearch(h.title).includes(word)));
@@ -42,7 +42,7 @@ export function searchChapters(index,query,language='en'){
   const namedExecution=kind==='execution-example'&&focusWords.length>0&&focusWords.every(word=>focus.includes(word));
   const compoundName=namedExecution&&!intent&&focusWords.length>1&&titles.some(title=>focusWords.some(word=>normalizeSearch(title).includes(word)));
   const score=(titleHit?100:0)+(heading?40:0)+(keys.some(key=>normalizeSearch(key)===q)?60:0)+(namedExecution&&intent?80:compoundName?50:0);
-  const locale=language==='ja'&&entry.title.ja?'ja':'en';
+  const locale=language==='ja'&&entry.title.ja?'ja':entry.title.en?'en':'ja';
   const shownHeading=heading?(entry.headings[locale].find(h=>h.id===heading.id)||heading):null;
   const snippet=typeof entry.snippet?.[locale]==='string'?plain(entry.snippet[locale]):'';
   return [{id:entry.id,title:entry.title[locale],locale,section:titleHit?'':heading?.id||'',kind,badge:kindLabels[kind][locale],detail:snippet||shownHeading?.title||(keys.filter(key=>words.every(word=>normalizeSearch(key).includes(word))).slice(0,3).join(' · ')||keys.slice(0,4).join(' · ')),score,executionPriority:namedExecution&&(intent||(compoundName&&!methodResults.some(result=>result.exactMethod))),url:(/^\/numerical-methods-atlas\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')||entry.kind==='connection'&&/^\/numerical-methods-atlas\/connections\/\?lang=(ja|en)#(?:dft-md|reaction-transport|poisson-fields)-\1$/.test(entry.routes?.[locale]||'')&&entry.routes[locale].startsWith('/numerical-methods-atlas/connections/?lang='+locale+'#'))&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];
@@ -63,7 +63,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=9c79c8ec1abb',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=7a391f8c4278',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

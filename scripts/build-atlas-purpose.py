@@ -163,3 +163,15 @@ guide=ROOT/'llms.txt';text=guide.read_text();text=re.sub(r'^- \[Small cross-fiel
 supplement_index=json.loads((ATLAS/'validation/index.json').read_text())
 supplement_tests=sum(group['passed_tests'] for group in supplement_index['groups'])
 guide.write_text(text.rstrip()+f"\n- [Small cross-field validation supplements](https://hrkoyama.github.io/numerical-methods-atlas/validation/): {supplement_index['case_count']} fixed cases in {len(supplement_index['groups'])} independently extracted releases; {supplement_tests} automated tests, bilingual assumptions, adopted algorithms, primary sources, measured refinement and scope. Lightweight public-only Linux CI; separate from the shared 22-case detailed registry.\n")
+
+text=guide.read_text()
+browse_links=[
+    ('Reference solution index', 'solutions/', 'Saved analytic, semi-analytic and manufactured reference cases, with formulas, assumptions and links to the existing displays. JSON and Markdown: solutions/index.json and solutions/index.md.'),
+    ('Visual test-problem index', 'gallery/', 'Every published test problem by name and saved figure, with separate image provenance and execution evidence. JSON: gallery/index.json.'),
+    ('Equation and model index', 'equations/', 'Current representative equations and models, linked to their scope, explanations and existing execution examples. JSON: equations/index.json.'),
+]
+for label, path, description in browse_links:
+    text=re.sub(r'^- \['+re.escape(label)+r'\].*\n?', '', text, flags=re.M)
+for label, path, description in browse_links:
+    text=text.rstrip()+'\n- ['+label+'](https://hrkoyama.github.io/numerical-methods-atlas/'+path+'): '+description+'\n'
+guide.write_text(text)
