@@ -107,6 +107,12 @@ def main():
     assert books['n060']['lecturer'] is None, 'A named reference-book author is not the course instructor'
     assert all(books[n].get('lecture_year') is None for n in ['n062', 'n066', 'n094', 'n104', 'n105']), 'Date/career constraints do not establish a lecture year'
     assert '東京大学大学院で受講' in books['n104']['notes']
+    assert '東京大学大学院で受講' in books['n105']['notes']
+    assert any(s.get('source') == 'user' and s.get('field') == 'notes'
+               and s.get('value') == '東京大学大学院で受講'
+               for s in books['n105']['metadata_sources'])
+    for note_id in ['n057', 'n067', 'n070']:
+        assert '該当書のスキャンを未確認' in books[note_id]['notes'], note_id
     if args.baseline_ref:
         repo = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], cwd=site, text=True).strip())
         rel = (site / 'catalog.js').relative_to(repo).as_posix()
