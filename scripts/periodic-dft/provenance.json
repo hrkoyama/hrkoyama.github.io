@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "original_driver": {
+    "license": "MIT / LICENSE",
+    "scope": "Original Python reproducibility/validation driver and independently written Julia reference driver; not new DFT engines."
+  },
+  "third_party_terms": {
+    "pyscf": "Apache-2.0; https://github.com/pyscf/pyscf/blob/v2.11.0/LICENSE",
+    "dftk": "MIT; https://github.com/JuliaMolSim/DFTK.jl/blob/v0.7.19/LICENSE",
+    "libxc": "MPL-2.0; https://gitlab.com/libxc/libxc/-/blob/7.0.0/COPYING",
+    "datasets": "Basis and GTH numerical data retain their upstream provenance and applicable terms; the original-driver MIT label does not relicense them. Only the small audited He potential is included; basis sets are resolved from the pinned PySCF installation."
+  },
+  "model": {
+    "scope": "Artificial one-He simple-cubic insulating KS-LDA cell, not an equilibrium solid-helium prediction.",
+    "pseudopotential_source": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/pseudo/gth-pade.dat",
+    "pseudopotential_record": "He GTH-PADE-q2, local-only",
+    "pseudopotential_coefficients": [
+      [
+        2
+      ],
+      0.2,
+      2,
+      [
+        -9.1120234,
+        1.69836797
+      ],
+      0
+    ],
+    "basis_sets": [
+      {
+        "name": "gth-dzv",
+        "element": "He",
+        "parsed_coefficients_sha256": "3961f67f70adb181551b93bc64d52365b791717df105feac49a20de69dcd94c9",
+        "upstream_complete_file_sha256": "8dd9c26be064265e0e08e8b94b29bfc96e94845d9d30e7648ab548c062d7d0aa",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-dzv.dat"
+      },
+      {
+        "name": "gth-dzvp",
+        "element": "He",
+        "parsed_coefficients_sha256": "823387474729cbd97849de1558363ecb7d0aa8d54d6625482ea0b2c8b7a815d3",
+        "upstream_complete_file_sha256": "ccd6c8dcb534952c549a94189df4f0f5a917d4674bf4cef2a4ea4554d724aa17",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-dzvp.dat"
+      },
+      {
+        "name": "gth-tzv2p",
+        "element": "He",
+        "parsed_coefficients_sha256": "48b69dda75193bc824080881b19250b17a90d64f39279da7f2d0a53e51757d84",
+        "upstream_complete_file_sha256": "3620351c7b7811bf36de593efeb7a579b3435b3cb32c7011954ec194997d8abf",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-tzv2p.dat"
+      },
+      {
+        "name": "gth-qzv3p",
+        "element": "He",
+        "parsed_coefficients_sha256": "1e12da75297a5252989daa19f0ea8e6dbfb6c7ae9d6e7b14a2b5e38e6011f54e",
+        "upstream_complete_file_sha256": "ca38d78957bcbe1ca7114d6a0d76d918a3c970d52ceb97e20ab76f1ed2e8f4f8",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-qzv3p.dat"
+      }
+    ]
+  },
+  "independent_reference": {
+    "engine": "DFTK 0.7.19",
+    "runtime": "Julia 1.12.2",
+    "environment": "reference-environment/Project.toml + Manifest.toml",
+    "implementation_independence": "Separate Gaussian and plane-wave Hamiltonian, Ewald and SCF implementations. Both use Libxc XC formulas; this is not an independent functional or experimental validation.",
+    "regeneration": "README-reference.txt",
+    "finite_basis_scope": "Ground-state total energies only: sampled positive Kohn-Sham gaps are recorded, but unoccupied-band / gap convergence is not established."
+  },
+  "primary_literature": [
+    {
+      "title": "Über die Quantenmechanik der Elektronen in Kristallgittern",
+      "author": "Felix Bloch",
+      "year": 1929,
+      "journal": "Zeitschrift für Physik 52, 555–600",
+      "doi": "10.1007/BF01339455",
+      "source": "https://link.springer.com/article/10.1007/BF01339455",
+      "review_level": "abstract-and-metadata"
+    },
+    {
+      "title": "Inhomogeneous Electron Gas",
+      "author": "P. Hohenberg and W. Kohn",
+      "year": 1964,
+      "journal": "Physical Review 136, B864–B871",
+      "doi": "10.1103/PhysRev.136.B864",
+      "source": "https://doi.org/10.1103/PhysRev.136.B864",
+      "review_level": "metadata"
+    },
+    {
+      "title": "Self-Consistent Equations Including Exchange and Correlation Effects",
+      "author": "W. Kohn and L. J. Sham",
+      "year": 1965,
+      "journal": "Physical Review 140, A1133–A1138",
+      "doi": "10.1103/PhysRev.140.A1133",
+      "source": "https://doi.org/10.1103/PhysRev.140.A1133",
+      "review_level": "metadata"
+    },
+    {
+      "title": "Special points for Brillouin-zone integrations",
+      "author": "H. J. Monkhorst and J. D. Pack",
+      "year": 1976,
+      "journal": "Physical Review B 13, 5188–5192",
+      "doi": "10.1103/PhysRevB.13.5188",
+      "source": "https://doi.org/10.1103/PhysRevB.13.5188",
+      "review_level": "metadata"
+    },
+    {
+      "title": "Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis",
+      "author": "S. H. Vosko, L. Wilk and M. Nusair",
+      "year": 1980,
+      "journal": "Canadian Journal of Physics 58, 1200–1211",
+      "doi": "10.1139/p80-159",
+      "source": "https://doi.org/10.1139/p80-159",
+      "review_level": "metadata"
+    },
+    {
+      "title": "Separable dual-space Gaussian pseudopotentials",
+      "author": "S. Goedecker, M. Teter and J. Hutter",
+      "year": 1996,
+      "journal": "Physical Review B 54, 1703–1710",
+      "doi": "10.1103/PhysRevB.54.1703",
+      "source": "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.54.1703",
+      "review_level": "abstract-and-metadata"
+    },
+    {
+      "title": "Recent developments in the PySCF program package",
+      "author": "Qiming Sun et al.",
+      "year": 2020,
+      "journal": "The Journal of Chemical Physics 153, 024109",
+      "doi": "10.1063/5.0006074",
+      "source": "https://doi.org/10.1063/5.0006074",
+      "review_level": "abstract-and-metadata"
+    },
+    {
+      "title": "DFTK: A Julian approach for simulating electrons in solids",
+      "author": "M. F. Herbst, A. Levitt and E. Cancès",
+      "year": 2021,
+      "journal": "Proceedings of the JuliaCon Conferences 3(26), 69",
+      "doi": "10.21105/jcon.00069",
+      "source": "https://proceedings.juliacon.org/papers/10.21105/jcon.00069",
+      "review_level": "selected-full-text"
+    }
+  ]
+}

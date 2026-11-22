@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "family": "periodic-dft",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "archive_sha256": "f331515e3ad419b5435dbf851553c6b853b28b2432801fc13c84109faa362df8",
+  "source_manifest_sha256": "1ac7fe2531934a598b7d9b69930c5a8a83f6b5bf2a67ae9f0616f35aa63f34fd",
+  "execution": "ZIP independently extracted; all packaged tests and complete fixed-input Python runner executed without network or private source. The separate independent Julia reference regeneration is recorded below.",
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5",
+    "matplotlib": "3.9.4",
+    "pyscf": "2.11.0"
+  },
+  "tests": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 27,
+  "fixed_input": {
+    "id": "periodic-he-dft",
+    "unique_cases": 11,
+    "passed": true,
+    "metrics": {
+      "max_reference_energy_error": 4.711627638087634e-05,
+      "max_scf_commutator": 3.484337642770539e-07,
+      "max_orbital_residual": 7.430654536117973e-07,
+      "max_electron_count_error": 4.440892098500626e-16,
+      "max_orthogonality_error": 4.861320235249877e-10,
+      "max_energy_reconstruction_error": 0.0,
+      "min_sampled_ks_gap": 0.6565197002685803,
+      "max_overlap_condition": 508833030.474304,
+      "min_overlap_eigenvalue": 4.148105007917615e-09,
+      "max_tight_scf_commutator": 1.0049007661482846e-08,
+      "kpoint_last_change": 0.0005250130744007819,
+      "basis_last_change": 3.342023038710451e-05,
+      "auxiliary_last_change": 2.5265434100418815e-07,
+      "scf_last_change": 1.865174681370263e-14
+    },
+    "maximum_reproduced_energy_difference": 0.0,
+    "runtime_seconds": 211.65935220895335
+  },
+  "independent_reference": {
+    "file": "reference-dftk.json",
+    "sha256": "ca0538ef07976b8aea55e715e60445c3637fe39c36abe0fc250c4115bf6a0731",
+    "engine": "DFTK",
+    "engine_version": "0.7.19",
+    "julia_version": "1.12.2",
+    "regeneration": "Optional separate Julia workflow; see README-reference.txt",
+    "regenerated_before_freeze": true,
+    "regenerated_records": 10,
+    "maximum_regenerated_energy_difference": 0.0
+  },
+  "failure_check": {
+    "test": "test_single_cycle_reports_nonconvergence",
+    "result": "One actual limited SCF iteration is not converged and reports maximum_cycles; a failed case cannot produce a successful workflow summary."
+  },
+  "test_runtime_seconds": 22.53527433401905,
+  "scope": "Artificial one-He simple-cubic insulating KS-LDA cell, not an equilibrium solid-helium prediction."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "family": "periodic-dft",
+  "edition": "2026-11-22",
+  "files": {
+    "He.gth": "d44ed319ace3a2485d5e5bc7a15990c59c51b92987d1f1c53f22ae795a45ac87",
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README-reference.txt": "5b157a1e877d79f814d12cb6b57849ab027fd42dd9f91ab5eb3b95b15a977a1d",
+    "README.md": "80037268c225d1faed553896e1b77ef1b0295e1ea8cf79e500c89b30a33c8c94",
+    "inputs.json": "d8558a1e6dec13e2c2246d82d387223bf8bbe4d151e41ef3afb993ddbbafea84",
+    "periodic_dft.py": "3d385cbd097c2dd2a1e02fa8be47d282fd6d39284ee9835840c06d6a9d5b0b0d",
+    "plot_results.py": "653f2127b09fe9d8d8a1bde070fef0b6b0fe8f7805f7221175240eedf521c430",
+    "provenance.json": "2063a99ea8e2780e4eb67d2df43f5e91287ad979fb1b949b2d5f50e1201af87a",
+    "reference-dftk.json": "ca0538ef07976b8aea55e715e60445c3637fe39c36abe0fc250c4115bf6a0731",
+    "reference-environment/Manifest.toml": "834f0fbf755b5e19c872794a8264315f7305827974c1b3248c350de78974cc22",
+    "reference-environment/Project.toml": "43ab2341bef82be963873328d14caa8e5bf16e016fab81db5311f86d51fc47fb",
+    "reference.jl": "f3e85ab9593b751e043dfd4bacacd934f338a95b47138e863df3a91c6bfc2c53",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "67e1ab0020dae282b7a17f3b8c02ad8efdcb1b697fe86ef2bd7b93186b79d70e",
+    "results/preview.png": "cfc54c4f1adb395de91152204cadbf44f6653864032d1fe7307fb6c44ecc3168",
+    "results/result.json": "50bdae51c0ce0779a0bfd283e0caa5fa0d9e47837ded3e4c610c9153240f2d7e",
+    "results/scf.csv": "eccfd069ffc168e3e400e25ccfa48a57cd3c5a974d2f434d596fd4a29163ea58",
+    "results/solution.csv": "1e6268f7f5d16a99852279f09472d7b223215d4ac87fc1f8ebe281184d3b75b2",
+    "run.py": "c756c30b2b418b07ae45669cde974dad283b4cd151119eeef4b719244f429a1f",
+    "test_periodic_dft.py": "6213ed9499b2f2ba038dc45398879bf4e351f290d80d23e533be128b315e38e3"
+  },
+  "public_base_url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/",
+  "terms": {
+    "original_driver": "MIT / LICENSE",
+    "upstream_software_datasets": "provenance.json",
+    "text_figures_data": "https://hrkoyama.github.io/rights/"
+  },
+  "scope": "Artificial one-He simple-cubic insulating KS-LDA cell, not an equilibrium solid-helium prediction.",
+  "implementation": "Original reproducibility/validation driver using PySCF periodic KRKS, FFTDF and Libxc; not a new DFT engine."
+}
