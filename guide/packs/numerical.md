@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-3357a3aecb
-Captured (UTC): 2026-11-22T05:21:32+00:00
+Snapshot: 2026-11-22-713a534c4f
+Captured (UTC): 2026-11-22T05:58:11+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -643,51 +643,256 @@ J. W. Ruge and K. Stüben (1987). 4. Algebraic Multigrid. Multigrid Methods
 Research publication: proposal or related formulation · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
 
-## Automatic differentiation — Automatic differentiation [en]
+## Automatic differentiation: derivatives for numerical solvers — Automatic differentiation: derivatives for numerical solvers [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/
 Coverage: reading
 
-Automatic differentiation applies the chain rule to elementary operations in a program. It is distinct from symbolic manipulation and from finite-difference differentiation with a chosen step.
+Automatic differentiation (AD) evaluates derivatives by applying the chain rule
+to the elementary operations in a program. It supplies Jacobians for Newton
+iterations, directional derivatives for Krylov methods, and sensitivities for
+parameter estimation. These are shared numerical foundations across many
+physical models.
+Implemented here: a small forward-mode dual-number engine and a comparison
+of analytic differentiation, finite differences and AD on the existing Bratu
+boundary-value problem. The experiment reuses the atlas's Armijo-damped Newton
+solver. Reverse mode, implicit sensitivities and adjoints are explained as
+connections; this exhibit does not implement them.
 
-## Automatic differentiation — Problem and representative equations [en]
+## Automatic differentiation: derivatives for numerical solvers — Four ways to obtain a derivative [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#model
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#ways-to-differentiate
 Coverage: reading
 
-For z=φ(x), forward mode propagates ż=φ_x ẋ; reverse mode accumulates φ_xᵀz̄ into x̄. Floating-point rounding remains, so derivatives are not literally error-free, but there is no finite-difference truncation step.
-\dot z=\frac{\partial\phi}{\partial x}\dot x,\qquad \bar x\mathrel{+}=\left(\frac{\partial\phi}{\partial x}\right)^T\bar z,\qquad w^T(Jv)=v^T(J^Tw).
+An analytic derivative is derived mathematically and entered into the
+solver by hand. It can expose structure and provide an independent reference,
+but the derivative must be kept consistent with the residual implementation.
+Symbolic differentiation manipulates expressions into another expression.
+AD instead carries numerical derivative information through the evaluated
+operations, without constructing a global symbolic formula.
+Finite differences estimate a derivative from perturbed function values.
+For a vector residual F and a direction v, forward and centered differences are
+D_\varepsilon^+F(u)v=\frac{F(u+\varepsilon v)-F(u)}{\varepsilon},
+\qquad
+D_\varepsilon^0F(u)v=\frac{F(u+\varepsilon v)-F(u-\varepsilon v)}{2\varepsilon}.
+For sufficiently smooth F, their truncation errors are first and second order
+in ε. A very small ε amplifies cancellation and rounding in the residual
+evaluations. The useful step depends on the state, direction, precision and
+scaling of F. A finite-difference check should therefore sweep several steps.
+AD has no finite-difference step or associated truncation error. It still uses
+floating-point arithmetic: unstable formulas, overflow, underflow and rounding
+can affect both values and derivatives. The differentiated object is the
+composition of real-arithmetic operations represented by the executed program,
 
-## Automatic differentiation — Algorithm [en]
+## Automatic differentiation: derivatives for numerical solvers — Four ways to obtain a derivative [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#algorithm
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#ways-to-differentiate
 Coverage: reading
 
-Decompose the computation into elementary operations and store values with tangents or the history needed for reverse accumulation. Few input directions favor forward mode; a scalar output with many inputs favors reverse mode. Distinguish differentiating solver iterations from implicitly differentiating the converged solution.
+evaluated numerically. It is not the derivative of the discontinuous mapping
+from one set of floating-point bit patterns to another.
 
-## Automatic differentiation — Conditions and pitfalls [en]
+## Automatic differentiation: derivatives for numerical solvers — Forward mode: carry a value and a direction [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#conditions
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#forward-mode
 Coverage: reading
 
-Branches differentiate the executed path. Check nondifferentiability and conventions for abs, max, limiters, contacts and events. Audit stop-gradient, external primitives and iterative stopping. AD is not a guarantee of a classical derivative of every discontinuous bit-level operation.
+Seed the input with a direction v and propagate pairs consisting of a value
+and its directional derivative. Dual-number notation makes the chain rule
+visible:
+\widehat a=a+\eta\dot a,\qquad \eta^2=0,
+\qquad
+\widehat a\widehat b=ab+\eta(\dot a b+a\dot b),
+\qquad
+\exp(\widehat a)=\exp(a)+\eta\exp(a)\dot a.
+The nilpotent symbol η is an algebraic device, not a small numerical step.
+The implementation stores the two arrays separately. It overloads the small
+set of operations needed for this experiment, including elementwise
+arithmetic, indexing, exponentiation and multiplication by a constant matrix.
+Unsupported operations are outside this educational engine's scope.
+For F from n inputs to m outputs, one seeded execution returns F(u) and J(u)v.
+This Jacobian–vector product (JVP) avoids storing an m-by-n Jacobian. Seed
+each coordinate basis vector in turn to assemble all n columns. The Bratu
+comparison deliberately uses that transparent assembly; it does not exploit
+sparsity coloring or provide a matrix-free Newton solver.
 
-## Automatic differentiation — What to check [en]
+## Automatic differentiation: derivatives for numerical solvers — Reverse mode and the derivative you actually need [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#verification
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#reverse-mode
 Coverage: reading
 
-Test analytic elementary cases, directional Taylor remainders and the duality identity wᵀ(Jv)=vᵀ(Jᵀw). Avoid finite-difference steps so small that rounding dominates. Include boundary and parameter dependence when differentiating PDE residuals.
+Reverse mode propagates an output weight w backwards through local derivative
+rules to obtain J(u)ᵀw, often called a vector–Jacobian product (VJP). For
+a scalar objective with many parameters, one reverse pass can produce its
+gradient. An implementation commonly retains intermediate values or
+recomputes them through checkpointing. Forward mode is attractive when only
+a few input directions are required. The relevant dimensions are the numbers
+of independent inputs and outputs, together with the requested products.
+A Hessian–vector product for a smooth scalar objective can be obtained by
+differentiating its gradient in a direction. Explicitly assembling a Hessian
+is unnecessary when an optimization method only needs that product. See
+Baydin et al. (2018) for an AD
+survey and the JAX autodiff cookbook
+for practical JVP, VJP and higher-order constructions. JAX is a reading
+reference; the local experiment requires only the atlas's existing NumPy
+environment.
 
-## Automatic differentiation — Publication scope and related entries [en]
+## Automatic differentiation: derivatives for numerical solvers — The existing Bratu problem [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#bratu-problem
+Coverage: reading
+
+We retain the same sign convention, parameter and exact solution used in the
+sparse and nonlinear systems verification:
+-u''(x)-\lambda e^{u(x)}=0,\qquad 0<x<1,\qquad u(0)=u(1)=0,
+\qquad \lambda=\frac{2}{\cosh^2(1/2)},u_*(x)=-2\log\!\left(\frac{\cosh(x-1/2)}{\cosh(1/2)}\right).
+Here n denotes the number of interior unknowns. The interval has n+1
+uniform cells, with h=1/(n+1) and nodes x_i=ih. Centered differences give
+F_i(u)=\frac{2u_i-u_{i-1}-u_{i+1}}{h^2}-\lambda e^{u_i},
+\qquad u_0=u_{n+1}=0,J(u)=D-\lambda\operatorname{diag}(e^u),
+\qquad D=\frac{1}{h^2}\operatorname{tridiag}(-1,2,-1).
+The analytic Jacobian is an independent formula. Finite differences and AD
+both evaluate the same residual function. In particular, AD differentiates
+the discrete residual F; it does not remove the centered stencil's spatial
+discretization error. The exact continuous solution is used to check spatial
+refinement, not as an exact root of the discrete equations.
+
+## Automatic differentiation: derivatives for numerical solvers — Verification: hold the problem fixed [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#bratu-verification
+Coverage: reading
+
+The saved measurements and source hashes separate
+three checks so that accurate derivatives and accurate PDE solutions are not
+confused.
+The derivative check uses n=31 and the state u_*(x_i)+0.05 sin(3πx_i), away
+from the exact continuous profile. Its direction is sin(2πx_i)+0.3 cos(5πx_i),
+normalized to unit Euclidean length. The sweep contains 29 logarithmically
+spaced, absolute perturbations from 1 down to 10⁻¹⁴; these are derivative
+perturbations, not spatial mesh widths.
+Differentiate at a fixed state. Compare the assembled forward-mode AD
+Jacobian and its JVP against the analytic formula. Sweep finite-difference
+steps at that same state, using both forward and centered differences.
+Report relative Frobenius errors for matrices and relative Euclidean
+errors for directional products. A deterministic smooth direction prevents
+run-to-run changes in the comparison.
+Solve the same discrete system. Start every Newton solve at zero, use
+the same residual, Armijo search, dense linear solve and residual tolerance,
+and change only how the Jacobian is supplied. The finite-difference run
+uses a fixed centered-difference step recorded in the manifest. Measure
+the true residual after each accepted iteration and compare the final
+roots with the analytic-Jacobian solve.
+Refine the mesh. Repeat the three methods for n=15, 31 and 63 interior
+
+## Automatic differentiation: derivatives for numerical solvers — Verification: hold the problem fixed [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#bratu-verification
+Coverage: reading
+
+nodes. Compare their roots with u_* at the interior nodes using a nodal
+maximum error. Approximately fourfold error reduction under halving h
+identifies the centered scheme's second-order spatial behavior.
+In the saved run, AD and the analytic Jacobian agree entry by entry, while
+the relative JVP error is about 8×10⁻¹⁶. This exact matrix agreement is
+specific to the operation ordering in this example, not a general guarantee
+of bitwise agreement for AD. The finite-difference curves show the useful
+range between truncation error and cancellation. All nine Newton solves
+reach the common absolute residual Euclidean tolerance 10⁻¹⁰ in three
+updates. The fixed centered-difference perturbation is 10⁻⁵; its final roots
+agree with the analytic-Jacobian roots to less than 10⁻¹⁴ in nodal maximum
+norm. The continuous nodal maximum errors are approximately 1.738×10⁻⁴,
+4.337×10⁻⁵ and 1.084×10⁻⁵ on the three grids. Their factor-of-four reduction
+remains after changing the derivative calculation: spatial discretization
+sets the leading solution error here.
+The matrix norm includes entries of size h⁻². A small relative matrix error
+can therefore hide errors in smaller terms. The direct directional check is
+reported separately, rather than relying only on a product of the assembled
+finite-difference matrix.
+The analytic derivative is a reference, not an assumption that every analytic
+
+## Automatic differentiation: derivatives for numerical solvers — Verification: hold the problem fixed [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#bratu-verification
+Coverage: reading
+
+implementation is correct. The tests also check derivative rules on separate
+functions and nontrivial directions, and check Bratu refinement against the
+continuous solution. Agreement between two Jacobians alone would not validate
+the boundary conditions or the PDE discretization.
+The figure makes no speed ranking. Assembling a dense AD Jacobian here needs
+n forward seeds; centered differences need two residual evaluations per
+column. Counts describe these implementations, not equal-cost operations or
+the best sparse AD strategy. For a large Newton–Krylov method, supplying Jv
+directly can be preferable to constructing every column, while a suitable
+preconditioner remains necessary.
+
+## Automatic differentiation: derivatives for numerical solvers — Connections to implicit integration and parameter estimation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#solver-connections
+Coverage: reading
+
+An implicit ODE stage has a residual involving the
+state and time step. Its Newton matrix contains derivatives of the ODE
+right-hand side, so the same AD construction can supply them. For parameter
+estimation, derivatives of observations or an objective with respect to model
+parameters connect a simulation to an optimization method. Derivative
+availability does not itself choose a stable integrator, a well-conditioned
+parameterization or a convergent optimization algorithm.
+Suppose the converged discrete state satisfies F(u,θ)=0. At a differentiable
+solution with nonsingular F_u, its parameter sensitivity satisfies
+F_u\frac{du}{d\theta}=-F_\theta.
+For a scalar objective L(u,θ), an adjoint solve gives
+F_u^T p=L_u^T,\qquad
+\frac{dL}{d\theta}=L_\theta-p^TF_\theta.
+This differentiates the equation defining the solution. Differentiating a
+fixed, finite sequence of Newton iterations instead gives the derivative of
+that sequence, including its dependence on the initial guess. Stopping
+criteria and line-search branches complicate that distinction. Near a
+singular Jacobian, sensitivities can be large even when the primal residual
+is small. Primal and derivative solve tolerances therefore need separate
+checks. These sensitivity and adjoint equations are explanatory extensions;
+the present Bratu exhibit compares Jacobians used in the primal solve.
+
+## Automatic differentiation: derivatives for numerical solvers — Limits: smoothness, branches and numerical stability [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#limits
+Coverage: reading
+
+AD applies the derivative rules of the operations that are executed. At a
+branch boundary, an absolute-value corner or a limiter switch, the underlying
+function may have no unique classical derivative; a library's chosen rule
+does not establish one. Adaptive time-step decisions can change the executed
+path under parameter perturbations. For shocks, a computed grid-value
+derivative also needs interpretation in terms of shock motion and the
+quantity being measured.
+The discretized derivative should be checked for mesh and time-step
+convergence when it is intended to approximate a continuous sensitivity.
+Differentiating a discretized solver and discretizing continuous sensitivity
+or adjoint equations require their own consistency analysis. Stable function
+evaluation matters too: a formula that overflows in the primal calculation
+is not repaired by applying the chain rule.
+
+## Automatic differentiation: derivatives for numerical solvers — Reproduce the comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#reproduce
+Coverage: reading
+
+Extract the November 22, 2026 release ZIP into a new folder. Prepare a Python environment with NumPy, Matplotlib and pytest, and run from the extracted folder. See the README for the complete instructions.
+python -m pip install numpy matplotlib pytest
+python scripts/build_autodiff.py
+python -m pytest tests/test_autodiff.py
+Read the AD engine and Bratu residual, existing Newton solver, figure and evidence builder, and test source individually. An independent-extraction verification record and source inventory and hashes accompany the package.
+The builder writes the figure and a JSON manifest containing grids, parameters, finite-difference steps, stopping controls, norms, solver histories, the numerical environment and source SHA-256 hashes. Evidence is generated from the numerical implementation independently of the website build. The dated supplement includes the forward-mode engine, Bratu comparison, tests and saved results introduced here. Reverse-mode and adjoint solvers remain outside this implementation. Continue with Newton and conditioning, stiff integration, or the error-norm guide.
+
+## Automatic differentiation: derivatives for numerical solvers — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+An educational forward-mode dual-number, JVP and assembled-Jacobian implementation is checked against analytic and finite-difference derivatives for Bratu's equation. A separate November 22, 2026 supplement fixes its source, tests, figure and JSON evidence. Reverse mode, Hessian-vector products, implicit sensitivities and adjoints are reading connections rather than implemented solvers in this exhibit. Existing releases and measurements of other methods are preserved.
 Automatic differentiation
 
-## Automatic differentiation — Primary publications, supporting sources and review scope [en]
+## Automatic differentiation: derivatives for numerical solvers — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#sources
 Coverage: reading
@@ -699,6 +904,18 @@ Elementary-operation decomposition and forward differentiation discussion; rever
 Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error. BIT
 Research publication: proposal or related formulation · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul and Jeffrey Mark Siskind (2018). Automatic Differentiation in Machine Learning: a Survey. Journal of Machine Learning Research
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+
+## Automatic differentiation: derivatives for numerical solvers — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/automatic-differentiation/#sources
+Coverage: reading
+
+Consulted the journal abstract and author/title/year/volume/article/page metadata. Used as a conceptual survey pointer; full-text review and reproduction of paper examples are not claimed.
+The JAX authors (2026). The Autodiff Cookbook. JAX official documentation; accessed November 22, 2026
+Official reference documentation · Selected source passages consulted · Consulted record
+Selected documentation passages consulted: JVPs as directional linear maps, VJPs as transpose products, and Hessian-vector constructions using forward/reverse differentiation. No JAX benchmark or reproduction of all documentation examples is claimed.
 
 ## Orthogonal polynomials and mesh basis functions — Orthogonal polynomials and mesh basis functions [en]
 
@@ -10106,7 +10323,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 112 methods and building blocks · 221 journal/conference papers · 262 total sources.
+46 equation/model entries · 113 methods and building blocks · 221 journal/conference papers · 262 total sources.
 There are 9 saved-profile equation-gallery cases across 7 equation families, and 78 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
@@ -10201,7 +10418,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-96 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+97 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -12210,51 +12427,120 @@ J. W. Ruge and K. Stüben (1987). 4. Algebraic Multigrid. Multigrid Methods
 研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
 
-## 自動微分 — 自動微分 [ja]
+## 自動微分：数値ソルバーのための微分計算 — 自動微分：数値ソルバーのための微分計算 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/
 Coverage: reading
 
-自動微分はプログラムの基本演算へ連鎖律を適用して導関数を計算します。数式の記号微分でも、有限差分で刻みを選ぶ数値微分でもありません。
+自動微分（automatic differentiation、AD）は、プログラム内の基本演算に連鎖律を適用して導関数を計算します。Newton反復のヤコビ行列、Krylov法の方向微分、パラメータ推定の感度を求める手段であり、さまざまな物理モデルに共通する数値計算の基盤です。
+実装済みの範囲：小さな前進モードの双対数エンジンを用意し、既存のBratu境界値問題で解析微分・有限差分・自動微分を比較します。実験には既存のArmijo減衰Newton法を使います。逆モード、陰関数による感度計算、随伴法は関連する考え方として説明し、この展示では実装しません。
 
-## 自動微分 — 対象と代表式 [ja]
+## 自動微分：数値ソルバーのための微分計算 — 導関数を求める4つの方法 [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#model
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#ways-to-differentiate
 Coverage: reading
 
-中間変数z=φ(x)に対し、forward modeは方向微分ż=φ_x ẋを、reverse modeは出力側の随伴量z̄からx̄へφ_xᵀz̄を足し戻します。浮動小数点の丸めを伴うため「完全に誤差ゼロ」ではありませんが、有限差分の打切り誤差は導入しません。
-\dot z=\frac{\partial\phi}{\partial x}\dot x,\qquad \bar x\mathrel{+}=\left(\frac{\partial\phi}{\partial x}\right)^T\bar z,\qquad w^T(Jv)=v^T(J^Tw).
+解析微分は、数学的に導いた式をソルバーへ手で入力する方法です。構造を明示し、独立した参照値にも使えますが、残差の実装を変える際には導関数も整合させる必要があります。記号微分は式を操作して別の式を作ります。自動微分は、計算する演算を通して数値的な微分情報を伝え、全体の記号式を組み立てずに導関数を評価します。
+有限差分は、入力を摂動させた関数値から導関数を近似します。ベクトル残差Fと方向vについて、前進差分と中心差分は、
+D_\varepsilon^+F(u)v=\frac{F(u+\varepsilon v)-F(u)}{\varepsilon},
+\qquad
+D_\varepsilon^0F(u)v=\frac{F(u+\varepsilon v)-F(u-\varepsilon v)}{2\varepsilon}.
+です。Fが十分滑らかなら、打切り誤差はεについてそれぞれ1次、2次です。εを小さくしすぎると、残差評価の桁落ちや丸め誤差が増幅されます。有効な差分幅は、状態、方向、演算精度、Fの尺度に依存します。そのため有限差分での検査では、複数の幅を走査します。
+自動微分には差分幅がなく、それに伴う打切り誤差もありません。ただし演算は浮動小数点であり、不安定な式、オーバーフロー、アンダーフロー、丸め誤差は値と導関数の両方に影響します。微分する対象は、実行したプログラムが表す実数演算の合成であり、その導関数を数値的に評価します。浮動小数点のビット列から別のビット列への不連続な写像を微分するわけではありません。
 
-## 自動微分 — 計算の流れ [ja]
+## 自動微分：数値ソルバーのための微分計算 — 前進モード：値と方向微分を一緒に運ぶ [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#algorithm
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#forward-mode
 Coverage: reading
 
-計算を基本演算へ分解し、値とtangentまたは逆伝播に必要な履歴を記録します。少数入力ならforward、スカラー出力・多数入力ならreverseが有利な典型例です。暗黙に定まる収束解を微分する場合は、反復列の微分と暗黙関数の微分を区別します。
+入力に方向vを与え、値とその方向微分の組を伝えます。双対数で表すと連鎖律が見えます。
+\widehat a=a+\eta\dot a,\qquad \eta^2=0,
+\qquad
+\widehat a\widehat b=ab+\eta(\dot a b+a\dot b),
+\qquad
+\exp(\widehat a)=\exp(a)+\eta\exp(a)\dot a.
+ηは二乗するとゼロになる代数的な記号であり、微小な数値刻みではありません。実装では値と微分を別々の配列に保存します。この実験に必要な要素ごとの算術、添字操作、指数関数、定数行列との積など、小さな演算集合に規則を与えます。未対応の演算は、この教育用エンジンの適用範囲外です。
+Fがn入力・m出力なら、方向を1つ与えた実行でF(u)とJ(u)vが得られます。この**ヤコビ行列とベクトルの積（JVP）**には、m行n列のヤコビ行列全体を保存する必要がありません。各座標の単位ベクトルを順に与えると、n本の列を組み立てられます。Bratu比較では、この仕組みが見える組立て方を使います。疎構造を利用した彩色による効率化や、行列を組み立てないNewtonソルバーは実装していません。
 
-## 自動微分 — 適用条件と落とし穴 [ja]
+## 自動微分：数値ソルバーのための微分計算 — 逆モードと、実際に必要な微分 [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#conditions
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#reverse-mode
 Coverage: reading
 
-分岐では実行された経路の微分を計算します。絶対値、max、limiters、接触やイベントでは微分不能性と採用した規約を確認します。stop-gradient、外部演算、反復停止条件の扱いにも注意します。丸め誤差を含む不連続なビット操作全体の古典微分を保証する技術ではありません。
+逆モードは出力側の重みwを局所的な微分規則に沿って逆向きに伝え、J(u)ᵀwを求めます。通常、これを**ベクトルとヤコビ行列の積（VJP）**と呼びます。多数のパラメータを持つスカラー目的関数では、1回の逆向きの伝播で勾配を得られます。実装では通常、中間値を保存するか、チェックポイントから再計算します。必要な入力方向が少なければ前進モードが適しています。独立な入力数・出力数と、求めたい積を合わせて考えます。
+滑らかなスカラー目的関数のヘッセ行列とベクトルの積は、勾配をある方向へ微分することで計算できます。最適化法がこの積だけを使うなら、ヘッセ行列全体を明示的に組み立てる必要はありません。ADの概説はBaydinほか（2018）、JVP・VJP・高階微分の具体的な構成はJAXの自動微分解説を参照してください。JAXは読書用の参照先であり、ローカル実験は既存のNumPy環境だけで実行します。
 
-## 自動微分 — 検証するときに見る量 [ja]
+## 自動微分：数値ソルバーのための微分計算 — 既存のBratu問題 [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#verification
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#bratu-problem
 Coverage: reading
 
-解析微分のある小関数、方向Taylor試験、forward/reverseの内積恒等式wᵀ(Jv)=vᵀ(Jᵀw)で検査します。有限差分との比較では丸めが支配するほど刻みを小さくしません。PDE残差への適用では境界・パラメータ依存も含めます。
+疎行列・非線形方程式系の検証と同じ符号規約、パラメータ、厳密解を使います。
+-u''(x)-\lambda e^{u(x)}=0,\qquad 0<x<1,\qquad u(0)=u(1)=0,
+\qquad \lambda=\frac{2}{\cosh^2(1/2)},u_*(x)=-2\log\!\left(\frac{\cosh(x-1/2)}{\cosh(1/2)}\right).
+ここでnは内部未知数の数です。区間をn+1個の一様なセルに分け、h=1/(n+1)、節点x_i=ihとします。中心差分で離散化すると、
+F_i(u)=\frac{2u_i-u_{i-1}-u_{i+1}}{h^2}-\lambda e^{u_i},
+\qquad u_0=u_{n+1}=0,J(u)=D-\lambda\operatorname{diag}(e^u),
+\qquad D=\frac{1}{h^2}\operatorname{tridiag}(-1,2,-1).
+です。解析ヤコビ行列は独立に書いた式であり、有限差分と自動微分は同じ残差関数を評価します。特に、自動微分が微分するのは離散残差Fです。中心差分の空間離散化誤差は消えません。連続問題の厳密解は空間細分化の検査に使い、離散方程式の厳密な根とはみなしません。
 
-## 自動微分 — 公開範囲と関連項目 [ja]
+## 自動微分：数値ソルバーのための微分計算 — 検証：問題を揃えて比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#bratu-verification
+Coverage: reading
+
+保存した測定値とソースハッシュでは、導関数の精度とPDE解の精度を混同しないよう、次の3つを分けて調べます。
+微分の検査にはn=31、状態u_*(x_i)+0.05 sin(3πx_i)を使い、連続問題の厳密分布からずらします。方向はsin(2πx_i)+0.3 cos(5πx_i)をEuclidノルム1に規格化します。走査するのは1から10⁻¹⁴まで対数等間隔に並べた29個の絶対摂動幅であり、空間格子幅ではありません。
+固定した状態で微分する。 前進モードADで組み立てたヤコビ行列とJVPを解析式と比較します。同じ状態で前進・中心有限差分の幅を走査し、行列には相対Frobenius誤差、方向微分には相対Euclid誤差を使います。滑らかな方向を決定的に与え、実行ごとに比較条件が変わることを防ぎます。
+同じ離散方程式を解く。 初期値をゼロに揃え、同じ残差、Armijo探索、密行列の線形求解、残差許容値を使い、ヤコビ行列の与え方だけを変えます。有限差分の求解では、記録した固定幅の中心差分を使います。受理した各反復で真の残差を測り、最終的な根を解析ヤコビ行列による結果と比較します。
+格子を細分化する。 内部節点数n=15、31、63で3手法を繰り返します。内部節点でu_*と比較した最大誤差を使い、hを半分にしたときの誤差の約4分の1への減少から、中心差分の空間2次精度を調べます。
+保存した実行では、ADと解析ヤコビ行列は成分ごとに一致し、JVPの相対誤差は約8×10⁻¹⁶です。行列の完全な一致はこの例の演算順序によるもので、AD一般のビット単位の一致を保証しません。有限差分の曲線には、打切り誤差と桁落ちの間に有効な幅の範囲が現れます。9通りのNewton求解はすべて、共通の絶対残差Euclidノルム許容値10⁻¹⁰に3回の更新で到達します。求解で使う中心差分の固定摂動幅は10⁻⁵で、その最終的な根と解析ヤコビ行列による根との差は、節点最大ノルムで10⁻¹⁴未満です。連続解に対する節点最大誤差は、3つの格子で約1.738×10⁻⁴、4.337×10⁻⁵、1.084×10⁻⁵です。微分計算を変えても約4分の1への減少は共通であり、この条件では空間離散化が解誤差の主要因です。
+行列ノルムにはh⁻²の大きさの成分が含まれます。そのため、小さな相対行列誤差の中に、小さな項の誤差が隠れる場合があります。組み立てた有限差分行列との積だけに頼らず、残差を方向へ直接摂動した検査も別に報告します。
+解析微分は参照値ですが、解析微分の実装が常に正しいと仮定するわけではありません。テストでは別の関数や自明ではない方向で微分規則を検査し、連続解に対するBratuの細分化も確認します。2つのヤコビ行列が一致するだけでは、境界条件やPDEの離散化は検証できません。
+図では速度の順位を付けません。この密なADヤコビ行列の組立てにはn個の前進方向、中心差分には1列あたり2回の残差評価が必要です。この回数は今回の実装を説明するもので、演算1回のコストが等しいことや、最良の疎AD戦略を表しません。大きなNewton–Krylov法では、全列を組み立てずJvを直接与える方法が有用ですが、適切な前処理は引き続き必要です。
+
+## 自動微分：数値ソルバーのための微分計算 — 陰的時間積分・パラメータ推定との接続 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#solver-connections
+Coverage: reading
+
+陰的ODE段階には状態と時間刻みに依存する残差があります。Newton行列にはODE右辺の微分が含まれるので、同じADの仕組みで与えられます。パラメータ推定では、モデルのパラメータに対する観測量や目的関数の微分によって、シミュレーションを最適化法につなぎます。微分を計算できることだけでは、安定な積分法、条件のよいパラメータ化、収束する最適化法は決まりません。
+収束した離散状態がF(u,θ)=0を満たすとします。解が微分可能でF_uが正則なら、パラメータ感度は、
+F_u\frac{du}{d\theta}=-F_\theta.
+を満たします。スカラー目的関数L(u,θ)については、随伴方程式から、
+F_u^T p=L_u^T,\qquad
+\frac{dL}{d\theta}=L_\theta-p^TF_\theta.
+を得ます。これは解を定義する方程式を微分する方法です。一方、固定した有限回のNewton反復を微分すると、初期推定値への依存を含む、その反復列の微分になります。停止判定や線探索の分岐は、この違いをさらに複雑にします。ヤコビ行列が特異に近ければ、元の残差が小さくても感度は大きくなり得ます。元の求解と微分の求解では、それぞれ許容誤差を確認する必要があります。これらの感度・随伴方程式は関連する発展事項であり、今回のBratu展示は元の方程式を解く際のヤコビ行列を比較します。
+
+## 自動微分：数値ソルバーのための微分計算 — 限界：滑らかさ、分岐、数値的安定性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#limits
+Coverage: reading
+
+自動微分は実行された演算の微分規則を適用します。分岐の境界、絶対値の角、リミターの切替点では、関数に一意な古典的導関数が存在しない場合があります。ライブラリが規則を選んでも、数学的な導関数の存在は保証されません。適応時間刻みの判定によって、パラメータ摂動に対する実行経路が変わる場合もあります。衝撃波では、格子値の微分を、衝撃波の移動や測りたい量との関係から解釈する必要があります。
+離散的な微分で連続問題の感度を近似したい場合は、格子幅・時間刻みに対する収束も確認します。離散化したソルバーを微分する方法と、連続的な感度・随伴方程式を離散化する方法には、それぞれ整合性の解析が必要です。安定な関数評価も重要で、元の計算でオーバーフローする式は、連鎖律を適用しても修復できません。
+
+## 自動微分：数値ソルバーのための微分計算 — 比較を再現する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#reproduce
+Coverage: reading
+
+2026年11月22日の配布ZIPを新しいフォルダへ展開し、Python環境にNumPy・Matplotlib・pytestを用意して、そのフォルダで実行します。詳しい手順はREADMEにあります。
+python -m pip install numpy matplotlib pytest
+python scripts/build_autodiff.py
+python -m pytest tests/test_autodiff.py
+自動微分とBratu残差のソース、既存のNewtonソルバー、図と記録の生成スクリプト、検査コードを個別にも読めます。独立展開の検査記録とソース一覧・ハッシュを添付しています。
+ビルダーは図とJSON記録を生成し、格子、パラメータ、有限差分の幅、停止条件、ノルム、ソルバー履歴、数値環境、ソースのSHA-256ハッシュを保存します。検証記録はWebビルドとは独立に数値実装から生成します。日付を固定した配布物に、今回の前進モードとBratu比較の実装・検査・保存結果が含まれます。逆モードや随伴ソルバーは今回の実装範囲に含めません。Newton法と条件数、硬い積分、誤差ノルムの解説へ進めます。
+
+## 自動微分：数値ソルバーのための微分計算 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+前進モードの双対数・JVP・ヤコビ行列組立てを、Bratu方程式の解析微分・有限差分との比較で検証した教育用実装です。2026年11月22日の独立した配布物にソース、検査、図、JSON記録を固定しています。逆モード・ヘッセ行列積・陰関数による感度・随伴法は関連する解説であり、この実装の完成範囲には含めません。既存の別手法の配布版・計算結果は変更しません。
 自動微分
 
-## 自動微分 — 一次文献・関連資料と確認範囲 [ja]
+## 自動微分：数値ソルバーのための微分計算 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentiation/#sources
 Coverage: reading
@@ -12266,6 +12552,12 @@ R. E. Wengert (1964). A simple automatic derivative evaluation program. Communic
 Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error. BIT
 研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul and Jeffrey Mark Siskind (2018). Automatic Differentiation in Machine Learning: a Survey. Journal of Machine Learning Research
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+JMLRの抄録と著者・題名・年・巻・論文番号・頁を確認。概説への案内として引用し、全文の精読や論文中の例の再現は主張しません。
+The JAX authors (2026). The Autodiff Cookbook. JAX official documentation; accessed November 22, 2026
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+JVPを方向への線形写像とする説明、VJPと転置積、前進・逆モードによるヘッセ行列積の該当箇所を参照。2026年は閲覧年です。JAXでの性能比較や全サンプルの再現は未実施です。
 
 ## 直交多項式と格子上の基底関数 — 直交多項式と格子上の基底関数 [ja]
 
@@ -19749,7 +20041,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素112項目・学術誌／会議論文221件・全参考資料262件。
+方程式・モデル46項目・計算法と構成要素113項目・学術誌／会議論文221件・全参考資料262件。
 保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め78章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
@@ -19845,7 +20137,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は96、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は97、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 

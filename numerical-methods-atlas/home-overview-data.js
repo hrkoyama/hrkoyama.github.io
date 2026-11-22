@@ -29,6 +29,11 @@ export const homeAreas = [
           "name": "ui.a-l-stability-error-norms.9e1533",
           "route": "/read/accuracy-stability",
           "kind": "reading"
+        },
+        {
+          "name": "autodiff.home-title",
+          "route": "/read/automatic-differentiation",
+          "kind": "reading"
         }
       ],
       [

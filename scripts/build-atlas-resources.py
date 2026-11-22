@@ -70,6 +70,52 @@ def write(path,text):
 def nav(lang):
     labels=['手法の見取り図','コード・入力・検証','解説章の目次'] if lang=='ja' else ['Method map','Code, inputs and checks','Reading chapters']
     return '<nav class="resource-nav" aria-label="Atlas resources">'+''.join(link(u,l) for u,l in zip(['/numerical-methods-atlas/methods/','/numerical-methods-atlas/code-and-data/',f'/numerical-methods-atlas/{lang}/read/'],labels))+'</nav>'
+AUTODIFF_RELEASES={}
+def autodiff_release_record(x):
+    """Resolve a separately verified supplement without changing the code edition."""
+    config=x['autodiff_release']
+    assert x['id']=='automatic-differentiation' and x['status']=='educational-example'
+    assert not x['code_modules'] and not x['test_files']
+    key=json.dumps(config,sort_keys=True)
+    if key in AUTODIFF_RELEASES:return AUTODIFF_RELEASES[key]
+    base=config['base']
+    assert base.startswith('/code/autodiff/') and base.endswith('/') and '..' not in base
+    directory=ROOT/base.lstrip('/')
+    def file(name):
+        path=Path(name)
+        assert not path.is_absolute() and '..' not in path.parts and name
+        target=directory/path
+        assert target.resolve().is_relative_to(directory.resolve())
+        return target
+    source=json.loads(file(config['manifest']).read_text())
+    receipt=json.loads(file(config['verification']).read_text())
+    assert source['version']==config['edition'] and source['public_base_url']==ORIGIN+base
+    assert source['family']=='autodiff'
+    required={'numart/autodiff.py','numart/krylov.py','scripts/build_autodiff.py',
+              'tests/test_autodiff.py','README.md','requirements.txt','LICENSE','LICENSING.md',config['evidence']}
+    assert required<=source['files'].keys()
+    for name,digest in source['files'].items():
+        assert hashlib.sha256(file(name).read_bytes()).hexdigest()==digest,name
+    archive=receipt['archive']
+    assert archive['file']==config['archive']
+    archive_bytes=file(config['archive']).read_bytes()
+    assert len(archive_bytes)==archive['bytes']
+    assert hashlib.sha256(archive_bytes).hexdigest()==archive['sha256']
+    assert receipt['returncode']==0 and receipt['passed_tests']==8
+    assert receipt['failures']==receipt['errors']==0
+    assert receipt['archive_sha256']==archive['sha256']
+    assert receipt['source_manifest_sha256']==hashlib.sha256(file(config['manifest']).read_bytes()).hexdigest()
+    record=dict(code_base=ORIGIN+base,code_edition=config['edition'],
+        code_urls=[ORIGIN+base+name for name in ['numart/autodiff.py','numart/krylov.py','scripts/build_autodiff.py']],
+        test_urls=[ORIGIN+base+'tests/test_autodiff.py'],
+        run_commands=['python -m pytest -q tests/test_autodiff.py','python scripts/build_autodiff.py'],
+        run_from='Extracted autodiff supplement directory',
+        code_download=ORIGIN+base+config['archive'],code_manifest=ORIGIN+base+config['manifest'],
+        code_verification=ORIGIN+base+config['verification'],code_archive_sha256=archive['sha256'],
+        results=ORIGIN+base+config['evidence'],passed_tests=receipt['passed_tests'])
+    AUTODIFF_RELEASES[key]=record
+    return record
+
 def public_record(x):
     url=ORIGIN+'/numerical-methods-atlas/methods/'+x['id']+'/'
     record={**x,'url':url,'json_url':url+'index.json','markdown_url':url+'index.md',
@@ -121,6 +167,7 @@ def public_record(x):
                           code_download=cases[0]['release']['download'],code_verification=cases[0]['release']['verification'],
                           inputs=base+'inputs.json',results=base+'results/result.json',independent_reference=base+'reference-dftk.json',
                           run_commands=[e['commands']['run'] for e in cases],run_from='Extracted periodic-dft edition directory')
+    if x.get('autodiff_release'):record.update(autodiff_release_record(x))
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -226,6 +273,15 @@ for x in METHODS:
             body+='</ul><p>'+link(ACODE+ATOMS['archive'],'コード・入力・結果 ZIP' if ja else 'Code, inputs and results ZIP')+' · '+link(ACODE+'verification.json','独立展開の検証記録' if ja else 'Independent-extraction verification')+'</p><p>'+link(ACODE+'atomic_radial.py','Python solver')+' · '+link(ACODE+'test_atomic_radial.py','Tests')+' · '+link(ACODE+'inputs.json','Inputs JSON')+' · '+link(ACODE+'results/results.json','Results JSON')+' · '+link(ACODE+'reference-pyscf.json','Independent reference JSON')+'</p><pre><code>'+esc(ATOMS['test_command']+'\n'+ATOMS['run_command'])+'</code></pre>'
         if x.get('model_examples'):
             body+='<h2>'+('固定入力の専用実装と検証' if ja else 'Dedicated fixed-input implementation and checks')+'</h2><p>'+esc(x['example_scope'][lang])+'</p><p>'+link(record['code_urls'][0],'Python solver')+' · '+link(record['test_urls'][0],'Tests')+' · '+link(record['code_download'],'ZIP')+' · '+link(record['code_verification'],'Verification JSON')+'</p>'
+        if x.get('autodiff_release'):
+            base=record['code_base']
+            body+='<h2>'+('Bratu方程式で微分を比較する専用配布版' if ja else 'Dedicated Bratu derivative-comparison supplement')+'</h2>'
+            body+='<p>'+('同じ離散残差に対する解析微分・有限差分・前進モード自動微分を比較し、微分誤差、Newton収束、空間格子の細分化を別々に検査します。逆モード・陰関数感度の実装や一般的な速度の優劣は検証しません。既存のコード配布版と共通実行台帳を保持した別配布版です。' if ja else 'Compare analytic, finite-difference and forward-mode AD derivatives of one discrete residual, separating derivative errors, Newton convergence and spatial refinement. Reverse mode, implicit sensitivities and general speed rankings are outside the implemented scope. This supplement preserves the existing code edition and shared execution registry.')+'</p>'
+            body+='<p>'+link(base+'README.md','取得・実行手順 / README')+' · '+link(record['code_download'],'コード・検査・図とデータ ZIP' if ja else 'Code, tests, figure and data ZIP')+' · '+link(record['code_manifest'],'ファイル目録・SHA-256' if ja else 'File manifest / SHA-256')+' · '+link(record['code_verification'],str(record['passed_tests'])+('件成功・検証記録' if ja else ' tests passed / verification'))+'</p>'
+            body+='<ul>'+''.join('<li>'+link(url,name)+'</li>' for url,name in zip(record['code_urls'],['numart/autodiff.py','numart/krylov.py','scripts/build_autodiff.py']))+'<li>'+link(record['test_urls'][0],'tests/test_autodiff.py')+'</li></ul>'
+            body+='<p>'+link(record['results'],'微分・残差・格子収束の測定記録 / JSON' if ja else 'Derivative, residual and mesh-refinement measurements / JSON')+'</p>'
+            body+='<p>'+('ZIPを展開したフォルダで仮想環境を作成・有効化し、依存関係を導入して実行します。コードのMITと、図・本文・データの利用条件を区別してください。' if ja else 'From the extracted folder, create and activate a virtual environment, install dependencies and run the checks. Distinguish the code MIT license from the separate terms for figures, prose and data.')+'</p><pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
+            body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
         if x.get('molecular_examples'):
             molecular=record['molecular_release'];molecular_base=molecular['code_base']
             body+='<h2>'+('H₂の有限Gaussian基底RHF' if ja else 'H₂ RHF in finite Gaussian bases')+'</h2><p>'+esc(x['molecular_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/h2-hf/','独立参照・SCF・基底の収束' if ja else 'Independent reference, SCF and basis refinement')+' · '+link(molecular_base+'molecular_hf.py','Python solver')+' · '+link(molecular_base+'test_molecular_hf.py','Tests')+' · '+link(molecular['release']['download'],'ZIP')+'</p>'
@@ -264,6 +320,10 @@ for x in METHODS:
     if x.get('quantum_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\n'+json.dumps(record['code_examples'],ensure_ascii=False,indent=2)+'\n\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\nSource: '+record['code_urls'][0]+'\nResults: '+record['results']+'\nCommands (from extracted atomic edition):\n\n'+ '\n'.join(record['run_commands'])+'\n\n'
     if x.get('molecular_examples'):md+='Molecular scope: '+x['molecular_scope']['en']+'\n\n'+json.dumps(record['molecular_release'],ensure_ascii=False,indent=2)+'\n\n'
     if x.get('periodic_examples'):md+='Periodic scope: '+x['periodic_scope']['en']+'\n\n'+json.dumps(record['periodic_release'],ensure_ascii=False,indent=2)+'\n\n'
+    if x.get('autodiff_release'):
+        md+='Forward-mode AD supplement: analytic/finite-difference/AD Bratu derivatives, Newton convergence and spatial refinement. Reverse-mode execution and implicit sensitivities are not implemented.\n\n'
+        md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
+        md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'
     if x.get('example'):md+='Runnable example:\n\n'+json.dumps(x['example'],ensure_ascii=False,indent=2)+'\n\n'
