@@ -125,7 +125,7 @@ function withDOM(run){
 
 test('published method cards expose every real related code/test URL and preserve availability',()=>withDOM(({render})=>{
   assert.equal(published.length,147);
-  assert.equal(published.filter(method=>method.status==='educational-example').length,114);
+  assert.equal(published.filter(method=>method.status==='educational-example').length,116);
   for(const method of published){
     for(const language of ['ja','en']){
       const card=render(method,language),anchors=links(card),urls=anchors.map(anchor=>new URL(anchor.href,origin));
@@ -208,7 +208,7 @@ test('purpose search retains common executions and adds only the selected indepe
     }
   }
   const biology=findMethods(published,'生物モデルを比較したい');
-  for(const [id,expected] of [['bio-patterns',['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']],['bio-reaction-fourier',['reaction-diffusion-fourier']],['bio-fhn',['fitzhugh-nagumo']]]){
+  for(const [id,expected] of [['bio-patterns',['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern','reaction-diffusion-splitting']],['bio-reaction-fourier',['reaction-diffusion-fourier']],['bio-fhn',['fitzhugh-nagumo']]]){
     assert.deepEqual(biology.find(row=>row.id===id).method.execution_examples.map(example=>example.id),expected,id+' applicable components');
   }
   assert.deepEqual(biology.find(row=>row.id==='bio-excitation').method.execution_examples,[],'Hodgkin–Huxley does not borrow a FitzHugh–Nagumo implementation');

@@ -58,7 +58,7 @@ for extra in [dict(m['depth_additional_releases'][0],case_ids=['csvr-kinetic-ker
 
 test('new diagnostic and additional method do not inflate the physical-problem inventory',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,39);assert.equal(index.groups.length,10);
+ assert.equal(index.case_count,40);assert.equal(index.groups.length,11);
  assert.equal(sha('code/validated-examples/2026-11-22/thermostats/inputs.json'),'8097b48107f42800ce6883aeaf73f22cf37f01e2269884f2f965d85a315f2a38');
  assert.equal(json('code/validated-examples/2026-11-22/thermostats/verification.json').passed_tests,42);
  assert.equal(index.case_problem_ids['csvr-kinetic-kernel'],null);

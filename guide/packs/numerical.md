@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-120d2c5bec
-Captured (UTC): 2026-11-22T15:00:39+00:00
+Snapshot: 2026-11-22-f2d80653d2
+Captured (UTC): 2026-11-22T15:19:46+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -6925,17 +6925,34 @@ IMEX also separates parts of the right-hand side, but IMEX time integration comb
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#reproduce
 Coverage: reading
 
-Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. Both method entries are labeled reading only / no dedicated implementation.
+Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. The oscillator script remains a reading illustration. A separate dedicated lightweight reaction–diffusion release now executes both methods; their educational-code status is limited to that fixed input.
 Illustration reproduction script · Fixed input and saved values / JSON
 python3 verify-operator-splitting.py
 python3 verify-operator-splitting.py --check operator-splitting.json
+
+## Operator splitting: Lie–Trotter and Strang — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Operator splitting: Lie–Trotter and Strang — Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/
+Coverage: reading
+
+Computation for a fixed target
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: splitting.py · Code: reference.py · Tests: test_splitting.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## Operator splitting: Lie–Trotter and Strang — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#publication-scope
 Coverage: reading
 
-Reading, equations and a reproducible fixed two-component illustration are published. No general splitting-solver release or common execution-registry entry is added. Existing statuses, distributions, tolerances and verification history are preserved.
+The two-component oscillator illustration is retained, with a new dedicated lightweight release comparing both methods on the same Schnakenberg reaction–diffusion input. The educational implementation is checked only for the 32-point, T=1 fixed case. Existing physical-problem counts, the common 22 examples, old releases, criteria and history are retained.
 Lie–Trotter splitting
 Strang splitting
 Implicit midpoint
@@ -11465,62 +11482,127 @@ The focus is mathematical methods, formulations, applicability and verification.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
-Prepare a year-end edition whose scoped public examples let unfamiliar users follow conditions, references, inputs, code, results and citation. Shift emphasis from adding entries to public-release reproduction, consistent evidence/status and checked maintenance/restoration.
-From 22 November 2026, new fields are outside the standard year-end plan; prioritize publication quality and bounded validation gaps for existing targets. 18 December freezes additions to existing validation for the year-end release candidate. Distinguish fixed inputs, independent/analytic references, residuals, refinement, invariants, statistical error and termination reasons; neither published code nor test counts validate a whole field. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Preserve historical inputs, criteria and successful records; specialist-AI/model research remains deferred until 2027 or later. New numerical-solver code-generation or learning models and costly new-physics expansions belong to a separate plan from the following year onward.
+Build a development foundation that lets a user’s AI agent obtain implementations, assumptions, benchmark problems and references from the Atlas, then assemble, modify, run and verify code for the requested calculation. Demonstrate this complete development cycle on a few existing-field tasks by year end. Public reproduction, maintenance and restoration support that goal.
+
+## Implementation roadmap — Current development plan and published examples [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+The central year-end deliverable is a prototype in which a user’s AI agent uses public resources and machine-readable manifests to start from Atlas verified implementations, develop the requested code, assess it with Atlas benchmarks and return it to the user. Start with bounded 1D advection and diffusion. Provide bilingual requirements, applicability, retrieval, dependencies, execution, output contracts, references, criteria, failure reasons and citation. Keep original-implementation passes separate from this run’s derived-code receipts. From 22 November 2026, new fields are outside the standard year-end plan. 18 December freezes kit/interface additions and additions to existing validation. Fix reference data, input families and tolerances in advance; agents cannot redefine passing criteria. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Development support through users’ existing AI agents is in scope this year; specialist-AI training/model research remains for 2027 or later.
 
 ## Implementation roadmap — Target milestones and review gates [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
-30 November: reconcile evidence, publication status and releases
-Replace stale three/fifteen-example and sixty-problem text. Distinguish the common 22, supplement case/test counts, 83 catalogued problems/39 runnable entrances and 147 methods. Use the current release registry and dated rerun receipts as the public-version authority; do not promote candidates until every public file hash and actual Linux public-ZIP rerun match. Preserve old values, criteria, figures, references and historical checking scope; leave incomplete work pending.
-12 December: check unfamiliar-user goals, search, execution and failure interpretation
-Use one unfamiliar Japanese and one English context for six goals, following goal→method→equation/problem/reference→code/tests→citation. Run two public distributions spanning deterministic/statistical examples in fresh environments using existing public inputs, and interpret at least two existing coarse/poor-mixing controls. This accepts unfamiliar use and public reproduction, not held-out scientific validation. Verify normal rejection of changed fixed recipes as input validation. Record external search, URL retrieval, execution/numerical checks, failures and additional guidance separately. Unseen scientific inputs are optional P1 requiring separate preregistration and independent references, not a commitment for this date. Do not run full quantum sweeps.
+30 November: select provided code and define the agent contract
+Audit existing advection/diffusion code; choose supplied language, dependencies, supported parameters, limits, license and citation. Specify the machine-readable manifest, JSON and array/time/boundary/unit/cell-average contracts, verification CLI and failure reasons for an AI agent to follow request → retrieval → execution → assessment. Distinguish common 22, supplement case/test counts, 83 catalogued problems/39 runnable entrances and 147 methods; synchronize publication status. Preserve old releases, criteria and history; specification is not completed implementation.
+12 December: demonstrate code provision through accuracy assessment by a separate AI agent
 
 ## Implementation roadmap — Target milestones and review gates [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
-18 December: freeze existing-validation additions and pin the year-end candidate
-New fields are outside the standard plan from 22 November. On the 18th also stop additions to existing validation and pin candidate releases, registries, references and figures by hash. Carry unresolved validation gaps forward with reasons and scope; do not relax criteria to meet the date. Afterward, limit work to defect correction, explanation and publication checks.
-23 December: acceptance target for publication, lightweight Linux and restoration
-For the frozen candidate, verify every public file, fresh-Linux lightweight supplement ZIP execution, bilingual routes, mathematics, figures, indexes, citation and terms. Distinguish saved detailed-22 receipts from this round’s actual reruns; do not regenerate costly quantum references. Record restoration in another directory through regeneration and static checks. Unresolved P0 issues prevent completion; this does not mean implementation of every method or field. Beyond temporary Actions artifacts or badges, retain the commit, registry/archive hashes, environment, case/pytest counts, result summary and CI run URL in persistent versioned public verification evidence.
-31 December: close corrections and carry scope and gaps into the next year
+Starting from the public URL and one Japanese and one English calculation request, a separate AI agent completes two advection/diffusion tasks. Record kit retrieval → configuration/implementation modification → execution → reference comparison → error/refinement/invariant assessment → code/report delivery. Fix input families, references and criteria before execution and distinguish original from derived-code results. Use a valid modification and an intentional implementation bug as controls for missing failures or inaccuracy. Check six goal paths; keep this deliverable separate from rerunning original public distributions on existing public inputs. Do not claim success for arbitrary equations, requests or every agent; run no full quantum sweeps. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions.
+18 December: freeze provided kits, machine-readable contracts and verification criteria
 
 ## Implementation roadmap — Target milestones and review gates [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
-After the candidate, add no new fields or costly new physics; correct defects found during acceptance. Numerical corrections receive a new immutable version and rerun receipt while historical successes remain intact. Carry published/pending/reading-only/unimplemented status, reference/invariant limitations, unresolved P1 issues and deferral reasons into the next queue. Specialist-AI/model research remains for 2027 or later; do not promise every candidate by year end.
+Pin code, manifests, interfaces, references, input families, criteria and bilingual guidance for the two required tasks by hash, without adding fields. Stop additions to existing validation as well. Carry unfinished P1 extensions forward with reasons and scope; do not relax criteria to meet the date. Limit later work to correctness fixes, explanation and publication checks.
+23 December: accept development, verification and delivery in fresh agent contexts
 
-## Implementation roadmap — Make scoped validation in existing fields publishable, reproducible and maintainable [en]
+## Implementation roadmap — Target milestones and review gates [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
+Coverage: reading
+
+Use the frozen candidate in fresh AI-agent contexts to check request → Atlas code retrieval → modification → execution → accuracy/refinement assessment → artifact delivery. Keep original-implementation success, measured derived-code results and failed bug controls in separate receipts. Verify public files, lightweight Linux, bilingual guidance/citation/terms and restoration in another directory. Persist reference/criteria hashes, modification diffs, environment, measured results and CI URL in versioned public evidence. Unresolved P0 prevents completion; do not guarantee arbitrary user requests or code generation across every field. Keep quantum to saved receipts and lightweight fixed examples. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions.
+31 December: close development-kit corrections and plan the next targets
+
+## Implementation roadmap — Target milestones and review gates [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
+Coverage: reading
+
+Correct code, interface, assessment and guidance defects found in acceptance; add no new fields or costly new physics. Numerical corrections receive new immutable editions and rerun receipts while old successes remain intact. Carry supplied kits/conditions, agent-demonstrated tasks, unverified modifications, unsupported requests and P1 deferrals into the next plan. Specialist-AI training/model research remains for 2027 or later, separate from users’ agents consuming the public assets.
+
+## Implementation roadmap — Provide development code and verification kits for users’ AI agents [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 In progress / acceptance pending
-Keep the shared 22 execution examples separate from field-specific supplements; consult the current public release registry and dated rerun receipts for publication status, case counts and test counts. A candidate that passes local numerical checks and independent ZIP extraction remains pending publication until every public file matches and an actual fresh-Linux public-ZIP rerun succeeds. Year-end work audits independent references, residual versus solution error, space/time/truncation refinement, invariants and statistical diagnostics for existing targets. Scoped nonlinear reaction–diffusion, MCMC, thermostat, CT/GLM, foundations and particle/transport examples do not validate entire fields or justify costly new physics.
+
+## Implementation roadmap — Provide development code and verification kits for users’ AI agents [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+Currently at specification stage. Build a flow in which a user’s AI agent maps the calculation request to equations, methods and applicability through a machine-readable manifest, retrieves Atlas verified code, configuration, benchmarks, references, tests and citation, assembles/modifies and runs the code, then returns results and scope. The required first scope is two small 1D advection and diffusion tasks. Audit existing implementations for reuse and freeze provided kits as new editions. Choose language/dependencies during the 30 November inventory; do not promise every language. Define JSON request/catalog/result data, explicit array/coordinate/time/boundary/unit/nodal-versus-cell-average output contracts, retrieval/execution CLI steps, error norms, separate grid/time refinement and appropriate invariants. Fix supported parameter families and criteria before running new development tests that accept changes within those families. Preserve old fixed-recipe rejection rules and immutable releases. A separate AI agent must obtain, modify and assess the provided code using public materials only, checking both a valid modification and an intentional implementation bug. Do not turn requirement mismatches, inaccuracy or nonconvergence into success. Record original code, modification diff, reference/input/criteria versions and hashes, actual results and failure reasons separately. Ar
+
+## Implementation roadmap — Provide development code and verification kits for users’ AI agents [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+bitrary new-physics generation and Atlas-hosted or trained AI are not year-end requirements. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions. Pin the evaluator, tests, references, inputs and thresholds separately from editable solver code. A clean evaluation environment executes the actual delivered derived-code entrypoint and records the executed source SHA; agent self-reported passes or accidental imports of the original implementation are not evidence.
+Candidate implementations and assumptions (existing registry) · Benchmarks, references and run entries (existing foundation)
+
+## Implementation roadmap — Audit references and applicability for development tests [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+In progress / acceptance pending
+Keep the shared 22 execution examples separate from field-specific supplements; consult the current public release registry and dated rerun receipts for publication status, case counts and test counts. A candidate that passes local numerical checks and independent ZIP extraction remains pending publication until every public file matches and an actual fresh-Linux public-ZIP rerun succeeds. Year-end work audits independent references, residual versus solution error, space/time/truncation refinement, invariants and statistical diagnostics for existing targets. Scoped nonlinear reaction–diffusion, MCMC, thermostat, CT/GLM, foundations and particle/transport examples do not validate entire fields or justify costly new physics. Use this audit as evidence for development-kit tests; keep fresh runs of modified provided code distinct from historical passes.
 Field evidence and unimplemented scope · Current public supplements and test counts
 
-## Implementation roadmap — Check public-only acquisition, execution, failure interpretation and citation [en]
+## Implementation roadmap — Demonstrate retrieval, development, execution and assessment by a separate AI agent [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 In progress / acceptance pending
-By 12 December, a small unfamiliar-user acceptance exercise records six goal paths in one Japanese and one English context and fresh-environment execution of two public distributions spanning deterministic/statistical examples, using existing public inputs only. Use at least two existing coarse/poor-mixing controls to distinguish detected inaccuracy from correct approximation. This checks unfamiliar use and public reproduction; it is not held-out scientific validation. Correct rejection of a changed fixed recipe is a separate input-validation check. Unseen scientific inputs are considered only as conditional P1 with separate preregistration, independent references and a new release, not a commitment for this deadline. Separate fixed unbranded searches from URL-assisted use; do not guarantee search inclusion, all seeds or future model-training adoption.
+
+## Implementation roadmap — Demonstrate retrieval, development, execution and assessment by a separate AI agent [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+By 12 December, record two advection/diffusion tasks performed by a separate AI agent starting from the public URL and calculation requests. Acceptance covers retrieving Atlas provided code and verification assets, making a supported setting change or implementation modification, running the benchmarks and returning code, errors, convergence, decisions and limits to the user. Use one Japanese and one English request context and also check six goal paths. Separate foundational reruns of original public distributions with existing public inputs only from new derived-code assessment in development kits. Use an intentional implementation bug and a valid modification as controls for detecting inaccuracy and failure. Register new input families, references and criteria before execution; fixed-recipe rejection checks are insufficient. This is acceptance of a small-task development cycle, not a guarantee for arbitrary requests, unseen physical systems or every AI agent. Do not launch full quantum sweeps. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions.
+
+## Implementation roadmap — Demonstrate retrieval, development, execution and assessment by a separate AI agent [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
 AI discovery, retrieval, execution and citation observation / JSON
 
-## Implementation roadmap — Check publication, reproduction, maintenance and restoration of the frozen candidate [en]
+## Implementation roadmap — Accept the year-end agent-facing development and verification kits [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 In progress / acceptance pending
-Freeze additions to existing validation on 18 December and pin candidate distributions, registries, references, figures and bilingual explanations by hash. By 23 December, reconcile every public file, fresh-Linux lightweight supplement ZIP runs, saved detailed-22 receipts, indexes, status, citation and terms; check ordinary Git/Python/Node restoration and regeneration in another directory. Do not mark complete with unresolved P0 issues. Through 31 December, prioritize corrections and recorded gaps. Numerical corrections receive a new release and independent receipt instead of rewriting immutable history. Beyond temporary Actions artifacts or badges, retain the commit, registry/archive hashes, environment, case/pytest counts, result summary and CI run URL in persistent versioned public verification evidence.
+
+## Implementation roadmap — Accept the year-end agent-facing development and verification kits [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+Freeze kit/interface additions and additions to existing validation on 18 December; pin candidate releases, manifests, references, criteria, figures and bilingual guidance by hash. By 23 December, repeat request → Atlas code retrieval → modification → execution → benchmark assessment → code/result delivery in fresh AI-agent contexts. Separate original-code passes, derived-code passes and failed controls; check that reference/criteria changes did not manufacture success. Reconcile all public files, fresh-Linux lightweight supplement ZIP runs, saved detailed-22 receipts, indexes, citation and terms; check ordinary Git/Python/Node restoration and regeneration in another directory. Do not mark complete with unresolved P0 issues. Through 31 December prioritize corrections and recorded gaps. Numerical corrections receive a new release and independent receipt instead of rewriting immutable versions. Retain commit, registry/archive/reference/criteria hashes, environment, case/pytest counts, result summary, modification diff and CI run URL in persistent versioned public verification evidence. Pin the evaluator, tests, references, inputs and thresholds separately from editable solver code. A clean evaluation environment executes the actual delivered derived-code entrypoint and records the executed source SHA; agent self-reported passes or accidental imports of the original implementation
+
+## Implementation roadmap — Accept the year-end agent-facing development and verification kits [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+ are not evidence.
 
 ## Implementation roadmap — Close only bounded gaps found by auditing existing targets [en]
 
@@ -11528,7 +11610,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 Conditional candidate
-Only when an audit finds an inconsistency in independent references, invariants, applicability or publication status, close the gap for an existing target with small fixed inputs and minimal representative checks. This is not a candidate for new fields, costly new physics or large quantum sweeps, and increasing year-end counts is not a goal. After 18 December allow only correctness-related fixes; carry unresolved gaps forward with reasons and scope. Do not rewrite immutable releases, successful records or tolerances. Unseen scientific inputs are optional P1 work requiring separate preregistration and independent references. If published, provide a new immutable release and rerun receipt by 18 December; unfamiliar-user navigation and input-rejection checks are not substitutes.
+Separate from the two required development-kit tasks, close only bounded gaps in existing targets where independent references, invariants, applicability or publication status are inconsistent. Extending kits to Sod or similar cases is optional P1 only if input families, references and criteria can be fixed before execution and an independent rerun completed by 18 December. Add no new fields, costly new physics or large quantum sweeps. After 18 December allow only correctness-related fixes. Carry unresolved gaps forward with reasons and scope; preserve immutable releases, successful records and tolerances.
 Existing-field checking scope and gaps
 
 ## Implementation roadmap — Implement and validate fixed-He periodic DFT and k-point refinement [en]
@@ -11652,7 +11734,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 2027 or later
-A goal for 2027 or later: investigate retrieval plus execution, verified training examples and held-out evaluation. This is not a commitment to deliver an independently pretrained foundation model.
+From 2027, consider research on Atlas-specialized model training, curated training cases and evaluation on untrained tasks. This is separate from this year’s prototype in which users’ existing AI agents develop with public code and tests. It does not promise a completed independent foundation model.
 
 ## Implementation roadmap — Development history and field-specific validation candidates [en]
 
@@ -12494,7 +12576,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 92 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 93 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12588,7 +12670,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-114 entries have scoped local examples; 17 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+116 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -13397,7 +13479,7 @@ see the shared accuracy and stability guide.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/#adaptive-and-split-steps
 Coverage: reading
 
-An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package. A lightweight fixed-input example now runs both on the same reaction–diffusion problem.
 Operator splitting: Lie–Trotter and Strang
 
 ## Stiff integration: solve the stage, control the time error — Adaptive and split steps# [en]
@@ -13492,7 +13574,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/#c
 Coverage: reading
 
 A fixed step and a force that is the gradient of a consistent position-dependent potential support the splitting argument. A generic approximate Tree force, changing opening decisions, ad hoc mesh interpolation, or state-dependent step selection does not automatically retain that proof. Force approximation and time integration need joint tests. Continue with particle gravity and Poisson solvers and gravity boundary kernels.
-An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package. A lightweight fixed-input example now runs both on the same reaction–diffusion problem.
 Operator splitting: Lie–Trotter and Strang
 
 ## Symplectic integration: a canonical map, not an exact energy promise — Connecting to particle gravity# [en]
@@ -14281,7 +14363,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integrat
 Coverage: reading
 
 The symplectic integration chapter now implements mechanical kick–drift–kick Verlet, a fourth-order Yoshida composition, symplectic Euler, and implicit midpoint on harmonic and quartic Hamiltonians. The map notebook compares them with RK4, separating canonical structure from exact energy conservation.
-An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package. A lightweight fixed-input example now runs both on the same reaction–diffusion problem.
 Operator splitting: Lie–Trotter and Strang
 
 ## Time integration and leapfrog — Canonical mechanical maps# [en]
@@ -24271,6 +24353,148 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 Review scope / review_level: official-documentation
 Official integral representation of the generalized exponential integral checked; year denotes access year.
 
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
+Coverage: reading
+
+Compare short-time nonlinear Schnakenberg reaction–diffusion with the same initial field, grid, subsolvers and observation times. This lightweight addition checks temporal convergence and numerical-reference sensitivity while retaining existing spatial and long-time pattern records.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#run-all
+Coverage: reading
+
+Run inside atlas-splitting-2026-11-22 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
+Coverage: reading
+
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+Input and validation protocol history · Initial input
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-assumptions
+Coverage: reading
+
+Nondimensional 1D periodic [0,2pi), N=32, a=.1, b=.9, D=(.01,1). The initial fields u₀=1+.08cos2x+.01cos4x and v₀=.9−.03cos2x−.002cos4x match the earlier finite-amplitude example. This new run ends at T=1, uses 16/32/64/128 steps and common output times 0/.25/.5/.75/1. The fixed input is reflection-even and pi-periodic.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-algorithm
+Coverage: reading
+
+Lie–Trotter uses diffusion(h) then reaction(h); Strang uses diffusion(h/2), reaction(h), diffusion(h/2), always passing the updated state. Both apply the exact exponential of the centered-FD diffusion matrix by FFT and the same implicit-midpoint reaction/Newton tolerance 2e−13 with at most 12 residual evaluations. The reaction flow is a second-order approximation, not exact. No clipping, adaptive steps or fallback; nonconvergence is failure.
+u_t=0.01u_{xx}+0.1-u+u^2v,\qquad v_t=v_{xx}+0.9-u^2v\lambda_{h,k}=-\frac{4}{\Delta x^2}\sin^2\!\left(\frac{\pi k}{N}\right),\quad L_h=\Psi_R^h\circ e^{hD L_{\rm FD}},\quad S_h=e^{hD L_{\rm FD}/2}\circ\Psi_R^h\circ e^{hD L_{\rm FD}/2}\Psi_R^h(y)=y+hR\!\left(\frac{y+\Psi_R^h(y)}2\right),\quad \langle u+v\rangle_{n+1}-\langle u+v\rangle_n=h(0.1+0.9-\langle u_{\rm mid}\rangle)E_2(h)=\max_{t\in\{.25,.5,.75,1\}}\max_{s\in\{u,v\}}\sqrt{\frac1N\sum_j(e_{s,j}(t))^2},\quad p_{\rm obs}=\log_2\frac{E_2(h)}{E_2(h/2)}
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-validation
+Coverage: reading
+
+The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-limits
+Coverage: reading
+
+This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+grid32
+final_time1
+lie_finest_l20.000480486140193
+strang_finest_l23.5542311917e-06
+lie_last_observed_order1.00293657409
+strang_last_observed_order1.99910381738
+reference_tolerance_linf1.98463467882e-12
+reference_algorithm_linf2.20547136109e-10
+reference_to_strang_error_ratio6.20519949924e-05
+newton_sensitivity_linf0
+reverse_order_l2_difference0.00763741906895
+minimum_concentration0.849085383982
+maximum_reaction_balance_error1.59421087442e-15
+判定 / checkPassed
+lie_error_decreasestrue
+strang_error_decreasestrue
+lie_first_ordertrue
+strang_second_ordertrue
+lie_finest_errortrue
+strang_finest_errortrue
+strang_improves_this_inputtrue
+reference_tolerancetrue
+reference_independent_time_algorithmtrue
+reference_error_separatedtrue
+newton_error_separatedtrue
+reaction_convergedtrue
+reaction_source_balancetrue
+positive_on_tested_substepstrue
+noncommuting_order_controltrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodstepsdtmax_l1max_l2max_linfminimum_concentrationmaximum_midpoint_residualmaximum_reaction_balance_errorreaction_callsdiffusion_callsnewton_updatesobserved_order_l2
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+lie-trotter160.06250.003499916184510.003887558932360.006619682504970.8490853839827.9283801746e-143.05311331772e-16161632—
+lie-trotter320.031250.001739157044540.001932908057110.003283460267040.852421606226.52256026967e-165.82867087928e-163232641.00809153122
+lie-trotter640.0156250.0008661931904510.000962930310460.001632604082330.8540724624041.17961196366e-168.91647866652e-1664641281.0052697186
+lie-trotter1280.00781250.0004321646688920.0004804861401930.0008137250920060.8548913413951.11022302463e-161.59421087442e-151281282561.00293657409
+strang160.06250.0001852288264590.0002246047728650.0004947001675460.8495010294667.65221219723e-147.35522753814e-16163232—
+strang320.031254.67137793687e-055.66923836796e-050.0001253503407080.8526281296666.48786580015e-167.70217223334e-163264641.98616175053
+strang640.0156251.17044319182e-051.42080961481e-053.14480167942e-050.8541751345951.14491749414e-161.09634523682e-15641281281.99644168003
+strang1280.00781252.92774102212e-063.5542311917e-067.86900806959e-060.8549424999871.11022302463e-161.1483869411e-151282562561.99910381738
+Read independent-reference records
+methodrtolatolnfevnjevnluterminationdifference_from_primary_linf
+Radau2e-112e-13876226reached_fixed_final_time0
+Radau2e-132e-152724228reached_fixed_final_time1.98463467882e-12
+DOP8532e-122e-1428100reached_fixed_final_time2.20547136109e-10
+Measurements and complete records / JSON
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+H. F. Trotter (1959). On the product of semi-groups of operators · DOI: 10.1090/S0002-9939-1959-0108732-6
+Review scope / review_level: metadata
+AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+Review scope / review_level: metadata
+Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+Review scope / review_level: full-text
+Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-references
+Coverage: reading
+
+Review scope / review_level: official-bibliography-and-publisher-indexed-abstract
+Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments.
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference
+Review scope / review_level: official-versioned-documentation-selected-methods-and-tolerances
+Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions.
+
 ## CSVR and Langevin: distributions, fluctuations and correlations — CSVR and Langevin: distributions, fluctuations and correlations [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
@@ -30077,17 +30301,34 @@ IMEXも右辺を複数の部分に分けますが、IMEX時間積分は陽・陰
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#reproduce
 Coverage: reading
 
-上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。手法一覧の状態は両方とも「解説あり・専用実装なし」とします。
+上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。この振動子のスクリプトは解説例として保持します。別の軽量な反応拡散の専用配布版で両手法を実行でき、その固定入力の範囲で「教育用例・関連コードあり」と表示します。
 教材例の再計算スクリプト · 固定入力・保存数値 / JSON
 python3 verify-operator-splitting.py
 python3 verify-operator-splitting.py --check operator-splitting.json
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 同じ非線形反応拡散でLie–TrotterとStrangを比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/
+Coverage: reading
+
+固定した標的の計算例
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：splitting.py · コード：reference.py · テスト：test_splitting.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## 作用素分割：Lie–Trotter と Strang の比較 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#publication-scope
 Coverage: reading
 
-解説・数式・固定2成分例の再計算を公開します。汎用分割ソルバーの配布版・共通実行例は追加せず、既存の手法状態・配布版・数値公差・検証履歴を保持します。
+2成分振動子の解説例を保持し、同じSchnakenberg反応拡散で両手法を比較する専用の軽量配布版を追加しました。教育用実装の確認範囲は32格子・T=1の固定入力です。既存の物理問題数・共通22例・旧配布版・公差・検証履歴を保持します。
 Lie–Trotter分割
 Strang分割
 陰的中点則
@@ -34229,50 +34470,65 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
-公開済みの限定例を、初めて使う人にも条件・参照・入力・コード・結果・引用まで辿れる年末版へ整えます。件数を増やす段階から、公開配布の再現、根拠と状態の整合、更新・復元の確認へ重点を移します。
-2026年11月22日から、新分野の追加を年内の標準計画に含めず、既存対象の公開品質と限定した検証の不足を優先します。12月18日は既存検証への追加を締め切る年末版候補の固定日です。固定入力・独立参照または解析解・残差・収束・保存量・統計誤差・終了理由を区別し、公開コードや検査件数を分野全体の検証へ読み替えません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力を基本とし、大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。既存の入力・公差・成功記録を保持し、専門AI・モデル研究は2027年以降とします。 新たな数値解法コードの自動生成や学習モデル、重い新物理の拡張は、翌年以降の別計画で検討します。
+利用者のAIエージェントが、要求に合う実装・前提条件・標準問題・参照解をアトラスから取得し、コードの組立・改修・実行・精度検証を進められる開発基盤を目指します。年末は既存分野の少数の課題で、この開発サイクルを最初から最後まで実証します。公開再現・保守・復元はそれを支える基盤として整えます。
+年末の中心成果は、利用者側のAIエージェントが公開資料と機械可読台帳を使い、アトラスの検証済み実装から開発を始め、改修後のコードをアトラスの標準問題で評価して利用者へ渡せる試作版です。最初は1次元移流・拡散に範囲を固定し、要求・適用条件・取得先・依存・実行手順・出力契約・参照・判定基準・失敗理由・引用を日英で揃えます。元実装の合格と派生コードの今回の合格を別の記録にします。2026年11月22日から、新分野の追加を年内の標準計画に含めず、12月18日に提供キット・接続仕様と既存検証の追加を締め切ります。参照・入力群・公差を事前固定し、エージェントが合格基準を変更して成功とすることを認めません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力が基本です。大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。利用者側の既存AIエージェントによる開発支援は年内対象で、専門AIの学習・モデル研究は2027年以降です。
 
 ## 実装ロードマップ — 整備の目安と確認の節目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
-11月30日：現在の根拠・公開状態・配布版を揃える
-3例/15例・60問題などの古い記述を更新し、共通22例、補助配布版のケース/検査件数、問題台帳83件・39実行入口、147手法を区別する。公開版の正本は現在の配布台帳と日付付き追試記録とし、追加候補は公開URLの全ファイルSHAと実際のLinux公開ZIP追試が揃うまで公開済みへ移さない。旧版の値・公差・図・参照と過去の確認範囲を保持し、未完は確認待ちとして残す。
-12月12日：初見の目的・検索・実行と失敗解釈を確認する
-日英各1つの初見文脈で計6目的を、目的→手法→式/問題/参照→コード/テスト→引用まで確認する。新規環境で決定論/統計を含む2つの公開配布版を既存の公開入力で実行し、既存の粗い/混合不良対照を少なくとも2件読み分ける。これは初見の利用と公開再現の受入であり、未提示の科学入力による検証ではない。固定recipeの変更は通常どおり拒否されることを入力検証として確認する。外部検索、URL取得、実行・数値判定、失敗と追加説明を別々に記録する。未提示の科学入力は別事前登録・独立参照を要する任意P1とし、この日の約束にしない。量子の全走査は実行しない。
-12月18日：既存検証の追加を締め切り年末版候補を固定する
-新分野の追加は11月22日から標準計画に含めない。18日は既存対象への追加検証も締め切り、公開候補の配布版・台帳・参照・図をSHAで固定する。未解決の検証不足は保留理由・適用範囲とともに翌年の台帳へ移し、合格基準を緩めて間に合わせない。以後は不具合修正・説明と公開確認に限る。
-12月23日：公開・軽量Linux追試・更新と復元の受入目標
-固定候補について公開全ファイルの一致、軽量補助ZIPの新規Linux実行、日英の導線・数式・図・索引・引用・利用条件を照合する。共通22例の保存済み詳細記録と今回の再実行範囲を区別し、量子の重い再生成は行わない。別フォルダの復元から再生成・静的検査までを記録する。未解決P0がある場合は完了とせず、全手法・全分野の実装完了を意味しない。 Actionsの一時成果物やバッジだけに頼らず、コミット、台帳とZIPのSHA、実行環境、ケース数・pytest数、結果要約、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。
-12月31日：修正を閉じ、範囲と残る不足を翌年へ引き継ぐ
-候補版以降は新分野・重い新物理を増やさず、受入で見つかった不具合を修正する。数値の修正は新しい不変版と追試記録へ分離し、旧成功記録は保持する。公開済み/確認待ち/解説のみ/未実装、参照と保存則の限界、未解決P1と保留理由を翌年の台帳へ記録する。専門AI・モデル研究は2027年以降とし、年末の全候補実装を約束しない。
+11月30日：提供コードとエージェント向け接続仕様を決める
+既存の移流・拡散コードを調べ、提供言語・依存・対応パラメータ・制限・ライセンス・引用を明確にする。AIエージェントが要求から取得・実行・評価まで辿る機械可読manifest、JSON入出力と配列/時刻/境界/単位/セル平均の契約、検証CLIと失敗理由を仕様化する。共通22例、補助ケース/検査件数、問題台帳83件・39実行入口、147手法を区別し、現在の公開状態を同期する。既存版・基準・履歴は保持し、仕様策定を実装済みと表示しない。
+12月12日：別のAIエージェントでコード提供から精度評価まで通す
+公開URLと日英各1つの計算要求から、別のAIエージェントが移流・拡散の2課題を実施する。提供キット取得→設定/実装改修→実行→参照比較→誤差/収束/保存量の評価→コードと報告の引渡しを記録する。検証する入力族・参照・判定基準は事前固定し、元コードと派生コードの結果を区別する。妥当な変更と意図的な実装不具合を対照にし、失敗や精度不足を見落とさないか確認する。導線は計6目的を確認し、既存公開入力による元配布版の追試とは別の成果として示す。任意の方程式・要求や全エージェントの成功保証とはせず、量子全走査は行わない。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。
+12月18日：提供キット・機械可読仕様・検証基準を固定する
+新分野を増やさず、必達2課題のコード・manifest・接続仕様・参照・入力族・判定基準・日英説明を候補版としてSHAで固定する。既存検証への追加も締め切る。P1の対象拡張が間に合わなければ保留理由と範囲を残し、合格基準を緩めて間に合わせない。以後は正しさに関わる修正・説明・公開確認に限る。
+12月23日：新規エージェント文脈で開発・検証・引渡しを受け入れる
+固定候補を新規のAIエージェント文脈で利用し、要求→アトラスからコード取得→改修→実行→精度/収束評価→成果物の引渡しを確認する。元実装の成功・派生実装の実測・不具合対照の失敗を別の記録へ残す。公開ファイル、軽量Linux、日英・引用・利用条件、別フォルダからの復元を確認する。参照/基準のSHAと改修差分、環境・実測結果・CI URLを永続的な版付き公開記録へ残す。未解決P0があれば完了とせず、任意の利用者要求や全分野のコード生成を保証しない。量子は保存済み記録と軽量な固定例にとどめる。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。
+12月31日：開発キットの修正と次の対象への引継ぎを整える
 
-## 実装ロードマップ — 既存分野の限定検証を公開・再現・保守できる形へ [ja]
+## 実装ロードマップ — 整備の目安と確認の節目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/#atlas-queue-milestones
+Coverage: reading
+
+受入で見つかったコード・接続仕様・判定・説明の不具合を直し、新分野・重い新物理は増やさない。数値修正は新しい不変版と追試記録へ分け、旧成功は保持する。提供済みのキット/対応条件、エージェントで実証済みの課題、未検証の改修・未対応要求、残るP1と保留理由を翌年へ引き継ぐ。専門AIの学習・モデル研究は2027年以降とし、利用者側AIによる公開資産の利用と区別する。
+
+## 実装ロードマップ — 利用者のAIエージェントへ開発コードと検証一式を提供する [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 進行中・受入確認待ち
-共通22実行例と、分野別の補助配布版を別に扱い、公開状況・ケース数・検査件数は現在の公開配布台帳と日付付き追試記録で確認します。ローカルで数値検査・独立ZIP展開に合格した候補でも、公開URLの全ファイル照合と実際の新規Linux公開ZIP追試が揃うまでは公開確認待ちとします。年内は既存対象の独立参照、残差と解誤差、空間/時間/打切り収束、保存量と統計診断の読み分けを監査します。非線形反応拡散、MCMC、温度制御、CT/GLM、基盤手法、粒子・輸送の限定例を、分野全体の検証や重い新物理へ広げません。
+現在は仕様策定段階です。利用者の計算要求から、AIエージェントが機械可読manifestで対応方程式・手法・適用条件を調べ、アトラスの検証済みコード・設定・標準問題・参照解・テスト・引用を取得し、コードを組立/改修して実行し、結果と適用範囲を返す流れを作ります。最初の必達範囲は小さな1次元移流・拡散の2課題です。既存実装を調べて再利用範囲を決め、提供キットは新しい版として固定します。言語と依存は11月30日の棚卸しで決め、全言語の対応を約束しません。JSONの要求/台帳/結果と明記した配列・座標・時刻・境界・単位・節点値/セル平均の出力契約、取得と実行のCLI、誤差ノルム・格子/時間収束・適切な保存量を用意します。許可するパラメータ族と判定基準を先に固定し、その範囲の入力変更を扱う新しい開発用テストを作ります。旧固定recipeの拒否規則と不変版は保持します。提供コードの取得・改修・評価を別のAIエージェントが公開資料だけで実施し、妥当な変更と意図的な実装不具合をそれぞれ確認します。要求との不一致・精度不足・未収束を成功へ読み替えず、元コード/変更差分/参照/入力/基準の版とSHA、実行結果、失敗理由を別々に記録します。任意の新物理の自動生成や、アトラス側でAIをホスト/学習する機能の完成は年末条件にしません。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。 評価器・テスト・参照・入力・閾値を編集可能な計算コードと別に固定し、クリーンな評価環境で実際に引き渡す派生コードの入口を実行します。実行したソースのSHAを記録し、エージェントの自己申告や元実装の誤読込みを合格の根拠にしません。
+提供実装の候補と前提条件（既存台帳） · 標準問題・参照・実行入口（既存基盤）
+
+## 実装ロードマップ — 開発用テストの根拠・適用範囲を監査する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
+Coverage: reading
+
+進行中・受入確認待ち
+共通22実行例と、分野別の補助配布版を別に扱い、公開状況・ケース数・検査件数は現在の公開配布台帳と日付付き追試記録で確認します。ローカルで数値検査・独立ZIP展開に合格した候補でも、公開URLの全ファイル照合と実際の新規Linux公開ZIP追試が揃うまでは公開確認待ちとします。年内は既存対象の独立参照、残差と解誤差、空間/時間/打切り収束、保存量と統計診断の読み分けを監査します。非線形反応拡散、MCMC、温度制御、CT/GLM、基盤手法、粒子・輸送の限定例を、分野全体の検証や重い新物理へ広げません。 この監査を開発用キットの検証資産として利用し、提供コードを変更した後の新しい実行記録と旧成功記録を混同しません。
 分野ごとの根拠と未実装範囲 · 現在公開されている補助配布版と検査件数
 
-## 実装ロードマップ — 公開物だけで取得・実行・失敗判定・引用を確認する [ja]
+## 実装ロードマップ — 別のAIエージェントで取得・開発・実行・評価を実証する [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 進行中・受入確認待ち
-12月12日までの少数の初見受入では、日英各1文脈・計6目的の導線と、決定論/統計例を含む2つの公開配布版を既存の公開入力だけで新規環境から実行した結果を記録します。既存の粗い/混合不良対照を少なくとも2件使い、意図した失敗の検出と正しい近似を読み分けます。これは初見の利用・公開再現の確認で、未提示の科学入力による外挿検証ではありません。固定recipeの変更を正しく拒否する検査も入力検証として区別します。未提示の科学入力は条件付きP1の別事前登録・独立参照・新配布版としてのみ検討し、この締切の約束にしません。サイト名/URLなしの固定検索とURL提示後の利用は分け、検索掲載・全seed・将来の学習採用を保証しません。
+12月12日までに、公開URLと計算要求から始める別のAIエージェントの移流・拡散2課題を記録します。アトラスから提供コードと検証一式を取得し、許可した設定変更または実装改修を行い、標準問題を実行して利用者へコード・誤差・収束・判定・限界を返す流れが受入対象です。日英の要求文脈を各1つ用い、導線は計6目的も確認します。元の公開配布版を既存の公開入力だけで追試する基盤確認と、新しいキット上の派生コード検証を区別します。意図的な実装不具合と妥当な改修を対照にして、精度不足や失敗を見つけられるか確認します。新入力族・参照・基準は実行前に登録し、固定recipe変更の拒否検査だけで代用しません。これは少数課題の開発サイクル受入であり、任意の利用者要求・未提示の物理系・全AIエージェントの成功保証ではありません。量子の全走査は起動しません。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。
 AIの外部検索・取得・実行・引用の観測 / JSON
 
-## 実装ロードマップ — 固定候補の公開・再現・更新・復元を確認する [ja]
+## 実装ロードマップ — エージェント向け開発・検証キットの年末版を受け入れる [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 進行中・受入確認待ち
-12月18日に既存検証への追加を締め切り、配布版・台帳・参照・図・日英説明の候補をSHAで固定します。12月23日までに、公開全ファイルの照合、新規Linuxでの軽量補助ZIP追試、保存済みの詳細22例記録、索引・状態・引用・利用条件を照合し、別フォルダで通常のGit/Python/Nodeによる復元と再生成を確認します。未解決P0があれば完了とせず、12月31日までは修正と残る不足の記録を優先します。数値修正は既存不変版を書き換えず、新しい版と独立記録で示します。 Actionsの一時成果物やバッジだけに頼らず、コミット、台帳とZIPのSHA、実行環境、ケース数・pytest数、結果要約、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。
+12月18日に提供キット・機械可読仕様・既存検証の追加を締め切り、配布版・台帳・参照・基準・図・日英説明の候補をSHAで固定します。12月23日までに、新規のAIエージェント文脈から計算要求→アトラスのコード取得→改修→実行→標準問題による評価→コードと結果の引渡しを再確認します。元コードの合格・派生コードの合格・対照の失敗を分け、参照/基準の改変で合格させていないことを照合します。公開全ファイル、新規Linuxの軽量補助ZIP、保存済み詳細22例、索引・引用・利用条件を照合し、別フォルダで通常のGit/Python/Nodeによる復元と再生成を確認します。未解決P0があれば完了とせず、12月31日まで修正と残る不足の記録を優先します。数値修正は新しい版と独立記録にし、不変版を書き換えません。コミット、台帳とZIPと参照/基準のSHA、実行環境、ケース数・pytest数、結果要約、変更差分、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。 評価器・テスト・参照・入力・閾値を編集可能な計算コードと別に固定し、クリーンな評価環境で実際に引き渡す派生コードの入口を実行します。実行したソースのSHAを記録し、エージェントの自己申告や元実装の誤読込みを合格の根拠にしません。
 
 ## 実装ロードマップ — 監査で見つかった既存対象の不足だけを小さく補う [ja]
 
@@ -34280,7 +34536,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 条件付きの候補
-独立参照、保存則、適用範囲や公開状態の不整合を監査で見つけた場合だけ、既存対象の小さな固定入力と最小限の代表検査で補います。新分野・重い新物理・量子の大規模走査を追加する候補ではなく、年内の件数増加も目標にしません。12月18日以降は正しさに関わる不具合修正だけとし、未解決の不足は理由と範囲を残して翌年へ引き継ぎます。既存の不変配布版・成功記録・公差は書き換えません。 未提示の科学入力を扱う場合は任意のP1作業として別に事前登録し、独立参照を用意します。公開するなら12月18日までに新しい不変配布版と追試記録を整え、初見利用者の導線確認や入力拒否検査で代用しません。
+開発用キットの必達2課題とは別に、独立参照・保存則・適用範囲や公開状態の不整合が見つかった既存対象だけを、小さな入力と代表検査で補います。Sod等へのキット拡張は12月18日までに参照・入力族・基準を事前固定して独立追試までできる場合のP1候補とし、必達へ含めません。新分野・重い新物理・量子の大規模走査を追加せず、18日以降は正しさに関わる修正だけにします。未解決の不足は理由と範囲を残し、既存の不変配布版・成功記録・公差は保持します。
 既存分野の確認範囲と不足
 
 ## 実装ロードマップ — 固定Heセルの周期DFT・k点収束を実装・検証 [ja]
@@ -34404,7 +34660,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 2027年以降
-2027年以降の目標。資料検索と計算実行を結ぶ試作、検証済み学習事例、未学習問題での評価を検討。独立した基盤モデルの完成を約束する項目ではない。
+2027年以降は、アトラスに特化したモデルの追加学習、学習用事例の構築、未学習課題での評価などを研究候補とします。利用者側の既存AIエージェントが公開コード・テストを利用して開発する年内の試作とは別の項目です。独立した基盤モデルの完成を約束しません。
 
 ## 実装ロードマップ — これまでの整備・分野別の検証候補 [ja]
 
@@ -34974,7 +35230,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め92章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め93章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -35069,7 +35325,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は114、文献解説のみは17です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は116、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -35771,7 +36027,7 @@ IMEX Eulerは一方を陽的、他方を陰的に評価します。この最小�
 硬いテストy′=−1000(y−cos t)−sin tは、y(0)=1のとき厳密解cos tを持ちます。計算記録は、実際の積分節点での最大誤差と適応ステップ数を残します。別のテストで、非線形・非自律ODEの次数と、硬い減衰モードの強い減衰を確認します。
 外力付きの硬い問題の粗い刻み列は、一様な2次収束の範囲にはありません。BDF2の開始処理と硬い系の次数低下が、節点全体の最大誤差へ影響します。形式的な時間次数は、非線形・非硬性の次数テストで別に確認します。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
-作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
 ## シンプレクティック積分：正準写像とエネルギーを分ける [ja]
@@ -35860,7 +36116,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/#c
 Coverage: reading
 
 固定刻みと、整合した位置依存ポテンシャルの勾配である力が分割合成の議論を支えます。一般の近似ツリー力、変化する開口判定、場当たり的な格子補間、状態依存の刻み選択が、その証明を自動的に保つわけではありません。力近似と時間積分を合同で検査する必要があります。粒子重力とPoisson解法、重力境界核へ進んでください。
-作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
 ## 教科書案内：次に何を調べるか [ja]
@@ -36625,7 +36881,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integrat
 Coverage: reading
 
 シンプレクティック積分の章では、調和・4次Hamilton系に対して、力学的なkick–drift–kick Verlet、吉田の4次合成、シンプレクティックEuler、陰的中点則を実装します。写像ノートではRK4と比較し、正準構造と厳密なエネルギー保存を分けます。
-作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
 ## 非線形反応拡散・パターン形成の独立検証 — 非線形反応拡散・パターン形成の独立検証 [ja]
@@ -46547,6 +46803,142 @@ K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable 
 NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
 確認範囲 / review_level: official-documentation
 一般化指数積分の積分表示を公式資料で確認。年は確認年。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/
+Coverage: reading
+
+短い時間区間の非線形Schnakenberg反応拡散を、同じ初期場・格子・部分ソルバー・出力時刻で比較します。時間の収束と数値参照の感度を調べる軽量な追加例です。既存の空間収束・長時間パターンの記録は保持します。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#run-all
+Coverage: reading
+
+ZIPの atlas-splitting-2026-11-22 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 同じ非線形反応拡散でLie–TrotterとStrangを比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/
+Coverage: reading
+
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+入力・検証手順の履歴 · 初回の入力
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-assumptions
+Coverage: reading
+
+無次元の1D周期区間[0,2π)、N=32、a=.1,b=.9、D=(.01,1)。u₀=1+.08cos2x+.01cos4x、v₀=.9−.03cos2x−.002cos4xは既存の有限振幅例と同じ初期場です。今回の終時刻はT=1、ステップ数16/32/64/128、共通出力時刻0/.25/.5/.75/1。反射対称・π周期の限定入力です。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-algorithm
+Coverage: reading
+
+Lie–Trotterは拡散h→反応h、Strangは拡散h/2→反応h→拡散h/2。どちらも更新後の状態を次へ渡します。拡散は2次中心FD行列の指数をFFTで厳密適用、反応は同じ陰的中点則・Newton公差2e−13・上限12評価を使用。反応流は厳密解ではなく2次近似です。クリッピング・自動刻み変更・代替解法への切替を行わず、未収束は失敗にします。
+u_t=0.01u_{xx}+0.1-u+u^2v,\qquad v_t=v_{xx}+0.9-u^2v\lambda_{h,k}=-\frac{4}{\Delta x^2}\sin^2\!\left(\frac{\pi k}{N}\right),\quad L_h=\Psi_R^h\circ e^{hD L_{\rm FD}},\quad S_h=e^{hD L_{\rm FD}/2}\circ\Psi_R^h\circ e^{hD L_{\rm FD}/2}\Psi_R^h(y)=y+hR\!\left(\frac{y+\Psi_R^h(y)}2\right),\quad \langle u+v\rangle_{n+1}-\langle u+v\rangle_n=h(0.1+0.9-\langle u_{\rm mid}\rangle)E_2(h)=\max_{t\in\{.25,.5,.75,1\}}\max_{s\in\{u,v\}}\sqrt{\frac1N\sum_j(e_{s,j}(t))^2},\quad p_{\rm obs}=\log_2\frac{E_2(h)}{E_2(h/2)}
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-validation
+Coverage: reading
+
+参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-limits
+Coverage: reading
+
+固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+grid32
+final_time1
+lie_finest_l20.000480486140193
+strang_finest_l23.5542311917e-06
+lie_last_observed_order1.00293657409
+strang_last_observed_order1.99910381738
+reference_tolerance_linf1.98463467882e-12
+reference_algorithm_linf2.20547136109e-10
+reference_to_strang_error_ratio6.20519949924e-05
+newton_sensitivity_linf0
+reverse_order_l2_difference0.00763741906895
+minimum_concentration0.849085383982
+maximum_reaction_balance_error1.59421087442e-15
+判定 / check合格
+lie_error_decreasestrue
+strang_error_decreasestrue
+lie_first_ordertrue
+strang_second_ordertrue
+lie_finest_errortrue
+strang_finest_errortrue
+strang_improves_this_inputtrue
+reference_tolerancetrue
+reference_independent_time_algorithmtrue
+reference_error_separatedtrue
+newton_error_separatedtrue
+reaction_convergedtrue
+reaction_source_balancetrue
+positive_on_tested_substepstrue
+noncommuting_order_controltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+methodstepsdtmax_l1max_l2max_linfminimum_concentrationmaximum_midpoint_residualmaximum_reaction_balance_errorreaction_callsdiffusion_callsnewton_updatesobserved_order_l2
+lie-trotter160.06250.003499916184510.003887558932360.006619682504970.8490853839827.9283801746e-143.05311331772e-16161632—
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+lie-trotter320.031250.001739157044540.001932908057110.003283460267040.852421606226.52256026967e-165.82867087928e-163232641.00809153122
+lie-trotter640.0156250.0008661931904510.000962930310460.001632604082330.8540724624041.17961196366e-168.91647866652e-1664641281.0052697186
+lie-trotter1280.00781250.0004321646688920.0004804861401930.0008137250920060.8548913413951.11022302463e-161.59421087442e-151281282561.00293657409
+strang160.06250.0001852288264590.0002246047728650.0004947001675460.8495010294667.65221219723e-147.35522753814e-16163232—
+strang320.031254.67137793687e-055.66923836796e-050.0001253503407080.8526281296666.48786580015e-167.70217223334e-163264641.98616175053
+strang640.0156251.17044319182e-051.42080961481e-053.14480167942e-050.8541751345951.14491749414e-161.09634523682e-15641281281.99644168003
+strang1280.00781252.92774102212e-063.5542311917e-067.86900806959e-060.8549424999871.11022302463e-161.1483869411e-151282562561.99910381738
+独立参照の記録を表で読む
+methodrtolatolnfevnjevnluterminationdifference_from_primary_linf
+Radau2e-112e-13876226reached_fixed_final_time0
+Radau2e-132e-152724228reached_fixed_final_time1.98463467882e-12
+DOP8532e-122e-1428100reached_fixed_final_time2.20547136109e-10
+この例の実測値・全記録 / JSON
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+H. F. Trotter (1959). On the product of semi-groups of operators · DOI: 10.1090/S0002-9939-1959-0108732-6
+確認範囲 / review_level: metadata
+AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+確認範囲 / review_level: metadata
+今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+確認範囲 / review_level: full-text
+著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+確認範囲 / review_level: official-bibliography-and-publisher-indexed-abstract
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference
+確認範囲 / review_level: official-versioned-documentation-selected-methods-and-tolerances
+SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。
 
 ## CSVRとLangevin：分布・揺らぎ・相関 — CSVRとLangevin：分布・揺らぎ・相関 [ja]
 

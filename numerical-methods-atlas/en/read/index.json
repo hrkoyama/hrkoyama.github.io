@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "0c1af6c88e9eb60550b41570beb716c1cbfab468aa078b1e3e09c20a5be1ae37",
-  "chapter_count": 92,
+  "source_sha256": "f52dd7dc0daedd99064117ac8ecbfa7058b861c151633c5088d09013e16baec3",
+  "chapter_count": 93,
   "groups": [
     {
       "id": "foundations-time",
@@ -77,6 +77,17 @@
             "en"
           ],
           "search_text": "operator-splitting 作用素分割：Lie–Trotter と Strang の比較 Operator splitting: Lie–Trotter and Strang 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "validation-splitting",
+          "title": "Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem",
+          "url": "/numerical-methods-atlas/en/read/validation-splitting/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-splitting 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem 基礎・誤差・時間積分 Foundations, error and time integration"
         },
         {
           "id": "symplectic",

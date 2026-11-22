@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "splitting",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+  "archive": {
+    "file": "atlas-splitting-2026-11-22.zip",
+    "sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "bytes": 284961,
+    "archive_directory": "atlas-splitting-2026-11-22"
+  },
+  "archive_sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+  "returncode": 0,
+  "passed_tests": 16,
+  "tests": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "reaction-diffusion-splitting"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.5695776669999759,
+  "independent_rerun_seconds": 0.38964129199666786,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

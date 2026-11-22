@@ -26,12 +26,12 @@ test('four conditioning examples extend their own methods while retaining the or
   for(const lang of ['ja','en'])assert.ok(entry.assumptions[lang]&&entry.validation[lang]&&entry.limits[lang]);
  }
  assert.equal(methods.length,147);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':114,'reading-only':17,'planned':16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':116,'reading-only':15,'planned':16});
 });
 
 test('algebraic AMG controls borrow no Poisson validation and the remaining refinements add no problem families',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,39);assert.equal(index.groups.length,10);
+ assert.equal(index.case_count,40);assert.equal(index.groups.length,11);
  assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(problems.length,83);

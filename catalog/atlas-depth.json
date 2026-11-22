@@ -204,8 +204,8 @@
         "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error."
       },
       "refinement": {
-        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。",
-        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns."
+        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。 追加の短時間例では同じ32格子・部分ソルバーでLie–TrotterとStrangの時間収束を比較し、Radau公差とDOP853の参照差を別に測ります。",
+        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences."
       },
       "next": {
         "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIR・完全HH、実験データへの較正と移流・流体連成は未検証です。",
@@ -216,7 +216,8 @@
         "turing-schnakenberg",
         "fitzhugh-nagumo",
         "schnakenberg-nonlinear",
-        "schnakenberg-pattern"
+        "schnakenberg-pattern",
+        "reaction-diffusion-splitting"
       ],
       "schnakenberg_scope": {
         "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",

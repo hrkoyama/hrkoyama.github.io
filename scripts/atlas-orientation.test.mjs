@@ -62,7 +62,7 @@ function formatCopy(value) {
 test('orientation and sharing retain scientific counts and the already-verified execution registry', () => {
   assert.equal(methods.length, 147);
   assert.deepEqual(Object.fromEntries(['educational-example', 'reading-only', 'planned'].map(status => [status, methods.filter(method => method.status === status).length])),
-    {'educational-example': 114, 'reading-only': 17, planned: 16});
+    {'educational-example': 116, 'reading-only': 15, planned: 16});
   assert.equal(json('catalog/atlas-equations.json').equations.length, 46);
   assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 83);
   assert.equal(examples.examples.length, 22);
@@ -162,7 +162,7 @@ test('sharing provides real 1200 by 630 PNG/SVG artwork and matching localized s
   const catalog = json('catalog/atlas-sharing.json');
   const published = json(shareBase + 'sharing.json');
   const build = json(shareBase + 'build.json');
-  const expectedCounts = {...coverage.counts, method_records: 147, educational_examples: 114, reading_only: 17, planned: 16, execution_examples: 22};
+  const expectedCounts = {...coverage.counts, method_records: 147, educational_examples: 116, reading_only: 15, planned: 16, execution_examples: 22};
   for (const [key, value] of Object.entries(expectedCounts)) assert.equal(published.counts[key], value, key);
   assert.deepEqual(published.sources, build.sources);
   for (const [path, sha256] of Object.entries(build.sources)) assert.equal(digest(path), sha256, path);

@@ -6,6 +6,10 @@ Operator splitting: Lie–Trotter and Strang
 Operator splitting advances separate parts of an evolution equation and composes their solution maps. Lie–Trotter uses two full substeps; Strang surrounds one full substep with two half substeps. Even exact subproblem solutions leave a composition error when their order matters.
 
 
+Run both on the same reaction–diffusion input: a 32-point, T=1 Schnakenberg system with matched initial fields, subsolvers and observation times. Four step sizes measure first-order Lie–Trotter and second-order Strang. Unsplit Radau/DOP853 references use the same FD semidiscretization; this is separate from spatial convergence and exact continuum solutions.
+
+[Fixed input, results, code and the 16-test rerun receipt](/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en)
+
 Split the evolution, define one time step
 
 
@@ -141,7 +145,7 @@ IMEX also separates parts of the right-hand side, but [IMEX time integration](/n
 Lightweight reproduction and publication scope
 
 
-Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. Both method entries are labeled reading only / no dedicated implementation.
+Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. The oscillator script remains a reading illustration. A separate dedicated lightweight reaction–diffusion release now executes both methods; their educational-code status is limited to that fixed input.
 
 
 [Illustration reproduction script](/scripts/verify-operator-splitting.py) · [Fixed input and saved values / JSON](/numerical-methods-atlas/assets/operator-splitting.json)
@@ -154,9 +158,23 @@ python3 verify-operator-splitting.py
 python3 verify-operator-splitting.py --check operator-splitting.json
 ```
 
+## Fixed-input examples and diagnostic controls
+
+Distinguish the scope established by acceptance checks from a general mathematical guarantee; preserve historical inputs, measurements and criteria.
+
+### Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input
+
+Fixed-target computation
+
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+
+This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope.
+
+[Input, results and acceptance](/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en) · [Method and sources](/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting) · [Code run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py) · [Code splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py) · [Code reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py) · [Tests test_splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py) · [ZIP](/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip) · [Results](/code/validated-examples/2026-11-22/splitting/results/result.json) · [Rerun receipt](/code/validated-examples/2026-11-22/splitting/verification.json)
+
 ## Publication scope
 
-Reading, equations and a reproducible fixed two-component illustration are published. No general splitting-solver release or common execution-registry entry is added. Existing statuses, distributions, tolerances and verification history are preserved.
+The two-component oscillator illustration is retained, with a new dedicated lightweight release comparing both methods on the same Schnakenberg reaction–diffusion input. The educational implementation is checked only for the 32-point, T=1 fixed case. Existing physical-problem counts, the common 22 examples, old releases, criteria and history are retained.
 
 ## Sources
 

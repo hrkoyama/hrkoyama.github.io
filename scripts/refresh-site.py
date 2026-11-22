@@ -43,8 +43,8 @@ for command in [
     # Index the final home/explore counts and roadmap prose. The later purpose
     # pass also versions the search module's parents after its content changes.
     [sys.executable, 'scripts/build-atlas-purpose.py'],
-    [sys.executable, 'scripts/build-atlas-search.py'],
     [sys.executable, 'scripts/build-atlas-sharing.py'],
+    [sys.executable, 'scripts/build-atlas-search.py'],
     [sys.executable, 'scripts/build-atlas-purpose.py'],
     ['node', 'scripts/build-site-chrome.mjs'],
     [sys.executable, 'scripts/build-sitemap.py'],

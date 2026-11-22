@@ -204,8 +204,8 @@
         "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error."
       },
       "refinement": {
-        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。",
-        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns."
+        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。 追加の短時間例では同じ32格子・部分ソルバーでLie–TrotterとStrangの時間収束を比較し、Radau公差とDOP853の参照差を別に測ります。",
+        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences."
       },
       "next": {
         "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIR・完全HH、実験データへの較正と移流・流体連成は未検証です。",
@@ -216,7 +216,8 @@
         "turing-schnakenberg",
         "fitzhugh-nagumo",
         "schnakenberg-nonlinear",
-        "schnakenberg-pattern"
+        "schnakenberg-pattern",
+        "reaction-diffusion-splitting"
       ],
       "schnakenberg_scope": {
         "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
@@ -440,10 +441,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "086132547c32fdfd007da76f216c8bb8de535bf00037ff474a46f0106f339696",
+    "catalog/atlas-depth.json": "aa4e7f48d90881012bf18021092ae4c67f3178c826b56792cf9dc04757f08b92",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
+    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -464,6 +465,11 @@
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
     "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
     "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
     "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",

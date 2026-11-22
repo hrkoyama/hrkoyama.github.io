@@ -267,7 +267,7 @@
     "passed_tests": 26
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
+    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -317,7 +317,12 @@
     "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
     "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
     "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
-    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9"
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404"
   },
   "scope": {
     "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",

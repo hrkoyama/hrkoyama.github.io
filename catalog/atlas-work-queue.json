@@ -1,19 +1,50 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "title": {
     "ja": "数値計算法アトラス：現行の整備計画",
     "en": "Numerical Methods Atlas: current development plan"
   },
   "description": {
-    "ja": "公開済みの限定例を、初めて使う人にも条件・参照・入力・コード・結果・引用まで辿れる年末版へ整えます。件数を増やす段階から、公開配布の再現、根拠と状態の整合、更新・復元の確認へ重点を移します。",
-    "en": "Prepare a year-end edition whose scoped public examples let unfamiliar users follow conditions, references, inputs, code, results and citation. Shift emphasis from adding entries to public-release reproduction, consistent evidence/status and checked maintenance/restoration."
+    "ja": "利用者のAIエージェントが、要求に合う実装・前提条件・標準問題・参照解をアトラスから取得し、コードの組立・改修・実行・精度検証を進められる開発基盤を目指します。年末は既存分野の少数の課題で、この開発サイクルを最初から最後まで実証します。公開再現・保守・復元はそれを支える基盤として整えます。",
+    "en": "Build a development foundation that lets a user’s AI agent obtain implementations, assumptions, benchmark problems and references from the Atlas, then assemble, modify, run and verify code for the requested calculation. Demonstrate this complete development cycle on a few existing-field tasks by year end. Public reproduction, maintenance and restoration support that goal."
   },
   "policy": {
-    "ja": "2026年11月22日から、新分野の追加を年内の標準計画に含めず、既存対象の公開品質と限定した検証の不足を優先します。12月18日は既存検証への追加を締め切る年末版候補の固定日です。固定入力・独立参照または解析解・残差・収束・保存量・統計誤差・終了理由を区別し、公開コードや検査件数を分野全体の検証へ読み替えません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力を基本とし、大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。既存の入力・公差・成功記録を保持し、専門AI・モデル研究は2027年以降とします。 新たな数値解法コードの自動生成や学習モデル、重い新物理の拡張は、翌年以降の別計画で検討します。",
-    "en": "From 22 November 2026, new fields are outside the standard year-end plan; prioritize publication quality and bounded validation gaps for existing targets. 18 December freezes additions to existing validation for the year-end release candidate. Distinguish fixed inputs, independent/analytic references, residuals, refinement, invariants, statistical error and termination reasons; neither published code nor test counts validate a whole field. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Preserve historical inputs, criteria and successful records; specialist-AI/model research remains deferred until 2027 or later. New numerical-solver code-generation or learning models and costly new-physics expansions belong to a separate plan from the following year onward."
+    "ja": "年末の中心成果は、利用者側のAIエージェントが公開資料と機械可読台帳を使い、アトラスの検証済み実装から開発を始め、改修後のコードをアトラスの標準問題で評価して利用者へ渡せる試作版です。最初は1次元移流・拡散に範囲を固定し、要求・適用条件・取得先・依存・実行手順・出力契約・参照・判定基準・失敗理由・引用を日英で揃えます。元実装の合格と派生コードの今回の合格を別の記録にします。2026年11月22日から、新分野の追加を年内の標準計画に含めず、12月18日に提供キット・接続仕様と既存検証の追加を締め切ります。参照・入力群・公差を事前固定し、エージェントが合格基準を変更して成功とすることを認めません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力が基本です。大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。利用者側の既存AIエージェントによる開発支援は年内対象で、専門AIの学習・モデル研究は2027年以降です。",
+    "en": "The central year-end deliverable is a prototype in which a user’s AI agent uses public resources and machine-readable manifests to start from Atlas verified implementations, develop the requested code, assess it with Atlas benchmarks and return it to the user. Start with bounded 1D advection and diffusion. Provide bilingual requirements, applicability, retrieval, dependencies, execution, output contracts, references, criteria, failure reasons and citation. Keep original-implementation passes separate from this run’s derived-code receipts. From 22 November 2026, new fields are outside the standard year-end plan. 18 December freezes kit/interface additions and additions to existing validation. Fix reference data, input families and tolerances in advance; agents cannot redefine passing criteria. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Development support through users’ existing AI agents is in scope this year; specialist-AI training/model research remains for 2027 or later."
   },
   "items": [
+    {
+      "id": "validated-code-kits",
+      "target_year": 2026,
+      "state": "in-progress",
+      "track": "current",
+      "priority": "P0",
+      "title": {
+        "ja": "利用者のAIエージェントへ開発コードと検証一式を提供する",
+        "en": "Provide development code and verification kits for users’ AI agents"
+      },
+      "scope": {
+        "ja": "現在は仕様策定段階です。利用者の計算要求から、AIエージェントが機械可読manifestで対応方程式・手法・適用条件を調べ、アトラスの検証済みコード・設定・標準問題・参照解・テスト・引用を取得し、コードを組立/改修して実行し、結果と適用範囲を返す流れを作ります。最初の必達範囲は小さな1次元移流・拡散の2課題です。既存実装を調べて再利用範囲を決め、提供キットは新しい版として固定します。言語と依存は11月30日の棚卸しで決め、全言語の対応を約束しません。JSONの要求/台帳/結果と明記した配列・座標・時刻・境界・単位・節点値/セル平均の出力契約、取得と実行のCLI、誤差ノルム・格子/時間収束・適切な保存量を用意します。許可するパラメータ族と判定基準を先に固定し、その範囲の入力変更を扱う新しい開発用テストを作ります。旧固定recipeの拒否規則と不変版は保持します。提供コードの取得・改修・評価を別のAIエージェントが公開資料だけで実施し、妥当な変更と意図的な実装不具合をそれぞれ確認します。要求との不一致・精度不足・未収束を成功へ読み替えず、元コード/変更差分/参照/入力/基準の版とSHA、実行結果、失敗理由を別々に記録します。任意の新物理の自動生成や、アトラス側でAIをホスト/学習する機能の完成は年末条件にしません。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。 評価器・テスト・参照・入力・閾値を編集可能な計算コードと別に固定し、クリーンな評価環境で実際に引き渡す派生コードの入口を実行します。実行したソースのSHAを記録し、エージェントの自己申告や元実装の誤読込みを合格の根拠にしません。",
+        "en": "Currently at specification stage. Build a flow in which a user’s AI agent maps the calculation request to equations, methods and applicability through a machine-readable manifest, retrieves Atlas verified code, configuration, benchmarks, references, tests and citation, assembles/modifies and runs the code, then returns results and scope. The required first scope is two small 1D advection and diffusion tasks. Audit existing implementations for reuse and freeze provided kits as new editions. Choose language/dependencies during the 30 November inventory; do not promise every language. Define JSON request/catalog/result data, explicit array/coordinate/time/boundary/unit/nodal-versus-cell-average output contracts, retrieval/execution CLI steps, error norms, separate grid/time refinement and appropriate invariants. Fix supported parameter families and criteria before running new development tests that accept changes within those families. Preserve old fixed-recipe rejection rules and immutable releases. A separate AI agent must obtain, modify and assess the provided code using public materials only, checking both a valid modification and an intentional implementation bug. Do not turn requirement mismatches, inaccuracy or nonconvergence into success. Record original code, modification diff, reference/input/criteria versions and hashes, actual results and failure reasons separately. Arbitrary new-physics generation and Atlas-hosted or trained AI are not year-end requirements. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions. Pin the evaluator, tests, references, inputs and thresholds separately from editable solver code. A clean evaluation environment executes the actual delivered derived-code entrypoint and records the executed source SHA; agent self-reported passes or accidental imports of the original implementation are not evidence."
+      },
+      "links": [
+        {
+          "url": "/numerical-methods-atlas/methods/?lang={lang}",
+          "label": {
+            "ja": "提供実装の候補と前提条件（既存台帳）",
+            "en": "Candidate implementations and assumptions (existing registry)"
+          }
+        },
+        {
+          "url": "/numerical-methods-atlas/test-cases/?lang={lang}",
+          "label": {
+            "ja": "標準問題・参照・実行入口（既存基盤）",
+            "en": "Benchmarks, references and run entries (existing foundation)"
+          }
+        }
+      ]
+    },
     {
       "id": "field-validation-depth",
       "target_year": 2026,
@@ -21,12 +52,12 @@
       "track": "current",
       "priority": "P0",
       "title": {
-        "ja": "既存分野の限定検証を公開・再現・保守できる形へ",
-        "en": "Make scoped validation in existing fields publishable, reproducible and maintainable"
+        "ja": "開発用テストの根拠・適用範囲を監査する",
+        "en": "Audit references and applicability for development tests"
       },
       "scope": {
-        "ja": "共通22実行例と、分野別の補助配布版を別に扱い、公開状況・ケース数・検査件数は現在の公開配布台帳と日付付き追試記録で確認します。ローカルで数値検査・独立ZIP展開に合格した候補でも、公開URLの全ファイル照合と実際の新規Linux公開ZIP追試が揃うまでは公開確認待ちとします。年内は既存対象の独立参照、残差と解誤差、空間/時間/打切り収束、保存量と統計診断の読み分けを監査します。非線形反応拡散、MCMC、温度制御、CT/GLM、基盤手法、粒子・輸送の限定例を、分野全体の検証や重い新物理へ広げません。",
-        "en": "Keep the shared 22 execution examples separate from field-specific supplements; consult the current public release registry and dated rerun receipts for publication status, case counts and test counts. A candidate that passes local numerical checks and independent ZIP extraction remains pending publication until every public file matches and an actual fresh-Linux public-ZIP rerun succeeds. Year-end work audits independent references, residual versus solution error, space/time/truncation refinement, invariants and statistical diagnostics for existing targets. Scoped nonlinear reaction–diffusion, MCMC, thermostat, CT/GLM, foundations and particle/transport examples do not validate entire fields or justify costly new physics."
+        "ja": "共通22実行例と、分野別の補助配布版を別に扱い、公開状況・ケース数・検査件数は現在の公開配布台帳と日付付き追試記録で確認します。ローカルで数値検査・独立ZIP展開に合格した候補でも、公開URLの全ファイル照合と実際の新規Linux公開ZIP追試が揃うまでは公開確認待ちとします。年内は既存対象の独立参照、残差と解誤差、空間/時間/打切り収束、保存量と統計診断の読み分けを監査します。非線形反応拡散、MCMC、温度制御、CT/GLM、基盤手法、粒子・輸送の限定例を、分野全体の検証や重い新物理へ広げません。 この監査を開発用キットの検証資産として利用し、提供コードを変更した後の新しい実行記録と旧成功記録を混同しません。",
+        "en": "Keep the shared 22 execution examples separate from field-specific supplements; consult the current public release registry and dated rerun receipts for publication status, case counts and test counts. A candidate that passes local numerical checks and independent ZIP extraction remains pending publication until every public file matches and an actual fresh-Linux public-ZIP rerun succeeds. Year-end work audits independent references, residual versus solution error, space/time/truncation refinement, invariants and statistical diagnostics for existing targets. Scoped nonlinear reaction–diffusion, MCMC, thermostat, CT/GLM, foundations and particle/transport examples do not validate entire fields or justify costly new physics. Use this audit as evidence for development-kit tests; keep fresh runs of modified provided code distinct from historical passes."
       },
       "links": [
         {
@@ -371,12 +402,12 @@
       "state": "in-progress",
       "track": "current",
       "title": {
-        "ja": "公開物だけで取得・実行・失敗判定・引用を確認する",
-        "en": "Check public-only acquisition, execution, failure interpretation and citation"
+        "ja": "別のAIエージェントで取得・開発・実行・評価を実証する",
+        "en": "Demonstrate retrieval, development, execution and assessment by a separate AI agent"
       },
       "scope": {
-        "ja": "12月12日までの少数の初見受入では、日英各1文脈・計6目的の導線と、決定論/統計例を含む2つの公開配布版を既存の公開入力だけで新規環境から実行した結果を記録します。既存の粗い/混合不良対照を少なくとも2件使い、意図した失敗の検出と正しい近似を読み分けます。これは初見の利用・公開再現の確認で、未提示の科学入力による外挿検証ではありません。固定recipeの変更を正しく拒否する検査も入力検証として区別します。未提示の科学入力は条件付きP1の別事前登録・独立参照・新配布版としてのみ検討し、この締切の約束にしません。サイト名/URLなしの固定検索とURL提示後の利用は分け、検索掲載・全seed・将来の学習採用を保証しません。",
-        "en": "By 12 December, a small unfamiliar-user acceptance exercise records six goal paths in one Japanese and one English context and fresh-environment execution of two public distributions spanning deterministic/statistical examples, using existing public inputs only. Use at least two existing coarse/poor-mixing controls to distinguish detected inaccuracy from correct approximation. This checks unfamiliar use and public reproduction; it is not held-out scientific validation. Correct rejection of a changed fixed recipe is a separate input-validation check. Unseen scientific inputs are considered only as conditional P1 with separate preregistration, independent references and a new release, not a commitment for this deadline. Separate fixed unbranded searches from URL-assisted use; do not guarantee search inclusion, all seeds or future model-training adoption."
+        "ja": "12月12日までに、公開URLと計算要求から始める別のAIエージェントの移流・拡散2課題を記録します。アトラスから提供コードと検証一式を取得し、許可した設定変更または実装改修を行い、標準問題を実行して利用者へコード・誤差・収束・判定・限界を返す流れが受入対象です。日英の要求文脈を各1つ用い、導線は計6目的も確認します。元の公開配布版を既存の公開入力だけで追試する基盤確認と、新しいキット上の派生コード検証を区別します。意図的な実装不具合と妥当な改修を対照にして、精度不足や失敗を見つけられるか確認します。新入力族・参照・基準は実行前に登録し、固定recipe変更の拒否検査だけで代用しません。これは少数課題の開発サイクル受入であり、任意の利用者要求・未提示の物理系・全AIエージェントの成功保証ではありません。量子の全走査は起動しません。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。",
+        "en": "By 12 December, record two advection/diffusion tasks performed by a separate AI agent starting from the public URL and calculation requests. Acceptance covers retrieving Atlas provided code and verification assets, making a supported setting change or implementation modification, running the benchmarks and returning code, errors, convergence, decisions and limits to the user. Use one Japanese and one English request context and also check six goal paths. Separate foundational reruns of original public distributions with existing public inputs only from new derived-code assessment in development kits. Use an intentional implementation bug and a valid modification as controls for detecting inaccuracy and failure. Register new input families, references and criteria before execution; fixed-recipe rejection checks are insufficient. This is acceptance of a small-task development cycle, not a guarantee for arbitrary requests, unseen physical systems or every AI agent. Do not launch full quantum sweeps. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions."
       },
       "priority": "P0",
       "progress": {
@@ -399,12 +430,12 @@
       "state": "in-progress",
       "track": "current",
       "title": {
-        "ja": "固定候補の公開・再現・更新・復元を確認する",
-        "en": "Check publication, reproduction, maintenance and restoration of the frozen candidate"
+        "ja": "エージェント向け開発・検証キットの年末版を受け入れる",
+        "en": "Accept the year-end agent-facing development and verification kits"
       },
       "scope": {
-        "ja": "12月18日に既存検証への追加を締め切り、配布版・台帳・参照・図・日英説明の候補をSHAで固定します。12月23日までに、公開全ファイルの照合、新規Linuxでの軽量補助ZIP追試、保存済みの詳細22例記録、索引・状態・引用・利用条件を照合し、別フォルダで通常のGit/Python/Nodeによる復元と再生成を確認します。未解決P0があれば完了とせず、12月31日までは修正と残る不足の記録を優先します。数値修正は既存不変版を書き換えず、新しい版と独立記録で示します。 Actionsの一時成果物やバッジだけに頼らず、コミット、台帳とZIPのSHA、実行環境、ケース数・pytest数、結果要約、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。",
-        "en": "Freeze additions to existing validation on 18 December and pin candidate distributions, registries, references, figures and bilingual explanations by hash. By 23 December, reconcile every public file, fresh-Linux lightweight supplement ZIP runs, saved detailed-22 receipts, indexes, status, citation and terms; check ordinary Git/Python/Node restoration and regeneration in another directory. Do not mark complete with unresolved P0 issues. Through 31 December, prioritize corrections and recorded gaps. Numerical corrections receive a new release and independent receipt instead of rewriting immutable history. Beyond temporary Actions artifacts or badges, retain the commit, registry/archive hashes, environment, case/pytest counts, result summary and CI run URL in persistent versioned public verification evidence."
+        "ja": "12月18日に提供キット・機械可読仕様・既存検証の追加を締め切り、配布版・台帳・参照・基準・図・日英説明の候補をSHAで固定します。12月23日までに、新規のAIエージェント文脈から計算要求→アトラスのコード取得→改修→実行→標準問題による評価→コードと結果の引渡しを再確認します。元コードの合格・派生コードの合格・対照の失敗を分け、参照/基準の改変で合格させていないことを照合します。公開全ファイル、新規Linuxの軽量補助ZIP、保存済み詳細22例、索引・引用・利用条件を照合し、別フォルダで通常のGit/Python/Nodeによる復元と再生成を確認します。未解決P0があれば完了とせず、12月31日まで修正と残る不足の記録を優先します。数値修正は新しい版と独立記録にし、不変版を書き換えません。コミット、台帳とZIPと参照/基準のSHA、実行環境、ケース数・pytest数、結果要約、変更差分、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。 評価器・テスト・参照・入力・閾値を編集可能な計算コードと別に固定し、クリーンな評価環境で実際に引き渡す派生コードの入口を実行します。実行したソースのSHAを記録し、エージェントの自己申告や元実装の誤読込みを合格の根拠にしません。",
+        "en": "Freeze kit/interface additions and additions to existing validation on 18 December; pin candidate releases, manifests, references, criteria, figures and bilingual guidance by hash. By 23 December, repeat request → Atlas code retrieval → modification → execution → benchmark assessment → code/result delivery in fresh AI-agent contexts. Separate original-code passes, derived-code passes and failed controls; check that reference/criteria changes did not manufacture success. Reconcile all public files, fresh-Linux lightweight supplement ZIP runs, saved detailed-22 receipts, indexes, citation and terms; check ordinary Git/Python/Node restoration and regeneration in another directory. Do not mark complete with unresolved P0 issues. Through 31 December prioritize corrections and recorded gaps. Numerical corrections receive a new release and independent receipt instead of rewriting immutable versions. Retain commit, registry/archive/reference/criteria hashes, environment, case/pytest counts, result summary, modification diff and CI run URL in persistent versioned public verification evidence. Pin the evaluator, tests, references, inputs and thresholds separately from editable solver code. A clean evaluation environment executes the actual delivered derived-code entrypoint and records the executed source SHA; agent self-reported passes or accidental imports of the original implementation are not evidence."
       },
       "priority": "P0"
     },
@@ -419,8 +450,8 @@
         "en": "Close only bounded gaps found by auditing existing targets"
       },
       "scope": {
-        "ja": "独立参照、保存則、適用範囲や公開状態の不整合を監査で見つけた場合だけ、既存対象の小さな固定入力と最小限の代表検査で補います。新分野・重い新物理・量子の大規模走査を追加する候補ではなく、年内の件数増加も目標にしません。12月18日以降は正しさに関わる不具合修正だけとし、未解決の不足は理由と範囲を残して翌年へ引き継ぎます。既存の不変配布版・成功記録・公差は書き換えません。 未提示の科学入力を扱う場合は任意のP1作業として別に事前登録し、独立参照を用意します。公開するなら12月18日までに新しい不変配布版と追試記録を整え、初見利用者の導線確認や入力拒否検査で代用しません。",
-        "en": "Only when an audit finds an inconsistency in independent references, invariants, applicability or publication status, close the gap for an existing target with small fixed inputs and minimal representative checks. This is not a candidate for new fields, costly new physics or large quantum sweeps, and increasing year-end counts is not a goal. After 18 December allow only correctness-related fixes; carry unresolved gaps forward with reasons and scope. Do not rewrite immutable releases, successful records or tolerances. Unseen scientific inputs are optional P1 work requiring separate preregistration and independent references. If published, provide a new immutable release and rerun receipt by 18 December; unfamiliar-user navigation and input-rejection checks are not substitutes."
+        "ja": "開発用キットの必達2課題とは別に、独立参照・保存則・適用範囲や公開状態の不整合が見つかった既存対象だけを、小さな入力と代表検査で補います。Sod等へのキット拡張は12月18日までに参照・入力族・基準を事前固定して独立追試までできる場合のP1候補とし、必達へ含めません。新分野・重い新物理・量子の大規模走査を追加せず、18日以降は正しさに関わる修正だけにします。未解決の不足は理由と範囲を残し、既存の不変配布版・成功記録・公差は保持します。",
+        "en": "Separate from the two required development-kit tasks, close only bounded gaps in existing targets where independent references, invariants, applicability or publication status are inconsistent. Extending kits to Sod or similar cases is optional P1 only if input families, references and criteria can be fixed before execution and an independent rerun completed by 18 December. Add no new fields, costly new physics or large quantum sweeps. After 18 December allow only correctness-related fixes. Carry unresolved gaps forward with reasons and scope; preserve immutable releases, successful records and tolerances."
       },
       "links": [
         {
@@ -540,8 +571,8 @@
         "en": "Atlas-based specialist AI and model research"
       },
       "scope": {
-        "ja": "2027年以降の目標。資料検索と計算実行を結ぶ試作、検証済み学習事例、未学習問題での評価を検討。独立した基盤モデルの完成を約束する項目ではない。",
-        "en": "A goal for 2027 or later: investigate retrieval plus execution, verified training examples and held-out evaluation. This is not a commitment to deliver an independently pretrained foundation model."
+        "ja": "2027年以降は、アトラスに特化したモデルの追加学習、学習用事例の構築、未学習課題での評価などを研究候補とします。利用者側の既存AIエージェントが公開コード・テストを利用して開発する年内の試作とは別の項目です。独立した基盤モデルの完成を約束しません。",
+        "en": "From 2027, consider research on Atlas-specialized model training, curated training cases and evaluation on untrained tasks. This is separate from this year’s prototype in which users’ existing AI agents develop with public code and tests. It does not promise a completed independent foundation model."
       },
       "decision": {
         "ja": "2026年の資料・実行例の整備と区別し、専門AIの研究を2027年以降の目標とする。",
@@ -555,60 +586,60 @@
       "id": "shared-first-examples",
       "target": "2026-11-30",
       "title": {
-        "ja": "11月30日：現在の根拠・公開状態・配布版を揃える",
-        "en": "30 November: reconcile evidence, publication status and releases"
+        "ja": "11月30日：提供コードとエージェント向け接続仕様を決める",
+        "en": "30 November: select provided code and define the agent contract"
       },
       "scope": {
-        "ja": "3例/15例・60問題などの古い記述を更新し、共通22例、補助配布版のケース/検査件数、問題台帳83件・39実行入口、147手法を区別する。公開版の正本は現在の配布台帳と日付付き追試記録とし、追加候補は公開URLの全ファイルSHAと実際のLinux公開ZIP追試が揃うまで公開済みへ移さない。旧版の値・公差・図・参照と過去の確認範囲を保持し、未完は確認待ちとして残す。",
-        "en": "Replace stale three/fifteen-example and sixty-problem text. Distinguish the common 22, supplement case/test counts, 83 catalogued problems/39 runnable entrances and 147 methods. Use the current release registry and dated rerun receipts as the public-version authority; do not promote candidates until every public file hash and actual Linux public-ZIP rerun match. Preserve old values, criteria, figures, references and historical checking scope; leave incomplete work pending."
+        "ja": "既存の移流・拡散コードを調べ、提供言語・依存・対応パラメータ・制限・ライセンス・引用を明確にする。AIエージェントが要求から取得・実行・評価まで辿る機械可読manifest、JSON入出力と配列/時刻/境界/単位/セル平均の契約、検証CLIと失敗理由を仕様化する。共通22例、補助ケース/検査件数、問題台帳83件・39実行入口、147手法を区別し、現在の公開状態を同期する。既存版・基準・履歴は保持し、仕様策定を実装済みと表示しない。",
+        "en": "Audit existing advection/diffusion code; choose supplied language, dependencies, supported parameters, limits, license and citation. Specify the machine-readable manifest, JSON and array/time/boundary/unit/cell-average contracts, verification CLI and failure reasons for an AI agent to follow request → retrieval → execution → assessment. Distinguish common 22, supplement case/test counts, 83 catalogued problems/39 runnable entrances and 147 methods; synchronize publication status. Preserve old releases, criteria and history; specification is not completed implementation."
       }
     },
     {
       "id": "representative-paths",
       "target": "2026-12-12",
       "title": {
-        "ja": "12月12日：初見の目的・検索・実行と失敗解釈を確認する",
-        "en": "12 December: check unfamiliar-user goals, search, execution and failure interpretation"
+        "ja": "12月12日：別のAIエージェントでコード提供から精度評価まで通す",
+        "en": "12 December: demonstrate code provision through accuracy assessment by a separate AI agent"
       },
       "scope": {
-        "ja": "日英各1つの初見文脈で計6目的を、目的→手法→式/問題/参照→コード/テスト→引用まで確認する。新規環境で決定論/統計を含む2つの公開配布版を既存の公開入力で実行し、既存の粗い/混合不良対照を少なくとも2件読み分ける。これは初見の利用と公開再現の受入であり、未提示の科学入力による検証ではない。固定recipeの変更は通常どおり拒否されることを入力検証として確認する。外部検索、URL取得、実行・数値判定、失敗と追加説明を別々に記録する。未提示の科学入力は別事前登録・独立参照を要する任意P1とし、この日の約束にしない。量子の全走査は実行しない。",
-        "en": "Use one unfamiliar Japanese and one English context for six goals, following goal→method→equation/problem/reference→code/tests→citation. Run two public distributions spanning deterministic/statistical examples in fresh environments using existing public inputs, and interpret at least two existing coarse/poor-mixing controls. This accepts unfamiliar use and public reproduction, not held-out scientific validation. Verify normal rejection of changed fixed recipes as input validation. Record external search, URL retrieval, execution/numerical checks, failures and additional guidance separately. Unseen scientific inputs are optional P1 requiring separate preregistration and independent references, not a commitment for this date. Do not run full quantum sweeps."
+        "ja": "公開URLと日英各1つの計算要求から、別のAIエージェントが移流・拡散の2課題を実施する。提供キット取得→設定/実装改修→実行→参照比較→誤差/収束/保存量の評価→コードと報告の引渡しを記録する。検証する入力族・参照・判定基準は事前固定し、元コードと派生コードの結果を区別する。妥当な変更と意図的な実装不具合を対照にし、失敗や精度不足を見落とさないか確認する。導線は計6目的を確認し、既存公開入力による元配布版の追試とは別の成果として示す。任意の方程式・要求や全エージェントの成功保証とはせず、量子全走査は行わない。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。",
+        "en": "Starting from the public URL and one Japanese and one English calculation request, a separate AI agent completes two advection/diffusion tasks. Record kit retrieval → configuration/implementation modification → execution → reference comparison → error/refinement/invariant assessment → code/report delivery. Fix input families, references and criteria before execution and distinguish original from derived-code results. Use a valid modification and an intentional implementation bug as controls for missing failures or inaccuracy. Check six goal paths; keep this deliverable separate from rerunning original public distributions on existing public inputs. Do not claim success for arbitrary equations, requests or every agent; run no full quantum sweeps. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions."
       }
     },
     {
       "id": "feature-freeze",
       "target": "2026-12-18",
       "title": {
-        "ja": "12月18日：既存検証の追加を締め切り年末版候補を固定する",
-        "en": "18 December: freeze existing-validation additions and pin the year-end candidate"
+        "ja": "12月18日：提供キット・機械可読仕様・検証基準を固定する",
+        "en": "18 December: freeze provided kits, machine-readable contracts and verification criteria"
       },
       "scope": {
-        "ja": "新分野の追加は11月22日から標準計画に含めない。18日は既存対象への追加検証も締め切り、公開候補の配布版・台帳・参照・図をSHAで固定する。未解決の検証不足は保留理由・適用範囲とともに翌年の台帳へ移し、合格基準を緩めて間に合わせない。以後は不具合修正・説明と公開確認に限る。",
-        "en": "New fields are outside the standard plan from 22 November. On the 18th also stop additions to existing validation and pin candidate releases, registries, references and figures by hash. Carry unresolved validation gaps forward with reasons and scope; do not relax criteria to meet the date. Afterward, limit work to defect correction, explanation and publication checks."
+        "ja": "新分野を増やさず、必達2課題のコード・manifest・接続仕様・参照・入力族・判定基準・日英説明を候補版としてSHAで固定する。既存検証への追加も締め切る。P1の対象拡張が間に合わなければ保留理由と範囲を残し、合格基準を緩めて間に合わせない。以後は正しさに関わる修正・説明・公開確認に限る。",
+        "en": "Pin code, manifests, interfaces, references, input families, criteria and bilingual guidance for the two required tasks by hash, without adding fields. Stop additions to existing validation as well. Carry unfinished P1 extensions forward with reasons and scope; do not relax criteria to meet the date. Limit later work to correctness fixes, explanation and publication checks."
       }
     },
     {
       "id": "year-end-edition",
       "target": "2026-12-23",
       "title": {
-        "ja": "12月23日：公開・軽量Linux追試・更新と復元の受入目標",
-        "en": "23 December: acceptance target for publication, lightweight Linux and restoration"
+        "ja": "12月23日：新規エージェント文脈で開発・検証・引渡しを受け入れる",
+        "en": "23 December: accept development, verification and delivery in fresh agent contexts"
       },
       "scope": {
-        "ja": "固定候補について公開全ファイルの一致、軽量補助ZIPの新規Linux実行、日英の導線・数式・図・索引・引用・利用条件を照合する。共通22例の保存済み詳細記録と今回の再実行範囲を区別し、量子の重い再生成は行わない。別フォルダの復元から再生成・静的検査までを記録する。未解決P0がある場合は完了とせず、全手法・全分野の実装完了を意味しない。 Actionsの一時成果物やバッジだけに頼らず、コミット、台帳とZIPのSHA、実行環境、ケース数・pytest数、結果要約、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。",
-        "en": "For the frozen candidate, verify every public file, fresh-Linux lightweight supplement ZIP execution, bilingual routes, mathematics, figures, indexes, citation and terms. Distinguish saved detailed-22 receipts from this round’s actual reruns; do not regenerate costly quantum references. Record restoration in another directory through regeneration and static checks. Unresolved P0 issues prevent completion; this does not mean implementation of every method or field. Beyond temporary Actions artifacts or badges, retain the commit, registry/archive hashes, environment, case/pytest counts, result summary and CI run URL in persistent versioned public verification evidence."
+        "ja": "固定候補を新規のAIエージェント文脈で利用し、要求→アトラスからコード取得→改修→実行→精度/収束評価→成果物の引渡しを確認する。元実装の成功・派生実装の実測・不具合対照の失敗を別の記録へ残す。公開ファイル、軽量Linux、日英・引用・利用条件、別フォルダからの復元を確認する。参照/基準のSHAと改修差分、環境・実測結果・CI URLを永続的な版付き公開記録へ残す。未解決P0があれば完了とせず、任意の利用者要求や全分野のコード生成を保証しない。量子は保存済み記録と軽量な固定例にとどめる。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。",
+        "en": "Use the frozen candidate in fresh AI-agent contexts to check request → Atlas code retrieval → modification → execution → accuracy/refinement assessment → artifact delivery. Keep original-implementation success, measured derived-code results and failed bug controls in separate receipts. Verify public files, lightweight Linux, bilingual guidance/citation/terms and restoration in another directory. Persist reference/criteria hashes, modification diffs, environment, measured results and CI URL in versioned public evidence. Unresolved P0 prevents completion; do not guarantee arbitrary user requests or code generation across every field. Keep quantum to saved receipts and lightweight fixed examples. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions."
       }
     },
     {
       "id": "correction-window",
       "target": "2026-12-31",
       "title": {
-        "ja": "12月31日：修正を閉じ、範囲と残る不足を翌年へ引き継ぐ",
-        "en": "31 December: close corrections and carry scope and gaps into the next year"
+        "ja": "12月31日：開発キットの修正と次の対象への引継ぎを整える",
+        "en": "31 December: close development-kit corrections and plan the next targets"
       },
       "scope": {
-        "ja": "候補版以降は新分野・重い新物理を増やさず、受入で見つかった不具合を修正する。数値の修正は新しい不変版と追試記録へ分離し、旧成功記録は保持する。公開済み/確認待ち/解説のみ/未実装、参照と保存則の限界、未解決P1と保留理由を翌年の台帳へ記録する。専門AI・モデル研究は2027年以降とし、年末の全候補実装を約束しない。",
-        "en": "After the candidate, add no new fields or costly new physics; correct defects found during acceptance. Numerical corrections receive a new immutable version and rerun receipt while historical successes remain intact. Carry published/pending/reading-only/unimplemented status, reference/invariant limitations, unresolved P1 issues and deferral reasons into the next queue. Specialist-AI/model research remains for 2027 or later; do not promise every candidate by year end."
+        "ja": "受入で見つかったコード・接続仕様・判定・説明の不具合を直し、新分野・重い新物理は増やさない。数値修正は新しい不変版と追試記録へ分け、旧成功は保持する。提供済みのキット/対応条件、エージェントで実証済みの課題、未検証の改修・未対応要求、残るP1と保留理由を翌年へ引き継ぐ。専門AIの学習・モデル研究は2027年以降とし、利用者側AIによる公開資産の利用と区別する。",
+        "en": "Correct code, interface, assessment and guidance defects found in acceptance; add no new fields or costly new physics. Numerical corrections receive new immutable editions and rerun receipts while old successes remain intact. Carry supplied kits/conditions, agent-demonstrated tasks, unverified modifications, unsupported requests and P1 deferrals into the next plan. Specialist-AI training/model research remains for 2027 or later, separate from users’ agents consuming the public assets."
       }
     }
   ]

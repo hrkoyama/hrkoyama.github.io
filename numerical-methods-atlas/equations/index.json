@@ -3783,6 +3783,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json"
+            },
+            {
+              "id": "reaction-diffusion-splitting",
+              "kind": "supplement",
+              "name": {
+                "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+                "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+              },
+              "scope": {
+                "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+                "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+              },
+              "method_ids": [
+                "lie-trotter",
+                "strang-splitting"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json"
             }
           ]
         }
@@ -4282,6 +4305,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json"
+            },
+            {
+              "id": "reaction-diffusion-splitting",
+              "kind": "supplement",
+              "name": {
+                "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+                "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+              },
+              "scope": {
+                "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+                "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+              },
+              "method_ids": [
+                "lie-trotter",
+                "strang-splitting"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json"
             }
           ]
         }
@@ -5018,12 +5064,12 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
+    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "3c5baf043ced66d4e3973d829cdf62820d9ac32e8aed47e3b05d40d9c5965fb5",
+    "catalog/atlas-methods.json": "6056ca2a6f1b583c218dbca94a741a451a381fd5788e30cc8265d2fb1be1490e",
     "catalog/atlas-problem-links.json": "ce920e0e2d8b9a2c45b3466ddec2707c1c6534949fbfda9b71e3a2d3c532863b",
-    "catalog/atlas-test-problems.json": "4c66a1747c5805ac1608baa9707b6b1325a5890ae2dfa2ff151f4d5340856f4e",
+    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -5069,6 +5115,11 @@
     "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
     "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
@@ -5077,7 +5128,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "606974737e1526254ca3405c554bce1fb7563cba85e16ad029b002d9f8caf378"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f471ec4d77fc9efa9aa0d491c5083d0541e90ea46453f4419ae7a6f684d29278"
   },
   "supplemental_case_ids": [
     "fitzhugh-nagumo",

@@ -19,11 +19,11 @@ test('the shared22 and separate supplements have distinct runnable entrances; al
   assert.equal(gallery.counts.runnable_problems, 39);
   assert.equal(gallery.counts.common_runnable_problems, 22);
   assert.equal(gallery.counts.supplemental_runnable_problems, 20);
-  assert.equal(gallery.counts.supplemental_case_count, 34);
-  assert.equal(gallery.counts.supplemental_release_case_count, 39);
+  assert.equal(gallery.counts.supplemental_case_count, 35);
+  assert.equal(gallery.counts.supplemental_release_case_count, 40);
   assert.equal(gallery.items.filter(x => x.runnable).length, 39);
   assert.equal((html.match(/class="gallery-execution-badge"/g) || []).length, 44);
-  assert.equal((html.match(/data-supplemental-execution=/g) || []).length, 68);
+  assert.equal((html.match(/data-supplemental-execution=/g) || []).length, 70);
   for (const item of gallery.items) {
     const example = runnable.get(item.id);
     const extra = supplemental.get(item.id) || [];

@@ -290,8 +290,8 @@
             "en": "Biological models"
           },
           "summary": {
-            "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
-            "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+            "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。 短時間の同条件Lie–Trotter／Strang比較も実行できます。",
+            "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim. A short-time matched Lie–Trotter/Strang comparison is also runnable."
           },
           "status": "educational-example",
           "resource_type": "model",
@@ -305,7 +305,8 @@
           "supplemental_examples": [
             "turing-schnakenberg",
             "schnakenberg-nonlinear",
-            "schnakenberg-pattern"
+            "schnakenberg-pattern",
+            "reaction-diffusion-splitting"
           ]
         },
         {
@@ -395,7 +396,8 @@
         "turing-schnakenberg",
         "fitzhugh-nagumo",
         "schnakenberg-nonlinear",
-        "schnakenberg-pattern"
+        "schnakenberg-pattern",
+        "reaction-diffusion-splitting"
       ]
     },
     {

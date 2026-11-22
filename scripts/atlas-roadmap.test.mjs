@@ -50,7 +50,7 @@ test('current work, conditional additions and published examples remain separate
     assert.equal(x.priority,'P0');assert.equal(x.track,'published');
   }
   const ongoing=queue.items.filter(x=>x.track==='current');
-  assert.deepEqual(ongoing.map(x=>x.id),['field-validation-depth','public-reproduction-checks','year-end-release']);
+  assert.deepEqual(ongoing.map(x=>x.id),['validated-code-kits','field-validation-depth','public-reproduction-checks','year-end-release']);
   for(const x of ongoing){assert.equal(x.state,'in-progress');assert.equal(x.priority,'P0');}
   for(const id of ['molecular-quantum-example','ewald-pme-spme','periodic-dft-validation','periodic-forces-validation']){
     const x=queue.items.find(x=>x.id===id);
@@ -59,7 +59,9 @@ test('current work, conditional additions and published examples remain separate
   const conditional=queue.items.filter(x=>x.track==='conditional');
   assert.deepEqual(conditional.map(x=>x.id),['bounded-gap-closure']);
   assert.equal(conditional[0].state,'conditional-planned');assert.equal(conditional[0].priority,'P1');
-  assert.match(conditional[0].scope.en,/existing target/);assert.match(conditional[0].scope.en,/After 18 December allow only correctness-related fixes/);
+  assert.match(conditional[0].scope.en,/existing target/);
+  assert.match(conditional[0].scope.en,/Extending kits to Sod.*optional P1/);
+  assert.match(conditional[0].scope.en,/After 18 December allow only correctness-related fixes/);
   assert.equal(queue.items.find(x=>x.id==='quantum-examples').state,'hydrogenic-helium-verified');
   assert.equal(queue.items.find(x=>x.id==='barnes-hut-example').track,'published');
   assert.equal(queue.items.find(x=>x.id==='atlas-specialist-ai').target_year,2027);
@@ -88,7 +90,7 @@ test('public milestones give target dates without promising every implementation
   }
 });
 
-test('year-end priorities use current evidence and visible acceptance gates without conflating reproduction and held-out science',()=>{
+test('year-end priorities specify agent-ready verified code and separate original evidence from measured derived-code results',()=>{
   const byId=new Map(queue.items.map(x=>[x.id,x]));
   const registry=JSON.parse(read('catalog/atlas-execution-examples.json'));
   const problems=JSON.parse(read('catalog/atlas-test-problems.json'));
@@ -100,9 +102,19 @@ test('year-end priorities use current evidence and visible acceptance gates with
   assert.match(byId.get('method-assumptions-review').scope.en,/all 147 entries/);
   assert.match(byId.get('quantum-reading').scope.en,/20 topics/);
   assert.match(queue.policy.en,/From 22 November 2026, new fields are outside the standard/);
-  assert.match(queue.policy.en,/18 December freezes additions to existing validation/);
+  assert.match(queue.policy.en,/18 December freezes kit\/interface additions and additions to existing validation/);
   assert.match(queue.policy.en,/Large basis\/k sweeps/);
   assert.match(queue.policy.en,/new explicit request/);
+  assert.match(queue.policy.en,/agents cannot redefine passing criteria/);
+  assert.match(queue.policy.en,/users’ existing AI agents is in scope this year/);
+  assert.match(queue.policy.en,/specialist-AI training\/model research remains for 2027 or later/);
+  const kits=byId.get('validated-code-kits');
+  assert.equal(kits.state,'in-progress');
+  for(const text of ['Currently at specification stage','machine-readable manifest','retrieves Atlas verified code','assembles/modifies and runs','two small 1D advection and diffusion tasks','JSON request/catalog/result','nodal-versus-cell-average output contracts','retrieval/execution CLI','separate grid/time refinement','Fix supported parameter families and criteria before running','Preserve old fixed-recipe rejection rules and immutable releases','valid modification','intentional implementation bug','Record original code, modification diff','Atlas-hosted or trained AI are not year-end requirements'])assert.ok(kits.scope.en.includes(text),text);
+  for(const text of ['At least one of the two tasks','meaningful source-level assembly/adaptation','with an actual diff','Configuration changes alone do not satisfy this gate','public URL, request and explicitly listed public materials','without private working copies','record any hints or interventions'])assert.ok(kits.scope.en.includes(text),text);
+  for(const text of ['Pin the evaluator, tests, references, inputs and thresholds separately from editable solver code','clean evaluation environment executes the actual delivered derived-code entrypoint','records the executed source SHA','agent self-reported passes or accidental imports of the original implementation are not evidence'])assert.ok(kits.scope.en.includes(text),text);
+  assert.match(queue.description.en,/a user’s AI agent/);
+  assert.match(queue.description.en,/assemble, modify, run and verify code/);
   const depth=byId.get('field-validation-depth');
   assert.match(depth.scope.en,/remains pending publication until every public file matches/);
   assert.match(depth.scope.en,/actual fresh-Linux public-ZIP rerun succeeds/);
@@ -112,23 +124,27 @@ test('year-end priorities use current evidence and visible acceptance gates with
   assert.match(ci.scope.en,/Detailed common-22 CI including quantum remains manual/);
   const use=byId.get('public-reproduction-checks');
   assert.match(use.scope.en,/existing public inputs only/);
-  assert.match(use.scope.en,/not held-out scientific validation/);
-  assert.match(use.scope.en,/Correct rejection of a changed fixed recipe is a separate input-validation check/);
+  assert.match(use.scope.en,/new derived-code assessment in development kits/);
+  assert.match(use.scope.en,/Register new input families, references and criteria before execution/);
+  assert.match(use.scope.en,/fixed-recipe rejection checks are insufficient/);
   const gate=queue.milestones.find(x=>x.id==='representative-paths');
-  for(const text of ['six goals','two public distributions','existing public inputs','two existing coarse/poor-mixing controls','not held-out scientific validation','not a commitment for this date'])assert.ok(gate.scope.en.includes(text),text);
-  assert.match(conditionalScope(),/separate preregistration and independent references/);
-  assert.match(conditionalScope(),/new immutable release and rerun receipt by 18 December/);
+  for(const text of ['separate AI agent','two advection/diffusion tasks','kit retrieval → configuration/implementation modification → execution → reference comparison','Fix input families, references and criteria before execution','distinguish original from derived-code results','valid modification','intentional implementation bug','six goal paths','separate from rerunning original public distributions'])assert.ok(gate.scope.en.includes(text),text);
+  for(const text of ['meaningful source-level assembly/adaptation','Configuration changes alone do not satisfy this gate','without private working copies','record any hints or interventions'])assert.ok(gate.scope.en.includes(text),text);
+  const contract=queue.milestones.find(x=>x.id==='shared-first-examples');
+  for(const text of ['language','dependencies','machine-readable manifest','failure reasons','specification is not completed implementation'])assert.ok(contract.scope.en.includes(text),text);
   const release=byId.get('year-end-release');
-  for(const text of ['another directory','new release','persistent versioned public verification evidence','registry/archive hashes','case/pytest counts','CI run URL'])assert.ok(release.scope.en.includes(text));
+  for(const text of ['another directory','new release','persistent versioned public verification evidence','registry/archive/reference/criteria hashes','case/pytest counts','CI run URL','Separate original-code passes, derived-code passes and failed controls','reference/criteria changes did not manufacture success'])assert.ok(release.scope.en.includes(text),text);
   assert.match(release.scope.en,/Do not mark complete with unresolved P0/);
-  assert.match(queue.milestones.find(x=>x.id==='year-end-edition').scope.en,/Beyond temporary Actions artifacts or badges/);
+  assert.match(release.scope.en,/actual delivered derived-code entrypoint/);
+  assert.match(release.scope.en,/records the executed source SHA/);
+  const final=queue.milestones.find(x=>x.id==='year-end-edition');
+  for(const text of ['fresh AI-agent contexts','artifact delivery','separate receipts','reference/criteria hashes','versioned public evidence','Unresolved P0 prevents completion'])assert.ok(final.scope.en.includes(text),text);
   // Dated aggregate snapshots belong to audit records, not evergreen visible promises.
   for(const language of ['ja','en']){
     const visible=queue.description[language]+queue.policy[language]+queue.items.map(x=>x.scope[language]).join(' ')+queue.milestones.map(x=>x.scope[language]).join(' ');
     assert.doesNotMatch(visible,/9補助配布版|9補助版|追加6ケース・75|nine public supplements|six cases and 75|ten supplements, 39 cases and 372/);
     for(const item of queue.items)assert.ok(rendered[language].html.includes(item.scope[language].replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#x27;')));
   }
-  function conditionalScope(){return byId.get('bounded-gap-closure').scope.en;}
 });
 
 test('history headings and static/content tables of contents agree without active old promises',()=>{

@@ -15,7 +15,7 @@ const sha = path => createHash('sha256').update(bytes(path)).digest('hex');
 const catalog = json('catalog/atlas-depth-expansion.json');
 const base = group => `code/validated-examples/${catalog.edition}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport'];
+const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting'];
 const expectedIds = [
   'sa-amg', 'qr-svd-factorization', 'krylov-eigenvalues', 'gauss-adaptive-quadrature',
   'gaussian-mcmc', 'langevin-harmonic', 'reaction-diffusion-fourier', 'turing-schnakenberg', 'fitzhugh-nagumo',
@@ -27,6 +27,7 @@ const expectedIds = [
   'ct-glm-smooth-convergence', 'ct-glm-ot-convergence', 'ct-glm-constraint-control',
   'amg-conditioning', 'qr-svd-conditioning', 'krylov-eigen-conditioning', 'quadrature-conditioning',
   'ewald-convergence', 'spme-convergence', 'fmm-convergence', 'pic-conservation', 'dsmc-statistics', 'radiation-convergence',
+  'reaction-diffusion-splitting',
 ].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
@@ -35,11 +36,11 @@ const metadata = group => {
 const measured = group => json(base(group) + 'results/result.json');
 const actualCases = groupIds.flatMap(group => metadata(group).map(item => ({group, item})));
 
-test('thirty-nine additional cases and ten releases stay distinct from the existing execution registry', () => {
+test('forty additional cases and eleven releases stay distinct from the existing execution registry', () => {
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 39);
+  assert.equal(index.case_count, 40);
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);
   assert.equal(index.common_registry.modified_by_this_builder, false);

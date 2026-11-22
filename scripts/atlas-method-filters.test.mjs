@@ -10,7 +10,7 @@ const published = JSON.parse(read('numerical-methods-atlas/methods/index.json'))
 const html = read('numerical-methods-atlas/methods/index.html');
 const storageKey = 'hrkoyama.atlas.methodFilters.v1';
 const statuses = ['all', 'educational-example', 'reading-only', 'planned'];
-const expectedCounts = {'educational-example': 114, 'reading-only': 17, planned: 16};
+const expectedCounts = {'educational-example': 116, 'reading-only': 15, planned: 16};
 const byId = new Map(catalog.methods.map(method => [method.id, method]));
 
 const decode = value => value.replace(/&(?:amp|lt|gt|quot|#39|#x[\da-f]+|#\d+);/gi, entity => {

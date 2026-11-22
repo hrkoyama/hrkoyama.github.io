@@ -20,7 +20,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
  assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
- assert.equal(gallery.counts.supplemental_release_case_count,39);
+ assert.equal(gallery.counts.supplemental_release_case_count,40);
  assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
  assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
  assert.deepEqual(item.caption,metadata.summary);
@@ -31,10 +31,22 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  assert.deepEqual(ot.supplemental_execution_entries.map(x=>x.id),['ct-glm-independent','ct-glm-ot-convergence']);
  assert.ok(!gallery.items.some(x=>x.id==='ct-glm-constraint-control'));
  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
- const particleBase='code/validated-examples/2026-11-22/particle-transport/';
- const particleCases=json(particleBase+'cases.json');
- const particleSources=['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...particleCases.map(x=>'results/'+x.id+'.png')].map(name=>particleBase+name);
- assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(particleSources).size);
+ const addedSources=['particle-transport'].flatMap(group=>{
+  const base='code/validated-examples/2026-11-22/'+group+'/';
+  const cases=json(base+'cases.json');
+  return ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')].map(name=>base+name);
+ });
+ assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(addedSources).size);
+ for(const path of addedSources)assert.equal(manifest.source_sha256[path],digest(path),path);
+ // Splitting adds a supplementary run link, while this preview keeps the
+ // historical onset image. Its full release provenance belongs to the gallery
+ // index resolver rather than to the unchanged preview-image receipt.
+ const splittingBase='code/validated-examples/2026-11-22/splitting/';
+ for(const name of ['cases.json','source-manifest.json','verification.json','results/result.json','atlas-splitting-2026-11-22.zip']){
+  const path=splittingBase+name;assert.equal(gallery.source_sha256[path],digest(path),path);
+ }
+ const splittingManifest=json(splittingBase+'source-manifest.json');
+ for(const name of ['inputs.json','results/reaction-diffusion-splitting.png'])assert.equal(splittingManifest.files[name],digest(splittingBase+name),name);
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
 });
 
@@ -61,8 +73,8 @@ test('six particle/transport checks retain all five historical images and add on
   }
  }
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
- assert.equal(gallery.counts.supplemental_case_count,34);
- assert.equal(gallery.counts.supplemental_release_case_count,39);
+ assert.equal(gallery.counts.supplemental_case_count,35);
+ assert.equal(gallery.counts.supplemental_release_case_count,40);
  assert.equal(gallery.counts.runnable_problems,39);
 });
 
@@ -188,7 +200,7 @@ test('nonlinear Schnakenberg runs are additional entrances and retain the saved 
   assert.equal(gallery.counts.runnable_problems,39);
   assert.equal(item.image,'/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
   assert.equal(item.image_sha256,'d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893');
-  assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers]);
+  assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers,'reaction-diffusion-splitting']);
   const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
   const base='code/validated-examples/2026-11-22/biology/';
   for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...identifiers.map(x=>'results/'+x+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));

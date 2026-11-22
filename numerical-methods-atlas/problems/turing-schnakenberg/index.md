@@ -94,6 +94,28 @@ $$
 
 t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
 
+#### 同じ非線形反応拡散でLie–TrotterとStrangを比較する
+
+補助実行例 · 実行例の定義・検証式
+
+$$
+u_t=0.01u_{xx}+0.1-u+u^2v,\qquad v_t=v_{xx}+0.9-u^2v
+$$
+
+$$
+\lambda_{h,k}=-\frac{4}{\Delta x^2}\sin^2\!\left(\frac{\pi k}{N}\right),\quad L_h=\Psi_R^h\circ e^{hD L_{\rm FD}},\quad S_h=e^{hD L_{\rm FD}/2}\circ\Psi_R^h\circ e^{hD L_{\rm FD}/2}
+$$
+
+$$
+\Psi_R^h(y)=y+hR\!\left(\frac{y+\Psi_R^h(y)}2\right),\quad \langle u+v\rangle_{n+1}-\langle u+v\rangle_n=h(0.1+0.9-\langle u_{\rm mid}\rangle)
+$$
+
+$$
+E_2(h)=\max_{t\in\{.25,.5,.75,1\}}\max_{s\in\{u,v\}}\sqrt{\frac1N\sum_j(e_{s,j}(t))^2},\quad p_{\rm obs}=\log_2\frac{E_2(h)}{E_2(h/2)}
+$$
+
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+
 ### 厳密解・参照解
 
 小振幅では行列指数の線形成長率を使い、非線形追補では独立Radau参照と正値性・収束を確認します。線形近似を非線形飽和パターンの厳密解と呼びません。
@@ -122,6 +144,14 @@ t=100の1D選択パターンを独立参照で照合。参照の90→100の変�
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=ja)
 
+#### 同じ非線形反応拡散でLie–TrotterとStrangを比較する
+
+参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。
+
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json)
+
+[参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja)
+
 ### 計算法
 
 この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
@@ -129,6 +159,8 @@ t=100の1D選択パターンを独立参照で照合。参照の90→100の変�
 - [空間中心差分](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 - [古典的RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 - [陰的中点則](https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [Lie–Trotter分割](https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [Strang分割](https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 
 ### コード・実行
 
@@ -220,6 +252,37 @@ python run.py --input inputs.json --output output
 - [/code/validated-examples/2026-11-22/biology/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py)
 - [/code/validated-examples/2026-11-22/biology/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py)
 - [/code/validated-examples/2026-11-22/biology/test_biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py)
+
+#### [同じ非線形反応拡散でLie–TrotterとStrangを比較する](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja)
+
+補助実行例
+
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+
+無次元の1D周期区間[0,2π)、N=32、a=.1,b=.9、D=(.01,1)。u₀=1+.08cos2x+.01cos4x、v₀=.9−.03cos2x−.002cos4xは既存の有限振幅例と同じ初期場です。今回の終時刻はT=1、ステップ数16/32/64/128、共通出力時刻0/.25/.5/.75/1。反射対称・π周期の限定入力です。
+
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json)
+
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json)
+
+ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。
+
+同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
+
+- [/code/validated-examples/2026-11-22/splitting/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py)
+- [/code/validated-examples/2026-11-22/splitting/splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py)
+- [/code/validated-examples/2026-11-22/splitting/reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py)
+- [/code/validated-examples/2026-11-22/splitting/test_splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py)
 
 ## English
 
@@ -313,6 +376,28 @@ $$
 
 Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
 
+#### Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input
+
+Supplementary execution example · Example definition or validation formula
+
+$$
+u_t=0.01u_{xx}+0.1-u+u^2v,\qquad v_t=v_{xx}+0.9-u^2v
+$$
+
+$$
+\lambda_{h,k}=-\frac{4}{\Delta x^2}\sin^2\!\left(\frac{\pi k}{N}\right),\quad L_h=\Psi_R^h\circ e^{hD L_{\rm FD}},\quad S_h=e^{hD L_{\rm FD}/2}\circ\Psi_R^h\circ e^{hD L_{\rm FD}/2}
+$$
+
+$$
+\Psi_R^h(y)=y+hR\!\left(\frac{y+\Psi_R^h(y)}2\right),\quad \langle u+v\rangle_{n+1}-\langle u+v\rangle_n=h(0.1+0.9-\langle u_{\rm mid}\rangle)
+$$
+
+$$
+E_2(h)=\max_{t\in\{.25,.5,.75,1\}}\max_{s\in\{u,v\}}\sqrt{\frac1N\sum_j(e_{s,j}(t))^2},\quad p_{\rm obs}=\log_2\frac{E_2(h)}{E_2(h/2)}
+$$
+
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+
 ### Exact and reference solutions
 
 Use matrix-exponential linear growth rates at small amplitude; nonlinear supplements check independent Radau references, positivity and refinement. A linearization is not an exact saturated nonlinear pattern.
@@ -341,6 +426,14 @@ Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Ra
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=en)
 
+#### Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input
+
+The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering.
+
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json)
+
+[Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en)
+
 ### Numerical methods
 
 Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
@@ -348,6 +441,8 @@ Methods from explicitly bound supplementary examples and, where present, the com
 - [Centered spatial difference](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 - [Classical RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 - [Implicit midpoint](https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
+- [Lie–Trotter splitting](https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
+- [Strang splitting](https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 
 ### Code and execution
 
@@ -439,3 +534,34 @@ These source and test lists include files shared across the package; they are no
 - [/code/validated-examples/2026-11-22/biology/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py)
 - [/code/validated-examples/2026-11-22/biology/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py)
 - [/code/validated-examples/2026-11-22/biology/test_biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py)
+
+#### [Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en)
+
+Supplementary execution example
+
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+
+Nondimensional 1D periodic [0,2pi), N=32, a=.1, b=.9, D=(.01,1). The initial fields u₀=1+.08cos2x+.01cos4x and v₀=.9−.03cos2x−.002cos4x match the earlier finite-amplitude example. This new run ends at T=1, uses 16/32/64/128 steps and common output times 0/.25/.5/.75/1. The fixed input is reflection-even and pi-periodic.
+
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json)
+
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json)
+
+After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope.
+
+These source and test lists include files shared across the package; they are not all dedicated to this problem.
+
+- [/code/validated-examples/2026-11-22/splitting/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py)
+- [/code/validated-examples/2026-11-22/splitting/splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py)
+- [/code/validated-examples/2026-11-22/splitting/reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py)
+- [/code/validated-examples/2026-11-22/splitting/test_splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py)

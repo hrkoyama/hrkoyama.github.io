@@ -136,6 +136,20 @@
         "ja": "周期力、FMM、PIC、衝突、放射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。",
         "en": "Extend existing periodic-force, FMM, PIC, collision and radiation problems in a separate release. Separate deterministic discretization, conservation, finite-particle bias and statistical error."
       }
+    },
+    {
+      "id": "splitting",
+      "title": {
+        "ja": "作用素分割：同じ反応拡散でLie–TrotterとStrangを比較",
+        "en": "Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem"
+      },
+      "fields": [
+        "biology"
+      ],
+      "intro": {
+        "ja": "短い時間区間の非線形Schnakenberg反応拡散を、同じ初期場・格子・部分ソルバー・出力時刻で比較します。時間の収束と数値参照の感度を調べる軽量な追加例です。既存の空間収束・長時間パターンの記録は保持します。",
+        "en": "Compare short-time nonlinear Schnakenberg reaction–diffusion with the same initial field, grid, subsolvers and observation times. This lightweight addition checks temporal convergence and numerical-reference sensitivity while retaining existing spatial and long-time pattern records."
+      }
     }
   ],
   "case_problem_ids": {
@@ -177,11 +191,12 @@
     "fmm-convergence": "logarithmic-particles",
     "pic-conservation": "cold-plasma-pic",
     "dsmc-statistics": "maxwell-collisions",
-    "radiation-convergence": "absorbing-slab"
+    "radiation-convergence": "absorbing-slab",
+    "reaction-diffusion-splitting": "turing-schnakenberg"
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する10グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs ten NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する11グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs eleven NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {

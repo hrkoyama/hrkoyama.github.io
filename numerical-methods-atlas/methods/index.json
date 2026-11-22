@@ -148626,10 +148626,10 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。",
-        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting."
+        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
+        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
       },
-      "status": "reading-only",
+      "status": "educational-example",
       "origin": "curated-operator-splitting-reading",
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/",
@@ -148637,7 +148637,7 @@
       },
       "code_modules": [],
       "test_files": [],
-      "code_mapping_scope": "Reading and a fixed two-component exact-flow illustration; no general solver distribution or common execution-registry mapping. Existing Strang reaction-diffusion runs retain their original method bindings.",
+      "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
       "references": [
         {
           "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
@@ -148667,12 +148667,12 @@
       "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
       "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
       "limitations": {
-        "ja": "滑らかな有限次元の例の次数を、衝撃波・硬いPDE・一般境界へ保証しない。厳密な部分流でも合成の安定性制約は残る。教材例スクリプトは汎用ソルバー配布版ではない。",
-        "en": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release."
+        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
       },
       "metadata_review": {
-        "level": "method-specific reading and finite-dimensional exact-flow illustration; source access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
       },
       "aliases": [
         "Lie-Trotter splitting",
@@ -148685,22 +148685,1590 @@
         "リー・トロッタ分割",
         "1次作用素分割"
       ],
+      "depth_previous_status": "reading-only",
+      "depth_release": {
+        "group": "splitting",
+        "case_ids": [
+          "reaction-diffusion-splitting"
+        ],
+        "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/",
+        "code_edition": "2026-11-22",
+        "code_urls": [
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+        ],
+        "test_urls": [
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
+        ],
+        "run_commands": [
+          "python -m pytest -q",
+          "python run.py --input inputs.json --output output"
+        ],
+        "run_from": "atlas-splitting-2026-11-22",
+        "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+        "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json",
+        "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json",
+        "code_archive_sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+        "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json",
+        "passed_tests": 16,
+        "examples": [
+          {
+            "id": "reaction-diffusion-splitting",
+            "title": {
+              "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+              "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+            },
+            "method_ids": [
+              "lie-trotter",
+              "strang-splitting"
+            ],
+            "domains": [
+              "biology",
+              "diffusion",
+              "time"
+            ],
+            "code_files": [
+              "run.py",
+              "splitting.py",
+              "reference.py"
+            ],
+            "summary": {
+              "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+              "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+            },
+            "assumptions": {
+              "ja": "無次元の1D周期区間[0,2π)、N=32、a=.1,b=.9、D=(.01,1)。u₀=1+.08cos2x+.01cos4x、v₀=.9−.03cos2x−.002cos4xは既存の有限振幅例と同じ初期場です。今回の終時刻はT=1、ステップ数16/32/64/128、共通出力時刻0/.25/.5/.75/1。反射対称・π周期の限定入力です。",
+              "en": "Nondimensional 1D periodic [0,2pi), N=32, a=.1, b=.9, D=(.01,1). The initial fields u₀=1+.08cos2x+.01cos4x and v₀=.9−.03cos2x−.002cos4x match the earlier finite-amplitude example. This new run ends at T=1, uses 16/32/64/128 steps and common output times 0/.25/.5/.75/1. The fixed input is reflection-even and pi-periodic."
+            },
+            "algorithm": {
+              "ja": "Lie–Trotterは拡散h→反応h、Strangは拡散h/2→反応h→拡散h/2。どちらも更新後の状態を次へ渡します。拡散は2次中心FD行列の指数をFFTで厳密適用、反応は同じ陰的中点則・Newton公差2e−13・上限12評価を使用。反応流は厳密解ではなく2次近似です。クリッピング・自動刻み変更・代替解法への切替を行わず、未収束は失敗にします。",
+              "en": "Lie–Trotter uses diffusion(h) then reaction(h); Strang uses diffusion(h/2), reaction(h), diffusion(h/2), always passing the updated state. Both apply the exact exponential of the centered-FD diffusion matrix by FFT and the same implicit-midpoint reaction/Newton tolerance 2e−13 with at most 12 residual evaluations. The reaction flow is a second-order approximation, not exact. No clipping, adaptive steps or fallback; nonconvergence is failure."
+            },
+            "validation": {
+              "ja": "参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。",
+              "en": "The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering."
+            },
+            "limits": {
+              "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+              "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
+            },
+            "formulas": [
+              "u_t=0.01u_{xx}+0.1-u+u^2v,\\qquad v_t=v_{xx}+0.9-u^2v",
+              "\\lambda_{h,k}=-\\frac{4}{\\Delta x^2}\\sin^2\\!\\left(\\frac{\\pi k}{N}\\right),\\quad L_h=\\Psi_R^h\\circ e^{hD L_{\\rm FD}},\\quad S_h=e^{hD L_{\\rm FD}/2}\\circ\\Psi_R^h\\circ e^{hD L_{\\rm FD}/2}",
+              "\\Psi_R^h(y)=y+hR\\!\\left(\\frac{y+\\Psi_R^h(y)}2\\right),\\quad \\langle u+v\\rangle_{n+1}-\\langle u+v\\rangle_n=h(0.1+0.9-\\langle u_{\\rm mid}\\rangle)",
+              "E_2(h)=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{s\\in\\{u,v\\}}\\sqrt{\\frac1N\\sum_j(e_{s,j}(t))^2},\\quad p_{\\rm obs}=\\log_2\\frac{E_2(h)}{E_2(h/2)}"
+            ],
+            "references": [
+              {
+                "id": "trotter1959",
+                "author": "H. F. Trotter",
+                "year": 1959,
+                "title": "On the product of semi-groups of operators",
+                "journal": "Proceedings of the American Mathematical Society",
+                "volume": "10",
+                "number": "4",
+                "pages": "545–551",
+                "doi": "10.1090/S0002-9939-1959-0108732-6",
+                "type": "article",
+                "source": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+                "source_review": {
+                  "level": "metadata",
+                  "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+                  "scope": "AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.",
+                  "scope_ja": "AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。"
+                },
+                "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+                "review_level": "metadata",
+                "review": {
+                  "ja": "AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。",
+                  "en": "AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter."
+                }
+              },
+              {
+                "id": "strang1968",
+                "author": "G. Strang",
+                "year": 1968,
+                "title": "On the Construction and Comparison of Difference Schemes",
+                "journal": "SIAM Journal on Numerical Analysis",
+                "volume": "5",
+                "number": "3",
+                "pages": "506–517",
+                "doi": "10.1137/0705041",
+                "type": "article",
+                "source": "https://doi.org/10.1137/0705041",
+                "source_review": {
+                  "level": "metadata",
+                  "url": "https://epubs.siam.org/doi/10.1137/0705041",
+                  "scope": "Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.",
+                  "scope_ja": "今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。"
+                },
+                "url": "https://doi.org/10.1137/0705041",
+                "review_level": "metadata",
+                "review": {
+                  "ja": "今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。",
+                  "en": "Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit."
+                }
+              },
+              {
+                "id": "hairer2010-geometric-lecture2",
+                "author": "E. Hairer",
+                "year": 2010,
+                "title": "Geometric Numerical Integration, Lecture2",
+                "type": "misc",
+                "source": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+                "source_review": {
+                  "level": "full-text",
+                  "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+                  "scope": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.",
+                  "scope_ja": "著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。"
+                },
+                "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+                "review_level": "full-text",
+                "review": {
+                  "ja": "著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。",
+                  "en": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit."
+                }
+              },
+              {
+                "id": "schnakenberg1979",
+                "author": "J. Schnakenberg",
+                "year": 1979,
+                "title": "Simple chemical reaction systems with limit cycle behaviour",
+                "journal": "Journal of Theoretical Biology 81(3), 389–400",
+                "doi": "10.1016/0022-5193(79)90042-0",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+                "type": "article",
+                "review_level": "official-bibliography-and-publisher-indexed-abstract",
+                "review": {
+                  "ja": "PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。",
+                  "en": "Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments."
+                }
+              },
+              {
+                "id": "scipy-1.14.1-solve-ivp",
+                "author": "The SciPy community",
+                "year": 2024,
+                "title": "SciPy1.14.1 solve_ivp reference",
+                "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+                "review_level": "official-versioned-documentation-selected-methods-and-tolerances",
+                "review": {
+                  "ja": "SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。",
+                  "en": "Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions."
+                },
+                "type": "misc",
+                "source": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+              }
+            ],
+            "measured": {
+              "id": "reaction-diffusion-splitting",
+              "passed": true,
+              "metrics": {
+                "grid": 32,
+                "final_time": 1.0,
+                "lie_finest_l2": 0.00048048614019260814,
+                "strang_finest_l2": 3.554231191703374e-06,
+                "lie_last_observed_order": 1.002936574094834,
+                "strang_last_observed_order": 1.9991038173822453,
+                "reference_tolerance_linf": 1.98463467881993e-12,
+                "reference_algorithm_linf": 2.205471361094169e-10,
+                "reference_to_strang_error_ratio": 6.205199499240203e-05,
+                "newton_sensitivity_linf": 0.0,
+                "reverse_order_l2_difference": 0.007637419068950036,
+                "minimum_concentration": 0.8490853839816418,
+                "maximum_reaction_balance_error": 1.5942108744226857e-15
+              },
+              "checks": {
+                "lie_error_decreases": true,
+                "strang_error_decreases": true,
+                "lie_first_order": true,
+                "strang_second_order": true,
+                "lie_finest_error": true,
+                "strang_finest_error": true,
+                "strang_improves_this_input": true,
+                "reference_tolerance": true,
+                "reference_independent_time_algorithm": true,
+                "reference_error_separated": true,
+                "newton_error_separated": true,
+                "reaction_converged": true,
+                "reaction_source_balance": true,
+                "positive_on_tested_substeps": true,
+                "noncommuting_order_control": true
+              },
+              "records": [
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "dt": 0.0625,
+                  "max_l1": 0.0034999161845120502,
+                  "max_l2": 0.0038875589323584332,
+                  "max_linf": 0.0066196825049684715,
+                  "minimum_concentration": 0.8490853839816418,
+                  "maximum_midpoint_residual": 7.928380174604399e-14,
+                  "maximum_reaction_balance_error": 3.0531133177191805e-16,
+                  "reaction_calls": 16,
+                  "diffusion_calls": 16,
+                  "newton_updates": 32
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "dt": 0.03125,
+                  "max_l1": 0.0017391570445432492,
+                  "max_l2": 0.0019329080571091487,
+                  "max_linf": 0.003283460267036298,
+                  "minimum_concentration": 0.852421606219574,
+                  "maximum_midpoint_residual": 6.522560269672795e-16,
+                  "maximum_reaction_balance_error": 5.828670879282072e-16,
+                  "reaction_calls": 32,
+                  "diffusion_calls": 32,
+                  "newton_updates": 64,
+                  "observed_order_l2": 1.008091531222358
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "dt": 0.015625,
+                  "max_l1": 0.0008661931904511977,
+                  "max_l2": 0.0009629303104603552,
+                  "max_linf": 0.0016326040823274601,
+                  "minimum_concentration": 0.8540724624042828,
+                  "maximum_midpoint_residual": 1.1796119636642288e-16,
+                  "maximum_reaction_balance_error": 8.916478666520788e-16,
+                  "reaction_calls": 64,
+                  "diffusion_calls": 64,
+                  "newton_updates": 128,
+                  "observed_order_l2": 1.0052697186034483
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "dt": 0.0078125,
+                  "max_l1": 0.00043216466889150346,
+                  "max_l2": 0.00048048614019260814,
+                  "max_linf": 0.0008137250920055017,
+                  "minimum_concentration": 0.8548913413946048,
+                  "maximum_midpoint_residual": 1.1102230246251565e-16,
+                  "maximum_reaction_balance_error": 1.5942108744226857e-15,
+                  "reaction_calls": 128,
+                  "diffusion_calls": 128,
+                  "newton_updates": 256,
+                  "observed_order_l2": 1.002936574094834
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "dt": 0.0625,
+                  "max_l1": 0.00018522882645895244,
+                  "max_l2": 0.0002246047728650783,
+                  "max_linf": 0.0004947001675457141,
+                  "minimum_concentration": 0.8495010294662402,
+                  "maximum_midpoint_residual": 7.652212197228891e-14,
+                  "maximum_reaction_balance_error": 7.355227538141662e-16,
+                  "reaction_calls": 16,
+                  "diffusion_calls": 32,
+                  "newton_updates": 32
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "dt": 0.03125,
+                  "max_l1": 4.671377936874693e-05,
+                  "max_l2": 5.669238367958461e-05,
+                  "max_linf": 0.00012535034070770834,
+                  "minimum_concentration": 0.8526281296663327,
+                  "maximum_midpoint_residual": 6.487865800153259e-16,
+                  "maximum_reaction_balance_error": 7.7021722333370235e-16,
+                  "reaction_calls": 32,
+                  "diffusion_calls": 64,
+                  "newton_updates": 64,
+                  "observed_order_l2": 1.986161750533885
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "dt": 0.015625,
+                  "max_l1": 1.1704431918224678e-05,
+                  "max_l2": 1.420809614811303e-05,
+                  "max_linf": 3.1448016794222156e-05,
+                  "minimum_concentration": 0.8541751345946297,
+                  "maximum_midpoint_residual": 1.1449174941446927e-16,
+                  "maximum_reaction_balance_error": 1.096345236817342e-15,
+                  "reaction_calls": 64,
+                  "diffusion_calls": 128,
+                  "newton_updates": 128,
+                  "observed_order_l2": 1.9964416800284208
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "dt": 0.0078125,
+                  "max_l1": 2.9277410221184574e-06,
+                  "max_l2": 3.554231191703374e-06,
+                  "max_linf": 7.86900806959423e-06,
+                  "minimum_concentration": 0.8549424999871567,
+                  "maximum_midpoint_residual": 1.1102230246251565e-16,
+                  "maximum_reaction_balance_error": 1.1483869410966463e-15,
+                  "reaction_calls": 128,
+                  "diffusion_calls": 256,
+                  "newton_updates": 256,
+                  "observed_order_l2": 1.9991038173822453
+                }
+              ],
+              "time_records": [
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.25,
+                  "l1": 0.0018713291565467978,
+                  "l2": 0.0020777976203972997,
+                  "linf": 0.0036106011967984575
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.5,
+                  "l1": 0.002639714798626517,
+                  "l2": 0.002929429932849271,
+                  "linf": 0.004967659072495079
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.75,
+                  "l1": 0.0031051040193767372,
+                  "l2": 0.003447469945490127,
+                  "linf": 0.005841948448335965
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 1.0,
+                  "l1": 0.0034999161845120502,
+                  "l2": 0.0038875589323584332,
+                  "linf": 0.0066196825049684715
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.25,
+                  "l1": 0.000924300726534908,
+                  "l2": 0.0010261740210272612,
+                  "linf": 0.0017743063755470967
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.5,
+                  "l1": 0.0013063800762144855,
+                  "l2": 0.0014503359685334484,
+                  "linf": 0.0024503845207343167
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.75,
+                  "l1": 0.001539734369513681,
+                  "l2": 0.0017103986128998217,
+                  "linf": 0.002889766387683901
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 1.0,
+                  "l1": 0.0017391570445432492,
+                  "l2": 0.0019329080571091487,
+                  "linf": 0.003283460267036298
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.25,
+                  "l1": 0.0004590312977390647,
+                  "l2": 0.0005095922477764313,
+                  "linf": 0.0008784604473085489
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.5,
+                  "l1": 0.0006494023000874309,
+                  "l2": 0.0007211004799982291,
+                  "linf": 0.0012154230512911868
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.75,
+                  "l1": 0.0007661172683905114,
+                  "l2": 0.000851237772886712,
+                  "linf": 0.0014351681362194668
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 1.0,
+                  "l1": 0.0008661931904511977,
+                  "l2": 0.0009629303104603552,
+                  "linf": 0.0016326040823274601
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.25,
+                  "l1": 0.00022870210928495685,
+                  "l2": 0.0002538856045187631,
+                  "linf": 0.00043695054824333113
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.5,
+                  "l1": 0.0003237028721135883,
+                  "l2": 0.00035947667360429757,
+                  "linf": 0.0006051076654699505
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.75,
+                  "l1": 0.0003820536077528726,
+                  "l2": 0.0004245526173043204,
+                  "linf": 0.0007149336736368417
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 1.0,
+                  "l1": 0.00043216466889150346,
+                  "l2": 0.00048048614019260814,
+                  "linf": 0.0008137250920055017
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.25,
+                  "l1": 6.94170995943176e-05,
+                  "l2": 8.247036799302093e-05,
+                  "linf": 0.00016766689197278417
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.5,
+                  "l1": 0.000104332214668542,
+                  "l2": 0.00012198293530558247,
+                  "linf": 0.00024540932699046447
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.75,
+                  "l1": 0.00013276069314992547,
+                  "l2": 0.00015610051560143936,
+                  "linf": 0.000329933216643985
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 1.0,
+                  "l1": 0.00018522882645895244,
+                  "l2": 0.0002246047728650783,
+                  "linf": 0.0004947001675457141
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.25,
+                  "l1": 1.751846500663498e-05,
+                  "l2": 2.0813603944288354e-05,
+                  "linf": 4.250757988921716e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.5,
+                  "l1": 2.6206866103894305e-05,
+                  "l2": 3.0747265807528246e-05,
+                  "linf": 6.220113530286397e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.75,
+                  "l1": 3.334953107924157e-05,
+                  "l2": 3.9354165823297066e-05,
+                  "linf": 8.349776365901285e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 1.0,
+                  "l1": 4.671377936874693e-05,
+                  "l2": 5.669238367958461e-05,
+                  "linf": 0.00012535034070770834
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.25,
+                  "l1": 4.390107362330781e-06,
+                  "l2": 5.216043435274456e-06,
+                  "linf": 1.0665686352662185e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.5,
+                  "l1": 6.55932095494291e-06,
+                  "l2": 7.703030392379532e-06,
+                  "linf": 1.560632658048622e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.75,
+                  "l1": 8.347104621598406e-06,
+                  "l2": 9.859783111354384e-06,
+                  "linf": 2.0941024404086406e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 1.0,
+                  "l1": 1.1704431918224678e-05,
+                  "l2": 1.420809614811303e-05,
+                  "linf": 3.1448016794222156e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.25,
+                  "l1": 1.0981862039564916e-06,
+                  "l2": 1.3048075611620833e-06,
+                  "linf": 2.6688790186746303e-06
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.5,
+                  "l1": 1.6403019098658322e-06,
+                  "l2": 1.926778308706208e-06,
+                  "linf": 3.905136367055029e-06
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.75,
+                  "l1": 2.0873780376302886e-06,
+                  "l2": 2.4662837574151404e-06,
+                  "linf": 5.239473071405598e-06
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 1.0,
+                  "l1": 2.9277410221184574e-06,
+                  "l2": 3.554231191703374e-06,
+                  "linf": 7.86900806959423e-06
+                }
+              ],
+              "reference_records": [
+                {
+                  "method": "Radau",
+                  "rtol": 2e-11,
+                  "atol": 2e-13,
+                  "nfev": 876,
+                  "njev": 2,
+                  "nlu": 26,
+                  "termination": "reached_fixed_final_time",
+                  "difference_from_primary_linf": 0.0
+                },
+                {
+                  "method": "Radau",
+                  "rtol": 2e-13,
+                  "atol": 2e-15,
+                  "nfev": 2724,
+                  "njev": 2,
+                  "nlu": 28,
+                  "termination": "reached_fixed_final_time",
+                  "difference_from_primary_linf": 1.98463467881993e-12
+                },
+                {
+                  "method": "DOP853",
+                  "rtol": 2e-12,
+                  "atol": 2e-14,
+                  "nfev": 281,
+                  "njev": 0,
+                  "nlu": 0,
+                  "termination": "reached_fixed_final_time",
+                  "difference_from_primary_linf": 2.205471361094169e-10
+                }
+              ],
+              "reference_scope": "Unsplit Radau and DOP853 integration of the SAME centered-FD semidiscrete equations. No continuum-PDE or spatial convergence validation.",
+              "profiles": {
+                "x": [
+                  0.0,
+                  0.19634954084936207,
+                  0.39269908169872414,
+                  0.5890486225480862,
+                  0.7853981633974483,
+                  0.9817477042468103,
+                  1.1780972450961724,
+                  1.3744467859455345,
+                  1.5707963267948966,
+                  1.7671458676442586,
+                  1.9634954084936207,
+                  2.1598449493429825,
+                  2.356194490192345,
+                  2.552544031041707,
+                  2.748893571891069,
+                  2.945243112740431,
+                  3.141592653589793,
+                  3.3379421944391554,
+                  3.5342917352885173,
+                  3.730641276137879,
+                  3.9269908169872414,
+                  4.123340357836604,
+                  4.319689898685965,
+                  4.516039439535327,
+                  4.71238898038469,
+                  4.908738521234052,
+                  5.105088062083414,
+                  5.301437602932776,
+                  5.497787143782138,
+                  5.6941366846315,
+                  5.890486225480862,
+                  6.086835766330224
+                ],
+                "initial": [
+                  [
+                    1.09,
+                    1.0809814304127685,
+                    1.0565685424949238,
+                    1.0235436067773416,
+                    0.99,
+                    0.9623142575989273,
+                    0.9434314575050762,
+                    0.9331607052109626,
+                    0.93,
+                    0.9331607052109625,
+                    0.9434314575050762,
+                    0.9623142575989273,
+                    0.99,
+                    1.0235436067773418,
+                    1.0565685424949238,
+                    1.0809814304127685,
+                    1.09,
+                    1.0809814304127685,
+                    1.0565685424949238,
+                    1.0235436067773418,
+                    0.99,
+                    0.9623142575989273,
+                    0.9434314575050763,
+                    0.9331607052109626,
+                    0.93,
+                    0.9331607052109626,
+                    0.9434314575050762,
+                    0.9623142575989273,
+                    0.99,
+                    1.0235436067773416,
+                    1.0565685424949238,
+                    1.0809814304127685
+                  ],
+                  [
+                    0.868,
+                    0.8708694004622882,
+                    0.8787867965644036,
+                    0.8899337105914205,
+                    0.902,
+                    0.9128947165333259,
+                    0.9212132034355964,
+                    0.9263021724129655,
+                    0.928,
+                    0.9263021724129655,
+                    0.9212132034355964,
+                    0.9128947165333259,
+                    0.902,
+                    0.8899337105914205,
+                    0.8787867965644036,
+                    0.8708694004622883,
+                    0.868,
+                    0.8708694004622882,
+                    0.8787867965644036,
+                    0.8899337105914205,
+                    0.902,
+                    0.9128947165333259,
+                    0.9212132034355964,
+                    0.9263021724129654,
+                    0.928,
+                    0.9263021724129655,
+                    0.9212132034355964,
+                    0.9128947165333259,
+                    0.902,
+                    0.8899337105914205,
+                    0.8787867965644036,
+                    0.8708694004622883
+                  ]
+                ],
+                "reference_final": [
+                  [
+                    1.1416649172869697,
+                    1.1266033343108868,
+                    1.0865399223786982,
+                    1.034003114022912,
+                    0.9826524589932957,
+                    0.9419244804614386,
+                    0.9151784914721135,
+                    0.901111355929671,
+                    0.8968778947082939,
+                    0.9011113559296711,
+                    0.9151784914721135,
+                    0.9419244804614386,
+                    0.9826524589932958,
+                    1.0340031140229122,
+                    1.0865399223786982,
+                    1.1266033343108868,
+                    1.14166491728697,
+                    1.1266033343108868,
+                    1.0865399223786982,
+                    1.0340031140229122,
+                    0.9826524589932959,
+                    0.9419244804614386,
+                    0.9151784914721137,
+                    0.9011113559296712,
+                    0.896877894708294,
+                    0.9011113559296711,
+                    0.9151784914721136,
+                    0.9419244804614385,
+                    0.9826524589932959,
+                    1.034003114022912,
+                    1.0865399223786982,
+                    1.1266033343108868
+                  ],
+                  [
+                    0.8557050664866103,
+                    0.8594555208968911,
+                    0.8698309843789109,
+                    0.8845494851597532,
+                    0.900734075210068,
+                    0.9157227374059835,
+                    0.927544364963598,
+                    0.9350092963528681,
+                    0.937550164645087,
+                    0.9350092963528682,
+                    0.927544364963598,
+                    0.9157227374059835,
+                    0.9007340752100681,
+                    0.8845494851597533,
+                    0.8698309843789109,
+                    0.8594555208968911,
+                    0.8557050664866102,
+                    0.859455520896891,
+                    0.8698309843789108,
+                    0.8845494851597531,
+                    0.900734075210068,
+                    0.9157227374059834,
+                    0.927544364963598,
+                    0.9350092963528681,
+                    0.937550164645087,
+                    0.9350092963528681,
+                    0.927544364963598,
+                    0.9157227374059835,
+                    0.9007340752100681,
+                    0.8845494851597533,
+                    0.8698309843789109,
+                    0.8594555208968911
+                  ]
+                ],
+                "computed_final": {
+                  "lie-trotter": {
+                    "16": [
+                      [
+                        1.142485472467928,
+                        1.1273659627987185,
+                        1.0871301052215,
+                        1.0343271480305476,
+                        0.9826671040505414,
+                        0.9416422711422618,
+                        0.9146527708016383,
+                        0.9004244066950102,
+                        0.8961341306148545,
+                        0.9004244066950102,
+                        0.9146527708016383,
+                        0.9416422711422617,
+                        0.9826671040505414,
+                        1.0343271480305474,
+                        1.0871301052215,
+                        1.1273659627987185,
+                        1.142485472467928,
+                        1.1273659627987185,
+                        1.0871301052215,
+                        1.0343271480305476,
+                        0.9826671040505414,
+                        0.9416422711422618,
+                        0.9146527708016383,
+                        0.9004244066950102,
+                        0.8961341306148545,
+                        0.9004244066950102,
+                        0.9146527708016383,
+                        0.9416422711422617,
+                        0.9826671040505414,
+                        1.0343271480305474,
+                        1.0871301052215,
+                        1.1273659627987185
+                      ],
+                      [
+                        0.8490853839816418,
+                        0.8536147938783973,
+                        0.8660114243234239,
+                        0.8832573305643516,
+                        0.9017528769402081,
+                        0.9184269538916837,
+                        0.9312463180847568,
+                        0.9391753423049561,
+                        0.9418422231753727,
+                        0.9391753423049561,
+                        0.9312463180847568,
+                        0.9184269538916837,
+                        0.9017528769402081,
+                        0.8832573305643516,
+                        0.8660114243234239,
+                        0.8536147938783973,
+                        0.8490853839816418,
+                        0.8536147938783973,
+                        0.8660114243234239,
+                        0.8832573305643516,
+                        0.9017528769402081,
+                        0.9184269538916837,
+                        0.9312463180847568,
+                        0.9391753423049561,
+                        0.9418422231753727,
+                        0.9391753423049561,
+                        0.9312463180847568,
+                        0.9184269538916837,
+                        0.9017528769402081,
+                        0.8832573305643516,
+                        0.8660114243234239,
+                        0.8536147938783973
+                      ]
+                    ],
+                    "32": [
+                      [
+                        1.1422271354579776,
+                        1.127107952742921,
+                        1.0868925674192074,
+                        1.0341589010094796,
+                        0.9826159055091647,
+                        0.9417289959139701,
+                        0.9148670386043612,
+                        0.9007290085168693,
+                        0.896471545147626,
+                        0.9007290085168688,
+                        0.9148670386043612,
+                        0.941728995913969,
+                        0.9826159055091647,
+                        1.03415890100948,
+                        1.0868925674192074,
+                        1.1271079527429222,
+                        1.1422271354579776,
+                        1.127107952742921,
+                        1.0868925674192074,
+                        1.0341589010094796,
+                        0.9826159055091647,
+                        0.9417289959139701,
+                        0.9148670386043612,
+                        0.9007290085168693,
+                        0.896471545147626,
+                        0.9007290085168688,
+                        0.9148670386043612,
+                        0.941728995913969,
+                        0.9826159055091647,
+                        1.03415890100948,
+                        1.0868925674192074,
+                        1.1271079527429222
+                      ],
+                      [
+                        0.852421606219574,
+                        0.8565530480683075,
+                        0.867918893725702,
+                        0.8838812827847344,
+                        0.9012121856806478,
+                        0.9170472266335515,
+                        0.9293791971831359,
+                        0.9370876141231421,
+                        0.9396961860012006,
+                        0.9370876141231422,
+                        0.9293791971831359,
+                        0.9170472266335515,
+                        0.9012121856806478,
+                        0.8838812827847343,
+                        0.867918893725702,
+                        0.8565530480683075,
+                        0.852421606219574,
+                        0.8565530480683075,
+                        0.867918893725702,
+                        0.8838812827847344,
+                        0.9012121856806478,
+                        0.9170472266335515,
+                        0.9293791971831359,
+                        0.9370876141231421,
+                        0.9396961860012006,
+                        0.9370876141231422,
+                        0.9293791971831359,
+                        0.9170472266335515,
+                        0.9012121856806478,
+                        0.8838812827847343,
+                        0.867918893725702,
+                        0.8565530480683075
+                      ]
+                    ],
+                    "64": [
+                      [
+                        1.1419843947502095,
+                        1.1268866645666307,
+                        1.086730491386532,
+                        1.0340791532541493,
+                        0.9826229814456475,
+                        0.9418130629843686,
+                        0.9150106886661872,
+                        0.9009106550382918,
+                        0.8966663418758282,
+                        0.9009106550382933,
+                        0.9150106886661872,
+                        0.9418130629843683,
+                        0.9826229814456475,
+                        1.0340791532541487,
+                        1.086730491386532,
+                        1.1268866645666318,
+                        1.1419843947502095,
+                        1.1268866645666307,
+                        1.086730491386532,
+                        1.0340791532541493,
+                        0.9826229814456475,
+                        0.9418130629843686,
+                        0.9150106886661872,
+                        0.9009106550382918,
+                        0.8966663418758282,
+                        0.9009106550382933,
+                        0.9150106886661872,
+                        0.9418130629843683,
+                        0.9826229814456475,
+                        1.0340791532541487,
+                        1.086730491386532,
+                        1.1268866645666318
+                      ],
+                      [
+                        0.8540724624042828,
+                        0.85801058624402,
+                        0.8688747366732884,
+                        0.8842091358993641,
+                        0.9009642669066822,
+                        0.9163772089548221,
+                        0.9284572111690707,
+                        0.9360470476591388,
+                        0.9386230668578214,
+                        0.9360470476591388,
+                        0.9284572111690705,
+                        0.9163772089548221,
+                        0.9009642669066822,
+                        0.8842091358993642,
+                        0.8688747366732883,
+                        0.8580105862440199,
+                        0.8540724624042828,
+                        0.85801058624402,
+                        0.8688747366732884,
+                        0.8842091358993641,
+                        0.9009642669066822,
+                        0.9163772089548221,
+                        0.9284572111690707,
+                        0.9360470476591388,
+                        0.9386230668578214,
+                        0.9360470476591388,
+                        0.9284572111690705,
+                        0.9163772089548221,
+                        0.9009642669066822,
+                        0.8842091358993642,
+                        0.8688747366732883,
+                        0.8580105862440199
+                      ]
+                    ],
+                    "128": [
+                      [
+                        1.1418342426011197,
+                        1.1267527446125134,
+                        1.0866387525527748,
+                        1.0340406564937996,
+                        0.9826349147929032,
+                        0.9418653562245687,
+                        0.9150915816998856,
+                        0.9010086407401077,
+                        0.8967700435812768,
+                        0.90100864074011,
+                        0.9150915816998856,
+                        0.9418653562245679,
+                        0.9826349147929032,
+                        1.0340406564937985,
+                        1.0866387525527748,
+                        1.1267527446125152,
+                        1.1418342426011197,
+                        1.1267527446125134,
+                        1.0866387525527748,
+                        1.0340406564937996,
+                        0.9826349147929032,
+                        0.9418653562245687,
+                        0.9150915816998856,
+                        0.9010086407401077,
+                        0.8967700435812768,
+                        0.90100864074011,
+                        0.9150915816998856,
+                        0.9418653562245679,
+                        0.9826349147929032,
+                        1.0340406564937985,
+                        1.0866387525527748,
+                        1.1267527446125152
+                      ],
+                      [
+                        0.8548913413946048,
+                        0.8587348467566006,
+                        0.8693528654665384,
+                        0.8843776779909288,
+                        0.9008468402458559,
+                        0.916047926882361,
+                        0.9279995764578279,
+                        0.935527784023234,
+                        0.9380865664588486,
+                        0.9355277840232338,
+                        0.9279995764578279,
+                        0.916047926882361,
+                        0.9008468402458559,
+                        0.8843776779909288,
+                        0.8693528654665384,
+                        0.8587348467566004,
+                        0.8548913413946048,
+                        0.8587348467566006,
+                        0.8693528654665384,
+                        0.8843776779909288,
+                        0.9008468402458559,
+                        0.916047926882361,
+                        0.9279995764578279,
+                        0.935527784023234,
+                        0.9380865664588486,
+                        0.9355277840232338,
+                        0.9279995764578279,
+                        0.916047926882361,
+                        0.9008468402458559,
+                        0.8843776779909288,
+                        0.8693528654665384,
+                        0.8587348467566004
+                      ]
+                    ]
+                  },
+                  "strang": {
+                    "16": [
+                      [
+                        1.1411702171194242,
+                        1.1262058522870253,
+                        1.0863633345358021,
+                        1.0340357000325247,
+                        0.9828020535010221,
+                        0.9420992897352504,
+                        0.9153258207791902,
+                        0.9012209383283223,
+                        0.8969709130368207,
+                        0.9012209383283227,
+                        0.9153258207791902,
+                        0.9420992897352498,
+                        0.9828020535010221,
+                        1.0340357000325235,
+                        1.0863633345358021,
+                        1.1262058522870253,
+                        1.1411702171194242,
+                        1.1262058522870253,
+                        1.0863633345358021,
+                        1.0340357000325247,
+                        0.9828020535010221,
+                        0.9420992897352504,
+                        0.9153258207791902,
+                        0.9012209383283223,
+                        0.8969709130368207,
+                        0.9012209383283227,
+                        0.9153258207791902,
+                        0.9420992897352498,
+                        0.9828020535010221,
+                        1.0340357000325235,
+                        1.0863633345358021,
+                        1.1262058522870253
+                      ],
+                      [
+                        0.8561025899110611,
+                        0.8597936635130978,
+                        0.8700245211110165,
+                        0.884585149797653,
+                        0.9006559544825449,
+                        0.9155918025716069,
+                        0.9274068269381383,
+                        0.934884203043526,
+                        0.9374324430493294,
+                        0.934884203043526,
+                        0.9274068269381384,
+                        0.9155918025716069,
+                        0.9006559544825449,
+                        0.884585149797653,
+                        0.8700245211110166,
+                        0.8597936635130978,
+                        0.8561025899110611,
+                        0.8597936635130978,
+                        0.8700245211110165,
+                        0.884585149797653,
+                        0.9006559544825449,
+                        0.9155918025716069,
+                        0.9274068269381383,
+                        0.934884203043526,
+                        0.9374324430493294,
+                        0.934884203043526,
+                        0.9274068269381384,
+                        0.9155918025716069,
+                        0.9006559544825449,
+                        0.884585149797653,
+                        0.8700245211110166,
+                        0.8597936635130978
+                      ]
+                    ],
+                    "32": [
+                      [
+                        1.1415395669462622,
+                        1.126502917962195,
+                        1.0864958982252162,
+                        1.0340120216968645,
+                        0.9826905647418006,
+                        0.9419685519787944,
+                        0.9152153552623293,
+                        0.9011385326759116,
+                        0.8969008328805996,
+                        0.9011385326759128,
+                        0.9152153552623293,
+                        0.9419685519787939,
+                        0.9826905647418006,
+                        1.0340120216968647,
+                        1.0864958982252162,
+                        1.1265029179621953,
+                        1.1415395669462622,
+                        1.126502917962195,
+                        1.0864958982252162,
+                        1.0340120216968645,
+                        0.9826905647418006,
+                        0.9419685519787944,
+                        0.9152153552623293,
+                        0.9011385326759116,
+                        0.8969008328805996,
+                        0.9011385326759128,
+                        0.9152153552623293,
+                        0.9419685519787939,
+                        0.9826905647418006,
+                        1.0340120216968647,
+                        1.0864958982252162,
+                        1.1265029179621953
+                      ],
+                      [
+                        0.8558060393207599,
+                        0.8595410683118694,
+                        0.8698792721553412,
+                        0.8845576791332168,
+                        0.9007138855027589,
+                        0.915689679244504,
+                        0.9275099686146149,
+                        0.9349782457878257,
+                        0.9375210535170352,
+                        0.9349782457878257,
+                        0.9275099686146149,
+                        0.915689679244504,
+                        0.9007138855027589,
+                        0.8845576791332168,
+                        0.8698792721553412,
+                        0.8595410683118694,
+                        0.8558060393207599,
+                        0.8595410683118694,
+                        0.8698792721553412,
+                        0.8845576791332168,
+                        0.9007138855027589,
+                        0.915689679244504,
+                        0.9275099686146149,
+                        0.9349782457878257,
+                        0.9375210535170352,
+                        0.9349782457878257,
+                        0.9275099686146149,
+                        0.915689679244504,
+                        0.9007138855027589,
+                        0.8845576791332168,
+                        0.8698792721553412,
+                        0.8595410683118694
+                      ]
+                    ],
+                    "64": [
+                      [
+                        1.1416334692701757,
+                        1.1265781626204934,
+                        1.086528926657798,
+                        1.0340053912860017,
+                        0.982662030143727,
+                        0.9419355210420602,
+                        0.9151877092196226,
+                        0.9011181361259484,
+                        0.89688360890375,
+                        0.9011181361259499,
+                        0.9151877092196226,
+                        0.9419355210420589,
+                        0.982662030143727,
+                        1.0340053912860003,
+                        1.086528926657798,
+                        1.1265781626204954,
+                        1.1416334692701757,
+                        1.1265781626204934,
+                        1.086528926657798,
+                        1.0340053912860017,
+                        0.982662030143727,
+                        0.9419355210420602,
+                        0.9151877092196226,
+                        0.9011181361259484,
+                        0.89688360890375,
+                        0.9011181361259499,
+                        0.9151877092196226,
+                        0.9419355210420589,
+                        0.982662030143727,
+                        1.0340053912860003,
+                        1.086528926657798,
+                        1.1265781626204954
+                      ],
+                      [
+                        0.8557304162409914,
+                        0.859476973398696,
+                        0.8698430463939795,
+                        0.8845514851516187,
+                        0.9007289867853471,
+                        0.9157144536120129,
+                        0.9275357651999419,
+                        0.9350015477682642,
+                        0.9375429074156477,
+                        0.935001547768264,
+                        0.9275357651999419,
+                        0.915714453612013,
+                        0.9007289867853471,
+                        0.8845514851516189,
+                        0.8698430463939795,
+                        0.8594769733986959,
+                        0.8557304162409914,
+                        0.859476973398696,
+                        0.8698430463939795,
+                        0.8845514851516187,
+                        0.9007289867853471,
+                        0.9157144536120129,
+                        0.9275357651999419,
+                        0.9350015477682642,
+                        0.9375429074156477,
+                        0.935001547768264,
+                        0.9275357651999419,
+                        0.915714453612013,
+                        0.9007289867853471,
+                        0.8845514851516189,
+                        0.8698430463939795,
+                        0.8594769733986959
+                      ]
+                    ],
+                    "128": [
+                      [
+                        1.1416570482789004,
+                        1.1265970371260625,
+                        1.0865371741433931,
+                        1.0340036865318385,
+                        0.9826548545800119,
+                        0.9419272420177844,
+                        0.9151807960204852,
+                        0.9011130500999243,
+                        0.8968793219750992,
+                        0.9011130500999278,
+                        0.9151807960204852,
+                        0.9419272420177816,
+                        0.9826548545800119,
+                        1.0340036865318374,
+                        1.0865371741433931,
+                        1.1265970371260678,
+                        1.1416570482789004,
+                        1.1265970371260625,
+                        1.0865371741433931,
+                        1.0340036865318385,
+                        0.9826548545800119,
+                        0.9419272420177844,
+                        0.9151807960204852,
+                        0.9011130500999243,
+                        0.8968793219750992,
+                        0.9011130500999278,
+                        0.9151807960204852,
+                        0.9419272420177816,
+                        0.9826548545800119,
+                        1.0340036865318374,
+                        1.0865371741433931,
+                        1.1265970371260678
+                      ],
+                      [
+                        0.8557114107140396,
+                        0.8594608881647176,
+                        0.8698339991858338,
+                        0.8845499820708366,
+                        0.9007328005529703,
+                        0.915720665272399,
+                        0.9275422149775606,
+                        0.9350073600865304,
+                        0.9375483516345346,
+                        0.9350073600865304,
+                        0.9275422149775606,
+                        0.9157206652723991,
+                        0.9007328005529703,
+                        0.8845499820708365,
+                        0.8698339991858338,
+                        0.8594608881647173,
+                        0.8557114107140396,
+                        0.8594608881647176,
+                        0.8698339991858338,
+                        0.8845499820708366,
+                        0.9007328005529703,
+                        0.915720665272399,
+                        0.9275422149775606,
+                        0.9350073600865304,
+                        0.9375483516345346,
+                        0.9350073600865304,
+                        0.9275422149775606,
+                        0.9157206652723991,
+                        0.9007328005529703,
+                        0.8845499820708365,
+                        0.8698339991858338,
+                        0.8594608881647173
+                      ]
+                    ]
+                  }
+                }
+              },
+              "input_sha256": "7c24f5ccee9b3cccb01473f44b4c1ea118ece94a771e4700a0e3f8ce7547990f"
+            },
+            "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/",
+            "reading": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting"
+            }
+          }
+        ]
+      },
+      "depth_scope": {
+        "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+        "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/index.md",
-      "code_urls": [],
-      "test_urls": [],
-      "run_commands": [],
-      "run_from": null,
-      "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-      "code_edition": null,
-      "execution_examples": [],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-splitting-2026-11-22",
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/",
+      "code_edition": "2026-11-22",
+      "execution_examples": [
+        {
+          "id": "reaction-diffusion-splitting",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+          },
+          "kind": "dedicated-supplement"
+        }
+      ],
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json",
+      "code_archive_sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json",
       "problem_navigation": {
         "method_id": "lie-trotter",
-        "status": "reading-only",
-        "equations": [],
-        "problems": [],
-        "references": []
+        "status": "educational-example",
+        "equations": [
+          {
+            "id": "bio-schnakenberg",
+            "name": {
+              "ja": "Schnakenberg反応拡散",
+              "en": "Schnakenberg reaction–diffusion"
+            },
+            "problem_ids": [
+              "turing-schnakenberg"
+            ],
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-schnakenberg-en"
+            }
+          },
+          {
+            "id": "bio-turing",
+            "name": {
+              "ja": "Turing反応拡散の枠組み",
+              "en": "Turing reaction–diffusion framework"
+            },
+            "problem_ids": [
+              "turing-schnakenberg"
+            ],
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-turing-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-turing-en"
+            }
+          }
+        ],
+        "problems": [
+          {
+            "id": "turing-schnakenberg",
+            "name": {
+              "ja": "Turing不安定性：線形成長率と小振幅パターン",
+              "en": "Turing instability: linear growth and small-amplitude patterns"
+            },
+            "image": {
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+              "sha256": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+              "width": 1680,
+              "height": 504,
+              "caption": {
+                "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+                "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+              },
+              "source_kind": "existing-figure"
+            },
+            "hub": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en"
+            },
+            "code": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#code-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#code-en"
+            },
+            "executions": [
+              {
+                "id": "reaction-diffusion-splitting",
+                "kind": "supplement",
+                "name": {
+                  "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+                  "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+                },
+                "scope": {
+                  "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+                  "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+                },
+                "method_ids": [
+                  "lie-trotter",
+                  "strang-splitting"
+                ],
+                "guide": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+                },
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json",
+                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json"
+              }
+            ],
+            "role": "execution",
+            "method_note": {
+              "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+              "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+            }
+          }
+        ],
+        "references": [
+          {
+            "problem_id": "turing-schnakenberg",
+            "problem_name": {
+              "ja": "Turing不安定性：線形成長率と小振幅パターン",
+              "en": "Turing instability: linear growth and small-amplitude patterns"
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+            },
+            "cases": []
+          }
+        ]
       }
     },
     {
@@ -148715,10 +150283,10 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。",
-        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs."
+        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
+        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
       },
-      "status": "reading-only",
+      "status": "educational-example",
       "origin": "curated-operator-splitting-reading",
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/",
@@ -148726,7 +150294,7 @@
       },
       "code_modules": [],
       "test_files": [],
-      "code_mapping_scope": "Reading and a fixed two-component exact-flow illustration; no general solver distribution or common execution-registry mapping. Existing Strang reaction-diffusion runs retain their original method bindings.",
+      "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
       "references": [
         {
           "url": "https://doi.org/10.1137/0705041",
@@ -148756,12 +150324,12 @@
       "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
       "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
       "limitations": {
-        "ja": "滑らかな有限次元の例の次数を、衝撃波・硬いPDE・一般境界へ保証しない。厳密な部分流でも合成の安定性制約は残る。教材例スクリプトは汎用ソルバー配布版ではない。",
-        "en": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release."
+        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
       },
       "metadata_review": {
-        "level": "method-specific reading and finite-dimensional exact-flow illustration; source access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
       },
       "aliases": [
         "Strang splitting",
@@ -148773,22 +150341,1590 @@
         "Strang–Marchuk splitting",
         "2次作用素分割"
       ],
+      "depth_previous_status": "reading-only",
+      "depth_release": {
+        "group": "splitting",
+        "case_ids": [
+          "reaction-diffusion-splitting"
+        ],
+        "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/",
+        "code_edition": "2026-11-22",
+        "code_urls": [
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+        ],
+        "test_urls": [
+          "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
+        ],
+        "run_commands": [
+          "python -m pytest -q",
+          "python run.py --input inputs.json --output output"
+        ],
+        "run_from": "atlas-splitting-2026-11-22",
+        "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+        "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json",
+        "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json",
+        "code_archive_sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+        "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json",
+        "passed_tests": 16,
+        "examples": [
+          {
+            "id": "reaction-diffusion-splitting",
+            "title": {
+              "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+              "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+            },
+            "method_ids": [
+              "lie-trotter",
+              "strang-splitting"
+            ],
+            "domains": [
+              "biology",
+              "diffusion",
+              "time"
+            ],
+            "code_files": [
+              "run.py",
+              "splitting.py",
+              "reference.py"
+            ],
+            "summary": {
+              "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+              "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+            },
+            "assumptions": {
+              "ja": "無次元の1D周期区間[0,2π)、N=32、a=.1,b=.9、D=(.01,1)。u₀=1+.08cos2x+.01cos4x、v₀=.9−.03cos2x−.002cos4xは既存の有限振幅例と同じ初期場です。今回の終時刻はT=1、ステップ数16/32/64/128、共通出力時刻0/.25/.5/.75/1。反射対称・π周期の限定入力です。",
+              "en": "Nondimensional 1D periodic [0,2pi), N=32, a=.1, b=.9, D=(.01,1). The initial fields u₀=1+.08cos2x+.01cos4x and v₀=.9−.03cos2x−.002cos4x match the earlier finite-amplitude example. This new run ends at T=1, uses 16/32/64/128 steps and common output times 0/.25/.5/.75/1. The fixed input is reflection-even and pi-periodic."
+            },
+            "algorithm": {
+              "ja": "Lie–Trotterは拡散h→反応h、Strangは拡散h/2→反応h→拡散h/2。どちらも更新後の状態を次へ渡します。拡散は2次中心FD行列の指数をFFTで厳密適用、反応は同じ陰的中点則・Newton公差2e−13・上限12評価を使用。反応流は厳密解ではなく2次近似です。クリッピング・自動刻み変更・代替解法への切替を行わず、未収束は失敗にします。",
+              "en": "Lie–Trotter uses diffusion(h) then reaction(h); Strang uses diffusion(h/2), reaction(h), diffusion(h/2), always passing the updated state. Both apply the exact exponential of the centered-FD diffusion matrix by FFT and the same implicit-midpoint reaction/Newton tolerance 2e−13 with at most 12 residual evaluations. The reaction flow is a second-order approximation, not exact. No clipping, adaptive steps or fallback; nonconvergence is failure."
+            },
+            "validation": {
+              "ja": "参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。",
+              "en": "The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering."
+            },
+            "limits": {
+              "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+              "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
+            },
+            "formulas": [
+              "u_t=0.01u_{xx}+0.1-u+u^2v,\\qquad v_t=v_{xx}+0.9-u^2v",
+              "\\lambda_{h,k}=-\\frac{4}{\\Delta x^2}\\sin^2\\!\\left(\\frac{\\pi k}{N}\\right),\\quad L_h=\\Psi_R^h\\circ e^{hD L_{\\rm FD}},\\quad S_h=e^{hD L_{\\rm FD}/2}\\circ\\Psi_R^h\\circ e^{hD L_{\\rm FD}/2}",
+              "\\Psi_R^h(y)=y+hR\\!\\left(\\frac{y+\\Psi_R^h(y)}2\\right),\\quad \\langle u+v\\rangle_{n+1}-\\langle u+v\\rangle_n=h(0.1+0.9-\\langle u_{\\rm mid}\\rangle)",
+              "E_2(h)=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{s\\in\\{u,v\\}}\\sqrt{\\frac1N\\sum_j(e_{s,j}(t))^2},\\quad p_{\\rm obs}=\\log_2\\frac{E_2(h)}{E_2(h/2)}"
+            ],
+            "references": [
+              {
+                "id": "trotter1959",
+                "author": "H. F. Trotter",
+                "year": 1959,
+                "title": "On the product of semi-groups of operators",
+                "journal": "Proceedings of the American Mathematical Society",
+                "volume": "10",
+                "number": "4",
+                "pages": "545–551",
+                "doi": "10.1090/S0002-9939-1959-0108732-6",
+                "type": "article",
+                "source": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+                "source_review": {
+                  "level": "metadata",
+                  "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+                  "scope": "AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.",
+                  "scope_ja": "AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。"
+                },
+                "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+                "review_level": "metadata",
+                "review": {
+                  "ja": "AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。",
+                  "en": "AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter."
+                }
+              },
+              {
+                "id": "strang1968",
+                "author": "G. Strang",
+                "year": 1968,
+                "title": "On the Construction and Comparison of Difference Schemes",
+                "journal": "SIAM Journal on Numerical Analysis",
+                "volume": "5",
+                "number": "3",
+                "pages": "506–517",
+                "doi": "10.1137/0705041",
+                "type": "article",
+                "source": "https://doi.org/10.1137/0705041",
+                "source_review": {
+                  "level": "metadata",
+                  "url": "https://epubs.siam.org/doi/10.1137/0705041",
+                  "scope": "Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.",
+                  "scope_ja": "今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。"
+                },
+                "url": "https://doi.org/10.1137/0705041",
+                "review_level": "metadata",
+                "review": {
+                  "ja": "今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。",
+                  "en": "Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit."
+                }
+              },
+              {
+                "id": "hairer2010-geometric-lecture2",
+                "author": "E. Hairer",
+                "year": 2010,
+                "title": "Geometric Numerical Integration, Lecture2",
+                "type": "misc",
+                "source": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+                "source_review": {
+                  "level": "full-text",
+                  "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+                  "scope": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.",
+                  "scope_ja": "著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。"
+                },
+                "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+                "review_level": "full-text",
+                "review": {
+                  "ja": "著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。",
+                  "en": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit."
+                }
+              },
+              {
+                "id": "schnakenberg1979",
+                "author": "J. Schnakenberg",
+                "year": 1979,
+                "title": "Simple chemical reaction systems with limit cycle behaviour",
+                "journal": "Journal of Theoretical Biology 81(3), 389–400",
+                "doi": "10.1016/0022-5193(79)90042-0",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+                "type": "article",
+                "review_level": "official-bibliography-and-publisher-indexed-abstract",
+                "review": {
+                  "ja": "PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。",
+                  "en": "Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments."
+                }
+              },
+              {
+                "id": "scipy-1.14.1-solve-ivp",
+                "author": "The SciPy community",
+                "year": 2024,
+                "title": "SciPy1.14.1 solve_ivp reference",
+                "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+                "review_level": "official-versioned-documentation-selected-methods-and-tolerances",
+                "review": {
+                  "ja": "SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。",
+                  "en": "Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions."
+                },
+                "type": "misc",
+                "source": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+              }
+            ],
+            "measured": {
+              "id": "reaction-diffusion-splitting",
+              "passed": true,
+              "metrics": {
+                "grid": 32,
+                "final_time": 1.0,
+                "lie_finest_l2": 0.00048048614019260814,
+                "strang_finest_l2": 3.554231191703374e-06,
+                "lie_last_observed_order": 1.002936574094834,
+                "strang_last_observed_order": 1.9991038173822453,
+                "reference_tolerance_linf": 1.98463467881993e-12,
+                "reference_algorithm_linf": 2.205471361094169e-10,
+                "reference_to_strang_error_ratio": 6.205199499240203e-05,
+                "newton_sensitivity_linf": 0.0,
+                "reverse_order_l2_difference": 0.007637419068950036,
+                "minimum_concentration": 0.8490853839816418,
+                "maximum_reaction_balance_error": 1.5942108744226857e-15
+              },
+              "checks": {
+                "lie_error_decreases": true,
+                "strang_error_decreases": true,
+                "lie_first_order": true,
+                "strang_second_order": true,
+                "lie_finest_error": true,
+                "strang_finest_error": true,
+                "strang_improves_this_input": true,
+                "reference_tolerance": true,
+                "reference_independent_time_algorithm": true,
+                "reference_error_separated": true,
+                "newton_error_separated": true,
+                "reaction_converged": true,
+                "reaction_source_balance": true,
+                "positive_on_tested_substeps": true,
+                "noncommuting_order_control": true
+              },
+              "records": [
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "dt": 0.0625,
+                  "max_l1": 0.0034999161845120502,
+                  "max_l2": 0.0038875589323584332,
+                  "max_linf": 0.0066196825049684715,
+                  "minimum_concentration": 0.8490853839816418,
+                  "maximum_midpoint_residual": 7.928380174604399e-14,
+                  "maximum_reaction_balance_error": 3.0531133177191805e-16,
+                  "reaction_calls": 16,
+                  "diffusion_calls": 16,
+                  "newton_updates": 32
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "dt": 0.03125,
+                  "max_l1": 0.0017391570445432492,
+                  "max_l2": 0.0019329080571091487,
+                  "max_linf": 0.003283460267036298,
+                  "minimum_concentration": 0.852421606219574,
+                  "maximum_midpoint_residual": 6.522560269672795e-16,
+                  "maximum_reaction_balance_error": 5.828670879282072e-16,
+                  "reaction_calls": 32,
+                  "diffusion_calls": 32,
+                  "newton_updates": 64,
+                  "observed_order_l2": 1.008091531222358
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "dt": 0.015625,
+                  "max_l1": 0.0008661931904511977,
+                  "max_l2": 0.0009629303104603552,
+                  "max_linf": 0.0016326040823274601,
+                  "minimum_concentration": 0.8540724624042828,
+                  "maximum_midpoint_residual": 1.1796119636642288e-16,
+                  "maximum_reaction_balance_error": 8.916478666520788e-16,
+                  "reaction_calls": 64,
+                  "diffusion_calls": 64,
+                  "newton_updates": 128,
+                  "observed_order_l2": 1.0052697186034483
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "dt": 0.0078125,
+                  "max_l1": 0.00043216466889150346,
+                  "max_l2": 0.00048048614019260814,
+                  "max_linf": 0.0008137250920055017,
+                  "minimum_concentration": 0.8548913413946048,
+                  "maximum_midpoint_residual": 1.1102230246251565e-16,
+                  "maximum_reaction_balance_error": 1.5942108744226857e-15,
+                  "reaction_calls": 128,
+                  "diffusion_calls": 128,
+                  "newton_updates": 256,
+                  "observed_order_l2": 1.002936574094834
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "dt": 0.0625,
+                  "max_l1": 0.00018522882645895244,
+                  "max_l2": 0.0002246047728650783,
+                  "max_linf": 0.0004947001675457141,
+                  "minimum_concentration": 0.8495010294662402,
+                  "maximum_midpoint_residual": 7.652212197228891e-14,
+                  "maximum_reaction_balance_error": 7.355227538141662e-16,
+                  "reaction_calls": 16,
+                  "diffusion_calls": 32,
+                  "newton_updates": 32
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "dt": 0.03125,
+                  "max_l1": 4.671377936874693e-05,
+                  "max_l2": 5.669238367958461e-05,
+                  "max_linf": 0.00012535034070770834,
+                  "minimum_concentration": 0.8526281296663327,
+                  "maximum_midpoint_residual": 6.487865800153259e-16,
+                  "maximum_reaction_balance_error": 7.7021722333370235e-16,
+                  "reaction_calls": 32,
+                  "diffusion_calls": 64,
+                  "newton_updates": 64,
+                  "observed_order_l2": 1.986161750533885
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "dt": 0.015625,
+                  "max_l1": 1.1704431918224678e-05,
+                  "max_l2": 1.420809614811303e-05,
+                  "max_linf": 3.1448016794222156e-05,
+                  "minimum_concentration": 0.8541751345946297,
+                  "maximum_midpoint_residual": 1.1449174941446927e-16,
+                  "maximum_reaction_balance_error": 1.096345236817342e-15,
+                  "reaction_calls": 64,
+                  "diffusion_calls": 128,
+                  "newton_updates": 128,
+                  "observed_order_l2": 1.9964416800284208
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "dt": 0.0078125,
+                  "max_l1": 2.9277410221184574e-06,
+                  "max_l2": 3.554231191703374e-06,
+                  "max_linf": 7.86900806959423e-06,
+                  "minimum_concentration": 0.8549424999871567,
+                  "maximum_midpoint_residual": 1.1102230246251565e-16,
+                  "maximum_reaction_balance_error": 1.1483869410966463e-15,
+                  "reaction_calls": 128,
+                  "diffusion_calls": 256,
+                  "newton_updates": 256,
+                  "observed_order_l2": 1.9991038173822453
+                }
+              ],
+              "time_records": [
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.25,
+                  "l1": 0.0018713291565467978,
+                  "l2": 0.0020777976203972997,
+                  "linf": 0.0036106011967984575
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.5,
+                  "l1": 0.002639714798626517,
+                  "l2": 0.002929429932849271,
+                  "linf": 0.004967659072495079
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 0.75,
+                  "l1": 0.0031051040193767372,
+                  "l2": 0.003447469945490127,
+                  "linf": 0.005841948448335965
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 16,
+                  "time": 1.0,
+                  "l1": 0.0034999161845120502,
+                  "l2": 0.0038875589323584332,
+                  "linf": 0.0066196825049684715
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.25,
+                  "l1": 0.000924300726534908,
+                  "l2": 0.0010261740210272612,
+                  "linf": 0.0017743063755470967
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.5,
+                  "l1": 0.0013063800762144855,
+                  "l2": 0.0014503359685334484,
+                  "linf": 0.0024503845207343167
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 0.75,
+                  "l1": 0.001539734369513681,
+                  "l2": 0.0017103986128998217,
+                  "linf": 0.002889766387683901
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 32,
+                  "time": 1.0,
+                  "l1": 0.0017391570445432492,
+                  "l2": 0.0019329080571091487,
+                  "linf": 0.003283460267036298
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.25,
+                  "l1": 0.0004590312977390647,
+                  "l2": 0.0005095922477764313,
+                  "linf": 0.0008784604473085489
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.5,
+                  "l1": 0.0006494023000874309,
+                  "l2": 0.0007211004799982291,
+                  "linf": 0.0012154230512911868
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 0.75,
+                  "l1": 0.0007661172683905114,
+                  "l2": 0.000851237772886712,
+                  "linf": 0.0014351681362194668
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 64,
+                  "time": 1.0,
+                  "l1": 0.0008661931904511977,
+                  "l2": 0.0009629303104603552,
+                  "linf": 0.0016326040823274601
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.25,
+                  "l1": 0.00022870210928495685,
+                  "l2": 0.0002538856045187631,
+                  "linf": 0.00043695054824333113
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.5,
+                  "l1": 0.0003237028721135883,
+                  "l2": 0.00035947667360429757,
+                  "linf": 0.0006051076654699505
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 0.75,
+                  "l1": 0.0003820536077528726,
+                  "l2": 0.0004245526173043204,
+                  "linf": 0.0007149336736368417
+                },
+                {
+                  "method": "lie-trotter",
+                  "steps": 128,
+                  "time": 1.0,
+                  "l1": 0.00043216466889150346,
+                  "l2": 0.00048048614019260814,
+                  "linf": 0.0008137250920055017
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.25,
+                  "l1": 6.94170995943176e-05,
+                  "l2": 8.247036799302093e-05,
+                  "linf": 0.00016766689197278417
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.5,
+                  "l1": 0.000104332214668542,
+                  "l2": 0.00012198293530558247,
+                  "linf": 0.00024540932699046447
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 0.75,
+                  "l1": 0.00013276069314992547,
+                  "l2": 0.00015610051560143936,
+                  "linf": 0.000329933216643985
+                },
+                {
+                  "method": "strang",
+                  "steps": 16,
+                  "time": 1.0,
+                  "l1": 0.00018522882645895244,
+                  "l2": 0.0002246047728650783,
+                  "linf": 0.0004947001675457141
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.25,
+                  "l1": 1.751846500663498e-05,
+                  "l2": 2.0813603944288354e-05,
+                  "linf": 4.250757988921716e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.5,
+                  "l1": 2.6206866103894305e-05,
+                  "l2": 3.0747265807528246e-05,
+                  "linf": 6.220113530286397e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 0.75,
+                  "l1": 3.334953107924157e-05,
+                  "l2": 3.9354165823297066e-05,
+                  "linf": 8.349776365901285e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 32,
+                  "time": 1.0,
+                  "l1": 4.671377936874693e-05,
+                  "l2": 5.669238367958461e-05,
+                  "linf": 0.00012535034070770834
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.25,
+                  "l1": 4.390107362330781e-06,
+                  "l2": 5.216043435274456e-06,
+                  "linf": 1.0665686352662185e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.5,
+                  "l1": 6.55932095494291e-06,
+                  "l2": 7.703030392379532e-06,
+                  "linf": 1.560632658048622e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 0.75,
+                  "l1": 8.347104621598406e-06,
+                  "l2": 9.859783111354384e-06,
+                  "linf": 2.0941024404086406e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 64,
+                  "time": 1.0,
+                  "l1": 1.1704431918224678e-05,
+                  "l2": 1.420809614811303e-05,
+                  "linf": 3.1448016794222156e-05
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.0,
+                  "l1": 1.0408340855860843e-17,
+                  "l2": 3.3993498887762956e-17,
+                  "linf": 1.1102230246251565e-16
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.25,
+                  "l1": 1.0981862039564916e-06,
+                  "l2": 1.3048075611620833e-06,
+                  "linf": 2.6688790186746303e-06
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.5,
+                  "l1": 1.6403019098658322e-06,
+                  "l2": 1.926778308706208e-06,
+                  "linf": 3.905136367055029e-06
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 0.75,
+                  "l1": 2.0873780376302886e-06,
+                  "l2": 2.4662837574151404e-06,
+                  "linf": 5.239473071405598e-06
+                },
+                {
+                  "method": "strang",
+                  "steps": 128,
+                  "time": 1.0,
+                  "l1": 2.9277410221184574e-06,
+                  "l2": 3.554231191703374e-06,
+                  "linf": 7.86900806959423e-06
+                }
+              ],
+              "reference_records": [
+                {
+                  "method": "Radau",
+                  "rtol": 2e-11,
+                  "atol": 2e-13,
+                  "nfev": 876,
+                  "njev": 2,
+                  "nlu": 26,
+                  "termination": "reached_fixed_final_time",
+                  "difference_from_primary_linf": 0.0
+                },
+                {
+                  "method": "Radau",
+                  "rtol": 2e-13,
+                  "atol": 2e-15,
+                  "nfev": 2724,
+                  "njev": 2,
+                  "nlu": 28,
+                  "termination": "reached_fixed_final_time",
+                  "difference_from_primary_linf": 1.98463467881993e-12
+                },
+                {
+                  "method": "DOP853",
+                  "rtol": 2e-12,
+                  "atol": 2e-14,
+                  "nfev": 281,
+                  "njev": 0,
+                  "nlu": 0,
+                  "termination": "reached_fixed_final_time",
+                  "difference_from_primary_linf": 2.205471361094169e-10
+                }
+              ],
+              "reference_scope": "Unsplit Radau and DOP853 integration of the SAME centered-FD semidiscrete equations. No continuum-PDE or spatial convergence validation.",
+              "profiles": {
+                "x": [
+                  0.0,
+                  0.19634954084936207,
+                  0.39269908169872414,
+                  0.5890486225480862,
+                  0.7853981633974483,
+                  0.9817477042468103,
+                  1.1780972450961724,
+                  1.3744467859455345,
+                  1.5707963267948966,
+                  1.7671458676442586,
+                  1.9634954084936207,
+                  2.1598449493429825,
+                  2.356194490192345,
+                  2.552544031041707,
+                  2.748893571891069,
+                  2.945243112740431,
+                  3.141592653589793,
+                  3.3379421944391554,
+                  3.5342917352885173,
+                  3.730641276137879,
+                  3.9269908169872414,
+                  4.123340357836604,
+                  4.319689898685965,
+                  4.516039439535327,
+                  4.71238898038469,
+                  4.908738521234052,
+                  5.105088062083414,
+                  5.301437602932776,
+                  5.497787143782138,
+                  5.6941366846315,
+                  5.890486225480862,
+                  6.086835766330224
+                ],
+                "initial": [
+                  [
+                    1.09,
+                    1.0809814304127685,
+                    1.0565685424949238,
+                    1.0235436067773416,
+                    0.99,
+                    0.9623142575989273,
+                    0.9434314575050762,
+                    0.9331607052109626,
+                    0.93,
+                    0.9331607052109625,
+                    0.9434314575050762,
+                    0.9623142575989273,
+                    0.99,
+                    1.0235436067773418,
+                    1.0565685424949238,
+                    1.0809814304127685,
+                    1.09,
+                    1.0809814304127685,
+                    1.0565685424949238,
+                    1.0235436067773418,
+                    0.99,
+                    0.9623142575989273,
+                    0.9434314575050763,
+                    0.9331607052109626,
+                    0.93,
+                    0.9331607052109626,
+                    0.9434314575050762,
+                    0.9623142575989273,
+                    0.99,
+                    1.0235436067773416,
+                    1.0565685424949238,
+                    1.0809814304127685
+                  ],
+                  [
+                    0.868,
+                    0.8708694004622882,
+                    0.8787867965644036,
+                    0.8899337105914205,
+                    0.902,
+                    0.9128947165333259,
+                    0.9212132034355964,
+                    0.9263021724129655,
+                    0.928,
+                    0.9263021724129655,
+                    0.9212132034355964,
+                    0.9128947165333259,
+                    0.902,
+                    0.8899337105914205,
+                    0.8787867965644036,
+                    0.8708694004622883,
+                    0.868,
+                    0.8708694004622882,
+                    0.8787867965644036,
+                    0.8899337105914205,
+                    0.902,
+                    0.9128947165333259,
+                    0.9212132034355964,
+                    0.9263021724129654,
+                    0.928,
+                    0.9263021724129655,
+                    0.9212132034355964,
+                    0.9128947165333259,
+                    0.902,
+                    0.8899337105914205,
+                    0.8787867965644036,
+                    0.8708694004622883
+                  ]
+                ],
+                "reference_final": [
+                  [
+                    1.1416649172869697,
+                    1.1266033343108868,
+                    1.0865399223786982,
+                    1.034003114022912,
+                    0.9826524589932957,
+                    0.9419244804614386,
+                    0.9151784914721135,
+                    0.901111355929671,
+                    0.8968778947082939,
+                    0.9011113559296711,
+                    0.9151784914721135,
+                    0.9419244804614386,
+                    0.9826524589932958,
+                    1.0340031140229122,
+                    1.0865399223786982,
+                    1.1266033343108868,
+                    1.14166491728697,
+                    1.1266033343108868,
+                    1.0865399223786982,
+                    1.0340031140229122,
+                    0.9826524589932959,
+                    0.9419244804614386,
+                    0.9151784914721137,
+                    0.9011113559296712,
+                    0.896877894708294,
+                    0.9011113559296711,
+                    0.9151784914721136,
+                    0.9419244804614385,
+                    0.9826524589932959,
+                    1.034003114022912,
+                    1.0865399223786982,
+                    1.1266033343108868
+                  ],
+                  [
+                    0.8557050664866103,
+                    0.8594555208968911,
+                    0.8698309843789109,
+                    0.8845494851597532,
+                    0.900734075210068,
+                    0.9157227374059835,
+                    0.927544364963598,
+                    0.9350092963528681,
+                    0.937550164645087,
+                    0.9350092963528682,
+                    0.927544364963598,
+                    0.9157227374059835,
+                    0.9007340752100681,
+                    0.8845494851597533,
+                    0.8698309843789109,
+                    0.8594555208968911,
+                    0.8557050664866102,
+                    0.859455520896891,
+                    0.8698309843789108,
+                    0.8845494851597531,
+                    0.900734075210068,
+                    0.9157227374059834,
+                    0.927544364963598,
+                    0.9350092963528681,
+                    0.937550164645087,
+                    0.9350092963528681,
+                    0.927544364963598,
+                    0.9157227374059835,
+                    0.9007340752100681,
+                    0.8845494851597533,
+                    0.8698309843789109,
+                    0.8594555208968911
+                  ]
+                ],
+                "computed_final": {
+                  "lie-trotter": {
+                    "16": [
+                      [
+                        1.142485472467928,
+                        1.1273659627987185,
+                        1.0871301052215,
+                        1.0343271480305476,
+                        0.9826671040505414,
+                        0.9416422711422618,
+                        0.9146527708016383,
+                        0.9004244066950102,
+                        0.8961341306148545,
+                        0.9004244066950102,
+                        0.9146527708016383,
+                        0.9416422711422617,
+                        0.9826671040505414,
+                        1.0343271480305474,
+                        1.0871301052215,
+                        1.1273659627987185,
+                        1.142485472467928,
+                        1.1273659627987185,
+                        1.0871301052215,
+                        1.0343271480305476,
+                        0.9826671040505414,
+                        0.9416422711422618,
+                        0.9146527708016383,
+                        0.9004244066950102,
+                        0.8961341306148545,
+                        0.9004244066950102,
+                        0.9146527708016383,
+                        0.9416422711422617,
+                        0.9826671040505414,
+                        1.0343271480305474,
+                        1.0871301052215,
+                        1.1273659627987185
+                      ],
+                      [
+                        0.8490853839816418,
+                        0.8536147938783973,
+                        0.8660114243234239,
+                        0.8832573305643516,
+                        0.9017528769402081,
+                        0.9184269538916837,
+                        0.9312463180847568,
+                        0.9391753423049561,
+                        0.9418422231753727,
+                        0.9391753423049561,
+                        0.9312463180847568,
+                        0.9184269538916837,
+                        0.9017528769402081,
+                        0.8832573305643516,
+                        0.8660114243234239,
+                        0.8536147938783973,
+                        0.8490853839816418,
+                        0.8536147938783973,
+                        0.8660114243234239,
+                        0.8832573305643516,
+                        0.9017528769402081,
+                        0.9184269538916837,
+                        0.9312463180847568,
+                        0.9391753423049561,
+                        0.9418422231753727,
+                        0.9391753423049561,
+                        0.9312463180847568,
+                        0.9184269538916837,
+                        0.9017528769402081,
+                        0.8832573305643516,
+                        0.8660114243234239,
+                        0.8536147938783973
+                      ]
+                    ],
+                    "32": [
+                      [
+                        1.1422271354579776,
+                        1.127107952742921,
+                        1.0868925674192074,
+                        1.0341589010094796,
+                        0.9826159055091647,
+                        0.9417289959139701,
+                        0.9148670386043612,
+                        0.9007290085168693,
+                        0.896471545147626,
+                        0.9007290085168688,
+                        0.9148670386043612,
+                        0.941728995913969,
+                        0.9826159055091647,
+                        1.03415890100948,
+                        1.0868925674192074,
+                        1.1271079527429222,
+                        1.1422271354579776,
+                        1.127107952742921,
+                        1.0868925674192074,
+                        1.0341589010094796,
+                        0.9826159055091647,
+                        0.9417289959139701,
+                        0.9148670386043612,
+                        0.9007290085168693,
+                        0.896471545147626,
+                        0.9007290085168688,
+                        0.9148670386043612,
+                        0.941728995913969,
+                        0.9826159055091647,
+                        1.03415890100948,
+                        1.0868925674192074,
+                        1.1271079527429222
+                      ],
+                      [
+                        0.852421606219574,
+                        0.8565530480683075,
+                        0.867918893725702,
+                        0.8838812827847344,
+                        0.9012121856806478,
+                        0.9170472266335515,
+                        0.9293791971831359,
+                        0.9370876141231421,
+                        0.9396961860012006,
+                        0.9370876141231422,
+                        0.9293791971831359,
+                        0.9170472266335515,
+                        0.9012121856806478,
+                        0.8838812827847343,
+                        0.867918893725702,
+                        0.8565530480683075,
+                        0.852421606219574,
+                        0.8565530480683075,
+                        0.867918893725702,
+                        0.8838812827847344,
+                        0.9012121856806478,
+                        0.9170472266335515,
+                        0.9293791971831359,
+                        0.9370876141231421,
+                        0.9396961860012006,
+                        0.9370876141231422,
+                        0.9293791971831359,
+                        0.9170472266335515,
+                        0.9012121856806478,
+                        0.8838812827847343,
+                        0.867918893725702,
+                        0.8565530480683075
+                      ]
+                    ],
+                    "64": [
+                      [
+                        1.1419843947502095,
+                        1.1268866645666307,
+                        1.086730491386532,
+                        1.0340791532541493,
+                        0.9826229814456475,
+                        0.9418130629843686,
+                        0.9150106886661872,
+                        0.9009106550382918,
+                        0.8966663418758282,
+                        0.9009106550382933,
+                        0.9150106886661872,
+                        0.9418130629843683,
+                        0.9826229814456475,
+                        1.0340791532541487,
+                        1.086730491386532,
+                        1.1268866645666318,
+                        1.1419843947502095,
+                        1.1268866645666307,
+                        1.086730491386532,
+                        1.0340791532541493,
+                        0.9826229814456475,
+                        0.9418130629843686,
+                        0.9150106886661872,
+                        0.9009106550382918,
+                        0.8966663418758282,
+                        0.9009106550382933,
+                        0.9150106886661872,
+                        0.9418130629843683,
+                        0.9826229814456475,
+                        1.0340791532541487,
+                        1.086730491386532,
+                        1.1268866645666318
+                      ],
+                      [
+                        0.8540724624042828,
+                        0.85801058624402,
+                        0.8688747366732884,
+                        0.8842091358993641,
+                        0.9009642669066822,
+                        0.9163772089548221,
+                        0.9284572111690707,
+                        0.9360470476591388,
+                        0.9386230668578214,
+                        0.9360470476591388,
+                        0.9284572111690705,
+                        0.9163772089548221,
+                        0.9009642669066822,
+                        0.8842091358993642,
+                        0.8688747366732883,
+                        0.8580105862440199,
+                        0.8540724624042828,
+                        0.85801058624402,
+                        0.8688747366732884,
+                        0.8842091358993641,
+                        0.9009642669066822,
+                        0.9163772089548221,
+                        0.9284572111690707,
+                        0.9360470476591388,
+                        0.9386230668578214,
+                        0.9360470476591388,
+                        0.9284572111690705,
+                        0.9163772089548221,
+                        0.9009642669066822,
+                        0.8842091358993642,
+                        0.8688747366732883,
+                        0.8580105862440199
+                      ]
+                    ],
+                    "128": [
+                      [
+                        1.1418342426011197,
+                        1.1267527446125134,
+                        1.0866387525527748,
+                        1.0340406564937996,
+                        0.9826349147929032,
+                        0.9418653562245687,
+                        0.9150915816998856,
+                        0.9010086407401077,
+                        0.8967700435812768,
+                        0.90100864074011,
+                        0.9150915816998856,
+                        0.9418653562245679,
+                        0.9826349147929032,
+                        1.0340406564937985,
+                        1.0866387525527748,
+                        1.1267527446125152,
+                        1.1418342426011197,
+                        1.1267527446125134,
+                        1.0866387525527748,
+                        1.0340406564937996,
+                        0.9826349147929032,
+                        0.9418653562245687,
+                        0.9150915816998856,
+                        0.9010086407401077,
+                        0.8967700435812768,
+                        0.90100864074011,
+                        0.9150915816998856,
+                        0.9418653562245679,
+                        0.9826349147929032,
+                        1.0340406564937985,
+                        1.0866387525527748,
+                        1.1267527446125152
+                      ],
+                      [
+                        0.8548913413946048,
+                        0.8587348467566006,
+                        0.8693528654665384,
+                        0.8843776779909288,
+                        0.9008468402458559,
+                        0.916047926882361,
+                        0.9279995764578279,
+                        0.935527784023234,
+                        0.9380865664588486,
+                        0.9355277840232338,
+                        0.9279995764578279,
+                        0.916047926882361,
+                        0.9008468402458559,
+                        0.8843776779909288,
+                        0.8693528654665384,
+                        0.8587348467566004,
+                        0.8548913413946048,
+                        0.8587348467566006,
+                        0.8693528654665384,
+                        0.8843776779909288,
+                        0.9008468402458559,
+                        0.916047926882361,
+                        0.9279995764578279,
+                        0.935527784023234,
+                        0.9380865664588486,
+                        0.9355277840232338,
+                        0.9279995764578279,
+                        0.916047926882361,
+                        0.9008468402458559,
+                        0.8843776779909288,
+                        0.8693528654665384,
+                        0.8587348467566004
+                      ]
+                    ]
+                  },
+                  "strang": {
+                    "16": [
+                      [
+                        1.1411702171194242,
+                        1.1262058522870253,
+                        1.0863633345358021,
+                        1.0340357000325247,
+                        0.9828020535010221,
+                        0.9420992897352504,
+                        0.9153258207791902,
+                        0.9012209383283223,
+                        0.8969709130368207,
+                        0.9012209383283227,
+                        0.9153258207791902,
+                        0.9420992897352498,
+                        0.9828020535010221,
+                        1.0340357000325235,
+                        1.0863633345358021,
+                        1.1262058522870253,
+                        1.1411702171194242,
+                        1.1262058522870253,
+                        1.0863633345358021,
+                        1.0340357000325247,
+                        0.9828020535010221,
+                        0.9420992897352504,
+                        0.9153258207791902,
+                        0.9012209383283223,
+                        0.8969709130368207,
+                        0.9012209383283227,
+                        0.9153258207791902,
+                        0.9420992897352498,
+                        0.9828020535010221,
+                        1.0340357000325235,
+                        1.0863633345358021,
+                        1.1262058522870253
+                      ],
+                      [
+                        0.8561025899110611,
+                        0.8597936635130978,
+                        0.8700245211110165,
+                        0.884585149797653,
+                        0.9006559544825449,
+                        0.9155918025716069,
+                        0.9274068269381383,
+                        0.934884203043526,
+                        0.9374324430493294,
+                        0.934884203043526,
+                        0.9274068269381384,
+                        0.9155918025716069,
+                        0.9006559544825449,
+                        0.884585149797653,
+                        0.8700245211110166,
+                        0.8597936635130978,
+                        0.8561025899110611,
+                        0.8597936635130978,
+                        0.8700245211110165,
+                        0.884585149797653,
+                        0.9006559544825449,
+                        0.9155918025716069,
+                        0.9274068269381383,
+                        0.934884203043526,
+                        0.9374324430493294,
+                        0.934884203043526,
+                        0.9274068269381384,
+                        0.9155918025716069,
+                        0.9006559544825449,
+                        0.884585149797653,
+                        0.8700245211110166,
+                        0.8597936635130978
+                      ]
+                    ],
+                    "32": [
+                      [
+                        1.1415395669462622,
+                        1.126502917962195,
+                        1.0864958982252162,
+                        1.0340120216968645,
+                        0.9826905647418006,
+                        0.9419685519787944,
+                        0.9152153552623293,
+                        0.9011385326759116,
+                        0.8969008328805996,
+                        0.9011385326759128,
+                        0.9152153552623293,
+                        0.9419685519787939,
+                        0.9826905647418006,
+                        1.0340120216968647,
+                        1.0864958982252162,
+                        1.1265029179621953,
+                        1.1415395669462622,
+                        1.126502917962195,
+                        1.0864958982252162,
+                        1.0340120216968645,
+                        0.9826905647418006,
+                        0.9419685519787944,
+                        0.9152153552623293,
+                        0.9011385326759116,
+                        0.8969008328805996,
+                        0.9011385326759128,
+                        0.9152153552623293,
+                        0.9419685519787939,
+                        0.9826905647418006,
+                        1.0340120216968647,
+                        1.0864958982252162,
+                        1.1265029179621953
+                      ],
+                      [
+                        0.8558060393207599,
+                        0.8595410683118694,
+                        0.8698792721553412,
+                        0.8845576791332168,
+                        0.9007138855027589,
+                        0.915689679244504,
+                        0.9275099686146149,
+                        0.9349782457878257,
+                        0.9375210535170352,
+                        0.9349782457878257,
+                        0.9275099686146149,
+                        0.915689679244504,
+                        0.9007138855027589,
+                        0.8845576791332168,
+                        0.8698792721553412,
+                        0.8595410683118694,
+                        0.8558060393207599,
+                        0.8595410683118694,
+                        0.8698792721553412,
+                        0.8845576791332168,
+                        0.9007138855027589,
+                        0.915689679244504,
+                        0.9275099686146149,
+                        0.9349782457878257,
+                        0.9375210535170352,
+                        0.9349782457878257,
+                        0.9275099686146149,
+                        0.915689679244504,
+                        0.9007138855027589,
+                        0.8845576791332168,
+                        0.8698792721553412,
+                        0.8595410683118694
+                      ]
+                    ],
+                    "64": [
+                      [
+                        1.1416334692701757,
+                        1.1265781626204934,
+                        1.086528926657798,
+                        1.0340053912860017,
+                        0.982662030143727,
+                        0.9419355210420602,
+                        0.9151877092196226,
+                        0.9011181361259484,
+                        0.89688360890375,
+                        0.9011181361259499,
+                        0.9151877092196226,
+                        0.9419355210420589,
+                        0.982662030143727,
+                        1.0340053912860003,
+                        1.086528926657798,
+                        1.1265781626204954,
+                        1.1416334692701757,
+                        1.1265781626204934,
+                        1.086528926657798,
+                        1.0340053912860017,
+                        0.982662030143727,
+                        0.9419355210420602,
+                        0.9151877092196226,
+                        0.9011181361259484,
+                        0.89688360890375,
+                        0.9011181361259499,
+                        0.9151877092196226,
+                        0.9419355210420589,
+                        0.982662030143727,
+                        1.0340053912860003,
+                        1.086528926657798,
+                        1.1265781626204954
+                      ],
+                      [
+                        0.8557304162409914,
+                        0.859476973398696,
+                        0.8698430463939795,
+                        0.8845514851516187,
+                        0.9007289867853471,
+                        0.9157144536120129,
+                        0.9275357651999419,
+                        0.9350015477682642,
+                        0.9375429074156477,
+                        0.935001547768264,
+                        0.9275357651999419,
+                        0.915714453612013,
+                        0.9007289867853471,
+                        0.8845514851516189,
+                        0.8698430463939795,
+                        0.8594769733986959,
+                        0.8557304162409914,
+                        0.859476973398696,
+                        0.8698430463939795,
+                        0.8845514851516187,
+                        0.9007289867853471,
+                        0.9157144536120129,
+                        0.9275357651999419,
+                        0.9350015477682642,
+                        0.9375429074156477,
+                        0.935001547768264,
+                        0.9275357651999419,
+                        0.915714453612013,
+                        0.9007289867853471,
+                        0.8845514851516189,
+                        0.8698430463939795,
+                        0.8594769733986959
+                      ]
+                    ],
+                    "128": [
+                      [
+                        1.1416570482789004,
+                        1.1265970371260625,
+                        1.0865371741433931,
+                        1.0340036865318385,
+                        0.9826548545800119,
+                        0.9419272420177844,
+                        0.9151807960204852,
+                        0.9011130500999243,
+                        0.8968793219750992,
+                        0.9011130500999278,
+                        0.9151807960204852,
+                        0.9419272420177816,
+                        0.9826548545800119,
+                        1.0340036865318374,
+                        1.0865371741433931,
+                        1.1265970371260678,
+                        1.1416570482789004,
+                        1.1265970371260625,
+                        1.0865371741433931,
+                        1.0340036865318385,
+                        0.9826548545800119,
+                        0.9419272420177844,
+                        0.9151807960204852,
+                        0.9011130500999243,
+                        0.8968793219750992,
+                        0.9011130500999278,
+                        0.9151807960204852,
+                        0.9419272420177816,
+                        0.9826548545800119,
+                        1.0340036865318374,
+                        1.0865371741433931,
+                        1.1265970371260678
+                      ],
+                      [
+                        0.8557114107140396,
+                        0.8594608881647176,
+                        0.8698339991858338,
+                        0.8845499820708366,
+                        0.9007328005529703,
+                        0.915720665272399,
+                        0.9275422149775606,
+                        0.9350073600865304,
+                        0.9375483516345346,
+                        0.9350073600865304,
+                        0.9275422149775606,
+                        0.9157206652723991,
+                        0.9007328005529703,
+                        0.8845499820708365,
+                        0.8698339991858338,
+                        0.8594608881647173,
+                        0.8557114107140396,
+                        0.8594608881647176,
+                        0.8698339991858338,
+                        0.8845499820708366,
+                        0.9007328005529703,
+                        0.915720665272399,
+                        0.9275422149775606,
+                        0.9350073600865304,
+                        0.9375483516345346,
+                        0.9350073600865304,
+                        0.9275422149775606,
+                        0.9157206652723991,
+                        0.9007328005529703,
+                        0.8845499820708365,
+                        0.8698339991858338,
+                        0.8594608881647173
+                      ]
+                    ]
+                  }
+                }
+              },
+              "input_sha256": "7c24f5ccee9b3cccb01473f44b4c1ea118ece94a771e4700a0e3f8ce7547990f"
+            },
+            "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/",
+            "reading": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting"
+            }
+          }
+        ]
+      },
+      "depth_scope": {
+        "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+        "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/index.md",
-      "code_urls": [],
-      "test_urls": [],
-      "run_commands": [],
-      "run_from": null,
-      "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-      "code_edition": null,
-      "execution_examples": [],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-splitting-2026-11-22",
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/",
+      "code_edition": "2026-11-22",
+      "execution_examples": [
+        {
+          "id": "reaction-diffusion-splitting",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+          },
+          "kind": "dedicated-supplement"
+        }
+      ],
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json",
+      "code_archive_sha256": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json",
       "problem_navigation": {
         "method_id": "strang-splitting",
-        "status": "reading-only",
-        "equations": [],
-        "problems": [],
-        "references": []
+        "status": "educational-example",
+        "equations": [
+          {
+            "id": "bio-schnakenberg",
+            "name": {
+              "ja": "Schnakenberg反応拡散",
+              "en": "Schnakenberg reaction–diffusion"
+            },
+            "problem_ids": [
+              "turing-schnakenberg"
+            ],
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-schnakenberg-en"
+            }
+          },
+          {
+            "id": "bio-turing",
+            "name": {
+              "ja": "Turing反応拡散の枠組み",
+              "en": "Turing reaction–diffusion framework"
+            },
+            "problem_ids": [
+              "turing-schnakenberg"
+            ],
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-turing-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-turing-en"
+            }
+          }
+        ],
+        "problems": [
+          {
+            "id": "turing-schnakenberg",
+            "name": {
+              "ja": "Turing不安定性：線形成長率と小振幅パターン",
+              "en": "Turing instability: linear growth and small-amplitude patterns"
+            },
+            "image": {
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+              "sha256": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+              "width": 1680,
+              "height": 504,
+              "caption": {
+                "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+                "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+              },
+              "source_kind": "existing-figure"
+            },
+            "hub": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en"
+            },
+            "code": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#code-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#code-en"
+            },
+            "executions": [
+              {
+                "id": "reaction-diffusion-splitting",
+                "kind": "supplement",
+                "name": {
+                  "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+                  "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+                },
+                "scope": {
+                  "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+                  "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+                },
+                "method_ids": [
+                  "lie-trotter",
+                  "strang-splitting"
+                ],
+                "guide": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+                },
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json",
+                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json"
+              }
+            ],
+            "role": "execution",
+            "method_note": {
+              "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+              "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+            }
+          }
+        ],
+        "references": [
+          {
+            "problem_id": "turing-schnakenberg",
+            "problem_name": {
+              "ja": "Turing不安定性：線形成長率と小振幅パターン",
+              "en": "Turing instability: linear growth and small-amplitude patterns"
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+            },
+            "cases": []
+          }
+        ]
       }
     }
   ],
@@ -148860,12 +151996,12 @@
     }
   },
   "problem_navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
+    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "3c5baf043ced66d4e3973d829cdf62820d9ac32e8aed47e3b05d40d9c5965fb5",
+    "catalog/atlas-methods.json": "6056ca2a6f1b583c218dbca94a741a451a381fd5788e30cc8265d2fb1be1490e",
     "catalog/atlas-problem-links.json": "ce920e0e2d8b9a2c45b3466ddec2707c1c6534949fbfda9b71e3a2d3c532863b",
-    "catalog/atlas-test-problems.json": "4c66a1747c5805ac1608baa9707b6b1325a5890ae2dfa2ff151f4d5340856f4e",
+    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -148911,6 +152047,11 @@
     "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
     "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
@@ -148919,7 +152060,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "606974737e1526254ca3405c554bce1fb7563cba85e16ad029b002d9f8caf378",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f471ec4d77fc9efa9aa0d491c5083d0541e90ea46453f4419ae7a6f684d29278",
     "numerical-methods-atlas/locales/messages.json": "246d3e8a6828d9129aa9938b30fab341acc62aaa8e6c81222f4dc83edf8002d4"
   },
   "code_release": {

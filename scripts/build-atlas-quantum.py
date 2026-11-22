@@ -181,7 +181,7 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
     splitting_origin='curated-operator-splitting-reading'
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!=splitting_origin]
     for x in load(ROOT/'catalog/atlas-methods.json')['methods']:
-        if x.get('origin')==splitting_origin:
+        if x.get('origin')==splitting_origin and not x.get('depth_release'):
             assert x['status']=='reading-only' and not x['code_modules'] and not x['test_files']
             coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
                 'chapter':'operator-splitting','status':'reading','group':x['group']['en'],
