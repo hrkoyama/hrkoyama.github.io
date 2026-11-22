@@ -92,10 +92,15 @@
       "title": "量子力学 ― 非相対論的理論 1・2",
       "creator": "L. D. ランダウ／E. M. リフシッツ",
       "kind": "書籍",
-      "note": "２分冊。",
+      "note": "２分冊。所蔵スキャンの標題紙で書名・著者・東京図書を確認。N060の冒頭に同書1・2を参考書として記載。受講時に使われた版は未確認。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n060",
+          "relation": "reference_book"
+        }
+      ]
     },
     {
       "id": "b011",

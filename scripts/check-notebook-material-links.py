@@ -97,6 +97,10 @@ def main():
     assert books['n064']['lecture_year'] == 1992 and books['n064']['lecture_year_status'] == 'provisional'
     assert books['n056']['lecturer'] == '九後汰一郎・政池明'
     assert {(n, m) for n, m in pairs if m == 'b014'} == {('n063', 'b014')}
+    assert {(n, m) for n, m in pairs if m == 'b009'} == {('n060', 'b009')}
+    assert next(l for l in links['links'] if l['id'] == 'n060-b009')['relation'] == 'reference_book'
+    assert books['n060']['lecturer'] is None, 'A named reference-book author is not the course instructor'
+    assert all(books[n].get('lecture_year') is None for n in ['n062', 'n066', 'n094', 'n104', 'n105']), 'Date/career constraints do not establish a lecture year'
     if args.baseline_ref:
         repo = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], cwd=site, text=True).strip())
         rel = (site / 'catalog.js').relative_to(repo).as_posix()
