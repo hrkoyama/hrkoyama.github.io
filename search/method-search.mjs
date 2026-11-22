@@ -1,3 +1,4 @@
+import {matchGoals} from './goals-data.mjs?v=0b94e1580a3d';
 // Both the atlas and the site search use these identities and availability links.
 export const normalizeMethodQuery = value => String(value).normalize('NFKC').toLowerCase()
   .replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
@@ -13,6 +14,12 @@ export function methodIdentities(method) {
     .filter(value => typeof value === 'string' && value.trim()).map(normalizeMethodQuery))];
 }
 export function findMethods(methods, query, language='ja') {
+  const goals=matchGoals(query);
+  if(goals.length){
+    const ids=[...new Set(goals.flatMap(goal=>goal.methods))];
+    return ids.flatMap(id=>{const method=methods.find(m=>m.id===id);if(!method)return [];
+      return [{id,kind:'method',title:method.name[language] || method.name.en,locale:language,method,exactMethod:false,score:9000,purposeScope:goals.filter(g=>g.methods.includes(id)).map(g=>g.scope[language]).join(' ')}];});
+  }
   const phrase = normalizeMethodQuery(String(query).slice(0,200));
   if (!phrase) return [];
   const focus = phrase.split(' ').filter(word => !intents.has(word));
@@ -86,6 +93,7 @@ export function appendMethodCard(item,result,language='ja') {
   if(hasCode)for(const example of m.execution_examples || [])add(example.guide?.[language] || example.guide?.en,c.run+': '+(example.name?.[language] || example.id));
   add(m.url,c.details);
   item.append(meta,heading);if(otherName.textContent)item.append(otherName);if(summary.textContent)item.append(summary);item.append(actions);
+  if(result.purposeScope){const scope=document.createElement('p');scope.className='method-search-note';scope.textContent=result.purposeScope;item.insertBefore(scope,heading);}
   const note=document.createElement('p');note.className='method-search-note';
   note.textContent=code.length || tests.length ? c.scope : c.missing;
   if(!reading)note.textContent+=' · '+c.noReading;

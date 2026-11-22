@@ -1,4 +1,4 @@
-import {findMethods,tokenIncludes} from './method-search.mjs?v=e599bfbb1f40';
+import {findMethods,tokenIncludes} from './method-search.mjs?v=ca91339da34a';
 const ORIGIN = 'https://hrkoyama.github.io';
 export function safePath(value) {
   try {

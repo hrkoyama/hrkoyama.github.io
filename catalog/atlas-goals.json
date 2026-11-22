@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "goals": [
+    {
+      "id": "shocks",
+      "title": {
+        "ja": "衝撃波を計算したい",
+        "en": "Compute shock waves"
+      },
+      "terms": [
+        "衝撃波",
+        "shock wave",
+        "shock tube",
+        "shock capturing"
+      ],
+      "scope": {
+        "ja": "まず非相対論・理想気体Eulerの衝撃波管から。MUSCL＋HLLCは基準となる比較候補、WENO-Zは高次再構成の候補です。CFL、正値性、境界条件を確認します。強い多次元衝撃波やMHDへの適用は別に検討してください。",
+        "en": "Start with nonrelativistic ideal-gas Euler shock tubes. MUSCL with HLLC provides a baseline comparison; WENO-Z is a high-order reconstruction option. Check CFL, positive states and boundaries. Strong multidimensional shocks and MHD require separate assessment."
+      },
+      "methods": [
+        "muscl",
+        "hllc",
+        "weno-z"
+      ],
+      "examples": [
+        "sod",
+        "shu-osher"
+      ]
+    },
+    {
+      "id": "smooth-vortex",
+      "title": {
+        "ja": "滑らかな渦を低散逸で解きたい",
+        "en": "Resolve a smooth vortex with low dissipation"
+      },
+      "terms": [
+        "渦を低散逸",
+        "渦 低散逸",
+        "低散逸",
+        "低散逸で渦",
+        "smooth vortex",
+        "low dissipation",
+        "isentropic vortex"
+      ],
+      "scope": {
+        "ja": "滑らかな圧縮性Euler流・直交格子の原KEEPが対象です。衝撃波安定化や正値性を保証する手法としては選びません。等エントロピー渦の細分化、運動エネルギー・エントロピー診断を読み、時間積分の誤差も分けて確認します。",
+        "en": "The original Cartesian KEEP example targets smooth compressible Euler flow. It supplies neither a shock stabilizer nor a positivity guarantee. Inspect isentropic-vortex refinement, kinetic-energy/entropy diagnostics and temporal error separately."
+      },
+      "methods": [
+        "keep"
+      ],
+      "examples": []
+    },
+    {
+      "id": "poisson",
+      "title": {
+        "ja": "拡散・Poisson方程式を解きたい",
+        "en": "Solve diffusion or Poisson equations"
+      },
+      "terms": [
+        "Poissonを",
+        "ポアソン",
+        "拡散方程式を",
+        "Poisson equation",
+        "solve poisson",
+        "solve diffusion",
+        "楕円型を"
+      ],
+      "scope": {
+        "ja": "1次元三重対角系ならThomas、対称正定値系ならCG、規則格子のPoissonなら幾何マルチグリッドが候補です。境界条件と行列の性質を確認し、真の残差と格子誤差を区別します。",
+        "en": "Consider Thomas for 1D tridiagonal systems, CG for symmetric positive-definite systems, and geometric multigrid for regular-grid Poisson problems. Check boundaries and matrix properties; distinguish true residual from discretization error."
+      },
+      "methods": [
+        "thomas",
+        "cg",
+        "multigrid"
+      ],
+      "examples": [
+        "poisson-1d-dirichlet",
+        "poisson-2d-sine"
+      ]
+    },
+    {
+      "id": "magnetic-divergence",
+      "title": {
+        "ja": "磁場の発散誤差を抑えたい",
+        "en": "Control magnetic divergence errors"
+      },
+      "terms": [
+        "磁場の発散",
+        "磁場 発散",
+        "div b",
+        "magnetic divergence",
+        "mhdを",
+        "mhdを計算"
+      ],
+      "scope": {
+        "ja": "理想MHDではCTとGLMが比較候補です。CTの面磁場とGLMのセル中心場では離散的な発散演算子が異なります。GLMを厳密な発散ゼロの保証と扱わず、境界条件と発散ノルムを確認します。 Brio–Wu実行例は1次元の流束確認用で、CT/GLMの多次元発散制御の検証にはなりません。",
+        "en": "Compare CT and GLM for ideal MHD. Face-centered CT and cell-centered GLM use different discrete divergence operators. GLM is not an exact zero-divergence guarantee; inspect boundaries and divergence norms. The Brio–Wu run checks one-dimensional fluxes; it does not validate multidimensional CT/GLM divergence control."
+      },
+      "methods": [
+        "ct",
+        "glm",
+        "hlld"
+      ],
+      "examples": [
+        "brio-wu"
+      ]
+    },
+    {
+      "id": "stiff-time",
+      "title": {
+        "ja": "硬い方程式を時間積分したい",
+        "en": "Integrate a stiff equation"
+      },
+      "terms": [
+        "硬い方程式",
+        "硬いode",
+        "stiff equation",
+        "stiff ode",
+        "硬い微分方程式"
+      ],
+      "scope": {
+        "ja": "陰的段階の解法を含むBackward Euler・BDF2・SDIRK2を比較します。安定でも精度が足りるとは限りません。許容誤差、刻み幅、収束判定を確認してください。",
+        "en": "Compare backward Euler, BDF2 and SDIRK2 including their implicit solves. Stability alone does not ensure accuracy. Check error tolerance, step size and nonlinear convergence."
+      },
+      "methods": [
+        "backward-euler",
+        "bdf2",
+        "sdirk2"
+      ],
+      "examples": [
+        "stiff-cosine"
+      ]
+    },
+    {
+      "id": "particle-gravity",
+      "title": {
+        "ja": "粒子の重力を計算したい",
+        "en": "Compute particle gravity"
+      },
+      "terms": [
+        "粒子の重力",
+        "粒子 重力",
+        "particle gravity",
+        "重力を計算",
+        "n体"
+      ],
+      "scope": {
+        "ja": "孤立系のBarnes–Hutと周期境界のPMを分けて選びます。近似力を直接和と比較し、開き角・格子・境界条件を確認します。これらはGSPH流体ソルバーの代用ではありません。",
+        "en": "Choose between isolated Barnes–Hut and periodic particle–mesh gravity. Compare approximate forces with direct sums; check opening angle, grid and boundaries. These are not GSPH fluid solvers."
+      },
+      "methods": [
+        "barnes-hut",
+        "pm"
+      ],
+      "examples": [
+        "barnes-hut",
+        "periodic-particles"
+      ]
+    }
+  ]
+}

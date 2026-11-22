@@ -62,6 +62,8 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 ## 数値計算アトラスの手法情報とコード版
 
+目的別の入口は `catalog/atlas-goals.json` が正本。`build-atlas-goals.py` が日英の静的な `/numerical-methods-atlas/start/` と共通検索用の照合データを生成する。目的は適用モデル・制約・候補手法ID・公開実行例IDを伴い、未検証の万能推奨や未公開コードのリンクを作らない。検索で認識できる代表表現を追加するときも、衝撃波と滑らかな低散逸流、相対論/MHDとEulerの範囲を混同しない。`scripts/atlas-goals.test.mjs` が両検索入口と実在するリンクを確認する。
+
 手法情報の正本は `catalog/atlas-methods.json`。`scripts/build-atlas-resources.py` が手法一覧と個別のHTML・JSON・Markdown、取得案内を生成する。予定項目にコードや検証済み状態を付けない。関連コードの割当てが章単位か手法単位かを区別し、単位・境界等の未整理はnullと確認範囲で明示する。英語しかない解説は英語のURLへ案内する。
 
 手法検索の名称・別名も同じ台帳の `name`・`aliases` を正本にする。`scripts/atlas_search_methods.py` が公開済みの解説・コード・テスト・個別実行例だけを検索へ渡し、`search/method-search.mjs` を全体検索とアトラス内検索で共用する。手法名の一致を一つのカードへまとめ、本文中の言及は関連資料へ折りたたむ。具体的な問題名に実行・コード等を添えた検索では、対応する公開実行例を展開して先頭に置く。アトラスからの共通検索は `scope=atlas` を初期範囲とし、検索語はURLフラグメントとブラウザ内だけで扱う。全143手法のID・日英名・別名、略語の誤一致、公開状況と直接リンクは `scripts/method-search.test.mjs` と `scripts/atlas-search-methods.test.mjs` で確認する。

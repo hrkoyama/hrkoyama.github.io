@@ -1,5 +1,5 @@
-import {makeSearch,excerpt,safePath} from './engine.mjs?v=c5253ad2c2b0';
-import {appendMethodCard} from './method-search.mjs?v=e599bfbb1f40';
+import {makeSearch,excerpt,safePath} from './engine.mjs?v=94ac0b48d6b9';
+import {appendMethodCard} from './method-search.mjs?v=ca91339da34a';
 const main = document.querySelector('[data-search-index]');
 const input = document.querySelector('#search-query');
 const status = document.querySelector('#search-status');

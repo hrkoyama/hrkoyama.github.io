@@ -25,5 +25,8 @@ def search_methods(root):
 def version_method_search(root):
     module = root / 'search/method-search.mjs'
     css_hash = hashlib.sha256((root / 'search/methods.css').read_bytes()).hexdigest()[:12]
-    module.write_text(re.sub(r"new URL\('./methods[.]css(?:\?v=[a-f0-9]+)?',import.meta.url\)", "new URL('./methods.css?v=" + css_hash + "',import.meta.url)", module.read_text()))
+    text=re.sub(r"new URL\('./methods[.]css(?:\?v=[a-f0-9]+)?',import.meta.url\)", "new URL('./methods.css?v=" + css_hash + "',import.meta.url)", module.read_text())
+    goal_hash=hashlib.sha256((root/'search/goals-data.mjs').read_bytes()).hexdigest()[:12]
+    text=re.sub(r"from './goals-data[.]mjs(?:\?v=[a-f0-9]+)?'", "from './goals-data.mjs?v="+goal_hash+"'",text)
+    module.write_text(text)
     return hashlib.sha256(module.read_bytes()).hexdigest()[:12]
