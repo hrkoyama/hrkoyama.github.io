@@ -4783,6 +4783,96 @@
       "url": "https://emeagwali.com/history/internet/",
       "label": "Author retrospective labels shallow-water fragment circa1983; not the1990 submission body",
       "kind": "author_retrospective_not_candidate_manuscript"
+    },
+    "roster-1990-year1990p2_pvm_reference": {
+      "url": "https://www.osti.gov/servlets/purl/6274699",
+      "label": "Geist coauthored PVM report: printed16 reference14 cites the December1990 ORNL technical memorandum",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_geist_home": {
+      "url": "https://web.archive.org/web/20261015010011id_/https://www.epm.ornl.gov/~geist/",
+      "label": "Archived official author page linking the superconductor manuscript as a Gordon Bell winning entry",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_geist_refs": {
+      "url": "https://www.csm.ornl.gov/~geist/refs.txt",
+      "label": "Author publication list: corresponding journal article identified as the1990 winning entry",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_geist_ps": {
+      "url": "https://www.csm.ornl.gov/~geist/Gordon.ps",
+      "label": "Author PostScript dated April6,1992:18 text pages; Figures1–3 and Table1 absent",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_solid_tog": {
+      "url": "https://dl.acm.org/doi/10.1145/200972.200976",
+      "label": "Related1995 ACM article: complete37 pages; pp23/52/57 distinguish earlier overview,1990 experiments and version dates",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_solid_chapter": {
+      "url": "https://api.crossref.org/works/10.1137/1.9780898719659.ch21",
+      "label": "Publisher-deposited metadata for the related1996 SIAM chapter21",
+      "kind": "publisher_deposited_registry_record",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_triangulation_chapter": {
+      "url": "https://api.crossref.org/works/10.1137/1.9780898719659.ch11",
+      "label": "Publisher-deposited metadata for the related1996 SIAM chapter11;2012 electronic publication is separate",
+      "kind": "publisher_deposited_registry_record",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_nist_history": {
+      "url": "https://www.nist.gov/system/files/documents/nvl/SP955_12_CHAPTER_SIX.pdf",
+      "label": "NIST institutional history, printed781: parallel geometry group and1991 SIAM News citation",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_cug_archive": {
+      "url": "https://cug.org/5-publications/proceedings_attendee_lists/",
+      "label": "Official CUG archive:1990 conference rows have no proceedings or manuscript links",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_emeagwali_home": {
+      "url": "https://emeagwali.com/",
+      "label": "Current author homepage checked; target1990 shallow-water manuscript link not found",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_carter_bibliography": {
+      "url": "https://cseweb.ucsd.edu/~carter/ppbib.html",
+      "label": "UCSD coauthor bibliography linking the seismic-migration case study",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_seismic_case_study": {
+      "url": "https://web.archive.org/web/20010614045856id_/http://www.cs.ucsd.edu:80/users/carter/Papers/seismic.ps",
+      "label": "Complete related12-page author paper; reference1 cites a separate September1991 seismic-migration publication",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_schlumberger_bibliography": {
+      "url": "https://reidgsmith.com/schlumberger/Schlumberger_Computer_Science_Research_Bibliography.pdf",
+      "label": "Institutional researcher bibliography: primary Highnam/Pieprzak publication byline",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_kennedy_report": {
+      "url": "https://lib-extopc.kek.jp/preprints/PDF/1991/9107/9107341.pdf",
+      "label": "KEK public scan: FSU-SCRI-91C-87, June1991, Kennedy single-author report;28 scanned pages",
+      "kind": "primary_source",
+      "checked_on": "2026-11-22"
+    },
+    "roster-1990-year1990p2_kennedy_registry": {
+      "url": "https://api.crossref.org/works/10.1142/S0129183192000026",
+      "label": "Publisher-deposited1992 journal metadata for the related Kennedy work",
+      "kind": "publisher_deposited_registry_record",
+      "checked_on": "2026-11-22"
     }
   },
   "papers": [
@@ -35154,6 +35244,111 @@
           "url": "https://emeagwali.com/history/internet/",
           "label": "Author retrospective labels shallow-water fragment circa1983; not the1990 submission body",
           "kind": "author_retrospective_not_candidate_manuscript"
+        },
+        {
+          "id": "year1990p2_pvm_reference",
+          "url": "https://www.osti.gov/servlets/purl/6274699",
+          "label": "Geist coauthored PVM report: printed16 reference14 cites the December1990 ORNL technical memorandum",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_geist_home",
+          "url": "https://web.archive.org/web/20261015010011id_/https://www.epm.ornl.gov/~geist/",
+          "label": "Archived official author page linking the superconductor manuscript as a Gordon Bell winning entry",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_geist_refs",
+          "url": "https://www.csm.ornl.gov/~geist/refs.txt",
+          "label": "Author publication list: corresponding journal article identified as the1990 winning entry",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_geist_ps",
+          "url": "https://www.csm.ornl.gov/~geist/Gordon.ps",
+          "label": "Author PostScript dated April6,1992:18 text pages; Figures1–3 and Table1 absent",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_solid_tog",
+          "url": "https://dl.acm.org/doi/10.1145/200972.200976",
+          "label": "Related1995 ACM article: complete37 pages; pp23/52/57 distinguish earlier overview,1990 experiments and version dates",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_solid_chapter",
+          "url": "https://api.crossref.org/works/10.1137/1.9780898719659.ch21",
+          "label": "Publisher-deposited metadata for the related1996 SIAM chapter21",
+          "kind": "publisher_deposited_registry_record",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_triangulation_chapter",
+          "url": "https://api.crossref.org/works/10.1137/1.9780898719659.ch11",
+          "label": "Publisher-deposited metadata for the related1996 SIAM chapter11;2012 electronic publication is separate",
+          "kind": "publisher_deposited_registry_record",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_nist_history",
+          "url": "https://www.nist.gov/system/files/documents/nvl/SP955_12_CHAPTER_SIX.pdf",
+          "label": "NIST institutional history, printed781: parallel geometry group and1991 SIAM News citation",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_cug_archive",
+          "url": "https://cug.org/5-publications/proceedings_attendee_lists/",
+          "label": "Official CUG archive:1990 conference rows have no proceedings or manuscript links",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_emeagwali_home",
+          "url": "https://emeagwali.com/",
+          "label": "Current author homepage checked; target1990 shallow-water manuscript link not found",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_carter_bibliography",
+          "url": "https://cseweb.ucsd.edu/~carter/ppbib.html",
+          "label": "UCSD coauthor bibliography linking the seismic-migration case study",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_seismic_case_study",
+          "url": "https://web.archive.org/web/20010614045856id_/http://www.cs.ucsd.edu:80/users/carter/Papers/seismic.ps",
+          "label": "Complete related12-page author paper; reference1 cites a separate September1991 seismic-migration publication",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_schlumberger_bibliography",
+          "url": "https://reidgsmith.com/schlumberger/Schlumberger_Computer_Science_Research_Bibliography.pdf",
+          "label": "Institutional researcher bibliography: primary Highnam/Pieprzak publication byline",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_kennedy_report",
+          "url": "https://lib-extopc.kek.jp/preprints/PDF/1991/9107/9107341.pdf",
+          "label": "KEK public scan: FSU-SCRI-91C-87, June1991, Kennedy single-author report;28 scanned pages",
+          "kind": "primary_source",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "id": "year1990p2_kennedy_registry",
+          "url": "https://api.crossref.org/works/10.1142/S0129183192000026",
+          "label": "Publisher-deposited1992 journal metadata for the related Kennedy work",
+          "kind": "publisher_deposited_registry_record",
+          "checked_on": "2026-11-22"
         }
       ],
       "roster_completeness": {
@@ -35183,7 +35378,7 @@
           "authors_status": "from_contemporary_session_byline",
           "publication_url": null,
           "notes": [
-            "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。"
+            "共著者Geistの1991年PVM報告の参考文献[14]が、索引と同じ題名を1990年12月のORNL Technical Memorandumとして引用していることを確認しました。さらにORNL公式著者サイトから1992年4月6日付の対応原稿PS18頁を部分回収し、1990年受賞研究との対応も著者公開書誌で確認しました。原稿は逆順で本文・参考文献を含みますが図1–3・表1が欠けるため完全保有へは算入しません。技術メモ番号・原提出ファイルは未特定です。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -35197,17 +35392,21 @@
           },
           "bibliography_review": {
             "checked_on": "2026-11-22",
-            "status": "corresponding_later_publication_confirmed_original_submission_doi_unresolved",
-            "note": "著者公式CVにより1992年出版と1990年応募研究の対応を確認。本文は未回収。原提出と同一の文書・DOIとは確定していません。",
+            "status": "corresponding_author_postscript_partially_recovered_figures_and_table_missing",
+            "note": "共著者Geistの1991年PVM報告の参考文献[14]が、索引と同じ題名を1990年12月のORNL Technical Memorandumとして引用していることを確認しました。さらにORNL公式著者サイトから1992年4月6日付の対応原稿PS18頁を部分回収し、1990年受賞研究との対応も著者公開書誌で確認しました。原稿は逆順で本文・参考文献を含みますが図1–3・表1が欠けるため完全保有へは算入しません。技術メモ番号・原提出ファイルは未特定です。",
             "source_ids": [
               "committee_1990_report_sc1991",
               "year1990_superconductor_author_cv",
-              "year1990_superconductor_ornl"
+              "year1990_superconductor_ornl",
+              "year1990p2_pvm_reference",
+              "year1990p2_geist_home",
+              "year1990p2_geist_refs",
+              "year1990p2_geist_ps"
             ],
             "performance_audit": "Not performed in this bibliography review",
             "doi_status": "unresolved",
             "registry_lookup_date": "2026-11-12",
-            "next_evidence": "対応する1992年出版の完全本文を回収し、原1990年提出物の表紙・正式書誌を別途確認する。",
+            "next_evidence": "著者PSで欠ける図1–3と表1、または図表を備えた掲載版を回収し、1990年原提出物の同定を別途進める。",
             "before_year1990_recovery": {
               "checked_on": "2026-11-22",
               "status": "original_submission_doi_unresolved",
@@ -35236,8 +35435,66 @@
                 "date_label": "Original explicit check date",
                 "retired_on": "2026-11-22",
                 "reason": "Later-publication correspondence established; exact original file/DOI remains unresolved."
+              },
+              {
+                "field": "note",
+                "text": "著者公式CVにより1992年出版と1990年応募研究の対応を確認。本文は未回収。原提出と同一の文書・DOIとは確定していません。",
+                "checked_on": null,
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
+              },
+              {
+                "field": "next_evidence",
+                "text": "対応する1992年出版の完全本文を回収し、原1990年提出物の表紙・正式書誌を別途確認する。",
+                "checked_on": null,
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
               }
-            ]
+            ],
+            "before_year1990_followup": {
+              "checked_on": "2026-11-22",
+              "status": "corresponding_later_publication_confirmed_original_submission_doi_unresolved",
+              "note": "著者公式CVにより1992年出版と1990年応募研究の対応を確認。本文は未回収。原提出と同一の文書・DOIとは確定していません。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_superconductor_author_cv",
+                "year1990_superconductor_ornl"
+              ],
+              "performance_audit": "Not performed in this bibliography review",
+              "doi_status": "unresolved",
+              "registry_lookup_date": "2026-11-12",
+              "next_evidence": "対応する1992年出版の完全本文を回収し、原1990年提出物の表紙・正式書誌を別途確認する。",
+              "before_year1990_recovery": {
+                "checked_on": "2026-11-22",
+                "status": "original_submission_doi_unresolved",
+                "note": "The 1992 Journal of Supercomputing paper Parallel superconductor code on the iPSC/860 is related, but its identity with the original 1990 competition submission has not been established.",
+                "source_ids": [
+                  "committee_1990_report_sc1991"
+                ],
+                "performance_audit": "Not performed in this bibliography review",
+                "doi_status": "unresolved",
+                "registry_lookup_date": "2026-11-12",
+                "next_evidence": "An original-submission bibliographic citation or author/institutional statement explicitly linking the competition entry to a registered publication."
+              },
+              "note_history": [
+                {
+                  "field": "note",
+                  "text": "The 1992 Journal of Supercomputing paper Parallel superconductor code on the iPSC/860 is related, but its identity with the original 1990 competition submission has not been established.",
+                  "checked_on": "2026-11-22",
+                  "date_label": "Original explicit check date",
+                  "retired_on": "2026-11-22",
+                  "reason": "Later-publication correspondence established; exact original file/DOI remains unresolved."
+                },
+                {
+                  "field": "next_evidence",
+                  "text": "An original-submission bibliographic citation or author/institutional statement explicitly linking the competition entry to a registered publication.",
+                  "checked_on": "2026-11-22",
+                  "date_label": "Original explicit check date",
+                  "retired_on": "2026-11-22",
+                  "reason": "Later-publication correspondence established; exact original file/DOI remains unresolved."
+                }
+              ]
+            }
           },
           "before_year1990_bibliography": {
             "year1990_recovery": null,
@@ -35263,26 +35520,45 @@
           },
           "year1990_recovery": {
             "checked_on": "2026-11-22",
-            "original_title_status": "contemporary_session_title_original_submission_unestablished",
-            "title_note": "同時代の講演題名を保持。原1990年提出物の表紙・題名そのものは未特定です。",
-            "body_note": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+            "original_title_status": "contemporary_technical_memo_title_corroborated_original_submission_file_unestablished",
+            "title_note": "同時代の講演題名に加え、共著者Geistの1991年PVM報告・参考文献[14]で、同じ題名の1990年12月ORNL技術メモを確認しました。原提出物の表紙・ファイルとの同一性と技術メモ番号は未特定です。",
+            "body_note": "共著者Geistの1991年PVM報告の参考文献[14]が、索引と同じ題名を1990年12月のORNL Technical Memorandumとして引用していることを確認しました。さらにORNL公式著者サイトから1992年4月6日付の対応原稿PS18頁を部分回収し、1990年受賞研究との対応も著者公開書誌で確認しました。原稿は逆順で本文・参考文献を含みますが図1–3・表1が欠けるため完全保有へは算入しません。技術メモ番号・原提出ファイルは未特定です。",
             "source_ids": [
               "committee_1990_report_sc1991",
               "year1990_superconductor_author_cv",
-              "year1990_superconductor_ornl"
+              "year1990_superconductor_ornl",
+              "year1990p2_pvm_reference",
+              "year1990p2_geist_home",
+              "year1990p2_geist_refs",
+              "year1990p2_geist_ps"
             ],
             "related_versions": [
               {
                 "title": "Parallel superconductor code on the iPSC/860",
                 "doi": "10.1007/BF00129776",
                 "publication_year": 1992,
-                "relation_label": "著者CVで1990年応募研究との対応を確認した後年出版。完全本文未回収。",
+                "relation_label": "1990年応募との対応を著者業績で明示。1992年4月6日付の著者PS18頁を部分回収したが、本文参照の図1–3・表1が未収録。完全版保有には加算していない。原提出ファイルは未特定。",
                 "source_ids": [
                   "year1990_superconductor_author_cv",
-                  "year1990_superconductor_ornl"
+                  "year1990_superconductor_ornl",
+                  "year1990p2_geist_home",
+                  "year1990p2_geist_refs",
+                  "year1990p2_geist_ps"
                 ]
               }
-            ]
+            ],
+            "check_label": "1990 follow-up title and manuscript check",
+            "partial_version": {
+              "format": "PostScript",
+              "pages": 18,
+              "manuscript_date": "1992-04-06",
+              "missing_components": [
+                "Figure1",
+                "Figure2",
+                "Figure3",
+                "Table1"
+              ]
+            }
           },
           "note_history": [
             {
@@ -35308,9 +35584,115 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "contemporary_session_title_original_submission_unestablished",
+              "title_note": "同時代の講演題名を保持。原1990年提出物の表紙・題名そのものは未特定です。",
+              "body_note": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_superconductor_author_cv",
+                "year1990_superconductor_ornl"
+              ],
+              "related_versions": [
+                {
+                  "title": "Parallel superconductor code on the iPSC/860",
+                  "doi": "10.1007/BF00129776",
+                  "publication_year": 1992,
+                  "relation_label": "著者CVで1990年応募研究との対応を確認した後年出版。完全本文未回収。",
+                  "source_ids": [
+                    "year1990_superconductor_author_cv",
+                    "year1990_superconductor_ornl"
+                  ]
+                }
+              ]
+            },
+            "notes": [
+              "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 337, section 8.5; entry discussion starts p. 328.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "The actual title and ordered names are those of the contemporary SC1991 session abstract about a 1990 competition entry, not a reconstruction of an original submission cover sheet.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "A related 1992 journal paper was found, but its equivalence to this specific prize-entry/session document was not established, so DOI is left null.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22",
+            "bibliography_review": {
+              "checked_on": "2026-11-22",
+              "status": "corresponding_later_publication_confirmed_original_submission_doi_unresolved",
+              "note": "著者公式CVにより1992年出版と1990年応募研究の対応を確認。本文は未回収。原提出と同一の文書・DOIとは確定していません。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_superconductor_author_cv",
+                "year1990_superconductor_ornl"
+              ],
+              "performance_audit": "Not performed in this bibliography review",
+              "doi_status": "unresolved",
+              "registry_lookup_date": "2026-11-12",
+              "next_evidence": "対応する1992年出版の完全本文を回収し、原1990年提出物の表紙・正式書誌を別途確認する。",
+              "before_year1990_recovery": {
+                "checked_on": "2026-11-22",
+                "status": "original_submission_doi_unresolved",
+                "note": "The 1992 Journal of Supercomputing paper Parallel superconductor code on the iPSC/860 is related, but its identity with the original 1990 competition submission has not been established.",
+                "source_ids": [
+                  "committee_1990_report_sc1991"
+                ],
+                "performance_audit": "Not performed in this bibliography review",
+                "doi_status": "unresolved",
+                "registry_lookup_date": "2026-11-12",
+                "next_evidence": "An original-submission bibliographic citation or author/institutional statement explicitly linking the competition entry to a registered publication."
+              },
+              "note_history": [
+                {
+                  "field": "note",
+                  "text": "The 1992 Journal of Supercomputing paper Parallel superconductor code on the iPSC/860 is related, but its identity with the original 1990 competition submission has not been established.",
+                  "checked_on": "2026-11-22",
+                  "date_label": "Original explicit check date",
+                  "retired_on": "2026-11-22",
+                  "reason": "Later-publication correspondence established; exact original file/DOI remains unresolved."
+                },
+                {
+                  "field": "next_evidence",
+                  "text": "An original-submission bibliographic citation or author/institutional statement explicitly linking the competition entry to a registered publication.",
+                  "checked_on": "2026-11-22",
+                  "date_label": "Original explicit check date",
+                  "retired_on": "2026-11-22",
+                  "reason": "Later-publication correspondence established; exact original file/DOI remains unresolved."
+                }
+              ]
+            }
+          }
         },
         {
           "id": "gb1990-elliptic-grid",
@@ -35653,7 +36035,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。"
+            "共著者Carterの大学公開書誌から、関連論文 A Case-study in Performance Programming: Seismic Migration の完全な著者版12頁を回収しました。1991年の Parallel distributed seismic migration への一次引用を確認しましたが、原1990年応募との明示的な対応は確認できず、候補本文の保有件数には算入していません。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -35673,11 +36055,13 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+            "body_note": "共著者Carterの大学公開書誌から、関連論文 A Case-study in Performance Programming: Seismic Migration の完全な著者版12頁を回収しました。1991年の Parallel distributed seismic migration への一次引用を確認しましたが、原1990年応募との明示的な対応は確認できず、候補本文の保有件数には算入していません。",
             "source_ids": [
               "committee_1990_report_sc1991",
               "year1990_csm_ibm",
-              "year1990_csm_registry"
+              "year1990_csm_registry",
+              "year1990p2_carter_bibliography",
+              "year1990p2_seismic_case_study"
             ],
             "related_versions": [
               {
@@ -35697,8 +36081,19 @@
                 "source_ids": [
                   "year1990_csm_registry"
                 ]
+              },
+              {
+                "title": "A Case-study in Performance Programming: Seismic Migration",
+                "source_ids": [
+                  "year1990p2_carter_bibliography",
+                  "year1990p2_seismic_case_study"
+                ],
+                "relation_label": "著者公開PSの完全12頁を保有。別の1991年9月の出版を引用する関連研究で、1990年原応募本文との対応は未確定。",
+                "doi": null,
+                "publication_year": null
               }
-            ]
+            ],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -35724,9 +36119,79 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_csm_ibm",
+                "year1990_csm_registry"
+              ],
+              "related_versions": [
+                {
+                  "title": "Parallel distributed seismic migration",
+                  "doi": "10.1002/cpe.4330050203",
+                  "publication_year": 1993,
+                  "relation_label": "IBMで書誌確認した後年出版。完全本文未回収、原提出同一性未確定。",
+                  "source_ids": [
+                    "year1990_csm_ibm"
+                  ]
+                },
+                {
+                  "title": "Parallel distributed seismic migration",
+                  "doi": "10.1016/0167-739X(92)90025-7",
+                  "publication_year": 1992,
+                  "relation_label": "別の後年出版。1993年誌面とは著者順と頁数が異なる。原提出同一性未確定。",
+                  "source_ids": [
+                    "year1990_csm_registry"
+                  ]
+                }
+              ]
+            },
+            "notes": [
+              "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 329, noteworthy non-winning submission from the Colorado School of Mines group. Only the group leader is named.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         },
         {
           "id": "gb1990-solid-modeling",
@@ -35744,7 +36209,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。"
+            "関連する1995年ACM論文 Intersecting Solids on a Massively Parallel Processor（全37頁、版DOI:10.1145/200972.200976）を回収しました。本文は1992年論文を先行研究として明示し、実験を1990年と記していますが、Gordon Bell応募との明示的な対応は確認できていません。原題未確定・応募本文未回収の扱いを維持します。別の1996年SIAM章（pp.231–242、版DOI:10.1137/1.9780898719659.ch21）の書誌も確認しました。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -35764,10 +36229,12 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+            "body_note": "関連する1995年ACM論文 Intersecting Solids on a Massively Parallel Processor（全37頁、版DOI:10.1145/200972.200976）を回収しました。本文は1992年論文を先行研究として明示し、実験を1990年と記していますが、Gordon Bell応募との明示的な対応は確認できていません。原題未確定・応募本文未回収の扱いを維持します。別の1996年SIAM章（pp.231–242、版DOI:10.1137/1.9780898719659.ch21）の書誌も確認しました。",
             "source_ids": [
               "committee_1990_report_sc1991",
-              "year1990_solid_related"
+              "year1990_solid_related",
+              "year1990p2_solid_tog",
+              "year1990p2_solid_chapter"
             ],
             "related_versions": [
               {
@@ -35778,8 +36245,27 @@
                 "source_ids": [
                   "year1990_solid_related"
                 ]
+              },
+              {
+                "title": "Intersecting Solids on a Massively Parallel Processor",
+                "source_ids": [
+                  "year1990p2_solid_tog"
+                ],
+                "relation_label": "関連掲載論文の全37頁を保有。1992年overviewとの研究系列と1990年実験を本文で確認。競技応募への対応は未確定のため候補本文保有へ不算入。",
+                "doi": "10.1145/200972.200976",
+                "publication_year": 1995
+              },
+              {
+                "title": "A SIMD Algorithm for Intersecting Three-Dimensional Polyhedra",
+                "source_ids": [
+                  "year1990p2_solid_chapter"
+                ],
+                "relation_label": "関連SIAM章の書誌確認のみ。印刷1996年、電子公開2012年3月23日、231–242頁。原応募題名とは未確定。",
+                "doi": "10.1137/1.9780898719659.ch21",
+                "publication_year": 1996
               }
-            ]
+            ],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -35805,9 +36291,69 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_solid_related"
+              ],
+              "related_versions": [
+                {
+                  "title": "Solid Modeling On a Massively Parallel Processor",
+                  "doi": "10.1177/109434209200600205",
+                  "publication_year": 1992,
+                  "relation_label": "関連後年出版の書誌のみ確認。明示的な応募対応と完全本文は未確認。",
+                  "source_ids": [
+                    "year1990_solid_related"
+                  ]
+                }
+              ]
+            },
+            "notes": [
+              "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 329, noteworthy non-winning submission.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         },
         {
           "id": "gb1990-triangulation",
@@ -35825,7 +36371,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。"
+            "既回収のCCCG1990全5頁に続き、NIST公式史と関連SIAM章の登録書誌を確認しましたが、応募との明示的対応は未確認です。原題・応募本文は未回収のままです。1996年の関連章（pp.121–129、版DOI:10.1137/1.9780898719659.ch11）と1991年SIAM News原記事、2012年の電子公開日は区別しています。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -35846,11 +36392,13 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+            "body_note": "既回収のCCCG1990全5頁に続き、NIST公式史と関連SIAM章の登録書誌を確認しましたが、応募との明示的対応は未確認です。原題・応募本文は未回収のままです。1996年の関連章（pp.121–129、版DOI:10.1137/1.9780898719659.ch11）と1991年SIAM News原記事、2012年の電子公開日は区別しています。",
             "source_ids": [
               "committee_1990_report_sc1991",
               "year1990_triangulation_related",
-              "year1990_beichl_bibliography"
+              "year1990_beichl_bibliography",
+              "year1990p2_nist_history",
+              "year1990p2_triangulation_chapter"
             ],
             "related_versions": [
               {
@@ -35862,8 +36410,19 @@
                   "year1990_triangulation_related",
                   "year1990_beichl_bibliography"
                 ]
+              },
+              {
+                "title": "Parallelizing Computational Geometry: First Steps",
+                "source_ids": [
+                  "year1990p2_nist_history",
+                  "year1990p2_triangulation_chapter"
+                ],
+                "relation_label": "関連章の書誌。1991年SIAM News記事、1996年章の印刷、2012年電子公開を区別。競技応募対応・章の完全本文は未確認。",
+                "doi": "10.1137/1.9780898719659.ch11",
+                "publication_year": 1996
               }
-            ]
+            ],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -35889,13 +36448,75 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
           "note_history_reviewed_on": "2026-11-22",
           "search_aliases": [
             "Isabel Beichl",
             "Francis Sullivan"
-          ]
+          ],
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_triangulation_related",
+                "year1990_beichl_bibliography"
+              ],
+              "related_versions": [
+                {
+                  "title": "A Robust Parallel Triangulation and Shelling Algorithm",
+                  "doi": null,
+                  "publication_year": 1990,
+                  "relation_label": "関連論文の全5頁は既保有。応募との明示的対応がないため保有候補数へ不算入。",
+                  "source_ids": [
+                    "year1990_triangulation_related",
+                    "year1990_beichl_bibliography"
+                  ]
+                }
+              ]
+            },
+            "notes": [
+              "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 334, section 6 Other Entries. The spelling Beichel follows this source.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         },
         {
           "id": "gb1990-fermat-factorization",
@@ -35942,7 +36563,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。"
+            "追加のCUG公式旧目録・NASA/AIAA/DTIC・歴史アーカイブ経路でも、原応募の正式題名と完全対応本文は未回収です。旧目録の1990年会議行には本文リンクがありません。候補のL. A. Feldman / B. M. Dodd表記を保持し、別のNEWTUN関連資料から著者名や応募題名を推測していません。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -35962,12 +36583,14 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+            "body_note": "追加のCUG公式旧目録・NASA/AIAA/DTIC・歴史アーカイブ経路でも、原応募の正式題名と完全対応本文は未回収です。旧目録の1990年会議行には本文リンクがありません。候補のL. A. Feldman / B. M. Dodd表記を保持し、別のNEWTUN関連資料から著者名や応募題名を推測していません。",
             "source_ids": [
               "committee_1990_report_sc1991",
-              "year1990_f16_related_caption"
+              "year1990_f16_related_caption",
+              "year1990p2_cug_archive"
             ],
-            "related_versions": []
+            "related_versions": [],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -35993,9 +36616,59 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_f16_related_caption"
+              ],
+              "related_versions": []
+            },
+            "notes": [
+              "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 334, section 6 Other Entries.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         },
         {
           "id": "gb1990-seismic-migration-cm2",
@@ -36018,7 +36691,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。"
+            "Schlumberger研究者側の公開研究書誌でも、関連する1991年SEG要旨の題名と P.Highnam / A.Pieprzak 表記を確認しました。原1990年応募の正式題名・完全本文との対応は未確認で、原報告の曖昧な人名表記は推測で置換していません。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -36047,10 +36720,11 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+            "body_note": "Schlumberger研究者側の公開研究書誌でも、関連する1991年SEG要旨の題名と P.Highnam / A.Pieprzak 表記を確認しました。原1990年応募の正式題名・完全本文との対応は未確認で、原報告の曖昧な人名表記は推測で置換していません。",
             "source_ids": [
               "committee_1990_report_sc1991",
-              "year1990_cm2_related_seg"
+              "year1990_cm2_related_seg",
+              "year1990p2_schlumberger_bibliography"
             ],
             "related_versions": [
               {
@@ -36062,7 +36736,8 @@
                   "year1990_cm2_related_seg"
                 ]
               }
-            ]
+            ],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -36088,9 +36763,69 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_cm2_related_seg"
+              ],
+              "related_versions": [
+                {
+                  "title": "Implementation of a fast, accurate 3-D migration on a massively parallel computer",
+                  "doi": "10.1190/1.1888926",
+                  "publication_year": 1991,
+                  "relation_label": "関連3頁要旨の書誌確認のみ。1990年応募との明示的対応は未確認。",
+                  "source_ids": [
+                    "year1990_cm2_related_seg"
+                  ]
+                }
+              ]
+            },
+            "notes": [
+              "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 334, section 6 Other Entries; author affiliations span Schlumberger and Thinking Machines Corporation.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         },
         {
           "id": "gb1990-qcd",
@@ -36112,7 +36847,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。"
+            "Kennedy単著のFSU-SCRI-91C-87（1991年6月）の完全な関連報告を、KEK公開スキャンで回収しました（PDF28頁、本文26頁）。著者1名と謝辞の協力者は区別しています。原1990年応募との明示的な対応は確認できず、応募原題の置換や候補本文の保有件数への算入はしていません。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -36132,11 +36867,13 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+            "body_note": "Kennedy単著のFSU-SCRI-91C-87（1991年6月）の完全な関連報告を、KEK公開スキャンで回収しました（PDF28頁、本文26頁）。著者1名と謝辞の協力者は区別しています。原1990年応募との明示的な対応は確認できず、応募原題の置換や候補本文の保有件数への算入はしていません。",
             "source_ids": [
               "committee_1990_report_sc1991",
               "year1990_qcd_related_inspire",
-              "year1990_qcd_related_registry"
+              "year1990_qcd_related_registry",
+              "year1990p2_kennedy_report",
+              "year1990p2_kennedy_registry"
             ],
             "related_versions": [
               {
@@ -36148,8 +36885,19 @@
                   "year1990_qcd_related_inspire",
                   "year1990_qcd_related_registry"
                 ]
+              },
+              {
+                "title": "Hybrid Monte Carlo Algorithm on the Connection Machine",
+                "source_ids": [
+                  "year1990p2_kennedy_report",
+                  "year1990p2_kennedy_registry"
+                ],
+                "relation_label": "A.D.Kennedy単著の1991年6月機関報告（本文26頁ほか、PDF28頁）を保有。1992年掲載版の登録DOIと区別。謝辞の参加者名だけでは1990年応募本文への対応を確定しない。",
+                "doi": "10.1142/S0129183192000026",
+                "publication_year": 1992
               }
-            ]
+            ],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -36175,9 +36923,71 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_qcd_related_inspire",
+                "year1990_qcd_related_registry"
+              ],
+              "related_versions": [
+                {
+                  "title": "Fast QCD conjugate gradient solver on the connection machine",
+                  "doi": "10.1016/0920-5632(91)90899-p",
+                  "publication_year": 1991,
+                  "relation_label": "関連するLiu単著の4頁出版。6名の原応募との対応未確定、本文保有へ不算入。",
+                  "source_ids": [
+                    "year1990_qcd_related_inspire",
+                    "year1990_qcd_related_registry"
+                  ]
+                }
+              ]
+            },
+            "notes": [
+              "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 334, section 6 Other Entries; named participants at Thinking Machines Corporation and Florida State University.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         },
         {
           "id": "gb1990-shallow-water",
@@ -36194,7 +37004,7 @@
           "authors_status": "named_participants_from_primary_report_not_a_paper_byline",
           "publication_url": null,
           "notes": [
-            "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。"
+            "追加のNCAR/大学・著者サイト経路でも、1990年NCAR浅水波応募の正式題名と完全本文は未回収です。現在の著者トップには対象本文へのリンクがなく、旧著者PDF索引の照会は時間切れで取得できませんでした。1989年の石油貯留層受賞、1990年2月の授賞式、1983年頃の浅水波コード断片を応募本文へ転用していません。"
           ],
           "membership_label": "competition entries",
           "year_label": "1990 competition; reported in SC1991 proceedings",
@@ -36214,12 +37024,14 @@
             "checked_on": "2026-11-22",
             "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
             "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-            "body_note": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+            "body_note": "追加のNCAR/大学・著者サイト経路でも、1990年NCAR浅水波応募の正式題名と完全本文は未回収です。現在の著者トップには対象本文へのリンクがなく、旧著者PDF索引の照会は時間切れで取得できませんでした。1989年の石油貯留層受賞、1990年2月の授賞式、1983年頃の浅水波コード断片を応募本文へ転用していません。",
             "source_ids": [
               "committee_1990_report_sc1991",
-              "year1990_shallow_author_fragment"
+              "year1990_shallow_author_fragment",
+              "year1990p2_emeagwali_home"
             ],
-            "related_versions": []
+            "related_versions": [],
+            "check_label": "1990 follow-up title and manuscript check"
           },
           "note_history": [
             {
@@ -36245,9 +37057,59 @@
               "date_label": "Original check date not recorded",
               "retired_on": "2026-11-22",
               "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+            },
+            {
+              "field": "notes",
+              "text": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+              "checked_on": "2026-11-22",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
             }
           ],
-          "note_history_reviewed_on": "2026-11-22"
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_followup_bibliography": {
+            "year1990_recovery": {
+              "checked_on": "2026-11-22",
+              "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+              "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+              "body_note": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+              "source_ids": [
+                "committee_1990_report_sc1991",
+                "year1990_shallow_author_fragment"
+              ],
+              "related_versions": []
+            },
+            "notes": [
+              "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。"
+            ],
+            "note_history": [
+              {
+                "field": "notes",
+                "text": "Printed p. 334, section 6 Other Entries.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "This title is an editorial description of a submission explicitly discussed in the committee report. No formal original-paper title is supplied or invented.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              },
+              {
+                "field": "notes",
+                "text": "No individual entrant-publication DOI was established at this bounded checkpoint. The judges’ report DOI is not used as a candidate-paper DOI.",
+                "checked_on": null,
+                "date_label": "Original check date not recorded",
+                "retired_on": "2026-11-22",
+                "reason": "Superseded by the bounded1990 title/body check; original wording retained."
+              }
+            ],
+            "note_history_reviewed_on": "2026-11-22"
+          }
         }
       ],
       "notes": [
@@ -38629,7 +39491,22 @@
           "roster-1990-year1990_triangulation_related",
           "roster-1990-year1990_beichl_bibliography",
           "roster-1990-year1990_f16_related_caption",
-          "roster-1990-year1990_shallow_author_fragment"
+          "roster-1990-year1990_shallow_author_fragment",
+          "roster-1990-year1990p2_pvm_reference",
+          "roster-1990-year1990p2_geist_home",
+          "roster-1990-year1990p2_geist_refs",
+          "roster-1990-year1990p2_geist_ps",
+          "roster-1990-year1990p2_solid_tog",
+          "roster-1990-year1990p2_solid_chapter",
+          "roster-1990-year1990p2_triangulation_chapter",
+          "roster-1990-year1990p2_nist_history",
+          "roster-1990-year1990p2_cug_archive",
+          "roster-1990-year1990p2_emeagwali_home",
+          "roster-1990-year1990p2_carter_bibliography",
+          "roster-1990-year1990p2_seismic_case_study",
+          "roster-1990-year1990p2_schlumberger_bibliography",
+          "roster-1990-year1990p2_kennedy_report",
+          "roster-1990-year1990p2_kennedy_registry"
         ],
         "queue_status": "first_manuscript_checked",
         "next_action": "Recover the original 1990 competition submission and compare it with the 1993 journal account of the same F9 computation. Preserve the later publication year and journal DOI.",
@@ -41295,7 +42172,8 @@
         1992
       ],
       "newly_available_this_followup": 5,
-      "available_this1990batch": 3
+      "available_this1990batch": 3,
+      "available_this1990followup": 0
     },
     "annual": [
       {
@@ -41827,30 +42705,49 @@
         "doi": null,
         "status": "not_recovered",
         "versions": [],
-        "identity_status": "corresponding_publication_identified_body_not_recovered",
-        "note": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+        "identity_status": "corresponding_author_manuscript_partially_recovered_figures_and_table_missing",
+        "note": "共著者Geistの1991年PVM報告の参考文献[14]が、索引と同じ題名を1990年12月のORNL Technical Memorandumとして引用していることを確認しました。さらにORNL公式著者サイトから1992年4月6日付の対応原稿PS18頁を部分回収し、1990年受賞研究との対応も著者公開書誌で確認しました。原稿は逆順で本文・参考文献を含みますが図1–3・表1が欠けるため完全保有へは算入しません。技術メモ番号・原提出ファイルは未特定です。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
-          "original_title_status": "contemporary_session_title_original_submission_unestablished",
-          "title_note": "同時代の講演題名を保持。原1990年提出物の表紙・題名そのものは未特定です。",
-          "body_note": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+          "original_title_status": "contemporary_technical_memo_title_corroborated_original_submission_file_unestablished",
+          "title_note": "同時代の講演題名に加え、共著者Geistの1991年PVM報告・参考文献[14]で、同じ題名の1990年12月ORNL技術メモを確認しました。原提出物の表紙・ファイルとの同一性と技術メモ番号は未特定です。",
+          "body_note": "共著者Geistの1991年PVM報告の参考文献[14]が、索引と同じ題名を1990年12月のORNL Technical Memorandumとして引用していることを確認しました。さらにORNL公式著者サイトから1992年4月6日付の対応原稿PS18頁を部分回収し、1990年受賞研究との対応も著者公開書誌で確認しました。原稿は逆順で本文・参考文献を含みますが図1–3・表1が欠けるため完全保有へは算入しません。技術メモ番号・原提出ファイルは未特定です。",
           "source_ids": [
             "committee_1990_report_sc1991",
             "year1990_superconductor_author_cv",
-            "year1990_superconductor_ornl"
+            "year1990_superconductor_ornl",
+            "year1990p2_pvm_reference",
+            "year1990p2_geist_home",
+            "year1990p2_geist_refs",
+            "year1990p2_geist_ps"
           ],
           "related_versions": [
             {
               "title": "Parallel superconductor code on the iPSC/860",
               "doi": "10.1007/BF00129776",
               "publication_year": 1992,
-              "relation_label": "著者CVで1990年応募研究との対応を確認した後年出版。完全本文未回収。",
+              "relation_label": "1990年応募との対応を著者業績で明示。1992年4月6日付の著者PS18頁を部分回収したが、本文参照の図1–3・表1が未収録。完全版保有には加算していない。原提出ファイルは未特定。",
               "source_ids": [
                 "year1990_superconductor_author_cv",
-                "year1990_superconductor_ornl"
+                "year1990_superconductor_ornl",
+                "year1990p2_geist_home",
+                "year1990p2_geist_refs",
+                "year1990p2_geist_ps"
               ]
             }
-          ]
+          ],
+          "check_label": "1990 follow-up title and manuscript check",
+          "partial_version": {
+            "format": "PostScript",
+            "pages": 18,
+            "manuscript_date": "1992-04-06",
+            "missing_components": [
+              "Figure1",
+              "Figure2",
+              "Figure3",
+              "Table1"
+            ]
+          }
         },
         "note_history": [
           {
@@ -41860,6 +42757,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -41872,6 +42776,60 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "The existing PVM report contains a citation to the original ORNL technical report, not its full text. Exact-title DOE searches found citing reports only."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-superconductor",
+          "year": 1990,
+          "title": "Parallel Superconductor Code Exceeds 2.5 Gflops on iPSC/860",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "corresponding_publication_identified_body_not_recovered",
+          "note": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "contemporary_session_title_original_submission_unestablished",
+            "title_note": "同時代の講演題名を保持。原1990年提出物の表紙・題名そのものは未特定です。",
+            "body_note": "著者SheltonのLSU公式CVが1992年誌面をGordon Bell Award Paperと明記し、1990年応募研究との対応を確認しました。完全本文は未回収です。誌面DOIを原応募へ転用していません。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_superconductor_author_cv",
+              "year1990_superconductor_ornl"
+            ],
+            "related_versions": [
+              {
+                "title": "Parallel superconductor code on the iPSC/860",
+                "doi": "10.1007/BF00129776",
+                "publication_year": 1992,
+                "relation_label": "著者CVで1990年応募研究との対応を確認した後年出版。完全本文未回収。",
+                "source_ids": [
+                  "year1990_superconductor_author_cv",
+                  "year1990_superconductor_ornl"
+                ]
+              }
+            ]
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "The existing PVM report contains a citation to the original ORNL technical report, not its full text. Exact-title DOE searches found citing reports only.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-superconductor",
+            "year": 1990,
+            "title": "Parallel Superconductor Code Exceeds 2.5 Gflops on iPSC/860",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "The existing PVM report contains a citation to the original ORNL technical report, not its full text. Exact-title DOE searches found citing reports only."
+          }
         }
       },
       {
@@ -42101,16 +43059,18 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+        "note": "共著者Carterの大学公開書誌から、関連論文 A Case-study in Performance Programming: Seismic Migration の完全な著者版12頁を回収しました。1991年の Parallel distributed seismic migration への一次引用を確認しましたが、原1990年応募との明示的な対応は確認できず、候補本文の保有件数には算入していません。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+          "body_note": "共著者Carterの大学公開書誌から、関連論文 A Case-study in Performance Programming: Seismic Migration の完全な著者版12頁を回収しました。1991年の Parallel distributed seismic migration への一次引用を確認しましたが、原1990年応募との明示的な対応は確認できず、候補本文の保有件数には算入していません。",
           "source_ids": [
             "committee_1990_report_sc1991",
             "year1990_csm_ibm",
-            "year1990_csm_registry"
+            "year1990_csm_registry",
+            "year1990p2_carter_bibliography",
+            "year1990p2_seismic_case_study"
           ],
           "related_versions": [
             {
@@ -42130,8 +43090,19 @@
               "source_ids": [
                 "year1990_csm_registry"
               ]
+            },
+            {
+              "title": "A Case-study in Performance Programming: Seismic Migration",
+              "source_ids": [
+                "year1990p2_carter_bibliography",
+                "year1990p2_seismic_case_study"
+              ],
+              "relation_label": "著者公開PSの完全12頁を保有。別の1991年9月の出版を引用する関連研究で、1990年原応募本文との対応は未確定。",
+              "doi": null,
+              "publication_year": null
             }
-          ]
+          ],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42141,6 +43112,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42153,6 +43131,68 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "IBM provides metadata/abstract for a related 1993 journal paper and later publication date. No original 1990 competition manuscript or full linked author copy was recovered."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-seismic-migration-csm",
+          "year": 1990,
+          "title": "Seismic migration on an IBM RS/6000 workstation network",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "同系統の1992年・1993年出版の原題と各DOI・異なる著者順は確認しました。完全本文は未回収です。1990年応募との明示的な対応は確認できず、原提出の同一性は未確定です。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_csm_ibm",
+              "year1990_csm_registry"
+            ],
+            "related_versions": [
+              {
+                "title": "Parallel distributed seismic migration",
+                "doi": "10.1002/cpe.4330050203",
+                "publication_year": 1993,
+                "relation_label": "IBMで書誌確認した後年出版。完全本文未回収、原提出同一性未確定。",
+                "source_ids": [
+                  "year1990_csm_ibm"
+                ]
+              },
+              {
+                "title": "Parallel distributed seismic migration",
+                "doi": "10.1016/0167-739X(92)90025-7",
+                "publication_year": 1992,
+                "relation_label": "別の後年出版。1993年誌面とは著者順と頁数が異なる。原提出同一性未確定。",
+                "source_ids": [
+                  "year1990_csm_registry"
+                ]
+              }
+            ]
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "IBM provides metadata/abstract for a related 1993 journal paper and later publication date. No original 1990 competition manuscript or full linked author copy was recovered.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-seismic-migration-csm",
+            "year": 1990,
+            "title": "Seismic migration on an IBM RS/6000 workstation network",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "IBM provides metadata/abstract for a related 1993 journal paper and later publication date. No original 1990 competition manuscript or full linked author copy was recovered."
+          }
         }
       },
       {
@@ -42163,15 +43203,17 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+        "note": "関連する1995年ACM論文 Intersecting Solids on a Massively Parallel Processor（全37頁、版DOI:10.1145/200972.200976）を回収しました。本文は1992年論文を先行研究として明示し、実験を1990年と記していますが、Gordon Bell応募との明示的な対応は確認できていません。原題未確定・応募本文未回収の扱いを維持します。別の1996年SIAM章（pp.231–242、版DOI:10.1137/1.9780898719659.ch21）の書誌も確認しました。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+          "body_note": "関連する1995年ACM論文 Intersecting Solids on a Massively Parallel Processor（全37頁、版DOI:10.1145/200972.200976）を回収しました。本文は1992年論文を先行研究として明示し、実験を1990年と記していますが、Gordon Bell応募との明示的な対応は確認できていません。原題未確定・応募本文未回収の扱いを維持します。別の1996年SIAM章（pp.231–242、版DOI:10.1137/1.9780898719659.ch21）の書誌も確認しました。",
           "source_ids": [
             "committee_1990_report_sc1991",
-            "year1990_solid_related"
+            "year1990_solid_related",
+            "year1990p2_solid_tog",
+            "year1990p2_solid_chapter"
           ],
           "related_versions": [
             {
@@ -42182,8 +43224,27 @@
               "source_ids": [
                 "year1990_solid_related"
               ]
+            },
+            {
+              "title": "Intersecting Solids on a Massively Parallel Processor",
+              "source_ids": [
+                "year1990p2_solid_tog"
+              ],
+              "relation_label": "関連掲載論文の全37頁を保有。1992年overviewとの研究系列と1990年実験を本文で確認。競技応募への対応は未確定のため候補本文保有へ不算入。",
+              "doi": "10.1145/200972.200976",
+              "publication_year": 1995
+            },
+            {
+              "title": "A SIMD Algorithm for Intersecting Three-Dimensional Polyhedra",
+              "source_ids": [
+                "year1990p2_solid_chapter"
+              ],
+              "relation_label": "関連SIAM章の書誌確認のみ。印刷1996年、電子公開2012年3月23日、231–242頁。原応募題名とは未確定。",
+              "doi": "10.1137/1.9780898719659.ch21",
+              "publication_year": 1996
             }
-          ]
+          ],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42193,6 +43254,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42205,6 +43273,58 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "The original entry is described by the committee report. A later 1992 journal article/1991 IBM report was identified, but not retrieved as a proven original-submission version."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-solid-modeling",
+          "year": 1990,
+          "title": "Solid modeling on a Connection Machine",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "1992年6月刊の同著者による関連論文 Solid Modeling On a Massively Parallel Processor（pp.175–192、DOI:10.1177/109434209200600205）の書誌は確認。1990年応募との明示的な対応と完全本文は未確認のため、応募原題・応募論文DOI・本文保有としては採用していません。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_solid_related"
+            ],
+            "related_versions": [
+              {
+                "title": "Solid Modeling On a Massively Parallel Processor",
+                "doi": "10.1177/109434209200600205",
+                "publication_year": 1992,
+                "relation_label": "関連後年出版の書誌のみ確認。明示的な応募対応と完全本文は未確認。",
+                "source_ids": [
+                  "year1990_solid_related"
+                ]
+              }
+            ]
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "The original entry is described by the committee report. A later 1992 journal article/1991 IBM report was identified, but not retrieved as a proven original-submission version.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-solid-modeling",
+            "year": 1990,
+            "title": "Solid modeling on a Connection Machine",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "The original entry is described by the committee report. A later 1992 journal article/1991 IBM report was identified, but not retrieved as a proven original-submission version."
+          }
         }
       },
       {
@@ -42215,16 +43335,18 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+        "note": "既回収のCCCG1990全5頁に続き、NIST公式史と関連SIAM章の登録書誌を確認しましたが、応募との明示的対応は未確認です。原題・応募本文は未回収のままです。1996年の関連章（pp.121–129、版DOI:10.1137/1.9780898719659.ch11）と1991年SIAM News原記事、2012年の電子公開日は区別しています。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+          "body_note": "既回収のCCCG1990全5頁に続き、NIST公式史と関連SIAM章の登録書誌を確認しましたが、応募との明示的対応は未確認です。原題・応募本文は未回収のままです。1996年の関連章（pp.121–129、版DOI:10.1137/1.9780898719659.ch11）と1991年SIAM News原記事、2012年の電子公開日は区別しています。",
           "source_ids": [
             "committee_1990_report_sc1991",
             "year1990_triangulation_related",
-            "year1990_beichl_bibliography"
+            "year1990_beichl_bibliography",
+            "year1990p2_nist_history",
+            "year1990p2_triangulation_chapter"
           ],
           "related_versions": [
             {
@@ -42236,8 +43358,19 @@
                 "year1990_triangulation_related",
                 "year1990_beichl_bibliography"
               ]
+            },
+            {
+              "title": "Parallelizing Computational Geometry: First Steps",
+              "source_ids": [
+                "year1990p2_nist_history",
+                "year1990p2_triangulation_chapter"
+              ],
+              "relation_label": "関連章の書誌。1991年SIAM News記事、1996年章の印刷、2012年電子公開を区別。競技応募対応・章の完全本文は未確認。",
+              "doi": "10.1137/1.9780898719659.ch11",
+              "publication_year": 1996
             }
-          ]
+          ],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42247,6 +43380,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42259,6 +43399,60 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "NIST's author bibliography supplies possible 1990 related-paper titles but no manuscript links for them; original competition-body identity is not established. The queue's Beichel spelling is likely a roster/transcription issue, preserved without editing the queue."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-triangulation",
+          "year": 1990,
+          "title": "Three-dimensional triangulation",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "Beichl・Sullivanの同年CCCG論文 A Robust Parallel Triangulation and Shelling Algorithm（107–111頁）の全5頁は既回収。ただし1990年応募との明示的な対応を確認できていないため、応募原題の確定と本文保有件数への算入を保留しています。審査報告の Beichel 表記を保持し、NIST一次業績で確認した Beichl を別の正規名・検索表記として扱います。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_triangulation_related",
+              "year1990_beichl_bibliography"
+            ],
+            "related_versions": [
+              {
+                "title": "A Robust Parallel Triangulation and Shelling Algorithm",
+                "doi": null,
+                "publication_year": 1990,
+                "relation_label": "関連論文の全5頁は既保有。応募との明示的対応がないため保有候補数へ不算入。",
+                "source_ids": [
+                  "year1990_triangulation_related",
+                  "year1990_beichl_bibliography"
+                ]
+              }
+            ]
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "NIST's author bibliography supplies possible 1990 related-paper titles but no manuscript links for them; original competition-body identity is not established. The queue's Beichel spelling is likely a roster/transcription issue, preserved without editing the queue.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-triangulation",
+            "year": 1990,
+            "title": "Three-dimensional triangulation",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "NIST's author bibliography supplies possible 1990 related-paper titles but no manuscript links for them; original competition-body identity is not established. The queue's Beichel spelling is likely a roster/transcription issue, preserved without editing the queue."
+          }
         }
       },
       {
@@ -42296,17 +43490,19 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+        "note": "追加のCUG公式旧目録・NASA/AIAA/DTIC・歴史アーカイブ経路でも、原応募の正式題名と完全対応本文は未回収です。旧目録の1990年会議行には本文リンクがありません。候補のL. A. Feldman / B. M. Dodd表記を保持し、別のNEWTUN関連資料から著者名や応募題名を推測していません。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+          "body_note": "追加のCUG公式旧目録・NASA/AIAA/DTIC・歴史アーカイブ経路でも、原応募の正式題名と完全対応本文は未回収です。旧目録の1990年会議行には本文リンクがありません。候補のL. A. Feldman / B. M. Dodd表記を保持し、別のNEWTUN関連資料から著者名や応募題名を推測していません。",
           "source_ids": [
             "committee_1990_report_sc1991",
-            "year1990_f16_related_caption"
+            "year1990_f16_related_caption",
+            "year1990p2_cug_archive"
           ],
-          "related_versions": []
+          "related_versions": [],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42316,6 +43512,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42328,6 +43531,48 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "Searches lead to the original judges/committee description, not a separately identifiable candidate paper. No original manuscript title/body recovered."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-f16-flow",
+          "year": 1990,
+          "title": "Flow calculation around an F-16 aircraft",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "原応募の正式題名・本文は未回収。Cray Channels Fall1991誌37頁のF-16/NEWTUNの図説明に Laurence A. Feldman の名を確認しましたが、1990年応募との対応を示さない関連資料のため、原応募の著者表記 L. A. Feldman / B. M. Dodd は保持しています。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_f16_related_caption"
+            ],
+            "related_versions": []
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "Searches lead to the original judges/committee description, not a separately identifiable candidate paper. No original manuscript title/body recovered.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-f16-flow",
+            "year": 1990,
+            "title": "Flow calculation around an F-16 aircraft",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "Searches lead to the original judges/committee description, not a separately identifiable candidate paper. No original manuscript title/body recovered."
+          }
         }
       },
       {
@@ -42338,15 +43583,16 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+        "note": "Schlumberger研究者側の公開研究書誌でも、関連する1991年SEG要旨の題名と P.Highnam / A.Pieprzak 表記を確認しました。原1990年応募の正式題名・完全本文との対応は未確認で、原報告の曖昧な人名表記は推測で置換していません。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+          "body_note": "Schlumberger研究者側の公開研究書誌でも、関連する1991年SEG要旨の題名と P.Highnam / A.Pieprzak 表記を確認しました。原1990年応募の正式題名・完全本文との対応は未確認で、原報告の曖昧な人名表記は推測で置換していません。",
           "source_ids": [
             "committee_1990_report_sc1991",
-            "year1990_cm2_related_seg"
+            "year1990_cm2_related_seg",
+            "year1990p2_schlumberger_bibliography"
           ],
           "related_versions": [
             {
@@ -42358,7 +43604,8 @@
                 "year1990_cm2_related_seg"
               ]
             }
-          ]
+          ],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42368,6 +43615,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42380,6 +43634,58 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "Searches lead to the committee description only. Original manuscript title and complete body remain unidentified; spelling variants are not silently corrected."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-seismic-migration-cm2",
+          "year": 1990,
+          "title": "Seismic migration on a CM-2",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "原応募の正式題名・完全本文は未回収。審査報告の画像を再確認してP. Higham→P. Highnam、B. Mechad→B. Moorheadの転記2件を訂正しました。A. Pierzpakは印字が曖昧なため保持。関連SEG1991要旨と特許は応募対応を示さず、保有件数へ算入していません。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_cm2_related_seg"
+            ],
+            "related_versions": [
+              {
+                "title": "Implementation of a fast, accurate 3-D migration on a massively parallel computer",
+                "doi": "10.1190/1.1888926",
+                "publication_year": 1991,
+                "relation_label": "関連3頁要旨の書誌確認のみ。1990年応募との明示的対応は未確認。",
+                "source_ids": [
+                  "year1990_cm2_related_seg"
+                ]
+              }
+            ]
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "Searches lead to the committee description only. Original manuscript title and complete body remain unidentified; spelling variants are not silently corrected.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-seismic-migration-cm2",
+            "year": 1990,
+            "title": "Seismic migration on a CM-2",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "Searches lead to the committee description only. Original manuscript title and complete body remain unidentified; spelling variants are not silently corrected."
+          }
         }
       },
       {
@@ -42390,16 +43696,18 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+        "note": "Kennedy単著のFSU-SCRI-91C-87（1991年6月）の完全な関連報告を、KEK公開スキャンで回収しました（PDF28頁、本文26頁）。著者1名と謝辞の協力者は区別しています。原1990年応募との明示的な対応は確認できず、応募原題の置換や候補本文の保有件数への算入はしていません。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+          "body_note": "Kennedy単著のFSU-SCRI-91C-87（1991年6月）の完全な関連報告を、KEK公開スキャンで回収しました（PDF28頁、本文26頁）。著者1名と謝辞の協力者は区別しています。原1990年応募との明示的な対応は確認できず、応募原題の置換や候補本文の保有件数への算入はしていません。",
           "source_ids": [
             "committee_1990_report_sc1991",
             "year1990_qcd_related_inspire",
-            "year1990_qcd_related_registry"
+            "year1990_qcd_related_registry",
+            "year1990p2_kennedy_report",
+            "year1990p2_kennedy_registry"
           ],
           "related_versions": [
             {
@@ -42411,8 +43719,19 @@
                 "year1990_qcd_related_inspire",
                 "year1990_qcd_related_registry"
               ]
+            },
+            {
+              "title": "Hybrid Monte Carlo Algorithm on the Connection Machine",
+              "source_ids": [
+                "year1990p2_kennedy_report",
+                "year1990p2_kennedy_registry"
+              ],
+              "relation_label": "A.D.Kennedy単著の1991年6月機関報告（本文26頁ほか、PDF28頁）を保有。1992年掲載版の登録DOIと区別。謝辞の参加者名だけでは1990年応募本文への対応を確定しない。",
+              "doi": "10.1142/S0129183192000026",
+              "publication_year": 1992
             }
-          ]
+          ],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42422,6 +43741,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42434,6 +43760,60 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "The committee report describes the entry and team. No original full submission or reliable exact-title manuscript crosswalk was located."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-qcd",
+          "year": 1990,
+          "title": "Quantum chromodynamics on a CM-2",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "原応募の正式題名・完全本文は未回収。Liuの1991年論文の正式題名・DOIは確認しましたが、単著の別出版であり、審査報告の6名チームによる応募への明示的対応がないため採用していません。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_qcd_related_inspire",
+              "year1990_qcd_related_registry"
+            ],
+            "related_versions": [
+              {
+                "title": "Fast QCD conjugate gradient solver on the connection machine",
+                "doi": "10.1016/0920-5632(91)90899-p",
+                "publication_year": 1991,
+                "relation_label": "関連するLiu単著の4頁出版。6名の原応募との対応未確定、本文保有へ不算入。",
+                "source_ids": [
+                  "year1990_qcd_related_inspire",
+                  "year1990_qcd_related_registry"
+                ]
+              }
+            ]
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "The committee report describes the entry and team. No original full submission or reliable exact-title manuscript crosswalk was located.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-qcd",
+            "year": 1990,
+            "title": "Quantum chromodynamics on a CM-2",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "The committee report describes the entry and team. No original full submission or reliable exact-title manuscript crosswalk was located."
+          }
         }
       },
       {
@@ -42444,17 +43824,19 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "original_title_or_complete_corresponding_body_unestablished",
-        "note": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+        "note": "追加のNCAR/大学・著者サイト経路でも、1990年NCAR浅水波応募の正式題名と完全本文は未回収です。現在の著者トップには対象本文へのリンクがなく、旧著者PDF索引の照会は時間切れで取得できませんでした。1989年の石油貯留層受賞、1990年2月の授賞式、1983年頃の浅水波コード断片を応募本文へ転用していません。",
         "year1990_recovery": {
           "checked_on": "2026-11-22",
           "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
           "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
-          "body_note": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+          "body_note": "追加のNCAR/大学・著者サイト経路でも、1990年NCAR浅水波応募の正式題名と完全本文は未回収です。現在の著者トップには対象本文へのリンクがなく、旧著者PDF索引の照会は時間切れで取得できませんでした。1989年の石油貯留層受賞、1990年2月の授賞式、1983年頃の浅水波コード断片を応募本文へ転用していません。",
           "source_ids": [
             "committee_1990_report_sc1991",
-            "year1990_shallow_author_fragment"
+            "year1990_shallow_author_fragment",
+            "year1990p2_emeagwali_home"
           ],
-          "related_versions": []
+          "related_versions": [],
+          "check_label": "1990 follow-up title and manuscript check"
         },
         "note_history": [
           {
@@ -42464,6 +43846,13 @@
             "date_label": "Original check date not recorded",
             "retired_on": "2026-11-22",
             "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+          },
+          {
+            "field": "note",
+            "text": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+            "checked_on": "2026-11-22",
+            "retired_on": "2026-11-22",
+            "reason": "Superseded by the follow-up on the eight remaining1990 entries; earlier wording preserved."
           }
         ],
         "note_history_reviewed_on": "2026-11-22",
@@ -42476,6 +43865,48 @@
           "versions": [],
           "identity_status": "body_not_recovered_after_recorded_routes",
           "note": "The committee report describes this entry. Later author webpages and biographies do not constitute the original candidate manuscript; no full body was recovered."
+        },
+        "before_year1990_followup": {
+          "record_id": "gb1990-shallow-water",
+          "year": 1990,
+          "title": "NCAR shallow-water model on a CM-2",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "original_title_or_complete_corresponding_body_unestablished",
+          "note": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+          "year1990_recovery": {
+            "checked_on": "2026-11-22",
+            "original_title_status": "formal_original_title_unestablished_editorial_description_retained",
+            "title_note": "審査報告に基づく説明題を保持。原応募の正式題名は未確認です。",
+            "body_note": "原応募の正式題名・本文は未回収。著者サイトの浅水波コード断片は1983年頃の例示と明記されており、1990年応募本文の代用にはしていません。1989年受賞と1990年2月の授賞式も別年度として区別しています。",
+            "source_ids": [
+              "committee_1990_report_sc1991",
+              "year1990_shallow_author_fragment"
+            ],
+            "related_versions": []
+          },
+          "note_history": [
+            {
+              "field": "note",
+              "text": "The committee report describes this entry. Later author webpages and biographies do not constitute the original candidate manuscript; no full body was recovered.",
+              "checked_on": null,
+              "date_label": "Original check date not recorded",
+              "retired_on": "2026-11-22",
+              "reason": "Superseded by the bounded1990 acquisition check; original wording retained."
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22",
+          "before_year1990_recovery": {
+            "record_id": "gb1990-shallow-water",
+            "year": 1990,
+            "title": "NCAR shallow-water model on a CM-2",
+            "doi": null,
+            "status": "not_recovered",
+            "versions": [],
+            "identity_status": "body_not_recovered_after_recorded_routes",
+            "note": "The committee report describes this entry. Later author webpages and biographies do not constitute the original candidate manuscript; no full body was recovered."
+          }
         }
       },
       {
@@ -47969,5 +49400,33 @@
       "scientifically_reviewed": 1
     },
     "policy": "Complete corresponding publications are retained separately from the original 1990 submissions. An exact original title is not inferred from a related paper. Scientific review and final-score research are separate."
+  },
+  "year1990_followup": {
+    "checked_on": "2026-11-22",
+    "scoped_record_ids": [
+      "gb1990-superconductor",
+      "gb1990-seismic-migration-csm",
+      "gb1990-solid-modeling",
+      "gb1990-triangulation",
+      "gb1990-f16-flow",
+      "gb1990-seismic-migration-cm2",
+      "gb1990-qcd",
+      "gb1990-shallow-water"
+    ],
+    "recovered_record_ids": [],
+    "summary": {
+      "rechecked": 8,
+      "newly_available": 0,
+      "indexed_entries": 12,
+      "available": 4,
+      "not_recovered": 8,
+      "scientifically_reviewed": 1
+    },
+    "findings": [
+      "超伝導コードの題名を1990年12月の技術メモの一次引用で裏付け、対応する著者PS18頁を部分回収。図1–3・表1が欠けるため完全回収には加算していません。",
+      "固体モデリング37頁、QCD関連機関報告28頁、地震migrationの関連著者論文12頁を取得。いずれも1990年応募との対応が未確定で、候補本文保有数へは加算していません。",
+      "関連論文の正式題名・DOIと出版／改訂時点を追加し、原応募の題名・著者・DOIとは分けています。"
+    ],
+    "policy": "Partial corresponding manuscripts and complete related papers are described separately. A complete1990 entry is counted only when completeness and primary competition correspondence are established. Scientific review and final-score research remain separate."
   }
 }
