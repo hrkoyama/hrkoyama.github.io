@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-af4270e6e9
-Captured (UTC): 2026-11-22T06:15:32+00:00
+Snapshot: 2026-11-22-0b638fcfc8
+Captured (UTC): 2026-11-22T07:05:26+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -11051,6 +11051,32 @@ The same amplification factor used to test growth also explains two distinct err
 \begin{gathered}u_t+a u_x=0,\qquad x_j=jh,\quad\theta=kh,\quad C=\frac{a\Delta t}{h},\\u_j^n=\widehat u^{\,n}e^{ij\theta},\qquad G_{\rm exact}=e^{-ia k\Delta t}=e^{-iC\theta}.\end{gathered}
 The exact solution translates without changing amplitude. This makes the model useful for separating artificial damping from transport error.
 
+## Differences, CFL, von Neumann analysis, and Lax — Compare dissipation and dispersion through wave evolution [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#waveform-evolution
+Coverage: reading
+
+Compare the same smooth initial pulse at the same times and on identical axes. Dashed black is exact advection; solid color is the panel result. A isolates upwind damping as a constructed diagnostic, B evolves the centered semidiscrete equation exactly in time, and C is Lax–Wendroff.
+Loading the wave data. The static comparison below remains available without playback.
+Here, “no dissipation preserves amplitude” means preserving the magnitude of each Fourier component. When their phases separate, the combined peak can change height and the profile can develop negative tails or oscillations. Watch B change shape while its discrete L2 ratio stays at one. A lower peak alone is not proof of dissipation.
+View matched-time static snapshotsRows are A: damping only, B: dispersion only, C: both; columns share the same times. Waves wrap around the periodic boundary. Open the image to enlarge it.
+Conditions, formulas and reproduction files
+The periodic domain is [0,1), with a=1, N=127 and C=0.8, so Δt=0.8/127. One circuit takes T=L/a=1. The player shows every second step from 0 to 160 (about 1.008 circuits). The initial periodic pulse is
+u(x,0)=\exp\!\left[60\left(\cos\!\left(2\pi(x-\tfrac14)\right)-1\right)\right].
+
+## Differences, CFL, von Neumann analysis, and Lax — Compare dissipation and dispersion through wave evolution [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#waveform-evolution
+Coverage: reading
+
+For θ=2πm/N, the one-step multipliers underlying the saved frames are below. A is not actual upwind evolution: its phase error is removed to isolate damping. No RK4 or other time discretization is added to B.
+\begin{aligned}G_A&=\left|1-C+Ce^{-i\theta}\right|e^{-iC\theta},\\G_B&=e^{-iC\sin\theta},\\G_C&=1-iC\sin\theta+C^2(\cos\theta-1).\end{aligned}
+Curves are computed from the trigonometric interpolant of the initial samples. The dashed reference was checked against analytic pulse translation at every saved step and grid point, with maximum error about 1.3×10⁻¹⁴ under these conditions. C was independently checked against real-space Lax–Wendroff updates. Display JSON is rounded to seven decimal places, with error at most 5×10⁻⁸.
+All frames JSON · Selected snapshots CSV · Conditions and results JSON · Checks and hashes JSON · Generator Python · Requirements · Run instructions · Script license
+Save the generator and requirements in one folder, then run with a new output directory. Figures, data and prose retain the site’s item-specific reuse terms.
+python -m pip install -r requirements.txt
+python generate-wave-evolution.py --output generated
+
 ## Differences, CFL, von Neumann analysis, and Lax — What the amplification factor measures# [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#vn-amplitude-and-phase
@@ -20809,6 +20835,26 @@ Coverage: reading
 増幅率は、誤差が成長するかどうかだけでなく、性質の異なる2つの誤差も示します。数値散逸は波の振幅を減衰させ、数値分散は波長ごとの伝播速度を変えます。 ここでは周期一様格子上の、速度一定のスカラー移流を考えます。格子幅をh、正の時間刻みをΔt、波数をk、無次元の格子波数をθ、符号付きのCourant数をCとします。フーリエモードの符号規約と、厳密な1ステップの倍率は
 \begin{gathered}u_t+a u_x=0,\qquad x_j=jh,\quad\theta=kh,\quad C=\frac{a\Delta t}{h},\\u_j^n=\widehat u^{\,n}e^{ij\theta},\qquad G_{\rm exact}=e^{-ia k\Delta t}=e^{-iC\theta}.\end{gathered}
 です。厳密解は振幅を変えずに平行移動します。そのため、この問題では人工的な減衰と、波を運ぶ際の誤差を分けて調べられます。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 波形の時間発展で、散逸と分散を比べる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#waveform-evolution
+Coverage: reading
+
+同じ滑らかな初期パルスを、同じ時刻・同じ座標軸で比較します。黒い破線は厳密な移流、色の実線は各パネルの結果です。Aは風上法から減衰だけを取り出した診断用の構成、Bは中心差分の半離散式を時間方向に厳密に解いたもの、CはLax–Wendroff法です。
+再生データを読み込んでいます。再生できない場合は、下の静止図でも比較できます。
+「無散逸で振幅を保つ」とは、ここでは各Fourier成分の大きさを保つという意味です。成分同士の位相がずれると、合成した波形の山の高さは変わり、負の裾や振動も現れます。Bで離散L2の比が1のまま形が崩れることを確かめてください。山が低くなったことだけで、散逸があるとは判断できません。
+同じ時刻の静止図を見る行はA：減衰だけ、B：分散だけ、C：両方、列は同じ時刻です。波は周期境界で反対側へ回り込みます。画像を開くと拡大できます。
+計算条件・式・再計算用ファイル
+周期区間[0,1)、移流速度a=1、格子点数N=127、C=0.8、Δt=0.8/127です。1周の時間T=L/a=1に対し、0〜160ステップ（約1.008周）を2ステップごとに表示します。初期形は次の周期パルスです。
+u(x,0)=\exp\!\left[60\left(\cos\!\left(2\pi(x-\tfrac14)\right)-1\right)\right].
+θ=2πm/Nとして、以下は1ステップあたりの倍率です。表示は2ステップずつ進みます。Aは実際の風上法の時間発展ではなく、位相誤差を取り除いて減衰を見分けるための構成です。BにRK4などの時間離散化は加えていません。
+\begin{aligned}G_A&=\left|1-C+Ce^{-i\theta}\right|e^{-iC\theta},\\G_B&=e^{-iC\sin\theta},\\G_C&=1-iC\sin\theta+C^2(\cos\theta-1).\end{aligned}
+曲線は初期標本の三角補間から計算しています。黒破線と解析的なパルスの平行移動は、保存した条件で全時刻・全格子点を照合し、最大誤差約1.3×10⁻¹⁴でした。Cは実空間のLax–Wendroff更新でも独立に照合しています。表示用JSONは小数7桁に丸め、誤差は5×10⁻⁸以下です。
+全フレーム JSON · 選んだ時刻のCSV · 条件と結果 JSON · 検算とハッシュ JSON · 生成用Python · 依存パッケージ · 実行説明 · スクリプトのライセンス
+生成用Pythonと依存パッケージ一覧を同じフォルダーに保存して実行できます。新しい出力先を指定してください。図・データ・本文の利用条件はサイトの項目別条件を参照してください。
+python -m pip install -r requirements.txt
+python generate-wave-evolution.py --output generated
 
 ## 差分、CFL条件、von Neumann解析、Laxの定理 — 増幅率が測るもの# [ja]
 

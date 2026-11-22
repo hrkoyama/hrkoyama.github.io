@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "parameters": {
+    "n": 127,
+    "domain": [
+      0,
+      1
+    ],
+    "advection_speed": 1.0,
+    "courant": 0.8,
+    "dx": 0.007874015748031496,
+    "dt": 0.006299212598425198,
+    "kappa": 60.0,
+    "x0": 0.25,
+    "nsteps": 160,
+    "max_step": 160,
+    "period": 1.0,
+    "frame_stride": 2,
+    "output_decimals": 7
+  },
+  "parameter_sha256": "5b2b5f6eb8ddb07780a69e3ed99ca25e885bee1cd54fa9e5e00ae395bc0d9c67",
+  "initial_float64_le_sha256": "c9b6b2698989ae6c60136798cd38422a9c781b5298de7522f19f9ff610fa900e",
+  "equation": "u_t + a u_x = 0, periodic x in [0,1), a=1",
+  "initial_profile": "exp(kappa*(cos(2*pi*(x-x0))-1))",
+  "multipliers": {
+    "exact": "exp(-i*C*theta)",
+    "damping_only": "abs(1-C+C*exp(-i*theta))*exp(-i*C*theta)",
+    "dispersion_only": "exp(-i*C*sin(theta))",
+    "lax_wendroff": "1-i*C*sin(theta)+C^2*(cos(theta)-1)"
+  },
+  "scope": "Scalar linear advection only; constructed diagnostic A and exact semidiscrete B are not claimed to be standard fully discrete schemes. No shock data, nonlinear KEEP solver result, or new atlas problem count.",
+  "conservation": {
+    "exact": {
+      "max_mean_drift": 2.7755575615628914e-17,
+      "max_sum_drift": 3.552713678800501e-15,
+      "initial_l2": 0.19093558106443662,
+      "final_l2": 0.19093558106443645,
+      "final_l2_ratio": 0.9999999999999991,
+      "max_l2_drift": 3.608224830031759e-16,
+      "max_l2_step_increase": 1.6653345369377348e-16
+    },
+    "damping_only": {
+      "max_mean_drift": 2.7755575615628914e-17,
+      "max_sum_drift": 3.552713678800501e-15,
+      "initial_l2": 0.19093558106443662,
+      "final_l2": 0.1294225656510997,
+      "final_l2_ratio": 0.6778336700241449,
+      "max_l2_drift": 0.061513015413336924,
+      "max_l2_step_increase": -0.0001599909296028379
+    },
+    "dispersion_only": {
+      "max_mean_drift": 2.7755575615628914e-17,
+      "max_sum_drift": 3.552713678800501e-15,
+      "initial_l2": 0.19093558106443662,
+      "final_l2": 0.19093558106443614,
+      "final_l2_ratio": 0.9999999999999976,
+      "max_l2_drift": 4.996003610813204e-16,
+      "max_l2_step_increase": 5.551115123125783e-17
+    },
+    "lax_wendroff": {
+      "max_mean_drift": 1.3877787807814457e-17,
+      "max_sum_drift": 1.7763568394002505e-15,
+      "initial_l2": 0.19093558106443662,
+      "final_l2": 0.18224085510088828,
+      "final_l2_ratio": 0.9544625160220187,
+      "max_l2_drift": 0.008694725963548339,
+      "max_l2_step_increase": -3.8638606068869263e-05
+    }
+  },
+  "final_extrema": {
+    "exact": {
+      "min": -1.0813119013248198e-15,
+      "max": 0.9954211981035556
+    },
+    "damping_only": {
+      "min": -2.1039129441919013e-15,
+      "max": 0.45858591827689227
+    },
+    "dispersion_only": {
+      "min": -0.34476078339428207,
+      "max": 0.7190212583823168
+    },
+    "lax_wendroff": {
+      "min": -0.13947634680471974,
+      "max": 0.8222444661424267
+    }
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4"
+  }
+}

@@ -22,6 +22,18 @@ rendered = json.loads(subprocess.check_output(
 ))['rendered']
 documents = {lang: json.loads((ATLAS / f'content.{lang}.json').read_text()) for lang in ['ja', 'en']}
 translations = json.loads((ATLAS / 'translation-status.json').read_text())
+wave_enabled = any('data-wave-evolution' in item['html'] for item in data['chapters']['stability'].values())
+if wave_enabled:
+    wave_versions = {suffix: hashlib.sha256((ATLAS / ('wave-evolution.' + suffix)).read_bytes()).hexdigest()[:12]
+                     for suffix in ['js', 'css']}
+
+def wave_assets(text, module=False):
+    """Version the small, chapter-scoped player without changing shared chrome."""
+    text = re.sub(r'<!-- wave-evolution-assets -->.*?<!-- /wave-evolution-assets -->\n?', '', text, flags=re.S)
+    block = '<!-- wave-evolution-assets --><link rel="stylesheet" href="/numerical-methods-atlas/wave-evolution.css?v=' + wave_versions['css'] + '">'
+    if module:
+        block += '<script type="module" src="/numerical-methods-atlas/wave-evolution.js?v=' + wave_versions['js'] + '"></script>'
+    return text.replace('</head>', block + '<!-- /wave-evolution-assets -->\n</head>', 1)
 for chapter, localized in data['chapters'].items():
     anchors = {}
     for lang in ['ja', 'en']:
@@ -59,6 +71,8 @@ for chapter, localized in data['chapters'].items():
             text = re.sub(r'<p class="translation-notice[^\"]*">.*?</p>',
                           '<p class="translation-notice">日本語・英語の本文と数式を同時更新：' + data['updated_on'] + '。翻訳は草稿です。</p>',
                           text, count=1, flags=re.S)
+        if chapter == 'stability' and wave_enabled:
+            text = wave_assets(text, module=True)
         path.write_text(text)
     assert anchors['ja'] == anchors['en'], chapter + ': bilingual anchors differ'
     translations['chapters'][chapter] = {
@@ -69,4 +83,12 @@ for lang, content in documents.items():
     for name in [f'content.{lang}.json'] + (['content.json'] if lang == 'en' else []):
         (ATLAS / name).write_text(json.dumps(content, ensure_ascii=False, indent=2) + '\n')
 (ATLAS / 'translation-status.json').write_text(json.dumps(translations, ensure_ascii=False, separators=(',', ':')) + '\n')
+if wave_enabled:
+    path = ATLAS / 'index.html'
+    path.write_text(wave_assets(path.read_text()))
+    path = ATLAS / 'app.js'
+    text, count = re.subn(r"from './wave-evolution[.]js(?:[?]v=[a-f0-9]+)?'",
+                          "from './wave-evolution.js?v=" + wave_versions['js'] + "'", path.read_text())
+    assert count == 1, 'The SPA must initialize the waveform player after rendering'
+    path.write_text(text)
 print('Built bilingual stability foundations:', len(data['chapters']), 'chapters,', len(data['formulas']), 'equations.')

@@ -17,6 +17,7 @@ import {flowPage,wireFlow,mhdPage,wireMHD,disposeComparisons} from './comparison
 import {reconstructionPage,wireReconstruction,robustnessPage,wireRobustness} from './shock-methods.js';
 import {poissonPage,wirePoisson} from './poisson.js';
 import {wireBookCovers} from './books.js';
+import {wireWaveEvolution} from './wave-evolution.js?v=f53bf3879d2a';
 import {hamiltonianPage,wireHamiltonian} from './hamiltonian.js';
 import {timePage,meshPage,wireTime,wireMesh} from './foundations.js';
 import {stabilityPage,convergencePage,wireStability,wireConvergence} from './experiments.js';
@@ -118,7 +119,7 @@ const eras = [
  ['1994–2026','Particles meet a Riemann problem','Inutsuka · Iwasaki · Kitajima · Seno','Trace GSPH through its detailed 2002 formulation, particle MHD, and special-relativistic SRGSPH. Literature and a staged implementation plan.','gsph','inutsuka2002']
 ].sort((a,b)=>parseInt(a[0],10)-parseInt(b[0],10));
 let documents, references, sod, experiments, foundations, coverage, translationStatus, localeCatalog, glossary;
-const atlasDocumentVersions = {"ja": "9c66258c4bfa", "en": "3b5181f13453"};
+const atlasDocumentVersions = {"ja": "e04228dd7bed", "en": "eed92fce408f"};
 const documentCache = new Map();
 const originalShell = new Map([...document.querySelectorAll('.site-header,.site-footer,#figure-dialog,.skip-link')].map(element => [element, element.innerHTML]));
 let navigationVersion = 0, switching = false;
@@ -216,7 +217,10 @@ function chapter(id) {
  return `<div class="reading-shell page-width"><aside class="reading-nav"><a class="back-link" href="#/methods">← Explore the methods</a><p class="eyebrow">IN THIS EDITION</p><nav aria-label="Reading chapters">${links.map(([key,label])=>`<a href="#/read/${key}" ${id===key?'aria-current="page"':''}>${label}</a>`).join('')}</nav><p class="small-mono">FIRST EDITION · v0.1.0</p></aside><div class="chapter-wrap"><div class="chapter-topline"><span>THE READING ROOM</span><a href="${d.source_url||`${repo}/blob/main/docs/${d.locale==='ja'?'ja/':''}${id}.md`}">View source ↗</a></div>${notice}<article class="prose" lang="${d.locale||'en'}">${d.html}</article><div class="chapter-bottom"><span>Continue exploring</span><a href="#/atlas">Historical atlas →</a><a href="#/gallery">Computed gallery →</a></div></div><aside class="chapter-toc"><p class="eyebrow">ON THIS PAGE</p><nav aria-label="On this page">${d.headings.filter(h=>h.level===2).map(h=>`<a href="#/read/${id}?section=${h.id}">${h.title}</a>`).join('')}</nav></aside></div>`;
 }
 function notFound(){return `<section class="page-intro page-width"><p class="eyebrow">PAGE NOT FOUND</p><h1>Back to<br>the <em>atlas.</em></h1><p>This chapter could not be found.</p><a class="button primary" href="#/">Return home →</a></section>`;}
+let disposeWaveEvolution = () => {};
 function wire() {
+ disposeWaveEvolution();
+ disposeWaveEvolution = wireWaveEvolution(main);
  wireBookCovers(main);
  document.querySelectorAll('[data-flux]').forEach(button=>button.addEventListener('click',()=>{
    const flux=button.dataset.flux; document.querySelector('#sod-chart').innerHTML=plot(flux);
