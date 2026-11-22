@@ -66,6 +66,7 @@ export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  <header class="page-width landing-heading"><h1 id="home-landing-title${suffix}">${esc(copy.title)}</h1><p class="landing-description">${esc(copy.description)}</p></header>
  ${homeSearchPage({compact:true,staticMode})}
  <nav class="page-width home-entrypoints" aria-label="${lang==='ja'?'3つの入口':'Three ways to begin'}"><ul class="home-entry-grid">${copy.entries.map(entry=>`<li><a class="home-entry" data-home-entry="${esc(entry.id)}" href="${esc(entry.href)}"><h2>${esc(entry.title)}</h2><p>${esc(entry.description)}</p><span class="home-entry-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ul></nav>
+ <aside class="page-width home-reference-links" aria-labelledby="home-reference-title${suffix}"><h2 id="home-reference-title${suffix}">${lang==='ja'?'教科書・参考文献を探す':'Find textbooks and references'}</h2><p><a href="/numerical-methods-atlas/${lang}/read/textbooks/">${lang==='ja'?'教科書案内':'Textbook guide'}</a><a href="/numerical-methods-atlas/${lang}/read/references/">${lang==='ja'?'参考文献一覧':'Reference list'}</a></p></aside>
  </div>`;
 }
 export function wireHomeOverview({rewriteLinks=html=>html}={}){

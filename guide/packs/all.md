@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-fd3dd274da
-Captured (UTC): 2026-11-22T11:28:38+00:00
+Snapshot: 2026-11-22-6c192fad49
+Captured (UTC): 2026-11-22T12:10:35+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -8675,7 +8675,7 @@ Historical atlas →Computed gallery →
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
 Coverage: reading
 
-THE READING ROOM公開コード・データ / Public code and data
+LEARNING RESOURCES公開コード・データ / Public code and data
 
 ## References by original publication year — References by original publication year [en]
 
@@ -12752,7 +12752,7 @@ Historical atlas →Computed gallery →
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/
 Coverage: reading
 
-THE READING ROOM公開コード・データ / Public code and data
+LEARNING RESOURCES公開コード・データ / Public code and data
 
 ## Textbooks: where to look next — Textbooks: where to look next [en]
 
@@ -24379,7 +24379,7 @@ Blasius、Sedov、Nohや追加の多次元参照解は今後の拡張です。LA
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
 Coverage: reading
 
-解説章公開コード・データ / Public code and data
+学習資料公開コード・データ / Public code and data
 英語原文が更新されています。この日本語訳は旧版に対応します。
 
 ## 原著の出版年順に並べた参考文献 — 原著の出版年順に並べた参考文献 [ja]
@@ -27932,7 +27932,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/textbooks/
 Coverage: reading
 
-解説章公開コード・データ / Public code and data
+学習資料公開コード・データ / Public code and data
 日本語訳はドラフトです。数式・計算・参照資料は英語原文と照合できます。
 
 ## 教科書案内：次に何を調べるか — 教科書案内：次に何を調べるか [ja]

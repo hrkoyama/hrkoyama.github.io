@@ -48,9 +48,10 @@ def build_home_layout(root, copy, sections, metrics, featured, maps, context):
                   '複数の分野で共通する数学と、追加で必要な検証をたどります。' if ja else 'Follow mathematics shared across fields and the additional verification each connection needs.')]
         shortcuts = '<nav class="study-shortcuts" aria-label="'+('読む目的に合わせて選ぶ' if ja else 'Choose how to read')+'"><ul>'+''.join('<li'+(' class="study-shortcut-primary"' if i==0 else '')+'><a href="'+u+'">'+label+'</a><p>'+note+'</p></li>' for i,(u,label,note) in enumerate(links))+'</ul></nav>'
         intro = '<section class="page-width"><p><a href="/numerical-methods-atlas/?lang='+lang+'">'+('アトラストップ' if ja else 'Atlas home')+'</a></p><h1>'+title+'</h1><p class="intro-description">'+description+'</p>'+shortcuts+'</section>'
+        references = '<section class="page-width study-references" aria-labelledby="study-references-title-'+lang+'"><h2 id="study-references-title-'+lang+'">'+('教科書・参考文献' if ja else 'Textbooks and references')+'</h2><div class="study-reference-grid"><article><h3><a href="/numerical-methods-atlas/'+lang+'/read/textbooks/">'+('教科書案内' if ja else 'Textbook guide')+'</a></h3><p>'+('学びたい分野や学習段階に合う教科書を探します。' if ja else 'Find textbooks for your field and stage of study.')+'</p></article><article><h3><a href="/numerical-methods-atlas/'+lang+'/read/references/">'+('論文・参考文献一覧' if ja else 'Papers and reference list')+'</a></h3><p>'+('手法の原著論文と関連資料の出典を確認できます。' if ja else 'Find original publications and supporting sources for numerical methods.')+'</p></article></div></section>'
         catalogue = '<details class="page-width explore-catalogue"><summary>'+('数式・図・収録範囲から探す' if ja else 'Browse equations, figures and coverage')+'</summary>'+metrics[lang]+sections[lang]+'</details>'
         tail = '<section class="page-width"><h2>'+('資料と機械可読データ' if ja else 'Resources and machine-readable data')+'</h2><p><a href="/numerical-methods-atlas/methods/index.json">'+('手法台帳 / JSON' if ja else 'Method registry / JSON')+'</a> · <a href="/guide/packs/numerical.md">Markdown</a> · <a href="/llms.txt">AI index</a> · <a href="index.json">'+('この案内 / JSON' if ja else 'This directory / JSON')+'</a></p></section>'
-        body = intro+rendered['guides'][lang]+maps[lang]+catalogue+context[lang]+tail
+        body = intro+references+rendered['guides'][lang]+maps[lang]+catalogue+context[lang]+tail
         # Standalone directories must open interactive exhibits on the SPA root.
         body = body.replace('href="#/', 'href="/numerical-methods-atlas/?lang='+lang+'#/')
         blocks.append('<div class="home-overview" data-site-language="'+lang+'" lang="'+lang+'">'+body+'</div>')
@@ -65,11 +66,14 @@ def build_home_layout(root, copy, sections, metrics, featured, maps, context):
                   title={'ja':'体系的に読む','en':'Read systematically'},
                   home={l:'/numerical-methods-atlas/?lang='+l for l in ['ja','en']},
                   chapters={l:f'/numerical-methods-atlas/{l}/read/' for l in ['ja','en']},
+                  learning_resources={l:{name:f'/numerical-methods-atlas/{l}/read/{name}/' for name in ['textbooks','references']} for l in ['ja','en']},
                   methods='/numerical-methods-atlas/methods/index.json',
                   field_map={l:'/numerical-methods-atlas/explore/?lang='+l+'#atlas-map-'+l for l in ['ja','en']})
     (directory/'index.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
     (directory/'index.md').write_text('# 体系的に読む / Read systematically\n\n'+
         '\n'.join('- '+l+': https://hrkoyama.github.io'+record['chapters'][l] for l in ['ja','en'])+
+        '\n\n## 教科書・参考文献 / Textbooks and references\n\n'+
+        '\n'.join('- '+l+' '+name+': https://hrkoyama.github.io'+url for l,resources in record['learning_resources'].items() for name,url in resources.items())+
         '\n- Field map: https://hrkoyama.github.io/numerical-methods-atlas/explore/\n- Method registry: https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json\n- Source-linked reading pack: https://hrkoyama.github.io/guide/packs/numerical.md\n')
     app = atlas/'app.js'
     text = app.read_text()
