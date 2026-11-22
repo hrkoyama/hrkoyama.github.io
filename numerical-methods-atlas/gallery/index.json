@@ -4,8 +4,8 @@
   "reviewed_on": "2026-11-21",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 66,
-    "runnable_problems": 21,
+    "test_problems": 67,
+    "runnable_problems": 22,
     "groups": {
       "transport": 8,
       "fluid": 16,
@@ -15,13 +15,13 @@
       "gravity": 5,
       "time": 6,
       "approximation": 3,
-      "quantum": 4,
+      "quantum": 5,
       "biology": 2,
       "probability": 2
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 30,
+      "existing-figure": 31,
       "computed-preview": 9
     }
   },
@@ -3826,10 +3826,88 @@
           "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
         }
       }
+    },
+    {
+      "id": "periodic-he-forces",
+      "group": "quantum",
+      "name": {
+        "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+        "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+      },
+      "chapter": "periodic-forces",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/periodic-forces/2026-11-22/",
+      "verification": "/code/periodic-forces/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_periodic_forces.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/periodic-forces/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/periodic-forces/2026-11-22/test_periodic_forces.py",
+          "python_symbol": "test_saved_full_run_passes"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#measured-results",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#measured-results"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#periodic-he-forces",
+      "run_commands": [
+        "python -m pytest -q test_periodic_forces.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/periodic-forces/2026-11-22/results/preview.png",
+      "image_sha256": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
+      "width": 1680,
+      "height": 518,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。",
+        "en": "Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check."
+      },
+      "visual_input": {
+        "id": "periodic-he-forces",
+        "kind": "image",
+        "source": "/code/periodic-forces/2026-11-22/results/preview.png",
+        "caption": {
+          "ja": "非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。",
+          "en": "Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#periodic-he-forces-ja",
+      "runnable": true,
+      "execution_entry": {
+        "id": "periodic-he-forces",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"
+        },
+        "outcome": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        }
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "e4d85b550ec90f77fcee7bc348b75e9b7dc1a2a94dc6e62d460e940c15dceec3",
+    "catalog/atlas-gallery.json": "06f8d8517041895b5b93c52275465803196850eb6c383368574de0fb92c35afb",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -3874,16 +3952,18 @@
     "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f",
     "code/molecular-hf/2026-11-22/verification.json": "c4692d6ad455d110fa3356303660bda8b968c01555eba535e83892b1e56c785b",
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
+    "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
+    "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "ece85e109245e69a0ba6f19ff8490dfdbb1bc0fe7e037a8dc0c032b8e4c73fea",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "23b843f2d0979f59a698218acf60454a59cd51d55dd94dcb130901f955d85cb7",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "5bb6121139bd51fbad55cd54c2f5a25b1c9c96d298771180499a2f4e6e7d2aa6",
-    "catalog/atlas-execution-discovery.json": "1a1713b0a88feb5c1576f12f31a37d4a52e209b61f0028c084727532fc780c81",
+    "numerical-methods-atlas/test-cases/index.json": "b9269f620ec6349cd3ac3b8971378689f4a8f2b42f6ff189165bc2ef9d2cd357",
+    "catalog/atlas-execution-discovery.json": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be"
   }
 }
