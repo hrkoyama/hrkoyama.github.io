@@ -1,0 +1,58 @@
+{
+  "checked_on": "2026-11-22",
+  "scope": "Primary publisher pages, original-paper first-page excerpts and official SciPy documentation; no full-text audit claimed for paywalled papers.",
+  "records": [
+    {
+      "id": "vanek1996",
+      "url": "https://link.springer.com/article/10.1007/BF02238511",
+      "doi": "10.1007/BF02238511",
+      "review_level": "publisher-abstract-and-metadata"
+    },
+    {
+      "id": "householder1958",
+      "url": "https://dl.acm.org/doi/10.1145/320941.320947",
+      "doi": "10.1145/320941.320947",
+      "review_level": "publisher-metadata"
+    },
+    {
+      "id": "demmel-veselic1992",
+      "url": "https://epubs.siam.org/doi/abs/10.1137/0613074",
+      "doi": "10.1137/0613074",
+      "review_level": "publisher-abstract-and-metadata"
+    },
+    {
+      "id": "lanczos1950",
+      "url": "https://nvlpubs.nist.gov/nistpubs/jres/045/jresv45n4p255_A1b.pdf",
+      "doi": "10.6028/jres.045.026",
+      "review_level": "primary-first-page-and-official-metadata"
+    },
+    {
+      "id": "arnoldi1951",
+      "url": "https://doi.org/10.1090/qam/42792",
+      "doi": "10.1090/qam/42792",
+      "review_level": "publisher-metadata-and-reference-list"
+    },
+    {
+      "id": "saad1980",
+      "url": "https://www.sciencedirect.com/science/article/pii/002437958090169X",
+      "doi": "10.1016/0024-3795(80)90169-X",
+      "review_level": "publisher-abstract-and-metadata"
+    },
+    {
+      "id": "golub-welsch1969",
+      "url": "https://www.ams.org/journals/mcom/1969-23-106/S0025-5718-69-99647-1/S0025-5718-69-99647-1.pdf",
+      "doi": "10.1090/S0025-5718-69-99647-1",
+      "review_level": "publisher-search-first-page-and-metadata"
+    },
+    {
+      "id": "lyness1969",
+      "url": "https://dl.acm.org/doi/10.1145/321526.321537",
+      "doi": "10.1145/321526.321537",
+      "review_level": "publisher-metadata"
+    }
+  ],
+  "notes": {
+    "ja": "Golub–WelschのAMS本文は検索抽出の冒頭を確認、通常取得は403。LanczosのNIST原著PDFは約29MBのためツール本文取得上限を超え、原著の冒頭抽出とNIST/AMSの公式書誌を照合。Lynessは書誌のみを確認し、修正版全体の再現とはしない。",
+    "en": "Golub–Welsch was checked through publisher search extraction; direct open returned 403. The roughly 29 MB Lanczos NIST original exceeded the tool limit; its original first-page extraction and official NIST/AMS bibliography were checked. Lyness metadata only was checked; no reproduction of every modification is claimed."
+  }
+}

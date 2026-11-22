@@ -1,0 +1,584 @@
+{
+  "id": "turing-schnakenberg",
+  "title": {
+    "ja": "Turing不安定性：線形成長率と小振幅パターン",
+    "en": "Turing instability: linear growth and small-amplitude patterns"
+  },
+  "method_ids": [
+    "centered-difference",
+    "rk4"
+  ],
+  "domains": [
+    "biology",
+    "diffusion"
+  ],
+  "summary": {
+    "ja": "Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
+    "en": "Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
+  },
+  "assumptions": {
+    "ja": "無次元a=0.1,b=0.9、平衡(1,0.9)、拡散係数(0.01,1)、周期k=2、初期振幅1e-4。線形t=1と非線形t=4の短い計算に限定します。",
+    "en": "Dimensionless a=0.1,b=0.9, equilibrium(1,0.9), diffusivities(0.01,1), periodic k=2 and initial amplitude1e-4. Restrict runs to linear t=1 and nonlinear t=4."
+  },
+  "algorithm": {
+    "ja": "独自の中心差分・RK4で線形化PDEと短い非線形PDEを進めます。3格子でのモード振幅と成長率、非線形の濃度最小値・初期パターン増幅を記録します。",
+    "en": "Advance the linearized and short nonlinear PDEs using original centered differences/RK4. Record mode amplitudes/growth on three grids, minimum concentrations and early-pattern amplification."
+  },
+  "validation": {
+    "ja": "連続Fourier行列J-k²DのSciPy expmと線形数値解を比較し空間収束を測定。非線形計算は半離散線形行列指数との小振幅差を測り、成熟模様の参照照合とは区別します。",
+    "en": "Compare linear numerical fields with SciPy expm of continuum J-k²D and measure spatial convergence. Quantify the nonlinear run against a semidiscrete linear matrix exponential as a small-amplitude check, not validation of mature morphology."
+  },
+  "limits": {
+    "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+    "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+  },
+  "formulas": [
+    "u_t=D_u u_{xx}+a-u+u^2v,\\quad v_t=D_v v_{xx}+b-u^2v",
+    "\\partial_t\\widehat{\\delta z}=(J-k^2D)\\widehat{\\delta z},\\quad \\widehat{\\delta z}(t)=e^{(J-k^2D)t}\\widehat{\\delta z}(0)"
+  ],
+  "references": [
+    {
+      "id": "turing1952",
+      "author": "A. M. Turing",
+      "year": 1952,
+      "title": "The Chemical Basis of Morphogenesis",
+      "doi": "10.1098/rstb.1952.0012",
+      "url": "https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012",
+      "review_level": "publisher-archive-and-original-first-page-metadata",
+      "review": {
+        "ja": "Royal Societyの原稿審査記録と大学公開の原著第1ページの書誌を確認。出版社本文は403でした。拡散誘起不安定性の歴史的原著で、採用したSchnakenberg数値例の出典とは区別します。",
+        "en": "Royal Society manuscript-review archive and bibliography on the original first page hosted by a university checked. Publisher text returned 403. Historical source for diffusion-driven instability, distinct from this adopted Schnakenberg example."
+      },
+      "type": "article",
+      "journal": "Philosophical Transactions of the Royal Society B237(641),37–72"
+    },
+    {
+      "id": "schnakenberg1979",
+      "author": "J. Schnakenberg",
+      "year": 1979,
+      "title": "Simple chemical reaction systems with limit cycle behaviour",
+      "doi": "10.1016/0022-5193(79)90042-0",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+      "review_level": "official-bibliographic-metadata",
+      "review": {
+        "ja": "PubMedの書誌・DOIを確認（抄録なし）。反応系の原典として引用し、採用係数a=0.1,b=0.9や今回の空間パターンを原著から転記したとは扱いません。",
+        "en": "PubMed bibliography and DOI checked (no abstract). Cited for the reaction-system family; a=0.1,b=0.9 and this spatial experiment are adopted educational inputs, not a transcription of the original experiment."
+      },
+      "type": "article",
+      "journal": "Journal of Theoretical Biology81(3),389–400"
+    },
+    {
+      "id": "scipy-1.14.1-expm",
+      "author": "The SciPy community",
+      "year": 2024,
+      "title": "SciPy1.14.1 expm reference",
+      "doi": null,
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html",
+      "review_level": "official-api-documentation",
+      "review": {
+        "ja": "公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。",
+        "en": "Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked."
+      },
+      "type": "documentation"
+    }
+  ],
+  "group": "models",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "turing-schnakenberg",
+    "passed": true,
+    "termination": "fixed_budget_completed",
+    "checks": {
+      "homogeneous_stable": true,
+      "diffusion_mode_unstable": true,
+      "linear_space_error": true,
+      "linear_space_order": true,
+      "growth_rate": true,
+      "nonlinear_finite_positive": true,
+      "early_linear_agreement": true,
+      "growing_spatial_pattern": true
+    },
+    "metrics": {
+      "homogeneous_max_real_eigenvalue": -0.10000000000000003,
+      "continuum_mode_growth_rate": 0.42841126979143596,
+      "linear_finest_relative_error": 0.00024726924944451685,
+      "linear_minimum_spatial_order": 2.000750498056138,
+      "linear_finest_growth_rate_error": 7.301377900481576e-05,
+      "nonlinear_minimum_concentration": 0.8998159771334997,
+      "nonlinear_early_linear_relative_error": 0.00016918909911058558,
+      "pattern_amplitude_growth": 5.535462628423193
+    },
+    "records": [
+      {
+        "sequence": "linear-space",
+        "n": 32,
+        "dt": 0.007692307692307693,
+        "max_error": 0.0039665979792203486,
+        "growth_rate": 0.4272417370420212,
+        "growth_rate_error": 0.0011695327494147811
+      },
+      {
+        "sequence": "linear-space",
+        "n": 64,
+        "dt": 0.0019267822736030828,
+        "max_error": 0.0009895916550348338,
+        "growth_rate": 0.4281191467791518,
+        "growth_rate_error": 0.00029212301228415116
+      },
+      {
+        "sequence": "linear-space",
+        "n": 128,
+        "dt": 0.0004816955684007707,
+        "max_error": 0.00024726924944451685,
+        "growth_rate": 0.42833825601243114,
+        "growth_rate_error": 7.301377900481576e-05
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.0,
+        "u": 1.0005535462628423,
+        "v": 0.8998159771334997
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.09817477042468103,
+        "u": 1.0005429059258104,
+        "v": 0.8998195129600333
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.19634954084936207,
+        "u": 1.0005113944883217,
+        "v": 0.8998299844741416
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.2945243112740431,
+        "u": 1.0004602248292822,
+        "v": 0.89984698901747
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.39269908169872414,
+        "u": 1.0003913662315123,
+        "v": 0.8998698727498767
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.4908738521234052,
+        "u": 1.0003074682676327,
+        "v": 0.8998977558317303
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.5890486225480862,
+        "u": 1.000211758464567,
+        "v": 0.8999295663012171
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.6872233929727672,
+        "u": 1.0001079177576175,
+        "v": 0.8999640813347934
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.7853981633974483,
+        "u": 0.9999999385985975,
+        "v": 0.8999999742951816
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.8835729338221293,
+        "u": 0.9998919712371379,
+        "v": 0.9000358657504236
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 0.9817477042468103,
+        "u": 0.9997881641267977,
+        "v": 0.9000703764977058
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.0799224746714913,
+        "u": 0.9996925046046116,
+        "v": 0.9001021805523002
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.1780972450961724,
+        "u": 0.9996086659510728,
+        "v": 0.9001300560672723
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.2762720155208536,
+        "u": 0.9995398666636404,
+        "v": 0.9001529322327977
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.3744467859455345,
+        "u": 0.9994887472854733,
+        "v": 0.9001699303612337
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.4726215563702154,
+        "u": 0.9994572694445888,
+        "v": 0.9001803975890484
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.5707963267948966,
+        "u": 0.9994466409051156,
+        "v": 0.9001839319104357
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.6689710972195777,
+        "u": 0.9994572694445888,
+        "v": 0.9001803975890484
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.7671458676442586,
+        "u": 0.9994887472854733,
+        "v": 0.9001699303612337
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.8653206380689396,
+        "u": 0.9995398666636404,
+        "v": 0.9001529322327977
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 1.9634954084936207,
+        "u": 0.9996086659510728,
+        "v": 0.9001300560672723
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.061670178918302,
+        "u": 0.9996925046046116,
+        "v": 0.9001021805523002
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.1598449493429825,
+        "u": 0.9997881641267977,
+        "v": 0.9000703764977058
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.2580197197676637,
+        "u": 0.9998919712371379,
+        "v": 0.9000358657504236
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.356194490192345,
+        "u": 0.9999999385985975,
+        "v": 0.8999999742951816
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.454369260617026,
+        "u": 1.0001079177576178,
+        "v": 0.8999640813347934
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.552544031041707,
+        "u": 1.000211758464567,
+        "v": 0.8999295663012171
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.650718801466388,
+        "u": 1.0003074682676327,
+        "v": 0.8998977558317303
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.748893571891069,
+        "u": 1.0003913662315123,
+        "v": 0.8998698727498767
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.84706834231575,
+        "u": 1.0004602248292822,
+        "v": 0.89984698901747
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 2.945243112740431,
+        "u": 1.0005113944883217,
+        "v": 0.8998299844741416
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.043417883165112,
+        "u": 1.0005429059258104,
+        "v": 0.8998195129600333
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.141592653589793,
+        "u": 1.0005535462628423,
+        "v": 0.8998159771334997
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.2397674240144743,
+        "u": 1.0005429059258104,
+        "v": 0.8998195129600333
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.3379421944391554,
+        "u": 1.0005113944883217,
+        "v": 0.8998299844741416
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.436116964863836,
+        "u": 1.0004602248292822,
+        "v": 0.89984698901747
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.5342917352885173,
+        "u": 1.0003913662315123,
+        "v": 0.8998698727498767
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.6324665057131984,
+        "u": 1.0003074682676327,
+        "v": 0.8998977558317303
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.730641276137879,
+        "u": 1.000211758464567,
+        "v": 0.8999295663012171
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.8288160465625602,
+        "u": 1.0001079177576175,
+        "v": 0.8999640813347934
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 3.9269908169872414,
+        "u": 0.9999999385985975,
+        "v": 0.8999999742951816
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.025165587411922,
+        "u": 0.9998919712371379,
+        "v": 0.9000358657504236
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.123340357836604,
+        "u": 0.9997881641267977,
+        "v": 0.9000703764977058
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.221515128261284,
+        "u": 0.9996925046046116,
+        "v": 0.9001021805523002
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.319689898685965,
+        "u": 0.9996086659510728,
+        "v": 0.9001300560672723
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.417864669110647,
+        "u": 0.9995398666636404,
+        "v": 0.9001529322327977
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.516039439535327,
+        "u": 0.9994887472854733,
+        "v": 0.9001699303612337
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.614214209960009,
+        "u": 0.9994572694445888,
+        "v": 0.9001803975890484
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.71238898038469,
+        "u": 0.9994466409051156,
+        "v": 0.9001839319104357
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.81056375080937,
+        "u": 0.9994572694445888,
+        "v": 0.9001803975890484
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 4.908738521234052,
+        "u": 0.9994887472854733,
+        "v": 0.9001699303612337
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.006913291658733,
+        "u": 0.9995398666636404,
+        "v": 0.9001529322327977
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.105088062083414,
+        "u": 0.9996086659510728,
+        "v": 0.9001300560672723
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.203262832508095,
+        "u": 0.9996925046046116,
+        "v": 0.9001021805523002
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.301437602932776,
+        "u": 0.9997881641267977,
+        "v": 0.9000703764977058
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.399612373357457,
+        "u": 0.9998919712371379,
+        "v": 0.9000358657504236
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.497787143782138,
+        "u": 0.9999999385985975,
+        "v": 0.8999999742951816
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.595961914206819,
+        "u": 1.0001079177576178,
+        "v": 0.8999640813347934
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.6941366846315,
+        "u": 1.000211758464567,
+        "v": 0.8999295663012171
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.792311455056181,
+        "u": 1.0003074682676327,
+        "v": 0.8998977558317303
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.890486225480862,
+        "u": 1.0003913662315123,
+        "v": 0.8998698727498767
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 5.988660995905543,
+        "u": 1.0004602248292822,
+        "v": 0.89984698901747
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 6.086835766330224,
+        "u": 1.0005113944883217,
+        "v": 0.8998299844741416
+      },
+      {
+        "sequence": "nonlinear-profile",
+        "x": 6.1850105367549055,
+        "u": 1.0005429059258104,
+        "v": 0.8998195129600333
+      }
+    ],
+    "duration_seconds": 0.3099586250000357,
+    "input_sha256": "4a8e81b4234a11c7fae51c03a71e72d4638a3ca6c2a6ef99d3d5e2fbc56e26d2"
+  },
+  "problem_id": "turing-schnakenberg",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+    "archive": {
+      "file": "atlas-models-2026-11-22.zip",
+      "sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+      "bytes": 539043,
+      "archive_directory": "atlas-models-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+    ],
+    "passed_tests": 26
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

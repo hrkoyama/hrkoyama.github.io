@@ -13,7 +13,8 @@ const cohort=[
   'barnes-hut','pm','schrodinger','hartree-fock','kohn-sham-dft',
   'scf','hartree-poisson','xc-functionals','ewald','pme','spme',
 ];
-const planned=['ewald','pme','spme'];
+const implementedLongRange={ewald:['ewald'],pme:['spme'],spme:['spme']};
+const planned=['slab-ewald','splines'];
 const languages=['ja','en'];
 const fields=['assumptions','units','boundary_conditions','limitations'];
 const states=['specified','not-applicable','unknown'];
@@ -82,7 +83,7 @@ test('the priority inventory is the agreed 24 methods and Python accepts the com
   bilingual(catalog.priority_review.scope,'priority review scope');
   assert.deepEqual(catalog.priority_review.method_ids,cohort);
   assert.deepEqual(catalog.methods.filter(method=>method.method_review).map(method=>method.id).sort(),[...cohort].sort());
-  assert.deepEqual(reviewed.filter(method=>method.status==='planned').map(method=>method.id),planned);
+  assert.deepEqual(reviewed.filter(method=>method.status==='planned').map(method=>method.id),[]);
   const actual=JSON.parse(execFileSync('python3',['-c',[
     'import json,sys',
     'from pathlib import Path',
@@ -203,15 +204,38 @@ test('each localized HTML and Markdown exposes its own conditions, reasons, evid
   }
 });
 
-test('the three curated long-range plans do not advertise runnable code or commands',()=>{
+test('scoped Ewald and smooth-PME examples expose their dedicated evidence without validating the original PME or slab variants',()=>{
   const collection=JSON.parse(read('numerical-methods-atlas/methods/reviewed.json'));
-  for(const id of planned){
+  const common=JSON.parse(read('catalog/atlas-execution-examples.json')).examples;
+  for(const [id,caseIDs] of Object.entries(implementedLongRange)){
     const source=byId.get(id);
     const record=collection.methods.find(method=>method.id===id);
+    assert.equal(source.status,'educational-example',id);
+    assert.equal(source.method_review.verification.kind,'source-and-code-inspection',id);
+    assert.deepEqual(source.depth_release,{group:'particles',edition:'2026-11-22',case_ids:caseIDs});
+    assert.deepEqual(record.execution_examples.map(example=>example.id),caseIDs,id+' scoped independent supplements');
+    assert.equal(record.code_edition,'2026-11-22',id);
+    assert.ok(record.code_urls.some(url=>url.endsWith('/particles/electrostatics.py')),id+' dedicated algorithm');
+    assert.ok(record.test_urls.length>0&&record.run_commands.length>0,id+' actual tests and commands');
+    assert.ok(record.code_download?.endsWith('/particles/atlas-particles-2026-11-22.zip'),id+' frozen distribution');
+    assert.ok(source.method_review.verification.evidence.some(item=>item.kind==='independent-extraction-receipt'),id+' independent receipt');
+    for(const example of record.execution_examples){
+      assert.ok(!common.some(row=>row.id===example.id),id+' supplement remains separate from common22');
+      for(const lang of languages)assert.ok(example.guide[lang].includes('/validation/'+example.id+'/'),id+' direct supplemental entry');
+    }
+    const limits=source.method_review.verification.not_checked.en.join(' ');
+    assert.match(limits,/slab/i,id+' unsupported slab boundary');
+    if(id!=='ewald')assert.match(limits,/original PME/i,id+' SPME evidence does not claim the original PME');
+  }
+});
+
+test('remaining planned methods do not advertise runnable code or borrow the new periodic implementations',()=>{
+  for(const id of planned){
+    const source=byId.get(id);
+    const record=JSON.parse(read(`numerical-methods-atlas/methods/${id}/index.json`));
     assert.equal(source.status,'planned',id);
-    assert.equal(source.method_review.verification.kind,'source-review-no-implementation',id);
     assert.deepEqual(source.code_modules,[],id);assert.deepEqual(source.test_files,[],id);
-    assert.ok(!source.example&&!source.quantum_examples?.length,id+' source example');
+    assert.ok(!source.example&&!source.quantum_examples?.length&&!source.depth_release,id+' no borrowed source example');
     for(const key of ['code_urls','test_urls','run_commands','execution_examples'])assert.deepEqual(record[key],[],`${id}.${key}`);
     assert.equal(record.code_edition,null,id);assert.equal(record.run_from,null,id);
     assert.ok(!record.code_download&&!record.code_examples?.length,id+' download/example');
@@ -259,7 +283,15 @@ test('the validation API rejects dropped translations, inflated access claims an
     '    if case=="reason-language": method["method_review"]["fields"]["units"]["reason"].pop("en")',
     '    elif case=="source-role": method["references"][0]["role"]="everything-verified"',
     '    elif case=="source-depth": method["references"][0]["verification"]["level"]="independently-proved"',
-    '    elif case=="planned-code": rows["ewald"]["code_modules"]=["particle_mesh"]',
+    // A hypothetical review of the still-planned slab method exercises the
+    // same API guard, without reverting the implemented 3D Ewald record.
+    '    elif case=="planned-code":',
+    '        plan=copy.deepcopy(rows["ewald"])',
+    '        plan.update(id="slab-ewald",status="planned",code_modules=["particle_mesh"],test_files=[])',
+    '        plan.pop("depth_release",None)',
+    '        catalog["methods"]=[plan if m["id"]=="slab-ewald" else m for m in catalog["methods"]]',
+    '        rows["ewald"].pop("method_review")',
+    '        catalog["priority_review"]["method_ids"]=["slab-ewald" if i=="ewald" else i for i in catalog["priority_review"]["method_ids"]]',
     '    else: catalog["priority_review"]["method_ids"].pop()',
     '    try:',
     '        validate_method_reviews(catalog)',

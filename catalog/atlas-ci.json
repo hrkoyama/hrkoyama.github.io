@@ -14,17 +14,17 @@
   },
   "cadence": {
     "manual": true,
-    "weekly_cron_utc": "17 3 * * 1",
+    "weekly_cron_utc": null,
     "weekly": {
-      "ja": "毎週月曜 03:17 UTC（12:17 日本時間）",
-      "en": "Mondays at 03:17 UTC (12:17 JST)"
+      "ja": "詳細22例は必要時に手動実行",
+      "en": "Detailed 22-case runs are manual on request"
     },
     "after_pages_success": false,
-    "after_site_checks_success": true,
+    "after_site_checks_success": false,
     "public_version_wait_seconds": 240,
     "publication_gate": {
-      "ja": "サイト検査が成功した後に起動し、検査ツールと公開台帳のSHA-256が揃うまで最大240秒待って実行します。",
-      "en": "Start after successful site checks and wait up to 240 seconds for the public tools and registry to match their reviewed SHA-256 values."
+      "ja": "詳細22例の手動実行でも、検査ツールと公開台帳のSHA-256一致を最大240秒待ちます。通常の補助例CIは別の軽量ワークフローです。",
+      "en": "Manual detailed 22-case runs still wait up to 240 seconds for matching public script/registry SHA-256 values. Routine supplements use a separate lightweight workflow."
     }
   },
   "environment": {
@@ -97,11 +97,21 @@
     ]
   },
   "snapshots": [
-    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-linux.json"
+    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-linux.json",
+    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-forces-linux.json"
   ],
   "ai_acceptance_report": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/acceptance/2026-11-22.json",
     "sha256": "d6e05d388732aa4c809a00c8a84a22085b494c965691b15a2f54a17e03a59bab",
     "observed_on": "2026-11-22"
+  },
+  "lightweight_workflow": {
+    "name": "Atlas lightweight public validation",
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-depth-linux.yml",
+    "guide": "/numerical-methods-atlas/validation/",
+    "scope": {
+      "ja": "通常は新しい4配布版・19固定ケースをNumPy/SciPy/pytestだけで検査します。量子DFTの全収束走査を含む従来22例は、必要時に手動で実行する詳細検査として保持します。",
+      "en": "Routine checks run the new four supplements and19 fixed cases with NumPy/SciPy/pytest only. The existing22-case run, including quantum-DFT convergence sweeps, remains available as an explicit detailed manual check."
+    }
   }
 }

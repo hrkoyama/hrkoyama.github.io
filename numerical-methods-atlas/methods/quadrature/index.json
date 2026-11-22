@@ -10,10 +10,10 @@
     "en": "Approximation & quadrature"
   },
   "summary": {
-    "ja": "積分の離散化と誤差推定を扱う。",
-    "en": "Map quadrature rules and error estimation."
+    "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+    "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/",
@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "既知積分と特異性を含む比較。",
-    "en": "Comparisons with known integrals and singular behavior."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。",
+    "en": "The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -56,14 +56,268 @@
     "ガウス求積",
     "適応積分"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "foundations",
+    "case_ids": [
+      "gauss-adaptive-quadrature"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-foundations-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+    "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+    "passed_tests": 29,
+    "examples": [
+      {
+        "id": "gauss-adaptive-quadrature",
+        "title": {
+          "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+          "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+        },
+        "method_ids": [
+          "quadrature"
+        ],
+        "summary": {
+          "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+          "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
+        },
+        "assumptions": {
+          "ja": "有限区間上の滑らかな実関数、無次元の積分です。固定Gauss次数2・4・8・16と、適応絶対公差10⁻⁵・10⁻⁷・10⁻⁹を別々に走査します。両端特異点・不連続・無限区間は今回の入力では扱いません。",
+          "en": "Dimensionless smooth real functions on finite intervals. Fixed Gauss orders 2/4/8/16 and adaptive absolute tolerances 10⁻⁵/10⁻⁷/10⁻⁹ are swept separately. Endpoint singularities, discontinuities and infinite intervals are not covered by these inputs."
+        },
+        "algorithm": {
+          "ja": "Golub–Welschで対称Jacobi行列の固有値を節点、最初の固有ベクトル成分の平方の2倍を重みとします。適応Simpsonは区間を二分し、|S左+S右−S全|/15を局所推定として公差を配分します。評価回数と深さの上限を持ち、未達を成功としません。",
+          "en": "Golub–Welsch obtains nodes from a symmetric Jacobi matrix and weights from twice the squared first eigenvector components. Adaptive Simpson bisects intervals and allocates tolerances using |Sleft+Sright−Swhole|/15 as a local estimate. Evaluation and depth limits report unmet targets explicitly."
+        },
+        "validation": {
+          "ja": "全指定次数の多項式モーメント、SciPy roots_legendreの節点・重みとの差、解析exp積分の次数収束、解析atan積分とSciPy quadへの一致を測ります。公差を厳しくしたときの評価数と誤差を示し、5評価の強制予算切れ、非有限関数値も検査します。",
+          "en": "Measure polynomial moments for every chosen order, node/weight differences from SciPy roots_legendre, order refinement for the analytic exponential integral, and agreement with analytic arctangent and SciPy quad references. Store evaluation counts/errors as tolerance tightens; test forced exhaustion after five evaluations and nonfinite integrands."
+        },
+        "limits": {
+          "ja": "Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。",
+          "en": "The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK."
+        },
+        "references": [
+          {
+            "id": "golub-welsch1969",
+            "author": "G. H. Golub and J. H. Welsch",
+            "year": 1969,
+            "title": "Calculation of Gauss Quadrature Rules",
+            "doi": "10.1090/S0025-5718-69-99647-1",
+            "url": "https://www.ams.org/journals/mcom/1969-23-106/S0025-5718-69-99647-1/S0025-5718-69-99647-1.pdf",
+            "review_level": "publisher-search-first-page-and-metadata",
+            "journal": "Mathematics of Computation 23(106), 221–230",
+            "type": "article"
+          },
+          {
+            "id": "lyness1969",
+            "author": "J. N. Lyness",
+            "year": 1969,
+            "title": "Notes on the Adaptive Simpson Quadrature Routine",
+            "doi": "10.1145/321526.321537",
+            "url": "https://dl.acm.org/doi/10.1145/321526.321537",
+            "review_level": "publisher-metadata",
+            "journal": "Journal of the ACM 16(3), 483–495",
+            "type": "article"
+          }
+        ],
+        "reference_implementations": [
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.roots_legendre.html",
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html"
+        ],
+        "equations": [
+          "\\int_{-1}^{1}f(x)\\,dx\\simeq\\sum_{j=1}^{n}w_jf(x_j)",
+          "E_{\\mathrm{est}}=|S_{\\mathrm{left}}+S_{\\mathrm{right}}-S_{\\mathrm{whole}}|/15"
+        ],
+        "measured": {
+          "id": "gauss-adaptive-quadrature",
+          "passed": true,
+          "checks": {
+            "gauss_polynomial_moments": true,
+            "independent_scipy_gauss_rule": true,
+            "gauss_nonsingular_refinement": true,
+            "adaptive_exact_and_quad_references": true,
+            "evaluation_budget_failure_reported": true
+          },
+          "metrics": {
+            "max_polynomial_moment_error": 8.881784197001252e-16,
+            "max_scipy_rule_error": 1.2490009027033011e-15,
+            "gauss_final_exp_error": 0.0,
+            "max_adaptive_error_over_tolerance": 0.01729971494390803,
+            "budget_failure_evaluations": 5
+          },
+          "records": [
+            {
+              "method": "gauss-legendre",
+              "order_or_tolerance": 2,
+              "integral": 2.3426960879097303,
+              "analytic_error": 0.007706299377872483,
+              "scipy_rule_error": 2.220446049250313e-16,
+              "moment_error": 4.440892098500626e-16,
+              "evaluations": 2,
+              "estimated_error": null,
+              "termination": "fixed_order"
+            },
+            {
+              "method": "gauss-legendre",
+              "order_or_tolerance": 4,
+              "integral": 2.350402092156377,
+              "analytic_error": 2.9513122568047834e-07,
+              "scipy_rule_error": 6.661338147750939e-16,
+              "moment_error": 3.3306690738754696e-16,
+              "evaluations": 4,
+              "estimated_error": null,
+              "termination": "fixed_order"
+            },
+            {
+              "method": "gauss-legendre",
+              "order_or_tolerance": 8,
+              "integral": 2.3504023872876045,
+              "analytic_error": 1.7763568394002505e-15,
+              "scipy_rule_error": 1.2490009027033011e-15,
+              "moment_error": 8.881784197001252e-16,
+              "evaluations": 8,
+              "estimated_error": null,
+              "termination": "fixed_order"
+            },
+            {
+              "method": "gauss-legendre",
+              "order_or_tolerance": 16,
+              "integral": 2.3504023872876028,
+              "analytic_error": 0.0,
+              "scipy_rule_error": 1.1379786002407855e-15,
+              "moment_error": 3.3306690738754696e-16,
+              "evaluations": 16,
+              "estimated_error": null,
+              "termination": "fixed_order"
+            },
+            {
+              "method": "adaptive-simpson-exponential",
+              "order_or_tolerance": 1e-05,
+              "integral": 2.3504024061087967,
+              "analytic_error": 1.882119393670223e-08,
+              "scipy_rule_error": 1.882119349261302e-08,
+              "moment_error": null,
+              "evaluations": 17,
+              "estimated_error": 3.1631958426814325e-06,
+              "termination": "estimated_tolerance"
+            },
+            {
+              "method": "adaptive-simpson-exponential",
+              "order_or_tolerance": 1e-07,
+              "integral": 2.3504023873218065,
+              "analytic_error": 3.420375094265182e-11,
+              "scipy_rule_error": 3.420330685344197e-11,
+              "moment_error": null,
+              "evaluations": 57,
+              "estimated_error": 3.1374266281266236e-08,
+              "termination": "estimated_tolerance"
+            },
+            {
+              "method": "adaptive-simpson-exponential",
+              "order_or_tolerance": 1e-09,
+              "integral": 2.3504023872876396,
+              "analytic_error": 3.68594044175552e-14,
+              "scipy_rule_error": 3.6415315207705135e-14,
+              "moment_error": null,
+              "evaluations": 165,
+              "estimated_error": 4.1521099336527816e-10,
+              "termination": "estimated_tolerance"
+            },
+            {
+              "method": "adaptive-simpson-lorentzian",
+              "order_or_tolerance": 1e-05,
+              "integral": 0.2942257078578963,
+              "analytic_error": 1.729971494390803e-07,
+              "scipy_rule_error": 1.729971494390803e-07,
+              "moment_error": null,
+              "evaluations": 81,
+              "estimated_error": 2.5452853502735675e-06,
+              "termination": "estimated_tolerance"
+            },
+            {
+              "method": "adaptive-simpson-lorentzian",
+              "order_or_tolerance": 1e-07,
+              "integral": 0.29422553465677426,
+              "analytic_error": 2.0397261657478793e-10,
+              "scipy_rule_error": 2.0397261657478793e-10,
+              "moment_error": null,
+              "evaluations": 265,
+              "estimated_error": 2.5372843649830328e-08,
+              "termination": "estimated_tolerance"
+            },
+            {
+              "method": "adaptive-simpson-lorentzian",
+              "order_or_tolerance": 1e-09,
+              "integral": 0.29422553486114195,
+              "analytic_error": 3.9507286331286195e-13,
+              "scipy_rule_error": 3.9507286331286195e-13,
+              "moment_error": null,
+              "evaluations": 769,
+              "estimated_error": 3.549408163759128e-10,
+              "termination": "estimated_tolerance"
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+    "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-foundations-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "gauss-adaptive-quadrature",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+  "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

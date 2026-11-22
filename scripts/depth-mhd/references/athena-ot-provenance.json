@@ -1,0 +1,35 @@
+{
+  "source": {
+    "repository": "PrincetonUniversity/athena",
+    "commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "source_url": "https://codeload.github.com/PrincetonUniversity/athena/tar.gz/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+    "bytes": 4359906
+  },
+  "binary_sha256": "00bc9ec5bb39885a33e706a045d3f0a9fa6d9e18994dcb2f9ff0dc9d4a472410",
+  "configure": "python configure.py -b --prob=orszag_tang --flux=hlld --cxx=clang++",
+  "build": "make -j2",
+  "domain_map": "Athena coordinates [-0.5,0.5]^2 map to atlas x+0.5,y+0.5. The continuous initial density/pressure/velocity/B fields agree; Athena initializes face-averaged B from vector potential.",
+  "records": [
+    {
+      "case": "orszag-tang",
+      "n": 128,
+      "elapsed_seconds": 0.6087349999997969,
+      "input_sha256": "8e42489f00bd560ea21ee131a283c18ad552283fd9faa51e4e43b6be862b844a",
+      "raw_table_sha256": "9782001f13bdd7a8f5fbe22c3e9ab5d9139060d4989d87448983ccd4d87fa302",
+      "table_header": "# i       x1v      j       x2v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     ",
+      "data_file": "athena-ot-128.npz",
+      "sha256": "2927d0a4b319acecf1a2488a36570c87a80180105b608b5a1de3d2c5915acd4f"
+    },
+    {
+      "case": "orszag-tang",
+      "n": 256,
+      "elapsed_seconds": 1.487044665999747,
+      "input_sha256": "d9acd504e9b53ca43b0e98a723575f6307c2eb366f2927ca447fa37535e67216",
+      "raw_table_sha256": "c989bcdc16f64b02cdda6774e695ae0271cf65a8392a1b4b6429fe3ac36b9b4b",
+      "table_header": "# i       x1v      j       x2v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     ",
+      "data_file": "athena-ot-256.npz",
+      "sha256": "4b7e0a1fa6687b859986b2861dd0d601b38faed9584ec7583f2a00502bc57ce3"
+    }
+  ]
+}

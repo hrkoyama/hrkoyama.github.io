@@ -10,10 +10,10 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "Ewaldの逆空間項をLagrange補間・格子上の畳み込み・FFTで近似する原PMEです。一般の粒子格子重力法やB-spline版SPMEとは、核と補間・力の定義を区別します。",
-    "en": "Original PME approximates the reciprocal Ewald contribution using Lagrange interpolation and FFT-based mesh convolutions. Distinguish its kernel, interpolation and force definition from gravitational PM and B-spline SPME."
+    "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+    "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pme/",
@@ -68,12 +68,12 @@
   "units": "Comparison convention: fixed length ℓ₀, charge q₀ and Coulomb prefactor kₑ; energy unit kₑq₀²/ℓ₀ and force unit kₑq₀²/ℓ₀². The splitting coefficient has inverse-length units. Do not mix reduced kₑ=1 and SI conventions or reuse gravitational-PM signs.",
   "boundary_conditions": "Triply periodic neutral cell; the initial comparison specifies a conducting (tin-foil) exterior with zero macroscopic surface term and separately fixes the mean-potential gauge. Vacuum-exterior, slab and isolated-boundary results are different problems.",
   "next_deliverable": {
-    "ja": "同一条件のEwald参照との誤差比較と、再現できる外部コード入力。",
-    "en": "A same-condition Ewald comparison and reproducible reference-code inputs."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+    "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
   },
   "metadata_review": {
     "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -95,8 +95,8 @@
       "en": "Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field."
     },
     "variant": {
-      "ja": "実装前の比較仕様：Dardenら（1993）のLagrange版。実空間項・自己補正・表面規約は同条件のEwald基準と一致させます。",
-      "en": "Pre-implementation comparison: the Darden et al. (1993) Lagrange variant, matching direct Ewald real terms, self corrections and surface conventions."
+      "ja": "今回の実行例はcardinal B-splineによるEssmann型SPMEです。PME族の採用変種として示し、1993年のLagrange補間による原法を実装したとは呼びません。",
+      "en": "The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original1993 Lagrange-interpolation form."
     },
     "use_when": {
       "ja": [
@@ -151,20 +151,29 @@
       }
     },
     "verification": {
-      "kind": "source-review-no-implementation",
+      "kind": "source-and-code-inspection",
       "summary": {
-        "ja": "原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。",
-        "en": "Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review."
+        "ja": "原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。",
+        "en": "In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope."
       },
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "fixed-input-results",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "label": "Fixed-input measured checks / 固定入力の実測判定"
+        },
+        {
+          "kind": "independent-extraction-receipt",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+          "label": "Independent ZIP-extraction receipt / ZIP独立展開の記録"
+        }
+      ],
       "not_checked": {
         "ja": [
-          "実装コード・固定入力・数値残差・収束率・性能は未検証。",
-          "原論文の全導出と全数値例の再現は行っていません。"
+          "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。"
         ],
         "en": [
-          "No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.",
-          "Not a reproduction of every derivation or numerical example in the original papers."
+          "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
         ]
       }
     }
@@ -174,14 +183,207 @@
     "particle mesh Ewald",
     "粒子メッシュEwald法"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "particles",
+    "case_ids": [
+      "spme"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-particles-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+    "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "spme",
+        "title": {
+          "ja": "Bスプラインsmooth PMEの格子・次数収束",
+          "en": "Mesh/order convergence of B-spline smooth PME"
+        },
+        "method_ids": [
+          "pme",
+          "spme"
+        ],
+        "summary": {
+          "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+          "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+        },
+        "assumptions": {
+          "ja": "Ewaldと同じ中性立方セルと実空間項を使います。PME族のうちEssmannらのBスプライン変種を採用し、Dardenらの原法のLagrange補間とは区別します。",
+          "en": "The neutral cubic cell and real-space term match the Ewald example. The adopted PME-family variant uses Essmann-type B-splines, distinct from Darden’s original Lagrange interpolation."
+        },
+        "algorithm": {
+          "ja": "4次または6次のcardinal Bスプラインのテンソル積で電荷を格子化し、節点スプラインの離散構造因子補正、Gaussian Green関数、3次元FFTを組み合わせます。格子エネルギーを重みの位置微分で解析的に微分します。",
+          "en": "Tensor-product cardinal splines of order four or six spread the charges. Apply the nodal-spline discrete structure-factor correction and Gaussian Green function through 3D FFTs; analytically differentiate assignment weights for forces."
+        },
+        "validation": {
+          "ja": "16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。",
+          "en": "Meshes 16³/24³/40³ and two orders are compared with directly summed Ewald reciprocal terms. Shared real/self terms are stated. Check finest-grid force derivatives by energy differences and verify assigned total charge."
+        },
+        "limits": {
+          "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+          "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+        },
+        "equations": [
+          "Q_{\\mathbf j}=\\sum_iq_i\\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)",
+          "\\mathbf F_i=-\\partial E_h/\\partial\\mathbf r_i"
+        ],
+        "references": [
+          {
+            "id": "darden1993",
+            "author": "T. Darden, D. York and L. Pedersen",
+            "year": 1993,
+            "title": "Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems",
+            "doi": "10.1063/1.464397",
+            "url": "https://doi.org/10.1063/1.464397",
+            "review_level": "abstract-and-metadata",
+            "review_note": {
+              "ja": "原著PDFの冒頭と抄録を確認。歴史的なPME原法であり、実装したBスプライン変種とは区別。",
+              "en": "Original PDF opening and abstract checked; historical original PME is distinguished from the implemented B-spline variant."
+            }
+          },
+          {
+            "id": "essmann1995",
+            "author": "U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen",
+            "year": 1995,
+            "title": "A smooth particle mesh Ewald method",
+            "doi": "10.1063/1.470117",
+            "url": "https://doi.org/10.1063/1.470117",
+            "review_level": "selected-full-text",
+            "review_note": {
+              "ja": "原著PDFのBスプライン構造因子・FFT・解析勾配に関わる部分と抄録を確認。全ベンチマークの再現ではありません。",
+              "en": "Original PDF abstract and selected spline/structure-factor, FFT and analytic-gradient material checked; not a reproduction of every paper benchmark."
+            }
+          }
+        ],
+        "measured": {
+          "id": "spme",
+          "passed": true,
+          "checks": {
+            "force_error": true,
+            "energy_error": true,
+            "finest_to_coarsest_force_ratio": true,
+            "charge_error": true,
+            "finite_difference_error": true,
+            "both_orders_refine": true
+          },
+          "metrics": {
+            "force_error": 7.855116843202836e-06,
+            "energy_error": 8.183940956030256e-07,
+            "finest_to_coarsest_force_ratio": 0.0062278365701822136,
+            "charge_error": 2.1871393585115584e-14,
+            "finite_difference_error": 2.6557447796449196e-08,
+            "net_force": 1.919342197087559e-05
+          },
+          "records": [
+            {
+              "order": 4,
+              "mesh": 16,
+              "energy": -8.41677108125003,
+              "energy_error": 0.009364566899439097,
+              "force_error": 0.03526113281181242
+            },
+            {
+              "order": 4,
+              "mesh": 24,
+              "energy": -8.409150070483882,
+              "energy_error": 0.0017435561332916905,
+              "force_error": 0.009867570600828657
+            },
+            {
+              "order": 4,
+              "mesh": 40,
+              "energy": -8.407635446514092,
+              "energy_error": 0.0002289321635018382,
+              "force_error": 0.0022487962069295264
+            },
+            {
+              "order": 6,
+              "mesh": 16,
+              "energy": -8.407717347728052,
+              "energy_error": 0.00031083337746196094,
+              "force_error": 0.0012612914219380378
+            },
+            {
+              "order": 6,
+              "mesh": 24,
+              "energy": -8.407426851306521,
+              "energy_error": 2.033695593084417e-05,
+              "force_error": 0.00010386235805270871
+            },
+            {
+              "order": 6,
+              "mesh": 40,
+              "energy": -8.407407332744686,
+              "energy_error": 8.183940956030256e-07,
+              "force_error": 7.855116843202836e-06
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+    "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-particles-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "spme",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+  "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

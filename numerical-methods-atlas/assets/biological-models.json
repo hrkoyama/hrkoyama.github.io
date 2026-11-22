@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "checked_on": "2026-11-22",
-  "scope": "22 surveyed biological families; logistic and closed-SIR fixed-input calculations now have measured validation. Other families remain survey-only. SIR results do not validate SEIR.",
+  "scope": "22 surveyed biological families. Shared logistic and closed-SIR examples are preserved. Supplemental linear reaction–diffusion, early Schnakenberg Turing growth and reduced FHN excitation/recovery have scoped fixed-input checks. Full HH, SEIR, mature patterns and other families remain unimplemented or unvalidated.",
   "models": [
     {
       "id": "logistic",
@@ -162,8 +162,16 @@
         "turing1952"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes."
+      "status": "scoped-educational-example",
+      "scope": "A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes.",
+      "supplemental_examples": [
+        "turing-schnakenberg"
+      ],
+      "implementation_scope": {
+        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      },
+      "execution_url": "/numerical-methods-atlas/validation/turing-schnakenberg/"
     },
     {
       "id": "fitzhugh-nagumo",
@@ -179,8 +187,16 @@
         "nagumo1962"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations."
+      "status": "scoped-educational-example",
+      "scope": "This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations.",
+      "supplemental_examples": [
+        "fitzhugh-nagumo"
+      ],
+      "implementation_scope": {
+        "ja": "FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
+      },
+      "execution_url": "/numerical-methods-atlas/validation/fitzhugh-nagumo/"
     },
     {
       "id": "keller-segel",
@@ -291,8 +307,16 @@
         "schnakenberg1979"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue."
+      "status": "scoped-educational-example",
+      "scope": "A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue.",
+      "supplemental_examples": [
+        "turing-schnakenberg"
+      ],
+      "implementation_scope": {
+        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      },
+      "execution_url": "/numerical-methods-atlas/validation/turing-schnakenberg/"
     },
     {
       "id": "skt",

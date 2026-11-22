@@ -83,10 +83,25 @@ test('execution intent does not promote examples for generic or unrelated querie
   assert.equal(searchChapters(synthetic,'spectral methods')[0].id,'spectral');
   assert.equal(searchChapters(synthetic,'code')[0].id,'guide');
   assert.equal(searchChapters(synthetic,'Poisson code')[0].id,'poisson');
-  for(const query of ['PBE code','UHF code','Ewald code','AMR code','mixed precision code']){
+  for(const query of ['PBE code','UHF code','slab-ewald code','AMR code','mixed precision code']){
     assert.ok(!searchChapters(index,query).some(row=>row.kind==='execution-example'),query+' unsupported execution claim');
   }
   assert.deepEqual(searchChapters(index,'zxqvnotfound123456789'),[]);
+});
+
+test('periodic Ewald and smooth-PME queries lead to their independent supplemental entries while slab corrections remain planned',()=>{
+  for(const lang of ['ja','en'])for(const [query,id] of [['Ewald code','ewald'],['SPME code','spme']]){
+    const result=searchChapters(index,query,lang)[0];
+    assert.equal(result.kind,'execution-example');
+    assert.equal(result.url,`/numerical-methods-atlas/validation/${id}/?lang=${lang}`);
+    assert.equal(index.entries.find(entry=>entry.id===result.id).origin,'public-depth-validation');
+    assert.ok(!registry.examples.some(example=>example.id===id),'supplement does not change the common22 registry');
+  }
+  const slab=searchChapters(index,'slab Ewald code','en');
+  assert.equal(slab[0].method?.id,'slab-ewald');
+  assert.equal(slab[0].method.status,'planned');
+  assert.deepEqual(slab[0].method.code_urls,[]);
+  assert.deepEqual(slab[0].method.execution_examples,[]);
 });
 
 test('the global site index discovers all detail pages and surfaces specific execution searches',()=>{

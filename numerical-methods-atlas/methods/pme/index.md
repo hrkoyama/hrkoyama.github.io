@@ -1,12 +1,12 @@
 # Particle mesh Ewald / PME / Particle Mesh Ewald（PME）
 
-Status: planned
+Status: educational-example
 
-Original PME approximates the reciprocal Ewald contribution using Lagrange interpolation and FFT-based mesh convolutions. Distinguish its kernel, interpolation and force definition from gravitational PM and B-spline SPME.
+A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.
 
-Ewaldの逆空間項をLagrange補間・格子上の畳み込み・FFTで近似する原PMEです。一般の粒子格子重力法やB-spline版SPMEとは、核と補間・力の定義を区別します。
+電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。
 
-Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
+Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.
 
 Other names: PME法, particle mesh Ewald, 粒子メッシュEwald法
 
@@ -15,7 +15,7 @@ Other names: PME法, particle mesh Ewald, 粒子メッシュEwald法
 
 problem: 周期像を含む中性点電荷のCoulombエネルギーと力。孤立重力や電子密度のHartree場とは区別します。
 
-variant: 実装前の比較仕様：Dardenら（1993）のLagrange版。実空間項・自己補正・表面規約は同条件のEwald基準と一致させます。
+variant: 今回の実行例はcardinal B-splineによるEssmann型SPMEです。PME族の採用変種として示し、1993年のLagrange補間による原法を実装したとは呼びません。
 
 use_when:
 - 3次元周期Coulomb問題の逆空間評価を格子化し、同条件のEwald和と誤差を比較する場合。
@@ -42,17 +42,17 @@ boundary_conditions [specified]:
 ここでは実装前の比較仕様として記載し、計算済みの条件とは区別します。
 
 limitations [specified]:
-日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。
+有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。
 文献整理と専用実装・数値検証の完了を区別します。
 
-Review: 原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。
+Review: 原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。
 
 Not checked:
-- 実装コード・固定入力・数値残差・収束率・性能は未検証。
-- 原論文の全導出と全数値例の再現は行っていません。
+- 有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。
 
 Evidence:
-
+- Fixed-input measured checks / 固定入力の実測判定: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
+- Independent ZIP-extraction receipt / ZIP独立展開の記録: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
 
 References:
 - [original-method / primary-research] Darden, T.; York, D.; Pedersen, L. (1993). Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems. — https://doi.org/10.1063/1.464397
@@ -66,7 +66,7 @@ References:
 
 problem: Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field.
 
-variant: Pre-implementation comparison: the Darden et al. (1993) Lagrange variant, matching direct Ewald real terms, self corrections and surface conventions.
+variant: The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original1993 Lagrange-interpolation form.
 
 use_when:
 - Meshing the reciprocal contribution of a 3D periodic Coulomb problem for comparison with the same Ewald formulation.
@@ -93,17 +93,17 @@ Triply periodic neutral cell; the initial comparison specifies a conducting (tin
 Specified here as a pre-implementation comparison convention, not an executed setup.
 
 limitations [specified]:
-Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
+Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.
 Source curation is separate from completion of implementation and numerical validation.
 
-Review: Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review.
+Review: In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope.
 
 Not checked:
-- No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.
-- Not a reproduction of every derivation or numerical example in the original papers.
+- Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.
 
 Evidence:
-
+- Fixed-input measured checks / 固定入力の実測判定: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
+- Independent ZIP-extraction receipt / ZIP独立展開の記録: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
 
 References:
 - [original-method / primary-research] Darden, T.; York, D.; Pedersen, L. (1993). Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems. — https://doi.org/10.1063/1.464397
@@ -122,7 +122,21 @@ References:
 - Reference: https://doi.org/10.1063/1.464397 — Original PME: Lagrange weights, gridded charges and convolution-based reciprocal energies and forces, distinct from B-spline SPME.
 - Reference: https://doi.org/10.1063/1.470117 — Primary comparison distinguishing original Lagrange PME from B-spline interpolation and analytic gradients.
 
-Next: A same-condition Ewald comparison and reproducible reference-code inputs.
+## Small fixed-input validation supplement
+
+A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.
+
+電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。
+
+- Mesh/order convergence of B-spline smooth PME: https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
+
+Common execution records: [{"id": "spme", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"}, "kind": "dedicated-supplement"}]
+
+Next: Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

@@ -1,0 +1,170 @@
+{
+  "id": "sa-amg",
+  "title": {
+    "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+    "en": "Matrix-based AMG: distinguish residual and solution error"
+  },
+  "method_ids": [
+    "amg"
+  ],
+  "summary": {
+    "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
+    "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+  },
+  "assumptions": {
+    "ja": "無次元の単位正方形、一定正係数の−Δu=f、全周同次Dirichlet境界、5点差分です。階層構築には座標・格子幅・nを渡さず、係数行列と暗黙の定数近似核だけを使います。入力は実対称正定値を前提とし、任意の不定値行列を扱うソルバーではありません。",
+    "en": "Dimensionless unit square, constant-positive-coefficient −Δu=f, homogeneous Dirichlet boundaries and five-point differences. Hierarchy setup receives no coordinates, mesh width or n; it uses the coefficient matrix and an implicit constant near-null candidate. A real SPD input is assumed; arbitrary indefinite problems are outside scope."
+  },
+  "algorithm": {
+    "ja": "各行の最大非対角係数に対する相対強度からグラフを作り、貪欲な星型集約と余剰節点の隣接集約への付着で暫定補間Tを作ります。P=(I−ωD⁻¹A)T、ω=4/(3ρ̄)、ρ̄はD⁻¹Aの絶対行和上界です。粗演算子はPᵀAP。前後2回のJacobi平滑化と最終小行列の直接解を用います。これは採用した小規模SA変種であり、原著の全構築法や収束定理の再現ではありません。",
+    "en": "A graph based on row-relative off-diagonal strength supplies greedy star aggregates; leftover nodes attach to adjacent aggregates. Smooth tentative T via P=(I−ωD⁻¹A)T with ω=4/(3ρ̄), where ρ̄ bounds the absolute row sums of D⁻¹A. Coarse operators are PᵀAP. V-cycles use two pre/post Jacobi sweeps and a terminal dense direct solve. This is a small adopted SA variant, not every construction or convergence theorem in the original paper."
+  },
+  "validation": {
+    "ja": "正規化残差、SciPy spsolveとの相対解差、連続正弦解への離散L²型誤差、観測次数、operator complexityを保存します。節点順を無作為に置き換えた行列も直接解と照合し、幾何学的な粗格子を暗黙に使っていないことを確認します。反復予算0は未収束と報告します。",
+    "en": "Store normalized residuals, relative solution differences against SciPy spsolve, discrete-L²-type continuum errors, observed order and operator complexity. A randomly permuted matrix is also checked against a direct solution to expose hidden geometric ordering assumptions. A zero cycle budget reports nonconvergence."
+  },
+  "limits": {
+    "ja": "3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。",
+    "en": "Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error."
+  },
+  "references": [
+    {
+      "id": "vanek1996",
+      "author": "P. Vaněk, J. Mandel and M. Brezina",
+      "year": 1996,
+      "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+      "doi": "10.1007/BF02238511",
+      "url": "https://link.springer.com/article/10.1007/BF02238511",
+      "review_level": "publisher-abstract-and-metadata",
+      "journal": "Computing 56, 179–196",
+      "type": "article"
+    }
+  ],
+  "reference_implementations": [
+    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.spsolve.html"
+  ],
+  "equations": [
+    "A_c=P^TAP,\\quad P=(I-\\omega D^{-1}A)T",
+    "r_k=b-Ax_k,\\quad \\eta_k=\\|r_k\\|_2/\\|b\\|_2"
+  ],
+  "group": "foundations",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "sa-amg",
+    "passed": true,
+    "checks": {
+      "all_residual_targets": true,
+      "independent_sparse_direct": true,
+      "second_order_pde_refinement": true,
+      "bounded_operator_complexity": true,
+      "cycle_budget_failure_reported": true
+    },
+    "metrics": {
+      "max_relative_residual": 7.1395963390776e-11,
+      "max_direct_solution_error": 2.0283080847857227e-11,
+      "minimum_pde_order": 2.0020872697597354,
+      "max_operator_complexity": 3.196752830591754
+    },
+    "records": [
+      {
+        "grid_n": 7,
+        "unknowns": 49,
+        "h": 0.125,
+        "cycles": 15,
+        "relative_residual": 2.5487860444737947e-11,
+        "direct_solution_error": 1.1344431972918507e-11,
+        "pde_relative_l2_error": 0.012950746710856576,
+        "observed_order": null,
+        "levels": 3,
+        "operator_complexity": 1.6359447004608294,
+        "termination": "residual_tolerance"
+      },
+      {
+        "grid_n": 15,
+        "unknowns": 225,
+        "h": 0.0625,
+        "cycles": 19,
+        "relative_residual": 6.039424955204729e-11,
+        "direct_solution_error": 1.9782082310193807e-11,
+        "pde_relative_l2_error": 0.0032189644274811724,
+        "observed_order": 2.0083667439447006,
+        "levels": 4,
+        "operator_complexity": 2.531455399061033,
+        "termination": "residual_tolerance"
+      },
+      {
+        "grid_n": 31,
+        "unknowns": 961,
+        "h": 0.03125,
+        "cycles": 25,
+        "relative_residual": 7.1395963390776e-11,
+        "direct_solution_error": 2.0283080847857227e-11,
+        "pde_relative_l2_error": 0.000803577661218948,
+        "observed_order": 2.0020872697597354,
+        "levels": 4,
+        "operator_complexity": 3.196752830591754,
+        "termination": "residual_tolerance"
+      }
+    ]
+  },
+  "problem_id": "poisson-2d-sine",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+    "archive": {
+      "file": "atlas-foundations-2026-11-22.zip",
+      "sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+      "bytes": 508879,
+      "archive_directory": "atlas-foundations-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+    ],
+    "passed_tests": 29
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

@@ -4,7 +4,7 @@ from pathlib import Path
 from html import escape as e
 import json
 from atlas_depth import depth_teaser, depth_assets
-from atlas_goal_availability import goal_methods, goal_label, goal_attributes, goal_filter_controls, goal_filter_assets
+from atlas_goal_availability import goal_methods, goal_label, goal_attributes, goal_filter_controls, goal_filter_assets, goal_supplements
 ROOT=Path(__file__).resolve().parents[1]
 data=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
 methods={x['id']:x for x in json.loads((ROOT/'numerical-methods-atlas/methods/index.json').read_text())['methods']}
@@ -18,23 +18,29 @@ for g in data['goals']:
     assert g['domains'] and len(set(g['domains'])) == len(g['domains']) and set(g['domains']) <= domain_ids, g['id']
     assert all(x in methods for x in g['methods']),g['id']
     assert all(x in examples for x in g['examples']),g['id']
+    supplements={item['id']:item for item in goal_supplements(g)}
     assert g.get('availability') in [None,'reading-only']
     if g.get('availability')=='reading-only' or not any(m['status']=='educational-example' for m in goal_methods(g,methods)):
         assert not g['examples'],g['id']+' cannot advertise runnable examples'
-    for resource in g.get('resources',[]):
+    for resource in goal_methods({**g,'methods':[]},methods):
         assert resource['status'] in ['reading-only','educational-example']
         if resource['status']=='reading-only':
             assert not resource.get('code_urls') and not resource.get('test_urls') and not resource.get('execution_examples')
         else:
-            assert resource['code_urls'] and resource['test_urls'] and resource['execution_examples']
+            assert resource['code_urls'] and resource['test_urls'] and (resource['execution_examples'] or resource.get('supplemental_examples'))
             assert {e['id'] for e in resource['execution_examples']}<=set(g['examples'])
+            for ident in resource.get('supplemental_examples',[]):
+                assert ident in supplements
+                assert set(resource['code_urls']) <= {url for case in resource['supplemental_examples'] for url in supplements[case]['code_urls']}
+                assert set(resource['test_urls']) <= {url for case in resource['supplemental_examples'] for url in supplements[case]['test_urls']}
             for example in resource['execution_examples']:
                 ident=example['id']
                 base=examples[ident]['release']['manifest'].rsplit('/',1)[0]+'/'
                 assert all(u.startswith(base) for u in resource['code_urls']+resource['test_urls'])
                 assert all((ROOT/u.removeprefix('https://hrkoyama.github.io/')).is_file() for u in resource['code_urls']+resource['test_urls'])
     assert all(g['scope'][lang] and g['title'][lang] for lang in ['ja','en'])
-module='export const goals='+json.dumps(data['goals'],ensure_ascii=False,separators=(',',':'))+';\n'
+exported_goals=[{**g,'resources':goal_methods({**g,'methods':[]},methods)} for g in data['goals']]
+module='export const goals='+json.dumps(exported_goals,ensure_ascii=False,separators=(',',':'))+';\n'
 module+='''export function matchGoals(query){
  const q=String(query).normalize('NFKC').toLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\\s+/g,' ').trim();
  if(!q)return [];
@@ -68,9 +74,11 @@ for lang in ['ja','en']:
             else:parts+=['<span>'+('コード・テストは未公開' if ja else 'Code and tests are not published')+'</span>']
             detail=('式・文献・検証案' if ja else 'Equations, sources and verification plans') if m.get('resource_type')=='model' else ('適用条件・文献' if ja else 'Conditions and references')
             parts += [link(m['url'],detail),'</p></div>']
-        if g['examples']:
+        supplemental=goal_supplements(g)
+        if g['examples'] or supplemental:
             parts+=['<h3>'+('固定入力から実行・検証する' if ja else 'Run and validate fixed inputs')+'</h3><ul>']
             for ident in g['examples']:parts += ['<li>'+link('/numerical-methods-atlas/code-and-data/examples/'+ident+'/?lang='+lang,examples[ident]['name'][lang])+'</li>']
+            for item in supplemental:parts += ['<li>'+link(item['url']+'?lang='+lang,item['title'][lang])+' — '+e('独立した補助配布版' if ja else 'Separate supplemental release')+'</li>']
             parts+=['</ul>']
         note=('関連コード・テストは教育用例です。各手法の全変種や目的全体の検証を意味しません。' if ja else 'Related educational code and tests do not validate every variant or the entire application.') if any(m['status']=='educational-example' for m in goal_methods(g,methods)) else ('この目的の専用コード・実行テストは未公開です。解説と今後の検証案を参照してください。' if ja else 'Dedicated code and executable tests for this goal are not published. See the reading and proposed verification.')
         parts+=['<p class="note">'+note+'</p><p><a href="#top">'+('目的一覧に戻る' if ja else 'Back to goals')+'</a></p></article>']

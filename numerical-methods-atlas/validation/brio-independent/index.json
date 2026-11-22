@@ -1,0 +1,180 @@
+{
+  "id": "brio-independent",
+  "title": {
+    "ja": "Brio–Wu：別実装HLLDとの照合",
+    "en": "Brio–Wu against an independent HLLD implementation"
+  },
+  "method_ids": [
+    "hlld"
+  ],
+  "summary": {
+    "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。",
+    "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit."
+  },
+  "assumptions": {
+    "ja": "1D、[0,1]、t=0.1、γ=2、Bx=0.75。左右(rho,p,By)=(1,1,1)/(0.125,0.1,-1)、速度ゼロ、流出境界。",
+    "en": "1D, [0,1], t=0.1, gamma=2, Bx=0.75; left/right (rho,p,By)=(1,1,1)/(0.125,0.1,-1), zero velocity, outflow boundaries."
+  },
+  "algorithm": {
+    "ja": "アトラス側はMC再構成とSSPRK2、参照は独立C++のHLLD・PLM・RK3。異なる実装ですがHLLDという数値流束の系列は共有します。",
+    "en": "Atlas uses MC reconstruction and SSPRK2; the independent C++ reference uses HLLD, PLM and RK3. Implementations differ while sharing the HLLD flux family."
+  },
+  "validation": {
+    "ja": "128/256/512セルを、2048/4096セルで再実行した独立参照の保存的細胞平均と比較。rho/ByのL1誤差、格子改善、密度・圧力正値性を判定します。",
+    "en": "Compare 128/256/512 cells with conservative averages of independently rerun 2048/4096-cell references. Check density/By L1 errors, refinement and positive density/pressure."
+  },
+  "limits": {
+    "ja": "Brio–Wuの複合波を含む数値解との照合であり、一般MHD Riemann問題の唯一の厳密解とは呼びません。参照の再生成にはC++コンパイルが必要で、通常Python実行は同梱参照を使います。",
+    "en": "This compares numerical solutions including the Brio–Wu compound wave; it is not a claim of a unique exact solution for arbitrary MHD Riemann problems. Reference regeneration requires C++ compilation; routine Python runs use the stored reference."
+  },
+  "references": [
+    {
+      "id": "stone2020athena",
+      "author": "J. M. Stone, K. Tomida, C. J. White and K. G. Felker",
+      "year": 2020,
+      "title": "The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers",
+      "doi": "10.3847/1538-4365/ab929b",
+      "url": "https://doi.org/10.3847/1538-4365/ab929b",
+      "review_level": "official-code-and-metadata; pinned source compiled and executed"
+    },
+    {
+      "id": "brio1988",
+      "author": "M. Brio and C. C. Wu",
+      "year": 1988,
+      "title": "An upwind differencing scheme for the equations of ideal magnetohydrodynamics",
+      "doi": "10.1016/0021-9991(88)90120-9",
+      "url": "https://doi.org/10.1016/0021-9991(88)90120-9",
+      "review_level": "bibliographic identity and official Athena test definition"
+    }
+  ],
+  "equations": [
+    "\\mathbf U_t+\\mathbf F(\\mathbf U)_x=0,\\qquad B_x=0.75"
+  ],
+  "code_files": [
+    "legacy/hlld.py",
+    "legacy/mhd_tests.py",
+    "run.py"
+  ],
+  "group": "mhd",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "brio-independent",
+    "checks": {
+      "independent_reference_refined": true,
+      "density_error": true,
+      "grid_improvement": true,
+      "positive_states": true,
+      "magnetic_error": true
+    },
+    "passed": true,
+    "metrics": {
+      "reference_last_pair_l1": 0.00048642415115017165,
+      "reference_finest_n": 4096,
+      "finest_density_l1": 0.0018299450752667257
+    },
+    "records": [
+      {
+        "n": 128,
+        "density_l1": 0.0062448926598127185,
+        "steps": 139,
+        "min_density": 0.11689998292121226,
+        "min_pressure": 0.08748649270528241,
+        "by_l1": 0.00788235309906523
+      },
+      {
+        "n": 256,
+        "density_l1": 0.0033504211145793626,
+        "steps": 279,
+        "min_density": 0.11626421823995425,
+        "min_pressure": 0.08653089675835468,
+        "by_l1": 0.004644060604458465
+      },
+      {
+        "n": 512,
+        "density_l1": 0.0018299450752667257,
+        "steps": 558,
+        "min_density": 0.11662441033431853,
+        "min_pressure": 0.08705794497668717,
+        "by_l1": 0.0025440161513646995
+      }
+    ],
+    "reference_records": [
+      {
+        "coarse_n": 2048,
+        "fine_n": 4096,
+        "last_pair_l1": 0.00048642415115017165,
+        "target": 0.004,
+        "target_reached": true
+      }
+    ]
+  },
+  "problem_id": "brio-wu",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/",
+    "archive": {
+      "file": "atlas-mhd-2026-11-22.zip",
+      "sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+      "bytes": 4922090,
+      "archive_directory": "atlas-mhd-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+    ],
+    "passed_tests": 11
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

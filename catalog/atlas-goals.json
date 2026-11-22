@@ -14,8 +14,8 @@
         "shock capturing"
       ],
       "scope": {
-        "ja": "まず非相対論・理想気体Eulerの衝撃波管から。MUSCL＋HLLCは基準となる比較候補、WENO-Zは高次再構成の候補です。CFL、正値性、境界条件を確認します。強い多次元衝撃波やMHDへの適用は別に検討してください。",
-        "en": "Start with nonrelativistic ideal-gas Euler shock tubes. MUSCL with HLLC provides a baseline comparison; WENO-Z is a high-order reconstruction option. Check CFL, positive states and boundaries. Strong multidimensional shocks and MHD require separate assessment."
+        "ja": "まず非相対論・理想気体Eulerの衝撃波管から。MUSCL＋HLLCは基準となる比較候補、WENO-Zは高次再構成の候補です。CFL、正値性、境界条件を確認します。強い多次元衝撃波やMHDへの適用は別に検討してください。 Shu–Osherには別実装Athena++参照による補助検証もあります。",
+        "en": "Start with nonrelativistic ideal-gas Euler shock tubes. MUSCL with HLLC provides a baseline comparison; WENO-Z is a high-order reconstruction option. Check CFL, positive states and boundaries. Strong multidimensional shocks and MHD require separate assessment. A separate Shu–Osher supplement compares with an independent Athena++ reference."
       },
       "methods": [
         "muscl",
@@ -28,6 +28,9 @@
       ],
       "domains": [
         "fluid"
+      ],
+      "supplemental_examples": [
+        "shu-independent"
       ]
     },
     {
@@ -148,8 +151,8 @@
         "nvt"
       ],
       "scope": {
-        "ja": "温度制御法の比較解説は公開済みですが、このアトラスの専用実装・テストは未公開です。平均温度だけでなく正準分布・温度揺らぎ・動力学への影響を比較します。Berendsen弱結合や単純な速度スケーリングを、一般の正準分布の保証と扱いません。",
-        "en": "Comparative reading is published; dedicated atlas implementations and tests are not. Compare canonical sampling, temperature fluctuations and dynamical effects, not only mean temperature. Berendsen coupling and simple rescaling do not generally guarantee canonical sampling."
+        "ja": "12手法を比較解説。LangevinのBAOABによる1次元調和振動子NVTだけに専用コード・固定入力・分布検証を追加。他の11手法は実装予定です。",
+        "en": "Comparative reading covers 12 methods. Dedicated code, fixed inputs and distribution checks cover only a 1D harmonic-oscillator NVT example with Langevin BAOAB. The other 11 methods remain planned."
       },
       "methods": [
         "nose-hoover",
@@ -160,6 +163,9 @@
       "examples": [],
       "domains": [
         "temperature"
+      ],
+      "supplemental_examples": [
+        "langevin-harmonic"
       ]
     },
     {
@@ -183,8 +189,8 @@
         "turing pattern"
       ],
       "scope": {
-        "ja": "22モデル族の文献解説のうち、ロジスティック増殖と閉鎖SIRの2例に専用コード・固定入力・独立参照／解析解・時間収束検査を追加しました。他のモデルは解説と検証案の段階です。",
-        "en": "Among 22 surveyed model families, logistic growth and closed SIR now have dedicated code, fixed inputs, analytic/independent references and time-convergence checks. Other models remain reading and verification plans."
+        "ja": "22モデル族の文献解説に、既存のロジスティック増殖・閉鎖SIRと、新しい線形反応拡散Fourierモード・SchnakenbergのTuring発現・FitzHugh–Nagumo励起回復の小さな専用例を接続。全22モデルやHodgkin–Huxleyの実装を意味しません。",
+        "en": "The 22-family survey links the existing logistic-growth/closed-SIR examples and small new examples of a linear reaction–diffusion Fourier mode, Schnakenberg Turing onset and FitzHugh–Nagumo excitation/recovery. This does not implement all 22 families or Hodgkin–Huxley."
       },
       "methods": [],
       "examples": [
@@ -269,18 +275,18 @@
         {
           "id": "bio-patterns",
           "name": {
-            "ja": "Turing反応拡散・パターン形成",
-            "en": "Turing reaction–diffusion patterns"
+            "ja": "SchnakenbergのTuring発現（初期段階）",
+            "en": "Schnakenberg Turing onset (early stage)"
           },
           "group": {
             "ja": "生物モデル",
             "en": "Biological models"
           },
           "summary": {
-            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
-            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+            "ja": "線形Fourier成長率を2×2行列指数関数と比較し、短い非線形有界計算へ接続。成熟模様や一般Turing系の検証ではありません。",
+            "en": "Compare linear Fourier growth with a 2×2 matrix exponential, followed by a short bounded nonlinear run. Does not validate mature patterns or general Turing systems."
           },
-          "status": "reading-only",
+          "status": "educational-example",
           "resource_type": "model",
           "reading": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#09-1952-turing-reactiondiffusion-framework",
@@ -288,7 +294,10 @@
           },
           "code_urls": [],
           "test_urls": [],
-          "execution_examples": []
+          "execution_examples": [],
+          "supplemental_examples": [
+            "turing-schnakenberg"
+          ]
         },
         {
           "id": "bio-excitation",
@@ -313,10 +322,69 @@
           "code_urls": [],
           "test_urls": [],
           "execution_examples": []
+        },
+        {
+          "id": "bio-reaction-fourier",
+          "name": {
+            "ja": "反応拡散：空間2次と時間4次を分けて測る",
+            "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
+            "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
+          },
+          "status": "educational-example",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": [],
+          "supplemental_examples": [
+            "reaction-diffusion-fourier"
+          ]
+        },
+        {
+          "id": "bio-fhn",
+          "name": {
+            "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+            "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
+            "en": "Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
+          },
+          "status": "educational-example",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": [],
+          "supplemental_examples": [
+            "fitzhugh-nagumo"
+          ]
         }
       ],
       "domains": [
         "biology"
+      ],
+      "supplemental_examples": [
+        "reaction-diffusion-fourier",
+        "turing-schnakenberg",
+        "fitzhugh-nagumo"
       ]
     },
     {
@@ -335,13 +403,14 @@
         "楕円型を"
       ],
       "scope": {
-        "ja": "1次元三重対角系ならThomas、対称正定値系ならCG、規則格子のPoissonなら幾何マルチグリッドが候補です。境界条件と行列の性質を確認し、真の残差と格子誤差を区別します。",
-        "en": "Consider Thomas for 1D tridiagonal systems, CG for symmetric positive-definite systems, and geometric multigrid for regular-grid Poisson problems. Check boundaries and matrix properties; distinguish true residual from discretization error."
+        "ja": "1次元三重対角系ならThomas、対称正定値系ならCG、規則格子のPoissonなら幾何マルチグリッドが候補です。境界条件と行列の性質を確認し、真の残差と格子誤差を区別します。 小規模SPD拡散のSA-AMG補助例は、幾何マルチグリッドとは別の行列ベース階層です。",
+        "en": "Consider Thomas for 1D tridiagonal systems, CG for symmetric positive-definite systems, and geometric multigrid for regular-grid Poisson problems. Check boundaries and matrix properties; distinguish true residual from discretization error. A small SPD-diffusion SA-AMG supplement builds a matrix-based hierarchy, separately from geometric multigrid."
       },
       "methods": [
         "thomas",
         "cg",
-        "multigrid"
+        "multigrid",
+        "amg"
       ],
       "examples": [
         "poisson-1d-dirichlet",
@@ -349,6 +418,9 @@
       ],
       "domains": [
         "diffusion"
+      ],
+      "supplemental_examples": [
+        "sa-amg"
       ]
     },
     {
@@ -366,8 +438,8 @@
         "mhdを計算"
       ],
       "scope": {
-        "ja": "理想MHDではCTとGLMが比較候補です。CTの面磁場とGLMのセル中心場では離散的な発散演算子が異なります。GLMを厳密な発散ゼロの保証と扱わず、境界条件と発散ノルムを確認します。 Brio–Wu実行例は1次元の流束確認用で、CT/GLMの多次元発散制御の検証にはなりません。",
-        "en": "Compare CT and GLM for ideal MHD. Face-centered CT and cell-centered GLM use different discrete divergence operators. GLM is not an exact zero-divergence guarantee; inspect boundaries and divergence norms. The Brio–Wu run checks one-dimensional fluxes; it does not validate multidimensional CT/GLM divergence control."
+        "ja": "理想MHDではCTとGLMが比較候補です。CTの面磁場とGLMのセル中心場では離散的な発散演算子が異なります。GLMを厳密な発散ゼロの保証と扱わず、境界条件と発散ノルムを確認します。 Brio–Wu実行例は1次元の流束確認用で、CT/GLMの多次元発散制御の検証にはなりません。 同じ連続Orszag–Tang初期場・終了時刻・CFLのCT／GLM比較と、独立Athena++照合へ進めます。採用GLMはch=3、κ=0.18 ch nの格子依存減衰で、nativeのdiv B演算子・実ステップ数は異なります。GLM Fourier例は制約診断です。",
+        "en": "Compare CT and GLM for ideal MHD. Face-centered CT and cell-centered GLM use different discrete divergence operators. GLM is not an exact zero-divergence guarantee; inspect boundaries and divergence norms. The Brio–Wu run checks one-dimensional fluxes; it does not validate multidimensional CT/GLM divergence control. Compare CT/GLM for the same continuous Orszag–Tang data, final time and CFL, with independent Athena++ references. The adopted GLM has ch=3 and grid-dependent damping κ=0.18 ch n; native div B operators and actual step counts differ. The GLM Fourier example is a constraint diagnostic."
       },
       "methods": [
         "ct",
@@ -380,6 +452,11 @@
       "domains": [
         "fluid",
         "mhd"
+      ],
+      "supplemental_examples": [
+        "ct-glm-independent",
+        "brio-independent",
+        "glm-fourier-mode"
       ]
     },
     {
@@ -443,8 +520,8 @@
     {
       "id": "stochastic-calculation",
       "title": {
-        "ja": "積分や時間発展の確率誤差を確かめたい",
-        "en": "Check stochastic integration and time-stepping errors"
+        "ja": "確率計算・MCMCの誤差と相関を確かめたい",
+        "en": "Check stochastic/MCMC errors and correlations"
       },
       "terms": [
         "確率計算",
@@ -455,15 +532,23 @@
         "確率微分方程式",
         "Monte Carlo integration",
         "stochastic computation",
-        "Brownian motion"
+        "Brownian motion",
+        "MCMC",
+        "マルコフ連鎖",
+        "有効標本数",
+        "自己相関",
+        "Metropolis Hastings",
+        "effective sample size",
+        "Markov chain"
       ],
       "scope": {
-        "ja": "x²のIID Monte Carlo積分とスカラーItô幾何Brown運動を実行し、標本誤差・区間被覆・共有経路による強収束を確認します。MCMC・希少事象・一般SDEは実装済みではありません。",
-        "en": "Run IID Monte Carlo integration of x² and scalar Itô geometric Brownian motion. Check sampling error, interval coverage and coupled-path strong convergence. MCMC, rare events and general SDEs remain unimplemented."
+        "ja": "既存IID x²積分・スカラーItô幾何Brown運動に、1次元Gaussian標的のMetropolis–Hastings MCMCを追加。確率計算法全般の完成を意味しません。",
+        "en": "Add Metropolis–Hastings MCMC for a 1D Gaussian target to the existing IID x² integration and scalar Itô geometric Brownian motion. These do not complete stochastic computation."
       },
       "methods": [
         "monte-carlo",
-        "sde"
+        "sde",
+        "mcmc"
       ],
       "examples": [
         "mc-integral",
@@ -473,6 +558,9 @@
       "domains": [
         "probability",
         "time"
+      ],
+      "supplemental_examples": [
+        "gaussian-mcmc"
       ]
     },
     {
@@ -484,7 +572,7 @@
       "terms": [
         "H₂",
         "h₂",
-        "H2の",
+        "H 2の",
         "h2 molecule",
         "h2 rhf",
         "molecular hf",

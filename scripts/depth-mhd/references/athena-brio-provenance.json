@@ -1,0 +1,35 @@
+{
+  "source": {
+    "repository": "PrincetonUniversity/athena",
+    "commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "source_url": "https://codeload.github.com/PrincetonUniversity/athena/tar.gz/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+    "bytes": 4359906
+  },
+  "binary_sha256": "3d5b04475d86f8a0b6c2f0a41f1850071daf3640811a13ffbb898e4d7206c8d1",
+  "configure": "python configure.py -b --prob=shock_tube --flux=hlld --cxx=clang++",
+  "build": "make clean; make -j2",
+  "input_notes": "Coordinates [-.5,.5] map to atlas x+0.5.",
+  "records": [
+    {
+      "case": "brio",
+      "n": 2048,
+      "elapsed_seconds": 0.8723533749998751,
+      "input_sha256": "af0da6978af6e60474b7d2d59b0158ce7213a3f153db379f23e16b6380bae989",
+      "raw_table_sha256": "2c67aa8ccfb95acfe05310e17e2f5ca22b1b079551a5d1627a61f93a34d85fcc",
+      "table_header": "# i       x1v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     ",
+      "data_file": "athena-brio-2048.npz",
+      "sha256": "c96c5592d910b2cd68820c0106c9ae3299ff82ab6748b9cffea0ff4ae23ea4bd"
+    },
+    {
+      "case": "brio",
+      "n": 4096,
+      "elapsed_seconds": 3.7316787080008,
+      "input_sha256": "22a2c1efb3c01406fe2af6de4f02240315fe6504a6047143e0242988e88524e0",
+      "raw_table_sha256": "349f5941c164cb1b8b6450ca6ff207d79756e4cde084056b1d155bdcf9c081f8",
+      "table_header": "# i       x1v         rho          press          vel1         vel2         vel3         Bcc1         Bcc2         Bcc3     ",
+      "data_file": "athena-brio-4096.npz",
+      "sha256": "c3651fd0c965a5db1416ce2c62cc42c5f466d54d397b600ba5fa0127c61b0cea"
+    }
+  ]
+}

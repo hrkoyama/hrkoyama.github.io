@@ -10,10 +10,10 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "粒子と格子上の場を結び、割当て・補間・保存則を調べる。",
-    "en": "Couple particles and mesh fields with deposition, interpolation and conservation diagnostics."
+    "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+    "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pic/",
@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "静電的な粒子–Poisson連成の小規模例。",
-    "en": "A small electrostatic particle–Poisson example."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。",
+    "en": "Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -54,14 +54,1098 @@
     "粒子セル法",
     "粒子インセル法"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "particles",
+    "case_ids": [
+      "pic"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-particles-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+    "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "pic",
+        "title": {
+          "ja": "CIC静電PICの冷たいプラズマ振動",
+          "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+        },
+        "method_ids": [
+          "pic"
+        ],
+        "summary": {
+          "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+          "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+        },
+        "assumptions": {
+          "ja": "長さ2pi、電子の電荷質量比−1、静止イオン背景密度1、plasma frequency=1の無次元系。quiet startから振幅0.001の微小正弦変位を与えます。",
+          "en": "Dimensionless length 2pi, electron charge/mass −1, stationary ion density one and plasma frequency one. A quiet start receives a small sinusoidal displacement of amplitude 0.001."
+        },
+        "algorithm": {
+          "ja": "CIC電荷割当てと同じ重みの場補間、ゼロ平均のスペクトルPoisson解、速度Verletを組み合わせます。実数の奇微分の規約により、電場のNyquistモードはゼロにします。",
+          "en": "Combine CIC deposition and matching field gathering, a mean-zero spectral Poisson solve and velocity Verlet. Set the field Nyquist mode to zero for a real skew-adjoint spectral derivative."
+        },
+        "validation": {
+          "ja": "32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。",
+          "en": "Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force."
+        },
+        "limits": {
+          "ja": "有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。",
+          "en": "Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated."
+        },
+        "equations": [
+          "\\dot x_i=v_i,\\quad\\dot v_i=-E_h(x_i),\\quad-\\phi_{xx}=\\rho,\\quad E=-\\phi_x",
+          "A(t)/A(0)\\simeq\\cos(\\omega_pt),\\qquad\\omega_p=1"
+        ],
+        "references": [
+          {
+            "id": "hockney-eastwood1988",
+            "author": "R. W. Hockney and J. W. Eastwood",
+            "year": 1988,
+            "title": "Computer Simulation Using Particles",
+            "doi": "10.1201/9780367806934",
+            "url": "https://doi.org/10.1201/9780367806934",
+            "review_level": "publisher-preview-and-metadata",
+            "review_note": {
+              "ja": "出版社配布プレビューの書誌・粒子モデルの導入と目次を確認。CICや冷たいプラズマの歴史的出典とし、全書の監査は主張しません。",
+              "en": "Publisher preview bibliography, introduction and contents checked; historical source for CIC/cold plasma, not a full-book audit."
+            }
+          }
+        ],
+        "measured": {
+          "id": "pic",
+          "passed": true,
+          "checks": {
+            "mode_error": true,
+            "charge_error": true,
+            "poisson_residual": true,
+            "self_force": true,
+            "time_error": true,
+            "grid_refines": true,
+            "time_refines": true
+          },
+          "metrics": {
+            "mode_error": 0.0008867237363958114,
+            "time_mode_error": 0.0004385575782555884,
+            "charge_error": 1.743934249004316e-16,
+            "poisson_residual": 1.0587911840678754e-22,
+            "self_force": 3.3306690738754696e-16,
+            "grid_refinement_ratio": 0.05753235309401034,
+            "time_refinement_ratio": 0.014260976320524699
+          },
+          "records": [
+            {
+              "series": "grid",
+              "grid": 32,
+              "dt": 0.019946620022792336,
+              "particles": 256,
+              "error": 0.015412610274202876,
+              "energy_defect": 0.0001406823392896106
+            },
+            {
+              "series": "grid",
+              "grid": 64,
+              "dt": 0.019946620022792336,
+              "particles": 512,
+              "error": 0.0037883638091199823,
+              "energy_defect": 0.00011113939012308379
+            },
+            {
+              "series": "grid",
+              "grid": 128,
+              "dt": 0.019946620022792336,
+              "particles": 1024,
+              "error": 0.0008867237363958114,
+              "energy_defect": 0.00010232191244006182
+            },
+            {
+              "series": "time",
+              "grid": 512,
+              "dt": 0.39269908169872414,
+              "particles": 4096,
+              "error": 0.030752282901164843,
+              "energy_defect": 0.038548185649944756
+            },
+            {
+              "series": "time",
+              "grid": 512,
+              "dt": 0.19634954084936207,
+              "particles": 4096,
+              "error": 0.007700893661189673,
+              "energy_defect": 0.009638050592964744
+            },
+            {
+              "series": "time",
+              "grid": 512,
+              "dt": 0.09973310011396169,
+              "particles": 4096,
+              "error": 0.001936197445865262,
+              "energy_defect": 0.002485357784752908
+            },
+            {
+              "series": "time",
+              "grid": 512,
+              "dt": 0.049866550056980846,
+              "particles": 4096,
+              "error": 0.0004385575782555884,
+              "energy_defect": 0.0006213485527225499
+            },
+            {
+              "series": "trajectory",
+              "time": 0.0,
+              "mode": 1.0000000000000082,
+              "exact_mode": 1.0,
+              "energy": 1.570757209530729e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.049866550056980846,
+              "mode": 0.9987566947972427,
+              "exact_mode": 0.9987569212189223,
+              "energy": 1.5707547792386975e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.09973310011396169,
+              "mode": 0.9950298708062156,
+              "exact_mode": 0.9950307753654014,
+              "energy": 1.5707475157575314e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.14959965017094254,
+              "mode": 0.9888287951911102,
+              "exact_mode": 0.9888308262251285,
+              "energy": 1.5707355118624282e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.19946620022792338,
+              "mode": 0.9801688876010658,
+              "exact_mode": 0.9801724878485438,
+              "energy": 1.5707188651847734e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.24933275028490423,
+              "mode": 0.9690716818465587,
+              "exact_mode": 0.969077286229078,
+              "energy": 1.570697738615512e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.2991993003418851,
+              "mode": 0.9555647723531873,
+              "exact_mode": 0.9555728057861407,
+              "energy": 1.5706723479612897e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.34906585039886595,
+              "mode": 0.9396817455450014,
+              "exact_mode": 0.9396926207859083,
+              "energy": 1.5706429554896394e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.39893240045584677,
+              "mode": 0.9214620963140967,
+              "exact_mode": 0.9214762118704076,
+              "energy": 1.570609854180505e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.4487989505128276,
+              "mode": 0.9009511298160872,
+              "exact_mode": 0.9009688679024191,
+              "energy": 1.5705733480913598e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.49866550056980846,
+              "mode": 0.8781998488340983,
+              "exact_mode": 0.8782215733702285,
+              "energy": 1.5705338193165593e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.5485320506267893,
+              "mode": 0.853264826936442,
+              "exact_mode": 0.8532908816321556,
+              "energy": 1.5704916625039987e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.5983986006837702,
+              "mode": 0.826208067803305,
+              "exact_mode": 0.8262387743159949,
+              "energy": 1.570447282829646e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.648265150740751,
+              "mode": 0.7970968510561723,
+              "exact_mode": 0.7971325072229225,
+              "energy": 1.5704011343486393e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.6981317007977319,
+              "mode": 0.7660035649480413,
+              "exact_mode": 0.766044443118978,
+              "energy": 1.5703536705236899e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.7479982508547127,
+              "mode": 0.7330055263663859,
+              "exact_mode": 0.7330518718298263,
+              "energy": 1.5703053633976442e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.7978648009116935,
+              "mode": 0.6981847885722484,
+              "exact_mode": 0.6982368180860729,
+              "energy": 1.570256694314762e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.8477313509686744,
+              "mode": 0.6616279371697681,
+              "exact_mode": 0.6616858375968594,
+              "energy": 1.5702081469970932e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.8975979010256552,
+              "mode": 0.6234258748016728,
+              "exact_mode": 0.6234898018587336,
+              "energy": 1.570160203968949e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.9474644510826361,
+              "mode": 0.5836735951100366,
+              "exact_mode": 0.5837436722347898,
+              "energy": 1.5701133417602727e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 0.9973310011396169,
+              "mode": 0.542469946524207,
+              "exact_mode": 0.5425462638657594,
+              "energy": 1.570068026169176e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.0471975511965979,
+              "mode": 0.4999173864634538,
+              "exact_mode": 0.4999999999999999,
+              "energy": 1.5700247076310403e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.0970641012535787,
+              "mode": 0.4561217265653827,
+              "exact_mode": 0.4562106573531629,
+              "energy": 1.5699838167398273e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.1469306513105595,
+              "mode": 0.4111918695737116,
+              "exact_mode": 0.4112871031306115,
+              "energy": 1.5699457599664075e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.1967972013675403,
+              "mode": 0.36523953853965624,
+              "exact_mode": 0.365341024366395,
+              "energy": 1.5699109156164872e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.2466637514245211,
+              "mode": 0.31837899901028577,
+              "exact_mode": 0.31848665025168443,
+              "energy": 1.569879630068404e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.296530301481502,
+              "mode": 0.2707267748946489,
+              "exact_mode": 0.27084046814300516,
+              "energy": 1.5698522143281517e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.3463968515384828,
+              "mode": 0.22240135871418457,
+              "exact_mode": 0.22252093395631445,
+              "energy": 1.5698289409360988e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.3962634015954638,
+              "mode": 0.17352291695800606,
+              "exact_mode": 0.17364817766693022,
+              "energy": 1.5698100412561585e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.4461299516524446,
+              "mode": 0.12421299127559447,
+              "exact_mode": 0.12434370464748506,
+              "energy": 1.5697957031743896e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.4959965017094254,
+              "mode": 0.07459419624999693,
+              "exact_mode": 0.07473009358642417,
+              "energy": 1.5697860692300444e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.5458630517664063,
+              "mode": 0.024789914503070297,
+              "exact_mode": 0.024930691738072813,
+              "energy": 1.5697812351976261e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.595729601823387,
+              "mode": -0.025076010109143898,
+              "exact_mode": -0.024930691738072913,
+              "energy": 1.5697812491341565e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.645596151880368,
+              "mode": -0.07487958044793266,
+              "exact_mode": -0.07473009358642427,
+              "energy": 1.5697861109011016e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.6954627019373487,
+              "mode": -0.12449695442462091,
+              "exact_mode": -0.12434370464748516,
+              "energy": 1.5697957721657475e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.7453292519943295,
+              "mode": -0.17380475294771308,
+              "exact_mode": -0.1736481776669303,
+              "energy": 1.5698101368820128e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.7951958020513104,
+              "mode": -0.22268036671876656,
+              "exact_mode": -0.22252093395631434,
+              "energy": 1.5698290622458985e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.8450623521082914,
+              "mode": -0.27100226111404435,
+              "exact_mode": -0.2708404681430052,
+              "energy": 1.5698523601160577e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.8949289021652722,
+              "mode": -0.3186502783939507,
+              "exact_mode": -0.31848665025168454,
+              "energy": 1.569879798885263e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.944795452222253,
+              "mode": -0.3655059364885858,
+              "exact_mode": -0.3653410243663951,
+              "energy": 1.5699111057842625e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 1.9946620022792338,
+              "mode": -0.41145272361664453,
+              "exact_mode": -0.41128710313061156,
+              "energy": 1.5699459695948653e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.0445285523362147,
+              "mode": -0.45637638800490354,
+              "exact_mode": -0.45621065735316296,
+              "energy": 1.5699840437453162e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.0943951023931957,
+              "mode": -0.5001652219879644,
+              "exact_mode": -0.5000000000000002,
+              "energy": 1.5700249497572479e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.1442616524501763,
+              "mode": -0.5427103397817871,
+              "exact_mode": -0.5425462638657594,
+              "energy": 1.5700682810095385e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.1941282025071573,
+              "mode": -0.5839059482402501,
+              "exact_mode": -0.58374367223479,
+              "energy": 1.5701136067819194e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.243994752564138,
+              "mode": -0.6236496099215562,
+              "exact_mode": -0.6234898018587335,
+              "energy": 1.5701604765378757e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.293861302621119,
+              "mode": -0.6618424978102511,
+              "exact_mode": -0.6616858375968595,
+              "energy": 1.5702084244043243e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.3437278526780996,
+              "mode": -0.6983896410615489,
+              "exact_mode": -0.6982368180860727,
+              "energy": 1.5702569738033173e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.3935944027350806,
+              "mode": -0.7332001611568171,
+              "exact_mode": -0.7330518718298263,
+              "energy": 1.570305642190011e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.4434609527920617,
+              "mode": -0.7661874978830249,
+              "exact_mode": -0.7660444431189781,
+              "energy": 1.5703539458492036e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.4933275028490423,
+              "mode": -0.7972696245742729,
+              "exact_mode": -0.7971325072229225,
+              "energy": 1.5704014036640136e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.5431940529060233,
+              "mode": -0.826369252077648,
+              "exact_mode": -0.826238774315995,
+              "energy": 1.5704475422259707e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.593060602963004,
+              "mode": -0.8534140209483375,
+              "exact_mode": -0.8532908816321556,
+              "energy": 1.570491909453786e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.642927153019985,
+              "mode": -0.8783366813740555,
+              "exact_mode": -0.8782215733702287,
+              "energy": 1.5705340545596452e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.6927937030769655,
+              "mode": -0.901075260407717,
+              "exact_mode": -0.900968867902419,
+              "energy": 1.5705735649413245e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.7426602531339466,
+              "mode": -0.9215732160673503,
+              "exact_mode": -0.9214762118704077,
+              "energy": 1.5706100574197673e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.7925268031909276,
+              "mode": -0.9397795779213249,
+              "exact_mode": -0.9396926207859084,
+              "energy": 1.5706431330803753e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.842393353247908,
+              "mode": -0.9556490738631325,
+              "exact_mode": -0.9555728057861408,
+              "energy": 1.5706725025252007e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.8922599033048892,
+              "mode": -0.9691422426526941,
+              "exact_mode": -0.969077286229078,
+              "energy": 1.5706978737810765e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.94212645336187,
+              "mode": -0.9802255320363586,
+              "exact_mode": -0.9801724878485438,
+              "energy": 1.570718977758815e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 2.991993003418851,
+              "mode": -0.9888713821967368,
+              "exact_mode": -0.9888308262251285,
+              "energy": 1.570735596884969e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.0418595534758315,
+              "mode": -0.9950582942847398,
+              "exact_mode": -0.9950307753654014,
+              "energy": 1.5707475683819532e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.0917261035328125,
+              "mode": -0.9987708838785944,
+              "exact_mode": -0.9987569212189223,
+              "energy": 1.5707548099896952e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.141592653589793,
+              "mode": -0.9999999192076042,
+              "exact_mode": -1.0,
+              "energy": 1.570757214304618e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.191459203646774,
+              "mode": -0.9987423441374559,
+              "exact_mode": -0.9987569212189223,
+              "energy": 1.5707547542271402e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.241325753703755,
+              "mode": -0.9950012857697097,
+              "exact_mode": -0.9950307753654014,
+              "energy": 1.5707474574855224e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.291192303760736,
+              "mode": -0.9887860466658558,
+              "exact_mode": -0.9888308262251285,
+              "energy": 1.5707354317518694e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.341058853817717,
+              "mode": -0.9801120816859931,
+              "exact_mode": -0.9801724878485438,
+              "energy": 1.5707187601652258e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.3909254038746974,
+              "mode": -0.969000959589834,
+              "exact_mode": -0.969077286229078,
+              "energy": 1.5706976059018455e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.4407919539316785,
+              "mode": -0.9554803094039932,
+              "exact_mode": -0.9555728057861407,
+              "energy": 1.570672190063645e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.490658503988659,
+              "mode": -0.9395837517151885,
+              "exact_mode": -0.9396926207859084,
+              "energy": 1.5706427734366422e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.54052505404564,
+              "mode": -0.9213508150580644,
+              "exact_mode": -0.9214762118704076,
+              "energy": 1.5706096565747084e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.5903916041026207,
+              "mode": -0.9008268376202158,
+              "exact_mode": -0.9009688679024191,
+              "energy": 1.5705731312363682e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.6402581541596017,
+              "mode": -0.8780628545360611,
+              "exact_mode": -0.8782215733702285,
+              "energy": 1.5705335846304287e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.690124704216583,
+              "mode": -0.8531154709609423,
+              "exact_mode": -0.8532908816321555,
+              "energy": 1.570491415475249e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.7399912542735634,
+              "mode": -0.826046721315326,
+              "exact_mode": -0.8262387743159949,
+              "energy": 1.5704470244702512e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.7898578043305444,
+              "mode": -0.7969239150432459,
+              "exact_mode": -0.7971325072229224,
+              "energy": 1.5704008655499284e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.839724354387525,
+              "mode": -0.7658194692286708,
+              "exact_mode": -0.766044443118978,
+              "energy": 1.5703533956056189e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.889590904444506,
+              "mode": -0.7328107285231777,
+              "exact_mode": -0.7330518718298262,
+              "energy": 1.5703050850239784e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.9394574545014867,
+              "mode": -0.6979797728160356,
+              "exact_mode": -0.698236818086073,
+              "energy": 1.5702564152562376e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 3.9893240045584677,
+              "mode": -0.6614132131356929,
+              "exact_mode": -0.6616858375968594,
+              "energy": 1.570207870031476e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.039190554615448,
+              "mode": -0.6232019762818861,
+              "exact_mode": -0.6234898018587336,
+              "energy": 1.5701599318532381e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.089057104672429,
+              "mode": -0.5834410787261364,
+              "exact_mode": -0.5837436722347898,
+              "energy": 1.570113077203248e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.13892365472941,
+              "mode": -0.5422293903428014,
+              "exact_mode": -0.5425462638657592,
+              "energy": 1.5700677718046395e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.188790204786391,
+              "mode": -0.49966938855819354,
+              "exact_mode": -0.4999999999999996,
+              "energy": 1.5700244659915028e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.238656754843372,
+              "mode": -0.45586690352913045,
+              "exact_mode": -0.4562106573531632,
+              "energy": 1.569983590231344e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.288523304900353,
+              "mode": -0.41093085498449583,
+              "exact_mode": -0.4112871031306116,
+              "energy": 1.5699455508447081e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.338389854957334,
+              "mode": -0.36497298138427026,
+              "exact_mode": -0.3653410243663949,
+              "energy": 1.5699107259645294e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.388256405014315,
+              "mode": -0.31810756206940966,
+              "exact_mode": -0.3184866502516841,
+              "energy": 1.569879461775556e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.438122955071296,
+              "mode": -0.27045113309358587,
+              "exact_mode": -0.2708404681430046,
+              "energy": 1.5698520690715504e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.487989505128276,
+              "mode": -0.22212219744329678,
+              "exact_mode": -0.2225209339563146,
+              "energy": 1.5698288201638597e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.537856055185257,
+              "mode": -0.17324093036701219,
+              "exact_mode": -0.17364817766693033,
+              "energy": 1.5698099461730267e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.587722605242238,
+              "mode": -0.12392888054603228,
+              "exact_mode": -0.12434370464748495,
+              "energy": 1.569795634729729e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.637589155299219,
+              "mode": -0.0743086678501199,
+              "exact_mode": -0.07473009358642384,
+              "energy": 1.5697860281083975e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.687455705356199,
+              "mode": -0.024503678429553567,
+              "exact_mode": -0.024930691738073156,
+              "energy": 1.5697812218119086e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.73732225541318,
+              "mode": 0.025362242098290754,
+              "exact_mode": 0.02493069173807279,
+              "energy": 1.5697812636215453e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.787188805470161,
+              "mode": 0.07516509660487374,
+              "exact_mode": 0.07473009358642436,
+              "energy": 1.5697861531216717e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.837055355527142,
+              "mode": 0.12478104478313526,
+              "exact_mode": 0.12434370464748548,
+              "energy": 1.5697958417038677e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.886921905584123,
+              "mode": 0.17408671109025303,
+              "exact_mode": 0.17364817766693083,
+              "energy": 1.569810233050476e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.9367884556411035,
+              "mode": 0.22295949153456981,
+              "exact_mode": 0.22252093395631423,
+              "energy": 1.569829184092767e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 4.9866550056980845,
+              "mode": 0.2712778585440988,
+              "exact_mode": 0.2708404681430051,
+              "energy": 1.5698525064340988e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.0365215557550655,
+              "mode": 0.3189216631582911,
+              "exact_mode": 0.3184866502516846,
+              "energy": 1.5698799682240065e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.086388105812047,
+              "mode": 0.3657724337917213,
+              "exact_mode": 0.3653410243663954,
+              "energy": 1.5699112964643988e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.136254655869027,
+              "mode": 0.41171367082680876,
+              "exact_mode": 0.4112871031306113,
+              "energy": 1.5699461797249436e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.186121205926008,
+              "mode": 0.4566311363029498,
+              "exact_mode": 0.45621065735316285,
+              "energy": 1.5699842712406035e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.235987755982989,
+              "mode": 0.5004131379818078,
+              "exact_mode": 0.5000000000000001,
+              "energy": 1.570025192360413e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.28585430603997,
+              "mode": 0.5429508070823524,
+              "exact_mode": 0.5425462638657597,
+              "energy": 1.5700685363131106e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.335720856096951,
+              "mode": 0.5841383689949957,
+              "exact_mode": 0.5837436722347903,
+              "energy": 1.5701138722522218e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.385587406153931,
+              "mode": 0.623873406301774,
+              "exact_mode": 0.6234898018587334,
+              "energy": 1.5701607495402355e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.435453956210912,
+              "mode": 0.6620571134484419,
+              "exact_mode": 0.6616858375968594,
+              "energy": 1.5702087022292779e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.485320506267893,
+              "mode": 0.6985945424352306,
+              "exact_mode": 0.698236818086073,
+              "energy": 1.5702572536935737e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.535187056324874,
+              "mode": 0.7333948389153823,
+              "exact_mode": 0.7330518718298266,
+              "energy": 1.5703059213677533e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.585053606381855,
+              "mode": 0.7663714681143501,
+              "exact_mode": 0.7660444431189783,
+              "energy": 1.5703542215438319e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.634920156438835,
+              "mode": 0.7974424300078827,
+              "exact_mode": 0.7971325072229224,
+              "energy": 1.5704016732710061e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.684786706495816,
+              "mode": 0.8265304632197334,
+              "exact_mode": 0.8262387743159949,
+              "energy": 1.5704478032669434e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.7346532565527975,
+              "mode": 0.8535632371457541,
+              "exact_mode": 0.8532908816321558,
+              "energy": 1.5704921576770208e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.7845198066097785,
+              "mode": 0.8784735318086576,
+              "exact_mode": 0.8782215733702288,
+              "energy": 1.5705342900582406e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.834386356666759,
+              "mode": 0.9011994050121092,
+              "exact_mode": 0.900968867902419,
+              "energy": 1.5705737831894736e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.88425290672374,
+              "mode": 0.921684346369778,
+              "exact_mode": 0.9214762118704076,
+              "energy": 1.5706102562023348e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.934119456780721,
+              "mode": 0.9398774178097887,
+              "exact_mode": 0.9396926207859084,
+              "energy": 1.5706433154121977e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 5.983986006837702,
+              "mode": 0.9557333802659063,
+              "exact_mode": 0.9555728057861408,
+              "energy": 1.570672663794346e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 6.033852556894683,
+              "mode": 0.9692128061442319,
+              "exact_mode": 0.9690772862290781,
+              "energy": 1.570698006299102e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 6.083719106951663,
+              "mode": 0.9802821773624156,
+              "exact_mode": 0.9801724878485438,
+              "energy": 1.5707190834081688e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 6.133585657008644,
+              "mode": 0.9889139687079103,
+              "exact_mode": 0.9888308262251285,
+              "energy": 1.5707356768226143e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 6.183452207065625,
+              "mode": 0.9950867162849819,
+              "exact_mode": 0.9950307753654014,
+              "energy": 1.5707476275211158e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 6.233318757122606,
+              "mode": 0.9987850708845585,
+              "exact_mode": 0.9987569212189223,
+              "energy": 1.5707548358315573e-06
+            },
+            {
+              "series": "trajectory",
+              "time": 6.283185307179586,
+              "mode": 0.9999998361347885,
+              "exact_mode": 1.0,
+              "energy": 1.5707572103486998e-06
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+    "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-particles-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "pic",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+  "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

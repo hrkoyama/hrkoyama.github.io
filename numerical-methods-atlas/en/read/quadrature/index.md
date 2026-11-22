@@ -24,7 +24,7 @@ Verify degree of exactness on monomials, then test nonpolynomials with known int
 
 ## Publication scope
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 
 ## Sources
 

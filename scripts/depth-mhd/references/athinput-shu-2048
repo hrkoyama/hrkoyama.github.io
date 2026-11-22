@@ -1,0 +1,49 @@
+<comment>
+problem   = Mach 3 shock interacting with a sine wave in the density (Example 6)
+reference = Shu, C.-W., & Osher, S., JCP 83, pp. 32-78 (1989)
+configure = --prob=shu_osher
+
+<job>
+problem_id = shu-2048
+
+<output1>
+file_type   = tab       # Tabular data dump
+variable    = prim      # variables to be output
+data_format = %.16e
+dt = 1.8
+x2_slice    = 0.5       # slice in x2
+x3_slice    = 0.5       # slice in x3
+
+<output2>
+file_type   = hst       # History data dump
+dt = 1.8
+
+<time>
+cfl_number = .3
+nlim = -1
+tlim = 1.8
+integrator = rk3
+xorder = 2
+ncycle_out = 100000
+
+<mesh>
+nx1 = 2048
+x1min = -5.
+x1max = 5.
+ix1_bc      = outflow   # Inner-X1 boundary condition flag
+ox1_bc      = outflow   # Outer-X1 boundary condition flag
+
+nx2         = 1         # Number of zones in X2-direction
+x2min       = 0.0       # minimum value of X2
+x2max       = 1.0       # maximum value of X2
+ix2_bc      = periodic  # Inner-X2 boundary condition flag
+ox2_bc      = periodic  # Outer-X2 boundary condition flag
+
+nx3         = 1         # Number of zones in X3-direction
+x3min       = 0.0       # minimum value of X3
+x3max       = 1.0       # maximum value of X3
+ix3_bc      = periodic  # Inner-X3 boundary condition flag
+ox3_bc      = periodic  # Outer-X3 boundary condition flag
+
+<hydro>
+gamma       = 1.4       # gamma = C_p/C_v

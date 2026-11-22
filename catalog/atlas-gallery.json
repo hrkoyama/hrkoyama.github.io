@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-21",
+  "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "items": [
     {
@@ -621,6 +621,151 @@
       "caption": {
         "ja": "非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。",
         "en": "Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check."
+      }
+    },
+    {
+      "id": "matrix-factorization",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+      "caption": {
+        "ja": "固定した満階数・階数落ち行列で、Householder QR・片側Jacobi SVDの再構成、保持階数の直交性、LAPACKとの差を保存値から図示。丸めゼロは1e−16へ置いて表示。",
+        "en": "Saved reconstruction, retained-rank orthogonality and LAPACK differences for fixed full/rank-deficient Householder-QR and one-sided-Jacobi-SVD inputs. Roundoff zeros are displayed at 1e-16."
+      }
+    },
+    {
+      "id": "krylov-spectrum",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+      "caption": {
+        "ja": "再直交化Lanczos・ArnoldiのKrylov次元を変え、固有対残差と独立した密行列固有値との差を保存結果から比較。",
+        "en": "Stored eigenpair residuals and differences from independent dense eigenvalues as reorthogonalized Lanczos/Arnoldi Krylov dimensions increase."
+      }
+    },
+    {
+      "id": "quadrature-moments",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+      "caption": {
+        "ja": "Gauss–Legendreの次数と適応Simpsonの要求公差を走査した保存誤差。指数・Lorentz型積分の解析値を参照し、推定誤差を厳密上界とは扱わない。",
+        "en": "Saved Gauss–Legendre order and adaptive-Simpson tolerance sweeps against analytic exponential/Lorentzian integrals; estimated errors are not rigorous bounds."
+      }
+    },
+    {
+      "id": "gaussian-mcmc",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+      "caption": {
+        "ja": "標準正規標的・固定seedの32連鎖。保存したCDF検査点、標本予算ごとの連鎖平均RMSE・平均観測量のESSを表示。全seedの保証ではない。",
+        "en": "Standard-normal target and 32 fixed-seed chains: stored CDF checkpoints, chain-mean RMSE and mean-observable ESS by sample budget. Not an every-seed guarantee."
+      }
+    },
+    {
+      "id": "langevin-harmonic",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+      "caption": {
+        "ja": "調和振動子BAOABの刻み0.4/0.2/0.1。離散定常共分散の偏り、有限標本誤差、正準CDF誤差とlag2の位置相関を保存値から分離表示。",
+        "en": "Stored harmonic-BAOAB steps 0.4/0.2/0.1 separate discrete stationary-covariance bias, sampling error, canonical-CDF errors and position correlation at lag 2."
+      }
+    },
+    {
+      "id": "reaction-diffusion-fourier",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+      "caption": {
+        "ja": "周期Fourierモードの線形反応拡散。16/32/64格子の連続解誤差と、固定格子での半離散厳密解に対する時間誤差を分けた保存収束図。",
+        "en": "Stored linear periodic Fourier reaction–diffusion refinement separates continuum errors on 16/32/64 grids from temporal errors against a fixed-grid semidiscrete exact solution."
+      }
+    },
+    {
+      "id": "turing-schnakenberg",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+      "caption": {
+        "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+        "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+      }
+    },
+    {
+      "id": "fitzhugh-nagumo",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+      "caption": {
+        "ja": "無次元の2変数FHN型ODEにt=10〜20の電流パルス。DOP853参照とRK4の興奮・回復、刻み0.1/0.05/0.025の収束と全出力点の差を保存結果から表示。",
+        "en": "A dimensionless two-variable FHN-type ODE with a t=10..20 current pulse: stored RK4/DOP853 excitation and recovery, steps 0.1/0.05/0.025 and all-output-time differences."
+      }
+    },
+    {
+      "id": "neutral-periodic-charges",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/particles/results/ewald.png",
+      "caption": {
+        "ja": "中性立方セルの非対称8点電荷。Ewaldの実空間・逆空間打切りに対する力の差を保存値から表示。smooth PMEの格子・Bスプライン次数比較は同じ問題の補助例へ接続。",
+        "en": "Asymmetric eight-charge neutral cubic cell: saved force differences over Ewald real/reciprocal cutoffs. The same problem links to a smooth-PME mesh/B-spline-order supplement."
+      },
+      "supplemental_examples": [
+        {
+          "id": "ewald",
+          "url": "/numerical-methods-atlas/validation/ewald/",
+          "name": {
+            "ja": "中性周期セルのEwald和と独立theta積分",
+            "en": "Neutral-cell Ewald sums and an independent theta integral"
+          }
+        },
+        {
+          "id": "spme",
+          "url": "/numerical-methods-atlas/validation/spme/",
+          "name": {
+            "ja": "Bスプラインsmooth PMEの格子・次数収束",
+            "en": "Mesh/order convergence of B-spline smooth PME"
+          }
+        }
+      ],
+      "related_figures": [
+        {
+          "id": "spme",
+          "source": "/code/validated-examples/2026-11-22/particles/results/spme.png",
+          "caption": {
+            "ja": "同じ中性周期点電荷に対するBスプライン次数4/6と16³/24³/40³格子のsmooth PME保存誤差。",
+            "en": "Stored smooth-PME errors for the same neutral periodic charges at spline orders 4/6 and 16³/24³/40³ meshes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "logarithmic-particles",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/particles/results/fmm.png",
+      "caption": {
+        "ja": "固定seedの128粒子、2次元自由空間の対数核。FMMの展開次数2/4/8/12を独立した全対直接和と比べたポテンシャル・電場誤差の保存図。",
+        "en": "Stored potential/field errors for 128 fixed-seed particles with a 2D free-space log kernel: FMM orders 2/4/8/12 versus a separate all-pairs sum."
+      }
+    },
+    {
+      "id": "cold-plasma-pic",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/particles/results/pic.png",
+      "caption": {
+        "ja": "1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。",
+        "en": "One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps."
+      }
+    },
+    {
+      "id": "maxwell-collisions",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/particles/results/dsmc.png",
+      "caption": {
+        "ja": "等質なMaxwell分子の衝突成分。512/2048/8192粒子・16seedの保存モーメント誤差・標本不確かさと、物理時刻ではない衝突roundごとの異方性緩和。",
+        "en": "Homogeneous Maxwell-molecule collision component: stored moment errors/seed uncertainty for 512/2048/8192 particles over 16 seeds, and anisotropy per collision round, not physical time."
+      }
+    },
+    {
+      "id": "absorbing-slab",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+      "caption": {
+        "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
+        "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
       }
     }
   ]

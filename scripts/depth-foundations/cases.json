@@ -1,0 +1,249 @@
+[
+  {
+    "id": "sa-amg",
+    "title": {
+      "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+      "en": "Matrix-based AMG: distinguish residual and solution error"
+    },
+    "method_ids": [
+      "amg"
+    ],
+    "summary": {
+      "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
+      "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+    },
+    "assumptions": {
+      "ja": "無次元の単位正方形、一定正係数の−Δu=f、全周同次Dirichlet境界、5点差分です。階層構築には座標・格子幅・nを渡さず、係数行列と暗黙の定数近似核だけを使います。入力は実対称正定値を前提とし、任意の不定値行列を扱うソルバーではありません。",
+      "en": "Dimensionless unit square, constant-positive-coefficient −Δu=f, homogeneous Dirichlet boundaries and five-point differences. Hierarchy setup receives no coordinates, mesh width or n; it uses the coefficient matrix and an implicit constant near-null candidate. A real SPD input is assumed; arbitrary indefinite problems are outside scope."
+    },
+    "algorithm": {
+      "ja": "各行の最大非対角係数に対する相対強度からグラフを作り、貪欲な星型集約と余剰節点の隣接集約への付着で暫定補間Tを作ります。P=(I−ωD⁻¹A)T、ω=4/(3ρ̄)、ρ̄はD⁻¹Aの絶対行和上界です。粗演算子はPᵀAP。前後2回のJacobi平滑化と最終小行列の直接解を用います。これは採用した小規模SA変種であり、原著の全構築法や収束定理の再現ではありません。",
+      "en": "A graph based on row-relative off-diagonal strength supplies greedy star aggregates; leftover nodes attach to adjacent aggregates. Smooth tentative T via P=(I−ωD⁻¹A)T with ω=4/(3ρ̄), where ρ̄ bounds the absolute row sums of D⁻¹A. Coarse operators are PᵀAP. V-cycles use two pre/post Jacobi sweeps and a terminal dense direct solve. This is a small adopted SA variant, not every construction or convergence theorem in the original paper."
+    },
+    "validation": {
+      "ja": "正規化残差、SciPy spsolveとの相対解差、連続正弦解への離散L²型誤差、観測次数、operator complexityを保存します。節点順を無作為に置き換えた行列も直接解と照合し、幾何学的な粗格子を暗黙に使っていないことを確認します。反復予算0は未収束と報告します。",
+      "en": "Store normalized residuals, relative solution differences against SciPy spsolve, discrete-L²-type continuum errors, observed order and operator complexity. A randomly permuted matrix is also checked against a direct solution to expose hidden geometric ordering assumptions. A zero cycle budget reports nonconvergence."
+    },
+    "limits": {
+      "ja": "3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。",
+      "en": "Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error."
+    },
+    "references": [
+      {
+        "id": "vanek1996",
+        "author": "P. Vaněk, J. Mandel and M. Brezina",
+        "year": 1996,
+        "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+        "doi": "10.1007/BF02238511",
+        "url": "https://link.springer.com/article/10.1007/BF02238511",
+        "review_level": "publisher-abstract-and-metadata",
+        "journal": "Computing 56, 179–196",
+        "type": "article"
+      }
+    ],
+    "reference_implementations": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.spsolve.html"
+    ],
+    "equations": [
+      "A_c=P^TAP,\\quad P=(I-\\omega D^{-1}A)T",
+      "r_k=b-Ax_k,\\quad \\eta_k=\\|r_k\\|_2/\\|b\\|_2"
+    ]
+  },
+  {
+    "id": "qr-svd-factorization",
+    "title": {
+      "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+      "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+    },
+    "method_ids": [
+      "qr-svd"
+    ],
+    "summary": {
+      "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+      "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+    },
+    "assumptions": {
+      "ja": "m≥nの小さな実行列が対象です。SVDの数値階数は最大特異値に対する相対しきい値10⁻¹²で定義し、零特異値方向を除くcompact因子を返します。QRは列ピボットなしで、階数判定には用いません。",
+      "en": "Small real matrices with m≥n. Numerical rank uses a 10⁻¹² threshold relative to the largest singular value; compact factors omit null directions. QR has no column pivoting and is not used as a rank-revealing method."
+    },
+    "algorithm": {
+      "ja": "Householder反射を左から蓄積してRを上三角化し、Qを構成します。Jacobi SVDは列対の内積を小さくする直交回転を繰り返し、回転した列の長さを特異値とします。AᵀAを作って固有値を求める方法ではありません。最小二乗はQRの後退代入、階数落ちでは打切りSVDで求めます。",
+      "en": "Householder reflectors triangularize R while accumulating Q. The SVD repeatedly rotates column pairs toward orthogonality and uses their resulting lengths as singular values; it does not diagonalize AᵀA. Least squares uses triangular back substitution for QR and truncated compact SVD for deficient rank."
+    },
+    "validation": {
+      "ja": "QR/SVDの相対再構成誤差、Q/U/Vの直交性、SciPy LAPACK gesddの特異値、gelsd/gelsyの最小二乗解・階数、正規方程式の停留残差を比較します。特異ベクトルの符号は比較せず、零行列と予算切れも検査します。",
+      "en": "Compare QR/SVD relative reconstruction, Q/U/V orthogonality, singular values from SciPy LAPACK gesdd, least-squares solutions/ranks from gelsd/gelsy and normal-equation stationarity residuals. Singular-vector signs are not compared; zero matrices and budget exhaustion are tested."
+    },
+    "limits": {
+      "ja": "完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。",
+      "en": "Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results."
+    },
+    "references": [
+      {
+        "id": "householder1958",
+        "author": "A. S. Householder",
+        "year": 1958,
+        "title": "Unitary Triangularization of a Nonsymmetric Matrix",
+        "doi": "10.1145/320941.320947",
+        "url": "https://dl.acm.org/doi/10.1145/320941.320947",
+        "review_level": "publisher-metadata",
+        "journal": "Journal of the ACM 5(4), 339–342",
+        "type": "article"
+      },
+      {
+        "id": "demmel-veselic1992",
+        "author": "J. Demmel and K. Veselić",
+        "year": 1992,
+        "title": "Jacobi’s Method is More Accurate than QR",
+        "doi": "10.1137/0613074",
+        "url": "https://epubs.siam.org/doi/abs/10.1137/0613074",
+        "review_level": "publisher-abstract-and-metadata",
+        "journal": "SIAM Journal on Matrix Analysis and Applications 13(4), 1204–1245",
+        "type": "article"
+      }
+    ],
+    "reference_implementations": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.svd.html",
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html"
+    ],
+    "equations": [
+      "A=QR,\\quad Q^TQ=I",
+      "A\\simeq U_r\\Sigma_rV_r^T,\\quad x_{\\min}=V_r\\Sigma_r^{-1}U_r^Tb"
+    ]
+  },
+  {
+    "id": "krylov-eigenvalues",
+    "title": {
+      "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+      "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+    },
+    "method_ids": [
+      "eigensolvers"
+    ],
+    "summary": {
+      "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+      "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+    },
+    "assumptions": {
+      "ja": "対称問題では実対称行列、非対称問題では既知の分離した最大固有値5を持つ実行列を使います。初期ベクトルは固定seedです。非対称Ritz値は複素数を許し、最大実部で選びます。",
+      "en": "The symmetric case is real symmetric; the nonsymmetric case is real with a known separated largest eigenvalue 5. Starting vectors use fixed seeds. Nonsymmetric Ritz values may be complex and are selected by largest real part."
+    },
+    "algorithm": {
+      "ja": "Lanczosの3項漸化式に2回の全再直交化を加え、Arnoldiは修正Gram–Schmidtを2回行います。小さな射影行列T/HだけをNumPyのeigh/eigで解き、元空間へRitzベクトルを戻します。大きな元行列の密固有値計算は参照側だけで使います。",
+      "en": "Lanczos uses its three-term recurrence plus two passes of full reorthogonalization; Arnoldi uses two-pass modified Gram–Schmidt. Only the small projected T/H is solved by NumPy eigh/eig before lifting Ritz vectors. A full dense solve of the original matrix is used only on the reference side."
+    },
+    "validation": {
+      "ja": "||Av−λv||₂、独立密行列固有値との差、基底の直交性を保存し、Krylov次元を増やした末尾の改善を確認します。非対称Ritz値の単調収束は仮定しません。恒等行列のhappy breakdown、零初期ベクトル拒否、次元予算不足も検査します。",
+      "en": "Store ||Av−λv||₂, differences from independently solved dense eigenvalues and basis orthogonality; verify final improvement as Krylov dimension grows. Nonsymmetric Ritz convergence is not assumed monotone. Tests include identity-matrix happy breakdown, zero-start rejection and insufficient dimension budgets."
+    },
+    "limits": {
+      "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
+      "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
+    },
+    "references": [
+      {
+        "id": "lanczos1950",
+        "author": "C. Lanczos",
+        "year": 1950,
+        "title": "An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators",
+        "doi": "10.6028/jres.045.026",
+        "url": "https://nvlpubs.nist.gov/nistpubs/jres/045/jresv45n4p255_A1b.pdf",
+        "review_level": "primary-first-page-and-official-metadata",
+        "journal": "Journal of Research of the National Bureau of Standards 45(4), 255–282",
+        "type": "article"
+      },
+      {
+        "id": "arnoldi1951",
+        "author": "W. E. Arnoldi",
+        "year": 1951,
+        "title": "The principle of minimized iterations in the solution of the matrix eigenvalue problem",
+        "doi": "10.1090/qam/42792",
+        "url": "https://doi.org/10.1090/qam/42792",
+        "review_level": "publisher-metadata-and-reference-list",
+        "journal": "Quarterly of Applied Mathematics 9, 17–29",
+        "type": "article"
+      },
+      {
+        "id": "saad1980",
+        "author": "Y. Saad",
+        "year": 1980,
+        "title": "Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices",
+        "doi": "10.1016/0024-3795(80)90169-X",
+        "url": "https://www.sciencedirect.com/science/article/pii/002437958090169X",
+        "review_level": "publisher-abstract-and-metadata",
+        "journal": "Linear Algebra and its Applications 34, 269–295",
+        "type": "article"
+      }
+    ],
+    "reference_implementations": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eigh.html",
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eig.html"
+    ],
+    "equations": [
+      "AV_m=V_mH_m+h_{m+1,m}v_{m+1}e_m^T",
+      "H_my=\\theta y,\\quad v=V_my,\\quad r=Av-\\theta v"
+    ]
+  },
+  {
+    "id": "gauss-adaptive-quadrature",
+    "title": {
+      "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+      "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+    },
+    "method_ids": [
+      "quadrature"
+    ],
+    "summary": {
+      "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+      "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
+    },
+    "assumptions": {
+      "ja": "有限区間上の滑らかな実関数、無次元の積分です。固定Gauss次数2・4・8・16と、適応絶対公差10⁻⁵・10⁻⁷・10⁻⁹を別々に走査します。両端特異点・不連続・無限区間は今回の入力では扱いません。",
+      "en": "Dimensionless smooth real functions on finite intervals. Fixed Gauss orders 2/4/8/16 and adaptive absolute tolerances 10⁻⁵/10⁻⁷/10⁻⁹ are swept separately. Endpoint singularities, discontinuities and infinite intervals are not covered by these inputs."
+    },
+    "algorithm": {
+      "ja": "Golub–Welschで対称Jacobi行列の固有値を節点、最初の固有ベクトル成分の平方の2倍を重みとします。適応Simpsonは区間を二分し、|S左+S右−S全|/15を局所推定として公差を配分します。評価回数と深さの上限を持ち、未達を成功としません。",
+      "en": "Golub–Welsch obtains nodes from a symmetric Jacobi matrix and weights from twice the squared first eigenvector components. Adaptive Simpson bisects intervals and allocates tolerances using |Sleft+Sright−Swhole|/15 as a local estimate. Evaluation and depth limits report unmet targets explicitly."
+    },
+    "validation": {
+      "ja": "全指定次数の多項式モーメント、SciPy roots_legendreの節点・重みとの差、解析exp積分の次数収束、解析atan積分とSciPy quadへの一致を測ります。公差を厳しくしたときの評価数と誤差を示し、5評価の強制予算切れ、非有限関数値も検査します。",
+      "en": "Measure polynomial moments for every chosen order, node/weight differences from SciPy roots_legendre, order refinement for the analytic exponential integral, and agreement with analytic arctangent and SciPy quad references. Store evaluation counts/errors as tolerance tightens; test forced exhaustion after five evaluations and nonfinite integrands."
+    },
+    "limits": {
+      "ja": "Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。",
+      "en": "The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK."
+    },
+    "references": [
+      {
+        "id": "golub-welsch1969",
+        "author": "G. H. Golub and J. H. Welsch",
+        "year": 1969,
+        "title": "Calculation of Gauss Quadrature Rules",
+        "doi": "10.1090/S0025-5718-69-99647-1",
+        "url": "https://www.ams.org/journals/mcom/1969-23-106/S0025-5718-69-99647-1/S0025-5718-69-99647-1.pdf",
+        "review_level": "publisher-search-first-page-and-metadata",
+        "journal": "Mathematics of Computation 23(106), 221–230",
+        "type": "article"
+      },
+      {
+        "id": "lyness1969",
+        "author": "J. N. Lyness",
+        "year": 1969,
+        "title": "Notes on the Adaptive Simpson Quadrature Routine",
+        "doi": "10.1145/321526.321537",
+        "url": "https://dl.acm.org/doi/10.1145/321526.321537",
+        "review_level": "publisher-metadata",
+        "journal": "Journal of the ACM 16(3), 483–495",
+        "type": "article"
+      }
+    ],
+    "reference_implementations": [
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.roots_legendre.html",
+      "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html"
+    ],
+    "equations": [
+      "\\int_{-1}^{1}f(x)\\,dx\\simeq\\sum_{j=1}^{n}w_jf(x_j)",
+      "E_{\\mathrm{est}}=|S_{\\mathrm{left}}+S_{\\mathrm{right}}-S_{\\mathrm{whole}}|/15"
+    ]
+  }
+]

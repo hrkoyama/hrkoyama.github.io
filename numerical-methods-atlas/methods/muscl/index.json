@@ -29,7 +29,7 @@
   "test_files": [
     "test_numerics"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1016/0021-9991(78)90023-2",
@@ -68,6 +68,165 @@
     "MUSCLスキーム",
     "MUSCL scheme"
   ],
+  "depth_previous_status": "educational-example",
+  "depth_release": {
+    "group": "mhd",
+    "case_ids": [
+      "shu-independent"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-mhd-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json",
+    "code_archive_sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json",
+    "passed_tests": 11,
+    "examples": [
+      {
+        "id": "shu-independent",
+        "title": {
+          "ja": "Shu–Osher：独立参照と格子収束",
+          "en": "Shu–Osher: independent reference and mesh refinement"
+        },
+        "method_ids": [
+          "muscl"
+        ],
+        "summary": {
+          "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+          "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+        },
+        "assumptions": {
+          "ja": "γ=1.4、[-5,5]、t=1.8。x<-4は(rho,u,p)=(3.857143,2.629369,10.33333)、右はrho=1+0.2sin5x,u=0,p=1。",
+          "en": "gamma=1.4, [-5,5], t=1.8. For x<-4, (rho,u,p)=(3.857143,2.629369,10.33333); to the right rho=1+0.2sin5x,u=0,p=1."
+        },
+        "algorithm": {
+          "ja": "アトラス側はMC-MUSCL/HLLC/SSPRK3、Athena++側はPLM/HLLC/RK3。公式problem generatorの位置と正弦波の波数だけを合わせるpatchを保存し、solver本体は変更しません。",
+          "en": "Atlas uses MC-MUSCL/HLLC/SSPRK3; Athena++ uses PLM/HLLC/RK3. A saved problem-generator patch matches only shock location and sinusoid wavenumber; the independent solver is unchanged."
+        },
+        "validation": {
+          "ja": "100/200/400セルの密度L1誤差と改善率、正値性を測り、参照2048/4096/8192セルの差も事前幅と比較します。境界へ衝撃波が届かない固定時刻で比較します。",
+          "en": "Measure density L1 error, refinement and positivity on 100/200/400 cells; also compare 2048/4096/8192 reference differences with a predeclared bound. The shock has not reached the boundaries at the fixed comparison time."
+        },
+        "limits": {
+          "ja": "参照は厳密解ではなく独立した有限格子数値解です。異なる流束系列すべての優劣、WENOの一般的高次数、負圧防止の保証には広げません。 参照2048→4096のL1差0.005346は事前幅0.005を満たさず、8192へ細分しました。途中の未達記録も残します。",
+          "en": "The reference is an independent finite-grid numerical solution, not an exact solution. No universal flux ranking, WENO-order claim or positivity guarantee is inferred. The 2048-to-4096 reference L1 increment0.005346 missed the predeclared0.005 bound, so8192 cells were added. The earlier miss remains recorded."
+        },
+        "references": [
+          {
+            "id": "stone2020athena",
+            "author": "J. M. Stone, K. Tomida, C. J. White and K. G. Felker",
+            "year": 2020,
+            "title": "The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers",
+            "doi": "10.3847/1538-4365/ab929b",
+            "url": "https://doi.org/10.3847/1538-4365/ab929b",
+            "review_level": "official-code-and-metadata; pinned source compiled and executed"
+          },
+          {
+            "id": "shu1989",
+            "author": "C.-W. Shu and S. Osher",
+            "year": 1989,
+            "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes, II",
+            "doi": "10.1016/0021-9991(89)90222-2",
+            "url": "https://doi.org/10.1016/0021-9991(89)90222-2",
+            "review_level": "bibliographic identity and official Athena problem generator"
+          }
+        ],
+        "equations": [
+          "\\rho(x,0)=1+0.2\\sin(5x)\\quad(x\\geq-4)"
+        ],
+        "code_files": [
+          "legacy/solvers.py",
+          "legacy/riemann.py",
+          "run.py"
+        ],
+        "measured": {
+          "id": "shu-independent",
+          "checks": {
+            "independent_reference_refined": true,
+            "density_error": true,
+            "grid_improvement": true,
+            "positive_states": true
+          },
+          "passed": true,
+          "metrics": {
+            "reference_last_pair_l1": 0.003374178434921656,
+            "reference_finest_n": 8192,
+            "finest_density_l1": 0.05377749991959067
+          },
+          "records": [
+            {
+              "n": 100,
+              "density_l1": 0.0786338678408063,
+              "steps": 280,
+              "min_density": 0.8000827057281565,
+              "min_pressure": 1.0
+            },
+            {
+              "n": 200,
+              "density_l1": 0.07616315955852117,
+              "steps": 560,
+              "min_density": 0.8003974628222872,
+              "min_pressure": 1.0
+            },
+            {
+              "n": 400,
+              "density_l1": 0.05377749991959067,
+              "steps": 1133,
+              "min_density": 0.8000000308133867,
+              "min_pressure": 1.0
+            }
+          ],
+          "reference_records": [
+            {
+              "coarse_n": 2048,
+              "fine_n": 4096,
+              "last_pair_l1": 0.00534601109862395,
+              "target": 0.005,
+              "target_reached": false
+            },
+            {
+              "coarse_n": 4096,
+              "fine_n": 8192,
+              "last_pair_l1": 0.003374178434921656,
+              "target": 0.005,
+              "target_reached": true
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+    "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/index.md",
@@ -76,10 +235,22 @@
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/riemann.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/equations.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_numerics.py"
@@ -95,6 +266,15 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#brio-wu-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#brio-wu-en"
       }
+    },
+    {
+      "id": "shu-independent",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ]
 }

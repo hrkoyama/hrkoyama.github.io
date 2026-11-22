@@ -1,0 +1,296 @@
+{
+  "id": "langevin-harmonic",
+  "title": {
+    "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+    "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+  },
+  "method_ids": [
+    "langevin-thermostat"
+  ],
+  "domains": [
+    "temperature",
+    "probability",
+    "time"
+  ],
+  "summary": {
+    "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
+    "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
+  },
+  "assumptions": {
+    "ja": "質量・Boltzmann定数・角振動数・摩擦・温度は1。独立32768複製、burn時間20、刻み0.4/0.2/0.1、相関lag時間2。h*omega<2を要求します。",
+    "en": "Mass, Boltzmann constant, frequency, friction and temperature are one. Use 32768 replicas, burn time 20, steps 0.4/0.2/0.1 and correlation lag 2; require h*omega<2."
+  },
+  "algorithm": {
+    "ja": "力B・ドリフトAの半ステップと厳密OUノイズ更新OをB-A-O-A-Bで合成。サンプルの共分散・3種のCDF・エネルギー平均/分散・位置相関を記録します。",
+    "en": "Compose force B and drift A half steps with exact OU noise O in B-A-O-A-B order. Record covariance, three CDFs, energy mean/variance and position correlation."
+  },
+  "validation": {
+    "ja": "SciPy離散Lyapunov解および調和系の明示共分散diag(T/omega²,T(1-h²omega²/4))で照合。運動量の刻み2次偏りと有限標本誤差を分離し、burn過渡を写像で評価。連続相関は別の行列指数で算出します。",
+    "en": "Check against a SciPy discrete-Lyapunov solve and explicit harmonic covariance diag(T/omega²,T(1-h²omega²/4)). Separate second-order momentum bias from sampling error and evaluate burn transients from the map. A separate matrix exponential gives continuous correlation."
+  },
+  "limits": {
+    "ja": "調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。",
+    "en": "Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD."
+  },
+  "formulas": [
+    "dq=p\\,dt,\\qquad dp=-\\omega^2q\\,dt-\\gamma p\\,dt+\\sqrt{2\\gamma T}\\,dW",
+    "\\Sigma=M\\Sigma M^T+Q,\\qquad \\Sigma_{h}=\\operatorname{diag}(T/\\omega^2,T(1-h^2\\omega^2/4))"
+  ],
+  "references": [
+    {
+      "id": "leimkuhler-matthews2013",
+      "author": "B. Leimkuhler and C. Matthews",
+      "year": 2013,
+      "title": "Rational Construction of Stochastic Numerical Methods for Molecular Sampling",
+      "doi": "10.1093/amrx/abs010",
+      "url": "https://arxiv.org/abs/1203.5428",
+      "review_level": "author-manuscript-selected-appendix",
+      "review": {
+        "ja": "著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。",
+        "en": "Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here."
+      },
+      "type": "article",
+      "journal": "Applied Mathematics Research eXpress2013(1),34–56"
+    },
+    {
+      "id": "scipy-1.14.1-discrete-lyapunov",
+      "author": "The SciPy community",
+      "year": 2024,
+      "title": "SciPy1.14.1 solve_discrete_lyapunov reference",
+      "doi": null,
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.solve_discrete_lyapunov.html",
+      "review_level": "official-api-documentation",
+      "review": {
+        "ja": "公式の離散Lyapunov方程式AXA^H-X+Q=0の符号と返却仕様を確認。",
+        "en": "Official equation AXA^H-X+Q=0, signs and output specification checked."
+      },
+      "type": "documentation"
+    },
+    {
+      "id": "scipy-1.14.1-expm",
+      "author": "The SciPy community",
+      "year": 2024,
+      "title": "SciPy1.14.1 expm reference",
+      "doi": null,
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html",
+      "review_level": "official-api-documentation",
+      "review": {
+        "ja": "公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。",
+        "en": "Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked."
+      },
+      "type": "documentation"
+    }
+  ],
+  "group": "models",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "langevin-harmonic",
+    "passed": true,
+    "termination": "fixed_budget_completed",
+    "checks": {
+      "finite": true,
+      "stationary_reference": true,
+      "burn_transient": true,
+      "covariance_sampling": true,
+      "correlation_sampling": true,
+      "bias_refinement": true,
+      "finest_bias": true,
+      "canonical_energy_cdf": true,
+      "canonical_position_cdf": true,
+      "canonical_momentum_cdf": true,
+      "canonical_energy_mean": true,
+      "canonical_energy_variance": true
+    },
+    "metrics": {
+      "maximum_covariance_sampling_error": 0.010793938239005096,
+      "maximum_correlation_sampling_error": 0.007859497657203701,
+      "maximum_lyapunov_residual": 1.1102230246251565e-16,
+      "maximum_burn_transient_covariance_error": 3.9116795872649285e-09,
+      "minimum_covariance_bias_order": 1.9999999999999882,
+      "finest_covariance_bias": 0.0024999999999999467,
+      "energy_cdf_error": 0.004375986814703525,
+      "position_cdf_error": 0.005928788756380088,
+      "momentum_cdf_error": 0.0068938107115509295,
+      "energy_mean_error": 0.009281722112660762,
+      "energy_variance_error": 0.03054847700744423
+    },
+    "records": [
+      {
+        "dt": 0.4,
+        "burn_steps": 50,
+        "replicas": 32768,
+        "discrete_covariance": [
+          [
+            0.9999999999999998,
+            -2.6757194688524847e-18
+          ],
+          [
+            9.792855310117937e-17,
+            0.9599999999999999
+          ]
+        ],
+        "sample_covariance": [
+          [
+            1.0032447005757448,
+            0.0064499135769307955
+          ],
+          [
+            0.0064499135769307955,
+            0.9575087034673743
+          ]
+        ],
+        "discrete_covariance_bias": 0.04000000000000015,
+        "covariance_sampling_error": 0.006449913576930798,
+        "stationary_lyapunov_residual": 1.1102230246251565e-16,
+        "burn_transient_covariance_error": 3.9116795872649285e-09,
+        "q_correlation_sample": 0.14679856804013103,
+        "q_correlation_discrete": 0.1401305534714609,
+        "q_correlation_continuum": 0.15057436514588762,
+        "correlation_sampling_error": 0.006668014568670139,
+        "energy_cdf_error": 0.008299285336893836,
+        "position_cdf_error": 0.003234324790751475,
+        "momentum_cdf_error": 0.008632316770474935,
+        "energy_mean_error": 0.019623297978440535,
+        "energy_variance_error": 0.04471729293462745
+      },
+      {
+        "dt": 0.2,
+        "burn_steps": 100,
+        "replicas": 32768,
+        "discrete_covariance": [
+          [
+            1.0000000000000002,
+            -2.390201959566234e-16
+          ],
+          [
+            -2.376918030848411e-16,
+            0.9899999999999999
+          ]
+        ],
+        "sample_covariance": [
+          [
+            1.0025075495147464,
+            -0.0025623186226214996
+          ],
+          [
+            -0.0025623186226214996,
+            0.9877735527549194
+          ]
+        ],
+        "discrete_covariance_bias": 0.01000000000000012,
+        "covariance_sampling_error": 0.002562318622621262,
+        "stationary_lyapunov_residual": 1.1102230246251565e-16,
+        "burn_transient_covariance_error": 3.6661476689076873e-09,
+        "q_correlation_sample": 0.14011836511256184,
+        "q_correlation_discrete": 0.14797786276976554,
+        "q_correlation_continuum": 0.15057436514588762,
+        "correlation_sampling_error": 0.007859497657203701,
+        "energy_cdf_error": 0.004147806580786562,
+        "position_cdf_error": 0.0038706226588478554,
+        "momentum_cdf_error": 0.01028948242932759,
+        "energy_mean_error": 0.004859448865166982,
+        "energy_variance_error": 0.006427294533593586
+      },
+      {
+        "dt": 0.1,
+        "burn_steps": 200,
+        "replicas": 32768,
+        "discrete_covariance": [
+          [
+            1.0,
+            1.7076258644823632e-16
+          ],
+          [
+            1.7042719713056047e-16,
+            0.9975
+          ]
+        ],
+        "sample_covariance": [
+          [
+            0.9892060617609949,
+            -0.002658077638783977
+          ],
+          [
+            -0.002658077638783977,
+            0.9922304940136841
+          ]
+        ],
+        "discrete_covariance_bias": 0.0024999999999999467,
+        "covariance_sampling_error": 0.010793938239005096,
+        "stationary_lyapunov_residual": 3.8055496254241206e-17,
+        "burn_transient_covariance_error": 3.5676580884513616e-09,
+        "q_correlation_sample": 0.15184770732615316,
+        "q_correlation_discrete": 0.14992611474499132,
+        "q_correlation_continuum": 0.15057436514588762,
+        "correlation_sampling_error": 0.0019215925811618406,
+        "energy_cdf_error": 0.004375986814703525,
+        "position_cdf_error": 0.005928788756380088,
+        "momentum_cdf_error": 0.0068938107115509295,
+        "energy_mean_error": 0.009281722112660762,
+        "energy_variance_error": 0.03054847700744423
+      }
+    ],
+    "duration_seconds": 0.08710066599996935,
+    "input_sha256": "7f780b7a0212a2521db67139301bdcd611f3173e01661218b3bfa56708d4c87f"
+  },
+  "problem_id": "langevin-harmonic",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+    "archive": {
+      "file": "atlas-models-2026-11-22.zip",
+      "sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+      "bytes": 539043,
+      "archive_directory": "atlas-models-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+    ],
+    "passed_tests": 26
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

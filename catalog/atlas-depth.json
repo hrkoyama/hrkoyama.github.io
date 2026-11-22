@@ -30,8 +30,8 @@
         "en": "/numerical-methods-atlas/en/read/benchmarks/"
       },
       "reference": {
-        "ja": "Sodは厳密Riemann解。Shu–Osherは同じ実装の細格子参照で、独立参照ではありません。",
-        "en": "Sod uses an exact Riemann solution. Shu–Osher uses a finer-grid reference from the same implementation, not an independent solver."
+        "ja": "Sodは厳密Riemann解。Shu–Osherは独立実装Athena++の保存参照と比較。細格子差と独立参照差を区別。",
+        "en": "Sod uses the exact Riemann solution. Shu–Osher compares with a stored independent Athena++ reference. Separate fine-grid differences from independent-reference differences."
       },
       "refinement": {
         "ja": "各実行例の格子誤差・保存則・減衰などを確認。全流体問題の一括認証ではありません。",
@@ -40,7 +40,10 @@
       "next": {
         "ja": "同じ問題で手法間の誤差・散逸・失敗条件を比較する。",
         "en": "Compare error, dissipation and failure conditions across methods on the same problem."
-      }
+      },
+      "supplemental_examples": [
+        "shu-independent"
+      ]
     },
     {
       "id": "mhd",
@@ -49,8 +52,8 @@
         "en": "MHD"
       },
       "scope": {
-        "ja": "Brio–Wuの固定入力例とCT/divergence処理の教材・保存図があります。",
-        "en": "Fixed-input Brio–Wu and educational CT/divergence material with saved figures."
+        "ja": "既存Brio–Wuに加え、Brio–WuとOrszag–Tangの独立Athena++参照照合、同じ連続初期場・終了時刻・CFLでのCT／採用GLM比較を追加。GLM Fourier例はdiv B制約診断で、物理問題数に重複加算しません。",
+        "en": "In addition to the shared Brio–Wu example, compare Brio–Wu and Orszag–Tang with independent Athena++ references and CT/adopted GLM at the same continuous initial field, final time and CFL. The GLM Fourier case is a divergence-constraint diagnostic, not an additional physical problem."
       },
       "examples": [
         "brio-wu"
@@ -60,17 +63,22 @@
         "en": "/numerical-methods-atlas/en/read/mhd/"
       },
       "reference": {
-        "ja": "Brio–Wuは同じ実装の細格子参照。独立したMHDソルバーとの比較は未整備。",
-        "en": "Brio–Wu uses a finer grid from the same implementation. Independent MHD-solver comparison remains missing."
+        "ja": "保存済みAthena++参照は別実装。GLM Fourier振幅は解析解。同一条件比較でもCT／GLMのdiv Bのnative演算子と実ステップ数は異なります。",
+        "en": "Stored Athena++ results are from an independent implementation; GLM Fourier amplitudes have an analytic reference. CT/GLM use different native div B operators and actual step counts even in the stated matched comparison."
       },
       "refinement": {
-        "ja": "固定入力の格子比較と物理量検査。Orszag–Tang等の保存図すべてを共通runnerで追試したわけではありません。",
-        "en": "Fixed-input grid and physical-state checks; not every saved Orszag–Tang or other figure has been rerun through the common runner."
+        "ja": "固定格子系列の誤差・保存量・正値性を確認。採用GLMはch=3、κ=0.18 ch nの格子依存減衰です。一般のGLMや発散尺度の同一性を保証しません。",
+        "en": "Check errors, conservation and positivity over fixed grids. The adopted GLM has ch=3 and grid-dependent damping κ=0.18 ch n. This does not certify general GLM variants or equivalence of divergence measures."
       },
       "next": {
-        "ja": "CT・divergence cleaningを同じ入力で比較する実行経路を整える。",
-        "en": "Provide matched-input execution paths comparing CT and divergence cleaning."
-      }
+        "ja": "より高分解能・長時間、別の発散診断、別変種は独立に検証する。",
+        "en": "Validate higher resolutions, longer runs, other divergence diagnostics and other variants separately."
+      },
+      "supplemental_examples": [
+        "ct-glm-independent",
+        "brio-independent",
+        "glm-fourier-mode"
+      ]
     },
     {
       "id": "elliptic",
@@ -104,7 +112,8 @@
       "next": {
         "ja": "境界条件と離散化をそろえ、残差と解誤差を比較する。",
         "en": "Match boundary conditions and discretizations when comparing residual and solution errors."
-      }
+      },
+      "supplemental_examples": []
     },
     {
       "id": "quantum-atoms",
@@ -113,8 +122,8 @@
         "en": "Quantum: isolated atoms"
       },
       "scope": {
-        "ja": "水素型原子と球対称1s² Heの閉殻HF・交換のみLDAに限定した2問題群です。",
-        "en": "Two problem families: hydrogenic atoms and spherical 1s² helium with closed-shell HF / exchange-only LDA."
+        "ja": "水素型原子と球対称1 s² Heの閉殻HF・交換のみLDAに限定した2問題群です。",
+        "en": "Two problem families: hydrogenic atoms and spherical 1 s² helium with closed-shell HF / exchange-only LDA."
       },
       "examples": [
         "hydrogenic-atoms",
@@ -135,7 +144,8 @@
       "next": {
         "ja": "原子の検証を保持し、別配布のH₂分子RHFとの数値表現の違いを比較する。",
         "en": "Preserve atomic validation and compare its numerical representation with the separately packaged H₂ RHF example."
-      }
+      },
+      "supplemental_examples": []
     },
     {
       "id": "quantum-molecular",
@@ -165,7 +175,8 @@
       "next": {
         "ja": "分極関数を含むH₂の基底比較、一般分子DFT・FCIは今後の課題。周期Heの限定例は別欄に掲載。",
         "en": "Polarized H₂ basis comparisons, general molecular DFT and FCI remain future work. The scoped periodic-He example has a separate field."
-      }
+      },
+      "supplemental_examples": []
     },
     {
       "id": "biology",
@@ -174,8 +185,8 @@
         "en": "Biology"
       },
       "scope": {
-        "ja": "22モデル族の解説のうち、専用実装・固定入力・実測検証があるのは今回のロジスティック増殖と閉鎖SIRです。",
-        "en": "Among 22 surveyed model families, dedicated code, fixed inputs and measured validation currently cover logistic growth and closed SIR."
+        "ja": "22モデル族の文献解説に、既存のロジスティック増殖・閉鎖SIRと、新しい線形反応拡散Fourierモード・SchnakenbergのTuring発現・FitzHugh–Nagumo励起回復の小さな専用例を接続。全22モデルやHodgkin–Huxleyの実装を意味しません。",
+        "en": "The 22-family survey links the existing logistic-growth/closed-SIR examples and small new examples of a linear reaction–diffusion Fourier mode, Schnakenberg Turing onset and FitzHugh–Nagumo excitation/recovery. This does not implement all 22 families or Hodgkin–Huxley."
       },
       "examples": [
         "logistic-growth",
@@ -186,17 +197,22 @@
         "en": "/numerical-methods-atlas/en/read/biological-models/"
       },
       "reference": {
-        "ja": "ロジスティックは解析解。SIRは別実装SciPy DOP853と許容誤差の再確認。",
-        "en": "Analytic logistic solution; SIR uses separate SciPy DOP853 with a tighter-tolerance reference check."
+        "ja": "ロジスティックと線形反応拡散は解析解。SIR・FHNは別実装DOP853。Turing線形段階は2×2 Fourier行列の指数関数。",
+        "en": "Analytic logistic and linear reaction–diffusion solutions; independent DOP853 for SIR/FHN; a 2×2 Fourier matrix exponential for the linear Turing stage."
       },
       "refinement": {
-        "ja": "RK4の時間刻み3段階、全出力点の最大誤差、非負性、SIRの人口保存を測定。",
-        "en": "Three RK4 step sizes; measured maximum errors over all output times, nonnegativity and SIR population conservation."
+        "ja": "ODEの時間収束に加え、反応拡散の空間2次・時間4次とTuring初期成長を分離。短い非線形Schnakenberg計算の有界性を測定。",
+        "en": "In addition to ODE time refinement, separate second-order spatial and fourth-order temporal refinement for reaction–diffusion and initial Turing growth. Check boundedness only for the short nonlinear Schnakenberg run."
       },
       "next": {
-        "ja": "次は反応拡散の線形成長率と空間・時間収束。SEIR、膜興奮、実測データ較正は未実装。",
-        "en": "Next: linear growth rates and space/time refinement for reaction–diffusion. SEIR, membrane excitation and fitting observations are unimplemented."
-      }
+        "ja": "SEIR・完全HH・成熟した非線形模様・実測較正は未実装または未検証。反応拡散の一般生物モデルへ結果を外挿しない。",
+        "en": "SEIR, full HH, mature nonlinear patterns and observational calibration remain unimplemented or unvalidated. Do not extrapolate to general biological reaction–diffusion models."
+      },
+      "supplemental_examples": [
+        "reaction-diffusion-fourier",
+        "turing-schnakenberg",
+        "fitzhugh-nagumo"
+      ]
     },
     {
       "id": "probability",
@@ -205,8 +221,8 @@
         "en": "Stochastic computation"
       },
       "scope": {
-        "ja": "IID x²積分とスカラーItô幾何Brown運動の2例を実装。確率計算法全般の完成を意味しません。",
-        "en": "Two implemented examples: IID integration of x² and scalar Itô geometric Brownian motion. They do not complete stochastic computation."
+        "ja": "既存IID x²積分・スカラーItô幾何Brown運動に、1次元Gaussian標的のMetropolis–Hastings MCMCを追加。確率計算法全般の完成を意味しません。",
+        "en": "Add Metropolis–Hastings MCMC for a 1D Gaussian target to the existing IID x² integration and scalar Itô geometric Brownian motion. These do not complete stochastic computation."
       },
       "examples": [
         "mc-integral",
@@ -217,17 +233,20 @@
         "en": "/numerical-methods-atlas/en/read/monte-carlo/"
       },
       "reference": {
-        "ja": "解析積分と分散、同じBrown経路上のGBM解析解。別seed間のばらつきと離散化誤差を区別。",
-        "en": "Analytic integral/variance and exact GBM on the same Brownian paths. Sampling variation and discretization errors remain separate."
+        "ja": "解析積分・分散・共有Brown経路上のGBM解析解。MCMCはGaussianの既知モーメントとCDF、自己相関診断は既知AR(1)と比較。",
+        "en": "Analytic integral/variance and GBM on common Brownian paths. Compare MCMC with known Gaussian moments/CDF and autocorrelation diagnostics with known AR(1)."
       },
       "refinement": {
-        "ja": "MCは256 seedでNを3段階、GBMは4096経路で刻みを4段階。固定seed・予算の統計的検査で、全seedでの保証ではありません。",
-        "en": "MC: three sample budgets over 256 seeds. GBM: four step sizes over 4096 paths. Statistical checks apply to fixed seeds/budgets, not every seed."
+        "ja": "既存MCの256 seed・GBMの4096経路に加え、MCMCの32独立連鎖、正値系列自己相関時間・ESS・古典的split R-hatを確認。固定seed・予算での統計的判定であり、全seedや全標的での保証ではありません。",
+        "en": "In addition to the existing 256-seed MC and 4096-path GBM runs, check 32 independent MCMC chains, positive-sequence autocorrelation time/ESS and classical split R-hat. Statistical acceptance is specific to the fixed seeds/budgets, not every seed or target."
       },
       "next": {
-        "ja": "次はMCMCの既知分布・自己相関・有効標本数と独立連鎖を検証。希少事象は未実装。",
-        "en": "Next: validate MCMC against known distributions, autocorrelation, effective sample size and independent chains. Rare events remain unimplemented."
-      }
+        "ja": "多峰性・高次元標的、希少事象、一般SDEや診断の普遍性は未検証。",
+        "en": "Multimodal/high-dimensional targets, rare events, general SDEs and universal diagnostic reliability remain unvalidated."
+      },
+      "supplemental_examples": [
+        "gaussian-mcmc"
+      ]
     },
     {
       "id": "temperature",
@@ -236,8 +255,8 @@
         "en": "Temperature control"
       },
       "scope": {
-        "ja": "12手法の比較解説があります。サーモスタット専用コードと分布の実測検証は未公開です。",
-        "en": "Comparative reading for 12 methods. Dedicated thermostat code and measured distribution checks are not published."
+        "ja": "12手法を比較解説。LangevinのBAOABによる1次元調和振動子NVTだけに専用コード・固定入力・分布検証を追加。他の11手法は実装予定です。",
+        "en": "Comparative reading covers 12 methods. Dedicated code, fixed inputs and distribution checks cover only a 1D harmonic-oscillator NVT example with Langevin BAOAB. The other 11 methods remain planned."
       },
       "examples": [],
       "reading": {
@@ -245,17 +264,20 @@
         "en": "/numerical-methods-atlas/en/read/thermostats/"
       },
       "reference": {
-        "ja": "未実施。通常の振動子積分の例は温度制御の分布検証ではありません。",
-        "en": "Not performed. Ordinary oscillator integration does not validate a thermostat distribution."
+        "ja": "連続の線形Gaussian伝播の行列指数関数と、独立な離散Lyapunov方程式による定常共分散。正準位置・運動量・全エネルギーCDFと照合。",
+        "en": "A continuous linear-Gaussian matrix-exponential propagator and an independent discrete-Lyapunov stationary covariance. Compare canonical position, momentum and total-energy CDFs."
       },
       "refinement": {
-        "ja": "未実施。平均温度だけでなく分布と相関時間の検証が必要。",
-        "en": "Not performed. Distributions and correlation times need validation beyond mean temperature."
+        "ja": "dt=0.4/0.2/0.1、32768独立レプリカ。位置・運動量共分散の刻み依存、時差相関、有限burn-inの残差を分離。固定seedでの分布判定。",
+        "en": "dt=0.4/0.2/0.1 with 32768 independent replicas. Separate covariance step bias, lagged correlations and finite-burn-in residuals. Distribution acceptance is for fixed seeds."
       },
       "next": {
-        "ja": "調和振動子で温度・エネルギー分布・時間相関を独立参照と比較する。",
-        "en": "Compare temperature, energy distributions and time correlations against independent references for a harmonic oscillator."
-      }
+        "ja": "非調和・多粒子系、結合時間の広い走査、Nosé–Hoover・CSVRなど他11手法の専用検証は未実装。",
+        "en": "Anharmonic/many-particle systems, broad coupling-time sweeps and dedicated checks for the other 11 methods, including Nosé–Hoover/CSVR, remain unimplemented."
+      },
+      "supplemental_examples": [
+        "langevin-harmonic"
+      ]
     },
     {
       "id": "quantum-periodic",
@@ -286,7 +308,109 @@
       "next": {
         "ja": "BOMDの長時間NVE保存量と刻み幅・SCF公差への感度を検証し、他物質・非局所擬ポテンシャル・金属は別に検証する。",
         "en": "Validate long BOMD NVE conservation and timestep/SCF sensitivity. Other materials, nonlocal pseudopotentials and metals need separate evidence."
+      },
+      "supplemental_examples": []
+    },
+    {
+      "id": "foundations",
+      "name": {
+        "ja": "基盤：線形代数と求積",
+        "en": "Foundations: linear algebra and quadrature"
+      },
+      "supplemental_examples": [
+        "sa-amg",
+        "qr-svd-factorization",
+        "krylov-eigenvalues",
+        "gauss-adaptive-quadrature"
+      ],
+      "scope": {
+        "ja": "SA-AMG、Householder QR・one-sided Jacobi SVD、再直交化Krylov固有値、Gauss・適応求積の小規模固定例。",
+        "en": "Small fixed-input examples of SA-AMG, Householder QR/one-sided Jacobi SVD, reorthogonalized Krylov eigenvalues and Gauss/adaptive quadrature."
+      },
+      "reference": {
+        "ja": "Poissonの解析解・独立疎直接解、NumPy/SciPyの独立分解・固有値、解析積分。",
+        "en": "Analytic Poisson/independent sparse direct solve, independent NumPy/SciPy factorizations/eigenvalues and analytic integrals."
+      },
+      "refinement": {
+        "ja": "残差と解誤差、直交性と再構成、固有残差と真値の距離、求積誤差を別々に測定。",
+        "en": "Measure residual/solution errors, orthogonality/reconstruction, eigen-residual/reference distance and quadrature errors separately."
+      },
+      "next": {
+        "ja": "小さな教育用実装。大規模並列AMG、任意の非対称・悪条件行列、全求積問題の保証はない。",
+        "en": "Small educational implementations; no certification of large parallel AMG, arbitrary nonsymmetric/ill-conditioned matrices or all integrands."
+      },
+      "examples": [],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-foundations/",
+        "en": "/numerical-methods-atlas/en/read/validation-foundations/"
+      }
+    },
+    {
+      "id": "particles",
+      "name": {
+        "ja": "粒子・静電場・気体運動論",
+        "en": "Particles, electrostatics and gas kinetics"
+      },
+      "supplemental_examples": [
+        "ewald",
+        "spme",
+        "fmm",
+        "pic",
+        "dsmc"
+      ],
+      "scope": {
+        "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。",
+        "en": "Small validations of neutral-periodic Ewald/B-spline SPME, a genuine 2D free-space logarithmic FMM, 1D cold-plasma PIC and a homogeneous Maxwell-molecule DSMC collision component."
+      },
+      "reference": {
+        "ja": "Ewaldの別級数・直接和、SPMEと収束Ewald、FMMの直接粒子和、PICの線形振動、DSMCの保存量・分布診断を区別。",
+        "en": "Distinguish alternate Ewald series/direct sums, SPME against converged Ewald, FMM direct particle sums, PIC linear oscillation and DSMC conservation/distribution diagnostics."
+      },
+      "refinement": {
+        "ja": "打切り・メッシュ・多重極次数・PIC刻みを各例で確認。SPMEは1993年のLagrange補間PMEそのものではない。DSMCの衝突round数は物理時間と解釈しない。",
+        "en": "Check case-specific cutoffs, meshes, multipole order and PIC step refinement. SPME is not the original 1993 Lagrange-interpolation PME. DSMC collision rounds are not interpreted as physical time."
+      },
+      "next": {
+        "ja": "一般3D Coulomb FMM、複雑なプラズマ、空間輸送を含む物理時間DSMC、実在気体は未検証。",
+        "en": "General 3D Coulomb FMM, complex plasmas, physical-time DSMC with spatial transport and real gases remain unvalidated."
+      },
+      "examples": [],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-particles/",
+        "en": "/numerical-methods-atlas/en/read/validation-particles/"
+      }
+    },
+    {
+      "id": "transport",
+      "name": {
+        "ja": "放射輸送",
+        "en": "Radiative transport"
+      },
+      "supplemental_examples": [
+        "radiation-transport"
+      ],
+      "scope": {
+        "ja": "吸収のみの1次元平板で角度離散化と風上空間離散化を実装。散乱や多周波輸送へ広げない。",
+        "en": "Implement angular quadrature and upwind spatial discretization in an absorbing 1D slab; excludes scattering and multifrequency transport."
+      },
+      "reference": {
+        "ja": "厳密ray解、連続角度の指数積分によるfluxを独立参照に使う。",
+        "en": "Exact-ray solutions and continuum-angle exponential-integral flux provide independent references."
+      },
+      "refinement": {
+        "ja": "厳密rayでの純角度誤差と、同じ角度求積に対する空間誤差を分離。",
+        "en": "Separate pure angular error using exact rays from spatial error at a fixed angular quadrature."
+      },
+      "next": {
+        "ja": "散乱、時間依存、多次元・不透明度結合は別の検証が必要。",
+        "en": "Scattering, time dependence, multiple dimensions and opacity coupling require separate validation."
+      },
+      "examples": [],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-particles/",
+        "en": "/numerical-methods-atlas/en/read/validation-particles/"
       }
     }
-  ]
+  ],
+  "supplemental_edition": "2026-11-22"
 }

@@ -10,10 +10,10 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "周期Coulomb和を実空間・逆空間・自己補正に分けます。中性セル、単位、ゼロモードと表面規約を揃えるための基準を整理した段階です。",
-    "en": "Split a periodic Coulomb sum into real, reciprocal and self-correction terms. This record defines neutral-cell, unit, zero-mode and surface conventions for a future reference calculation."
+    "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+    "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ewald/",
@@ -67,12 +67,12 @@
   "units": "Comparison convention: fixed length ℓ₀, charge q₀ and Coulomb prefactor kₑ; energy unit kₑq₀²/ℓ₀ and force unit kₑq₀²/ℓ₀². The splitting coefficient has inverse-length units. Do not mix reduced kₑ=1 and SI conventions or reuse gravitational-PM signs.",
   "boundary_conditions": "Triply periodic neutral cell; the initial comparison specifies a conducting (tin-foil) exterior with zero macroscopic surface term and separately fixes the mean-potential gauge. Vacuum-exterior, slab and isolated-boundary results are different problems.",
   "next_deliverable": {
-    "ja": "中性の小系で、自己項・ゼロモード・境界規約を明示した参照計算。",
-    "en": "A neutral small-system reference with explicit self, zero-mode and boundary conventions."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+    "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
   },
   "metadata_review": {
     "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -147,20 +147,29 @@
       }
     },
     "verification": {
-      "kind": "source-review-no-implementation",
+      "kind": "source-and-code-inspection",
       "summary": {
-        "ja": "原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。",
-        "en": "Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review."
+        "ja": "原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。",
+        "en": "In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope."
       },
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "fixed-input-results",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "label": "Fixed-input measured checks / 固定入力の実測判定"
+        },
+        {
+          "kind": "independent-extraction-receipt",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+          "label": "Independent ZIP-extraction receipt / ZIP独立展開の記録"
+        }
+      ],
       "not_checked": {
         "ja": [
-          "実装コード・固定入力・数値残差・収束率・性能は未検証。",
-          "原論文の全導出と全数値例の再現は行っていません。"
+          "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。"
         ],
         "en": [
-          "No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.",
-          "Not a reproduction of every derivation or numerical example in the original papers."
+          "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
         ]
       }
     }
@@ -171,14 +180,231 @@
     "エバルト法",
     "エワルド和"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "particles",
+    "case_ids": [
+      "ewald"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-particles-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+    "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "ewald",
+        "title": {
+          "ja": "中性周期セルのEwald和と独立theta積分",
+          "en": "Neutral-cell Ewald sums and an independent theta integral"
+        },
+        "method_ids": [
+          "ewald"
+        ],
+        "summary": {
+          "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+          "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+        },
+        "assumptions": {
+          "ja": "立方セル・全電荷ゼロ・Coulomb定数1・導体境界（tin foil）。主例は非対称な8点電荷で、NaClの8イオン配置は別の解析照合用です。",
+          "en": "Cubic cell, zero total charge, Coulomb constant one and conducting/tin-foil boundary. An asymmetric eight-charge case is distinct from the eight-ion NaCl reference cell."
+        },
+        "algorithm": {
+          "ja": "erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格子和、−alpha/sqrt(pi) sum(q²)を加えます。力は各項の位置微分から求め、24成分を中心エネルギー差分と比較します。",
+          "en": "Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences."
+        },
+        "validation": {
+          "ja": "分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。",
+          "en": "Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate."
+        },
+        "limits": {
+          "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+          "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
+        },
+        "equations": [
+          "E=\\frac12\\sum_{ij\\mathbf n}^{\\prime}q_iq_j\\frac{\\operatorname{erfc}(\\alpha r_{ij\\mathbf n})}{r_{ij\\mathbf n}}+\\frac{2\\pi}{V}\\sum_{\\mathbf k\\ne0}\\frac{e^{-k^2/(4\\alpha^2)}}{k^2}|S(\\mathbf k)|^2-\\frac{\\alpha}{\\sqrt\\pi}\\sum_iq_i^2",
+          "M_{\\rm NaCl}=\\frac2{\\sqrt\\pi}\\int_0^\\infty[1-\\vartheta_4(0,e^{-u^2})^3]du"
+        ],
+        "references": [
+          {
+            "id": "ewald1921",
+            "author": "P. P. Ewald",
+            "year": 1921,
+            "title": "Die Berechnung optischer und elektrostatischer Gitterpotentiale",
+            "doi": "10.1002/andp.19213690304",
+            "url": "https://doi.org/10.1002/andp.19213690304",
+            "review_level": "abstract-and-metadata",
+            "review_note": {
+              "ja": "出版社が返した書誌と原著の節見出しを確認。原著全文の監査はしていません。",
+              "en": "Publisher metadata and original section headings checked; no full-text audit claimed."
+            }
+          },
+          {
+            "id": "dlmf-theta-transform",
+            "author": "NIST Digital Library of Mathematical Functions",
+            "year": 2026,
+            "title": "§20.7(viii) Transformations of Lattice Parameter",
+            "doi": null,
+            "url": "https://dlmf.nist.gov/20.7#viii",
+            "review_level": "official-documentation",
+            "review_note": {
+              "ja": "Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。",
+              "en": "Official Jacobi-theta lattice-parameter transformations checked; year denotes access year."
+            }
+          }
+        ],
+        "measured": {
+          "id": "ewald",
+          "passed": true,
+          "checks": {
+            "madelung_error": true,
+            "splitting_energy_difference": true,
+            "splitting_force_difference": true,
+            "finite_difference_error": true,
+            "cutoff_force_last_change": true,
+            "net_force": true,
+            "nonzero_forces": true,
+            "real_cutoff_refines": true,
+            "theta_reference_error_bound": true
+          },
+          "metrics": {
+            "madelung_constant": 1.7475645946331826,
+            "theta_reference": 1.7475645946331821,
+            "theta_quadrature_error": 1.27151293921409e-13,
+            "real_cutoff_force_last_change": 0.0,
+            "madelung_error": 4.440892098500626e-16,
+            "splitting_energy_difference": 5.329070518200751e-15,
+            "splitting_force_difference": 3.8191672047105385e-14,
+            "finite_difference_error": 1.7360424209300618e-09,
+            "cutoff_force_last_change": 0.0,
+            "net_force": 1.1546319456101628e-14
+          },
+          "records": [
+            {
+              "series": "splitting",
+              "alpha": 4.5,
+              "energy": -8.407406514350585,
+              "max_force": 10.757887167489942
+            },
+            {
+              "series": "splitting",
+              "alpha": 5.6,
+              "energy": -8.40740651435059,
+              "max_force": 10.757887167489926
+            },
+            {
+              "series": "splitting",
+              "alpha": 6.5,
+              "energy": -8.407406514350587,
+              "max_force": 10.757887167489944
+            },
+            {
+              "series": "real_cutoff",
+              "images": 0,
+              "energy": -8.411415134707521,
+              "force_reference_error": 0.07417628414807043
+            },
+            {
+              "series": "real_cutoff",
+              "images": 1,
+              "energy": -8.40740651435059,
+              "force_reference_error": 0.0
+            },
+            {
+              "series": "real_cutoff",
+              "images": 2,
+              "energy": -8.40740651435059,
+              "force_reference_error": 0.0
+            },
+            {
+              "series": "reciprocal_cutoff",
+              "cutoff": 4,
+              "energy": -8.40851443962709,
+              "force_reference_error": 0.0015258777869266993
+            },
+            {
+              "series": "reciprocal_cutoff",
+              "cutoff": 7,
+              "energy": -8.407406516532497,
+              "force_reference_error": 5.28971266788858e-09
+            },
+            {
+              "series": "reciprocal_cutoff",
+              "cutoff": 10,
+              "energy": -8.407406514350587,
+              "force_reference_error": 0.0
+            },
+            {
+              "series": "reciprocal_cutoff",
+              "cutoff": 14,
+              "energy": -8.40740651435059,
+              "force_reference_error": 0.0
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+    "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-particles-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "ewald",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+  "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

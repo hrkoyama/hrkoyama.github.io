@@ -10,10 +10,10 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "粒子標本による衝突と輸送を連続体模型と比較する。",
-    "en": "Compare particle-sampled collisions and transport with continuum models."
+    "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+    "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dsmc/",
@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "統計誤差と保存量を記録する小規模模型。",
-    "en": "A small model recording statistical error and conservation."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。",
+    "en": "This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -53,14 +53,328 @@
     "direct simulation Monte Carlo",
     "直接シミュレーションモンテカルロ法"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "particles",
+    "case_ids": [
+      "dsmc"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-particles-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+    "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "dsmc",
+        "title": {
+          "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+          "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+        },
+        "method_ids": [
+          "dsmc"
+        ],
+        "summary": {
+          "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+          "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+        },
+        "assumptions": {
+          "ja": "等質・等質量・等方散乱・一定衝突率。各roundで全粒子を一度ずつランダムに組み合わせます。初期は±sqrt(3)の二つのビームで、温度の目標は1です。 各seedは総運動量0・総エネルギー固定のmicrocanonical系で、Maxwell/Gammaは大粒子数極限の参照です。",
+          "en": "Homogeneous, equal masses, isotropic scattering and constant collision rate. Each round randomly matches every particle once. Two initial beams at ±sqrt(3) give target temperature one. Each seed has zero total momentum and fixed total energy: its finite-N equilibrium is microcanonical, while Maxwell/Gamma are large-N references."
+        },
+        "algorithm": {
+          "ja": "対の重心速度と相対速度の大きさを保持し、相対速度の方向を球面上で一様に選びます。roundは物理時刻ではなく衝突演算の回数です。 D=<vx²−(vy²+vz²)/2>と置くと、ランダムな相方の平均で重心の異方性が(N−2)/(2(N−1))倍になり、散乱後の相対方向の異方性期待値はゼロになるため、保存した期待減衰率が得られます。",
+          "en": "Preserve pair center-of-mass velocity and relative speed, then choose the new relative direction uniformly on the sphere. Rounds count collision operations and are not calibrated physical time. For D=<vx²−(vy²+vz²)/2>, averaging a random partner multiplies the center-of-mass anisotropy by (N−2)/(2(N−1)); isotropic postcollision relative directions contribute zero expected anisotropy."
+        },
+        "validation": {
+          "ja": "粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。",
+          "en": "Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty."
+        },
+        "limits": {
+          "ja": "DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。",
+          "en": "This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced."
+        },
+        "equations": [
+          "\\mathbf v_{1,2}^{\\prime}=\\mathbf V\\pm\\frac{|\\mathbf g|}{2}\\mathbf n,\\qquad|\\mathbf n|=1",
+          "\\mathbb E[D_{r+1}]=\\frac{N-2}{2(N-1)}\\mathbb E[D_r]"
+        ],
+        "references": [
+          {
+            "id": "bird1963",
+            "author": "G. A. Bird",
+            "year": 1963,
+            "title": "Approach to Translational Equilibrium in a Rigid Sphere Gas",
+            "doi": "10.1063/1.1710976",
+            "url": "https://doi.org/10.1063/1.1710976",
+            "review_level": "metadata-only",
+            "review_note": {
+              "ja": "Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得できず、原著の剛体球モデルを再現したとは主張しません。",
+              "en": "Official Sandia DSMC commemorative document and DOI metadata checked; publisher text unavailable and the original hard-sphere model is not claimed as reproduced."
+            }
+          }
+        ],
+        "measured": {
+          "id": "dsmc",
+          "passed": true,
+          "checks": {
+            "momentum_error": true,
+            "energy_error": true,
+            "variance_error": true,
+            "fourth_moment_error": true,
+            "energy_cdf_ks": true,
+            "anisotropy_error": true,
+            "sampling_uncertainty_decreases": true
+          },
+          "metrics": {
+            "momentum_error": 1.2923689896027213e-16,
+            "energy_error": 2.9605947323337516e-16,
+            "variance_error": 0.008371767231336591,
+            "fourth_moment_error": 0.06631754023150327,
+            "energy_cdf_ks": 0.0017215082600027798,
+            "anisotropy_error": 0.011017100788060268,
+            "finest_particle_count": 8192,
+            "seeds": 16
+          },
+          "records": [
+            {
+              "particles": 512,
+              "variance_error": 0.008240183321856609,
+              "fourth_moment_error": 0.09232125748901598,
+              "fourth_moment_standard_error": 0.10708860492508473,
+              "energy_cdf_ks": 0.007114243546997523,
+              "anisotropy_error": 0.036267870094548224
+            },
+            {
+              "particles": 2048,
+              "variance_error": 0.006452072936152575,
+              "fourth_moment_error": 0.03370540448486237,
+              "fourth_moment_standard_error": 0.050401073241546766,
+              "energy_cdf_ks": 0.0037306840149196052,
+              "anisotropy_error": 0.02552534603159987
+            },
+            {
+              "particles": 8192,
+              "variance_error": 0.008371767231336591,
+              "fourth_moment_error": 0.06631754023150327,
+              "fourth_moment_standard_error": 0.030818281924613507,
+              "energy_cdf_ks": 0.0017215082600027798,
+              "anisotropy_error": 0.011017100788060268
+            },
+            {
+              "series": "anisotropy",
+              "round": 0,
+              "anisotropy": 2.9999999999999996,
+              "expected": 3.0
+            },
+            {
+              "series": "anisotropy",
+              "round": 1,
+              "anisotropy": 1.500187805390067,
+              "expected": 1.4998168721767793
+            },
+            {
+              "series": "anisotropy",
+              "round": 2,
+              "anisotropy": 0.7462989132927182,
+              "expected": 0.7498168833553793
+            },
+            {
+              "series": "anisotropy",
+              "round": 3,
+              "anisotropy": 0.370042866737766,
+              "expected": 0.37486267089980196
+            },
+            {
+              "series": "anisotropy",
+              "round": 4,
+              "anisotropy": 0.1873328304238103,
+              "expected": 0.1874084528549248
+            },
+            {
+              "series": "anisotropy",
+              "round": 5,
+              "anisotropy": 0.09594138398578668,
+              "expected": 0.09369278652678759
+            },
+            {
+              "series": "anisotropy",
+              "round": 6,
+              "anisotropy": 0.05587361819131603,
+              "expected": 0.04684067401137775
+            },
+            {
+              "series": "anisotropy",
+              "round": 7,
+              "anisotropy": 0.03443457851685918,
+              "expected": 0.023417477728798913
+            },
+            {
+              "series": "anisotropy",
+              "round": 8,
+              "anisotropy": 0.01767531822429303,
+              "expected": 0.011707309400492192
+            },
+            {
+              "series": "anisotropy",
+              "round": 9,
+              "anisotropy": 0.016089705855882062,
+              "expected": 0.005852940055550669
+            },
+            {
+              "series": "anisotropy",
+              "round": 10,
+              "anisotropy": 0.006172161819000495,
+              "expected": 0.0029261127490513962
+            },
+            {
+              "series": "anisotropy",
+              "round": 11,
+              "anisotropy": 0.011089213430535698,
+              "expected": 0.0014628777569729544
+            },
+            {
+              "series": "anisotropy",
+              "round": 12,
+              "anisotropy": 0.007192178827133272,
+              "expected": 0.0007313495806133864
+            },
+            {
+              "series": "anisotropy",
+              "round": 13,
+              "anisotropy": -0.002157978851671488,
+              "expected": 0.00036563014682112284
+            },
+            {
+              "series": "anisotropy",
+              "round": 14,
+              "anisotropy": -0.004459860915663527,
+              "expected": 0.00018279275439293103
+            },
+            {
+              "series": "anisotropy",
+              "round": 15,
+              "anisotropy": -0.009353743750609864,
+              "expected": 9.138521905006135e-05
+            },
+            {
+              "series": "anisotropy",
+              "round": 16,
+              "anisotropy": -0.005073765779940002,
+              "expected": 4.568703113295095e-05
+            },
+            {
+              "series": "anisotropy",
+              "round": 17,
+              "anisotropy": -0.002045292150225156,
+              "expected": 2.284072671095521e-05
+            },
+            {
+              "series": "anisotropy",
+              "round": 18,
+              "anisotropy": -0.005833196675722789,
+              "expected": 1.141896909795649e-05
+            },
+            {
+              "series": "anisotropy",
+              "round": 19,
+              "anisotropy": -0.00989344579035932,
+              "expected": 5.7087875053268e-06
+            },
+            {
+              "series": "anisotropy",
+              "round": 20,
+              "anisotropy": -0.0021169560783531466,
+              "expected": 2.85404527338704e-06
+            },
+            {
+              "series": "anisotropy",
+              "round": 21,
+              "anisotropy": 0.00023367544338494944,
+              "expected": 1.426848418327424e-06
+            },
+            {
+              "series": "anisotropy",
+              "round": 22,
+              "anisotropy": 0.002510057646990922,
+              "expected": 7.133371106154073e-07
+            },
+            {
+              "series": "anisotropy",
+              "round": 23,
+              "anisotropy": -0.0033991129062506675,
+              "expected": 3.5662501135027384e-07
+            },
+            {
+              "series": "anisotropy",
+              "round": 24,
+              "anisotropy": -0.00443917515380364,
+              "expected": 1.782907363544587e-07
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+    "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-particles-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "dsmc",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+  "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

@@ -153,6 +153,16 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
             coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
                 'chapter':'fdtd','status':'local-example','group':x['group']['en'],
                 'scope':x['limitations']['en'],'origin':'curated-fdtd-example'})
+    # New fixed-input supplements replace their existing method inventory row;
+    # a second validation of a method never creates a second method count.
+    depth_methods=[x for x in load(ROOT/'catalog/atlas-methods.json')['methods'] if x.get('depth_release')]
+    depth_ids={x['id'] for x in depth_methods}
+    coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-depth-example' and not (x['kind']=='method' and x['id'] in depth_ids)]
+    for x in depth_methods:
+        assert x['status']=='educational-example'
+        coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
+            'chapter':'validation-'+x['depth_release']['group'],'status':'local-example',
+            'group':x['group']['en'],'scope':x['depth_scope']['en'],'origin':'curated-depth-example'})
     coverage['publications']=[x for x in coverage['publications'] if x.get('origin')!='curated-quantum-reading']
     identities={x['identity'] for x in coverage['publications']}
     for r in refs.values():

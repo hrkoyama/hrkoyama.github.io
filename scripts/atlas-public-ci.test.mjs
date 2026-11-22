@@ -35,8 +35,11 @@ test('the Linux public-artifact job has matching immutable pins, no checkout, bo
   assert.doesNotMatch(workflow, /uses:\s*actions\/checkout/);
   assert.match(workflow, /contents:\s*read/);
   assert.doesNotMatch(workflow, /(?:contents|actions|packages|id-token):\s*write/);
-  assert.match(workflow, /workflow_dispatch/); assert.match(workflow, /cron:/);
-  assert.match(workflow, /workflow_run:/); assert.match(workflow, /conclusion\s*==\s*['"]success['"]/);
+  assert.match(workflow, /workflow_dispatch/);
+  assert.doesNotMatch(workflow, /cron:|workflow_run:/);
+  const policy = JSON.parse(read('catalog/atlas-ci.json'));
+  assert.equal(policy.cadence.weekly_cron_utc, null);
+  assert.equal(policy.cadence.after_site_checks_success, false);
   assert.match(workflow, /actions\/upload-artifact@/);
   assert.match(workflow, /if:\s*(?:\$\{\{\s*)?always\(\)/);
   assert.match(workflow, /retention-days:\s*90/);

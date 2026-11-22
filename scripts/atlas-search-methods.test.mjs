@@ -63,8 +63,16 @@ test('named executable cases retain priority over method cards and broad chapter
     assert.equal(first?.kind,'execution-example',query);
     assert.ok(ids.some(id=>first.url===`/numerical-methods-atlas/code-and-data/examples/${id}/?lang=${language}`),query);
   }
-  for(const query of ['PBE code','UHF code','Ewald code']){
+  for(const query of ['PBE code','UHF code','slab-ewald code']){
     assert.ok(!searchChapters(index,query,'en').some(result=>result.kind==='execution-example'),query+' unsupported runnable claim');
+  }
+  for(const [query,id] of [['Ewald code','ewald'],['SPME code','spme']]){
+    const rows=searchChapters(index,query,'en');
+    assert.equal(rows[0]?.kind,'execution-example');
+    assert.equal(rows[0]?.url,`/numerical-methods-atlas/validation/${id}/?lang=en`);
+    const method=rows.find(row=>row.method?.id===id)?.method;
+    assert.equal(method.status,'educational-example');
+    assert.deepEqual(method.execution_examples.map(example=>example.id),[id]);
   }
 });
 

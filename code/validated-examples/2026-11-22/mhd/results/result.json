@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "input_sha256": "1842e9e7afe1ec14992d29e5642caed596b4330eeefefbcac40c65dd03add096",
+  "passed": true,
+  "checks": {
+    "ct-glm-independent": true,
+    "brio-independent": true,
+    "shu-independent": true,
+    "glm-fourier-mode": true
+  },
+  "cases": [
+    {
+      "id": "ct-glm-independent",
+      "checks": {
+        "independent_reference_refined": true,
+        "ct_native_constraint_16": true,
+        "ct_native_constraint_32": true,
+        "ct_native_constraint_64": true,
+        "ct_density_error": true,
+        "ct_magnetic_error": true,
+        "ct_refinement": true,
+        "glm_density_error": true,
+        "glm_magnetic_error": true,
+        "glm_refinement": true,
+        "conservation": true,
+        "positive_states": true
+      },
+      "passed": true,
+      "metrics": {
+        "reference_density_128_256_l1": 4.631344236627223e-05,
+        "ct_glm_finest_density_l1": 0.0016910992352830488
+      },
+      "records": [
+        {
+          "method": "ct",
+          "n": 16,
+          "density_relative_l1": 0.032639135013644294,
+          "by_relative_l1": 0.16252813101136426,
+          "native_divergence_linf": 3.552713678800501e-15,
+          "common_cell_divergence_linf": 0.11654440100301988,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "min_density": 0.20242747932278973,
+          "min_pressure": 0.13041766976791663,
+          "steps": 12
+        },
+        {
+          "method": "ct",
+          "n": 32,
+          "density_relative_l1": 0.023437665222524422,
+          "by_relative_l1": 0.09072932569462948,
+          "native_divergence_linf": 1.1102230246251565e-14,
+          "common_cell_divergence_linf": 0.09156569499228118,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "min_density": 0.19988648261630854,
+          "min_pressure": 0.12219598804278684,
+          "steps": 24
+        },
+        {
+          "method": "ct",
+          "n": 64,
+          "density_relative_l1": 0.01390559978339836,
+          "by_relative_l1": 0.047672103169776325,
+          "native_divergence_linf": 4.263256414560601e-14,
+          "common_cell_divergence_linf": 0.06279996011821187,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "min_density": 0.19761402794528612,
+          "min_pressure": 0.11524664515587707,
+          "steps": 48
+        },
+        {
+          "method": "glm",
+          "n": 16,
+          "density_relative_l1": 0.038397246374677875,
+          "by_relative_l1": 0.4946997979223452,
+          "native_divergence_linf": 6.661338147750939e-16,
+          "common_cell_divergence_linf": 6.661338147750939e-16,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 3.178816858944576e-16,
+          "min_density": 0.20464220615457646,
+          "min_pressure": 0.15133222621151116,
+          "steps": 16
+        },
+        {
+          "method": "glm",
+          "n": 32,
+          "density_relative_l1": 0.031701275734563154,
+          "by_relative_l1": 0.3030990560465997,
+          "native_divergence_linf": 1.3322676295501878e-15,
+          "common_cell_divergence_linf": 1.3322676295501878e-15,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 1.589408429472288e-16,
+          "min_density": 0.20144207086099608,
+          "min_pressure": 0.134387100167153,
+          "steps": 32
+        },
+        {
+          "method": "glm",
+          "n": 64,
+          "density_relative_l1": 0.02142907618249145,
+          "by_relative_l1": 0.1689716486688309,
+          "native_divergence_linf": 5.329070518200751e-15,
+          "common_cell_divergence_linf": 5.329070518200751e-15,
+          "mass_relative_drift": 3.7668979778493237e-16,
+          "energy_relative_drift": 3.178816858944576e-16,
+          "min_density": 0.19966162247697308,
+          "min_pressure": 0.12431585954470904,
+          "steps": 65
+        }
+      ]
+    },
+    {
+      "id": "brio-independent",
+      "checks": {
+        "independent_reference_refined": true,
+        "density_error": true,
+        "grid_improvement": true,
+        "positive_states": true,
+        "magnetic_error": true
+      },
+      "passed": true,
+      "metrics": {
+        "reference_last_pair_l1": 0.00048642415115017165,
+        "reference_finest_n": 4096,
+        "finest_density_l1": 0.0018299450752667257
+      },
+      "records": [
+        {
+          "n": 128,
+          "density_l1": 0.0062448926598127185,
+          "steps": 139,
+          "min_density": 0.11689998292121226,
+          "min_pressure": 0.08748649270528241,
+          "by_l1": 0.00788235309906523
+        },
+        {
+          "n": 256,
+          "density_l1": 0.0033504211145793626,
+          "steps": 279,
+          "min_density": 0.11626421823995425,
+          "min_pressure": 0.08653089675835468,
+          "by_l1": 0.004644060604458465
+        },
+        {
+          "n": 512,
+          "density_l1": 0.0018299450752667257,
+          "steps": 558,
+          "min_density": 0.11662441033431853,
+          "min_pressure": 0.08705794497668717,
+          "by_l1": 0.0025440161513646995
+        }
+      ],
+      "reference_records": [
+        {
+          "coarse_n": 2048,
+          "fine_n": 4096,
+          "last_pair_l1": 0.00048642415115017165,
+          "target": 0.004,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "id": "shu-independent",
+      "checks": {
+        "independent_reference_refined": true,
+        "density_error": true,
+        "grid_improvement": true,
+        "positive_states": true
+      },
+      "passed": true,
+      "metrics": {
+        "reference_last_pair_l1": 0.003374178434921656,
+        "reference_finest_n": 8192,
+        "finest_density_l1": 0.05377749991959067
+      },
+      "records": [
+        {
+          "n": 100,
+          "density_l1": 0.0786338678408063,
+          "steps": 280,
+          "min_density": 0.8000827057281565,
+          "min_pressure": 1.0
+        },
+        {
+          "n": 200,
+          "density_l1": 0.07616315955852117,
+          "steps": 560,
+          "min_density": 0.8003974628222872,
+          "min_pressure": 1.0
+        },
+        {
+          "n": 400,
+          "density_l1": 0.05377749991959067,
+          "steps": 1133,
+          "min_density": 0.8000000308133867,
+          "min_pressure": 1.0
+        }
+      ],
+      "reference_records": [
+        {
+          "coarse_n": 2048,
+          "fine_n": 4096,
+          "last_pair_l1": 0.00534601109862395,
+          "target": 0.005,
+          "target_reached": false
+        },
+        {
+          "coarse_n": 4096,
+          "fine_n": 8192,
+          "last_pair_l1": 0.003374178434921656,
+          "target": 0.005,
+          "target_reached": true
+        }
+      ]
+    },
+    {
+      "id": "glm-fourier-mode",
+      "passed": true,
+      "checks": {
+        "analytic_expm_comparison": true,
+        "spatial_order": true,
+        "divergence_damping": true
+      },
+      "metrics": {
+        "observed_order": 2.001546730427675,
+        "continuum_amplitude_ratio": 0.3619556718500278
+      },
+      "records": [
+        {
+          "n": 16,
+          "l2_error": 0.031403626041517134,
+          "divergence_norm_ratio": 0.3424973881563735,
+          "steps": 80
+        },
+        {
+          "n": 32,
+          "l2_error": 0.007824956066504568,
+          "divergence_norm_ratio": 0.3579934527938889,
+          "steps": 160
+        },
+        {
+          "n": 64,
+          "l2_error": 0.001954142833496426,
+          "divergence_norm_ratio": 0.3610231236310228,
+          "steps": 320
+        }
+      ]
+    }
+  ],
+  "duration_seconds": 2.3898385829998006,
+  "termination": "fixed_inputs_completed",
+  "scope": "Existing atlas finite-volume solvers vs independently compiled Athena++ references; a separate linear GLM diagnostic has a matrix-exponential analytic reference."
+}

@@ -9,7 +9,8 @@ from pathlib import Path
 import re
 from urllib.parse import unquote, urlparse
 
-from atlas_crossovers import BASE, crossover_assets
+from atlas_crossovers import (BASE, SUPPLEMENT_STAGE_CASES, crossover_assets,
+                              load_supplemental_evidence)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,6 +82,17 @@ def evidence_context(root):
 def validate_catalog(data, root=ROOT):
     """Validate IDs and provenance before writing any public output."""
     context = evidence_context(root)
+    requested = []
+    for route in data.get('routes', []):
+        for stage in route.get('stages', []):
+            identifiers = stage.get('supplemental_ids', [])
+            fail(isinstance(identifiers, list) and all(isinstance(value, str) for value in identifiers)
+                 and len(identifiers) == len(set(identifiers)), 'Unique supplemental IDs must be a list')
+            requested.extend(identifiers)
+    try:
+        context['supplemental'] = load_supplemental_evidence(root, requested)
+    except (AssertionError, KeyError, ValueError, OSError) as error:
+        raise ValueError('Invalid supplemental evidence: '+str(error)) from error
     for key in ('title', 'intro', 'policy'):
         bilingual(data.get(key), key)
     for key in ('title', 'description', 'action'):
@@ -116,6 +128,7 @@ def validate_catalog(data, root=ROOT):
         fail(route.get('math_ids') and set(route['math_ids']) <= set(math_ids), label + ': unknown math family')
         coupled = route.get('coupled_validation', {})
         fail(coupled.get('status') == 'not-executed' and coupled.get('example_ids') == [], label + ': route coupled validation must remain not-executed with empty example_ids')
+        fail(coupled.get('supplemental_ids', []) == [], label + ': supplemental components cannot certify the full route')
         bilingual(coupled.get('scope'), label + '.coupled_validation.scope')
         stages = route.get('stages', [])
         stage_ids = [stage['id'] for stage in stages]
@@ -141,6 +154,20 @@ def validate_catalog(data, root=ROOT):
                 fail(set(example['method_ids']) & set(method_ids), stage_label + ': execution is not linked to a declared component method: ' + ident)
                 checked = context['checks'].get(ident, {})
                 fail(checked.get('execution', {}).get('completed') is True and checked.get('validation', {}).get('passed') is True, stage_label + ': execution and numerical checks must both pass: ' + ident)
+            supplemental = stage.get('supplemental_ids', [])
+            if supplemental:
+                fail(stage['id'] in SUPPLEMENT_STAGE_CASES and set(supplemental) <= SUPPLEMENT_STAGE_CASES[stage['id']],
+                     stage_label + ': unrelated supplemental component borrowed')
+                fail(stage.get('supplemental_role') == 'scoped-component', stage_label + ': supplements require a scoped component role')
+                bilingual(stage.get('supplemental_scope'), stage_label + '.supplemental_scope')
+                for ident in supplemental:
+                    evidence = context['supplemental']['cases'][ident]
+                    fail(evidence['numerical_checks_passed'] is True and all(value is True for value in evidence['checks'].values()),
+                         stage_label + ': supplemental numerical checks must pass')
+                    fail(bool(set(evidence['method_ids']) & set(method_ids)), stage_label + ': supplement does not use a declared component method')
+                    local_target(root, evidence['url'])
+                    for url in evidence['reading'].values():
+                        local_target(root, url)
             for reading in stage.get('reading', []):
                 bilingual(reading.get('label'), stage_label + '.reading.label')
                 bilingual(reading.get('url'), stage_label + '.reading.url')
@@ -166,6 +193,7 @@ def validate_catalog(data, root=ROOT):
             for key in ('title', 'exchanged_quantity', 'shared_math', 'what_differs', 'validation_required', 'existing_evidence'):
                 bilingual(edge.get(key), edge_label + '.' + key)
             coupled = edge.get('coupled_validation', {})
+            fail(coupled.get('supplemental_ids', []) == [], edge_label + ': do not transfer a component supplement into coupled validation')
             if edge['id'] in {'dft-to-forces', 'forces-to-md'}:
                 expected = 'fixed-input' if edge['id'] == 'dft-to-forces' else 'interface-only'
                 fail(coupled.get('status') == expected and coupled.get('example_ids') == ['periodic-he-forces'], edge_label + ': only the scoped force example validates this connection')
@@ -188,12 +216,15 @@ def link(url, label, attrs=''):
 def stage_state(stage, context):
     if stage.get('example_ids'):
         return 'fixed-input' if stage['example_role'] == 'exact-stage' else 'component-only'
+    if stage.get('supplemental_ids'):
+        return 'scoped-supplement'
     return 'planned' if any(context['methods'][ident]['status'] == 'planned' for ident in stage.get('method_ids', [])) else 'reading'
 
 
 def stage_state_label(state, lang):
     labels = {'fixed-input': ('固定条件の実行例', 'Fixed-input execution example'),
               'component-only': ('要素例のみ', 'Component examples only'),
+              'scoped-supplement': ('限定した固定補助例あり', 'Scoped fixed-input supplement'),
               'planned': ('解説あり・専用実装予定', 'Reading / dedicated implementation planned'),
               'reading': ('解説・段階の実行例なし', 'Reading / no stage execution example')}
     return labels[state][0 if lang == 'ja' else 1]
@@ -205,7 +236,10 @@ def stage_evidence(stage, context):
             'examples': [{'id': ident, 'name': context['examples'][ident]['name'], 'scope': context['examples'][ident]['scope'],
                           'url': ORIGIN + '/numerical-methods-atlas/code-and-data/examples/' + ident + '/',
                           'process_completed': context['checks'][ident]['execution']['completed'],
-                          'numerical_checks_passed': context['checks'][ident]['validation']['passed']} for ident in stage.get('example_ids', [])]}
+                          'numerical_checks_passed': context['checks'][ident]['validation']['passed']} for ident in stage.get('example_ids', [])],
+            'supplemental_role': stage.get('supplemental_role'),
+            'supplemental_scope': stage.get('supplemental_scope'),
+            'supplements': [context['supplemental']['cases'][ident] for ident in stage.get('supplemental_ids', [])]}
 
 
 def math_tags(ids, math, lang):
@@ -236,6 +270,12 @@ def stage_html(stage, context, lang):
             example = context['examples'][ident]
             body += '<li>' + link('/numerical-methods-atlas/code-and-data/examples/' + ident + '/?lang=' + lang, example['name'][lang]) + '<p>' + esc(example['scope'][lang]) + '</p><p class="crossover-provenance">' + ('実行完了・当該入力の数値判定合格。' if ja else 'Process completed; numerical checks passed for these inputs. ') + link(example['release']['download'], 'コード・テスト / ZIP' if ja else 'Code and tests / ZIP') + ' · ' + link(example['inputs']['url'], '固定入力' if ja else 'Fixed input') + ' · ' + link(context['receipt_url'], '追試記録' if ja else 'Rerun receipt') + '</p></li>'
         body += '</ul>'
+    if stage.get('supplemental_ids'):
+        body += '<h5>'+('独立した固定補助例（共通実行台帳とは別）' if ja else 'Independent fixed supplements (separate from the common execution registry)')+'</h5><p>'+esc(stage['supplemental_scope'][lang])+'</p><ul class="crossover-example-list">'
+        for ident in stage['supplemental_ids']:
+            evidence = context['supplemental']['cases'][ident]
+            body += '<li data-supplemental-id="'+ident+'">'+link(evidence['url']+'?lang='+lang, evidence['title'][lang])+'<p>'+esc(evidence['scope'][lang])+'</p><p>'+esc(evidence['limits'][lang])+'</p><p class="crossover-provenance">'+('数値判定合格。配布ZIPの独立展開・全固定入力の再実行を確認。' if ja else 'Numerical checks passed; the distribution ZIP was independently extracted and all fixed inputs rerun. ')+link(evidence['reading'][lang], '解説・実測値' if ja else 'Reading and measurements')+' · '+link(evidence['code_download'], 'コード・テスト / ZIP' if ja else 'Code and tests / ZIP')+' · '+link(evidence['input'], '固定入力' if ja else 'Fixed input')+' · '+link(evidence['verification_receipt']['url'], '補助版の独立展開記録' if ja else 'Supplement extraction receipt')+'</p></li>'
+        body += '</ul>'
     body += '<p class="crossover-stage-gap"><strong>' + ('残る差：' if ja else 'Remaining gap: ') + '</strong>' + esc(stage['gap'][lang]) + '</p></article>'
     return body
 
@@ -260,7 +300,7 @@ def connection_scope_label(edge, lang):
         return '局所的な接続のみ確認：' if lang == 'ja' else 'Local interface check only: '
     labels = {
         'handoff': ('連成実行：未実施。', 'Coupled execution: not performed. '),
-        'model-application': ('空間モデルの実行：未実施。', 'Spatial-model execution: not performed. '),
+        'model-application': ('モデル族の対応全体の検証範囲：', 'Scope of the model-family correspondence: '),
         'component-reference': ('要素例を参照する範囲：', 'Scope of the component reference: '),
         'operator-correspondence': ('対応関係を比較する範囲：', 'Scope of the operator correspondence: '),
     }
@@ -336,7 +376,10 @@ def render_language(data, context, lang):
                 body += '<li id="reference-' + route['id'] + '-' + ident + '-' + lang + '">' + esc(str(author)) + ' (' + esc(str(ref['year'])) + '). ' + link(ref['url'], title) + '<p class="crossover-reference-review">' + esc(ref['review'][lang]) + '</p></li>'
             body += '</ul>'
         body += '</section>'
-    body += '<p class="crossover-provenance">' + ('根拠の出典：' if ja else 'Evidence sources: ') + link('/catalog/atlas-crossovers.json', '接続の正本' if ja else 'Connection catalog') + ' · ' + link('/numerical-methods-atlas/methods/index.json', '手法台帳' if ja else 'Method registry') + ' · ' + link(context['registry']['url'], '実行例台帳' if ja else 'Execution registry') + ' · ' + link(context['receipt_url'], '現在の追試記録' if ja else 'Current rerun receipt') + ' · ' + link(BASE + 'index.json', '接続データ / JSON' if ja else 'Connection data / JSON') + ' · ' + link(BASE + 'index.md', '本文 / Markdown' if ja else 'Text / Markdown') + '</p></section>'
+    body += '<p class="crossover-provenance">' + ('根拠の出典：' if ja else 'Evidence sources: ') + link('/catalog/atlas-crossovers.json', '接続の正本' if ja else 'Connection catalog') + ' · ' + link('/numerical-methods-atlas/methods/index.json', '手法台帳' if ja else 'Method registry') + ' · ' + link(context['registry']['url'], '共通実行例台帳' if ja else 'Common execution registry') + ' · ' + link(context['receipt_url'], '共通台帳の追試記録' if ja else 'Common-registry rerun receipt') + ' · ' + link(BASE + 'index.json', '接続データ / JSON' if ja else 'Connection data / JSON') + ' · ' + link(BASE + 'index.md', '本文 / Markdown' if ja else 'Text / Markdown') + '</p>'
+    if context['supplemental']['receipts']:
+        body += '<p class="crossover-provenance">'+('別管理の補助版検証記録：' if ja else 'Separately managed supplemental verification: ')+' · '.join(link(record['url'], group+' / verification.json') for group, record in context['supplemental']['receipts'].items())+'</p>'
+    body += '</section>'
     return body
 
 
@@ -358,6 +401,13 @@ def render_markdown(data, context):
                 for ident in stage.get('example_ids', []):
                     example = context['examples'][ident]
                     lines += ['- [' + example['name'][lang] + '](' + ORIGIN + '/numerical-methods-atlas/code-and-data/examples/' + ident + '/?lang=' + lang + '): ' + example['scope'][lang]]
+                if stage.get('supplemental_ids'):
+                    lines += ['', ('別管理の固定補助例: ' if ja else 'Separately managed fixed supplements: ')+stage['supplemental_scope'][lang]]
+                    for ident in stage['supplemental_ids']:
+                        evidence = context['supplemental']['cases'][ident]
+                        lines += ['- ['+evidence['title'][lang]+']('+evidence['url']+'?lang='+lang+'): '+evidence['scope'][lang],
+                                  '  '+evidence['limits'][lang],
+                                  '  [Supplement receipt]('+evidence['verification_receipt']['url']+') · [Code/tests ZIP]('+evidence['code_download']+') · [Detailed reading]('+evidence['reading'][lang]+')']
                 lines += ['', ('残る差: ' if ja else 'Remaining gap: ') + stage['gap'][lang], '']
             for edge in route['connections']:
                 lines += ['### ' + edge['title'][lang], '', connection_kind_label(edge, lang), '']
@@ -377,7 +427,9 @@ def render_markdown(data, context):
             for reading in family.get('reading', []):
                 lines += ['- [' + reading['label'][lang] + '](' + reading['url'][lang] + ')']
             lines += ['']
-        lines += [('根拠の出典: ' if ja else 'Evidence sources: ') + '[Connection catalog](' + ORIGIN + '/catalog/atlas-crossovers.json) · [Method registry](' + ORIGIN + '/numerical-methods-atlas/methods/index.json) · [Execution registry](' + context['registry']['url'] + ') · [Rerun receipt](' + context['receipt_url'] + ')', '']
+        lines += [('根拠の出典: ' if ja else 'Evidence sources: ') + '[Connection catalog](' + ORIGIN + '/catalog/atlas-crossovers.json) · [Method registry](' + ORIGIN + '/numerical-methods-atlas/methods/index.json) · [Common execution registry](' + context['registry']['url'] + ') · [Common-registry rerun receipt](' + context['receipt_url'] + ')', '']
+        for group, receipt in context['supplemental']['receipts'].items():
+            lines += ['Supplement '+group+': ['+receipt['source_mode']+']('+receipt['url']+'); SHA-256='+receipt['sha256'], '']
     return '\n'.join(lines).rstrip() + '\n'
 
 
@@ -394,7 +446,9 @@ def build(root=ROOT, data=None):
     if any(stage.get('model_ids') for route in data['routes'] for stage in route['stages']):
         sources.append(root / 'numerical-methods-atlas/assets/biological-models.json')
     public.update(registry=context['registry']['url'], verification_receipt=context['receipt_url'],
-                  source_sha256={path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources})
+                  source_sha256={path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources},
+                  supplemental_source_sha256=context['supplemental']['source_sha256'],
+                  supplemental_verification_receipts=context['supplemental']['receipts'])
     title_ja = data['title']['ja'] + ' | 数値計算法アトラス'
     title_en = data['title']['en'] + ' | Numerical Methods Atlas'
     document = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-page-title-ja="' + esc(title_ja, quote=True) + '" data-page-title-en="' + esc(title_en, quote=True) + '">' + esc(title_ja) + '</title><meta name="description" content="' + esc(data['intro']['ja'], quote=True) + '"><link rel="canonical" href="' + ORIGIN + BASE + '"><link rel="stylesheet" href="/styles/atlas-resources.css">' + crossover_assets(root, interactive=True) + '</head><body class="profile-page" data-site-language-anchors="suffix"><main class="profile-main atlas-resource-main atlas-crossover-main" id="main">' + ''.join(render_language(data, context, lang) for lang in LANGUAGES) + '</main></body></html>\n'

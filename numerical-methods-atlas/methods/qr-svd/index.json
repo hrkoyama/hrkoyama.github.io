@@ -10,10 +10,10 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "直交分解、低ランク、条件数と最小二乗を結び付ける。",
-    "en": "Connect orthogonal factorizations, low rank, conditioning and least squares."
+    "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+    "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/",
@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "条件数を制御した小行列の比較。",
-    "en": "Small-matrix comparisons with controlled conditioning."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。",
+    "en": "Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -56,14 +56,217 @@
     "least squares",
     "最小二乗法"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "foundations",
+    "case_ids": [
+      "qr-svd-factorization"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-foundations-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+    "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+    "passed_tests": 29,
+    "examples": [
+      {
+        "id": "qr-svd-factorization",
+        "title": {
+          "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+          "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+        },
+        "method_ids": [
+          "qr-svd"
+        ],
+        "summary": {
+          "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+          "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+        },
+        "assumptions": {
+          "ja": "m≥nの小さな実行列が対象です。SVDの数値階数は最大特異値に対する相対しきい値10⁻¹²で定義し、零特異値方向を除くcompact因子を返します。QRは列ピボットなしで、階数判定には用いません。",
+          "en": "Small real matrices with m≥n. Numerical rank uses a 10⁻¹² threshold relative to the largest singular value; compact factors omit null directions. QR has no column pivoting and is not used as a rank-revealing method."
+        },
+        "algorithm": {
+          "ja": "Householder反射を左から蓄積してRを上三角化し、Qを構成します。Jacobi SVDは列対の内積を小さくする直交回転を繰り返し、回転した列の長さを特異値とします。AᵀAを作って固有値を求める方法ではありません。最小二乗はQRの後退代入、階数落ちでは打切りSVDで求めます。",
+          "en": "Householder reflectors triangularize R while accumulating Q. The SVD repeatedly rotates column pairs toward orthogonality and uses their resulting lengths as singular values; it does not diagonalize AᵀA. Least squares uses triangular back substitution for QR and truncated compact SVD for deficient rank."
+        },
+        "validation": {
+          "ja": "QR/SVDの相対再構成誤差、Q/U/Vの直交性、SciPy LAPACK gesddの特異値、gelsd/gelsyの最小二乗解・階数、正規方程式の停留残差を比較します。特異ベクトルの符号は比較せず、零行列と予算切れも検査します。",
+          "en": "Compare QR/SVD relative reconstruction, Q/U/V orthogonality, singular values from SciPy LAPACK gesdd, least-squares solutions/ranks from gelsd/gelsy and normal-equation stationarity residuals. Singular-vector signs are not compared; zero matrices and budget exhaustion are tested."
+        },
+        "limits": {
+          "ja": "完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。",
+          "en": "Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results."
+        },
+        "references": [
+          {
+            "id": "householder1958",
+            "author": "A. S. Householder",
+            "year": 1958,
+            "title": "Unitary Triangularization of a Nonsymmetric Matrix",
+            "doi": "10.1145/320941.320947",
+            "url": "https://dl.acm.org/doi/10.1145/320941.320947",
+            "review_level": "publisher-metadata",
+            "journal": "Journal of the ACM 5(4), 339–342",
+            "type": "article"
+          },
+          {
+            "id": "demmel-veselic1992",
+            "author": "J. Demmel and K. Veselić",
+            "year": 1992,
+            "title": "Jacobi’s Method is More Accurate than QR",
+            "doi": "10.1137/0613074",
+            "url": "https://epubs.siam.org/doi/abs/10.1137/0613074",
+            "review_level": "publisher-abstract-and-metadata",
+            "journal": "SIAM Journal on Matrix Analysis and Applications 13(4), 1204–1245",
+            "type": "article"
+          }
+        ],
+        "reference_implementations": [
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.svd.html",
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html"
+        ],
+        "equations": [
+          "A=QR,\\quad Q^TQ=I",
+          "A\\simeq U_r\\Sigma_rV_r^T,\\quad x_{\\min}=V_r\\Sigma_r^{-1}U_r^Tb"
+        ],
+        "measured": {
+          "id": "qr-svd-factorization",
+          "passed": true,
+          "checks": {
+            "all_jacobi_converged_and_ranks_match": true,
+            "householder_reconstruction": true,
+            "householder_orthogonality": true,
+            "jacobi_reconstruction": true,
+            "jacobi_orthogonality": true,
+            "independent_lapack_singular_values": true,
+            "independent_minimum_norm_least_squares": true,
+            "qr_least_squares": true,
+            "least_squares_stationarity": true,
+            "sweep_budget_failure_reported": true
+          },
+          "metrics": {
+            "max_qr_reconstruction": 9.197631573723943e-16,
+            "max_svd_reconstruction": 1.0519095898403626e-13,
+            "max_singular_value_error": 3.399227299681105e-16,
+            "max_least_squares_error": 9.164127590036862e-15,
+            "max_orthogonality": 1.310421197476067e-15
+          },
+          "records": [
+            {
+              "matrix": "full-rank",
+              "rows": 12,
+              "columns": 5,
+              "qr_reconstruction": 5.070254789737962e-16,
+              "qr_orthogonality": 7.631327372492663e-16,
+              "svd_reconstruction": 8.351949648285787e-16,
+              "singular_value_error": 3.399227299681105e-16,
+              "u_orthogonality": 7.943248317482559e-16,
+              "v_orthogonality": 1.177553332677272e-15,
+              "least_squares_solution_error": 2.387624894196368e-16,
+              "normal_residual": 8.476899975806301e-17,
+              "qr_least_squares_error": 4.1725779438208954e-16,
+              "rank": 5,
+              "reference_rank": 5,
+              "jacobi_sweeps": 5,
+              "termination": "column_orthogonality"
+            },
+            {
+              "matrix": "column-scaled",
+              "rows": 10,
+              "columns": 4,
+              "qr_reconstruction": 9.197631573723943e-16,
+              "qr_orthogonality": 1.310421197476067e-15,
+              "svd_reconstruction": 2.3471676066973067e-16,
+              "singular_value_error": 8.502104771622307e-18,
+              "u_orthogonality": 3.439018000450526e-16,
+              "v_orthogonality": 4.441044565662583e-16,
+              "least_squares_solution_error": 5.805408412175417e-16,
+              "normal_residual": 2.6199882910223946e-17,
+              "qr_least_squares_error": 2.756343410020087e-16,
+              "rank": 4,
+              "reference_rank": 4,
+              "jacobi_sweeps": 2,
+              "termination": "column_orthogonality"
+            },
+            {
+              "matrix": "rank-deficient",
+              "rows": 9,
+              "columns": 4,
+              "qr_reconstruction": 3.1067798337036786e-16,
+              "qr_orthogonality": 5.9458063694771875e-16,
+              "svd_reconstruction": 1.0519095898403626e-13,
+              "singular_value_error": 1.933985350633445e-16,
+              "u_orthogonality": 4.440892098500626e-16,
+              "v_orthogonality": 4.440892098500626e-16,
+              "least_squares_solution_error": 9.164127590036862e-15,
+              "normal_residual": 1.8405573237499008e-16,
+              "qr_least_squares_error": null,
+              "rank": 2,
+              "reference_rank": 2,
+              "jacobi_sweeps": 3,
+              "termination": "column_orthogonality"
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+    "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/qr-svd/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/qr-svd/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/qr-svd/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-foundations-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "qr-svd-factorization",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+  "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

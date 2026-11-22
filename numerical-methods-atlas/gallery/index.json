@@ -1,27 +1,32 @@
 {
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/",
-  "reviewed_on": "2026-11-21",
+  "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 67,
-    "runnable_problems": 22,
+    "test_problems": 80,
+    "runnable_problems": 36,
+    "common_runnable_problems": 22,
+    "supplemental_runnable_problems": 17,
+    "supplemental_case_count": 18,
+    "supplemental_release_case_count": 19,
     "groups": {
-      "transport": 8,
+      "transport": 9,
       "fluid": 16,
       "mhd": 4,
       "viscous": 3,
       "elliptic": 13,
-      "gravity": 5,
-      "time": 6,
-      "approximation": 3,
+      "gravity": 7,
+      "time": 7,
+      "approximation": 6,
       "quantum": 5,
-      "biology": 2,
-      "probability": 2
+      "biology": 5,
+      "probability": 3,
+      "kinetic": 2
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 31,
+      "existing-figure": 44,
       "computed-preview": 9
     }
   },
@@ -111,7 +116,8 @@
           "ja": "周期正弦波の輸送を解析的な平行移動と比べ、格子細分化・平均値保存・最大値原理を確認する。",
           "en": "Compare periodic sine transport with analytic translation; check refinement, mean conservation and the maximum principle."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "advection-square",
@@ -166,7 +172,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#advection-square-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "burgers-shock",
@@ -214,7 +221,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#burgers-shock-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "burgers-fan",
@@ -262,7 +270,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#burgers-fan-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "traffic-jam",
@@ -310,7 +319,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#traffic-jam-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "traffic-fan",
@@ -358,7 +368,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#traffic-fan-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "heat-periodic",
@@ -412,7 +423,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#heat-periodic-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "heat-dirichlet",
@@ -462,7 +474,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#heat-dirichlet-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "sod",
@@ -549,7 +562,8 @@
           "ja": "Sod衝撃波管を自己相似Riemann解と比べ、密度誤差の減少・正値性・境界流束を含む収支を確認する。",
           "en": "Compare the Sod shock tube with a self-similar Riemann solution; check decreasing density error, positivity and boundary-flux balances."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "lax",
@@ -604,7 +618,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#lax-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "shu-osher",
@@ -628,9 +643,34 @@
           "where": {
             "id": "shu-osher"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "shu-independent"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/shu-independent.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "shu-independent",
+          "url": "/numerical-methods-atlas/validation/shu-independent/",
+          "name": {
+            "ja": "Shu–Osher：独立参照と格子収束",
+            "en": "Shu–Osher: independent reference and mesh refinement"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reconstruction/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/reconstruction/"
@@ -680,7 +720,40 @@
           "ja": "衝撃波と密度波の相互作用を計算し、100/200点解と800点の同一手法による数値参照との差を確認する。",
           "en": "Compute shock–density-wave interaction and compare 100/200-point solutions with an 800-point same-method numerical reference."
         }
-      }
+      },
+      "supplemental_execution_entries": [
+        {
+          "id": "shu-independent",
+          "title": {
+            "ja": "Shu–Osher：独立参照と格子収束",
+            "en": "Shu–Osher: independent reference and mesh refinement"
+          },
+          "group": "mhd",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json"
+        }
+      ]
     },
     {
       "id": "entropy-1d",
@@ -728,7 +801,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#entropy-1d-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "moving-contact",
@@ -783,7 +857,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#moving-contact-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "strong-shock",
@@ -839,7 +914,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#strong-shock-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "double-rarefaction",
@@ -889,7 +965,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#double-rarefaction-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "dam-break",
@@ -943,7 +1020,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#dam-break-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "isothermal-jump",
@@ -997,7 +1075,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isothermal-jump-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "double-mach",
@@ -1045,7 +1124,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#double-mach-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "nasa-wedge",
@@ -1096,7 +1176,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nasa-wedge-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "forward-step",
@@ -1147,7 +1228,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#forward-step-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "entropy-2d",
@@ -1197,7 +1279,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#entropy-2d-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "cylinder-forebody",
@@ -1241,7 +1324,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#cylinder-forebody-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "odd-even",
@@ -1285,7 +1369,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#odd-even-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "isentropic-vortex",
@@ -1329,7 +1414,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isentropic-vortex-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "orszag-tang",
@@ -1354,9 +1440,34 @@
           "where": {
             "chapter": "mhd"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ct-glm-independent"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "ct-glm-independent",
+          "url": "/numerical-methods-atlas/validation/ct-glm-independent/",
+          "name": {
+            "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+            "en": "Orszag–Tang: CT, GLM and independent Athena++"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/"
@@ -1383,8 +1494,41 @@
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#orszag-tang-ja",
-      "runnable": false,
-      "execution_entry": null
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "ct-glm-independent",
+          "title": {
+            "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+            "en": "Orszag–Tang: CT, GLM and independent Athena++"
+          },
+          "group": "mhd",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json"
+        }
+      ]
     },
     {
       "id": "brio-wu",
@@ -1398,9 +1542,34 @@
         {
           "path": "numerical-methods-atlas/assets/mhd-tests/mhd-tests.json",
           "json_pointer": "/brio_wu"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "brio-independent"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/brio-independent.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "brio-independent",
+          "url": "/numerical-methods-atlas/validation/brio-independent/",
+          "name": {
+            "ja": "Brio–Wu：別実装HLLDとの照合",
+            "en": "Brio–Wu against an independent HLLD implementation"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/"
@@ -1449,7 +1618,40 @@
           "ja": "HLLDの64/128セル解を512セル数値参照と比べ、密度・圧力・一定縦磁場・流束収支と切替回数を確認する。",
           "en": "Compare 64/128-cell HLLD solutions with a 512-cell numerical reference; inspect density, pressure, constant longitudinal field, balances and fallbacks."
         }
-      }
+      },
+      "supplemental_execution_entries": [
+        {
+          "id": "brio-independent",
+          "title": {
+            "ja": "Brio–Wu：別実装HLLDとの照合",
+            "en": "Brio–Wu against an independent HLLD implementation"
+          },
+          "group": "mhd",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json"
+        }
+      ]
     },
     {
       "id": "circular-alfven",
@@ -1493,7 +1695,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#circular-alfven-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "magnetic-loop",
@@ -1537,7 +1740,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#magnetic-loop-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "taylor-green",
@@ -1606,7 +1810,8 @@
           "ja": "周期渦の速度と粘性エネルギー減衰を解析解と比べ、離散発散・圧力ゲージ・格子と時間刻みへの依存を確認する。",
           "en": "Compare periodic-vortex velocity and viscous energy decay with analytic references; inspect discrete divergence, pressure gauge and space/time sensitivity."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "lbm-shear",
@@ -1656,7 +1861,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#lbm-shear-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "channel-poiseuille",
@@ -1706,7 +1912,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#channel-poiseuille-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-1d-dirichlet",
@@ -1775,7 +1982,8 @@
           "ja": "Thomas法の数値解をsin(πx)と比べ、連続解誤差・独立な離散残差・2次格子収束を分けて確認する。",
           "en": "Compare the Thomas solution with sin(πx), separating continuous error, a recomputed discrete residual and second-order grid refinement."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-1d-neumann",
@@ -1825,7 +2033,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-neumann-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-1d-mixed",
@@ -1875,7 +2084,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-mixed-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-1d-robin",
@@ -1925,7 +2135,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-robin-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-2d-broad",
@@ -1972,7 +2183,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-broad-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-2d-localized",
@@ -2019,7 +2231,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-localized-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-2d-sine",
@@ -2044,9 +2257,34 @@
         {
           "path": "numerical-methods-atlas/assets/solver-foundations.json",
           "json_pointer": "/fem"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sa-amg"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/sa-amg.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "sa-amg",
+          "url": "/numerical-methods-atlas/validation/sa-amg/",
+          "name": {
+            "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+            "en": "Matrix-based AMG: distinguish residual and solution error"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fem/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/fem/"
@@ -2095,7 +2333,31 @@
           "ja": "CG・多重格子の同じ差分解とP1有限要素を調べ、FD最大誤差とFEMのL2・H1半ノルム収束を見比べる。",
           "en": "Inspect CG/multigrid on the same discrete system and P1 FEM, comparing FD maximum error with separate FEM L2/H1-seminorm refinement."
         }
-      }
+      },
+      "supplemental_execution_entries": [
+        {
+          "id": "sa-amg",
+          "title": {
+            "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+            "en": "Matrix-based AMG: distinguish residual and solution error"
+          },
+          "group": "foundations",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        }
+      ]
     },
     {
       "id": "poisson-2d-uniform",
@@ -2145,7 +2407,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-uniform-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-2d-random",
@@ -2195,7 +2458,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-2d-random-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-3d-periodic",
@@ -2243,7 +2507,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-3d-periodic-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "poisson-1d-periodic",
@@ -2293,7 +2558,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#poisson-1d-periodic-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "bratu",
@@ -2374,7 +2640,8 @@
           "ja": "小さい枝をNewton–GMRESで求め、解析解・独立な非線形残差・2次格子収束を確認する。",
           "en": "Compute the lower branch with Newton–GMRES and check its analytic solution, recomputed nonlinear residual and second-order refinement."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "sparse-advection-diffusion",
@@ -2424,7 +2691,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sparse-advection-diffusion-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "isolated-particles",
@@ -2489,7 +2757,8 @@
           "ja": "192粒子の木近似と直接和を比べ、力の誤差・全開極限・相互作用回数を確認する。",
           "en": "Compare tree and direct forces for 192 particles; inspect force error, the fully opened limit and interaction counts."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "periodic-particles",
@@ -2558,7 +2827,8 @@
           "ja": "固定19粒子のCIC質量・自己力・内力和・周期折返しを調べ、別の正弦密度で格子ポテンシャルと加速度を解析検証する。",
           "en": "Inspect CIC mass, self-force, net internal force and wrapping for 19 fixed particles; separately check mesh potential/acceleration for a sinusoidal density."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "isolated-convolution",
@@ -2608,7 +2878,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isolated-convolution-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "uniform-slab",
@@ -2652,7 +2923,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#uniform-slab-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "sinusoidal-sheet",
@@ -2696,7 +2968,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sinusoidal-sheet-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "harmonic-oscillator",
@@ -2769,7 +3042,8 @@
           "ja": "Verlet軌道を解析的な振動と比べ、状態誤差・元のエネルギーの偏差・時間反転を確認する。",
           "en": "Compare Verlet trajectories with analytic oscillation; inspect state error, original-energy deviation and time reversal."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "quartic-oscillator",
@@ -2817,7 +3091,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#quartic-oscillator-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "nonlinear-exp-ode",
@@ -2867,7 +3142,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nonlinear-exp-ode-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "stiff-cosine",
@@ -2940,7 +3216,8 @@
           "ja": "硬い余弦追従問題の解析解と刻み細分化を比べ、別の強減衰問題でL安定な応答を確認する。",
           "en": "Compare stiff cosine tracking with its analytic solution under step refinement, plus a separate strongly damped problem."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "nonlinear-rational-ode",
@@ -2990,7 +3267,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nonlinear-rational-ode-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "smooth-function-projection",
@@ -3059,7 +3337,8 @@
           "ja": "exp(x)のLegendre射影とGLL補間を比較し、次数による誤差減少・係数・直交性を別の高次求積で確認する。",
           "en": "Compare Legendre projection and GLL interpolation of exp(x); use higher-order reference quadrature for p-refinement, coefficients and orthogonality."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "jump-function-projection",
@@ -3107,7 +3386,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#jump-function-projection-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "cubic-root",
@@ -3157,7 +3437,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#cubic-root-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "nonlinear-rational-decay",
@@ -3205,7 +3486,8 @@
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#nonlinear-rational-decay-ja",
       "runnable": false,
-      "execution_entry": null
+      "execution_entry": null,
+      "supplemental_execution_entries": []
     },
     {
       "id": "hydrogenic-atoms",
@@ -3283,7 +3565,8 @@
           "ja": "Z=1,2の指定された束縛状態について、エネルギー・動径波動関数・格子収束を解析参照と比べる。",
           "en": "Compare energy, radial wavefunctions and grid refinement with analytic references for the specified Z=1,2 bound states."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "helium-ground-state",
@@ -3361,7 +3644,8 @@
           "ja": "球対称1s²のHeをRHFと交換のみLDAで解き、SCF収束・エネルギー・電子数を独立な有限基底参照と照合する。",
           "en": "Solve spherical 1s² helium with RHF and exchange-only LDA; compare SCF convergence, energies and electron count with independent finite-basis references."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "logistic-growth",
@@ -3439,7 +3723,8 @@
           "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
           "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "sir-epidemic",
@@ -3517,7 +3802,8 @@
           "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
           "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "mc-integral",
@@ -3595,7 +3881,8 @@
           "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
           "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "gbm-sde",
@@ -3673,7 +3960,8 @@
           "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
           "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "h2-rhf",
@@ -3751,7 +4039,8 @@
           "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
           "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "periodic-he-dft",
@@ -3829,7 +4118,8 @@
           "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
           "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
         }
-      }
+      },
+      "supplemental_execution_entries": []
     },
     {
       "id": "periodic-he-forces",
@@ -3907,11 +4197,1393 @@
           "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
           "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
         }
-      }
+      },
+      "supplemental_execution_entries": []
+    },
+    {
+      "id": "matrix-factorization",
+      "group": "approximation",
+      "name": {
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+      },
+      "chapter": "validation-foundations",
+      "reading_section": "qr-svd-factorization",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/foundations/",
+      "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "qr-svd-factorization"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "qr-svd-factorization",
+          "url": "/numerical-methods-atlas/validation/qr-svd-factorization/",
+          "name": {
+            "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+            "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#matrix-factorization",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+      "image_sha256": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+      "width": 1760,
+      "height": 560,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定した満階数・階数落ち行列で、Householder QR・片側Jacobi SVDの再構成、保持階数の直交性、LAPACKとの差を保存値から図示。丸めゼロは1e−16へ置いて表示。",
+        "en": "Saved reconstruction, retained-rank orthogonality and LAPACK differences for fixed full/rank-deficient Householder-QR and one-sided-Jacobi-SVD inputs. Roundoff zeros are displayed at 1e-16."
+      },
+      "visual_input": {
+        "id": "matrix-factorization",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+        "caption": {
+          "ja": "固定した満階数・階数落ち行列で、Householder QR・片側Jacobi SVDの再構成、保持階数の直交性、LAPACKとの差を保存値から図示。丸めゼロは1e−16へ置いて表示。",
+          "en": "Saved reconstruction, retained-rank orthogonality and LAPACK differences for fixed full/rank-deficient Householder-QR and one-sided-Jacobi-SVD inputs. Roundoff zeros are displayed at 1e-16."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#matrix-factorization-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "qr-svd-factorization",
+          "title": {
+            "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+            "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+          },
+          "group": "foundations",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "krylov-spectrum",
+      "group": "approximation",
+      "name": {
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+      },
+      "chapter": "validation-foundations",
+      "reading_section": "krylov-eigenvalues",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/foundations/",
+      "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "krylov-eigenvalues"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "krylov-eigenvalues",
+          "url": "/numerical-methods-atlas/validation/krylov-eigenvalues/",
+          "name": {
+            "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+            "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#krylov-spectrum",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+      "image_sha256": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+      "width": 1760,
+      "height": 560,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "再直交化Lanczos・ArnoldiのKrylov次元を変え、固有対残差と独立した密行列固有値との差を保存結果から比較。",
+        "en": "Stored eigenpair residuals and differences from independent dense eigenvalues as reorthogonalized Lanczos/Arnoldi Krylov dimensions increase."
+      },
+      "visual_input": {
+        "id": "krylov-spectrum",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+        "caption": {
+          "ja": "再直交化Lanczos・ArnoldiのKrylov次元を変え、固有対残差と独立した密行列固有値との差を保存結果から比較。",
+          "en": "Stored eigenpair residuals and differences from independent dense eigenvalues as reorthogonalized Lanczos/Arnoldi Krylov dimensions increase."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#krylov-spectrum-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "krylov-eigenvalues",
+          "title": {
+            "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+            "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+          },
+          "group": "foundations",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "quadrature-moments",
+      "group": "approximation",
+      "name": {
+        "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+        "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+      },
+      "chapter": "validation-foundations",
+      "reading_section": "gauss-adaptive-quadrature",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/foundations/",
+      "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gauss-adaptive-quadrature"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gauss-adaptive-quadrature",
+          "url": "/numerical-methods-atlas/validation/gauss-adaptive-quadrature/",
+          "name": {
+            "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+            "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#quadrature-moments",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+      "image_sha256": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+      "width": 1760,
+      "height": 560,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "Gauss–Legendreの次数と適応Simpsonの要求公差を走査した保存誤差。指数・Lorentz型積分の解析値を参照し、推定誤差を厳密上界とは扱わない。",
+        "en": "Saved Gauss–Legendre order and adaptive-Simpson tolerance sweeps against analytic exponential/Lorentzian integrals; estimated errors are not rigorous bounds."
+      },
+      "visual_input": {
+        "id": "quadrature-moments",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+        "caption": {
+          "ja": "Gauss–Legendreの次数と適応Simpsonの要求公差を走査した保存誤差。指数・Lorentz型積分の解析値を参照し、推定誤差を厳密上界とは扱わない。",
+          "en": "Saved Gauss–Legendre order and adaptive-Simpson tolerance sweeps against analytic exponential/Lorentzian integrals; estimated errors are not rigorous bounds."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#quadrature-moments-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "gauss-adaptive-quadrature",
+          "title": {
+            "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+            "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+          },
+          "group": "foundations",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "gaussian-mcmc",
+      "group": "probability",
+      "name": {
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+      },
+      "chapter": "validation-models",
+      "reading_section": "gaussian-mcmc",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gaussian-mcmc"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gaussian-mcmc",
+          "url": "/numerical-methods-atlas/validation/gaussian-mcmc/",
+          "name": {
+            "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+            "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#gaussian-mcmc",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+      "image_sha256": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+      "width": 1680,
+      "height": 504,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "標準正規標的・固定seedの32連鎖。保存したCDF検査点、標本予算ごとの連鎖平均RMSE・平均観測量のESSを表示。全seedの保証ではない。",
+        "en": "Standard-normal target and 32 fixed-seed chains: stored CDF checkpoints, chain-mean RMSE and mean-observable ESS by sample budget. Not an every-seed guarantee."
+      },
+      "visual_input": {
+        "id": "gaussian-mcmc",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+        "caption": {
+          "ja": "標準正規標的・固定seedの32連鎖。保存したCDF検査点、標本予算ごとの連鎖平均RMSE・平均観測量のESSを表示。全seedの保証ではない。",
+          "en": "Standard-normal target and 32 fixed-seed chains: stored CDF checkpoints, chain-mean RMSE and mean-observable ESS by sample budget. Not an every-seed guarantee."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#gaussian-mcmc-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "gaussian-mcmc",
+          "title": {
+            "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+            "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+          },
+          "group": "models",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "langevin-harmonic",
+      "group": "time",
+      "name": {
+        "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+        "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+      },
+      "chapter": "validation-models",
+      "reading_section": "langevin-harmonic",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "langevin-harmonic"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "langevin-harmonic",
+          "url": "/numerical-methods-atlas/validation/langevin-harmonic/",
+          "name": {
+            "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+            "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#langevin-harmonic",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+      "image_sha256": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+      "width": 1680,
+      "height": 504,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "調和振動子BAOABの刻み0.4/0.2/0.1。離散定常共分散の偏り、有限標本誤差、正準CDF誤差とlag2の位置相関を保存値から分離表示。",
+        "en": "Stored harmonic-BAOAB steps 0.4/0.2/0.1 separate discrete stationary-covariance bias, sampling error, canonical-CDF errors and position correlation at lag 2."
+      },
+      "visual_input": {
+        "id": "langevin-harmonic",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+        "caption": {
+          "ja": "調和振動子BAOABの刻み0.4/0.2/0.1。離散定常共分散の偏り、有限標本誤差、正準CDF誤差とlag2の位置相関を保存値から分離表示。",
+          "en": "Stored harmonic-BAOAB steps 0.4/0.2/0.1 separate discrete stationary-covariance bias, sampling error, canonical-CDF errors and position correlation at lag 2."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#langevin-harmonic-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "langevin-harmonic",
+          "title": {
+            "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+            "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+          },
+          "group": "models",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "reaction-diffusion-fourier",
+      "group": "biology",
+      "name": {
+        "ja": "反応拡散：空間2次と時間4次を分けて測る",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+      },
+      "chapter": "validation-models",
+      "reading_section": "reaction-diffusion-fourier",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "reaction-diffusion-fourier"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "reaction-diffusion-fourier",
+          "url": "/numerical-methods-atlas/validation/reaction-diffusion-fourier/",
+          "name": {
+            "ja": "反応拡散：空間2次と時間4次を分けて測る",
+            "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#reaction-diffusion-fourier",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+      "image_sha256": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+      "width": 1680,
+      "height": 504,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "周期Fourierモードの線形反応拡散。16/32/64格子の連続解誤差と、固定格子での半離散厳密解に対する時間誤差を分けた保存収束図。",
+        "en": "Stored linear periodic Fourier reaction–diffusion refinement separates continuum errors on 16/32/64 grids from temporal errors against a fixed-grid semidiscrete exact solution."
+      },
+      "visual_input": {
+        "id": "reaction-diffusion-fourier",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+        "caption": {
+          "ja": "周期Fourierモードの線形反応拡散。16/32/64格子の連続解誤差と、固定格子での半離散厳密解に対する時間誤差を分けた保存収束図。",
+          "en": "Stored linear periodic Fourier reaction–diffusion refinement separates continuum errors on 16/32/64 grids from temporal errors against a fixed-grid semidiscrete exact solution."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#reaction-diffusion-fourier-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "reaction-diffusion-fourier",
+          "title": {
+            "ja": "反応拡散：空間2次と時間4次を分けて測る",
+            "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+          },
+          "group": "models",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "turing-schnakenberg",
+      "group": "biology",
+      "name": {
+        "ja": "Turing不安定性：線形成長率と小振幅パターン",
+        "en": "Turing instability: linear growth and small-amplitude patterns"
+      },
+      "chapter": "validation-models",
+      "reading_section": "turing-schnakenberg",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "turing-schnakenberg"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "turing-schnakenberg",
+          "url": "/numerical-methods-atlas/validation/turing-schnakenberg/",
+          "name": {
+            "ja": "Turing不安定性：線形成長率と小振幅パターン",
+            "en": "Turing instability: linear growth and small-amplitude patterns"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#turing-schnakenberg",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+      "image_sha256": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+      "width": 1680,
+      "height": 504,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+        "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+      },
+      "visual_input": {
+        "id": "turing-schnakenberg",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+        "caption": {
+          "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+          "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#turing-schnakenberg-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "turing-schnakenberg",
+          "title": {
+            "ja": "Turing不安定性：線形成長率と小振幅パターン",
+            "en": "Turing instability: linear growth and small-amplitude patterns"
+          },
+          "group": "models",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "fitzhugh-nagumo",
+      "group": "biology",
+      "name": {
+        "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+        "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+      },
+      "chapter": "validation-models",
+      "reading_section": "fitzhugh-nagumo",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fitzhugh-nagumo"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fitzhugh-nagumo",
+          "url": "/numerical-methods-atlas/validation/fitzhugh-nagumo/",
+          "name": {
+            "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+            "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#fitzhugh-nagumo",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+      "image_sha256": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+      "width": 1680,
+      "height": 504,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "無次元の2変数FHN型ODEにt=10〜20の電流パルス。DOP853参照とRK4の興奮・回復、刻み0.1/0.05/0.025の収束と全出力点の差を保存結果から表示。",
+        "en": "A dimensionless two-variable FHN-type ODE with a t=10..20 current pulse: stored RK4/DOP853 excitation and recovery, steps 0.1/0.05/0.025 and all-output-time differences."
+      },
+      "visual_input": {
+        "id": "fitzhugh-nagumo",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+        "caption": {
+          "ja": "無次元の2変数FHN型ODEにt=10〜20の電流パルス。DOP853参照とRK4の興奮・回復、刻み0.1/0.05/0.025の収束と全出力点の差を保存結果から表示。",
+          "en": "A dimensionless two-variable FHN-type ODE with a t=10..20 current pulse: stored RK4/DOP853 excitation and recovery, steps 0.1/0.05/0.025 and all-output-time differences."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#fitzhugh-nagumo-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "fitzhugh-nagumo",
+          "title": {
+            "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+            "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+          },
+          "group": "models",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "neutral-periodic-charges",
+      "group": "gravity",
+      "name": {
+        "ja": "中性周期点電荷：Ewald・smooth PME",
+        "en": "Neutral periodic charges: Ewald and smooth PME"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "ewald",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ewald"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/ewald.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "spme"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/spme.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "ewald",
+          "url": "/numerical-methods-atlas/validation/ewald/",
+          "name": {
+            "ja": "中性周期セルのEwald和と独立theta積分",
+            "en": "Neutral-cell Ewald sums and an independent theta integral"
+          }
+        },
+        {
+          "id": "spme",
+          "url": "/numerical-methods-atlas/validation/spme/",
+          "name": {
+            "ja": "Bスプラインsmooth PMEの格子・次数収束",
+            "en": "Mesh/order convergence of B-spline smooth PME"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#neutral-periodic-charges",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/particles/results/ewald.png",
+      "image_sha256": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+      "width": 1500,
+      "height": 510,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "中性立方セルの非対称8点電荷。Ewaldの実空間・逆空間打切りに対する力の差を保存値から表示。smooth PMEの格子・Bスプライン次数比較は同じ問題の補助例へ接続。",
+        "en": "Asymmetric eight-charge neutral cubic cell: saved force differences over Ewald real/reciprocal cutoffs. The same problem links to a smooth-PME mesh/B-spline-order supplement."
+      },
+      "visual_input": {
+        "id": "neutral-periodic-charges",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/particles/results/ewald.png",
+        "caption": {
+          "ja": "中性立方セルの非対称8点電荷。Ewaldの実空間・逆空間打切りに対する力の差を保存値から表示。smooth PMEの格子・Bスプライン次数比較は同じ問題の補助例へ接続。",
+          "en": "Asymmetric eight-charge neutral cubic cell: saved force differences over Ewald real/reciprocal cutoffs. The same problem links to a smooth-PME mesh/B-spline-order supplement."
+        },
+        "supplemental_examples": [
+          {
+            "id": "ewald",
+            "url": "/numerical-methods-atlas/validation/ewald/",
+            "name": {
+              "ja": "中性周期セルのEwald和と独立theta積分",
+              "en": "Neutral-cell Ewald sums and an independent theta integral"
+            }
+          },
+          {
+            "id": "spme",
+            "url": "/numerical-methods-atlas/validation/spme/",
+            "name": {
+              "ja": "Bスプラインsmooth PMEの格子・次数収束",
+              "en": "Mesh/order convergence of B-spline smooth PME"
+            }
+          }
+        ],
+        "related_figures": [
+          {
+            "id": "spme",
+            "source": "/code/validated-examples/2026-11-22/particles/results/spme.png",
+            "caption": {
+              "ja": "同じ中性周期点電荷に対するBスプライン次数4/6と16³/24³/40³格子のsmooth PME保存誤差。",
+              "en": "Stored smooth-PME errors for the same neutral periodic charges at spline orders 4/6 and 16³/24³/40³ meshes."
+            }
+          }
+        ]
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#neutral-periodic-charges-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "ewald",
+          "title": {
+            "ja": "中性周期セルのEwald和と独立theta積分",
+            "en": "Neutral-cell Ewald sums and an independent theta integral"
+          },
+          "group": "particles",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+        },
+        {
+          "id": "spme",
+          "title": {
+            "ja": "Bスプラインsmooth PMEの格子・次数収束",
+            "en": "Mesh/order convergence of B-spline smooth PME"
+          },
+          "group": "particles",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "logarithmic-particles",
+      "group": "gravity",
+      "name": {
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "fmm",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fmm"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/fmm.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fmm",
+          "url": "/numerical-methods-atlas/validation/fmm/",
+          "name": {
+            "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+            "en": "2D logarithmic FMM with M2M, M2L and L2L"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#logarithmic-particles",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/particles/results/fmm.png",
+      "image_sha256": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+      "width": 1500,
+      "height": 510,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定seedの128粒子、2次元自由空間の対数核。FMMの展開次数2/4/8/12を独立した全対直接和と比べたポテンシャル・電場誤差の保存図。",
+        "en": "Stored potential/field errors for 128 fixed-seed particles with a 2D free-space log kernel: FMM orders 2/4/8/12 versus a separate all-pairs sum."
+      },
+      "visual_input": {
+        "id": "logarithmic-particles",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/particles/results/fmm.png",
+        "caption": {
+          "ja": "固定seedの128粒子、2次元自由空間の対数核。FMMの展開次数2/4/8/12を独立した全対直接和と比べたポテンシャル・電場誤差の保存図。",
+          "en": "Stored potential/field errors for 128 fixed-seed particles with a 2D free-space log kernel: FMM orders 2/4/8/12 versus a separate all-pairs sum."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#logarithmic-particles-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "fmm",
+          "title": {
+            "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+            "en": "2D logarithmic FMM with M2M, M2L and L2L"
+          },
+          "group": "particles",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "cold-plasma-pic",
+      "group": "kinetic",
+      "name": {
+        "ja": "CIC静電PICの冷たいプラズマ振動",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "pic",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "pic"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/pic.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "pic",
+          "url": "/numerical-methods-atlas/validation/pic/",
+          "name": {
+            "ja": "CIC静電PICの冷たいプラズマ振動",
+            "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#cold-plasma-pic",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/particles/results/pic.png",
+      "image_sha256": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+      "width": 2250,
+      "height": 510,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。",
+        "en": "One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps."
+      },
+      "visual_input": {
+        "id": "cold-plasma-pic",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/particles/results/pic.png",
+        "caption": {
+          "ja": "1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。",
+          "en": "One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#cold-plasma-pic-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "pic",
+          "title": {
+            "ja": "CIC静電PICの冷たいプラズマ振動",
+            "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+          },
+          "group": "particles",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "maxwell-collisions",
+      "group": "kinetic",
+      "name": {
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "dsmc",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/dsmc.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc",
+          "url": "/numerical-methods-atlas/validation/dsmc/",
+          "name": {
+            "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+            "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#maxwell-collisions",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/particles/results/dsmc.png",
+      "image_sha256": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+      "width": 1500,
+      "height": 510,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "等質なMaxwell分子の衝突成分。512/2048/8192粒子・16seedの保存モーメント誤差・標本不確かさと、物理時刻ではない衝突roundごとの異方性緩和。",
+        "en": "Homogeneous Maxwell-molecule collision component: stored moment errors/seed uncertainty for 512/2048/8192 particles over 16 seeds, and anisotropy per collision round, not physical time."
+      },
+      "visual_input": {
+        "id": "maxwell-collisions",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/particles/results/dsmc.png",
+        "caption": {
+          "ja": "等質なMaxwell分子の衝突成分。512/2048/8192粒子・16seedの保存モーメント誤差・標本不確かさと、物理時刻ではない衝突roundごとの異方性緩和。",
+          "en": "Homogeneous Maxwell-molecule collision component: stored moment errors/seed uncertainty for 512/2048/8192 particles over 16 seeds, and anisotropy per collision round, not physical time."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#maxwell-collisions-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "dsmc",
+          "title": {
+            "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+            "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+          },
+          "group": "particles",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "absorbing-slab",
+      "group": "transport",
+      "name": {
+        "ja": "純吸収平板の離散座標放射輸送",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "radiation-transport",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "radiation-transport"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "radiation-transport",
+          "url": "/numerical-methods-atlas/validation/radiation-transport/",
+          "name": {
+            "ja": "純吸収平板の離散座標放射輸送",
+            "en": "Discrete-ordinate radiation transport through an absorbing slab"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#absorbing-slab",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+      "image_sha256": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+      "width": 1500,
+      "height": 510,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
+        "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
+      },
+      "visual_input": {
+        "id": "absorbing-slab",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+        "caption": {
+          "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
+          "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#absorbing-slab-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "radiation-transport",
+          "title": {
+            "ja": "純吸収平板の離散座標放射輸送",
+            "en": "Discrete-ordinate radiation transport through an absorbing slab"
+          },
+          "group": "particles",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "06f8d8517041895b5b93c52275465803196850eb6c383368574de0fb92c35afb",
+    "catalog/atlas-gallery.json": "7a0a4b517c5a21483562e641a8a0142bd8a825b40e802611bb6db3846dbdcc8f",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -3958,16 +5630,63 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
+    "catalog/atlas-test-problems.json": "4aab1018d7efa4f5522b2483406ce1db460efb5dea78cbb1bc2d9d9f95f4a32c",
+    "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/inputs.json": "d811fee40a9480ca5ce51acdf3121bbc92d7af9158988286f4b4919debc31182",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/inputs.json": "c111259990139b04dd8fb6a6fdbc7010b302527c1ee3adf5d12a572353109565",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/inputs.json": "1842e9e7afe1ec14992d29e5642caed596b4330eeefefbcac40c65dd03add096",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/foundations/results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
+    "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+    "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+    "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+    "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "code/validated-examples/2026-11-22/particles/results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "code/validated-examples/2026-11-22/particles/results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
+    "code/validated-examples/2026-11-22/particles/results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "code/validated-examples/2026-11-22/particles/results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "code/validated-examples/2026-11-22/particles/results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "code/validated-examples/2026-11-22/particles/results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
+    "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
+    "code/validated-examples/2026-11-22/mhd/results/shu-independent.png": "0e5cc09c13e29f99160d4a22b489f98c9f24f4416515f01d1531d8112680a4e1",
+    "code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png": "d1e2a41d58baa80ea3910c7bab4d7efa0e6fcaa46a694eb102e2cc172d60795f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "23b843f2d0979f59a698218acf60454a59cd51d55dd94dcb130901f955d85cb7",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "0eac2e54602605732d1a3d18ef46258066ee3d4337889637e9e932741615ca57",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "f6eb9c7a43865dc8afda546fc401fe6bacfbf1a494abf420268e188e3b8210bf",
+    "numerical-methods-atlas/test-cases/index.json": "fec60b85c7ea24e33e918905f2605e0ac50b1b227d97560f93bc7927797f8e99",
     "catalog/atlas-execution-discovery.json": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1",
-    "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be"
+    "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
+    "scripts/atlas_depth_release.py": "d12ed24ed82c238178601eb363926241da7b2cbd7d5ac141977cbc174c5df04c",
+    "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
   }
 }

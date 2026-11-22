@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "group": "mhd",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+  "archive": {
+    "file": "atlas-mhd-2026-11-22.zip",
+    "sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "bytes": 4922090,
+    "archive_directory": "atlas-mhd-2026-11-22"
+  },
+  "archive_sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+  "returncode": 0,
+  "passed_tests": 11,
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "brio-independent",
+    "ct-glm-independent",
+    "glm-fourier-mode",
+    "shu-independent"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 2.5555998749996434,
+  "independent_rerun_seconds": 2.4991399589998764,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

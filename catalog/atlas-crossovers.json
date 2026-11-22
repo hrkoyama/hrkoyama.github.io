@@ -10,8 +10,8 @@
     "en": "Explore quantum chemistry, molecular dynamics, reaction–diffusion, biology, fluids and gravity through exchanged quantities and shared mathematics. Each connection states its validation needs and distinguishes runnable fixed examples, reading-only stages and unexecuted coupling."
   },
   "policy": {
-    "ja": "実行済みの要素例と、未検証の分野間接続を分けて示します。単独例の合格だけで、力・MD・温度制御・反応拡散などの連成を検証済みとはしません。",
-    "en": "Executed component examples and unvalidated cross-field connections are shown separately. A passing standalone case does not validate coupled forces, MD, thermostatting or reaction–diffusion."
+    "ja": "共通台帳の実行例と、独立展開した補助配布版の固定検証を分けて示します。Langevin振動子・反応拡散・Turing/膜興奮の限定例があっても、第一原理MDから熱浴まで、または反応・拡散・流体を結ぶ経路全体の検証には広げません。",
+    "en": "Common-registry executions and fixed checks from independently extracted supplements are separate evidence. Scoped Langevin-oscillator, reaction–diffusion, Turing and excitability examples do not establish the complete first-principles-MD-to-heat-bath or reaction–diffusion–fluid route."
   },
   "home": {
     "title": {
@@ -156,8 +156,8 @@
         "en": "DFT → first-principles MD → temperature control"
       },
       "summary": {
-        "ja": "静的な電子状態から核の力、軌道、熱浴へ。公開の周期Heエネルギー計算を出発点に、まだ検証されていない橋を明示する。",
-        "en": "Move from static electronic structure to nuclear forces, trajectories and a heat bath. Start with the released periodic-He energy calculation and identify each unvalidated bridge."
+        "ja": "静的な電子状態から核の力、軌道、熱浴へ。固定Heのエネルギー・力と、独立したLangevin振動子の分布検証をたどり、MD連成で追加すべき条件を確かめます。",
+        "en": "Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He energy/force evidence and separate Langevin-oscillator distribution checks, then inspect the extra requirements for coupled MD."
       },
       "keywords": [
         "DFT",
@@ -305,8 +305,8 @@
             "en": "Thermostats and distribution checks"
           },
           "summary": {
-            "ja": "比較解説を公開し、実装は計画中。Nosé–Hoover、chains、Langevin、確率的速度再スケーリングなどを、平均温度・運動エネルギー分布・相関の観点で比較する。",
-            "en": "Comparative reading is available; implementations are planned. Compare Nosé–Hoover, chains, Langevin and stochastic velocity rescaling through mean temperature, kinetic-energy distributions and correlations."
+            "ja": "12手法の比較解説に加え、Langevin調和振動子のBAOAB積分を専用補助例で検証。温度・位置/エネルギー分布・時間相関を解析的な調和振動子と比較します。",
+            "en": "Alongside comparative reading for 12 methods, a dedicated supplement validates BAOAB Langevin integration for a harmonic oscillator through temperature, position/energy distributions and time correlations against analytic oscillator results."
           },
           "method_ids": [
             "nose-hoover",
@@ -325,11 +325,29 @@
                 "ja": "温度制御と分布の比較",
                 "en": "Temperature control and distribution comparisons"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic"
+              },
+              "label": {
+                "ja": "Langevin振動子：分布・相関・刻み幅の実測",
+                "en": "Langevin oscillator: measured distributions, correlations and steps"
+              }
             }
           ],
           "gap": {
-            "ja": "各サーモスタットの台帳はplannedのまま。専用実行例、温度分布の測定、第一原理MDとの連成検証はない。",
-            "en": "Thermostat method records remain planned. There are no dedicated execution examples, measured temperature distributions or coupled first-principles-MD validations."
+            "ja": "この実行済み部分は独立した調和振動子だけです。他11手法、一般の多体系、第一原理MDとの連成は検証していません。平均温度の一致と正準分布・相関の一致を区別します。",
+            "en": "The executed subset is a standalone harmonic oscillator only. The other 11 methods, general many-body systems and first-principles-MD coupling remain unvalidated. Mean-temperature agreement is distinct from agreement of canonical distributions and correlations."
+          },
+          "supplemental_ids": [
+            "langevin-harmonic"
+          ],
+          "supplemental_role": "scoped-component",
+          "supplemental_scope": {
+            "ja": "Langevin/BAOAB・1自由度の調和振動子という固定した要素例。BOMD/CPMDからの核座標や原子間力は受け取りません。",
+            "en": "A fixed Langevin/BAOAB component with one harmonic-oscillator degree of freedom. It consumes neither nuclear coordinates nor interatomic forces from BOMD/CPMD."
           }
         }
       ],
@@ -459,8 +477,8 @@
             "en": "Use oscillators/ideal gases to check position distributions and the chi-square distribution of kinetic energy, autocorrelations and independent-stream uncertainty; vary step size and coupling time. Include small-system sampling failures before coupling to nuclear MD."
           },
           "existing_evidence": {
-            "ja": "サーモスタットの比較解説と検証計画を公開。専用コード・分布の測定結果・MDとの連成結果はない。",
-            "en": "Thermostat comparisons and a validation plan are published. There are no dedicated code, measured distributions or coupled MD results."
+            "ja": "Langevin調和振動子の専用コード・固定入力・分布/相関/刻み幅の補助検証を公開。第一原理MDの力供給APIとは独立しており、両者を結んだ軌道は実行していません。",
+            "en": "Dedicated Langevin-oscillator code, fixed inputs and distribution/correlation/timestep checks are published as a supplement. It is independent of the first-principles force API; no trajectory joins the two."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -471,7 +489,8 @@
             "example_ids": []
           },
           "reference_ids": [
-            "hoover1985"
+            "hoover1985",
+            "leimkuhler-matthews2013"
           ],
           "connection_kind": "handoff"
         }
@@ -480,13 +499,14 @@
         "kohn-sham1965",
         "born-oppenheimer1927",
         "car-parrinello1985",
-        "hoover1985"
+        "hoover1985",
+        "leimkuhler-matthews2013"
       ],
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認に限定し、BOMD/CPMDから熱浴までの経路全体は未検証。",
-          "en": "Static He and multiatom He₂ forces are runnable. The BOMD interface has only a short local check; the complete BOMD/CPMD-to-heat-bath route remains unvalidated."
+          "ja": "静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認まで。Langevin調和振動子の温度・エネルギー分布と相関は独立した補助例で検証しています。BOMD/CPMDと熱浴を結んだ経路全体は未実行です。",
+          "en": "Static He and multiatom-He₂ forces are runnable; the BOMD interface has only a short local check. Temperature/energy distributions and correlations of a Langevin harmonic oscillator are validated in a separate supplement. The complete BOMD/CPMD-to-heat-bath route has not been executed."
         },
         "example_ids": []
       }
@@ -498,8 +518,8 @@
         "en": "Reaction–diffusion → biological and fluid transport"
       },
       "summary": {
-        "ja": "反応源と拡散演算子を共有しても、侵入前線・模様・流れとの連成では検証量が変わる。0次元反応と輸送の部品例から、未実装の空間連成を見分ける。",
-        "en": "Reaction sources and diffusion operators recur across fronts, patterns and flow coupling, while validation targets change. Separate zero-dimensional reaction and transport component examples from unimplemented spatial coupling."
+        "ja": "反応源と拡散演算子を共有しても、線形モード、模様形成、膜興奮、流れとの連成では検証量が変わります。1次元の固定反応拡散例と0次元の膜興奮例から、流体と結ぶための追加条件をたどります。",
+        "en": "Shared reaction sources and diffusion operators lead to different checks for linear modes, pattern onset, excitability and flow coupling. Follow fixed 1D reaction–diffusion and zero-dimensional excitability examples toward the extra requirements for fluid coupling."
       },
       "keywords": [
         "reaction–diffusion",
@@ -531,10 +551,13 @@
             "en": "Reaction–diffusion framework"
           },
           "summary": {
-            "ja": "∂_t c = ∇·(D∇c) + R(c)。反応則R、拡散係数/行列D、初期条件、空間境界を指定して初めて問題になる。台帳のFisher–KPP・Turing・Schnakenbergは解説のみ。",
-            "en": "∂_t c = ∇·(D∇c) + R(c). A problem requires a reaction law R, diffusivity/matrix D, initial data and spatial boundaries. Catalogued Fisher–KPP, Turing and Schnakenberg entries provide reading only."
+            "ja": "∂_t c = ∇·(D∇c) + R(c)。反応則・拡散・初期値・境界を指定します。1次元周期の線形FourierモードとSchnakenberg反応拡散を、専用補助版の解析解・独立参照・空間/時間収束で検査します。",
+            "en": "For ∂_t c = ∇·(D∇c) + R(c), specify kinetics, diffusion, initial data and boundaries. Dedicated supplements check 1D periodic linear Fourier modes and Schnakenberg reaction–diffusion using analytic/independent references and space/time refinement."
           },
-          "method_ids": [],
+          "method_ids": [
+            "centered-difference",
+            "rk4"
+          ],
           "example_ids": [],
           "reading": [
             {
@@ -546,29 +569,51 @@
                 "ja": "生物モデルと反応拡散の検証案",
                 "en": "Biological models and proposed reaction–diffusion checks"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+              },
+              "label": {
+                "ja": "線形反応拡散の空間・時間収束",
+                "en": "Space/time refinement for linear reaction–diffusion"
+              }
             }
           ],
           "gap": {
-            "ja": "反応拡散の空間ソルバーや連成実行例は公開されていない。拡散だけの例を足しても連成の検証にはならない。",
-            "en": "No spatial reaction–diffusion solver or coupled execution example is released. Adding a separate diffusion example does not validate the combination."
+            "ja": "固定した1次元周期問題の範囲です。一般の反応則・非周期境界、Fisher–KPP前線、流れとの移流反応拡散は未検証です。拡散単体と反応拡散の結果を分けて示します。",
+            "en": "Limited to fixed 1D periodic problems. General kinetics, nonperiodic boundaries, Fisher–KPP fronts and advective reaction–diffusion coupled to flow remain unvalidated. Diffusion-only and reaction–diffusion evidence are distinct."
           },
           "model_ids": [
             "fisher-kpp",
             "turing",
             "schnakenberg"
-          ]
+          ],
+          "supplemental_ids": [
+            "reaction-diffusion-fourier",
+            "turing-schnakenberg"
+          ],
+          "supplemental_role": "scoped-component",
+          "supplemental_scope": {
+            "ja": "線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。",
+            "en": "Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification."
+          }
         },
         {
           "id": "biological-fronts",
           "title": {
-            "ja": "生物：侵入前線と模様形成",
-            "en": "Biology: invasion fronts and pattern onset"
+            "ja": "生物：模様形成・膜興奮と前線",
+            "en": "Biology: pattern onset, excitability and fronts"
           },
           "summary": {
-            "ja": "Fisher–KPPは増殖と拡散の前線、Turingは安定な反応平衡が空間モードで不安定化する枠組み。Schnakenbergは具体的な反応則の一例であり、Turing原論文の反応則や組織較正済みモデルと同一ではない。",
-            "en": "Fisher–KPP concerns growth–diffusion fronts; Turing describes spatial-mode destabilization of a stable reaction equilibrium. Schnakenberg supplies one kinetic law, distinct from Turing’s original example and from a tissue-calibrated model."
+            "ja": "SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumoの刺激応答を0次元ODEで検証します。Fisher–KPP前線は解説段階です。反応則や次元の違いを、生物現象の同一性や組織データへの適合と取り違えません。",
+            "en": "Validate initial Schnakenberg Turing growth with 1D reaction–diffusion and FitzHugh–Nagumo stimulus response with a zero-dimensional ODE. Fisher–KPP fronts remain reading-only. Different kinetics/dimensions do not establish identical biological phenomena or agreement with tissue data."
           },
-          "method_ids": [],
+          "method_ids": [
+            "centered-difference",
+            "rk4"
+          ],
           "example_ids": [],
           "reading": [
             {
@@ -600,17 +645,47 @@
                 "ja": "Schnakenbergの反応則",
                 "en": "Schnakenberg kinetics"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg"
+              },
+              "label": {
+                "ja": "Turing初期成長と独立参照",
+                "en": "Initial Turing growth and independent references"
+              }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo"
+              },
+              "label": {
+                "ja": "FitzHugh–Nagumoの0次元刺激応答",
+                "en": "Zero-dimensional FitzHugh–Nagumo stimulus response"
+              }
             }
           ],
           "gap": {
-            "ja": "いずれもsurvey-onlyのモデル。前線速度・モード成長率の測定も、生物の実験データによる妥当性確認も未実施。",
-            "en": "All remain survey-only models. Front-speed and mode-growth measurements and validation against biological observations have not been performed."
+            "ja": "Turingは短時間の線形成長と有限振幅の区別まで、FitzHugh–Nagumoは空間を持たない単一素子です。伝播する膜パルス、Fisher前線速度、生物実験データへの較正、流体との連成は未検証です。",
+            "en": "Turing evidence separates short-time linear growth from finite-amplitude behavior; FitzHugh–Nagumo is a spatially uniform single unit. Propagating membrane pulses, Fisher front speeds, biological-data calibration and fluid coupling remain unvalidated."
           },
           "model_ids": [
             "fisher-kpp",
             "turing",
-            "schnakenberg"
-          ]
+            "schnakenberg",
+            "fitzhugh-nagumo"
+          ],
+          "supplemental_ids": [
+            "turing-schnakenberg",
+            "fitzhugh-nagumo"
+          ],
+          "supplemental_role": "scoped-component",
+          "supplemental_scope": {
+            "ja": "Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。",
+            "en": "Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation."
+          }
         },
         {
           "id": "reaction-only",
@@ -739,21 +814,23 @@
             "en": "For fronts, compare analytic profile/speed and separate finite-boundary, spatial and temporal errors. For Turing onset, establish k=0 stability and compare early growth of boundary-admissible nonzero modes with J−k²D and the discrete-Laplacian prediction."
           },
           "existing_evidence": {
-            "ja": "解説に前線・モードの検証案と一次文献がある。測定した反応拡散の結果はない。",
-            "en": "Reading supplies front/mode verification plans and primary references. There are no measured reaction–diffusion results."
+            "ja": "Schnakenbergは許される周期モードの成長をJ−k²Dと離散Laplacianの予測、空間/時間細分化で比較済みです。FitzHugh–Nagumoは独立DOP853との0次元照合です。Fisher–KPP前線は未実行です。",
+            "en": "Schnakenberg compares admissible periodic-mode growth with J−k²D, discrete-Laplacian predictions and space/time refinement. FitzHugh–Nagumo has a zero-dimensional independent DOP853 comparison. Fisher–KPP fronts have not been executed."
           },
           "coupled_validation": {
             "status": "not-executed",
             "scope": {
-              "ja": "反応拡散の生物モデルとしての空間実行は未実施。",
-              "en": "Spatial execution of these biological reaction–diffusion models has not been performed."
+              "ja": "固定したSchnakenbergの空間例は独立した要素検証です。異なる生物モデル族への一般化、生体組織への妥当性確認、前線や流体へ接続する経路全体は実行していません。",
+              "en": "The fixed spatial Schnakenberg example is independent component validation. Generalization across biological-model families, tissue-level validity and the complete bridge to fronts or flow have not been executed."
             },
             "example_ids": []
           },
           "reference_ids": [
             "fisher1937",
             "turing1952",
-            "schnakenberg1979"
+            "schnakenberg1979",
+            "fitzhugh1961",
+            "nagumo1962"
           ],
           "connection_kind": "model-application"
         },
@@ -833,8 +910,8 @@
             "en": "Check concentration balance with boundary fluxes and reaction sources, nonnegativity, ∇·u, space/time refinement and splitting order/step dependence. Use a manufactured or independent coupled reference; active coupling also requires force/heat balance checks."
           },
           "existing_evidence": {
-            "ja": "advection-sineは周期一定速度のスカラー移流、taylor-greenは周期粘性流と発散を別々に検証する。濃度や反応を含む連成結果はない。",
-            "en": "advection-sine checks scalar periodic constant-speed transport; taylor-green separately checks periodic viscous flow and divergence. Neither supplies concentration–reaction–flow results."
+            "ja": "線形/Schnakenberg反応拡散の補助例、周期一定速度advection-sine、周期粘性taylor-greenを別々に検証しています。濃度・反応・流体を結んだ実行はありません。",
+            "en": "Linear/Schnakenberg reaction–diffusion supplements, periodic constant-speed advection-sine and periodic viscous taylor-green are verified separately. No execution couples concentration, reaction and flow."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -856,13 +933,15 @@
         "fisher1937",
         "turing1952",
         "schnakenberg1979",
-        "chorin1968"
+        "chorin1968",
+        "fitzhugh1961",
+        "nagumo1962"
       ],
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "0次元反応・移流・周期流体の例は別々の証拠。空間反応拡散や反応・拡散・流れを結ぶ経路全体は未実行。",
-          "en": "Zero-dimensional reaction, advection and periodic-flow examples provide separate evidence. Spatial reaction–diffusion and the complete reaction–diffusion–flow route have not been executed."
+          "ja": "1次元線形反応拡散とSchnakenbergのTuring初期成長、0次元FitzHugh–Nagumoは専用補助例で実行済みです。ロジスティック/SIR、移流、周期流体の共通台帳例も別の要素根拠として残します。反応・拡散・移流/流体を結ぶ経路全体は未実行です。",
+          "en": "Dedicated supplements execute 1D linear reaction–diffusion, initial Schnakenberg Turing growth and zero-dimensional FitzHugh–Nagumo. Logistic/SIR, advection and periodic-flow runs remain separate common-registry component evidence. The complete reaction–diffusion–advection/fluid route is unexecuted."
         },
         "example_ids": []
       }
@@ -1382,6 +1461,42 @@
       "review": {
         "ja": "既存PM項目の出版社抄録・書誌確認を継承。2次元の割当てと格子の力誤差の文献であり、公開3次元Green関数の導出・数値検証そのものではない。今回の全文再監査はない。",
         "en": "Inherits PM-record publisher-abstract/metadata checks. Concerns 2D assignment/mesh-force error, not derivation or numerical validation of the released 3D Green function. No fresh full-text audit."
+      }
+    },
+    {
+      "id": "leimkuhler-matthews2013",
+      "author": "B. Leimkuhler and C. Matthews",
+      "year": 2013,
+      "title": "Rational Construction of Stochastic Numerical Methods for Molecular Sampling",
+      "url": "https://arxiv.org/abs/1203.5428",
+      "review_level": "author-manuscript-selected-appendix",
+      "review": {
+        "ja": "著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。",
+        "en": "Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here."
+      }
+    },
+    {
+      "id": "fitzhugh1961",
+      "author": "R. FitzHugh",
+      "year": 1961,
+      "title": "Impulses and Physiological States in Theoretical Models of Nerve Membrane",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19431309/",
+      "review_level": "official-abstract-and-metadata",
+      "review": {
+        "ja": "PubMedの原著抄録・書誌を確認。2変数の興奮・不応期の縮約という役割を参照し、HH全系や実測膜電位の再現とは区別します。",
+        "en": "Original-paper abstract and bibliography in PubMed checked. Supports the two-variable excitable/refractory reduction; no full HH or measured membrane-voltage reproduction is claimed."
+      }
+    },
+    {
+      "id": "nagumo1962",
+      "author": "J. Nagumo, S. Arimoto and S. Yoshizawa",
+      "year": 1962,
+      "title": "An Active Pulse Transmission Line Simulating Nerve Axon",
+      "url": "https://ieeexplore.ieee.org/abstract/document/4066548",
+      "review_level": "publisher-abstract-and-metadata",
+      "review": {
+        "ja": "IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。",
+        "en": "IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed."
       }
     }
   ]

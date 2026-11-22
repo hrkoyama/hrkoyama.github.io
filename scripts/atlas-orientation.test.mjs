@@ -62,15 +62,15 @@ function formatCopy(value) {
 test('orientation and sharing retain scientific counts and the already-verified execution registry', () => {
   assert.equal(methods.length, 145);
   assert.deepEqual(Object.fromEntries(['educational-example', 'reading-only', 'planned'].map(status => [status, methods.filter(method => method.status === status).length])),
-    {'educational-example': 100, 'reading-only': 16, planned: 29});
+    {'educational-example': 113, 'reading-only': 15, planned: 17});
   assert.equal(json('catalog/atlas-equations.json').equations.length, 46);
-  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 67);
+  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 80);
   assert.equal(examples.examples.length, 22);
   const receipt = json(new URL(examples.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_source_mode, 'public-registry'); assert.equal(receipt.passed, true);
   assert.equal(digest('numerical-methods-atlas/code-and-data/examples.json'), receipt.registry_sha256);
   assert.deepEqual(json('numerical-methods-atlas/code-and-data/examples.json').examples, examples.examples);
-  assert.ok(methods.filter(method => method.group.id === 'thermostats').every(method => method.status === 'planned'));
+  assert.ok(methods.filter(method => method.group.id === 'thermostats').every(method => method.status === (method.id === 'langevin-thermostat' ? 'educational-example' : 'planned')));
 });
 
 test('the eight actual areas render in both languages with real reading/execution links and scoped new fields', () => {
@@ -160,7 +160,7 @@ test('sharing provides real 1200 by 630 PNG/SVG artwork and matching localized s
   const catalog = json('catalog/atlas-sharing.json');
   const published = json(shareBase + 'sharing.json');
   const build = json(shareBase + 'build.json');
-  const expectedCounts = {...coverage.counts, method_records: 145, educational_examples: 100, reading_only: 16, planned: 29, execution_examples: 22};
+  const expectedCounts = {...coverage.counts, method_records: 145, educational_examples: 113, reading_only: 15, planned: 17, execution_examples: 22};
   for (const [key, value] of Object.entries(expectedCounts)) assert.equal(published.counts[key], value, key);
   assert.deepEqual(published.sources, build.sources);
   for (const [path, sha256] of Object.entries(build.sources)) assert.equal(digest(path), sha256, path);

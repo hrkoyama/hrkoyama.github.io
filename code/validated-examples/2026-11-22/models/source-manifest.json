@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "family": "depth-models",
+  "group": "models",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+  "files": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "ad6e3b448a8798a07e2123ae5828a341006b576a74aca13db1ca0c05f3d49202",
+    "cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "inputs.json": "d811fee40a9480ca5ce51acdf3121bbc92d7af9158988286f4b4919debc31182",
+    "models.py": "4fe0ca8b6eb67b16f0795434b125f5b1bbc783ebd8299028cd449c069824dd5a",
+    "plot.py": "309145a4e937323e1e16123b77ae5d1bba3c4b804c321e272b7da1a0da9d7b9f",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/fitzhugh-nagumo.csv": "a26bd9ff79f077c6876db08ebea3b45d0a2d13a6cfbd6606713783e182ae7143",
+    "results/fitzhugh-nagumo.png": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "results/gaussian-mcmc.csv": "98ea1a762123ee2ff285cd8c7d4ba69fe3899eb6a51bfad5e601b545a9bae3e7",
+    "results/gaussian-mcmc.png": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "results/langevin-harmonic.csv": "f2d87246b955eaebdfd028e444948009adc137fe80d7ec02d70db5d51e510489",
+    "results/langevin-harmonic.png": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+    "results/reaction-diffusion-fourier.csv": "e308faa6b46a6aaff3443c81a99c20766973a9f83601f6c653e8373a3e475d70",
+    "results/reaction-diffusion-fourier.png": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "results/turing-schnakenberg.csv": "86b95ef5487547ff35527b28e8d90b9403c2553bf637c0ba8709eb8cac83df51",
+    "results/turing-schnakenberg.png": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+    "run.py": "8a2bb3b452140db1f4b4114a82396ebae5abbf7b091a2ad392f39b7daae1a82f",
+    "test_models.py": "121de85755549957a8fcceff5049e66feaa5b4bbc5cda50e78cb0cd4bdf5415c"
+  },
+  "case_ids": [
+    "fitzhugh-nagumo",
+    "gaussian-mcmc",
+    "langevin-harmonic",
+    "reaction-diffusion-fourier",
+    "turing-schnakenberg"
+  ],
+  "scope": "Small fixed-input educational validations; each case states its own model, reference, acceptance and exclusions."
+}

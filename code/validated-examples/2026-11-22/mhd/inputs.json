@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "ot": {
+    "grids": [
+      16,
+      32,
+      64
+    ],
+    "time": 0.05,
+    "cfl": 0.3,
+    "acceptance": {
+      "finest_density_relative_l1": 0.05,
+      "finest_by_relative_l1": 0.2,
+      "last_error_ratio": 0.9,
+      "conserved_relative_drift": 2e-12,
+      "ct_native_divergence": 2e-11,
+      "independent_reference_l1": 0.002
+    }
+  },
+  "brio": {
+    "grids": [
+      128,
+      256,
+      512
+    ],
+    "time": 0.1,
+    "cfl": 0.35,
+    "acceptance": {
+      "finest_density_l1": 0.04,
+      "finest_by_l1": 0.08,
+      "last_error_ratio": 0.9,
+      "independent_reference_l1": 0.004
+    },
+    "reference_grids": [
+      2048,
+      4096
+    ]
+  },
+  "shu": {
+    "grids": [
+      100,
+      200,
+      400
+    ],
+    "time": 1.8,
+    "cfl": 0.3,
+    "acceptance": {
+      "finest_density_l1": 0.08,
+      "last_error_ratio": 0.9,
+      "independent_reference_l1": 0.005
+    },
+    "reference_grids": [
+      2048,
+      4096,
+      8192
+    ]
+  },
+  "glm_mode": {
+    "grids": [
+      16,
+      32,
+      64
+    ],
+    "time": 1.0,
+    "speed": 1.0,
+    "damping": 2.0,
+    "cfl": 0.2,
+    "acceptance": {
+      "finest_l2": 0.008,
+      "min_order": 1.8,
+      "divergence_ratio": 0.5
+    }
+  }
+}

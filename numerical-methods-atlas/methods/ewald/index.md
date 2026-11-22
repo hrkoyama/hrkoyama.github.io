@@ -1,12 +1,12 @@
 # Ewald summation / Ewald法
 
-Status: planned
+Status: educational-example
 
-Split a periodic Coulomb sum into real, reciprocal and self-correction terms. This record defines neutral-cell, unit, zero-mode and surface conventions for a future reference calculation.
+Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.
 
-周期Coulomb和を実空間・逆空間・自己補正に分けます。中性セル、単位、ゼロモードと表面規約を揃えるための基準を整理した段階です。
+3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。
 
-Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
+No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field.
 
 Other names: Ewald summation, エワルド法, エバルト法, エワルド和
 
@@ -40,17 +40,17 @@ boundary_conditions [specified]:
 ここでは実装前の比較仕様として記載し、計算済みの条件とは区別します。
 
 limitations [specified]:
-日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。
+非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。
 文献整理と専用実装・数値検証の完了を区別します。
 
-Review: 原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。
+Review: 原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。
 
 Not checked:
-- 実装コード・固定入力・数値残差・収束率・性能は未検証。
-- 原論文の全導出と全数値例の再現は行っていません。
+- 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。
 
 Evidence:
-
+- Fixed-input measured checks / 固定入力の実測判定: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
+- Independent ZIP-extraction receipt / ZIP独立展開の記録: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
 
 References:
 - [original-method / primary-research] Ewald, P. P. (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale. — https://doi.org/10.1002/andp.19213690304
@@ -89,17 +89,17 @@ Triply periodic neutral cell; the initial comparison specifies a conducting (tin
 Specified here as a pre-implementation comparison convention, not an executed setup.
 
 limitations [specified]:
-Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
+No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field.
 Source curation is separate from completion of implementation and numerical validation.
 
-Review: Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review.
+Review: In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope.
 
 Not checked:
-- No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.
-- Not a reproduction of every derivation or numerical example in the original papers.
+- No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field.
 
 Evidence:
-
+- Fixed-input measured checks / 固定入力の実測判定: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
+- Independent ZIP-extraction receipt / ZIP独立展開の記録: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
 
 References:
 - [original-method / primary-research] Ewald, P. P. (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale. — https://doi.org/10.1002/andp.19213690304
@@ -118,7 +118,21 @@ References:
 - Reference: https://doi.org/10.1002/andp.19213690304 — Bibliographic origin of the real/reciprocal decomposition; the complete 1921 derivation was not audited.
 - Reference: https://doi.org/10.1063/1.470117 — Full-text formulation used here to check neutrality, self corrections and surface conventions.
 
-Next: A neutral small-system reference with explicit self, zero-mode and boundary conventions.
+## Small fixed-input validation supplement
+
+Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.
+
+3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。
+
+- Neutral-cell Ewald sums and an independent theta integral: https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
+
+Common execution records: [{"id": "ewald", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en"}, "kind": "dedicated-supplement"}]
+
+Next: Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

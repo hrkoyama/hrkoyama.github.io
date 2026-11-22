@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family": "depth-foundations",
+  "group": "foundations",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "a330719ddd131bb056368eeacb7bf0119d8b254e3fe285dc34c5e7b1dee47d03",
+    "cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
+    "plot.py": "028466fbf71282a9af27d82c72272e6fdacff7156747beeed923531f09fbfc66",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/amg-residuals.csv": "0b370584c22a382aad066778652fe3f7a4ca89f4979bde0e4737b32e5ff02934",
+    "results/gauss-adaptive-quadrature.csv": "9c01f267e3db9a69500bc0d31439fc95b3938ed2b26f6f13c1938b00531beb63",
+    "results/gauss-adaptive-quadrature.png": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+    "results/krylov-eigenvalues.csv": "85695b0ac1369c311f889783759a493a6043eec9c16d4eeb02860f98db5fade9",
+    "results/krylov-eigenvalues.png": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "results/qr-svd-factorization.csv": "8c5e551cae072c3cea14c44e88ff6c4f16a04ed11dc99bcdab69ef7e238ce89c",
+    "results/qr-svd-factorization.png": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "results/sa-amg.csv": "45529849470b3d859f0ccad562694772185a03c63e9b2760a6747817d539cf5c",
+    "results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
+    "run.py": "123fe6da7ff72e5264c649095cbc764733e5fe3d6ae43b8d71f712f8a3452055",
+    "solvers.py": "425d46f888d82f301eb741a7c957f70da7a4d7af5b948acfa2bf63bf97ab731b",
+    "source-review.json": "46535555e687341ed24697dae9807bf9d82efc89bacb613700a5e43ba0cd708a",
+    "test_foundations.py": "47eaf8a48dccf87916c00e4227b58fbbe70bb34d51cd260c19e5d6b9e6a60035"
+  },
+  "case_ids": [
+    "gauss-adaptive-quadrature",
+    "krylov-eigenvalues",
+    "qr-svd-factorization",
+    "sa-amg"
+  ],
+  "scope": "Small fixed-input educational validations; each case states its own model, reference, acceptance and exclusions."
+}

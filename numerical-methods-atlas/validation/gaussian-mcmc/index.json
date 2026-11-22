@@ -1,0 +1,230 @@
+{
+  "id": "gaussian-mcmc",
+  "title": {
+    "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+    "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+  },
+  "method_ids": [
+    "mcmc"
+  ],
+  "domains": [
+    "probability"
+  ],
+  "summary": {
+    "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+    "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+  },
+  "assumptions": {
+    "ja": "無次元1変数、対称Gaussianランダムウォーク提案幅1.5。固定master seedから32の別PCG64ストリームを生成し、1024回のburn-in後に各8192標本を保持します。",
+    "en": "One dimensionless variable and symmetric Gaussian random-walk width1.5. Spawn 32 separate PCG64 streams from a fixed master seed; retain 8192 samples per chain after 1024 burn-in steps."
+  },
+  "algorithm": {
+    "ja": "log受理比でMetropolis更新。FFTによる連鎖内自己共分散を平均し、Geyerのgamma0+gamma1から始まる初期正ペア和から平均観測量のESSを求めます。古典的split-Rhatも併記します。",
+    "en": "Use a log-acceptance Metropolis update. Pool FFT within-chain autocovariances and obtain mean-observable ESS from Geyer initial-positive pairs starting at gamma0+gamma1. Also report classical split-Rhat."
+  },
+  "validation": {
+    "ja": "正規CDFを独立参照とし、標本数1024/2048/8192の連鎖平均RMSEを比較。別の定常AR(1)系列と厳密tau=(1+rho)/(1-rho)で診断量を照合します。公差は固定入力で事前指定します。",
+    "en": "Use the normal CDF as an independent analytic reference and compare chain-mean RMSE at 1024/2048/8192 retained samples. A separate stationary AR(1) sequence and exact tau=(1+rho)/(1-rho) check the diagnostic. Acceptance is predeclared in fixed inputs."
+  },
+  "limits": {
+    "ja": "固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。",
+    "en": "Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate."
+  },
+  "formulas": [
+    "\\pi(x)=(2\\pi)^{-1/2}e^{-x^2/2},\\quad \\alpha=\\min(1,e^{-(y^2-x^2)/2})",
+    "\\tau=-1+2\\sum_{k=0}^{K}(\\rho_{2k}+\\rho_{2k+1}),\\qquad N_{\\rm eff}=MN/\\max(1,\\tau)"
+  ],
+  "references": [
+    {
+      "id": "metropolis1953",
+      "author": "N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller",
+      "year": 1953,
+      "title": "Equation of State Calculations by Fast Computing Machines",
+      "doi": "10.1063/1.1699114",
+      "url": "https://doi.org/10.1063/1.1699114",
+      "review_level": "publisher-abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。",
+        "en": "Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed."
+      },
+      "type": "article",
+      "journal": "Journal of Chemical Physics21,1087–1092"
+    },
+    {
+      "id": "hastings1970",
+      "author": "W. K. Hastings",
+      "year": 1970,
+      "title": "Monte Carlo sampling methods using Markov chains and their applications",
+      "doi": "10.1093/biomet/57.1.97",
+      "url": "https://probability.ca/hastings/hastings.pdf",
+      "review_level": "original-paper-excerpt-and-metadata",
+      "review": {
+        "ja": "大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。",
+        "en": "Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio."
+      },
+      "type": "article",
+      "journal": "Biometrika57(1),97–109"
+    },
+    {
+      "id": "geyer1992",
+      "author": "C. J. Geyer",
+      "year": 1992,
+      "title": "Practical Markov Chain Monte Carlo",
+      "doi": "10.1214/ss/1177011137",
+      "url": "https://projecteuclid.org/journals/statistical-science/volume-7/issue-4/Practical-Markov-Chain-Monte-Carlo/10.1214/ss/1177011137.full",
+      "review_level": "publisher-abstract-and-selected-original-section",
+      "review": {
+        "ja": "出版社側の抄録・書誌と大学公開原著の初期正列・AR(1)に関する検索返却箇所を確認。全文監査や任意の連鎖の収束証明を主張しません。",
+        "en": "Publisher-side abstract/metadata and returned original-paper excerpts on initial-positive sequences and AR(1), from a university-hosted copy, checked. No full-text audit or convergence certificate for arbitrary chains is claimed."
+      },
+      "type": "article",
+      "journal": "Statistical Science7(4),473–483"
+    }
+  ],
+  "group": "models",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "gaussian-mcmc",
+    "passed": true,
+    "termination": "fixed_budget_completed",
+    "checks": {
+      "finite": true,
+      "mean": true,
+      "variance": true,
+      "cdf": true,
+      "split_rhat": true,
+      "ess": true,
+      "acceptance": true,
+      "ar1_exact_sequence": true,
+      "ar1_sampling_diagnostic": true,
+      "sample_budget": true
+    },
+    "metrics": {
+      "mean_error": 0.010631777843262634,
+      "variance_error": 0.002245617179238435,
+      "cdf_max_error": 0.0032519421134648008,
+      "acceptance": 0.5894775390625,
+      "tau": 5.380318100624768,
+      "ess": 48722.769750279185,
+      "split_rhat": 1.0004379739161546,
+      "acf_lag1": 0.6804539280760109,
+      "ar1_exact_tau": 9.000000000000002,
+      "ar1_series_tau_error": 1.7763568394002505e-15,
+      "ar1_empirical_tau_relative_error": 0.012439210859068739,
+      "budget_mean_rmse_ratio": 2.949230534359497
+    },
+    "records": [
+      {
+        "samples_per_chain": 1024,
+        "mean_rmse_across_chains": 0.0679758898654594,
+        "tau": 5.098645805375346,
+        "ess": 6426.8045380704225,
+        "split_rhat": 1.003204248712499,
+        "acf_lag1": 0.6756564446542064
+      },
+      {
+        "samples_per_chain": 2048,
+        "mean_rmse_across_chains": 0.05329329663991298,
+        "tau": 5.2533242262975195,
+        "ess": 12475.148530131557,
+        "split_rhat": 1.0018607842285994,
+        "acf_lag1": 0.6764177264391518
+      },
+      {
+        "samples_per_chain": 8192,
+        "mean_rmse_across_chains": 0.023048686453472564,
+        "tau": 5.380318100624768,
+        "ess": 48722.769750279185,
+        "split_rhat": 1.0004379739161546,
+        "acf_lag1": 0.6804539280760109
+      },
+      {
+        "cdf_point": -1.96,
+        "empirical_cdf": 0.02639007568359375,
+        "normal_cdf": 0.024997895148220435
+      },
+      {
+        "cdf_point": -1.0,
+        "empirical_cdf": 0.16190719604492188,
+        "normal_cdf": 0.15865525393145707
+      },
+      {
+        "cdf_point": 0.0,
+        "empirical_cdf": 0.5030021667480469,
+        "normal_cdf": 0.5
+      },
+      {
+        "cdf_point": 1.0,
+        "empirical_cdf": 0.8434600830078125,
+        "normal_cdf": 0.8413447460685429
+      },
+      {
+        "cdf_point": 1.96,
+        "empirical_cdf": 0.9764328002929688,
+        "normal_cdf": 0.9750021048517795
+      }
+    ],
+    "duration_seconds": 0.0674432079995313,
+    "input_sha256": "ae8379269e1df80dba6cbe712bff598c7dfaf74e5e1b78bd1ff06d7750f01810"
+  },
+  "problem_id": "gaussian-mcmc",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+    "archive": {
+      "file": "atlas-models-2026-11-22.zip",
+      "sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+      "bytes": 539043,
+      "archive_directory": "atlas-models-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+    ],
+    "passed_tests": 26
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

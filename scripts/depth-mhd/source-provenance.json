@@ -1,0 +1,45 @@
+{
+  "sources": [
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/benchmarks.py",
+      "sha256": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/equations.py",
+      "sha256": "d1b589ad4b8a31d316c20926ef7104664609d789f31f6fb239c1d74bb310b619"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/riemann.py",
+      "sha256": "702ce9e08fbef67ed77363e8603e64f2da8a979d3b5abd6ffa62ab78344c95cf"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/limiters.py",
+      "sha256": "f9e7fc43fcf4c77c030faf1495ec0d1573b272637284be70c2a4d62ba113f287"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/solvers.py",
+      "sha256": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/mhd.py",
+      "sha256": "f9fecdf6dd920cbbebec1d8ce226b4e3fcfceac6e98eed7dc55ce324e481634f"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/mhd_tests.py",
+      "sha256": "396a659ed2027ddcb4f322221a33ce2c4d7e02a6f4a1b036fcbfcbca8cb907d2"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/hlld.py",
+      "sha256": "5615a1fbe08d236a8ac3ab7f48ef9c50f6a859a48af36797e03a5940b8384af5"
+    },
+    {
+      "source": "code/numerical-methods-atlas/2026-11-22/numart/snapshots.py",
+      "sha256": "436beaf035322b75a98f3774d27fcbe6fc7668c6e25603ce1e7e0c48b0e949dd"
+    }
+  ],
+  "changes": [
+    "mhd_tests.py imports an unchanged extracted slope limiter instead of importing the unrelated 2D hydro module.",
+    "OT validation driver keeps the original planar Rusanov CT/GLM algorithms; independent references are from Athena++."
+  ],
+  "scope": "Existing published solvers reused without overwriting their immutable edition."
+}

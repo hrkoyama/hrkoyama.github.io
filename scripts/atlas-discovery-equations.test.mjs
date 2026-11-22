@@ -54,7 +54,7 @@ test('twenty-two execution formulas stay separate from the unchanged model inven
     if(model.status==='reading')assert.deepEqual(model.execution_examples,[]);
   }
   assert.deepEqual(published.equations.find(x=>x.id==='time-dependent-kohn-sham').execution_examples,[]);
-  assert.equal(coverage.counts.test_problems,67);
+  assert.equal(coverage.counts.test_problems,80);
 });
 
 test('formula shortcuts contain static math and direct input/run/validation routes',()=>{

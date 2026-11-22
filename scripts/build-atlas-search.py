@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python 3
 """Include the public method registry in the atlas's own search, preserving chapters."""
 from pathlib import Path
 import hashlib
@@ -6,13 +6,14 @@ import json
 import re
 from atlas_execution_discovery import load_discovery, entry_path
 from atlas_search_methods import search_methods, version_method_search
+from atlas_goal_availability import load_supplemental_examples
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
 catalog=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
 method_records={method['id']:method for method in search_methods(ROOT)}
 path=ATLAS/'home-search-index.json';index=json.loads(path.read_text())
-index['entries']=[x for x in index['entries'] if x.get('origin') not in {'public-method-registry','public-execution-discovery'}]
+index['entries']=[x for x in index['entries'] if x.get('origin') not in {'public-method-registry','public-execution-discovery','public-depth-validation'}]
 for entry in index['entries']:
     if entry['id'] in {'roadmap','keep','stability','accuracy-stability'}:
         for lang in ['ja','en']:
@@ -66,7 +67,27 @@ for item in load_discovery(ROOT)['examples']:
         'routes':{lang:entry_path(item['id'])+'?lang='+lang for lang in ['ja','en']},
         'kind':'execution-example','origin':'public-execution-discovery',
     })
-index['scope']='chapter titles, section headings, model and method labels, glossary aliases, reviewed applicability conditions, 22 individually scoped runnable execution examples, and cross-field routes with distinct validation requirements'
+expansion=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())
+supplements=load_supplemental_examples(ROOT,list(expansion['case_problem_ids']))
+case_aliases={
+    'gaussian-mcmc':['Metropolis Hastings','マルコフ連鎖','有効標本数','ESS','自己相関'],
+    'langevin-harmonic':['BAOAB','NVT','正準分布','温度制御'],
+    'reaction-diffusion-fourier':['反応拡散','diffusion reaction'],
+    'turing-schnakenberg':['Turing','チューリング','Schnakenberg','パターン形成'],
+    'fitzhugh-nagumo':['FHN','FitzHugh Nagumo','膜興奮','励起回復'],
+}
+for item in supplements:
+    identity=[item['id'],item['id'].replace('-',' '),*item['title'].values(),*item['method_ids'],*case_aliases.get(item['id'],[])]
+    index['entries'].append({
+        'id':'supplement-'+item['id'],'title':item['title'],
+        'headings':{'ja':[],'en':[]},
+        'keywords':list(dict.fromkeys([*identity,*item['summary'].values(),*execution_intents])),
+        'focus_keywords':list(dict.fromkeys(identity)),
+        'snippet':item['summary'],
+        'routes':{lang:item['url']+'?lang='+lang for lang in ['ja','en']},
+        'kind':'execution-example','origin':'public-depth-validation',
+    })
+index['scope']='Chapter titles, section headings, model/method identities, glossary aliases, reviewed applicability, 22 common runnable examples, '+str(len(supplements))+' separately verified supplements and cross-field routes. Supplements do not add entries to the common execution registry.'
 path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
 module=ATLAS/'home-search.js';text=module.read_text()
 text=re.sub(r"from '../search/method-search[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/method-search.mjs?v="+version_method_search(ROOT)+"'", text)

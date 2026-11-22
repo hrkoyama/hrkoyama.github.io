@@ -60,6 +60,11 @@
       "id": "probability",
       "ja": "確率積分・確率微分方程式",
       "en": "Stochastic integration and SDEs"
+    },
+    {
+      "id": "kinetic",
+      "ja": "粒子・プラズマ・気体運動論",
+      "en": "Particles, plasma and gas kinetics"
     }
   ],
   "problems": [
@@ -328,9 +333,34 @@
           "where": {
             "id": "shu-osher"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "shu-independent"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/shu-independent.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "shu-independent",
+          "url": "/numerical-methods-atlas/validation/shu-independent/",
+          "name": {
+            "ja": "Shu–Osher：独立参照と格子収束",
+            "en": "Shu–Osher: independent reference and mesh refinement"
+          }
+        }
+      ]
     },
     {
       "id": "entropy-1d",
@@ -628,9 +658,34 @@
           "where": {
             "chapter": "mhd"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ct-glm-independent"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "ct-glm-independent",
+          "url": "/numerical-methods-atlas/validation/ct-glm-independent/",
+          "name": {
+            "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+            "en": "Orszag–Tang: CT, GLM and independent Athena++"
+          }
+        }
+      ]
     },
     {
       "id": "brio-wu",
@@ -644,9 +699,34 @@
         {
           "path": "numerical-methods-atlas/assets/mhd-tests/mhd-tests.json",
           "json_pointer": "/brio_wu"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "brio-independent"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/results/brio-independent.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mhd/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "brio-independent",
+          "url": "/numerical-methods-atlas/validation/brio-independent/",
+          "name": {
+            "ja": "Brio–Wu：別実装HLLDとの照合",
+            "en": "Brio–Wu against an independent HLLD implementation"
+          }
+        }
+      ]
     },
     {
       "id": "circular-alfven",
@@ -881,9 +961,34 @@
         {
           "path": "numerical-methods-atlas/assets/solver-foundations.json",
           "json_pointer": "/fem"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sa-amg"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/sa-amg.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "sa-amg",
+          "url": "/numerical-methods-atlas/validation/sa-amg/",
+          "name": {
+            "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+            "en": "Matrix-based AMG: distinguish residual and solution error"
+          }
+        }
+      ]
     },
     {
       "id": "poisson-2d-uniform",
@@ -1531,6 +1636,597 @@
           "python_symbol": "test_saved_full_run_passes"
         }
       ]
+    },
+    {
+      "id": "matrix-factorization",
+      "group": "approximation",
+      "name": {
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+      },
+      "chapter": "validation-foundations",
+      "reading_section": "qr-svd-factorization",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/foundations/",
+      "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "qr-svd-factorization"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "qr-svd-factorization",
+          "url": "/numerical-methods-atlas/validation/qr-svd-factorization/",
+          "name": {
+            "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
+            "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+          }
+        }
+      ]
+    },
+    {
+      "id": "krylov-spectrum",
+      "group": "approximation",
+      "name": {
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+      },
+      "chapter": "validation-foundations",
+      "reading_section": "krylov-eigenvalues",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/foundations/",
+      "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "krylov-eigenvalues"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "krylov-eigenvalues",
+          "url": "/numerical-methods-atlas/validation/krylov-eigenvalues/",
+          "name": {
+            "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+            "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+          }
+        }
+      ]
+    },
+    {
+      "id": "quadrature-moments",
+      "group": "approximation",
+      "name": {
+        "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+        "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+      },
+      "chapter": "validation-foundations",
+      "reading_section": "gauss-adaptive-quadrature",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/foundations/",
+      "verification": "/code/validated-examples/2026-11-22/foundations/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gauss-adaptive-quadrature"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gauss-adaptive-quadrature",
+          "url": "/numerical-methods-atlas/validation/gauss-adaptive-quadrature/",
+          "name": {
+            "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+            "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gaussian-mcmc",
+      "group": "probability",
+      "name": {
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+      },
+      "chapter": "validation-models",
+      "reading_section": "gaussian-mcmc",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gaussian-mcmc"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gaussian-mcmc",
+          "url": "/numerical-methods-atlas/validation/gaussian-mcmc/",
+          "name": {
+            "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+            "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+          }
+        }
+      ]
+    },
+    {
+      "id": "langevin-harmonic",
+      "group": "time",
+      "name": {
+        "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+        "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+      },
+      "chapter": "validation-models",
+      "reading_section": "langevin-harmonic",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "langevin-harmonic"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "langevin-harmonic",
+          "url": "/numerical-methods-atlas/validation/langevin-harmonic/",
+          "name": {
+            "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+            "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "reaction-diffusion-fourier",
+      "group": "biology",
+      "name": {
+        "ja": "反応拡散：空間2次と時間4次を分けて測る",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+      },
+      "chapter": "validation-models",
+      "reading_section": "reaction-diffusion-fourier",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "reaction-diffusion-fourier"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "reaction-diffusion-fourier",
+          "url": "/numerical-methods-atlas/validation/reaction-diffusion-fourier/",
+          "name": {
+            "ja": "反応拡散：空間2次と時間4次を分けて測る",
+            "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+          }
+        }
+      ]
+    },
+    {
+      "id": "turing-schnakenberg",
+      "group": "biology",
+      "name": {
+        "ja": "Turing不安定性：線形成長率と小振幅パターン",
+        "en": "Turing instability: linear growth and small-amplitude patterns"
+      },
+      "chapter": "validation-models",
+      "reading_section": "turing-schnakenberg",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "turing-schnakenberg"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "turing-schnakenberg",
+          "url": "/numerical-methods-atlas/validation/turing-schnakenberg/",
+          "name": {
+            "ja": "Turing不安定性：線形成長率と小振幅パターン",
+            "en": "Turing instability: linear growth and small-amplitude patterns"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fitzhugh-nagumo",
+      "group": "biology",
+      "name": {
+        "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+        "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+      },
+      "chapter": "validation-models",
+      "reading_section": "fitzhugh-nagumo",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/models/",
+      "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fitzhugh-nagumo"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/models/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fitzhugh-nagumo",
+          "url": "/numerical-methods-atlas/validation/fitzhugh-nagumo/",
+          "name": {
+            "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+            "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+          }
+        }
+      ]
+    },
+    {
+      "id": "neutral-periodic-charges",
+      "group": "gravity",
+      "name": {
+        "ja": "中性周期点電荷：Ewald・smooth PME",
+        "en": "Neutral periodic charges: Ewald and smooth PME"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "ewald",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ewald"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/ewald.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "spme"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/spme.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "ewald",
+          "url": "/numerical-methods-atlas/validation/ewald/",
+          "name": {
+            "ja": "中性周期セルのEwald和と独立theta積分",
+            "en": "Neutral-cell Ewald sums and an independent theta integral"
+          }
+        },
+        {
+          "id": "spme",
+          "url": "/numerical-methods-atlas/validation/spme/",
+          "name": {
+            "ja": "Bスプラインsmooth PMEの格子・次数収束",
+            "en": "Mesh/order convergence of B-spline smooth PME"
+          }
+        }
+      ]
+    },
+    {
+      "id": "logarithmic-particles",
+      "group": "gravity",
+      "name": {
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "fmm",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fmm"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/fmm.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fmm",
+          "url": "/numerical-methods-atlas/validation/fmm/",
+          "name": {
+            "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+            "en": "2D logarithmic FMM with M2M, M2L and L2L"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cold-plasma-pic",
+      "group": "kinetic",
+      "name": {
+        "ja": "CIC静電PICの冷たいプラズマ振動",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "pic",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "pic"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/pic.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "pic",
+          "url": "/numerical-methods-atlas/validation/pic/",
+          "name": {
+            "ja": "CIC静電PICの冷たいプラズマ振動",
+            "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+          }
+        }
+      ]
+    },
+    {
+      "id": "maxwell-collisions",
+      "group": "kinetic",
+      "name": {
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "dsmc",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/dsmc.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc",
+          "url": "/numerical-methods-atlas/validation/dsmc/",
+          "name": {
+            "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+            "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+          }
+        }
+      ]
+    },
+    {
+      "id": "absorbing-slab",
+      "group": "transport",
+      "name": {
+        "ja": "純吸収平板の離散座標放射輸送",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab"
+      },
+      "chapter": "validation-particles",
+      "reading_section": "radiation-transport",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/particles/",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "radiation-transport"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particles/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "radiation-transport",
+          "url": "/numerical-methods-atlas/validation/radiation-transport/",
+          "name": {
+            "ja": "純吸収平板の離散座標放射輸送",
+            "en": "Discrete-ordinate radiation transport through an absorbing slab"
+          }
+        }
+      ]
     }
   ],
   "excluded_examples": {
@@ -1539,14 +2235,16 @@
       "参照解ライブラリ18項目：参照評価を重複加算しない",
       "球面格子・接続図：流体計算ではない",
       "基底行列・Fourier記号・分散関係・正値性・幾何保存則等の局所検査：独立した問題数にはしない",
-      "AMR・並列化・混合精度、予定中のサーモスタット、未実装の量子化学・DFTの拡張"
+      "AMR・並列化・混合精度、予定中のサーモスタット、未実装の量子化学・DFTの拡張",
+      "補助例glm-fourier-modeはGLMの縦方向発散誤差の減衰診断として別掲し、独立した物理テスト問題へは加算しません。"
     ],
     "en": [
       "22 biological entries: literature surveys",
       "18 reference-library entries: do not add reference evaluations again",
       "Spherical and connectivity diagrams: no flow solve",
       "Local basis-matrix, Fourier-symbol, dispersion, positivity and geometric-conservation checks: not separate problems",
-      "AMR, parallelization, mixed precision, planned thermostats and unimplemented quantum/DFT extensions"
+      "AMR, parallelization, mixed precision, planned thermostats and unimplemented quantum/DFT extensions",
+      "The glm-fourier-mode supplement is a longitudinal GLM divergence-error damping diagnostic and does not add an independent physical test problem."
     ]
   }
 }

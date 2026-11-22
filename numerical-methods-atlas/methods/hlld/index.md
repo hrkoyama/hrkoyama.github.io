@@ -26,7 +26,19 @@ Other names: HLLD法, HLLD流束, HLLD solver, HLLDリーマンソルバー
 - Reference: https://doi.org/10.1016/0021-9991(88)90120-9 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://arxiv.org/abs/0911.3410 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
-Common execution records: [{"id": "brio-wu", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#brio-wu-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#brio-wu-en"}}]
+## Small fixed-input validation supplement
+
+Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit.
+
+公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。
+
+- Brio–Wu against an independent HLLD implementation: https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json
+
+Common execution records: [{"id": "brio-wu", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#brio-wu-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#brio-wu-en"}}, {"id": "brio-independent", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

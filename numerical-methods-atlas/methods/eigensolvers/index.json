@@ -10,10 +10,10 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "Lanczos・Arnoldiなどを大規模固有値問題に位置付ける。",
-    "en": "Map Lanczos and Arnoldi methods for large eigenproblems."
+    "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+    "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/",
@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "残差と直交性を確認できる基準問題。",
-    "en": "A benchmark with eigen-residual and orthogonality diagnostics."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
+    "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -54,14 +54,320 @@
     "Krylov eigensolver",
     "クリロフ固有値法"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "foundations",
+    "case_ids": [
+      "krylov-eigenvalues"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-foundations-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+    "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+    "passed_tests": 29,
+    "examples": [
+      {
+        "id": "krylov-eigenvalues",
+        "title": {
+          "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+          "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+        },
+        "method_ids": [
+          "eigensolvers"
+        ],
+        "summary": {
+          "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+          "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+        },
+        "assumptions": {
+          "ja": "対称問題では実対称行列、非対称問題では既知の分離した最大固有値5を持つ実行列を使います。初期ベクトルは固定seedです。非対称Ritz値は複素数を許し、最大実部で選びます。",
+          "en": "The symmetric case is real symmetric; the nonsymmetric case is real with a known separated largest eigenvalue 5. Starting vectors use fixed seeds. Nonsymmetric Ritz values may be complex and are selected by largest real part."
+        },
+        "algorithm": {
+          "ja": "Lanczosの3項漸化式に2回の全再直交化を加え、Arnoldiは修正Gram–Schmidtを2回行います。小さな射影行列T/HだけをNumPyのeigh/eigで解き、元空間へRitzベクトルを戻します。大きな元行列の密固有値計算は参照側だけで使います。",
+          "en": "Lanczos uses its three-term recurrence plus two passes of full reorthogonalization; Arnoldi uses two-pass modified Gram–Schmidt. Only the small projected T/H is solved by NumPy eigh/eig before lifting Ritz vectors. A full dense solve of the original matrix is used only on the reference side."
+        },
+        "validation": {
+          "ja": "||Av−λv||₂、独立密行列固有値との差、基底の直交性を保存し、Krylov次元を増やした末尾の改善を確認します。非対称Ritz値の単調収束は仮定しません。恒等行列のhappy breakdown、零初期ベクトル拒否、次元予算不足も検査します。",
+          "en": "Store ||Av−λv||₂, differences from independently solved dense eigenvalues and basis orthogonality; verify final improvement as Krylov dimension grows. Nonsymmetric Ritz convergence is not assumed monotone. Tests include identity-matrix happy breakdown, zero-start rejection and insufficient dimension budgets."
+        },
+        "limits": {
+          "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
+          "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
+        },
+        "references": [
+          {
+            "id": "lanczos1950",
+            "author": "C. Lanczos",
+            "year": 1950,
+            "title": "An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators",
+            "doi": "10.6028/jres.045.026",
+            "url": "https://nvlpubs.nist.gov/nistpubs/jres/045/jresv45n4p255_A1b.pdf",
+            "review_level": "primary-first-page-and-official-metadata",
+            "journal": "Journal of Research of the National Bureau of Standards 45(4), 255–282",
+            "type": "article"
+          },
+          {
+            "id": "arnoldi1951",
+            "author": "W. E. Arnoldi",
+            "year": 1951,
+            "title": "The principle of minimized iterations in the solution of the matrix eigenvalue problem",
+            "doi": "10.1090/qam/42792",
+            "url": "https://doi.org/10.1090/qam/42792",
+            "review_level": "publisher-metadata-and-reference-list",
+            "journal": "Quarterly of Applied Mathematics 9, 17–29",
+            "type": "article"
+          },
+          {
+            "id": "saad1980",
+            "author": "Y. Saad",
+            "year": 1980,
+            "title": "Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices",
+            "doi": "10.1016/0024-3795(80)90169-X",
+            "url": "https://www.sciencedirect.com/science/article/pii/002437958090169X",
+            "review_level": "publisher-abstract-and-metadata",
+            "journal": "Linear Algebra and its Applications 34, 269–295",
+            "type": "article"
+          }
+        ],
+        "reference_implementations": [
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eigh.html",
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eig.html"
+        ],
+        "equations": [
+          "AV_m=V_mH_m+h_{m+1,m}v_{m+1}e_m^T",
+          "H_my=\\theta y,\\quad v=V_my,\\quad r=Av-\\theta v"
+        ],
+        "measured": {
+          "id": "krylov-eigenvalues",
+          "passed": true,
+          "checks": {
+            "independent_dense_eigenvalues_and_residuals": true,
+            "krylov_basis_orthogonality": true,
+            "dimension_budget_failure_reported": true
+          },
+          "metrics": {
+            "max_final_eigenpair_residual": 1.4394924647739691e-12,
+            "max_basis_orthogonality": 4.911536314397836e-16
+          },
+          "records": [
+            {
+              "method": "lanczos",
+              "size": 32,
+              "dimensions": 4,
+              "eigenvalue_real": 4.997214066124455,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 4.999999999999998,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 0.0027859338755433782,
+              "eigenpair_residual": 0.11543286969109935,
+              "orthogonality": 2.4331315601954053e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "lanczos",
+              "size": 32,
+              "dimensions": 8,
+              "eigenvalue_real": 4.999999999990289,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 4.999999999999998,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 9.709566484161769e-12,
+              "eigenpair_residual": 6.962844769666644e-06,
+              "orthogonality": 2.6646163054654497e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "lanczos",
+              "size": 32,
+              "dimensions": 16,
+              "eigenvalue_real": 5.0,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 4.999999999999998,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 1.7763568394002505e-15,
+              "eigenpair_residual": 4.8075345111555207e-14,
+              "orthogonality": 3.8390936775080893e-16,
+              "termination": "residual_tolerance"
+            },
+            {
+              "method": "lanczos",
+              "size": 48,
+              "dimensions": 4,
+              "eigenvalue_real": 4.999872581022695,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 4.999999999999998,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 0.00012741897730350615,
+              "eigenpair_residual": 0.025032519908349392,
+              "orthogonality": 4.442413191890667e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "lanczos",
+              "size": 48,
+              "dimensions": 8,
+              "eigenvalue_real": 4.999999999998766,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 4.999999999999998,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 1.2319034681240737e-12,
+              "eigenpair_residual": 2.4407426691224258e-06,
+              "orthogonality": 4.686253374782227e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "lanczos",
+              "size": 48,
+              "dimensions": 16,
+              "eigenvalue_real": 4.999999999999999,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 4.999999999999998,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 8.881784197001252e-16,
+              "eigenpair_residual": 2.77053378781312e-14,
+              "orthogonality": 4.729343363612079e-16,
+              "termination": "residual_tolerance"
+            },
+            {
+              "method": "arnoldi",
+              "size": 32,
+              "dimensions": 4,
+              "eigenvalue_real": 4.989249108015699,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 5.000000000000004,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 0.010750891984305788,
+              "eigenpair_residual": 0.18073535584313744,
+              "orthogonality": 3.35190880743892e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "arnoldi",
+              "size": 32,
+              "dimensions": 8,
+              "eigenvalue_real": 5.000000391538068,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 5.000000000000004,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 3.915380633046084e-07,
+              "eigenpair_residual": 4.8894332133510395e-05,
+              "orthogonality": 3.475039047331919e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "arnoldi",
+              "size": 32,
+              "dimensions": 16,
+              "eigenvalue_real": 4.999999999999994,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 5.000000000000004,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 1.0658141036401503e-14,
+              "eigenpair_residual": 1.4394924647739691e-12,
+              "orthogonality": 3.918576212646954e-16,
+              "termination": "residual_tolerance"
+            },
+            {
+              "method": "arnoldi",
+              "size": 48,
+              "dimensions": 4,
+              "eigenvalue_real": 4.999526918462461,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 5.000000000000003,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 0.00047308153754155313,
+              "eigenpair_residual": 0.031920238134427306,
+              "orthogonality": 4.541619128926278e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "arnoldi",
+              "size": 48,
+              "dimensions": 8,
+              "eigenvalue_real": 4.999999896708329,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 5.000000000000003,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 1.0329167388078986e-07,
+              "eigenpair_residual": 9.568097161749284e-06,
+              "orthogonality": 4.586675518007092e-16,
+              "termination": "dimension_budget"
+            },
+            {
+              "method": "arnoldi",
+              "size": 48,
+              "dimensions": 16,
+              "eigenvalue_real": 5.000000000000007,
+              "eigenvalue_imag": 0.0,
+              "reference_real": 5.000000000000003,
+              "reference_imag": 0.0,
+              "eigenvalue_error": 4.440892098500626e-15,
+              "eigenpair_residual": 8.960178371367517e-13,
+              "orthogonality": 4.911536314397836e-16,
+              "termination": "residual_tolerance"
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+    "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-foundations-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "krylov-eigenvalues",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
+  "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

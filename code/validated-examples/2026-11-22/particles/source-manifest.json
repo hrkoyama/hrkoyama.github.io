@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "family": "depth-particles",
+  "group": "particles",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+  "files": {
+    "LICENSE": "dbe3f9f172feeb7533439712ccb2d6e38fc2173aa87a4971b794cba8ea04a799",
+    "README.md": "8e09fe8354537cc97f2488862847bd275eab82d67ad4abf7cf389d9ad09cfbfd",
+    "cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "electrostatics.py": "4bb39435d3dc7e60d193b061356c9c30dd34262eca284bdd71212b8f34cbeb6d",
+    "fmm.py": "db02db78d0dba299fe2a0dadbbb74f557fb09c8ed036a3a1efbe089c14a8754f",
+    "inputs.json": "c111259990139b04dd8fb6a6fdbc7010b302527c1ee3adf5d12a572353109565",
+    "plot.py": "61e3b0009d82973d7e954a8673e17aa3bdf0316f0139ac035cd87879abbdc66a",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/dsmc.csv": "e483dc3bcd508016b68e40934929dd482038c272f772f5d51042c50401f7b874",
+    "results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "results/ewald.csv": "cefc5b14eab030b30422d2ea7e207c9ef911d8918e1a7adc4021f096fe09ecde",
+    "results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "results/fmm.csv": "fc079da8896cd4fc154b1ce5699da845fa054bf12158408571de506e06e9d622",
+    "results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "results/pic.csv": "26153ad59547edb4bd4762cce79d5b05c46ec17344a69b62aefee7cf3feb3427",
+    "results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "results/radiation-transport.csv": "c9bae953d0b5b96f3da2cd8cf1d14c21bc4c360824ab5f1343766f012a47b060",
+    "results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "results/spme.csv": "7718383c15179cad420bf435943462d2447e4dafc9dfd09396e0d6bbde5649c1",
+    "results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
+    "run.py": "87e70d3ba9353bf153bf132cbe47f53ab83e678dc3a5facd4627a4114461ea43",
+    "test_particles.py": "3b3ec21f67bd81ac1a03f7dbd098308276e4f344c3647521fef891d8f027828e",
+    "transport.py": "2b6bad1296d6294e86dbf302276f2db8dc53bcf17f0cfd27c73eed04c82bb2d0"
+  },
+  "case_ids": [
+    "dsmc",
+    "ewald",
+    "fmm",
+    "pic",
+    "radiation-transport",
+    "spme"
+  ],
+  "scope": "Small fixed-input educational validations; each case states its own model, reference, acceptance and exclusions."
+}

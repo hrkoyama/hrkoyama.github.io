@@ -1,0 +1,164 @@
+name: Atlas lightweight public Linux verification
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 3 * * 1'
+  workflow_run:
+    workflows: ['Public site checks']
+    branches: [main]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-depth-public-linux
+  cancel-in-progress: false
+
+jobs:
+  public-supplements:
+    if: >-
+      github.repository == 'hrkoyama/hrkoyama.github.io' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      ATLAS_DEPTH_BOOTSTRAP_SHA256: 'a0892688b80fef1d0a4b93223aca1d43b30079f750d7e976e1526b487e99a2e1'
+      ATLAS_DEPTH_REGISTRY_SHA256: '2296f282e987ebbda71d4ae926f90887afb8e372c96ca72be64c6e49f827e161'
+      REPORT_DIR: ${{ runner.temp }}/atlas-depth-public-report
+      ATLAS_VENV: ${{ runner.temp }}/atlas-depth-public-env
+      PYTHONNOUSERSITE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      PIP_NO_CACHE_DIR: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - name: Initialize context without a source checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['REPORT_DIR'])
+          keys = ['GITHUB_REPOSITORY', 'GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT',
+                  'GITHUB_SHA', 'GITHUB_REF', 'GITHUB_EVENT_NAME', 'RUNNER_OS', 'RUNNER_ARCH']
+          context = {key: os.environ.get(key, '') for key in keys}
+          context['source_checkout'] = False
+          (root/'workflow-context.json').write_text(json.dumps(context, indent=2)+'\n')
+          (root/'workflow-status.json').write_text(json.dumps({'passed': False, 'phase': 'publication-wait'}, indent=2)+'\n')
+          PY
+      - name: Prepare Python 3.12 without a dependency cache
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+          check-latest: false
+      - name: Wait for the reviewed public verifier and registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os, time, urllib.error, urllib.request
+          from pathlib import Path
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, request, response, code, message, headers, new_url):
+                  raise ValueError('Bootstrap redirects are not accepted')
+          opener = urllib.request.build_opener(NoRedirect())
+          sources = [
+              ('scripts/verify-depth-public.py', 'ATLAS_DEPTH_BOOTSTRAP_SHA256'),
+              ('numerical-methods-atlas/validation/releases.json', 'ATLAS_DEPTH_REGISTRY_SHA256')]
+          deadline = time.monotonic() + 240
+          attempts = []
+          while True:
+              attempt = {'passed': False, 'downloads': []}
+              attempts.append(attempt)
+              try:
+                  payloads, receipts = {}, []
+                  for path, key in sources:
+                      remaining = deadline - time.monotonic()
+                      if remaining <= 0:
+                          raise ValueError('Publication deadline exhausted')
+                      url = 'https://hrkoyama.github.io/' + path
+                      request = urllib.request.Request(url, headers={'User-Agent': 'Atlas-lightweight-public-CI/1.0'})
+                      with opener.open(request, timeout=min(30, remaining)) as response:
+                          data = response.read(1_000_001)
+                      sha = hashlib.sha256(data).hexdigest()
+                      attempt['downloads'].append({'url': url, 'sha256': sha, 'expected_sha256': os.environ[key]})
+                      if len(data) > 1_000_000 or sha != os.environ[key]:
+                          raise ValueError('Public version has not matched the reviewed SHA-256')
+                      payloads[path] = data
+                      receipts.append({'url': url, 'sha256': sha})
+                  attempt['passed'] = True
+                  break
+              except (OSError, ValueError, urllib.error.URLError) as error:
+                  attempt['error'] = {'type': type(error).__name__, 'message': str(error)}
+                  Path(os.environ['REPORT_DIR'], 'publication-attempts.json').write_text(json.dumps(attempts, indent=2)+'\n')
+                  if time.monotonic() >= deadline:
+                      raise RuntimeError('Public verifier and registry did not reach expected versions within 240 seconds')
+                  print('Waiting for both reviewed public files', flush=True)
+                  time.sleep(min(10, max(0, deadline-time.monotonic())))
+          Path(os.environ['REPORT_DIR'], 'publication-attempts.json').write_text(json.dumps(attempts, indent=2)+'\n')
+          Path(os.environ['REPORT_DIR'], 'publication-checks.json').write_text(json.dumps(receipts, indent=2)+'\n')
+          Path(os.environ['RUNNER_TEMP'], 'atlas-depth-bootstrap.py').write_bytes(payloads[sources[0][0]])
+          PY
+      - name: Install three pinned wheel dependencies and verify public ZIPs
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          Path(os.environ['REPORT_DIR'], 'workflow-status.json').write_text(json.dumps({'passed': False, 'phase': 'dependency-installation'}, indent=2)+'\n')
+          PY
+            python -m venv "$ATLAS_VENV"
+            "$ATLAS_VENV/bin/python" -m pip install --only-binary=:all: --no-cache-dir \
+              --index-url https://pypi.org/simple --report "$REPORT_DIR/pip-install.json" \
+              numpy==2.0.2 scipy==1.14.1 pytest==8.3.5
+            "$ATLAS_VENV/bin/python" -m pip freeze --all > "$REPORT_DIR/pip-freeze.txt"
+            "$ATLAS_VENV/bin/python" "$RUNNER_TEMP/atlas-depth-bootstrap.py" \
+              --registry https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json \
+              --expected-registry-sha256 "$ATLAS_DEPTH_REGISTRY_SHA256" \
+              --output-dir "$REPORT_DIR/verification"
+          } 2>&1 | tee "$REPORT_DIR/bootstrap.log"
+      - name: Save the result summary on success or failure
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['REPORT_DIR'])
+          result = root/'verification/report.json'
+          if result.is_file():
+              report = json.loads(result.read_text())
+          else:
+              status = root/'workflow-status.json'
+              report = json.loads(status.read_text()) if status.is_file() else {'passed': False, 'phase': 'workflow-bootstrap'}
+              report['error'] = {'message': 'Verifier did not produce a report; inspect bootstrap/pip logs and context'}
+          (root/'workflow-status.json').write_text(json.dumps(report, indent=2)+'\n')
+          lines = ['## Lightweight public-distribution Linux verification', '',
+                   'Fresh Ubuntu24.04/Python3.12; four public supplements only; no source checkout or quantum sweeps.', '',
+                   '- passed: '+str(report.get('passed', False)),
+                   '- phase: '+str(report.get('phase', 'unavailable')),
+                   '- registry SHA-256: '+str(report.get('registry_sha256', 'unavailable'))]
+          for group in report.get('groups', []):
+              lines.append('- '+group['group']+': '+str(group.get('status'))+'; pytest '+str(group.get('pytest', {}).get('tests', 'not completed')))
+          lines += ['', 'Logs, reviewed hashes, environments, ZIPs and generated JSON/CSV are retained in the run artifact.']
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as handle:
+              handle.write('\n'.join(lines)+'\n')
+          PY
+      - name: Retain logs and generated outputs
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: atlas-depth-public-linux-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/atlas-depth-public-report
+          if-no-files-found: error
+          retention-days: 90

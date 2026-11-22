@@ -10,10 +10,10 @@
     "en": "Optimization & stochastic methods"
   },
   "summary": {
-    "ja": "不変分布・混合・相関と推定誤差を扱う。",
-    "en": "Relate invariant distributions, mixing, correlation and estimation error."
+    "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+    "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/",
@@ -37,12 +37,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "既知分布と収束診断の基準例。",
-    "en": "A known distribution with convergence diagnostics."
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。",
+    "en": "Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -54,14 +54,244 @@
     "マルコフ連鎖モンテカルロ",
     "マルコフ連鎖Monte Carlo"
   ],
+  "depth_previous_status": "planned",
+  "depth_release": {
+    "group": "models",
+    "case_ids": [
+      "gaussian-mcmc"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-models-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+    "code_archive_sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+    "passed_tests": 26,
+    "examples": [
+      {
+        "id": "gaussian-mcmc",
+        "title": {
+          "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+          "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+        },
+        "method_ids": [
+          "mcmc"
+        ],
+        "domains": [
+          "probability"
+        ],
+        "summary": {
+          "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+          "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+        },
+        "assumptions": {
+          "ja": "無次元1変数、対称Gaussianランダムウォーク提案幅1.5。固定master seedから32の別PCG64ストリームを生成し、1024回のburn-in後に各8192標本を保持します。",
+          "en": "One dimensionless variable and symmetric Gaussian random-walk width1.5. Spawn 32 separate PCG64 streams from a fixed master seed; retain 8192 samples per chain after 1024 burn-in steps."
+        },
+        "algorithm": {
+          "ja": "log受理比でMetropolis更新。FFTによる連鎖内自己共分散を平均し、Geyerのgamma0+gamma1から始まる初期正ペア和から平均観測量のESSを求めます。古典的split-Rhatも併記します。",
+          "en": "Use a log-acceptance Metropolis update. Pool FFT within-chain autocovariances and obtain mean-observable ESS from Geyer initial-positive pairs starting at gamma0+gamma1. Also report classical split-Rhat."
+        },
+        "validation": {
+          "ja": "正規CDFを独立参照とし、標本数1024/2048/8192の連鎖平均RMSEを比較。別の定常AR(1)系列と厳密tau=(1+rho)/(1-rho)で診断量を照合します。公差は固定入力で事前指定します。",
+          "en": "Use the normal CDF as an independent analytic reference and compare chain-mean RMSE at 1024/2048/8192 retained samples. A separate stationary AR(1) sequence and exact tau=(1+rho)/(1-rho) check the diagnostic. Acceptance is predeclared in fixed inputs."
+        },
+        "limits": {
+          "ja": "固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。",
+          "en": "Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate."
+        },
+        "formulas": [
+          "\\pi(x)=(2\\pi)^{-1/2}e^{-x^2/2},\\quad \\alpha=\\min(1,e^{-(y^2-x^2)/2})",
+          "\\tau=-1+2\\sum_{k=0}^{K}(\\rho_{2k}+\\rho_{2k+1}),\\qquad N_{\\rm eff}=MN/\\max(1,\\tau)"
+        ],
+        "references": [
+          {
+            "id": "metropolis1953",
+            "author": "N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller",
+            "year": 1953,
+            "title": "Equation of State Calculations by Fast Computing Machines",
+            "doi": "10.1063/1.1699114",
+            "url": "https://doi.org/10.1063/1.1699114",
+            "review_level": "publisher-abstract-and-metadata",
+            "review": {
+              "ja": "出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。",
+              "en": "Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed."
+            },
+            "type": "article",
+            "journal": "Journal of Chemical Physics21,1087–1092"
+          },
+          {
+            "id": "hastings1970",
+            "author": "W. K. Hastings",
+            "year": 1970,
+            "title": "Monte Carlo sampling methods using Markov chains and their applications",
+            "doi": "10.1093/biomet/57.1.97",
+            "url": "https://probability.ca/hastings/hastings.pdf",
+            "review_level": "original-paper-excerpt-and-metadata",
+            "review": {
+              "ja": "大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。",
+              "en": "Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio."
+            },
+            "type": "article",
+            "journal": "Biometrika57(1),97–109"
+          },
+          {
+            "id": "geyer1992",
+            "author": "C. J. Geyer",
+            "year": 1992,
+            "title": "Practical Markov Chain Monte Carlo",
+            "doi": "10.1214/ss/1177011137",
+            "url": "https://projecteuclid.org/journals/statistical-science/volume-7/issue-4/Practical-Markov-Chain-Monte-Carlo/10.1214/ss/1177011137.full",
+            "review_level": "publisher-abstract-and-selected-original-section",
+            "review": {
+              "ja": "出版社側の抄録・書誌と大学公開原著の初期正列・AR(1)に関する検索返却箇所を確認。全文監査や任意の連鎖の収束証明を主張しません。",
+              "en": "Publisher-side abstract/metadata and returned original-paper excerpts on initial-positive sequences and AR(1), from a university-hosted copy, checked. No full-text audit or convergence certificate for arbitrary chains is claimed."
+            },
+            "type": "article",
+            "journal": "Statistical Science7(4),473–483"
+          }
+        ],
+        "measured": {
+          "id": "gaussian-mcmc",
+          "passed": true,
+          "termination": "fixed_budget_completed",
+          "checks": {
+            "finite": true,
+            "mean": true,
+            "variance": true,
+            "cdf": true,
+            "split_rhat": true,
+            "ess": true,
+            "acceptance": true,
+            "ar1_exact_sequence": true,
+            "ar1_sampling_diagnostic": true,
+            "sample_budget": true
+          },
+          "metrics": {
+            "mean_error": 0.010631777843262634,
+            "variance_error": 0.002245617179238435,
+            "cdf_max_error": 0.0032519421134648008,
+            "acceptance": 0.5894775390625,
+            "tau": 5.380318100624768,
+            "ess": 48722.769750279185,
+            "split_rhat": 1.0004379739161546,
+            "acf_lag1": 0.6804539280760109,
+            "ar1_exact_tau": 9.000000000000002,
+            "ar1_series_tau_error": 1.7763568394002505e-15,
+            "ar1_empirical_tau_relative_error": 0.012439210859068739,
+            "budget_mean_rmse_ratio": 2.949230534359497
+          },
+          "records": [
+            {
+              "samples_per_chain": 1024,
+              "mean_rmse_across_chains": 0.0679758898654594,
+              "tau": 5.098645805375346,
+              "ess": 6426.8045380704225,
+              "split_rhat": 1.003204248712499,
+              "acf_lag1": 0.6756564446542064
+            },
+            {
+              "samples_per_chain": 2048,
+              "mean_rmse_across_chains": 0.05329329663991298,
+              "tau": 5.2533242262975195,
+              "ess": 12475.148530131557,
+              "split_rhat": 1.0018607842285994,
+              "acf_lag1": 0.6764177264391518
+            },
+            {
+              "samples_per_chain": 8192,
+              "mean_rmse_across_chains": 0.023048686453472564,
+              "tau": 5.380318100624768,
+              "ess": 48722.769750279185,
+              "split_rhat": 1.0004379739161546,
+              "acf_lag1": 0.6804539280760109
+            },
+            {
+              "cdf_point": -1.96,
+              "empirical_cdf": 0.02639007568359375,
+              "normal_cdf": 0.024997895148220435
+            },
+            {
+              "cdf_point": -1.0,
+              "empirical_cdf": 0.16190719604492188,
+              "normal_cdf": 0.15865525393145707
+            },
+            {
+              "cdf_point": 0.0,
+              "empirical_cdf": 0.5030021667480469,
+              "normal_cdf": 0.5
+            },
+            {
+              "cdf_point": 1.0,
+              "empirical_cdf": 0.8434600830078125,
+              "normal_cdf": 0.8413447460685429
+            },
+            {
+              "cdf_point": 1.96,
+              "empirical_cdf": 0.9764328002929688,
+              "normal_cdf": 0.9750021048517795
+            }
+          ],
+          "duration_seconds": 0.0674432079995313,
+          "input_sha256": "ae8379269e1df80dba6cbe712bff598c7dfaf74e5e1b78bd1ff06d7750f01810"
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+    "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-models-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "gaussian-mcmc",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+  "code_archive_sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
 }

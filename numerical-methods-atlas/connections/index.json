@@ -10,8 +10,8 @@
     "en": "Explore quantum chemistry, molecular dynamics, reaction–diffusion, biology, fluids and gravity through exchanged quantities and shared mathematics. Each connection states its validation needs and distinguishes runnable fixed examples, reading-only stages and unexecuted coupling."
   },
   "policy": {
-    "ja": "実行済みの要素例と、未検証の分野間接続を分けて示します。単独例の合格だけで、力・MD・温度制御・反応拡散などの連成を検証済みとはしません。",
-    "en": "Executed component examples and unvalidated cross-field connections are shown separately. A passing standalone case does not validate coupled forces, MD, thermostatting or reaction–diffusion."
+    "ja": "共通台帳の実行例と、独立展開した補助配布版の固定検証を分けて示します。Langevin振動子・反応拡散・Turing/膜興奮の限定例があっても、第一原理MDから熱浴まで、または反応・拡散・流体を結ぶ経路全体の検証には広げません。",
+    "en": "Common-registry executions and fixed checks from independently extracted supplements are separate evidence. Scoped Langevin-oscillator, reaction–diffusion, Turing and excitability examples do not establish the complete first-principles-MD-to-heat-bath or reaction–diffusion–fluid route."
   },
   "home": {
     "title": {
@@ -156,8 +156,8 @@
         "en": "DFT → first-principles MD → temperature control"
       },
       "summary": {
-        "ja": "静的な電子状態から核の力、軌道、熱浴へ。公開の周期Heエネルギー計算を出発点に、まだ検証されていない橋を明示する。",
-        "en": "Move from static electronic structure to nuclear forces, trajectories and a heat bath. Start with the released periodic-He energy calculation and identify each unvalidated bridge."
+        "ja": "静的な電子状態から核の力、軌道、熱浴へ。固定Heのエネルギー・力と、独立したLangevin振動子の分布検証をたどり、MD連成で追加すべき条件を確かめます。",
+        "en": "Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He energy/force evidence and separate Langevin-oscillator distribution checks, then inspect the extra requirements for coupled MD."
       },
       "keywords": [
         "DFT",
@@ -397,7 +397,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -538,7 +541,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -616,7 +622,10 @@
                 "code_mapping_scope": null
               }
             ],
-            "examples": []
+            "examples": [],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -626,8 +635,8 @@
             "en": "Thermostats and distribution checks"
           },
           "summary": {
-            "ja": "比較解説を公開し、実装は計画中。Nosé–Hoover、chains、Langevin、確率的速度再スケーリングなどを、平均温度・運動エネルギー分布・相関の観点で比較する。",
-            "en": "Comparative reading is available; implementations are planned. Compare Nosé–Hoover, chains, Langevin and stochastic velocity rescaling through mean temperature, kinetic-energy distributions and correlations."
+            "ja": "12手法の比較解説に加え、Langevin調和振動子のBAOAB積分を専用補助例で検証。温度・位置/エネルギー分布・時間相関を解析的な調和振動子と比較します。",
+            "en": "Alongside comparative reading for 12 methods, a dedicated supplement validates BAOAB Langevin integration for a harmonic oscillator through temperature, position/energy distributions and time correlations against analytic oscillator results."
           },
           "method_ids": [
             "nose-hoover",
@@ -646,14 +655,32 @@
                 "ja": "温度制御と分布の比較",
                 "en": "Temperature control and distribution comparisons"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic"
+              },
+              "label": {
+                "ja": "Langevin振動子：分布・相関・刻み幅の実測",
+                "en": "Langevin oscillator: measured distributions, correlations and steps"
+              }
             }
           ],
           "gap": {
-            "ja": "各サーモスタットの台帳はplannedのまま。専用実行例、温度分布の測定、第一原理MDとの連成検証はない。",
-            "en": "Thermostat method records remain planned. There are no dedicated execution examples, measured temperature distributions or coupled first-principles-MD validations."
+            "ja": "この実行済み部分は独立した調和振動子だけです。他11手法、一般の多体系、第一原理MDとの連成は検証していません。平均温度の一致と正準分布・相関の一致を区別します。",
+            "en": "The executed subset is a standalone harmonic oscillator only. The other 11 methods, general many-body systems and first-principles-MD coupling remain unvalidated. Mean-temperature agreement is distinct from agreement of canonical distributions and correlations."
+          },
+          "supplemental_ids": [
+            "langevin-harmonic"
+          ],
+          "supplemental_role": "scoped-component",
+          "supplemental_scope": {
+            "ja": "Langevin/BAOAB・1自由度の調和振動子という固定した要素例。BOMD/CPMDからの核座標や原子間力は受け取りません。",
+            "en": "A fixed Langevin/BAOAB component with one harmonic-oscillator degree of freedom. It consumes neither nuclear coordinates nor interatomic forces from BOMD/CPMD."
           },
           "evidence": {
-            "stage_status": "planned",
+            "stage_status": "scoped-supplement",
             "methods": [
               {
                 "id": "nose-hoover",
@@ -691,14 +718,19 @@
                   "ja": "Langevinサーモスタット",
                   "en": "Langevin thermostat"
                 },
-                "status": "planned",
+                "status": "educational-example",
                 "reading": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/"
                 },
-                "code_urls": [],
-                "test_urls": [],
-                "code_mapping_scope": null
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "stochastic-velocity-rescaling",
@@ -716,7 +748,91 @@
                 "code_mapping_scope": null
               }
             ],
-            "examples": []
+            "examples": [],
+            "supplemental_role": "scoped-component",
+            "supplemental_scope": {
+              "ja": "Langevin/BAOAB・1自由度の調和振動子という固定した要素例。BOMD/CPMDからの核座標や原子間力は受け取りません。",
+              "en": "A fixed Langevin/BAOAB component with one harmonic-oscillator degree of freedom. It consumes neither nuclear coordinates nor interatomic forces from BOMD/CPMD."
+            },
+            "supplements": [
+              {
+                "id": "langevin-harmonic",
+                "group": "models",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+                  "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+                },
+                "scope": {
+                  "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
+                  "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
+                },
+                "limits": {
+                  "ja": "調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。",
+                  "en": "Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD."
+                },
+                "method_ids": [
+                  "langevin-thermostat"
+                ],
+                "domains": [
+                  "temperature",
+                  "probability",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+                  "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+                  "passed_tests": 26,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "finite": true,
+                  "stationary_reference": true,
+                  "burn_transient": true,
+                  "covariance_sampling": true,
+                  "correlation_sampling": true,
+                  "bias_refinement": true,
+                  "finest_bias": true,
+                  "canonical_energy_cdf": true,
+                  "canonical_position_cdf": true,
+                  "canonical_momentum_cdf": true,
+                  "canonical_energy_mean": true,
+                  "canonical_energy_variance": true
+                },
+                "metrics": {
+                  "maximum_covariance_sampling_error": 0.010793938239005096,
+                  "maximum_correlation_sampling_error": 0.007859497657203701,
+                  "maximum_lyapunov_residual": 1.1102230246251565e-16,
+                  "maximum_burn_transient_covariance_error": 3.9116795872649285e-09,
+                  "minimum_covariance_bias_order": 1.9999999999999882,
+                  "finest_covariance_bias": 0.0024999999999999467,
+                  "energy_cdf_error": 0.004375986814703525,
+                  "position_cdf_error": 0.005928788756380088,
+                  "momentum_cdf_error": 0.0068938107115509295,
+                  "energy_mean_error": 0.009281722112660762,
+                  "energy_variance_error": 0.03054847700744423
+                },
+                "source_mode": "independently-extracted-supplement"
+              }
+            ]
           }
         }
       ],
@@ -846,8 +962,8 @@
             "en": "Use oscillators/ideal gases to check position distributions and the chi-square distribution of kinetic energy, autocorrelations and independent-stream uncertainty; vary step size and coupling time. Include small-system sampling failures before coupling to nuclear MD."
           },
           "existing_evidence": {
-            "ja": "サーモスタットの比較解説と検証計画を公開。専用コード・分布の測定結果・MDとの連成結果はない。",
-            "en": "Thermostat comparisons and a validation plan are published. There are no dedicated code, measured distributions or coupled MD results."
+            "ja": "Langevin調和振動子の専用コード・固定入力・分布/相関/刻み幅の補助検証を公開。第一原理MDの力供給APIとは独立しており、両者を結んだ軌道は実行していません。",
+            "en": "Dedicated Langevin-oscillator code, fixed inputs and distribution/correlation/timestep checks are published as a supplement. It is independent of the first-principles force API; no trajectory joins the two."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -858,7 +974,8 @@
             "example_ids": []
           },
           "reference_ids": [
-            "hoover1985"
+            "hoover1985",
+            "leimkuhler-matthews2013"
           ],
           "connection_kind": "handoff"
         }
@@ -867,13 +984,14 @@
         "kohn-sham1965",
         "born-oppenheimer1927",
         "car-parrinello1985",
-        "hoover1985"
+        "hoover1985",
+        "leimkuhler-matthews2013"
       ],
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認に限定し、BOMD/CPMDから熱浴までの経路全体は未検証。",
-          "en": "Static He and multiatom He₂ forces are runnable. The BOMD interface has only a short local check; the complete BOMD/CPMD-to-heat-bath route remains unvalidated."
+          "ja": "静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認まで。Langevin調和振動子の温度・エネルギー分布と相関は独立した補助例で検証しています。BOMD/CPMDと熱浴を結んだ経路全体は未実行です。",
+          "en": "Static He and multiatom-He₂ forces are runnable; the BOMD interface has only a short local check. Temperature/energy distributions and correlations of a Langevin harmonic oscillator are validated in a separate supplement. The complete BOMD/CPMD-to-heat-bath route has not been executed."
         },
         "example_ids": []
       },
@@ -889,8 +1007,8 @@
         "en": "Reaction–diffusion → biological and fluid transport"
       },
       "summary": {
-        "ja": "反応源と拡散演算子を共有しても、侵入前線・模様・流れとの連成では検証量が変わる。0次元反応と輸送の部品例から、未実装の空間連成を見分ける。",
-        "en": "Reaction sources and diffusion operators recur across fronts, patterns and flow coupling, while validation targets change. Separate zero-dimensional reaction and transport component examples from unimplemented spatial coupling."
+        "ja": "反応源と拡散演算子を共有しても、線形モード、模様形成、膜興奮、流れとの連成では検証量が変わります。1次元の固定反応拡散例と0次元の膜興奮例から、流体と結ぶための追加条件をたどります。",
+        "en": "Shared reaction sources and diffusion operators lead to different checks for linear modes, pattern onset, excitability and flow coupling. Follow fixed 1D reaction–diffusion and zero-dimensional excitability examples toward the extra requirements for fluid coupling."
       },
       "keywords": [
         "reaction–diffusion",
@@ -922,10 +1040,13 @@
             "en": "Reaction–diffusion framework"
           },
           "summary": {
-            "ja": "∂_t c = ∇·(D∇c) + R(c)。反応則R、拡散係数/行列D、初期条件、空間境界を指定して初めて問題になる。台帳のFisher–KPP・Turing・Schnakenbergは解説のみ。",
-            "en": "∂_t c = ∇·(D∇c) + R(c). A problem requires a reaction law R, diffusivity/matrix D, initial data and spatial boundaries. Catalogued Fisher–KPP, Turing and Schnakenberg entries provide reading only."
+            "ja": "∂_t c = ∇·(D∇c) + R(c)。反応則・拡散・初期値・境界を指定します。1次元周期の線形FourierモードとSchnakenberg反応拡散を、専用補助版の解析解・独立参照・空間/時間収束で検査します。",
+            "en": "For ∂_t c = ∇·(D∇c) + R(c), specify kinetics, diffusion, initial data and boundaries. Dedicated supplements check 1D periodic linear Fourier modes and Schnakenberg reaction–diffusion using analytic/independent references and space/time refinement."
           },
-          "method_ids": [],
+          "method_ids": [
+            "centered-difference",
+            "rk4"
+          ],
           "example_ids": [],
           "reading": [
             {
@@ -937,34 +1058,246 @@
                 "ja": "生物モデルと反応拡散の検証案",
                 "en": "Biological models and proposed reaction–diffusion checks"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+              },
+              "label": {
+                "ja": "線形反応拡散の空間・時間収束",
+                "en": "Space/time refinement for linear reaction–diffusion"
+              }
             }
           ],
           "gap": {
-            "ja": "反応拡散の空間ソルバーや連成実行例は公開されていない。拡散だけの例を足しても連成の検証にはならない。",
-            "en": "No spatial reaction–diffusion solver or coupled execution example is released. Adding a separate diffusion example does not validate the combination."
+            "ja": "固定した1次元周期問題の範囲です。一般の反応則・非周期境界、Fisher–KPP前線、流れとの移流反応拡散は未検証です。拡散単体と反応拡散の結果を分けて示します。",
+            "en": "Limited to fixed 1D periodic problems. General kinetics, nonperiodic boundaries, Fisher–KPP fronts and advective reaction–diffusion coupled to flow remain unvalidated. Diffusion-only and reaction–diffusion evidence are distinct."
           },
           "model_ids": [
             "fisher-kpp",
             "turing",
             "schnakenberg"
           ],
+          "supplemental_ids": [
+            "reaction-diffusion-fourier",
+            "turing-schnakenberg"
+          ],
+          "supplemental_role": "scoped-component",
+          "supplemental_scope": {
+            "ja": "線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。",
+            "en": "Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification."
+          },
           "evidence": {
-            "stage_status": "reading",
-            "methods": [],
-            "examples": []
+            "stage_status": "scoped-supplement",
+            "methods": [
+              {
+                "id": "centered-difference",
+                "name": {
+                  "ja": "空間中心差分",
+                  "en": "Centered spatial difference"
+                },
+                "status": "educational-example",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
+                },
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+              },
+              {
+                "id": "rk4",
+                "name": {
+                  "ja": "古典的RK4",
+                  "en": "Classical RK4"
+                },
+                "status": "educational-example",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/"
+                },
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/time_integration.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+              }
+            ],
+            "examples": [],
+            "supplemental_role": "scoped-component",
+            "supplemental_scope": {
+              "ja": "線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。",
+              "en": "Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification."
+            },
+            "supplements": [
+              {
+                "id": "reaction-diffusion-fourier",
+                "group": "models",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "反応拡散：空間2次と時間4次を分けて測る",
+                  "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+                },
+                "scope": {
+                  "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
+                  "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
+                },
+                "limits": {
+                  "ja": "線形・周期・滑らかな単一モードだけを検証します。非線形のFisher前線、複雑境界、空間生態系や一般の反応ネットワークの検証ではありません。",
+                  "en": "Only a linear, periodic, smooth single mode is verified. Nonlinear Fisher fronts, complex boundaries, spatial ecosystems and general reaction networks remain outside scope."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "rk4"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+                  "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+                  "passed_tests": 26,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "space_error": true,
+                  "space_order": true,
+                  "time_error": true,
+                  "time_order": true
+                },
+                "metrics": {
+                  "spatial_finest_error": 0.0014105590121191725,
+                  "spatial_minimum_order": 1.9995467358065582,
+                  "temporal_finest_error": 4.109141582553377e-09,
+                  "temporal_minimum_order": 4.0421093675761
+                },
+                "source_mode": "independently-extracted-supplement"
+              },
+              {
+                "id": "turing-schnakenberg",
+                "group": "models",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Turing不安定性：線形成長率と小振幅パターン",
+                  "en": "Turing instability: linear growth and small-amplitude patterns"
+                },
+                "scope": {
+                  "ja": "Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
+                  "en": "Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
+                },
+                "limits": {
+                  "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+                  "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "rk4"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+                  "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+                  "passed_tests": 26,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "homogeneous_stable": true,
+                  "diffusion_mode_unstable": true,
+                  "linear_space_error": true,
+                  "linear_space_order": true,
+                  "growth_rate": true,
+                  "nonlinear_finite_positive": true,
+                  "early_linear_agreement": true,
+                  "growing_spatial_pattern": true
+                },
+                "metrics": {
+                  "homogeneous_max_real_eigenvalue": -0.10000000000000003,
+                  "continuum_mode_growth_rate": 0.42841126979143596,
+                  "linear_finest_relative_error": 0.00024726924944451685,
+                  "linear_minimum_spatial_order": 2.000750498056138,
+                  "linear_finest_growth_rate_error": 7.301377900481576e-05,
+                  "nonlinear_minimum_concentration": 0.8998159771334997,
+                  "nonlinear_early_linear_relative_error": 0.00016918909911058558,
+                  "pattern_amplitude_growth": 5.535462628423193
+                },
+                "source_mode": "independently-extracted-supplement"
+              }
+            ]
           }
         },
         {
           "id": "biological-fronts",
           "title": {
-            "ja": "生物：侵入前線と模様形成",
-            "en": "Biology: invasion fronts and pattern onset"
+            "ja": "生物：模様形成・膜興奮と前線",
+            "en": "Biology: pattern onset, excitability and fronts"
           },
           "summary": {
-            "ja": "Fisher–KPPは増殖と拡散の前線、Turingは安定な反応平衡が空間モードで不安定化する枠組み。Schnakenbergは具体的な反応則の一例であり、Turing原論文の反応則や組織較正済みモデルと同一ではない。",
-            "en": "Fisher–KPP concerns growth–diffusion fronts; Turing describes spatial-mode destabilization of a stable reaction equilibrium. Schnakenberg supplies one kinetic law, distinct from Turing’s original example and from a tissue-calibrated model."
+            "ja": "SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumoの刺激応答を0次元ODEで検証します。Fisher–KPP前線は解説段階です。反応則や次元の違いを、生物現象の同一性や組織データへの適合と取り違えません。",
+            "en": "Validate initial Schnakenberg Turing growth with 1D reaction–diffusion and FitzHugh–Nagumo stimulus response with a zero-dimensional ODE. Fisher–KPP fronts remain reading-only. Different kinetics/dimensions do not establish identical biological phenomena or agreement with tissue data."
           },
-          "method_ids": [],
+          "method_ids": [
+            "centered-difference",
+            "rk4"
+          ],
           "example_ids": [],
           "reading": [
             {
@@ -996,21 +1329,245 @@
                 "ja": "Schnakenbergの反応則",
                 "en": "Schnakenberg kinetics"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg"
+              },
+              "label": {
+                "ja": "Turing初期成長と独立参照",
+                "en": "Initial Turing growth and independent references"
+              }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo",
+                "en": "/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo"
+              },
+              "label": {
+                "ja": "FitzHugh–Nagumoの0次元刺激応答",
+                "en": "Zero-dimensional FitzHugh–Nagumo stimulus response"
+              }
             }
           ],
           "gap": {
-            "ja": "いずれもsurvey-onlyのモデル。前線速度・モード成長率の測定も、生物の実験データによる妥当性確認も未実施。",
-            "en": "All remain survey-only models. Front-speed and mode-growth measurements and validation against biological observations have not been performed."
+            "ja": "Turingは短時間の線形成長と有限振幅の区別まで、FitzHugh–Nagumoは空間を持たない単一素子です。伝播する膜パルス、Fisher前線速度、生物実験データへの較正、流体との連成は未検証です。",
+            "en": "Turing evidence separates short-time linear growth from finite-amplitude behavior; FitzHugh–Nagumo is a spatially uniform single unit. Propagating membrane pulses, Fisher front speeds, biological-data calibration and fluid coupling remain unvalidated."
           },
           "model_ids": [
             "fisher-kpp",
             "turing",
-            "schnakenberg"
+            "schnakenberg",
+            "fitzhugh-nagumo"
           ],
+          "supplemental_ids": [
+            "turing-schnakenberg",
+            "fitzhugh-nagumo"
+          ],
+          "supplemental_role": "scoped-component",
+          "supplemental_scope": {
+            "ja": "Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。",
+            "en": "Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation."
+          },
           "evidence": {
-            "stage_status": "reading",
-            "methods": [],
-            "examples": []
+            "stage_status": "scoped-supplement",
+            "methods": [
+              {
+                "id": "centered-difference",
+                "name": {
+                  "ja": "空間中心差分",
+                  "en": "Centered spatial difference"
+                },
+                "status": "educational-example",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
+                },
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+              },
+              {
+                "id": "rk4",
+                "name": {
+                  "ja": "古典的RK4",
+                  "en": "Classical RK4"
+                },
+                "status": "educational-example",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/"
+                },
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/time_integration.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+              }
+            ],
+            "examples": [],
+            "supplemental_role": "scoped-component",
+            "supplemental_scope": {
+              "ja": "Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。",
+              "en": "Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation."
+            },
+            "supplements": [
+              {
+                "id": "turing-schnakenberg",
+                "group": "models",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Turing不安定性：線形成長率と小振幅パターン",
+                  "en": "Turing instability: linear growth and small-amplitude patterns"
+                },
+                "scope": {
+                  "ja": "Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
+                  "en": "Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
+                },
+                "limits": {
+                  "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+                  "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "rk4"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+                  "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+                  "passed_tests": 26,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "homogeneous_stable": true,
+                  "diffusion_mode_unstable": true,
+                  "linear_space_error": true,
+                  "linear_space_order": true,
+                  "growth_rate": true,
+                  "nonlinear_finite_positive": true,
+                  "early_linear_agreement": true,
+                  "growing_spatial_pattern": true
+                },
+                "metrics": {
+                  "homogeneous_max_real_eigenvalue": -0.10000000000000003,
+                  "continuum_mode_growth_rate": 0.42841126979143596,
+                  "linear_finest_relative_error": 0.00024726924944451685,
+                  "linear_minimum_spatial_order": 2.000750498056138,
+                  "linear_finest_growth_rate_error": 7.301377900481576e-05,
+                  "nonlinear_minimum_concentration": 0.8998159771334997,
+                  "nonlinear_early_linear_relative_error": 0.00016918909911058558,
+                  "pattern_amplitude_growth": 5.535462628423193
+                },
+                "source_mode": "independently-extracted-supplement"
+              },
+              {
+                "id": "fitzhugh-nagumo",
+                "group": "models",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+                  "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+                },
+                "scope": {
+                  "ja": "2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
+                  "en": "Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
+                },
+                "limits": {
+                  "ja": "FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+                  "en": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
+                },
+                "method_ids": [
+                  "rk4"
+                ],
+                "domains": [
+                  "biology",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+                  "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+                  "passed_tests": 26,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "reference_tolerance": true,
+                  "solution_error": true,
+                  "time_order": true,
+                  "excitation": true,
+                  "peak_voltage": true,
+                  "peak_time": true,
+                  "recovery": true
+                },
+                "metrics": {
+                  "reference_tolerance_difference": 1.673639005161931e-10,
+                  "finest_max_error": 6.469538016418142e-08,
+                  "minimum_temporal_order": 4.06818366368244,
+                  "peak_v": 2.099845449002621,
+                  "peak_v_error": 2.613303262677391e-08,
+                  "peak_time_error": 0.0,
+                  "recovery_distance": 2.3590633279280127e-05
+                },
+                "source_mode": "independently-extracted-supplement"
+              }
+            ]
           }
         },
         {
@@ -1078,14 +1635,17 @@
                 "code_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/time_integration.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
                 ],
-                "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method."
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [
@@ -1117,7 +1677,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -1237,7 +1800,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         }
       ],
@@ -1272,21 +1838,23 @@
             "en": "For fronts, compare analytic profile/speed and separate finite-boundary, spatial and temporal errors. For Turing onset, establish k=0 stability and compare early growth of boundary-admissible nonzero modes with J−k²D and the discrete-Laplacian prediction."
           },
           "existing_evidence": {
-            "ja": "解説に前線・モードの検証案と一次文献がある。測定した反応拡散の結果はない。",
-            "en": "Reading supplies front/mode verification plans and primary references. There are no measured reaction–diffusion results."
+            "ja": "Schnakenbergは許される周期モードの成長をJ−k²Dと離散Laplacianの予測、空間/時間細分化で比較済みです。FitzHugh–Nagumoは独立DOP853との0次元照合です。Fisher–KPP前線は未実行です。",
+            "en": "Schnakenberg compares admissible periodic-mode growth with J−k²D, discrete-Laplacian predictions and space/time refinement. FitzHugh–Nagumo has a zero-dimensional independent DOP853 comparison. Fisher–KPP fronts have not been executed."
           },
           "coupled_validation": {
             "status": "not-executed",
             "scope": {
-              "ja": "反応拡散の生物モデルとしての空間実行は未実施。",
-              "en": "Spatial execution of these biological reaction–diffusion models has not been performed."
+              "ja": "固定したSchnakenbergの空間例は独立した要素検証です。異なる生物モデル族への一般化、生体組織への妥当性確認、前線や流体へ接続する経路全体は実行していません。",
+              "en": "The fixed spatial Schnakenberg example is independent component validation. Generalization across biological-model families, tissue-level validity and the complete bridge to fronts or flow have not been executed."
             },
             "example_ids": []
           },
           "reference_ids": [
             "fisher1937",
             "turing1952",
-            "schnakenberg1979"
+            "schnakenberg1979",
+            "fitzhugh1961",
+            "nagumo1962"
           ],
           "connection_kind": "model-application"
         },
@@ -1366,8 +1934,8 @@
             "en": "Check concentration balance with boundary fluxes and reaction sources, nonnegativity, ∇·u, space/time refinement and splitting order/step dependence. Use a manufactured or independent coupled reference; active coupling also requires force/heat balance checks."
           },
           "existing_evidence": {
-            "ja": "advection-sineは周期一定速度のスカラー移流、taylor-greenは周期粘性流と発散を別々に検証する。濃度や反応を含む連成結果はない。",
-            "en": "advection-sine checks scalar periodic constant-speed transport; taylor-green separately checks periodic viscous flow and divergence. Neither supplies concentration–reaction–flow results."
+            "ja": "線形/Schnakenberg反応拡散の補助例、周期一定速度advection-sine、周期粘性taylor-greenを別々に検証しています。濃度・反応・流体を結んだ実行はありません。",
+            "en": "Linear/Schnakenberg reaction–diffusion supplements, periodic constant-speed advection-sine and periodic viscous taylor-green are verified separately. No execution couples concentration, reaction and flow."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -1389,13 +1957,15 @@
         "fisher1937",
         "turing1952",
         "schnakenberg1979",
-        "chorin1968"
+        "chorin1968",
+        "fitzhugh1961",
+        "nagumo1962"
       ],
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "0次元反応・移流・周期流体の例は別々の証拠。空間反応拡散や反応・拡散・流れを結ぶ経路全体は未実行。",
-          "en": "Zero-dimensional reaction, advection and periodic-flow examples provide separate evidence. Spatial reaction–diffusion and the complete reaction–diffusion–flow route have not been executed."
+          "ja": "1次元線形反応拡散とSchnakenbergのTuring初期成長、0次元FitzHugh–Nagumoは専用補助例で実行済みです。ロジスティック/SIR、移流、周期流体の共通台帳例も別の要素根拠として残します。反応・拡散・移流/流体を結ぶ経路全体は未実行です。",
+          "en": "Dedicated supplements execute 1D linear reaction–diffusion, initial Schnakenberg Turing growth and zero-dimensional FitzHugh–Nagumo. Logistic/SIR, advection and periodic-flow runs remain separate common-registry component evidence. The complete reaction–diffusion–advection/fluid route is unexecuted."
         },
         "example_ids": []
       },
@@ -1605,7 +2175,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -1679,7 +2252,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -1802,7 +2378,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         },
         {
@@ -1906,7 +2485,10 @@
                 "process_completed": true,
                 "numerical_checks_passed": true
               }
-            ]
+            ],
+            "supplemental_role": null,
+            "supplemental_scope": null,
+            "supplements": []
           }
         }
       ],
@@ -2224,16 +2806,69 @@
         "ja": "既存PM項目の出版社抄録・書誌確認を継承。2次元の割当てと格子の力誤差の文献であり、公開3次元Green関数の導出・数値検証そのものではない。今回の全文再監査はない。",
         "en": "Inherits PM-record publisher-abstract/metadata checks. Concerns 2D assignment/mesh-force error, not derivation or numerical validation of the released 3D Green function. No fresh full-text audit."
       }
+    },
+    {
+      "id": "leimkuhler-matthews2013",
+      "author": "B. Leimkuhler and C. Matthews",
+      "year": 2013,
+      "title": "Rational Construction of Stochastic Numerical Methods for Molecular Sampling",
+      "url": "https://arxiv.org/abs/1203.5428",
+      "review_level": "author-manuscript-selected-appendix",
+      "review": {
+        "ja": "著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。",
+        "en": "Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here."
+      }
+    },
+    {
+      "id": "fitzhugh1961",
+      "author": "R. FitzHugh",
+      "year": 1961,
+      "title": "Impulses and Physiological States in Theoretical Models of Nerve Membrane",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19431309/",
+      "review_level": "official-abstract-and-metadata",
+      "review": {
+        "ja": "PubMedの原著抄録・書誌を確認。2変数の興奮・不応期の縮約という役割を参照し、HH全系や実測膜電位の再現とは区別します。",
+        "en": "Original-paper abstract and bibliography in PubMed checked. Supports the two-variable excitable/refractory reduction; no full HH or measured membrane-voltage reproduction is claimed."
+      }
+    },
+    {
+      "id": "nagumo1962",
+      "author": "J. Nagumo, S. Arimoto and S. Yoshizawa",
+      "year": 1962,
+      "title": "An Active Pulse Transmission Line Simulating Nerve Axon",
+      "url": "https://ieeexplore.ieee.org/abstract/document/4066548",
+      "review_level": "publisher-abstract-and-metadata",
+      "review": {
+        "ja": "IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。",
+        "en": "IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed."
+      }
     }
   ],
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-crossovers.json": "eac10b38a101464e845e39a4a4e9b2e0600f81aca8392bbc74a893dd9e4ce24f",
-    "catalog/atlas-methods.json": "1e1ff566d4e754a1a6e5efc1af871913fb9918054ee962ce3e342192f176b0ec",
-    "numerical-methods-atlas/methods/index.json": "0c5d18e37741879d840b29b9ced9bc1716c55052a6a0b0df78d5dfdac2683944",
+    "catalog/atlas-crossovers.json": "cbb2a92dc604e99ed26b59f07b538de5483b229c0bffc7333a1e80da53c3d06a",
+    "catalog/atlas-methods.json": "216986625549487ea407dc446dddf44785e9a6d7f41d5ae37b741dcefd1c9c26",
+    "numerical-methods-atlas/methods/index.json": "dae5a01291601d43cc18124f3353cc511e510cba1f7f5411aa2b2bb1713494ef",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/assets/biological-models.json": "f7e9af6710d8deb6da48046f403160ea6d5d09ce16b95032e6f32e0141b6737a"
+    "numerical-methods-atlas/assets/biological-models.json": "a6d4834d379e36d4b55fba48ec881a8a813fc5156056a9c86ca5c17b43fbe6ae"
+  },
+  "supplemental_source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c"
+  },
+  "supplemental_verification_receipts": {
+    "models": {
+      "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+      "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+      "passed_tests": 26,
+      "all_cases_rerun": true,
+      "source_mode": "independently-extracted-supplement"
+    }
   }
 }

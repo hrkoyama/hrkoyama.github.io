@@ -21,6 +21,16 @@ discovery=load_discovery(ROOT)
 discovery_by_id={x['id']:x for x in discovery['examples']}
 format_counts={**coverage['counts'],'execution_examples':len(discovery['examples'])}
 map_fallback=json.loads(subprocess.check_output(['node','scripts/render-atlas-home-map.mjs'],cwd=ROOT,text=True))
+def validation_teaser(lang):
+    ja=lang=='ja'
+    config=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())
+    receipts=[json.loads((ROOT/'code/validated-examples'/config['edition']/g['id']/'verification.json').read_text()) for g in config['groups']]
+    assert all(r['passed'] and r['all_cases_rerun'] for r in receipts)
+    cases=sum(len(r['case_ids']) for r in receipts);tests=sum(r['passed_tests'] for r in receipts)
+    title='6分野の小さな実装・検証例' if ja else 'Small validated examples across six fields'
+    text=(f'{cases}固定ケース・{len(receipts)}配布版・{tests}自動検査。基盤手法、確率、生物、温度制御、粒子・輸送、流体・MHDを、条件・参照・収束とともにたどれます。' if ja else f'{cases} fixed cases, {len(receipts)} supplements and {tests} automated tests. Explore foundations, stochastic models, biology, thermostats, particles/transport and fluid/MHD with conditions, references and refinement.')
+    return '<section class="page-width atlas-purpose" aria-labelledby="small-validation-'+lang+'"><h2 id="small-validation-'+lang+'">'+title+'</h2><p>'+text+'</p><p><a href="/numerical-methods-atlas/validation/?lang='+lang+'">'+('19例の結果・コード・テストと進捗を見る' if ja else 'See the19 results, code, tests and progress')+'</a></p></section>'
+
 def goal_start(lang, static=False):
     data=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
     c=data['home'][lang];ja=lang=='ja'
@@ -29,7 +39,7 @@ def goal_start(lang, static=False):
     c={**c,'all':c['all'].format(count=len(data['goals']))}
     map_url='#atlas-map-'+lang if static else '#/?section=atlas-map'
     crossover_action='<a href="/numerical-methods-atlas/connections/?lang='+lang+'"><strong>'+html.escape(crossovers['home']['action'][lang])+'</strong><span>'+html.escape(crossovers['home']['short_description'][lang])+'</span></a>'
-    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p><p class="home-crossover-entry">'+crossover_action+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('22の実行例を見る' if ja else 'See 22 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section><section class="page-width crossover-home">'+crossover_teaser(ROOT,lang)+'</section>'
+    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p><p class="home-crossover-entry">'+crossover_action+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('22の実行例を見る' if ja else 'See 22 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section>'+validation_teaser(lang)+'<section class="page-width crossover-home">'+crossover_teaser(ROOT,lang)+'</section>'
 
 def browse(lang):
     c=copy[lang]
@@ -102,7 +112,8 @@ text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-goal-filters[.]css[^"]*
 text=re.sub(r'<script type="module" src="/numerical-methods-atlas/goal-filters[.]mjs[^"]*"></script>\n?','',text)
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-depth[.]css[^"]*">\n?','',text)
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-crossovers[.]css[^"]*">\n?','',text)
-text=text.replace('</head>',goal_filter_assets(ROOT)+depth_assets(ROOT)+crossover_assets(ROOT)+'</head>')
+text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-validation[.]css[^"]*">\n?','',text)
+text=text.replace('</head>',goal_filter_assets(ROOT)+depth_assets(ROOT)+crossover_assets(ROOT)+'<link rel="stylesheet" href="/styles/atlas-validation.css?v='+digest(ROOT/'styles/atlas-validation.css')+'">'+'</head>')
 text=re.sub(r'href="home-overview.css(?:[?]v=[a-f0-9]+)?"','href="home-overview.css?v='+digest(ATLAS/'home-overview.css')+'"',text)
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-purpose.css(?:[?]v=[a-f0-9]+)?">\n?','',text)
 text=text.replace('</head>','<link rel="stylesheet" href="/styles/atlas-purpose.css?v='+digest(ROOT/'styles/atlas-purpose.css')+'">\n</head>')
@@ -168,3 +179,6 @@ print('Built bilingual atlas purpose statement for the live homepage and static 
 
 text=re.sub(r'^- \[Cross-field connections\].*\n?','',guide.read_text(),flags=re.M)
 guide.write_text(text.rstrip()+'\n- [Cross-field connections](https://hrkoyama.github.io/numerical-methods-atlas/connections/): bilingual routes from DFT to first-principles MD and thermostats, reaction–diffusion to biology and fluids, and Poisson operators to pressure, Hartree and gravity. Shared mathematics, transferred quantities and distinct validation requirements are explicit; component examples do not establish a validated coupled pipeline. Canonical metadata: /catalog/atlas-crossovers.json.\n')
+
+guide=ROOT/'llms.txt';text=guide.read_text();text=re.sub(r'^- \[Small cross-field validation supplements\].*\n?','',text,flags=re.M)
+guide.write_text(text.rstrip()+'\n- [Small cross-field validation supplements](https://hrkoyama.github.io/numerical-methods-atlas/validation/):19 fixed cases in4 independently extracted releases;93 automated tests, bilingual assumptions, original/adopted algorithms, primary sources, measured refinement and scope. Lightweight public-only Linux CI; separate from the shared22-case detailed registry.\n')

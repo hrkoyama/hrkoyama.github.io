@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-9a44c89c96
-Captured (UTC): 2026-11-22T07:40:04+00:00
+Snapshot: 2026-11-22-635aa452e3
+Captured (UTC): 2026-11-22T08:39:51+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -753,7 +753,7 @@ Use manufactured Poisson solutions while varying mesh size and coefficient contr
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Algebraic multigrid / AMG
 
 ## Algebraic multigrid / AMG — Primary publications, supporting sources and review scope [en]
@@ -1472,7 +1472,7 @@ Sources: Hodgkin, A. L. and Huxley, A. F. (1952).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#09-1952-turing-reactiondiffusion-framework
 Coverage: reading
 
-Pattern formation · Survey only. A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g.
+Supplement scoped to linear Schnakenberg onset and a short nonlinear run. A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g.
 u_t=D_u\Delta u+f(u,v),\qquad v_t=D_v\Delta v+g(u,v).
 Numerical issue. Physical versus numerical instability, domain eigenmodes and errors in the discrete Laplacian dispersion relation.
 Proposed verification. For a selected kinetic law compare eigenvalues of J−k²diag(Du,Dv) with early-time Fourier-mode growth. Show that the k=0 reaction equilibrium is stable before asserting diffusion-driven instability.
@@ -1484,7 +1484,7 @@ Sources: Turing, Alan M. (1952).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#10-1961-fitzhughnagumo-excitation-and-recovery
 Coverage: reading
 
-Excitable systems · Survey only. A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space.
+FHN excitation/recovery ODE and time refinement available; full HH unimplemented. A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space.
 v_t=D\Delta v+v-v^3/3-w+I,\qquad w_t=\epsilon(v+a-bw).
 Numerical issue. Stiff time-scale separation, splitting error, wave-speed convergence and numerical wave breakup.
 Proposed verification. Check ODE fixed points/nullclines and small-perturbation eigenvalues first; then refine a 1D pulse before a 2D spiral movie.
@@ -1568,7 +1568,7 @@ Sources: Taylor, Peter D. and Jonker, Leo B. (1978).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#17-1979-schnakenberg-reactiondiffusion
 Coverage: reading
 
-Pattern formation · Survey only. A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests.
+Runnable checks for early Schnakenberg growth; mature patterns unvalidated. A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests.
 u_t=D_u\Delta u+a-u+u^2v,\qquad v_t=D_v\Delta v+b-u^2v.
 Numerical issue. Reaction stiffness, positive concentrations and the distinction between kinetic Hopf and spatial Turing instabilities.
 Proposed verification. Check u*=a+b, v*=b/(a+b)², then compare mode-growth rates with the linearized discrete and continuum operators under fixed boundaries.
@@ -2826,7 +2826,7 @@ Test homogeneous velocity relaxation, Maxwellian equilibrium, wall-driven Couett
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/dsmc/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 DSMC and kinetic transport
 
 ## DSMC and kinetic transport — Primary publications, supporting sources and review scope [en]
@@ -2883,7 +2883,7 @@ Check scaled residuals ∥Ax−θx∥/(∥A∥+|θ|), orthogonality, known eigen
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Krylov eigenvalue solvers
 
 ## Krylov eigenvalue solvers — Primary publications, supporting sources and review scope [en]
@@ -3302,7 +3302,7 @@ For a small neutral configuration, increase both cutoffs independently and test 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/ewald/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Ewald summation
 
 ## Ewald summation — Primary publications, supporting sources and review scope [en]
@@ -5386,7 +5386,7 @@ Check means, variances and quantiles for known targets, including asymmetric pro
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Markov-chain Monte Carlo / MCMC
 
 ## Markov-chain Monte Carlo / MCMC — Primary publications, supporting sources and review scope [en]
@@ -6987,7 +6987,7 @@ Begin with single-particle self-force, a uniform neutral distribution, and small
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/pic/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Particle-in-cell / PIC
 
 ## Particle-in-cell / PIC — Primary publications, supporting sources and review scope [en]
@@ -7101,7 +7101,7 @@ Use a converged direct Ewald calculation for the identical neutral cell. Vary me
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/pme/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Particle mesh Ewald / PME
 
 ## Particle mesh Ewald / PME — Primary publications, supporting sources and review scope [en]
@@ -7158,7 +7158,7 @@ Check relative factorization residuals, orthogonality and Aᵀ(Ax−b). Test pre
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 QR, SVD and least squares
 
 ## QR, SVD and least squares — Primary publications, supporting sources and review scope [en]
@@ -7215,7 +7215,7 @@ Verify degree of exactness on monomials, then test nonpolynomials with known int
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Gaussian and adaptive quadrature
 
 ## Gaussian and adaptive quadrature — Primary publications, supporting sources and review scope [en]
@@ -7781,7 +7781,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 67-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 80-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -7963,7 +7963,7 @@ Test exponential absorption, isotropic diffusion, free streaming/shadows and cro
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Radiation transport and moment methods
 
 ## Radiation transport and moment methods — Primary publications, supporting sources and review scope [en]
@@ -9927,6 +9927,25 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
 Coverage: reading
 
 Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding. Original source
+P. Vaněk, J. Mandel and M. Brezina (1996). Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems. 10.1007/BF02238511
+J. Demmel and K. Veselić (1992). Jacobi’s Method is More Accurate than QR. 10.1137/0613074
+Y. Saad (1980). Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices. 10.1016/0024-3795(80)90169-X
+J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine. 10.1145/321526.321537
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo. 10.1214/ss/1177011137
+B. Leimkuhler and C. Matthews (2013). Rational Construction of Stochastic Numerical Methods for Molecular Sampling. 10.1093/amrx/abs010
+The SciPy community (2024). SciPy1.14.1 solve_discrete_lyapunov reference. Original source
+The SciPy community (2024). SciPy1.14.1 expm reference. Original source
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference. Original source
+NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformations of Lattice Parameter. Original source
+
+## References by original publication year — Sources added by priority-method curation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
+Coverage: reading
+
+K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media. 10.1364/AO.27.002502
+NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral. Original source
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers. 10.3847/1538-4365/ab929b
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -11301,8 +11320,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 116 methods and building blocks · 224 journal/conference papers · 266 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 81 reading chapters including this inventory.
+46 equation/model entries · 128 methods and building blocks · 232 journal/conference papers · 279 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 85 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -11396,7 +11415,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-100 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+113 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -11549,7 +11568,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-218 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+226 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -11813,7 +11832,7 @@ Measure force errors against the same converged Ewald reference and check energy
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spme/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Smooth particle mesh Ewald / SPME
 
 ## Smooth particle mesh Ewald / SPME — Primary publications, supporting sources and review scope [en]
@@ -12722,21 +12741,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
 Coverage: reading
 
 Compare fluctuations, ergodicity and time correlations as well as mean temperature, from Nosé–Hoover and velocity rescaling to stochastic and momentum-conserving methods.
-Comparative introductions and reference entry points for 12 methods. Dedicated code and measured verification results are under construction.
+Comparative reading covers 12 methods. Dedicated code, fixed inputs and distribution checks cover only a 1D harmonic-oscillator NVT example with Langevin BAOAB. The other 11 methods remain planned.
 
 ## Thermostats: temperature control and distributions — Define the controlled temperature [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#temperature
 Coverage: reading
 
-With kinetic energy K and f active degrees of freedom, the kinetic temperature is T = 2K / (f k_B). Count constraints and removed center-of-mass motion consistently, and separate thermal motion from streaming. State whether rotational degrees of freedom are included.
+With kinetic energy K and f active degrees of freedom, the kinetic temperature is T = 2 K / (f k_B). Count constraints and removed center-of-mass motion consistently, and separate thermal motion from streaming. State whether rotational degrees of freedom are included.
 
 ## Thermostats: temperature control and distributions — Equal mean temperature does not imply equal distributions [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#fluctuations
 Coverage: reading
 
-For f independent momentum degrees of freedom with classical quadratic kinetic energy, canonical equilibrium gives 2K/(k_B T₀) a chi-square distribution with f degrees of freedom. Its mean K is f k_B T₀/2 and variance is f(k_B T₀)²/2. Direct rescaling v ← √(T₀/T) v fixes K immediately after application, removing these fluctuations. CSVR instead uses a stochastic factor to generate fluctuations.
+For f independent momentum degrees of freedom with classical quadratic kinetic energy, canonical equilibrium gives 2 K/(k_B T₀) a chi-square distribution with f degrees of freedom. Its mean K is f k_B T₀/2 and variance is f(k_B T₀)²/2. Direct rescaling v ← √(T₀/T) v fixes K immediately after application, removing these fluctuations. CSVR instead uses a stochastic factor to generate fluctuations.
 
 ## Thermostats: temperature control and distributions — Separate sampling from dynamics [en]
 
@@ -12744,6 +12763,15 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#
 Coverage: reading
 
 An invariant distribution does not ensure adequate finite-time exploration. Even correct equilibrium sampling can coexist with friction- or collision-induced changes in velocity autocorrelations and diffusion. Assess integration error, heat-bath coupling time and random-seed dependence.
+
+## Thermostats: temperature control and distributions — Runnable harmonic-Langevin validation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
+Coverage: reading
+
+dt=0.4/0.2/0.1 with 32768 independent replicas. Separate covariance step bias, lagged correlations and finite-burn-in residuals. Distribution acceptance is for fixed seeds.
+Langevin thermostat: canonical distributions, timestep bias and correlation · ZIP · Stored results · Rerun receipt
+Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD.
 
 ## Thermostats: temperature control and distributions — Direct velocity rescaling [en]
 
@@ -12785,7 +12813,7 @@ GROMACS: temperature coupling
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#langevin-thermostat
 Coverage: reading
 
-Add friction and random forces to the equations of motion. The fluctuation–dissipation relation connects friction and noise at the target equilibrium temperature.
+Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
 Friction changes dynamical correlations and diffusion. Finite-step sampling errors must be assessed together with the integration scheme.
 Other names: ランジュバン / ランジュヴァン / friction and noise
 Method status, JSON and Markdown
@@ -12885,12 +12913,12 @@ Other names: ロウ・アンダーセン / Lowe Andersen
 Method status, JSON and Markdown
 Lowe (1999), An alternative approach to dissipative particle dynamics
 
-## Thermostats: temperature control and distributions — Planned runnable checks [en]
+## Thermostats: temperature control and distributions — Validated scope and next checks [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#verification
 Coverage: reading
 
-This is a verification plan, not measured results. Start with harmonic oscillators and ideal gases, then a small Lennard–Jones system. Compare mean temperature, kinetic-energy and position distributions, autocorrelations, and coupling-time and step-size dependence. Record multiple independent random streams and correlation-aware uncertainty. Include a small-system example where Nosé–Hoover does not explore adequately.
+Harmonic Langevin BAOAB now has measured position/momentum/total-energy distributions, an independent discrete-Lyapunov reference, continuous Gaussian propagation, step bias and lagged correlations. Future verification plans include anharmonic oscillators, ideal gases, a small Lennard–Jones system, coupling-time dependence and dedicated implementations of the other 11 methods. Include a small-system example where Nosé–Hoover does not explore adequately.
 
 ## Thermostats: temperature control and distributions — Sources and review scope [en]
 
@@ -12968,6 +12996,2973 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integrat
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## AMG, factorizations, eigenvalues and quadrature — AMG, factorizations, eigenvalues and quadrature [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+
+## AMG, factorizations, eigenvalues and quadrature — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#run-all
+Coverage: reading
+
+Run inside atlas-foundations-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## AMG, factorizations, eigenvalues and quadrature — Matrix-based AMG: distinguish residual and solution error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution.
+
+## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg-assumptions
+Coverage: reading
+
+Dimensionless unit square, constant-positive-coefficient −Δu=f, homogeneous Dirichlet boundaries and five-point differences. Hierarchy setup receives no coordinates, mesh width or n; it uses the coefficient matrix and an implicit constant near-null candidate. A real SPD input is assumed; arbitrary indefinite problems are outside scope.
+
+## AMG, factorizations, eigenvalues and quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg-algorithm
+Coverage: reading
+
+A graph based on row-relative off-diagonal strength supplies greedy star aggregates; leftover nodes attach to adjacent aggregates. Smooth tentative T via P=(I−ωD⁻¹A)T with ω=4/(3ρ̄), where ρ̄ bounds the absolute row sums of D⁻¹A. Coarse operators are PᵀAP. V-cycles use two pre/post Jacobi sweeps and a terminal dense direct solve. This is a small adopted SA variant, not every construction or convergence theorem in the original paper.
+A_c=P^TAP,\quad P=(I-\omega D^{-1}A)Tr_k=b-Ax_k,\quad \eta_k=\|r_k\|_2/\|b\|_2
+
+## AMG, factorizations, eigenvalues and quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg-validation
+Coverage: reading
+
+Store normalized residuals, relative solution differences against SciPy spsolve, discrete-L²-type continuum errors, observed order and operator complexity. A randomly permuted matrix is also checked against a direct solution to expose hidden geometric ordering assumptions. A zero cycle budget reports nonconvergence.
+
+## AMG, factorizations, eigenvalues and quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg-limits
+Coverage: reading
+
+Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error.
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_relative_residual7.13959633908e-11
+max_direct_solution_error2.02830808479e-11
+minimum_pde_order2.00208726976
+max_operator_complexity3.19675283059
+判定 / checkPassed
+all_residual_targetstrue
+independent_sparse_directtrue
+second_order_pde_refinementtrue
+bounded_operator_complexitytrue
+cycle_budget_failure_reportedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+grid_nunknownshcyclesrelative_residualdirect_solution_errorpde_relative_l2_errorobserved_orderlevelsoperator_complexitytermination
+7490.125152.54878604447e-111.13444319729e-110.0129507467109—31.63594470046residual_tolerance
+152250.0625196.0394249552e-111.97820823102e-110.003218964427482.0083667439442.53145539906residual_tolerance
+319610.03125257.13959633908e-112.02830808479e-110.0008035776612192.0020872697643.19675283059residual_tolerance
+Measurements and complete records / JSON
+
+## AMG, factorizations, eigenvalues and quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#sa-amg-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+P. Vaněk, J. Mandel and M. Brezina (1996). Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems · DOI: 10.1007/BF02238511
+Review scope / review_level: publisher-abstract-and-metadata
+Official reference-implementation documentation: scipy.sparse.linalg.spsolve.html
+
+## AMG, factorizations, eigenvalues and quadrature — Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions.
+
+## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-assumptions
+Coverage: reading
+
+Small real matrices with m≥n. Numerical rank uses a 10⁻¹² threshold relative to the largest singular value; compact factors omit null directions. QR has no column pivoting and is not used as a rank-revealing method.
+
+## AMG, factorizations, eigenvalues and quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-algorithm
+Coverage: reading
+
+Householder reflectors triangularize R while accumulating Q. The SVD repeatedly rotates column pairs toward orthogonality and uses their resulting lengths as singular values; it does not diagonalize AᵀA. Least squares uses triangular back substitution for QR and truncated compact SVD for deficient rank.
+A=QR,\quad Q^TQ=IA\simeq U_r\Sigma_rV_r^T,\quad x_{\min}=V_r\Sigma_r^{-1}U_r^Tb
+
+## AMG, factorizations, eigenvalues and quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-validation
+Coverage: reading
+
+Compare QR/SVD relative reconstruction, Q/U/V orthogonality, singular values from SciPy LAPACK gesdd, least-squares solutions/ranks from gelsd/gelsy and normal-equation stationarity residuals. Singular-vector signs are not compared; zero matrices and budget exhaustion are tested.
+
+## AMG, factorizations, eigenvalues and quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-limits
+Coverage: reading
+
+Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results.
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_qr_reconstruction9.19763157372e-16
+max_svd_reconstruction1.05190958984e-13
+max_singular_value_error3.39922729968e-16
+max_least_squares_error9.16412759004e-15
+max_orthogonality1.31042119748e-15
+判定 / checkPassed
+all_jacobi_converged_and_ranks_matchtrue
+householder_reconstructiontrue
+householder_orthogonalitytrue
+jacobi_reconstructiontrue
+jacobi_orthogonalitytrue
+independent_lapack_singular_valuestrue
+independent_minimum_norm_least_squarestrue
+qr_least_squarestrue
+least_squares_stationaritytrue
+sweep_budget_failure_reportedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+matrixrowscolumnsqr_reconstructionqr_orthogonalitysvd_reconstructionsingular_value_erroru_orthogonalityv_orthogonalityleast_squares_solution_errornormal_residualqr_least_squares_errorrankreference_rankjacobi_sweepstermination
+full-rank1255.07025478974e-167.63132737249e-168.35194964829e-163.39922729968e-167.94324831748e-161.17755333268e-152.3876248942e-168.47689997581e-174.17257794382e-16555column_orthogonality
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-measurements
+Coverage: reading
+
+column-scaled1049.19763157372e-161.31042119748e-152.3471676067e-168.50210477162e-183.43901800045e-164.44104456566e-165.80540841218e-162.61998829102e-172.75634341002e-16442column_orthogonality
+rank-deficient943.1067798337e-165.94580636948e-161.05190958984e-131.93398535063e-164.4408920985e-164.4408920985e-169.16412759004e-151.84055732375e-16—223column_orthogonality
+Measurements and complete records / JSON
+
+## AMG, factorizations, eigenvalues and quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#qr-svd-factorization-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix · DOI: 10.1145/320941.320947
+Review scope / review_level: publisher-metadata
+J. Demmel and K. Veselić (1992). Jacobi’s Method is More Accurate than QR · DOI: 10.1137/0613074
+Review scope / review_level: publisher-abstract-and-metadata
+Official reference-implementation documentation: scipy.linalg.svd.html · scipy.linalg.lstsq.html
+
+## AMG, factorizations, eigenvalues and quadrature — Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references.
+
+## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-assumptions
+Coverage: reading
+
+The symmetric case is real symmetric; the nonsymmetric case is real with a known separated largest eigenvalue 5. Starting vectors use fixed seeds. Nonsymmetric Ritz values may be complex and are selected by largest real part.
+
+## AMG, factorizations, eigenvalues and quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-algorithm
+Coverage: reading
+
+Lanczos uses its three-term recurrence plus two passes of full reorthogonalization; Arnoldi uses two-pass modified Gram–Schmidt. Only the small projected T/H is solved by NumPy eigh/eig before lifting Ritz vectors. A full dense solve of the original matrix is used only on the reference side.
+AV_m=V_mH_m+h_{m+1,m}v_{m+1}e_m^TH_my=\theta y,\quad v=V_my,\quad r=Av-\theta v
+
+## AMG, factorizations, eigenvalues and quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-validation
+Coverage: reading
+
+Store ||Av−λv||₂, differences from independently solved dense eigenvalues and basis orthogonality; verify final improvement as Krylov dimension grows. Nonsymmetric Ritz convergence is not assumed monotone. Tests include identity-matrix happy breakdown, zero-start rejection and insufficient dimension budgets.
+
+## AMG, factorizations, eigenvalues and quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-limits
+Coverage: reading
+
+Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices.
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_final_eigenpair_residual1.43949246477e-12
+max_basis_orthogonality4.9115363144e-16
+判定 / checkPassed
+independent_dense_eigenvalues_and_residualstrue
+krylov_basis_orthogonalitytrue
+dimension_budget_failure_reportedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodsizedimensionseigenvalue_realeigenvalue_imagreference_realreference_imageigenvalue_erroreigenpair_residualorthogonalitytermination
+lanczos3244.997214066120500.002785933875540.1154328696912.4331315602e-16dimension_budget
+lanczos3284.999999999990509.70956648416e-126.96284476967e-062.66461630547e-16dimension_budget
+lanczos321650501.7763568394e-154.80753451116e-143.83909367751e-16residual_tolerance
+lanczos4844.999872581020500.0001274189773040.02503251990834.44241319189e-16dimension_budget
+lanczos48850501.23190346812e-122.44074266912e-064.68625337478e-16dimension_budget
+lanczos481650508.881784197e-162.77053378781e-144.72934336361e-16residual_tolerance
+arnoldi3244.989249108020500.01075089198430.1807353558433.35190880744e-16dimension_budget
+arnoldi3285.000000391540503.91538063305e-074.88943321335e-053.47503904733e-16dimension_budget
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-measurements
+Coverage: reading
+
+arnoldi321650501.06581410364e-141.43949246477e-123.91857621265e-16residual_tolerance
+arnoldi4844.999526918460500.0004730815375420.03192023813444.54161912893e-16dimension_budget
+arnoldi4884.999999896710501.03291673881e-079.56809716175e-064.58667551801e-16dimension_budget
+arnoldi481650504.4408920985e-158.96017837137e-134.9115363144e-16residual_tolerance
+Measurements and complete records / JSON
+
+## AMG, factorizations, eigenvalues and quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#krylov-eigenvalues-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+C. Lanczos (1950). An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators · DOI: 10.6028/jres.045.026
+Review scope / review_level: primary-first-page-and-official-metadata
+W. E. Arnoldi (1951). The principle of minimized iterations in the solution of the matrix eigenvalue problem · DOI: 10.1090/qam/42792
+Review scope / review_level: publisher-metadata-and-reference-list
+Y. Saad (1980). Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices · DOI: 10.1016/0024-3795(80)90169-X
+Review scope / review_level: publisher-abstract-and-metadata
+Official reference-implementation documentation: scipy.linalg.eigh.html · scipy.linalg.eig.html
+
+## AMG, factorizations, eigenvalues and quadrature — Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK.
+
+## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-assumptions
+Coverage: reading
+
+Dimensionless smooth real functions on finite intervals. Fixed Gauss orders 2/4/8/16 and adaptive absolute tolerances 10⁻⁵/10⁻⁷/10⁻⁹ are swept separately. Endpoint singularities, discontinuities and infinite intervals are not covered by these inputs.
+
+## AMG, factorizations, eigenvalues and quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-algorithm
+Coverage: reading
+
+Golub–Welsch obtains nodes from a symmetric Jacobi matrix and weights from twice the squared first eigenvector components. Adaptive Simpson bisects intervals and allocates tolerances using |Sleft+Sright−Swhole|/15 as a local estimate. Evaluation and depth limits report unmet targets explicitly.
+\int_{-1}^{1}f(x)\,dx\simeq\sum_{j=1}^{n}w_jf(x_j)E_{\mathrm{est}}=|S_{\mathrm{left}}+S_{\mathrm{right}}-S_{\mathrm{whole}}|/15
+
+## AMG, factorizations, eigenvalues and quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-validation
+Coverage: reading
+
+Measure polynomial moments for every chosen order, node/weight differences from SciPy roots_legendre, order refinement for the analytic exponential integral, and agreement with analytic arctangent and SciPy quad references. Store evaluation counts/errors as tolerance tightens; test forced exhaustion after five evaluations and nonfinite integrands.
+
+## AMG, factorizations, eigenvalues and quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-limits
+Coverage: reading
+
+The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK.
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_polynomial_moment_error8.881784197e-16
+max_scipy_rule_error1.2490009027e-15
+gauss_final_exp_error0
+max_adaptive_error_over_tolerance0.0172997149439
+budget_failure_evaluations5
+判定 / checkPassed
+gauss_polynomial_momentstrue
+independent_scipy_gauss_ruletrue
+gauss_nonsingular_refinementtrue
+adaptive_exact_and_quad_referencestrue
+evaluation_budget_failure_reportedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodorder_or_toleranceintegralanalytic_errorscipy_rule_errormoment_errorevaluationsestimated_errortermination
+gauss-legendre22.342696087910.007706299377872.22044604925e-164.4408920985e-162—fixed_order
+gauss-legendre42.350402092162.9513122568e-076.66133814775e-163.33066907388e-164—fixed_order
+gauss-legendre82.350402387291.7763568394e-151.2490009027e-158.881784197e-168—fixed_order
+gauss-legendre162.3504023872901.13797860024e-153.33066907388e-1616—fixed_order
+adaptive-simpson-exponential1e-052.350402406111.88211939367e-081.88211934926e-08—173.16319584268e-06estimated_tolerance
+adaptive-simpson-exponential1e-072.350402387323.42037509427e-113.42033068534e-11—573.13742662813e-08estimated_tolerance
+
+## AMG, factorizations, eigenvalues and quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-measurements
+Coverage: reading
+
+adaptive-simpson-exponential1e-092.350402387293.68594044176e-143.64153152077e-14—1654.15210993365e-10estimated_tolerance
+adaptive-simpson-lorentzian1e-050.2942257078581.72997149439e-071.72997149439e-07—812.54528535027e-06estimated_tolerance
+adaptive-simpson-lorentzian1e-070.2942255346572.03972616575e-102.03972616575e-10—2652.53728436498e-08estimated_tolerance
+adaptive-simpson-lorentzian1e-090.2942255348613.95072863313e-133.95072863313e-13—7693.54940816376e-10estimated_tolerance
+Measurements and complete records / JSON
+
+## AMG, factorizations, eigenvalues and quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#gauss-adaptive-quadrature-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. H. Golub and J. H. Welsch (1969). Calculation of Gauss Quadrature Rules · DOI: 10.1090/S0025-5718-69-99647-1
+Review scope / review_level: publisher-search-first-page-and-metadata
+J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
+Review scope / review_level: publisher-metadata
+Official reference-implementation documentation: scipy.special.roots_legendre.html · scipy.integrate.quad.html
+
+## Independent fluid/MHD comparisons and CT/GLM — Independent fluid/MHD comparisons and CT/GLM [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
+Coverage: reading
+
+Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+
+## Independent fluid/MHD comparisons and CT/GLM — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#run-all
+Coverage: reading
+
+Run inside atlas-mhd-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Independent fluid/MHD comparisons and CT/GLM — Orszag–Tang: CT, GLM and independent Athena++ [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
+Coverage: reading
+
+Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.
+
+## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-assumptions
+Coverage: reading
+
+Unit square, gamma=5/3, mu0=1, vz=Bz=0, t=0.05. rho=25/(36pi), p=5/(12pi), v=(-sin2piy,sin2pix), B=(-sin2piy,sin4pix)/sqrt(4pi).
+
+## Independent fluid/MHD comparisons and CT/GLM — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-algorithm
+Coverage: reading
+
+Reuse the published first-order Rusanov/forward-Euler solvers: shared corner-EMF discrete curl for CT and cell-centered hyperbolic/parabolic GLM cleaning. Independent Athena++ uses HLLD, PLM and RK2.
+\nabla\cdot\mathbf B=0,\qquad \mathbf B_t+\nabla\times\mathbf E=0
+
+## Independent fluid/MHD comparisons and CT/GLM — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-validation
+Coverage: reading
+
+Measure density/By L1 error, mass/energy drift and positivity on 16²/32²/64². Check the independent 128²/256² reference and conservatively restrict its fine-cell averages.
+
+## Independent fluid/MHD comparisons and CT/GLM — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-limits
+Coverage: reading
+
+Face CT divergence and centered GLM divergence use different operators; common cell-centered diagnostics are also reported. Athena initializes face-averaged magnetic fields by differencing a vector potential, so comparison includes discretization differences of identical continuous data. This is a short planar test, not validation of shocks, 3D, UCT or CTU.
+
+## Independent fluid/MHD comparisons and CT/GLM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_density_128_256_l14.63134423663e-05
+ct_glm_finest_density_l10.00169109923528
+判定 / checkPassed
+independent_reference_refinedtrue
+ct_native_constraint_16true
+ct_native_constraint_32true
+ct_native_constraint_64true
+ct_density_errortrue
+ct_magnetic_errortrue
+ct_refinementtrue
+glm_density_errortrue
+glm_magnetic_errortrue
+glm_refinementtrue
+conservationtrue
+positive_statestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodndensity_relative_l1by_relative_l1native_divergence_linfcommon_cell_divergence_linfmass_relative_driftenergy_relative_driftmin_densitymin_pressuresteps
+ct160.03263913501360.1625281310113.5527136788e-150.1165444010033.76689797785e-161.58940842947e-160.2024274793230.13041766976812
+ct320.02343766522250.09072932569461.11022302463e-140.09156569499233.76689797785e-161.58940842947e-160.1998864826160.12219598804324
+ct640.01390559978340.04767210316984.26325641456e-140.06279996011823.76689797785e-161.58940842947e-160.1976140279450.11524664515648
+glm160.03839724637470.4946997979226.66133814775e-166.66133814775e-163.76689797785e-163.17881685894e-160.2046422061550.15133222621216
+
+## Independent fluid/MHD comparisons and CT/GLM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-measurements
+Coverage: reading
+
+glm320.03170127573460.3030990560471.33226762955e-151.33226762955e-153.76689797785e-161.58940842947e-160.2014420708610.13438710016732
+glm640.02142907618250.1689716486695.3290705182e-155.3290705182e-153.76689797785e-163.17881685894e-160.1996616224770.12431585954565
+Measurements and complete records / JSON
+
+## Independent fluid/MHD comparisons and CT/GLM — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+Review scope / review_level: official-code-and-metadata; pinned source compiled and executed
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+Review scope / review_level: author-hosted primary paper; linear cleaning equations checked
+
+## Independent fluid/MHD comparisons and CT/GLM — Brio–Wu against an independent HLLD implementation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
+Coverage: reading
+
+Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit.
+
+## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent-assumptions
+Coverage: reading
+
+1D, [0,1], t=0.1, gamma=2, Bx=0.75; left/right (rho,p,By)=(1,1,1)/(0.125,0.1,-1), zero velocity, outflow boundaries.
+
+## Independent fluid/MHD comparisons and CT/GLM — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent-algorithm
+Coverage: reading
+
+Atlas uses MC reconstruction and SSPRK2; the independent C++ reference uses HLLD, PLM and RK3. Implementations differ while sharing the HLLD flux family.
+\mathbf U_t+\mathbf F(\mathbf U)_x=0,\qquad B_x=0.75
+
+## Independent fluid/MHD comparisons and CT/GLM — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent-validation
+Coverage: reading
+
+Compare 128/256/512 cells with conservative averages of independently rerun 2048/4096-cell references. Check density/By L1 errors, refinement and positive density/pressure.
+
+## Independent fluid/MHD comparisons and CT/GLM — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent-limits
+Coverage: reading
+
+This compares numerical solutions including the Brio–Wu compound wave; it is not a claim of a unique exact solution for arbitrary MHD Riemann problems. Reference regeneration requires C++ compilation; routine Python runs use the stored reference.
+
+## Independent fluid/MHD comparisons and CT/GLM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_last_pair_l10.00048642415115
+reference_finest_n4096
+finest_density_l10.00182994507527
+判定 / checkPassed
+independent_reference_refinedtrue
+density_errortrue
+grid_improvementtrue
+positive_statestrue
+magnetic_errortrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+ndensity_l1stepsmin_densitymin_pressureby_l1
+1280.006244892659811390.1168999829210.08748649270530.00788235309907
+2560.003350421114582790.116264218240.08653089675840.00464406060446
+5120.001829945075275580.1166244103340.08705794497670.00254401615136
+Read independent-reference records
+coarse_nfine_nlast_pair_l1targettarget_reached
+204840960.000486424151150.004true
+Measurements and complete records / JSON
+
+## Independent fluid/MHD comparisons and CT/GLM — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#brio-independent-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+Review scope / review_level: official-code-and-metadata; pinned source compiled and executed
+M. Brio and C. C. Wu (1988). An upwind differencing scheme for the equations of ideal magnetohydrodynamics · DOI: 10.1016/0021-9991(88)90120-9
+Review scope / review_level: bibliographic identity and official Athena test definition
+
+## Independent fluid/MHD comparisons and CT/GLM — Shu–Osher: independent reference and mesh refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
+Coverage: reading
+
+Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code.
+
+## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent-assumptions
+Coverage: reading
+
+gamma=1.4, [-5,5], t=1.8. For x<-4, (rho,u,p)=(3.857143,2.629369,10.33333); to the right rho=1+0.2sin5x,u=0,p=1.
+
+## Independent fluid/MHD comparisons and CT/GLM — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent-algorithm
+Coverage: reading
+
+Atlas uses MC-MUSCL/HLLC/SSPRK3; Athena++ uses PLM/HLLC/RK3. A saved problem-generator patch matches only shock location and sinusoid wavenumber; the independent solver is unchanged.
+\rho(x,0)=1+0.2\sin(5x)\quad(x\geq-4)
+
+## Independent fluid/MHD comparisons and CT/GLM — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent-validation
+Coverage: reading
+
+Measure density L1 error, refinement and positivity on 100/200/400 cells; also compare 2048/4096/8192 reference differences with a predeclared bound. The shock has not reached the boundaries at the fixed comparison time.
+
+## Independent fluid/MHD comparisons and CT/GLM — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent-limits
+Coverage: reading
+
+The reference is an independent finite-grid numerical solution, not an exact solution. No universal flux ranking, WENO-order claim or positivity guarantee is inferred. The 2048-to-4096 reference L1 increment0.005346 missed the predeclared0.005 bound, so8192 cells were added. The earlier miss remains recorded.
+
+## Independent fluid/MHD comparisons and CT/GLM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_last_pair_l10.00337417843492
+reference_finest_n8192
+finest_density_l10.0537774999196
+判定 / checkPassed
+independent_reference_refinedtrue
+density_errortrue
+grid_improvementtrue
+positive_statestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+ndensity_l1stepsmin_densitymin_pressure
+1000.07863386784082800.8000827057281
+2000.07616315955855600.8003974628221
+4000.053777499919611330.8000000308131
+Read independent-reference records
+coarse_nfine_nlast_pair_l1targettarget_reached
+204840960.005346011098620.005false
+409681920.003374178434920.005true
+Measurements and complete records / JSON
+
+## Independent fluid/MHD comparisons and CT/GLM — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#shu-independent-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+Review scope / review_level: official-code-and-metadata; pinned source compiled and executed
+C.-W. Shu and S. Osher (1989). Efficient implementation of essentially non-oscillatory shock-capturing schemes, II · DOI: 10.1016/0021-9991(89)90222-2
+Review scope / review_level: bibliographic identity and official Athena problem generator
+
+## Independent fluid/MHD comparisons and CT/GLM — GLM longitudinal mode: analytic damping [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
+Coverage: reading
+
+Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.
+
+## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode-assumptions
+Coverage: reading
+
+Periodic [0,1], Bx=cos2pix, psi=0, ch=1, damping kappa=2, t=1. This linear diagnostic omits fluid coupling.
+
+## Independent fluid/MHD comparisons and CT/GLM — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode-algorithm
+Coverage: reading
+
+Integrate Bx_t=-psi_x and psi_t=-ch² Bx_x-kappa psi with centered differences/RK4. The independent reference exponentiates the continuous 2x2 Fourier symbol.
+B_t=-\psi_x,\quad\psi_t=-c_h^2B_x-\kappa\psi
+
+## Independent fluid/MHD comparisons and CT/GLM — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode-validation
+Coverage: reading
+
+Check L2 error, second-order spatial refinement and damping of the divergence-mode amplitude at 16/32/64 points.
+
+## Independent fluid/MHD comparisons and CT/GLM — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode-limits
+Coverage: reading
+
+Linear-mode damping does not guarantee divergence control or global accuracy for every nonlinear MHD problem. A monopole mode that CT cannot represent is not used as a matched CT comparison.
+
+## Independent fluid/MHD comparisons and CT/GLM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+observed_order2.00154673043
+continuum_amplitude_ratio0.36195567185
+判定 / checkPassed
+analytic_expm_comparisontrue
+spatial_ordertrue
+divergence_dampingtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+nl2_errordivergence_norm_ratiosteps
+160.03140362604150.34249738815680
+320.00782495606650.357993452794160
+640.00195414283350.361023123631320
+Measurements and complete records / JSON
+
+## Independent fluid/MHD comparisons and CT/GLM — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+Review scope / review_level: author-hosted primary paper; linear cleaning equations checked
+
+## MCMC, temperature control and biological models — MCMC, temperature control and biological models [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+
+## MCMC, temperature control and biological models — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#run-all
+Coverage: reading
+
+Run inside atlas-models-2026-11-22 from the ZIP. This command executes all 5 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## MCMC, temperature control and biological models — Gaussian-target MCMC: distribution, autocorrelation and ESS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence.
+
+## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-assumptions
+Coverage: reading
+
+One dimensionless variable and symmetric Gaussian random-walk width1.5. Spawn 32 separate PCG64 streams from a fixed master seed; retain 8192 samples per chain after 1024 burn-in steps.
+
+## MCMC, temperature control and biological models — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-algorithm
+Coverage: reading
+
+Use a log-acceptance Metropolis update. Pool FFT within-chain autocovariances and obtain mean-observable ESS from Geyer initial-positive pairs starting at gamma0+gamma1. Also report classical split-Rhat.
+\pi(x)=(2\pi)^{-1/2}e^{-x^2/2},\quad \alpha=\min(1,e^{-(y^2-x^2)/2})\tau=-1+2\sum_{k=0}^{K}(\rho_{2k}+\rho_{2k+1}),\qquad N_{\rm eff}=MN/\max(1,\tau)
+
+## MCMC, temperature control and biological models — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-validation
+Coverage: reading
+
+Use the normal CDF as an independent analytic reference and compare chain-mean RMSE at 1024/2048/8192 retained samples. A separate stationary AR(1) sequence and exact tau=(1+rho)/(1-rho) check the diagnostic. Acceptance is predeclared in fixed inputs.
+
+## MCMC, temperature control and biological models — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-limits
+Coverage: reading
+
+Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate.
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+mean_error0.0106317778433
+variance_error0.00224561717924
+cdf_max_error0.00325194211346
+acceptance0.589477539062
+tau5.38031810062
+ess48722.7697503
+split_rhat1.00043797392
+acf_lag10.680453928076
+ar1_exact_tau9
+ar1_series_tau_error1.7763568394e-15
+ar1_empirical_tau_relative_error0.0124392108591
+budget_mean_rmse_ratio2.94923053436
+判定 / checkPassed
+finitetrue
+meantrue
+variancetrue
+cdftrue
+split_rhattrue
+esstrue
+acceptancetrue
+ar1_exact_sequencetrue
+ar1_sampling_diagnostictrue
+sample_budgettrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+samples_per_chainmean_rmse_across_chainstauesssplit_rhatacf_lag1cdf_pointempirical_cdfnormal_cdf
+10240.06797588986555.098645805386426.804538071.003204248710.675656444654———
+20480.05329329663995.253324226312475.14853011.001860784230.676417726439———
+81920.02304868645355.3803181006248722.76975031.000437973920.680453928076———
+——————-1.960.02639007568360.0249978951482
+——————-10.1619071960450.158655253931
+——————00.5030021667480.5
+——————10.8434600830080.841344746069
+——————1.960.9764328002930.975002104852
+Measurements and complete records / JSON
+
+## MCMC, temperature control and biological models — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines · DOI: 10.1063/1.1699114
+Review scope / review_level: publisher-abstract-and-metadata
+Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed.
+W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications · DOI: 10.1093/biomet/57.1.97
+Review scope / review_level: original-paper-excerpt-and-metadata
+Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio.
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo · DOI: 10.1214/ss/1177011137
+Review scope / review_level: publisher-abstract-and-selected-original-section
+
+## MCMC, temperature control and biological models — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#gaussian-mcmc-references
+Coverage: reading
+
+Publisher-side abstract/metadata and returned original-paper excerpts on initial-positive sequences and AR(1), from a university-hosted copy, checked. No full-text audit or convergence certificate for arbitrary chains is claimed.
+
+## MCMC, temperature control and biological models — Langevin thermostat: canonical distributions, timestep bias and correlation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
+
+## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-assumptions
+Coverage: reading
+
+Mass, Boltzmann constant, frequency, friction and temperature are one. Use 32768 replicas, burn time 20, steps 0.4/0.2/0.1 and correlation lag 2; require h*omega<2.
+
+## MCMC, temperature control and biological models — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-algorithm
+Coverage: reading
+
+Compose force B and drift A half steps with exact OU noise O in B-A-O-A-B order. Record covariance, three CDFs, energy mean/variance and position correlation.
+dq=p\,dt,\qquad dp=-\omega^2q\,dt-\gamma p\,dt+\sqrt{2\gamma T}\,dW\Sigma=M\Sigma M^T+Q,\qquad \Sigma_{h}=\operatorname{diag}(T/\omega^2,T(1-h^2\omega^2/4))
+
+## MCMC, temperature control and biological models — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-validation
+Coverage: reading
+
+Check against a SciPy discrete-Lyapunov solve and explicit harmonic covariance diag(T/omega²,T(1-h²omega²/4)). Separate second-order momentum bias from sampling error and evaluate burn transients from the map. A separate matrix exponential gives continuous correlation.
+
+## MCMC, temperature control and biological models — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-limits
+Coverage: reading
+
+Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD.
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_covariance_sampling_error0.010793938239
+maximum_correlation_sampling_error0.0078594976572
+maximum_lyapunov_residual1.11022302463e-16
+maximum_burn_transient_covariance_error3.91167958726e-09
+minimum_covariance_bias_order2
+finest_covariance_bias0.0025
+energy_cdf_error0.0043759868147
+position_cdf_error0.00592878875638
+momentum_cdf_error0.00689381071155
+energy_mean_error0.00928172211266
+energy_variance_error0.0305484770074
+判定 / checkPassed
+finitetrue
+stationary_referencetrue
+burn_transienttrue
+covariance_samplingtrue
+correlation_samplingtrue
+bias_refinementtrue
+finest_biastrue
+canonical_energy_cdftrue
+canonical_position_cdftrue
+canonical_momentum_cdftrue
+canonical_energy_meantrue
+canonical_energy_variancetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+dtburn_stepsreplicasdiscrete_covariancesample_covariancediscrete_covariance_biascovariance_sampling_errorstationary_lyapunov_residualburn_transient_covariance_errorq_correlation_sampleq_correlation_discreteq_correlation_continuumcorrelation_sampling_errorenergy_cdf_errorposition_cdf_errormomentum_cdf_errorenergy_mean_errorenergy_variance_error
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-measurements
+Coverage: reading
+
+0.45032768[[0.9999999999999998,-2.6757194688524847e-18],[9.792855310117937e-17,0.9599999999999999]][[1.0032447005757448,0.0064499135769307955],[0.0064499135769307955,0.9575087034673743]]0.040.006449913576931.11022302463e-163.91167958726e-090.146798568040.1401305534710.1505743651460.006668014568670.008299285336890.003234324790750.008632316770470.01962329797840.0447172929346
+0.210032768[[1.0000000000000002,-2.390201959566234e-16],[-2.376918030848411e-16,0.9899999999999999]][[1.0025075495147464,-0.0025623186226214996],[-0.0025623186226214996,0.9877735527549194]]0.010.002562318622621.11022302463e-163.66614766891e-090.1401183651130.147977862770.1505743651460.00785949765720.004147806580790.003870622658850.01028948242930.004859448865170.00642729453359
+0.120032768[[1.0,1.7076258644823632e-16],[1.7042719713056047e-16,0.9975]][[0.9892060617609949,-0.002658077638783977],[-0.002658077638783977,0.9922304940136841]]0.00250.0107939382393.80554962542e-173.56765808845e-090.1518477073260.1499261147450.1505743651460.001921592581160.00437598681470.005928788756380.006893810711550.009281722112660.0305484770074
+Measurements and complete records / JSON
+
+## MCMC, temperature control and biological models — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+B. Leimkuhler and C. Matthews (2013). Rational Construction of Stochastic Numerical Methods for Molecular Sampling · DOI: 10.1093/amrx/abs010
+Review scope / review_level: author-manuscript-selected-appendix
+Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here.
+The SciPy community (2024). SciPy1.14.1 solve_discrete_lyapunov reference
+Review scope / review_level: official-api-documentation
+Official equation AXA^H-X+Q=0, signs and output specification checked.
+The SciPy community (2024). SciPy1.14.1 expm reference
+Review scope / review_level: official-api-documentation
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
+## MCMC, temperature control and biological models — Reaction-diffusion: separate second-order space and fourth-order time [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions.
+
+## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier-assumptions
+Coverage: reading
+
+Periodic[0,2pi), D=0.1,r=0.1, initial cos(2x), final t=2. Use grids 16/32/64 and a separate fixed-grid timestep sequence 0.5/0.25/0.125.
+
+## MCMC, temperature control and biological models — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier-algorithm
+Coverage: reading
+
+Advance original periodic second-centered differences with RK4. The spatial sequence uses one small time step; the temporal sequence fixes the spatial operator.
+u_t=D u_{xx}+r u,\qquad u(x,t)=e^{(r-Dk^2)t}\cos(kx)\lambda_h=r-\frac{4D}{\Delta x^2}\sin^2(k\Delta x/2)
+
+## MCMC, temperature control and biological models — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier-validation
+Coverage: reading
+
+Measure spatial order against r-Dk² and temporal order against r-4Dsin²(kdx/2)/dx². Both are independent analytic references, rather than a finer-grid run of the same solver.
+
+## MCMC, temperature control and biological models — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier-limits
+Coverage: reading
+
+Only a linear, periodic, smooth single mode is verified. Nonlinear Fisher fronts, complex boundaries, spatial ecosystems and general reaction networks remain outside scope.
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+spatial_finest_error0.00141055901212
+spatial_minimum_order1.99954673581
+temporal_finest_error4.10914158255e-09
+temporal_minimum_order4.04210936758
+判定 / checkPassed
+space_errortrue
+space_ordertrue
+time_errortrue
+time_ordertrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+sequencendtmax_errorinverse_dt
+space160.0010.0225614095147—
+space320.0010.00564212473622—
+space640.0010.00141055901212—
+time160.51.14828876807e-062
+time160.256.76935469901e-084
+time160.1254.10914158255e-098
+Measurements and complete records / JSON
+
+## MCMC, temperature control and biological models — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+The SciPy community (2024). SciPy1.14.1 expm reference
+Review scope / review_level: official-api-documentation
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
+## MCMC, temperature control and biological models — Turing instability: linear growth and small-amplitude patterns [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
+
+## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-assumptions
+Coverage: reading
+
+Dimensionless a=0.1,b=0.9, equilibrium(1,0.9), diffusivities(0.01,1), periodic k=2 and initial amplitude1e-4. Restrict runs to linear t=1 and nonlinear t=4.
+
+## MCMC, temperature control and biological models — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-algorithm
+Coverage: reading
+
+Advance the linearized and short nonlinear PDEs using original centered differences/RK4. Record mode amplitudes/growth on three grids, minimum concentrations and early-pattern amplification.
+u_t=D_u u_{xx}+a-u+u^2v,\quad v_t=D_v v_{xx}+b-u^2v\partial_t\widehat{\delta z}=(J-k^2D)\widehat{\delta z},\quad \widehat{\delta z}(t)=e^{(J-k^2D)t}\widehat{\delta z}(0)
+
+## MCMC, temperature control and biological models — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-validation
+Coverage: reading
+
+Compare linear numerical fields with SciPy expm of continuum J-k²D and measure spatial convergence. Quantify the nonlinear run against a semidiscrete linear matrix exponential as a small-amplitude check, not validation of mature morphology.
+
+## MCMC, temperature control and biological models — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-limits
+Coverage: reading
+
+One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+homogeneous_max_real_eigenvalue-0.1
+continuum_mode_growth_rate0.428411269791
+linear_finest_relative_error0.000247269249445
+linear_minimum_spatial_order2.00075049806
+linear_finest_growth_rate_error7.30137790048e-05
+nonlinear_minimum_concentration0.899815977133
+nonlinear_early_linear_relative_error0.000169189099111
+pattern_amplitude_growth5.53546262842
+判定 / checkPassed
+homogeneous_stabletrue
+diffusion_mode_unstabletrue
+linear_space_errortrue
+linear_space_ordertrue
+growth_ratetrue
+nonlinear_finite_positivetrue
+early_linear_agreementtrue
+growing_spatial_patterntrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+sequencendtmax_errorgrowth_rategrowth_rate_errorxuv
+linear-space320.007692307692310.003966597979220.4272417370420.00116953274941———
+linear-space640.00192678227360.0009895916550350.4281191467790.000292123012284———
+linear-space1280.0004816955684010.0002472692494450.4283382560127.30137790048e-05———
+nonlinear-profile—————01.000553546260.899815977133
+nonlinear-profile—————0.09817477042471.000542905930.89981951296
+nonlinear-profile—————0.1963495408491.000511394490.899829984474
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+nonlinear-profile—————0.2945243112741.000460224830.899846989017
+nonlinear-profile—————0.3926990816991.000391366230.89986987275
+nonlinear-profile—————0.4908738521231.000307468270.899897755832
+nonlinear-profile—————0.5890486225481.000211758460.899929566301
+nonlinear-profile—————0.6872233929731.000107917760.899964081335
+nonlinear-profile—————0.7853981633970.9999999385990.899999974295
+nonlinear-profile—————0.8835729338220.9998919712370.90003586575
+nonlinear-profile—————0.9817477042470.9997881641270.900070376498
+nonlinear-profile—————1.079922474670.9996925046050.900102180552
+nonlinear-profile—————1.17809724510.9996086659510.900130056067
+nonlinear-profile—————1.276272015520.9995398666640.900152932233
+nonlinear-profile—————1.374446785950.9994887472850.900169930361
+nonlinear-profile—————1.472621556370.9994572694450.900180397589
+nonlinear-profile—————1.570796326790.9994466409050.90018393191
+nonlinear-profile—————1.668971097220.9994572694450.900180397589
+nonlinear-profile—————1.767145867640.9994887472850.900169930361
+nonlinear-profile—————1.865320638070.9995398666640.900152932233
+nonlinear-profile—————1.963495408490.9996086659510.900130056067
+nonlinear-profile—————2.061670178920.9996925046050.900102180552
+nonlinear-profile—————2.159844949340.9997881641270.900070376498
+nonlinear-profile—————2.258019719770.9998919712370.90003586575
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+nonlinear-profile—————2.356194490190.9999999385990.899999974295
+nonlinear-profile—————2.454369260621.000107917760.899964081335
+nonlinear-profile—————2.552544031041.000211758460.899929566301
+nonlinear-profile—————2.650718801471.000307468270.899897755832
+nonlinear-profile—————2.748893571891.000391366230.89986987275
+nonlinear-profile—————2.847068342321.000460224830.899846989017
+nonlinear-profile—————2.945243112741.000511394490.899829984474
+nonlinear-profile—————3.043417883171.000542905930.89981951296
+nonlinear-profile—————3.141592653591.000553546260.899815977133
+nonlinear-profile—————3.239767424011.000542905930.89981951296
+nonlinear-profile—————3.337942194441.000511394490.899829984474
+nonlinear-profile—————3.436116964861.000460224830.899846989017
+nonlinear-profile—————3.534291735291.000391366230.89986987275
+nonlinear-profile—————3.632466505711.000307468270.899897755832
+nonlinear-profile—————3.730641276141.000211758460.899929566301
+nonlinear-profile—————3.828816046561.000107917760.899964081335
+nonlinear-profile—————3.926990816990.9999999385990.899999974295
+nonlinear-profile—————4.025165587410.9998919712370.90003586575
+nonlinear-profile—————4.123340357840.9997881641270.900070376498
+nonlinear-profile—————4.221515128260.9996925046050.900102180552
+nonlinear-profile—————4.319689898690.9996086659510.900130056067
+nonlinear-profile—————4.417864669110.9995398666640.900152932233
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+nonlinear-profile—————4.516039439540.9994887472850.900169930361
+nonlinear-profile—————4.614214209960.9994572694450.900180397589
+nonlinear-profile—————4.712388980380.9994466409050.90018393191
+nonlinear-profile—————4.810563750810.9994572694450.900180397589
+nonlinear-profile—————4.908738521230.9994887472850.900169930361
+nonlinear-profile—————5.006913291660.9995398666640.900152932233
+nonlinear-profile—————5.105088062080.9996086659510.900130056067
+nonlinear-profile—————5.203262832510.9996925046050.900102180552
+nonlinear-profile—————5.301437602930.9997881641270.900070376498
+nonlinear-profile—————5.399612373360.9998919712370.90003586575
+nonlinear-profile—————5.497787143780.9999999385990.899999974295
+nonlinear-profile—————5.595961914211.000107917760.899964081335
+nonlinear-profile—————5.694136684631.000211758460.899929566301
+nonlinear-profile—————5.792311455061.000307468270.899897755832
+nonlinear-profile—————5.890486225481.000391366230.89986987275
+nonlinear-profile—————5.988660995911.000460224830.899846989017
+nonlinear-profile—————6.086835766331.000511394490.899829984474
+nonlinear-profile—————6.185010536751.000542905930.89981951296
+Measurements and complete records / JSON
+
+## MCMC, temperature control and biological models — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. M. Turing (1952). The Chemical Basis of Morphogenesis · DOI: 10.1098/rstb.1952.0012
+Review scope / review_level: publisher-archive-and-original-first-page-metadata
+Royal Society manuscript-review archive and bibliography on the original first page hosted by a university checked. Publisher text returned 403. Historical source for diffusion-driven instability, distinct from this adopted Schnakenberg example.
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+Review scope / review_level: official-bibliographic-metadata
+PubMed bibliography and DOI checked (no abstract). Cited for the reaction-system family; a=0.1,b=0.9 and this spatial experiment are adopted educational inputs, not a transcription of the original experiment.
+The SciPy community (2024). SciPy1.14.1 expm reference
+Review scope / review_level: official-api-documentation
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
+## MCMC, temperature control and biological models — FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.
+
+## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-assumptions
+Coverage: reading
+
+Dimensionless a=0.7,b=0.8,tau=12.5. Start at resting equilibrium for I=0, apply I=0.8 only during t=10..20 and integrate to t=80. No calibration to physiological physical units.
+
+## MCMC, temperature control and biological models — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-algorithm
+Coverage: reading
+
+Use original RK4 with steps 0.1/0.05/0.025, splitting time intervals exactly at pulse discontinuities. At output spacing 0.1, measure the peak and distance from rest.
+\dot v=v-v^3/3-w+I(t),\qquad \dot w=(v+a-bw)/\tau
+
+## MCMC, temperature control and biological models — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-validation
+Coverage: reading
+
+Compare separate SciPy DOP853 at rtol=1e-11 and 1e-13 to check reference sensitivity; measure maximum solution error and time order against the tighter reference. Peak time is resolved only on the output grid.
+
+## MCMC, temperature control and biological models — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-limits
+Coverage: reading
+
+Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction.
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_tolerance_difference1.67363900516e-10
+finest_max_error6.46953801642e-08
+minimum_temporal_order4.06818366368
+peak_v2.099845449
+peak_v_error2.61330326268e-08
+peak_time_error0
+recovery_distance2.35906332793e-05
+判定 / checkPassed
+reference_tolerancetrue
+solution_errortrue
+time_ordertrue
+excitationtrue
+peak_voltagetrue
+peak_timetrue
+recoverytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+sequencedtinverse_dtmax_errorpeak_vpeak_timerecovery_distancetvwreference_vreference_w
+time0.1101.90852886734e-052.0998373710313.32.35906409729e-05—————
+time0.05201.08522197628e-062.0998450295313.32.35906337429e-05—————
+time0.025406.46953801642e-082.09984544913.32.35906332793e-05—————
+trajectory——————0-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————0.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————2.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————4.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————7.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————9.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————10-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————10.1-1.12090565908-0.62394487829-1.12090565893-0.623944878297
+trajectory——————10.2-1.0444660917-0.623014831274-1.04446609137-0.623014831283
+trajectory——————10.3-0.968850442343-0.62148520932-0.968850441835-0.62148520933
+trajectory——————10.4-0.892959615161-0.619361953617-0.892959614493-0.619361953624
+trajectory——————10.5-0.815764642861-0.616642522244-0.815764642058-0.616642522248
+trajectory——————10.6-0.736254158004-0.613316285089-0.736254157095-0.613316285089
+trajectory——————10.7-0.653392576931-0.609364543147-0.653392575945-0.60936454314
+trajectory——————10.8-0.566085875777-0.6047602457-0.566085874739-0.604760245685
+trajectory——————10.9-0.473154505375-0.599467464304-0.473154504297-0.599467464278
+trajectory——————11-0.37331585294-0.593440689545-0.373315851809-0.593440689506
+trajectory——————11.1-0.265182422061-0.586624049522-0.265182420821-0.586624049467
+trajectory——————11.2-0.147287212995-0.57895061757-0.147287211526-0.578950617496
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————11.3-0.0181549883703-0.570342094781-0.0181549864615-0.570342094688
+trajectory——————11.40.123553541749-0.5607093333070.123553544414-0.560709333197
+trajectory——————11.50.278791699663-0.5499544063660.278791703491-0.549954406244
+trajectory——————11.60.447744009654-0.5379751777950.447744015073-0.537975177671
+trajectory——————11.70.629318628111-0.524673419610.629318635444-0.524673419494
+trajectory——————11.80.820607102288-0.5099671565950.820607111654-0.509967156488
+trajectory——————11.91.01653356533-0.4938066773681.01653357677-0.493806677249
+trajectory——————121.21001968-0.4761914065361.21001969404-0.476191406363
+trajectory——————12.11.39291610826-0.4571823742721.39291612661-0.457182374001
+trajectory——————12.21.55758733217-0.4369043258931.55758735785-0.436904325503
+trajectory——————12.31.6985567158-0.4155344268741.6985567519-0.415534426381
+trajectory——————12.41.81346258418-0.3932802448691.81346263196-0.393280244302
+trajectory——————12.51.90297062969-0.3703543901421.90297068744-0.370354389512
+trajectory——————12.61.96989472043-0.3469535022161.9698947841-0.346953501505
+trajectory——————12.72.01808277042-0.3232456911782.01808283512-0.323245690349
+trajectory——————12.82.05150917368-0.2993663201062.05150923516-0.299366319121
+trajectory——————12.92.07373368457-0.275419609782.07373373997-0.275419608613
+trajectory——————132.0876809516-0.2514831998892.08768099947-0.251483198535
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————13.12.09562357806-0.2276135470542.09562361812-0.22761354552
+trajectory——————13.22.09926369395-0.2038509724072.09926372662-0.203850970712
+trajectory——————13.32.099845449-0.1802238704732.09984547514-0.18022386864
+trajectory——————13.42.09826379037-0.156751994362.09826381095-0.156751992414
+trajectory——————13.52.0951558797-0.133448917412.09515589569-0.133448915375
+trajectory——————13.62.09097246881-0.1103238304672.09097248111-0.110323828364
+trajectory——————13.72.08603127459-0.0873828324512.08603128396-0.0873828302973
+trajectory——————13.82.08055584611-0.06462984739132.08055585319-0.0646298452025
+trajectory——————13.92.0747033995-0.0420672718562.07470340479-0.042067269644
+trajectory——————142.06858454535-0.01969643036862.06858454926-0.0196964281434
+trajectory——————14.12.062277182210.002482104804882.062277185070.00248210703585
+trajectory——————14.22.055836246410.02446828921082.055836248470.0244682914415
+trajectory——————14.32.049300542390.04626244860572.049300543830.0462624508316
+trajectory——————14.42.042697525630.06786516817262.042697526610.0678651703902
+trajectory——————14.52.036046653580.08927721452922.036046654210.0892772167358
+trajectory——————14.62.029361735690.1104994807222.029361736050.110499482915
+trajectory——————14.72.022652584160.1315329473552.022652584310.131532949534
+trajectory——————14.82.015926175440.152378655062.015926175450.152378657223
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————14.92.009187469330.1730376849622.009187469220.173037687109
+trajectory——————152.002439987650.1935111447792.002439987450.193511146909
+trajectory——————15.11.995686224140.2138001589141.995686223870.213800161026
+trajectory——————15.21.988927935470.233905861381.988927935150.233905863474
+trajectory——————15.31.982166348260.2538293907331.98216634790.253829392809
+trajectory——————15.41.975402306760.2735718864391.975402306370.273571888497
+trajectory——————15.51.968636378440.2931344862621.968636378020.293134488302
+trajectory——————15.61.961868929680.312518324391.961868929240.312518326411
+trajectory——————15.71.955100180090.3317245300781.955100179630.331724532081
+trajectory——————15.81.948330241670.3507542266791.94833024120.350754228664
+trajectory——————15.91.941559147040.3696085309381.941559146560.369608532905
+trajectory——————161.934786869850.3882885524921.934786869360.388288554441
+trajectory——————16.11.928013339580.40679539351.928013339090.406795395431
+trajectory——————16.21.921238452250.4251301483911.921238451750.425130150305
+trajectory——————16.31.914462078220.4432939036761.914462077720.443293905571
+trajectory——————16.41.907684067860.4612877378151.907684067350.461287739692
+trajectory——————16.51.900904255670.4791127211311.900904255160.479112722991
+trajectory——————16.61.894122463270.4967699157471.894122462760.49676991759
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————16.71.887338501560.5142603755421.887338501040.514260377367
+trajectory——————16.81.880552172280.5315851461251.880552171760.531585147933
+trajectory——————16.91.873763269160.5487452648251.873763268640.548745266615
+trajectory——————171.866971578680.5657417606741.866971578150.565741762448
+trajectory——————17.11.860176880610.5825756544141.860176880080.58257565617
+trajectory——————17.21.853378948420.5992479584911.853378947890.59924796023
+trajectory——————17.31.846577549470.6157596770611.846577548930.615759678783
+trajectory——————17.41.839772445150.6321118059961.839772444610.632111807701
+trajectory——————17.51.832963390950.6483053328871.83296339040.648305334576
+trajectory——————17.61.826150136390.6643412370531.826150135850.664341238726
+trajectory——————17.71.819332425060.6802204895431.819332424510.6802204912
+trajectory——————17.81.812509994410.6959440531421.812509993860.695944054782
+trajectory——————17.91.805682575730.7115128823751.805682575180.711512883999
+trajectory——————181.798849893940.7269279235081.798849893380.726927925116
+trajectory——————18.11.792011667420.7421901145541.792011666860.742190116146
+trajectory——————18.21.785167607850.7573003852651.785167607290.757300386841
+trajectory——————18.31.778317419990.7722596571391.778317419420.772259658699
+trajectory——————18.41.771460801440.787068843411.771460800870.787068844955
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————18.51.764597442430.8017288490471.764597441860.801728850575
+trajectory——————18.61.757727025570.8162405707421.7577270250.816240572255
+trajectory——————18.71.750849225560.8306048969081.750849224980.830604898406
+trajectory——————18.81.743963708920.8448227076621.743963708340.844822709144
+trajectory——————18.91.737070133740.8588948748121.737070133150.85889487628
+trajectory——————191.730168149290.8728222618461.73016814870.872822263298
+trajectory——————19.11.723257395770.8866057239081.723257395180.886605725345
+trajectory——————19.21.716337503970.900246107781.716337503370.900246109202
+trajectory——————19.31.709408094840.9137442518591.709408094250.913744253266
+trajectory——————19.41.702468779230.9271009861331.702468778630.927100987525
+trajectory——————19.51.695519157390.9403171321451.695519156790.940317133523
+trajectory——————19.61.688558818660.9533935029711.688558818060.953393504334
+trajectory——————19.71.681587340970.9663309031751.681587340360.966330904524
+trajectory——————19.81.674604290430.979130128781.674604289820.979130130114
+trajectory——————19.91.667609220840.9917919672181.667609220230.991791968538
+trajectory——————201.660601673221.004317197291.660601672611.0043171986
+trajectory——————20.11.579876136221.01640448891.579876136011.0164044903
+trajectory——————20.21.509319400951.027813684361.509319400921.0278136858
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————20.31.446212398841.038618667491.446212398851.03861866896
+trajectory——————20.41.388651545981.048874678871.388651545941.04887468034
+trajectory——————20.51.335250924071.058623641661.335250923941.05862364313
+trajectory——————20.61.284965266641.067897610311.284965266391.06789761177
+trajectory——————20.71.236979594451.07672107661.236979594051.07672107805
+trajectory——————20.81.190637457221.08511254841.190637456681.08511254985
+trajectory——————20.91.145392437481.093085646521.145392436771.09308564795
+trajectory——————211.100774112661.100649869841.100774111781.10064987126
+trajectory——————21.11.056363207741.107811123721.056363206691.10781112512
+trajectory——————21.21.011772660231.114572072011.0117726591.11457207339
+trajectory——————21.30.9666324786311.120932352250.9666324772121.12093235361
+trajectory——————21.40.9205769698571.126888678890.9205769682491.12688868023
+trajectory——————21.50.8732333380761.132434850060.8732333362721.13243485138
+trajectory——————21.60.8242109281721.137561666410.8242109261631.1375616677
+trajectory——————21.70.7730905686041.142256765310.773090566381.14225676658
+trajectory——————21.80.7194136070971.146504370220.7194136046471.14650437146
+trajectory——————21.90.6626703671521.150284951980.6626703644571.15028495319
+trajectory——————220.6022879263671.15357479750.6022879234091.15357479868
+trajectory——————22.10.5376173858671.156345481520.5376173826131.15634548266
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————22.20.467921247931.158563239980.4679212443431.15856324108
+trajectory——————22.30.392362273861.160188251420.3923622698811.16018825248
+trajectory——————22.40.3099964440121.161173848190.3099964395591.1611738492
+trajectory——————22.50.2197746431191.161465707430.2197746380751.16146570838
+trajectory——————22.60.1205607420621.161001119710.1205607362631.1610011206
+trajectory——————22.70.01117804152581.159708510140.01117803474971.15970851097
+trajectory——————22.8-0.1094986893751.15750750161-0.1094986974141.15750750236
+trajectory——————22.9-0.2423836773671.15430996551-0.2423836870051.1543099662
+trajectory——————23-0.3879314354871.15002268178-0.387931447061.15002268239
+trajectory——————23.1-0.5457909010621.14455235687-0.545790914811.14455235741
+trajectory——————23.2-0.714393818781.13781367136-0.714393834741.13781367183
+trajectory——————23.3-0.8905813398141.12974050511-0.8905813577751.1297405055
+trajectory——————23.4-1.069460224671.12029930316-1.069460244351.12029930344
+trajectory——————23.5-1.244714566691.10950181989-1.244714588221.10950182005
+trajectory——————23.6-1.409482781961.09741303298-1.409482806361.09741303297
+trajectory——————23.7-1.557621475051.08415023701-1.557621504261.08415023684
+trajectory——————23.8-1.684887476221.06987202628-1.684887512181.06987202597
+trajectory——————23.9-1.789546654521.0547599553-1.789546697961.05475995489
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————24-1.872229976721.0389984893-1.87223002651.0389984888
+trajectory——————24.1-1.935248411761.02275862573-1.935248465161.02275862514
+trajectory——————24.2-1.981752708941.00618795505-1.981752762661.00618795435
+trajectory——————24.3-2.015038943550.989407042599-2.015038994630.989407041763
+trajectory——————24.4-2.038115457130.97251034798-2.038115503480.972510346994
+trajectory——————24.5-2.05350752390.95556959998-2.053507564390.955569598838
+trajectory——————24.6-2.0632217310.938638014705-2.06322176530.938638013414
+trajectory——————24.7-2.068794691850.921754391097-2.06879472020.92175438967
+trajectory——————24.8-2.071373990870.904946636935-2.071374013860.90494663539
+trajectory——————24.9-2.071802257430.888234601261-2.071802275770.888234599618
+trajectory——————25-2.070691220.87163225329-2.070691234440.871632251567
+trajectory——————25.1-2.068481692120.855149312232-2.068481703360.855149310448
+trajectory——————25.2-2.065489844660.838792444141-2.065489853320.83879244231
+trajectory——————25.3-2.061941830710.822566130212-2.061941837310.822566128348
+trajectory——————25.4-2.057999194740.806473291804-2.057999199730.806473289916
+trajectory——————25.5-2.053777285210.790515738118-2.053777288930.790515736216
+trajectory——————25.6-2.04935848920.774694485932-2.049358491940.774694484023
+trajectory——————25.7-2.044801697360.75900998761-2.044801699340.7590099857
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————25.8-2.040149052340.743462293616-2.040149053740.743462291708
+trajectory——————25.9-2.035430753220.728051168377-2.035430754170.728051166475
+trajectory——————26-2.030668473830.71277617293-2.030668474430.712776171037
+trajectory——————26.1-2.025877795440.697636723953-2.025877795780.697636722069
+trajectory——————26.2-2.021069939120.682632135958-2.021069939260.682632134087
+trajectory——————26.3-2.016253000620.667761651515-2.016253000620.667761649656
+trajectory——————26.4-2.011432831850.653024462912-2.011432831730.653024461067
+trajectory——————26.5-2.006613670880.638419727719-2.006613670670.638419725888
+trajectory——————26.6-2.001798593050.623946579977-2.001798592780.623946578161
+trajectory——————26.7-1.996989834480.609604138259-1.996989834160.609604136458
+trajectory——————26.8-1.992189024430.59539151148-1.992189024070.595391509695
+trajectory——————26.9-1.987397352570.581307803097-1.987397352170.581307801327
+trajectory——————27-1.982615689530.567352114139-1.982615689110.567352112384
+trajectory——————27.1-1.977844674040.553523545403-1.977844673610.553523543664
+trajectory——————27.2-1.973084775910.53982119904-1.973084775460.539821197316
+trajectory——————27.3-1.968336341730.526244179697-1.968336341270.526244177989
+trajectory——————27.4-1.963599628060.512791595349-1.96359962760.512791593656
+trajectory——————27.5-1.958874825590.499462557892-1.958874825120.499462556214
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————27.6-1.954162076680.486256183569-1.954162076210.486256181908
+trajectory——————27.7-1.949461488310.473171593277-1.949461487830.473171591631
+trajectory——————27.8-1.944773141390.460207912775-1.944773140910.460207911143
+trajectory——————27.9-1.940097097730.447364272834-1.940097097240.447364271217
+trajectory——————28-1.935433405030.434639809338-1.935433404550.434639807736
+trajectory——————28.1-1.930782100690.422033663345-1.930782100210.422033661759
+trajectory——————28.2-1.926143214490.40954498113-1.9261432140.409544979558
+trajectory——————28.3-1.921516770630.397172914195-1.921516770140.397172912638
+trajectory——————28.4-1.916902789250.384916619283-1.916902788770.38491661774
+trajectory——————28.5-1.912301287530.372775258367-1.912301287040.372775256839
+trajectory——————28.6-1.907712280510.360747998639-1.907712280030.360747997125
+trajectory——————28.7-1.903135781720.348834012489-1.903135781230.34883401099
+trajectory——————28.8-1.898571803610.337032477486-1.898571803130.337032476001
+trajectory——————28.9-1.894020357930.325342576347-1.894020357450.325342574876
+trajectory——————29-1.889481455960.313763496911-1.889481455480.313763495454
+trajectory——————29.1-1.884955108710.302294432113-1.884955108220.302294430669
+trajectory——————29.2-1.880441327050.290934579945-1.880441326560.290934578515
+trajectory——————29.3-1.875940121860.279683143432-1.875940121370.279683142016
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————29.4-1.871451504060.268539330595-1.871451503570.268539329192
+trajectory——————29.5-1.866975484710.25750235442-1.866975484230.257502353031
+trajectory——————29.6-1.862512075070.246571432826-1.862512074580.24657143145
+trajectory——————29.7-1.858061286560.23574578863-1.858061286080.235745787267
+trajectory——————29.8-1.853623130890.225024649514-1.853623130410.225024648165
+trajectory——————29.9-1.849197620020.214407247994-1.849197619540.214407246658
+trajectory——————30-1.844784766180.203892821387-1.844784765690.203892820063
+trajectory——————30.1-1.840384581890.193480611773-1.840384581410.193480610462
+trajectory——————30.2-1.835997080010.183169865969-1.835997079530.183169864671
+trajectory——————30.3-1.831622273690.172959835493-1.831622273210.172959834208
+trajectory——————30.4-1.827260176380.162849776531-1.82726017590.162849775259
+trajectory——————30.5-1.82291080190.152838949907-1.822910801420.152838948648
+trajectory——————30.6-1.818574164370.142926621048-1.818574163890.1429266198
+trajectory——————30.7-1.814250278260.133112059952-1.814250277790.133112058717
+trajectory——————30.8-1.809939158390.12339454116-1.809939157910.123394539938
+trajectory——————30.9-1.805640819890.113773343721-1.805640819410.113773342511
+trajectory——————31-1.801355278260.10424775116-1.801355277790.104247749961
+trajectory——————31.1-1.797082549360.094817051448-1.797082548890.0948170502615
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————31.2-1.792822649380.0854805369719-1.792822648910.0854805357972
+trajectory——————31.3-1.788575594860.0762375045012-1.788575594390.0762375033383
+trajectory——————31.4-1.784341402720.0670872551587-1.784341402250.0670872540076
+trajectory——————31.5-1.780120090220.0580290943896-1.780120089750.05802909325
+trajectory——————31.6-1.775911674980.0490623319306-1.775911674510.0490623308025
+trajectory——————31.7-1.7717161750.0401862817803-1.771716174520.0401862806636
+trajectory——————31.8-1.767533608610.0314002621685-1.767533608140.0314002610632
+trajectory——————31.9-1.763363994530.022703595527-1.763363994060.022703594433
+trajectory——————32-1.759207351860.0140956084592-1.759207351390.0140956073763
+trajectory——————32.1-1.755063700040.00557563171077-1.755063699570.00557563063899
+trajectory——————32.2-1.75093305889-0.00285699985943-1.75093305843-0.00285700092021
+trajectory——————32.3-1.74681544862-0.011202947309-1.74681544815-0.0112029483588
+trajectory——————32.4-1.74271088978-0.0194628676406-1.74271088932-0.0194628686797
+trajectory——————32.5-1.73861940334-0.0276374138314-1.73861940287-0.0276374148597
+trajectory——————32.6-1.7345410106-0.0357272348611-1.73454101013-0.0357272358787
+trajectory——————32.7-1.73047573327-0.0437329757407-1.73047573281-0.0437329767477
+trajectory——————32.8-1.72642359344-0.0516552775411-1.72642359298-0.0516552785376
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————32.9-1.72238461356-0.059494777421-1.7223846131-0.0594947784071
+trajectory——————33-1.71835881649-0.0672521086549-1.71835881603-0.0672521096306
+trajectory——————33.1-1.71434622545-0.074927900661-1.71434622499-0.0749279016264
+trajectory——————33.2-1.71034686406-0.0825227790289-1.7103468636-0.0825227799841
+trajectory——————33.3-1.70636075632-0.0900373655471-1.70636075586-0.0900373664922
+trajectory——————33.4-1.70238792661-0.0974722782303-1.70238792616-0.0974722791654
+trajectory——————33.5-1.69842839973-0.104828131347-1.69842839928-0.104828132272
+trajectory——————33.6-1.69448220084-0.112105535444-1.69448220038-0.11210553636
+trajectory——————33.7-1.69054935549-0.119305097379-1.69054935503-0.119305098285
+trajectory——————33.8-1.68662988963-0.126427420341-1.68662988918-0.126427421237
+trajectory——————33.9-1.68272382962-0.13347310388-1.68272382917-0.133473104766
+trajectory——————34-1.67883120219-0.140442743932-1.67883120174-0.140442744809
+trajectory——————34.1-1.67495203446-0.147336932848-1.67495203401-0.147336933715
+trajectory——————34.2-1.67108635396-0.154156259416-1.67108635352-0.154156260273
+trajectory——————34.3-1.66723418862-0.160901308889-1.66723418817-0.160901309738
+trajectory——————34.4-1.66339556675-0.167572663013-1.6633955663-0.167572663852
+trajectory——————34.5-1.65957051705-0.174170900047-1.65957051661-0.174170900876
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————34.6-1.65575906865-0.180696594792-1.6557590682-0.180696595613
+trajectory——————34.7-1.65196125103-0.187150318619-1.65196125059-0.18715031943
+trajectory——————34.8-1.64817709411-0.193532639486-1.64817709367-0.193532640288
+trajectory——————34.9-1.64440662819-0.199844121971-1.64440662775-0.199844122764
+trajectory——————35-1.64064988394-0.206085327292-1.64064988351-0.206085328076
+trajectory——————35.1-1.63690689248-0.212256813333-1.63690689204-0.212256814109
+trajectory——————35.2-1.63317768528-0.21835913467-1.63317768485-0.218359135438
+trajectory——————35.3-1.62946229423-0.224392842593-1.6294622938-0.224392843351
+trajectory——————35.4-1.62576075161-0.230358485128-1.62576075117-0.230358485878
+trajectory——————35.5-1.62207309008-0.236256607069-1.62207308964-0.236256607811
+trajectory——————35.6-1.61839934272-0.242087749992-1.61839934228-0.242087750726
+trajectory——————35.7-1.61473954298-0.247852452287-1.61473954255-0.247852453011
+trajectory——————35.8-1.61109372472-0.253551249173-1.61109372429-0.25355124989
+trajectory——————35.9-1.60746192218-0.259184672731-1.60746192175-0.259184673439
+trajectory——————36-1.60384417-0.26475325192-1.60384416957-0.26475325262
+trajectory——————36.1-1.60024050319-0.270257512601-1.60024050276-0.270257513293
+trajectory——————36.2-1.59665095716-0.275697977563-1.59665095674-0.275697978247
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————36.3-1.59307556772-0.281075166542-1.5930755673-0.281075167218
+trajectory——————36.4-1.58951437103-0.286389596248-1.58951437061-0.286389596916
+trajectory——————36.5-1.58596740365-0.291641780382-1.58596740323-0.291641781043
+trajectory——————36.6-1.58243470252-0.296832229662-1.58243470211-0.296832230315
+trajectory——————36.7-1.57891630497-0.301961451844-1.57891630455-0.301961452489
+trajectory——————36.8-1.57541224867-0.307029951743-1.57541224825-0.30702995238
+trajectory——————36.9-1.57192257169-0.312038231256-1.57192257127-0.312038231885
+trajectory——————37-1.56844731245-0.316986789383-1.56844731204-0.316986790005
+trajectory——————37.1-1.56498650977-0.321876122249-1.56498650936-0.321876122863
+trajectory——————37.2-1.5615402028-0.326706723125-1.56154020239-0.326706723732
+trajectory——————37.3-1.55810843105-0.331479082447-1.55810843064-0.331479083047
+trajectory——————37.4-1.55469123441-0.336193687842-1.554691234-0.336193688434
+trajectory——————37.5-1.5512886531-0.340851024142-1.55128865269-0.340851024727
+trajectory——————37.6-1.54790072769-0.34545157341-1.54790072729-0.345451573988
+trajectory——————37.7-1.54452749912-0.34999581496-1.54452749871-0.349995815531
+trajectory——————37.8-1.54116900863-0.354484225373-1.54116900823-0.354484225937
+trajectory——————37.9-1.53782529783-0.358917278521-1.53782529743-0.358917279078
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————38-1.53449640864-0.363295445588-1.53449640824-0.363295446138
+trajectory——————38.1-1.5311823833-0.367619195084-1.53118238291-0.367619195627
+trajectory——————38.2-1.5278832644-0.371888992871-1.527883264-0.371888993408
+trajectory——————38.3-1.5245990948-0.376105302179-1.52459909441-0.376105302709
+trajectory——————38.4-1.52132991771-0.380268583626-1.52132991732-0.380268584149
+trajectory——————38.5-1.51807577662-0.384379295237-1.51807577623-0.384379295754
+trajectory——————38.6-1.51483671531-0.388437892463-1.51483671492-0.388437892973
+trajectory——————38.7-1.51161277786-0.3924448282-1.51161277748-0.392444828704
+trajectory——————38.8-1.50840400864-0.396400552807-1.50840400826-0.396400553304
+trajectory——————38.9-1.50521045228-0.400305514125-1.5052104519-0.400305514616
+trajectory——————39-1.50203215368-0.404160157495-1.5020321533-0.40416015798
+trajectory——————39.1-1.498869158-0.407964925776-1.49886915762-0.407964926254
+trajectory——————39.2-1.49572151066-0.411720259363-1.49572151028-0.411720259835
+trajectory——————39.3-1.4925892573-0.415426596204-1.49258925692-0.41542659667
+trajectory——————39.4-1.48947244382-0.419084371819-1.48947244345-0.419084372278
+trajectory——————39.5-1.48637111634-0.422694019315-1.48637111596-0.422694019769
+trajectory——————39.6-1.48328532118-0.426255969407-1.4832853208-0.426255969854
+trajectory——————39.7-1.48021510487-0.42977065043-1.4802151045-0.429770650872
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————39.8-1.47716051416-0.43323848836-1.47716051379-0.433238488795
+trajectory——————39.9-1.47412159596-0.436659906827-1.47412159559-0.436659907257
+trajectory——————40-1.47109839736-0.440035327136-1.471098397-0.44003532756
+trajectory——————40.1-1.46809096562-0.443365168278-1.46809096525-0.443365168697
+trajectory——————40.2-1.46509934814-0.44664984695-1.46509934778-0.446649847363
+trajectory——————40.3-1.46212359247-0.449889777568-1.46212359211-0.449889777975
+trajectory——————40.4-1.4591637463-0.453085372286-1.45916374594-0.453085372687
+trajectory——————40.5-1.45621985741-0.456237041005-1.45621985705-0.456237041401
+trajectory——————40.6-1.45329197369-0.459345191399-1.45329197333-0.459345191789
+trajectory——————40.7-1.45038014313-0.462410228917-1.45038014278-0.462410229302
+trajectory——————40.8-1.44748441379-0.465432556809-1.44748441344-0.465432557189
+trajectory——————40.9-1.4446048338-0.468412576134-1.44460483345-0.468412576508
+trajectory——————41-1.44174145131-0.471350685776-1.44174145096-0.471350686145
+trajectory——————41.1-1.43889431453-0.47424728246-1.43889431418-0.474247282824
+trajectory——————41.2-1.43606347167-0.477102760763-1.43606347133-0.477102761121
+trajectory——————41.3-1.43324897095-0.47991751313-1.43324897061-0.479917513483
+trajectory——————41.4-1.43045086057-0.482691929887-1.43045086023-0.482691930235
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————41.5-1.4276691887-0.485426399254-1.42766918836-0.485426399597
+trajectory——————41.6-1.42490400346-0.488121307358-1.42490400312-0.488121307696
+trajectory——————41.7-1.4221553529-0.490777038246-1.42215535256-0.490777038579
+trajectory——————41.8-1.41942328498-0.493393973898-1.41942328464-0.493393974226
+trajectory——————41.9-1.41670784757-0.49597249424-1.41670784724-0.495972494564
+trajectory——————42-1.41400908841-0.498512977155-1.41400908808-0.498512977474
+trajectory——————42.1-1.4113270551-0.501015798494-1.41132705477-0.501015798808
+trajectory——————42.2-1.40866179508-0.503481332092-1.40866179476-0.503481332401
+trajectory——————42.3-1.40601335561-0.505909949773-1.40601335529-0.505909950078
+trajectory——————42.4-1.40338178374-0.50830202137-1.40338178342-0.50830202167
+trajectory——————42.5-1.40076712631-0.510657914725-1.40076712599-0.510657915021
+trajectory——————42.6-1.39816942989-0.512977995711-1.39816942958-0.512977996002
+trajectory——————42.7-1.39558874082-0.515262628235-1.3955887405-0.515262628521
+trajectory——————42.8-1.39302510511-0.51751217425-1.3930251048-0.517512174532
+trajectory——————42.9-1.39047856849-0.519726993767-1.39047856818-0.519726994045
+trajectory——————43-1.38794917634-0.521907444863-1.38794917603-0.521907445137
+trajectory——————43.1-1.38543697369-0.524053883692-1.38543697338-0.524053883962
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————43.2-1.38294200515-0.526166664493-1.38294200485-0.526166664758
+trajectory——————43.3-1.38046431498-0.528246139597-1.38046431467-0.528246139858
+trajectory——————43.4-1.37800394695-0.530292659442-1.37800394665-0.530292659699
+trajectory——————43.5-1.37556094441-0.532306572576-1.37556094411-0.532306572829
+trajectory——————43.6-1.3731353502-0.534288225668-1.37313534991-0.534288225916
+trajectory——————43.7-1.37072720666-0.536237963512-1.37072720636-0.536237963757
+trajectory——————43.8-1.36833655558-0.538156129042-1.36833655528-0.538156129283
+trajectory——————43.9-1.36596343818-0.540043063333-1.36596343789-0.54004306357
+trajectory——————44-1.3636078951-0.54189910561-1.36360789481-0.541899105843
+trajectory——————44.1-1.36126996635-0.543724593257-1.36126996607-0.543724593486
+trajectory——————44.2-1.35894969129-0.545519861822-1.358949691-0.545519862047
+trajectory——————44.3-1.35664710857-0.547285245022-1.35664710829-0.547285245243
+trajectory——————44.4-1.35436225618-0.549021074751-1.3543622559-0.549021074969
+trajectory——————44.5-1.35209517132-0.550727681087-1.35209517104-0.550727681301
+trajectory——————44.6-1.34984589045-0.552405392295-1.34984589018-0.552405392505
+trajectory——————44.7-1.34761444922-0.554054534832-1.34761444894-0.554054535039
+trajectory——————44.8-1.34540088243-0.555675433356-1.34540088215-0.555675433559
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————44.9-1.34320522403-0.557268410725-1.34320522376-0.557268410925
+trajectory——————45-1.34102750708-0.558833788007-1.34102750681-0.558833788203
+trajectory——————45.1-1.3388677637-0.56037188448-1.33886776343-0.560371884673
+trajectory——————45.2-1.33672602505-0.561883017639-1.33672602478-0.561883017829
+trajectory——————45.3-1.33460232129-0.563367503197-1.33460232103-0.563367503383
+trajectory——————45.4-1.33249668157-0.564825655088-1.33249668131-0.564825655271
+trajectory——————45.5-1.33040913397-0.566257785475-1.33040913371-0.566257785654
+trajectory——————45.6-1.32833970547-0.567664204746-1.32833970521-0.567664204922
+trajectory——————45.7-1.32628842193-0.56904522152-1.32628842167-0.569045221693
+trajectory——————45.8-1.32425530805-0.570401142651-1.3242553078-0.570401142821
+trajectory——————45.9-1.32224038733-0.571732273225-1.32224038708-0.571732273391
+trajectory——————46-1.32024368205-0.573038916565-1.32024368181-0.573038916729
+trajectory——————46.1-1.31826521322-0.574321374232-1.31826521298-0.574321374393
+trajectory——————46.2-1.31630500054-0.575579946026-1.3163050003-0.575579946184
+trajectory——————46.3-1.3143630624-0.576814929985-1.31436306216-0.576814930139
+trajectory——————46.4-1.3124394158-0.578026622387-1.31243941556-0.578026622538
+trajectory——————46.5-1.31053407636-0.57921531775-1.31053407612-0.579215317899
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————46.6-1.30864705824-0.580381308834-1.30864705801-0.58038130898
+trajectory——————46.7-1.30677837415-0.581524886635-1.30677837392-0.581524886778
+trajectory——————46.8-1.30492803528-0.58264634039-1.30492803505-0.582646340531
+trajectory——————46.9-1.30309605128-0.583745957573-1.30309605105-0.583745957711
+trajectory——————47-1.30128243023-0.584824023897-1.30128243-0.584824024032
+trajectory——————47.1-1.2994871786-0.585880823306-1.29948717838-0.585880823438
+trajectory——————47.2-1.29771030122-0.586916637981-1.297710301-0.586916638111
+trajectory——————47.3-1.29595180123-0.587931748335-1.29595180101-0.587931748462
+trajectory——————47.4-1.29421168007-0.588926433007-1.29421167985-0.588926433132
+trajectory——————47.5-1.29248993743-0.589900968867-1.29248993722-0.589900968989
+trajectory——————47.6-1.29078657124-0.590855631006-1.29078657103-0.590855631126
+trajectory——————47.7-1.28910157758-0.591790692738-1.28910157737-0.591790692855
+trajectory——————47.8-1.28743495073-0.592706425593-1.28743495053-0.592706425708
+trajectory——————47.9-1.28578668307-0.593603099319-1.28578668287-0.593603099432
+trajectory——————48-1.28415676509-0.594480981872-1.28415676489-0.594480981982
+trajectory——————48.1-1.28254518532-0.595340339415-1.28254518512-0.595340339522
+trajectory——————48.2-1.28095193035-0.596181436315-1.28095193015-0.59618143642
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————48.3-1.27937698474-0.597004535136-1.27937698455-0.597004535239
+trajectory——————48.4-1.27782033107-0.597809896639-1.27782033087-0.59780989674
+trajectory——————48.5-1.27628194981-0.59859777977-1.27628194962-0.598597779869
+trajectory——————48.6-1.27476181939-0.599368441662-1.2747618192-0.599368441759
+trajectory——————48.7-1.27325991611-0.600122137627-1.27325991592-0.600122137721
+trajectory——————48.8-1.27177621413-0.600859121149-1.27177621395-0.600859121241
+trajectory——————48.9-1.27031068546-0.601579643881-1.27031068528-0.601579643971
+trajectory——————49-1.26886329992-0.60228395564-1.26886329974-0.602283955728
+trajectory——————49.1-1.2674340251-0.602972304397-1.26743402492-0.602972304483
+trajectory——————49.2-1.26602282639-0.603644936277-1.26602282621-0.603644936361
+trajectory——————49.3-1.26462966689-0.604302095548-1.26462966672-0.60430209563
+trajectory——————49.4-1.26325450745-0.604944024616-1.26325450728-0.604944024696
+trajectory——————49.5-1.26189730661-0.60557096402-1.26189730644-0.605570964098
+trajectory——————49.6-1.2605580206-0.606183152424-1.26055802043-0.606183152501
+trajectory——————49.7-1.25923660331-0.606780826612-1.25923660314-0.606780826687
+trajectory——————49.8-1.25793300628-0.60736422148-1.25793300612-0.607364221553
+trajectory——————49.9-1.25664717871-0.607933570028-1.25664717855-0.6079335701
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————50-1.25537906738-0.608489103358-1.25537906722-0.608489103428
+trajectory——————50.1-1.25412861672-0.609031050662-1.25412861657-0.60903105073
+trajectory——————50.2-1.25289576874-0.609559639217-1.25289576859-0.609559639283
+trajectory——————50.3-1.25168046304-0.610075094378-1.25168046289-0.610075094442
+trajectory——————50.4-1.25048263679-0.610577639571-1.25048263664-0.610577639634
+trajectory——————50.5-1.24930222476-0.611067496286-1.24930222461-0.611067496348
+trajectory——————50.6-1.24813915925-0.611544884072-1.24813915911-0.611544884132
+trajectory——————50.7-1.24699337016-0.612010020525-1.24699337002-0.612010020583
+trajectory——————50.8-1.24586478493-0.612463121285-1.24586478479-0.612463121342
+trajectory——————50.9-1.24475332858-0.612904400029-1.24475332844-0.612904400084
+trajectory——————51-1.24365892365-0.613334068461-1.24365892352-0.613334068515
+trajectory——————51.1-1.2425814903-0.61375233631-1.24258149016-0.613752336362
+trajectory——————51.2-1.24152094621-0.614159411318-1.24152094607-0.614159411368
+trajectory——————51.3-1.24047720666-0.614555499236-1.24047720653-0.614555499285
+trajectory——————51.4-1.2394501845-0.614940803818-1.23945018437-0.614940803866
+trajectory——————51.5-1.23843979018-0.615315526814-1.23843979005-0.615315526861
+trajectory——————51.6-1.23744593174-0.615679867961-1.23744593161-0.615679868007
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————51.7-1.23646851484-0.616034024982-1.23646851471-0.616034025026
+trajectory——————51.8-1.23550744276-0.616378193574-1.23550744264-0.616378193617
+trajectory——————51.9-1.23456261644-0.616712567406-1.23456261632-0.616712567448
+trajectory——————52-1.23363393446-0.617037338112-1.23363393435-0.617037338153
+trajectory——————52.1-1.23272129311-0.617352695287-1.232721293-0.617352695326
+trajectory——————52.2-1.23182458636-0.617658826477-1.23182458625-0.617658826515
+trajectory——————52.3-1.2309437059-0.61795591718-1.23094370579-0.617955917217
+trajectory——————52.4-1.23007854121-0.618244150835-1.2300785411-0.618244150871
+trajectory——————52.5-1.22922897951-0.618523708824-1.2292289794-0.618523708859
+trajectory——————52.6-1.22839490583-0.618794770462-1.22839490573-0.618794770495
+trajectory——————52.7-1.22757620307-0.619057512992-1.22757620297-0.619057513025
+trajectory——————52.8-1.22677275197-0.619312111589-1.22677275187-0.619312111621
+trajectory——————52.9-1.22598443118-0.619558739348-1.22598443108-0.619558739378
+trajectory——————53-1.22521111729-0.619797567283-1.2252111172-0.619797567313
+trajectory——————53.1-1.22445268488-0.620028764326-1.22445268478-0.620028764355
+trajectory——————53.2-1.22370900651-0.620252497325-1.22370900642-0.620252497353
+trajectory——————53.3-1.22297995284-0.620468931036-1.22297995275-0.620468931063
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————53.4-1.2222653926-0.620678228127-1.22226539251-0.620678228153
+trajectory——————53.5-1.22156519267-0.620880549174-1.22156519258-0.620880549199
+trajectory——————53.6-1.22087921812-0.621076052659-1.22087921804-0.621076052683
+trajectory——————53.7-1.22020733226-0.62126489497-1.22020733218-0.621264894994
+trajectory——————53.8-1.21954939667-0.621447230401-1.21954939659-0.621447230424
+trajectory——————53.9-1.21890527128-0.621623211151-1.2189052712-0.621623211173
+trajectory——————54-1.21827481438-0.621792987325-1.21827481431-0.621792987346
+trajectory——————54.1-1.21765788274-0.621956706932-1.21765788266-0.621956706952
+trajectory——————54.2-1.21705433157-0.62211451589-1.21705433149-0.62211451591
+trajectory——————54.3-1.21646401467-0.622266558027-1.21646401459-0.622266558046
+trajectory——————54.4-1.21588678442-0.62241297508-1.21588678434-0.622412975099
+trajectory——————54.5-1.21532249186-0.6225539067-1.21532249179-0.622553906717
+trajectory——————54.6-1.21477098678-0.622689490453-1.21477098671-0.62268949047
+trajectory——————54.7-1.21423211771-0.622819861826-1.21423211764-0.622819861843
+trajectory——————54.8-1.21370573205-0.622945154229-1.21370573199-0.622945154245
+trajectory——————54.9-1.21319167609-0.623065498999-1.21319167603-0.623065499014
+trajectory——————55-1.21268979509-0.623181025405-1.21268979503-0.62318102542
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————55.1-1.21219993334-0.623291860654-1.21219993328-0.623291860668
+trajectory——————55.2-1.21172193421-0.623398129897-1.21172193415-0.62339812991
+trajectory——————55.3-1.21125564025-0.623499956231-1.2112556402-0.623499956244
+trajectory——————55.4-1.21080089323-0.623597460713-1.21080089317-0.623597460725
+trajectory——————55.5-1.21035753418-0.623690762359-1.21035753413-0.623690762371
+trajectory——————55.6-1.20992540353-0.62377997816-1.20992540347-0.623779978171
+trajectory——————55.7-1.2095043411-0.623865223082-1.20950434105-0.623865223092
+trajectory——————55.8-1.20909418622-0.623946610079-1.20909418617-0.623946610089
+trajectory——————55.9-1.20869477777-0.624024250103-1.20869477772-0.624024250113
+trajectory——————56-1.20830595425-0.62409825211-1.2083059542-0.624098252119
+trajectory——————56.1-1.20792755386-0.624168723072-1.20792755382-0.624168723081
+trajectory——————56.2-1.20755941457-0.624235767988-1.20755941452-0.624235767996
+trajectory——————56.3-1.20720137415-0.624299489894-1.20720137411-0.624299489902
+trajectory——————56.4-1.2068532703-0.624359989874-1.20685327026-0.624359989882
+trajectory——————56.5-1.20651494066-0.624417367075-1.20651494062-0.624417367082
+trajectory——————56.6-1.20618622291-0.624471718712-1.20618622287-0.624471718719
+trajectory——————56.7-1.20586695482-0.624523140092-1.20586695478-0.624523140098
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————56.8-1.20555697434-0.624571724615-1.2055569743-0.624571724621
+trajectory——————56.9-1.20525611963-0.624617563798-1.20525611959-0.624617563804
+trajectory——————57-1.20496422915-0.624660747283-1.20496422911-0.624660747288
+trajectory——————57.1-1.20468114173-0.624701362852-1.2046811417-0.624701362857
+trajectory——————57.2-1.20440669662-0.624739496447-1.20440669659-0.624739496451
+trajectory——————57.3-1.20414073355-0.624775232178-1.20414073351-0.624775232182
+trajectory——————57.4-1.2038830928-0.624808652344-1.20388309277-0.624808652348
+trajectory——————57.5-1.20363361526-0.624839837449-1.20363361523-0.624839837453
+trajectory——————57.6-1.20339214251-0.624868866215-1.20339214248-0.624868866219
+trajectory——————57.7-1.20315851685-0.624895815603-1.20315851682-0.624895815606
+trajectory——————57.8-1.20293258135-0.624920760827-1.20293258132-0.624920760831
+trajectory——————57.9-1.20271417996-0.624943775375-1.20271417993-0.624943775378
+trajectory——————58-1.20250315752-0.624964931025-1.20250315749-0.624964931027
+trajectory——————58.1-1.20229935982-0.624984297861-1.2022993598-0.624984297863
+trajectory——————58.2-1.20210263369-0.625001944297-1.20210263366-0.625001944299
+trajectory——————58.3-1.201912827-0.625017937092-1.20191282697-0.625017937094
+trajectory——————58.4-1.20172978875-0.625032341371-1.20172978872-0.625032341373
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————58.5-1.2015533691-0.625045220645-1.20155336908-0.625045220647
+trajectory——————58.6-1.20138341945-0.625056636827-1.20138341942-0.625056636829
+trajectory——————58.7-1.20121979242-0.625066650257-1.2012197924-0.625066650259
+trajectory——————58.8-1.20106234199-0.62507531972-1.20106234197-0.625075319722
+trajectory——————58.9-1.20091092345-0.625082702467-1.20091092343-0.625082702468
+trajectory——————59-1.2007653935-0.625088854233-1.20076539349-0.625088854234
+trajectory——————59.1-1.2006256103-0.625093829263-1.20062561028-0.625093829264
+trajectory——————59.2-1.20049143345-0.625097680331-1.20049143343-0.625097680331
+trajectory——————59.3-1.20036272409-0.625100458758-1.20036272407-0.625100458759
+trajectory——————59.4-1.20023934489-0.62510221444-1.20023934487-0.62510221444
+trajectory——————59.5-1.20012116012-0.625102995862-1.20012116011-0.625102995862
+trajectory——————59.6-1.20000803567-0.625102850126-1.20000803565-0.625102850126
+trajectory——————59.7-1.19989983906-0.625101822972-1.19989983905-0.625101822972
+trajectory——————59.8-1.19979643952-0.625099958795-1.1997964395-0.625099958795
+trajectory——————59.9-1.19969770794-0.625097300673-1.19969770793-0.625097300673
+trajectory——————60-1.19960351699-0.625093890386-1.19960351698-0.625093890386
+trajectory——————60.1-1.19951374108-0.625089768439-1.19951374107-0.625089768439
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————60.2-1.19942825638-0.625084974085-1.19942825637-0.625084974084
+trajectory——————60.3-1.19934694089-0.625079545344-1.19934694088-0.625079545343
+trajectory——————60.4-1.19926967442-0.62507351903-1.19926967441-0.62507351903
+trajectory——————60.5-1.19919633861-0.625066930771-1.1991963386-0.625066930771
+trajectory——————60.6-1.19912681697-0.62505981503-1.19912681696-0.62505981503
+trajectory——————60.7-1.19906099487-0.62505220513-1.19906099486-0.625052205129
+trajectory——————60.8-1.19899875957-0.625044133273-1.19899875956-0.625044133272
+trajectory——————60.9-1.19894000021-0.625035630565-1.1989400002-0.625035630564
+trajectory——————61-1.19888460785-0.625026727038-1.19888460785-0.625026727037
+trajectory——————61.1-1.19883247546-0.625017451671-1.19883247545-0.62501745167
+trajectory——————61.2-1.19878349792-0.625007832411-1.19878349791-0.62500783241
+trajectory——————61.3-1.19873757204-0.624997896197-1.19873757203-0.624997896195
+trajectory——————61.4-1.19869459655-0.62498766898-1.19869459654-0.624987668979
+trajectory——————61.5-1.19865447212-0.624977175748-1.19865447212-0.624977175747
+trajectory——————61.6-1.19861710136-0.624966440544-1.19861710136-0.624966440542
+trajectory——————61.7-1.19858238879-0.624955486486-1.19858238879-0.624955486485
+trajectory——————61.8-1.19855024087-0.624944335796-1.19855024087-0.624944335794
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————61.9-1.19852056599-0.624933009811-1.19852056599-0.624933009809
+trajectory——————62-1.19849327445-0.624921529012-1.19849327444-0.62492152901
+trajectory——————62.1-1.19846827847-0.62490991304-1.19846827847-0.624909913039
+trajectory——————62.2-1.19844549219-0.624898180721-1.19844549218-0.624898180719
+trajectory——————62.3-1.19842483163-0.62488635008-1.19842483163-0.624886350079
+trajectory——————62.4-1.19840621473-0.624874438368-1.19840621472-0.624874438367
+trajectory——————62.5-1.19838956128-0.624862462078-1.19838956127-0.624862462077
+trajectory——————62.6-1.19837479296-0.624850436965-1.19837479295-0.624850436964
+trajectory——————62.7-1.1983618333-0.624838378067-1.19836183329-0.624838378066
+trajectory——————62.8-1.19835060767-0.624826299724-1.19835060767-0.624826299722
+trajectory——————62.9-1.1983410433-0.624814215596-1.19834104329-0.624814215594
+trajectory——————63-1.19833306918-0.624802138682-1.19833306918-0.624802138681
+trajectory——————63.1-1.19832661614-0.624790081341-1.19832661614-0.62479008134
+trajectory——————63.2-1.19832161678-0.624778055309-1.19832161678-0.624778055307
+trajectory——————63.3-1.19831800546-0.624766071713-1.19831800545-0.624766071711
+trajectory——————63.4-1.19831571828-0.624754141096-1.19831571828-0.624754141094
+trajectory——————63.5-1.19831469308-0.62474227343-1.19831469308-0.624742273428
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————63.6-1.19831486939-0.624730478135-1.19831486939-0.624730478133
+trajectory——————63.7-1.19831618843-0.624718764094-1.19831618843-0.624718764092
+trajectory——————63.8-1.19831859309-0.624707139673-1.19831859309-0.624707139671
+trajectory——————63.9-1.19832202789-0.624695612734-1.19832202789-0.624695612733
+trajectory——————64-1.19832643897-0.624684190655-1.19832643898-0.624684190654
+trajectory——————64.1-1.19833177409-0.624672880343-1.19833177409-0.624672880342
+trajectory——————64.2-1.19833798255-0.624661688249-1.19833798255-0.624661688248
+trajectory——————64.3-1.19834501521-0.624650620387-1.19834501521-0.624650620385
+trajectory——————64.4-1.19835282446-0.624639682345-1.19835282446-0.624639682344
+trajectory——————64.5-1.1983613642-0.624628879304-1.1983613642-0.624628879302
+trajectory——————64.6-1.19837058978-0.624618216048-1.19837058978-0.624618216046
+trajectory——————64.7-1.19838045802-0.624607696981-1.19838045802-0.62460769698
+trajectory——————64.8-1.19839092717-0.624597326141-1.19839092718-0.62459732614
+trajectory——————64.9-1.19840195687-0.624587107212-1.19840195687-0.62458710721
+trajectory——————65-1.19841350813-0.624577043538-1.19841350813-0.624577043537
+trajectory——————65.1-1.19842554332-0.624567138137-1.19842554332-0.624567138136
+trajectory——————65.2-1.19843802613-0.624557393713-1.19843802613-0.624557393712
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————65.3-1.19845092153-0.624547812667-1.19845092153-0.624547812666
+trajectory——————65.4-1.19846419579-0.624538397112-1.19846419579-0.624538397111
+trajectory——————65.5-1.19847781641-0.624529148883-1.19847781641-0.624529148882
+trajectory——————65.6-1.19849175209-0.624520069549-1.19849175209-0.624520069548
+trajectory——————65.7-1.19850597275-0.624511160423-1.19850597276-0.624511160422
+trajectory——————65.8-1.19852044947-0.624502422577-1.19852044947-0.624502422576
+trajectory——————65.9-1.19853515445-0.624493856847-1.19853515445-0.624493856846
+trajectory——————66-1.19855006102-0.624485463849-1.19855006102-0.624485463848
+trajectory——————66.1-1.1985651436-0.624477243986-1.19856514361-0.624477243985
+trajectory——————66.2-1.19858037767-0.624469197458-1.19858037767-0.624469197457
+trajectory——————66.3-1.19859573973-0.624461324273-1.19859573973-0.624461324272
+trajectory——————66.4-1.19861120731-0.624453624255-1.19861120731-0.624453624254
+trajectory——————66.5-1.19862675891-0.624446097055-1.19862675891-0.624446097054
+trajectory——————66.6-1.19864237401-0.624438742157-1.19864237401-0.624438742156
+trajectory——————66.7-1.198658033-0.62443155889-1.198658033-0.624431558889
+trajectory——————66.8-1.1986737172-0.624424546434-1.1986737172-0.624424546433
+trajectory——————66.9-1.1986894088-0.624417703828-1.1986894088-0.624417703827
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————67-1.19870509087-0.62441102998-1.19870509087-0.624411029979
+trajectory——————67.1-1.19872074729-0.624404523672-1.1987207473-0.624404523672
+trajectory——————67.2-1.19873636279-0.62439818357-1.19873636279-0.624398183569
+trajectory——————67.3-1.19875192286-0.624392008228-1.19875192286-0.624392008227
+trajectory——————67.4-1.19876741376-0.624385996098-1.19876741377-0.624385996097
+trajectory——————67.5-1.19878282252-0.624380145534-1.19878282252-0.624380145534
+trajectory——————67.6-1.19879813686-0.624374454802-1.19879813686-0.624374454802
+trajectory——————67.7-1.19881334522-0.624368922083-1.19881334522-0.624368922082
+trajectory——————67.8-1.1988284367-0.624363545479-1.1988284367-0.624363545478
+trajectory——————67.9-1.19884340108-0.62435832302-1.19884340108-0.62435832302
+trajectory——————68-1.19885822876-0.624353252672-1.19885822876-0.624353252671
+trajectory——————68.1-1.19887291075-0.624348332337-1.19887291075-0.624348332337
+trajectory——————68.2-1.19888743866-0.624343559864-1.19888743866-0.624343559863
+trajectory——————68.3-1.19890180468-0.624338933047-1.19890180468-0.624338933047
+trajectory——————68.4-1.19891600155-0.624334449639-1.19891600155-0.624334449638
+trajectory——————68.5-1.19893002253-0.624330107347-1.19893002254-0.624330107346
+trajectory——————68.6-1.19894386143-0.624325903843-1.19894386143-0.624325903843
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————68.7-1.19895751251-0.624321836768-1.19895751251-0.624321836768
+trajectory——————68.8-1.19897097055-0.624317903732-1.19897097055-0.624317903732
+trajectory——————68.9-1.19898423078-0.624314102321-1.19898423078-0.624314102321
+trajectory——————69-1.19899728885-0.6243104301-1.19899728885-0.6243104301
+trajectory——————69.1-1.19901014087-0.624306884617-1.19901014087-0.624306884617
+trajectory——————69.2-1.19902278334-0.624303463407-1.19902278334-0.624303463407
+trajectory——————69.3-1.19903521316-0.624300163992-1.19903521316-0.624300163992
+trajectory——————69.4-1.1990474276-0.624296983889-1.1990474276-0.624296983889
+trajectory——————69.5-1.19905942431-0.62429392061-1.19905942431-0.62429392061
+trajectory——————69.6-1.19907120126-0.624290971665-1.19907120126-0.624290971664
+trajectory——————69.7-1.19908275677-0.624288134564-1.19908275677-0.624288134564
+trajectory——————69.8-1.19909408947-0.624285406823-1.19909408948-0.624285406823
+trajectory——————69.9-1.19910519831-0.624282785963-1.19910519831-0.624282785963
+trajectory——————70-1.19911608251-0.624280269514-1.19911608251-0.624280269514
+trajectory——————70.1-1.19912674156-0.624277855016-1.19912674156-0.624277855015
+trajectory——————70.2-1.19913717523-0.624275540021-1.19913717524-0.624275540021
+trajectory——————70.3-1.19914738355-0.624273322099-1.19914738355-0.624273322099
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————70.4-1.19915736676-0.624271198833-1.19915736676-0.624271198833
+trajectory——————70.5-1.19916712534-0.624269167826-1.19916712534-0.624269167826
+trajectory——————70.6-1.19917665998-0.624267226701-1.19917665999-0.624267226701
+trajectory——————70.7-1.19918597159-0.624265373103-1.1991859716-0.624265373102
+trajectory——————70.8-1.19919506126-0.624263604697-1.19919506126-0.624263604697
+trajectory——————70.9-1.19920393025-0.624261919177-1.19920393025-0.624261919177
+trajectory——————71-1.19921258001-0.624260314259-1.19921258001-0.624260314259
+trajectory——————71.1-1.19922101214-0.624258787687-1.19922101214-0.624258787687
+trajectory——————71.2-1.19922922841-0.624257337233-1.19922922841-0.624257337233
+trajectory——————71.3-1.1992372307-0.624255960697-1.1992372307-0.624255960697
+trajectory——————71.4-1.19924502106-0.624254655909-1.19924502106-0.624254655909
+trajectory——————71.5-1.19925260164-0.624253420731-1.19925260164-0.62425342073
+trajectory——————71.6-1.19925997471-0.624252253053-1.19925997471-0.624252253053
+trajectory——————71.7-1.19926714266-0.6242511508-1.19926714266-0.6242511508
+trajectory——————71.8-1.19927410797-0.624250111929-1.19927410797-0.624250111929
+trajectory——————71.9-1.19928087321-0.624249134431-1.19928087321-0.62424913443
+trajectory——————72-1.19928744105-0.624248216327-1.19928744105-0.624248216327
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————72.1-1.19929381422-0.624247355677-1.19929381422-0.624247355677
+trajectory——————72.2-1.19929999555-0.624246550572-1.19929999555-0.624246550572
+trajectory——————72.3-1.19930598789-0.62424579914-1.19930598789-0.624245799139
+trajectory——————72.4-1.1993117942-0.624245099542-1.1993117942-0.624245099542
+trajectory——————72.5-1.19931741745-0.624244449978-1.19931741745-0.624244449978
+trajectory——————72.6-1.19932286068-0.624243848679-1.19932286069-0.624243848679
+trajectory——————72.7-1.19932812698-0.624243293914-1.19932812698-0.624243293914
+trajectory——————72.8-1.19933321945-0.624242783989-1.19933321945-0.624242783989
+trajectory——————72.9-1.19933814124-0.624242317243-1.19933814124-0.624242317243
+trajectory——————73-1.19934289552-0.624241892053-1.19934289552-0.624241892053
+trajectory——————73.1-1.19934748548-0.62424150683-1.19934748548-0.62424150683
+trajectory——————73.2-1.19935191434-0.624241160022-1.19935191434-0.624241160022
+trajectory——————73.3-1.19935618531-0.624240850111-1.19935618531-0.624240850111
+trajectory——————73.4-1.19936030162-0.624240575617-1.19936030163-0.624240575617
+trajectory——————73.5-1.19936426653-0.624240335093-1.19936426653-0.624240335093
+trajectory——————73.6-1.19936808325-0.624240127128-1.19936808325-0.624240127128
+trajectory——————73.7-1.19937175503-0.624239950345-1.19937175503-0.624239950345
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————73.8-1.1993752851-0.624239803402-1.19937528511-0.624239803402
+trajectory——————73.9-1.19937867669-0.624239684993-1.19937867669-0.624239684993
+trajectory——————74-1.19938193299-0.624239593843-1.19938193299-0.624239593843
+trajectory——————74.1-1.19938505721-0.624239528712-1.19938505721-0.624239528712
+trajectory——————74.2-1.19938805253-0.624239488394-1.19938805253-0.624239488394
+trajectory——————74.3-1.1993909221-0.624239471715-1.1993909221-0.624239471715
+trajectory——————74.4-1.19939366906-0.624239477535-1.19939366906-0.624239477535
+trajectory——————74.5-1.19939629653-0.624239504743-1.19939629653-0.624239504743
+trajectory——————74.6-1.19939880759-0.624239552265-1.19939880759-0.624239552265
+trajectory——————74.7-1.1994012053-0.624239619052-1.1994012053-0.624239619052
+trajectory——————74.8-1.19940349268-0.624239704092-1.19940349268-0.624239704092
+trajectory——————74.9-1.19940567273-0.6242398064-1.19940567273-0.6242398064
+trajectory——————75-1.19940774842-0.624239925021-1.19940774842-0.624239925021
+trajectory——————75.1-1.19940972267-0.624240059031-1.19940972267-0.624240059031
+trajectory——————75.2-1.19941159837-0.624240207534-1.19941159837-0.624240207534
+trajectory——————75.3-1.19941337837-0.624240369664-1.19941337837-0.624240369664
+trajectory——————75.4-1.19941506549-0.624240544582-1.19941506549-0.624240544582
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————75.5-1.19941666251-0.624240731476-1.19941666251-0.624240731476
+trajectory——————75.6-1.19941817215-0.624240929562-1.19941817215-0.624240929562
+trajectory——————75.7-1.1994195971-0.624241138083-1.1994195971-0.624241138083
+trajectory——————75.8-1.19942094002-0.624241356309-1.19942094003-0.624241356309
+trajectory——————75.9-1.19942220352-0.624241583532-1.19942220352-0.624241583532
+trajectory——————76-1.19942339014-0.624241819073-1.19942339014-0.624241819073
+trajectory——————76.1-1.19942450242-0.624242062276-1.19942450242-0.624242062276
+trajectory——————76.2-1.19942554282-0.624242312508-1.19942554282-0.624242312508
+trajectory——————76.3-1.19942651376-0.624242569162-1.19942651376-0.624242569162
+trajectory——————76.4-1.19942741764-0.624242831652-1.19942741764-0.624242831652
+trajectory——————76.5-1.19942825678-0.624243099415-1.19942825678-0.624243099415
+trajectory——————76.6-1.19942903347-0.624243371911-1.19942903347-0.624243371911
+trajectory——————76.7-1.19942974996-0.624243648621-1.19942974996-0.624243648621
+trajectory——————76.8-1.19943040845-0.624243929045-1.19943040845-0.624243929046
+trajectory——————76.9-1.19943101107-0.624244212708-1.19943101107-0.624244212708
+trajectory——————77-1.19943155994-0.624244499151-1.19943155994-0.624244499151
+trajectory——————77.1-1.1994320571-0.624244787935-1.1994320571-0.624244787935
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————77.2-1.19943250458-0.624245078642-1.19943250458-0.624245078642
+trajectory——————77.3-1.19943290434-0.624245370871-1.19943290434-0.624245370871
+trajectory——————77.4-1.19943325829-0.62424566424-1.19943325829-0.62424566424
+trajectory——————77.5-1.1994335683-0.624245958383-1.1994335683-0.624245958383
+trajectory——————77.6-1.19943383621-0.624246252952-1.19943383621-0.624246252952
+trajectory——————77.7-1.1994340638-0.624246547617-1.1994340638-0.624246547617
+trajectory——————77.8-1.19943425279-0.624246842061-1.19943425279-0.624246842061
+trajectory——————77.9-1.19943440489-0.624247135986-1.19943440489-0.624247135986
+trajectory——————78-1.19943452174-0.624247429106-1.19943452174-0.624247429106
+trajectory——————78.1-1.19943460495-0.624247721154-1.19943460495-0.624247721154
+trajectory——————78.2-1.19943465608-0.624248011872-1.19943465608-0.624248011872
+trajectory——————78.3-1.19943467665-0.624248301021-1.19943467665-0.624248301021
+trajectory——————78.4-1.19943466813-0.624248588372-1.19943466813-0.624248588372
+trajectory——————78.5-1.19943463196-0.62424887371-1.19943463196-0.62424887371
+trajectory——————78.6-1.19943456953-0.624249156834-1.19943456953-0.624249156834
+trajectory——————78.7-1.1994344822-0.624249437554-1.1994344822-0.624249437554
+trajectory——————78.8-1.19943437127-0.624249715691-1.19943437127-0.624249715691
+
+## MCMC, temperature control and biological models — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————78.9-1.19943423803-0.62424999108-1.19943423803-0.62424999108
+trajectory——————79-1.19943408371-0.624250263564-1.19943408371-0.624250263564
+trajectory——————79.1-1.19943390949-0.624250532999-1.19943390949-0.624250532999
+trajectory——————79.2-1.19943371655-0.62425079925-1.19943371655-0.62425079925
+trajectory——————79.3-1.199433506-0.624251062193-1.199433506-0.624251062193
+trajectory——————79.4-1.19943327893-0.624251321713-1.19943327893-0.624251321714
+trajectory——————79.5-1.19943303639-0.624251577705-1.19943303639-0.624251577705
+trajectory——————79.6-1.19943277939-0.62425183007-1.19943277939-0.62425183007
+trajectory——————79.7-1.19943250891-0.624252078722-1.19943250891-0.624252078722
+trajectory——————79.8-1.19943222589-0.62425232358-1.19943222589-0.62425232358
+trajectory——————79.9-1.19943193125-0.624252564572-1.19943193125-0.624252564572
+trajectory——————80-1.19943162588-0.624252801633-1.19943162588-0.624252801633
+Measurements and complete records / JSON
+
+## MCMC, temperature control and biological models — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+R. FitzHugh (1961). Impulses and Physiological States in Theoretical Models of Nerve Membrane · DOI: 10.1016/S0006-3495(61)86902-6
+Review scope / review_level: official-abstract-and-metadata
+Original-paper abstract and bibliography in PubMed checked. Supports the two-variable excitable/refractory reduction; no full HH or measured membrane-voltage reproduction is claimed.
+J. Nagumo, S. Arimoto and S. Yoshizawa (1962). An Active Pulse Transmission Line Simulating Nerve Axon · DOI: 10.1109/JRPROC.1962.288235
+Review scope / review_level: publisher-abstract-and-metadata
+IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed.
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference
+Review scope / review_level: official-api-documentation
+Official DOP853, dense output, tolerance and success specifications checked. Implementation documentation for the separate numerical reference.
+
+## Particles, electrostatics, kinetic and radiative transport — Particles, electrostatics, kinetic and radiative transport [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+
+## Particles, electrostatics, kinetic and radiative transport — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#run-all
+Coverage: reading
+
+Run inside atlas-particles-2026-11-22 from the ZIP. This command executes all 6 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Particles, electrostatics, kinetic and radiative transport — Neutral-cell Ewald sums and an independent theta integral [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.
+
+## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald-assumptions
+Coverage: reading
+
+Cubic cell, zero total charge, Coulomb constant one and conducting/tin-foil boundary. An asymmetric eight-charge case is distinct from the eight-ion NaCl reference cell.
+
+## Particles, electrostatics, kinetic and radiative transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald-algorithm
+Coverage: reading
+
+Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences.
+E=\frac12\sum_{ij\mathbf n}^{\prime}q_iq_j\frac{\operatorname{erfc}(\alpha r_{ij\mathbf n})}{r_{ij\mathbf n}}+\frac{2\pi}{V}\sum_{\mathbf k\ne0}\frac{e^{-k^2/(4\alpha^2)}}{k^2}|S(\mathbf k)|^2-\frac{\alpha}{\sqrt\pi}\sum_iq_i^2M_{\rm NaCl}=\frac2{\sqrt\pi}\int_0^\infty[1-\vartheta_4(0,e^{-u^2})^3]du
+
+## Particles, electrostatics, kinetic and radiative transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald-validation
+Coverage: reading
+
+Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate.
+
+## Particles, electrostatics, kinetic and radiative transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald-limits
+Coverage: reading
+
+No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field.
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+madelung_constant1.74756459463
+theta_reference1.74756459463
+theta_quadrature_error1.27151293921e-13
+real_cutoff_force_last_change0
+madelung_error4.4408920985e-16
+splitting_energy_difference5.3290705182e-15
+splitting_force_difference3.81916720471e-14
+finite_difference_error1.73604242093e-09
+cutoff_force_last_change0
+net_force1.15463194561e-14
+判定 / checkPassed
+madelung_errortrue
+splitting_energy_differencetrue
+splitting_force_differencetrue
+finite_difference_errortrue
+cutoff_force_last_changetrue
+net_forcetrue
+nonzero_forcestrue
+real_cutoff_refinestrue
+theta_reference_error_boundtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriesalphaenergymax_forceimagesforce_reference_errorcutoff
+splitting4.5-8.4074065143510.7578871675———
+splitting5.6-8.4074065143510.7578871675———
+splitting6.5-8.4074065143510.7578871675———
+real_cutoff—-8.41141513471—00.0741762841481—
+real_cutoff—-8.40740651435—10—
+real_cutoff—-8.40740651435—20—
+reciprocal_cutoff—-8.40851443963——0.001525877786934
+reciprocal_cutoff—-8.40740651653——5.28971266789e-097
+reciprocal_cutoff—-8.40740651435——010
+reciprocal_cutoff—-8.40740651435——014
+Measurements and complete records / JSON
+
+## Particles, electrostatics, kinetic and radiative transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+P. P. Ewald (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale · DOI: 10.1002/andp.19213690304
+Review scope / review_level: abstract-and-metadata
+Publisher metadata and original section headings checked; no full-text audit claimed.
+NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformations of Lattice Parameter
+Review scope / review_level: official-documentation
+Official Jacobi-theta lattice-parameter transformations checked; year denotes access year.
+
+## Particles, electrostatics, kinetic and radiative transport — Mesh/order convergence of B-spline smooth PME [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.
+
+## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme-assumptions
+Coverage: reading
+
+The neutral cubic cell and real-space term match the Ewald example. The adopted PME-family variant uses Essmann-type B-splines, distinct from Darden’s original Lagrange interpolation.
+
+## Particles, electrostatics, kinetic and radiative transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme-algorithm
+Coverage: reading
+
+Tensor-product cardinal splines of order four or six spread the charges. Apply the nodal-spline discrete structure-factor correction and Gaussian Green function through 3D FFTs; analytically differentiate assignment weights for forces.
+Q_{\mathbf j}=\sum_iq_i\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)\mathbf F_i=-\partial E_h/\partial\mathbf r_i
+
+## Particles, electrostatics, kinetic and radiative transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme-validation
+Coverage: reading
+
+Meshes 16³/24³/40³ and two orders are compared with directly summed Ewald reciprocal terms. Shared real/self terms are stated. Check finest-grid force derivatives by energy differences and verify assigned total charge.
+
+## Particles, electrostatics, kinetic and radiative transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme-limits
+Coverage: reading
+
+Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+force_error7.8551168432e-06
+energy_error8.18394095603e-07
+finest_to_coarsest_force_ratio0.00622783657018
+charge_error2.18713935851e-14
+finite_difference_error2.65574477964e-08
+net_force1.91934219709e-05
+判定 / checkPassed
+force_errortrue
+energy_errortrue
+finest_to_coarsest_force_ratiotrue
+charge_errortrue
+finite_difference_errortrue
+both_orders_refinetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+ordermeshenergyenergy_errorforce_error
+416-8.416771081250.009364566899440.0352611328118
+424-8.409150070480.001743556133290.00986757060083
+440-8.407635446510.0002289321635020.00224879620693
+616-8.407717347730.0003108333774620.00126129142194
+624-8.407426851312.03369559308e-050.000103862358053
+640-8.407407332748.18394095603e-077.8551168432e-06
+Measurements and complete records / JSON
+
+## Particles, electrostatics, kinetic and radiative transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#spme-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+T. Darden, D. York and L. Pedersen (1993). Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems · DOI: 10.1063/1.464397
+Review scope / review_level: abstract-and-metadata
+Original PDF opening and abstract checked; historical original PME is distinguished from the implemented B-spline variant.
+U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen (1995). A smooth particle mesh Ewald method · DOI: 10.1063/1.470117
+Review scope / review_level: selected-full-text
+Original PDF abstract and selected spline/structure-factor, FFT and analytic-gradient material checked; not a reproduction of every paper benchmark.
+
+## Particles, electrostatics, kinetic and radiative transport — 2D logarithmic FMM with M2M, M2L and L2L [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
+
+## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm-assumptions
+Coverage: reading
+
+Particles lie in a unit-square bounding box, not a physical wall boundary. The kernel is phi=−sum(q log r), with field −grad(phi); self terms are excluded and no periodic images are used.
+
+## Particles, electrostatics, kinetic and radiative transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm-algorithm
+Coverage: reading
+
+Implement leaf P2M, upward M2M, interaction-list M2L, downward L2L, local-polynomial evaluation and near-field P2P. Record translation and near-pair counts; this is not a Barnes–Hut traversal relabeled as FMM.
+M_k(c)=\sum_jq_j(z_j-c)^kf(z)=M_0\log(z-c)-\sum_{k=1}^p\frac{M_k}{k(z-c)^k},\qquad\phi=-\Re f
+
+## Particles, electrostatics, kinetic and radiative transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm-validation
+Coverage: reading
+
+For 128 fixed-seed particles, sweep orders 2/4/8/12 and compare every potential/field component with a separate all-pairs calculation. Also check two-source signs, permutation invariance and potential derivatives.
+
+## Particles, electrostatics, kinetic and radiative transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm-limits
+Coverage: reading
+
+No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation.
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+potential_max_error5.95309384011e-07
+field_max_error6.36492158819e-05
+finest_to_coarsest_ratio3.41946578774e-05
+判定 / checkPassed
+potential_max_errortrue
+field_max_errortrue
+finest_to_coarsest_ratiotrue
+actual_m2ltrue
+actual_l2ltrue
+near_field_is_subsettrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+orderpotential_max_errorfield_max_errorm2l_translationsl2l_translationsnear_pairsall_pairs
+20.05596920857291.86137893557127284195416256
+40.003976797337460.212697094288127284195416256
+83.59801375875e-050.00399892636657127284195416256
+125.95309384011e-076.36492158819e-05127284195416256
+Measurements and complete records / JSON
+
+## Particles, electrostatics, kinetic and radiative transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+L. Greengard and V. Rokhlin (1987). A fast algorithm for particle simulations · DOI: 10.1016/0021-9991(87)90140-9
+Review scope / review_level: selected-full-text
+Institution-hosted reprint consulted for the log kernel, moments, three translations and up/down passes; 1997 reprint distinguished from 1987 original.
+
+## Particles, electrostatics, kinetic and radiative transport — Cold-plasma oscillation with electrostatic CIC PIC [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently.
+
+## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-assumptions
+Coverage: reading
+
+Dimensionless length 2pi, electron charge/mass −1, stationary ion density one and plasma frequency one. A quiet start receives a small sinusoidal displacement of amplitude 0.001.
+
+## Particles, electrostatics, kinetic and radiative transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-algorithm
+Coverage: reading
+
+Combine CIC deposition and matching field gathering, a mean-zero spectral Poisson solve and velocity Verlet. Set the field Nyquist mode to zero for a real skew-adjoint spectral derivative.
+\dot x_i=v_i,\quad\dot v_i=-E_h(x_i),\quad-\phi_{xx}=\rho,\quad E=-\phi_xA(t)/A(0)\simeq\cos(\omega_pt),\qquad\omega_p=1
+
+## Particles, electrostatics, kinetic and radiative transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-validation
+Coverage: reading
+
+Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force.
+
+## Particles, electrostatics, kinetic and radiative transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-limits
+Coverage: reading
+
+Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated.
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+mode_error0.000886723736396
+time_mode_error0.000438557578256
+charge_error1.743934249e-16
+poisson_residual1.05879118407e-22
+self_force3.33066907388e-16
+grid_refinement_ratio0.057532353094
+time_refinement_ratio0.0142609763205
+判定 / checkPassed
+mode_errortrue
+charge_errortrue
+poisson_residualtrue
+self_forcetrue
+time_errortrue
+grid_refinestrue
+time_refinestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriesgriddtparticleserrorenergy_defecttimemodeexact_modeenergy
+grid320.01994662002282560.01541261027420.00014068233929————
+grid640.01994662002285120.003788363809120.000111139390123————
+grid1280.019946620022810240.0008867237363960.00010232191244————
+time5120.39269908169940960.03075228290120.0385481856499————
+time5120.19634954084940960.007700893661190.00963805059296————
+time5120.09973310011440960.001936197445870.00248535778475————
+time5120.04986655005740960.0004385575782560.000621348552723————
+trajectory—————0111.57075720953e-06
+trajectory—————0.0498665500570.9987566947970.9987569212191.57075477924e-06
+trajectory—————0.0997331001140.9950298708060.9950307753651.57074751576e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————0.1495996501710.9888287951910.9888308262251.57073551186e-06
+trajectory—————0.1994662002280.9801688876010.9801724878491.57071886518e-06
+trajectory—————0.2493327502850.9690716818470.9690772862291.57069773862e-06
+trajectory—————0.2991993003420.9555647723530.9555728057861.57067234796e-06
+trajectory—————0.3490658503990.9396817455450.9396926207861.57064295549e-06
+trajectory—————0.3989324004560.9214620963140.921476211871.57060985418e-06
+trajectory—————0.4487989505130.9009511298160.9009688679021.57057334809e-06
+trajectory—————0.498665500570.8781998488340.878221573371.57053381932e-06
+trajectory—————0.5485320506270.8532648269360.8532908816321.5704916625e-06
+trajectory—————0.5983986006840.8262080678030.8262387743161.57044728283e-06
+trajectory—————0.6482651507410.7970968510560.7971325072231.57040113435e-06
+trajectory—————0.6981317007980.7660035649480.7660444431191.57035367052e-06
+trajectory—————0.7479982508550.7330055263660.733051871831.5703053634e-06
+trajectory—————0.7978648009120.6981847885720.6982368180861.57025669431e-06
+trajectory—————0.8477313509690.661627937170.6616858375971.570208147e-06
+trajectory—————0.8975979010260.6234258748020.6234898018591.57016020397e-06
+trajectory—————0.9474644510830.583673595110.5837436722351.57011334176e-06
+trajectory—————0.997331001140.5424699465240.5425462638661.57006802617e-06
+trajectory—————1.04719755120.4999173864630.51.57002470763e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————1.097064101250.4561217265650.4562106573531.56998381674e-06
+trajectory—————1.146930651310.4111918695740.4112871031311.56994575997e-06
+trajectory—————1.196797201370.365239538540.3653410243661.56991091562e-06
+trajectory—————1.246663751420.318378999010.3184866502521.56987963007e-06
+trajectory—————1.296530301480.2707267748950.2708404681431.56985221433e-06
+trajectory—————1.346396851540.2224013587140.2225209339561.56982894094e-06
+trajectory—————1.39626340160.1735229169580.1736481776671.56981004126e-06
+trajectory—————1.446129951650.1242129912760.1243437046471.56979570317e-06
+trajectory—————1.495996501710.074594196250.07473009358641.56978606923e-06
+trajectory—————1.545863051770.02478991450310.02493069173811.5697812352e-06
+trajectory—————1.59572960182-0.0250760101091-0.02493069173811.56978124913e-06
+trajectory—————1.64559615188-0.0748795804479-0.07473009358641.5697861109e-06
+trajectory—————1.69546270194-0.124496954425-0.1243437046471.56979577217e-06
+trajectory—————1.74532925199-0.173804752948-0.1736481776671.56981013688e-06
+trajectory—————1.79519580205-0.222680366719-0.2225209339561.56982906225e-06
+trajectory—————1.84506235211-0.271002261114-0.2708404681431.56985236012e-06
+trajectory—————1.89492890217-0.318650278394-0.3184866502521.56987979889e-06
+trajectory—————1.94479545222-0.365505936489-0.3653410243661.56991110578e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————1.99466200228-0.411452723617-0.4112871031311.56994596959e-06
+trajectory—————2.04452855234-0.456376388005-0.4562106573531.56998404375e-06
+trajectory—————2.09439510239-0.500165221988-0.51.57002494976e-06
+trajectory—————2.14426165245-0.542710339782-0.5425462638661.57006828101e-06
+trajectory—————2.19412820251-0.58390594824-0.5837436722351.57011360678e-06
+trajectory—————2.24399475256-0.623649609922-0.6234898018591.57016047654e-06
+trajectory—————2.29386130262-0.66184249781-0.6616858375971.5702084244e-06
+trajectory—————2.34372785268-0.698389641062-0.6982368180861.5702569738e-06
+trajectory—————2.39359440274-0.733200161157-0.733051871831.57030564219e-06
+trajectory—————2.44346095279-0.766187497883-0.7660444431191.57035394585e-06
+trajectory—————2.49332750285-0.797269624574-0.7971325072231.57040140366e-06
+trajectory—————2.54319405291-0.826369252078-0.8262387743161.57044754223e-06
+trajectory—————2.59306060296-0.853414020948-0.8532908816321.57049190945e-06
+trajectory—————2.64292715302-0.878336681374-0.878221573371.57053405456e-06
+trajectory—————2.69279370308-0.901075260408-0.9009688679021.57057356494e-06
+trajectory—————2.74266025313-0.921573216067-0.921476211871.57061005742e-06
+trajectory—————2.79252680319-0.939779577921-0.9396926207861.57064313308e-06
+trajectory—————2.84239335325-0.955649073863-0.9555728057861.57067250253e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————2.8922599033-0.969142242653-0.9690772862291.57069787378e-06
+trajectory—————2.94212645336-0.980225532036-0.9801724878491.57071897776e-06
+trajectory—————2.99199300342-0.988871382197-0.9888308262251.57073559688e-06
+trajectory—————3.04185955348-0.995058294285-0.9950307753651.57074756838e-06
+trajectory—————3.09172610353-0.998770883879-0.9987569212191.57075480999e-06
+trajectory—————3.14159265359-0.999999919208-11.5707572143e-06
+trajectory—————3.19145920365-0.998742344137-0.9987569212191.57075475423e-06
+trajectory—————3.2413257537-0.99500128577-0.9950307753651.57074745749e-06
+trajectory—————3.29119230376-0.988786046666-0.9888308262251.57073543175e-06
+trajectory—————3.34105885382-0.980112081686-0.9801724878491.57071876017e-06
+trajectory—————3.39092540387-0.96900095959-0.9690772862291.5706976059e-06
+trajectory—————3.44079195393-0.955480309404-0.9555728057861.57067219006e-06
+trajectory—————3.49065850399-0.939583751715-0.9396926207861.57064277344e-06
+trajectory—————3.54052505405-0.921350815058-0.921476211871.57060965657e-06
+trajectory—————3.5903916041-0.90082683762-0.9009688679021.57057313124e-06
+trajectory—————3.64025815416-0.878062854536-0.878221573371.57053358463e-06
+trajectory—————3.69012470422-0.853115470961-0.8532908816321.57049141548e-06
+trajectory—————3.73999125427-0.826046721315-0.8262387743161.57044702447e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————3.78985780433-0.796923915043-0.7971325072231.57040086555e-06
+trajectory—————3.83972435439-0.765819469229-0.7660444431191.57035339561e-06
+trajectory—————3.88959090444-0.732810728523-0.733051871831.57030508502e-06
+trajectory—————3.9394574545-0.697979772816-0.6982368180861.57025641526e-06
+trajectory—————3.98932400456-0.661413213136-0.6616858375971.57020787003e-06
+trajectory—————4.03919055462-0.623201976282-0.6234898018591.57015993185e-06
+trajectory—————4.08905710467-0.583441078726-0.5837436722351.5701130772e-06
+trajectory—————4.13892365473-0.542229390343-0.5425462638661.5700677718e-06
+trajectory—————4.18879020479-0.499669388558-0.51.57002446599e-06
+trajectory—————4.23865675484-0.455866903529-0.4562106573531.56998359023e-06
+trajectory—————4.2885233049-0.410930854984-0.4112871031311.56994555084e-06
+trajectory—————4.33838985496-0.364972981384-0.3653410243661.56991072596e-06
+trajectory—————4.38825640501-0.318107562069-0.3184866502521.56987946178e-06
+trajectory—————4.43812295507-0.270451133094-0.2708404681431.56985206907e-06
+trajectory—————4.48798950513-0.222122197443-0.2225209339561.56982882016e-06
+trajectory—————4.53785605519-0.173240930367-0.1736481776671.56980994617e-06
+trajectory—————4.58772260524-0.123928880546-0.1243437046471.56979563473e-06
+trajectory—————4.6375891553-0.0743086678501-0.07473009358641.56978602811e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————4.68745570536-0.0245036784296-0.02493069173811.56978122181e-06
+trajectory—————4.737322255410.02536224209830.02493069173811.56978126362e-06
+trajectory—————4.787188805470.07516509660490.07473009358641.56978615312e-06
+trajectory—————4.837055355530.1247810447830.1243437046471.5697958417e-06
+trajectory—————4.886921905580.174086711090.1736481776671.56981023305e-06
+trajectory—————4.936788455640.2229594915350.2225209339561.56982918409e-06
+trajectory—————4.98665500570.2712778585440.2708404681431.56985250643e-06
+trajectory—————5.036521555760.3189216631580.3184866502521.56987996822e-06
+trajectory—————5.086388105810.3657724337920.3653410243661.56991129646e-06
+trajectory—————5.136254655870.4117136708270.4112871031311.56994617972e-06
+trajectory—————5.186121205930.4566311363030.4562106573531.56998427124e-06
+trajectory—————5.235987755980.5004131379820.51.57002519236e-06
+trajectory—————5.285854306040.5429508070820.5425462638661.57006853631e-06
+trajectory—————5.33572085610.5841383689950.5837436722351.57011387225e-06
+trajectory—————5.385587406150.6238734063020.6234898018591.57016074954e-06
+trajectory—————5.435453956210.6620571134480.6616858375971.57020870223e-06
+trajectory—————5.485320506270.6985945424350.6982368180861.57025725369e-06
+trajectory—————5.535187056320.7333948389150.733051871831.57030592137e-06
+trajectory—————5.585053606380.7663714681140.7660444431191.57035422154e-06
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————5.634920156440.7974424300080.7971325072231.57040167327e-06
+trajectory—————5.68478670650.826530463220.8262387743161.57044780327e-06
+trajectory—————5.734653256550.8535632371460.8532908816321.57049215768e-06
+trajectory—————5.784519806610.8784735318090.878221573371.57053429006e-06
+trajectory—————5.834386356670.9011994050120.9009688679021.57057378319e-06
+trajectory—————5.884252906720.921684346370.921476211871.5706102562e-06
+trajectory—————5.934119456780.939877417810.9396926207861.57064331541e-06
+trajectory—————5.983986006840.9557333802660.9555728057861.57067266379e-06
+trajectory—————6.033852556890.9692128061440.9690772862291.5706980063e-06
+trajectory—————6.083719106950.9802821773620.9801724878491.57071908341e-06
+trajectory—————6.133585657010.9889139687080.9888308262251.57073567682e-06
+trajectory—————6.183452207070.9950867162850.9950307753651.57074762752e-06
+trajectory—————6.233318757120.9987850708850.9987569212191.57075483583e-06
+trajectory—————6.283185307180.99999983613511.57075721035e-06
+Measurements and complete records / JSON
+
+## Particles, electrostatics, kinetic and radiative transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#pic-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+R. W. Hockney and J. W. Eastwood (1988). Computer Simulation Using Particles · DOI: 10.1201/9780367806934
+Review scope / review_level: publisher-preview-and-metadata
+Publisher preview bibliography, introduction and contents checked; historical source for CIC/cold plasma, not a full-book audit.
+
+## Particles, electrostatics, kinetic and radiative transport — Conservation and Maxwell relaxation in a homogeneous DSMC collision component [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
+
+## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-assumptions
+Coverage: reading
+
+Homogeneous, equal masses, isotropic scattering and constant collision rate. Each round randomly matches every particle once. Two initial beams at ±sqrt(3) give target temperature one. Each seed has zero total momentum and fixed total energy: its finite-N equilibrium is microcanonical, while Maxwell/Gamma are large-N references.
+
+## Particles, electrostatics, kinetic and radiative transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-algorithm
+Coverage: reading
+
+Preserve pair center-of-mass velocity and relative speed, then choose the new relative direction uniformly on the sphere. Rounds count collision operations and are not calibrated physical time. For D=<vx²−(vy²+vz²)/2>, averaging a random partner multiplies the center-of-mass anisotropy by (N−2)/(2(N−1)); isotropic postcollision relative directions contribute zero expected anisotropy.
+\mathbf v_{1,2}^{\prime}=\mathbf V\pm\frac{|\mathbf g|}{2}\mathbf n,\qquad|\mathbf n|=1\mathbb E[D_{r+1}]=\frac{N-2}{2(N-1)}\mathbb E[D_r]
+
+## Particles, electrostatics, kinetic and radiative transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-validation
+Coverage: reading
+
+Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty.
+
+## Particles, electrostatics, kinetic and radiative transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-limits
+Coverage: reading
+
+This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced.
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+momentum_error1.2923689896e-16
+energy_error2.96059473233e-16
+variance_error0.00837176723134
+fourth_moment_error0.0663175402315
+energy_cdf_ks0.00172150826
+anisotropy_error0.0110171007881
+finest_particle_count8192
+seeds16
+判定 / checkPassed
+momentum_errortrue
+energy_errortrue
+variance_errortrue
+fourth_moment_errortrue
+energy_cdf_kstrue
+anisotropy_errortrue
+sampling_uncertainty_decreasestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+particlesvariance_errorfourth_moment_errorfourth_moment_standard_errorenergy_cdf_ksanisotropy_errorseriesroundanisotropyexpected
+5120.008240183321860.0923212574890.1070886049250.0071142435470.0362678700945————
+20480.006452072936150.03370540448490.05040107324150.003730684014920.0255253460316————
+81920.008371767231340.06631754023150.03081828192460.001721508260.0110171007881————
+——————anisotropy033
+——————anisotropy11.500187805391.49981687218
+——————anisotropy20.7462989132930.749816883355
+——————anisotropy30.3700428667380.3748626709
+——————anisotropy40.1873328304240.187408452855
+——————anisotropy50.09594138398580.0936927865268
+——————anisotropy60.05587361819130.0468406740114
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-measurements
+Coverage: reading
+
+——————anisotropy70.03443457851690.0234174777288
+——————anisotropy80.01767531822430.0117073094005
+——————anisotropy90.01608970585590.00585294005555
+——————anisotropy100.0061721618190.00292611274905
+——————anisotropy110.01108921343050.00146287775697
+——————anisotropy120.007192178827130.000731349580613
+——————anisotropy13-0.002157978851670.000365630146821
+——————anisotropy14-0.004459860915660.000182792754393
+——————anisotropy15-0.009353743750619.13852190501e-05
+——————anisotropy16-0.005073765779944.5687031133e-05
+——————anisotropy17-0.002045292150232.2840726711e-05
+——————anisotropy18-0.005833196675721.1418969098e-05
+——————anisotropy19-0.009893445790365.70878750533e-06
+——————anisotropy20-0.002116956078352.85404527339e-06
+——————anisotropy210.0002336754433851.42684841833e-06
+——————anisotropy220.002510057646997.13337110615e-07
+——————anisotropy23-0.003399112906253.5662501135e-07
+——————anisotropy24-0.00443917515381.78290736354e-07
+Measurements and complete records / JSON
+
+## Particles, electrostatics, kinetic and radiative transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#dsmc-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. A. Bird (1963). Approach to Translational Equilibrium in a Rigid Sphere Gas · DOI: 10.1063/1.1710976
+Review scope / review_level: metadata-only
+Official Sandia DSMC commemorative document and DOI metadata checked; publisher text unavailable and the original hard-sphere model is not claimed as reproduced.
+
+## Particles, electrostatics, kinetic and radiative transport — Discrete-ordinate radiation transport through an absorbing slab [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux.
+
+## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-assumptions
+Coverage: reading
+
+A uniform slab of optical depth 0.7 receives unit intensity over the positive hemisphere, with zero reverse inflow, scattering and emission.
+
+## Particles, electrostatics, kinetic and radiative transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-algorithm
+Coverage: reading
+
+Use positive Gauss–Legendre ordinates and first-order upstream finite-volume marching. A separate angular-error sweep uses exact exponential propagation within each constant cell.
+\mu\frac{dI}{d\tau}+I=0,\qquad I(\tau,\mu)=e^{-\tau/\mu}F_{\rm out}=2\pi\int_0^1\mu e^{-\tau/\mu}d\mu=2\pi E_3(\tau)
+
+## Particles, electrostatics, kinetic and radiative transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-validation
+Coverage: reading
+
+With 32–512 cells, check all ray intensities, spatial flux error, positivity and discrete absorption balance. A separate 4–32-ordinate sweep compares exit flux with the analytic 2pi E3(tau) representation.
+
+## Particles, electrostatics, kinetic and radiative transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-limits
+Coverage: reading
+
+Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization.
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+ray_max_error0.0123146287617
+spatial_flux_error0.00112305472353
+angular_flux_error4.55835369451e-12
+balance_error9.7699626167e-15
+refinement_ratio0.063093665141
+判定 / checkPassed
+ray_max_errortrue
+spatial_flux_errortrue
+angular_flux_errortrue
+balance_errortrue
+refinement_ratiotrue
+positive_bounded_intensitytrue
+angular_refinestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriescellsordinatesfluxdiscrete_ray_referencecontinuum_referencespatial_flux_errorangular_flux_errortotal_flux_errorray_max_errorbalance_errorminimum_intensitymaximum_intensity
+spatial3281.061208100451.043408298821.043393054180.01779980162861.52446402792e-050.01781504626890.1435031772818.881784197e-164.75898724131e-111
+spatial6481.052353109441.043408298821.043393054180.008944810613411.52446402792e-050.008960055253690.08347342691861.7763568394e-156.35670300567e-131
+spatial12881.0478920071.043408298821.043393054180.004483708175251.52446402792e-050.004498952815530.04559849080241.33226762955e-152.99090933434e-141
+spatial25681.045652988211.043408298821.043393054180.002244689384191.52446402792e-050.002259934024470.0239325665589.7699626167e-154.521283828e-151
+
+## Particles, electrostatics, kinetic and radiative transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-measurements
+Coverage: reading
+
+spatial51281.044531353551.043408298821.043393054180.001123054723531.52446402792e-050.001138299363810.01231462876173.10862446895e-151.55912441609e-151
+angular841.043218980361.043218980361.0433930541800.000174073824680.000174073824681.11022302463e-1604.18328232166e-051
+angular881.043408298821.043408298821.043393054182.22044604925e-161.52446402792e-051.52446402795e-051.11022302463e-1604.88361522381e-161
+angular8161.043393009961.043393009961.0433930541804.42238159426e-084.42238159426e-082.22044604925e-1604.31808802935e-581
+angular8321.043393054181.043393054181.043393054182.22044604925e-164.55835369451e-124.55857573911e-123.33066907388e-1606.08852209043e-2231
+Measurements and complete records / JSON
+
+## Particles, electrostatics, kinetic and radiative transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#radiation-transport-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media · DOI: 10.1364/AO.27.002502
+Review scope / review_level: selected-full-text
+Publisher HTML bibliography, abstract and base transfer equation checked; cited as discrete-ordinate background, not full DISORT implementation.
+NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
+Review scope / review_level: official-documentation
+Official integral representation of the generalized exponential integral checked; year denotes access year.
 
 ## Wavelets — Wavelets [en]
 
@@ -13511,7 +16506,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 代数的マルチグリッド（AMG）
 
 ## 代数的マルチグリッド（AMG） — 一次文献・関連資料と確認範囲 [ja]
@@ -13866,7 +16861,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
 Coverage: reading
 
-個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22項目の文献調査を基に、ロジスティック増殖と閉鎖SIRの固定入力計算・参照比較・時間収束を追加しました。その他のモデルは検証案の段階です。
+個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22モデル族の文献解説に、既存のロジスティック増殖・閉鎖SIRと、新しい線形反応拡散Fourierモード・SchnakenbergのTuring発現・FitzHugh–Nagumo励起回復の小さな専用例を接続。全22モデルやHodgkin–Huxleyの実装を意味しません。
 以下は慣用的な簡略形・規格化形です。出典はモデルの系譜を示し、すべての係数や変数が原論文と一致するという意味ではありません。構造化カタログに、各項目の引用、数値的な課題、検証目標、範囲を記録しています。現代数理生物学の網羅的総説ではなく、数値計算の多様性を重視した選定です。出典確認日は2026年11月6日です。
 
 ## 生物モデル方程式と数値検証 — 生物の問いと数値計算法の対応# [ja]
@@ -13990,7 +16985,7 @@ C_m\dot V=I_{app}-\bar g_{Na}m^3h(V-E_{Na})-\bar g_Kn^4(V-E_K)-g_L(V-E_L),\quad\
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#09-1952-turing-reactiondiffusion-framework
 Coverage: reading
 
-模様形成・文献調査のみ。 一様な反応平衡のまわりで拡散駆動の模様が生じる枠組みです。f,gを一意に指定するモデルではありません。
+Schnakenbergの線形発現と短い非線形例に限定した補助実装あり。 一様な反応平衡のまわりで拡散駆動の模様が生じる枠組みです。f,gを一意に指定するモデルではありません。
 u_t=D_u\Delta u+f(u,v),\qquad v_t=D_v\Delta v+g(u,v).
 数値的な課題。 物理不安定性と数値不安定性、領域の固有モード、離散Laplacianの分散関係の誤差を区別します。
 検証案。 反応則を指定し、J−k²diag(Du,Dv)の固有値と初期のFourierモード成長を比較します。拡散駆動不安定性を論じる前にk=0の反応平衡が安定であることを示します。
@@ -14002,7 +16997,7 @@ u_t=D_u\Delta u+f(u,v),\qquad v_t=D_v\Delta v+g(u,v).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#10-1961-fitzhughnagumo-excitation-and-recovery
 Coverage: reading
 
-興奮系・文献調査のみ。 速い興奮と遅い回復を規格化したモデルです。空間へ拡張するとパルス、不応期、らせん波を表します。
+FHNの励起回復ODE・時間収束例あり。完全HHは未実装。 速い興奮と遅い回復を規格化したモデルです。空間へ拡張するとパルス、不応期、らせん波を表します。
 v_t=D\Delta v+v-v^3/3-w+I,\qquad w_t=\epsilon(v+a-bw).
 数値的な課題。 硬い時間尺度分離、分割誤差、波速の収束、数値的な波の分裂を調べます。
 検証案。 まずODEの固定点・ヌルクラインと微小摂動の固有値を確認します。2次元らせん動画の前に1次元パルスの収束を調べます。
@@ -14086,7 +17081,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#17-1979-schnakenberg-reactiondiffusion
 Coverage: reading
 
-模様形成・文献調査のみ。 単純な自己触媒反応則を空間へ拡張したもので、再現可能なTuring不安定性の発生テストに適しています。
+Schnakenberg初期成長の実行・検証例あり。成熟模様は未検証。 単純な自己触媒反応則を空間へ拡張したもので、再現可能なTuring不安定性の発生テストに適しています。
 u_t=D_u\Delta u+a-u+u^2v,\qquad v_t=D_v\Delta v+b-u^2v.
 数値的な課題。 反応の硬さ、濃度の正値性、反応系のHopf不安定性と空間的なTuring不安定性の違いを調べます。
 検証案。 u*=a+b、v*=b/(a+b)²を確認し、固定した境界条件のもとで、離散・連続の線形化作用素とモード成長率を比較します。
@@ -15057,7 +18052,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dsmc/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 DSMC・運動論輸送
 
 ## DSMC・運動論輸送 — 一次文献・関連資料と確認範囲 [ja]
@@ -15114,7 +18109,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Krylov固有値解法
 
 ## Krylov固有値解法 — 一次文献・関連資料と確認範囲 [ja]
@@ -15354,7 +18349,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ewald/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Ewald法
 
 ## Ewald法 — 一次文献・関連資料と確認範囲 [ja]
@@ -16866,7 +19861,7 @@ Gaussianなど既知分布で平均・分散・分位点を確認し、非対称
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Markov連鎖Monte Carlo
 
 ## Markov連鎖Monte Carlo — 一次文献・関連資料と確認範囲 [ja]
@@ -18116,7 +21111,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pic/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Particle-in-Cell（PIC）
 
 ## Particle-in-Cell（PIC） — 一次文献・関連資料と確認範囲 [ja]
@@ -18230,7 +21225,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pme/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Particle Mesh Ewald（PME）
 
 ## Particle Mesh Ewald（PME） — 一次文献・関連資料と確認範囲 [ja]
@@ -18287,7 +21282,7 @@ A−QR、QᵀQ−I、A−UΣVᵀの相対ノルム、最小二乗の正規性A�
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 QR・SVD・最小二乗
 
 ## QR・SVD・最小二乗 — 一次文献・関連資料と確認範囲 [ja]
@@ -18344,7 +21339,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Gauss求積・適応積分
 
 ## Gauss求積・適応積分 — 一次文献・関連資料と確認範囲 [ja]
@@ -18861,7 +21856,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全67問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全80問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -19036,7 +22031,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 放射輸送・モーメント法
 
 ## 放射輸送・モーメント法 — 一次文献・関連資料と確認範囲 [ja]
@@ -20913,6 +23908,25 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
 Coverage: reading
 
 Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding. Original source
+P. Vaněk, J. Mandel and M. Brezina (1996). Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems. 10.1007/BF02238511
+J. Demmel and K. Veselić (1992). Jacobi’s Method is More Accurate than QR. 10.1137/0613074
+Y. Saad (1980). Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices. 10.1016/0024-3795(80)90169-X
+J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine. 10.1145/321526.321537
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo. 10.1214/ss/1177011137
+B. Leimkuhler and C. Matthews (2013). Rational Construction of Stochastic Numerical Methods for Molecular Sampling. 10.1093/amrx/abs010
+The SciPy community (2024). SciPy1.14.1 solve_discrete_lyapunov reference. Original source
+The SciPy community (2024). SciPy1.14.1 expm reference. Original source
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference. Original source
+NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformations of Lattice Parameter. Original source
+
+## 原著の出版年順に並べた参考文献 — 主要手法の条件整理で追加した一次文献・資料 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
+Coverage: reading
+
+K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media. 10.1364/AO.27.002502
+NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral. Original source
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers. 10.3847/1538-4365/ab929b
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -21876,8 +24890,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素116項目・学術誌／会議論文224件・全参考資料266件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め81章です。
+方程式・モデル46項目・計算法と構成要素128項目・学術誌／会議論文232件・全参考資料279件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め85章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -21972,7 +24986,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は100、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は113、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -22124,7 +25138,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-218件：学術誌論文（総説・翻訳・採録済み論文を含む）
+226件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -22357,7 +25371,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spme/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Smooth PME（SPME）
 
 ## Smooth PME（SPME） — 一次文献・関連資料と確認範囲 [ja]
@@ -23178,21 +26192,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
 Coverage: reading
 
 温度の平均だけでなく、揺らぎ・エルゴード性・時間相関を比べる。Nosé–Hoover、速度スケーリングから確率的・運動量保存型の手法まで。
-12項目の比較解説と原文献への入口を公開。専用コード・実測の検証結果は準備中です。
+12手法を比較解説。LangevinのBAOABによる1次元調和振動子NVTだけに専用コード・固定入力・分布検証を追加。他の11手法は実装予定です。
 
 ## サーモスタット：温度制御と分布の比較 — 何の温度を制御するか [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#temperature
 Coverage: reading
 
-運動エネルギーをK、有効自由度数をfとすると、運動温度は T = 2K / (f k_B)。拘束や重心運動の除去に応じてfを数え、流れがある場合は熱運動と平均流を区別する。回転自由度を含むかも明記する。
+運動エネルギーをK、有効自由度数をfとすると、運動温度は T = 2 K / (f k_B)。拘束や重心運動の除去に応じてfを数え、流れがある場合は熱運動と平均流を区別する。回転自由度を含むかも明記する。
 
 ## サーモスタット：温度制御と分布の比較 — 同じ平均温度でも分布は違う [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#fluctuations
 Coverage: reading
 
-古典的な二次形式の運動エネルギーを持つf個の独立な運動量自由度では、正準平衡で 2K/(k_B T₀) は自由度fのχ²分布。平均Kはf k_B T₀/2、分散はf(k_B T₀)²/2となる。単純な速度スケーリング v ← √(T₀/T) v は適用直後のKを固定し、この揺らぎを再現しない。CSVRは確率的な係数で揺らぎを生成する別の手法である。
+古典的な二次形式の運動エネルギーを持つf個の独立な運動量自由度では、正準平衡で 2 K/(k_B T₀) は自由度fのχ²分布。平均Kはf k_B T₀/2、分散はf(k_B T₀)²/2となる。単純な速度スケーリング v ← √(T₀/T) v は適用直後のKを固定し、この揺らぎを再現しない。CSVRは確率的な係数で揺らぎを生成する別の手法である。
 
 ## サーモスタット：温度制御と分布の比較 — 分布の標本化と運動の再現を分ける [ja]
 
@@ -23200,6 +26214,15 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#
 Coverage: reading
 
 正しい不変分布を持っていても、有限時間の軌道が十分に探索するとは限らない。また平衡分布が正しくても、摩擦や衝突で速度自己相関や拡散は変わり得る。有限時間刻みの誤差、熱浴の結合時間、乱数依存性まで含めて評価する。
+
+## サーモスタット：温度制御と分布の比較 — 調和Langevinの実行・検証例 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
+Coverage: reading
+
+dt=0.4/0.2/0.1、32768独立レプリカ。位置・運動量共分散の刻み依存、時差相関、有限burn-inの残差を分離。固定seedでの分布判定。
+Langevin温度制御：正準分布・刻み偏り・時間相関 · ZIP · 保存結果 · 追試記録
+調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。
 
 ## サーモスタット：温度制御と分布の比較 — 単純な速度スケーリング [ja]
 
@@ -23241,7 +26264,7 @@ GROMACS: temperature coupling
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#langevin-thermostat
 Coverage: reading
 
-摩擦と確率力を運動方程式に加える。平衡の温度を指定するには摩擦と雑音を揺動散逸関係で結ぶ。
+調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
 摩擦は実時間の相関・拡散に影響する。有限刻みでの標本化誤差は積分法と刻み幅も含めて調べる。
 別名・表記：ランジュバン / ランジュヴァン / friction and noise
 項目の状況・JSON・Markdown
@@ -23341,12 +26364,12 @@ Coverage: reading
 項目の状況・JSON・Markdown
 Lowe (1999), An alternative approach to dissipative particle dynamics
 
-## サーモスタット：温度制御と分布の比較 — 次に付ける実行・検証例 [ja]
+## サーモスタット：温度制御と分布の比較 — 検証済みの範囲と次の課題 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#verification
 Coverage: reading
 
-以下は検証の計画であり、測定結果ではない。まず調和振動子・理想気体、次に小さなLennard–Jones系で、平均温度、Kの分布、位置分布、自己相関、結合時間と刻み幅への依存を比較する。複数の独立な乱数系列と相関を考慮した不確かさを記録する。Nosé–Hooverには小自由度系で探索が不十分になる例も付ける。
+調和Langevin BAOABでは位置・運動量・全エネルギーの分布、離散Lyapunov参照、連続Gaussian伝播、刻み依存と時差相関を測定済み。以下は将来の検証案です。非調和振動子・理想気体・小さなLennard–Jones系、結合時間への依存、他の11手法の専用実装へ広げる。Nosé–Hooverには小自由度系で探索が不十分になる例も付ける。
 
 ## サーモスタット：温度制御と分布の比較 — 出典と確認範囲 [ja]
 
@@ -23418,6 +26441,2967 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integrat
 Coverage: reading
 
 シンプレクティック積分の章では、調和・4次Hamilton系に対して、力学的なkick–drift–kick Verlet、吉田の4次合成、シンプレクティックEuler、陰的中点則を実装します。写像ノートではRK4と比較し、正準構造と厳密なエネルギー保存を分けます。
+
+## AMG・行列分解・固有値・求積 — AMG・行列分解・固有値・求積 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/
+Coverage: reading
+
+小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
+
+## AMG・行列分解・固有値・求積 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#run-all
+Coverage: reading
+
+ZIPの atlas-foundations-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## AMG・行列分解・固有値・求積 — 行列から粗視化するAMG：残差と解誤差を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/
+Coverage: reading
+
+正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。
+
+## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg-assumptions
+Coverage: reading
+
+無次元の単位正方形、一定正係数の−Δu=f、全周同次Dirichlet境界、5点差分です。階層構築には座標・格子幅・nを渡さず、係数行列と暗黙の定数近似核だけを使います。入力は実対称正定値を前提とし、任意の不定値行列を扱うソルバーではありません。
+
+## AMG・行列分解・固有値・求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg-algorithm
+Coverage: reading
+
+各行の最大非対角係数に対する相対強度からグラフを作り、貪欲な星型集約と余剰節点の隣接集約への付着で暫定補間Tを作ります。P=(I−ωD⁻¹A)T、ω=4/(3ρ̄)、ρ̄はD⁻¹Aの絶対行和上界です。粗演算子はPᵀAP。前後2回のJacobi平滑化と最終小行列の直接解を用います。これは採用した小規模SA変種であり、原著の全構築法や収束定理の再現ではありません。
+A_c=P^TAP,\quad P=(I-\omega D^{-1}A)Tr_k=b-Ax_k,\quad \eta_k=\|r_k\|_2/\|b\|_2
+
+## AMG・行列分解・固有値・求積 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg-validation
+Coverage: reading
+
+正規化残差、SciPy spsolveとの相対解差、連続正弦解への離散L²型誤差、観測次数、operator complexityを保存します。節点順を無作為に置き換えた行列も直接解と照合し、幾何学的な粗格子を暗黙に使っていないことを確認します。反復予算0は未収束と報告します。
+
+## AMG・行列分解・固有値・求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg-limits
+Coverage: reading
+
+3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_relative_residual7.13959633908e-11
+max_direct_solution_error2.02830808479e-11
+minimum_pde_order2.00208726976
+max_operator_complexity3.19675283059
+判定 / check合格
+all_residual_targetstrue
+independent_sparse_directtrue
+second_order_pde_refinementtrue
+bounded_operator_complexitytrue
+cycle_budget_failure_reportedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+grid_nunknownshcyclesrelative_residualdirect_solution_errorpde_relative_l2_errorobserved_orderlevelsoperator_complexitytermination
+7490.125152.54878604447e-111.13444319729e-110.0129507467109—31.63594470046residual_tolerance
+152250.0625196.0394249552e-111.97820823102e-110.003218964427482.0083667439442.53145539906residual_tolerance
+319610.03125257.13959633908e-112.02830808479e-110.0008035776612192.0020872697643.19675283059residual_tolerance
+この例の実測値・全記録 / JSON
+
+## AMG・行列分解・固有値・求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#sa-amg-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+P. Vaněk, J. Mandel and M. Brezina (1996). Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems · DOI: 10.1007/BF02238511
+確認範囲 / review_level: publisher-abstract-and-metadata
+独立参照の公式資料：scipy.sparse.linalg.spsolve.html
+
+## AMG・行列分解・固有値・求積 — Householder QRと片側Jacobi SVD：直交性・階数・最小二乗 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/
+Coverage: reading
+
+実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。
+
+## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-assumptions
+Coverage: reading
+
+m≥nの小さな実行列が対象です。SVDの数値階数は最大特異値に対する相対しきい値10⁻¹²で定義し、零特異値方向を除くcompact因子を返します。QRは列ピボットなしで、階数判定には用いません。
+
+## AMG・行列分解・固有値・求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-algorithm
+Coverage: reading
+
+Householder反射を左から蓄積してRを上三角化し、Qを構成します。Jacobi SVDは列対の内積を小さくする直交回転を繰り返し、回転した列の長さを特異値とします。AᵀAを作って固有値を求める方法ではありません。最小二乗はQRの後退代入、階数落ちでは打切りSVDで求めます。
+A=QR,\quad Q^TQ=IA\simeq U_r\Sigma_rV_r^T,\quad x_{\min}=V_r\Sigma_r^{-1}U_r^Tb
+
+## AMG・行列分解・固有値・求積 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-validation
+Coverage: reading
+
+QR/SVDの相対再構成誤差、Q/U/Vの直交性、SciPy LAPACK gesddの特異値、gelsd/gelsyの最小二乗解・階数、正規方程式の停留残差を比較します。特異ベクトルの符号は比較せず、零行列と予算切れも検査します。
+
+## AMG・行列分解・固有値・求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-limits
+Coverage: reading
+
+完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_qr_reconstruction9.19763157372e-16
+max_svd_reconstruction1.05190958984e-13
+max_singular_value_error3.39922729968e-16
+max_least_squares_error9.16412759004e-15
+max_orthogonality1.31042119748e-15
+判定 / check合格
+all_jacobi_converged_and_ranks_matchtrue
+householder_reconstructiontrue
+householder_orthogonalitytrue
+jacobi_reconstructiontrue
+jacobi_orthogonalitytrue
+independent_lapack_singular_valuestrue
+independent_minimum_norm_least_squarestrue
+qr_least_squarestrue
+least_squares_stationaritytrue
+sweep_budget_failure_reportedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+matrixrowscolumnsqr_reconstructionqr_orthogonalitysvd_reconstructionsingular_value_erroru_orthogonalityv_orthogonalityleast_squares_solution_errornormal_residualqr_least_squares_errorrankreference_rankjacobi_sweepstermination
+full-rank1255.07025478974e-167.63132737249e-168.35194964829e-163.39922729968e-167.94324831748e-161.17755333268e-152.3876248942e-168.47689997581e-174.17257794382e-16555column_orthogonality
+column-scaled1049.19763157372e-161.31042119748e-152.3471676067e-168.50210477162e-183.43901800045e-164.44104456566e-165.80540841218e-162.61998829102e-172.75634341002e-16442column_orthogonality
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-measurements
+Coverage: reading
+
+rank-deficient943.1067798337e-165.94580636948e-161.05190958984e-131.93398535063e-164.4408920985e-164.4408920985e-169.16412759004e-151.84055732375e-16—223column_orthogonality
+この例の実測値・全記録 / JSON
+
+## AMG・行列分解・固有値・求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix · DOI: 10.1145/320941.320947
+確認範囲 / review_level: publisher-metadata
+J. Demmel and K. Veselić (1992). Jacobi’s Method is More Accurate than QR · DOI: 10.1137/0613074
+確認範囲 / review_level: publisher-abstract-and-metadata
+独立参照の公式資料：scipy.linalg.svd.html · scipy.linalg.lstsq.html
+
+## AMG・行列分解・固有値・求積 — Lanczos・Arnoldi：Ritz値と固有対残差の収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/
+Coverage: reading
+
+32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。
+
+## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-assumptions
+Coverage: reading
+
+対称問題では実対称行列、非対称問題では既知の分離した最大固有値5を持つ実行列を使います。初期ベクトルは固定seedです。非対称Ritz値は複素数を許し、最大実部で選びます。
+
+## AMG・行列分解・固有値・求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-algorithm
+Coverage: reading
+
+Lanczosの3項漸化式に2回の全再直交化を加え、Arnoldiは修正Gram–Schmidtを2回行います。小さな射影行列T/HだけをNumPyのeigh/eigで解き、元空間へRitzベクトルを戻します。大きな元行列の密固有値計算は参照側だけで使います。
+AV_m=V_mH_m+h_{m+1,m}v_{m+1}e_m^TH_my=\theta y,\quad v=V_my,\quad r=Av-\theta v
+
+## AMG・行列分解・固有値・求積 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-validation
+Coverage: reading
+
+||Av−λv||₂、独立密行列固有値との差、基底の直交性を保存し、Krylov次元を増やした末尾の改善を確認します。非対称Ritz値の単調収束は仮定しません。恒等行列のhappy breakdown、零初期ベクトル拒否、次元予算不足も検査します。
+
+## AMG・行列分解・固有値・求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-limits
+Coverage: reading
+
+非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_final_eigenpair_residual1.43949246477e-12
+max_basis_orthogonality4.9115363144e-16
+判定 / check合格
+independent_dense_eigenvalues_and_residualstrue
+krylov_basis_orthogonalitytrue
+dimension_budget_failure_reportedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+methodsizedimensionseigenvalue_realeigenvalue_imagreference_realreference_imageigenvalue_erroreigenpair_residualorthogonalitytermination
+lanczos3244.997214066120500.002785933875540.1154328696912.4331315602e-16dimension_budget
+lanczos3284.999999999990509.70956648416e-126.96284476967e-062.66461630547e-16dimension_budget
+lanczos321650501.7763568394e-154.80753451116e-143.83909367751e-16residual_tolerance
+lanczos4844.999872581020500.0001274189773040.02503251990834.44241319189e-16dimension_budget
+lanczos48850501.23190346812e-122.44074266912e-064.68625337478e-16dimension_budget
+lanczos481650508.881784197e-162.77053378781e-144.72934336361e-16residual_tolerance
+arnoldi3244.989249108020500.01075089198430.1807353558433.35190880744e-16dimension_budget
+arnoldi3285.000000391540503.91538063305e-074.88943321335e-053.47503904733e-16dimension_budget
+arnoldi321650501.06581410364e-141.43949246477e-123.91857621265e-16residual_tolerance
+arnoldi4844.999526918460500.0004730815375420.03192023813444.54161912893e-16dimension_budget
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-measurements
+Coverage: reading
+
+arnoldi4884.999999896710501.03291673881e-079.56809716175e-064.58667551801e-16dimension_budget
+arnoldi481650504.4408920985e-158.96017837137e-134.9115363144e-16residual_tolerance
+この例の実測値・全記録 / JSON
+
+## AMG・行列分解・固有値・求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#krylov-eigenvalues-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+C. Lanczos (1950). An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators · DOI: 10.6028/jres.045.026
+確認範囲 / review_level: primary-first-page-and-official-metadata
+W. E. Arnoldi (1951). The principle of minimized iterations in the solution of the matrix eigenvalue problem · DOI: 10.1090/qam/42792
+確認範囲 / review_level: publisher-metadata-and-reference-list
+Y. Saad (1980). Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices · DOI: 10.1016/0024-3795(80)90169-X
+確認範囲 / review_level: publisher-abstract-and-metadata
+独立参照の公式資料：scipy.linalg.eigh.html · scipy.linalg.eig.html
+
+## AMG・行列分解・固有値・求積 — Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/
+Coverage: reading
+
+Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。
+
+## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-assumptions
+Coverage: reading
+
+有限区間上の滑らかな実関数、無次元の積分です。固定Gauss次数2・4・8・16と、適応絶対公差10⁻⁵・10⁻⁷・10⁻⁹を別々に走査します。両端特異点・不連続・無限区間は今回の入力では扱いません。
+
+## AMG・行列分解・固有値・求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-algorithm
+Coverage: reading
+
+Golub–Welschで対称Jacobi行列の固有値を節点、最初の固有ベクトル成分の平方の2倍を重みとします。適応Simpsonは区間を二分し、|S左+S右−S全|/15を局所推定として公差を配分します。評価回数と深さの上限を持ち、未達を成功としません。
+\int_{-1}^{1}f(x)\,dx\simeq\sum_{j=1}^{n}w_jf(x_j)E_{\mathrm{est}}=|S_{\mathrm{left}}+S_{\mathrm{right}}-S_{\mathrm{whole}}|/15
+
+## AMG・行列分解・固有値・求積 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-validation
+Coverage: reading
+
+全指定次数の多項式モーメント、SciPy roots_legendreの節点・重みとの差、解析exp積分の次数収束、解析atan積分とSciPy quadへの一致を測ります。公差を厳しくしたときの評価数と誤差を示し、5評価の強制予算切れ、非有限関数値も検査します。
+
+## AMG・行列分解・固有値・求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-limits
+Coverage: reading
+
+Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_polynomial_moment_error8.881784197e-16
+max_scipy_rule_error1.2490009027e-15
+gauss_final_exp_error0
+max_adaptive_error_over_tolerance0.0172997149439
+budget_failure_evaluations5
+判定 / check合格
+gauss_polynomial_momentstrue
+independent_scipy_gauss_ruletrue
+gauss_nonsingular_refinementtrue
+adaptive_exact_and_quad_referencestrue
+evaluation_budget_failure_reportedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+methodorder_or_toleranceintegralanalytic_errorscipy_rule_errormoment_errorevaluationsestimated_errortermination
+gauss-legendre22.342696087910.007706299377872.22044604925e-164.4408920985e-162—fixed_order
+gauss-legendre42.350402092162.9513122568e-076.66133814775e-163.33066907388e-164—fixed_order
+gauss-legendre82.350402387291.7763568394e-151.2490009027e-158.881784197e-168—fixed_order
+gauss-legendre162.3504023872901.13797860024e-153.33066907388e-1616—fixed_order
+adaptive-simpson-exponential1e-052.350402406111.88211939367e-081.88211934926e-08—173.16319584268e-06estimated_tolerance
+adaptive-simpson-exponential1e-072.350402387323.42037509427e-113.42033068534e-11—573.13742662813e-08estimated_tolerance
+adaptive-simpson-exponential1e-092.350402387293.68594044176e-143.64153152077e-14—1654.15210993365e-10estimated_tolerance
+
+## AMG・行列分解・固有値・求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-measurements
+Coverage: reading
+
+adaptive-simpson-lorentzian1e-050.2942257078581.72997149439e-071.72997149439e-07—812.54528535027e-06estimated_tolerance
+adaptive-simpson-lorentzian1e-070.2942255346572.03972616575e-102.03972616575e-10—2652.53728436498e-08estimated_tolerance
+adaptive-simpson-lorentzian1e-090.2942255348613.95072863313e-133.95072863313e-13—7693.54940816376e-10estimated_tolerance
+この例の実測値・全記録 / JSON
+
+## AMG・行列分解・固有値・求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#gauss-adaptive-quadrature-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. H. Golub and J. H. Welsch (1969). Calculation of Gauss Quadrature Rules · DOI: 10.1090/S0025-5718-69-99647-1
+確認範囲 / review_level: publisher-search-first-page-and-metadata
+J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
+確認範囲 / review_level: publisher-metadata
+独立参照の公式資料：scipy.special.roots_legendre.html · scipy.integrate.quad.html
+
+## 流体・MHDの独立照合とCT／GLM — 流体・MHDの独立照合とCT／GLM [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/
+Coverage: reading
+
+小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
+
+## 流体・MHDの独立照合とCT／GLM — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#run-all
+Coverage: reading
+
+ZIPの atlas-mhd-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 流体・MHDの独立照合とCT／GLM — Orszag–Tang：CT・GLMと独立Athena++比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/
+Coverage: reading
+
+同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。
+
+## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-assumptions
+Coverage: reading
+
+単位正方形、γ=5/3、μ₀=1、vz=Bz=0、t=0.05。rho=25/(36π)、p=5/(12π)、v=(-sin2πy,sin2πx)、B=(-sin2πy,sin4πx)/sqrt(4π)。
+
+## 流体・MHDの独立照合とCT／GLM — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-algorithm
+Coverage: reading
+
+公開済みの1次Rusanov/前進Eulerを再利用。CTは共有corner EMFの離散curl、GLMはcell中心Bと双曲・放物型cleaning。Athena++は別実装のHLLD+PLM+RK2。
+\nabla\cdot\mathbf B=0,\qquad \mathbf B_t+\nabla\times\mathbf E=0
+
+## 流体・MHDの独立照合とCT／GLM — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-validation
+Coverage: reading
+
+16²/32²/64²で密度とByのL1誤差、質量・エネルギードリフト、正値性を測定。独立参照は128²/256²でも収束を確認し、細胞平均を保存的に制限します。
+
+## 流体・MHDの独立照合とCT／GLM — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-limits
+Coverage: reading
+
+CTの面上divergenceとGLMの中心差分divergenceは異なる演算子です。共通cell演算子の値も別記します。Athenaの初期磁場はベクトルポテンシャルの差分による面平均で、同じ連続場の離散化差を含みます。短時間の平面MHD比較であり、衝撃波・3D・UCTやCTUの検証ではありません。
+
+## 流体・MHDの独立照合とCT／GLM — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_density_128_256_l14.63134423663e-05
+ct_glm_finest_density_l10.00169109923528
+判定 / check合格
+independent_reference_refinedtrue
+ct_native_constraint_16true
+ct_native_constraint_32true
+ct_native_constraint_64true
+ct_density_errortrue
+ct_magnetic_errortrue
+ct_refinementtrue
+glm_density_errortrue
+glm_magnetic_errortrue
+glm_refinementtrue
+conservationtrue
+positive_statestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+methodndensity_relative_l1by_relative_l1native_divergence_linfcommon_cell_divergence_linfmass_relative_driftenergy_relative_driftmin_densitymin_pressuresteps
+ct160.03263913501360.1625281310113.5527136788e-150.1165444010033.76689797785e-161.58940842947e-160.2024274793230.13041766976812
+ct320.02343766522250.09072932569461.11022302463e-140.09156569499233.76689797785e-161.58940842947e-160.1998864826160.12219598804324
+ct640.01390559978340.04767210316984.26325641456e-140.06279996011823.76689797785e-161.58940842947e-160.1976140279450.11524664515648
+glm160.03839724637470.4946997979226.66133814775e-166.66133814775e-163.76689797785e-163.17881685894e-160.2046422061550.15133222621216
+glm320.03170127573460.3030990560471.33226762955e-151.33226762955e-153.76689797785e-161.58940842947e-160.2014420708610.13438710016732
+
+## 流体・MHDの独立照合とCT／GLM — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-measurements
+Coverage: reading
+
+glm640.02142907618250.1689716486695.3290705182e-155.3290705182e-153.76689797785e-163.17881685894e-160.1996616224770.12431585954565
+この例の実測値・全記録 / JSON
+
+## 流体・MHDの独立照合とCT／GLM — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+確認範囲 / review_level: official-code-and-metadata; pinned source compiled and executed
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+確認範囲 / review_level: author-hosted primary paper; linear cleaning equations checked
+
+## 流体・MHDの独立照合とCT／GLM — Brio–Wu：別実装HLLDとの照合 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/
+Coverage: reading
+
+公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。
+
+## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent-assumptions
+Coverage: reading
+
+1D、[0,1]、t=0.1、γ=2、Bx=0.75。左右(rho,p,By)=(1,1,1)/(0.125,0.1,-1)、速度ゼロ、流出境界。
+
+## 流体・MHDの独立照合とCT／GLM — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent-algorithm
+Coverage: reading
+
+アトラス側はMC再構成とSSPRK2、参照は独立C++のHLLD・PLM・RK3。異なる実装ですがHLLDという数値流束の系列は共有します。
+\mathbf U_t+\mathbf F(\mathbf U)_x=0,\qquad B_x=0.75
+
+## 流体・MHDの独立照合とCT／GLM — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent-validation
+Coverage: reading
+
+128/256/512セルを、2048/4096セルで再実行した独立参照の保存的細胞平均と比較。rho/ByのL1誤差、格子改善、密度・圧力正値性を判定します。
+
+## 流体・MHDの独立照合とCT／GLM — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent-limits
+Coverage: reading
+
+Brio–Wuの複合波を含む数値解との照合であり、一般MHD Riemann問題の唯一の厳密解とは呼びません。参照の再生成にはC++コンパイルが必要で、通常Python実行は同梱参照を使います。
+
+## 流体・MHDの独立照合とCT／GLM — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_last_pair_l10.00048642415115
+reference_finest_n4096
+finest_density_l10.00182994507527
+判定 / check合格
+independent_reference_refinedtrue
+density_errortrue
+grid_improvementtrue
+positive_statestrue
+magnetic_errortrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+ndensity_l1stepsmin_densitymin_pressureby_l1
+1280.006244892659811390.1168999829210.08748649270530.00788235309907
+2560.003350421114582790.116264218240.08653089675840.00464406060446
+5120.001829945075275580.1166244103340.08705794497670.00254401615136
+独立参照の記録を表で読む
+coarse_nfine_nlast_pair_l1targettarget_reached
+204840960.000486424151150.004true
+この例の実測値・全記録 / JSON
+
+## 流体・MHDの独立照合とCT／GLM — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#brio-independent-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+確認範囲 / review_level: official-code-and-metadata; pinned source compiled and executed
+M. Brio and C. C. Wu (1988). An upwind differencing scheme for the equations of ideal magnetohydrodynamics · DOI: 10.1016/0021-9991(88)90120-9
+確認範囲 / review_level: bibliographic identity and official Athena test definition
+
+## 流体・MHDの独立照合とCT／GLM — Shu–Osher：独立参照と格子収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/
+Coverage: reading
+
+衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。
+
+## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent-assumptions
+Coverage: reading
+
+γ=1.4、[-5,5]、t=1.8。x<-4は(rho,u,p)=(3.857143,2.629369,10.33333)、右はrho=1+0.2sin5x,u=0,p=1。
+
+## 流体・MHDの独立照合とCT／GLM — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent-algorithm
+Coverage: reading
+
+アトラス側はMC-MUSCL/HLLC/SSPRK3、Athena++側はPLM/HLLC/RK3。公式problem generatorの位置と正弦波の波数だけを合わせるpatchを保存し、solver本体は変更しません。
+\rho(x,0)=1+0.2\sin(5x)\quad(x\geq-4)
+
+## 流体・MHDの独立照合とCT／GLM — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent-validation
+Coverage: reading
+
+100/200/400セルの密度L1誤差と改善率、正値性を測り、参照2048/4096/8192セルの差も事前幅と比較します。境界へ衝撃波が届かない固定時刻で比較します。
+
+## 流体・MHDの独立照合とCT／GLM — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent-limits
+Coverage: reading
+
+参照は厳密解ではなく独立した有限格子数値解です。異なる流束系列すべての優劣、WENOの一般的高次数、負圧防止の保証には広げません。 参照2048→4096のL1差0.005346は事前幅0.005を満たさず、8192へ細分しました。途中の未達記録も残します。
+
+## 流体・MHDの独立照合とCT／GLM — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_last_pair_l10.00337417843492
+reference_finest_n8192
+finest_density_l10.0537774999196
+判定 / check合格
+independent_reference_refinedtrue
+density_errortrue
+grid_improvementtrue
+positive_statestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+ndensity_l1stepsmin_densitymin_pressure
+1000.07863386784082800.8000827057281
+2000.07616315955855600.8003974628221
+4000.053777499919611330.8000000308131
+独立参照の記録を表で読む
+coarse_nfine_nlast_pair_l1targettarget_reached
+204840960.005346011098620.005false
+409681920.003374178434920.005true
+この例の実測値・全記録 / JSON
+
+## 流体・MHDの独立照合とCT／GLM — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#shu-independent-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers · DOI: 10.3847/1538-4365/ab929b
+確認範囲 / review_level: official-code-and-metadata; pinned source compiled and executed
+C.-W. Shu and S. Osher (1989). Efficient implementation of essentially non-oscillatory shock-capturing schemes, II · DOI: 10.1016/0021-9991(89)90222-2
+確認範囲 / review_level: bibliographic identity and official Athena problem generator
+
+## 流体・MHDの独立照合とCT／GLM — GLMの磁気単極子モード：解析的減衰 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/
+Coverage: reading
+
+GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。
+
+## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode-assumptions
+Coverage: reading
+
+周期[0,1]、Bx=cos2πx、psi=0、ch=1、減衰κ=2、t=1。流体との結合を外した線形診断です。
+
+## 流体・MHDの独立照合とCT／GLM — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode-algorithm
+Coverage: reading
+
+∂tBx=-∂xpsi、∂tpsi=-ch²∂xBx-κpsiを中心差分とRK4で積分。独立参照は連続Fourier記号の2×2行列指数です。
+B_t=-\psi_x,\quad\psi_t=-c_h^2B_x-\kappa\psi
+
+## 流体・MHDの独立照合とCT／GLM — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode-validation
+Coverage: reading
+
+16/32/64点でL2誤差、空間2次収束、磁場divergenceモード振幅の減衰を判定します。
+
+## 流体・MHDの独立照合とCT／GLM — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode-limits
+Coverage: reading
+
+この線形モードの減衰を、非線形MHDの全divergenceや大域的な精度の保証とはしません。CTで表せない単極子モードをCTとの同条件比較には用いません。
+
+## 流体・MHDの独立照合とCT／GLM — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+observed_order2.00154673043
+continuum_amplitude_ratio0.36195567185
+判定 / check合格
+analytic_expm_comparisontrue
+spatial_ordertrue
+divergence_dampingtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+nl2_errordivergence_norm_ratiosteps
+160.03140362604150.34249738815680
+320.00782495606650.357993452794160
+640.00195414283350.361023123631320
+この例の実測値・全記録 / JSON
+
+## 流体・MHDの独立照合とCT／GLM — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Dedner et al. (2002). Hyperbolic Divergence Cleaning for the MHD Equations · DOI: 10.1006/jcph.2001.6961
+確認範囲 / review_level: author-hosted primary paper; linear cleaning equations checked
+
+## MCMC・温度制御・生物モデル — MCMC・温度制御・生物モデル [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
+Coverage: reading
+
+小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
+
+## MCMC・温度制御・生物モデル — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#run-all
+Coverage: reading
+
+ZIPの atlas-models-2026-11-22 フォルダで実行します。このコマンドは配布版の全5例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## MCMC・温度制御・生物モデル — Gaussian標的のMCMC：分布・自己相関・ESS [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
+Coverage: reading
+
+32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。
+
+## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc-assumptions
+Coverage: reading
+
+無次元1変数、対称Gaussianランダムウォーク提案幅1.5。固定master seedから32の別PCG64ストリームを生成し、1024回のburn-in後に各8192標本を保持します。
+
+## MCMC・温度制御・生物モデル — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc-algorithm
+Coverage: reading
+
+log受理比でMetropolis更新。FFTによる連鎖内自己共分散を平均し、Geyerのgamma0+gamma1から始まる初期正ペア和から平均観測量のESSを求めます。古典的split-Rhatも併記します。
+\pi(x)=(2\pi)^{-1/2}e^{-x^2/2},\quad \alpha=\min(1,e^{-(y^2-x^2)/2})\tau=-1+2\sum_{k=0}^{K}(\rho_{2k}+\rho_{2k+1}),\qquad N_{\rm eff}=MN/\max(1,\tau)
+
+## MCMC・温度制御・生物モデル — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc-validation
+Coverage: reading
+
+正規CDFを独立参照とし、標本数1024/2048/8192の連鎖平均RMSEを比較。別の定常AR(1)系列と厳密tau=(1+rho)/(1-rho)で診断量を照合します。公差は固定入力で事前指定します。
+
+## MCMC・温度制御・生物モデル — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc-limits
+Coverage: reading
+
+固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+mean_error0.0106317778433
+variance_error0.00224561717924
+cdf_max_error0.00325194211346
+acceptance0.589477539062
+tau5.38031810062
+ess48722.7697503
+split_rhat1.00043797392
+acf_lag10.680453928076
+ar1_exact_tau9
+ar1_series_tau_error1.7763568394e-15
+ar1_empirical_tau_relative_error0.0124392108591
+budget_mean_rmse_ratio2.94923053436
+判定 / check合格
+finitetrue
+meantrue
+variancetrue
+cdftrue
+split_rhattrue
+esstrue
+acceptancetrue
+ar1_exact_sequencetrue
+ar1_sampling_diagnostictrue
+sample_budgettrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+samples_per_chainmean_rmse_across_chainstauesssplit_rhatacf_lag1cdf_pointempirical_cdfnormal_cdf
+10240.06797588986555.098645805386426.804538071.003204248710.675656444654———
+20480.05329329663995.253324226312475.14853011.001860784230.676417726439———
+81920.02304868645355.3803181006248722.76975031.000437973920.680453928076———
+——————-1.960.02639007568360.0249978951482
+——————-10.1619071960450.158655253931
+——————00.5030021667480.5
+——————10.8434600830080.841344746069
+——————1.960.9764328002930.975002104852
+この例の実測値・全記録 / JSON
+
+## MCMC・温度制御・生物モデル — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#gaussian-mcmc-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines · DOI: 10.1063/1.1699114
+確認範囲 / review_level: publisher-abstract-and-metadata
+出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。
+W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications · DOI: 10.1093/biomet/57.1.97
+確認範囲 / review_level: original-paper-excerpt-and-metadata
+大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo · DOI: 10.1214/ss/1177011137
+確認範囲 / review_level: publisher-abstract-and-selected-original-section
+出版社側の抄録・書誌と大学公開原著の初期正列・AR(1)に関する検索返却箇所を確認。全文監査や任意の連鎖の収束証明を主張しません。
+
+## MCMC・温度制御・生物モデル — Langevin温度制御：正準分布・刻み偏り・時間相関 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
+Coverage: reading
+
+調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
+
+## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-assumptions
+Coverage: reading
+
+質量・Boltzmann定数・角振動数・摩擦・温度は1。独立32768複製、burn時間20、刻み0.4/0.2/0.1、相関lag時間2。h*omega<2を要求します。
+
+## MCMC・温度制御・生物モデル — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-algorithm
+Coverage: reading
+
+力B・ドリフトAの半ステップと厳密OUノイズ更新OをB-A-O-A-Bで合成。サンプルの共分散・3種のCDF・エネルギー平均/分散・位置相関を記録します。
+dq=p\,dt,\qquad dp=-\omega^2q\,dt-\gamma p\,dt+\sqrt{2\gamma T}\,dW\Sigma=M\Sigma M^T+Q,\qquad \Sigma_{h}=\operatorname{diag}(T/\omega^2,T(1-h^2\omega^2/4))
+
+## MCMC・温度制御・生物モデル — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-validation
+Coverage: reading
+
+SciPy離散Lyapunov解および調和系の明示共分散diag(T/omega²,T(1-h²omega²/4))で照合。運動量の刻み2次偏りと有限標本誤差を分離し、burn過渡を写像で評価。連続相関は別の行列指数で算出します。
+
+## MCMC・温度制御・生物モデル — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-limits
+Coverage: reading
+
+調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_covariance_sampling_error0.010793938239
+maximum_correlation_sampling_error0.0078594976572
+maximum_lyapunov_residual1.11022302463e-16
+maximum_burn_transient_covariance_error3.91167958726e-09
+minimum_covariance_bias_order2
+finest_covariance_bias0.0025
+energy_cdf_error0.0043759868147
+position_cdf_error0.00592878875638
+momentum_cdf_error0.00689381071155
+energy_mean_error0.00928172211266
+energy_variance_error0.0305484770074
+判定 / check合格
+finitetrue
+stationary_referencetrue
+burn_transienttrue
+covariance_samplingtrue
+correlation_samplingtrue
+bias_refinementtrue
+finest_biastrue
+canonical_energy_cdftrue
+canonical_position_cdftrue
+canonical_momentum_cdftrue
+canonical_energy_meantrue
+canonical_energy_variancetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+dtburn_stepsreplicasdiscrete_covariancesample_covariancediscrete_covariance_biascovariance_sampling_errorstationary_lyapunov_residualburn_transient_covariance_errorq_correlation_sampleq_correlation_discreteq_correlation_continuumcorrelation_sampling_errorenergy_cdf_errorposition_cdf_errormomentum_cdf_errorenergy_mean_errorenergy_variance_error
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-measurements
+Coverage: reading
+
+0.45032768[[0.9999999999999998,-2.6757194688524847e-18],[9.792855310117937e-17,0.9599999999999999]][[1.0032447005757448,0.0064499135769307955],[0.0064499135769307955,0.9575087034673743]]0.040.006449913576931.11022302463e-163.91167958726e-090.146798568040.1401305534710.1505743651460.006668014568670.008299285336890.003234324790750.008632316770470.01962329797840.0447172929346
+0.210032768[[1.0000000000000002,-2.390201959566234e-16],[-2.376918030848411e-16,0.9899999999999999]][[1.0025075495147464,-0.0025623186226214996],[-0.0025623186226214996,0.9877735527549194]]0.010.002562318622621.11022302463e-163.66614766891e-090.1401183651130.147977862770.1505743651460.00785949765720.004147806580790.003870622658850.01028948242930.004859448865170.00642729453359
+0.120032768[[1.0,1.7076258644823632e-16],[1.7042719713056047e-16,0.9975]][[0.9892060617609949,-0.002658077638783977],[-0.002658077638783977,0.9922304940136841]]0.00250.0107939382393.80554962542e-173.56765808845e-090.1518477073260.1499261147450.1505743651460.001921592581160.00437598681470.005928788756380.006893810711550.009281722112660.0305484770074
+この例の実測値・全記録 / JSON
+
+## MCMC・温度制御・生物モデル — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+B. Leimkuhler and C. Matthews (2013). Rational Construction of Stochastic Numerical Methods for Molecular Sampling · DOI: 10.1093/amrx/abs010
+確認範囲 / review_level: author-manuscript-selected-appendix
+著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。
+The SciPy community (2024). SciPy1.14.1 solve_discrete_lyapunov reference
+確認範囲 / review_level: official-api-documentation
+公式の離散Lyapunov方程式AXA^H-X+Q=0の符号と返却仕様を確認。
+The SciPy community (2024). SciPy1.14.1 expm reference
+確認範囲 / review_level: official-api-documentation
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
+## MCMC・温度制御・生物モデル — 反応拡散：空間2次と時間4次を分けて測る [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
+Coverage: reading
+
+線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。
+
+## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier-assumptions
+Coverage: reading
+
+周期区間[0,2pi)、D=0.1、r=0.1、初期cos(2x)、終了t=2。格子16/32/64と、別の固定格子で刻み0.5/0.25/0.125を用います。
+
+## MCMC・温度制御・生物モデル — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier-algorithm
+Coverage: reading
+
+周期中心2階差分と独自RK4で進めます。空間系列は小さな同一時間刻み、時間系列は同じ空間演算子を用います。
+u_t=D u_{xx}+r u,\qquad u(x,t)=e^{(r-Dk^2)t}\cos(kx)\lambda_h=r-\frac{4D}{\Delta x^2}\sin^2(k\Delta x/2)
+
+## MCMC・温度制御・生物モデル — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier-validation
+Coverage: reading
+
+連続固有値r-Dk²への最大誤差で空間次数、半離散固有値r-4Dsin²(kdx/2)/dx²への最大誤差で時間次数を測ります。独立した解析参照であり同じ実装の細格子値を参照にしません。
+
+## MCMC・温度制御・生物モデル — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier-limits
+Coverage: reading
+
+線形・周期・滑らかな単一モードだけを検証します。非線形のFisher前線、複雑境界、空間生態系や一般の反応ネットワークの検証ではありません。
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+spatial_finest_error0.00141055901212
+spatial_minimum_order1.99954673581
+temporal_finest_error4.10914158255e-09
+temporal_minimum_order4.04210936758
+判定 / check合格
+space_errortrue
+space_ordertrue
+time_errortrue
+time_ordertrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+sequencendtmax_errorinverse_dt
+space160.0010.0225614095147—
+space320.0010.00564212473622—
+space640.0010.00141055901212—
+time160.51.14828876807e-062
+time160.256.76935469901e-084
+time160.1254.10914158255e-098
+この例の実測値・全記録 / JSON
+
+## MCMC・温度制御・生物モデル — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+The SciPy community (2024). SciPy1.14.1 expm reference
+確認範囲 / review_level: official-api-documentation
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
+## MCMC・温度制御・生物モデル — Turing不安定性：線形成長率と小振幅パターン [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
+Coverage: reading
+
+Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
+
+## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-assumptions
+Coverage: reading
+
+無次元a=0.1,b=0.9、平衡(1,0.9)、拡散係数(0.01,1)、周期k=2、初期振幅1e-4。線形t=1と非線形t=4の短い計算に限定します。
+
+## MCMC・温度制御・生物モデル — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-algorithm
+Coverage: reading
+
+独自の中心差分・RK4で線形化PDEと短い非線形PDEを進めます。3格子でのモード振幅と成長率、非線形の濃度最小値・初期パターン増幅を記録します。
+u_t=D_u u_{xx}+a-u+u^2v,\quad v_t=D_v v_{xx}+b-u^2v\partial_t\widehat{\delta z}=(J-k^2D)\widehat{\delta z},\quad \widehat{\delta z}(t)=e^{(J-k^2D)t}\widehat{\delta z}(0)
+
+## MCMC・温度制御・生物モデル — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-validation
+Coverage: reading
+
+連続Fourier行列J-k²DのSciPy expmと線形数値解を比較し空間収束を測定。非線形計算は半離散線形行列指数との小振幅差を測り、成熟模様の参照照合とは区別します。
+
+## MCMC・温度制御・生物モデル — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-limits
+Coverage: reading
+
+1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+homogeneous_max_real_eigenvalue-0.1
+continuum_mode_growth_rate0.428411269791
+linear_finest_relative_error0.000247269249445
+linear_minimum_spatial_order2.00075049806
+linear_finest_growth_rate_error7.30137790048e-05
+nonlinear_minimum_concentration0.899815977133
+nonlinear_early_linear_relative_error0.000169189099111
+pattern_amplitude_growth5.53546262842
+判定 / check合格
+homogeneous_stabletrue
+diffusion_mode_unstabletrue
+linear_space_errortrue
+linear_space_ordertrue
+growth_ratetrue
+nonlinear_finite_positivetrue
+early_linear_agreementtrue
+growing_spatial_patterntrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+sequencendtmax_errorgrowth_rategrowth_rate_errorxuv
+linear-space320.007692307692310.003966597979220.4272417370420.00116953274941———
+linear-space640.00192678227360.0009895916550350.4281191467790.000292123012284———
+linear-space1280.0004816955684010.0002472692494450.4283382560127.30137790048e-05———
+nonlinear-profile—————01.000553546260.899815977133
+nonlinear-profile—————0.09817477042471.000542905930.89981951296
+nonlinear-profile—————0.1963495408491.000511394490.899829984474
+nonlinear-profile—————0.2945243112741.000460224830.899846989017
+nonlinear-profile—————0.3926990816991.000391366230.89986987275
+nonlinear-profile—————0.4908738521231.000307468270.899897755832
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+nonlinear-profile—————0.5890486225481.000211758460.899929566301
+nonlinear-profile—————0.6872233929731.000107917760.899964081335
+nonlinear-profile—————0.7853981633970.9999999385990.899999974295
+nonlinear-profile—————0.8835729338220.9998919712370.90003586575
+nonlinear-profile—————0.9817477042470.9997881641270.900070376498
+nonlinear-profile—————1.079922474670.9996925046050.900102180552
+nonlinear-profile—————1.17809724510.9996086659510.900130056067
+nonlinear-profile—————1.276272015520.9995398666640.900152932233
+nonlinear-profile—————1.374446785950.9994887472850.900169930361
+nonlinear-profile—————1.472621556370.9994572694450.900180397589
+nonlinear-profile—————1.570796326790.9994466409050.90018393191
+nonlinear-profile—————1.668971097220.9994572694450.900180397589
+nonlinear-profile—————1.767145867640.9994887472850.900169930361
+nonlinear-profile—————1.865320638070.9995398666640.900152932233
+nonlinear-profile—————1.963495408490.9996086659510.900130056067
+nonlinear-profile—————2.061670178920.9996925046050.900102180552
+nonlinear-profile—————2.159844949340.9997881641270.900070376498
+nonlinear-profile—————2.258019719770.9998919712370.90003586575
+nonlinear-profile—————2.356194490190.9999999385990.899999974295
+nonlinear-profile—————2.454369260621.000107917760.899964081335
+nonlinear-profile—————2.552544031041.000211758460.899929566301
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+nonlinear-profile—————2.650718801471.000307468270.899897755832
+nonlinear-profile—————2.748893571891.000391366230.89986987275
+nonlinear-profile—————2.847068342321.000460224830.899846989017
+nonlinear-profile—————2.945243112741.000511394490.899829984474
+nonlinear-profile—————3.043417883171.000542905930.89981951296
+nonlinear-profile—————3.141592653591.000553546260.899815977133
+nonlinear-profile—————3.239767424011.000542905930.89981951296
+nonlinear-profile—————3.337942194441.000511394490.899829984474
+nonlinear-profile—————3.436116964861.000460224830.899846989017
+nonlinear-profile—————3.534291735291.000391366230.89986987275
+nonlinear-profile—————3.632466505711.000307468270.899897755832
+nonlinear-profile—————3.730641276141.000211758460.899929566301
+nonlinear-profile—————3.828816046561.000107917760.899964081335
+nonlinear-profile—————3.926990816990.9999999385990.899999974295
+nonlinear-profile—————4.025165587410.9998919712370.90003586575
+nonlinear-profile—————4.123340357840.9997881641270.900070376498
+nonlinear-profile—————4.221515128260.9996925046050.900102180552
+nonlinear-profile—————4.319689898690.9996086659510.900130056067
+nonlinear-profile—————4.417864669110.9995398666640.900152932233
+nonlinear-profile—————4.516039439540.9994887472850.900169930361
+nonlinear-profile—————4.614214209960.9994572694450.900180397589
+nonlinear-profile—————4.712388980380.9994466409050.90018393191
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-measurements
+Coverage: reading
+
+nonlinear-profile—————4.810563750810.9994572694450.900180397589
+nonlinear-profile—————4.908738521230.9994887472850.900169930361
+nonlinear-profile—————5.006913291660.9995398666640.900152932233
+nonlinear-profile—————5.105088062080.9996086659510.900130056067
+nonlinear-profile—————5.203262832510.9996925046050.900102180552
+nonlinear-profile—————5.301437602930.9997881641270.900070376498
+nonlinear-profile—————5.399612373360.9998919712370.90003586575
+nonlinear-profile—————5.497787143780.9999999385990.899999974295
+nonlinear-profile—————5.595961914211.000107917760.899964081335
+nonlinear-profile—————5.694136684631.000211758460.899929566301
+nonlinear-profile—————5.792311455061.000307468270.899897755832
+nonlinear-profile—————5.890486225481.000391366230.89986987275
+nonlinear-profile—————5.988660995911.000460224830.899846989017
+nonlinear-profile—————6.086835766331.000511394490.899829984474
+nonlinear-profile—————6.185010536751.000542905930.89981951296
+この例の実測値・全記録 / JSON
+
+## MCMC・温度制御・生物モデル — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. M. Turing (1952). The Chemical Basis of Morphogenesis · DOI: 10.1098/rstb.1952.0012
+確認範囲 / review_level: publisher-archive-and-original-first-page-metadata
+Royal Societyの原稿審査記録と大学公開の原著第1ページの書誌を確認。出版社本文は403でした。拡散誘起不安定性の歴史的原著で、採用したSchnakenberg数値例の出典とは区別します。
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+確認範囲 / review_level: official-bibliographic-metadata
+PubMedの書誌・DOIを確認（抄録なし）。反応系の原典として引用し、採用係数a=0.1,b=0.9や今回の空間パターンを原著から転記したとは扱いません。
+The SciPy community (2024). SciPy1.14.1 expm reference
+確認範囲 / review_level: official-api-documentation
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
+## MCMC・温度制御・生物モデル — FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
+Coverage: reading
+
+2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。
+
+## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-assumptions
+Coverage: reading
+
+無次元a=0.7,b=0.8,tau=12.5。I=0の休止平衡からt=10〜20だけI=0.8を与え、t=80まで進めます。生理学的な物理単位への較正はしません。
+
+## MCMC・温度制御・生物モデル — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-algorithm
+Coverage: reading
+
+独自RK4を刻み0.1/0.05/0.025で使用し、パルスの不連続点で時間区間を厳密に分割します。出力刻み0.1でピークと休止状態からの距離も測定します。
+\dot v=v-v^3/3-w+I(t),\qquad \dot w=(v+a-bw)/\tau
+
+## MCMC・温度制御・生物モデル — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-validation
+Coverage: reading
+
+別実装SciPy DOP853のrtol1e-11と1e-13を比較して参照の感度を確認し、厳しい参照への最大解誤差と時間次数を評価します。ピーク時刻は出力格子上の精度です。
+
+## MCMC・温度制御・生物モデル — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-limits
+Coverage: reading
+
+FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_tolerance_difference1.67363900516e-10
+finest_max_error6.46953801642e-08
+minimum_temporal_order4.06818366368
+peak_v2.099845449
+peak_v_error2.61330326268e-08
+peak_time_error0
+recovery_distance2.35906332793e-05
+判定 / check合格
+reference_tolerancetrue
+solution_errortrue
+time_ordertrue
+excitationtrue
+peak_voltagetrue
+peak_timetrue
+recoverytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+sequencedtinverse_dtmax_errorpeak_vpeak_timerecovery_distancetvwreference_vreference_w
+time0.1101.90852886734e-052.0998373710313.32.35906409729e-05—————
+time0.05201.08522197628e-062.0998450295313.32.35906337429e-05—————
+time0.025406.46953801642e-082.09984544913.32.35906332793e-05—————
+trajectory——————0-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————0.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————0.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————1.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————2.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————2.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————3.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————4.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————4.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————5.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————6.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————6.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————7.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————8.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.1-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.2-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.3-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.4-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.5-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.6-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.7-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————9.8-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————9.9-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————10-1.19940803524-0.624260044055-1.19940803524-0.624260044055
+trajectory——————10.1-1.12090565908-0.62394487829-1.12090565893-0.623944878297
+trajectory——————10.2-1.0444660917-0.623014831274-1.04446609137-0.623014831283
+trajectory——————10.3-0.968850442343-0.62148520932-0.968850441835-0.62148520933
+trajectory——————10.4-0.892959615161-0.619361953617-0.892959614493-0.619361953624
+trajectory——————10.5-0.815764642861-0.616642522244-0.815764642058-0.616642522248
+trajectory——————10.6-0.736254158004-0.613316285089-0.736254157095-0.613316285089
+trajectory——————10.7-0.653392576931-0.609364543147-0.653392575945-0.60936454314
+trajectory——————10.8-0.566085875777-0.6047602457-0.566085874739-0.604760245685
+trajectory——————10.9-0.473154505375-0.599467464304-0.473154504297-0.599467464278
+trajectory——————11-0.37331585294-0.593440689545-0.373315851809-0.593440689506
+trajectory——————11.1-0.265182422061-0.586624049522-0.265182420821-0.586624049467
+trajectory——————11.2-0.147287212995-0.57895061757-0.147287211526-0.578950617496
+trajectory——————11.3-0.0181549883703-0.570342094781-0.0181549864615-0.570342094688
+trajectory——————11.40.123553541749-0.5607093333070.123553544414-0.560709333197
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————11.50.278791699663-0.5499544063660.278791703491-0.549954406244
+trajectory——————11.60.447744009654-0.5379751777950.447744015073-0.537975177671
+trajectory——————11.70.629318628111-0.524673419610.629318635444-0.524673419494
+trajectory——————11.80.820607102288-0.5099671565950.820607111654-0.509967156488
+trajectory——————11.91.01653356533-0.4938066773681.01653357677-0.493806677249
+trajectory——————121.21001968-0.4761914065361.21001969404-0.476191406363
+trajectory——————12.11.39291610826-0.4571823742721.39291612661-0.457182374001
+trajectory——————12.21.55758733217-0.4369043258931.55758735785-0.436904325503
+trajectory——————12.31.6985567158-0.4155344268741.6985567519-0.415534426381
+trajectory——————12.41.81346258418-0.3932802448691.81346263196-0.393280244302
+trajectory——————12.51.90297062969-0.3703543901421.90297068744-0.370354389512
+trajectory——————12.61.96989472043-0.3469535022161.9698947841-0.346953501505
+trajectory——————12.72.01808277042-0.3232456911782.01808283512-0.323245690349
+trajectory——————12.82.05150917368-0.2993663201062.05150923516-0.299366319121
+trajectory——————12.92.07373368457-0.275419609782.07373373997-0.275419608613
+trajectory——————132.0876809516-0.2514831998892.08768099947-0.251483198535
+trajectory——————13.12.09562357806-0.2276135470542.09562361812-0.22761354552
+trajectory——————13.22.09926369395-0.2038509724072.09926372662-0.203850970712
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————13.32.099845449-0.1802238704732.09984547514-0.18022386864
+trajectory——————13.42.09826379037-0.156751994362.09826381095-0.156751992414
+trajectory——————13.52.0951558797-0.133448917412.09515589569-0.133448915375
+trajectory——————13.62.09097246881-0.1103238304672.09097248111-0.110323828364
+trajectory——————13.72.08603127459-0.0873828324512.08603128396-0.0873828302973
+trajectory——————13.82.08055584611-0.06462984739132.08055585319-0.0646298452025
+trajectory——————13.92.0747033995-0.0420672718562.07470340479-0.042067269644
+trajectory——————142.06858454535-0.01969643036862.06858454926-0.0196964281434
+trajectory——————14.12.062277182210.002482104804882.062277185070.00248210703585
+trajectory——————14.22.055836246410.02446828921082.055836248470.0244682914415
+trajectory——————14.32.049300542390.04626244860572.049300543830.0462624508316
+trajectory——————14.42.042697525630.06786516817262.042697526610.0678651703902
+trajectory——————14.52.036046653580.08927721452922.036046654210.0892772167358
+trajectory——————14.62.029361735690.1104994807222.029361736050.110499482915
+trajectory——————14.72.022652584160.1315329473552.022652584310.131532949534
+trajectory——————14.82.015926175440.152378655062.015926175450.152378657223
+trajectory——————14.92.009187469330.1730376849622.009187469220.173037687109
+trajectory——————152.002439987650.1935111447792.002439987450.193511146909
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————15.11.995686224140.2138001589141.995686223870.213800161026
+trajectory——————15.21.988927935470.233905861381.988927935150.233905863474
+trajectory——————15.31.982166348260.2538293907331.98216634790.253829392809
+trajectory——————15.41.975402306760.2735718864391.975402306370.273571888497
+trajectory——————15.51.968636378440.2931344862621.968636378020.293134488302
+trajectory——————15.61.961868929680.312518324391.961868929240.312518326411
+trajectory——————15.71.955100180090.3317245300781.955100179630.331724532081
+trajectory——————15.81.948330241670.3507542266791.94833024120.350754228664
+trajectory——————15.91.941559147040.3696085309381.941559146560.369608532905
+trajectory——————161.934786869850.3882885524921.934786869360.388288554441
+trajectory——————16.11.928013339580.40679539351.928013339090.406795395431
+trajectory——————16.21.921238452250.4251301483911.921238451750.425130150305
+trajectory——————16.31.914462078220.4432939036761.914462077720.443293905571
+trajectory——————16.41.907684067860.4612877378151.907684067350.461287739692
+trajectory——————16.51.900904255670.4791127211311.900904255160.479112722991
+trajectory——————16.61.894122463270.4967699157471.894122462760.49676991759
+trajectory——————16.71.887338501560.5142603755421.887338501040.514260377367
+trajectory——————16.81.880552172280.5315851461251.880552171760.531585147933
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————16.91.873763269160.5487452648251.873763268640.548745266615
+trajectory——————171.866971578680.5657417606741.866971578150.565741762448
+trajectory——————17.11.860176880610.5825756544141.860176880080.58257565617
+trajectory——————17.21.853378948420.5992479584911.853378947890.59924796023
+trajectory——————17.31.846577549470.6157596770611.846577548930.615759678783
+trajectory——————17.41.839772445150.6321118059961.839772444610.632111807701
+trajectory——————17.51.832963390950.6483053328871.83296339040.648305334576
+trajectory——————17.61.826150136390.6643412370531.826150135850.664341238726
+trajectory——————17.71.819332425060.6802204895431.819332424510.6802204912
+trajectory——————17.81.812509994410.6959440531421.812509993860.695944054782
+trajectory——————17.91.805682575730.7115128823751.805682575180.711512883999
+trajectory——————181.798849893940.7269279235081.798849893380.726927925116
+trajectory——————18.11.792011667420.7421901145541.792011666860.742190116146
+trajectory——————18.21.785167607850.7573003852651.785167607290.757300386841
+trajectory——————18.31.778317419990.7722596571391.778317419420.772259658699
+trajectory——————18.41.771460801440.787068843411.771460800870.787068844955
+trajectory——————18.51.764597442430.8017288490471.764597441860.801728850575
+trajectory——————18.61.757727025570.8162405707421.7577270250.816240572255
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————18.71.750849225560.8306048969081.750849224980.830604898406
+trajectory——————18.81.743963708920.8448227076621.743963708340.844822709144
+trajectory——————18.91.737070133740.8588948748121.737070133150.85889487628
+trajectory——————191.730168149290.8728222618461.73016814870.872822263298
+trajectory——————19.11.723257395770.8866057239081.723257395180.886605725345
+trajectory——————19.21.716337503970.900246107781.716337503370.900246109202
+trajectory——————19.31.709408094840.9137442518591.709408094250.913744253266
+trajectory——————19.41.702468779230.9271009861331.702468778630.927100987525
+trajectory——————19.51.695519157390.9403171321451.695519156790.940317133523
+trajectory——————19.61.688558818660.9533935029711.688558818060.953393504334
+trajectory——————19.71.681587340970.9663309031751.681587340360.966330904524
+trajectory——————19.81.674604290430.979130128781.674604289820.979130130114
+trajectory——————19.91.667609220840.9917919672181.667609220230.991791968538
+trajectory——————201.660601673221.004317197291.660601672611.0043171986
+trajectory——————20.11.579876136221.01640448891.579876136011.0164044903
+trajectory——————20.21.509319400951.027813684361.509319400921.0278136858
+trajectory——————20.31.446212398841.038618667491.446212398851.03861866896
+trajectory——————20.41.388651545981.048874678871.388651545941.04887468034
+trajectory——————20.51.335250924071.058623641661.335250923941.05862364313
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————20.61.284965266641.067897610311.284965266391.06789761177
+trajectory——————20.71.236979594451.07672107661.236979594051.07672107805
+trajectory——————20.81.190637457221.08511254841.190637456681.08511254985
+trajectory——————20.91.145392437481.093085646521.145392436771.09308564795
+trajectory——————211.100774112661.100649869841.100774111781.10064987126
+trajectory——————21.11.056363207741.107811123721.056363206691.10781112512
+trajectory——————21.21.011772660231.114572072011.0117726591.11457207339
+trajectory——————21.30.9666324786311.120932352250.9666324772121.12093235361
+trajectory——————21.40.9205769698571.126888678890.9205769682491.12688868023
+trajectory——————21.50.8732333380761.132434850060.8732333362721.13243485138
+trajectory——————21.60.8242109281721.137561666410.8242109261631.1375616677
+trajectory——————21.70.7730905686041.142256765310.773090566381.14225676658
+trajectory——————21.80.7194136070971.146504370220.7194136046471.14650437146
+trajectory——————21.90.6626703671521.150284951980.6626703644571.15028495319
+trajectory——————220.6022879263671.15357479750.6022879234091.15357479868
+trajectory——————22.10.5376173858671.156345481520.5376173826131.15634548266
+trajectory——————22.20.467921247931.158563239980.4679212443431.15856324108
+trajectory——————22.30.392362273861.160188251420.3923622698811.16018825248
+trajectory——————22.40.3099964440121.161173848190.3099964395591.1611738492
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————22.50.2197746431191.161465707430.2197746380751.16146570838
+trajectory——————22.60.1205607420621.161001119710.1205607362631.1610011206
+trajectory——————22.70.01117804152581.159708510140.01117803474971.15970851097
+trajectory——————22.8-0.1094986893751.15750750161-0.1094986974141.15750750236
+trajectory——————22.9-0.2423836773671.15430996551-0.2423836870051.1543099662
+trajectory——————23-0.3879314354871.15002268178-0.387931447061.15002268239
+trajectory——————23.1-0.5457909010621.14455235687-0.545790914811.14455235741
+trajectory——————23.2-0.714393818781.13781367136-0.714393834741.13781367183
+trajectory——————23.3-0.8905813398141.12974050511-0.8905813577751.1297405055
+trajectory——————23.4-1.069460224671.12029930316-1.069460244351.12029930344
+trajectory——————23.5-1.244714566691.10950181989-1.244714588221.10950182005
+trajectory——————23.6-1.409482781961.09741303298-1.409482806361.09741303297
+trajectory——————23.7-1.557621475051.08415023701-1.557621504261.08415023684
+trajectory——————23.8-1.684887476221.06987202628-1.684887512181.06987202597
+trajectory——————23.9-1.789546654521.0547599553-1.789546697961.05475995489
+trajectory——————24-1.872229976721.0389984893-1.87223002651.0389984888
+trajectory——————24.1-1.935248411761.02275862573-1.935248465161.02275862514
+trajectory——————24.2-1.981752708941.00618795505-1.981752762661.00618795435
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————24.3-2.015038943550.989407042599-2.015038994630.989407041763
+trajectory——————24.4-2.038115457130.97251034798-2.038115503480.972510346994
+trajectory——————24.5-2.05350752390.95556959998-2.053507564390.955569598838
+trajectory——————24.6-2.0632217310.938638014705-2.06322176530.938638013414
+trajectory——————24.7-2.068794691850.921754391097-2.06879472020.92175438967
+trajectory——————24.8-2.071373990870.904946636935-2.071374013860.90494663539
+trajectory——————24.9-2.071802257430.888234601261-2.071802275770.888234599618
+trajectory——————25-2.070691220.87163225329-2.070691234440.871632251567
+trajectory——————25.1-2.068481692120.855149312232-2.068481703360.855149310448
+trajectory——————25.2-2.065489844660.838792444141-2.065489853320.83879244231
+trajectory——————25.3-2.061941830710.822566130212-2.061941837310.822566128348
+trajectory——————25.4-2.057999194740.806473291804-2.057999199730.806473289916
+trajectory——————25.5-2.053777285210.790515738118-2.053777288930.790515736216
+trajectory——————25.6-2.04935848920.774694485932-2.049358491940.774694484023
+trajectory——————25.7-2.044801697360.75900998761-2.044801699340.7590099857
+trajectory——————25.8-2.040149052340.743462293616-2.040149053740.743462291708
+trajectory——————25.9-2.035430753220.728051168377-2.035430754170.728051166475
+trajectory——————26-2.030668473830.71277617293-2.030668474430.712776171037
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————26.1-2.025877795440.697636723953-2.025877795780.697636722069
+trajectory——————26.2-2.021069939120.682632135958-2.021069939260.682632134087
+trajectory——————26.3-2.016253000620.667761651515-2.016253000620.667761649656
+trajectory——————26.4-2.011432831850.653024462912-2.011432831730.653024461067
+trajectory——————26.5-2.006613670880.638419727719-2.006613670670.638419725888
+trajectory——————26.6-2.001798593050.623946579977-2.001798592780.623946578161
+trajectory——————26.7-1.996989834480.609604138259-1.996989834160.609604136458
+trajectory——————26.8-1.992189024430.59539151148-1.992189024070.595391509695
+trajectory——————26.9-1.987397352570.581307803097-1.987397352170.581307801327
+trajectory——————27-1.982615689530.567352114139-1.982615689110.567352112384
+trajectory——————27.1-1.977844674040.553523545403-1.977844673610.553523543664
+trajectory——————27.2-1.973084775910.53982119904-1.973084775460.539821197316
+trajectory——————27.3-1.968336341730.526244179697-1.968336341270.526244177989
+trajectory——————27.4-1.963599628060.512791595349-1.96359962760.512791593656
+trajectory——————27.5-1.958874825590.499462557892-1.958874825120.499462556214
+trajectory——————27.6-1.954162076680.486256183569-1.954162076210.486256181908
+trajectory——————27.7-1.949461488310.473171593277-1.949461487830.473171591631
+trajectory——————27.8-1.944773141390.460207912775-1.944773140910.460207911143
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————27.9-1.940097097730.447364272834-1.940097097240.447364271217
+trajectory——————28-1.935433405030.434639809338-1.935433404550.434639807736
+trajectory——————28.1-1.930782100690.422033663345-1.930782100210.422033661759
+trajectory——————28.2-1.926143214490.40954498113-1.9261432140.409544979558
+trajectory——————28.3-1.921516770630.397172914195-1.921516770140.397172912638
+trajectory——————28.4-1.916902789250.384916619283-1.916902788770.38491661774
+trajectory——————28.5-1.912301287530.372775258367-1.912301287040.372775256839
+trajectory——————28.6-1.907712280510.360747998639-1.907712280030.360747997125
+trajectory——————28.7-1.903135781720.348834012489-1.903135781230.34883401099
+trajectory——————28.8-1.898571803610.337032477486-1.898571803130.337032476001
+trajectory——————28.9-1.894020357930.325342576347-1.894020357450.325342574876
+trajectory——————29-1.889481455960.313763496911-1.889481455480.313763495454
+trajectory——————29.1-1.884955108710.302294432113-1.884955108220.302294430669
+trajectory——————29.2-1.880441327050.290934579945-1.880441326560.290934578515
+trajectory——————29.3-1.875940121860.279683143432-1.875940121370.279683142016
+trajectory——————29.4-1.871451504060.268539330595-1.871451503570.268539329192
+trajectory——————29.5-1.866975484710.25750235442-1.866975484230.257502353031
+trajectory——————29.6-1.862512075070.246571432826-1.862512074580.24657143145
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————29.7-1.858061286560.23574578863-1.858061286080.235745787267
+trajectory——————29.8-1.853623130890.225024649514-1.853623130410.225024648165
+trajectory——————29.9-1.849197620020.214407247994-1.849197619540.214407246658
+trajectory——————30-1.844784766180.203892821387-1.844784765690.203892820063
+trajectory——————30.1-1.840384581890.193480611773-1.840384581410.193480610462
+trajectory——————30.2-1.835997080010.183169865969-1.835997079530.183169864671
+trajectory——————30.3-1.831622273690.172959835493-1.831622273210.172959834208
+trajectory——————30.4-1.827260176380.162849776531-1.82726017590.162849775259
+trajectory——————30.5-1.82291080190.152838949907-1.822910801420.152838948648
+trajectory——————30.6-1.818574164370.142926621048-1.818574163890.1429266198
+trajectory——————30.7-1.814250278260.133112059952-1.814250277790.133112058717
+trajectory——————30.8-1.809939158390.12339454116-1.809939157910.123394539938
+trajectory——————30.9-1.805640819890.113773343721-1.805640819410.113773342511
+trajectory——————31-1.801355278260.10424775116-1.801355277790.104247749961
+trajectory——————31.1-1.797082549360.094817051448-1.797082548890.0948170502615
+trajectory——————31.2-1.792822649380.0854805369719-1.792822648910.0854805357972
+trajectory——————31.3-1.788575594860.0762375045012-1.788575594390.0762375033383
+trajectory——————31.4-1.784341402720.0670872551587-1.784341402250.0670872540076
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————31.5-1.780120090220.0580290943896-1.780120089750.05802909325
+trajectory——————31.6-1.775911674980.0490623319306-1.775911674510.0490623308025
+trajectory——————31.7-1.7717161750.0401862817803-1.771716174520.0401862806636
+trajectory——————31.8-1.767533608610.0314002621685-1.767533608140.0314002610632
+trajectory——————31.9-1.763363994530.022703595527-1.763363994060.022703594433
+trajectory——————32-1.759207351860.0140956084592-1.759207351390.0140956073763
+trajectory——————32.1-1.755063700040.00557563171077-1.755063699570.00557563063899
+trajectory——————32.2-1.75093305889-0.00285699985943-1.75093305843-0.00285700092021
+trajectory——————32.3-1.74681544862-0.011202947309-1.74681544815-0.0112029483588
+trajectory——————32.4-1.74271088978-0.0194628676406-1.74271088932-0.0194628686797
+trajectory——————32.5-1.73861940334-0.0276374138314-1.73861940287-0.0276374148597
+trajectory——————32.6-1.7345410106-0.0357272348611-1.73454101013-0.0357272358787
+trajectory——————32.7-1.73047573327-0.0437329757407-1.73047573281-0.0437329767477
+trajectory——————32.8-1.72642359344-0.0516552775411-1.72642359298-0.0516552785376
+trajectory——————32.9-1.72238461356-0.059494777421-1.7223846131-0.0594947784071
+trajectory——————33-1.71835881649-0.0672521086549-1.71835881603-0.0672521096306
+trajectory——————33.1-1.71434622545-0.074927900661-1.71434622499-0.0749279016264
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————33.2-1.71034686406-0.0825227790289-1.7103468636-0.0825227799841
+trajectory——————33.3-1.70636075632-0.0900373655471-1.70636075586-0.0900373664922
+trajectory——————33.4-1.70238792661-0.0974722782303-1.70238792616-0.0974722791654
+trajectory——————33.5-1.69842839973-0.104828131347-1.69842839928-0.104828132272
+trajectory——————33.6-1.69448220084-0.112105535444-1.69448220038-0.11210553636
+trajectory——————33.7-1.69054935549-0.119305097379-1.69054935503-0.119305098285
+trajectory——————33.8-1.68662988963-0.126427420341-1.68662988918-0.126427421237
+trajectory——————33.9-1.68272382962-0.13347310388-1.68272382917-0.133473104766
+trajectory——————34-1.67883120219-0.140442743932-1.67883120174-0.140442744809
+trajectory——————34.1-1.67495203446-0.147336932848-1.67495203401-0.147336933715
+trajectory——————34.2-1.67108635396-0.154156259416-1.67108635352-0.154156260273
+trajectory——————34.3-1.66723418862-0.160901308889-1.66723418817-0.160901309738
+trajectory——————34.4-1.66339556675-0.167572663013-1.6633955663-0.167572663852
+trajectory——————34.5-1.65957051705-0.174170900047-1.65957051661-0.174170900876
+trajectory——————34.6-1.65575906865-0.180696594792-1.6557590682-0.180696595613
+trajectory——————34.7-1.65196125103-0.187150318619-1.65196125059-0.18715031943
+trajectory——————34.8-1.64817709411-0.193532639486-1.64817709367-0.193532640288
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————34.9-1.64440662819-0.199844121971-1.64440662775-0.199844122764
+trajectory——————35-1.64064988394-0.206085327292-1.64064988351-0.206085328076
+trajectory——————35.1-1.63690689248-0.212256813333-1.63690689204-0.212256814109
+trajectory——————35.2-1.63317768528-0.21835913467-1.63317768485-0.218359135438
+trajectory——————35.3-1.62946229423-0.224392842593-1.6294622938-0.224392843351
+trajectory——————35.4-1.62576075161-0.230358485128-1.62576075117-0.230358485878
+trajectory——————35.5-1.62207309008-0.236256607069-1.62207308964-0.236256607811
+trajectory——————35.6-1.61839934272-0.242087749992-1.61839934228-0.242087750726
+trajectory——————35.7-1.61473954298-0.247852452287-1.61473954255-0.247852453011
+trajectory——————35.8-1.61109372472-0.253551249173-1.61109372429-0.25355124989
+trajectory——————35.9-1.60746192218-0.259184672731-1.60746192175-0.259184673439
+trajectory——————36-1.60384417-0.26475325192-1.60384416957-0.26475325262
+trajectory——————36.1-1.60024050319-0.270257512601-1.60024050276-0.270257513293
+trajectory——————36.2-1.59665095716-0.275697977563-1.59665095674-0.275697978247
+trajectory——————36.3-1.59307556772-0.281075166542-1.5930755673-0.281075167218
+trajectory——————36.4-1.58951437103-0.286389596248-1.58951437061-0.286389596916
+trajectory——————36.5-1.58596740365-0.291641780382-1.58596740323-0.291641781043
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————36.6-1.58243470252-0.296832229662-1.58243470211-0.296832230315
+trajectory——————36.7-1.57891630497-0.301961451844-1.57891630455-0.301961452489
+trajectory——————36.8-1.57541224867-0.307029951743-1.57541224825-0.30702995238
+trajectory——————36.9-1.57192257169-0.312038231256-1.57192257127-0.312038231885
+trajectory——————37-1.56844731245-0.316986789383-1.56844731204-0.316986790005
+trajectory——————37.1-1.56498650977-0.321876122249-1.56498650936-0.321876122863
+trajectory——————37.2-1.5615402028-0.326706723125-1.56154020239-0.326706723732
+trajectory——————37.3-1.55810843105-0.331479082447-1.55810843064-0.331479083047
+trajectory——————37.4-1.55469123441-0.336193687842-1.554691234-0.336193688434
+trajectory——————37.5-1.5512886531-0.340851024142-1.55128865269-0.340851024727
+trajectory——————37.6-1.54790072769-0.34545157341-1.54790072729-0.345451573988
+trajectory——————37.7-1.54452749912-0.34999581496-1.54452749871-0.349995815531
+trajectory——————37.8-1.54116900863-0.354484225373-1.54116900823-0.354484225937
+trajectory——————37.9-1.53782529783-0.358917278521-1.53782529743-0.358917279078
+trajectory——————38-1.53449640864-0.363295445588-1.53449640824-0.363295446138
+trajectory——————38.1-1.5311823833-0.367619195084-1.53118238291-0.367619195627
+trajectory——————38.2-1.5278832644-0.371888992871-1.527883264-0.371888993408
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————38.3-1.5245990948-0.376105302179-1.52459909441-0.376105302709
+trajectory——————38.4-1.52132991771-0.380268583626-1.52132991732-0.380268584149
+trajectory——————38.5-1.51807577662-0.384379295237-1.51807577623-0.384379295754
+trajectory——————38.6-1.51483671531-0.388437892463-1.51483671492-0.388437892973
+trajectory——————38.7-1.51161277786-0.3924448282-1.51161277748-0.392444828704
+trajectory——————38.8-1.50840400864-0.396400552807-1.50840400826-0.396400553304
+trajectory——————38.9-1.50521045228-0.400305514125-1.5052104519-0.400305514616
+trajectory——————39-1.50203215368-0.404160157495-1.5020321533-0.40416015798
+trajectory——————39.1-1.498869158-0.407964925776-1.49886915762-0.407964926254
+trajectory——————39.2-1.49572151066-0.411720259363-1.49572151028-0.411720259835
+trajectory——————39.3-1.4925892573-0.415426596204-1.49258925692-0.41542659667
+trajectory——————39.4-1.48947244382-0.419084371819-1.48947244345-0.419084372278
+trajectory——————39.5-1.48637111634-0.422694019315-1.48637111596-0.422694019769
+trajectory——————39.6-1.48328532118-0.426255969407-1.4832853208-0.426255969854
+trajectory——————39.7-1.48021510487-0.42977065043-1.4802151045-0.429770650872
+trajectory——————39.8-1.47716051416-0.43323848836-1.47716051379-0.433238488795
+trajectory——————39.9-1.47412159596-0.436659906827-1.47412159559-0.436659907257
+trajectory——————40-1.47109839736-0.440035327136-1.471098397-0.44003532756
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————40.1-1.46809096562-0.443365168278-1.46809096525-0.443365168697
+trajectory——————40.2-1.46509934814-0.44664984695-1.46509934778-0.446649847363
+trajectory——————40.3-1.46212359247-0.449889777568-1.46212359211-0.449889777975
+trajectory——————40.4-1.4591637463-0.453085372286-1.45916374594-0.453085372687
+trajectory——————40.5-1.45621985741-0.456237041005-1.45621985705-0.456237041401
+trajectory——————40.6-1.45329197369-0.459345191399-1.45329197333-0.459345191789
+trajectory——————40.7-1.45038014313-0.462410228917-1.45038014278-0.462410229302
+trajectory——————40.8-1.44748441379-0.465432556809-1.44748441344-0.465432557189
+trajectory——————40.9-1.4446048338-0.468412576134-1.44460483345-0.468412576508
+trajectory——————41-1.44174145131-0.471350685776-1.44174145096-0.471350686145
+trajectory——————41.1-1.43889431453-0.47424728246-1.43889431418-0.474247282824
+trajectory——————41.2-1.43606347167-0.477102760763-1.43606347133-0.477102761121
+trajectory——————41.3-1.43324897095-0.47991751313-1.43324897061-0.479917513483
+trajectory——————41.4-1.43045086057-0.482691929887-1.43045086023-0.482691930235
+trajectory——————41.5-1.4276691887-0.485426399254-1.42766918836-0.485426399597
+trajectory——————41.6-1.42490400346-0.488121307358-1.42490400312-0.488121307696
+trajectory——————41.7-1.4221553529-0.490777038246-1.42215535256-0.490777038579
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————41.8-1.41942328498-0.493393973898-1.41942328464-0.493393974226
+trajectory——————41.9-1.41670784757-0.49597249424-1.41670784724-0.495972494564
+trajectory——————42-1.41400908841-0.498512977155-1.41400908808-0.498512977474
+trajectory——————42.1-1.4113270551-0.501015798494-1.41132705477-0.501015798808
+trajectory——————42.2-1.40866179508-0.503481332092-1.40866179476-0.503481332401
+trajectory——————42.3-1.40601335561-0.505909949773-1.40601335529-0.505909950078
+trajectory——————42.4-1.40338178374-0.50830202137-1.40338178342-0.50830202167
+trajectory——————42.5-1.40076712631-0.510657914725-1.40076712599-0.510657915021
+trajectory——————42.6-1.39816942989-0.512977995711-1.39816942958-0.512977996002
+trajectory——————42.7-1.39558874082-0.515262628235-1.3955887405-0.515262628521
+trajectory——————42.8-1.39302510511-0.51751217425-1.3930251048-0.517512174532
+trajectory——————42.9-1.39047856849-0.519726993767-1.39047856818-0.519726994045
+trajectory——————43-1.38794917634-0.521907444863-1.38794917603-0.521907445137
+trajectory——————43.1-1.38543697369-0.524053883692-1.38543697338-0.524053883962
+trajectory——————43.2-1.38294200515-0.526166664493-1.38294200485-0.526166664758
+trajectory——————43.3-1.38046431498-0.528246139597-1.38046431467-0.528246139858
+trajectory——————43.4-1.37800394695-0.530292659442-1.37800394665-0.530292659699
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————43.5-1.37556094441-0.532306572576-1.37556094411-0.532306572829
+trajectory——————43.6-1.3731353502-0.534288225668-1.37313534991-0.534288225916
+trajectory——————43.7-1.37072720666-0.536237963512-1.37072720636-0.536237963757
+trajectory——————43.8-1.36833655558-0.538156129042-1.36833655528-0.538156129283
+trajectory——————43.9-1.36596343818-0.540043063333-1.36596343789-0.54004306357
+trajectory——————44-1.3636078951-0.54189910561-1.36360789481-0.541899105843
+trajectory——————44.1-1.36126996635-0.543724593257-1.36126996607-0.543724593486
+trajectory——————44.2-1.35894969129-0.545519861822-1.358949691-0.545519862047
+trajectory——————44.3-1.35664710857-0.547285245022-1.35664710829-0.547285245243
+trajectory——————44.4-1.35436225618-0.549021074751-1.3543622559-0.549021074969
+trajectory——————44.5-1.35209517132-0.550727681087-1.35209517104-0.550727681301
+trajectory——————44.6-1.34984589045-0.552405392295-1.34984589018-0.552405392505
+trajectory——————44.7-1.34761444922-0.554054534832-1.34761444894-0.554054535039
+trajectory——————44.8-1.34540088243-0.555675433356-1.34540088215-0.555675433559
+trajectory——————44.9-1.34320522403-0.557268410725-1.34320522376-0.557268410925
+trajectory——————45-1.34102750708-0.558833788007-1.34102750681-0.558833788203
+trajectory——————45.1-1.3388677637-0.56037188448-1.33886776343-0.560371884673
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————45.2-1.33672602505-0.561883017639-1.33672602478-0.561883017829
+trajectory——————45.3-1.33460232129-0.563367503197-1.33460232103-0.563367503383
+trajectory——————45.4-1.33249668157-0.564825655088-1.33249668131-0.564825655271
+trajectory——————45.5-1.33040913397-0.566257785475-1.33040913371-0.566257785654
+trajectory——————45.6-1.32833970547-0.567664204746-1.32833970521-0.567664204922
+trajectory——————45.7-1.32628842193-0.56904522152-1.32628842167-0.569045221693
+trajectory——————45.8-1.32425530805-0.570401142651-1.3242553078-0.570401142821
+trajectory——————45.9-1.32224038733-0.571732273225-1.32224038708-0.571732273391
+trajectory——————46-1.32024368205-0.573038916565-1.32024368181-0.573038916729
+trajectory——————46.1-1.31826521322-0.574321374232-1.31826521298-0.574321374393
+trajectory——————46.2-1.31630500054-0.575579946026-1.3163050003-0.575579946184
+trajectory——————46.3-1.3143630624-0.576814929985-1.31436306216-0.576814930139
+trajectory——————46.4-1.3124394158-0.578026622387-1.31243941556-0.578026622538
+trajectory——————46.5-1.31053407636-0.57921531775-1.31053407612-0.579215317899
+trajectory——————46.6-1.30864705824-0.580381308834-1.30864705801-0.58038130898
+trajectory——————46.7-1.30677837415-0.581524886635-1.30677837392-0.581524886778
+trajectory——————46.8-1.30492803528-0.58264634039-1.30492803505-0.582646340531
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————46.9-1.30309605128-0.583745957573-1.30309605105-0.583745957711
+trajectory——————47-1.30128243023-0.584824023897-1.30128243-0.584824024032
+trajectory——————47.1-1.2994871786-0.585880823306-1.29948717838-0.585880823438
+trajectory——————47.2-1.29771030122-0.586916637981-1.297710301-0.586916638111
+trajectory——————47.3-1.29595180123-0.587931748335-1.29595180101-0.587931748462
+trajectory——————47.4-1.29421168007-0.588926433007-1.29421167985-0.588926433132
+trajectory——————47.5-1.29248993743-0.589900968867-1.29248993722-0.589900968989
+trajectory——————47.6-1.29078657124-0.590855631006-1.29078657103-0.590855631126
+trajectory——————47.7-1.28910157758-0.591790692738-1.28910157737-0.591790692855
+trajectory——————47.8-1.28743495073-0.592706425593-1.28743495053-0.592706425708
+trajectory——————47.9-1.28578668307-0.593603099319-1.28578668287-0.593603099432
+trajectory——————48-1.28415676509-0.594480981872-1.28415676489-0.594480981982
+trajectory——————48.1-1.28254518532-0.595340339415-1.28254518512-0.595340339522
+trajectory——————48.2-1.28095193035-0.596181436315-1.28095193015-0.59618143642
+trajectory——————48.3-1.27937698474-0.597004535136-1.27937698455-0.597004535239
+trajectory——————48.4-1.27782033107-0.597809896639-1.27782033087-0.59780989674
+trajectory——————48.5-1.27628194981-0.59859777977-1.27628194962-0.598597779869
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————48.6-1.27476181939-0.599368441662-1.2747618192-0.599368441759
+trajectory——————48.7-1.27325991611-0.600122137627-1.27325991592-0.600122137721
+trajectory——————48.8-1.27177621413-0.600859121149-1.27177621395-0.600859121241
+trajectory——————48.9-1.27031068546-0.601579643881-1.27031068528-0.601579643971
+trajectory——————49-1.26886329992-0.60228395564-1.26886329974-0.602283955728
+trajectory——————49.1-1.2674340251-0.602972304397-1.26743402492-0.602972304483
+trajectory——————49.2-1.26602282639-0.603644936277-1.26602282621-0.603644936361
+trajectory——————49.3-1.26462966689-0.604302095548-1.26462966672-0.60430209563
+trajectory——————49.4-1.26325450745-0.604944024616-1.26325450728-0.604944024696
+trajectory——————49.5-1.26189730661-0.60557096402-1.26189730644-0.605570964098
+trajectory——————49.6-1.2605580206-0.606183152424-1.26055802043-0.606183152501
+trajectory——————49.7-1.25923660331-0.606780826612-1.25923660314-0.606780826687
+trajectory——————49.8-1.25793300628-0.60736422148-1.25793300612-0.607364221553
+trajectory——————49.9-1.25664717871-0.607933570028-1.25664717855-0.6079335701
+trajectory——————50-1.25537906738-0.608489103358-1.25537906722-0.608489103428
+trajectory——————50.1-1.25412861672-0.609031050662-1.25412861657-0.60903105073
+trajectory——————50.2-1.25289576874-0.609559639217-1.25289576859-0.609559639283
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————50.3-1.25168046304-0.610075094378-1.25168046289-0.610075094442
+trajectory——————50.4-1.25048263679-0.610577639571-1.25048263664-0.610577639634
+trajectory——————50.5-1.24930222476-0.611067496286-1.24930222461-0.611067496348
+trajectory——————50.6-1.24813915925-0.611544884072-1.24813915911-0.611544884132
+trajectory——————50.7-1.24699337016-0.612010020525-1.24699337002-0.612010020583
+trajectory——————50.8-1.24586478493-0.612463121285-1.24586478479-0.612463121342
+trajectory——————50.9-1.24475332858-0.612904400029-1.24475332844-0.612904400084
+trajectory——————51-1.24365892365-0.613334068461-1.24365892352-0.613334068515
+trajectory——————51.1-1.2425814903-0.61375233631-1.24258149016-0.613752336362
+trajectory——————51.2-1.24152094621-0.614159411318-1.24152094607-0.614159411368
+trajectory——————51.3-1.24047720666-0.614555499236-1.24047720653-0.614555499285
+trajectory——————51.4-1.2394501845-0.614940803818-1.23945018437-0.614940803866
+trajectory——————51.5-1.23843979018-0.615315526814-1.23843979005-0.615315526861
+trajectory——————51.6-1.23744593174-0.615679867961-1.23744593161-0.615679868007
+trajectory——————51.7-1.23646851484-0.616034024982-1.23646851471-0.616034025026
+trajectory——————51.8-1.23550744276-0.616378193574-1.23550744264-0.616378193617
+trajectory——————51.9-1.23456261644-0.616712567406-1.23456261632-0.616712567448
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————52-1.23363393446-0.617037338112-1.23363393435-0.617037338153
+trajectory——————52.1-1.23272129311-0.617352695287-1.232721293-0.617352695326
+trajectory——————52.2-1.23182458636-0.617658826477-1.23182458625-0.617658826515
+trajectory——————52.3-1.2309437059-0.61795591718-1.23094370579-0.617955917217
+trajectory——————52.4-1.23007854121-0.618244150835-1.2300785411-0.618244150871
+trajectory——————52.5-1.22922897951-0.618523708824-1.2292289794-0.618523708859
+trajectory——————52.6-1.22839490583-0.618794770462-1.22839490573-0.618794770495
+trajectory——————52.7-1.22757620307-0.619057512992-1.22757620297-0.619057513025
+trajectory——————52.8-1.22677275197-0.619312111589-1.22677275187-0.619312111621
+trajectory——————52.9-1.22598443118-0.619558739348-1.22598443108-0.619558739378
+trajectory——————53-1.22521111729-0.619797567283-1.2252111172-0.619797567313
+trajectory——————53.1-1.22445268488-0.620028764326-1.22445268478-0.620028764355
+trajectory——————53.2-1.22370900651-0.620252497325-1.22370900642-0.620252497353
+trajectory——————53.3-1.22297995284-0.620468931036-1.22297995275-0.620468931063
+trajectory——————53.4-1.2222653926-0.620678228127-1.22226539251-0.620678228153
+trajectory——————53.5-1.22156519267-0.620880549174-1.22156519258-0.620880549199
+trajectory——————53.6-1.22087921812-0.621076052659-1.22087921804-0.621076052683
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————53.7-1.22020733226-0.62126489497-1.22020733218-0.621264894994
+trajectory——————53.8-1.21954939667-0.621447230401-1.21954939659-0.621447230424
+trajectory——————53.9-1.21890527128-0.621623211151-1.2189052712-0.621623211173
+trajectory——————54-1.21827481438-0.621792987325-1.21827481431-0.621792987346
+trajectory——————54.1-1.21765788274-0.621956706932-1.21765788266-0.621956706952
+trajectory——————54.2-1.21705433157-0.62211451589-1.21705433149-0.62211451591
+trajectory——————54.3-1.21646401467-0.622266558027-1.21646401459-0.622266558046
+trajectory——————54.4-1.21588678442-0.62241297508-1.21588678434-0.622412975099
+trajectory——————54.5-1.21532249186-0.6225539067-1.21532249179-0.622553906717
+trajectory——————54.6-1.21477098678-0.622689490453-1.21477098671-0.62268949047
+trajectory——————54.7-1.21423211771-0.622819861826-1.21423211764-0.622819861843
+trajectory——————54.8-1.21370573205-0.622945154229-1.21370573199-0.622945154245
+trajectory——————54.9-1.21319167609-0.623065498999-1.21319167603-0.623065499014
+trajectory——————55-1.21268979509-0.623181025405-1.21268979503-0.62318102542
+trajectory——————55.1-1.21219993334-0.623291860654-1.21219993328-0.623291860668
+trajectory——————55.2-1.21172193421-0.623398129897-1.21172193415-0.62339812991
+trajectory——————55.3-1.21125564025-0.623499956231-1.2112556402-0.623499956244
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————55.4-1.21080089323-0.623597460713-1.21080089317-0.623597460725
+trajectory——————55.5-1.21035753418-0.623690762359-1.21035753413-0.623690762371
+trajectory——————55.6-1.20992540353-0.62377997816-1.20992540347-0.623779978171
+trajectory——————55.7-1.2095043411-0.623865223082-1.20950434105-0.623865223092
+trajectory——————55.8-1.20909418622-0.623946610079-1.20909418617-0.623946610089
+trajectory——————55.9-1.20869477777-0.624024250103-1.20869477772-0.624024250113
+trajectory——————56-1.20830595425-0.62409825211-1.2083059542-0.624098252119
+trajectory——————56.1-1.20792755386-0.624168723072-1.20792755382-0.624168723081
+trajectory——————56.2-1.20755941457-0.624235767988-1.20755941452-0.624235767996
+trajectory——————56.3-1.20720137415-0.624299489894-1.20720137411-0.624299489902
+trajectory——————56.4-1.2068532703-0.624359989874-1.20685327026-0.624359989882
+trajectory——————56.5-1.20651494066-0.624417367075-1.20651494062-0.624417367082
+trajectory——————56.6-1.20618622291-0.624471718712-1.20618622287-0.624471718719
+trajectory——————56.7-1.20586695482-0.624523140092-1.20586695478-0.624523140098
+trajectory——————56.8-1.20555697434-0.624571724615-1.2055569743-0.624571724621
+trajectory——————56.9-1.20525611963-0.624617563798-1.20525611959-0.624617563804
+trajectory——————57-1.20496422915-0.624660747283-1.20496422911-0.624660747288
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————57.1-1.20468114173-0.624701362852-1.2046811417-0.624701362857
+trajectory——————57.2-1.20440669662-0.624739496447-1.20440669659-0.624739496451
+trajectory——————57.3-1.20414073355-0.624775232178-1.20414073351-0.624775232182
+trajectory——————57.4-1.2038830928-0.624808652344-1.20388309277-0.624808652348
+trajectory——————57.5-1.20363361526-0.624839837449-1.20363361523-0.624839837453
+trajectory——————57.6-1.20339214251-0.624868866215-1.20339214248-0.624868866219
+trajectory——————57.7-1.20315851685-0.624895815603-1.20315851682-0.624895815606
+trajectory——————57.8-1.20293258135-0.624920760827-1.20293258132-0.624920760831
+trajectory——————57.9-1.20271417996-0.624943775375-1.20271417993-0.624943775378
+trajectory——————58-1.20250315752-0.624964931025-1.20250315749-0.624964931027
+trajectory——————58.1-1.20229935982-0.624984297861-1.2022993598-0.624984297863
+trajectory——————58.2-1.20210263369-0.625001944297-1.20210263366-0.625001944299
+trajectory——————58.3-1.201912827-0.625017937092-1.20191282697-0.625017937094
+trajectory——————58.4-1.20172978875-0.625032341371-1.20172978872-0.625032341373
+trajectory——————58.5-1.2015533691-0.625045220645-1.20155336908-0.625045220647
+trajectory——————58.6-1.20138341945-0.625056636827-1.20138341942-0.625056636829
+trajectory——————58.7-1.20121979242-0.625066650257-1.2012197924-0.625066650259
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————58.8-1.20106234199-0.62507531972-1.20106234197-0.625075319722
+trajectory——————58.9-1.20091092345-0.625082702467-1.20091092343-0.625082702468
+trajectory——————59-1.2007653935-0.625088854233-1.20076539349-0.625088854234
+trajectory——————59.1-1.2006256103-0.625093829263-1.20062561028-0.625093829264
+trajectory——————59.2-1.20049143345-0.625097680331-1.20049143343-0.625097680331
+trajectory——————59.3-1.20036272409-0.625100458758-1.20036272407-0.625100458759
+trajectory——————59.4-1.20023934489-0.62510221444-1.20023934487-0.62510221444
+trajectory——————59.5-1.20012116012-0.625102995862-1.20012116011-0.625102995862
+trajectory——————59.6-1.20000803567-0.625102850126-1.20000803565-0.625102850126
+trajectory——————59.7-1.19989983906-0.625101822972-1.19989983905-0.625101822972
+trajectory——————59.8-1.19979643952-0.625099958795-1.1997964395-0.625099958795
+trajectory——————59.9-1.19969770794-0.625097300673-1.19969770793-0.625097300673
+trajectory——————60-1.19960351699-0.625093890386-1.19960351698-0.625093890386
+trajectory——————60.1-1.19951374108-0.625089768439-1.19951374107-0.625089768439
+trajectory——————60.2-1.19942825638-0.625084974085-1.19942825637-0.625084974084
+trajectory——————60.3-1.19934694089-0.625079545344-1.19934694088-0.625079545343
+trajectory——————60.4-1.19926967442-0.62507351903-1.19926967441-0.62507351903
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————60.5-1.19919633861-0.625066930771-1.1991963386-0.625066930771
+trajectory——————60.6-1.19912681697-0.62505981503-1.19912681696-0.62505981503
+trajectory——————60.7-1.19906099487-0.62505220513-1.19906099486-0.625052205129
+trajectory——————60.8-1.19899875957-0.625044133273-1.19899875956-0.625044133272
+trajectory——————60.9-1.19894000021-0.625035630565-1.1989400002-0.625035630564
+trajectory——————61-1.19888460785-0.625026727038-1.19888460785-0.625026727037
+trajectory——————61.1-1.19883247546-0.625017451671-1.19883247545-0.62501745167
+trajectory——————61.2-1.19878349792-0.625007832411-1.19878349791-0.62500783241
+trajectory——————61.3-1.19873757204-0.624997896197-1.19873757203-0.624997896195
+trajectory——————61.4-1.19869459655-0.62498766898-1.19869459654-0.624987668979
+trajectory——————61.5-1.19865447212-0.624977175748-1.19865447212-0.624977175747
+trajectory——————61.6-1.19861710136-0.624966440544-1.19861710136-0.624966440542
+trajectory——————61.7-1.19858238879-0.624955486486-1.19858238879-0.624955486485
+trajectory——————61.8-1.19855024087-0.624944335796-1.19855024087-0.624944335794
+trajectory——————61.9-1.19852056599-0.624933009811-1.19852056599-0.624933009809
+trajectory——————62-1.19849327445-0.624921529012-1.19849327444-0.62492152901
+trajectory——————62.1-1.19846827847-0.62490991304-1.19846827847-0.624909913039
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————62.2-1.19844549219-0.624898180721-1.19844549218-0.624898180719
+trajectory——————62.3-1.19842483163-0.62488635008-1.19842483163-0.624886350079
+trajectory——————62.4-1.19840621473-0.624874438368-1.19840621472-0.624874438367
+trajectory——————62.5-1.19838956128-0.624862462078-1.19838956127-0.624862462077
+trajectory——————62.6-1.19837479296-0.624850436965-1.19837479295-0.624850436964
+trajectory——————62.7-1.1983618333-0.624838378067-1.19836183329-0.624838378066
+trajectory——————62.8-1.19835060767-0.624826299724-1.19835060767-0.624826299722
+trajectory——————62.9-1.1983410433-0.624814215596-1.19834104329-0.624814215594
+trajectory——————63-1.19833306918-0.624802138682-1.19833306918-0.624802138681
+trajectory——————63.1-1.19832661614-0.624790081341-1.19832661614-0.62479008134
+trajectory——————63.2-1.19832161678-0.624778055309-1.19832161678-0.624778055307
+trajectory——————63.3-1.19831800546-0.624766071713-1.19831800545-0.624766071711
+trajectory——————63.4-1.19831571828-0.624754141096-1.19831571828-0.624754141094
+trajectory——————63.5-1.19831469308-0.62474227343-1.19831469308-0.624742273428
+trajectory——————63.6-1.19831486939-0.624730478135-1.19831486939-0.624730478133
+trajectory——————63.7-1.19831618843-0.624718764094-1.19831618843-0.624718764092
+trajectory——————63.8-1.19831859309-0.624707139673-1.19831859309-0.624707139671
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————63.9-1.19832202789-0.624695612734-1.19832202789-0.624695612733
+trajectory——————64-1.19832643897-0.624684190655-1.19832643898-0.624684190654
+trajectory——————64.1-1.19833177409-0.624672880343-1.19833177409-0.624672880342
+trajectory——————64.2-1.19833798255-0.624661688249-1.19833798255-0.624661688248
+trajectory——————64.3-1.19834501521-0.624650620387-1.19834501521-0.624650620385
+trajectory——————64.4-1.19835282446-0.624639682345-1.19835282446-0.624639682344
+trajectory——————64.5-1.1983613642-0.624628879304-1.1983613642-0.624628879302
+trajectory——————64.6-1.19837058978-0.624618216048-1.19837058978-0.624618216046
+trajectory——————64.7-1.19838045802-0.624607696981-1.19838045802-0.62460769698
+trajectory——————64.8-1.19839092717-0.624597326141-1.19839092718-0.62459732614
+trajectory——————64.9-1.19840195687-0.624587107212-1.19840195687-0.62458710721
+trajectory——————65-1.19841350813-0.624577043538-1.19841350813-0.624577043537
+trajectory——————65.1-1.19842554332-0.624567138137-1.19842554332-0.624567138136
+trajectory——————65.2-1.19843802613-0.624557393713-1.19843802613-0.624557393712
+trajectory——————65.3-1.19845092153-0.624547812667-1.19845092153-0.624547812666
+trajectory——————65.4-1.19846419579-0.624538397112-1.19846419579-0.624538397111
+trajectory——————65.5-1.19847781641-0.624529148883-1.19847781641-0.624529148882
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————65.6-1.19849175209-0.624520069549-1.19849175209-0.624520069548
+trajectory——————65.7-1.19850597275-0.624511160423-1.19850597276-0.624511160422
+trajectory——————65.8-1.19852044947-0.624502422577-1.19852044947-0.624502422576
+trajectory——————65.9-1.19853515445-0.624493856847-1.19853515445-0.624493856846
+trajectory——————66-1.19855006102-0.624485463849-1.19855006102-0.624485463848
+trajectory——————66.1-1.1985651436-0.624477243986-1.19856514361-0.624477243985
+trajectory——————66.2-1.19858037767-0.624469197458-1.19858037767-0.624469197457
+trajectory——————66.3-1.19859573973-0.624461324273-1.19859573973-0.624461324272
+trajectory——————66.4-1.19861120731-0.624453624255-1.19861120731-0.624453624254
+trajectory——————66.5-1.19862675891-0.624446097055-1.19862675891-0.624446097054
+trajectory——————66.6-1.19864237401-0.624438742157-1.19864237401-0.624438742156
+trajectory——————66.7-1.198658033-0.62443155889-1.198658033-0.624431558889
+trajectory——————66.8-1.1986737172-0.624424546434-1.1986737172-0.624424546433
+trajectory——————66.9-1.1986894088-0.624417703828-1.1986894088-0.624417703827
+trajectory——————67-1.19870509087-0.62441102998-1.19870509087-0.624411029979
+trajectory——————67.1-1.19872074729-0.624404523672-1.1987207473-0.624404523672
+trajectory——————67.2-1.19873636279-0.62439818357-1.19873636279-0.624398183569
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————67.3-1.19875192286-0.624392008228-1.19875192286-0.624392008227
+trajectory——————67.4-1.19876741376-0.624385996098-1.19876741377-0.624385996097
+trajectory——————67.5-1.19878282252-0.624380145534-1.19878282252-0.624380145534
+trajectory——————67.6-1.19879813686-0.624374454802-1.19879813686-0.624374454802
+trajectory——————67.7-1.19881334522-0.624368922083-1.19881334522-0.624368922082
+trajectory——————67.8-1.1988284367-0.624363545479-1.1988284367-0.624363545478
+trajectory——————67.9-1.19884340108-0.62435832302-1.19884340108-0.62435832302
+trajectory——————68-1.19885822876-0.624353252672-1.19885822876-0.624353252671
+trajectory——————68.1-1.19887291075-0.624348332337-1.19887291075-0.624348332337
+trajectory——————68.2-1.19888743866-0.624343559864-1.19888743866-0.624343559863
+trajectory——————68.3-1.19890180468-0.624338933047-1.19890180468-0.624338933047
+trajectory——————68.4-1.19891600155-0.624334449639-1.19891600155-0.624334449638
+trajectory——————68.5-1.19893002253-0.624330107347-1.19893002254-0.624330107346
+trajectory——————68.6-1.19894386143-0.624325903843-1.19894386143-0.624325903843
+trajectory——————68.7-1.19895751251-0.624321836768-1.19895751251-0.624321836768
+trajectory——————68.8-1.19897097055-0.624317903732-1.19897097055-0.624317903732
+trajectory——————68.9-1.19898423078-0.624314102321-1.19898423078-0.624314102321
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————69-1.19899728885-0.6243104301-1.19899728885-0.6243104301
+trajectory——————69.1-1.19901014087-0.624306884617-1.19901014087-0.624306884617
+trajectory——————69.2-1.19902278334-0.624303463407-1.19902278334-0.624303463407
+trajectory——————69.3-1.19903521316-0.624300163992-1.19903521316-0.624300163992
+trajectory——————69.4-1.1990474276-0.624296983889-1.1990474276-0.624296983889
+trajectory——————69.5-1.19905942431-0.62429392061-1.19905942431-0.62429392061
+trajectory——————69.6-1.19907120126-0.624290971665-1.19907120126-0.624290971664
+trajectory——————69.7-1.19908275677-0.624288134564-1.19908275677-0.624288134564
+trajectory——————69.8-1.19909408947-0.624285406823-1.19909408948-0.624285406823
+trajectory——————69.9-1.19910519831-0.624282785963-1.19910519831-0.624282785963
+trajectory——————70-1.19911608251-0.624280269514-1.19911608251-0.624280269514
+trajectory——————70.1-1.19912674156-0.624277855016-1.19912674156-0.624277855015
+trajectory——————70.2-1.19913717523-0.624275540021-1.19913717524-0.624275540021
+trajectory——————70.3-1.19914738355-0.624273322099-1.19914738355-0.624273322099
+trajectory——————70.4-1.19915736676-0.624271198833-1.19915736676-0.624271198833
+trajectory——————70.5-1.19916712534-0.624269167826-1.19916712534-0.624269167826
+trajectory——————70.6-1.19917665998-0.624267226701-1.19917665999-0.624267226701
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————70.7-1.19918597159-0.624265373103-1.1991859716-0.624265373102
+trajectory——————70.8-1.19919506126-0.624263604697-1.19919506126-0.624263604697
+trajectory——————70.9-1.19920393025-0.624261919177-1.19920393025-0.624261919177
+trajectory——————71-1.19921258001-0.624260314259-1.19921258001-0.624260314259
+trajectory——————71.1-1.19922101214-0.624258787687-1.19922101214-0.624258787687
+trajectory——————71.2-1.19922922841-0.624257337233-1.19922922841-0.624257337233
+trajectory——————71.3-1.1992372307-0.624255960697-1.1992372307-0.624255960697
+trajectory——————71.4-1.19924502106-0.624254655909-1.19924502106-0.624254655909
+trajectory——————71.5-1.19925260164-0.624253420731-1.19925260164-0.62425342073
+trajectory——————71.6-1.19925997471-0.624252253053-1.19925997471-0.624252253053
+trajectory——————71.7-1.19926714266-0.6242511508-1.19926714266-0.6242511508
+trajectory——————71.8-1.19927410797-0.624250111929-1.19927410797-0.624250111929
+trajectory——————71.9-1.19928087321-0.624249134431-1.19928087321-0.62424913443
+trajectory——————72-1.19928744105-0.624248216327-1.19928744105-0.624248216327
+trajectory——————72.1-1.19929381422-0.624247355677-1.19929381422-0.624247355677
+trajectory——————72.2-1.19929999555-0.624246550572-1.19929999555-0.624246550572
+trajectory——————72.3-1.19930598789-0.62424579914-1.19930598789-0.624245799139
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————72.4-1.1993117942-0.624245099542-1.1993117942-0.624245099542
+trajectory——————72.5-1.19931741745-0.624244449978-1.19931741745-0.624244449978
+trajectory——————72.6-1.19932286068-0.624243848679-1.19932286069-0.624243848679
+trajectory——————72.7-1.19932812698-0.624243293914-1.19932812698-0.624243293914
+trajectory——————72.8-1.19933321945-0.624242783989-1.19933321945-0.624242783989
+trajectory——————72.9-1.19933814124-0.624242317243-1.19933814124-0.624242317243
+trajectory——————73-1.19934289552-0.624241892053-1.19934289552-0.624241892053
+trajectory——————73.1-1.19934748548-0.62424150683-1.19934748548-0.62424150683
+trajectory——————73.2-1.19935191434-0.624241160022-1.19935191434-0.624241160022
+trajectory——————73.3-1.19935618531-0.624240850111-1.19935618531-0.624240850111
+trajectory——————73.4-1.19936030162-0.624240575617-1.19936030163-0.624240575617
+trajectory——————73.5-1.19936426653-0.624240335093-1.19936426653-0.624240335093
+trajectory——————73.6-1.19936808325-0.624240127128-1.19936808325-0.624240127128
+trajectory——————73.7-1.19937175503-0.624239950345-1.19937175503-0.624239950345
+trajectory——————73.8-1.1993752851-0.624239803402-1.19937528511-0.624239803402
+trajectory——————73.9-1.19937867669-0.624239684993-1.19937867669-0.624239684993
+trajectory——————74-1.19938193299-0.624239593843-1.19938193299-0.624239593843
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————74.1-1.19938505721-0.624239528712-1.19938505721-0.624239528712
+trajectory——————74.2-1.19938805253-0.624239488394-1.19938805253-0.624239488394
+trajectory——————74.3-1.1993909221-0.624239471715-1.1993909221-0.624239471715
+trajectory——————74.4-1.19939366906-0.624239477535-1.19939366906-0.624239477535
+trajectory——————74.5-1.19939629653-0.624239504743-1.19939629653-0.624239504743
+trajectory——————74.6-1.19939880759-0.624239552265-1.19939880759-0.624239552265
+trajectory——————74.7-1.1994012053-0.624239619052-1.1994012053-0.624239619052
+trajectory——————74.8-1.19940349268-0.624239704092-1.19940349268-0.624239704092
+trajectory——————74.9-1.19940567273-0.6242398064-1.19940567273-0.6242398064
+trajectory——————75-1.19940774842-0.624239925021-1.19940774842-0.624239925021
+trajectory——————75.1-1.19940972267-0.624240059031-1.19940972267-0.624240059031
+trajectory——————75.2-1.19941159837-0.624240207534-1.19941159837-0.624240207534
+trajectory——————75.3-1.19941337837-0.624240369664-1.19941337837-0.624240369664
+trajectory——————75.4-1.19941506549-0.624240544582-1.19941506549-0.624240544582
+trajectory——————75.5-1.19941666251-0.624240731476-1.19941666251-0.624240731476
+trajectory——————75.6-1.19941817215-0.624240929562-1.19941817215-0.624240929562
+trajectory——————75.7-1.1994195971-0.624241138083-1.1994195971-0.624241138083
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————75.8-1.19942094002-0.624241356309-1.19942094003-0.624241356309
+trajectory——————75.9-1.19942220352-0.624241583532-1.19942220352-0.624241583532
+trajectory——————76-1.19942339014-0.624241819073-1.19942339014-0.624241819073
+trajectory——————76.1-1.19942450242-0.624242062276-1.19942450242-0.624242062276
+trajectory——————76.2-1.19942554282-0.624242312508-1.19942554282-0.624242312508
+trajectory——————76.3-1.19942651376-0.624242569162-1.19942651376-0.624242569162
+trajectory——————76.4-1.19942741764-0.624242831652-1.19942741764-0.624242831652
+trajectory——————76.5-1.19942825678-0.624243099415-1.19942825678-0.624243099415
+trajectory——————76.6-1.19942903347-0.624243371911-1.19942903347-0.624243371911
+trajectory——————76.7-1.19942974996-0.624243648621-1.19942974996-0.624243648621
+trajectory——————76.8-1.19943040845-0.624243929045-1.19943040845-0.624243929046
+trajectory——————76.9-1.19943101107-0.624244212708-1.19943101107-0.624244212708
+trajectory——————77-1.19943155994-0.624244499151-1.19943155994-0.624244499151
+trajectory——————77.1-1.1994320571-0.624244787935-1.1994320571-0.624244787935
+trajectory——————77.2-1.19943250458-0.624245078642-1.19943250458-0.624245078642
+trajectory——————77.3-1.19943290434-0.624245370871-1.19943290434-0.624245370871
+trajectory——————77.4-1.19943325829-0.62424566424-1.19943325829-0.62424566424
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————77.5-1.1994335683-0.624245958383-1.1994335683-0.624245958383
+trajectory——————77.6-1.19943383621-0.624246252952-1.19943383621-0.624246252952
+trajectory——————77.7-1.1994340638-0.624246547617-1.1994340638-0.624246547617
+trajectory——————77.8-1.19943425279-0.624246842061-1.19943425279-0.624246842061
+trajectory——————77.9-1.19943440489-0.624247135986-1.19943440489-0.624247135986
+trajectory——————78-1.19943452174-0.624247429106-1.19943452174-0.624247429106
+trajectory——————78.1-1.19943460495-0.624247721154-1.19943460495-0.624247721154
+trajectory——————78.2-1.19943465608-0.624248011872-1.19943465608-0.624248011872
+trajectory——————78.3-1.19943467665-0.624248301021-1.19943467665-0.624248301021
+trajectory——————78.4-1.19943466813-0.624248588372-1.19943466813-0.624248588372
+trajectory——————78.5-1.19943463196-0.62424887371-1.19943463196-0.62424887371
+trajectory——————78.6-1.19943456953-0.624249156834-1.19943456953-0.624249156834
+trajectory——————78.7-1.1994344822-0.624249437554-1.1994344822-0.624249437554
+trajectory——————78.8-1.19943437127-0.624249715691-1.19943437127-0.624249715691
+trajectory——————78.9-1.19943423803-0.62424999108-1.19943423803-0.62424999108
+trajectory——————79-1.19943408371-0.624250263564-1.19943408371-0.624250263564
+trajectory——————79.1-1.19943390949-0.624250532999-1.19943390949-0.624250532999
+
+## MCMC・温度制御・生物モデル — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-measurements
+Coverage: reading
+
+trajectory——————79.2-1.19943371655-0.62425079925-1.19943371655-0.62425079925
+trajectory——————79.3-1.199433506-0.624251062193-1.199433506-0.624251062193
+trajectory——————79.4-1.19943327893-0.624251321713-1.19943327893-0.624251321714
+trajectory——————79.5-1.19943303639-0.624251577705-1.19943303639-0.624251577705
+trajectory——————79.6-1.19943277939-0.62425183007-1.19943277939-0.62425183007
+trajectory——————79.7-1.19943250891-0.624252078722-1.19943250891-0.624252078722
+trajectory——————79.8-1.19943222589-0.62425232358-1.19943222589-0.62425232358
+trajectory——————79.9-1.19943193125-0.624252564572-1.19943193125-0.624252564572
+trajectory——————80-1.19943162588-0.624252801633-1.19943162588-0.624252801633
+この例の実測値・全記録 / JSON
+
+## MCMC・温度制御・生物モデル — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+R. FitzHugh (1961). Impulses and Physiological States in Theoretical Models of Nerve Membrane · DOI: 10.1016/S0006-3495(61)86902-6
+確認範囲 / review_level: official-abstract-and-metadata
+PubMedの原著抄録・書誌を確認。2変数の興奮・不応期の縮約という役割を参照し、HH全系や実測膜電位の再現とは区別します。
+J. Nagumo, S. Arimoto and S. Yoshizawa (1962). An Active Pulse Transmission Line Simulating Nerve Axon · DOI: 10.1109/JRPROC.1962.288235
+確認範囲 / review_level: publisher-abstract-and-metadata
+IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference
+確認範囲 / review_level: official-api-documentation
+公式のDOP853、dense_output、許容誤差、successの仕様を確認。独立数値参照の実装資料です。
+
+## 粒子・静電場・運動論・放射輸送 — 粒子・静電場・運動論・放射輸送 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
+
+## 粒子・静電場・運動論・放射輸送 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#run-all
+Coverage: reading
+
+ZIPの atlas-particles-2026-11-22 フォルダで実行します。このコマンドは配布版の全6例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 粒子・静電場・運動論・放射輸送 — 中性周期セルのEwald和と独立theta積分 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。
+
+## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-assumptions
+Coverage: reading
+
+立方セル・全電荷ゼロ・Coulomb定数1・導体境界（tin foil）。主例は非対称な8点電荷で、NaClの8イオン配置は別の解析照合用です。
+
+## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-algorithm
+Coverage: reading
+
+erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格子和、−alpha/sqrt(pi) sum(q²)を加えます。力は各項の位置微分から求め、24成分を中心エネルギー差分と比較します。
+E=\frac12\sum_{ij\mathbf n}^{\prime}q_iq_j\frac{\operatorname{erfc}(\alpha r_{ij\mathbf n})}{r_{ij\mathbf n}}+\frac{2\pi}{V}\sum_{\mathbf k\ne0}\frac{e^{-k^2/(4\alpha^2)}}{k^2}|S(\mathbf k)|^2-\frac{\alpha}{\sqrt\pi}\sum_iq_i^2M_{\rm NaCl}=\frac2{\sqrt\pi}\int_0^\infty[1-\vartheta_4(0,e^{-u^2})^3]du
+
+## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-validation
+Coverage: reading
+
+分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。
+
+## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-limits
+Coverage: reading
+
+非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+madelung_constant1.74756459463
+theta_reference1.74756459463
+theta_quadrature_error1.27151293921e-13
+real_cutoff_force_last_change0
+madelung_error4.4408920985e-16
+splitting_energy_difference5.3290705182e-15
+splitting_force_difference3.81916720471e-14
+finite_difference_error1.73604242093e-09
+cutoff_force_last_change0
+net_force1.15463194561e-14
+判定 / check合格
+madelung_errortrue
+splitting_energy_differencetrue
+splitting_force_differencetrue
+finite_difference_errortrue
+cutoff_force_last_changetrue
+net_forcetrue
+nonzero_forcestrue
+real_cutoff_refinestrue
+theta_reference_error_boundtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesalphaenergymax_forceimagesforce_reference_errorcutoff
+splitting4.5-8.4074065143510.7578871675———
+splitting5.6-8.4074065143510.7578871675———
+splitting6.5-8.4074065143510.7578871675———
+real_cutoff—-8.41141513471—00.0741762841481—
+real_cutoff—-8.40740651435—10—
+real_cutoff—-8.40740651435—20—
+reciprocal_cutoff—-8.40851443963——0.001525877786934
+reciprocal_cutoff—-8.40740651653——5.28971266789e-097
+reciprocal_cutoff—-8.40740651435——010
+reciprocal_cutoff—-8.40740651435——014
+この例の実測値・全記録 / JSON
+
+## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+P. P. Ewald (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale · DOI: 10.1002/andp.19213690304
+確認範囲 / review_level: abstract-and-metadata
+出版社が返した書誌と原著の節見出しを確認。原著全文の監査はしていません。
+NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformations of Lattice Parameter
+確認範囲 / review_level: official-documentation
+Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。
+
+## 粒子・静電場・運動論・放射輸送 — Bスプラインsmooth PMEの格子・次数収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。
+
+## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-assumptions
+Coverage: reading
+
+Ewaldと同じ中性立方セルと実空間項を使います。PME族のうちEssmannらのBスプライン変種を採用し、Dardenらの原法のLagrange補間とは区別します。
+
+## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-algorithm
+Coverage: reading
+
+4次または6次のcardinal Bスプラインのテンソル積で電荷を格子化し、節点スプラインの離散構造因子補正、Gaussian Green関数、3次元FFTを組み合わせます。格子エネルギーを重みの位置微分で解析的に微分します。
+Q_{\mathbf j}=\sum_iq_i\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)\mathbf F_i=-\partial E_h/\partial\mathbf r_i
+
+## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-validation
+Coverage: reading
+
+16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。
+
+## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-limits
+Coverage: reading
+
+有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+force_error7.8551168432e-06
+energy_error8.18394095603e-07
+finest_to_coarsest_force_ratio0.00622783657018
+charge_error2.18713935851e-14
+finite_difference_error2.65574477964e-08
+net_force1.91934219709e-05
+判定 / check合格
+force_errortrue
+energy_errortrue
+finest_to_coarsest_force_ratiotrue
+charge_errortrue
+finite_difference_errortrue
+both_orders_refinetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+ordermeshenergyenergy_errorforce_error
+416-8.416771081250.009364566899440.0352611328118
+424-8.409150070480.001743556133290.00986757060083
+440-8.407635446510.0002289321635020.00224879620693
+616-8.407717347730.0003108333774620.00126129142194
+624-8.407426851312.03369559308e-050.000103862358053
+640-8.407407332748.18394095603e-077.8551168432e-06
+この例の実測値・全記録 / JSON
+
+## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#spme-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+T. Darden, D. York and L. Pedersen (1993). Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems · DOI: 10.1063/1.464397
+確認範囲 / review_level: abstract-and-metadata
+原著PDFの冒頭と抄録を確認。歴史的なPME原法であり、実装したBスプライン変種とは区別。
+U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen (1995). A smooth particle mesh Ewald method · DOI: 10.1063/1.470117
+確認範囲 / review_level: selected-full-text
+原著PDFのBスプライン構造因子・FFT・解析勾配に関わる部分と抄録を確認。全ベンチマークの再現ではありません。
+
+## 粒子・静電場・運動論・放射輸送 — 2次元対数核のM2M・M2L・L2Lを持つFMM [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
+
+## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-assumptions
+Coverage: reading
+
+単位正方形内の有限点電荷ですが、境界は壁でなく木を作る包囲領域です。核はphi=−sum(q log r)、電場は−grad(phi)。自己項を除外し、周期像はありません。
+
+## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-algorithm
+Coverage: reading
+
+葉でP2M、上向きのM2M、相互作用リスト上のM2L、下向きのL2L、局所多項式の評価と近接P2Pを実装します。遠方を粒子ごとに開くBarnes–Hutへ置き換えず、移動演算回数と近接対数を記録します。
+M_k(c)=\sum_jq_j(z_j-c)^kf(z)=M_0\log(z-c)-\sum_{k=1}^p\frac{M_k}{k(z-c)^k},\qquad\phi=-\Re f
+
+## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-validation
+Coverage: reading
+
+固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。
+
+## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-limits
+Coverage: reading
+
+3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+potential_max_error5.95309384011e-07
+field_max_error6.36492158819e-05
+finest_to_coarsest_ratio3.41946578774e-05
+判定 / check合格
+potential_max_errortrue
+field_max_errortrue
+finest_to_coarsest_ratiotrue
+actual_m2ltrue
+actual_l2ltrue
+near_field_is_subsettrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+orderpotential_max_errorfield_max_errorm2l_translationsl2l_translationsnear_pairsall_pairs
+20.05596920857291.86137893557127284195416256
+40.003976797337460.212697094288127284195416256
+83.59801375875e-050.00399892636657127284195416256
+125.95309384011e-076.36492158819e-05127284195416256
+この例の実測値・全記録 / JSON
+
+## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+L. Greengard and V. Rokhlin (1987). A fast algorithm for particle simulations · DOI: 10.1016/0021-9991(87)90140-9
+確認範囲 / review_level: selected-full-text
+著者所属機関の再録PDFで対数核、モーメント、3つの移動演算、上下走査を確認。再録版の掲載年1997と原著1987を区別。
+
+## 粒子・静電場・運動論・放射輸送 — CIC静電PICの冷たいプラズマ振動 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。
+
+## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-assumptions
+Coverage: reading
+
+長さ2pi、電子の電荷質量比−1、静止イオン背景密度1、plasma frequency=1の無次元系。quiet startから振幅0.001の微小正弦変位を与えます。
+
+## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-algorithm
+Coverage: reading
+
+CIC電荷割当てと同じ重みの場補間、ゼロ平均のスペクトルPoisson解、速度Verletを組み合わせます。実数の奇微分の規約により、電場のNyquistモードはゼロにします。
+\dot x_i=v_i,\quad\dot v_i=-E_h(x_i),\quad-\phi_{xx}=\rho,\quad E=-\phi_xA(t)/A(0)\simeq\cos(\omega_pt),\qquad\omega_p=1
+
+## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-validation
+Coverage: reading
+
+32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。
+
+## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-limits
+Coverage: reading
+
+有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+mode_error0.000886723736396
+time_mode_error0.000438557578256
+charge_error1.743934249e-16
+poisson_residual1.05879118407e-22
+self_force3.33066907388e-16
+grid_refinement_ratio0.057532353094
+time_refinement_ratio0.0142609763205
+判定 / check合格
+mode_errortrue
+charge_errortrue
+poisson_residualtrue
+self_forcetrue
+time_errortrue
+grid_refinestrue
+time_refinestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesgriddtparticleserrorenergy_defecttimemodeexact_modeenergy
+grid320.01994662002282560.01541261027420.00014068233929————
+grid640.01994662002285120.003788363809120.000111139390123————
+grid1280.019946620022810240.0008867237363960.00010232191244————
+time5120.39269908169940960.03075228290120.0385481856499————
+time5120.19634954084940960.007700893661190.00963805059296————
+time5120.09973310011440960.001936197445870.00248535778475————
+time5120.04986655005740960.0004385575782560.000621348552723————
+trajectory—————0111.57075720953e-06
+trajectory—————0.0498665500570.9987566947970.9987569212191.57075477924e-06
+trajectory—————0.0997331001140.9950298708060.9950307753651.57074751576e-06
+trajectory—————0.1495996501710.9888287951910.9888308262251.57073551186e-06
+trajectory—————0.1994662002280.9801688876010.9801724878491.57071886518e-06
+trajectory—————0.2493327502850.9690716818470.9690772862291.57069773862e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————0.2991993003420.9555647723530.9555728057861.57067234796e-06
+trajectory—————0.3490658503990.9396817455450.9396926207861.57064295549e-06
+trajectory—————0.3989324004560.9214620963140.921476211871.57060985418e-06
+trajectory—————0.4487989505130.9009511298160.9009688679021.57057334809e-06
+trajectory—————0.498665500570.8781998488340.878221573371.57053381932e-06
+trajectory—————0.5485320506270.8532648269360.8532908816321.5704916625e-06
+trajectory—————0.5983986006840.8262080678030.8262387743161.57044728283e-06
+trajectory—————0.6482651507410.7970968510560.7971325072231.57040113435e-06
+trajectory—————0.6981317007980.7660035649480.7660444431191.57035367052e-06
+trajectory—————0.7479982508550.7330055263660.733051871831.5703053634e-06
+trajectory—————0.7978648009120.6981847885720.6982368180861.57025669431e-06
+trajectory—————0.8477313509690.661627937170.6616858375971.570208147e-06
+trajectory—————0.8975979010260.6234258748020.6234898018591.57016020397e-06
+trajectory—————0.9474644510830.583673595110.5837436722351.57011334176e-06
+trajectory—————0.997331001140.5424699465240.5425462638661.57006802617e-06
+trajectory—————1.04719755120.4999173864630.51.57002470763e-06
+trajectory—————1.097064101250.4561217265650.4562106573531.56998381674e-06
+trajectory—————1.146930651310.4111918695740.4112871031311.56994575997e-06
+trajectory—————1.196797201370.365239538540.3653410243661.56991091562e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————1.246663751420.318378999010.3184866502521.56987963007e-06
+trajectory—————1.296530301480.2707267748950.2708404681431.56985221433e-06
+trajectory—————1.346396851540.2224013587140.2225209339561.56982894094e-06
+trajectory—————1.39626340160.1735229169580.1736481776671.56981004126e-06
+trajectory—————1.446129951650.1242129912760.1243437046471.56979570317e-06
+trajectory—————1.495996501710.074594196250.07473009358641.56978606923e-06
+trajectory—————1.545863051770.02478991450310.02493069173811.5697812352e-06
+trajectory—————1.59572960182-0.0250760101091-0.02493069173811.56978124913e-06
+trajectory—————1.64559615188-0.0748795804479-0.07473009358641.5697861109e-06
+trajectory—————1.69546270194-0.124496954425-0.1243437046471.56979577217e-06
+trajectory—————1.74532925199-0.173804752948-0.1736481776671.56981013688e-06
+trajectory—————1.79519580205-0.222680366719-0.2225209339561.56982906225e-06
+trajectory—————1.84506235211-0.271002261114-0.2708404681431.56985236012e-06
+trajectory—————1.89492890217-0.318650278394-0.3184866502521.56987979889e-06
+trajectory—————1.94479545222-0.365505936489-0.3653410243661.56991110578e-06
+trajectory—————1.99466200228-0.411452723617-0.4112871031311.56994596959e-06
+trajectory—————2.04452855234-0.456376388005-0.4562106573531.56998404375e-06
+trajectory—————2.09439510239-0.500165221988-0.51.57002494976e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————2.14426165245-0.542710339782-0.5425462638661.57006828101e-06
+trajectory—————2.19412820251-0.58390594824-0.5837436722351.57011360678e-06
+trajectory—————2.24399475256-0.623649609922-0.6234898018591.57016047654e-06
+trajectory—————2.29386130262-0.66184249781-0.6616858375971.5702084244e-06
+trajectory—————2.34372785268-0.698389641062-0.6982368180861.5702569738e-06
+trajectory—————2.39359440274-0.733200161157-0.733051871831.57030564219e-06
+trajectory—————2.44346095279-0.766187497883-0.7660444431191.57035394585e-06
+trajectory—————2.49332750285-0.797269624574-0.7971325072231.57040140366e-06
+trajectory—————2.54319405291-0.826369252078-0.8262387743161.57044754223e-06
+trajectory—————2.59306060296-0.853414020948-0.8532908816321.57049190945e-06
+trajectory—————2.64292715302-0.878336681374-0.878221573371.57053405456e-06
+trajectory—————2.69279370308-0.901075260408-0.9009688679021.57057356494e-06
+trajectory—————2.74266025313-0.921573216067-0.921476211871.57061005742e-06
+trajectory—————2.79252680319-0.939779577921-0.9396926207861.57064313308e-06
+trajectory—————2.84239335325-0.955649073863-0.9555728057861.57067250253e-06
+trajectory—————2.8922599033-0.969142242653-0.9690772862291.57069787378e-06
+trajectory—————2.94212645336-0.980225532036-0.9801724878491.57071897776e-06
+trajectory—————2.99199300342-0.988871382197-0.9888308262251.57073559688e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————3.04185955348-0.995058294285-0.9950307753651.57074756838e-06
+trajectory—————3.09172610353-0.998770883879-0.9987569212191.57075480999e-06
+trajectory—————3.14159265359-0.999999919208-11.5707572143e-06
+trajectory—————3.19145920365-0.998742344137-0.9987569212191.57075475423e-06
+trajectory—————3.2413257537-0.99500128577-0.9950307753651.57074745749e-06
+trajectory—————3.29119230376-0.988786046666-0.9888308262251.57073543175e-06
+trajectory—————3.34105885382-0.980112081686-0.9801724878491.57071876017e-06
+trajectory—————3.39092540387-0.96900095959-0.9690772862291.5706976059e-06
+trajectory—————3.44079195393-0.955480309404-0.9555728057861.57067219006e-06
+trajectory—————3.49065850399-0.939583751715-0.9396926207861.57064277344e-06
+trajectory—————3.54052505405-0.921350815058-0.921476211871.57060965657e-06
+trajectory—————3.5903916041-0.90082683762-0.9009688679021.57057313124e-06
+trajectory—————3.64025815416-0.878062854536-0.878221573371.57053358463e-06
+trajectory—————3.69012470422-0.853115470961-0.8532908816321.57049141548e-06
+trajectory—————3.73999125427-0.826046721315-0.8262387743161.57044702447e-06
+trajectory—————3.78985780433-0.796923915043-0.7971325072231.57040086555e-06
+trajectory—————3.83972435439-0.765819469229-0.7660444431191.57035339561e-06
+trajectory—————3.88959090444-0.732810728523-0.733051871831.57030508502e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————3.9394574545-0.697979772816-0.6982368180861.57025641526e-06
+trajectory—————3.98932400456-0.661413213136-0.6616858375971.57020787003e-06
+trajectory—————4.03919055462-0.623201976282-0.6234898018591.57015993185e-06
+trajectory—————4.08905710467-0.583441078726-0.5837436722351.5701130772e-06
+trajectory—————4.13892365473-0.542229390343-0.5425462638661.5700677718e-06
+trajectory—————4.18879020479-0.499669388558-0.51.57002446599e-06
+trajectory—————4.23865675484-0.455866903529-0.4562106573531.56998359023e-06
+trajectory—————4.2885233049-0.410930854984-0.4112871031311.56994555084e-06
+trajectory—————4.33838985496-0.364972981384-0.3653410243661.56991072596e-06
+trajectory—————4.38825640501-0.318107562069-0.3184866502521.56987946178e-06
+trajectory—————4.43812295507-0.270451133094-0.2708404681431.56985206907e-06
+trajectory—————4.48798950513-0.222122197443-0.2225209339561.56982882016e-06
+trajectory—————4.53785605519-0.173240930367-0.1736481776671.56980994617e-06
+trajectory—————4.58772260524-0.123928880546-0.1243437046471.56979563473e-06
+trajectory—————4.6375891553-0.0743086678501-0.07473009358641.56978602811e-06
+trajectory—————4.68745570536-0.0245036784296-0.02493069173811.56978122181e-06
+trajectory—————4.737322255410.02536224209830.02493069173811.56978126362e-06
+trajectory—————4.787188805470.07516509660490.07473009358641.56978615312e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————4.837055355530.1247810447830.1243437046471.5697958417e-06
+trajectory—————4.886921905580.174086711090.1736481776671.56981023305e-06
+trajectory—————4.936788455640.2229594915350.2225209339561.56982918409e-06
+trajectory—————4.98665500570.2712778585440.2708404681431.56985250643e-06
+trajectory—————5.036521555760.3189216631580.3184866502521.56987996822e-06
+trajectory—————5.086388105810.3657724337920.3653410243661.56991129646e-06
+trajectory—————5.136254655870.4117136708270.4112871031311.56994617972e-06
+trajectory—————5.186121205930.4566311363030.4562106573531.56998427124e-06
+trajectory—————5.235987755980.5004131379820.51.57002519236e-06
+trajectory—————5.285854306040.5429508070820.5425462638661.57006853631e-06
+trajectory—————5.33572085610.5841383689950.5837436722351.57011387225e-06
+trajectory—————5.385587406150.6238734063020.6234898018591.57016074954e-06
+trajectory—————5.435453956210.6620571134480.6616858375971.57020870223e-06
+trajectory—————5.485320506270.6985945424350.6982368180861.57025725369e-06
+trajectory—————5.535187056320.7333948389150.733051871831.57030592137e-06
+trajectory—————5.585053606380.7663714681140.7660444431191.57035422154e-06
+trajectory—————5.634920156440.7974424300080.7971325072231.57040167327e-06
+trajectory—————5.68478670650.826530463220.8262387743161.57044780327e-06
+trajectory—————5.734653256550.8535632371460.8532908816321.57049215768e-06
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-measurements
+Coverage: reading
+
+trajectory—————5.784519806610.8784735318090.878221573371.57053429006e-06
+trajectory—————5.834386356670.9011994050120.9009688679021.57057378319e-06
+trajectory—————5.884252906720.921684346370.921476211871.5706102562e-06
+trajectory—————5.934119456780.939877417810.9396926207861.57064331541e-06
+trajectory—————5.983986006840.9557333802660.9555728057861.57067266379e-06
+trajectory—————6.033852556890.9692128061440.9690772862291.5706980063e-06
+trajectory—————6.083719106950.9802821773620.9801724878491.57071908341e-06
+trajectory—————6.133585657010.9889139687080.9888308262251.57073567682e-06
+trajectory—————6.183452207070.9950867162850.9950307753651.57074762752e-06
+trajectory—————6.233318757120.9987850708850.9987569212191.57075483583e-06
+trajectory—————6.283185307180.99999983613511.57075721035e-06
+この例の実測値・全記録 / JSON
+
+## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#pic-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+R. W. Hockney and J. W. Eastwood (1988). Computer Simulation Using Particles · DOI: 10.1201/9780367806934
+確認範囲 / review_level: publisher-preview-and-metadata
+出版社配布プレビューの書誌・粒子モデルの導入と目次を確認。CICや冷たいプラズマの歴史的出典とし、全書の監査は主張しません。
+
+## 粒子・静電場・運動論・放射輸送 — 等質DSMC衝突成分の保存則・Maxwell分布 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
+
+## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-assumptions
+Coverage: reading
+
+等質・等質量・等方散乱・一定衝突率。各roundで全粒子を一度ずつランダムに組み合わせます。初期は±sqrt(3)の二つのビームで、温度の目標は1です。 各seedは総運動量0・総エネルギー固定のmicrocanonical系で、Maxwell/Gammaは大粒子数極限の参照です。
+
+## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-algorithm
+Coverage: reading
+
+対の重心速度と相対速度の大きさを保持し、相対速度の方向を球面上で一様に選びます。roundは物理時刻ではなく衝突演算の回数です。 D=<vx²−(vy²+vz²)/2>と置くと、ランダムな相方の平均で重心の異方性が(N−2)/(2(N−1))倍になり、散乱後の相対方向の異方性期待値はゼロになるため、保存した期待減衰率が得られます。
+\mathbf v_{1,2}^{\prime}=\mathbf V\pm\frac{|\mathbf g|}{2}\mathbf n,\qquad|\mathbf n|=1\mathbb E[D_{r+1}]=\frac{N-2}{2(N-1)}\mathbb E[D_r]
+
+## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-validation
+Coverage: reading
+
+粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。
+
+## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-limits
+Coverage: reading
+
+DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+momentum_error1.2923689896e-16
+energy_error2.96059473233e-16
+variance_error0.00837176723134
+fourth_moment_error0.0663175402315
+energy_cdf_ks0.00172150826
+anisotropy_error0.0110171007881
+finest_particle_count8192
+seeds16
+判定 / check合格
+momentum_errortrue
+energy_errortrue
+variance_errortrue
+fourth_moment_errortrue
+energy_cdf_kstrue
+anisotropy_errortrue
+sampling_uncertainty_decreasestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+particlesvariance_errorfourth_moment_errorfourth_moment_standard_errorenergy_cdf_ksanisotropy_errorseriesroundanisotropyexpected
+5120.008240183321860.0923212574890.1070886049250.0071142435470.0362678700945————
+20480.006452072936150.03370540448490.05040107324150.003730684014920.0255253460316————
+81920.008371767231340.06631754023150.03081828192460.001721508260.0110171007881————
+——————anisotropy033
+——————anisotropy11.500187805391.49981687218
+——————anisotropy20.7462989132930.749816883355
+——————anisotropy30.3700428667380.3748626709
+——————anisotropy40.1873328304240.187408452855
+——————anisotropy50.09594138398580.0936927865268
+——————anisotropy60.05587361819130.0468406740114
+——————anisotropy70.03443457851690.0234174777288
+——————anisotropy80.01767531822430.0117073094005
+——————anisotropy90.01608970585590.00585294005555
+——————anisotropy100.0061721618190.00292611274905
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-measurements
+Coverage: reading
+
+——————anisotropy110.01108921343050.00146287775697
+——————anisotropy120.007192178827130.000731349580613
+——————anisotropy13-0.002157978851670.000365630146821
+——————anisotropy14-0.004459860915660.000182792754393
+——————anisotropy15-0.009353743750619.13852190501e-05
+——————anisotropy16-0.005073765779944.5687031133e-05
+——————anisotropy17-0.002045292150232.2840726711e-05
+——————anisotropy18-0.005833196675721.1418969098e-05
+——————anisotropy19-0.009893445790365.70878750533e-06
+——————anisotropy20-0.002116956078352.85404527339e-06
+——————anisotropy210.0002336754433851.42684841833e-06
+——————anisotropy220.002510057646997.13337110615e-07
+——————anisotropy23-0.003399112906253.5662501135e-07
+——————anisotropy24-0.00443917515381.78290736354e-07
+この例の実測値・全記録 / JSON
+
+## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#dsmc-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. A. Bird (1963). Approach to Translational Equilibrium in a Rigid Sphere Gas · DOI: 10.1063/1.1710976
+確認範囲 / review_level: metadata-only
+Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得できず、原著の剛体球モデルを再現したとは主張しません。
+
+## 粒子・静電場・運動論・放射輸送 — 純吸収平板の離散座標放射輸送 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/
+Coverage: reading
+
+純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+
+## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-assumptions
+Coverage: reading
+
+光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。
+
+## 粒子・静電場・運動論・放射輸送 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-algorithm
+Coverage: reading
+
+正のGauss–Legendre離散方向と1次風上有限体積の空間行進を使います。角度誤差だけを分ける系列では、一定セル内を指数関数で正確に伝播します。
+\mu\frac{dI}{d\tau}+I=0,\qquad I(\tau,\mu)=e^{-\tau/\mu}F_{\rm out}=2\pi\int_0^1\mu e^{-\tau/\mu}d\mu=2\pi E_3(\tau)
+
+## 粒子・静電場・運動論・放射輸送 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-validation
+Coverage: reading
+
+32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。
+
+## 粒子・静電場・運動論・放射輸送 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-limits
+Coverage: reading
+
+多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+ray_max_error0.0123146287617
+spatial_flux_error0.00112305472353
+angular_flux_error4.55835369451e-12
+balance_error9.7699626167e-15
+refinement_ratio0.063093665141
+判定 / check合格
+ray_max_errortrue
+spatial_flux_errortrue
+angular_flux_errortrue
+balance_errortrue
+refinement_ratiotrue
+positive_bounded_intensitytrue
+angular_refinestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriescellsordinatesfluxdiscrete_ray_referencecontinuum_referencespatial_flux_errorangular_flux_errortotal_flux_errorray_max_errorbalance_errorminimum_intensitymaximum_intensity
+spatial3281.061208100451.043408298821.043393054180.01779980162861.52446402792e-050.01781504626890.1435031772818.881784197e-164.75898724131e-111
+spatial6481.052353109441.043408298821.043393054180.008944810613411.52446402792e-050.008960055253690.08347342691861.7763568394e-156.35670300567e-131
+spatial12881.0478920071.043408298821.043393054180.004483708175251.52446402792e-050.004498952815530.04559849080241.33226762955e-152.99090933434e-141
+spatial25681.045652988211.043408298821.043393054180.002244689384191.52446402792e-050.002259934024470.0239325665589.7699626167e-154.521283828e-151
+spatial51281.044531353551.043408298821.043393054180.001123054723531.52446402792e-050.001138299363810.01231462876173.10862446895e-151.55912441609e-151
+
+## 粒子・静電場・運動論・放射輸送 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-measurements
+Coverage: reading
+
+angular841.043218980361.043218980361.0433930541800.000174073824680.000174073824681.11022302463e-1604.18328232166e-051
+angular881.043408298821.043408298821.043393054182.22044604925e-161.52446402792e-051.52446402795e-051.11022302463e-1604.88361522381e-161
+angular8161.043393009961.043393009961.0433930541804.42238159426e-084.42238159426e-082.22044604925e-1604.31808802935e-581
+angular8321.043393054181.043393054181.043393054182.22044604925e-164.55835369451e-124.55857573911e-123.33066907388e-1606.08852209043e-2231
+この例の実測値・全記録 / JSON
+
+## 粒子・静電場・運動論・放射輸送 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#radiation-transport-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media · DOI: 10.1364/AO.27.002502
+確認範囲 / review_level: selected-full-text
+出版社HTMLの書誌・抄録と基本の輸送式を確認。離散座標の背景として引用し、本例はDISORT全機能の実装ではありません。
+NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
+確認範囲 / review_level: official-documentation
+一般化指数積分の積分表示を公式資料で確認。年は確認年。
 
 ## ウェーブレット — ウェーブレット [ja]
 

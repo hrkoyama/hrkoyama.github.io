@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "ewald": {
+    "positions": [[0.13,0.23,0.31],[0.67,0.19,0.41],[0.32,0.71,0.27],[0.79,0.73,0.82],[0.44,0.48,0.88],[0.91,0.36,0.65],[0.21,0.85,0.69],[0.59,0.92,0.12]],
+    "charges": [1,-1,1,-1,1,-1,1,-1], "length": 1.0,
+    "alphas": [4.5,5.6,6.5], "real_images": 2, "real_cutoffs": [0,1,2], "reciprocal_cutoffs": [4,7,10,14],
+    "finite_difference_step": 0.000002,
+    "acceptance": {"madelung_error": 1e-9, "splitting_energy_difference": 1e-9, "splitting_force_difference": 1e-8, "finite_difference_error": 1e-6, "cutoff_force_last_change": 1e-8, "net_force": 1e-11}
+  },
+  "spme": {"meshes": [16,24,40], "orders": [4,6], "alpha": 5.6,
+    "finite_difference_step": 0.000002,
+    "acceptance": {"force_error": 0.0002, "energy_error": 0.00001, "finest_to_coarsest_force_ratio": 0.1, "charge_error": 1e-10, "finite_difference_error": 1e-6}},
+  "fmm": {"seed": 1729, "particles": 128, "depth": 3, "orders": [2,4,8,12],
+    "acceptance": {"potential_max_error": 0.00001, "field_max_error": 0.0005, "finest_to_coarsest_ratio": 0.001}},
+  "pic": {"spatial_grids": [32,64,128], "spatial_dt": 0.02, "time_grid": 512, "time_steps": [0.4,0.2,0.1,0.05], "particles_per_cell": 8, "end_time": 6.283185307179586, "amplitude": 0.001,
+    "acceptance": {"mode_error": 0.002, "charge_error": 1e-12, "poisson_residual": 1e-12, "self_force": 1e-12, "refinement_ratio": 0.3}},
+  "dsmc": {"particle_counts": [512,2048,8192], "seeds": 16, "collision_rounds": 24,
+    "acceptance": {"momentum_error": 1e-12, "energy_error": 1e-12, "variance_error": 0.03, "fourth_moment_error": 0.15, "energy_cdf_ks": 0.02, "anisotropy_error": 0.05}},
+  "radiation": {"spatial_cells": [32,64,128,256,512], "spatial_ordinates": 8, "angular_ordinates": [4,8,16,32], "optical_depth": 0.7,
+    "acceptance": {"ray_max_error": 0.02, "spatial_flux_error": 0.005, "angular_flux_error": 1e-8, "balance_error": 1e-12, "refinement_ratio": 0.15}}
+}

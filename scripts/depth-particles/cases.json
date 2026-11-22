@@ -1,0 +1,336 @@
+[
+  {
+    "id": "ewald",
+    "title": {
+      "ja": "中性周期セルのEwald和と独立theta積分",
+      "en": "Neutral-cell Ewald sums and an independent theta integral"
+    },
+    "method_ids": [
+      "ewald"
+    ],
+    "summary": {
+      "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+      "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+    },
+    "assumptions": {
+      "ja": "立方セル・全電荷ゼロ・Coulomb定数1・導体境界（tin foil）。主例は非対称な8点電荷で、NaClの8イオン配置は別の解析照合用です。",
+      "en": "Cubic cell, zero total charge, Coulomb constant one and conducting/tin-foil boundary. An asymmetric eight-charge case is distinct from the eight-ion NaCl reference cell."
+    },
+    "algorithm": {
+      "ja": "erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格子和、−alpha/sqrt(pi) sum(q²)を加えます。力は各項の位置微分から求め、24成分を中心エネルギー差分と比較します。",
+      "en": "Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences."
+    },
+    "validation": {
+      "ja": "分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。",
+      "en": "Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate."
+    },
+    "limits": {
+      "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+      "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
+    },
+    "equations": [
+      "E=\\frac12\\sum_{ij\\mathbf n}^{\\prime}q_iq_j\\frac{\\operatorname{erfc}(\\alpha r_{ij\\mathbf n})}{r_{ij\\mathbf n}}+\\frac{2\\pi}{V}\\sum_{\\mathbf k\\ne0}\\frac{e^{-k^2/(4\\alpha^2)}}{k^2}|S(\\mathbf k)|^2-\\frac{\\alpha}{\\sqrt\\pi}\\sum_iq_i^2",
+      "M_{\\rm NaCl}=\\frac2{\\sqrt\\pi}\\int_0^\\infty[1-\\vartheta_4(0,e^{-u^2})^3]du"
+    ],
+    "references": [
+      {
+        "id": "ewald1921",
+        "author": "P. P. Ewald",
+        "year": 1921,
+        "title": "Die Berechnung optischer und elektrostatischer Gitterpotentiale",
+        "doi": "10.1002/andp.19213690304",
+        "url": "https://doi.org/10.1002/andp.19213690304",
+        "review_level": "abstract-and-metadata",
+        "review_note": {
+          "ja": "出版社が返した書誌と原著の節見出しを確認。原著全文の監査はしていません。",
+          "en": "Publisher metadata and original section headings checked; no full-text audit claimed."
+        }
+      },
+      {
+        "id": "dlmf-theta-transform",
+        "author": "NIST Digital Library of Mathematical Functions",
+        "year": 2026,
+        "title": "§20.7(viii) Transformations of Lattice Parameter",
+        "doi": null,
+        "url": "https://dlmf.nist.gov/20.7#viii",
+        "review_level": "official-documentation",
+        "review_note": {
+          "ja": "Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。",
+          "en": "Official Jacobi-theta lattice-parameter transformations checked; year denotes access year."
+        }
+      }
+    ]
+  },
+  {
+    "id": "spme",
+    "title": {
+      "ja": "Bスプラインsmooth PMEの格子・次数収束",
+      "en": "Mesh/order convergence of B-spline smooth PME"
+    },
+    "method_ids": [
+      "pme",
+      "spme"
+    ],
+    "summary": {
+      "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+      "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+    },
+    "assumptions": {
+      "ja": "Ewaldと同じ中性立方セルと実空間項を使います。PME族のうちEssmannらのBスプライン変種を採用し、Dardenらの原法のLagrange補間とは区別します。",
+      "en": "The neutral cubic cell and real-space term match the Ewald example. The adopted PME-family variant uses Essmann-type B-splines, distinct from Darden’s original Lagrange interpolation."
+    },
+    "algorithm": {
+      "ja": "4次または6次のcardinal Bスプラインのテンソル積で電荷を格子化し、節点スプラインの離散構造因子補正、Gaussian Green関数、3次元FFTを組み合わせます。格子エネルギーを重みの位置微分で解析的に微分します。",
+      "en": "Tensor-product cardinal splines of order four or six spread the charges. Apply the nodal-spline discrete structure-factor correction and Gaussian Green function through 3D FFTs; analytically differentiate assignment weights for forces."
+    },
+    "validation": {
+      "ja": "16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。",
+      "en": "Meshes 16³/24³/40³ and two orders are compared with directly summed Ewald reciprocal terms. Shared real/self terms are stated. Check finest-grid force derivatives by energy differences and verify assigned total charge."
+    },
+    "limits": {
+      "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+      "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+    },
+    "equations": [
+      "Q_{\\mathbf j}=\\sum_iq_i\\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)",
+      "\\mathbf F_i=-\\partial E_h/\\partial\\mathbf r_i"
+    ],
+    "references": [
+      {
+        "id": "darden1993",
+        "author": "T. Darden, D. York and L. Pedersen",
+        "year": 1993,
+        "title": "Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems",
+        "doi": "10.1063/1.464397",
+        "url": "https://doi.org/10.1063/1.464397",
+        "review_level": "abstract-and-metadata",
+        "review_note": {
+          "ja": "原著PDFの冒頭と抄録を確認。歴史的なPME原法であり、実装したBスプライン変種とは区別。",
+          "en": "Original PDF opening and abstract checked; historical original PME is distinguished from the implemented B-spline variant."
+        }
+      },
+      {
+        "id": "essmann1995",
+        "author": "U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen",
+        "year": 1995,
+        "title": "A smooth particle mesh Ewald method",
+        "doi": "10.1063/1.470117",
+        "url": "https://doi.org/10.1063/1.470117",
+        "review_level": "selected-full-text",
+        "review_note": {
+          "ja": "原著PDFのBスプライン構造因子・FFT・解析勾配に関わる部分と抄録を確認。全ベンチマークの再現ではありません。",
+          "en": "Original PDF abstract and selected spline/structure-factor, FFT and analytic-gradient material checked; not a reproduction of every paper benchmark."
+        }
+      }
+    ]
+  },
+  {
+    "id": "fmm",
+    "title": {
+      "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+      "en": "2D logarithmic FMM with M2M, M2L and L2L"
+    },
+    "method_ids": [
+      "fmm"
+    ],
+    "summary": {
+      "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+      "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+    },
+    "assumptions": {
+      "ja": "単位正方形内の有限点電荷ですが、境界は壁でなく木を作る包囲領域です。核はphi=−sum(q log r)、電場は−grad(phi)。自己項を除外し、周期像はありません。",
+      "en": "Particles lie in a unit-square bounding box, not a physical wall boundary. The kernel is phi=−sum(q log r), with field −grad(phi); self terms are excluded and no periodic images are used."
+    },
+    "algorithm": {
+      "ja": "葉でP2M、上向きのM2M、相互作用リスト上のM2L、下向きのL2L、局所多項式の評価と近接P2Pを実装します。遠方を粒子ごとに開くBarnes–Hutへ置き換えず、移動演算回数と近接対数を記録します。",
+      "en": "Implement leaf P2M, upward M2M, interaction-list M2L, downward L2L, local-polynomial evaluation and near-field P2P. Record translation and near-pair counts; this is not a Barnes–Hut traversal relabeled as FMM."
+    },
+    "validation": {
+      "ja": "固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。",
+      "en": "For 128 fixed-seed particles, sweep orders 2/4/8/12 and compare every potential/field component with a separate all-pairs calculation. Also check two-source signs, permutation invariance and potential derivatives."
+    },
+    "limits": {
+      "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
+      "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
+    },
+    "equations": [
+      "M_k(c)=\\sum_jq_j(z_j-c)^k",
+      "f(z)=M_0\\log(z-c)-\\sum_{k=1}^p\\frac{M_k}{k(z-c)^k},\\qquad\\phi=-\\Re f"
+    ],
+    "references": [
+      {
+        "id": "greengard1987",
+        "author": "L. Greengard and V. Rokhlin",
+        "year": 1987,
+        "title": "A fast algorithm for particle simulations",
+        "doi": "10.1016/0021-9991(87)90140-9",
+        "url": "https://doi.org/10.1016/0021-9991(87)90140-9",
+        "review_level": "selected-full-text",
+        "review_note": {
+          "ja": "著者所属機関の再録PDFで対数核、モーメント、3つの移動演算、上下走査を確認。再録版の掲載年1997と原著1987を区別。",
+          "en": "Institution-hosted reprint consulted for the log kernel, moments, three translations and up/down passes; 1997 reprint distinguished from 1987 original."
+        }
+      }
+    ]
+  },
+  {
+    "id": "pic",
+    "title": {
+      "ja": "CIC静電PICの冷たいプラズマ振動",
+      "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+    },
+    "method_ids": [
+      "pic"
+    ],
+    "summary": {
+      "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+      "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+    },
+    "assumptions": {
+      "ja": "長さ2pi、電子の電荷質量比−1、静止イオン背景密度1、plasma frequency=1の無次元系。quiet startから振幅0.001の微小正弦変位を与えます。",
+      "en": "Dimensionless length 2pi, electron charge/mass −1, stationary ion density one and plasma frequency one. A quiet start receives a small sinusoidal displacement of amplitude 0.001."
+    },
+    "algorithm": {
+      "ja": "CIC電荷割当てと同じ重みの場補間、ゼロ平均のスペクトルPoisson解、速度Verletを組み合わせます。実数の奇微分の規約により、電場のNyquistモードはゼロにします。",
+      "en": "Combine CIC deposition and matching field gathering, a mean-zero spectral Poisson solve and velocity Verlet. Set the field Nyquist mode to zero for a real skew-adjoint spectral derivative."
+    },
+    "validation": {
+      "ja": "32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。",
+      "en": "Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force."
+    },
+    "limits": {
+      "ja": "有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。",
+      "en": "Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated."
+    },
+    "equations": [
+      "\\dot x_i=v_i,\\quad\\dot v_i=-E_h(x_i),\\quad-\\phi_{xx}=\\rho,\\quad E=-\\phi_x",
+      "A(t)/A(0)\\simeq\\cos(\\omega_pt),\\qquad\\omega_p=1"
+    ],
+    "references": [
+      {
+        "id": "hockney-eastwood1988",
+        "author": "R. W. Hockney and J. W. Eastwood",
+        "year": 1988,
+        "title": "Computer Simulation Using Particles",
+        "doi": "10.1201/9780367806934",
+        "url": "https://doi.org/10.1201/9780367806934",
+        "review_level": "publisher-preview-and-metadata",
+        "review_note": {
+          "ja": "出版社配布プレビューの書誌・粒子モデルの導入と目次を確認。CICや冷たいプラズマの歴史的出典とし、全書の監査は主張しません。",
+          "en": "Publisher preview bibliography, introduction and contents checked; historical source for CIC/cold plasma, not a full-book audit."
+        }
+      }
+    ]
+  },
+  {
+    "id": "dsmc",
+    "title": {
+      "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+      "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+    },
+    "method_ids": [
+      "dsmc"
+    ],
+    "summary": {
+      "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+      "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+    },
+    "assumptions": {
+      "ja": "等質・等質量・等方散乱・一定衝突率。各roundで全粒子を一度ずつランダムに組み合わせます。初期は±sqrt(3)の二つのビームで、温度の目標は1です。 各seedは総運動量0・総エネルギー固定のmicrocanonical系で、Maxwell/Gammaは大粒子数極限の参照です。",
+      "en": "Homogeneous, equal masses, isotropic scattering and constant collision rate. Each round randomly matches every particle once. Two initial beams at ±sqrt(3) give target temperature one. Each seed has zero total momentum and fixed total energy: its finite-N equilibrium is microcanonical, while Maxwell/Gamma are large-N references."
+    },
+    "algorithm": {
+      "ja": "対の重心速度と相対速度の大きさを保持し、相対速度の方向を球面上で一様に選びます。roundは物理時刻ではなく衝突演算の回数です。 D=<vx²−(vy²+vz²)/2>と置くと、ランダムな相方の平均で重心の異方性が(N−2)/(2(N−1))倍になり、散乱後の相対方向の異方性期待値はゼロになるため、保存した期待減衰率が得られます。",
+      "en": "Preserve pair center-of-mass velocity and relative speed, then choose the new relative direction uniformly on the sphere. Rounds count collision operations and are not calibrated physical time. For D=<vx²−(vy²+vz²)/2>, averaging a random partner multiplies the center-of-mass anisotropy by (N−2)/(2(N−1)); isotropic postcollision relative directions contribute zero expected anisotropy."
+    },
+    "validation": {
+      "ja": "粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。",
+      "en": "Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty."
+    },
+    "limits": {
+      "ja": "DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。",
+      "en": "This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced."
+    },
+    "equations": [
+      "\\mathbf v_{1,2}^{\\prime}=\\mathbf V\\pm\\frac{|\\mathbf g|}{2}\\mathbf n,\\qquad|\\mathbf n|=1",
+      "\\mathbb E[D_{r+1}]=\\frac{N-2}{2(N-1)}\\mathbb E[D_r]"
+    ],
+    "references": [
+      {
+        "id": "bird1963",
+        "author": "G. A. Bird",
+        "year": 1963,
+        "title": "Approach to Translational Equilibrium in a Rigid Sphere Gas",
+        "doi": "10.1063/1.1710976",
+        "url": "https://doi.org/10.1063/1.1710976",
+        "review_level": "metadata-only",
+        "review_note": {
+          "ja": "Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得できず、原著の剛体球モデルを再現したとは主張しません。",
+          "en": "Official Sandia DSMC commemorative document and DOI metadata checked; publisher text unavailable and the original hard-sphere model is not claimed as reproduced."
+        }
+      }
+    ]
+  },
+  {
+    "id": "radiation-transport",
+    "title": {
+      "ja": "純吸収平板の離散座標放射輸送",
+      "en": "Discrete-ordinate radiation transport through an absorbing slab"
+    },
+    "method_ids": [
+      "radiation-transport"
+    ],
+    "summary": {
+      "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+      "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
+    },
+    "assumptions": {
+      "ja": "光学的厚さ0.7の一様平板。正の半球から単位強度が入射し、逆向きの入射・散乱・内部放射はゼロです。",
+      "en": "A uniform slab of optical depth 0.7 receives unit intensity over the positive hemisphere, with zero reverse inflow, scattering and emission."
+    },
+    "algorithm": {
+      "ja": "正のGauss–Legendre離散方向と1次風上有限体積の空間行進を使います。角度誤差だけを分ける系列では、一定セル内を指数関数で正確に伝播します。",
+      "en": "Use positive Gauss–Legendre ordinates and first-order upstream finite-volume marching. A separate angular-error sweep uses exact exponential propagation within each constant cell."
+    },
+    "validation": {
+      "ja": "32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。",
+      "en": "With 32–512 cells, check all ray intensities, spatial flux error, positivity and discrete absorption balance. A separate 4–32-ordinate sweep compares exit flux with the analytic 2pi E3(tau) representation."
+    },
+    "limits": {
+      "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+      "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
+    },
+    "equations": [
+      "\\mu\\frac{dI}{d\\tau}+I=0,\\qquad I(\\tau,\\mu)=e^{-\\tau/\\mu}",
+      "F_{\\rm out}=2\\pi\\int_0^1\\mu e^{-\\tau/\\mu}d\\mu=2\\pi E_3(\\tau)"
+    ],
+    "references": [
+      {
+        "id": "stamnes1988",
+        "author": "K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera",
+        "year": 1988,
+        "title": "Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media",
+        "doi": "10.1364/AO.27.002502",
+        "url": "https://doi.org/10.1364/AO.27.002502",
+        "review_level": "selected-full-text",
+        "review_note": {
+          "ja": "出版社HTMLの書誌・抄録と基本の輸送式を確認。離散座標の背景として引用し、本例はDISORT全機能の実装ではありません。",
+          "en": "Publisher HTML bibliography, abstract and base transfer equation checked; cited as discrete-ordinate background, not full DISORT implementation."
+        }
+      },
+      {
+        "id": "dlmf-expint",
+        "author": "NIST Digital Library of Mathematical Functions",
+        "year": 2026,
+        "title": "§8.19 Generalized Exponential Integral",
+        "doi": null,
+        "url": "https://dlmf.nist.gov/8.19",
+        "review_level": "official-documentation",
+        "review_note": {
+          "ja": "一般化指数積分の積分表示を公式資料で確認。年は確認年。",
+          "en": "Official integral representation of the generalized exponential integral checked; year denotes access year."
+        }
+      }
+    ]
+  }
+]

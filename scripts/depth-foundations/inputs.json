@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "amg": {
+    "grid_sizes": [7, 15, 31],
+    "controls": {"strength": 0.08, "coarse_size": 10, "relative_tolerance": 1e-10, "max_cycles": 120},
+    "acceptance": {"relative_residual": 1e-9, "direct_solution_error": 1e-7, "minimum_pde_order": 1.8, "operator_complexity": 10.0}
+  },
+  "decompositions": {
+    "seed": 64182,
+    "full_shape": [12, 5],
+    "scaled_shape": [10, 4],
+    "column_scales": [1.0, 0.01, 0.0001, 0.000001],
+    "deficient_rows": 9,
+    "controls": {"jacobi_tolerance": 1e-13, "max_sweeps": 60, "rank_rtol": 1e-12},
+    "acceptance": {"reconstruction": 1e-11, "orthogonality": 1e-10, "singular_value_error": 1e-12, "least_squares_error": 1e-8, "normal_residual": 1e-10}
+  },
+  "krylov": {
+    "seed": 71822,
+    "sizes": [32, 48],
+    "dimensions": [4, 8, 16],
+    "acceptance": {"eigenpair_residual": 1e-8, "eigenvalue_error": 1e-9, "orthogonality": 1e-11}
+  },
+  "quadrature": {
+    "gauss_orders": [2, 4, 8, 16],
+    "adaptive_tolerances": [1e-5, 1e-7, 1e-9],
+    "peak_scale": 10.0,
+    "max_evaluations": 20001,
+    "acceptance": {"moment_error": 1e-12, "rule_error": 1e-12, "gauss_final_error": 1e-12, "adaptive_tolerance_factor": 2.0}
+  }
+}

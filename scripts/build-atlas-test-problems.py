@@ -8,6 +8,7 @@ import html
 import json
 from pathlib import Path
 import re
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -45,6 +46,18 @@ for problem in problems:
         else:
             assert e.get('artifact')=='image' and path.suffix=='.png',e
         if problem['availability']=='verified-code-check':assert 'python_symbol' in e
+    supplements=problem.get('supplemental_examples',[])
+    assert isinstance(supplements,list),problem['id']
+    assert len({e['id'] for e in supplements})==len(supplements),problem['id']
+    for e in supplements:
+        assert re.fullmatch(r'[a-z0-9][a-z0-9-]*',e['id']),e
+        target=urlsplit(e['url'])
+        assert target.scheme in ('','https') and target.netloc in ('','hrkoyama.github.io'),e
+        assert target.path.startswith('/') and not target.path.startswith('//') and '..' not in Path(target.path).parts,e
+        local=(ROOT/target.path.lstrip('/')).resolve()
+        if target.path.endswith('/'):local=local/'index.html'
+        assert local.is_relative_to(ROOT) and local.is_file(),e
+        if e.get('name'):assert set(e['name'])=={'ja','en'} and all(e['name'].values()),e
 code_data=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
 edition=code_data['code_base']
 verification=json.loads((ROOT/edition.lstrip('/')/'verification.json').read_text())
@@ -67,6 +80,11 @@ dest=ROOT/ROUTE.lstrip('/');dest.mkdir(parents=True,exist_ok=True)
 (dest/'index.json').write_text(json.dumps(public,ensure_ascii=False,indent=2)+'\n')
 esc=html.escape
 def link(url,label):return '<a href="'+esc(url)+'">'+esc(label)+'</a>'
+def language_url(url,lang):
+    parts=urlsplit(url)
+    query=dict(parse_qsl(parts.query,keep_blank_values=True))
+    query['lang']=lang
+    return urlunsplit((parts.scheme,parts.netloc,parts.path,urlencode(query),parts.fragment))
 sections=[]
 for lang in ['ja','en']:
     ja=lang=='ja'
@@ -78,6 +96,9 @@ for lang in ['ja','en']:
         status_ja+=f'検証済み公開コードの問題{availability["verified-code-check"]}件。両方がある場合は前者に1回だけ数えます。'
         status_en+=f' {availability["verified-code-check"]} more are available as verified public-code checks. A problem with both is counted once in the first group.'
     body+='<p class="resource-summary">'+(status_ja if ja else status_en)+'</p>'
+    supplemental_count=len({e['id'] for x in problems for e in x.get('supplemental_examples',[])})
+    if supplemental_count:
+        body+='<p>'+((f'別配布の補助実行例{supplemental_count}件も、固定入力・コード・判定結果へのリンクから確認できます。同じ問題への手法追加は総数へ重複加算しません。') if ja else (f'{supplemental_count} separately packaged supplementary execution examples also link to fixed inputs, code and decisions. Additional methods for the same problem do not duplicate the problem count.'))+'</p>'
     body+='<nav class="resource-nav">'+link('/numerical-methods-atlas/','アトラスの冒頭' if ja else 'Atlas home')+link('/numerical-methods-atlas/gallery/?lang='+lang,'画像ギャラリー' if ja else 'Computed gallery')+link('/numerical-methods-atlas/code-and-data/','コード・実行手順' if ja else 'Code and run instructions')+link('index.json','問題台帳 / JSON' if ja else 'Problem inventory / JSON')+'</nav>'
     body+='<h2>'+('数え方' if ja else 'Counting rules')+'</h2><p>'+esc(data['policy'][lang])+'</p>'
     body+='<p>'+('既存の波形テスト9ケースはこの総数に含みます。従来配布版の自動検査411件と原子計算版の23件の件数、画像数、実行回数とは別です。各問題の適用範囲と失敗例はリンク先に残しており、すべての手法がすべての問題を解けるという意味ではありません。保存データの再集計に加え、9問題は公開コードを固定条件で実行して結果と画像を追加しました。さらに水素型原子・Heの2問題群を実行し、独立参照と照合しました。全問題の再実行ではありません。' if ja else 'The nine wave-profile cases are included in this total. Problems are distinct from the original edition’s 411 automated checks and the atomic edition’s 23 checks, images and solver runs. Linked sources retain method-specific scope and failure cases; not every method solves every problem. The existing material is recounted, and nine problems have new fixed-input public-code runs with saved results and images. Two additional atomic problem families were executed and checked against independent references. This is not a full numerical rerun.')+'</p>'
@@ -99,6 +120,9 @@ for lang in ['ja','en']:
                 body+='</li>'
             body+='</ul></details>'
             for e in x['execution_examples']:body+='<p>'+link(e['guide'][lang],'固定入力から実行・検証・引用する' if ja else 'Run, validate and cite the fixed input')+'</p>'
+            for e in x.get('supplemental_examples',[]):
+                label=e.get('name',{}).get(lang,e['id'])
+                body+='<p class="supplemental-example">'+link(language_url(e['url'],lang),('補助実行例：' if ja else 'Supplementary execution: ')+label)+'</p>'
             body+='</li>'
         body+='</ul></section>'
     body+='<h2>'+('総数に加算しないもの' if ja else 'Not added to the total')+'</h2><ul>'+''.join('<li>'+esc(x)+'</li>' for x in data['excluded_examples'][lang])+'</ul><p>'+link('/using/','利用・引用' if ja else 'Use and citation')+'</p></section>'

@@ -12,6 +12,7 @@ import re
 import struct
 import xml.etree.ElementTree as ET
 from atlas_execution_discovery import load_discovery, entry_url
+from atlas_goal_availability import load_supplemental_examples
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS = ROOT / 'numerical-methods-atlas'
@@ -24,6 +25,8 @@ inventory = json.loads((ATLAS / 'test-cases/index.json').read_text())
 discovery = load_discovery(ROOT)
 runnable = {x['problem_id']: x for x in discovery['examples']}
 assert len(runnable) == len(discovery['examples']), 'Every runnable example must have a distinct gallery problem'
+depth_catalog = json.loads((ROOT / 'catalog/atlas-depth-expansion.json').read_text())
+supplements = {x['id']: x for x in load_supplemental_examples(ROOT, list(depth_catalog['case_problem_ids']))}
 mapping = json.loads((ROOT / 'catalog/atlas-gallery.json').read_text())
 manifest = json.loads((DEST / 'preview-manifest.json').read_text())
 calculations = json.loads((DEST / 'calculations.json').read_text())
@@ -41,8 +44,11 @@ for path, digest in receipts.items():
 for name in ['preview-manifest.json', 'calculations.json', 'verification.json', '../test-cases/index.json']:
     path = (DEST / name).resolve()
     receipts[path.relative_to(ROOT).as_posix()] = sha(path)
-for name in ['catalog/atlas-execution-discovery.json', 'scripts/atlas_execution_discovery.py']:
+for name in ['catalog/atlas-execution-discovery.json', 'scripts/atlas_execution_discovery.py',
+             'catalog/atlas-depth-expansion.json', 'scripts/atlas_depth_release.py', 'scripts/atlas_goal_availability.py']:
     receipts[name] = sha(ROOT / name)
+for supplement in supplements.values():
+    receipts.update(supplement['source_sha256'])
 visuals = {x['id']: x for x in manifest['items']}
 inputs = {x['id']: x for x in mapping['items']}
 items = []
@@ -61,9 +67,22 @@ for problem in inventory['problems']:
     example = runnable.get(problem['id'])
     entry = ({'id': example['id'], 'url': {lang: entry_url(example['id'], lang) for lang in ['ja', 'en']},
               'outcome': example['outcome']} if example else None)
+    extra_entries = []
+    for extra in problem.get('supplemental_examples', []):
+        supplement = supplements[extra['id']]
+        assert depth_catalog['case_problem_ids'][extra['id']] == problem['id'], 'Unrelated supplement borrowed by a gallery problem'
+        assert extra['url'] == supplement['url'] and extra['name'] == supplement['title'], 'Stale supplemental gallery metadata'
+        extra_entries.append({'id': extra['id'], 'title': supplement['title'], 'group': supplement['group'],
+            'url': {lang: ORIGIN + supplement['url'] + '?lang=' + lang for lang in ['ja', 'en']},
+            **{key: supplement[key] for key in ['code_urls', 'test_urls']},
+            **{key: ORIGIN + supplement[key] for key in ['download', 'results', 'verification']}})
     items.append({**problem, **image, 'visual_input': inputs[problem['id']], 'width': width, 'height': height,
                   'gallery_url': ORIGIN + ROUTE + '#' + problem['id'] + '-ja',
-                  'runnable': example is not None, 'execution_entry': entry})
+                  'runnable': example is not None or bool(extra_entries), 'execution_entry': entry,
+                  'supplemental_execution_entries': extra_entries})
+runnable_problem_ids = {x['id'] for x in items if x['runnable']}
+supplemental_problem_ids = {x['id'] for x in items if x['supplemental_execution_entries']}
+supplemental_case_ids = {e['id'] for x in items for e in x['supplemental_execution_entries']}
 counts = Counter(x['group'] for x in items)
 source_labels = {
     'existing-figure': {'ja': '保存済みの結果図', 'en': 'Saved result figure'},
@@ -78,7 +97,7 @@ for lang in ['ja', 'en']:
     ja = lang == 'ja'
     body = '<section data-site-language="' + lang + '" data-gallery lang="' + lang + '">'
     body += '<p class="eyebrow">NUMERICAL METHODS ATLAS · VISUAL INDEX</p><h1>' + ('絵から探す：全' + str(len(ids)) + 'のテスト計算' if ja else 'Browse by picture: all ' + str(len(ids)) + ' test problems') + '</h1>'
-    body += '<p class="intro gallery-intro">' + (f'波形、衝撃波、渦、重力場、境界値問題、時間積分、関数近似まで。実行・検証例がある{len(runnable)}問題は、画像から固定入力・コード・結果の確かめ方へ進めます。各カードから解説も読めます。' if ja else f'Explore profiles, shocks, vortices, gravity, boundary-value problems, time integration and approximation. For {len(runnable)} runnable problems, select the image to find fixed inputs, code and validation. Every card also links to the reading.') + '</p>'
+    body += '<p class="intro gallery-intro">' + (f'波形、衝撃波、渦、重力場、境界値問題、時間積分、関数近似まで。実行・検証例がある{len(runnable_problem_ids)}問題は、画像から固定入力・コード・結果の確かめ方へ進めます。各カードから解説も読めます。' if ja else f'Explore profiles, shocks, vortices, gravity, boundary-value problems, time integration and approximation. For {len(runnable_problem_ids)} runnable problems, select the image to find fixed inputs, code and validation. Every card also links to the reading.') + '</p>'
     body += '<nav class="resource-nav">' + ''.join(link(url, label) for url, label in [
         ('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'),
         ('/numerical-methods-atlas/equations/?lang=' + lang, '数式から探す' if ja else 'Browse by equation'),
@@ -89,22 +108,28 @@ for lang in ['ja', 'en']:
     body += '<button type="button" data-gallery-group="all" aria-pressed="true">' + ('すべて' if ja else 'All') + ' (' + str(len(ids)) + ')</button>'
     for g in inventory['groups']:
         body += '<button type="button" data-gallery-group="' + g['id'] + '" aria-pressed="false">' + esc(g[lang]) + ' (' + str(counts[g['id']]) + ')</button>'
-    body += '</div><div class="gallery-execution-filter"><button type="button" data-gallery-runnable aria-pressed="false" aria-describedby="gallery-illustration-note-' + lang + '">' + (f'実行・検証例あり {len(runnable)}' if ja else f'Runnable and validated: {len(runnable)}') + '</button><span>' + ('分野・検索語と組み合わせて絞り込めます' if ja else 'Combine with a domain and search terms') + '</span></div><p class="gallery-count" data-gallery-count role="status" aria-live="polite">' + (f'{len(ids)} / {len(ids)} 問題を表示' if ja else f'Showing {len(ids)} of {len(ids)} problems') + '</p></div>'
+    body += '</div><div class="gallery-execution-filter"><button type="button" data-gallery-runnable aria-pressed="false" aria-describedby="gallery-illustration-note-' + lang + '">' + (f'実行・検証例あり {len(runnable_problem_ids)}' if ja else f'Runnable and validated: {len(runnable_problem_ids)}') + '</button><span>' + ('分野・検索語と組み合わせて絞り込めます' if ja else 'Combine with a domain and search terms') + '</span></div><p class="gallery-count" data-gallery-count role="status" aria-live="polite">' + (f'{len(ids)} / {len(ids)} 問題を表示' if ja else f'Showing {len(ids)} of {len(ids)} problems') + '</p></div>'
     body += '<p class="gallery-note" id="gallery-illustration-note-' + lang + '">' + ('画像は保存済みの図版・数値データ・プレビュー計算です。「実行・検証例あり」は、固定入力からJSON/CSVを作り結果を判定する経路がある印です。画像の計算条件は「条件・根拠」、再実行する条件は実行例の入力で確認してください。画像と固定入力の条件は一致するとは限りません。' if ja else 'Images are saved figures, numerical data or preview calculations. A runnable badge identifies a fixed-input path that produces JSON/CSV with acceptance checks. See “Conditions and evidence” for image settings and the execution input for rerun settings; these need not match.') + '</p>'
-    body += '<p class="gallery-note">' + (f'{len(ids)}は手法・格子・刻み違いを統合した問題数です。解に加え、誤差・残差・収束の図も含み、共有図は説明に明記しています。図示用の9問題の計算記録と、代表{len(runnable)}問題の実行・検証記録は別に確認できます。' if ja else f'The {len(ids)} problems merge method, grid and time-step variants. Visuals include solutions, errors, residuals and convergence; captions identify shared figures. Records for nine preview calculations and the {len(runnable)} representative execution examples remain separate.') + '</p><ul class="gallery-grid">'
+    body += '<p class="gallery-note">' + (f'{len(ids)}は手法・格子・刻み違いを統合した問題数です。解に加え、誤差・残差・収束の図も含み、共有図は説明に明記しています。図示用の9問題の計算記録と、代表{len(runnable)}問題の実行・検証記録は別に確認できます。' if ja else f'The {len(ids)} problems merge method, grid and time-step variants. Visuals include solutions, errors, residuals and convergence; captions identify shared figures. Records for nine preview calculations and the {len(runnable)} representative execution examples remain separate.') + '</p>'
+    body += '<p class="gallery-note">' + (f'共通{len(runnable)}実行例の台帳と、別配布の補助{len(supplements)}例は区別しています。このギャラリーでは補助{len(supplemental_case_ids)}例が{len(supplemental_problem_ids)}問題に接続し、同じ問題への手法追加は重複加算しません。' if ja else f'The common {len(runnable)}-example registry remains separate from the {len(supplements)} supplementary cases. This gallery links {len(supplemental_case_ids)} supplements to {len(supplemental_problem_ids)} problems; additional methods do not duplicate a problem count.') + '</p><ul class="gallery-grid">'
     for x in items:
         example = runnable.get(x['id'])
+        extras = x['supplemental_execution_entries']
         search = ' '.join([x['id'], *x['name'].values(), *groups[x['group']].values(), *x['caption'].values(), x['chapter'],
-                           *([*example['keywords'], *example['outcome'].values(), '実行・検証例あり 実行 検証 runnable execution validated'] if example else [])])
+                           *([*example['keywords'], *example['outcome'].values()] if example else []),
+                           *[word for e in extras for word in [e['id'], *e['title'].values(), *supplements[e['id']]['method_ids']]],
+                           *(['実行・検証例あり 実行 検証 runnable execution validated'] if x['runnable'] else [])])
         reading = x['reading'][lang]
-        destination = entry_url(example['id'], lang) if example else reading
+        destination = entry_url(example['id'], lang) if example else (extras[0]['url'][lang] if extras else reading)
         fallback = ja and '/en/read/' in reading
         body += '<li class="gallery-tile" id="' + x['id'] + '-' + lang + '" data-problem-id="' + x['id'] + '" data-group="' + x['group'] + '" data-runnable="' + str(x['runnable']).lower() + '" data-search="' + esc(search) + '">'
-        image_label = ('の固定入力・実行・検証へ' if ja else ': open fixed inputs, execution and validation') if example else ('の解説へ' if ja else ': open reading')
+        image_label = ('の固定入力・実行・検証へ' if ja else ': open fixed inputs, execution and validation') if x['runnable'] else ('の解説へ' if ja else ': open reading')
         body += '<a class="gallery-image-link" href="' + esc(destination) + '" aria-label="' + esc(x['name'][lang] + image_label) + '"><img src="' + esc(x['image']) + '" alt="' + esc(x['name'][lang] + ' — ' + x['caption'][lang]) + '" width="' + str(x['width']) + '" height="' + str(x['height']) + '" loading="lazy" decoding="async"></a>'
         body += '<div class="gallery-card-body"><p class="gallery-meta">' + esc(groups[x['group']][lang]) + '</p>'
         if example:
             body += '<p class="gallery-execution-badge">' + link(destination, '実行・検証例あり →' if ja else 'Run and validate →') + '</p>'
+        for extra in extras:
+            body += '<p class="gallery-execution-badge gallery-supplemental-badge" data-supplemental-execution="' + extra['id'] + '">' + link(extra['url'][lang], ('補助実行例：' if ja else 'Supplementary run: ') + extra['title'][lang]) + '</p>'
         body += '<h2>' + link(destination, x['name'][lang]) + '</h2><p>' + esc(x['caption'][lang]) + '</p><p class="gallery-meta">' + source_labels[x['source_kind']][lang] + (' · 英語の解説（日本語版未公開）' if fallback else '') + '</p><nav class="gallery-card-links">'
         body += link(reading, '解説へ →' if ja else 'Read →') + link('/numerical-methods-atlas/test-cases/?lang=' + lang + '#' + x['id'] + ('' if ja else '-en'), '条件・根拠' if ja else 'Conditions and evidence') + link(x['image'], '画像を拡大' if ja else 'Full-size image') + '</nav></div></li>'
     body += '</ul><p class="gallery-empty" data-gallery-empty hidden>' + ('該当する問題がありません。検索語や分野を変えてください。' if ja else 'No matching problems. Try another query or domain.') + '</p><p>'
@@ -117,7 +142,7 @@ for style in ['atlas-resources', 'atlas-gallery']:
 doc=doc.replace('58',str(len(ids)))
 doc += '<script type="module" src="/atlas-gallery.mjs?v=' + sha(ROOT / 'atlas-gallery.mjs')[:12] + '"></script></head><body class="profile-page"><main id="main" class="profile-main atlas-resource-main atlas-gallery-main">' + ''.join(sections) + '</main></body></html>\n'
 (DEST / 'index.html').write_text(doc)
-(DEST / 'index.json').write_text(json.dumps({'schema_version': 1, 'url': ORIGIN + ROUTE, 'reviewed_on': mapping['reviewed_on'], 'scope': mapping['scope'], 'counts': {'test_problems': len(ids), 'runnable_problems': len(runnable), 'groups': dict(counts), 'visual_sources': dict(Counter(x['source_kind'] for x in items))}, 'items': items, 'source_sha256': receipts}, ensure_ascii=False, indent=2) + '\n')
+(DEST / 'index.json').write_text(json.dumps({'schema_version': 1, 'url': ORIGIN + ROUTE, 'reviewed_on': mapping['reviewed_on'], 'scope': mapping['scope'], 'counts': {'test_problems': len(ids), 'runnable_problems': len(runnable_problem_ids), 'common_runnable_problems': len(runnable), 'supplemental_runnable_problems': len(supplemental_problem_ids), 'supplemental_case_count': len(supplemental_case_ids), 'supplemental_release_case_count': len(supplements), 'groups': dict(counts), 'visual_sources': dict(Counter(x['source_kind'] for x in items))}, 'items': items, 'source_sha256': receipts}, ensure_ascii=False, indent=2) + '\n')
 
 # Preserve the old route as an entrance to the complete index. Original visual
 # experiments remain available under #/figures, including their comparison tools.

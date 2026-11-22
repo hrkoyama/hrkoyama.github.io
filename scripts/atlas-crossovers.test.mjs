@@ -41,11 +41,12 @@ function localTarget(href) {
 }
 
 test('crossovers preserve the scientific inventory and canonical availability', () => {
+  const coverage = json('numerical-methods-atlas/coverage.json');
   assert.equal(methods.length, 145);
   assert.equal(json('catalog/atlas-equations.json').equations.length, 46);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.papers, 224);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.references, 266);
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length, 67);
+  assert.equal(coverage.counts.papers, coverage.publications.filter(row => ['article', 'inproceedings'].includes(row.type)).length);
+  assert.equal(coverage.counts.references, coverage.publications.length);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length, coverage.counts.test_problems);
   assert.equal(examples.length, 22);
   for (const id of ['born-oppenheimer-md', 'car-parrinello-md']) {
     const method = publishedMethods.find(item => item.id === id);
@@ -61,6 +62,10 @@ test('crossovers preserve the scientific inventory and canonical availability', 
     assert.deepEqual(method.test_urls, [], id);
     assert.deepEqual(method.execution_examples, [], id);
   }
+  const langevin = publishedMethods.find(item => item.id === 'langevin-thermostat');
+  assert.equal(langevin.status, 'educational-example');
+  assert.deepEqual(langevin.execution_examples.map(row => row.id), ['langevin-harmonic']);
+  assert.ok(!examples.some(row => row.id === 'langevin-harmonic'), 'supplement is not silently added to the common execution registry');
 });
 
 // DOM fixture exercises the public filter with real generated route membership.
@@ -262,6 +267,12 @@ bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['coupled_validation']
 bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['reference_ids']=['unknown-reference'];cases.append(('citation',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['connection_kind']='coupled-proof';cases.append(('connection kind',bad))
 bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='first-principles-md')['example_ids']=['periodic-he-dft'];cases.append(('borrowed AIMD execution',bad))
+bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='thermostat')['supplemental_ids']=['gaussian-mcmc'];cases.append(('unrelated MCMC used as thermostat evidence',bad))
+bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='thermostat')['supplemental_ids']=['nonexistent-supplement'];cases.append(('unknown supplement',bad))
+bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='thermostat')['supplemental_role']='coupled-proof';cases.append(('supplement promoted to coupled proof',bad))
+bad=copy.deepcopy(data);stage=next(s for s in bad['routes'][0]['stages'] if s['id']=='first-principles-md');stage.update(supplemental_ids=['langevin-harmonic'],supplemental_role='scoped-component',supplemental_scope={'ja':'調和振動子','en':'Oscillator'});cases.append(('oscillator borrowed for full AIMD',bad))
+bad=copy.deepcopy(data);bad['routes'][0]['coupled_validation']['supplemental_ids']=['langevin-harmonic'];cases.append(('supplement borrowed for whole route',bad))
+bad=copy.deepcopy(data);next(e for e in bad['routes'][0]['connections'] if e['id']=='md-to-thermostat')['coupled_validation']['supplemental_ids']=['langevin-harmonic'];cases.append(('supplement borrowed for MD-thermostat connection',bad))
 for label,bad in cases:
  try:b.validate_catalog(bad)
  except ValueError:pass
@@ -353,6 +364,7 @@ test('published connections distinguish fixed force evidence and a local MD inte
     for (const stage of route.stages) {
       const evidence = publicRoute.stages.find(item => item.id === stage.id).evidence;
       assert.deepEqual(evidence.examples.map(example => example.id), stage.example_ids, stage.id);
+      assert.deepEqual(evidence.supplements.map(example => example.id), stage.supplemental_ids || [], stage.id);
       assert.deepEqual(evidence.methods.map(method => method.id), stage.method_ids, stage.id);
       for (const method of evidence.methods) {
         const canonical = publishedMethods.find(item => item.id === method.id);
@@ -366,6 +378,23 @@ test('published connections distinguish fixed force evidence and a local MD inte
         assert.equal(example.numerical_checks_passed, true);
         localTarget(example.url);
       }
+      for (const supplement of evidence.supplements) {
+        assert.equal(supplement.source_mode, 'independently-extracted-supplement');
+        assert.equal(supplement.group, 'models');
+        assert.equal(supplement.numerical_checks_passed, true);
+        assert.ok(Object.keys(supplement.checks).length > 0);
+        assert.ok(Object.values(supplement.checks).every(value => value === true));
+        assert.ok(supplement.method_ids.some(id => stage.method_ids.includes(id)));
+        assert.ok(!examples.some(example => example.id === supplement.id));
+        assert.equal(supplement.verification_receipt.all_cases_rerun, true);
+        assert.notEqual(supplement.verification_receipt.url, published.verification_receipt);
+        localTarget(supplement.url);
+        for (const lang of ['ja', 'en']) {
+          assert.ok(evidence.supplemental_scope[lang].trim());
+          assert.ok(supplement.limits[lang].trim());
+          localTarget(supplement.reading[lang]);
+        }
+      }
     }
   }
   const stage = id => published.routes.flatMap(route => route.stages).find(stage => stage.id === id);
@@ -374,7 +403,10 @@ test('published connections distinguish fixed force evidence and a local MD inte
   assert.equal(stage('nuclear-forces').evidence.stage_status, 'fixed-input');
   for (const id of ['first-principles-md', 'thermostat', 'reaction-diffusion', 'biological-fronts']) assert.deepEqual(stage(id).evidence.examples, [], id);
   assert.equal(stage('first-principles-md').evidence.stage_status, 'reading');
-  assert.equal(stage('thermostat').evidence.stage_status, 'planned');
+  for (const id of ['thermostat', 'reaction-diffusion', 'biological-fronts']) assert.equal(stage(id).evidence.stage_status, 'scoped-supplement', id);
+  assert.deepEqual(stage('thermostat').evidence.supplements.map(row => row.id), ['langevin-harmonic']);
+  assert.deepEqual(stage('reaction-diffusion').evidence.supplements.map(row => row.id), ['reaction-diffusion-fourier', 'turing-schnakenberg']);
+  assert.deepEqual(stage('biological-fronts').evidence.supplements.map(row => row.id), ['turing-schnakenberg', 'fitzhugh-nagumo']);
   for (const id of ['fluid-transport', 'hartree-field']) {
     assert.equal(stage(id).example_role, 'component-only');
     assert.equal(stage(id).evidence.stage_status, 'component-only');
@@ -382,22 +414,30 @@ test('published connections distinguish fixed force evidence and a local MD inte
   assert.deepEqual(stage('gravitational-field').example_ids, ['periodic-particles']);
 });
 
-test('rendered stage downloads come only from their explicit registered examples', () => {
+test('rendered stage downloads come only from their explicit common examples or separately verified supplements', () => {
   for (const lang of ['ja', 'en']) for (const stage of source.routes.flatMap(route => route.stages)) {
     const markup = html.match(new RegExp(`<article\\b[^>]*id="${stage.id}-${lang}"[^>]*>[\\s\\S]*?</article>`))?.[0];
     assert.ok(markup, stage.id + '-' + lang);
     const links = [...markup.matchAll(/href="([^"]+)"/g)].map(match => new URL(decode(match[1]), origin));
     const codeLinks = links.filter(url => url.pathname.startsWith('/code/')).map(url => url.href);
     const records = stage.example_ids.map(id => examples.find(example => example.id === id));
-    const expectedZIPs = [...new Set(records.map(example => example.release.download))].sort();
+    const supplements = published.routes.flatMap(route => route.stages).find(row => row.id === stage.id).evidence.supplements;
+    const expectedZIPs = [...new Set([...records.map(example => example.release.download), ...supplements.map(example => example.code_download)])].sort();
     assert.deepEqual([...new Set(codeLinks.filter(url => new URL(url).pathname.endsWith('.zip')))].sort(), expectedZIPs, stage.id + ' registered ZIP');
-    if (!records.length) assert.deepEqual(codeLinks, [], stage.id + ' has no stage-specific implementation');
-    const allowedCode = new Set(records.flatMap(example => [example.inputs.url, example.release.download]));
+    if (!records.length && !supplements.length) assert.deepEqual(codeLinks, [], stage.id + ' has no stage-specific implementation');
+    const allowedCode = new Set([...records.flatMap(example => [example.inputs.url, example.release.download]),
+      ...supplements.flatMap(example => [example.input, example.code_download, example.verification_receipt.url])]);
     for (const url of codeLinks) assert.ok(allowedCode.has(url), stage.id + ' must not borrow method-level file ' + url);
     for (const example of records) {
       assert.ok(links.some(url => url.href === example.inputs.url), example.id + ' fixed input');
       assert.ok(links.some(url => url.href === published.verification_receipt), example.id + ' existing rerun receipt');
       assert.ok(links.some(url => url.pathname === `/numerical-methods-atlas/code-and-data/examples/${example.id}/` && url.searchParams.get('lang') === lang), example.id + ' scoped common entry');
+    }
+    for (const example of supplements) {
+      assert.ok(markup.includes(`data-supplemental-id="${example.id}"`), example.id + ' distinct source marker');
+      assert.ok(links.some(url => url.href === example.input), example.id + ' fixed supplement input');
+      assert.ok(links.some(url => url.href === example.verification_receipt.url), example.id + ' independent supplement receipt');
+      assert.ok(links.some(url => url.pathname === `/numerical-methods-atlas/validation/${example.id}/` && url.searchParams.get('lang') === lang), example.id + ' scoped supplement entry');
     }
     const methodRows = [...markup.matchAll(/<li\b[^>]*\bdata-method-id="[^"]+"[^>]*>/g)].map(match => attributes(match[0]));
     for (const id of stage.method_ids) {
@@ -526,7 +566,35 @@ test('citations and machine-readable provenance retain review scope and matching
     }
   }
   for (const [path, digest] of Object.entries(published.source_sha256)) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), digest, path);
+  assert.deepEqual(Object.keys(published.supplemental_verification_receipts), ['models']);
+  assert.ok(Object.keys(published.supplemental_source_sha256).length >= 5);
+  for (const [path, digest] of Object.entries(published.supplemental_source_sha256)) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), digest, 'separate supplement '+path);
+  const supplementReceipt = published.supplemental_verification_receipts.models;
+  assert.equal(supplementReceipt.source_mode, 'independently-extracted-supplement');
+  const supplementURL = new URL(supplementReceipt.url);
+  assert.equal(supplementReceipt.sha256, createHash('sha256').update(readFileSync(new URL(supplementURL.pathname.slice(1), root))).digest('hex'));
   const receipt = json(new URL(published.verification_receipt).pathname.slice(1));
   assert.equal(receipt.passed, true);
   assert.equal(receipt.registry_sha256, createHash('sha256').update(readFileSync(new URL(new URL(published.registry).pathname.slice(1), root))).digest('hex'));
+});
+
+test('supplement descriptions keep oscillator and zero-dimensional excitability evidence separate from coupled physical routes', () => {
+  const stage = id => published.routes.flatMap(route => route.stages).find(item => item.id === id);
+  const thermostat = stage('thermostat');
+  assert.match(thermostat.gap.ja, /他11手法/);
+  assert.match(thermostat.gap.en, /other 11 methods/);
+  assert.match(thermostat.supplemental_scope.en, /one harmonic-oscillator degree of freedom/i);
+  assert.match(stage('biological-fronts').supplemental_scope.ja, /0次元/);
+  assert.match(stage('biological-fronts').supplemental_scope.en, /zero-dimensional/);
+  assert.match(stage('biological-fronts').gap.en, /Fisher front speeds/);
+  for (const lang of ['ja', 'en']) {
+    assert.ok(html.includes(thermostat.supplemental_scope[lang]));
+    assert.ok(html.includes(stage('biological-fronts').supplemental_scope[lang]));
+  }
+  for (const route of published.routes) {
+    assert.equal(route.coupled_validation.status, 'not-executed');
+    assert.deepEqual(route.coupled_validation.example_ids, []);
+  }
+  assert.equal(published.routes[0].connections.find(edge => edge.id === 'md-to-thermostat').coupled_validation.status, 'not-executed');
+  assert.equal(published.routes[1].connections.find(edge => edge.id === 'rd-to-biology').connection_kind, 'model-application');
 });

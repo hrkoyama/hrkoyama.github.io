@@ -13,7 +13,7 @@ test('method and problem records lead to the same stable execution examples in b
   const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
   const page=read('numerical-methods-atlas/code-and-data/index.html');
   assert.equal(examples.length,22);
-  assert.equal(problems.length,67);
+  assert.equal(problems.length,80);
   for(const e of examples){
     const records=[problems.find(p=>p.id===e.problem_id),...e.method_ids.map(id=>methods.find(m=>m.id===id))];
     for(const record of records){
@@ -29,8 +29,16 @@ test('method and problem records lead to the same stable execution examples in b
   }
   for(const id of ['ewald','pme','spme']){
     const m=methods.find(x=>x.id===id);
-    assert.equal(m.status,'planned');
-    assert.deepEqual(m.execution_examples,[]);
+    assert.equal(m.status,'educational-example');
+    const ids=id==='ewald'?['ewald']:['spme'];
+    assert.deepEqual(m.depth_release.case_ids,ids);
+    assert.deepEqual(m.execution_examples.map(x=>x.id),ids);
+    for(const entry of m.execution_examples){
+      assert.equal(entry.kind,'dedicated-supplement');
+      assert.equal(entry.registry_url,'https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json');
+      assert.ok(!examples.some(x=>x.id===entry.id),'supplement must not rewrite the common registry');
+      for(const lang of ['ja','en'])assert.equal(entry.guide[lang],`https://hrkoyama.github.io/numerical-methods-atlas/validation/${entry.id}/?lang=${lang}`);
+    }
   }
 });
 

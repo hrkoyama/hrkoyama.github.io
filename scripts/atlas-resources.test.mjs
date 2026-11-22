@@ -19,7 +19,13 @@ test('planned methods never inherit available implementations or verified status
     assert.ok(x.next_deliverable.ja&&x.next_deliverable.en);
     assert.match(x.limitations.en,/No dedicated implementation/);
   }
-  for(const id of ['ewald','pme','spme'])assert.equal(items.find(x=>x.id===id).status,'planned');
+  for(const id of ['ewald','pme','spme']){
+    const method=items.find(x=>x.id===id);
+    assert.equal(method.status,'educational-example');
+    assert.deepEqual(method.code_modules,[]);assert.deepEqual(method.test_files,[]);
+    assert.equal(method.depth_release.group,'particles');
+    assert.deepEqual(method.depth_release.case_ids,id==='ewald'?['ewald']:['spme']);
+  }
   assert.equal(items.find(x=>x.id==='barnes-hut').status,'educational-example');
   assert.match(items.find(x=>x.id==='pm').limitations.en,/not.*Ewald/);
 });
@@ -66,7 +72,15 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
   const methods=data.methods.filter(x=>x.group.id==='thermostats');
   assert.equal(methods.length,12);
   assert.equal(methods.filter(x=>x.tier==='basic').length,8);
-  assert.ok(methods.every(x=>x.status==='planned'&&!x.code_modules.length&&x.references.length));
+  assert.ok(methods.every(x=>!x.code_modules.length&&x.references.length));
+  assert.deepEqual(methods.filter(x=>x.status==='educational-example').map(x=>x.id),['langevin-thermostat']);
+  assert.equal(methods.filter(x=>x.status==='planned').length,11);
+  const langevin=methods.find(x=>x.id==='langevin-thermostat');
+  assert.equal(langevin.depth_release.group,'models');
+  assert.deepEqual(langevin.depth_release.case_ids,['langevin-harmonic']);
+  const result=JSON.parse(read(`code/validated-examples/${langevin.depth_release.edition}/models/results/result.json`));
+  const harmonic=result.cases.find(x=>x.id==='langevin-harmonic');
+  assert.equal(harmonic.passed,true);assert.ok(Object.values(harmonic.checks).every(x=>x===true));
   for(const id of ['velocity-rescaling','stochastic-velocity-rescaling','nose-hoover'])assert.ok(methods.some(x=>x.id===id));
   for(const lang of ['ja','en']){
     const route=`/numerical-methods-atlas/${lang}/read/thermostats/`;
@@ -74,6 +88,9 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
     assert.ok(html.includes(`hreflang="${lang==='ja'?'en':'ja'}"`));
     assert.ok(read(`numerical-methods-atlas/${lang}/read/index.html`).includes(route));
     assert.ok(JSON.parse(read('guide/index.json')).pages.some(x=>x.url==='https://hrkoyama.github.io'+route));
+    assert.ok(html.includes(`/numerical-methods-atlas/validation/langevin-harmonic/?lang=${lang}`));
+    assert.ok(html.includes('BAOAB'));
+    assert.ok(html.includes(lang==='ja'?'他の11手法は実装予定':'other 11 methods remain planned'));
   }
   const html=read('numerical-methods-atlas/methods/nose-hoover/index.html');
   assert.ok(html.includes('のせフーバー')&&html.includes('解説あり・実装予定'));

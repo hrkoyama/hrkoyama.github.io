@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "edition": "2026-11-22",
+  "title": {
+    "ja": "6分野の小規模実装・検証をたどる",
+    "en": "Small implemented validations across six fields"
+  },
+  "policy": {
+    "ja": "各ケースの条件・採用変種・独立参照または解析解・残差・収束・失敗の扱いを確認します。共通22実行例とは別の補助配布版です。量子DFTの全走査は通常の軽量確認へ含めません。",
+    "en": "Check each case’s assumptions, adopted variant, independent/analytic reference, residuals, refinement and failure handling. These supplements are separate from the shared 22 execution registry. Detailed quantum-DFT sweeps are outside routine lightweight checks."
+  },
+  "groups": [
+    {
+      "id": "foundations",
+      "title": {
+        "ja": "AMG・行列分解・固有値・求積",
+        "en": "AMG, factorizations, eigenvalues and quadrature"
+      },
+      "fields": [
+        "foundations"
+      ]
+    },
+    {
+      "id": "models",
+      "title": {
+        "ja": "MCMC・温度制御・生物モデル",
+        "en": "MCMC, temperature control and biological models"
+      },
+      "fields": [
+        "probability",
+        "temperature",
+        "biology"
+      ]
+    },
+    {
+      "id": "particles",
+      "title": {
+        "ja": "粒子・静電場・運動論・放射輸送",
+        "en": "Particles, electrostatics, kinetic and radiative transport"
+      },
+      "fields": [
+        "particles",
+        "transport"
+      ]
+    },
+    {
+      "id": "mhd",
+      "title": {
+        "ja": "流体・MHDの独立照合とCT／GLM",
+        "en": "Independent fluid/MHD comparisons and CT/GLM"
+      },
+      "fields": [
+        "fluid",
+        "mhd"
+      ]
+    }
+  ],
+  "case_problem_ids": {
+    "sa-amg": "poisson-2d-sine",
+    "qr-svd-factorization": "matrix-factorization",
+    "krylov-eigenvalues": "krylov-spectrum",
+    "gauss-adaptive-quadrature": "quadrature-moments",
+    "gaussian-mcmc": "gaussian-mcmc",
+    "langevin-harmonic": "langevin-harmonic",
+    "reaction-diffusion-fourier": "reaction-diffusion-fourier",
+    "turing-schnakenberg": "turing-schnakenberg",
+    "fitzhugh-nagumo": "fitzhugh-nagumo",
+    "ewald": "neutral-periodic-charges",
+    "spme": "neutral-periodic-charges",
+    "fmm": "logarithmic-particles",
+    "pic": "cold-plasma-pic",
+    "dsmc": "maxwell-collisions",
+    "radiation-transport": "absorbing-slab",
+    "ct-glm-independent": "orszag-tang",
+    "brio-independent": "brio-wu",
+    "shu-independent": "shu-osher",
+    "glm-fourier-mode": null
+  },
+  "routine_policy": {
+    "ja": "通常の新規補助例CIはNumPy・SciPy・pytestで実行する4グループです。重い量子収束を含む従来22例の詳細CIは明示的な手動実行へ分け、検証済み配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs four NumPy/SciPy/pytest groups. The existing detailed 22-case CI, including expensive quantum convergence sweeps, is kept as an explicit manual run with released artifacts, criteria and history preserved."
+  },
+  "case_notes": {
+    "ct-glm-independent": {
+      "ja": "採用GLMはch=3、減衰率κ=0.18 ch nです。nは各軸のセル数で、この減衰は格子依存です。同じ連続初期場・終了時刻・CFLを用いますが、CT/GLMで実ステップ数とdiv Bのnative演算子は異なります。",
+      "en": "The adopted GLM uses ch=3 and damping rate kappa=0.18 ch n, with n cells per axis: damping is grid dependent. Both use the same continuous initial field, final time and CFL, while actual step counts and native div B operators differ."
+    }
+  }
+}

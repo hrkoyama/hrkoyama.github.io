@@ -1,0 +1,215 @@
+{
+  "id": "ewald",
+  "title": {
+    "ja": "中性周期セルのEwald和と独立theta積分",
+    "en": "Neutral-cell Ewald sums and an independent theta integral"
+  },
+  "method_ids": [
+    "ewald"
+  ],
+  "summary": {
+    "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+    "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+  },
+  "assumptions": {
+    "ja": "立方セル・全電荷ゼロ・Coulomb定数1・導体境界（tin foil）。主例は非対称な8点電荷で、NaClの8イオン配置は別の解析照合用です。",
+    "en": "Cubic cell, zero total charge, Coulomb constant one and conducting/tin-foil boundary. An asymmetric eight-charge case is distinct from the eight-ion NaCl reference cell."
+  },
+  "algorithm": {
+    "ja": "erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格子和、−alpha/sqrt(pi) sum(q²)を加えます。力は各項の位置微分から求め、24成分を中心エネルギー差分と比較します。",
+    "en": "Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences."
+  },
+  "validation": {
+    "ja": "分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。",
+    "en": "Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate."
+  },
+  "limits": {
+    "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+    "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
+  },
+  "equations": [
+    "E=\\frac12\\sum_{ij\\mathbf n}^{\\prime}q_iq_j\\frac{\\operatorname{erfc}(\\alpha r_{ij\\mathbf n})}{r_{ij\\mathbf n}}+\\frac{2\\pi}{V}\\sum_{\\mathbf k\\ne0}\\frac{e^{-k^2/(4\\alpha^2)}}{k^2}|S(\\mathbf k)|^2-\\frac{\\alpha}{\\sqrt\\pi}\\sum_iq_i^2",
+    "M_{\\rm NaCl}=\\frac2{\\sqrt\\pi}\\int_0^\\infty[1-\\vartheta_4(0,e^{-u^2})^3]du"
+  ],
+  "references": [
+    {
+      "id": "ewald1921",
+      "author": "P. P. Ewald",
+      "year": 1921,
+      "title": "Die Berechnung optischer und elektrostatischer Gitterpotentiale",
+      "doi": "10.1002/andp.19213690304",
+      "url": "https://doi.org/10.1002/andp.19213690304",
+      "review_level": "abstract-and-metadata",
+      "review_note": {
+        "ja": "出版社が返した書誌と原著の節見出しを確認。原著全文の監査はしていません。",
+        "en": "Publisher metadata and original section headings checked; no full-text audit claimed."
+      }
+    },
+    {
+      "id": "dlmf-theta-transform",
+      "author": "NIST Digital Library of Mathematical Functions",
+      "year": 2026,
+      "title": "§20.7(viii) Transformations of Lattice Parameter",
+      "doi": null,
+      "url": "https://dlmf.nist.gov/20.7#viii",
+      "review_level": "official-documentation",
+      "review_note": {
+        "ja": "Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。",
+        "en": "Official Jacobi-theta lattice-parameter transformations checked; year denotes access year."
+      }
+    }
+  ],
+  "group": "particles",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "ewald",
+    "passed": true,
+    "checks": {
+      "madelung_error": true,
+      "splitting_energy_difference": true,
+      "splitting_force_difference": true,
+      "finite_difference_error": true,
+      "cutoff_force_last_change": true,
+      "net_force": true,
+      "nonzero_forces": true,
+      "real_cutoff_refines": true,
+      "theta_reference_error_bound": true
+    },
+    "metrics": {
+      "madelung_constant": 1.7475645946331826,
+      "theta_reference": 1.7475645946331821,
+      "theta_quadrature_error": 1.27151293921409e-13,
+      "real_cutoff_force_last_change": 0.0,
+      "madelung_error": 4.440892098500626e-16,
+      "splitting_energy_difference": 5.329070518200751e-15,
+      "splitting_force_difference": 3.8191672047105385e-14,
+      "finite_difference_error": 1.7360424209300618e-09,
+      "cutoff_force_last_change": 0.0,
+      "net_force": 1.1546319456101628e-14
+    },
+    "records": [
+      {
+        "series": "splitting",
+        "alpha": 4.5,
+        "energy": -8.407406514350585,
+        "max_force": 10.757887167489942
+      },
+      {
+        "series": "splitting",
+        "alpha": 5.6,
+        "energy": -8.40740651435059,
+        "max_force": 10.757887167489926
+      },
+      {
+        "series": "splitting",
+        "alpha": 6.5,
+        "energy": -8.407406514350587,
+        "max_force": 10.757887167489944
+      },
+      {
+        "series": "real_cutoff",
+        "images": 0,
+        "energy": -8.411415134707521,
+        "force_reference_error": 0.07417628414807043
+      },
+      {
+        "series": "real_cutoff",
+        "images": 1,
+        "energy": -8.40740651435059,
+        "force_reference_error": 0.0
+      },
+      {
+        "series": "real_cutoff",
+        "images": 2,
+        "energy": -8.40740651435059,
+        "force_reference_error": 0.0
+      },
+      {
+        "series": "reciprocal_cutoff",
+        "cutoff": 4,
+        "energy": -8.40851443962709,
+        "force_reference_error": 0.0015258777869266993
+      },
+      {
+        "series": "reciprocal_cutoff",
+        "cutoff": 7,
+        "energy": -8.407406516532497,
+        "force_reference_error": 5.28971266788858e-09
+      },
+      {
+        "series": "reciprocal_cutoff",
+        "cutoff": 10,
+        "energy": -8.407406514350587,
+        "force_reference_error": 0.0
+      },
+      {
+        "series": "reciprocal_cutoff",
+        "cutoff": 14,
+        "energy": -8.40740651435059,
+        "force_reference_error": 0.0
+      }
+    ]
+  },
+  "problem_id": "neutral-periodic-charges",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#ewald",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#ewald"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+    "archive": {
+      "file": "atlas-particles-2026-11-22.zip",
+      "sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+      "bytes": 528320,
+      "archive_directory": "atlas-particles-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    ],
+    "passed_tests": 27
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

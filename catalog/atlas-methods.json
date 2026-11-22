@@ -263,7 +263,20 @@
         "中央差分",
         "central difference",
         "central finite difference"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "models",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "reaction-diffusion-fourier",
+          "turing-schnakenberg"
+        ]
+      },
+      "depth_scope": {
+        "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
+        "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
+      }
     },
     {
       "id": "upwind",
@@ -871,7 +884,19 @@
         "MUSCL法",
         "MUSCLスキーム",
         "MUSCL scheme"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "mhd",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "shu-independent"
+        ]
+      },
+      "depth_scope": {
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+      }
     },
     {
       "id": "weno-js",
@@ -3021,7 +3046,21 @@
         "classical Runge-Kutta",
         "classical fourth-order Runge-Kutta",
         "4次ルンゲクッタ法"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "models",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "reaction-diffusion-fourier",
+          "turing-schnakenberg",
+          "fitzhugh-nagumo"
+        ]
+      },
+      "depth_scope": {
+        "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
+        "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
+      }
     },
     {
       "id": "ssprk54",
@@ -5422,7 +5461,19 @@
         "constrained transport",
         "制約輸送",
         "制約輸送法"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "mhd",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "ct-glm-independent"
+        ]
+      },
+      "depth_scope": {
+        "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
+        "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
+      }
     },
     {
       "id": "glm",
@@ -5513,7 +5564,20 @@
         "divergence cleaning",
         "発散クリーニング",
         "div cleaning"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "mhd",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "ct-glm-independent",
+          "glm-fourier-mode"
+        ]
+      },
+      "depth_scope": {
+        "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。",
+        "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution."
+      }
     },
     {
       "id": "projection",
@@ -6725,10 +6789,10 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "「高速多重極法の移動演算」の考え方と適用範囲を、解説章・一次文献からたどります。専用実装は公開していません。",
-        "en": "Read about Fast multipole translations, follow the original references. No dedicated implementation is distributed for this entry."
+        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
       },
-      "status": "reading-only",
+      "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/particle-gravity/",
@@ -6748,8 +6812,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
+        "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
@@ -6760,7 +6824,23 @@
         "fast multipole method",
         "高速多重極法",
         "高速多重極展開法"
-      ]
+      ],
+      "depth_previous_status": "reading-only",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "fmm"
+        ]
+      },
+      "depth_scope": {
+        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+      },
+      "next_deliverable": {
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
+      }
     },
     {
       "id": "keep",
@@ -7261,7 +7341,19 @@
         "HLLD流束",
         "HLLD solver",
         "HLLDリーマンソルバー"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "mhd",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "brio-independent"
+        ]
+      },
+      "depth_scope": {
+        "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。",
+        "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit."
+      }
     },
     {
       "id": "ppm",
@@ -7708,10 +7800,10 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "周期Coulomb和を実空間・逆空間・自己補正に分けます。中性セル、単位、ゼロモードと表面規約を揃えるための基準を整理した段階です。",
-        "en": "Split a periodic Coulomb sum into real, reciprocal and self-correction terms. This record defines neutral-cell, unit, zero-mode and surface conventions for a future reference calculation."
+        "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+        "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/ewald/",
@@ -7765,12 +7857,12 @@
       "units": "Comparison convention: fixed length ℓ₀, charge q₀ and Coulomb prefactor kₑ; energy unit kₑq₀²/ℓ₀ and force unit kₑq₀²/ℓ₀². The splitting coefficient has inverse-length units. Do not mix reduced kₑ=1 and SI conventions or reuse gravitational-PM signs.",
       "boundary_conditions": "Triply periodic neutral cell; the initial comparison specifies a conducting (tin-foil) exterior with zero macroscopic surface term and separately fixes the mean-potential gauge. Vacuum-exterior, slab and isolated-boundary results are different problems.",
       "next_deliverable": {
-        "ja": "中性の小系で、自己項・ゼロモード・境界規約を明示した参照計算。",
-        "en": "A neutral small-system reference with explicit self, zero-mode and boundary conventions."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+        "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -7845,20 +7937,29 @@
           }
         },
         "verification": {
-          "kind": "source-review-no-implementation",
+          "kind": "source-and-code-inspection",
           "summary": {
-            "ja": "原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。",
-            "en": "Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review."
+            "ja": "原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。",
+            "en": "In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope."
           },
-          "evidence": [],
+          "evidence": [
+            {
+              "kind": "fixed-input-results",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+              "label": "Fixed-input measured checks / 固定入力の実測判定"
+            },
+            {
+              "kind": "independent-extraction-receipt",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+              "label": "Independent ZIP-extraction receipt / ZIP独立展開の記録"
+            }
+          ],
           "not_checked": {
             "ja": [
-              "実装コード・固定入力・数値残差・収束率・性能は未検証。",
-              "原論文の全導出と全数値例の再現は行っていません。"
+              "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。"
             ],
             "en": [
-              "No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.",
-              "Not a reproduction of every derivation or numerical example in the original papers."
+              "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
             ]
           }
         }
@@ -7868,7 +7969,19 @@
         "エワルド法",
         "エバルト法",
         "エワルド和"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "ewald"
+        ]
+      },
+      "depth_scope": {
+        "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
+        "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+      }
     },
     {
       "id": "pme",
@@ -7882,10 +7995,10 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "Ewaldの逆空間項をLagrange補間・格子上の畳み込み・FFTで近似する原PMEです。一般の粒子格子重力法やB-spline版SPMEとは、核と補間・力の定義を区別します。",
-        "en": "Original PME approximates the reciprocal Ewald contribution using Lagrange interpolation and FFT-based mesh convolutions. Distinguish its kernel, interpolation and force definition from gravitational PM and B-spline SPME."
+        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/pme/",
@@ -7940,12 +8053,12 @@
       "units": "Comparison convention: fixed length ℓ₀, charge q₀ and Coulomb prefactor kₑ; energy unit kₑq₀²/ℓ₀ and force unit kₑq₀²/ℓ₀². The splitting coefficient has inverse-length units. Do not mix reduced kₑ=1 and SI conventions or reuse gravitational-PM signs.",
       "boundary_conditions": "Triply periodic neutral cell; the initial comparison specifies a conducting (tin-foil) exterior with zero macroscopic surface term and separately fixes the mean-potential gauge. Vacuum-exterior, slab and isolated-boundary results are different problems.",
       "next_deliverable": {
-        "ja": "同一条件のEwald参照との誤差比較と、再現できる外部コード入力。",
-        "en": "A same-condition Ewald comparison and reproducible reference-code inputs."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+        "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -7967,8 +8080,8 @@
           "en": "Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field."
         },
         "variant": {
-          "ja": "実装前の比較仕様：Dardenら（1993）のLagrange版。実空間項・自己補正・表面規約は同条件のEwald基準と一致させます。",
-          "en": "Pre-implementation comparison: the Darden et al. (1993) Lagrange variant, matching direct Ewald real terms, self corrections and surface conventions."
+          "ja": "今回の実行例はcardinal B-splineによるEssmann型SPMEです。PME族の採用変種として示し、1993年のLagrange補間による原法を実装したとは呼びません。",
+          "en": "The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original1993 Lagrange-interpolation form."
         },
         "use_when": {
           "ja": [
@@ -8023,20 +8136,29 @@
           }
         },
         "verification": {
-          "kind": "source-review-no-implementation",
+          "kind": "source-and-code-inspection",
           "summary": {
-            "ja": "原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。",
-            "en": "Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review."
+            "ja": "原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。",
+            "en": "In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope."
           },
-          "evidence": [],
+          "evidence": [
+            {
+              "kind": "fixed-input-results",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+              "label": "Fixed-input measured checks / 固定入力の実測判定"
+            },
+            {
+              "kind": "independent-extraction-receipt",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+              "label": "Independent ZIP-extraction receipt / ZIP独立展開の記録"
+            }
+          ],
           "not_checked": {
             "ja": [
-              "実装コード・固定入力・数値残差・収束率・性能は未検証。",
-              "原論文の全導出と全数値例の再現は行っていません。"
+              "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。"
             ],
             "en": [
-              "No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.",
-              "Not a reproduction of every derivation or numerical example in the original papers."
+              "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
             ]
           }
         }
@@ -8045,7 +8167,19 @@
         "PME法",
         "particle mesh Ewald",
         "粒子メッシュEwald法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "spme"
+        ]
+      },
+      "depth_scope": {
+        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+      }
     },
     {
       "id": "spme",
@@ -8059,10 +8193,10 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "PMEの補間をcardinal B-splineへ置き換え、滑らかな近似エネルギーと力を得るSPMEです。補間次数・格子・微分法を固定し、原PMEとの差を説明します。",
-        "en": "SPME replaces Lagrange interpolation with cardinal B-splines for smooth approximate energies and forces. Specify spline order, mesh and differentiation when comparing with original PME."
+        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/spme/",
@@ -8117,12 +8251,12 @@
       "units": "Comparison convention: fixed length ℓ₀, charge q₀ and Coulomb prefactor kₑ; energy unit kₑq₀²/ℓ₀ and force unit kₑq₀²/ℓ₀². The splitting coefficient has inverse-length units. Do not mix reduced kₑ=1 and SI conventions or reuse gravitational-PM signs.",
       "boundary_conditions": "Triply periodic neutral cell; the initial comparison specifies a conducting (tin-foil) exterior with zero macroscopic surface term and separately fixes the mean-potential gauge. Vacuum-exterior, slab and isolated-boundary results are different problems.",
       "next_deliverable": {
-        "ja": "補間次数・格子・力の評価規約を明記した比較。",
-        "en": "A comparison with explicit interpolation order, mesh and force convention."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+        "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
       },
       "metadata_review": {
         "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
@@ -8144,8 +8278,8 @@
           "en": "Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field."
         },
         "variant": {
-          "ja": "実装前の比較仕様：Essmannら（1995）のB-spline構造因子と、近似エネルギーの解析微分。原論文の全変種を実装したという意味ではありません。",
-          "en": "Pre-implementation specification: Essmann et al. (1995) B-spline structure factors and analytic differentiation of the approximate energy, not implementation of every paper variant."
+          "ja": "今回の実行例はcardinal B-splineによるEssmann型SPMEです。PME族の採用変種として示し、1993年のLagrange補間による原法を実装したとは呼びません。",
+          "en": "The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original1993 Lagrange-interpolation form."
         },
         "use_when": {
           "ja": [
@@ -8200,20 +8334,29 @@
           }
         },
         "verification": {
-          "kind": "source-review-no-implementation",
+          "kind": "source-and-code-inspection",
           "summary": {
-            "ja": "原典の該当箇所と既存台帳の実装予定状態を照合しました。アトラスに専用の実装・実行入力・数値検証結果はなく、今回も計算は実行していません。",
-            "en": "Checked relevant source passages and the catalog’s planned status. The atlas has no dedicated implementation, runnable input or numerical validation result for this entry; no calculation was run in this review."
+            "ja": "原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。",
+            "en": "In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope."
           },
-          "evidence": [],
+          "evidence": [
+            {
+              "kind": "fixed-input-results",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+              "label": "Fixed-input measured checks / 固定入力の実測判定"
+            },
+            {
+              "kind": "independent-extraction-receipt",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+              "label": "Independent ZIP-extraction receipt / ZIP独立展開の記録"
+            }
+          ],
           "not_checked": {
             "ja": [
-              "実装コード・固定入力・数値残差・収束率・性能は未検証。",
-              "原論文の全導出と全数値例の再現は行っていません。"
+              "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。"
             ],
             "en": [
-              "No implementation, fixed inputs, numerical residuals, convergence rates or performance have been verified.",
-              "Not a reproduction of every derivation or numerical example in the original papers."
+              "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
             ]
           }
         }
@@ -8222,7 +8365,19 @@
         "SPME法",
         "smooth PME",
         "smooth particle mesh Ewald"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "spme"
+        ]
+      },
+      "depth_scope": {
+        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+      }
     },
     {
       "id": "slab-ewald",
@@ -10770,10 +10925,10 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "粒子と格子上の場を結び、割当て・補間・保存則を調べる。",
-        "en": "Couple particles and mesh fields with deposition, interpolation and conservation diagnostics."
+        "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+        "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/pic/",
@@ -10797,12 +10952,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "静電的な粒子–Poisson連成の小規模例。",
-        "en": "A small electrostatic particle–Poisson example."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。",
+        "en": "Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -10813,7 +10968,19 @@
         "particle in cell",
         "粒子セル法",
         "粒子インセル法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "pic"
+        ]
+      },
+      "depth_scope": {
+        "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+        "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+      }
     },
     {
       "id": "amg",
@@ -10827,10 +10994,10 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "行列から構成する粗い問題と前処理を、幾何MGと区別する。",
-        "en": "Distinguish algebraic coarse problems and preconditioners from geometric multigrid."
+        "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
+        "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/amg/",
@@ -10849,12 +11016,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "同じ疎行列・残差基準での比較設計。",
-        "en": "A same-matrix comparison with matched residual criteria."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。",
+        "en": "Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -10865,7 +11032,19 @@
         "algebraic multigrid",
         "代数マルチグリッド",
         "代数的多重格子法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "foundations",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "sa-amg"
+        ]
+      },
+      "depth_scope": {
+        "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
+        "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+      }
     },
     {
       "id": "qr-svd",
@@ -10879,10 +11058,10 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "直交分解、低ランク、条件数と最小二乗を結び付ける。",
-        "en": "Connect orthogonal factorizations, low rank, conditioning and least squares."
+        "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+        "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/qr-svd/",
@@ -10906,12 +11085,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "条件数を制御した小行列の比較。",
-        "en": "Small-matrix comparisons with controlled conditioning."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。",
+        "en": "Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -10924,7 +11103,19 @@
         "singular value decomposition",
         "least squares",
         "最小二乗法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "foundations",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "qr-svd-factorization"
+        ]
+      },
+      "depth_scope": {
+        "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
+        "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+      }
     },
     {
       "id": "eigensolvers",
@@ -10938,10 +11129,10 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "Lanczos・Arnoldiなどを大規模固有値問題に位置付ける。",
-        "en": "Map Lanczos and Arnoldi methods for large eigenproblems."
+        "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+        "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/eigensolvers/",
@@ -10965,12 +11156,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "残差と直交性を確認できる基準問題。",
-        "en": "A benchmark with eigen-residual and orthogonality diagnostics."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
+        "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -10981,7 +11172,19 @@
         "eigenvalue solver",
         "Krylov eigensolver",
         "クリロフ固有値法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "foundations",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "krylov-eigenvalues"
+        ]
+      },
+      "depth_scope": {
+        "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+        "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+      }
     },
     {
       "id": "splines",
@@ -11046,10 +11249,10 @@
         "en": "Approximation & quadrature"
       },
       "summary": {
-        "ja": "積分の離散化と誤差推定を扱う。",
-        "en": "Map quadrature rules and error estimation."
+        "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+        "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/quadrature/",
@@ -11073,12 +11276,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "既知積分と特異性を含む比較。",
-        "en": "Comparisons with known integrals and singular behavior."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。",
+        "en": "The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -11091,7 +11294,19 @@
         "Gaussian quadrature",
         "ガウス求積",
         "適応積分"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "foundations",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "gauss-adaptive-quadrature"
+        ]
+      },
+      "depth_scope": {
+        "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+        "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
+      }
     },
     {
       "id": "chebyshev",
@@ -11379,10 +11594,10 @@
         "en": "Optimization & stochastic methods"
       },
       "summary": {
-        "ja": "不変分布・混合・相関と推定誤差を扱う。",
-        "en": "Relate invariant distributions, mixing, correlation and estimation error."
+        "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+        "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/mcmc/",
@@ -11406,12 +11621,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "既知分布と収束診断の基準例。",
-        "en": "A known distribution with convergence diagnostics."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。",
+        "en": "Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -11422,7 +11637,19 @@
         "Markov chain Monte Carlo",
         "マルコフ連鎖モンテカルロ",
         "マルコフ連鎖Monte Carlo"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "models",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "gaussian-mcmc"
+        ]
+      },
+      "depth_scope": {
+        "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+        "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+      }
     },
     {
       "id": "sde",
@@ -11594,10 +11821,10 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "角度・周波数・流体との連成と閉包を位置付ける。",
-        "en": "Map angular/frequency representations, closures and fluid coupling."
+        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/radiation-transport/",
@@ -11616,12 +11843,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "自由流・拡散極限を分けた基準問題。",
-        "en": "Separate free-streaming and diffusion-limit benchmarks."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
+        "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -11632,7 +11859,19 @@
         "radiative transfer",
         "radiation transport",
         "放射モーメント法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "radiation-transport"
+        ]
+      },
+      "depth_scope": {
+        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+        "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
+      }
     },
     {
       "id": "dsmc",
@@ -11646,10 +11885,10 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "粒子標本による衝突と輸送を連続体模型と比較する。",
-        "en": "Compare particle-sampled collisions and transport with continuum models."
+        "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+        "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/dsmc/",
@@ -11673,12 +11912,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "統計誤差と保存量を記録する小規模模型。",
-        "en": "A small model recording statistical error and conservation."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。",
+        "en": "This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -11688,7 +11927,19 @@
         "DSMC法",
         "direct simulation Monte Carlo",
         "直接シミュレーションモンテカルロ法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "particles",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "dsmc"
+        ]
+      },
+      "depth_scope": {
+        "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+        "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+      }
     },
     {
       "id": "dae",
@@ -12071,15 +12322,15 @@
         "en": "Thermostats and molecular dynamics"
       },
       "summary": {
-        "ja": "摩擦と確率力を運動方程式に加える。平衡の温度を指定するには摩擦と雑音を揺動散逸関係で結ぶ。",
-        "en": "Add friction and random forces to the equations of motion. The fluctuation–dissipation relation connects friction and noise at the target equilibrium temperature."
+        "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
+        "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
       },
       "caution": {
         "ja": "摩擦は実時間の相関・拡散に影響する。有限刻みでの標本化誤差は積分法と刻み幅も含めて調べる。",
         "en": "Friction changes dynamical correlations and diffusion. Finite-step sampling errors must be assessed together with the integration scheme."
       },
       "tier": "basic",
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/thermostats/",
@@ -12105,16 +12356,28 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "専用の定式化・積分手順を整理し、固定入力、自由度・乱数・刻み幅を明記した分布と時間相関の検証例を追加する。",
-        "en": "Add a dedicated formulation and integration recipe, followed by explicit-input distribution and time-correlation checks with stated degrees of freedom, random seeds and step sizes."
+        "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+        "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "比較解説を公開。Under construction：専用の実装・数値検証結果はまだありません。",
-        "en": "Comparative reading is available. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。",
+        "en": "Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD."
       },
       "metadata_review": {
         "level": "introductory comparison with primary-reference entry points; full derivation and numerical verification pending",
         "on": "2026-11-21"
+      },
+      "depth_previous_status": "planned",
+      "depth_release": {
+        "group": "models",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "langevin-harmonic"
+        ]
+      },
+      "depth_scope": {
+        "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
+        "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
       }
     },
     {

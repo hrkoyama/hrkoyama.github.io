@@ -1,4 +1,4 @@
-import {matchGoals} from './goals-data.mjs?v=392b96fc0577';
+import {matchGoals} from './goals-data.mjs?v=3c1f94072ab9';
 // Both the atlas and the site search use these identities and availability links.
 export const normalizeMethodQuery = value => String(value).normalize('NFKC').toLowerCase()
   .replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
@@ -20,9 +20,18 @@ export function findMethods(methods, query, language='ja') {
     const candidates=new Map();
     for(const goal of goals)for(const original of [...goal.methods.map(id=>methods.find(m=>m.id===id)).filter(Boolean),...(goal.resources||[])]){
       const restricted=goal.availability==='reading-only';
+      const commonIDs=new Set(goal.examples || []);
+      // Independent supplements have their own goal selection and, for a
+      // standalone resource, their own narrower component selection as well.
+      const supplementalIDs=new Set((goal.supplemental_examples || []).filter(id=>
+        !Array.isArray(original.supplemental_examples) || original.supplemental_examples.includes(id)));
+      const examples=new Map();
+      if(!restricted)for(const example of [...(original.execution_examples || []),...(original.supplemental_execution_examples || [])]){
+        if(commonIDs.has(example.id) || supplementalIDs.has(example.id))examples.set(example.id,example);
+      }
       const method={...original,url:original.url || original.reading?.[language] || original.reading?.en,
         ...(restricted?{status:'reading-only',code_urls:[],test_urls:[]}:{}),
-        execution_examples:restricted?[]:(original.execution_examples||[]).filter(example=>goal.examples.includes(example.id))};
+        execution_examples:[...examples.values()]};
       // A restricted purpose never inherits a runnable claim from another route.
       if(!candidates.has(method.id) || restricted)candidates.set(method.id,{id:method.id,kind:'method',title:method.name[language] || method.name.en,locale:language,method,exactMethod:false,score:9000,purposeScope:goal.scope[language]});
     }

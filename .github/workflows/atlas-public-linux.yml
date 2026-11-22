@@ -2,12 +2,6 @@ name: Atlas public Linux verification
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 3 * * 1'
-  workflow_run:
-    workflows: ['Public site checks']
-    branches: [main]
-    types: [completed]
 
 permissions:
   contents: read
@@ -18,11 +12,7 @@ concurrency:
 
 jobs:
   public-distributions:
-    if: >-
-      github.repository == 'hrkoyama/hrkoyama.github.io' &&
-      (github.event_name != 'workflow_run' ||
-       (github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.head_repository.full_name == github.repository))
+    if: github.repository == 'hrkoyama/hrkoyama.github.io' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:

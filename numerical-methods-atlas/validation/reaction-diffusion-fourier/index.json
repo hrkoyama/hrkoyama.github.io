@@ -1,0 +1,178 @@
+{
+  "id": "reaction-diffusion-fourier",
+  "title": {
+    "ja": "反応拡散：空間2次と時間4次を分けて測る",
+    "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+  },
+  "method_ids": [
+    "centered-difference",
+    "rk4"
+  ],
+  "domains": [
+    "biology",
+    "diffusion",
+    "time"
+  ],
+  "summary": {
+    "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
+    "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
+  },
+  "assumptions": {
+    "ja": "周期区間[0,2pi)、D=0.1、r=0.1、初期cos(2x)、終了t=2。格子16/32/64と、別の固定格子で刻み0.5/0.25/0.125を用います。",
+    "en": "Periodic[0,2pi), D=0.1,r=0.1, initial cos(2x), final t=2. Use grids 16/32/64 and a separate fixed-grid timestep sequence 0.5/0.25/0.125."
+  },
+  "algorithm": {
+    "ja": "周期中心2階差分と独自RK4で進めます。空間系列は小さな同一時間刻み、時間系列は同じ空間演算子を用います。",
+    "en": "Advance original periodic second-centered differences with RK4. The spatial sequence uses one small time step; the temporal sequence fixes the spatial operator."
+  },
+  "validation": {
+    "ja": "連続固有値r-Dk²への最大誤差で空間次数、半離散固有値r-4Dsin²(kdx/2)/dx²への最大誤差で時間次数を測ります。独立した解析参照であり同じ実装の細格子値を参照にしません。",
+    "en": "Measure spatial order against r-Dk² and temporal order against r-4Dsin²(kdx/2)/dx². Both are independent analytic references, rather than a finer-grid run of the same solver."
+  },
+  "limits": {
+    "ja": "線形・周期・滑らかな単一モードだけを検証します。非線形のFisher前線、複雑境界、空間生態系や一般の反応ネットワークの検証ではありません。",
+    "en": "Only a linear, periodic, smooth single mode is verified. Nonlinear Fisher fronts, complex boundaries, spatial ecosystems and general reaction networks remain outside scope."
+  },
+  "formulas": [
+    "u_t=D u_{xx}+r u,\\qquad u(x,t)=e^{(r-Dk^2)t}\\cos(kx)",
+    "\\lambda_h=r-\\frac{4D}{\\Delta x^2}\\sin^2(k\\Delta x/2)"
+  ],
+  "references": [
+    {
+      "id": "scipy-1.14.1-expm",
+      "author": "The SciPy community",
+      "year": 2024,
+      "title": "SciPy1.14.1 expm reference",
+      "doi": null,
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html",
+      "review_level": "official-api-documentation",
+      "review": {
+        "ja": "公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。",
+        "en": "Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked."
+      },
+      "type": "documentation"
+    }
+  ],
+  "group": "models",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "reaction-diffusion-fourier",
+    "passed": true,
+    "termination": "fixed_budget_completed",
+    "checks": {
+      "space_error": true,
+      "space_order": true,
+      "time_error": true,
+      "time_order": true
+    },
+    "metrics": {
+      "spatial_finest_error": 0.0014105590121191725,
+      "spatial_minimum_order": 1.9995467358065582,
+      "temporal_finest_error": 4.109141582553377e-09,
+      "temporal_minimum_order": 4.0421093675761
+    },
+    "records": [
+      {
+        "sequence": "space",
+        "n": 16,
+        "dt": 0.001,
+        "max_error": 0.022561409514729514
+      },
+      {
+        "sequence": "space",
+        "n": 32,
+        "dt": 0.001,
+        "max_error": 0.005642124736215504
+      },
+      {
+        "sequence": "space",
+        "n": 64,
+        "dt": 0.001,
+        "max_error": 0.0014105590121191725
+      },
+      {
+        "sequence": "time",
+        "n": 16,
+        "dt": 0.5,
+        "inverse_dt": 2.0,
+        "max_error": 1.1482887680713816e-06
+      },
+      {
+        "sequence": "time",
+        "n": 16,
+        "dt": 0.25,
+        "inverse_dt": 4.0,
+        "max_error": 6.769354699009966e-08
+      },
+      {
+        "sequence": "time",
+        "n": 16,
+        "dt": 0.125,
+        "inverse_dt": 8.0,
+        "max_error": 4.109141582553377e-09
+      }
+    ],
+    "duration_seconds": 0.19805733300017891,
+    "input_sha256": "aed79a2792ce90693bedc2cbc07e22e80e85262ef3cbdabeae022076ca304e65"
+  },
+  "problem_id": "reaction-diffusion-fourier",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+    "archive": {
+      "file": "atlas-models-2026-11-22.zip",
+      "sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+      "bytes": 539043,
+      "archive_directory": "atlas-models-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+    ],
+    "passed_tests": 26
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

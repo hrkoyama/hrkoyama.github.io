@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22",
+  "case_count": 19,
+  "releases": [
+    {
+      "group": "foundations",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/",
+      "archive": "atlas-foundations-2026-11-22.zip",
+      "archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+      "manifest_sha256": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+      "verification_sha256": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "gauss-adaptive-quadrature",
+        "krylov-eigenvalues",
+        "qr-svd-factorization",
+        "sa-amg"
+      ],
+      "tests": 29
+    },
+    {
+      "group": "models",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/",
+      "archive": "atlas-models-2026-11-22.zip",
+      "archive_sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+      "manifest_sha256": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+      "verification_sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "fitzhugh-nagumo",
+        "gaussian-mcmc",
+        "langevin-harmonic",
+        "reaction-diffusion-fourier",
+        "turing-schnakenberg"
+      ],
+      "tests": 26
+    },
+    {
+      "group": "particles",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+      "archive": "atlas-particles-2026-11-22.zip",
+      "archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+      "manifest_sha256": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+      "verification_sha256": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "dsmc",
+        "ewald",
+        "fmm",
+        "pic",
+        "radiation-transport",
+        "spme"
+      ],
+      "tests": 27
+    },
+    {
+      "group": "mhd",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/",
+      "archive": "atlas-mhd-2026-11-22.zip",
+      "archive_sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+      "manifest_sha256": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+      "verification_sha256": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "brio-independent",
+        "ct-glm-independent",
+        "glm-fourier-mode",
+        "shu-independent"
+      ],
+      "tests": 11
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "group": "foundations",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+  "archive": {
+    "file": "atlas-foundations-2026-11-22.zip",
+    "sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "bytes": 508879,
+    "archive_directory": "atlas-foundations-2026-11-22"
+  },
+  "archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+  "returncode": 0,
+  "passed_tests": 29,
+  "tests": 29,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "gauss-adaptive-quadrature",
+    "krylov-eigenvalues",
+    "qr-svd-factorization",
+    "sa-amg"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.3846173749998343,
+  "independent_rerun_seconds": 0.27005437499974505,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

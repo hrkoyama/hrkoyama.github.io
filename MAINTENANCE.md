@@ -243,3 +243,15 @@ BOMDの力供給APIとvelocity-Verletの1ステップ対2半ステップは局�
 専用の不変配布版は `/code/bratu-multinverse/2026-11-22/`、梱包と独立展開の検証は `scripts/package-bratu-multinverse.py`、配布整合性の照合は `scripts/atlas_multinverse_release.py`。同じ格子による回復の整合性検査、細かい参照格子で生成して固定した観測への格子依存、固定摂動と正則化の比較を分ける。高次元の関数同定、大域的一意性、実測データ、統計的な信頼区間、データに基づく自動的な正則化強度の選択は検証対象に含めない。
 
 既存 `optimization` の実装状況だけを拡張し、手法数・固有テスト問題数・共通実行例数は追加しない（今回の統合時点では共通22実行例・固有67問題）。公開手法JSONの主配布先は新しい2係数版とし、従来の1係数版の検証済み取得情報を `scalar_inverse_release` に保持する。旧章URL・節IDと以前の不変コード配布版を保持し、通常のrefreshで図・検索・ホーム・日英本文を再生成する。公開先は引き続き `hrkoyama.github.io` 配下だけ。
+
+## 6分野の軽量な補助検証（2026-11-22）
+
+`catalog/atlas-depth-expansion.json` を正本として、基盤手法4例、生物・確率・温度制御5例、粒子・輸送6例、流体・MHD4例の計19例を案内する。共通22実行例の台帳とその過去の成功記録は変更しない。テスト問題の目録は新しい13問題を加えた80問題となる。同じ物理問題の別手法やGLMの診断用モードを重複加算しない。
+
+編集用コードは `scripts/depth-{foundations,models,particles,mhd}/`、不変配布版は `code/validated-examples/2026-11-22/{group}/`。`scripts/package-depth-examples.py --group GROUP --edition YYYY-MM-DD[-rN]` は計算・図を保存した後、ZIPを別フォルダに展開して全pytestと全入力を実際に再実行する。4版で93テストを通過した。既存版は上書きしない。通常のページ再生成では計算せず、`atlas_depth_release.py` が入力・ソース・ZIP・成功記録を照合する。`build-atlas-depth-examples.py` が19個別ページと日英4章を生成し、`update-depth-ci-pins.py` が公開専用台帳とCIのハッシュ固定値を更新する。通常のrefreshとNodeの全検査を行う。
+
+`.github/workflows/atlas-depth-linux.yml` は公開済みの4 ZIPを新しいLinux/Python環境で取得し、SHA-256照合、全pytest、全19例の実計算と数値条件を検査する。共通サイト検査成功後・週次・手動で実行する。コードをcheckoutせず、固定したnumpy/scipy/pytestのみを使用し、描画と量子化学の計算は行わない。失敗時もログと計算結果を保存する。`verify-depth-public.py` は保存済みresult.jsonの一致だけを成功条件にせず、実行の終了と全ケースの条件を確認する。
+
+量子化学を含む従来の22例Linux CIはユーザーの軽量化方針に従い手動実行だけにした。過去の自動実行に関する記録は当時の構成であり、現行の通常CIの範囲を示さない。2026-11-22のrun 44998314368の全22例成功記録を保存している。
+
+検証範囲は各ケースの条件を優先する。Langevinは調和振動子のBAOAB、FMMは2次元対数核、DSMCは一様なMaxwell分子の衝突緩和、PME系はEssmannのSPME変種である。独立Athena++参照とのMHD比較は元の一次精度CT/GLM実装を変更しない。同条件の物理設定と共通診断に加え、CT固有の面上divergenceとGLMの中心差分診断を区別する。BOMDとの結合、全温度制御方式、3次元一般核、一般境界・媒質の検証へ拡大解釈しない。

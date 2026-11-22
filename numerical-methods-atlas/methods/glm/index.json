@@ -27,7 +27,7 @@
   "test_files": [
     "test_hlld"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1017/S002211207900210X",
@@ -88,16 +88,321 @@
     "発散クリーニング",
     "div cleaning"
   ],
+  "depth_previous_status": "educational-example",
+  "depth_release": {
+    "group": "mhd",
+    "case_ids": [
+      "ct-glm-independent",
+      "glm-fourier-mode"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-mhd-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json",
+    "code_archive_sha256": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/result.json",
+    "passed_tests": 11,
+    "examples": [
+      {
+        "id": "ct-glm-independent",
+        "title": {
+          "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+          "en": "Orszag–Tang: CT, GLM and independent Athena++"
+        },
+        "method_ids": [
+          "ct",
+          "glm"
+        ],
+        "summary": {
+          "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
+          "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
+        },
+        "assumptions": {
+          "ja": "単位正方形、γ=5/3、μ₀=1、vz=Bz=0、t=0.05。rho=25/(36π)、p=5/(12π)、v=(-sin2πy,sin2πx)、B=(-sin2πy,sin4πx)/sqrt(4π)。",
+          "en": "Unit square, gamma=5/3, mu0=1, vz=Bz=0, t=0.05. rho=25/(36pi), p=5/(12pi), v=(-sin2piy,sin2pix), B=(-sin2piy,sin4pix)/sqrt(4pi)."
+        },
+        "algorithm": {
+          "ja": "公開済みの1次Rusanov/前進Eulerを再利用。CTは共有corner EMFの離散curl、GLMはcell中心Bと双曲・放物型cleaning。Athena++は別実装のHLLD+PLM+RK2。",
+          "en": "Reuse the published first-order Rusanov/forward-Euler solvers: shared corner-EMF discrete curl for CT and cell-centered hyperbolic/parabolic GLM cleaning. Independent Athena++ uses HLLD, PLM and RK2."
+        },
+        "validation": {
+          "ja": "16²/32²/64²で密度とByのL1誤差、質量・エネルギードリフト、正値性を測定。独立参照は128²/256²でも収束を確認し、細胞平均を保存的に制限します。",
+          "en": "Measure density/By L1 error, mass/energy drift and positivity on 16²/32²/64². Check the independent 128²/256² reference and conservatively restrict its fine-cell averages."
+        },
+        "limits": {
+          "ja": "CTの面上divergenceとGLMの中心差分divergenceは異なる演算子です。共通cell演算子の値も別記します。Athenaの初期磁場はベクトルポテンシャルの差分による面平均で、同じ連続場の離散化差を含みます。短時間の平面MHD比較であり、衝撃波・3D・UCTやCTUの検証ではありません。",
+          "en": "Face CT divergence and centered GLM divergence use different operators; common cell-centered diagnostics are also reported. Athena initializes face-averaged magnetic fields by differencing a vector potential, so comparison includes discretization differences of identical continuous data. This is a short planar test, not validation of shocks, 3D, UCT or CTU."
+        },
+        "references": [
+          {
+            "id": "stone2020athena",
+            "author": "J. M. Stone, K. Tomida, C. J. White and K. G. Felker",
+            "year": 2020,
+            "title": "The Athena++ Adaptive Mesh Refinement Framework: Design and Magnetohydrodynamic Solvers",
+            "doi": "10.3847/1538-4365/ab929b",
+            "url": "https://doi.org/10.3847/1538-4365/ab929b",
+            "review_level": "official-code-and-metadata; pinned source compiled and executed"
+          },
+          {
+            "id": "dedner2002",
+            "author": "A. Dedner et al.",
+            "year": 2002,
+            "title": "Hyperbolic Divergence Cleaning for the MHD Equations",
+            "doi": "10.1006/jcph.2001.6961",
+            "url": "https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf",
+            "review_level": "author-hosted primary paper; linear cleaning equations checked"
+          }
+        ],
+        "equations": [
+          "\\nabla\\cdot\\mathbf B=0,\\qquad \\mathbf B_t+\\nabla\\times\\mathbf E=0"
+        ],
+        "code_files": [
+          "legacy/mhd.py",
+          "run.py"
+        ],
+        "measured": {
+          "id": "ct-glm-independent",
+          "checks": {
+            "independent_reference_refined": true,
+            "ct_native_constraint_16": true,
+            "ct_native_constraint_32": true,
+            "ct_native_constraint_64": true,
+            "ct_density_error": true,
+            "ct_magnetic_error": true,
+            "ct_refinement": true,
+            "glm_density_error": true,
+            "glm_magnetic_error": true,
+            "glm_refinement": true,
+            "conservation": true,
+            "positive_states": true
+          },
+          "passed": true,
+          "metrics": {
+            "reference_density_128_256_l1": 4.631344236627223e-05,
+            "ct_glm_finest_density_l1": 0.0016910992352830488
+          },
+          "records": [
+            {
+              "method": "ct",
+              "n": 16,
+              "density_relative_l1": 0.032639135013644294,
+              "by_relative_l1": 0.16252813101136426,
+              "native_divergence_linf": 3.552713678800501e-15,
+              "common_cell_divergence_linf": 0.11654440100301988,
+              "mass_relative_drift": 3.7668979778493237e-16,
+              "energy_relative_drift": 1.589408429472288e-16,
+              "min_density": 0.20242747932278973,
+              "min_pressure": 0.13041766976791663,
+              "steps": 12
+            },
+            {
+              "method": "ct",
+              "n": 32,
+              "density_relative_l1": 0.023437665222524422,
+              "by_relative_l1": 0.09072932569462948,
+              "native_divergence_linf": 1.1102230246251565e-14,
+              "common_cell_divergence_linf": 0.09156569499228118,
+              "mass_relative_drift": 3.7668979778493237e-16,
+              "energy_relative_drift": 1.589408429472288e-16,
+              "min_density": 0.19988648261630854,
+              "min_pressure": 0.12219598804278684,
+              "steps": 24
+            },
+            {
+              "method": "ct",
+              "n": 64,
+              "density_relative_l1": 0.01390559978339836,
+              "by_relative_l1": 0.047672103169776325,
+              "native_divergence_linf": 4.263256414560601e-14,
+              "common_cell_divergence_linf": 0.06279996011821187,
+              "mass_relative_drift": 3.7668979778493237e-16,
+              "energy_relative_drift": 1.589408429472288e-16,
+              "min_density": 0.19761402794528612,
+              "min_pressure": 0.11524664515587707,
+              "steps": 48
+            },
+            {
+              "method": "glm",
+              "n": 16,
+              "density_relative_l1": 0.038397246374677875,
+              "by_relative_l1": 0.4946997979223452,
+              "native_divergence_linf": 6.661338147750939e-16,
+              "common_cell_divergence_linf": 6.661338147750939e-16,
+              "mass_relative_drift": 3.7668979778493237e-16,
+              "energy_relative_drift": 3.178816858944576e-16,
+              "min_density": 0.20464220615457646,
+              "min_pressure": 0.15133222621151116,
+              "steps": 16
+            },
+            {
+              "method": "glm",
+              "n": 32,
+              "density_relative_l1": 0.031701275734563154,
+              "by_relative_l1": 0.3030990560465997,
+              "native_divergence_linf": 1.3322676295501878e-15,
+              "common_cell_divergence_linf": 1.3322676295501878e-15,
+              "mass_relative_drift": 3.7668979778493237e-16,
+              "energy_relative_drift": 1.589408429472288e-16,
+              "min_density": 0.20144207086099608,
+              "min_pressure": 0.134387100167153,
+              "steps": 32
+            },
+            {
+              "method": "glm",
+              "n": 64,
+              "density_relative_l1": 0.02142907618249145,
+              "by_relative_l1": 0.1689716486688309,
+              "native_divergence_linf": 5.329070518200751e-15,
+              "common_cell_divergence_linf": 5.329070518200751e-15,
+              "mass_relative_drift": 3.7668979778493237e-16,
+              "energy_relative_drift": 3.178816858944576e-16,
+              "min_density": 0.19966162247697308,
+              "min_pressure": 0.12431585954470904,
+              "steps": 65
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#ct-glm-independent",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#ct-glm-independent"
+        }
+      },
+      {
+        "id": "glm-fourier-mode",
+        "title": {
+          "ja": "GLMの磁気単極子モード：解析的減衰",
+          "en": "GLM longitudinal mode: analytic damping"
+        },
+        "method_ids": [
+          "glm"
+        ],
+        "summary": {
+          "ja": "GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。",
+          "en": "Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution."
+        },
+        "assumptions": {
+          "ja": "周期[0,1]、Bx=cos2πx、psi=0、ch=1、減衰κ=2、t=1。流体との結合を外した線形診断です。",
+          "en": "Periodic [0,1], Bx=cos2pix, psi=0, ch=1, damping kappa=2, t=1. This linear diagnostic omits fluid coupling."
+        },
+        "algorithm": {
+          "ja": "∂tBx=-∂xpsi、∂tpsi=-ch²∂xBx-κpsiを中心差分とRK4で積分。独立参照は連続Fourier記号の2×2行列指数です。",
+          "en": "Integrate Bx_t=-psi_x and psi_t=-ch² Bx_x-kappa psi with centered differences/RK4. The independent reference exponentiates the continuous 2x2 Fourier symbol."
+        },
+        "validation": {
+          "ja": "16/32/64点でL2誤差、空間2次収束、磁場divergenceモード振幅の減衰を判定します。",
+          "en": "Check L2 error, second-order spatial refinement and damping of the divergence-mode amplitude at 16/32/64 points."
+        },
+        "limits": {
+          "ja": "この線形モードの減衰を、非線形MHDの全divergenceや大域的な精度の保証とはしません。CTで表せない単極子モードをCTとの同条件比較には用いません。",
+          "en": "Linear-mode damping does not guarantee divergence control or global accuracy for every nonlinear MHD problem. A monopole mode that CT cannot represent is not used as a matched CT comparison."
+        },
+        "references": [
+          {
+            "id": "dedner2002",
+            "author": "A. Dedner et al.",
+            "year": 2002,
+            "title": "Hyperbolic Divergence Cleaning for the MHD Equations",
+            "doi": "10.1006/jcph.2001.6961",
+            "url": "https://www.tp4.ruhr-uni-bochum.de/~sw/papers/JCP2002.6961.pdf",
+            "review_level": "author-hosted primary paper; linear cleaning equations checked"
+          }
+        ],
+        "equations": [
+          "B_t=-\\psi_x,\\quad\\psi_t=-c_h^2B_x-\\kappa\\psi"
+        ],
+        "code_files": [
+          "run.py"
+        ],
+        "measured": {
+          "id": "glm-fourier-mode",
+          "passed": true,
+          "checks": {
+            "analytic_expm_comparison": true,
+            "spatial_order": true,
+            "divergence_damping": true
+          },
+          "metrics": {
+            "observed_order": 2.001546730427675,
+            "continuum_amplitude_ratio": 0.3619556718500278
+          },
+          "records": [
+            {
+              "n": 16,
+              "l2_error": 0.031403626041517134,
+              "divergence_norm_ratio": 0.3424973881563735,
+              "steps": 80
+            },
+            {
+              "n": 32,
+              "l2_error": 0.007824956066504568,
+              "divergence_norm_ratio": 0.3579934527938889,
+              "steps": 160
+            },
+            {
+              "n": 64,
+              "l2_error": 0.001954142833496426,
+              "divergence_norm_ratio": 0.3610231236310228,
+              "steps": 320
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#glm-fourier-mode",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#glm-fourier-mode"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。",
+    "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/mhd.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hlld.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/mhd_tests.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/mhd_tests.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/hlld.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/mhd_tests.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/riemann.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/benchmarks.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/equations.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_hlld.py"
@@ -105,5 +410,24 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [
+    {
+      "id": "ct-glm-independent",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "glm-fourier-mode",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ]
 }

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "group": "particles",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+  "archive": {
+    "file": "atlas-particles-2026-11-22.zip",
+    "sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "bytes": 528320,
+    "archive_directory": "atlas-particles-2026-11-22"
+  },
+  "archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+  "returncode": 0,
+  "passed_tests": 27,
+  "tests": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "dsmc",
+    "ewald",
+    "fmm",
+    "pic",
+    "radiation-transport",
+    "spme"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.3081751669997175,
+  "independent_rerun_seconds": 1.3686855409996497,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

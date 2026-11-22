@@ -2,15 +2,15 @@
 
 量子化学・分子動力学・反応拡散・生物・流体・重力を、受け渡す量と共通の数学からたどる。矢印ごとに必要な検証を示し、実行できる固定例、解説のみの段階、未実行の連成を区別する。
 
-実行済みの要素例と、未検証の分野間接続を分けて示します。単独例の合格だけで、力・MD・温度制御・反応拡散などの連成を検証済みとはしません。
+共通台帳の実行例と、独立展開した補助配布版の固定検証を分けて示します。Langevin振動子・反応拡散・Turing/膜興奮の限定例があっても、第一原理MDから熱浴まで、または反応・拡散・流体を結ぶ経路全体の検証には広げません。
 
 ## DFT → 第一原理MD → 温度制御
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=ja#dft-md-ja)
 
-静的な電子状態から核の力、軌道、熱浴へ。公開の周期Heエネルギー計算を出発点に、まだ検証されていない橋を明示する。
+静的な電子状態から核の力、軌道、熱浴へ。固定Heのエネルギー・力と、独立したLangevin振動子の分布検証をたどり、MD連成で追加すべき条件を確かめます。
 
-この経路で確認できる範囲：静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認に限定し、BOMD/CPMDから熱浴までの経路全体は未検証。
+この経路で確認できる範囲：静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認まで。Langevin調和振動子の温度・エネルギー分布と相関は独立した補助例で検証しています。BOMD/CPMDと熱浴を結んだ経路全体は未実行です。
 
 ### 固定セルの周期He KS-LDA
 
@@ -58,17 +58,23 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 
 ### サーモスタットと分布の確認
 
-比較解説を公開し、実装は計画中。Nosé–Hoover、chains、Langevin、確率的速度再スケーリングなどを、平均温度・運動エネルギー分布・相関の観点で比較する。
+12手法の比較解説に加え、Langevin調和振動子のBAOAB積分を専用補助例で検証。温度・位置/エネルギー分布・時間相関を解析的な調和振動子と比較します。
 
-段階の状態: planned
+段階の状態: scoped-supplement
 
 - [温度制御と分布の比較](/numerical-methods-atlas/ja/read/thermostats/)
+- [Langevin振動子：分布・相関・刻み幅の実測](/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic)
 - [Nosé–Hooverサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=ja): planned
 - [Nosé–Hoover chain](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=ja): planned
-- [Langevinサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja): planned
+- [Langevinサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja): educational-example
 - [確率的速度リスケーリング（CSVR）](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja): planned
 
-残る差: 各サーモスタットの台帳はplannedのまま。専用実行例、温度分布の測定、第一原理MDとの連成検証はない。
+別管理の固定補助例: Langevin/BAOAB・1自由度の調和振動子という固定した要素例。BOMD/CPMDからの核座標や原子間力は受け取りません。
+- [Langevin温度制御：正準分布・刻み偏り・時間相関](https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja): 調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
+  調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic)
+
+残る差: この実行済み部分は独立した調和振動子だけです。他11手法、一般の多体系、第一原理MDとの連成は検証していません。平均温度の一致と正準分布・相関の一致を区別します。
 
 ### 多原子セルでエネルギー微分と力を照合する
 
@@ -112,7 +118,7 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 
 **異なる点:** 平均温度の一致だけでは正準分布やエルゴード性を示さない。熱浴は拡散・速度相関を変え得る。CPでは核と仮想電子自由度の温度を混同しない。
 
-**既存の要素根拠:** サーモスタットの比較解説と検証計画を公開。専用コード・分布の測定結果・MDとの連成結果はない。
+**既存の要素根拠:** Langevin調和振動子の専用コード・固定入力・分布/相関/刻み幅の補助検証を公開。第一原理MDの力供給APIとは独立しており、両者を結んだ軌道は実行していません。
 
 **接続に必要な検証:** 調和振動子・理想気体などで位置分布とKのχ²分布、自己相関、独立系列の不確かさを確認し、刻み幅と結合時間を変える。核MDとの連成前に小自由度の探索失敗も調べる。
 
@@ -124,36 +130,60 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 - M. Born and R. Oppenheimer (1927). [Zur Quantentheorie der Molekeln](https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002). 出版社の書誌・DOIを確認。Born–Oppenheimer分離の歴史的基礎として引用し、原文全文の監査や現代のMD実装の再現は主張しません。
 - R. Car and M. Parrinello (1985). [Unified Approach for Molecular Dynamics and Density-Functional Theory](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471). 出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。
 - William G. Hoover (1985). [Canonical dynamics: Equilibrium phase-space distributions](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.31.1695). 既存サーモスタット台帳の原著。今回出版社の書誌・抄録を確認し、拡張位相空間分布と調和振動子の例の範囲を参照。全文の監査・数値再現は未実施。
+- B. Leimkuhler and C. Matthews (2013). [Rational Construction of Stochastic Numerical Methods for Molecular Sampling](https://arxiv.org/abs/1203.5428). 著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。
 
 ## 反応拡散 → 生物・流体の輸送
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=ja#reaction-transport-ja)
 
-反応源と拡散演算子を共有しても、侵入前線・模様・流れとの連成では検証量が変わる。0次元反応と輸送の部品例から、未実装の空間連成を見分ける。
+反応源と拡散演算子を共有しても、線形モード、模様形成、膜興奮、流れとの連成では検証量が変わります。1次元の固定反応拡散例と0次元の膜興奮例から、流体と結ぶための追加条件をたどります。
 
-この経路で確認できる範囲：0次元反応・移流・周期流体の例は別々の証拠。空間反応拡散や反応・拡散・流れを結ぶ経路全体は未実行。
+この経路で確認できる範囲：1次元線形反応拡散とSchnakenbergのTuring初期成長、0次元FitzHugh–Nagumoは専用補助例で実行済みです。ロジスティック/SIR、移流、周期流体の共通台帳例も別の要素根拠として残します。反応・拡散・移流/流体を結ぶ経路全体は未実行です。
 
 ### 反応と拡散の枠組み
 
-∂_t c = ∇·(D∇c) + R(c)。反応則R、拡散係数/行列D、初期条件、空間境界を指定して初めて問題になる。台帳のFisher–KPP・Turing・Schnakenbergは解説のみ。
+∂_t c = ∇·(D∇c) + R(c)。反応則・拡散・初期値・境界を指定します。1次元周期の線形FourierモードとSchnakenberg反応拡散を、専用補助版の解析解・独立参照・空間/時間収束で検査します。
 
-段階の状態: reading
+段階の状態: scoped-supplement
 
 - [生物モデルと反応拡散の検証案](/numerical-methods-atlas/ja/read/biological-models/)
+- [線形反応拡散の空間・時間収束](/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier)
+- [空間中心差分](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja): educational-example
+- [古典的RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja): educational-example
 
-残る差: 反応拡散の空間ソルバーや連成実行例は公開されていない。拡散だけの例を足しても連成の検証にはならない。
+別管理の固定補助例: 線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。
+- [反応拡散：空間2次と時間4次を分けて測る](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja): 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。
+  線形・周期・滑らかな単一モードだけを検証します。非線形のFisher前線、複雑境界、空間生態系や一般の反応ネットワークの検証ではありません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier)
+- [Turing不安定性：線形成長率と小振幅パターン](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja): Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
+  1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg)
 
-### 生物：侵入前線と模様形成
+残る差: 固定した1次元周期問題の範囲です。一般の反応則・非周期境界、Fisher–KPP前線、流れとの移流反応拡散は未検証です。拡散単体と反応拡散の結果を分けて示します。
 
-Fisher–KPPは増殖と拡散の前線、Turingは安定な反応平衡が空間モードで不安定化する枠組み。Schnakenbergは具体的な反応則の一例であり、Turing原論文の反応則や組織較正済みモデルと同一ではない。
+### 生物：模様形成・膜興奮と前線
 
-段階の状態: reading
+SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumoの刺激応答を0次元ODEで検証します。Fisher–KPP前線は解説段階です。反応則や次元の違いを、生物現象の同一性や組織データへの適合と取り違えません。
+
+段階の状態: scoped-supplement
 
 - [Fisher–KPP前線](/numerical-methods-atlas/ja/read/biological-models/#06-1937-fisherkpp-invasion-front)
 - [Turing型の模様発生](/numerical-methods-atlas/ja/read/biological-models/#09-1952-turing-reactiondiffusion-framework)
 - [Schnakenbergの反応則](/numerical-methods-atlas/ja/read/biological-models/#17-1979-schnakenberg-reactiondiffusion)
+- [Turing初期成長と独立参照](/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg)
+- [FitzHugh–Nagumoの0次元刺激応答](/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo)
+- [空間中心差分](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja): educational-example
+- [古典的RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja): educational-example
 
-残る差: いずれもsurvey-onlyのモデル。前線速度・モード成長率の測定も、生物の実験データによる妥当性確認も未実施。
+別管理の固定補助例: Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。
+- [Turing不安定性：線形成長率と小振幅パターン](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja): Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
+  1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg)
+- [FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照](https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja): 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。
+  FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo)
+
+残る差: Turingは短時間の線形成長と有限振幅の区別まで、FitzHugh–Nagumoは空間を持たない単一素子です。伝播する膜パルス、Fisher前線速度、生物実験データへの較正、流体との連成は未検証です。
 
 ### 実行できる反応のみの0次元例
 
@@ -194,11 +224,11 @@ Fisher–KPPは増殖と拡散の前線、Turingは安定な反応平衡が空�
 
 **異なる点:** 前線速度の誤差とTuringの分散関係は別の検証量。生物の模様に似た画像でも機構やパラメータの妥当性は決まらない。
 
-**既存の要素根拠:** 解説に前線・モードの検証案と一次文献がある。測定した反応拡散の結果はない。
+**既存の要素根拠:** Schnakenbergは許される周期モードの成長をJ−k²Dと離散Laplacianの予測、空間/時間細分化で比較済みです。FitzHugh–Nagumoは独立DOP853との0次元照合です。Fisher–KPP前線は未実行です。
 
 **接続に必要な検証:** 前線は解析プロファイル/速度と比較し、有限領域の境界影響と空間/時間誤差を分ける。Turingはk=0の安定性を確かめ、境界が許す非零モードの初期成長をJ−k²Dおよび離散Laplacianの予測と比べる。
 
-空間モデルの実行：未実施。反応拡散の生物モデルとしての空間実行は未実施。
+モデル族の対応全体の検証範囲：固定したSchnakenbergの空間例は独立した要素検証です。異なる生物モデル族への一般化、生体組織への妥当性確認、前線や流体へ接続する経路全体は実行していません。
 
 ### 空間項を外した反応の基準を調べる
 
@@ -226,7 +256,7 @@ Fisher–KPPは増殖と拡散の前線、Turingは安定な反応平衡が空�
 
 **異なる点:** 保存形と移流形の同値には∇·u=0などの条件がある。移流CFL、拡散の刻み制限、反応の剛性、圧力境界は異なる。受動輸送と双方向連成の誤差も異なる。
 
-**既存の要素根拠:** advection-sineは周期一定速度のスカラー移流、taylor-greenは周期粘性流と発散を別々に検証する。濃度や反応を含む連成結果はない。
+**既存の要素根拠:** 線形/Schnakenberg反応拡散の補助例、周期一定速度advection-sine、周期粘性taylor-greenを別々に検証しています。濃度・反応・流体を結んだ実行はありません。
 
 **接続に必要な検証:** 境界流束と反応源を含む濃度収支、非負性、∇·u、空間/時間収束、分割順序・刻み依存を調べる。製造解または独立な連成参照を設け、能動連成では返す力/熱の収支も確認する。
 
@@ -240,6 +270,8 @@ Fisher–KPPは増殖と拡散の前線、Turingは安定な反応平衡が空�
 - Alan M. Turing (1952). [The Chemical Basis of Morphogenesis](https://www.damtp.cam.ac.uk/user/gold/pdfs/teaching/old_literature/Turing1952.pdf). 既存書誌にある大学公開原文のモデル設定・不安定性の前提の確認を継承。一般の2成分式を一意のTuring反応則とは扱わない。今回DOI先は取得不可で、追加の全文監査や数値再現は行っていない。
 - Jürgen Schnakenberg (1979). [Simple chemical reaction systems with limit cycle behaviour](https://www.sciencedirect.com/science/article/pii/0022519379900420). 既存書誌の出版社書誌・抄録確認を継承。自己触媒反応系の出典であり、空間PDEや組織に較正したモデルの数値検証ではない。今回の全文再監査はない。
 - Alexandre Joel Chorin (1968). [Numerical solution of the Navier-Stokes equations](https://math.berkeley.edu/~chorin/chorin68.pdf). 既存書誌の出版社書誌・著者公開原文の確認を継承。今回原文PDFへの到達を確認したが本文は抽出できず追加の全文監査はない。公開MAC/SSPRK2例は原論文の境界・時間法そのものではない。
+- R. FitzHugh (1961). [Impulses and Physiological States in Theoretical Models of Nerve Membrane](https://pubmed.ncbi.nlm.nih.gov/19431309/). PubMedの原著抄録・書誌を確認。2変数の興奮・不応期の縮約という役割を参照し、HH全系や実測膜電位の再現とは区別します。
+- J. Nagumo, S. Arimoto and S. Yoshizawa (1962). [An Active Pulse Transmission Line Simulating Nerve Axon](https://ieeexplore.ieee.org/abstract/document/4066548). IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。
 
 ## Poisson演算子 → 圧力・Hartree・重力
 
@@ -393,21 +425,23 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 
 - [サーモスタットの比較](/numerical-methods-atlas/ja/read/thermostats/)
 
-根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+
+Supplement models: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json); SHA-256=f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2
 
 # Crossovers between numerical fields
 
 Explore quantum chemistry, molecular dynamics, reaction–diffusion, biology, fluids and gravity through exchanged quantities and shared mathematics. Each connection states its validation needs and distinguishes runnable fixed examples, reading-only stages and unexecuted coupling.
 
-Executed component examples and unvalidated cross-field connections are shown separately. A passing standalone case does not validate coupled forces, MD, thermostatting or reaction–diffusion.
+Common-registry executions and fixed checks from independently extracted supplements are separate evidence. Scoped Langevin-oscillator, reaction–diffusion, Turing and excitability examples do not establish the complete first-principles-MD-to-heat-bath or reaction–diffusion–fluid route.
 
 ## DFT → first-principles MD → temperature control
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=en#dft-md-en)
 
-Move from static electronic structure to nuclear forces, trajectories and a heat bath. Start with the released periodic-He energy calculation and identify each unvalidated bridge.
+Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He energy/force evidence and separate Langevin-oscillator distribution checks, then inspect the extra requirements for coupled MD.
 
-Evidence scope of this route: Static He and multiatom He₂ forces are runnable. The BOMD interface has only a short local check; the complete BOMD/CPMD-to-heat-bath route remains unvalidated.
+Evidence scope of this route: Static He and multiatom-He₂ forces are runnable; the BOMD interface has only a short local check. Temperature/energy distributions and correlations of a Langevin harmonic oscillator are validated in a separate supplement. The complete BOMD/CPMD-to-heat-bath route has not been executed.
 
 ### Fixed-cell periodic-He KS-LDA
 
@@ -455,17 +489,23 @@ Remaining gap: Long BOMD NVE drift and systematic timestep/SCF trajectory conver
 
 ### Thermostats and distribution checks
 
-Comparative reading is available; implementations are planned. Compare Nosé–Hoover, chains, Langevin and stochastic velocity rescaling through mean temperature, kinetic-energy distributions and correlations.
+Alongside comparative reading for 12 methods, a dedicated supplement validates BAOAB Langevin integration for a harmonic oscillator through temperature, position/energy distributions and time correlations against analytic oscillator results.
 
-Stage state: planned
+Stage state: scoped-supplement
 
 - [Temperature control and distribution comparisons](/numerical-methods-atlas/en/read/thermostats/)
+- [Langevin oscillator: measured distributions, correlations and steps](/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic)
 - [Nosé–Hoover thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=en): planned
 - [Nosé–Hoover chains](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=en): planned
-- [Langevin thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en): planned
+- [Langevin thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en): educational-example
 - [Stochastic velocity rescaling (CSVR)](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en): planned
 
-Remaining gap: Thermostat method records remain planned. There are no dedicated execution examples, measured temperature distributions or coupled first-principles-MD validations.
+Separately managed fixed supplements: A fixed Langevin/BAOAB component with one harmonic-oscillator degree of freedom. It consumes neither nuclear coordinates nor interatomic forces from BOMD/CPMD.
+- [Langevin thermostat: canonical distributions, timestep bias and correlation](https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en): Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
+  Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic)
+
+Remaining gap: The executed subset is a standalone harmonic oscillator only. The other 11 methods, general many-body systems and first-principles-MD coupling remain unvalidated. Mean-temperature agreement is distinct from agreement of canonical distributions and correlations.
 
 ### Check energy derivatives against forces in a multiatom cell
 
@@ -509,7 +549,7 @@ Quantity handoff
 
 **What differs:** Correct mean temperature establishes neither canonical sampling nor ergodicity. A bath can change diffusion and velocity correlations. Keep nuclear and fictitious electronic temperatures distinct in CP.
 
-**Existing component evidence:** Thermostat comparisons and a validation plan are published. There are no dedicated code, measured distributions or coupled MD results.
+**Existing component evidence:** Dedicated Langevin-oscillator code, fixed inputs and distribution/correlation/timestep checks are published as a supplement. It is independent of the first-principles force API; no trajectory joins the two.
 
 **Validation required:** Use oscillators/ideal gases to check position distributions and the chi-square distribution of kinetic energy, autocorrelations and independent-stream uncertainty; vary step size and coupling time. Include small-system sampling failures before coupling to nuclear MD.
 
@@ -521,36 +561,60 @@ Coupled execution: not performed. Thermostatted first-principles MD has not been
 - M. Born and R. Oppenheimer (1927). [Zur Quantentheorie der Molekeln](https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002). Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation.
 - R. Car and M. Parrinello (1985). [Unified Approach for Molecular Dynamics and Density-Functional Theory](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471). Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced.
 - William G. Hoover (1985). [Canonical dynamics: Equilibrium phase-space distributions](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.31.1695). Existing thermostat-registry primary reference. Publisher metadata/abstract checked for extended phase-space distributions and the harmonic-oscillator example. No full-paper audit or numerical reproduction.
+- B. Leimkuhler and C. Matthews (2013). [Rational Construction of Stochastic Numerical Methods for Molecular Sampling](https://arxiv.org/abs/1203.5428). Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here.
 
 ## Reaction–diffusion → biological and fluid transport
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=en#reaction-transport-en)
 
-Reaction sources and diffusion operators recur across fronts, patterns and flow coupling, while validation targets change. Separate zero-dimensional reaction and transport component examples from unimplemented spatial coupling.
+Shared reaction sources and diffusion operators lead to different checks for linear modes, pattern onset, excitability and flow coupling. Follow fixed 1D reaction–diffusion and zero-dimensional excitability examples toward the extra requirements for fluid coupling.
 
-Evidence scope of this route: Zero-dimensional reaction, advection and periodic-flow examples provide separate evidence. Spatial reaction–diffusion and the complete reaction–diffusion–flow route have not been executed.
+Evidence scope of this route: Dedicated supplements execute 1D linear reaction–diffusion, initial Schnakenberg Turing growth and zero-dimensional FitzHugh–Nagumo. Logistic/SIR, advection and periodic-flow runs remain separate common-registry component evidence. The complete reaction–diffusion–advection/fluid route is unexecuted.
 
 ### Reaction–diffusion framework
 
-∂_t c = ∇·(D∇c) + R(c). A problem requires a reaction law R, diffusivity/matrix D, initial data and spatial boundaries. Catalogued Fisher–KPP, Turing and Schnakenberg entries provide reading only.
+For ∂_t c = ∇·(D∇c) + R(c), specify kinetics, diffusion, initial data and boundaries. Dedicated supplements check 1D periodic linear Fourier modes and Schnakenberg reaction–diffusion using analytic/independent references and space/time refinement.
 
-Stage state: reading
+Stage state: scoped-supplement
 
 - [Biological models and proposed reaction–diffusion checks](/numerical-methods-atlas/en/read/biological-models/)
+- [Space/time refinement for linear reaction–diffusion](/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier)
+- [Centered spatial difference](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en): educational-example
+- [Classical RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en): educational-example
 
-Remaining gap: No spatial reaction–diffusion solver or coupled execution example is released. Adding a separate diffusion example does not validate the combination.
+Separately managed fixed supplements: Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification.
+- [Reaction-diffusion: separate second-order space and fourth-order time](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en): Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions.
+  Only a linear, periodic, smooth single mode is verified. Nonlinear Fisher fronts, complex boundaries, spatial ecosystems and general reaction networks remain outside scope.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier)
+- [Turing instability: linear growth and small-amplitude patterns](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en): Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
+  One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg)
 
-### Biology: invasion fronts and pattern onset
+Remaining gap: Limited to fixed 1D periodic problems. General kinetics, nonperiodic boundaries, Fisher–KPP fronts and advective reaction–diffusion coupled to flow remain unvalidated. Diffusion-only and reaction–diffusion evidence are distinct.
 
-Fisher–KPP concerns growth–diffusion fronts; Turing describes spatial-mode destabilization of a stable reaction equilibrium. Schnakenberg supplies one kinetic law, distinct from Turing’s original example and from a tissue-calibrated model.
+### Biology: pattern onset, excitability and fronts
 
-Stage state: reading
+Validate initial Schnakenberg Turing growth with 1D reaction–diffusion and FitzHugh–Nagumo stimulus response with a zero-dimensional ODE. Fisher–KPP fronts remain reading-only. Different kinetics/dimensions do not establish identical biological phenomena or agreement with tissue data.
+
+Stage state: scoped-supplement
 
 - [Fisher–KPP front](/numerical-methods-atlas/en/read/biological-models/#06-1937-fisherkpp-invasion-front)
 - [Turing pattern onset](/numerical-methods-atlas/en/read/biological-models/#09-1952-turing-reactiondiffusion-framework)
 - [Schnakenberg kinetics](/numerical-methods-atlas/en/read/biological-models/#17-1979-schnakenberg-reactiondiffusion)
+- [Initial Turing growth and independent references](/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg)
+- [Zero-dimensional FitzHugh–Nagumo stimulus response](/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo)
+- [Centered spatial difference](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en): educational-example
+- [Classical RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en): educational-example
 
-Remaining gap: All remain survey-only models. Front-speed and mode-growth measurements and validation against biological observations have not been performed.
+Separately managed fixed supplements: Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation.
+- [Turing instability: linear growth and small-amplitude patterns](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en): Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
+  One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg)
+- [FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference](https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en): Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.
+  Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo)
+
+Remaining gap: Turing evidence separates short-time linear growth from finite-amplitude behavior; FitzHugh–Nagumo is a spatially uniform single unit. Propagating membrane pulses, Fisher front speeds, biological-data calibration and fluid coupling remain unvalidated.
 
 ### Runnable zero-dimensional reaction-only examples
 
@@ -591,11 +655,11 @@ Model application
 
 **What differs:** Front-speed error differs from a Turing dispersion relation. Resemblance to a biological pattern establishes neither mechanism nor parameter validity.
 
-**Existing component evidence:** Reading supplies front/mode verification plans and primary references. There are no measured reaction–diffusion results.
+**Existing component evidence:** Schnakenberg compares admissible periodic-mode growth with J−k²D, discrete-Laplacian predictions and space/time refinement. FitzHugh–Nagumo has a zero-dimensional independent DOP853 comparison. Fisher–KPP fronts have not been executed.
 
 **Validation required:** For fronts, compare analytic profile/speed and separate finite-boundary, spatial and temporal errors. For Turing onset, establish k=0 stability and compare early growth of boundary-admissible nonzero modes with J−k²D and the discrete-Laplacian prediction.
 
-Spatial-model execution: not performed. Spatial execution of these biological reaction–diffusion models has not been performed.
+Scope of the model-family correspondence: The fixed spatial Schnakenberg example is independent component validation. Generalization across biological-model families, tissue-level validity and the complete bridge to fronts or flow have not been executed.
 
 ### Inspect reaction baselines without spatial terms
 
@@ -623,7 +687,7 @@ Quantity handoff
 
 **What differs:** Equivalence of conservative and advective forms requires conditions such as ∇·u=0. Advection CFL, diffusion step restrictions, reaction stiffness and pressure boundaries differ, as do passive and two-way coupling errors.
 
-**Existing component evidence:** advection-sine checks scalar periodic constant-speed transport; taylor-green separately checks periodic viscous flow and divergence. Neither supplies concentration–reaction–flow results.
+**Existing component evidence:** Linear/Schnakenberg reaction–diffusion supplements, periodic constant-speed advection-sine and periodic viscous taylor-green are verified separately. No execution couples concentration, reaction and flow.
 
 **Validation required:** Check concentration balance with boundary fluxes and reaction sources, nonnegativity, ∇·u, space/time refinement and splitting order/step dependence. Use a manufactured or independent coupled reference; active coupling also requires force/heat balance checks.
 
@@ -637,6 +701,8 @@ Coupled execution: not performed. Reaction–diffusion–advection and active fl
 - Alan M. Turing (1952). [The Chemical Basis of Morphogenesis](https://www.damtp.cam.ac.uk/user/gold/pdfs/teaching/old_literature/Turing1952.pdf). Inherits the existing university-hosted original-text review of model setting and instability premise. The general two-species form is not a unique Turing kinetic law. The DOI endpoint was inaccessible in this pass; no added full-text audit or numerical reproduction.
 - Jürgen Schnakenberg (1979). [Simple chemical reaction systems with limit cycle behaviour](https://www.sciencedirect.com/science/article/pii/0022519379900420). Inherits existing publisher-metadata/abstract checks. An autocatalytic-kinetics source, not numerical validation of a spatial PDE or tissue-calibrated model. No fresh full-text audit.
 - Alexandre Joel Chorin (1968). [Numerical solution of the Navier-Stokes equations](https://math.berkeley.edu/~chorin/chorin68.pdf). Inherits existing publisher/author-hosted-original checks. The original PDF was reachable in this pass but yielded no extracted body, so no fresh text audit was added. The released MAC/SSPRK2 example differs from the original boundary/time algorithm.
+- R. FitzHugh (1961). [Impulses and Physiological States in Theoretical Models of Nerve Membrane](https://pubmed.ncbi.nlm.nih.gov/19431309/). Original-paper abstract and bibliography in PubMed checked. Supports the two-variable excitable/refractory reduction; no full HH or measured membrane-voltage reproduction is claimed.
+- J. Nagumo, S. Arimoto and S. Yoshizawa (1962). [An Active Pulse Transmission Line Simulating Nerve Axon](https://ieeexplore.ieee.org/abstract/document/4066548). IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed.
 
 ## Poisson operators → pressure, Hartree and gravity
 
@@ -790,4 +856,6 @@ Thermostatted MD requires distributions, correlations and finite-sample uncertai
 
 - [Thermostat comparisons](/numerical-methods-atlas/en/read/thermostats/)
 
-Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+
+Supplement models: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json); SHA-256=f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2

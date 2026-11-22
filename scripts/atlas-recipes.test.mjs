@@ -11,14 +11,42 @@ const registry=json('catalog/atlas-execution-examples.json');
 const targets=['advection-sine','sod','shu-osher','poisson-1d-dirichlet','poisson-2d-sine','bratu','harmonic-oscillator','stiff-cosine','smooth-function-projection','isolated-particles','periodic-particles','taylor-green','brio-wu','hydrogenic-atoms','helium-ground-state','logistic-growth','sir-epidemic','mc-integral','gbm-sde','h2-rhf','periodic-he-dft','periodic-he-forces'];
 const prefix='code/numerical-methods-atlas/2026-11-22/';
 const path=url=>new URL(url).pathname.slice(1);
+const supplementalProblemIds=['matrix-factorization','krylov-spectrum','quadrature-moments','gaussian-mcmc','langevin-harmonic','reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo','neutral-periodic-charges','logarithmic-particles','cold-plasma-pic','maxwell-collisions','absorbing-slab'];
 
-test('all 22 runnable representative problems have one reproduction record within the 67-problem inventory',()=>{
+test('all 22 runnable representative problems have one reproduction record within the 80-problem inventory',()=>{
   assert.equal(registry.examples.length,22);
   assert.deepEqual(registry.examples.map(x=>x.problem_id).sort(),[...targets].sort());
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length,67);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,67);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length,80);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,80);
   assert.equal(registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22').length,12);
   for(const id of ['barnes-hut','hydrogenic-atoms','helium-ground-state'])assert.equal(registry.examples.find(x=>x.id===id).release.version,'2026-11-21');
+});
+
+test('thirteen additional physical problems bind to successful immutable supplements without multiplying shared cases',()=>{
+  const inventory=json('catalog/atlas-test-problems.json').problems;
+  const mapping=json('catalog/atlas-depth-expansion.json').case_problem_ids;
+  const selected=inventory.filter(x=>supplementalProblemIds.includes(x.id));
+  assert.equal(selected.length,13);assert.equal(inventory.length-selected.length,67);
+  assert.equal(mapping.ewald,mapping.spme);assert.equal(mapping['glm-fourier-mode'],null);
+  assert.equal(inventory.filter(x=>x.id==='neutral-periodic-charges').length,1);
+  for(const problem of selected){
+    assert.equal(problem.availability,'saved-output');
+    assert.ok(problem.supplemental_examples.length);
+    const base=problem.code_base.slice(1);
+    const results=json(base+'results/result.json'),receipt=json(base+'verification.json');
+    assert.equal(results.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.passed,true);
+    assert.equal(results.input_sha256,sha(base+'inputs.json'));
+    for(const item of problem.supplemental_examples){
+      assert.equal(mapping[item.id],problem.id);
+      const row=results.cases.find(x=>x.id===item.id);assert.ok(row);
+      assert.equal(row.passed,true);assert.ok(Object.keys(row.checks).length>0&&Object.values(row.checks).every(x=>x===true));
+      assert.ok(receipt.case_ids.includes(item.id));
+      assert.ok(problem.evidence.some(x=>x.path===base+'results/result.json'&&x.json_pointer==='/cases'&&x.where?.id===item.id));
+      assert.ok(existsSync(new URL(base+'results/'+item.id+'.png',root)));
+      assert.ok(existsSync(new URL(item.url.slice(1)+'index.html',root)));
+    }
+  }
+  assert.deepEqual(selected.find(x=>x.id==='neutral-periodic-charges').supplemental_examples.map(x=>x.id),['ewald','spme']);
 });
 
 test('new recipes expose the exact fixed input, measured acceptance criteria and populated numerical output',()=>{

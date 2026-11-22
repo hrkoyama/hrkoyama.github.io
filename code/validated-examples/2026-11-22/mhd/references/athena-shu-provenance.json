@@ -1,0 +1,45 @@
+{
+  "source": {
+    "repository": "PrincetonUniversity/athena",
+    "commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "source_url": "https://codeload.github.com/PrincetonUniversity/athena/tar.gz/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+    "bytes": 4359906
+  },
+  "binary_sha256": "c7c81819415eadaf2d45b7019c86517b9a352184dde90eaee71a0783722b2096",
+  "configure": "python configure.py --prob=shu_osher --flux=hllc --cxx=clang++",
+  "build": "make clean; make -j2",
+  "input_notes": "Problem-specific initial-condition patch: shock location -0.8 to -4 and sin(5*pi*x) to sin(5*x), matching the atlas benchmark; solver unchanged. Left/right primitive states identical. Outflow boundaries remain outside wave interactions.",
+  "records": [
+    {
+      "case": "shu",
+      "n": 2048,
+      "elapsed_seconds": 0.732768333000422,
+      "input_sha256": "4e5c83e7dcdae001c91fef2ad4506501f5ed8d05ef1605188261c47324d15d2b",
+      "raw_table_sha256": "8fc24ddbcba87ae37c0d5c356b9cd9de011420327e332ae6d0ceb3c66dfc5c97",
+      "table_header": "# i       x1v         rho          press          vel1         vel2         vel3     ",
+      "data_file": "athena-shu-2048.npz",
+      "sha256": "505c56bea91718becf67e9d4ad41410b59bed7f9dd707013b171b099cee15ce6"
+    },
+    {
+      "case": "shu",
+      "n": 4096,
+      "elapsed_seconds": 2.841285208000045,
+      "input_sha256": "393ceb4d958fade0f52ce07fa6102e85e89f51ae0614c0ae9ec071767153a818",
+      "raw_table_sha256": "7f8aab8c2c40dc8e1b4284fc15274cbf6f9c085c402cf3d4f1bcc26f224c2cd3",
+      "table_header": "# i       x1v         rho          press          vel1         vel2         vel3     ",
+      "data_file": "athena-shu-4096.npz",
+      "sha256": "083da1821a90a867de9e9646f9430d27e1779767d48c0796d71265d2b3fcefd2"
+    },
+    {
+      "case": "shu",
+      "n": 8192,
+      "elapsed_seconds": 11.592592707999756,
+      "input_sha256": "41cbb06c0bd032921a18ff7e0086e0d94c14ab97c4916299708c482c47e9448c",
+      "raw_table_sha256": "9ca83a9ed448d13af7fee707a2bc5536aed8249647bbac17ca92fd81817140be",
+      "table_header": "# i       x1v         rho          press          vel1         vel2         vel3     ",
+      "data_file": "athena-shu-8192.npz",
+      "sha256": "97172b9a749a7d6f2d003dd5adb92621acce2bb47f04022f0856b80bb147570a"
+    }
+  ]
+}

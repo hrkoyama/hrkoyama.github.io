@@ -2,9 +2,70 @@
 import hashlib
 import json
 from html import escape
+from pathlib import Path
 
 
 BASE = '/numerical-methods-atlas/connections/'
+ORIGIN = 'https://hrkoyama.github.io'
+
+# Explicit applicability prevents a useful solver/diagnostic in another field
+# from being borrowed as evidence for this stage or for a complete coupled run.
+SUPPLEMENT_STAGE_CASES = {
+    'thermostat': {'langevin-harmonic'},
+    'reaction-diffusion': {'reaction-diffusion-fourier', 'turing-schnakenberg'},
+    'biological-fronts': {'turing-schnakenberg', 'fitzhugh-nagumo'},
+}
+
+
+def load_supplemental_evidence(root, case_ids):
+    """Resolve separate, hash-checked component supplements without new executions."""
+    if not case_ids:
+        return {'cases': {}, 'source_sha256': {}, 'receipts': {}}
+    from atlas_depth_release import GROUPS, depth_code_urls, digest, load_depth_group, read_json
+    root = Path(root)
+    catalog_path = root/'catalog/atlas-depth-expansion.json'
+    catalog = read_json(catalog_path)
+    by_id = {}
+    for group in catalog['groups']:
+        assert group['id'] in GROUPS
+        directory = root/'code/validated-examples'/catalog['edition']/group['id']
+        metadata = read_json(directory/'cases.json')
+        metadata = metadata['cases'] if isinstance(metadata, dict) else metadata
+        for case in metadata:
+            assert case['id'] not in by_id, 'Duplicate supplemental case ID'
+            by_id[case['id']] = group['id']
+    assert set(case_ids) <= by_id.keys(), 'Unknown supplemental evidence ID'
+    groups = {group: load_depth_group(root, group, catalog['edition'])
+              for group in {by_id[ident] for ident in case_ids}}
+    sources = {'catalog/atlas-depth-expansion.json': digest(catalog_path)}
+    receipts, cases = {}, {}
+    for group, data in groups.items():
+        sources.update(data['source_sha256'])
+        receipts[group] = {'url': ORIGIN+data['base']+'verification.json',
+                           'sha256': data['source_sha256'][data['base'].lstrip('/')+'verification.json'],
+                           'passed_tests': data['verification']['passed_tests'],
+                           'all_cases_rerun': data['verification']['all_cases_rerun'],
+                           'source_mode': 'independently-extracted-supplement'}
+        metadata = {case['id']: case for case in data['metadata']}
+        measured = {case['id']: case for case in data['results']['cases']}
+        for ident in sorted(set(case_ids) & metadata.keys()):
+            case = metadata[ident]
+            cases[ident] = {'id': ident, 'group': group, 'edition': catalog['edition'],
+                'title': case['title'], 'scope': case['summary'], 'limits': case['limits'],
+                'method_ids': case['method_ids'], 'domains': case.get('domains', []),
+                'url': ORIGIN+'/numerical-methods-atlas/validation/'+ident+'/',
+                'reading': {language: ORIGIN+'/numerical-methods-atlas/'+language+'/read/validation-'+group+'/#'+ident
+                            for language in ['ja', 'en']},
+                'code_download': ORIGIN+data['base']+data['verification']['archive']['file'],
+                'code_urls': depth_code_urls(data, [ident]), 'test_urls': data['test_urls'],
+                'input': ORIGIN+data['base']+'inputs.json',
+                'results': ORIGIN+data['base']+'results/result.json',
+                'source_manifest': ORIGIN+data['base']+'source-manifest.json',
+                'verification_receipt': receipts[group],
+                'numerical_checks_passed': measured[ident]['passed'],
+                'checks': measured[ident]['checks'], 'metrics': measured[ident]['metrics'],
+                'source_mode': 'independently-extracted-supplement'}
+    return {'cases': cases, 'source_sha256': sources, 'receipts': receipts}
 
 
 def crossover_assets(root, interactive=False):

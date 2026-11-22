@@ -10,10 +10,10 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "「高速多重極法の移動演算」の考え方と適用範囲を、解説章・一次文献からたどります。専用実装は公開していません。",
-    "en": "Read about Fast multipole translations, follow the original references. No dedicated implementation is distributed for this entry."
+    "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+    "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
   },
-  "status": "reading-only",
+  "status": "educational-example",
   "origin": "existing-coverage-catalog",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
@@ -21,7 +21,7 @@
   },
   "code_modules": [],
   "test_files": [],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1016/0021-9991(87)90140-9",
@@ -33,8 +33,8 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+    "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
+    "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
   },
   "metadata_review": {
     "level": "chapter-linked; detailed method-specific curation in progress",
@@ -46,14 +46,187 @@
     "高速多重極法",
     "高速多重極展開法"
   ],
+  "depth_previous_status": "reading-only",
+  "depth_release": {
+    "group": "particles",
+    "case_ids": [
+      "fmm"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+    "code_edition": "2026-11-22",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-particles-2026-11-22",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+    "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "fmm",
+        "title": {
+          "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+          "en": "2D logarithmic FMM with M2M, M2L and L2L"
+        },
+        "method_ids": [
+          "fmm"
+        ],
+        "summary": {
+          "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+          "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+        },
+        "assumptions": {
+          "ja": "単位正方形内の有限点電荷ですが、境界は壁でなく木を作る包囲領域です。核はphi=−sum(q log r)、電場は−grad(phi)。自己項を除外し、周期像はありません。",
+          "en": "Particles lie in a unit-square bounding box, not a physical wall boundary. The kernel is phi=−sum(q log r), with field −grad(phi); self terms are excluded and no periodic images are used."
+        },
+        "algorithm": {
+          "ja": "葉でP2M、上向きのM2M、相互作用リスト上のM2L、下向きのL2L、局所多項式の評価と近接P2Pを実装します。遠方を粒子ごとに開くBarnes–Hutへ置き換えず、移動演算回数と近接対数を記録します。",
+          "en": "Implement leaf P2M, upward M2M, interaction-list M2L, downward L2L, local-polynomial evaluation and near-field P2P. Record translation and near-pair counts; this is not a Barnes–Hut traversal relabeled as FMM."
+        },
+        "validation": {
+          "ja": "固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。",
+          "en": "For 128 fixed-seed particles, sweep orders 2/4/8/12 and compare every potential/field component with a separate all-pairs calculation. Also check two-source signs, permutation invariance and potential derivatives."
+        },
+        "limits": {
+          "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
+          "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
+        },
+        "equations": [
+          "M_k(c)=\\sum_jq_j(z_j-c)^k",
+          "f(z)=M_0\\log(z-c)-\\sum_{k=1}^p\\frac{M_k}{k(z-c)^k},\\qquad\\phi=-\\Re f"
+        ],
+        "references": [
+          {
+            "id": "greengard1987",
+            "author": "L. Greengard and V. Rokhlin",
+            "year": 1987,
+            "title": "A fast algorithm for particle simulations",
+            "doi": "10.1016/0021-9991(87)90140-9",
+            "url": "https://doi.org/10.1016/0021-9991(87)90140-9",
+            "review_level": "selected-full-text",
+            "review_note": {
+              "ja": "著者所属機関の再録PDFで対数核、モーメント、3つの移動演算、上下走査を確認。再録版の掲載年1997と原著1987を区別。",
+              "en": "Institution-hosted reprint consulted for the log kernel, moments, three translations and up/down passes; 1997 reprint distinguished from 1987 original."
+            }
+          }
+        ],
+        "measured": {
+          "id": "fmm",
+          "passed": true,
+          "checks": {
+            "potential_max_error": true,
+            "field_max_error": true,
+            "finest_to_coarsest_ratio": true,
+            "actual_m2l": true,
+            "actual_l2l": true,
+            "near_field_is_subset": true
+          },
+          "metrics": {
+            "potential_max_error": 5.953093840105339e-07,
+            "field_max_error": 6.36492158818669e-05,
+            "finest_to_coarsest_ratio": 3.419465787735687e-05
+          },
+          "records": [
+            {
+              "order": 2,
+              "potential_max_error": 0.05596920857289689,
+              "field_max_error": 1.8613789355680126,
+              "m2l_translations": 1272,
+              "l2l_translations": 84,
+              "near_pairs": 1954,
+              "all_pairs": 16256
+            },
+            {
+              "order": 4,
+              "potential_max_error": 0.003976797337463811,
+              "field_max_error": 0.2126970942880264,
+              "m2l_translations": 1272,
+              "l2l_translations": 84,
+              "near_pairs": 1954,
+              "all_pairs": 16256
+            },
+            {
+              "order": 8,
+              "potential_max_error": 3.598013758754348e-05,
+              "field_max_error": 0.003998926366567623,
+              "m2l_translations": 1272,
+              "l2l_translations": 84,
+              "near_pairs": 1954,
+              "all_pairs": 16256
+            },
+            {
+              "order": 12,
+              "potential_max_error": 5.953093840105339e-07,
+              "field_max_error": 6.36492158818669e-05,
+              "m2l_translations": 1272,
+              "l2l_translations": 84,
+              "near_pairs": 1954,
+              "all_pairs": 16256
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#fmm",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#fmm"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+    "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+  },
+  "next_deliverable": {
+    "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
+    "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-particles-2026-11-22",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/",
+  "code_edition": "2026-11-22",
+  "execution_examples": [
+    {
+      "id": "fmm",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
+  "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
 }

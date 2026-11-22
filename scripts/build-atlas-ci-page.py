@@ -176,6 +176,9 @@ def render(config,current,snapshots,lang):
     ja=lang=='ja';workflow=config['workflow'];environment=config['environment'];definitions=config['definitions']
     title='公開配布物のLinux再実行' if ja else 'Public-distribution checks on Linux'
     body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">PUBLIC DISTRIBUTIONS · FRESH LINUX CI</p><h1>'+title+'</h1>'+paragraph(config['scope'][lang],'intro')
+    if config.get('lightweight_workflow'):
+        light=config['lightweight_workflow']
+        body+='<aside class="ci-panel">'+paragraph(light['scope'][lang])+link(light['guide']+'?lang='+lang,'通常の小規模な実装・検証例' if ja else 'Routine small validation examples')+' · '+link(light['url'],'軽量Linux CI' if ja else 'Lightweight Linux CI')+'</aside>'
     body+='<nav class="ci-links">'+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'取得・実行の案内' if ja else 'Download and execution guide')+link('/numerical-methods-atlas/code-and-data/examples.json','実行例台帳 / JSON' if ja else 'Execution registry / JSON')+link('#latest-'+lang,'最新のCI状態' if ja else 'Current CI status')+link('#saved-'+lang,'保存された成功記録' if ja else 'Saved successful runs')+'</nav>'
     if config.get('ai_acceptance_report'):
         body+='<p>'+link(config['ai_acceptance_report']['url'],'AIの外部検索・取得・実行・引用の確認記録 / JSON' if ja else 'AI external-search, retrieval, execution and citation observations / JSON')+'</p>'
@@ -197,8 +200,13 @@ def render(config,current,snapshots,lang):
     body+=paragraph('取得・導入・実行・数値判定のどこで止まったかを記録します。計算が未実行の場合は、数値条件の不合格と区別します。失敗時のログとJSONもActionsのartifactに残します。' if ja else 'The record distinguishes download, setup, execution and numerical-validation failures. An unrun calculation is separate from failed numerical acceptance. Failure logs and JSON are also retained as Actions artifacts.')
     body+=paragraph(definitions['limits'][lang],'ci-note')
     body+='<dl class="ci-operations">'
+    cadence=config['cadence']
+    triggers=[]
+    if cadence.get('manual'):triggers.append('手動' if ja else 'Manual')
+    if cadence.get('weekly_cron_utc'):triggers.append(cadence['weekly'][lang])
+    if cadence.get('after_site_checks_success'):triggers.append('サイト検査成功後' if ja else 'After successful site checks')
     operations=[('実行環境' if ja else 'Environment',environment['runner']+' / Python '+environment['python']),
-                ('実行の契機' if ja else 'Triggers',('手動、'+config['cadence']['weekly'][lang]+'、サイト検査成功後（公開URLの版照合を待つ）' if ja else 'Manual, '+config['cadence']['weekly'][lang]+', and after successful site checks (waiting for matching public versions)')),
+                ('実行の契機' if ja else 'Triggers',('、' if ja else ', ').join(triggers)),
                 ('公開版の確認' if ja else 'Publication gate',config['cadence']['publication_gate'][lang]),
                 ('依存関係' if ja else 'Dependencies',environment['dependency_policy'][lang]),
                 ('時間上限' if ja else 'Timeouts',(f'各コマンド{environment["runner_timeout_seconds"]}秒、CI全体{environment["workflow_timeout_minutes"]}分' if ja else f'{environment["runner_timeout_seconds"]} seconds per command; {environment["workflow_timeout_minutes"]} minutes overall')),

@@ -11,13 +11,13 @@ const read=p=>JSON.parse(fs.readFileSync(new URL('../'+p,import.meta.url)));
 const methods=read('numerical-methods-atlas/methods/index.json').methods;
 const global=makeSearch(read('search/index.json').documents);
 const local=read('numerical-methods-atlas/home-search-index.json');
-test('new domains distinguish runnable atoms, reading-only molecular DFT, planned thermostats and model surveys',()=>{
+test('new domains distinguish runnable atoms, reading-only molecular DFT, scoped Langevin distributions and biological models',()=>{
  for(const lang of ['ja','en']){
   for(const query of ['原子の電子状態を計算したい','compute atomic electronic states']){
    const rows=findMethods(methods,query,lang);assert.ok(rows.some(x=>x.method.id==='hartree-fock'));
    assert.ok(rows.some(x=>x.method.execution_examples.some(e=>e.id==='helium-ground-state')));
   }
-  for(const query of ['分子のDFTを学びたい','explore molecular DFT','温度を制御したい','control temperature in molecular dynamics']){
+  for(const query of ['分子のDFTを学びたい','explore molecular DFT']){
    for(const rows of [findMethods(methods,query,lang),global(query,lang,'atlas'),searchChapters(local,query,lang)]){
     const candidates=rows.filter(x=>x.purposeScope);assert.ok(candidates.length,query);
     for(const x of candidates){
@@ -29,17 +29,20 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, planne
   }
  }
  assert.equal(methods.find(m=>m.id==='kohn-sham-dft').status,'educational-example','goal restrictions do not change the canonical atomic implementation status');
- assert.ok(findMethods(methods,'温度を制御したい').every(x=>x.method.status==='planned'));
- const bio=findMethods(methods,'生物モデルを調べたい');assert.equal(bio.filter(x=>x.method.status==='educational-example').length,2);assert.ok(bio.every(x=>x.method.resource_type==='model'));
+ const temperature=findMethods(methods,'温度を制御したい');
+ const langevin=temperature.find(x=>x.method.id==='langevin-thermostat');assert.equal(langevin?.method.status,'educational-example');assert.ok(langevin.method.execution_examples.some(e=>e.id==='langevin-harmonic'));
+ assert.ok(temperature.filter(x=>x.method.id!=='langevin-thermostat').every(x=>x.method.status==='planned' && x.method.code_urls.length===0));
+ const bio=findMethods(methods,'生物モデルを調べたい');assert.equal(bio.filter(x=>x.method.status==='educational-example').length,5);assert.ok(bio.every(x=>x.method.resource_type==='model'));
 });
 test('static new-domain sections have status labels and do not advertise atomic code for molecules or simulations for surveys',()=>{
  const html=fs.readFileSync(new URL('../numerical-methods-atlas/start/index.html',import.meta.url),'utf8');
- for(const id of ['molecular-dft','temperature-control'])for(const lang of ['ja','en']){
+ for(const id of ['molecular-dft'])for(const lang of ['ja','en']){
   const section=html.match(new RegExp(`<article[^>]+id="${id}-${lang}"[\\s\\S]*?</article>`))?.[0];assert.ok(section,id);
   assert.ok(section.includes('goal-availability'));assert.ok(!section.includes('href="https://hrkoyama.github.io/code/'));
   assert.ok(!section.includes('/code-and-data/examples/'));
  }
- assert.ok(html.includes('Reading available; implementation planned'));
+ assert.ok(html.includes('/validation/langevin-harmonic/'));
+ assert.ok(html.includes('Langevin') && html.includes('BAOAB'));
  assert.ok(html.includes('Reading only; no dedicated implementation'));
 });
 test('first-time visitors reach every goal from the introductory section before counts and directories',()=>{
@@ -70,7 +73,7 @@ test('natural goal phrases reach conditional candidate methods through both sear
 });
 test('explicit scopes distinguish Euler shocks, smooth KEEP, magnetic operators and executable examples',()=>{
  for(const row of findMethods(methods,'衝撃波を計算したい','ja')){
-  assert.ok((row.method.execution_examples || []).every(e=>['sod','shu-osher'].includes(e.id)),'Euler goal must not borrow MHD execution examples');
+  assert.ok((row.method.execution_examples || []).every(e=>['sod','shu-osher','shu-independent'].includes(e.id)),'Euler goal must not borrow MHD execution examples');
  }
  assert.ok(!matchGoals('相対論の衝撃波を計算したい').some(g=>g.id==='shocks'));
  assert.ok(!matchGoals('MHD shock waves').some(g=>g.id==='shocks'));

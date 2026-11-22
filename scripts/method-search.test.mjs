@@ -124,7 +124,7 @@ function withDOM(run){
 
 test('published method cards expose every real related code/test URL and preserve availability',()=>withDOM(({render})=>{
   assert.equal(published.length,145);
-  assert.equal(published.filter(method=>method.status==='educational-example').length,100);
+  assert.equal(published.filter(method=>method.status==='educational-example').length,113);
   for(const method of published){
     for(const language of ['ja','en']){
       const card=render(method,language),anchors=links(card),urls=anchors.map(anchor=>new URL(anchor.href,origin));
@@ -180,7 +180,47 @@ test('untrusted method labels stay text and hostile destinations never become ac
 }));
 
 test('planned methods with new detailed reading advertise reading without implying available code',()=>withDOM(({render})=>{
- for(const id of ['ewald','quadrature']){
+ for(const id of ['slab-ewald','splines']){
   const m=published.find(m=>m.id===id),card=render(m,'ja');assert.ok(card.textContent.includes('解説あり・実装予定'));assert.ok(links(card).some(a=>a.textContent==='解説'));assert.ok(!links(card).some(a=>a.href.startsWith('/code/')));
  }
 }));
+
+test('purpose search retains common executions and adds only the selected independent supplements',()=>withDOM(({render})=>{
+  const goals=json('catalog/atlas-goals.json').goals;
+  for(const [id,query] of [
+    ['temperature-control','温度を制御したい'],['biological-models','生物モデルを比較したい'],
+    ['stochastic-calculation','確率計算をしたい'],['shocks','衝撃波を計算したい'],
+    ['magnetic-divergence','磁場の発散を抑えたい'],['poisson','solve poisson'],
+  ]){
+    const goal=goals.find(goal=>goal.id===id);
+    const rows=findMethods(published,query,'ja');
+    assert.ok(rows.length>0,id);
+    const actual=new Set(rows.flatMap(row=>row.method.execution_examples || []).map(example=>example.id));
+    assert.deepEqual([...actual].sort(),[...new Set([...goal.examples,...goal.supplemental_examples])].sort(),id+' selected fixed examples');
+    for(const row of rows){
+      assert.ok(row.purposeScope,id+' scoped purpose');
+      const anchors=links(render(row.method,'ja'));
+      for(const example of row.method.execution_examples || []){
+        const guide=example.guide.ja || example.guide.en;
+        assert.ok(anchors.some(anchor=>new URL(anchor.href,origin).href===new URL(guide,origin).href),id+'/'+example.id+' direct input/run/check entry');
+      }
+    }
+  }
+  const biology=findMethods(published,'生物モデルを比較したい');
+  for(const [id,expected] of [['bio-patterns','turing-schnakenberg'],['bio-reaction-fourier','reaction-diffusion-fourier'],['bio-fhn','fitzhugh-nagumo']]){
+    assert.deepEqual(biology.find(row=>row.id===id).method.execution_examples.map(example=>example.id),[expected],id+' one applicable component');
+  }
+  assert.deepEqual(biology.find(row=>row.id==='bio-excitation').method.execution_examples,[],'Hodgkin–Huxley does not borrow a FitzHugh–Nagumo implementation');
+}));
+
+test('goal selections do not inherit unrelated common or supplemental executions from a shared method',()=>{
+  const borrowed=['mc-integral','periodic-he-forces','gaussian-mcmc','turing-schnakenberg'].map(id=>({id,name:{ja:id,en:id},guide:{ja:`/numerical-methods-atlas/validation/${id}/?lang=ja`}}));
+  const contaminated=published.map(method=>({...method,execution_examples:[...(method.execution_examples||[]),...borrowed]}));
+  const thermostat=findMethods(contaminated,'温度を制御したい');
+  assert.deepEqual(thermostat.find(row=>row.id==='langevin-thermostat').method.execution_examples.map(example=>example.id),['langevin-harmonic']);
+  for(const row of findMethods(contaminated,'分子のdftを学びたい')){
+    assert.equal(row.method.status,'reading-only');
+    assert.deepEqual(row.method.execution_examples,[]);
+    assert.deepEqual(row.method.code_urls,[]);
+  }
+});

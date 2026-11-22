@@ -1,12 +1,12 @@
 # Langevin thermostat / Langevinサーモスタット
 
-Status: planned
+Status: educational-example
 
-Add friction and random forces to the equations of motion. The fluctuation–dissipation relation connects friction and noise at the target equilibrium temperature.
+Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
 
-摩擦と確率力を運動方程式に加える。平衡の温度を指定するには摩擦と雑音を揺動散逸関係で結ぶ。
+調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
 
-Comparative reading is available. No dedicated implementation or numerical verification result is provided yet.
+Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD.
 
 Other names: ランジュバン, ランジュヴァン, friction and noise
 
@@ -22,7 +22,21 @@ Comparison notes: Friction changes dynamical correlations and diffusion. Finite-
 - Reference: https://doi.org/10.1103/PhysRevE.75.056707 — Bibliographic entry and introductory comparison; full derivation and numerical reproduction have not been audited.
 - Reference: https://docs.lammps.org/fix_langevin.html — Bibliographic entry and introductory comparison; full derivation and numerical reproduction have not been audited.
 
-Next: Add a dedicated formulation and integration recipe, followed by explicit-input distribution and time-correlation checks with stated degrees of freedom, random seeds and step sizes.
+## Small fixed-input validation supplement
+
+Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
+
+調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
+
+- Langevin thermostat: canonical distributions, timestep bias and correlation: https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json
+
+Common execution records: [{"id": "langevin-harmonic", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en"}, "kind": "dedicated-supplement"}]
+
+Next: Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
