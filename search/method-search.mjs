@@ -1,4 +1,4 @@
-import {matchGoals} from './goals-data.mjs?v=0b94e1580a3d';
+import {matchGoals} from './goals-data.mjs?v=35853b904094';
 // Both the atlas and the site search use these identities and availability links.
 export const normalizeMethodQuery = value => String(value).normalize('NFKC').toLowerCase()
   .replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();

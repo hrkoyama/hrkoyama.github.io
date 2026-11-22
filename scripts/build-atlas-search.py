@@ -14,9 +14,11 @@ method_records={method['id']:method for method in search_methods(ROOT)}
 path=ATLAS/'home-search-index.json';index=json.loads(path.read_text())
 index['entries']=[x for x in index['entries'] if x.get('origin') not in {'public-method-registry','public-execution-discovery'}]
 for entry in index['entries']:
-    if entry['id'] in {'roadmap','keep'}:
+    if entry['id'] in {'roadmap','keep','stability','accuracy-stability'}:
         for lang in ['ja','en']:
             entry['headings'][lang]=json.loads((ATLAS/('content.'+lang+'.json')).read_text())[entry['id']]['headings']
+    if entry['id']=='stability':
+        entry['keywords']=list(dict.fromkeys(entry.get('keywords',[])+['散逸','数値散逸','分散','分散誤差','位相誤差','ノイマン解析','von Neumann','numerical dissipation','numerical dispersion','amplitude','phase error']))
 def add(ident,title,keywords,routes,kind='resource'):
     index['entries'].append({'id':ident,'title':title,'headings':{'ja':[],'en':[]},'keywords':keywords,'routes':routes,'origin':'public-method-registry','kind':kind})
 for x in catalog['methods']:
