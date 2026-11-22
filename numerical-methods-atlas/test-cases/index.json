@@ -2246,6 +2246,53 @@
         "python -m pytest -q test_periodic_dft.py",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "periodic-he-forces",
+      "group": "quantum",
+      "name": {
+        "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+        "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+      },
+      "chapter": "periodic-forces",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/periodic-forces/2026-11-22/",
+      "verification": "/code/periodic-forces/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_periodic_forces.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/periodic-forces/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/periodic-forces/2026-11-22/test_periodic_forces.py",
+          "python_symbol": "test_saved_full_run_passes"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#measured-results",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#measured-results"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#periodic-he-forces",
+      "run_commands": [
+        "python -m pytest -q test_periodic_forces.py",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -2266,8 +2313,8 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 66,
-    "saved_test_problems": 66,
+    "test_problems": 67,
+    "saved_test_problems": 67,
     "code_test_problems": 0,
     "groups": {
       "transport": 8,
@@ -2278,13 +2325,13 @@
       "gravity": 5,
       "time": 6,
       "approximation": 3,
-      "quantum": 4,
+      "quantum": 5,
       "biology": 2,
       "probability": 2
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "a2f281904c24d2b3c0fcf4cdecf654b84409d8ec4befed3f5268c808d3d7c9d9",
+    "catalog/atlas-test-problems.json": "dbf79b88ff2e0c9cd3ff5e134ef649f4d526ace1529b306111d1caeb6d791efe",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -2333,7 +2380,9 @@
     "code/molecular-hf/2026-11-22/results/result.json": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
     "code/molecular-hf/2026-11-22/test_molecular_hf.py": "294a1dbd836929e3be2bec265c2e323bda189f3dd1ce40e064bd2bd49489c5e0",
     "code/periodic-dft/2026-11-22/results/result.json": "50bdae51c0ce0779a0bfd283e0caa5fa0d9e47837ded3e4c610c9153240f2d7e",
-    "code/periodic-dft/2026-11-22/test_periodic_dft.py": "6213ed9499b2f2ba038dc45398879bf4e351f290d80d23e533be128b315e38e3"
+    "code/periodic-dft/2026-11-22/test_periodic_dft.py": "6213ed9499b2f2ba038dc45398879bf4e351f290d80d23e533be128b315e38e3",
+    "code/periodic-forces/2026-11-22/results/result.json": "dfdb8284a52b5dfb7f4e6acc790b60ff2378068b498d9c27bd4de30984d231a5",
+    "code/periodic-forces/2026-11-22/test_periodic_forces.py": "73b89dbe7f294c9f624cf64baf32558f3f8e7f3f535973c685b256ec0420123d"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

@@ -793,10 +793,22 @@
         "ja": "固定Heセルの周期LDA：Γ点とkメッシュ、Gaussian軌道基底・FFT格子・SCFを分離。DFTK平面波参照の打切り収束と差も表示。",
         "en": "Periodic LDA for fixed He: separate Gamma/k sampling, Gaussian orbital basis, FFT grid and SCF. Includes independently converged DFTK plane-wave reference differences."
       }
+    },
+    {
+      "id": "periodic-he-forces",
+      "image": "/code/periodic-forces/2026-11-22/results/preview.png",
+      "image_sha256": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
+      "width": 1680,
+      "height": 518,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。",
+        "en": "Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "e4d85b550ec90f77fcee7bc348b75e9b7dc1a2a94dc6e62d460e940c15dceec3",
+    "catalog/atlas-gallery.json": "06f8d8517041895b5b93c52275465803196850eb6c383368574de0fb92c35afb",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -840,7 +852,9 @@
     "numerical-methods-atlas/assets/quantum-atoms/helium.png": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6",
     "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f",
     "code/molecular-hf/2026-11-22/verification.json": "c4692d6ad455d110fa3356303660bda8b968c01555eba535e83892b1e56c785b",
-    "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5"
+    "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
+    "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
+    "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

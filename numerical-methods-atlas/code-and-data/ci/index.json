@@ -36,13 +36,13 @@
       "ja": "公開requirementsのSHA-256を照合し、記載された固定版をPyPIのwheelから導入します。pipのキャッシュは使わず、実際に導入した依存版を記録します。",
       "en": "Check the public requirements by SHA-256 and install their specified versions from PyPI wheels, without pip caching; record the dependencies actually installed."
     },
-    "runner_timeout_seconds": 900,
-    "workflow_timeout_minutes": 40,
+    "runner_timeout_seconds": 3600,
+    "workflow_timeout_minutes": 90,
     "artifact_retention_days": 90
   },
   "scope": {
-    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表21問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
-    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 21 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
+    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表22問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
+    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 22 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
   },
   "definitions": {
     "latest": {
@@ -58,8 +58,8 @@
       "en": "Logs and JSON/CSV are retained in each run's Artifacts for 90 days. Downloading artifacts requires GitHub sign-in."
     },
     "limits": {
-      "ja": "固定入力と記載した数値公差を判定します。ZIP／入力をハッシュで照合し、再計算CSV／画像のバイト一致は求めません。配布版pytest全件、全66問題、独立PySCF／DFTK参照の再生成は別の確認です。周期Heは保存済みDFTK参照と比較します。",
-      "en": "Evaluate fixed inputs against stated numerical tolerances and check ZIP/input hashes, without requiring byte-identical rerun CSV/images. Full packaged pytest suites, all 66 problems and regeneration of independent PySCF/DFTK references are separate checks. Periodic He is compared against its saved DFTK reference."
+      "ja": "固定入力と記載した数値公差を判定します。ZIP／入力をハッシュで照合し、再計算CSV／画像のバイト一致は求めません。配布版pytest全件、全67問題、独立PySCF／DFTK参照の再生成は別の確認です。周期Heは保存済みDFTK参照と比較します。 多原子He₂の力とBOMD局所接続は同梱DFTK参照で判定し、長時間MDを保証しません。",
+      "en": "Evaluate fixed inputs against stated numerical tolerances and check ZIP/input hashes, without requiring byte-identical rerun CSV/images. Full packaged pytest suites, all 67 problems and regeneration of independent PySCF/DFTK references are separate checks. Periodic He is compared against its saved DFTK reference. Multiatom-He₂ forces and the local BOMD interface use the saved DFTK reference; long MD trajectories are not certified."
     },
     "atomic": {
       "ja": "水素型原子とHeは同じ1回の実行を共有し、各問題の条件を別々に判定します。Heは保存済みの有限基底PySCF参照と比較します。",
@@ -138,14 +138,14 @@
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "44a992cd48bfb077f69749aae6e9a388f1866fe4fdf8baf43cd36308a519066b"
+    "sha256": "7b6f77b440e424a5c726c4bc02dfdd9961f8aecb1820780b5eb65c4cdf81493a"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-    "sha256": "696af1d8f81f8750332ba462ddd2145aeb30e44cf6e35b8fed94fea4c10cb3ca",
-    "example_count": 21,
-    "runner_count": 20,
-    "release_count": 6
+    "sha256": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "example_count": 22,
+    "runner_count": 21,
+    "release_count": 7
   },
   "latest_status": {
     "source": "external-github-actions-badge",

@@ -155,13 +155,13 @@
           "エネルギー差が小さくなったという理由だけで、力も十分に収束したと判断しません。Gaussian軌道基底、Brillouinゾーンのk点メッシュ、FFTの補助格子、SCF停止条件を1つずつ変え、同じ原子・成分の力の差を測ります。基準と比べるときは原子の順序とCartesian軸を固定します。今回の要約は全成分の絶対値最大を用いるL∞型のノルムで、原子ごとのベクトル長や成分平均とは区別します。",
           "基底名のzeta数を増やす系列は、必ずしも入れ子の空間や単調な力の変化を与えません。k点メッシュもすべてが入れ子ではありません。最後の2設定の力の差を公開した目安と比較しますが、それを完全基底や無限k点での厳密な誤差上界とは呼びません。密度や局所ポテンシャルを載せる補助FFT格子は、Gaussianの軌道空間と独立の収束軸です。",
           "SCFの未収束は力にも現れます。終了フラグと反復回数だけでなく、電子数、軌道・SCF残差など、保存した状態の診断量を併せて読みます。厳しい停止条件に対して力が変わらないことを直接測り、未収束の電子状態をBOMDへ正常な力として返さないようにします。",
-          "各走査は、公開入力で指定した有限の基底・格子・k点を固定して1軸だけを変えます。Γ点と2³では基底系列もそれぞれ確認しますが、4³・最大Gaussian基底・最細FFTを同時に組み合わせた完全な収束計算は行っていません。独立参照との一致もΓ点と2³の指定ケースに限られます。"
+          "各走査は1つの制御値だけを変え、その他の制御値は公開入力で指定した有限の設定に固定します。Γ点と2³では基底系列もそれぞれ確認しますが、4³・最大Gaussian基底・最細FFTを同時に組み合わせた完全な収束計算は行っていません。独立参照との一致もΓ点と2³の指定ケースに限られます。"
         ],
         "en": [
           "A small energy change alone does not establish converged forces. The Gaussian orbital basis, Brillouin-zone mesh, auxiliary FFT grid and SCF stopping conditions are varied one at a time, comparing forces on the same atoms and Cartesian components. Atom ordering and axes are fixed. Summaries use an L∞-type maximum absolute component norm, distinct from a per-atom vector magnitude or a component average.",
           "Increasing a basis’s zeta label does not necessarily produce nested spaces or monotonic force changes. Nor are all k meshes nested. The final pair of settings is compared with a published target, without presenting the increment as a rigorous complete-basis or infinite-k-point error bound. The auxiliary FFT representation of density and local potentials is a separate convergence axis from the Gaussian orbital space.",
           "Incomplete SCF convergence also affects forces. Alongside termination flags and iteration counts, inspect stored electron-count, orbital and SCF residual diagnostics. Force sensitivity to tighter stopping conditions is measured directly, and an unconverged electronic state must not be returned to BOMD as an accepted force.",
-          "Each sweep varies one control while holding the finite basis, grid and k mesh specified in the input fixed. Basis sequences are checked separately at Γ and 2³, but no joint calculation combines 4³ sampling, the largest Gaussian basis and the finest FFT grid. Independent-reference agreement applies only to the designated Γ and 2³ cases."
+          "Each sweep varies one control while holding the other controls at the finite settings specified in the public input. Basis sequences are checked separately at Γ and 2³, but no joint calculation combines 4³ sampling, the largest Gaussian basis and the finest FFT grid. Independent-reference agreement applies only to the designated Γ and 2³ cases."
         ]
       },
       "formulas": [

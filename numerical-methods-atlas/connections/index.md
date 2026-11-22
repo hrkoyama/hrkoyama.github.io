@@ -10,7 +10,7 @@
 
 静的な電子状態から核の力、軌道、熱浴へ。公開の周期Heエネルギー計算を出発点に、まだ検証されていない橋を明示する。
 
-この経路で確認できる範囲：固定Heの静的エネルギー計算のみ実行可能。力・BOMD/CPMD・熱浴までを結ぶ第一原理MDの経路全体は未実行。
+この経路で確認できる範囲：静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認に限定し、BOMD/CPMDから熱浴までの経路全体は未検証。
 
 ### 固定セルの周期He KS-LDA
 
@@ -33,26 +33,28 @@
 
 核座標Rに依存する収束済み電子エネルギーから F_I = −∂E_BO/∂R_I を求める段階。位置依存の基底ではPulay項、擬ポテンシャルではその力への寄与も整合させる。
 
-段階の状態: reading
+段階の状態: fixed-input
 
-- [力と第一原理MDへの未検証の接続](/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md)
+- [DFTから原子間力へ：有限差分・独立参照・収束](/numerical-methods-atlas/ja/read/periodic-forces/)
 - [Kohn–Sham密度汎関数法](https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/?lang=ja): educational-example
 - [電子状態計算の基底](https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/?lang=ja): educational-example
 - [自己無撞着場反復（SCF）](https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=ja): educational-example
+- [周期He₂の原子間力：解析力・有限差分・BOMD接続](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja): 非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。
 
-残る差: 力の実装・変位による有限差分照合・力の基底/SCF収束は未公開。1原子の対称位置でゼロ力を得るだけでは一般の力を検証できない。
+残る差: 固定He₂・局所GTH・VWN5の数値検証に限定。他元素・非局所擬ポテンシャル・応力・金属・長時間MDは未検証。
 
 ### BOMD・Car–Parrinello MD
 
-解説のみ。BOMDは各核配置で電子基底状態を十分に収束させて核を進める。CPMDは直交制約の下で仮想電子質量を持つ軌道と核を連成し、BO面近傍の断熱分離を管理する。CPMDの仮想電子運動は実時間TDDFTとは異なる。
+BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。BOMD全体とCPMDは解説のみの状態を維持し、長時間NVEやCPの仮想質量・直交制約の検証と区別する。
 
 段階の状態: reading
 
 - [BOMDとCPMDの比較](/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md)
+- [BOMDへの力の受け渡しと局所確認](/numerical-methods-atlas/ja/read/periodic-forces/#bomd-interface)
 - [Born–Oppenheimer分子動力学（BOMD）](https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/?lang=ja): reading-only
 - [カー–パリネロ法（CPMD）](https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/?lang=ja): reading-only
 
-残る差: 両手法とも台帳はreading-only。核の時間発展、NVEエネルギードリフト、CPの仮想質量依存性の数値結果はない。
+残る差: BOMDの長時間NVEドリフトと時間刻み・SCF公差の系統的収束、CPMDの専用実装は未公開。短い接続確認を軌道全体の検証として数えない。
 
 ### サーモスタットと分布の確認
 
@@ -68,7 +70,7 @@
 
 残る差: 各サーモスタットの台帳はplannedのまま。専用実行例、温度分布の測定、第一原理MDとの連成検証はない。
 
-### 収束したエネルギーだけでは力は未検証
+### 多原子セルでエネルギー微分と力を照合する
 
 量を受け渡す接続
 
@@ -78,11 +80,11 @@
 
 **異なる点:** スカラーの全エネルギー比較とベクトルの力の比較は別の検査。基底の位置依存性、擬ポテンシャル、イオン項とSCF未収束を微分に反映する。
 
-**既存の要素根拠:** periodic-he-dftには固定Heセルのエネルギー・SCF・k点/基底等の証拠がある。力の検証値はない。
+**既存の要素根拠:** 1原子の静的例とは別に、periodic-he-forcesが非対称He₂の解析力・全6座標有限差分・独立DFTK参照と、基底/k点/SCF/FFT収束を保存。
 
 **接続に必要な検証:** 対称性に守られない変位配置で力を中心有限差分のエネルギー勾配と比較し、変位幅・基底・補助格子・k点・SCF公差を独立に細かくする。
 
-連成実行：未実施。固定セルの静的実行例から力計算へ渡す接続は未実行・未検証。
+固定例で接続を検証：固定したHe₂モデルのエネルギーから力への接続を検証。一般物質やMD全体へは適用範囲を移さない。
 
 ### 力を時間発展へ渡す
 
@@ -94,11 +96,11 @@
 
 **異なる点:** BOMDの電子最小化とCPMDの仮想軌道ダイナミクスは異なる。CPの仮想質量やエネルギーは物理的な電子温度・電子励起ではない。
 
-**既存の要素根拠:** BOMD・CPMDの原文献と比較解説がある。固定Heの静的結果は力やMDの保存則の証拠にはならない。
+**既存の要素根拠:** 周期He₂の力供給をvelocity-Verletへ接続し、各配置でSCFを解き直して1ステップと2半ステップを比較。CPMD実装や長時間NVEの証拠ではない。
 
 **接続に必要な検証:** まずサーモスタットなしで、BOMDは物理的な核の運動＋BOエネルギーのNVEドリフトを時間刻み・SCF公差に対して測る。CPでは保存すべき拡張エネルギーと核＋BOエネルギーの交換を区別し、仮想質量/刻み幅、直交性、断熱分離とBO軌道への感度も調べる。
 
-連成実行：未実施。力と核の積分器を結んだBOMD/CPMDのローカル実行例はない。
+局所的な接続のみ確認：BOMDへの力の受け渡しを短い局所刻み比較で確認。長時間軌道・NVEドリフト・温度制御の検証は残る。
 
 ### 軌道から熱浴・統計へ
 
@@ -391,7 +393,7 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 
 - [サーモスタットの比較](/numerical-methods-atlas/ja/read/thermostats/)
 
-根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json)
+根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 
 # Crossovers between numerical fields
 
@@ -405,7 +407,7 @@ Executed component examples and unvalidated cross-field connections are shown se
 
 Move from static electronic structure to nuclear forces, trajectories and a heat bath. Start with the released periodic-He energy calculation and identify each unvalidated bridge.
 
-Evidence scope of this route: Only the static fixed-He energy calculation is runnable. The complete first-principles-MD route through forces, BOMD/CPMD and a heat bath has not been executed.
+Evidence scope of this route: Static He and multiatom He₂ forces are runnable. The BOMD interface has only a short local check; the complete BOMD/CPMD-to-heat-bath route remains unvalidated.
 
 ### Fixed-cell periodic-He KS-LDA
 
@@ -428,26 +430,28 @@ Remaining gap: Limited to the static fixed model. It does not validate equilibri
 
 Obtain F_I = −∂E_BO/∂R_I from the converged electronic energy as a function of nuclear coordinates R. Position-dependent bases require Pulay terms, and pseudopotential force contributions must be consistent.
 
-Stage state: reading
+Stage state: fixed-input
 
-- [Unvalidated bridge to forces and first-principles MD](/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md)
+- [From DFT to forces: finite differences, independent reference and refinement](/numerical-methods-atlas/en/read/periodic-forces/)
 - [Kohn–Sham density functional theory / DFT](https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/?lang=en): educational-example
 - [Electronic-structure basis sets](https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/?lang=en): educational-example
 - [Self-consistent field iteration / SCF](https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=en): educational-example
+- [Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en): Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated.
 
-Remaining gap: No published force implementation, displaced-geometry finite-difference comparison or force basis/SCF convergence. A zero force at a symmetric one-atom position would not validate general forces.
+Remaining gap: Validation is limited to fixed He₂, local GTH and VWN5. Other elements, nonlocal pseudopotentials, stress, metals and long MD trajectories remain unvalidated.
 
 ### BOMD and Car–Parrinello MD
 
-Reading only. BOMD advances nuclei while sufficiently converging the electronic ground state at each geometry. CPMD couples nuclei and orbitals with fictitious electronic mass under orthogonality constraints and requires adiabatic separation near the BO surface. Its fictitious orbital motion is distinct from real-time TDDFT.
+BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. Overall BOMD and CPMD records remain reading only; long NVE and CP fictitious-mass/orthogonality validation are separate.
 
 Stage state: reading
 
 - [BOMD and CPMD comparison](/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md)
+- [BOMD force interface and local check](/numerical-methods-atlas/en/read/periodic-forces/#bomd-interface)
 - [Born–Oppenheimer molecular dynamics / BOMD](https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/?lang=en): reading-only
 - [Car–Parrinello molecular dynamics / CPMD](https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/?lang=en): reading-only
 
-Remaining gap: Both method records remain reading-only. There are no nuclear-trajectory, NVE-energy-drift or CP-fictitious-mass-dependence results.
+Remaining gap: Long BOMD NVE drift and systematic timestep/SCF trajectory convergence, and a dedicated CPMD implementation, remain unpublished. The short interface check does not validate complete trajectories.
 
 ### Thermostats and distribution checks
 
@@ -463,7 +467,7 @@ Stage state: planned
 
 Remaining gap: Thermostat method records remain planned. There are no dedicated execution examples, measured temperature distributions or coupled first-principles-MD validations.
 
-### Converged energy leaves forces unvalidated
+### Check energy derivatives against forces in a multiatom cell
 
 Quantity handoff
 
@@ -473,11 +477,11 @@ Quantity handoff
 
 **What differs:** Scalar total-energy agreement and vector force agreement are separate tests. Derivatives must account for basis motion, pseudopotentials, ionic terms and incomplete SCF convergence.
 
-**Existing component evidence:** periodic-he-dft provides fixed-He energy, SCF, k-sampling and basis evidence. It contains no validated force values.
+**Existing component evidence:** Separate from the one-atom static example, periodic-he-forces saves asymmetric-He₂ analytic forces, all-six-coordinate finite differences, independent DFTK references and basis/k/SCF/FFT refinement.
 
 **Validation required:** Compare forces with centered finite-difference energy gradients at displaced geometries without symmetry-protected cancellation; refine displacement, basis, auxiliary grid, k sampling and SCF tolerance separately.
 
-Coupled execution: not performed. The bridge from the static fixed-cell example to force evaluation has not been executed or validated.
+Connection validated for the fixed example: The energy-to-force connection is validated for the fixed He₂ model. This evidence does not transfer to general materials or complete MD.
 
 ### Pass forces into time evolution
 
@@ -489,11 +493,11 @@ Quantity handoff
 
 **What differs:** Electronic minimization in BOMD differs from fictitious orbital dynamics in CPMD. CP mass and fictitious energy are not physical electronic temperature or excitation.
 
-**Existing component evidence:** Primary references and comparative reading exist for BOMD/CPMD. Static fixed-He results provide no force or MD conservation evidence.
+**Existing component evidence:** The periodic-He₂ force provider is connected to velocity-Verlet, reconverging SCF at each geometry and comparing one step with two half steps. This is not CPMD implementation or long-NVE evidence.
 
 **Validation required:** First, without a thermostat, measure BOMD drift of physical nuclear kinetic plus BO energy versus step size and SCF tolerance. For CP, distinguish drift of the conserved extended energy from exchange in nuclear-plus-BO energy; also check fictitious mass/step size, orthogonality, adiabatic separation and sensitivity relative to BO trajectories.
 
-Coupled execution: not performed. No local execution example couples nuclear integration with validated forces in BOMD or CPMD.
+Local interface check only: A short local step comparison checks the BOMD force interface. Long trajectories, NVE drift and thermostat validation remain to be done.
 
 ### From trajectories to a heat bath and statistics
 
@@ -786,4 +790,4 @@ Thermostatted MD requires distributions, correlations and finite-sample uncertai
 
 - [Thermostat comparisons](/numerical-methods-atlas/en/read/thermostats/)
 
-Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json)
+Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)

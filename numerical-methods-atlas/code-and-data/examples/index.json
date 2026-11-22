@@ -2,12 +2,12 @@
   "schema_version": 1,
   "reviewed_on": "2026-11-22",
   "scope": {
-    "ja": "公開済み21問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
-    "en": "Discovery metadata for the twenty-one published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
+    "ja": "公開済み22問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
+    "en": "Discovery metadata for the twenty-two published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
   },
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "696af1d8f81f8750332ba462ddd2145aeb30e44cf6e35b8fed94fea4c10cb3ca",
-  "source_sha256": "1a1713b0a88feb5c1576f12f31a37d4a52e209b61f0028c084727532fc780c81",
+  "registry_sha256": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+  "source_sha256": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1",
   "examples": [
     {
       "id": "advection-sine",
@@ -1152,6 +1152,63 @@
       },
       "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
       "input": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
+      "method_ids": [
+        "kohn-sham-dft",
+        "electronic-bases",
+        "scf",
+        "xc-functionals",
+        "pseudopotentials",
+        "k-point"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "periodic-he-forces",
+      "problem_id": "periodic-he-forces",
+      "equation_ids": [
+        "kohn-sham-model"
+      ],
+      "keywords": [
+        "DFT forces",
+        "atomic forces",
+        "原子間力",
+        "DFTの力",
+        "Hellmann Feynman",
+        "Pulay",
+        "BOMD",
+        "velocity Verlet",
+        "エネルギー有限差分",
+        "DFTK",
+        "PySCF",
+        "force convergence"
+      ],
+      "outcome": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
+      "formula": {
+        "role": "diagnostic",
+        "latex": [
+          "F_{I\\alpha}=-\\frac{\\partial E_{\\rm BO}}{\\partial R_{I\\alpha}}",
+          "F^{\\rm FD}_{I\\alpha}(h)=-\\frac{E(\\mathbf R+h\\mathbf e_{I\\alpha})-E(\\mathbf R-h\\mathbf e_{I\\alpha})}{2h}"
+        ],
+        "note": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+        "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/inputs.json",
       "method_ids": [
         "kohn-sham-dft",
         "electronic-bases",

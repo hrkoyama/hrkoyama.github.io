@@ -58,7 +58,7 @@ Increasing a basis’s zeta label does not necessarily produce nested spaces or 
 
 Incomplete SCF convergence also affects forces. Alongside termination flags and iteration counts, inspect stored electron-count, orbital and SCF residual diagnostics. Force sensitivity to tighter stopping conditions is measured directly, and an unconverged electronic state must not be returned to BOMD as an accepted force.
 
-Each sweep varies one control while holding the finite basis, grid and k mesh specified in the input fixed. Basis sequences are checked separately at Γ and 2³, but no joint calculation combines 4³ sampling, the largest Gaussian basis and the finest FFT grid. Independent-reference agreement applies only to the designated Γ and 2³ cases.
+Each sweep varies one control while holding the other controls at the finite settings specified in the public input. Basis sequences are checked separately at Γ and 2³, but no joint calculation combines 4³ sampling, the largest Gaussian basis and the finest FFT grid. Independent-reference agreement applies only to the designated Γ and 2³ cases.
 
 $$
 \|\Delta\mathbf F\|_{\infty}=\max_{I,\alpha\in\{x,y,z\}}|F^{(a)}_{I\alpha}-F^{(b)}_{I\alpha}|

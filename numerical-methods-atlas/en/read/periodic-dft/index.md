@@ -96,7 +96,7 @@ Car–Parrinello molecular dynamics (CPMD) propagates nuclear coordinates and el
 
 CPMD orbital propagation does not represent real electronic excitations as in TDDFT. Electronic fictitious motion must remain separated in timescale from nuclear motion, keeping orbitals near the BO surface. Vary μ, timestep and orthogonality tolerance while monitoring fictitious kinetic energy and energy transfer to nuclei. Distinguish the ideal unthermostatted extended-system conserved energy E_ext from nuclear kinetic plus BO energy. These statements do not establish applicability to narrow-gap systems or metals.
 
-This section is reading only. The fixed-He example validates static total energies and quadrature, basis, auxiliary-grid and SCF convergence. It does not execute or validate atomic forces, BOMD/CPMD trajectories, time integration or thermostatting. A future implementation should first compare multiatom forces with independent references, then test MD conservation and sensitivity to timestep, SCF tolerances and μ.
+This section is reading only. This chapter’s fixed one-atom He example validates static total energies and k-point, basis, auxiliary-grid and SCF convergence. Multiatom He forces, energy finite differences, an independent reference and the BOMD force interface are covered in the separate From DFT to atomic forces chapter and release. Long BOMD/CPMD trajectories, timestep/SCF/fictitious-mass sensitivity and thermostats require separate validation.
 
 $$
 E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)

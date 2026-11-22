@@ -214,7 +214,7 @@
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en"
   },
   "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "696af1d8f81f8750332ba462ddd2145aeb30e44cf6e35b8fed94fea4c10cb3ca",
+  "registry_sha256": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
   "discovery": {
     "id": "poisson-1d-dirichlet",
     "problem_id": "poisson-1d-dirichlet",
@@ -256,7 +256,7 @@
   },
   "public_rerun": {
     "passed": true,
-    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json",
+    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
     "execution_group": "poisson-1d-dirichlet"
   }
 }
