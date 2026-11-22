@@ -83,7 +83,7 @@ test('only executed quantum examples enter test-problem counts and specialist AI
   assert.equal(data.verification_plan.filter(x=>x.state==='verified-educational-example').length,2);
   assert.equal(data.verification_plan.filter(x=>x.state==='planned').length,2);
   const tests=json('numerical-methods-atlas/test-cases/index.json');
-  assert.equal(tests.problems.length,60);
+  assert.equal(tests.problems.length,64);
   assert.equal(tests.problems.filter(x=>x.chapter==='quantum-atoms').length,2);
   assert.ok(!tests.problems.some(x=>x.chapter==='quantum-chemistry'));
   const work=json('catalog/atlas-work-queue.json').items;

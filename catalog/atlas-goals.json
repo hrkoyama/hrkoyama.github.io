@@ -165,8 +165,8 @@
     {
       "id": "biological-models",
       "title": {
-        "ja": "生物のモデル方程式を調べたい",
-        "en": "Explore biological model equations"
+        "ja": "生物のモデルを計算・比較したい",
+        "en": "Compute and compare biological models"
       },
       "terms": [
         "生物モデル",
@@ -183,59 +183,88 @@
         "turing pattern"
       ],
       "scope": {
-        "ja": "22のモデル族の文献解説と検証計画です。生物専用ソルバー、計算結果、実行用コード・テストは公開していません。個体群・感染症・反応拡散・膜興奮を選び、非負性、保存量、境界条件や尺度を確認します。",
-        "en": "A literature survey and proposed verification designs for 22 model families. No biological solver, computed result, runnable code or tests are published. Explore populations, epidemics, reaction–diffusion and membrane excitation, checking nonnegativity, balances, boundaries and scales."
+        "ja": "22モデル族の文献解説のうち、ロジスティック増殖と閉鎖SIRの2例に専用コード・固定入力・独立参照／解析解・時間収束検査を追加しました。他のモデルは解説と検証案の段階です。",
+        "en": "Among 22 surveyed model families, logistic growth and closed SIR now have dedicated code, fixed inputs, analytic/independent references and time-convergence checks. Other models remain reading and verification plans."
       },
       "methods": [],
-      "examples": [],
+      "examples": [
+        "logistic-growth",
+        "sir-epidemic"
+      ],
       "resources": [
         {
           "id": "bio-populations",
           "name": {
-            "ja": "個体群増殖モデル",
-            "en": "Population growth model"
+            "ja": "ロジスティック個体群増殖",
+            "en": "Logistic population growth"
           },
           "group": {
             "ja": "生物モデル",
             "en": "Biological models"
           },
           "summary": {
-            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
-            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+            "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+            "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
           },
-          "status": "reading-only",
+          "status": "educational-example",
           "resource_type": "model",
           "reading": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#01-1838-logistic-population-growth",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#01-1838-logistic-population-growth"
           },
-          "code_urls": [],
-          "test_urls": [],
-          "execution_examples": []
+          "code_urls": [
+            "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/models.py",
+            "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/test_models.py"
+          ],
+          "execution_examples": [
+            {
+              "id": "logistic-growth",
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
+              }
+            }
+          ]
         },
         {
           "id": "bio-epidemics",
           "name": {
-            "ja": "SIR・SEIR感染症モデル",
-            "en": "SIR and SEIR epidemic models"
+            "ja": "閉鎖SIR感染症モデル（SEIRは未実装）",
+            "en": "Closed SIR epidemic model (SEIR unimplemented)"
           },
           "group": {
             "ja": "生物モデル",
             "en": "Biological models"
           },
           "summary": {
-            "ja": "モデルの式・出典・数値的課題・検証案を読む文献解説です。専用実装はありません。",
-            "en": "Literature notes on equations, sources, numerical challenges and proposed verification. No dedicated implementation."
+            "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+            "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
           },
-          "status": "reading-only",
+          "status": "educational-example",
           "resource_type": "model",
           "reading": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models"
           },
-          "code_urls": [],
-          "test_urls": [],
-          "execution_examples": []
+          "code_urls": [
+            "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/models.py",
+            "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/test_models.py"
+          ],
+          "execution_examples": [
+            {
+              "id": "sir-epidemic",
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
+              }
+            }
+          ]
         },
         {
           "id": "bio-patterns",
@@ -410,6 +439,41 @@
       "domains": [
         "gravity"
       ]
+    },
+    {
+      "id": "stochastic-calculation",
+      "title": {
+        "ja": "積分や時間発展の確率誤差を確かめたい",
+        "en": "Check stochastic integration and time-stepping errors"
+      },
+      "terms": [
+        "確率計算",
+        "確率誤差",
+        "モンテカルロ",
+        "乱数で積分",
+        "Brown運動",
+        "確率微分方程式",
+        "Monte Carlo integration",
+        "stochastic computation",
+        "Brownian motion"
+      ],
+      "scope": {
+        "ja": "x²のIID Monte Carlo積分とスカラーItô幾何Brown運動を実行し、標本誤差・区間被覆・共有経路による強収束を確認します。MCMC・希少事象・一般SDEは実装済みではありません。",
+        "en": "Run IID Monte Carlo integration of x² and scalar Itô geometric Brownian motion. Check sampling error, interval coverage and coupled-path strong convergence. MCMC, rare events and general SDEs remain unimplemented."
+      },
+      "methods": [
+        "monte-carlo",
+        "sde"
+      ],
+      "examples": [
+        "mc-integral",
+        "gbm-sde"
+      ],
+      "resources": [],
+      "domains": [
+        "probability",
+        "time"
+      ]
     }
   ],
   "home": {
@@ -481,6 +545,13 @@
       "name": {
         "ja": "粒子・重力",
         "en": "Particles & gravity"
+      }
+    },
+    {
+      "id": "probability",
+      "name": {
+        "ja": "確率計算",
+        "en": "Stochastic computation"
       }
     }
   ]

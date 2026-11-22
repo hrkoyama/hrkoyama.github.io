@@ -13,8 +13,8 @@
     "ja": "乱数・標本数・分散と積分誤差をつなぐ。",
     "en": "Connect random samples, variance and integration error."
   },
-  "status": "planned",
-  "origin": "development-candidate",
+  "status": "educational-example",
+  "origin": "scoped-fixed-input-implementation",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/monte-carlo/",
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/monte-carlo/"
@@ -32,12 +32,12 @@
   "units": null,
   "boundary_conditions": null,
   "next_deliverable": {
-    "ja": "seed・信頼区間・独立反復を備える例。",
-    "en": "Seeded examples with uncertainty and independent repetitions."
+    "ja": "既存例の適用範囲を広げる前に、別の参照問題で検証を追加する。",
+    "en": "Add validation against another reference problem before extending application scope."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+    "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
   },
   "metadata_review": {
     "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -49,14 +49,39 @@
     "Monte Carlo method",
     "Monte Carlo integration"
   ],
+  "model_examples": [
+    "mc-integral"
+  ],
+  "example_scope": {
+    "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+    "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/monte-carlo/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/monte-carlo/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/monte-carlo/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/models.py",
+    "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/run.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/test_models.py"
+  ],
+  "run_commands": [
+    "python run.py --input inputs/mc-integral.json --output output"
+  ],
+  "run_from": "Extracted model-benchmarks edition directory",
+  "code_base": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/",
+  "code_edition": "2026-11-22",
+  "code_download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+  "code_verification": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/verification.json",
+  "execution_examples": [
+    {
+      "id": "mc-integral",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#mc-integral-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#mc-integral-en"
+      }
+    }
+  ]
 }

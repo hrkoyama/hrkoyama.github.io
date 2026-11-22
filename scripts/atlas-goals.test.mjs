@@ -17,7 +17,7 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, planne
    const rows=findMethods(methods,query,lang);assert.ok(rows.some(x=>x.method.id==='hartree-fock'));
    assert.ok(rows.some(x=>x.method.execution_examples.some(e=>e.id==='helium-ground-state')));
   }
-  for(const query of ['分子のDFTを学びたい','explore molecular DFT','温度を制御したい','control temperature in molecular dynamics','生物のモデル方程式を調べたい','explore biological model equations']){
+  for(const query of ['分子のDFTを学びたい','explore molecular DFT','温度を制御したい','control temperature in molecular dynamics']){
    for(const rows of [findMethods(methods,query,lang),global(query,lang,'atlas'),searchChapters(local,query,lang)]){
     const candidates=rows.filter(x=>x.purposeScope);assert.ok(candidates.length,query);
     for(const x of candidates){
@@ -30,11 +30,11 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, planne
  }
  assert.equal(methods.find(m=>m.id==='kohn-sham-dft').status,'educational-example','goal restrictions do not change the canonical atomic implementation status');
  assert.ok(findMethods(methods,'温度を制御したい').every(x=>x.method.status==='planned'));
- assert.ok(findMethods(methods,'生物モデルを調べたい').every(x=>x.method.resource_type==='model'&&x.method.status==='reading-only'));
+ const bio=findMethods(methods,'生物モデルを調べたい');assert.equal(bio.filter(x=>x.method.status==='educational-example').length,2);assert.ok(bio.every(x=>x.method.resource_type==='model'));
 });
 test('static new-domain sections have status labels and do not advertise atomic code for molecules or simulations for surveys',()=>{
  const html=fs.readFileSync(new URL('../numerical-methods-atlas/start/index.html',import.meta.url),'utf8');
- for(const id of ['molecular-dft','temperature-control','biological-models'])for(const lang of ['ja','en']){
+ for(const id of ['molecular-dft','temperature-control'])for(const lang of ['ja','en']){
   const section=html.match(new RegExp(`<article[^>]+id="${id}-${lang}"[\\s\\S]*?</article>`))?.[0];assert.ok(section,id);
   assert.ok(section.includes('goal-availability'));assert.ok(!section.includes('href="https://hrkoyama.github.io/code/'));
   assert.ok(!section.includes('/code-and-data/examples/'));

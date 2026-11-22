@@ -1151,7 +1151,24 @@
       "run_from": "Extracted code edition directory",
       "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
       "code_edition": "2026-11-21",
-      "execution_examples": []
+      "execution_examples": [
+        {
+          "id": "logistic-growth",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#logistic-growth-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#logistic-growth-en"
+          }
+        },
+        {
+          "id": "sir-epidemic",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#sir-epidemic-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sir-epidemic-en"
+          }
+        }
+      ]
     },
     {
       "id": "sdirk2",

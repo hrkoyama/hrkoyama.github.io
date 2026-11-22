@@ -559,6 +559,42 @@
         "ja": "公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。",
         "en": "Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading."
       }
+    },
+    {
+      "id": "logistic-growth",
+      "kind": "image",
+      "source": "/code/model-benchmarks/2026-11-22/results/logistic-growth/preview.png",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
+    },
+    {
+      "id": "sir-epidemic",
+      "kind": "image",
+      "source": "/code/model-benchmarks/2026-11-22/results/sir-epidemic/preview.png",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
+    },
+    {
+      "id": "mc-integral",
+      "kind": "image",
+      "source": "/code/model-benchmarks/2026-11-22/results/mc-integral/preview.png",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
+    },
+    {
+      "id": "gbm-sde",
+      "kind": "image",
+      "source": "/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
     }
   ]
 }

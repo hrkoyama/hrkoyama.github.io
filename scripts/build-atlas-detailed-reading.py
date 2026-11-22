@@ -16,7 +16,7 @@ methods={m['id']:m for m in json.loads((ROOT/'catalog/atlas-methods.json').read_
 refs={r['id']:r for r in data['references']}
 assert len(refs)==len(data['references'])
 assert len({c['id'] for c in data['chapters']})==len(data['chapters'])
-assert sum(methods[i]['status']=='planned' for c in data['chapters'] for i in c['methods'])==23
+assert all(i in methods for c in data['chapters'] for i in c['methods'])
 rendered=json.loads(subprocess.check_output(['node','scripts/render-atlas-math.cjs'],cwd=ROOT,input=json.dumps([{'id':k,'formula':[v]} for k,v in data['formulas'].items()]).encode()))['rendered']
 source_hash=hashlib.sha256((ROOT/SOURCE.lstrip('/')).read_bytes()).hexdigest()
 documents={lang:json.loads((ATLAS/f'content.{lang}.json').read_text()) for lang in ['ja','en']}

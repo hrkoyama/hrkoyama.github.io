@@ -21,10 +21,10 @@ function locale(html,lang){
   assert.fail('Unclosed locale section');
 }
 
-test('15 stable entry pages preserve the authoritative execution records and their public receipt binding',()=>{
-  assert.equal(publicDiscovery.examples.length,15);
+test('19 stable entry pages preserve the authoritative execution records and their public receipt binding',()=>{
+  assert.equal(publicDiscovery.examples.length,19);
   assert.equal(publicDiscovery.registry_sha256,sha('numerical-methods-atlas/code-and-data/examples.json'));
-  const receipt=json('numerical-methods-atlas/code-and-data/verification/2026-11-22-public.json');
+  const receipt=json(new URL(execution.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_sha256,publicDiscovery.registry_sha256);
   assert.equal(receipt.passed,true);
   for(const original of execution.examples){
@@ -97,7 +97,7 @@ test('every verified example is reachable from words, formulas and its image wit
     }
   }
   assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,46);
-  assert.equal(gallery.items.length,60);
+  assert.equal(gallery.items.length,64);
 });
 
 test('the static and live homepage give three bounded starting calculations and all fifteen entry pages',()=>{

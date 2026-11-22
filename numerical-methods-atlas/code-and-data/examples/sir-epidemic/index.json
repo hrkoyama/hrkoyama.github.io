@@ -1,0 +1,236 @@
+{
+  "id": "sir-epidemic",
+  "name": {
+    "ja": "SIR：独立DOP853参照・人口保存・収束",
+    "en": "SIR: independent DOP853 reference, conservation and convergence"
+  },
+  "problem_id": "sir-epidemic",
+  "method_ids": [
+    "rk4"
+  ],
+  "scope": {
+    "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+    "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+  },
+  "assumptions": {
+    "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+    "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+  },
+  "units": {
+    "ja": "全変数・係数・時間は入力JSONに定めた無次元値。SIRは人口の割合。",
+    "en": "Dimensionless variables, coefficients and time as specified in input JSON; SIR uses population fractions."
+  },
+  "boundaries": {
+    "ja": "空間境界なし。初期値・時間区間／積分区間・標本数・seedは入力に固定。",
+    "en": "No spatial boundary. Initial values, time/integration interval, sample counts and seeds are fixed in the input."
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models"
+  },
+  "release": {
+    "family": "model-benchmarks",
+    "version": "2026-11-22",
+    "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+    "sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+    "manifest": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/source-manifest.json",
+    "manifest_sha256": "34e5f7a2af86103ff8b3333aaf912eae7e2f6e67a8e25753a84e9587a30989a2",
+    "verification": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/verification.json",
+    "archive_directory": "model-benchmarks-2026-11-22"
+  },
+  "citation": {
+    "creator": "Hiroshi Koyama",
+    "title": {
+      "ja": "SIR：独立DOP853参照・人口保存・収束",
+      "en": "SIR: independent DOP853 reference, conservation and convergence"
+    },
+    "version": "2026-11-22",
+    "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en",
+    "method_publications": [
+      "https://doi.org/10.1098/rspa.1927.0118"
+    ]
+  },
+  "terms": {
+    "code": "MIT",
+    "code_license": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/LICENSE",
+    "content_and_data": "https://hrkoyama.github.io/rights/",
+    "scope": {
+      "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+      "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+    }
+  },
+  "execution_group": "sir-epidemic",
+  "shared_runner_cases": [
+    "sir-epidemic"
+  ],
+  "inputs": {
+    "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/sir-epidemic.json",
+    "path": "inputs/sir-epidemic.json",
+    "sha256": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327"
+  },
+  "dependencies": {
+    "core": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/requirements.txt",
+    "testing": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/requirements.txt"
+  },
+  "commands": {
+    "install": "python -m pip install -r requirements.txt",
+    "run": "python run.py --input inputs/sir-epidemic.json --output output",
+    "tests": "python -m pytest -q test_models.py",
+    "run_argv": [
+      "python",
+      "run.py",
+      "--input",
+      "inputs/sir-epidemic.json",
+      "--output",
+      "{output}"
+    ],
+    "tests_argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "test_models.py"
+    ]
+  },
+  "outputs": [
+    {
+      "id": "results",
+      "format": "json",
+      "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json",
+      "path": "results/sir-epidemic/result.json",
+      "sha256": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
+      "generated_path": "result.json"
+    },
+    {
+      "id": "solution",
+      "format": "csv",
+      "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/sir-epidemic/solution.csv",
+      "path": "results/sir-epidemic/solution.csv",
+      "sha256": "a237ae9303fa39749ea9cb59c1c4a47b2a369afe0aac14b0324949ab3c592b25",
+      "generated_path": "solution.csv"
+    }
+  ],
+  "checks": [
+    {
+      "id": "all-numerical-checks",
+      "pointer": "/checks",
+      "comparison": "all_true",
+      "description": {
+        "ja": "入力で定めた全数値条件",
+        "en": "All numerical conditions fixed by the input"
+      }
+    },
+    {
+      "id": "input-provenance",
+      "pointer": "/input_sha256",
+      "comparison": "equals",
+      "expected": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327",
+      "description": {
+        "ja": "入力ハッシュ",
+        "en": "Input SHA-256"
+      }
+    },
+    {
+      "id": "termination",
+      "pointer": "/termination",
+      "comparison": "equals",
+      "expected": "fixed_budget_completed",
+      "description": {
+        "ja": "固定予算による正常終了",
+        "en": "Completed fixed computation budget"
+      }
+    },
+    {
+      "id": "finest_max_error-maximum",
+      "pointer": "/metrics/finest_max_error",
+      "comparison": "maximum",
+      "tolerance": 2e-06,
+      "description": {
+        "ja": "finest_max_error（固定入力の条件）",
+        "en": "finest_max_error (fixed-input criterion)"
+      }
+    },
+    {
+      "id": "observed_orders-minimum",
+      "pointer": "/metrics/observed_orders",
+      "comparison": "minimum",
+      "tolerance": 3.7,
+      "description": {
+        "ja": "observed_orders（固定入力の条件）",
+        "en": "observed_orders (fixed-input criterion)"
+      }
+    },
+    {
+      "id": "mass_balance_max-maximum",
+      "pointer": "/metrics/mass_balance_max",
+      "comparison": "maximum",
+      "tolerance": 2e-13,
+      "description": {
+        "ja": "mass_balance_max（固定入力の条件）",
+        "en": "mass_balance_max (fixed-input criterion)"
+      }
+    }
+  ],
+  "expected_failures": [],
+  "references": [
+    {
+      "type": "primary-publication",
+      "url": "https://doi.org/10.1098/rspa.1927.0118",
+      "description": {
+        "ja": "既存の解説章に出典と確認範囲を記載。論文本文は配布しません。",
+        "en": "The existing reading chapter documents sources and review depth. Paper text is not redistributed."
+      }
+    },
+    {
+      "type": "independent-numerical-reference",
+      "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/references/sir.json",
+      "path": "references/sir.json",
+      "sha256": "9f36f31aac2e4c3c37923c26fb355430e4eacba42bfe55bc597846dbc8c028d5",
+      "description": {
+        "ja": "別実装DOP853と2段階許容誤差の比較。解析解ではありません。",
+        "en": "Separately implemented DOP853 with two-tolerance agreement; not an analytic solution."
+      }
+    }
+  ],
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
+  },
+  "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+  "registry_sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
+  "discovery": {
+    "id": "sir-epidemic",
+    "problem_id": "sir-epidemic",
+    "equation_ids": [],
+    "keywords": [
+      "sir-epidemic",
+      "SIR：独立DOP853参照・人口保存・収束",
+      "SIR: independent DOP853 reference, conservation and convergence",
+      "感染症",
+      "SIR",
+      "epidemic"
+    ],
+    "outcome": {
+      "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+      "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+    },
+    "formula": {
+      "role": "problem",
+      "latex": [
+        "\\dot S=-\\beta SI,\\quad\\dot I=\\beta SI-\\gamma I,\\quad\\dot R=\\gamma I",
+        "S+I+R=1"
+      ],
+      "note": {
+        "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+      }
+    },
+    "featured": false
+  },
+  "public_rerun": {
+    "passed": true,
+    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-domains-public.json",
+    "execution_group": "sir-epidemic"
+  }
+}

@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-9af7ce90d1
-Captured (UTC): 2026-11-22T03:27:29+00:00
+Snapshot: 2026-11-22-b89b6c2030
+Captured (UTC): 2026-11-22T03:50:18+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -1037,7 +1037,7 @@ identified with their individual entries.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#01-1838-logistic-population-growth
 Coverage: reading
 
-Population and ecology · Survey only. Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline.
+Logistic fixed-input / analytic checks available. Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline.
 \dot N=rN(1-N/K).
 Numerical issue. Positivity, preservation of equilibria and overshoot of K; an accurate-looking curve can still violate the invariant interval.
 Proposed verification. Compare with N(t)=K/[1+(K/N0−1)exp(−rt)] for N0>0; measure temporal order and behavior near 0 and K.
@@ -1084,7 +1084,7 @@ Sources: McKendrick, A. G. (1926).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models
 Coverage: reading
 
-Epidemic compartments · Survey only. Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate.
+Closed-SIR example available; SEIR unimplemented. Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate.
 \dot s=-\beta si,\quad\dot i=\beta si-\gamma i,\quad\dot r=\gamma i,\quad s+i+r=1.
 Numerical issue. Nonnegative compartments, invariant total population and correct resolution of epidemic peak times.
 Proposed verification. Check total 1 and i+s−(γ/β)ln(s) for β>0,s>0; compare early growth rate βs0−γ and final-size relation in the closed SIR specialization.
@@ -4738,7 +4738,7 @@ Use repeated independent runs on known integrals to examine N scaling and interv
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/monte-carlo/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events. Inputs, code, measured values and tolerances are linked from the method and execution pages. Not every general verification proposal above has been executed.
 Monte Carlo integration
 
 ## Monte Carlo integration — Primary publications, supporting sources and review scope [en]
@@ -6050,7 +6050,7 @@ White, S. R.; Martin, R. L. (1999)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 60-problem inventory. H₂ and periodic examples remain plans and are not counted.
+Two hydrogenic/He problem families were executed, independently compared and added to the 64-problem inventory. H₂ and periodic examples remain plans and are not counted.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -8515,7 +8515,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 Help people and AI check conditions and evidence, then use public code, inputs and results. Improve the existing foundation and complete execution and validation paths through representative examples.
-Prioritize the P0 shared foundation and existing examples. P1 additions are conditional on established validation and the progress of earlier work. Do not promise exhaustive method coverage or completion of unverified calculations. Update status after checking publication.
+Prioritize revealing and closing implementation/validation gaps in existing fields over adding entries. Require fixed inputs, independent/analytic references, residuals, refinement and termination evidence; published code does not validate an entire field. Specialist AI remains deferred until 2027 or later.
 
 ## Implementation roadmap — Target milestones and review gates [en]
 
@@ -8532,6 +8532,15 @@ Leave unverified additions planned and move to reproduction and bilingual naviga
 Reconcile releases, indexes, status, citation and maintenance/restoration instructions. This does not mean completing every implementation candidate.
 End of December: corrections and recording remaining gaps
 Avoid new scope, fix issues found during checking and carry unfinished items into the next work queue.
+
+## Implementation roadmap — Close validation gaps between fields [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+In progress / publication check pending
+First batch: two biology and two stochastic examples executed at fixed inputs, with all 19 common examples rerun from public ZIPs. Next: finite-basis H₂ HF, reaction–diffusion growth rates/spatial convergence, known-distribution MCMC, and thermostat distributions/correlations. These follow-ups are unimplemented, with no promised completion date.
+Field evidence and unimplemented scope
 
 ## Implementation roadmap — Separate the current plan from development history [en]
 
@@ -9302,7 +9311,7 @@ Use geometric Brownian exact paths and Ornstein–Uhlenbeck moments to test stro
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/sde/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order. Inputs, code, measured values and tolerances are linked from the method and execution pages. Not every general verification proposal above has been executed.
 Stochastic differential equations
 
 ## Stochastic differential equations — Primary publications, supporting sources and review scope [en]
@@ -9496,7 +9505,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 108 methods and building blocks · 213 journal/conference papers · 254 total sources.
+46 equation/model entries · 110 methods and building blocks · 213 journal/conference papers · 254 total sources.
 There are 9 saved-profile equation-gallery cases across 7 equation families, and 76 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
@@ -9591,7 +9600,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-91 entries have scoped local examples; 17 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+93 entries have scoped local examples; 17 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -11865,7 +11874,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
 Coverage: reading
 
-個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22項目すべてが文献調査とベンチマーク設計案です。この追加では生物ソルバーを実装しておらず、生物系のシミュレーション結果も示していません。
+個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22項目の文献調査を基に、ロジスティック増殖と閉鎖SIRの固定入力計算・参照比較・時間収束を追加しました。その他のモデルは検証案の段階です。
 以下は慣用的な簡略形・規格化形です。出典はモデルの系譜を示し、すべての係数や変数が原論文と一致するという意味ではありません。構造化カタログに、各項目の引用、数値的な課題、検証目標、範囲を記録しています。現代数理生物学の網羅的総説ではなく、数値計算の多様性を重視した選定です。出典確認日は2026年11月6日です。
 
 ## 生物モデル方程式と数値検証 — 生物の問いと数値計算法の対応# [ja]
@@ -11894,7 +11903,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#01-1838-logistic-population-growth
 Coverage: reading
 
-個体群・生態・文献調査のみ。 環境収容力Kによる密度制限付き増殖です。生物系ODEの最も基本的な比較問題になります。
+ロジスティックの固定入力・解析解比較あり。 環境収容力Kによる密度制限付き増殖です。生物系ODEの最も基本的な比較問題になります。
 \dot N=rN(1-N/K).
 数値的な課題。 正値性、平衡点、Kを越えるオーバーシュートを調べます。滑らかに見える曲線でも不変区間を破る場合があります。
 検証案。 N0>0でN(t)=K/[1+(K/N0−1)exp(−rt)]と比較し、時間精度と0、K付近の振る舞いを測ります。
@@ -11941,7 +11950,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models
 Coverage: reading
 
-感染症区画・文献調査のみ。 閉じた一様混合系における規格化人口比のモデルです。SEIRでは曝露区画と発症への遷移率を追加します。
+閉鎖SIRの実行例あり。SEIRは未実装。 閉じた一様混合系における規格化人口比のモデルです。SEIRでは曝露区画と発症への遷移率を追加します。
 \dot s=-\beta si,\quad\dot i=\beta si-\gamma i,\quad\dot r=\gamma i,\quad s+i+r=1.
 数値的な課題。 各区画の非負性、全人口の不変性、流行ピーク時刻の解像を確認します。
 検証案。 閉じたSIRで総和1と、β>0,s>0におけるi+s−(γ/β)ln(s)を確認します。初期増殖率βs0−γと最終規模の関係も比較します。
@@ -14529,7 +14538,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/monte-carlo/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。 入力・コード・実測値・許容誤差は関連手法と実行例のページに掲載。上記の一般的な検証案すべてを実施したわけではありません。
 Monte Carlo積分
 
 ## Monte Carlo積分 — 一次文献・関連資料と確認範囲 [ja]
@@ -15673,7 +15682,7 @@ White, S. R.; Martin, R. L. (1999)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全60問題の台帳へ加えました。小分子H₂・周期系は計画で、件数には加えていません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全64問題の台帳へ加えました。小分子H₂・周期系は計画で、件数には加えていません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -17911,7 +17920,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 人にもAIにも、条件と根拠を確かめ、公開コード・入力・結果を使える資料へ。既存の基盤を整え、代表例から実行・検証の経路を揃える。
-P0の共通基盤と既存例を優先する。P1は検証が成立し、先行作業が予定内に収まる場合の追加候補。全手法の網羅や未検証計算の完成を約束しない。状態は公開確認後に更新する。
+新規項目を増やすより、既存分野の実装・検証の差を明示して埋める。固定入力・独立参照／解析解・残差・収束・終了理由を優先し、公開コードがあるだけで分野全体を検証済みにしない。専門AIは2027年以降。
 
 ## 実装ロードマップ — 整備の目安と確認の節目 [ja]
 
@@ -17928,6 +17937,15 @@ Coverage: reading
 配布物・索引・状態表示・引用・更新と復元の手順を照合する。すべての候補の実装完了を意味しない。
 12月末：修正と残る不足の記録
 新しい範囲を増やさず、確認で見つかった問題を修正し、未完成項目を次の台帳へ引き継ぐ。
+
+## 実装ロードマップ — 分野ごとの検証差を埋める [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
+Coverage: reading
+
+実装中・公開確認待ち
+第1弾：生物2例・確率2例を固定入力で実行し、公開ZIPから共通19例を追試。次はH₂の有限基底HF、反応拡散の線形成長率・空間収束、既知分布MCMC、温度制御の分布・相関。これら後続例は未実装であり、完了日を約束しない。
+分野ごとの根拠と未実装範囲
 
 ## 実装ロードマップ — 現行計画と履歴を分ける [ja]
 
@@ -18458,7 +18476,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sde/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。 入力・コード・実測値・許容誤差は関連手法と実行例のページに掲載。上記の一般的な検証案すべてを実施したわけではありません。
 確率微分方程式
 
 ## 確率微分方程式 — 一次文献・関連資料と確認範囲 [ja]
@@ -18611,7 +18629,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素108項目・学術誌／会議論文213件・全参考資料254件。
+方程式・モデル46項目・計算法と構成要素110項目・学術誌／会議論文213件・全参考資料254件。
 保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め76章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
@@ -18707,7 +18725,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は91、文献解説のみは17です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は93、文献解説のみは17です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 

@@ -171,8 +171,8 @@ manifest=[];calculations={}
 for item in config['items']:
     id=item['id'];assert id in problems
     if item['kind']=='image':
-        path=ATLAS/item['source'];receipts[path.relative_to(ROOT).as_posix()]=sha(path)
-        image_url='/numerical-methods-atlas/'+item['source'];kind='existing-figure'
+        path=(ROOT/item['source'].lstrip('/')) if item['source'].startswith('/') else (ATLAS/item['source']);receipts[path.relative_to(ROOT).as_posix()]=sha(path)
+        image_url='/'+path.relative_to(ROOT).as_posix();kind='existing-figure'
     else:
         if item['kind']=='computed-preview':
             record=computed(id);calculations[id]=record;values=record['plot'];kind='computed-preview'

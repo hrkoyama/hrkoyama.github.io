@@ -119,5 +119,7 @@ References:
 
 - Reference: https://doi.org/10.1017/S1446788700027932 — Primary formulation of Runge–Kutta order conditions, including fourth-order conditions; not attributed as the historical invention of classical RK4.
 
+Common execution records: [{"id": "logistic-growth", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#logistic-growth-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#logistic-growth-en"}}, {"id": "sir-epidemic", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#sir-epidemic-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sir-epidemic-en"}}]
+
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

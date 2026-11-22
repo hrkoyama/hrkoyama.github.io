@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "checked_on": "2026-11-06",
-  "scope": "Representative classical and selected later biological model families for a numerical-method atlas. All entries are survey-only; no biological simulation or validation is added by this survey.",
+  "checked_on": "2026-11-22",
+  "scope": "22 surveyed biological families; logistic and closed-SIR fixed-input calculations now have measured validation. Other families remain survey-only. SIR results do not validate SEIR.",
   "models": [
     {
       "id": "logistic",
@@ -16,8 +16,15 @@
         "verhulst1847"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map."
+      "status": "scoped-educational-example",
+      "scope": "The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map.",
+      "execution_examples": [
+        "logistic-growth"
+      ],
+      "implementation_scope": {
+        "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+        "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+      }
     },
     {
       "id": "enzyme",
@@ -83,8 +90,15 @@
         "kermack1927"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions."
+      "status": "scoped-educational-example",
+      "scope": "The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions.",
+      "execution_examples": [
+        "sir-epidemic"
+      ],
+      "implementation_scope": {
+        "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+      }
     },
     {
       "id": "fisher-kpp",

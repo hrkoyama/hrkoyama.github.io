@@ -23,7 +23,7 @@ esc = html.escape
 inventory = json.loads((ATLAS / 'test-cases/index.json').read_text())
 discovery = load_discovery(ROOT)
 runnable = {x['problem_id']: x for x in discovery['examples']}
-assert len(runnable) == len(discovery['examples']) == 15, 'Exactly 15 distinct runnable gallery problems are required'
+assert len(runnable) == len(discovery['examples']), 'Every runnable example must have a distinct gallery problem'
 mapping = json.loads((ROOT / 'catalog/atlas-gallery.json').read_text())
 manifest = json.loads((DEST / 'preview-manifest.json').read_text())
 calculations = json.loads((DEST / 'calculations.json').read_text())
@@ -78,7 +78,7 @@ for lang in ['ja', 'en']:
     ja = lang == 'ja'
     body = '<section data-site-language="' + lang + '" data-gallery lang="' + lang + '">'
     body += '<p class="eyebrow">NUMERICAL METHODS ATLAS · VISUAL INDEX</p><h1>' + ('絵から探す：全' + str(len(ids)) + 'のテスト計算' if ja else 'Browse by picture: all ' + str(len(ids)) + ' test problems') + '</h1>'
-    body += '<p class="intro gallery-intro">' + ('波形、衝撃波、渦、重力場、境界値問題、時間積分、関数近似まで。実行・検証例がある15問題は、画像から固定入力・コード・結果の確かめ方へ進めます。各カードから解説も読めます。' if ja else 'Explore profiles, shocks, vortices, gravity, boundary-value problems, time integration and approximation. For 15 runnable problems, select the image to find fixed inputs, code and validation. Every card also links to the reading.') + '</p>'
+    body += '<p class="intro gallery-intro">' + (f'波形、衝撃波、渦、重力場、境界値問題、時間積分、関数近似まで。実行・検証例がある{len(runnable)}問題は、画像から固定入力・コード・結果の確かめ方へ進めます。各カードから解説も読めます。' if ja else f'Explore profiles, shocks, vortices, gravity, boundary-value problems, time integration and approximation. For {len(runnable)} runnable problems, select the image to find fixed inputs, code and validation. Every card also links to the reading.') + '</p>'
     body += '<nav class="resource-nav">' + ''.join(link(url, label) for url, label in [
         ('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'),
         ('/numerical-methods-atlas/equations/?lang=' + lang, '数式から探す' if ja else 'Browse by equation'),
@@ -89,9 +89,9 @@ for lang in ['ja', 'en']:
     body += '<button type="button" data-gallery-group="all" aria-pressed="true">' + ('すべて' if ja else 'All') + ' (' + str(len(ids)) + ')</button>'
     for g in inventory['groups']:
         body += '<button type="button" data-gallery-group="' + g['id'] + '" aria-pressed="false">' + esc(g[lang]) + ' (' + str(counts[g['id']]) + ')</button>'
-    body += '</div><div class="gallery-execution-filter"><button type="button" data-gallery-runnable aria-pressed="false" aria-describedby="gallery-illustration-note-' + lang + '">' + ('実行・検証例あり 15' if ja else 'Runnable and validated: 15') + '</button><span>' + ('分野・検索語と組み合わせて絞り込めます' if ja else 'Combine with a domain and search terms') + '</span></div><p class="gallery-count" data-gallery-count role="status" aria-live="polite">' + (f'{len(ids)} / {len(ids)} 問題を表示' if ja else f'Showing {len(ids)} of {len(ids)} problems') + '</p></div>'
+    body += '</div><div class="gallery-execution-filter"><button type="button" data-gallery-runnable aria-pressed="false" aria-describedby="gallery-illustration-note-' + lang + '">' + (f'実行・検証例あり {len(runnable)}' if ja else f'Runnable and validated: {len(runnable)}') + '</button><span>' + ('分野・検索語と組み合わせて絞り込めます' if ja else 'Combine with a domain and search terms') + '</span></div><p class="gallery-count" data-gallery-count role="status" aria-live="polite">' + (f'{len(ids)} / {len(ids)} 問題を表示' if ja else f'Showing {len(ids)} of {len(ids)} problems') + '</p></div>'
     body += '<p class="gallery-note" id="gallery-illustration-note-' + lang + '">' + ('画像は保存済みの図版・数値データ・プレビュー計算です。「実行・検証例あり」は、固定入力からJSON/CSVを作り結果を判定する経路がある印です。画像の計算条件は「条件・根拠」、再実行する条件は実行例の入力で確認してください。画像と固定入力の条件は一致するとは限りません。' if ja else 'Images are saved figures, numerical data or preview calculations. A runnable badge identifies a fixed-input path that produces JSON/CSV with acceptance checks. See “Conditions and evidence” for image settings and the execution input for rerun settings; these need not match.') + '</p>'
-    body += '<p class="gallery-note">' + (f'{len(ids)}は手法・格子・刻み違いを統合した問題数です。解に加え、誤差・残差・収束の図も含み、共有図は説明に明記しています。図示用の9問題の計算記録と、代表15問題の実行・検証記録は別に確認できます。' if ja else f'The {len(ids)} problems merge method, grid and time-step variants. Visuals include solutions, errors, residuals and convergence; captions identify shared figures. Records for nine preview calculations and the 15 representative execution examples remain separate.') + '</p><ul class="gallery-grid">'
+    body += '<p class="gallery-note">' + (f'{len(ids)}は手法・格子・刻み違いを統合した問題数です。解に加え、誤差・残差・収束の図も含み、共有図は説明に明記しています。図示用の9問題の計算記録と、代表{len(runnable)}問題の実行・検証記録は別に確認できます。' if ja else f'The {len(ids)} problems merge method, grid and time-step variants. Visuals include solutions, errors, residuals and convergence; captions identify shared figures. Records for nine preview calculations and the {len(runnable)} representative execution examples remain separate.') + '</p><ul class="gallery-grid">'
     for x in items:
         example = runnable.get(x['id'])
         search = ' '.join([x['id'], *x['name'].values(), *groups[x['group']].values(), *x['caption'].values(), x['chapter'],

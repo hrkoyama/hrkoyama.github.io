@@ -121,7 +121,7 @@
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/share/",
   "counts": {
     "equations": 46,
-    "methods": 108,
+    "methods": 110,
     "papers": 213,
     "references": 254,
     "journal_articles": 207,
@@ -132,38 +132,38 @@
     "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 91,
+    "local_methods": 93,
     "reading_methods": 17,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
     "reading_chapters": 76,
-    "test_problems": 60,
-    "saved_test_problems": 60,
+    "test_problems": 64,
+    "saved_test_problems": 64,
     "code_test_problems": 0,
     "method_records": 143,
-    "educational_examples": 91,
+    "educational_examples": 93,
     "reading_only": 17,
-    "planned": 35,
-    "execution_examples": 15
+    "planned": 33,
+    "execution_examples": 19
   },
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "e69800e084992f0805d1fe40bec885506cc3640c148d5231bd3b7b103a0d6ade",
-    "numerical-methods-atlas/coverage.json": "0c4ddabe1fd84d0ea583675a9cc7076038cdf488808cf7ef05302e6ed5129b58",
-    "catalog/atlas-execution-examples.json": "107e55e0805967153c83363514c4924e366d34d5fb2187de70c911230c653859",
-    "catalog/atlas-execution-discovery.json": "40a61a42f67357557c2cf95e058eb7ce1b5f663689cf209f73665fe7f9dfc134"
+    "catalog/atlas-methods.json": "9bf5ef500e5b569265c45ab3f564e3fe551a36c048169afd5f6b2b226daba0a1",
+    "numerical-methods-atlas/coverage.json": "ef0f0980f1908ddc0cc6616fce5eeca3c71dc23590cddb9a4270dffb6fdb59e4",
+    "catalog/atlas-execution-examples.json": "8e547548e24d00bfe3d00a947d8422c268cbe06c493e83d2861e672a09232aba",
+    "catalog/atlas-execution-discovery.json": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be"
   },
   "introductions": {
     "ja": {
-      "short": "数値計算法アトラスは、手法の考え方・適用条件・一次文献から、公開コードと結果の確かめ方へ進める日英の資料集です。代表15問題は固定入力から実行できます。",
-      "paragraph": "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。文字・数式・絵の3つの入口から手法を探し、適用条件や一次文献を確認し、代表15問題の固定入力・公開コード・参照値と許容誤差へたどれます。解析解・独立な参照・高解像度の数値参照を区別して照合でき、教育用例・文献解説のみ・整備予定と、それぞれの確認範囲を明記しています。",
-      "description": "条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表15実行例を紹介する文章・画像・リンク。"
+      "short": "数値計算法アトラスは、手法の考え方・適用条件・一次文献から、公開コードと結果の確かめ方へ進める日英の資料集です。代表19問題は固定入力から実行できます。",
+      "paragraph": "大学院生・研究者と、その調査や実装を支援するAIのための数値計算資料集です。文字・数式・絵の3つの入口から手法を探し、適用条件や一次文献を確認し、代表19問題の固定入力・公開コード・参照値と許容誤差へたどれます。解析解・独立な参照・高解像度の数値参照を区別して照合でき、教育用例・文献解説のみ・整備予定と、それぞれの確認範囲を明記しています。",
+      "description": "条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表19実行例を紹介する文章・画像・リンク。"
     },
     "en": {
-      "short": "A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for 15 representative problems.",
-      "paragraph": "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for 15 representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.",
-      "description": "From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and 15 scoped examples using text, images and links."
+      "short": "A bilingual atlas for choosing numerical methods and checking calculations. Follow assumptions and original papers to public code, fixed inputs and reference comparisons for 19 representative problems.",
+      "paragraph": "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their research and implementation. Find methods through words, formulas or pictures; examine assumptions and original papers; then follow fixed inputs and public code to reference values and tolerances for 19 representative problems. Analytic solutions, independent references and higher-resolution numerical comparisons are distinguished, alongside scoped educational examples, reading-only material and planned coverage.",
+      "description": "From assumptions and original papers to fixed inputs, public code and result checks. Share a bilingual numerical-methods atlas and 19 scoped examples using text, images and links."
     }
   },
   "assets": {

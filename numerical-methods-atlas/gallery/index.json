@@ -4,8 +4,8 @@
   "reviewed_on": "2026-11-21",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 60,
-    "runnable_problems": 15,
+    "test_problems": 64,
+    "runnable_problems": 19,
     "groups": {
       "transport": 8,
       "fluid": 16,
@@ -15,11 +15,13 @@
       "gravity": 5,
       "time": 6,
       "approximation": 3,
-      "quantum": 2
+      "quantum": 2,
+      "biology": 2,
+      "probability": 2
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 24,
+      "existing-figure": 28,
       "computed-preview": 9
     }
   },
@@ -3348,11 +3350,323 @@
           "en": "Solve spherical 1s² helium with RHF and exchange-only LDA; compare SCF convergence, energies and electron count with independent finite-basis references."
         }
       }
+    },
+    {
+      "id": "logistic-growth",
+      "group": "biology",
+      "name": {
+        "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+        "en": "Logistic growth: analytic solution and time refinement"
+      },
+      "chapter": "biological-models",
+      "reading_section": "01-1838-logistic-population-growth",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/logistic-growth.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#01-1838-logistic-population-growth",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#01-1838-logistic-population-growth"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "logistic-growth",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#logistic-growth-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#logistic-growth-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#logistic-growth",
+      "run_commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/logistic-growth.json --output output"
+      ],
+      "image": "/code/model-benchmarks/2026-11-22/results/logistic-growth/preview.png",
+      "image_sha256": "9c758ad2a09ed78fb7c1624ce1e30f56d02e35deb25c0956e884ae1982819080",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      },
+      "visual_input": {
+        "id": "logistic-growth",
+        "kind": "image",
+        "source": "/code/model-benchmarks/2026-11-22/results/logistic-growth/preview.png",
+        "caption": {
+          "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+          "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#logistic-growth-ja",
+      "runnable": true,
+      "execution_entry": {
+        "id": "logistic-growth",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
+        },
+        "outcome": {
+          "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+          "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+        }
+      }
+    },
+    {
+      "id": "sir-epidemic",
+      "group": "biology",
+      "name": {
+        "ja": "SIR：独立DOP853参照・人口保存・収束",
+        "en": "SIR: independent DOP853 reference, conservation and convergence"
+      },
+      "chapter": "biological-models",
+      "reading_section": "05-1927-sir-and-seir-compartment-models",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/sir-epidemic.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "sir-epidemic",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#sir-epidemic-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sir-epidemic-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#sir-epidemic",
+      "run_commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/sir-epidemic.json --output output"
+      ],
+      "image": "/code/model-benchmarks/2026-11-22/results/sir-epidemic/preview.png",
+      "image_sha256": "4ff50b55a65540eea559f089a1585c9fd894a15f2d1be47d03bfecbfab099c41",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      },
+      "visual_input": {
+        "id": "sir-epidemic",
+        "kind": "image",
+        "source": "/code/model-benchmarks/2026-11-22/results/sir-epidemic/preview.png",
+        "caption": {
+          "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+          "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sir-epidemic-ja",
+      "runnable": true,
+      "execution_entry": {
+        "id": "sir-epidemic",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
+        },
+        "outcome": {
+          "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+          "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+        }
+      }
+    },
+    {
+      "id": "mc-integral",
+      "group": "probability",
+      "name": {
+        "ja": "Monte Carlo：256 seedの積分誤差と区間被覆",
+        "en": "Monte Carlo: integral errors and interval coverage across 256 seeds"
+      },
+      "chapter": "monte-carlo",
+      "reading_section": "publication-scope",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/mc-integral.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/mc-integral/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/monte-carlo/#publication-scope",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/monte-carlo/#publication-scope"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "mc-integral",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#mc-integral-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#mc-integral-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#mc-integral",
+      "run_commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/mc-integral.json --output output"
+      ],
+      "image": "/code/model-benchmarks/2026-11-22/results/mc-integral/preview.png",
+      "image_sha256": "4cf13e6caa8b077ba142098a66b8a065a8fae2aee3f24f06fcd8d0ef1bce6cf9",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      },
+      "visual_input": {
+        "id": "mc-integral",
+        "kind": "image",
+        "source": "/code/model-benchmarks/2026-11-22/results/mc-integral/preview.png",
+        "caption": {
+          "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+          "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#mc-integral-ja",
+      "runnable": true,
+      "execution_entry": {
+        "id": "mc-integral",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/?lang=en"
+        },
+        "outcome": {
+          "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+          "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
+        }
+      }
+    },
+    {
+      "id": "gbm-sde",
+      "group": "probability",
+      "name": {
+        "ja": "Itô SDE：共有Brown運動による強収束",
+        "en": "Itô SDE: strong convergence with coupled Brownian paths"
+      },
+      "chapter": "sde",
+      "reading_section": "publication-scope",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/gbm-sde.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/gbm-sde/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sde/#publication-scope",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sde/#publication-scope"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "gbm-sde",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#gbm-sde-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#gbm-sde-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#gbm-sde",
+      "run_commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/gbm-sde.json --output output"
+      ],
+      "image": "/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+      "image_sha256": "461bf8078b5c177d33dd8242126da6ede72e71f9a190478c636b61aff3308c05",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      },
+      "visual_input": {
+        "id": "gbm-sde",
+        "kind": "image",
+        "source": "/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+        "caption": {
+          "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+          "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#gbm-sde-ja",
+      "runnable": true,
+      "execution_entry": {
+        "id": "gbm-sde",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=en"
+        },
+        "outcome": {
+          "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+          "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+        }
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "c61e5c7d4848fabba0596942134011c64bcfda42fc823416798b92b307064dce",
-    "scripts/render-atlas-gallery.py": "0e61bd59c459b2b7945e12ae2f89eafaf55fda28cde0e5c4530fa46dc7865ba7",
+    "catalog/atlas-gallery.json": "1deeeaaa4ed536d246f563233642209b92eaa964ddb592e83a466580e525fb1a",
+    "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
     "code/numerical-methods-atlas/2026-11-21/numart/linear.py": "d58db4efc09a3358b28cff07ba3a2e732244eaaf2f82a5fcf1ce0de001ba87a9",
@@ -3393,16 +3707,17 @@
     "numerical-methods-atlas/runge-kutta.json": "e2f5f1484a8d3edf1bb5511d4f237de20615ddad4103d1277f34f7357ae9d501",
     "numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png": "2f1ea60a391f26c8fd086999e56155ed1bf3bc5c5b80c6d9f2c44ee2c5dca1cf",
     "numerical-methods-atlas/assets/quantum-atoms/helium.png": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6",
+    "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "46fc64b6a2c21e4d9b2e53114b2cc7caa52edd1f4d9c7654eb67ccc2f96edb99",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f69eda0957450387012fa1bb3af8b37dce5d842b0fd1cd8ca3b73f45f7f931d8",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "17a6eb96eb6ad73615183bcd679712a88a7cc5c3d81719faaea89b510bd2e6dd",
-    "catalog/atlas-execution-discovery.json": "40a61a42f67357557c2cf95e058eb7ce1b5f663689cf209f73665fe7f9dfc134",
+    "numerical-methods-atlas/test-cases/index.json": "a7b619558e449dafe5c8b1a40170f7c8c60aa993151dc649eebc903ad9371501",
+    "catalog/atlas-execution-discovery.json": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be"
   }
 }

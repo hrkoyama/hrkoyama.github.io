@@ -50,6 +50,16 @@
       "id": "quantum",
       "ja": "孤立原子・電子状態",
       "en": "Isolated atoms and electronic structure"
+    },
+    {
+      "id": "biology",
+      "ja": "生物・個体群・感染症",
+      "en": "Biology, populations and epidemics"
+    },
+    {
+      "id": "probability",
+      "ja": "確率積分・確率微分方程式",
+      "en": "Stochastic integration and SDEs"
     }
   ],
   "problems": [
@@ -1318,6 +1328,114 @@
         {
           "path": "code/quantum-atoms/2026-11-21/test_atomic_radial.py",
           "python_symbol": "test_helium_scf_and_independent_reference"
+        }
+      ]
+    },
+    {
+      "id": "logistic-growth",
+      "group": "biology",
+      "name": {
+        "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+        "en": "Logistic growth: analytic solution and time refinement"
+      },
+      "chapter": "biological-models",
+      "reading_section": "01-1838-logistic-population-growth",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/logistic-growth.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ]
+    },
+    {
+      "id": "sir-epidemic",
+      "group": "biology",
+      "name": {
+        "ja": "SIR：独立DOP853参照・人口保存・収束",
+        "en": "SIR: independent DOP853 reference, conservation and convergence"
+      },
+      "chapter": "biological-models",
+      "reading_section": "05-1927-sir-and-seir-compartment-models",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/sir-epidemic.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ]
+    },
+    {
+      "id": "mc-integral",
+      "group": "probability",
+      "name": {
+        "ja": "Monte Carlo：256 seedの積分誤差と区間被覆",
+        "en": "Monte Carlo: integral errors and interval coverage across 256 seeds"
+      },
+      "chapter": "monte-carlo",
+      "reading_section": "publication-scope",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/mc-integral.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/mc-integral/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
+        }
+      ]
+    },
+    {
+      "id": "gbm-sde",
+      "group": "probability",
+      "name": {
+        "ja": "Itô SDE：共有Brown運動による強収束",
+        "en": "Itô SDE: strong convergence with coupled Brownian paths"
+      },
+      "chapter": "sde",
+      "reading_section": "publication-scope",
+      "availability": "saved-output",
+      "code_base": "/code/model-benchmarks/2026-11-22/",
+      "verification": "/code/model-benchmarks/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_models.py",
+        "python run.py --input inputs/gbm-sde.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/model-benchmarks/2026-11-22/results/gbm-sde/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/model-benchmarks/2026-11-22/test_models.py",
+          "python_symbol": "test_fixed_case"
         }
       ]
     }

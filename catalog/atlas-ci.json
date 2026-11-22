@@ -41,8 +41,8 @@
     "artifact_retention_days": 90
   },
   "scope": {
-    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表15問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
-    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 15 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
+    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表19問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
+    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 19 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
   },
   "definitions": {
     "latest": {

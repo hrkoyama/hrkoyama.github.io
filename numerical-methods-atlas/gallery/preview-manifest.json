@@ -721,11 +721,59 @@
         "ja": "公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。",
         "en": "Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading."
       }
+    },
+    {
+      "id": "logistic-growth",
+      "image": "/code/model-benchmarks/2026-11-22/results/logistic-growth/preview.png",
+      "image_sha256": "9c758ad2a09ed78fb7c1624ce1e30f56d02e35deb25c0956e884ae1982819080",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
+    },
+    {
+      "id": "sir-epidemic",
+      "image": "/code/model-benchmarks/2026-11-22/results/sir-epidemic/preview.png",
+      "image_sha256": "4ff50b55a65540eea559f089a1585c9fd894a15f2d1be47d03bfecbfab099c41",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
+    },
+    {
+      "id": "mc-integral",
+      "image": "/code/model-benchmarks/2026-11-22/results/mc-integral/preview.png",
+      "image_sha256": "4cf13e6caa8b077ba142098a66b8a065a8fae2aee3f24f06fcd8d0ef1bce6cf9",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
+    },
+    {
+      "id": "gbm-sde",
+      "image": "/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+      "image_sha256": "461bf8078b5c177d33dd8242126da6ede72e71f9a190478c636b61aff3308c05",
+      "width": 960,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+        "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "c61e5c7d4848fabba0596942134011c64bcfda42fc823416798b92b307064dce",
-    "scripts/render-atlas-gallery.py": "0e61bd59c459b2b7945e12ae2f89eafaf55fda28cde0e5c4530fa46dc7865ba7",
+    "catalog/atlas-gallery.json": "1deeeaaa4ed536d246f563233642209b92eaa964ddb592e83a466580e525fb1a",
+    "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
     "code/numerical-methods-atlas/2026-11-21/numart/linear.py": "d58db4efc09a3358b28cff07ba3a2e732244eaaf2f82a5fcf1ce0de001ba87a9",
@@ -765,7 +813,8 @@
     "numerical-methods-atlas/basis.json": "13bac5be15b5a43e7a103120e225fb15388650ae4de66aa731b4e324a8525651",
     "numerical-methods-atlas/runge-kutta.json": "e2f5f1484a8d3edf1bb5511d4f237de20615ddad4103d1277f34f7357ae9d501",
     "numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png": "2f1ea60a391f26c8fd086999e56155ed1bf3bc5c5b80c6d9f2c44ee2c5dca1cf",
-    "numerical-methods-atlas/assets/quantum-atoms/helium.png": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6"
+    "numerical-methods-atlas/assets/quantum-atoms/helium.png": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6",
+    "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

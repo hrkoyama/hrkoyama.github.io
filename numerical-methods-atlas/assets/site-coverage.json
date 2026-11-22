@@ -11,7 +11,7 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 108,
+    "methods": 110,
     "papers": 213,
     "references": 254,
     "journal_articles": 207,
@@ -22,14 +22,14 @@
     "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 91,
+    "local_methods": 93,
     "reading_methods": 17,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
     "reading_chapters": 76,
-    "test_problems": 60,
-    "saved_test_problems": 60,
+    "test_problems": 64,
+    "saved_test_problems": 64,
     "code_test_problems": 0
   },
   "items": [
@@ -1440,6 +1440,26 @@
       "group": "Electronic structure & quantum chemistry",
       "scope": "Representative local time-dependent KS equations. Distinguish initial-state dependence, exchange-correlation memory and adiabatic approximations. No dedicated real-time or response implementation is published.",
       "origin": "curated-quantum-reading"
+    },
+    {
+      "kind": "method",
+      "id": "monte-carlo",
+      "label": "Monte Carlo integration",
+      "chapter": "monte-carlo",
+      "status": "local-example",
+      "group": "Optimization & stochastic methods",
+      "scope": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events.",
+      "origin": "curated-model-example"
+    },
+    {
+      "kind": "method",
+      "id": "sde",
+      "label": "Stochastic differential equations",
+      "chapter": "sde",
+      "status": "local-example",
+      "group": "Optimization & stochastic methods",
+      "scope": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order.",
+      "origin": "curated-model-example"
     }
   ],
   "publications": [
@@ -2805,7 +2825,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "7fa67bfbe031fe39dc59847a77021ef3c9ce0cb750e0455dfac850975c6af672",
-    "catalog/atlas-methods.json": "e69800e084992f0805d1fe40bec885506cc3640c148d5231bd3b7b103a0d6ade",
+    "catalog/atlas-methods.json": "9bf5ef500e5b569265c45ab3f564e3fe551a36c048169afd5f6b2b226daba0a1",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
     "catalog/atlas-method-primary-references.json": "e388cfbb852195fc7683b3d1688557e7b00dd5d443b2c0c1d0ce199b0be79f94"
   }

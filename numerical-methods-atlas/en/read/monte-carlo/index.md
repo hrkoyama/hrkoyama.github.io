@@ -24,7 +24,7 @@ Use repeated independent runs on known integrals to examine N scaling and interv
 
 ## Publication scope
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events. Inputs, code, measured values and tolerances are linked from the method and execution pages. Not every general verification proposal above has been executed.
 
 ## Sources
 

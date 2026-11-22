@@ -2,12 +2,12 @@
   "schema_version": 1,
   "reviewed_on": "2026-11-22",
   "scope": {
-    "ja": "公開済み15問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
+    "ja": "公開済み19問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
     "en": "Discovery metadata for the fifteen published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
   },
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632",
-  "source_sha256": "40a61a42f67357557c2cf95e058eb7ce1b5f663689cf209f73665fe7f9dfc134",
+  "registry_sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
+  "source_sha256": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be",
   "examples": [
     {
       "id": "advection-sine",
@@ -863,6 +863,184 @@
         "scf",
         "hartree-poisson",
         "xc-functionals"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "logistic-growth",
+      "problem_id": "logistic-growth",
+      "equation_ids": [],
+      "keywords": [
+        "logistic-growth",
+        "ロジスティック増殖：解析解と刻み幅の収束",
+        "Logistic growth: analytic solution and time refinement",
+        "生物",
+        "ロジスティック",
+        "個体群",
+        "logistic population"
+      ],
+      "outcome": {
+        "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+        "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+      },
+      "formula": {
+        "role": "problem",
+        "latex": [
+          "\\dot y=r y(1-y/K)",
+          "y(t)=K/[1+(K/y_0-1)e^{-rt}]"
+        ],
+        "note": {
+          "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+          "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+        "en": "Logistic growth: analytic solution and time refinement"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/logistic-growth.json",
+      "method_ids": [
+        "rk4"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "sir-epidemic",
+      "problem_id": "sir-epidemic",
+      "equation_ids": [],
+      "keywords": [
+        "sir-epidemic",
+        "SIR：独立DOP853参照・人口保存・収束",
+        "SIR: independent DOP853 reference, conservation and convergence",
+        "感染症",
+        "SIR",
+        "epidemic"
+      ],
+      "outcome": {
+        "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+      },
+      "formula": {
+        "role": "problem",
+        "latex": [
+          "\\dot S=-\\beta SI,\\quad\\dot I=\\beta SI-\\gamma I,\\quad\\dot R=\\gamma I",
+          "S+I+R=1"
+        ],
+        "note": {
+          "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+          "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "SIR：独立DOP853参照・人口保存・収束",
+        "en": "SIR: independent DOP853 reference, conservation and convergence"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/sir-epidemic.json",
+      "method_ids": [
+        "rk4"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "mc-integral",
+      "problem_id": "mc-integral",
+      "equation_ids": [],
+      "keywords": [
+        "mc-integral",
+        "Monte Carlo：256 seedの積分誤差と区間被覆",
+        "Monte Carlo: integral errors and interval coverage across 256 seeds",
+        "確率",
+        "モンテカルロ",
+        "Monte Carlo"
+      ],
+      "outcome": {
+        "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+        "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
+      },
+      "formula": {
+        "role": "problem",
+        "latex": [
+          "\\int_0^1 x^2\\,dx=\\tfrac13,\\qquad\\operatorname{Var}(U^2)=\\tfrac4{45}",
+          "\\operatorname{RMS}(\\hat I_N)=\\sqrt{4/(45N)}"
+        ],
+        "note": {
+          "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+          "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "Monte Carlo：256 seedの積分誤差と区間被覆",
+        "en": "Monte Carlo: integral errors and interval coverage across 256 seeds"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/mc-integral.json",
+      "method_ids": [
+        "monte-carlo"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "gbm-sde",
+      "problem_id": "gbm-sde",
+      "equation_ids": [],
+      "keywords": [
+        "gbm-sde",
+        "Itô SDE：共有Brown運動による強収束",
+        "Itô SDE: strong convergence with coupled Brownian paths",
+        "確率",
+        "幾何Brown運動",
+        "Euler Maruyama",
+        "Brownian"
+      ],
+      "outcome": {
+        "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+        "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+      },
+      "formula": {
+        "role": "problem",
+        "latex": [
+          "dX=\\mu X\\,dt+\\sigma X\\,dW",
+          "X(T)=X_0\\exp[(\\mu-\\sigma^2/2)T+\\sigma W(T)]"
+        ],
+        "note": {
+          "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+          "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "Itô SDE：共有Brown運動による強収束",
+        "en": "Itô SDE: strong convergence with coupled Brownian paths"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/gbm-sde.json",
+      "method_ids": [
+        "sde"
       ],
       "reference_type": null
     }

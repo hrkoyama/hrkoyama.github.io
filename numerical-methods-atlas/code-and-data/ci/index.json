@@ -41,8 +41,8 @@
     "artifact_retention_days": 90
   },
   "scope": {
-    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表15問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
-    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 15 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
+    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表19問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
+    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 19 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
   },
   "definitions": {
     "latest": {
@@ -121,10 +121,10 @@
         "matplotlib": "3.9.4"
       },
       "registry_sha256": "ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632",
-      "registry_matches_current": true,
+      "registry_matches_current": false,
       "example_count": 15,
       "runner_count": 14,
-      "example_ids_match_current": true,
+      "example_ids_match_current": false,
       "recorded_success": true,
       "scope": "Only the 15 curated public execution examples. Atomic cases share one runner. Separate from packaged pytest checks, PySCF reference regeneration, all 60 atlas problems and general solver certification.",
       "sha256": "e5c45fd29864fe858e2827381a55b5901b3b0e51b66cc2e182b4745bfb5c8422"
@@ -138,14 +138,14 @@
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "5af4bf665892ff18639186c5c91de7ff1195bd3a8901ef7eb35699f938d8d146"
+    "sha256": "6c5ef064dc33aac4710d2eb35cc8b13d465555d300d8f5c450043e9e0641ee33"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-    "sha256": "ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632",
-    "example_count": 15,
-    "runner_count": 14,
-    "release_count": 3
+    "sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
+    "example_count": 19,
+    "runner_count": 18,
+    "release_count": 4
   },
   "latest_status": {
     "source": "external-github-actions-badge",

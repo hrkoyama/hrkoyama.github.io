@@ -111,6 +111,11 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-quantum-reading']
     for x in methods.values():coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':'quantum-chemistry','status':'local-example' if x.get('quantum_examples') else 'reading','group':'Electronic structure & quantum chemistry','scope':x['example_scope']['en'] if x.get('quantum_examples') else 'Introductory formulation only; no dedicated solver or numerical validation.','origin':'curated-quantum-reading'})
     for x in equations:coverage['items'].append({'kind':'equation','id':x['id'],'label':x['name']['en'],'chapter':x['chapter'],'status':x['status'],'group':'Electronic structure & quantum chemistry','scope':x['note']['en'],'origin':'curated-quantum-reading'})
+    coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-model-example']
+    for x in load(ROOT/'catalog/atlas-methods.json')['methods']:
+        if x.get('model_examples'):
+            assert x['status']=='educational-example'
+            coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':x['id'],'status':'local-example','group':x['group']['en'],'scope':x['example_scope']['en'],'origin':'curated-model-example'})
     coverage['publications']=[x for x in coverage['publications'] if x.get('origin')!='curated-quantum-reading']
     identities={x['identity'] for x in coverage['publications']}
     for r in refs.values():

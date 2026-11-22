@@ -6,6 +6,7 @@ import html
 import json
 import re
 import subprocess
+from atlas_depth import depth_teaser, depth_assets
 from atlas_execution_discovery import load_discovery, entry_url, ENTRY_BASE
 from atlas_goal_availability import goal_label, goal_attributes, goal_filter_controls, goal_filter_assets
 
@@ -25,7 +26,7 @@ def goal_start(lang, static=False):
     cards=''.join('<a class="home-goal-choice"'+goal_attributes(g,methods)+' href="/numerical-methods-atlas/start/?lang='+lang+'#'+g['id']+'-'+lang+'"><span>'+html.escape(g['title'][lang])+'</span><small>'+html.escape(goal_label(g,methods,lang))+'</small></a>' for g in data['goals'])
     c={**c,'all':c['all'].format(count=len(data['goals']))}
     map_url='#atlas-map-'+lang if static else '#/?section=atlas-map'
-    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('15の実行例を見る' if ja else 'See 15 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p></div></section>'
+    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('19の実行例を見る' if ja else 'See 19 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section>'
 
 def browse(lang):
     c=copy[lang]
@@ -61,7 +62,7 @@ def featured(lang):
         body+='<li data-featured-example="'+ident+'"><h3>'+html.escape(names[ident][0 if ja else 1])+'</h3><p>'+html.escape(outcome)+'</p><a href="'+entry_url(ident,lang)+'">'+('入力・実行・検証へ' if ja else 'Input, execution and checks')+'</a>'
         if ident=='helium-ground-state':body+=' · <a href="'+entry_url('hydrogenic-atoms',lang)+'">'+('水素型原子' if ja else 'Hydrogenic atoms')+'</a>'
         body+='</li>'
-    return body+'</ul><p><a href="'+ENTRY_BASE+'?lang='+lang+'">'+('代表15問題をすべて見る' if ja else 'See all 15 representative examples')+'</a></p></section>'
+    return body+'</ul><p><a href="'+ENTRY_BASE+'?lang='+lang+'">'+('代表19問題をすべて見る' if ja else 'See all 19 representative examples')+'</a></p></section>'
 
 sections={lang:render(lang) for lang in copy}
 module=ATLAS/'atlas-purpose.js'
@@ -96,7 +97,8 @@ text=re.sub(r'(<main\b[^>]*>)',lambda m:m[1]+intro,text,count=1)
 text=text.replace('</main>',fallback+'</main>')
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-goal-filters[.]css[^"]*">\n?','',text)
 text=re.sub(r'<script type="module" src="/numerical-methods-atlas/goal-filters[.]mjs[^"]*"></script>\n?','',text)
-text=text.replace('</head>',goal_filter_assets(ROOT)+'</head>')
+text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-depth[.]css[^"]*">\n?','',text)
+text=text.replace('</head>',goal_filter_assets(ROOT)+depth_assets(ROOT)+'</head>')
 text=re.sub(r'href="home-overview.css(?:[?]v=[a-f0-9]+)?"','href="home-overview.css?v='+digest(ATLAS/'home-overview.css')+'"',text)
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-purpose.css(?:[?]v=[a-f0-9]+)?">\n?','',text)
 text=text.replace('</head>','<link rel="stylesheet" href="/styles/atlas-purpose.css?v='+digest(ROOT/'styles/atlas-purpose.css')+'">\n</head>')

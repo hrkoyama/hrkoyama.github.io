@@ -1385,8 +1385,8 @@
     "ja": "エントロピー条件を満たす衝撃波・膨張波、上流へ進む渋滞、厳密なセル平均、流体系の分布を扱います。"
   },
   "atlas.twenty-two-literature-only-model-families-gro.2fc4d5": {
-    "en": "Twenty-two literature-only model families: growth, epidemics, reaction–diffusion, chemotaxis, excitable membranes, delayed and stochastic gene networks, and biomechanics.",
-    "ja": "増殖、感染症、反応拡散、走化性、興奮性膜、遅延・確率的遺伝子回路、生体力学の22モデル系統を文献で調査します。生物ソルバーは未実装です。"
+    "ja": "22モデル族の解説。ロジスティック増殖と閉鎖SIRには固定入力・コード・参照比較・収束検査があります。他は検証案です。",
+    "en": "A 22-family survey. Logistic growth and closed SIR have fixed inputs, code, reference comparisons and refinement checks; other models remain verification plans."
   },
   "atlas.inspect-variable-placement-tested-f-plane-sha.44b794": {
     "en": "Inspect variable placement, tested f-plane shallow-water Fourier symbols, energy structure, and axis/diagonal wave dispersion.",
@@ -3025,8 +3025,8 @@
     "ja": "個体群・年齢構造・感染症"
   },
   "gallery.read-positive-state-population-models-rene.3d8f4c": {
-    "en": "Read positive-state population models, renewal boundaries and epidemic invariants. Survey entries, not implemented biological solvers.",
-    "ja": "非負個体群モデル、更新境界、感染症の不変量を調べます。文献調査であり、生物ソルバーは未実装です。"
+    "ja": "個体群・感染症の解説と、ロジスティック増殖・閉鎖SIRの限定した実行例。他の生物モデルは未実装です。",
+    "en": "Population/epidemic reading and scoped logistic/closed-SIR execution examples. Other biological models are unimplemented."
   },
   "gallery.fronts-excitation-and-morphogenesis.351248": {
     "en": "Fronts, excitation and morphogenesis",
@@ -7201,8 +7201,8 @@
     "ja": "根拠と実装範囲を、一緒に読む。"
   },
   "home-map.evidence-description": {
-    "en": "{chapters} reading chapters and {sources} sources, counted from a shared catalog. All {biology} biological entries are literature surveys.",
-    "ja": "解説{chapters}章・全参考資料{sources}件。共通カタログから集計しています。生物モデル{biology}項目は文献調査です。"
+    "ja": "解説{chapters}章・全参考資料{sources}件。生物{biology}項目のうちロジスティック増殖・閉鎖SIRに実行・検証例があります。分野ごとの範囲も確認できます。",
+    "en": "{chapters} chapters and {sources} sources. Among {biology} biological entries, logistic growth and closed SIR have executed validation. Check each field’s scope."
   },
   "home-map.inventory": {
     "en": "Full inventory",

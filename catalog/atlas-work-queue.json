@@ -10,10 +10,34 @@
     "en": "Help people and AI check conditions and evidence, then use public code, inputs and results. Improve the existing foundation and complete execution and validation paths through representative examples."
   },
   "policy": {
-    "ja": "P0の共通基盤と既存例を優先する。P1は検証が成立し、先行作業が予定内に収まる場合の追加候補。全手法の網羅や未検証計算の完成を約束しない。状態は公開確認後に更新する。",
-    "en": "Prioritize the P0 shared foundation and existing examples. P1 additions are conditional on established validation and the progress of earlier work. Do not promise exhaustive method coverage or completion of unverified calculations. Update status after checking publication."
+    "ja": "新規項目を増やすより、既存分野の実装・検証の差を明示して埋める。固定入力・独立参照／解析解・残差・収束・終了理由を優先し、公開コードがあるだけで分野全体を検証済みにしない。専門AIは2027年以降。",
+    "en": "Prioritize revealing and closing implementation/validation gaps in existing fields over adding entries. Require fixed inputs, independent/analytic references, residuals, refinement and termination evidence; published code does not validate an entire field. Specialist AI remains deferred until 2027 or later."
   },
   "items": [
+    {
+      "id": "field-validation-depth",
+      "target_year": 2026,
+      "state": "in-progress",
+      "track": "current",
+      "priority": "P0",
+      "title": {
+        "ja": "分野ごとの検証差を埋める",
+        "en": "Close validation gaps between fields"
+      },
+      "scope": {
+        "ja": "第1弾：生物2例・確率2例を固定入力で実行し、公開ZIPから共通19例を追試。次はH₂の有限基底HF、反応拡散の線形成長率・空間収束、既知分布MCMC、温度制御の分布・相関。これら後続例は未実装であり、完了日を約束しない。",
+        "en": "First batch: two biology and two stochastic examples executed at fixed inputs, with all 19 common examples rerun from public ZIPs. Next: finite-basis H₂ HF, reaction–diffusion growth rates/spatial convergence, known-distribution MCMC, and thermostat distributions/correlations. These follow-ups are unimplemented, with no promised completion date."
+      },
+      "links": [
+        {
+          "url": "/numerical-methods-atlas/depth/",
+          "label": {
+            "ja": "分野ごとの根拠と未実装範囲",
+            "en": "Field evidence and unimplemented scope"
+          }
+        }
+      ]
+    },
     {
       "id": "current-roadmap",
       "target_year": 2026,

@@ -246,7 +246,7 @@
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en"
   },
   "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "ef783f84aba3038283a4b8c21be89ad0ff8d48decc183a1969b617263135d632",
+  "registry_sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
   "discovery": {
     "id": "hydrogenic-atoms",
     "problem_id": "hydrogenic-atoms",
@@ -289,7 +289,7 @@
   },
   "public_rerun": {
     "passed": true,
-    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-public.json",
+    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-domains-public.json",
     "execution_group": "quantum-atoms"
   }
 }

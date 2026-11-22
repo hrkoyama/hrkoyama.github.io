@@ -24,7 +24,7 @@ Use geometric Brownian exact paths and Ornstein–Uhlenbeck moments to test stro
 
 ## Publication scope
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order. Inputs, code, measured values and tolerances are linked from the method and execution pages. Not every general verification proposal above has been executed.
 
 ## Sources
 

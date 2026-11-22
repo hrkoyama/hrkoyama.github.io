@@ -2,10 +2,10 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "e69800e084992f0805d1fe40bec885506cc3640c148d5231bd3b7b103a0d6ade",
-    "numerical-methods-atlas/coverage.json": "0c4ddabe1fd84d0ea583675a9cc7076038cdf488808cf7ef05302e6ed5129b58",
-    "catalog/atlas-execution-examples.json": "107e55e0805967153c83363514c4924e366d34d5fb2187de70c911230c653859",
-    "catalog/atlas-execution-discovery.json": "40a61a42f67357557c2cf95e058eb7ce1b5f663689cf209f73665fe7f9dfc134"
+    "catalog/atlas-methods.json": "9bf5ef500e5b569265c45ab3f564e3fe551a36c048169afd5f6b2b226daba0a1",
+    "numerical-methods-atlas/coverage.json": "ef0f0980f1908ddc0cc6616fce5eeca3c71dc23590cddb9a4270dffb6fdb59e4",
+    "catalog/atlas-execution-examples.json": "8e547548e24d00bfe3d00a947d8422c268cbe06c493e83d2861e672a09232aba",
+    "catalog/atlas-execution-discovery.json": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be"
   },
   "builder_sha256": "87508c43c1d8998576804b775cada4da8f1e8c348af73a58d9755c76c867dad0",
   "renderer": {
@@ -19,18 +19,18 @@
   },
   "images": {
     "ja": {
-      "svg_sha256": "92078c3022a1e2ca85323af5fa222b1289d0b32f4b9d6b43e0a701d87818c99a",
-      "png_sha256": "082344f7af395237db52355a672504c589ede501f611cf9734fd21aea262c964",
-      "content_input_sha256": "d0c0efb2900fc2ff441283eee29a3547dfa9b9aa8c54c20af3ac45d29f6f2582",
-      "render_input_sha256": "a4273b2a0d6d37f6c5e3d0434e52e4b414564ea6e9c97cf7e33474751e9689e7",
+      "svg_sha256": "38f79cf0047c2bfda6c711eaf252370ea380ca17d3f4b701e484a93f0c78d928",
+      "png_sha256": "5ddbe7c192c86e9e3fbf9eeb59fc594058a6f6405d49343b1c2ea2ab204a589c",
+      "content_input_sha256": "d4ddc9a682d1641f37a922e8ec412929d853505fb2113c7f0225df7556e45fea",
+      "render_input_sha256": "0a3262eaabe6070a5eb547051e3e2ceee9b2fb4fb64b55f83a8fbbe17b28e043",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "c978d94622f09142c871e62b1e6e6824cfc547b65e18956997fd50525c40ef04",
-      "png_sha256": "393831a316325ba4ec3be75af2ae8fe520ee27da10916ecbc3209ea1e1cb703a",
-      "content_input_sha256": "93bb05eab26a5489fca59252b5121e900ab16b8f701530b9392b7ba9de63dbf5",
-      "render_input_sha256": "8215fd78ac79812edba7729ca163c61eaa48bbb3a92403e1f7da31cb75ce1d9c",
+      "svg_sha256": "9421db7da949bf1d6ea23e3038871cf9f0942dcb8d555acbe7c2d8d546b406a5",
+      "png_sha256": "f88de7c46493511e0c96ed49f972f561ae4a917556deafe2c69e34c6fc7c3ce8",
+      "content_input_sha256": "cf93162d786eeb95c906b28a098351dd47951e76c793834354ac9ee510d26d76",
+      "render_input_sha256": "f94143d5b6caba24a0d579366280db68c56950298063ced70437882d4e6bb3dc",
       "width": 1200,
       "height": 630
     }

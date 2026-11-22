@@ -8,21 +8,21 @@ const text=p=>readFileSync(new URL(p,root),'utf8');
 const json=p=>JSON.parse(text(p));
 const sha=p=>createHash('sha256').update(readFileSync(new URL(p,root))).digest('hex');
 const registry=json('catalog/atlas-execution-examples.json');
-const targets=['advection-sine','sod','shu-osher','poisson-1d-dirichlet','poisson-2d-sine','bratu','harmonic-oscillator','stiff-cosine','smooth-function-projection','isolated-particles','periodic-particles','taylor-green','brio-wu','hydrogenic-atoms','helium-ground-state'];
+const targets=['advection-sine','sod','shu-osher','poisson-1d-dirichlet','poisson-2d-sine','bratu','harmonic-oscillator','stiff-cosine','smooth-function-projection','isolated-particles','periodic-particles','taylor-green','brio-wu','hydrogenic-atoms','helium-ground-state','logistic-growth','sir-epidemic','mc-integral','gbm-sde'];
 const prefix='code/numerical-methods-atlas/2026-11-22/';
 const path=url=>new URL(url).pathname.slice(1);
 
 test('all fifteen agreed representative problems have one reproduction record without changing the atlas-wide sixty',()=>{
-  assert.equal(registry.examples.length,15);
+  assert.equal(registry.examples.length,19);
   assert.deepEqual(registry.examples.map(x=>x.problem_id).sort(),[...targets].sort());
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length,60);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,60);
-  assert.equal(registry.examples.filter(x=>x.release.version==='2026-11-22').length,12);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length,64);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,64);
+  assert.equal(registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22').length,12);
   for(const id of ['barnes-hut','hydrogenic-atoms','helium-ground-state'])assert.equal(registry.examples.find(x=>x.id===id).release.version,'2026-11-21');
 });
 
 test('new recipes expose the exact fixed input, measured acceptance criteria and populated numerical output',()=>{
-  for(const example of registry.examples.filter(x=>x.release.version==='2026-11-22')){
+  for(const example of registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22')){
     const input=json(path(example.inputs.url));
     assert.equal(input.problem_id,example.problem_id);
     assert.ok(input.acceptance.length>=3,example.id+' meaningful criteria');
@@ -74,7 +74,7 @@ test('all fifteen are rerun from the exact public registry and the guide display
   assert.equal(receipt.registry_url,'https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json');
   assert.equal(receipt.registry_sha256,sha('numerical-methods-atlas/code-and-data/examples.json'));
   assert.equal(receipt.passed,true);
-  assert.equal(receipt.unique_runner_executions,14);
+  assert.equal(receipt.unique_runner_executions,18);
   assert.deepEqual(receipt.examples.map(x=>x.id).sort(),registry.examples.map(x=>x.id).sort());
   for(const row of receipt.examples){assert.equal(row.execution.completed,true);assert.equal(row.validation.passed,true);assert.equal(row.passed,true);}
   assert.ok(text('numerical-methods-atlas/code-and-data/index.html').includes('href="'+url+'"'));

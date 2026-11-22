@@ -81,6 +81,15 @@ def public_record(x):
             'code_base':ORIGIN+CODE,'code_edition':EDITION if x['code_modules'] else None}
     if x.get('quantum_examples'):
         record.update(code_urls=[ORIGIN+ACODE+f for f in ['atomic_radial.py','run.py']],test_urls=[ORIGIN+ACODE+'test_atomic_radial.py'],run_commands=[ATOMS['test_command'],ATOMS['run_command']],run_from='Extracted quantum-atoms edition directory',code_base=ORIGIN+ACODE,code_edition=ATOMS['edition'],code_verification=ORIGIN+ACODE+'verification.json',code_download=ORIGIN+ACODE+ATOMS['archive'],inputs=ORIGIN+ACODE+'inputs.json',results=ORIGIN+ACODE+'results/results.json',independent_reference=ORIGIN+ACODE+'reference-pyscf.json',code_examples=[{**ACASES[i],'reading':{l:ORIGIN+f'/numerical-methods-atlas/{l}/read/quantum-atoms/#{ACASES[i]["section"]}' for l in ['ja','en']}} for i in x['quantum_examples']])
+    if x.get('model_examples'):
+        cases=[e for e in EXECUTION_RECORDS if e['id'] in x['model_examples']]
+        assert {e['id'] for e in cases}==set(x['model_examples']) and x['status']=='educational-example'
+        base=cases[0]['release']['manifest'].rsplit('/',1)[0]+'/'
+        assert all(e['release']==cases[0]['release'] and x['id'] in e['method_ids'] for e in cases)
+        record.update(code_urls=[base+'models.py',base+'run.py'],test_urls=[base+'test_models.py'],
+                      code_base=base,code_edition=cases[0]['release']['version'],code_download=cases[0]['release']['download'],
+                      code_verification=cases[0]['release']['verification'],run_commands=[e['commands']['run'] for e in cases],
+                      run_from='Extracted model-benchmarks edition directory')
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -151,6 +160,7 @@ if REVIEWED:
     write('/numerical-methods-atlas/methods/reviewed.json',json.dumps(reviewed,ensure_ascii=False,indent=2)+'\n')
 
 for x in METHODS:
+    record=public_record(x)
     url='/numerical-methods-atlas/methods/'+x['id']+'/'
     sections=[]
     for lang in ['ja','en']:
@@ -183,6 +193,8 @@ for x in METHODS:
             for ident in x['quantum_examples']:
                 c=ACASES[ident];body+='<li>'+link(f'/numerical-methods-atlas/{lang}/read/quantum-atoms/#{c["section"]}',c['name'][lang])+'</li>'
             body+='</ul><p>'+link(ACODE+ATOMS['archive'],'コード・入力・結果 ZIP' if ja else 'Code, inputs and results ZIP')+' · '+link(ACODE+'verification.json','独立展開の検証記録' if ja else 'Independent-extraction verification')+'</p><p>'+link(ACODE+'atomic_radial.py','Python solver')+' · '+link(ACODE+'test_atomic_radial.py','Tests')+' · '+link(ACODE+'inputs.json','Inputs JSON')+' · '+link(ACODE+'results/results.json','Results JSON')+' · '+link(ACODE+'reference-pyscf.json','Independent reference JSON')+'</p><pre><code>'+esc(ATOMS['test_command']+'\n'+ATOMS['run_command'])+'</code></pre>'
+        if x.get('model_examples'):
+            body+='<h2>'+('固定入力の専用実装と検証' if ja else 'Dedicated fixed-input implementation and checks')+'</h2><p>'+esc(x['example_scope'][lang])+'</p><p>'+link(record['code_urls'][0],'Python solver')+' · '+link(record['test_urls'][0],'Tests')+' · '+link(record['code_download'],'ZIP')+' · '+link(record['code_verification'],'Verification JSON')+'</p>'
         for common in execution_links(x['id']):
             body+='<p class="resource-summary">'+link(common['guide'][lang],'入力・実行・結果判定・引用の共通手順' if ja else 'Shared input, execution, validation and citation steps')+'</p>'
         if x.get('example'):
@@ -211,6 +223,7 @@ for x in METHODS:
     md+='\n'.join('- Reading ('+lang+'): '+ORIGIN+u for lang,u in x['reading'].items())+'\n\n'
     md+='\n'.join('- Code: '+ORIGIN+CODE+'numart/'+name+'.py' for name in x['code_modules'])+'\n\n'
     md+='\n'.join('- Reference: '+r['url']+' — '+r['scope'] for r in x['references'])+'\n\n'
+    if x.get('model_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\nCode: '+record['code_urls'][0]+'\nTests: '+record['test_urls'][0]+'\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\n\n'
     if x.get('quantum_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\n'+json.dumps(record['code_examples'],ensure_ascii=False,indent=2)+'\n\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\nSource: '+record['code_urls'][0]+'\nResults: '+record['results']+'\nCommands (from extracted atomic edition):\n\n'+ '\n'.join(record['run_commands'])+'\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'

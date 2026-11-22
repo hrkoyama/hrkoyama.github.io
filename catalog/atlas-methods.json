@@ -11104,8 +11104,8 @@
         "ja": "乱数・標本数・分散と積分誤差をつなぐ。",
         "en": "Connect random samples, variance and integration error."
       },
-      "status": "planned",
-      "origin": "development-candidate",
+      "status": "educational-example",
+      "origin": "scoped-fixed-input-implementation",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/monte-carlo/",
         "en": "/numerical-methods-atlas/en/read/monte-carlo/"
@@ -11123,12 +11123,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "seed・信頼区間・独立反復を備える例。",
-        "en": "Seeded examples with uncertainty and independent repetitions."
+        "ja": "既存例の適用範囲を広げる前に、別の参照問題で検証を追加する。",
+        "en": "Add validation against another reference problem before extending application scope."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+        "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -11139,7 +11139,14 @@
         "モンテカルロ積分",
         "Monte Carlo method",
         "Monte Carlo integration"
-      ]
+      ],
+      "model_examples": [
+        "mc-integral"
+      ],
+      "example_scope": {
+        "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
+        "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
+      }
     },
     {
       "id": "mcmc",
@@ -11213,8 +11220,8 @@
         "ja": "確率積分の規約と強・弱誤差を区別する。",
         "en": "Distinguish stochastic-integration conventions and strong/weak errors."
       },
-      "status": "planned",
-      "origin": "development-candidate",
+      "status": "educational-example",
+      "origin": "scoped-fixed-input-implementation",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/sde/",
         "en": "/numerical-methods-atlas/en/read/sde/"
@@ -11237,12 +11244,12 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "解析的な統計量を持つ模型での検証。",
-        "en": "A model with known statistical observables."
+        "ja": "既存例の適用範囲を広げる前に、別の参照問題で検証を追加する。",
+        "en": "Add validation against another reference problem before extending application scope."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+        "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
@@ -11253,7 +11260,14 @@
         "SDE法",
         "stochastic differential equation",
         "確率微分方程式法"
-      ]
+      ],
+      "model_examples": [
+        "gbm-sde"
+      ],
+      "example_scope": {
+        "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+        "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+      }
     },
     {
       "id": "adjoint",

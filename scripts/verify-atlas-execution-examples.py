@@ -353,7 +353,7 @@ def main(argv=None):
                 raw, source_mode = registry_module.encode(registry), 'local-catalog-before-publication'
         phase = 'registry-validation';registry_module.validate_registry(registry)
         report.update(registry_sha256=sha(raw), registry_source_mode=source_mode,
-                      scope=f'Only the {len(registry["examples"])} curated public execution examples. Atomic cases share one runner. Separate from packaged pytest checks, PySCF reference regeneration, all 60 atlas problems and general solver certification.')
+                      scope=f'Only the {len(registry["examples"])} curated public execution examples. Atomic cases share one runner. Separate from packaged pytest checks, PySCF reference regeneration, the full atlas problem inventory and general solver certification.')
         checkpoint({}, [], [])
         phase = 'execution'
         environment,releases,examples = run_registry(registry,args.python,args.timeout,args.artifacts_dir,checkpoint)
