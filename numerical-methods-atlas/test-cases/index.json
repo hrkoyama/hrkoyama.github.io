@@ -1383,6 +1383,10 @@
         {
           "path": "numerical-methods-atlas/gallery/calculations.json",
           "json_pointer": "/cases/bratu"
+        },
+        {
+          "path": "code/bratu-sensitivity/2026-11-22/docs/figures/bratu-sensitivity.json",
+          "json_pointer": "/grid_runs"
         }
       ],
       "availability": "saved-output",
@@ -2280,7 +2284,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "0dbafe724fcde526266a879ac6a48fbba566bc5391c1d4a53d4141e0841b5abb",
+    "catalog/atlas-test-problems.json": "a2f281904c24d2b3c0fcf4cdecf654b84409d8ec4befed3f5268c808d3d7c9d9",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -2310,6 +2314,7 @@
     "code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py": "1ff0a1d00b61872844c46a0f9961547acc857ebc8d87e3395550d8c1ae25fad0",
     "numerical-methods-atlas/assets/particle-gravity.json": "04d2172033898666e9df1578174df6007899fa6fed23d5094991b04df77d5923",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
+    "code/bratu-sensitivity/2026-11-22/docs/figures/bratu-sensitivity.json": "373e1f1c34c978f908e032fd93b841dc456cc32b9413e77a7b06fb49becc7069",
     "code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py": "45a38aa6b8f5a4113699d3f89732ef25a713a33eb39303cbd428e362cbdded42",
     "numerical-methods-atlas/assets/gravity-boundaries.json": "22b3f50c1facb15f6e9b9db2cc393f49161c20ea46fce5bd22cbf7b9df3da168",
     "code/numerical-methods-atlas/2026-11-21/tests/test_gravity_boundaries.py": "328bf0dd6555fab95ce2348e9b9405df744df57eae5fcba7a62a3d2fa762660a",

@@ -1,0 +1,58 @@
+.wave-evolution {
+  --wave-ink: #23392f;
+  --wave-muted: #56635b;
+  --wave-line: #d5d9cd;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin-block: 28px;
+  padding: 22px;
+  border: 1px solid var(--wave-line);
+  border-radius: 4px;
+  background: #faf8f2;
+  color: var(--wave-ink);
+  font: 13px/1.65 var(--sans, sans-serif);
+  overflow-wrap: anywhere;
+}
+.wave-evolution *, .wave-evolution *::before, .wave-evolution *::after { box-sizing: border-box; }
+.wave-evolution [hidden] { display: none !important; }
+.wave-evolution .wave-title { margin: 0 0 9px; color: var(--wave-ink); font: 500 18px/1.5 var(--sans, sans-serif); letter-spacing: 0; }
+.wave-evolution .wave-intro { margin: 0 0 18px; color: var(--wave-muted); font-size: 12px; line-height: 1.8; }
+.wave-evolution .wave-controls { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 15px 18px; align-items: center; padding: 15px 0; border-block: 1px solid var(--wave-line); }
+.wave-evolution .wave-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.wave-evolution button { min-height: 42px; margin: 0; padding: 8px 14px; border: 1px solid #718170; border-radius: 3px; background: transparent; color: var(--wave-ink); font: 500 14px/1.5 var(--sans, sans-serif); cursor: pointer; }
+.wave-evolution button.wave-play { min-width: 84px; border-color: var(--wave-ink); background: var(--wave-ink); color: #fff; }
+.wave-evolution button:hover:enabled { background: #e8eddf; }
+.wave-evolution button.wave-play:hover:enabled { background: #365347; }
+.wave-evolution button:disabled, .wave-evolution input:disabled { cursor: default; opacity: .55; }
+.wave-evolution button:focus-visible, .wave-evolution input:focus-visible { outline: 3px solid #a24722; outline-offset: 4px; }
+.wave-evolution .wave-time { justify-self: end; max-width: 100%; color: var(--wave-ink); font: 12px/1.7 var(--mono, monospace); text-align: right; font-variant-numeric: tabular-nums; }
+.wave-evolution .wave-slider { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 15px; }
+.wave-evolution .wave-slider label { font-size: 12px; }
+.wave-evolution .wave-step { display: block; width: 100%; min-width: 0; height: 30px; margin: 0; padding: 0; accent-color: var(--wave-ink); cursor: pointer; touch-action: pan-y; }
+.wave-evolution .wave-range-ends { grid-column: 2; display: flex; justify-content: space-between; color: var(--wave-muted); font: 12px/1 var(--mono, monospace); }
+.wave-evolution .wave-legend { display: flex; flex-wrap: wrap; gap: 7px 22px; margin-block: 16px 5px; color: var(--wave-muted); font-size: 12px; }
+.wave-evolution .wave-legend > span { display: flex; align-items: center; gap: 8px; }
+.wave-evolution .wave-legend > span::before { content: ''; width: 24px; flex-shrink: 0; border-top: 2px solid #a24722; }
+.wave-evolution .wave-legend > .wave-exact::before { border-top: 2px dashed #252b28; }
+.wave-evolution .wave-domain { margin: 5px 0 0; color: var(--wave-muted); font: 12px/1.8 var(--mono, monospace); }
+.wave-evolution .wave-panels { display: grid; gap: 18px; margin-top: 15px; }
+.wave-evolution .wave-panel { min-width: 0; padding-top: 13px; border-top: 1px solid var(--wave-line); }
+.wave-evolution .wave-panel h4 { margin: 0 0 4px; color: #a24722; font: 600 14px/1.5 var(--sans, sans-serif); letter-spacing: 0; }
+.wave-evolution .wave-panel:nth-child(2) h4 { color: #326c94; }
+.wave-evolution .wave-panel:nth-child(3) h4 { color: #67509b; }
+.wave-evolution .wave-panel-note { margin: 0 0 5px; color: var(--wave-muted); font-size: 12px; line-height: 1.7; }
+.wave-evolution .wave-canvas { display: block; width: 100%; height: 172px; max-width: 100%; }
+.wave-evolution .wave-metrics { margin: 3px 0 0; color: var(--wave-muted); font: 12px/1.8 var(--mono, monospace); font-variant-numeric: tabular-nums; }
+.wave-evolution .wave-help { margin: 20px 0 0; color: var(--wave-muted); font-size: 12px; line-height: 1.8; }
+.wave-evolution .wave-reduced { margin: 9px 0 0; color: var(--wave-muted); font-size: 12px; line-height: 1.8; }
+.wave-evolution .wave-status { margin: 12px 0 0; color: var(--wave-ink); font-size: 12px; line-height: 1.8; }
+.wave-evolution[data-wave-state="error"] .wave-controls { display: none; }
+@media (max-width: 520px) {
+  .wave-evolution { padding: 15px 12px; }
+  .wave-evolution .wave-title { font-size: 16px; }
+  .wave-evolution .wave-controls { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .wave-evolution .wave-time { justify-self: start; text-align: left; }
+  .wave-evolution .wave-slider { grid-template-columns: minmax(0, 1fr); row-gap: 3px; }
+  .wave-evolution .wave-range-ends { grid-column: 1; }
+}

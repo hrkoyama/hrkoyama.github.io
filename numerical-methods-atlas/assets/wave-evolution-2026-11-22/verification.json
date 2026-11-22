@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "checks": {
+    "all_series_identical_initial_profile": true,
+    "all_values_finite": true,
+    "lw_independent_stencil": true,
+    "mode_stencils": true,
+    "real_outputs": true,
+    "physical_reference_matches_interpolant": true,
+    "all_means_preserved": true,
+    "damping_only_l2_nonincreasing": true,
+    "lax_wendroff_l2_nonincreasing": true,
+    "dispersion_only_l2_preserved": true,
+    "damping_gain_at_most_one": true,
+    "dispersion_gain_unit": true,
+    "damping_phase_is_exact": true,
+    "json_rounding_at_most_5e_minus_8": true
+  },
+  "lw_max_abs_error": 2.831068712794149e-15,
+  "mode_max_abs_errors": {
+    "upwind_stencil": 6.132060527174975e-14,
+    "centered_derivative": 4.8695816079514514e-12,
+    "lax_wendroff_stencil": 5.517918902102149e-14
+  },
+  "max_imaginary_residual": {
+    "exact": 3.0140819040792794e-16,
+    "damping_only": 2.1270715071851505e-16,
+    "dispersion_only": 3.2481779576398627e-16,
+    "lax_wendroff": 2.896106190618623e-16
+  },
+  "exact_vs_physical_bump_max_abs_error_all_steps": 1.2823075934420558e-14,
+  "physical_reference_note": "Exact curves translate the N-point trigonometric interpolant. The physical analytic bump differs by negligible spectral sampling/truncation error; measured on all 161 times and 127 grid points.",
+  "dense_fourier_tail_estimate": {
+    "samples": 16384,
+    "cutoff_abs_mode": 63,
+    "l1": 3.9649313543513915e-14,
+    "l2": 1.2316474811911818e-15,
+    "note": "Numerical estimate, includes floating-point noise; not an analytic rigorous bound."
+  },
+  "output_quantization_max_abs_error": {
+    "exact": 4.9543668041154496e-08,
+    "damping_only": 4.999275993436865e-08,
+    "dispersion_only": 4.998844196912877e-08,
+    "lax_wendroff": 4.99762192223764e-08
+  },
+  "input_parameter_sha256": "5b2b5f6eb8ddb07780a69e3ed99ca25e885bee1cd54fa9e5e00ae395bc0d9c67",
+  "generator_sha256": "af91c3633bff2ab10bc76360b0e36c8e5ac729b575fc174ea790a80363411927",
+  "files": {
+    "frames.json": {
+      "bytes": 282863,
+      "sha256": "59bb575ab4c49c9120bf9aff22dd93979d2dedfb5565e273e3b4ab68d0f3a29b"
+    },
+    "overview.png": {
+      "bytes": 220929,
+      "sha256": "de4e65557e3383252bd5e9429a14c39d889a8c5b2f3a783ff78510d8624d4ba8"
+    },
+    "result.json": {
+      "bytes": 3012,
+      "sha256": "926b72cab89992cf5b3a306cc76e52db135f4c397782108eef4352a27c1486f8"
+    },
+    "snapshots.csv": {
+      "bytes": 69867,
+      "sha256": "79b14606175f2b43ba36f8fbb67569b2736dd5e878198c0f8f852fb9c20001c7"
+    }
+  }
+}

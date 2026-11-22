@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "scope": "Fixed-input waveform comparison for scalar periodic advection. A isolates damping, B is exact semidiscrete centered evolution, C is Lax\u2013Wendroff.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1071,
+      "sha256": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 3870,
+      "sha256": "37edcfbeffef7ef6e9eb0b6a0ef913475ca6762480f99a610f6b42a92ba3e11e"
+    },
+    {
+      "path": "frames.json",
+      "bytes": 282863,
+      "sha256": "59bb575ab4c49c9120bf9aff22dd93979d2dedfb5565e273e3b4ab68d0f3a29b"
+    },
+    {
+      "path": "generate-wave-evolution.py",
+      "bytes": 11449,
+      "sha256": "af91c3633bff2ab10bc76360b0e36c8e5ac729b575fc174ea790a80363411927"
+    },
+    {
+      "path": "overview.png",
+      "bytes": 220929,
+      "sha256": "de4e65557e3383252bd5e9429a14c39d889a8c5b2f3a783ff78510d8624d4ba8"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 31,
+      "sha256": "9219ba01fa741ccca28c752db67a0ac180f6d9e55cb5198821ded5aa4b4099bd"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3012,
+      "sha256": "926b72cab89992cf5b3a306cc76e52db135f4c397782108eef4352a27c1486f8"
+    },
+    {
+      "path": "snapshots.csv",
+      "bytes": 69867,
+      "sha256": "79b14606175f2b43ba36f8fbb67569b2736dd5e878198c0f8f852fb9c20001c7"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 2512,
+      "sha256": "6d07a7e612880dc2bdc36b53ce6fea725fd7e2acb053e89771968b5610cec1dc"
+    }
+  ]
+}

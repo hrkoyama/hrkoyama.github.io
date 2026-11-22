@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-713a534c4f
-Captured (UTC): 2026-11-22T05:58:11+00:00
+Snapshot: 2026-11-22-0b638fcfc8
+Captured (UTC): 2026-11-22T07:05:26+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -178,51 +178,154 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
-## Adjoint methods and inverse problems — Adjoint methods and inverse problems [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Implicit differentiation and adjoints: Bratu parameter sensitivity [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/
 Coverage: reading
 
-Adjoints efficiently compute sensitivities when state and parameter dimensions are large but there are few objectives. Obtaining a gradient does not establish uniqueness of an inverse problem.
+Compute how a converged numerical solution responds to a changing coefficient. Implement implicit state sensitivities and a discrete adjoint gradient for Bratu’s equation, then check them against an exact continuous family, re-solved parameter differences and spatial refinement.
 
-## Adjoint methods and inverse problems — Problem and representative equations [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Differentiate the converged equation [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#model
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#implicit-root
 Coverage: reading
 
-For a discrete state equation R(u,m)=0 and scalar objective J, define L=J−λᵀR. With suitable invertibility of R_u, solve R_uᵀλ=J_uᵀ to avoid explicit state sensitivities for every parameter. Subscripts denote partial derivatives; the signs follow this Lagrangian convention.
-R_u^T\lambda=J_u^T,\qquad \frac{dJ}{dm}=J_m-\lambda^TR_m.
+Consider a state u defined by an equation depending on parameters θ rather than by an explicit formula. For n states and m parameters, denote residual partial derivatives by J and B. All gradients below are column vectors.
+F(u(\theta),\theta)=0,\qquad J=F_u\in\mathbb R^{n\times n},\qquad B=F_\theta\in\mathbb R^{n\times m}.
+If F is continuously differentiable near the solution and J is nonsingular, the implicit function theorem defines a local derivative of the solution. Applying the chain rule gives a sensitivity equation. This does not establish global uniqueness or automatically select one branch among several roots.
 
-## Adjoint methods and inverse problems — Algorithm [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Implicit differentiation: solve the sensitivity equation [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#algorithm
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#forward-sensitivity
 Coverage: reading
 
-Solve the forward state, solve the adjoint using residual/objective derivatives, then assemble the gradient. Transient problems need forward-state history and a storage/recomputation strategy. Discretizing a continuous adjoint and differentiating a discretization need not agree on a finite mesh.
+J S+B=0,\qquad S=\frac{du}{d\theta},\qquad J s_v=-Bv,\qquad s_v=S v.
+S is the state Jacobian with respect to all parameters. If only one direction v is needed, solve one linear system with right-hand side −Bv. Do not explicitly form an inverse of J. Analytic expressions, AD or appropriately checked finite differences can supply J and B.
+The example first solves the primal problem using the existing Newton method, then assembles residual partial derivatives at the computed state. AD evaluates local derivatives of the residual. The implementation does not differentiate an unrolled finite sequence of Newton iterations.
 
-## Adjoint methods and inverse problems — Conditions and pitfalls [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Discrete adjoints: obtain an objective gradient [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#conditions
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#discrete-adjoint
 Coverage: reading
 
-Differentiate boundary conditions, mesh/coordinate dependence, observations and regularization consistently. Nonsmooth limiters and moving shocks challenge ordinary differentiability assumptions. Incomplete forward or adjoint convergence contaminates gradients.
+Observation fitting and design often need the total derivative of a scalar objective rather than every state sensitivity. Separate the partial derivative r at fixed state from the contribution Sᵀq due to the changing state.
+\widehat L(\theta)=L(u(\theta),\theta),\qquad q=\nabla_uL,\quad r=\nabla_\theta L,\qquad \nabla_\theta\widehat L=r+S^Tq.
+Solving a transpose system gives the same gradient without storing every column of S. The Lagrangian convention used here subtracts the residual term, so the term involving B has a minus sign.
+J^Tp=q,\qquad \boxed{\nabla_\theta\widehat L=r-B^Tp}.
+\mathcal L(u,\theta,p)=L(u,\theta)-p^TF(u,\theta),\qquad \nabla_u\mathcal L=q-J^Tp=0.
+With many parameters and few objectives, adjoint solves per objective can replace sensitivity solves per parameter. Factorizations can be shared across right-hand sides, and a VJP can evaluate Bᵀp. This one-parameter, one-objective example has one right-hand side for either method and makes no speed claim. The implementation assembles and solves small dense matrices.
 
-## Adjoint methods and inverse problems — What to check [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — The same Bratu discretization and branch [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#verification
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#bratu-family
 Coverage: reading
 
-Use directional Taylor tests: J(m+hv)−J(m)−h∇J·v should behave as O(h²) in a smooth, sufficiently converged regime. Add adjoint inner-product and finite-difference tests. Assess identifiability, regularization and data error separately for the inverse problem.
+Use the same Bratu equation on [0,1] with zero Dirichlet data as in the AD chapter. Here n counts interior unknowns. Coordinates, state, parameter and objective are dimensionless in this educational model. The grid and boundary data are independent of the parameter.
+-u^{\prime\prime}-\lambda e^u=0,\quad 0<x<1,\quad u(0)=u(1)=0,\qquad F_i=\frac{2u_i-u_{i-1}-u_{i+1}}{h^2}-\lambda e^{u_i},\quad h=\frac1{n+1}.
+J=D-\lambda\operatorname{diag}(e^u),\qquad D=h^{-2}\operatorname{tridiag}(-1,2,-1),\qquad F_\lambda=-e^u,\qquad J s=e^u.
+The continuous problem has an exact family parameterized by α. The point α=1 uses the same parameter as the earlier Bratu example. The verification uses α=1 and 2, both corresponding to the smaller-solution branch reached from zero initial data.
+u_\alpha(x)=-2\log\!\frac{\cosh(\alpha(x-1/2))}{\cosh(\alpha/2)},\qquad \lambda(\alpha)=\frac{2\alpha^2}{\cosh^2(\alpha/2)},
+\frac{d\lambda}{d\alpha}=\lambda\left(\frac2\alpha-\tanh\frac\alpha2\right),\qquad s_*(x)=\frac{\tanh(\alpha/2)-2(x-1/2)\tanh(\alpha(x-1/2))}{d\lambda/d\alpha}.
 
-## Adjoint methods and inverse problems — Publication scope and related entries [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — The same Bratu discretization and branch [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#bratu-family
+Coverage: reading
+
+Evaluate s_* at the grid nodes as an independent reference for the discrete sensitivity s. The continuous solution is not assumed to be an exact root of the discrete equations. Sensitivity can diverge at a fold where dλ/dα vanishes. Branch switching, passage through singular points and continuation of the upper branch are outside the verified scope.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Retain the objective’s explicit parameter dependence [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#bratu-objective
+Coverage: reading
+
+L_h(u,\lambda)=\frac h2\sum_{i=1}^{n}u_i^2+\frac\beta2\lambda^2,\qquad \beta=0.05,\qquad q=h u,\quad r=\beta\lambda.
+The first term is a trapezoidal approximation of the integral of half the squared state. Zero endpoint values leave only interior contributions. The second term deliberately retains explicit parameter dependence, so dropping βλ can be detected separately from the state-mediated contribution. This is a defined derivative-check objective, not a fit to observational data.
+J^Tp=h u,\qquad g_{\mathrm{direct}}=\beta\lambda+h u^T s,\qquad g_{\mathrm{adjoint}}=\beta\lambda+p^T e^u.
+Here p is a discrete adjoint in the Euclidean inner product; the quadrature weight h is included in q=h u. Do not identify p directly with nodal values of a continuous PDE adjoint defined in an L² inner product. Nonuniform grids, finite elements and parameter-dependent quadrature require consistent treatment of mass matrices and weights.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Verification: separate sensitivities, gradients and spatial error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#sensitivity-verification
+Coverage: reading
+
+The saved measurements and source hashes record controls, tested points, residuals and errors.
+Residual partial derivatives. Treat state and parameter as independent inputs; compare AD evaluations of J and F_λ with analytic expressions. A parameter-only seed holds u fixed.
+Sensitivity and adjoint equations. Use the same converged state and recompute each linear-system residual. Compare direct and adjoint gradients, including the explicit βλ term.
+Parameter differences. Solve the nonlinear problem again at λ+ε and λ−ε before differencing the objective. Perturbing λ while holding the state fixed does not test the total derivative.
+Spatial refinement. For n=15, 31 and 63 compare discrete sensitivity with the exact continuous s_* in the maximum nodal norm. Direct–adjoint agreement alone does not establish spatial accuracy.
+Saved measurements. The points α=1 and 2 have λ≈1.5728955 and 3.3597947. All six regular cases start at zero with an absolute primal residual Euclidean tolerance of 10⁻¹⁰ and at most 40 updates. Direct and adjoint gradients differ by less than 1.4×10⁻¹⁵. Primal residuals are at most 5.3×10⁻¹¹; the relative sensitivity and adjoint residuals defined below are at most 2.3×10⁻¹³ and 1.9×10⁻¹³, respectively.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Verification: separate sensitivities, gradients and spatial error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#sensitivity-verification
+Coverage: reading
+
+For n=15, 31 and 63, maximum nodal sensitivity errors are approximately 3.0015×10⁻⁴, 7.4860×10⁻⁵ and 1.8704×10⁻⁵ at α=1; at α=2 they are 2.6708×10⁻², 6.4898×10⁻³ and 1.6112×10⁻³. Halving h reduces errors by about four; the coarser α=2 grid shows a larger departure from the asymptotic regime. These are spatial sensitivity errors, not direct–adjoint discrepancies.
+g_{\mathrm{FD}}(\varepsilon)=\frac{L_h(u(\lambda+\varepsilon),\lambda+\varepsilon)-L_h(u(\lambda-\varepsilon),\lambda-\varepsilon)}{2\varepsilon}.
+The n=31 difference check uses 17 perturbations ε from 10⁻¹ to 10⁻⁹. In this saved run, agreement is good near ε=10⁻⁵, where the absolute gradient difference for α=2 is about 4.0×10⁻¹¹. At ε=10⁻⁹ it grows to about 1.3×10⁻⁶. Making perturbations ever smaller does not give an ever more accurate gradient.
+The parameter perturbation ε and spatial mesh spacing h are different quantities. Sweep ε and vary the nonlinear solve tolerance to expose regimes dominated by truncation, incomplete convergence or roundoff. Finite differences provide an independent check, not a uniformly optimal reference at every perturbation.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Verification: separate sensitivities, gradients and spatial error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#sensitivity-verification
+Coverage: reading
+
+The Bratu Jacobian here is symmetric, so replacing Jᵀ incorrectly by J would escape detection on this problem alone. A separate manufactured implicit system with a nonsymmetric matrix and multiple parameters therefore independently checks direct sensitivities and adjoint gradients. That test checks transposition, signs and shapes; it does not validate another physical model.
+A separate α=2, n=31 sweep uses primal tolerances 10⁻², 10⁻⁶ and 10⁻¹⁰. At ε=10⁻⁴, absolute finite-difference gradient error decreases from about 3.2×10⁻⁵ for the loose 10⁻² solve to about 3.5×10⁻⁸ for the two tighter settings. The 10⁻⁶ and 10⁻¹⁰ controls accept the same Newton iterates, so their curves overlap. Do not interpret every tolerance tightening as a distinct result or a strict monotonic improvement.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Incomplete solves, conditioning and unrolled iterations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#solver-errors
+Coverage: reading
+
+r_F=\|F(u,\lambda)\|_2,\qquad \rho_s=\frac{\|Js+F_\lambda\|_2}{\|F_\lambda\|_2},\qquad \rho_p=\frac{\|J^Tp-q\|_2}{\|q\|_2}.
+Primal, sensitivity and adjoint equations have separate residuals. A small linear residual does not repair an unconverged state: derivatives are then evaluated at an approximate state rather than an exact root. An ill-conditioned J can amplify small primal errors into state or gradient errors. Conditioning also depends on scaling and grid size, so cross-grid condition numbers are not algorithm rankings.
+Differentiating finitely many iterations gives the derivative of a map depending on the initial state and executed updates. Implicit differentiation targets the equations defining a local converged solution. State that distinction when differentiating through stopping criteria, line searches or adaptive decisions. A computed gradient alone establishes neither inverse-problem identifiability nor optimizer convergence.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Continuous sensitivities and applicability [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#continuous-limit
+Coverage: reading
+
+-s^{\prime\prime}-\lambda e^u s=e^u,\qquad s(0)=s(1)=0.
+Differentiating the continuous Bratu equation with respect to λ gives this boundary-value problem. Here centered differences also provide its natural discretization, and refinement can be checked against s_* from the exact family. In general, discretizing a continuous adjoint and differentiating a discrete residual need not agree on a finite mesh. Include parameter dependence of boundaries, grids, observation operators and quadrature weights.
+Verified scope is a specified smooth steady Bratu branch and a small nonsymmetric manufactured system. It does not cover shocks, limiters, contacts/events, transient adjoints, singular bifurcation points or inverse fitting to real observations. Read discretization error, derivative implementation and physical-model validity separately.
+A separate continuous reference is also provided for the objective gradient. Integrate the exact-family u_α and s_* and compare 96- and 192-point Gauss quadrature.
+g_* =\beta\lambda+\int_0^1 u_\alpha(x)s_*(x)\,dx.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Continuous sensitivities and applicability [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#continuous-limit
+Coverage: reading
+
+The references are about 0.1027083914 at α=1 and 0.5823748758 at α=2. The n=31 discrete adjoint gradients are about 0.1027218294 and 0.5857608186, respectively. Spatial error remains despite near-machine-precision direct–adjoint agreement. The two quadrature orders differ by less than 4.4×10⁻¹⁵ in both cases; their difference is a convergence diagnostic rather than a rigorous quadrature error bound.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Run and inspect the fixed release [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#reproduce
+Coverage: reading
+
+Extract the dated release ZIP and follow its README in a new Python environment. The earlier AD supplement and other releases are not overwritten.
+python -m pip install -r requirements.txt
+python scripts/build_bratu_sensitivity.py
+python -m pytest tests/test_bratu_sensitivity.py
+Inspect the sensitivity/adjoint source, figure and evidence builder, test source, file inventory and SHA-256 hashes, and independent-extraction verification record.
+The existing AD foundation chapter explains how residual derivatives are obtained. Blondel et al. (2022), Section 2.1, and the official JAXopt references provide further discussion of root derivatives and their JVP/VJP constructions. This independent example uses NumPy and adds neither a JAX/JAXopt dependency nor a performance comparison with those libraries.
+Automatic differentiation foundation · Newton and conditioning
+The nine dedicated tests are rerun from an independently extracted copy of the release. The verification receipt also records checks of numerical evidence, the rebuilt figure and file hashes.
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
-Adjoint methods and inverse problems
+An educational implementation verifies implicit state sensitivity and a discrete adjoint gradient on a specified smaller-solution Bratu branch, with a separate nonsymmetric multiparameter manufactured transpose test. State, derivative, mesh and parameter-perturbation errors are separated. Scope is small steady dense systems; it does not provide general reverse-mode AD, transient adjoints, singular-point continuation or a real-data inverse solver.
+Implicit differentiation and adjoint methods
+Automatic differentiation
+Armijo-damped Newton
 
-## Adjoint methods and inverse problems — Primary publications, supporting sources and review scope [en]
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#sources
 Coverage: reading
@@ -234,6 +337,18 @@ Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian h
 Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error. BIT
 Research publication: proposal or related formulation · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#sources
+Coverage: reading
+
+Consulted Section 2.1, pages 3–4: differentiating a root under local nonsingularity, and forming JVPs/VJPs through linear systems. Full-paper audit and reproduction of the paper experiments are not claimed.
+The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
+Official reference documentation · Selected source passages consulted · Consulted record
+Consulted the distinction between implicit and unrolled differentiation, custom_root support and the root_jvp/root_vjp API invariant optimality_fun(sol,*args)==0 with a supplied linear solver. No library benchmarking or reproduction of all examples is claimed.
 
 ## Advanced limiters: TVB and positivity preservation [en]
 
@@ -10323,7 +10438,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 113 methods and building blocks · 221 journal/conference papers · 262 total sources.
+46 equation/model entries · 114 methods and building blocks · 221 journal/conference papers · 262 total sources.
 There are 9 saved-profile equation-gallery cases across 7 equation families, and 78 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
@@ -10418,7 +10533,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-97 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+98 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -10935,6 +11050,32 @@ Coverage: reading
 The same amplification factor used to test growth also explains two distinct errors: numerical dissipation damps a wave's amplitude; numerical dispersion changes its propagation speed in a wavelength-dependent way. Consider constant-speed scalar advection on a periodic uniform grid. Let h be the grid spacing, Δt the positive time step, k the wavenumber, θ the dimensionless grid wavenumber, and C the signed Courant number. The Fourier convention and exact one-step factor are
 \begin{gathered}u_t+a u_x=0,\qquad x_j=jh,\quad\theta=kh,\quad C=\frac{a\Delta t}{h},\\u_j^n=\widehat u^{\,n}e^{ij\theta},\qquad G_{\rm exact}=e^{-ia k\Delta t}=e^{-iC\theta}.\end{gathered}
 The exact solution translates without changing amplitude. This makes the model useful for separating artificial damping from transport error.
+
+## Differences, CFL, von Neumann analysis, and Lax — Compare dissipation and dispersion through wave evolution [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#waveform-evolution
+Coverage: reading
+
+Compare the same smooth initial pulse at the same times and on identical axes. Dashed black is exact advection; solid color is the panel result. A isolates upwind damping as a constructed diagnostic, B evolves the centered semidiscrete equation exactly in time, and C is Lax–Wendroff.
+Loading the wave data. The static comparison below remains available without playback.
+Here, “no dissipation preserves amplitude” means preserving the magnitude of each Fourier component. When their phases separate, the combined peak can change height and the profile can develop negative tails or oscillations. Watch B change shape while its discrete L2 ratio stays at one. A lower peak alone is not proof of dissipation.
+View matched-time static snapshotsRows are A: damping only, B: dispersion only, C: both; columns share the same times. Waves wrap around the periodic boundary. Open the image to enlarge it.
+Conditions, formulas and reproduction files
+The periodic domain is [0,1), with a=1, N=127 and C=0.8, so Δt=0.8/127. One circuit takes T=L/a=1. The player shows every second step from 0 to 160 (about 1.008 circuits). The initial periodic pulse is
+u(x,0)=\exp\!\left[60\left(\cos\!\left(2\pi(x-\tfrac14)\right)-1\right)\right].
+
+## Differences, CFL, von Neumann analysis, and Lax — Compare dissipation and dispersion through wave evolution [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#waveform-evolution
+Coverage: reading
+
+For θ=2πm/N, the one-step multipliers underlying the saved frames are below. A is not actual upwind evolution: its phase error is removed to isolate damping. No RK4 or other time discretization is added to B.
+\begin{aligned}G_A&=\left|1-C+Ce^{-i\theta}\right|e^{-iC\theta},\\G_B&=e^{-iC\sin\theta},\\G_C&=1-iC\sin\theta+C^2(\cos\theta-1).\end{aligned}
+Curves are computed from the trigonometric interpolant of the initial samples. The dashed reference was checked against analytic pulse translation at every saved step and grid point, with maximum error about 1.3×10⁻¹⁴ under these conditions. C was independently checked against real-space Lax–Wendroff updates. Display JSON is rounded to seven decimal places, with error at most 5×10⁻⁸.
+All frames JSON · Selected snapshots CSV · Conditions and results JSON · Checks and hashes JSON · Generator Python · Requirements · Run instructions · Script license
+Save the generator and requirements in one folder, then run with a new output directory. Figures, data and prose retain the site’s item-specific reuse terms.
+python -m pip install -r requirements.txt
+python generate-wave-evolution.py --output generated
 
 ## Differences, CFL, von Neumann analysis, and Lax — What the amplification factor measures# [en]
 
@@ -12111,51 +12252,136 @@ P1 FEM：三角形内部でL2誤差とH1半ノルム誤差を積分します。
 硬い方程式の積分：受理した時間節点上の最大誤差を、非線形段階残差や局所誤差推定とは分けて報告します。
 各展示の既存の規約は維持します。この章の追加によって点値をセル平均に読み替えたり、未実施の最大誤差計算を保証したりはしません。
 
-## 随伴法・逆問題 — 随伴法・逆問題 [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 陰関数微分と随伴法：Bratuのパラメータ感度 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/
 Coverage: reading
 
-随伴法は、状態変数が多く目的関数が少ない問題で、パラメータ感度を効率よく計算する方法です。感度を得ることと、逆問題が一意に解けることは別です。
+収束した数値解が、係数の変化にどう応答するかを計算します。Bratu方程式で状態感度を求める陰関数微分と、スカラー目的関数の勾配を求める離散随伴法を実装し、解析解族・解き直した有限差分・格子細分化で検査します。
 
-## 随伴法・逆問題 — 対象と代表式 [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 収束した方程式を微分する [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#model
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#implicit-root
 Coverage: reading
 
-離散状態方程式R(u,m)=0とスカラー目的J(u,m)を考え、L=J−λᵀRと定義します。R_uが適切に可逆なら、R_uᵀλ=J_uᵀを解くことで、uの各パラメータ微分を明示的に求めずにdJ/dmを計算できます。添字は偏微分で、符号はこのLの規約に対応します。
-R_u^T\lambda=J_u^T,\qquad \frac{dJ}{dm}=J_m-\lambda^TR_m.
+状態uが陽な式で与えられず、パラメータθを含む方程式の解として定まる場合を考えます。n個の状態とm個のパラメータについて、残差の偏微分をJとBで表します。以下の勾配は列ベクトルです。
+F(u(\theta),\theta)=0,\qquad J=F_u\in\mathbb R^{n\times n},\qquad B=F_\theta\in\mathbb R^{n\times m}.
+Fが解の近傍で連続微分可能で、Jが正則なら、陰関数定理によって局所的な解の微分を定義できます。連鎖律を適用すると感度方程式が得られます。これは全領域での解の一意性や、複数ある解の枝を自動的に選ぶ保証ではありません。
 
-## 随伴法・逆問題 — 計算の流れ [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 陰関数微分：感度方程式を解く [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#algorithm
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#forward-sensitivity
 Coverage: reading
 
-順問題を解き、残差Jacobianと目的微分から随伴問題を解き、勾配を組み立てます。非定常問題では順方向の状態履歴が必要になり、保存・再計算の設計が加わります。連続随伴を離散化する方法と、離散方程式を微分する方法は有限格子上で一致するとは限りません。
+J S+B=0,\qquad S=\frac{du}{d\theta},\qquad J s_v=-Bv,\qquad s_v=S v.
+Sは全パラメータに対する状態のヤコビ行列です。1方向vだけが必要なら、その方向の右辺−Bvで線形方程式を1つ解きます。Jの逆行列を明示的には作りません。JとBは解析式、自動微分、適切に検査した有限差分などで与えられます。
+本例では既存のNewton法で順問題を解き、得られた状態で残差の偏微分を組み立てます。自動微分で計算するのは残差の局所的な微分です。有限回のNewton反復をすべて自動微分する処理は実装していません。
 
-## 随伴法・逆問題 — 適用条件と落とし穴 [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 随伴法：目的関数の勾配を直接求める [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#conditions
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#discrete-adjoint
 Coverage: reading
 
-境界条件、座標・格子のパラメータ依存、観測演算子、正則化を微分対象に含めます。非滑らかなlimitersや衝撃波位置の変化では通常の微分仮定に注意します。順問題・随伴問題の未収束は勾配誤差へ伝わります。
+観測値の比較や設計では、状態全体の感度より、スカラー目的関数の総微分が必要なことがあります。状態を固定した偏微分rと、状態が変わる効果Sᵀqを分けます。
+\widehat L(\theta)=L(u(\theta),\theta),\qquad q=\nabla_uL,\quad r=\nabla_\theta L,\qquad \nabla_\theta\widehat L=r+S^Tq.
+Jの転置を使う随伴方程式を解けば、Sを全列保存せずに同じ勾配が得られます。ここでは残差を引くLagrangianの規約を使うため、Bに掛かる項の符号は負です。
+J^Tp=q,\qquad \boxed{\nabla_\theta\widehat L=r-B^Tp}.
+\mathcal L(u,\theta,p)=L(u,\theta)-p^TF(u,\theta),\qquad \nabla_u\mathcal L=q-J^Tp=0.
+多数のパラメータと少数の目的関数では、パラメータごとの感度求解を、目的関数ごとの随伴求解に置き換えられます。複数右辺に同じ因子分解を使うことや、BᵀpをVJPで評価する構成も可能です。今回の1パラメータ・1目的関数では直接法と随伴法がそれぞれ1右辺なので、速度上の優位は主張しません。実装は小さな密行列を組み立てて解きます。
 
-## 随伴法・逆問題 — 検証するときに見る量 [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — Bratuの同じ離散化と解の枝 [ja]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#verification
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#bratu-family
 Coverage: reading
 
-方向vについてTaylor剰余J(m+hv)−J(m)−h∇J·vが、滑らかな問題でO(h²)になる範囲を調べます。随伴内積試験と方向差分も使います。逆問題では同定可能性・正則化依存・データ誤差を別途評価します。
+自動微分の章と同じ、区間[0,1]・零Dirichlet境界のBratu方程式を使います。nは内部未知数の数です。x、u、λと目的関数は、この教育例では無次元です。境界値と格子はパラメータに依存しません。
+-u^{\prime\prime}-\lambda e^u=0,\quad 0<x<1,\quad u(0)=u(1)=0,\qquad F_i=\frac{2u_i-u_{i-1}-u_{i+1}}{h^2}-\lambda e^{u_i},\quad h=\frac1{n+1}.
+J=D-\lambda\operatorname{diag}(e^u),\qquad D=h^{-2}\operatorname{tridiag}(-1,2,-1),\qquad F_\lambda=-e^u,\qquad J s=e^u.
+連続問題にはαで表せる厳密解族があります。α=1は以前のBratu検証と同じパラメータです。α=1と2を、零初期値から得る小さい解の枝に対応する2つの検証点として使います。
+u_\alpha(x)=-2\log\!\frac{\cosh(\alpha(x-1/2))}{\cosh(\alpha/2)},\qquad \lambda(\alpha)=\frac{2\alpha^2}{\cosh^2(\alpha/2)},
+\frac{d\lambda}{d\alpha}=\lambda\left(\frac2\alpha-\tanh\frac\alpha2\right),\qquad s_*(x)=\frac{\tanh(\alpha/2)-2(x-1/2)\tanh(\alpha(x-1/2))}{d\lambda/d\alpha}.
+この式を節点で評価したs_*を、離散感度sの独立した参照値にします。連続解を離散方程式の厳密な根とはみなしません。dλ/dαがゼロになる折り返し点では、このパラメータ表示による感度が発散し得ます。枝の変更、特異点の通過、高い方の枝の追跡は、この検証の範囲外です。
 
-## 随伴法・逆問題 — 公開範囲と関連項目 [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 目的関数の陽な依存を落とさない [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#bratu-objective
+Coverage: reading
+
+L_h(u,\lambda)=\frac h2\sum_{i=1}^{n}u_i^2+\frac\beta2\lambda^2,\qquad \beta=0.05,\qquad q=h u,\quad r=\beta\lambda.
+第1項は状態の二乗の積分を台形則で近似します。端点の状態はゼロなので内部節点の和だけになります。第2項はパラメータへの陽な依存を意図的に残した項です。βλを落とす誤りを、状態を通した寄与との照合で検出できます。これは観測データに当てはめた目的関数ではなく、微分を検証するために定義した量です。
+J^Tp=h u,\qquad g_{\mathrm{direct}}=\beta\lambda+h u^T s,\qquad g_{\mathrm{adjoint}}=\beta\lambda+p^T e^u.
+ここでpはEuclid内積に対する離散随伴です。求積重みhはq=h uに含めています。連続PDEのL²内積で定義した随伴の節点値と、pをそのまま同一視しません。非一様格子、有限要素、パラメータ依存の求積では、質量行列や重みの扱いも整合させる必要があります。
+
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 検証：感度・勾配・空間誤差を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#sensitivity-verification
+Coverage: reading
+
+保存した数値とソースハッシュに、設定・全検証点・残差・誤差を記録しています。
+残差の偏微分。 状態とパラメータを独立な入力にして、ADで得るJとF_λを解析式と比較します。λだけを変える種ではuを固定します。
+感度方程式と随伴方程式。 同じ収束状態から求め、各線形方程式の残差を再計算します。直接感度からの勾配と随伴勾配を、陽な項βλを含めて比較します。
+パラメータ差分。 λ+εとλ−εで非線形問題をそれぞれ解き直し、その目的関数値から勾配を近似します。状態を固定してλだけを差分すると、総微分の検査になりません。
+空間細分化。 n=15、31、63で、離散感度と解析的な連続感度s_*の節点最大誤差を比較します。直接法と随伴法の一致だけでは空間精度は保証されません。
+保存した実測値。 α=1、2はそれぞれλ≈1.5728955、3.3597947です。通常の6ケースではゼロ初期値、非線形残差の絶対Euclidノルム許容値10⁻¹⁰、最大40更新を共通にします。直接感度と随伴勾配の差は最大1.4×10⁻¹⁵未満です。順問題残差は5.3×10⁻¹¹以下、下で定義する相対感度残差と相対随伴残差はそれぞれ2.3×10⁻¹³、1.9×10⁻¹³以下でした。
+n=15、31、63の感度の節点最大誤差は、α=1で約3.0015×10⁻⁴、7.4860×10⁻⁵、1.8704×10⁻⁵、α=2で約2.6708×10⁻²、6.4898×10⁻³、1.6112×10⁻³です。hを半分にすると誤差はおおむね4分の1になり、α=2では粗い格子ほど漸近域からのずれが大きいことも読み取れます。これらは感度の空間離散化誤差であり、直接法と随伴法の差ではありません。
+g_{\mathrm{FD}}(\varepsilon)=\frac{L_h(u(\lambda+\varepsilon),\lambda+\varepsilon)-L_h(u(\lambda-\varepsilon),\lambda-\varepsilon)}{2\varepsilon}.
+差分検査はn=31で、10⁻¹から10⁻⁹までの17個のεを使います。この保存実行ではε=10⁻⁵付近で良好な一致が得られ、α=2の勾配の絶対差は約4.0×10⁻¹¹でした。ε=10⁻⁹では約1.3×10⁻⁶へ増えます。小さい摂動を選び続けても、より正しい勾配になるわけではありません。
+εはパラメータの摂動幅、hは空間格子幅で、別々の量です。差分幅を走査し、非線形求解の許容誤差も変えて、打切り誤差・未収束・丸め誤差が支配する範囲を調べます。有限差分は独立した検査手段であり、どの幅でも常に最良の参照値になるとは限りません。
+BratuのこのJは対称なので、誤ってJᵀをJに置き換えてもこの問題だけでは検出できません。そのため、別の非対称行列・複数パラメータを持つ製造された陰的問題で、直接感度と随伴勾配を独立に検査します。この追加試験は転置・符号・配列形状を確かめるもので、新しい物理モデルの検証ではありません。
+
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 検証：感度・勾配・空間誤差を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#sensitivity-verification
+Coverage: reading
+
+別の走査ではα=2、n=31で順問題の許容値を10⁻²、10⁻⁶、10⁻¹⁰と変えます。ε=10⁻⁴での差分勾配の絶対誤差は、緩い10⁻²の場合の約3.2×10⁻⁵から、後二者では約3.5×10⁻⁸へ減りました。ただし10⁻⁶と10⁻¹⁰は同じNewton反復点を受理しており、曲線が重なります。許容値を厳しくするたびに、必ず異なる結果や厳密な単調改善が得られるとは解釈しません。
+
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 未収束・条件数・反復列の微分 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#solver-errors
+Coverage: reading
+
+r_F=\|F(u,\lambda)\|_2,\qquad \rho_s=\frac{\|Js+F_\lambda\|_2}{\|F_\lambda\|_2},\qquad \rho_p=\frac{\|J^Tp-q\|_2}{\|q\|_2}.
+順問題、感度方程式、随伴方程式には別々の残差があります。線形残差が小さくても、状態が未収束なら、微分は正確な根ではなく近似状態で評価されています。Jが悪条件になると、順問題の小さな誤差が状態や勾配へ増幅されます。行列の条件数は尺度・格子にも依存するので、異なる格子の数値をそのまま手法の優劣に読み替えません。
+有限回の反復を微分すると、初期値と実行された更新列に依存する写像の導関数が得られます。陰関数微分は局所的な収束解を定義する方程式を対象にします。反復の停止、後退探索、適応刻みの分岐を通じて微分する場合は、この違いを明示します。勾配を得られることだけで、逆問題の同定可能性や最適化の収束は保証されません。
+
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 連続感度との関係と適用範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#continuous-limit
+Coverage: reading
+
+-s^{\prime\prime}-\lambda e^u s=e^u,\qquad s(0)=s(1)=0.
+連続Bratu方程式をλで微分すると、この境界値問題を得ます。本例の中心差分はその自然な離散化とも対応し、解析解族から得たs_*への格子収束を検査できます。ただし一般の問題では、連続随伴を離散化する方法と、離散残差を微分する方法は有限格子上で同じとは限りません。境界条件・格子・観測演算子・求積重みのパラメータ依存も含めて検査します。
+検証済みの範囲は、滑らかな定常Bratuの指定した枝と、非対称の小さな製造問題です。衝撃波、リミター、接触・イベント、時間発展の随伴、特異な分岐点、実データの逆問題は扱っていません。連続・離散の誤差、微分の実装、物理モデルの妥当性を分けて読みます。
+目的関数にも連続問題の参照勾配を別に用意します。解析解族のu_αとs_*から積分し、96点と192点のGauss求積で照合しました。
+g_* =\beta\lambda+\int_0^1 u_\alpha(x)s_*(x)\,dx.
+この参照値はα=1で約0.1027083914、α=2で約0.5823748758です。n=31の離散随伴勾配はそれぞれ約0.1027218294、0.5857608186で、直接感度とのほぼ機械精度の一致とは別に、空間誤差が残ります。96点と192点の求積結果の差は両方とも4.4×10⁻¹⁵未満ですが、この差を厳密な求積誤差の上界とはしません。
+
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 実行と配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#reproduce
+Coverage: reading
+
+日付を固定した配布ZIPを展開し、READMEに従って新しいPython環境で実行します。既存の自動微分版と他の配布版は上書きしません。
+python -m pip install -r requirements.txt
+python scripts/build_bratu_sensitivity.py
+python -m pytest tests/test_bratu_sensitivity.py
+感度・随伴計算のソース、図と記録の生成、検査コード、ファイル一覧とSHA-256、独立展開後の検証記録を公開します。
+自動微分との役割分担は既存の共通基盤章へ戻って確認できます。Blondelほか（2022）の根の微分とJVP・VJPの構成、およびJAXopt公式資料は、残差の微分と線形求解を組み合わせる見方への参照先です。今回の実装はNumPyを用い、JAX・JAXoptへの依存や、それらのライブラリの性能比較は追加していません。
+自動微分の共通基盤 · Newton法と条件数
+配布版の専用テスト9件を、独立したフォルダに展開した内容で再実行しています。数値結果・生成図・ファイルのハッシュを照合する手順も検証記録に残します。
+
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
-随伴法・逆問題
+指定したBratuの小さい解の枝で、陰関数による状態感度と離散随伴勾配を実行検証した教育用例です。独立した非対称・複数パラメータの製造問題で転置も検査します。状態・微分・格子・パラメータ摂動の誤差を区別し、定常の小規模密行列に範囲を限定します。汎用逆モードAD、時間発展随伴、特異点の通過、実データの逆問題の解法は提供しません。
+陰関数微分・随伴法
+自動微分
+Armijo減衰Newton法
 
-## 随伴法・逆問題 — 一次文献・関連資料と確認範囲 [ja]
+## 陰関数微分と随伴法：Bratuのパラメータ感度 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/#sources
 Coverage: reading
@@ -12167,6 +12393,12 @@ Antony Jameson (1988). Aerodynamic design via control theory. Journal of Scienti
 Seppo Linnainmaa (1976). Taylor expansion of the accumulated rounding error. BIT
 研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+第2.1節・3〜4頁の、局所的な正則性を仮定した根の微分、線形方程式によるJVP・VJPの構成を参照。論文全体の監査や掲載実験の再現は主張しません。
+The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+陰関数微分と反復展開の区別、custom_root、線形求解器を受け取るroot_jvp・root_vjpと収束した根を前提とする説明を参照。ライブラリの性能比較や全例の再現は未実施です。
 
 ## 発展的な勾配制限：TVBと正値性保存 [ja]
 
@@ -20041,7 +20273,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素113項目・学術誌／会議論文221件・全参考資料262件。
+方程式・モデル46項目・計算法と構成要素114項目・学術誌／会議論文221件・全参考資料262件。
 保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め78章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
@@ -20137,7 +20369,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は97、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は98、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -20603,6 +20835,26 @@ Coverage: reading
 増幅率は、誤差が成長するかどうかだけでなく、性質の異なる2つの誤差も示します。数値散逸は波の振幅を減衰させ、数値分散は波長ごとの伝播速度を変えます。 ここでは周期一様格子上の、速度一定のスカラー移流を考えます。格子幅をh、正の時間刻みをΔt、波数をk、無次元の格子波数をθ、符号付きのCourant数をCとします。フーリエモードの符号規約と、厳密な1ステップの倍率は
 \begin{gathered}u_t+a u_x=0,\qquad x_j=jh,\quad\theta=kh,\quad C=\frac{a\Delta t}{h},\\u_j^n=\widehat u^{\,n}e^{ij\theta},\qquad G_{\rm exact}=e^{-ia k\Delta t}=e^{-iC\theta}.\end{gathered}
 です。厳密解は振幅を変えずに平行移動します。そのため、この問題では人工的な減衰と、波を運ぶ際の誤差を分けて調べられます。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 波形の時間発展で、散逸と分散を比べる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#waveform-evolution
+Coverage: reading
+
+同じ滑らかな初期パルスを、同じ時刻・同じ座標軸で比較します。黒い破線は厳密な移流、色の実線は各パネルの結果です。Aは風上法から減衰だけを取り出した診断用の構成、Bは中心差分の半離散式を時間方向に厳密に解いたもの、CはLax–Wendroff法です。
+再生データを読み込んでいます。再生できない場合は、下の静止図でも比較できます。
+「無散逸で振幅を保つ」とは、ここでは各Fourier成分の大きさを保つという意味です。成分同士の位相がずれると、合成した波形の山の高さは変わり、負の裾や振動も現れます。Bで離散L2の比が1のまま形が崩れることを確かめてください。山が低くなったことだけで、散逸があるとは判断できません。
+同じ時刻の静止図を見る行はA：減衰だけ、B：分散だけ、C：両方、列は同じ時刻です。波は周期境界で反対側へ回り込みます。画像を開くと拡大できます。
+計算条件・式・再計算用ファイル
+周期区間[0,1)、移流速度a=1、格子点数N=127、C=0.8、Δt=0.8/127です。1周の時間T=L/a=1に対し、0〜160ステップ（約1.008周）を2ステップごとに表示します。初期形は次の周期パルスです。
+u(x,0)=\exp\!\left[60\left(\cos\!\left(2\pi(x-\tfrac14)\right)-1\right)\right].
+θ=2πm/Nとして、以下は1ステップあたりの倍率です。表示は2ステップずつ進みます。Aは実際の風上法の時間発展ではなく、位相誤差を取り除いて減衰を見分けるための構成です。BにRK4などの時間離散化は加えていません。
+\begin{aligned}G_A&=\left|1-C+Ce^{-i\theta}\right|e^{-iC\theta},\\G_B&=e^{-iC\sin\theta},\\G_C&=1-iC\sin\theta+C^2(\cos\theta-1).\end{aligned}
+曲線は初期標本の三角補間から計算しています。黒破線と解析的なパルスの平行移動は、保存した条件で全時刻・全格子点を照合し、最大誤差約1.3×10⁻¹⁴でした。Cは実空間のLax–Wendroff更新でも独立に照合しています。表示用JSONは小数7桁に丸め、誤差は5×10⁻⁸以下です。
+全フレーム JSON · 選んだ時刻のCSV · 条件と結果 JSON · 検算とハッシュ JSON · 生成用Python · 依存パッケージ · 実行説明 · スクリプトのライセンス
+生成用Pythonと依存パッケージ一覧を同じフォルダーに保存して実行できます。新しい出力先を指定してください。図・データ・本文の利用条件はサイトの項目別条件を参照してください。
+python -m pip install -r requirements.txt
+python generate-wave-evolution.py --output generated
 
 ## 差分、CFL条件、von Neumann解析、Laxの定理 — 増幅率が測るもの# [ja]
 

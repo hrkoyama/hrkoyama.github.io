@@ -6,6 +6,7 @@ import html
 import json
 import re
 import xml.etree.ElementTree as ET
+from atlas_sensitivity_release import sensitivity_release_record
 from atlas_method_review import (validate_method_reviews, review_intro, field_note,
                                  verification_html, references_html, review_markdown)
 
@@ -178,6 +179,7 @@ def public_record(x):
         record['force_release']={'release':cases[0]['release'],'code_base':force_base,'examples':x['force_examples'],
             'run_commands':[e['commands']['run'] for e in cases],'scope':x['force_scope'],
             'implementation':'Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory.'}
+    if x.get('sensitivity_release'):record.update(sensitivity_release_record(ROOT,x))
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -292,6 +294,15 @@ for x in METHODS:
             body+='<p>'+link(record['results'],'微分・残差・格子収束の測定記録 / JSON' if ja else 'Derivative, residual and mesh-refinement measurements / JSON')+'</p>'
             body+='<p>'+('ZIPを展開したフォルダで仮想環境を作成・有効化し、依存関係を導入して実行します。コードのMITと、図・本文・データの利用条件を区別してください。' if ja else 'From the extracted folder, create and activate a virtual environment, install dependencies and run the checks. Distinguish the code MIT license from the separate terms for figures, prose and data.')+'</p><pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
+        if x.get('sensitivity_release'):
+            base=record['code_base']
+            body+='<h2>'+('Bratuパラメータ感度：陰関数微分と離散随伴の専用配布版' if ja else 'Bratu parameter sensitivity: implicit and discrete-adjoint supplement')+'</h2>'
+            body+='<p>'+('収束した同じ離散方程式を微分し、解析的な連続感度、陰関数の感度方程式、随伴勾配、パラメータを変えて解き直した有限差分を照合します。非線形求解・感度求解・随伴求解の残差と格子誤差を分けます。一般の逆問題最適化や非滑らかな衝撃波の感度は対象外です。' if ja else 'Differentiate the same converged discrete equation and compare the analytic continuous sensitivity, implicit sensitivity solve, adjoint gradient and finite differences with fresh nonlinear solves. Primal, sensitivity and adjoint residuals are separated from grid error. General inverse optimization and nonsmooth shock sensitivities are outside this example.')+'</p>'
+            body+='<p>'+link(base+'README.md','取得・実行手順 / README')+' · '+link(record['code_download'],'コード・検査・図とデータ ZIP' if ja else 'Code, tests, figure and data ZIP')+' · '+link(record['code_manifest'],'ファイル目録・SHA-256' if ja else 'File manifest / SHA-256')+' · '+link(record['code_verification'],str(record['passed_tests'])+('件成功・検証記録' if ja else ' tests passed / verification'))+'</p>'
+            body+='<ul>'+''.join('<li>'+link(url,url.removeprefix(base))+'</li>' for url in record['code_urls']+record['test_urls'])+'</ul>'
+            body+='<p>'+link(record['results'],'感度・随伴・差分・格子収束の測定記録 / JSON' if ja else 'Sensitivity, adjoint, finite-difference and grid-refinement measurements / JSON')+'</p>'
+            body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
+            body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
         if x.get('molecular_examples'):
             molecular=record['molecular_release'];molecular_base=molecular['code_base']
             body+='<h2>'+('H₂の有限Gaussian基底RHF' if ja else 'H₂ RHF in finite Gaussian bases')+'</h2><p>'+esc(x['molecular_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/h2-hf/','独立参照・SCF・基底の収束' if ja else 'Independent reference, SCF and basis refinement')+' · '+link(molecular_base+'molecular_hf.py','Python solver')+' · '+link(molecular_base+'test_molecular_hf.py','Tests')+' · '+link(molecular['release']['download'],'ZIP')+'</p>'
@@ -334,7 +345,11 @@ for x in METHODS:
     if x.get('molecular_examples'):md+='Molecular scope: '+x['molecular_scope']['en']+'\n\n'+json.dumps(record['molecular_release'],ensure_ascii=False,indent=2)+'\n\n'
     if x.get('periodic_examples'):md+='Periodic scope: '+x['periodic_scope']['en']+'\n\n'+json.dumps(record['periodic_release'],ensure_ascii=False,indent=2)+'\n\n'
     if x.get('autodiff_release'):
-        md+='Forward-mode AD supplement: analytic/finite-difference/AD Bratu derivatives, Newton convergence and spatial refinement. Reverse-mode execution and implicit sensitivities are not implemented.\n\n'
+        md+='Forward-mode AD supplement: analytic/finite-difference/AD Bratu derivatives, Newton convergence and spatial refinement. Reverse-mode execution and implicit sensitivities are not implemented in this edition. The separate Bratu sensitivity edition is linked from /numerical-methods-atlas/en/read/adjoint/.\n\n'
+        md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
+        md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
+    if x.get('sensitivity_release'):
+        md+='Bratu implicit sensitivity and discrete-adjoint supplement. Includes analytic continuous sensitivity, finite differences with fresh nonlinear solves, grid refinement and a nonsymmetric transpose test.\n\n'
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('force_examples'):md+='Force scope: '+x['force_scope']['en']+'\n\n'+json.dumps(record['force_release'],ensure_ascii=False,indent=2)+'\n\n'

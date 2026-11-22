@@ -1,14 +1,14 @@
-# Adjoint methods and inverse problems / 随伴法・逆問題
+# Implicit differentiation and adjoint methods / 陰関数微分・随伴法
 
-Status: planned
+Status: educational-example
 
-Connect sensitivities, observations and parameter identification.
+Verify implicit state sensitivities and discrete-adjoint gradients on Bratu against analytic continuous sensitivities and finite differences with fresh nonlinear solves.
 
-感度計算、観測、パラメータ同定を結び付ける。
+Bratu方程式のパラメータ感度で、陰関数の感度方程式・離散随伴勾配・解析的な連続感度・解き直した有限差分を検証する。
 
-Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.
+Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented.
 
-Other names: 随伴法, 随伴解析, adjoint method, adjoint analysis
+Other names: 随伴法, 随伴解析, adjoint method, adjoint analysis, 陰関数微分, implicit differentiation, parameter sensitivity, パラメータ感度, Bratu, 随伴法・逆問題, Adjoint methods and inverse problems
 
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/adjoint/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/
@@ -17,8 +17,32 @@ Other names: 随伴法, 随伴解析, adjoint method, adjoint analysis
 
 - Reference: https://doi.org/10.1007/bf01061285 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://doi.org/10.1007/bf01931367 — Method-specific source; see the detailed reading for source role and actual review depth.
+- Reference: https://jaxopt.github.io/stable/implicit_diff.html — Official explanation of root-equation differentiation versus unrolling; the local NumPy supplement is an independent implementation.
+- Reference: https://papers.neurips.cc/paper_files/paper/2022/hash/228b9279ecf9bbafe582406850c57115-Abstract-Conference.html — Selected implicit-root and JVP/VJP passages support the formulation; no reproduction of the full paper is claimed.
 
-Next: Finite-difference gradient checks and a small inverse problem.
+Bratu implicit sensitivity and discrete-adjoint supplement. Includes analytic continuous sensitivity, finite differences with fresh nonlinear solves, grid refinement and a nonsymmetric transpose test.
+
+- Code: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/numart/bratu_sensitivity.py
+- Code: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/numart/autodiff.py
+- Code: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/numart/krylov.py
+- Code: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/scripts/build_bratu_sensitivity.py
+
+- Tests: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/tests/test_bratu_sensitivity.py
+
+Download: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/bratu-sensitivity-2026-11-22.zip
+Manifest: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/source-manifest.json
+Verification: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/verification.json
+Measurements: https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/docs/figures/bratu-sensitivity.json
+
+Commands (from extracted supplement):
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q tests/test_bratu_sensitivity.py
+python scripts/build_bratu_sensitivity.py
+```
+
+Next: Separate verification for time-dependent adjoints, inverse optimization with multiple observations and nonsmooth problems.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

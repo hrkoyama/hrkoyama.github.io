@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "family": "bratu-sensitivity",
+  "edition": "2026-11-22",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "LICENSING.md": "8515f2961e3433ab0df36e85b208ea46445f74f723d4acf08595d6fd4ae09b38",
+    "README.md": "b61d262e07b6f1d452c1fe8652d87dac443d5bb9f840165d1af45719758340a0",
+    "docs/figures/bratu-sensitivity.json": "373e1f1c34c978f908e032fd93b841dc456cc32b9413e77a7b06fb49becc7069",
+    "docs/figures/bratu-sensitivity.png": "46318b193412104dd702dd231ac7c62cf1b815f84871e6baa8e23a0d1296242d",
+    "numart/__init__.py": "203fc33064086435c6c47e068853cca627dbc6c8147da4a1285565b62bf931b5",
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/bratu_sensitivity.py": "31f694599475892c75bcff9b4e9bd08921716bb48d6a78d48d12f1484a023609",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "provenance.json": "f4ef84f143c15968f42425aec70a015b497e0e42f97f9d2267f22f8ad0762a01",
+    "requirements.txt": "632938dad94f057903cb9517a2c610c983966e68d68b4ade87ae5e38dc07fa3c",
+    "scripts/build_bratu_sensitivity.py": "85bc5761d5a1f8a3ff7dc467fe39c8af48ef168a7019e5d32a717f6285cb270a",
+    "tests/test_bratu_sensitivity.py": "4ec422c69775e5bfc45cade545f848ee19196488421eea3cc2ed179cd160e194"
+  },
+  "scope": "Smooth lower-branch Bratu implicit sensitivities and discrete adjoints; independent nonsymmetric multiparameter check."
+}
