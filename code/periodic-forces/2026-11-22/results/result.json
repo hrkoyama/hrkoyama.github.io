@@ -1,0 +1,4490 @@
+{
+  "schema_version": 1,
+  "case": "periodic-he-forces",
+  "input_sha256": "d25fe56cf92f1486d9553ead5e7851db49fb3f319b7d32d7813278cc4103c097",
+  "reference_sha256": "f4beb96c3672066378e34ad756ea9a2b08aab10c5b16aae31537644b23303db7",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pyscf": "2.11.0",
+    "libxc": "7.0.0"
+  },
+  "scope": "Artificial displaced two-He periodic KS-LDA cell: analytic forces, finite-difference and independent-plane-wave checks; not an equilibrium material or a long-time MD validation.",
+  "implementation": "Original validation/BO-interface workflow backed by PySCF KRKS+FFTDF analytical Gaussian/Pulay and ionic Ewald forces; not a new electronic-structure engine.",
+  "energy_unit": "hartree/cell",
+  "force_unit": "hartree/bohr",
+  "force_sign": "F_I = -d E_total / d R_I, Cartesian coordinates, including ion-ion Ewald energy.",
+  "cell": {
+    "element": "He",
+    "lattice_bohr": [
+      [
+        5.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        5.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        5.0
+      ]
+    ],
+    "charge": 0,
+    "spin": 0,
+    "pseudopotential": [
+      [
+        2
+      ],
+      0.2,
+      2,
+      [
+        -9.1120234,
+        1.69836797
+      ],
+      0
+    ],
+    "positions_bohr": [
+      [
+        0.37,
+        0.61,
+        0.83
+      ],
+      [
+        2.13,
+        2.27,
+        2.41
+      ]
+    ]
+  },
+  "xc": {
+    "pyscf": "LDA_X,LDA_C_VWN",
+    "libxc": [
+      "lda_x",
+      "lda_c_vwn"
+    ],
+    "convention": "Dirac exchange plus spin-unpolarized VWN5 correlation"
+  },
+  "cases": [
+    {
+      "id": "k-1",
+      "sweep": "kpoint",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.707682150707584,
+      "forces_cartesian": [
+        [
+          -0.039986518074288546,
+          -0.041373667614802156,
+          -0.04192614893526374
+        ],
+        [
+          0.03998823499347619,
+          0.04137623123060577,
+          0.04192718472982923
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 6,
+      "scf_commutator_norm": 2.248152409783823e-10,
+      "orbital_residual_norm": 2.2278902290741964e-10,
+      "electron_count": 4.000000000000002,
+      "electron_count_error": 1.7763568394002505e-15,
+      "orthogonality_error": 2.4424906541753444e-15,
+      "sampled_ks_gap": 0.7473169475954174,
+      "overlap_condition_max": 186.7279525689367,
+      "overlap_min_eigenvalue": 0.029418567473288488,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.706965207456763,
+          "delta_energy": null,
+          "density_change": 0.8147767081398826,
+          "gradient_norm": 0.051080885936297955
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.707592536231946,
+          "delta_energy": 0.0006273287751827894,
+          "density_change": 0.19921553023876384,
+          "gradient_norm": 0.01748592037855169
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.707682037066454,
+          "delta_energy": 8.950083450809387e-05,
+          "density_change": 0.05246151228167324,
+          "gradient_norm": 0.0007180623904918656
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.707682150698137,
+          "delta_energy": 1.1363168272993107e-07,
+          "density_change": 0.0013551194940700404,
+          "gradient_norm": 5.649320973515739e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.707682150707574,
+          "delta_energy": 9.43689570931383e-12,
+          "density_change": 1.5681386855604365e-05,
+          "gradient_norm": 1.0475653910023506e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.707682150707577,
+          "delta_energy": 3.552713678800501e-15,
+          "density_change": 6.398372427175145e-08,
+          "gradient_norm": 1.1058455051031467e-09
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.563615803613528e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 6.578976624994539,
+      "gradient_seconds": 1.9015528749441728
+    },
+    {
+      "id": "k-2",
+      "sweep": "kpoint",
+      "k_n": 2,
+      "kmesh": [
+        2,
+        2,
+        2
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ]
+      ],
+      "kpoint_weights": [
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.654602370473417,
+      "forces_cartesian": [
+        [
+          -0.018766340103268914,
+          -0.018399116331247023,
+          -0.017935066570689107
+        ],
+        [
+          0.01876805996718131,
+          0.018401684385878525,
+          0.017936104190514418
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 6,
+      "scf_commutator_norm": 9.453993071551061e-10,
+      "orbital_residual_norm": 1.1369416312340894e-09,
+      "electron_count": 3.9999999999999996,
+      "electron_count_error": 4.440892098500626e-16,
+      "orthogonality_error": 6.772360450213455e-15,
+      "sampled_ks_gap": 0.678706386761032,
+      "overlap_condition_max": 186.72795256896643,
+      "overlap_min_eigenvalue": 0.02941856747328382,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.6542219483508545,
+          "delta_energy": null,
+          "density_change": 1.6558598868132515,
+          "gradient_norm": 0.10082926085489956
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.654551392986873,
+          "delta_energy": 0.0003294446360184722,
+          "density_change": 0.3296700091456915,
+          "gradient_norm": 0.03627687901904429
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.65460236558266,
+          "delta_energy": 5.0972595786902275e-05,
+          "density_change": 0.09095459742285229,
+          "gradient_norm": 0.00042668178392374936
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.654602370473031,
+          "delta_energy": 4.890370775001429e-09,
+          "density_change": 0.0006624153436028296,
+          "gradient_norm": 4.233702608435224e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.654602370473419,
+          "delta_energy": 3.8813396940895473e-13,
+          "density_change": 3.8030508946832486e-06,
+          "gradient_norm": 1.2461248783326397e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.6546023704734125,
+          "delta_energy": 6.217248937900877e-15,
+          "density_change": 2.4355492430920864e-07,
+          "gradient_norm": 7.340797684817269e-09
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.5680546315021147e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 8.051044999971054,
+      "gradient_seconds": 9.072165874997154
+    },
+    {
+      "id": "k-3",
+      "sweep": "kpoint",
+      "k_n": 3,
+      "kmesh": [
+        3,
+        3,
+        3
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.3333333333333333
+        ],
+        [
+          0.0,
+          0.0,
+          -0.3333333333333333
+        ],
+        [
+          0.0,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.0,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          0.0,
+          0.3333333333333333,
+          -0.3333333333333333
+        ],
+        [
+          0.0,
+          -0.3333333333333333,
+          0.0
+        ],
+        [
+          0.0,
+          -0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          0.0,
+          -0.3333333333333333,
+          -0.3333333333333333
+        ],
+        [
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.0,
+          0.3333333333333333
+        ],
+        [
+          0.3333333333333333,
+          0.0,
+          -0.3333333333333333
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          -0.3333333333333333
+        ],
+        [
+          0.3333333333333333,
+          -0.3333333333333333,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          -0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          0.3333333333333333,
+          -0.3333333333333333,
+          -0.3333333333333333
+        ],
+        [
+          -0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          -0.3333333333333333,
+          0.0,
+          0.3333333333333333
+        ],
+        [
+          -0.3333333333333333,
+          0.0,
+          -0.3333333333333333
+        ],
+        [
+          -0.3333333333333333,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          -0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          -0.3333333333333333,
+          0.3333333333333333,
+          -0.3333333333333333
+        ],
+        [
+          -0.3333333333333333,
+          -0.3333333333333333,
+          0.0
+        ],
+        [
+          -0.3333333333333333,
+          -0.3333333333333333,
+          0.3333333333333333
+        ],
+        [
+          -0.3333333333333333,
+          -0.3333333333333333,
+          -0.3333333333333333
+        ]
+      ],
+      "kpoint_weights": [
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035,
+        0.037037037037037035
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.654381444791204,
+      "forces_cartesian": [
+        [
+          -0.019785903865608745,
+          -0.01941708329837269,
+          -0.018923615399448673
+        ],
+        [
+          0.019787625078213356,
+          0.019419653363203865,
+          0.01892465382883668
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 2.6706572406193775e-12,
+      "orbital_residual_norm": 3.443723815768184e-12,
+      "electron_count": 4.0,
+      "electron_count_error": 0.0,
+      "orthogonality_error": 4.440892098500626e-15,
+      "sampled_ks_gap": 0.7043574087164615,
+      "overlap_condition_max": 186.72795256896643,
+      "overlap_min_eigenvalue": 0.02941856747328382,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.654017676360286,
+          "delta_energy": null,
+          "density_change": 3.0803631590630363,
+          "gradient_norm": 0.17948359168978845
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.6543334572031005,
+          "delta_energy": 0.0003157808428149167,
+          "density_change": 0.5871963629323955,
+          "gradient_norm": 0.06398730246077045
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.654381439877259,
+          "delta_energy": 4.798267415839774e-05,
+          "density_change": 0.1612577860022231,
+          "gradient_norm": 0.0007726072642311762
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.654381444790791,
+          "delta_energy": 4.913531803651949e-09,
+          "density_change": 0.0012405562465060622,
+          "gradient_norm": 7.85344041977678e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.654381444791201,
+          "delta_energy": 4.1033842990145786e-13,
+          "density_change": 7.675227649815557e-06,
+          "gradient_norm": 1.8523565505759819e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.654381444791197,
+          "delta_energy": 4.440892098500626e-15,
+          "density_change": 2.913074470503773e-07,
+          "gradient_norm": 1.0984037697326466e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.6543814447912,
+          "delta_energy": 3.552713678800501e-15,
+          "density_change": 1.8676639766791627e-08,
+          "gradient_norm": 3.3024586933080795e-11
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.5700648311755003e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 12.175623083952814,
+      "gradient_seconds": 29.317558165988885
+    },
+    {
+      "id": "k-4",
+      "sweep": "kpoint",
+      "k_n": 4,
+      "kmesh": [
+        4,
+        4,
+        4
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.25
+        ],
+        [
+          0.0,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.0,
+          -0.25
+        ],
+        [
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.25,
+          0.25
+        ],
+        [
+          0.0,
+          0.25,
+          0.5
+        ],
+        [
+          0.0,
+          0.25,
+          -0.25
+        ],
+        [
+          0.0,
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.25
+        ],
+        [
+          0.0,
+          0.5,
+          0.5
+        ],
+        [
+          0.0,
+          0.5,
+          -0.25
+        ],
+        [
+          0.0,
+          -0.25,
+          0.0
+        ],
+        [
+          0.0,
+          -0.25,
+          0.25
+        ],
+        [
+          0.0,
+          -0.25,
+          0.5
+        ],
+        [
+          0.0,
+          -0.25,
+          -0.25
+        ],
+        [
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.25,
+          0.0,
+          0.25
+        ],
+        [
+          0.25,
+          0.0,
+          0.5
+        ],
+        [
+          0.25,
+          0.0,
+          -0.25
+        ],
+        [
+          0.25,
+          0.25,
+          0.0
+        ],
+        [
+          0.25,
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25,
+          0.5
+        ],
+        [
+          0.25,
+          0.25,
+          -0.25
+        ],
+        [
+          0.25,
+          0.5,
+          0.0
+        ],
+        [
+          0.25,
+          0.5,
+          0.25
+        ],
+        [
+          0.25,
+          0.5,
+          0.5
+        ],
+        [
+          0.25,
+          0.5,
+          -0.25
+        ],
+        [
+          0.25,
+          -0.25,
+          0.0
+        ],
+        [
+          0.25,
+          -0.25,
+          0.25
+        ],
+        [
+          0.25,
+          -0.25,
+          0.5
+        ],
+        [
+          0.25,
+          -0.25,
+          -0.25
+        ],
+        [
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.0,
+          0.25
+        ],
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.5,
+          0.0,
+          -0.25
+        ],
+        [
+          0.5,
+          0.25,
+          0.0
+        ],
+        [
+          0.5,
+          0.25,
+          0.25
+        ],
+        [
+          0.5,
+          0.25,
+          0.5
+        ],
+        [
+          0.5,
+          0.25,
+          -0.25
+        ],
+        [
+          0.5,
+          0.5,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.25
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          -0.25
+        ],
+        [
+          0.5,
+          -0.25,
+          0.0
+        ],
+        [
+          0.5,
+          -0.25,
+          0.25
+        ],
+        [
+          0.5,
+          -0.25,
+          0.5
+        ],
+        [
+          0.5,
+          -0.25,
+          -0.25
+        ],
+        [
+          -0.25,
+          0.0,
+          0.0
+        ],
+        [
+          -0.25,
+          0.0,
+          0.25
+        ],
+        [
+          -0.25,
+          0.0,
+          0.5
+        ],
+        [
+          -0.25,
+          0.0,
+          -0.25
+        ],
+        [
+          -0.25,
+          0.25,
+          0.0
+        ],
+        [
+          -0.25,
+          0.25,
+          0.25
+        ],
+        [
+          -0.25,
+          0.25,
+          0.5
+        ],
+        [
+          -0.25,
+          0.25,
+          -0.25
+        ],
+        [
+          -0.25,
+          0.5,
+          0.0
+        ],
+        [
+          -0.25,
+          0.5,
+          0.25
+        ],
+        [
+          -0.25,
+          0.5,
+          0.5
+        ],
+        [
+          -0.25,
+          0.5,
+          -0.25
+        ],
+        [
+          -0.25,
+          -0.25,
+          0.0
+        ],
+        [
+          -0.25,
+          -0.25,
+          0.25
+        ],
+        [
+          -0.25,
+          -0.25,
+          0.5
+        ],
+        [
+          -0.25,
+          -0.25,
+          -0.25
+        ]
+      ],
+      "kpoint_weights": [
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625,
+        0.015625
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.654405588503369,
+      "forces_cartesian": [
+        [
+          -0.019757470704662022,
+          -0.019393647776235617,
+          -0.01890421601823225
+        ],
+        [
+          0.019759191582318175,
+          0.019396217341145716,
+          0.01890525424576353
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 2.8284990115700306e-12,
+      "orbital_residual_norm": 3.650225780644407e-12,
+      "electron_count": 4.0,
+      "electron_count_error": 0.0,
+      "orthogonality_error": 1.0547118733938987e-14,
+      "sampled_ks_gap": 0.6786010858157596,
+      "overlap_condition_max": 186.72795256896643,
+      "overlap_min_eigenvalue": 0.02941856747328382,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.654039450575999,
+          "delta_energy": null,
+          "density_change": 4.7398819945413555,
+          "gradient_norm": 0.2767186254361825
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.65435719828316,
+          "delta_energy": 0.0003177477071609758,
+          "density_change": 0.9064329777271466,
+          "gradient_norm": 0.09871129657608713
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.654405583524782,
+          "delta_energy": 4.8385241622206365e-05,
+          "density_change": 0.24908475173842143,
+          "gradient_norm": 0.0011930079290112254
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.654405588502967,
+          "delta_energy": 4.9781849753571805e-09,
+          "density_change": 0.0019308768998813396,
+          "gradient_norm": 1.2151007469631683e-05
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.654405588503366,
+          "delta_energy": 3.9879211044535623e-13,
+          "density_change": 1.070066754702824e-05,
+          "gradient_norm": 2.817303290011849e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.654405588503373,
+          "delta_energy": 7.105427357601002e-15,
+          "density_change": 4.3693192321127143e-07,
+          "gradient_norm": 1.6529750163247955e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.654405588503375,
+          "delta_energy": 1.7763568394002505e-15,
+          "density_change": 2.8240505998755112e-08,
+          "gradient_norm": 5.158410976459249e-11
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.5695649100987428e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 20.211770582944155,
+      "gradient_seconds": 75.83114712499082
+    },
+    {
+      "id": "basis-gth-dzv",
+      "sweep": "basis",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-dzv",
+      "ao_count": 4,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.707035581074557,
+      "forces_cartesian": [
+        [
+          -0.04092898721965131,
+          -0.04224067082906505,
+          -0.04272484805235373
+        ],
+        [
+          0.040930703226149084,
+          0.04224323305163036,
+          0.04272588326500337
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 10,
+      "scf_commutator_norm": 5.463453310341854e-11,
+      "orbital_residual_norm": 5.027703052769546e-11,
+      "electron_count": 4.0,
+      "electron_count_error": 0.0,
+      "orthogonality_error": 2.1094237467877974e-15,
+      "sampled_ks_gap": 0.7500979323335419,
+      "overlap_condition_max": 171.3091192556825,
+      "overlap_min_eigenvalue": 0.03205618314056717,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.706357295220779,
+          "delta_energy": null,
+          "density_change": 0.8157654881359098,
+          "gradient_norm": 0.04775117230800014
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.706944964599388,
+          "delta_energy": 0.0005876693786088794,
+          "density_change": 0.19347989578033759,
+          "gradient_norm": 0.017564065858226164
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.707035581046235,
+          "delta_energy": 9.061644684749126e-05,
+          "density_change": 0.051975997582974255,
+          "gradient_norm": 1.0731741728525111e-05
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.707035581074537,
+          "delta_energy": 2.830180534374449e-11,
+          "density_change": 4.619945789600159e-05,
+          "gradient_norm": 3.035103613624792e-07
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.707035581074555,
+          "delta_energy": 1.7763568394002505e-14,
+          "density_change": 3.1847039419421414e-07,
+          "gradient_norm": 1.4299637183545005e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.707035581074562,
+          "delta_energy": 7.105427357601002e-15,
+          "density_change": 9.888870944655987e-08,
+          "gradient_norm": 9.315493398347583e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.707035581074569,
+          "delta_energy": 7.105427357601002e-15,
+          "density_change": 4.8051901879007545e-08,
+          "gradient_norm": 6.893600127124097e-08
+        },
+        {
+          "cycle": 7,
+          "energy_total": -5.707035581074568,
+          "delta_energy": 8.881784197001252e-16,
+          "density_change": 2.8355847465071265e-08,
+          "gradient_norm": 5.464419702801501e-08
+        },
+        {
+          "cycle": 8,
+          "energy_total": -5.707035581074594,
+          "delta_energy": 2.5757174171303632e-14,
+          "density_change": 1.8691279688191093e-08,
+          "gradient_norm": 4.5223561450547873e-08
+        },
+        {
+          "cycle": 9,
+          "energy_total": -5.707035581074554,
+          "delta_energy": 3.9968028886505635e-14,
+          "density_change": 8.965292628824869e-08,
+          "gradient_norm": 7.068738139001824e-11
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.562222565311023e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 9.980860334006138,
+      "gradient_seconds": 1.8037980839144439
+    },
+    {
+      "id": "basis-gth-tzv2p",
+      "sweep": "basis",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-tzv2p",
+      "ao_count": 18,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.708156050025756,
+      "forces_cartesian": [
+        [
+          -0.039804947880947725,
+          -0.04121754618726911,
+          -0.0417921141987696
+        ],
+        [
+          0.03980810454986099,
+          0.04122225928794196,
+          0.041794018284259965
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 1.0365829896602511e-10,
+      "orbital_residual_norm": 1.730315051151351e-10,
+      "electron_count": 4.0,
+      "electron_count_error": 0.0,
+      "orthogonality_error": 4.014566457044566e-13,
+      "sampled_ks_gap": 0.6566892238265699,
+      "overlap_condition_max": 8563.80776457766,
+      "overlap_min_eigenvalue": 0.001026089825480044,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.7072527639784845,
+          "delta_energy": null,
+          "density_change": 0.7888418311145836,
+          "gradient_norm": 0.06651058843377815
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.708033368458007,
+          "delta_energy": 0.0007806044795222178,
+          "density_change": 0.17787297303942293,
+          "gradient_norm": 0.02376459906841236
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.70815591567516,
+          "delta_energy": 0.00012254721715354577,
+          "density_change": 0.04852772812246035,
+          "gradient_norm": 0.0008129033488499484
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.7081560500068385,
+          "delta_energy": 1.3433167822540781e-07,
+          "density_change": 0.0014699792690987072,
+          "gradient_norm": 9.287614884108168e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.708156050025735,
+          "delta_energy": 1.8896884057539864e-11,
+          "density_change": 2.7722354139971698e-05,
+          "gradient_norm": 3.8969104097397693e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.708156050025772,
+          "delta_energy": 3.6415315207705135e-14,
+          "density_change": 4.86827909042925e-07,
+          "gradient_norm": 3.2699713918136314e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.708156050025755,
+          "delta_energy": 1.687538997430238e-14,
+          "density_change": 5.0623417677014105e-08,
+          "gradient_norm": 1.7881322226866608e-10
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 4.713100672848469e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 13.720039332984015,
+      "gradient_seconds": 3.7120017090346664
+    },
+    {
+      "id": "basis-gth-qzv3p",
+      "sweep": "basis",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-qzv3p",
+      "ao_count": 26,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.7082863928626715,
+      "forces_cartesian": [
+        [
+          -0.03980526806347624,
+          -0.041215546536110065,
+          -0.04178946180585587
+        ],
+        [
+          0.03980988519161899,
+          0.04122244092626284,
+          0.04179224741666929
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 1.6896146927716958e-10,
+      "orbital_residual_norm": 3.279573920212964e-10,
+      "electron_count": 4.000000000000001,
+      "electron_count_error": 8.881784197001252e-16,
+      "orthogonality_error": 4.205524817280093e-12,
+      "sampled_ks_gap": 0.6472383539222228,
+      "overlap_condition_max": 292844.8593740473,
+      "overlap_min_eigenvalue": 4.158529865148389e-05,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.70730736058472,
+          "delta_energy": null,
+          "density_change": 1.2054425294474078,
+          "gradient_norm": 0.07249877465720345
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.708152895761687,
+          "delta_energy": 0.0008455351769667274,
+          "density_change": 0.19993059909651129,
+          "gradient_norm": 0.025846896795676467
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.70828624936089,
+          "delta_energy": 0.0001333535992031898,
+          "density_change": 0.05145277340965938,
+          "gradient_norm": 0.0008405366751158771
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.708286392833081,
+          "delta_energy": 1.4347219057242455e-07,
+          "density_change": 0.0009002561878230585,
+          "gradient_norm": 1.2214367719808933e-05
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.708286392862543,
+          "delta_energy": 2.9461766359872854e-11,
+          "density_change": 3.9569176401606064e-05,
+          "gradient_norm": 7.419647990153934e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.7082863928626475,
+          "delta_energy": 1.0480505352461478e-13,
+          "density_change": 1.6247206188418075e-06,
+          "gradient_norm": 4.7206198794728997e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.708286392862659,
+          "delta_energy": 1.1546319456101628e-14,
+          "density_change": 1.0636296188563522e-07,
+          "gradient_norm": 3.8465937880146045e-10
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 6.8943901527784845e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 24.588368833996356,
+      "gradient_seconds": 6.217235791962594
+    },
+    {
+      "id": "basis-k2-gth-tzv2p",
+      "sweep": "basis-k2",
+      "k_n": 2,
+      "kmesh": [
+        2,
+        2,
+        2
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ]
+      ],
+      "kpoint_weights": [
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125
+      ],
+      "basis": "gth-tzv2p",
+      "ao_count": 18,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.655275842862553,
+      "forces_cartesian": [
+        [
+          -0.018531888385591555,
+          -0.01817261201742343,
+          -0.01771907720032906
+        ],
+        [
+          0.018535060392102787,
+          0.018177347927406662,
+          0.017720990395454522
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 7.048672353990047e-11,
+      "orbital_residual_norm": 4.6792566267522193e-11,
+      "electron_count": 3.9999999999999996,
+      "electron_count_error": 4.440892098500626e-16,
+      "orthogonality_error": 6.331601909437268e-13,
+      "sampled_ks_gap": 0.5638140540404598,
+      "overlap_condition_max": 8563.80776449168,
+      "overlap_min_eigenvalue": 0.0010260898254903447,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.654955873816541,
+          "delta_energy": null,
+          "density_change": 1.5018204827965351,
+          "gradient_norm": 0.10837887066422372
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.65522843448981,
+          "delta_energy": 0.0002725606732685293,
+          "density_change": 0.2869267651991048,
+          "gradient_norm": 0.0414506107926511
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.655275839840579,
+          "delta_energy": 4.7405350769302856e-05,
+          "density_change": 0.08139432533157201,
+          "gradient_norm": 0.000375309726888065
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.655275842857275,
+          "delta_energy": 3.016696226154636e-09,
+          "density_change": 0.0004815431828464308,
+          "gradient_norm": 1.5730385033444808e-05
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.655275842862544,
+          "delta_energy": 5.268674385661143e-12,
+          "density_change": 2.8410408287216784e-05,
+          "gradient_norm": 6.143362104854417e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.655275842862549,
+          "delta_energy": 5.329070518200751e-15,
+          "density_change": 1.2373451537465126e-06,
+          "gradient_norm": 1.8486264726734905e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.65527584286255,
+          "delta_energy": 8.881784197001252e-16,
+          "density_change": 1.605196164893497e-08,
+          "gradient_norm": 7.96108952458271e-10
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 4.735909983233366e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 15.284119041985832,
+      "gradient_seconds": 16.731082833954133
+    },
+    {
+      "id": "basis-k2-gth-qzv3p",
+      "sweep": "basis-k2",
+      "k_n": 2,
+      "kmesh": [
+        2,
+        2,
+        2
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ]
+      ],
+      "kpoint_weights": [
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125,
+        0.125
+      ],
+      "basis": "gth-qzv3p",
+      "ao_count": 26,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.655433930636953,
+      "forces_cartesian": [
+        [
+          -0.018506280119487822,
+          -0.018139198690163894,
+          -0.017683559205554283
+        ],
+        [
+          0.018510908625335026,
+          0.01814611171168265,
+          0.017686353977092895
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 7.120004321186774e-11,
+      "orbital_residual_norm": 2.2694825200412758e-10,
+      "electron_count": 4.0,
+      "electron_count_error": 0.0,
+      "orthogonality_error": 4.937827924322846e-11,
+      "sampled_ks_gap": 0.5590540512861382,
+      "overlap_condition_max": 413148.51637692977,
+      "overlap_min_eigenvalue": 7.2001940373617334e-06,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.655137817090692,
+          "delta_energy": null,
+          "density_change": 1.8213843115823973,
+          "gradient_norm": 0.10875531000780733
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.655390145403949,
+          "delta_energy": 0.0002523283132571663,
+          "density_change": 0.3812913048597785,
+          "gradient_norm": 0.041711308481192186
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.655433928410734,
+          "delta_energy": 4.378300678453684e-05,
+          "density_change": 0.09646371134607382,
+          "gradient_norm": 0.00032320149730576597
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.6554339306287424,
+          "delta_energy": 2.218008887666656e-09,
+          "density_change": 0.0007959765237338686,
+          "gradient_norm": 1.9996149825921648e-05
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.655433930636943,
+          "delta_energy": 8.200551349091256e-12,
+          "density_change": 6.096215832011857e-05,
+          "gradient_norm": 8.136850177570174e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.655433930636956,
+          "delta_energy": 1.3322676295501878e-14,
+          "density_change": 2.8917741307606355e-06,
+          "gradient_norm": 1.7195311487515927e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.655433930636959,
+          "delta_energy": 2.6645352591003757e-15,
+          "density_change": 3.7361783001536995e-08,
+          "gradient_norm": 7.9461200946968e-10
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 6.913021518756279e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 24.762845124932937,
+      "gradient_seconds": 29.191221458022483
+    },
+    {
+      "id": "fft-31",
+      "sweep": "auxiliary",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        31,
+        31,
+        31
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.707698883311728,
+      "forces_cartesian": [
+        [
+          -0.04025469519403263,
+          -0.04110181858944961,
+          -0.042146408958909656
+        ],
+        [
+          0.03971913810726019,
+          0.041249693051420594,
+          0.04202464455565666
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 7,
+      "scf_commutator_norm": 8.949070380188088e-10,
+      "orbital_residual_norm": 1.1896589492194776e-09,
+      "electron_count": 4.000000000000003,
+      "electron_count_error": 2.6645352591003757e-15,
+      "orthogonality_error": 5.551115123125783e-15,
+      "sampled_ks_gap": 0.74731450922497,
+      "overlap_condition_max": 186.7279525689367,
+      "overlap_min_eigenvalue": 0.029418567473288488,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.706981781143721,
+          "delta_energy": null,
+          "density_change": 0.8147731842992824,
+          "gradient_norm": 0.05108603469021723
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.707609247182422,
+          "delta_energy": 0.0006274660387006747,
+          "density_change": 0.19923995982678228,
+          "gradient_norm": 0.01748799118909342
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.7076987696764405,
+          "delta_energy": 8.952249401872336e-05,
+          "density_change": 0.0524679918732838,
+          "gradient_norm": 0.0007180548376011503
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.7076988833022675,
+          "delta_energy": 1.1362582696960999e-07,
+          "density_change": 0.0013550324943832415,
+          "gradient_norm": 5.6535945344805974e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.707698883311737,
+          "delta_energy": 9.469758310842735e-12,
+          "density_change": 1.5698552662573326e-05,
+          "gradient_norm": 1.6872707716817917e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.70769888331174,
+          "delta_energy": 2.6645352591003757e-15,
+          "density_change": 4.02700594515022e-07,
+          "gradient_norm": 5.129204811804996e-08
+        },
+        {
+          "cycle": 6,
+          "energy_total": -5.707698883311734,
+          "delta_energy": 6.217248937900877e-15,
+          "density_change": 1.1330495022593902e-07,
+          "gradient_norm": 1.1427078607557e-09
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 0.0005355570867724424,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 3.589903209009208,
+      "gradient_seconds": 0.8972342500928789
+    },
+    {
+      "id": "fft-47",
+      "sweep": "auxiliary",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        47,
+        47,
+        47
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.707682177354966,
+      "forces_cartesian": [
+        [
+          -0.03998737607840143,
+          -0.04137497090088471,
+          -0.041925933845309585
+        ],
+        [
+          0.039987375582332396,
+          0.0413749711600056,
+          0.04192593703251224
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 6,
+      "scf_commutator_norm": 2.1523627323998612e-10,
+      "orbital_residual_norm": 2.05154613802646e-10,
+      "electron_count": 4.000000000000003,
+      "electron_count_error": 2.6645352591003757e-15,
+      "orthogonality_error": 2.3314683517128287e-15,
+      "sampled_ks_gap": 0.7473169436361378,
+      "overlap_condition_max": 186.7279525689367,
+      "overlap_min_eigenvalue": 0.029418567473288488,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.70696523384962,
+          "delta_energy": null,
+          "density_change": 0.8147767025189622,
+          "gradient_norm": 0.051080894179581574
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.707592562844713,
+          "delta_energy": 0.0006273289950931016,
+          "density_change": 0.19921556938006865,
+          "gradient_norm": 0.01748592369176664
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.707682063713864,
+          "delta_energy": 8.950086915060496e-05,
+          "density_change": 0.05246152265602432,
+          "gradient_norm": 0.0007180623777958658
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.707682177345543,
+          "delta_energy": 1.1363167917721739e-07,
+          "density_change": 0.0013551193524396756,
+          "gradient_norm": 5.6493207345046795e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.707682177355012,
+          "delta_energy": 9.468870132423035e-12,
+          "density_change": 1.5681385623884456e-05,
+          "gradient_norm": 1.047563722431867e-07
+        },
+        {
+          "cycle": 5,
+          "energy_total": -5.707682177354982,
+          "delta_energy": 2.930988785010413e-14,
+          "density_change": 6.39811612088109e-08,
+          "gradient_norm": 1.1031180025111985e-09
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-11,
+        "gradient_tolerance": 1e-08,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 3.187202654575394e-09,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 11.207407249952666,
+      "gradient_seconds": 3.2758129170397297
+    },
+    {
+      "id": "scf-loose",
+      "sweep": "scf",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.707682150706315,
+      "forces_cartesian": [
+        [
+          -0.039986678144675256,
+          -0.041373833510237545,
+          -0.04192631734653543
+        ],
+        [
+          0.039988395061911194,
+          0.04137639712312835,
+          0.0419273531399207
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 4,
+      "scf_commutator_norm": 2.9444176303066563e-06,
+      "orbital_residual_norm": 3.893415533264598e-06,
+      "electron_count": 3.999999999999999,
+      "electron_count_error": 8.881784197001252e-16,
+      "orthogonality_error": 2.989736088730537e-15,
+      "sampled_ks_gap": 0.7473164879283611,
+      "overlap_condition_max": 186.7279525689367,
+      "overlap_min_eigenvalue": 0.029418567473288488,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.706965207456763,
+          "delta_energy": null,
+          "density_change": 0.8147767081398826,
+          "gradient_norm": 0.051080885936297955
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.707592536231946,
+          "delta_energy": 0.0006273287751827894,
+          "density_change": 0.19921553023876384,
+          "gradient_norm": 0.01748592037855169
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.707682037066454,
+          "delta_energy": 8.950083450809387e-05,
+          "density_change": 0.05246151228167324,
+          "gradient_norm": 0.0007180623904918656
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.707682150698137,
+          "delta_energy": 1.1363168272993107e-07,
+          "density_change": 0.0013551194940700404,
+          "gradient_norm": 5.649320973515739e-06
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-05,
+        "gradient_tolerance": 0.001,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.563612890804645e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 4.723619541968219,
+      "gradient_seconds": 1.7189914170885459
+    },
+    {
+      "id": "scf-medium",
+      "sweep": "scf",
+      "k_n": 1,
+      "kmesh": [
+        1,
+        1,
+        1
+      ],
+      "kpoints_fractional": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kpoint_weights": [
+        1.0
+      ],
+      "basis": "gth-dzvp",
+      "ao_count": 10,
+      "fft_mesh": [
+        39,
+        39,
+        39
+      ],
+      "positions_bohr": [
+        [
+          0.37,
+          0.61,
+          0.83
+        ],
+        [
+          2.13,
+          2.27,
+          2.41
+        ]
+      ],
+      "energy_per_cell": -5.707682150707594,
+      "forces_cartesian": [
+        [
+          -0.03998651859818894,
+          -0.04137366816413403,
+          -0.041926149500213394
+        ],
+        [
+          0.03998823551739121,
+          0.04137623177992708,
+          0.04192718529477461
+        ]
+      ],
+      "converged": true,
+      "termination": "converged",
+      "iterations": 5,
+      "scf_commutator_norm": 2.0849092800413117e-08,
+      "orbital_residual_norm": 1.5951100723433652e-08,
+      "electron_count": 4.000000000000002,
+      "electron_count_error": 1.7763568394002505e-15,
+      "orthogonality_error": 2.55351295663786e-15,
+      "sampled_ks_gap": 0.7473169461523436,
+      "overlap_condition_max": 186.7279525689367,
+      "overlap_min_eigenvalue": 0.029418567473288488,
+      "trace": [
+        {
+          "cycle": 0,
+          "energy_total": -5.706965207456763,
+          "delta_energy": null,
+          "density_change": 0.8147767081398826,
+          "gradient_norm": 0.051080885936297955
+        },
+        {
+          "cycle": 1,
+          "energy_total": -5.707592536231946,
+          "delta_energy": 0.0006273287751827894,
+          "density_change": 0.19921553023876384,
+          "gradient_norm": 0.01748592037855169
+        },
+        {
+          "cycle": 2,
+          "energy_total": -5.707682037066454,
+          "delta_energy": 8.950083450809387e-05,
+          "density_change": 0.05246151228167324,
+          "gradient_norm": 0.0007180623904918656
+        },
+        {
+          "cycle": 3,
+          "energy_total": -5.707682150698137,
+          "delta_energy": 1.1363168272993107e-07,
+          "density_change": 0.0013551194940700404,
+          "gradient_norm": 5.649320973515739e-06
+        },
+        {
+          "cycle": 4,
+          "energy_total": -5.707682150707574,
+          "delta_energy": 9.43689570931383e-12,
+          "density_change": 1.5681386855604365e-05,
+          "gradient_norm": 1.0475653910023506e-07
+        }
+      ],
+      "scf_options": {
+        "energy_tolerance": 1e-08,
+        "gradient_tolerance": 1e-05,
+        "max_cycles": 100
+      },
+      "energy_reconstruction_error": 0.0,
+      "net_force_max": 2.5636157930525316e-06,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.0.2",
+        "scipy": "1.14.1",
+        "pyscf": "2.11.0",
+        "libxc": "7.0.0"
+      },
+      "scf_seconds": 5.4714558749692515,
+      "gradient_seconds": 1.7139903749339283
+    }
+  ],
+  "finite_difference": {
+    "case_id": "k-1",
+    "step_bohr": 0.002,
+    "components": [
+      {
+        "atom": 0,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "energy_minus": -5.70776201845532,
+        "energy_plus": -5.707602072416968,
+        "force_analytic": -0.039986518074288546,
+        "force_finite_difference": -0.03998650958791927,
+        "absolute_error": 8.486369273974503e-09
+      },
+      {
+        "atom": 0,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "energy_minus": -5.70776480670491,
+        "energy_plus": -5.707599312090885,
+        "force_analytic": -0.041373667614802156,
+        "force_finite_difference": -0.04137365350631583,
+        "absolute_error": 1.4108486323660685e-08
+      },
+      {
+        "atom": 0,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "energy_minus": -5.70776592335308,
+        "energy_plus": -5.707598218843662,
+        "force_analytic": -0.04192614893526374,
+        "force_finite_difference": -0.041926127354541265,
+        "absolute_error": 2.1580722472935854e-08
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707602069181712,
+        "energy_plus": -5.7077620220767535,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.039988223760278885,
+        "absolute_error": 1.1233197302895626e-08
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707599307012897,
+        "energy_plus": -5.707764811865087,
+        "force_analytic": 0.04137623123060577,
+        "force_finite_difference": 0.04137621304756145,
+        "absolute_error": 1.818304432021911e-08
+      },
+      {
+        "atom": 1,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707598216610827,
+        "energy_plus": -5.707765925256853,
+        "force_analytic": 0.04192718472982923,
+        "force_finite_difference": 0.04192716150641651,
+        "absolute_error": 2.3223412720652092e-08
+      }
+    ],
+    "steps": [
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.008,
+        "energy_minus": -5.70736056500885,
+        "energy_plus": -5.7080003738849445,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.03998805475591283,
+        "absolute_error": 1.8023756336027486e-07
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.004,
+        "energy_minus": -5.707521777634115,
+        "energy_plus": -5.707841683153559,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.03998818993045106,
+        "absolute_error": 4.5063025130853696e-08
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707602069181712,
+        "energy_plus": -5.7077620220767535,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.039988223760278885,
+        "absolute_error": 1.1233197302895626e-08
+      }
+    ],
+    "evaluations": [
+      {
+        "atom": 0,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.70776201845532,
+        "iterations": 4,
+        "scf_commutator_norm": 1.5220959220281472e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707602072416968,
+        "iterations": 4,
+        "scf_commutator_norm": 1.5204768252819928e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.70776480670491,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7066896159925422e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707599312090885,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7037653158038238e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.70776592335308,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8289591074823855e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707598218843662,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8249836420510215e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.707602069181712,
+        "iterations": 4,
+        "scf_commutator_norm": 1.520671206191859e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.7077620220767535,
+        "iterations": 4,
+        "scf_commutator_norm": 1.5223766576570238e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.707599307012897,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7035388422712544e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707764811865087,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7067478813124962e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.707598216610827,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8254543485934473e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707765925256853,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8294844900897163e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.008,
+        "sign": -1,
+        "energy_per_cell": -5.70736056500885,
+        "iterations": 5,
+        "scf_commutator_norm": 9.409867546337095e-11,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.008,
+        "sign": 1,
+        "energy_per_cell": -5.7080003738849445,
+        "iterations": 5,
+        "scf_commutator_norm": 1.2030846185291165e-10,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.004,
+        "sign": -1,
+        "energy_per_cell": -5.707521777634115,
+        "iterations": 4,
+        "scf_commutator_norm": 3.039404173380635e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.004,
+        "sign": 1,
+        "energy_per_cell": -5.707841683153559,
+        "iterations": 4,
+        "scf_commutator_norm": 3.046234039240302e-09,
+        "converged": true
+      }
+    ],
+    "max_component_error": 2.3223412720652092e-08,
+    "scan_max_error": 1.8023756336027486e-07,
+    "initial_guess": "Every displaced SCF starts from the same converged undisplaced density; no displaced energy is reused as a solution."
+  },
+  "convergence": {
+    "kpoint": {
+      "case_ids": [
+        "k-1",
+        "k-2",
+        "k-3",
+        "k-4"
+      ],
+      "forces_cartesian": [
+        [
+          [
+            -0.039986518074288546,
+            -0.041373667614802156,
+            -0.04192614893526374
+          ],
+          [
+            0.03998823499347619,
+            0.04137623123060577,
+            0.04192718472982923
+          ]
+        ],
+        [
+          [
+            -0.018766340103268914,
+            -0.018399116331247023,
+            -0.017935066570689107
+          ],
+          [
+            0.01876805996718131,
+            0.018401684385878525,
+            0.017936104190514418
+          ]
+        ],
+        [
+          [
+            -0.019785903865608745,
+            -0.01941708329837269,
+            -0.018923615399448673
+          ],
+          [
+            0.019787625078213356,
+            0.019419653363203865,
+            0.01892465382883668
+          ]
+        ],
+        [
+          [
+            -0.019757470704662022,
+            -0.019393647776235617,
+            -0.01890421601823225
+          ],
+          [
+            0.019759191582318175,
+            0.019396217341145716,
+            0.01890525424576353
+          ]
+        ]
+      ],
+      "adjacent_changes": [
+        0.02399108236457463,
+        0.0010195651110320447,
+        2.8433495895180405e-05
+      ],
+      "last_change": 2.8433495895180405e-05,
+      "target": 0.001,
+      "target_reached": true
+    },
+    "basis": {
+      "case_ids": [
+        "basis-gth-dzv",
+        "k-1",
+        "basis-gth-tzv2p",
+        "basis-gth-qzv3p"
+      ],
+      "forces_cartesian": [
+        [
+          [
+            -0.04092898721965131,
+            -0.04224067082906505,
+            -0.04272484805235373
+          ],
+          [
+            0.040930703226149084,
+            0.04224323305163036,
+            0.04272588326500337
+          ]
+        ],
+        [
+          [
+            -0.039986518074288546,
+            -0.041373667614802156,
+            -0.04192614893526374
+          ],
+          [
+            0.03998823499347619,
+            0.04137623123060577,
+            0.04192718472982923
+          ]
+        ],
+        [
+          [
+            -0.039804947880947725,
+            -0.04121754618726911,
+            -0.0417921141987696
+          ],
+          [
+            0.03980810454986099,
+            0.04122225928794196,
+            0.041794018284259965
+          ]
+        ],
+        [
+          [
+            -0.03980526806347624,
+            -0.041215546536110065,
+            -0.04178946180585587
+          ],
+          [
+            0.03980988519161899,
+            0.04122244092626284,
+            0.04179224741666929
+          ]
+        ]
+      ],
+      "adjacent_changes": [
+        0.0009424691453627648,
+        0.00018157019334082147,
+        2.652392913735091e-06
+      ],
+      "last_change": 2.652392913735091e-06,
+      "target": 0.0001,
+      "target_reached": true
+    },
+    "basis-k2": {
+      "case_ids": [
+        "k-2",
+        "basis-k2-gth-tzv2p",
+        "basis-k2-gth-qzv3p"
+      ],
+      "forces_cartesian": [
+        [
+          [
+            -0.018766340103268914,
+            -0.018399116331247023,
+            -0.017935066570689107
+          ],
+          [
+            0.01876805996718131,
+            0.018401684385878525,
+            0.017936104190514418
+          ]
+        ],
+        [
+          [
+            -0.018531888385591555,
+            -0.01817261201742343,
+            -0.01771907720032906
+          ],
+          [
+            0.018535060392102787,
+            0.018177347927406662,
+            0.017720990395454522
+          ]
+        ],
+        [
+          [
+            -0.018506280119487822,
+            -0.018139198690163894,
+            -0.017683559205554283
+          ],
+          [
+            0.018510908625335026,
+            0.01814611171168265,
+            0.017686353977092895
+          ]
+        ]
+      ],
+      "adjacent_changes": [
+        0.00023445171767735862,
+        3.551799477477524e-05
+      ],
+      "last_change": 3.551799477477524e-05,
+      "target": 0.0001,
+      "target_reached": true
+    },
+    "auxiliary": {
+      "case_ids": [
+        "fft-31",
+        "k-1",
+        "fft-47"
+      ],
+      "forces_cartesian": [
+        [
+          [
+            -0.04025469519403263,
+            -0.04110181858944961,
+            -0.042146408958909656
+          ],
+          [
+            0.03971913810726019,
+            0.041249693051420594,
+            0.04202464455565666
+          ]
+        ],
+        [
+          [
+            -0.039986518074288546,
+            -0.041373667614802156,
+            -0.04192614893526374
+          ],
+          [
+            0.03998823499347619,
+            0.04137623123060577,
+            0.04192718472982923
+          ]
+        ],
+        [
+          [
+            -0.03998737607840143,
+            -0.04137497090088471,
+            -0.041925933845309585
+          ],
+          [
+            0.039987375582332396,
+            0.0413749711600056,
+            0.04192593703251224
+          ]
+        ]
+      ],
+      "adjacent_changes": [
+        0.00027184902535254407,
+        1.3032860825545889e-06
+      ],
+      "last_change": 1.3032860825545889e-06,
+      "target": 1e-05,
+      "target_reached": true
+    },
+    "scf": {
+      "case_ids": [
+        "scf-loose",
+        "scf-medium",
+        "k-1"
+      ],
+      "forces_cartesian": [
+        [
+          [
+            -0.039986678144675256,
+            -0.041373833510237545,
+            -0.04192631734653543
+          ],
+          [
+            0.039988395061911194,
+            0.04137639712312835,
+            0.0419273531399207
+          ]
+        ],
+        [
+          [
+            -0.03998651859818894,
+            -0.04137366816413403,
+            -0.041926149500213394
+          ],
+          [
+            0.03998823551739121,
+            0.04137623177992708,
+            0.04192718529477461
+          ]
+        ],
+        [
+          [
+            -0.039986518074288546,
+            -0.041373667614802156,
+            -0.04192614893526374
+          ],
+          [
+            0.03998823499347619,
+            0.04137623123060577,
+            0.04192718472982923
+          ]
+        ]
+      ],
+      "adjacent_changes": [
+        1.678463220355919e-07,
+        5.649496565007794e-10
+      ],
+      "last_change": 5.649496565007794e-10,
+      "target": 1e-06,
+      "target_reached": true
+    }
+  },
+  "independent_comparison": {
+    "engine": "DFTK",
+    "cases": [
+      {
+        "case_id": "basis-gth-qzv3p",
+        "k_n": 1,
+        "pyscf_forces_cartesian": [
+          [
+            -0.03980526806347624,
+            -0.041215546536110065,
+            -0.04178946180585587
+          ],
+          [
+            0.03980988519161899,
+            0.04122244092626284,
+            0.04179224741666929
+          ]
+        ],
+        "dftk_forces_cartesian": [
+          [
+            -0.03974088227830999,
+            -0.04115049946348135,
+            -0.04171943176348754
+          ],
+          [
+            0.03974088227924635,
+            0.041150499470787284,
+            0.04171943176060742
+          ]
+        ],
+        "pyscf_energy_per_cell": -5.7082863928626715,
+        "dftk_energy_per_cell": -5.708360349156424,
+        "max_absolute_force_difference": 7.28156560618684e-05,
+        "energy_absolute_difference": 7.395629375217538e-05,
+        "force_acceptance": 0.0002,
+        "energy_acceptance": 0.0002,
+        "passed": true
+      },
+      {
+        "case_id": "basis-k2-gth-qzv3p",
+        "k_n": 2,
+        "pyscf_forces_cartesian": [
+          [
+            -0.018506280119487822,
+            -0.018139198690163894,
+            -0.017683559205554283
+          ],
+          [
+            0.018510908625335026,
+            0.01814611171168265,
+            0.017686353977092895
+          ]
+        ],
+        "dftk_forces_cartesian": [
+          [
+            -0.01844417456225589,
+            -0.018073499897586175,
+            -0.017610971491064765
+          ],
+          [
+            0.018444174540823078,
+            0.018073499877919907,
+            0.01761097147813535
+          ]
+        ],
+        "pyscf_energy_per_cell": -5.655433930636953,
+        "dftk_energy_per_cell": -5.65560561480506,
+        "max_absolute_force_difference": 7.538249895754426e-05,
+        "energy_absolute_difference": 0.00017168416810697806,
+        "force_acceptance": 0.0002,
+        "energy_acceptance": 0.0002,
+        "passed": true
+      }
+    ],
+    "cutoff_convergence": {
+      "records": [
+        {
+          "k_n": 1,
+          "plane_wave_counts": [
+            5041
+          ],
+          "sampled_ks_gap_hartree": 0.6447427352900705,
+          "ecut_hartree": 90,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 17,
+          "id": "k1-cutoff90.0",
+          "elapsed_seconds": 3.1533989906311035,
+          "kpoint_weights": [
+            1
+          ],
+          "electron_count": 4,
+          "scf_last_energy_change": 6.217248937900877e-15,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.03987695353813943,
+              -0.041156891915447184,
+              -0.0416952535630809
+            ],
+            [
+              0.03987695356653809,
+              0.04115689194557784,
+              0.04169525359931754
+            ]
+          ],
+          "net_force_max": 3.6236638689679523e-11,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.324877469875473,
+            "AtomicLocal": -7.861818174217989,
+            "Hartree": 1.5249353955454776,
+            "Xc": -1.9481563268396032
+          },
+          "max_orthogonality_error": 3.1086244689504383e-15,
+          "energy_per_cell": -5.704698992649041,
+          "fft_size": [
+            45,
+            45,
+            45
+          ],
+          "n_kpoints": 1,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "density_residual": 1.793126062994141e-11
+        },
+        {
+          "k_n": 1,
+          "plane_wave_counts": [
+            7809
+          ],
+          "sampled_ks_gap_hartree": 0.6450094596259768,
+          "ecut_hartree": 120,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 17,
+          "id": "k1-cutoff120.0",
+          "elapsed_seconds": 1.537194013595581,
+          "kpoint_weights": [
+            1
+          ],
+          "electron_count": 3.9999999999999987,
+          "scf_last_energy_change": 1.3322676295501878e-14,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.03974595223336533,
+              -0.04116205176347352,
+              -0.04175032286782243
+            ],
+            [
+              0.039745952232613325,
+              0.04116205176217236,
+              0.04175032286425462
+            ]
+          ],
+          "net_force_max": 3.567812711935403e-12,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.335468842116029,
+            "AtomicLocal": -7.876199757882343,
+            "Hartree": 1.5268012800053319,
+            "Xc": -1.949169114290979
+          },
+          "max_orthogonality_error": 1.887379141862766e-15,
+          "energy_per_cell": -5.70763610706436,
+          "fft_size": [
+            54,
+            54,
+            54
+          ],
+          "n_kpoints": 1,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "density_residual": 3.635511586228881e-11
+        },
+        {
+          "k_n": 1,
+          "plane_wave_counts": [
+            14363
+          ],
+          "sampled_ks_gap_hartree": 0.6450650069054877,
+          "ecut_hartree": 180,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 15,
+          "id": "k1-cutoff180.0",
+          "elapsed_seconds": 2.491381883621216,
+          "kpoint_weights": [
+            1
+          ],
+          "electron_count": 4.000000000000002,
+          "scf_last_energy_change": 9.769962616701378e-15,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.039741697817408134,
+              -0.04115219468520166,
+              -0.041720258312948524
+            ],
+            [
+              0.03974169781504651,
+              0.04115219468274747,
+              0.04172025830726039
+            ]
+          ],
+          "net_force_max": 5.688137461046239e-12,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.33820889466754,
+            "AtomicLocal": -7.879833347110184,
+            "Hartree": 1.5272527145164831,
+            "Xc": -1.94941652233038
+          },
+          "max_orthogonality_error": 1.9984014443252818e-15,
+          "energy_per_cell": -5.708325617268939,
+          "fft_size": [
+            64,
+            64,
+            64
+          ],
+          "n_kpoints": 1,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "density_residual": 4.511546876304615e-11
+        },
+        {
+          "k_n": 1,
+          "plane_wave_counts": [
+            22119
+          ],
+          "sampled_ks_gap_hartree": 0.6450677911720185,
+          "ecut_hartree": 240,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 14,
+          "id": "k1-cutoff240.0",
+          "elapsed_seconds": 2.946413040161133,
+          "kpoint_weights": [
+            1
+          ],
+          "electron_count": 3.999999999999995,
+          "scf_last_energy_change": 5.329070518200751e-15,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.03974088227830999,
+              -0.04115049946348135,
+              -0.04171943176348754
+            ],
+            [
+              0.03974088227924635,
+              0.041150499470787284,
+              0.04171943176060742
+            ]
+          ],
+          "net_force_max": 7.305933635848305e-12,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.338367479896695,
+            "AtomicLocal": -7.880036945874866,
+            "Hartree": 1.5272759857124818,
+            "Xc": -1.9494295118783356
+          },
+          "max_orthogonality_error": 2.55351295663786e-15,
+          "energy_per_cell": -5.708360349156424,
+          "fft_size": [
+            72,
+            72,
+            72
+          ],
+          "n_kpoints": 1,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "density_residual": 7.382277204911846e-11
+        },
+        {
+          "k_n": 2,
+          "plane_wave_counts": [
+            5041,
+            5078,
+            5078,
+            5112,
+            5078,
+            5112,
+            5112,
+            5040
+          ],
+          "sampled_ks_gap_hartree": 0.5569972325127719,
+          "ecut_hartree": 90,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 17,
+          "id": "k2-cutoff90.0",
+          "elapsed_seconds": 3.209117889404297,
+          "kpoint_weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "electron_count": 3.9999999999999996,
+          "scf_last_energy_change": 3.552713678800501e-15,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.018465486360227667,
+              -0.01808221344196015,
+              -0.017619675624044383
+            ],
+            [
+              0.01846548635961214,
+              0.01808221344281591,
+              0.0176196756266352
+            ]
+          ],
+          "net_force_max": 2.5908164502652653e-12,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.462172139765432,
+            "AtomicLocal": -7.981057096681543,
+            "Hartree": 1.5859033057504772,
+            "Xc": -1.9744956193338785
+          },
+          "max_orthogonality_error": 1.887379141862766e-15,
+          "energy_per_cell": -5.65201462751191,
+          "fft_size": [
+            45,
+            45,
+            45
+          ],
+          "n_kpoints": 8,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0.5
+            ],
+            [
+              0,
+              0.5,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0,
+              0.5
+            ],
+            [
+              0.5,
+              0.5,
+              0.0
+            ],
+            [
+              0.5,
+              0.5,
+              0.5
+            ]
+          ],
+          "density_residual": 4.194024755601831e-11
+        },
+        {
+          "k_n": 2,
+          "plane_wave_counts": [
+            7809,
+            7856,
+            7856,
+            7836,
+            7856,
+            7836,
+            7836,
+            7784
+          ],
+          "sampled_ks_gap_hartree": 0.5573805128859459,
+          "ecut_hartree": 120,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 17,
+          "id": "k2-cutoff120.0",
+          "elapsed_seconds": 5.86739706993103,
+          "kpoint_weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "electron_count": 4.000000000000002,
+          "scf_last_energy_change": 8.881784197001252e-15,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.018446275673808278,
+              -0.018076990064739108,
+              -0.01761553361643915
+            ],
+            [
+              0.018446275686489134,
+              0.018076990082360214,
+              0.01761553363138879
+            ]
+          ],
+          "net_force_max": 1.7621105963261385e-11,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.472687857331061,
+            "AtomicLocal": -7.995322565266814,
+            "Hartree": 1.5878092983415812,
+            "Xc": -1.9755244714559623
+          },
+          "max_orthogonality_error": 2.886579864025407e-15,
+          "energy_per_cell": -5.654887238062532,
+          "fft_size": [
+            54,
+            54,
+            54
+          ],
+          "n_kpoints": 8,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0.5
+            ],
+            [
+              0,
+              0.5,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0,
+              0.5
+            ],
+            [
+              0.5,
+              0.5,
+              0.0
+            ],
+            [
+              0.5,
+              0.5,
+              0.5
+            ]
+          ],
+          "density_residual": 4.3862548529792905e-11
+        },
+        {
+          "k_n": 2,
+          "plane_wave_counts": [
+            14363,
+            14454,
+            14454,
+            14396,
+            14454,
+            14396,
+            14396,
+            14400
+          ],
+          "sampled_ks_gap_hartree": 0.5574653609553193,
+          "ecut_hartree": 180,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 16,
+          "id": "k2-cutoff180.0",
+          "elapsed_seconds": 10.359697103500366,
+          "kpoint_weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "electron_count": 4.000000000000002,
+          "scf_last_energy_change": 5.329070518200751e-15,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.018444481938438395,
+              -0.01807398853668887,
+              -0.01761143705361945
+            ],
+            [
+              0.01844448194279489,
+              0.01807398853584674,
+              0.017611437055395054
+            ]
+          ],
+          "net_force_max": 4.3564943319474025e-12,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.4754377224966335,
+            "AtomicLocal": -7.998967836328211,
+            "Hartree": 1.5882736509946462,
+            "Xc": -1.9757775953008796
+          },
+          "max_orthogonality_error": 2.1094237467877974e-15,
+          "energy_per_cell": -5.6555714151502094,
+          "fft_size": [
+            64,
+            64,
+            64
+          ],
+          "n_kpoints": 8,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0.5
+            ],
+            [
+              0,
+              0.5,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0,
+              0.5
+            ],
+            [
+              0.5,
+              0.5,
+              0.0
+            ],
+            [
+              0.5,
+              0.5,
+              0.5
+            ]
+          ],
+          "density_residual": 4.3365498193568755e-11
+        },
+        {
+          "k_n": 2,
+          "plane_wave_counts": [
+            22119,
+            22154,
+            22154,
+            22224,
+            22154,
+            22224,
+            22224,
+            22256
+          ],
+          "sampled_ks_gap_hartree": 0.5574696082856014,
+          "ecut_hartree": 240,
+          "positions_bohr": [
+            [
+              0.37,
+              0.61,
+              0.83
+            ],
+            [
+              2.13,
+              2.27,
+              2.41
+            ]
+          ],
+          "scf_iterations": 16,
+          "id": "k2-cutoff240.0",
+          "elapsed_seconds": 12.077128171920776,
+          "kpoint_weights": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+          ],
+          "electron_count": 3.9999999999999996,
+          "scf_last_energy_change": 8.881784197001252e-16,
+          "converged": true,
+          "forces_cartesian": [
+            [
+              -0.01844417456225589,
+              -0.018073499897586175,
+              -0.017610971491064765
+            ],
+            [
+              0.018444174540823078,
+              0.018073499877919907,
+              0.01761097147813535
+            ]
+          ],
+          "net_force_max": 2.1432810387578272e-11,
+          "energy_components": {
+            "AtomicNonlocal": 0,
+            "PspCorrection": -0.00022172778448606873,
+            "Ewald": -2.7443156292279127,
+            "Kinetic": 5.475595601894822,
+            "AtomicLocal": -7.999170520767497,
+            "Hartree": 1.5882974615633212,
+            "Xc": -1.9757908004833076
+          },
+          "max_orthogonality_error": 1.9984014443252818e-15,
+          "energy_per_cell": -5.65560561480506,
+          "fft_size": [
+            72,
+            72,
+            72
+          ],
+          "n_kpoints": 8,
+          "kpoints_fractional": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0.5
+            ],
+            [
+              0,
+              0.5,
+              0
+            ],
+            [
+              0,
+              0.5,
+              0.5
+            ],
+            [
+              0.5,
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0,
+              0.5
+            ],
+            [
+              0.5,
+              0.5,
+              0.0
+            ],
+            [
+              0.5,
+              0.5,
+              0.5
+            ]
+          ],
+          "density_residual": 5.364628146933611e-11
+        }
+      ],
+      "energy_target_hartree_per_cell": 0.0001,
+      "last_changes": [
+        {
+          "k_n": 1,
+          "to_ecut_hartree": 240,
+          "energy_change": 3.473188748426281e-05,
+          "from_ecut_hartree": 180,
+          "force_max_change": 1.6952217203117237e-06,
+          "target_reached": true
+        },
+        {
+          "k_n": 2,
+          "to_ecut_hartree": 240,
+          "energy_change": 3.4199654850297634e-05,
+          "from_ecut_hartree": 180,
+          "force_max_change": 4.886579268344182e-07,
+          "target_reached": true
+        }
+      ],
+      "force_target_hartree_per_bohr": 1e-05,
+      "target_reached": true
+    },
+    "reference_audit": {
+      "passed": true,
+      "max_cutoff_force_change": 1.6952217203117237e-06,
+      "max_cutoff_energy_change": 3.473188748426281e-05,
+      "max_finite_difference_error": 2.4321721783793215e-07
+    },
+    "scope": "Two independently implemented Hamiltonian/SCF/force engines; Libxc functional formulas shared. Different finite Gaussian and plane-wave orbital spaces, no fitted force or energy shifts."
+  },
+  "bomd": {
+    "scope": "One step versus two half steps with re-converged electronic forces: local force-provider/velocity-Verlet interface smoke check, not a long-time NVE or physical-material validation.",
+    "case_id": "k-1",
+    "total_time_atomic_units": 8.0,
+    "mass_electron_masses": [
+      7294.29954142,
+      7294.29954142
+    ],
+    "initial_velocities_bohr_per_atomic_time": [
+      [
+        0.001,
+        0.0005,
+        -0.0004
+      ],
+      [
+        -0.001,
+        -0.0005,
+        0.0004
+      ]
+    ],
+    "initial_energy_hartree": -5.6973971883541825,
+    "full_step": {
+      "positions_bohr": [
+        [
+          0.37782457965002514,
+          0.6138184942425032,
+          0.8266160705139253
+        ],
+        [
+          2.1221754278820777,
+          2.266181517004047,
+          2.4133839340300924
+        ]
+      ],
+      "velocities_bohr_per_atomic_time": [
+        [
+          0.000955677295807812,
+          0.000454260790491744,
+          -0.0004462894595688628
+        ],
+        [
+          -0.0009556758856166907,
+          -0.0004542580459241996,
+          0.000446290436016102
+        ]
+      ],
+      "electronic_state": {
+        "id": "k-1",
+        "sweep": "kpoint",
+        "k_n": 1,
+        "kmesh": [
+          1,
+          1,
+          1
+        ],
+        "kpoints_fractional": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "kpoint_weights": [
+          1.0
+        ],
+        "basis": "gth-dzvp",
+        "ao_count": 10,
+        "fft_mesh": [
+          39,
+          39,
+          39
+        ],
+        "positions_bohr": [
+          [
+            0.37782457965002514,
+            0.6138184942425032,
+            0.8266160705139253
+          ],
+          [
+            2.1221754278820777,
+            2.266181517004047,
+            2.4133839340300924
+          ]
+        ],
+        "energy_per_cell": -5.7070168535830215,
+        "forces_cartesian": [
+          [
+            -0.04083925214160418,
+            -0.042035206120444174,
+            -0.04248614699117009
+          ],
+          [
+            0.04084010681152904,
+            0.04203764742908574,
+            0.04248689182126687
+          ]
+        ],
+        "converged": true,
+        "termination": "converged",
+        "iterations": 5,
+        "scf_commutator_norm": 2.2984233945584832e-10,
+        "orbital_residual_norm": 2.788915427563327e-10,
+        "electron_count": 3.999999999999999,
+        "electron_count_error": 8.881784197001252e-16,
+        "orthogonality_error": 6.439293542825908e-15,
+        "sampled_ks_gap": 0.7460717174586926,
+        "overlap_condition_max": 186.89303629148148,
+        "overlap_min_eigenvalue": 0.029398868017136322,
+        "trace": [
+          {
+            "cycle": 0,
+            "energy_total": -5.707016663812377,
+            "delta_energy": null,
+            "density_change": 0.003804784424544063,
+            "gradient_norm": 0.0008018917733324305
+          },
+          {
+            "cycle": 1,
+            "energy_total": -5.707016827425795,
+            "delta_energy": 1.636134179250348e-07,
+            "density_change": 0.003205596909886672,
+            "gradient_norm": 0.00029856249631559566
+          },
+          {
+            "cycle": 2,
+            "energy_total": -5.707016853581124,
+            "delta_energy": 2.6155329457822063e-08,
+            "density_change": 0.0008727864962317629,
+            "gradient_norm": 3.4292648618830202e-06
+          },
+          {
+            "cycle": 3,
+            "energy_total": -5.70701685358303,
+            "delta_energy": 1.9060308886764687e-12,
+            "density_change": 1.767527561169881e-06,
+            "gradient_norm": 2.4328827280258466e-08
+          },
+          {
+            "cycle": 4,
+            "energy_total": -5.7070168535830055,
+            "delta_energy": 2.4868995751603507e-14,
+            "density_change": 7.70481763272879e-08,
+            "gradient_norm": 6.434475940733517e-10
+          }
+        ],
+        "scf_options": {
+          "energy_tolerance": 1e-11,
+          "gradient_tolerance": 1e-08,
+          "max_cycles": 100
+        },
+        "energy_reconstruction_error": 0.0,
+        "net_force_max": 2.4413086415625562e-06,
+        "environment": {
+          "python": "3.12.14",
+          "numpy": "2.0.2",
+          "scipy": "1.14.1",
+          "pyscf": "2.11.0",
+          "libxc": "7.0.0"
+        },
+        "scf_seconds": 5.398393249954097,
+        "gradient_seconds": 1.7257242500782013
+      },
+      "total_energy_hartree": -5.697396809796332
+    },
+    "two_half_steps": {
+      "positions_bohr": [
+        [
+          0.3778236194562215,
+          0.6138177483399184,
+          0.8266154373175411
+        ],
+        [
+          2.12217638717241,
+          2.2661822627934383,
+          2.4133845669228675
+        ]
+      ],
+      "velocities_bohr_per_atomic_time": [
+        [
+          0.0009556711105504795,
+          0.00045425575034385886,
+          -0.00044629416646437605
+        ],
+        [
+          -0.0009556696897779299,
+          -0.0004542530005308247,
+          0.000446295146772285
+        ]
+      ],
+      "electronic_state": {
+        "id": "k-1",
+        "sweep": "kpoint",
+        "k_n": 1,
+        "kmesh": [
+          1,
+          1,
+          1
+        ],
+        "kpoints_fractional": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "kpoint_weights": [
+          1.0
+        ],
+        "basis": "gth-dzvp",
+        "ao_count": 10,
+        "fft_mesh": [
+          39,
+          39,
+          39
+        ],
+        "positions_bohr": [
+          [
+            0.3778236194562215,
+            0.6138177483399184,
+            0.8266154373175411
+          ],
+          [
+            2.12217638717241,
+            2.2661822627934383,
+            2.4133845669228675
+          ]
+        ],
+        "energy_per_cell": -5.707017048470826,
+        "forces_cartesian": [
+          [
+            -0.040839052116094565,
+            -0.04203502218996481,
+            -0.04248597128808715
+          ],
+          [
+            0.04083990690223012,
+            0.042037463530913394,
+            0.042486716061387625
+          ]
+        ],
+        "converged": true,
+        "termination": "converged",
+        "iterations": 5,
+        "scf_commutator_norm": 2.2965107617568632e-10,
+        "orbital_residual_norm": 2.7865957919806e-10,
+        "electron_count": 3.9999999999999996,
+        "electron_count_error": 4.440892098500626e-16,
+        "orthogonality_error": 3.3306690738754696e-15,
+        "sampled_ks_gap": 0.7460720697553209,
+        "overlap_condition_max": 186.89299420709318,
+        "overlap_min_eigenvalue": 0.029398872744496964,
+        "trace": [
+          {
+            "cycle": 0,
+            "energy_total": -5.707016858811343,
+            "delta_energy": null,
+            "density_change": 0.003803677142902481,
+            "gradient_norm": 0.0008016569612271727
+          },
+          {
+            "cycle": 1,
+            "energy_total": -5.707017022328933,
+            "delta_energy": 1.635175896907981e-07,
+            "density_change": 0.003204657070067588,
+            "gradient_norm": 0.0002984750609096747
+          },
+          {
+            "cycle": 2,
+            "energy_total": -5.7070170484689475,
+            "delta_energy": 2.6140014597331174e-08,
+            "density_change": 0.0008725304501654208,
+            "gradient_norm": 3.428209813243655e-06
+          },
+          {
+            "cycle": 3,
+            "energy_total": -5.707017048470827,
+            "delta_energy": 1.879385536085465e-12,
+            "density_change": 1.766968608242928e-06,
+            "gradient_norm": 2.4321027088143567e-08
+          },
+          {
+            "cycle": 4,
+            "energy_total": -5.707017048470832,
+            "delta_energy": 5.329070518200751e-15,
+            "density_change": 7.702311464251192e-08,
+            "gradient_norm": 6.431768934143502e-10
+          }
+        ],
+        "scf_options": {
+          "energy_tolerance": 1e-11,
+          "gradient_tolerance": 1e-08,
+          "max_cycles": 100
+        },
+        "energy_reconstruction_error": 0.0,
+        "net_force_max": 2.441340948580728e-06,
+        "environment": {
+          "python": "3.12.14",
+          "numpy": "2.0.2",
+          "scipy": "1.14.1",
+          "pyscf": "2.11.0",
+          "libxc": "7.0.0"
+        },
+        "scf_seconds": 5.473853708943352,
+        "gradient_seconds": 1.722734000068158
+      },
+      "total_energy_hartree": -5.697397093752542
+    },
+    "position_max_difference": 9.601938036341018e-07,
+    "velocity_max_difference": 6.19583876077575e-09,
+    "full_step_energy_defect": 3.785578508441745e-07,
+    "two_half_steps_energy_defect": 9.46016402991745e-08,
+    "electronic_force_evaluations": [
+      {
+        "id": "k-1",
+        "sweep": "kpoint",
+        "k_n": 1,
+        "kmesh": [
+          1,
+          1,
+          1
+        ],
+        "kpoints_fractional": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "kpoint_weights": [
+          1.0
+        ],
+        "basis": "gth-dzvp",
+        "ao_count": 10,
+        "fft_mesh": [
+          39,
+          39,
+          39
+        ],
+        "positions_bohr": [
+          [
+            0.37782457965002514,
+            0.6138184942425032,
+            0.8266160705139253
+          ],
+          [
+            2.1221754278820777,
+            2.266181517004047,
+            2.4133839340300924
+          ]
+        ],
+        "energy_per_cell": -5.7070168535830215,
+        "forces_cartesian": [
+          [
+            -0.04083925214160418,
+            -0.042035206120444174,
+            -0.04248614699117009
+          ],
+          [
+            0.04084010681152904,
+            0.04203764742908574,
+            0.04248689182126687
+          ]
+        ],
+        "converged": true,
+        "termination": "converged",
+        "iterations": 5,
+        "scf_commutator_norm": 2.2984233945584832e-10,
+        "orbital_residual_norm": 2.788915427563327e-10,
+        "electron_count": 3.999999999999999,
+        "electron_count_error": 8.881784197001252e-16,
+        "orthogonality_error": 6.439293542825908e-15,
+        "sampled_ks_gap": 0.7460717174586926,
+        "overlap_condition_max": 186.89303629148148,
+        "overlap_min_eigenvalue": 0.029398868017136322,
+        "trace": [
+          {
+            "cycle": 0,
+            "energy_total": -5.707016663812377,
+            "delta_energy": null,
+            "density_change": 0.003804784424544063,
+            "gradient_norm": 0.0008018917733324305
+          },
+          {
+            "cycle": 1,
+            "energy_total": -5.707016827425795,
+            "delta_energy": 1.636134179250348e-07,
+            "density_change": 0.003205596909886672,
+            "gradient_norm": 0.00029856249631559566
+          },
+          {
+            "cycle": 2,
+            "energy_total": -5.707016853581124,
+            "delta_energy": 2.6155329457822063e-08,
+            "density_change": 0.0008727864962317629,
+            "gradient_norm": 3.4292648618830202e-06
+          },
+          {
+            "cycle": 3,
+            "energy_total": -5.70701685358303,
+            "delta_energy": 1.9060308886764687e-12,
+            "density_change": 1.767527561169881e-06,
+            "gradient_norm": 2.4328827280258466e-08
+          },
+          {
+            "cycle": 4,
+            "energy_total": -5.7070168535830055,
+            "delta_energy": 2.4868995751603507e-14,
+            "density_change": 7.70481763272879e-08,
+            "gradient_norm": 6.434475940733517e-10
+          }
+        ],
+        "scf_options": {
+          "energy_tolerance": 1e-11,
+          "gradient_tolerance": 1e-08,
+          "max_cycles": 100
+        },
+        "energy_reconstruction_error": 0.0,
+        "net_force_max": 2.4413086415625562e-06,
+        "environment": {
+          "python": "3.12.14",
+          "numpy": "2.0.2",
+          "scipy": "1.14.1",
+          "pyscf": "2.11.0",
+          "libxc": "7.0.0"
+        },
+        "scf_seconds": 5.398393249954097,
+        "gradient_seconds": 1.7257242500782013
+      },
+      {
+        "id": "k-1",
+        "sweep": "kpoint",
+        "k_n": 1,
+        "kmesh": [
+          1,
+          1,
+          1
+        ],
+        "kpoints_fractional": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "kpoint_weights": [
+          1.0
+        ],
+        "basis": "gth-dzvp",
+        "ao_count": 10,
+        "fft_mesh": [
+          39,
+          39,
+          39
+        ],
+        "positions_bohr": [
+          [
+            0.3739561449125063,
+            0.6119546235606258,
+            0.8283540176284813
+          ],
+          [
+            2.126043856970519,
+            2.268045379251012,
+            2.4116459835075235
+          ]
+        ],
+        "energy_per_cell": -5.707340114666364,
+        "forces_cartesian": [
+          [
+            -0.04042426440063228,
+            -0.04171371991996464,
+            -0.042214819191204345
+          ],
+          [
+            0.04042556943311014,
+            0.0417162319315771,
+            0.042215716572154005
+          ]
+        ],
+        "converged": true,
+        "termination": "converged",
+        "iterations": 5,
+        "scf_commutator_norm": 1.2665749181708643e-10,
+        "orbital_residual_norm": 1.5356964925148864e-10,
+        "electron_count": 4.0,
+        "electron_count_error": 0.0,
+        "orthogonality_error": 6.217248937900877e-15,
+        "sampled_ks_gap": 0.7466768886603541,
+        "overlap_condition_max": 186.81264783149012,
+        "overlap_min_eigenvalue": 0.029408470555581552,
+        "trace": [
+          {
+            "cycle": 0,
+            "energy_total": -5.707340064406557,
+            "delta_energy": null,
+            "density_change": 0.0019567686975876424,
+            "gradient_norm": 0.00041275689050647766
+          },
+          {
+            "cycle": 1,
+            "energy_total": -5.70734010774377,
+            "delta_energy": 4.333721292937298e-08,
+            "density_change": 0.001648560998162277,
+            "gradient_norm": 0.0001536169873901264
+          },
+          {
+            "cycle": 2,
+            "energy_total": -5.7073401146658895,
+            "delta_energy": 6.922119766272772e-09,
+            "density_change": 0.00044879980705142487,
+            "gradient_norm": 1.7524994048386352e-06
+          },
+          {
+            "cycle": 3,
+            "energy_total": -5.707340114666371,
+            "delta_energy": 4.813927034774679e-13,
+            "density_change": 9.027274888045456e-07,
+            "gradient_norm": 1.264414728365064e-08
+          },
+          {
+            "cycle": 4,
+            "energy_total": -5.707340114666383,
+            "delta_energy": 1.2434497875801753e-14,
+            "density_change": 3.976737565180772e-08,
+            "gradient_norm": 3.5412753843289304e-10
+          }
+        ],
+        "scf_options": {
+          "energy_tolerance": 1e-11,
+          "gradient_tolerance": 1e-08,
+          "max_cycles": 100
+        },
+        "energy_reconstruction_error": 0.0,
+        "net_force_max": 2.5120116124571767e-06,
+        "environment": {
+          "python": "3.12.14",
+          "numpy": "2.0.2",
+          "scipy": "1.14.1",
+          "pyscf": "2.11.0",
+          "libxc": "7.0.0"
+        },
+        "scf_seconds": 5.444461542065255,
+        "gradient_seconds": 1.734726749942638
+      },
+      {
+        "id": "k-1",
+        "sweep": "kpoint",
+        "k_n": 1,
+        "kmesh": [
+          1,
+          1,
+          1
+        ],
+        "kpoints_fractional": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "kpoint_weights": [
+          1.0
+        ],
+        "basis": "gth-dzvp",
+        "ao_count": 10,
+        "fft_mesh": [
+          39,
+          39,
+          39
+        ],
+        "positions_bohr": [
+          [
+            0.3778236194562215,
+            0.6138177483399184,
+            0.8266154373175411
+          ],
+          [
+            2.12217638717241,
+            2.2661822627934383,
+            2.4133845669228675
+          ]
+        ],
+        "energy_per_cell": -5.707017048470826,
+        "forces_cartesian": [
+          [
+            -0.040839052116094565,
+            -0.04203502218996481,
+            -0.04248597128808715
+          ],
+          [
+            0.04083990690223012,
+            0.042037463530913394,
+            0.042486716061387625
+          ]
+        ],
+        "converged": true,
+        "termination": "converged",
+        "iterations": 5,
+        "scf_commutator_norm": 2.2965107617568632e-10,
+        "orbital_residual_norm": 2.7865957919806e-10,
+        "electron_count": 3.9999999999999996,
+        "electron_count_error": 4.440892098500626e-16,
+        "orthogonality_error": 3.3306690738754696e-15,
+        "sampled_ks_gap": 0.7460720697553209,
+        "overlap_condition_max": 186.89299420709318,
+        "overlap_min_eigenvalue": 0.029398872744496964,
+        "trace": [
+          {
+            "cycle": 0,
+            "energy_total": -5.707016858811343,
+            "delta_energy": null,
+            "density_change": 0.003803677142902481,
+            "gradient_norm": 0.0008016569612271727
+          },
+          {
+            "cycle": 1,
+            "energy_total": -5.707017022328933,
+            "delta_energy": 1.635175896907981e-07,
+            "density_change": 0.003204657070067588,
+            "gradient_norm": 0.0002984750609096747
+          },
+          {
+            "cycle": 2,
+            "energy_total": -5.7070170484689475,
+            "delta_energy": 2.6140014597331174e-08,
+            "density_change": 0.0008725304501654208,
+            "gradient_norm": 3.428209813243655e-06
+          },
+          {
+            "cycle": 3,
+            "energy_total": -5.707017048470827,
+            "delta_energy": 1.879385536085465e-12,
+            "density_change": 1.766968608242928e-06,
+            "gradient_norm": 2.4321027088143567e-08
+          },
+          {
+            "cycle": 4,
+            "energy_total": -5.707017048470832,
+            "delta_energy": 5.329070518200751e-15,
+            "density_change": 7.702311464251192e-08,
+            "gradient_norm": 6.431768934143502e-10
+          }
+        ],
+        "scf_options": {
+          "energy_tolerance": 1e-11,
+          "gradient_tolerance": 1e-08,
+          "max_cycles": 100
+        },
+        "energy_reconstruction_error": 0.0,
+        "net_force_max": 2.441340948580728e-06,
+        "environment": {
+          "python": "3.12.14",
+          "numpy": "2.0.2",
+          "scipy": "1.14.1",
+          "pyscf": "2.11.0",
+          "libxc": "7.0.0"
+        },
+        "scf_seconds": 5.473853708943352,
+        "gradient_seconds": 1.722734000068158
+      }
+    ]
+  },
+  "metrics": {
+    "max_reference_force_error": 7.538249895754426e-05,
+    "max_reference_energy_error": 0.00017168416810697806,
+    "finite_difference_max_error": 2.3223412720652092e-08,
+    "finite_difference_scan_max_error": 1.8023756336027486e-07,
+    "max_tight_scf_commutator": 3.046234039240302e-09,
+    "max_scf_commutator": 2.9444176303066563e-06,
+    "max_electron_count_error": 2.6645352591003757e-15,
+    "max_orthogonality_error": 4.937827924322846e-11,
+    "max_energy_reconstruction_error": 0.0,
+    "min_sampled_ks_gap": 0.5590540512861382,
+    "max_overlap_condition": 413148.51637692977,
+    "finest_net_force": 3.187202654575394e-09,
+    "bomd_position_step_difference": 9.601938036341018e-07,
+    "bomd_full_step_energy_defect": 3.785578508441745e-07,
+    "bomd_two_half_steps_energy_defect": 9.46016402991745e-08,
+    "reference_cutoff_force_change": 1.6952217203117237e-06,
+    "reference_finite_difference_max_error": 2.4321721783793215e-07,
+    "kpoint_last_change": 2.8433495895180405e-05,
+    "basis_last_change": 2.652392913735091e-06,
+    "basis-k2_last_change": 3.551799477477524e-05,
+    "auxiliary_last_change": 1.3032860825545889e-06,
+    "scf_last_change": 5.649496565007794e-10
+  },
+  "checks": {
+    "all_scf_converged": true,
+    "tight_scf_residual": true,
+    "finite_difference": true,
+    "finite_difference_scan": true,
+    "independent_reference": true,
+    "independent_reference_self_checks": true,
+    "electron_count": true,
+    "orthogonality": true,
+    "energy_reconstruction": true,
+    "positive_sampled_gap": true,
+    "overlap_condition": true,
+    "finest_translation_balance": true,
+    "bomd_local_step": true,
+    "bomd_local_energy": true,
+    "kpoint_convergence": true,
+    "basis_convergence": true,
+    "basis-k2_convergence": true,
+    "auxiliary_convergence": true,
+    "scf_convergence": true
+  },
+  "passed": true,
+  "termination": "fixed_force_checks_completed"
+}

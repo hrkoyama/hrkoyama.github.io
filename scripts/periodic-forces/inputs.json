@@ -1,0 +1,825 @@
+{
+  "schema_version": 1,
+  "case": "periodic-he-forces",
+  "scope": "Artificial displaced two-He periodic KS-LDA cell: analytic forces, finite-difference and independent-plane-wave checks; not an equilibrium material or a long-time MD validation.",
+  "cell": {
+    "element": "He",
+    "lattice_bohr": [
+      [
+        5.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        5.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        5.0
+      ]
+    ],
+    "charge": 0,
+    "spin": 0,
+    "pseudopotential": [
+      [
+        2
+      ],
+      0.2,
+      2,
+      [
+        -9.1120234,
+        1.69836797
+      ],
+      0
+    ],
+    "positions_bohr": [
+      [
+        0.37,
+        0.61,
+        0.83
+      ],
+      [
+        2.13,
+        2.27,
+        2.41
+      ]
+    ]
+  },
+  "xc": {
+    "pyscf": "LDA_X,LDA_C_VWN",
+    "libxc": [
+      "lda_x",
+      "lda_c_vwn"
+    ],
+    "convention": "Dirac exchange plus spin-unpolarized VWN5 correlation"
+  },
+  "kpoint_meshes": {
+    "1": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "2": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        0.0,
+        0.5
+      ],
+      [
+        0.5,
+        0.5,
+        0.0
+      ],
+      [
+        0.5,
+        0.5,
+        0.5
+      ]
+    ],
+    "3": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        -0.3333333333333333
+      ],
+      [
+        0.0,
+        0.3333333333333333,
+        0.0
+      ],
+      [
+        0.0,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.3333333333333333,
+        -0.3333333333333333
+      ],
+      [
+        0.0,
+        -0.3333333333333333,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3333333333333333,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        -0.3333333333333333,
+        -0.3333333333333333
+      ],
+      [
+        0.3333333333333333,
+        0.0,
+        0.0
+      ],
+      [
+        0.3333333333333333,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.3333333333333333,
+        0.0,
+        -0.3333333333333333
+      ],
+      [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.0
+      ],
+      [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      [
+        0.3333333333333333,
+        0.3333333333333333,
+        -0.3333333333333333
+      ],
+      [
+        0.3333333333333333,
+        -0.3333333333333333,
+        0.0
+      ],
+      [
+        0.3333333333333333,
+        -0.3333333333333333,
+        0.3333333333333333
+      ],
+      [
+        0.3333333333333333,
+        -0.3333333333333333,
+        -0.3333333333333333
+      ],
+      [
+        -0.3333333333333333,
+        0.0,
+        0.0
+      ],
+      [
+        -0.3333333333333333,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        -0.3333333333333333,
+        0.0,
+        -0.3333333333333333
+      ],
+      [
+        -0.3333333333333333,
+        0.3333333333333333,
+        0.0
+      ],
+      [
+        -0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      [
+        -0.3333333333333333,
+        0.3333333333333333,
+        -0.3333333333333333
+      ],
+      [
+        -0.3333333333333333,
+        -0.3333333333333333,
+        0.0
+      ],
+      [
+        -0.3333333333333333,
+        -0.3333333333333333,
+        0.3333333333333333
+      ],
+      [
+        -0.3333333333333333,
+        -0.3333333333333333,
+        -0.3333333333333333
+      ]
+    ],
+    "4": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0.25
+      ],
+      [
+        0,
+        0,
+        0.5
+      ],
+      [
+        0,
+        0,
+        -0.25
+      ],
+      [
+        0,
+        0.25,
+        0
+      ],
+      [
+        0,
+        0.25,
+        0.25
+      ],
+      [
+        0,
+        0.25,
+        0.5
+      ],
+      [
+        0,
+        0.25,
+        -0.25
+      ],
+      [
+        0,
+        0.5,
+        0
+      ],
+      [
+        0,
+        0.5,
+        0.25
+      ],
+      [
+        0,
+        0.5,
+        0.5
+      ],
+      [
+        0,
+        0.5,
+        -0.25
+      ],
+      [
+        0,
+        -0.25,
+        0
+      ],
+      [
+        0,
+        -0.25,
+        0.25
+      ],
+      [
+        0,
+        -0.25,
+        0.5
+      ],
+      [
+        0,
+        -0.25,
+        -0.25
+      ],
+      [
+        0.25,
+        0,
+        0
+      ],
+      [
+        0.25,
+        0,
+        0.25
+      ],
+      [
+        0.25,
+        0,
+        0.5
+      ],
+      [
+        0.25,
+        0,
+        -0.25
+      ],
+      [
+        0.25,
+        0.25,
+        0
+      ],
+      [
+        0.25,
+        0.25,
+        0.25
+      ],
+      [
+        0.25,
+        0.25,
+        0.5
+      ],
+      [
+        0.25,
+        0.25,
+        -0.25
+      ],
+      [
+        0.25,
+        0.5,
+        0
+      ],
+      [
+        0.25,
+        0.5,
+        0.25
+      ],
+      [
+        0.25,
+        0.5,
+        0.5
+      ],
+      [
+        0.25,
+        0.5,
+        -0.25
+      ],
+      [
+        0.25,
+        -0.25,
+        0
+      ],
+      [
+        0.25,
+        -0.25,
+        0.25
+      ],
+      [
+        0.25,
+        -0.25,
+        0.5
+      ],
+      [
+        0.25,
+        -0.25,
+        -0.25
+      ],
+      [
+        0.5,
+        0,
+        0
+      ],
+      [
+        0.5,
+        0,
+        0.25
+      ],
+      [
+        0.5,
+        0,
+        0.5
+      ],
+      [
+        0.5,
+        0,
+        -0.25
+      ],
+      [
+        0.5,
+        0.25,
+        0
+      ],
+      [
+        0.5,
+        0.25,
+        0.25
+      ],
+      [
+        0.5,
+        0.25,
+        0.5
+      ],
+      [
+        0.5,
+        0.25,
+        -0.25
+      ],
+      [
+        0.5,
+        0.5,
+        0
+      ],
+      [
+        0.5,
+        0.5,
+        0.25
+      ],
+      [
+        0.5,
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        0.5,
+        -0.25
+      ],
+      [
+        0.5,
+        -0.25,
+        0
+      ],
+      [
+        0.5,
+        -0.25,
+        0.25
+      ],
+      [
+        0.5,
+        -0.25,
+        0.5
+      ],
+      [
+        0.5,
+        -0.25,
+        -0.25
+      ],
+      [
+        -0.25,
+        0,
+        0
+      ],
+      [
+        -0.25,
+        0,
+        0.25
+      ],
+      [
+        -0.25,
+        0,
+        0.5
+      ],
+      [
+        -0.25,
+        0,
+        -0.25
+      ],
+      [
+        -0.25,
+        0.25,
+        0
+      ],
+      [
+        -0.25,
+        0.25,
+        0.25
+      ],
+      [
+        -0.25,
+        0.25,
+        0.5
+      ],
+      [
+        -0.25,
+        0.25,
+        -0.25
+      ],
+      [
+        -0.25,
+        0.5,
+        0
+      ],
+      [
+        -0.25,
+        0.5,
+        0.25
+      ],
+      [
+        -0.25,
+        0.5,
+        0.5
+      ],
+      [
+        -0.25,
+        0.5,
+        -0.25
+      ],
+      [
+        -0.25,
+        -0.25,
+        0
+      ],
+      [
+        -0.25,
+        -0.25,
+        0.25
+      ],
+      [
+        -0.25,
+        -0.25,
+        0.5
+      ],
+      [
+        -0.25,
+        -0.25,
+        -0.25
+      ]
+    ]
+  },
+  "basis_sequence": [
+    "gth-dzv",
+    "gth-dzvp",
+    "gth-tzv2p",
+    "gth-qzv3p"
+  ],
+  "integral_precision": 1e-09,
+  "overlap_eigenvalue_floor": 1e-10,
+  "scf": {
+    "energy_tolerance": 1e-11,
+    "gradient_tolerance": 1e-08,
+    "max_cycles": 100
+  },
+  "cases": [
+    {
+      "id": "k-1",
+      "sweep": "kpoint",
+      "k_n": 1,
+      "basis": "gth-dzvp",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "k-2",
+      "sweep": "kpoint",
+      "k_n": 2,
+      "basis": "gth-dzvp",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "k-3",
+      "sweep": "kpoint",
+      "k_n": 3,
+      "basis": "gth-dzvp",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "k-4",
+      "sweep": "kpoint",
+      "k_n": 4,
+      "basis": "gth-dzvp",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "basis-gth-dzv",
+      "sweep": "basis",
+      "k_n": 1,
+      "basis": "gth-dzv",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "basis-gth-tzv2p",
+      "sweep": "basis",
+      "k_n": 1,
+      "basis": "gth-tzv2p",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "basis-gth-qzv3p",
+      "sweep": "basis",
+      "k_n": 1,
+      "basis": "gth-qzv3p",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "basis-k2-gth-tzv2p",
+      "sweep": "basis-k2",
+      "k_n": 2,
+      "basis": "gth-tzv2p",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "basis-k2-gth-qzv3p",
+      "sweep": "basis-k2",
+      "k_n": 2,
+      "basis": "gth-qzv3p",
+      "fft_n": 39,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "fft-31",
+      "sweep": "auxiliary",
+      "k_n": 1,
+      "basis": "gth-dzvp",
+      "fft_n": 31,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "fft-47",
+      "sweep": "auxiliary",
+      "k_n": 1,
+      "basis": "gth-dzvp",
+      "fft_n": 47,
+      "energy_tolerance": 1e-11,
+      "gradient_tolerance": 1e-08,
+      "max_cycles": 100
+    },
+    {
+      "id": "scf-loose",
+      "sweep": "scf",
+      "k_n": 1,
+      "basis": "gth-dzvp",
+      "fft_n": 39,
+      "energy_tolerance": 1e-05,
+      "gradient_tolerance": 0.001,
+      "max_cycles": 100
+    },
+    {
+      "id": "scf-medium",
+      "sweep": "scf",
+      "k_n": 1,
+      "basis": "gth-dzvp",
+      "fft_n": 39,
+      "energy_tolerance": 1e-08,
+      "gradient_tolerance": 1e-05,
+      "max_cycles": 100
+    }
+  ],
+  "convergence_groups": {
+    "kpoint": [
+      "k-1",
+      "k-2",
+      "k-3",
+      "k-4"
+    ],
+    "basis": [
+      "basis-gth-dzv",
+      "k-1",
+      "basis-gth-tzv2p",
+      "basis-gth-qzv3p"
+    ],
+    "basis-k2": [
+      "k-2",
+      "basis-k2-gth-tzv2p",
+      "basis-k2-gth-qzv3p"
+    ],
+    "auxiliary": [
+      "fft-31",
+      "k-1",
+      "fft-47"
+    ],
+    "scf": [
+      "scf-loose",
+      "scf-medium",
+      "k-1"
+    ]
+  },
+  "reference": {
+    "engine": "DFTK",
+    "ecut_hartree": [
+      90,
+      120,
+      180,
+      240
+    ],
+    "kmeshes": [
+      1,
+      2
+    ],
+    "comparison_cases": {
+      "1": "basis-gth-qzv3p",
+      "2": "basis-k2-gth-qzv3p"
+    },
+    "pseudopotential_file": "He.gth",
+    "libxc": [
+      "lda_x",
+      "lda_c_vwn"
+    ],
+    "force_cutoff_tolerance": 1e-05,
+    "energy_cutoff_tolerance": 0.0001,
+    "finite_difference_steps_bohr": [
+      0.01,
+      0.005,
+      0.001
+    ],
+    "finite_difference_tolerance": 1e-05
+  },
+  "acceptance": {
+    "kpoint_last_change": 0.001,
+    "basis_last_change": 0.0001,
+    "basis-k2_last_change": 0.0001,
+    "auxiliary_last_change": 1e-05,
+    "scf_last_change": 1e-06,
+    "reference_force_difference": 0.0002,
+    "reference_energy_difference": 0.0002,
+    "finite_difference_max_error": 2e-06,
+    "finite_difference_scan_max_error": 1e-05,
+    "max_tight_commutator": 1e-06,
+    "max_electron_count_error": 1e-08,
+    "max_orthogonality_error": 1e-07,
+    "max_energy_reconstruction_error": 1e-08,
+    "min_sampled_ks_gap": 0.1,
+    "max_overlap_condition": 100000000000.0,
+    "finest_net_force": 1e-07,
+    "bomd_position_step_difference": 1e-06,
+    "bomd_energy_defect": 1e-06
+  },
+  "finite_difference": {
+    "case_id": "k-1",
+    "all_components_step_bohr": 0.002,
+    "scan_atom": 1,
+    "scan_axis": 0,
+    "steps_bohr": [
+      0.008,
+      0.004,
+      0.002
+    ]
+  },
+  "bomd": {
+    "case_id": "k-1",
+    "mass_electron_masses": [
+      7294.29954142,
+      7294.29954142
+    ],
+    "velocities_bohr_per_atomic_time": [
+      [
+        0.001,
+        0.0005,
+        -0.0004
+      ],
+      [
+        -0.001,
+        -0.0005,
+        0.0004
+      ]
+    ],
+    "total_time_atomic_units": 8.0,
+    "scope": "One step versus two half steps with re-converged electronic forces: local force-provider/velocity-Verlet interface smoke check, not a long-time NVE or physical-material validation."
+  }
+}

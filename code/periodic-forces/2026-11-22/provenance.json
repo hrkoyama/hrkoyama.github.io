@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "original_driver": {
+    "license": "MIT / LICENSE",
+    "scope": "Original Python reproducibility/validation driver and independently written Julia reference driver; not new DFT engines."
+  },
+  "third_party_terms": {
+    "pyscf": "Apache-2.0; https://github.com/pyscf/pyscf/blob/v2.11.0/LICENSE",
+    "dftk": "MIT; https://github.com/JuliaMolSim/DFTK.jl/blob/v0.7.19/LICENSE",
+    "libxc": "MPL-2.0; https://gitlab.com/libxc/libxc/-/blob/7.0.0/COPYING",
+    "datasets": "Basis and GTH numerical data retain their upstream provenance and applicable terms; the original-driver MIT label does not relicense them. Only the small audited He potential is included; basis sets are resolved from the pinned PySCF installation."
+  },
+  "model": {
+    "scope": "Artificial displaced two-He, four-electron cubic5-bohr cell, not an equilibrium helium material.",
+    "pseudopotential_source": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/pseudo/gth-pade.dat",
+    "pseudopotential_record": "He GTH-PADE-q2, local-only",
+    "pseudopotential_coefficients": [
+      [
+        2
+      ],
+      0.2,
+      2,
+      [
+        -9.1120234,
+        1.69836797
+      ],
+      0
+    ],
+    "basis_sets": [
+      {
+        "name": "gth-dzv",
+        "element": "He",
+        "parsed_coefficients_sha256": "3961f67f70adb181551b93bc64d52365b791717df105feac49a20de69dcd94c9",
+        "upstream_complete_file_sha256": "8dd9c26be064265e0e08e8b94b29bfc96e94845d9d30e7648ab548c062d7d0aa",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-dzv.dat"
+      },
+      {
+        "name": "gth-dzvp",
+        "element": "He",
+        "parsed_coefficients_sha256": "823387474729cbd97849de1558363ecb7d0aa8d54d6625482ea0b2c8b7a815d3",
+        "upstream_complete_file_sha256": "ccd6c8dcb534952c549a94189df4f0f5a917d4674bf4cef2a4ea4554d724aa17",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-dzvp.dat"
+      },
+      {
+        "name": "gth-tzv2p",
+        "element": "He",
+        "parsed_coefficients_sha256": "48b69dda75193bc824080881b19250b17a90d64f39279da7f2d0a53e51757d84",
+        "upstream_complete_file_sha256": "3620351c7b7811bf36de593efeb7a579b3435b3cb32c7011954ec194997d8abf",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-tzv2p.dat"
+      },
+      {
+        "name": "gth-qzv3p",
+        "element": "He",
+        "parsed_coefficients_sha256": "1e12da75297a5252989daa19f0ea8e6dbfb6c7ae9d6e7b14a2b5e38e6011f54e",
+        "upstream_complete_file_sha256": "ca38d78957bcbe1ca7114d6a0d76d918a3c970d52ceb97e20ab76f1ed2e8f4f8",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-qzv3p.dat"
+      }
+    ]
+  },
+  "independent_reference": {
+    "engine": "DFTK 0.7.19",
+    "runtime": "Julia 1.12.2",
+    "environment": "reference-environment/Project.toml + Manifest.toml",
+    "implementation_independence": "Separate Gaussian and plane-wave Hamiltonian, Ewald and SCF implementations. Both use Libxc XC formulas; this is not an independent functional or experimental validation.",
+    "regeneration": "README-reference.txt",
+    "finite_basis_scope": "Cartesian ground-state nuclear forces and total cell energies at Gamma and2x2x2, with independent plane-wave cutoff scans and all-six-component finite differences; not a general material, spectrum or long-time MD validation."
+  },
+  "primary_literature": [
+    {
+      "id": "gth1996",
+      "author": "S. Goedecker, M. Teter and J. Hutter",
+      "year": 1996,
+      "title": "Separable dual-space Gaussian pseudopotentials",
+      "journal": "Physical Review B 54, 1703–1710",
+      "doi": "10.1103/PhysRevB.54.1703",
+      "source": "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.54.1703",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録を確認。実際のHe係数は同梱データと両ライブラリで照合し、原論文の表からの全桁の直接転記とは扱いません。",
+        "en": "Publisher bibliography and abstract consulted. Actual He coefficients are aligned through the packaged data and libraries, not presented as a full-precision transcription from the paper’s tables."
+      }
+    },
+    {
+      "id": "vwn1980",
+      "author": "S. H. Vosko, L. Wilk and M. Nusair",
+      "year": 1980,
+      "title": "Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis",
+      "journal": "Canadian Journal of Physics 58, 1200–1211",
+      "doi": "10.1139/p80-159",
+      "source": "https://doi.org/10.1139/p80-159",
+      "review_level": "metadata",
+      "review": {
+        "ja": "公式Libxc資料のLDA_C_VWN（VWN5）の原著DOIと書誌を確認。出版社本文へはアクセスできず、全文や表の監査は行っていません。",
+        "en": "Original DOI and bibliography checked through official Libxc documentation identifying LDA_C_VWN as VWN5. Publisher text was inaccessible; no full-text or table audit was performed."
+      }
+    },
+    {
+      "id": "sun2020pyscf",
+      "author": "Qiming Sun et al.",
+      "year": 2020,
+      "title": "Recent developments in the PySCF program package",
+      "journal": "The Journal of Chemical Physics 153, 024109",
+      "doi": "10.1063/5.0006074",
+      "source": "https://doi.org/10.1063/5.0006074",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録と既存アトラスの登録を確認。今回使用する周期APIは下記の公式資料と固定版コードでも確認します。",
+        "en": "Publisher bibliography/abstract and the existing Atlas entry consulted. The periodic APIs used here are additionally checked against official documentation and pinned code."
+      }
+    },
+    {
+      "id": "dftk2021",
+      "author": "M. F. Herbst, A. Levitt and E. Cancès",
+      "year": 2021,
+      "title": "DFTK: A Julian approach for simulating electrons in solids",
+      "journal": "Proceedings of the JuliaCon Conferences 3(26), 69",
+      "doi": "10.21105/jcon.00069",
+      "source": "https://proceedings.juliacon.org/papers/10.21105/jcon.00069",
+      "review_level": "selected-full-text",
+      "review": {
+        "ja": "出版社の書誌と公開論文の導入部を確認。今回の参照計算は独立した数値検査であり、論文中の全例の再現ではありません。",
+        "en": "Publisher bibliography and the introduction of the open paper consulted. The reference calculation is a separate numerical check, not a reproduction of all paper examples."
+      }
+    },
+    {
+      "id": "dftk-api-docs",
+      "author": "DFTK developers",
+      "year": 2026,
+      "title": "DFTK API and pseudopotentials",
+      "journal": "Official DFTK documentation",
+      "source": "https://docs.dftk.org/stable/api/",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "compute_forcesとcompute_forces_cartの座標・単位・離散化エネルギー微分の説明を参照。実際の参照生成は配布物のDFTK固定版で実行し、その版のソースも確認します。",
+        "en": "Selected API descriptions of compute_forces, compute_forces_cart, coordinates, units and derivatives of discrete energies consulted. Reference generation uses the packaged pinned DFTK environment, whose source is also checked."
+      }
+    },
+    {
+      "id": "born-oppenheimer1927",
+      "author": "M. Born and R. Oppenheimer",
+      "year": 1927,
+      "title": "Zur Quantentheorie der Molekeln",
+      "journal": "Annalen der Physik 389(20), 457–484",
+      "doi": "10.1002/andp.19273892002",
+      "source": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+      "review_level": "metadata",
+      "review": {
+        "ja": "出版社の書誌・DOIを確認。Born–Oppenheimer分離の歴史的基礎として引用し、原文全文の監査や現代のMD実装の再現は主張しません。",
+        "en": "Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation."
+      }
+    },
+    {
+      "id": "car-parrinello1985",
+      "author": "R. Car and M. Parrinello",
+      "year": 1985,
+      "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+      "journal": "Physical Review Letters 55, 2471–2474",
+      "doi": "10.1103/PhysRevLett.55.2471",
+      "source": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+      "review_level": "selected-full-text",
+      "review": {
+        "ja": "出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。",
+        "en": "Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced."
+      }
+    },
+    {
+      "id": "feynman1939",
+      "author": "R. P. Feynman",
+      "year": 1939,
+      "title": "Forces in Molecules",
+      "journal": "Physical Review 56, 340–343",
+      "source": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.56.340",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌と抄録を確認。Hellmann–Feynmanの力の関係の歴史的な一次文献として引用し、有限基底や擬ポテンシャルの勾配実装をこの原著だけで検証したとは主張しません。",
+        "en": "Publisher bibliography and abstract consulted. Cited as a historical primary source for the Hellmann–Feynman force relation, not as sole validation of finite-basis or pseudopotential gradient implementations."
+      },
+      "doi": "10.1103/PhysRev.56.340"
+    },
+    {
+      "id": "pulay1969",
+      "author": "P. Pulay",
+      "year": 1969,
+      "title": "Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory",
+      "journal": "Molecular Physics 17(2), 197–204",
+      "source": "https://www.tandfonline.com/doi/abs/10.1080/00268976900100941",
+      "review_level": "search-abstract-and-metadata",
+      "review": {
+        "ja": "検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。原子位置に依存する有限基底でのエネルギー微分を論じる力の原著として引用し、SCF加速DIISのPulay(1980)とは区別します。原著全文の監査は行っていません。",
+        "en": "Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Cited for finite position-dependent basis derivatives, distinct from Pulay (1980) on DIIS. No full-text audit is claimed."
+      },
+      "doi": "10.1080/00268976900100941"
+    },
+    {
+      "id": "pyscf-krks-grad-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "pyscf.pbc.grad.krks: analytic nuclear gradients with k-point sampling",
+      "journal": "Official PySCF source documentation",
+      "source": "https://pyscf.org/_modules/pyscf/pbc/grad/krks.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "周期KRKSの解析核勾配、LDAの交換相関微分、対応していない設定を公式ソースで確認。配布版のPySCF 2.11.0でも使用箇所を照合します。",
+        "en": "Official source documentation consulted for periodic KRKS analytic nuclear gradients, LDA XC derivatives and unsupported settings; executed calls are also checked in pinned PySCF 2.11.0."
+      }
+    },
+    {
+      "id": "pyscf-krhf-grad-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "pyscf.pbc.grad.krhf: electronic, overlap, pseudopotential and nuclear gradient terms",
+      "journal": "Official PySCF source documentation",
+      "source": "https://pyscf.org/_modules/pyscf/pbc/grad/krhf.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "grad_elecの密度・エネルギー重み付き密度と重なり微分、擬ポテンシャルの微分、周期イオン項の該当箇所を確認。第三者ソースコードを教材へ複製しません。",
+        "en": "Relevant source sections for grad_elec, density and energy-weighted density, overlap derivatives, pseudopotential derivatives and periodic ionic terms consulted. Third-party source is not copied into the tutorial."
+      }
+    },
+    {
+      "id": "pyscf-pbc-settings-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "Guidelines for PBC DFT Parameter Settings",
+      "journal": "Official PySCF documentation",
+      "source": "https://pyscf.org/user/pbc/dft-settings.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "FFTDFの補助平面波と実空間格子、核勾配への適用範囲の説明を参照。Gaussian軌道基底とFFT格子の収束を分けるための実装資料です。",
+        "en": "Selected discussion of FFTDF auxiliary plane waves, real-space grids and nuclear gradients consulted as implementation guidance distinguishing orbital-basis and auxiliary-grid convergence."
+      }
+    },
+    {
+      "id": "herbert-head-gordon2005",
+      "author": "J. M. Herbert and M. Head-Gordon",
+      "year": 2005,
+      "title": "Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation",
+      "journal": "Physical Chemistry Chemical Physics 7, 3269–3275",
+      "source": "https://pubs.rsc.org/en/content/articlelanding/2005/cp/b509494a",
+      "review_level": "search-abstract-and-metadata",
+      "review": {
+        "ja": "検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。SCFの解き残し・初期推定と力・NVEドリフトを区別する根拠として参照し、論文の外挿法や分子軌道を今回実装・再現したとは主張しません。",
+        "en": "Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Used to distinguish SCF solution error, electronic guesses, forces and NVE drift; the paper’s extrapolation method and trajectories are not claimed as implemented or reproduced."
+      },
+      "doi": "10.1039/B509494A"
+    }
+  ]
+}

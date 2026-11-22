@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "family": "periodic-forces",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "archive_sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+  "source_manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+  "execution": "ZIP independently extracted; all packaged tests and the complete fixed-input Python runner executed without network or private source. Separate independent Julia reference regeneration is recorded below.",
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5",
+    "matplotlib": "3.9.4",
+    "pyscf": "2.11.0"
+  },
+  "tests": 36,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 36,
+  "fixed_input": {
+    "id": "periodic-he-forces",
+    "unique_cases": 13,
+    "passed": true,
+    "metrics": {
+      "max_reference_force_error": 7.538249895754426e-05,
+      "max_reference_energy_error": 0.00017168416810697806,
+      "finite_difference_max_error": 2.3223412720652092e-08,
+      "finite_difference_scan_max_error": 1.8023756336027486e-07,
+      "max_tight_scf_commutator": 3.046234039240302e-09,
+      "max_scf_commutator": 2.9444176303066563e-06,
+      "max_electron_count_error": 2.6645352591003757e-15,
+      "max_orthogonality_error": 4.937827924322846e-11,
+      "max_energy_reconstruction_error": 0.0,
+      "min_sampled_ks_gap": 0.5590540512861382,
+      "max_overlap_condition": 413148.51637692977,
+      "finest_net_force": 3.187202654575394e-09,
+      "bomd_position_step_difference": 9.601938036341018e-07,
+      "bomd_full_step_energy_defect": 3.785578508441745e-07,
+      "bomd_two_half_steps_energy_defect": 9.46016402991745e-08,
+      "reference_cutoff_force_change": 1.6952217203117237e-06,
+      "reference_finite_difference_max_error": 2.4321721783793215e-07,
+      "kpoint_last_change": 2.8433495895180405e-05,
+      "basis_last_change": 2.652392913735091e-06,
+      "basis-k2_last_change": 3.551799477477524e-05,
+      "auxiliary_last_change": 1.3032860825545889e-06,
+      "scf_last_change": 5.649496565007794e-10
+    },
+    "maximum_reproduced_energy_difference": 0.0,
+    "maximum_reproduced_force_difference": 0.0,
+    "runtime_seconds": 501.0930305409711
+  },
+  "independent_reference": {
+    "file": "reference-dftk.json",
+    "sha256": "f4beb96c3672066378e34ad756ea9a2b08aab10c5b16aae31537644b23303db7",
+    "engine": "DFTK",
+    "engine_version": "0.7.19",
+    "julia_version": "1.12.2",
+    "package_versions": {
+      "Libxc_jll": "7.0.0+2",
+      "JSON3": "1.14.3",
+      "DFTK": "0.7.19",
+      "DftFunctionals": "0.3.1",
+      "Libxc": "0.3.20"
+    },
+    "regeneration": "Separate pinned Julia workflow; see README-reference.txt",
+    "regenerated_before_freeze": true,
+    "cutoff_records": 8,
+    "displaced_scf_records": 16,
+    "total_scf_records": 24,
+    "source_hashes": {
+      "input_sha256": "d25fe56cf92f1486d9553ead5e7851db49fb3f319b7d32d7813278cc4103c097",
+      "script_sha256": "d829fa37c43357ee4488ec7a2a24d32b360364d8c6c17ebea4570eb144f94575",
+      "pseudopotential_sha256": "d44ed319ace3a2485d5e5bc7a15990c59c51b92987d1f1c53f22ae795a45ac87",
+      "project_sha256": "43ab2341bef82be963873328d14caa8e5bf16e016fab81db5311f86d51fc47fb",
+      "manifest_sha256": "834f0fbf755b5e19c872794a8264315f7305827974c1b3248c350de78974cc22"
+    },
+    "regenerated_records": 24,
+    "regenerated_file_sha256": "6cd674f12b633f6cc20ac94d3884853ed38f27a3c84ef49fe65aab3d476f505f",
+    "maximum_regenerated_energy_difference": 0.0,
+    "maximum_regenerated_force_difference": 0.0
+  },
+  "failure_check": {
+    "test": "test_scf_failure_is_not_a_usable_bo_force",
+    "result": "An actual one-cycle SCF is rejected by the BO-force interface; unconverged electronic forces cannot advance nuclei."
+  },
+  "test_runtime_seconds": 18.637497583054937,
+  "scope": "Artificial displaced two-He periodic KS-LDA cell: analytic forces, finite-difference and independent-plane-wave checks; not an equilibrium material or a long-time MD validation."
+}
