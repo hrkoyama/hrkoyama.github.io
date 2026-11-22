@@ -144,17 +144,17 @@ test('all five readings preserve measured records, real KaTeX output and machine
   }
 });
 
-test('existing readings, bilingual contents and search keep one additive marker and five searchable chapters', () => {
+test('existing readings, unified bilingual contents and search preserve five searchable chapters', () => {
   const search = json('numerical-methods-atlas/home-search-index.json');
   const entries = search.entries.filter(x => x.origin === 'depth-examples');
   assert.deepEqual(entries.map(x => x.id).sort(), groupIds.map(x => 'reading-validation-' + x).sort());
   for (const lang of ['ja', 'en']) {
     const contents = text(`numerical-methods-atlas/${lang}/read/index.html`);
-    assert.equal((contents.match(/<!-- depth-examples -->/g) || []).length, 1);
+    const contentsLinks = [...contents.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map(match => new URL(match[1], 'https://hrkoyama.github.io').pathname);
     const docs = json(`numerical-methods-atlas/content.${lang}.json`);
     assert.ok(docs['periodic-forces'] && docs['periodic-dft'] && docs['fdtd']);
     for (const group of groupIds) {
-      assert.ok(contents.includes(`/read/validation-${group}/`));
+      assert.equal(contentsLinks.filter(path => path === `/numerical-methods-atlas/${lang}/read/validation-${group}/`).length, 1);
       assert.ok(entries.find(x => x.id === 'reading-validation-' + group).routes[lang].includes(`/read/validation-${group}/`));
     }
   }
