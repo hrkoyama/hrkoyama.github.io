@@ -8,6 +8,8 @@ Read about Mean-preserving positive-state scaling, follow the original reference
 
 A standalone reconstruction helper, not a positivity guarantee integrated into full Euler, WENO or MHD time updates.
 
+Other names: 正値性スケーリング, 正値性保持スケーリング, positive state scaling, mean preserving scaling
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced-limiters/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced-limiters/
 

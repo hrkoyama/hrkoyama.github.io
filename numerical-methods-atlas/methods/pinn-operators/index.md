@@ -8,6 +8,8 @@ Map learned solutions/operators, error and generalization.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: PINN, PINN法, physics informed neural network, 物理情報ニューラルネットワーク, neural operator, ニューラルオペレーター
+
 
 
 

@@ -8,6 +8,8 @@ Read about Restarted GMRES, follow the original references and inspect related e
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: GMRES法, 一般化最小残差法, generalized minimal residual, restarted GMRES
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/
 

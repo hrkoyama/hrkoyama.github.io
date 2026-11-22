@@ -8,6 +8,8 @@ Read about Euler characteristic reconstruction, follow the original references a
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 特性変数再構成, 特性再構成, characteristic reconstruction, characteristic variable reconstruction
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reconstruction/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/reconstruction/
 

@@ -8,6 +8,8 @@ Read about ALE uniform-state / geometric-conservation model, follow the original
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: ALE法, 任意ラグランジュ・オイラー法, 任意ラグランジュオイラー法, Arbitrary Lagrangian Eulerian, arbitrary Lagrangian Eulerian method
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ale/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/ale/
 

@@ -8,6 +8,8 @@ Read about TreePM force splitting, follow the original references. No dedicated 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: TreePM法, tree PM, Tree Particle Mesh, ツリーPM法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/
 

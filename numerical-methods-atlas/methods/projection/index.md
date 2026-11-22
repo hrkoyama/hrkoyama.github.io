@@ -8,6 +8,8 @@ Read about MAC pressure projection, follow the original references and inspect r
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 射影法, 圧力射影法, projection method, MAC projection, pressure projection
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/incompressible/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/incompressible/
 

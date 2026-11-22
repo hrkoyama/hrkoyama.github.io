@@ -8,6 +8,8 @@ Connect random samples, variance and integration error.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: モンテカルロ法, モンテカルロ積分, Monte Carlo method, Monte Carlo integration
+
 
 
 

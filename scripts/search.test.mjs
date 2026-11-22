@@ -4,6 +4,16 @@ import fs from 'node:fs';
 import {makeSearch,safePath,normalize,excerpt} from '../search/engine.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../search/index.json',import.meta.url),'utf8'));
 const search=makeSearch(data.documents);
+test('execution intent keeps the requested published input and validation pages expanded',()=>{
+  for(const [query,id] of [['Poisson code','poisson-1d-dirichlet'],['Barnes Hut code','barnes-hut'],['WENO-Z run','shu-osher'],['He SCF','helium-ground-state']]){
+    const first=search(query,'ja','atlas')[0];
+    assert.equal(first?.url,`/numerical-methods-atlas/code-and-data/examples/${id}/`,query);
+    assert.equal(first?.executionPriority,true,query);
+    assert.equal(first?.kind,'execution-example',query);
+  }
+  assert.equal(search('WENO-Z','ja','atlas')[0]?.method?.id,'weno-z');
+  assert.ok(!search('GSPH code','ja','atlas').some(row=>row.executionPriority));
+});
 test('the public search page has one search container and no merge markers',()=>{
   const html=fs.readFileSync(new URL('../search/index.html',import.meta.url),'utf8');
   assert.equal((html.match(/<main\b/g)||[]).length,1);

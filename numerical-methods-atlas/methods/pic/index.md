@@ -8,6 +8,8 @@ Couple particles and mesh fields with deposition, interpolation and conservation
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: PIC法, particle in cell, 粒子セル法, 粒子インセル法
+
 
 
 

@@ -8,6 +8,8 @@ Read about Centered spatial difference, follow the original references and inspe
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 中心差分, 中心差分法, 中央差分, central difference, central finite difference
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/
 

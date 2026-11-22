@@ -8,6 +8,8 @@ Interpolate from nodal values with Lagrange cardinal functions. The example cove
 
 High-degree Vandermonde solves face conditioning limits and are not a replacement for stable barycentric tabulation or a general high-order element library. High-degree equispaced interpolation can exhibit Runge behavior. The rank-one exact/lumped GLL mass difference concerns the unweighted affine interval, not arbitrary triangles.
 
+Other names: Lagrange基底, Lagrange interpolation basis, ラグランジュ基底, 節点基底, GLL, Gauss-Lobatto-Legendre
+
 
 ## 条件と確認範囲 (ja)
 

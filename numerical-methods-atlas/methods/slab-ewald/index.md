@@ -8,6 +8,8 @@ Separate plane-periodic open-normal boundaries from corrections to 3D periodicit
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: 2D periodic Ewald, 2次元周期Ewald, slab Ewald, スラブEwald法
+
 
 
 

@@ -8,6 +8,8 @@ Read about AUSM-family flux splitting, follow the original references and inspec
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: AUSM法, AUSM流束, advection upstream splitting method
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/
 

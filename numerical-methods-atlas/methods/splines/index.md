@@ -8,6 +8,8 @@ Relate interpolation, boundary conditions and smoothness.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: スプライン, スプライン補間法, spline interpolation
+
 
 
 

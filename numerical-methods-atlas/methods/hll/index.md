@@ -8,6 +8,8 @@ Read about HLL, follow the original references and inspect related educational c
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: HLL法, HLL流束, HLLリーマンソルバー, Harten-Lax-van Leer
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

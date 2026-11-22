@@ -8,6 +8,8 @@ Relate invariant distributions, mixing, correlation and estimation error.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: MCMC法, Markov chain Monte Carlo, マルコフ連鎖モンテカルロ, マルコフ連鎖Monte Carlo
+
 
 
 

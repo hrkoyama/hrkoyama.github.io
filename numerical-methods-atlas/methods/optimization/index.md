@@ -8,6 +8,8 @@ Connect objectives, gradients, constraints and stopping criteria.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: 数値最適化, 勾配降下法, 準Newton法, 準ニュートン法, gradient descent, quasi Newton
+
 
 
 

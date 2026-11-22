@@ -8,6 +8,8 @@ Read about Isolated doubled-grid FFT convolution, follow the original references
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Hockney法, Hockney-Eastwood法, ホックニー法, isolated boundary FFT, isolated FFT convolution
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gravity-boundaries/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/gravity-boundaries/
 

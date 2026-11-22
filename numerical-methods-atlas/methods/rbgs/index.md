@@ -8,6 +8,8 @@ Read about Red-black Gauss–Seidel, follow the original references and inspect 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: RBGS法, red black Gauss Seidel, レッドブラックGauss-Seidel法, 赤黒Gauss-Seidel法, 赤黒ガウスザイデル法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/
 

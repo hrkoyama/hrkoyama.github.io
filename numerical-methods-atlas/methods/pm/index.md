@@ -8,6 +8,8 @@ Deposit periodic 3D particle mass by CIC, FFT-solve Poisson after removing mean 
 
 A static PM-only example without direct short-range correction. CIC smoothing, grid anisotropy, aliasing and finite resolution remain; the continuum Fourier Green function is not the inverse symbol of a finite-difference Laplacian. No P3M, TreePM split, Ewald, PME/SPME, expansion or time integration is included.
 
+Other names: PM法, particle mesh, 粒子格子法, particle mesh method
+
 
 ## 条件と確認範囲 (ja)
 

@@ -8,6 +8,8 @@ Read about Unpivoted ILU(0), follow the original references and inspect related 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: ILU(0), ILU0, 不完全LU分解, zero fill incomplete LU, incomplete LU factorization
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/
 

@@ -5,10 +5,12 @@ import hashlib
 import json
 import re
 from atlas_execution_discovery import load_discovery, entry_path
+from atlas_search_methods import search_methods, version_method_search
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
 catalog=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
+method_records={method['id']:method for method in search_methods(ROOT)}
 path=ATLAS/'home-search-index.json';index=json.loads(path.read_text())
 index['entries']=[x for x in index['entries'] if x.get('origin') not in {'public-method-registry','public-execution-discovery'}]
 for entry in index['entries']:
@@ -27,6 +29,7 @@ for x in catalog['methods']:
         for name in ['use_when','avoid_when']:
             for values in review[name].values():extra+=values
     add('registry-'+x['id'],x['name'],list(x['name'].values())+x.get('aliases',[])+list(x['group'].values())+extra,{lang:'/numerical-methods-atlas/methods/'+x['id']+'/?lang='+lang for lang in ['ja','en']},'method')
+    index['entries'][-1]['method']=method_records[x['id']]
 add('public-method-map',{'ja':'手法の見取り図','en':'A map of numerical methods'},['手法 見取り図','method map','主要24手法','適用条件','条件と制約','一次文献','primary references','priority methods'],{lang:'/numerical-methods-atlas/methods/?lang='+lang for lang in ['ja','en']})
 add('public-code-guide',{'ja':'コード・入力・検証を取得する','en':'Get code, inputs and verification'},['公開コード','データ','download','code edition'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
 add('shared-execution-guide',{'ja':'代表15問題を固定入力から実行・検証する','en':'Run and validate 15 fixed-input representative problems'},['共通手順','実行方法','検証','固定入力','コード データ','再現','Barnes Hut','水素型原子','ヘリウム','reproduce','validation','execution guide','代表15問題','線形移流','Sod','Shu Osher','Poisson','Bratu','調和振動子','硬いODE','周期PM','Taylor Green','Brio Wu'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
@@ -53,6 +56,7 @@ for item in load_discovery(ROOT)['examples']:
 index['scope']='chapter titles, section headings, model and method labels, glossary aliases, reviewed applicability conditions, and 15 individually scoped runnable execution examples'
 path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
 module=ATLAS/'home-search.js';text=module.read_text()
+text=re.sub(r"from '../search/method-search[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/method-search.mjs?v="+version_method_search(ROOT)+"'", text)
 marker=' // Public word-search entry\n'
 if marker not in text:
     target=" const schedule=()=>"
@@ -62,7 +66,7 @@ text=re.sub(r"new URL\('home-search-index[.]json(?:[?]v=[a-f0-9]+)?',import.meta
 old='score}];'
 new="score,url:/^\\/numerical-methods-atlas\\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];"
 if old in text:text=text.replace(old,new)
-assert new in text,'Review upstream search result shape'
+assert new in text or 'findMethods(' in text,'Review upstream search result shape'
 text=text.replace("a.href=readingURL(new URL('.',import.meta.url),result.id,result.locale,result.section)","a.href=result.url||readingURL(new URL('.',import.meta.url),result.id,result.locale,result.section)")
 text=text.replace('該当する章がありません。','該当する項目がありません。').replace('No chapters match.','No entries match.')
 text=text.replace('`${n}章が該当${n>m?`（上位${m}章を表示）`', '`${n}件が該当${n>m?`（上位${m}件を表示）`')

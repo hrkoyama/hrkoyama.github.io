@@ -8,6 +8,8 @@ Read about Rusanov / local Lax–Friedrichs flux, follow the original references
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Rusanov法, Rusanov flux, 局所Lax-Friedrichs法, local Lax Friedrichs flux, LLF, ルサノフ法, ルサノフ流束
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

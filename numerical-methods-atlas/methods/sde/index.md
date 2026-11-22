@@ -8,6 +8,8 @@ Distinguish stochastic-integration conventions and strong/weak errors.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: SDE, SDE法, stochastic differential equation, 確率微分方程式法
+
 
 
 

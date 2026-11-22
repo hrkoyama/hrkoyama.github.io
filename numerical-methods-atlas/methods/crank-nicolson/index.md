@@ -8,6 +8,8 @@ Read about Crank–Nicolson, follow the original references and inspect related 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Crank Nicolson, Crank-Nicolson法, クランク・ニコルソン法, CN法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/
 

@@ -8,6 +8,8 @@ Read about First-order hyperbolic diffusion baseline, follow the original refere
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 双曲型拡散法, 双曲型拡散, hyperbolic diffusion method, Nishikawa hyperbolic diffusion, 西川の双曲型拡散法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/hyperbolic-diffusion/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/hyperbolic-diffusion/
 

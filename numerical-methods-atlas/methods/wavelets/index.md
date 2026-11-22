@@ -8,6 +8,8 @@ Map multiresolution representations and local structure.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: ウェーブレット変換, wavelet transform, wavelet method
+
 
 
 

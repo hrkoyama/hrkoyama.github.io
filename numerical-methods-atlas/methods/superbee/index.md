@@ -8,6 +8,8 @@ Read about Superbee, follow the original references and inspect related educatio
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: superbee法, superbee limiter, superbee制限関数, スーパービー制限関数
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/
 

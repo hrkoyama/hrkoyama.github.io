@@ -8,6 +8,8 @@ A finite-volume baseline using a local Riemann problem at each interface. The re
 
 First-order spatial reconstruction smears shocks and contacts. This is not the original one-step exact-Riemann algorithm, and third-order time stepping does not raise its spatial order. Results depend on the approximate flux, sampled initialization and boundary treatment. Vacuum, wet/dry fronts, general equations of state, multiple dimensions, and general positivity/entropy guarantees are outside scope.
 
+Other names: Godunov法, Godunov method, Godunov scheme, ゴドノフ法, ゴドゥノフ法
+
 
 ## 条件と確認範囲 (ja)
 

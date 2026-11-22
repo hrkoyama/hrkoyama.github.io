@@ -8,6 +8,8 @@ HLL近似Riemann流束に接触波を加え、Euler方程式の密度接触面�
 
 Contact restoration is not a general positivity or entropy-stability guarantee. This Davis-speed version should not be extended without additional treatment to strong rarefactions, vacuum, general equations of state, MHD or relativistic flow. Exact agreement for a stationary contact does not imply an exact solution for moving shocks or arbitrary problems.
 
+Other names: HLLC法, HLLC流束, HLLC solver, HLLCリーマンソルバー
+
 
 ## 条件と確認範囲 (ja)
 

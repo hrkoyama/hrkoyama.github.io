@@ -8,6 +8,8 @@ Read about Scalar residual distribution, follow the original references and insp
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: residual distribution scheme, 残差分配法, 残差分布法, RD法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/
 

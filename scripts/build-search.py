@@ -3,6 +3,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlparse,unquote
+from atlas_search_methods import search_methods
 import re,json,hashlib,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 ORIGIN='https://hrkoyama.github.io'
@@ -48,6 +49,9 @@ def record(url,title,title_en,text,lang,category):
  ja,en=CATEGORIES[category]
  return {'url':url,'title':title,'titleEn':title_en,'text':re.sub(r'\s+',' ',text).strip(),'lang':lang,'categoryJa':ja,'categoryEn':en,'categoryText':ja+' '+en}
 documents=[]
+method_records={urlparse(method['url']).path:method for method in search_methods(ROOT)}
+atlas_index=json.loads((ROOT/'numerical-methods-atlas/home-search-index.json').read_text())
+execution_records={urlparse(entry['routes']['en']).path:entry for entry in atlas_index['entries'] if entry.get('kind')=='execution-example'}
 urls=sorted({node.text for node in ET.parse(ROOT/'sitemap.xml').findall('.//{*}loc')})
 for url in urls:
  parsed=urlparse(url)
@@ -69,7 +73,10 @@ for url in urls:
  if parsed.path=='/hpci-policy/':
   for name in ['content.json','committees.json','comparison.json']:text+=' '+flatten(json.loads((ROOT/'hpci-policy'/name).read_text()))
  if parsed.path=='/hpci-policy/history.html':text+=' '+flatten(json.loads((ROOT/'hpci-policy/history.json').read_text()))
- doc=record(parsed.path,title,parser.titles.get('en',''),text,lang,category);doc['headings']=''.join(parser.headings).strip();documents.append(doc)
+ doc=record(parsed.path,title,parser.titles.get('en',''),text,lang,category);doc['headings']=''.join(parser.headings).strip()
+ if parsed.path in method_records:doc['method']=method_records[parsed.path]
+ if parsed.path in execution_records:doc['execution']=execution_records[parsed.path]
+ documents.append(doc)
 raw=(ROOT/'notebooks/catalog.js').read_text()
 notebooks=json.loads(raw.split('=',1)[1].strip().removesuffix(';'))['notebooks']
 for notebook in notebooks:
@@ -81,6 +88,8 @@ for notebook in notebooks:
 assert len({doc['url'] for doc in documents})==len(documents)
 assert all(not re.search(r'koyam(?:arium|ahr)@gmail[.]com',doc['text']) for doc in documents)
 inputs={'sitemap.xml','notebooks/catalog.js','gordon-bell/data.json'}
+inputs.add('numerical-methods-atlas/methods/index.json')
+inputs.add('numerical-methods-atlas/home-search-index.json')
 inputs.update('hpci-policy/'+name for name in ['content.json','committees.json','comparison.json','history.json'])
 for url in urls:
  parsed=urlparse(url)
@@ -93,6 +102,10 @@ data=json.dumps({'version':1,'documents':documents,'sourceSha256':receipts},ensu
 (ROOT/'search/index.json').write_text(data)
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
 js=ROOT/'search/search.js'
+shared=ROOT/'search/method-search.mjs'
+shared.write_text(re.sub(r"new URL\('./methods[.]css(?:\?v=[a-f0-9]+)?',import.meta.url\)","new URL('./methods.css?v="+digest(ROOT/'search/methods.css')+"',import.meta.url)",shared.read_text()))
+for module in [ROOT/'search/engine.mjs',js]:
+ module.write_text(re.sub(r"from './method-search[.]mjs(?:\?v=[a-f0-9]+)?'","from './method-search.mjs?v="+digest(shared)+"'",module.read_text()))
 js.write_text(re.sub(r"from './engine\.mjs(?:\?v=[a-f0-9]+)?'", "from './engine.mjs?v="+digest(ROOT/'search/engine.mjs')+"'",js.read_text()))
 page=ROOT/'search/index.html';html=page.read_text()
 for name in ['search.js','search.css']:

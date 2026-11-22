@@ -8,6 +8,8 @@ Read about Fourier differentiation and evolution, follow the original references
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: フーリエ法, フーリエスペクトル法, Fourier spectral method, Fourier differentiation
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

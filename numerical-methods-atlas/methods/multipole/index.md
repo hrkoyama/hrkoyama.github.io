@@ -8,6 +8,8 @@ Read about Monopole and second-moment expansion, follow the original references 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 多重極展開, multipole expansion, 単極と2次モーメント, monopole and second moment expansion
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/
 

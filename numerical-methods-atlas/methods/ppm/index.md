@@ -8,6 +8,8 @@ Read about Limited PPM reconstruction, follow the original references and inspec
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: PPM法, piecewise parabolic method, 区分放物線法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/
 

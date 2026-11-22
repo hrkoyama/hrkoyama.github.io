@@ -8,6 +8,8 @@ Read about Monotonized central / MC, follow the original references and inspect 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: MC制限関数, MC limiter, monotonized central limiter, 単調中心制限関数
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/
 

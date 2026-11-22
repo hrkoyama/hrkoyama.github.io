@@ -8,6 +8,8 @@ Connect sensitivities, observations and parameter identification.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: 随伴法, 随伴解析, adjoint method, adjoint analysis
+
 
 
 

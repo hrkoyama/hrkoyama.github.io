@@ -8,6 +8,8 @@ Solve real SPD linear systems by conjugate directions. The public example is unp
 
 Do not apply this variant directly to nonsymmetric, indefinite or singular systems. This CG example has no preconditioner, general sparse-matrix interface or pure-Neumann nullspace handling. A small residual does not certify discretization accuracy; rapid termination for one eigenmode is not a general performance result.
 
+Other names: CG法, conjugate gradient, conjugate gradient method, 共役勾配, 共役勾配法
+
 
 ## 条件と確認範囲 (ja)
 

@@ -8,6 +8,8 @@ Read about Low-Mach PDE preconditioning, follow the original references. No dedi
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: low Mach preconditioning, 低マッハ数前処理, 低Mach数前処理, PDE preconditioning
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/
 

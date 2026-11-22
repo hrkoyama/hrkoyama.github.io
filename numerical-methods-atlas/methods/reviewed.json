@@ -171,6 +171,13 @@
           }
         }
       },
+      "aliases": [
+        "風上差分",
+        "風上差分法",
+        "風上法",
+        "upwind scheme",
+        "upwind differencing"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/index.md",
@@ -429,6 +436,13 @@
           }
         }
       },
+      "aliases": [
+        "Godunov法",
+        "Godunov method",
+        "Godunov scheme",
+        "ゴドノフ法",
+        "ゴドゥノフ法"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/index.md",
@@ -667,6 +681,12 @@
           }
         }
       },
+      "aliases": [
+        "HLLC法",
+        "HLLC流束",
+        "HLLC solver",
+        "HLLCリーマンソルバー"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/index.md",
@@ -896,6 +916,14 @@
           }
         }
       },
+      "aliases": [
+        "WENO-Z",
+        "WENO5Z",
+        "WENO-Z法",
+        "WENO",
+        "WENO法",
+        "WENOスキーム"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/index.md",
@@ -1097,6 +1125,13 @@
           }
         }
       },
+      "aliases": [
+        "RK4法",
+        "古典的Runge-Kutta法",
+        "classical Runge-Kutta",
+        "classical fourth-order Runge-Kutta",
+        "4次ルンゲクッタ法"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/index.md",
@@ -1298,6 +1333,11 @@
           }
         }
       },
+      "aliases": [
+        "SDIRK2法",
+        "2次SDIRK",
+        "L-stable SDIRK2"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/index.md",
@@ -1503,6 +1543,13 @@
           }
         }
       },
+      "aliases": [
+        "Verlet法",
+        "ベルレ法",
+        "速度ベルレ法",
+        "velocity Verlet",
+        "particle leapfrog"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/index.md",
@@ -1704,6 +1751,13 @@
           }
         }
       },
+      "aliases": [
+        "CG法",
+        "conjugate gradient",
+        "conjugate gradient method",
+        "共役勾配",
+        "共役勾配法"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/index.md",
@@ -1913,6 +1967,14 @@
           }
         }
       },
+      "aliases": [
+        "Newton法",
+        "ニュートン法",
+        "Newton method",
+        "damped Newton",
+        "減衰Newton法",
+        "Armijo Newton"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/index.md",
@@ -2109,6 +2171,15 @@
           }
         }
       },
+      "aliases": [
+        "マルチグリッド法",
+        "多重格子法",
+        "multigrid method",
+        "geometric multigrid",
+        "GMG",
+        "V-cycle",
+        "Vサイクル"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/index.md",
@@ -2300,6 +2371,16 @@
           }
         }
       },
+      "aliases": [
+        "FEM",
+        "FEM法",
+        "有限要素法",
+        "有限要素",
+        "finite element method",
+        "P1 FEM",
+        "連続Galerkin法",
+        "continuous Galerkin"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/index.md",
@@ -2486,6 +2567,12 @@
           }
         }
       },
+      "aliases": [
+        "Legendre基底",
+        "Legendre polynomials",
+        "ルジャンドル基底",
+        "ルジャンドル多項式"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/legendre-basis/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/legendre-basis/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/legendre-basis/index.md",
@@ -2672,6 +2759,14 @@
           }
         }
       },
+      "aliases": [
+        "Lagrange基底",
+        "Lagrange interpolation basis",
+        "ラグランジュ基底",
+        "節点基底",
+        "GLL",
+        "Gauss-Lobatto-Legendre"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/nodal-basis/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/nodal-basis/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/nodal-basis/index.md",
@@ -2882,6 +2977,13 @@
           }
         }
       },
+      "aliases": [
+        "Barnes Hut",
+        "Barnes-Hut法",
+        "バーンズ・ハット法",
+        "Barnes Hut tree",
+        "BH tree"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/index.md",
@@ -3069,6 +3171,12 @@
           }
         }
       },
+      "aliases": [
+        "PM法",
+        "particle mesh",
+        "粒子格子法",
+        "particle mesh method"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/index.md",
@@ -4936,6 +5044,12 @@
           }
         }
       },
+      "aliases": [
+        "Ewald summation",
+        "エワルド法",
+        "エバルト法",
+        "エワルド和"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/index.md",
@@ -5115,6 +5229,11 @@
           }
         }
       },
+      "aliases": [
+        "PME法",
+        "particle mesh Ewald",
+        "粒子メッシュEwald法"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/index.md",
@@ -5294,6 +5413,11 @@
           }
         }
       },
+      "aliases": [
+        "SPME法",
+        "smooth PME",
+        "smooth particle mesh Ewald"
+      ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/index.md",

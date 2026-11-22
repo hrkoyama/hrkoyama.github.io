@@ -8,6 +8,8 @@ Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-ord
 
 Explicit RK4 is neither A-stable nor L-stable and may require small steps for stiff decay. It has no positive general nonlinear SSP coefficient; fourth-order accuracy implies neither positivity, TVD, energy conservation nor symplecticity. The released rk_step is a fixed-step component without an embedded error estimator or adaptive controller.
 
+Other names: RK4法, 古典的Runge-Kutta法, classical Runge-Kutta, classical fourth-order Runge-Kutta, 4次ルンゲクッタ法
+
 
 ## 条件と確認範囲 (ja)
 

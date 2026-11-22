@@ -8,6 +8,8 @@ Read about Fast multipole translations, follow the original references. No dedic
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: FMM法, fast multipole method, 高速多重極法, 高速多重極展開法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/
 

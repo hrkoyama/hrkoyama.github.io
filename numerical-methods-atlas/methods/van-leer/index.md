@@ -8,6 +8,8 @@ Read about Van Leer limiter, follow the original references and inspect related 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: van Leer法, van Leer slope limiter, van Leer制限関数
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/
 

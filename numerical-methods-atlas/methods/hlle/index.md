@@ -8,6 +8,8 @@ Read about HLLE / Einfeldt wave speeds, follow the original references and inspe
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: HLLE法, HLLE流束, Einfeldt, Einfeldt波速, HLLE solver, アインフェルト波速
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

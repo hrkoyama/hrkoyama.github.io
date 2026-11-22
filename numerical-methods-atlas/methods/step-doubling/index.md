@@ -8,6 +8,8 @@ Read about Adaptive SDIRK2 / step doubling, follow the original references and i
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: ステップ倍分割法, step doubling, 適応SDIRK2, adaptive SDIRK2
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/
 

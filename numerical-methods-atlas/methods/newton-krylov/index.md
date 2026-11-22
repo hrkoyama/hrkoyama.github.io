@@ -8,6 +8,8 @@ Read about Newton–Krylov with assembled Jacobian, follow the original referenc
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Newton Krylov, Newton-Krylov法, ニュートン・クリロフ法, Newton Krylov method
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/
 

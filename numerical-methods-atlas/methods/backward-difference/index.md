@@ -8,6 +8,8 @@ Read about Backward spatial difference, follow the original references and inspe
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 後退差分, 後退差分法, backward difference, backward finite difference
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/
 

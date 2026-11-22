@@ -8,6 +8,8 @@ Map integration with differential equations and algebraic constraints.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: DAE法, differential algebraic equation, 微分代数方程式法
+
 
 
 

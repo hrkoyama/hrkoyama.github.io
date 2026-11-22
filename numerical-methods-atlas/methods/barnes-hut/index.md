@@ -8,6 +8,8 @@ Approximate isolated 3D particle gravity with an octree. The public example uses
 
 A static-force educational example without time integration, expansion, periodic images or FMM. theta is not a rigorous error bound, and order=2 need not improve every configuration. Targetwise approximation does not guarantee exact action–reaction/total-momentum conservation. Interaction counts are not timings or empirical complexity guarantees for every distribution.
 
+Other names: Barnes Hut, Barnes-Hut法, バーンズ・ハット法, Barnes Hut tree, BH tree
+
 
 ## 条件と確認範囲 (ja)
 

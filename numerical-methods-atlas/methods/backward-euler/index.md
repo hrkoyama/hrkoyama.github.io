@@ -8,6 +8,8 @@ Read about Backward Euler, follow the original references and inspect related ed
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: 後退オイラー法, 陰的Euler法, 陰的オイラー法, implicit Euler, backward Euler method
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/
 

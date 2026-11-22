@@ -8,6 +8,8 @@ Geometric multigrid combines fine-grid smoothing with coarse-grid correction of 
 
 An educational fixed-square, constant-coefficient nested-grid example. It does not implement AMG, irregular meshes, adaptive refinement or specialized smoothing for strong anisotropy/discontinuous coefficients. It does not establish all capabilities of Brandt's paper or optimal work for arbitrary problems.
 
+Other names: マルチグリッド法, 多重格子法, multigrid method, geometric multigrid, GMG, V-cycle, Vサイクル
+
 
 ## 条件と確認範囲 (ja)
 

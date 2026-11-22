@@ -8,6 +8,8 @@ Read about Acoustic Roe entropy correction, follow the original references and i
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: entropy fix, エントロピー修正, エントロピーフィックス, Roe entropy fix, Roeエントロピー修正
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/
 

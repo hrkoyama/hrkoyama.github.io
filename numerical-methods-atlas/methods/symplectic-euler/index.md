@@ -8,6 +8,8 @@ Read about Symplectic Euler, follow the original references and inspect related 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: symplectic Euler法, symplectic Euler method, シンプレクティックオイラー法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/
 

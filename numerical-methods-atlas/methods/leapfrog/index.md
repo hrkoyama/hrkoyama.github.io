@@ -8,6 +8,8 @@ Read about Two-step leapfrog, follow the original references and inspect related
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: leapfrog法, リープフロッグ法, two step leapfrog
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/
 

@@ -8,6 +8,8 @@ Lanczos・Arnoldiなどを大規模固有値問題に位置付ける。
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: 固有値解法, eigenvalue solver, Krylov eigensolver, クリロフ固有値法
+
 
 
 

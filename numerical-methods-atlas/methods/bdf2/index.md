@@ -8,6 +8,8 @@ Read about BDF2, follow the original references and inspect related educational 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: BDF2法, 2次後退微分公式, second order backward differentiation formula
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/
 

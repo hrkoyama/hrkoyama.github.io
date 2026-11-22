@@ -8,6 +8,8 @@ Read about D2Q9–BGK collision and streaming, follow the original references an
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: LBM, LBM法, lattice Boltzmann, lattice Boltzmann method, 格子Boltzmann法, 格子ボルツマン法, D2Q9 BGK, D2Q9-BGK法, D2Q9, BGK collision
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/lattice-boltzmann/
 

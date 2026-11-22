@@ -8,6 +8,8 @@ Read about Thomas tridiagonal elimination, follow the original references and in
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Thomas algorithm, トーマス法, トーマスアルゴリズム, 三重対角行列算法, TDMA
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/
 

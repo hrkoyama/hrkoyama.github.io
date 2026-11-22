@@ -8,6 +8,8 @@ Read about Gauss–Seidel iteration, follow the original references and inspect 
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Gauss Seidel, Gauss-Seidel法, Gauss-Seidel反復法, ガウス・ザイデル法, ガウスザイデル法
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/
 

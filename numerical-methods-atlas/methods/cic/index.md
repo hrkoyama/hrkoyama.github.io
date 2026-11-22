@@ -8,6 +8,8 @@ Read about Cloud-in-cell assignment and interpolation, follow the original refer
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: CIC法, cloud in cell
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/
 

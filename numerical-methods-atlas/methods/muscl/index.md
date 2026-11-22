@@ -8,6 +8,8 @@ Read about MUSCL reconstruction, follow the original references and inspect rela
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: MUSCL法, MUSCLスキーム, MUSCL scheme
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

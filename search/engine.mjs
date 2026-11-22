@@ -1,3 +1,4 @@
+import {findMethods,tokenIncludes} from './method-search.mjs?v=e599bfbb1f40';
 const ORIGIN = 'https://hrkoyama.github.io';
 export function safePath(value) {
   try {
@@ -16,15 +17,30 @@ export function makeSearch(documents) {
     text: normalize(doc.text), headings: normalize(doc.headings || ''), category: normalize(doc.categoryText || ''),
     family: safePath(doc.url).replace(/\/(ja|en)\//, '/')
   }));
-  return function search(query, language = 'ja') {
+  return function search(query, language = 'ja', scope = 'all') {
     const phrase = normalize(String(query).slice(0,200));
     if (!phrase) return [];
     const terms = [...new Set(phrase.split(/\s+/).filter(term => !stop.has(term)))];
     if (!terms.length) return [];
+    const scoped=entries.filter(entry => scope!=='atlas' || entry.doc.url.startsWith('/numerical-methods-atlas/'));
+    const methods=findMethods(scoped.filter(entry=>entry.doc.method).map(entry=>entry.doc.method),query,language)
+      .map(result=>({...result,url:safePath(result.method.url),lang:'both',text:result.method.summary?.[language] || '',categoryJa:'数値解析',categoryEn:'Numerical methods'})).filter(result=>result.url);
+    const intentWords=new Set(['実行','コード','テスト','入力','検証','再現','ダウンロード','run','code','test','tests','execute','execution','runnable','reproduce','validation','input','download','example']);
+    const intent=terms.some(term=>intentWords.has(term));
+    const focus=terms.filter(term=>!intentWords.has(term));
+    const executions=scoped.filter(entry=>{
+      const record=entry.doc.execution;if(!record || !focus.length)return false;
+      const identity=normalize((record.focus_keywords || []).join(' '));
+      if(!focus.every(term=>tokenIncludes(identity,term)))return false;
+      return intent || (focus.length>1 && !methods.some(result=>result.exactMethod) && Object.values(record.title).some(title=>focus.some(term=>tokenIncludes(normalize(title),term))));
+    }).map(entry=>({...entry.doc,kind:'execution-example',executionPriority:true,score:20000}));
+    const executionPaths=new Set(executions.map(doc=>doc.url));
     const best = new Map();
-    for (const entry of entries) {
+    for (const entry of scoped) {
+      if(executionPaths.has(entry.doc.url))continue;
+      if(methods.length && entry.doc.method)continue;
       const haystack = entry.title + ' ' + entry.category + ' ' + entry.text;
-      if (!terms.every(term => haystack.includes(term))) continue;
+      if (!terms.every(term => tokenIncludes(haystack,term))) continue;
       let score = terms.reduce((total,term) => total + (entry.title.includes(term) ? 30 : entry.headings.includes(term) ? 16 : entry.category.includes(term) ? 12 : 1) + Math.min(8,Math.log2(1+entry.text.split(term).length-1)),0);
       if (entry.title.includes(phrase)) score += 50;
       if (entry.headings.includes(phrase)) score += 20;
@@ -34,7 +50,7 @@ export function makeSearch(documents) {
       const result = { ...entry.doc, url:safePath(entry.doc.url), score };
       if (!best.has(entry.family) || best.get(entry.family).score < score) best.set(entry.family,result);
     }
-    return [...best.values()].sort((a,b) => b.score-a.score || a.url.localeCompare(b.url));
+    return [...executions,...methods,...[...best.values()].sort((a,b) => b.score-a.score || a.url.localeCompare(b.url))];
   };
 }
 export function excerpt(text, query, limit = 180) {

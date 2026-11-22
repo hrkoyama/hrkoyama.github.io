@@ -8,6 +8,8 @@ Read about Half-way bounce-back, follow the original references and inspect rela
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: bounce back, バウンスバック, バウンスバック境界条件, halfway bounce back, half way bounce back, 中間壁バウンスバック境界
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/lattice-boltzmann/
 

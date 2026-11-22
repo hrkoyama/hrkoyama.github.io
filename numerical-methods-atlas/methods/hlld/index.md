@@ -8,6 +8,8 @@ Read about HLLD MHD Riemann solver, follow the original references and inspect r
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: HLLD法, HLLD流束, HLLD solver, HLLDリーマンソルバー
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
 

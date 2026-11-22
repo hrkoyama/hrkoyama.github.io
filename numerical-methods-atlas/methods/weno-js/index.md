@@ -8,6 +8,8 @@ Read about WENO5-JS, follow the original references and inspect related educatio
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: WENO-JS, WENO5JS, WENO-JS法, WENO, WENO法, WENOスキーム, Jiang-Shu WENO
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

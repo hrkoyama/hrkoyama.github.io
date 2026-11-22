@@ -8,6 +8,8 @@ Map computational-graph derivatives and sensitivities of discretized models.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: AD, 自動微分法, automatic differentiation, アルゴリズム微分
+
 
 
 

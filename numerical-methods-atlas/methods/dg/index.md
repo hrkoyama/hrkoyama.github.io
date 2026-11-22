@@ -8,6 +8,8 @@ Read about Discontinuous Galerkin / Legendre, follow the original references and
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: DG法, 不連続ガラーキン法, 不連続Galerkin法, discontinuous Galerkin method, discontinuous Galerkin
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/
 

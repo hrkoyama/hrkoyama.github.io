@@ -8,6 +8,8 @@ Read about Minmod, follow the original references and inspect related educationa
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: minmod法, minmod limiter, minmod制限関数, minmod勾配制限
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/
 

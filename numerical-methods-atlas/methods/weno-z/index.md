@@ -8,6 +8,8 @@ A WENO method targeting fifth-order spatial accuracy in smooth regions while ada
 
 Fifth order refers to smooth-region spatial accuracy; time accuracy is third order. The same order is not expected near discontinuities, and ε, scaling and basis matter. Invalid stages trigger step halving and retries, which do not constitute a positivity theorem. The WENO branch uses neither HLLC nor the positive-reconstruction scaling used by the finite-volume PPM/MUSCL branch.
 
+Other names: WENO-Z, WENO5Z, WENO-Z法, WENO, WENO法, WENOスキーム
+
 
 ## 条件と確認範囲 (ja)
 

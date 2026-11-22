@@ -4,15 +4,15 @@
 <meta name="description" content="宇宙物理・数値解析・熱的不安定性の教材、大学ノート、研究記録をサイト内で検索。" data-description-ja="宇宙物理・数値解析・熱的不安定性の教材、大学ノート、研究記録をサイト内で検索。" data-description-en="Search astrophysics, numerical methods, thermal instability, handwritten notebook metadata and research archives.">
 <link rel="canonical" href="https://hrkoyama.github.io/search/">
 <meta property="og:title" content="サイト内検索 | 小山 洋"><meta property="og:description" content="教材と研究記録をサイト内で検索。"><meta property="og:type" content="website"><meta property="og:url" content="https://hrkoyama.github.io/search/">
-<link rel="stylesheet" href="/search/search.css?v=cc9d64c17860">
-<script type="module" src="/search/search.js?v=717f8be873e4"></script>
+<link rel="stylesheet" href="/search/search.css?v=d227779eb921">
+<script type="module" src="/search/search.js?v=29888cf32fe6"></script>
 <!-- site-head -->
 <link rel="alternate" hreflang="ja" href="https://hrkoyama.github.io/search/?lang=ja">
 <link rel="alternate" hreflang="en" href="https://hrkoyama.github.io/search/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://hrkoyama.github.io/search/">
 <link rel="icon" href="/favicon.svg?v=3181327334c8" type="image/svg+xml">
-<link rel="stylesheet" href="/site.css?v=4cb9a8108f05">
-<script src="/site.js?v=4cb9a8108f05" defer></script>
+<link rel="stylesheet" href="/site.css?v=dd1850095415">
+<script src="/site.js?v=dd1850095415" defer></script>
 <link rel="describedby" href="/llms.txt">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
 <!-- /site-head -->
@@ -20,17 +20,19 @@
 <!-- site-top -->
 <div class="site-chrome site-top"><div class="site-inner"><a class="site-brand" href="/">Hiroshi Koyama</a><nav class="site-nav" aria-label="Site navigation"><a href="/"><span data-ui-ja="ホーム" data-ui-en="Home">ホーム / Home</span></a><a href="/rights/"><span data-ui-ja="利用条件・AI方針" data-ui-en="Rights &amp; AI policy">利用条件・AI方針 / Rights &amp; AI policy</span></a></nav><nav class="site-languages" aria-label="言語 / Language"><a href="?lang=ja" data-site-lang="ja" lang="ja">日本語</a><a href="?lang=en" data-site-lang="en" lang="en">English</a></nav><form class="site-search" action="/search/" role="search" aria-label="サイト内検索 / Site search" data-site-search-form><input type="search" data-site-search-input aria-label="サイト内検索 / Search this site" placeholder="サイト内検索 / Search this site" maxlength="200" autocomplete="off" enterkeyhint="search"><button type="submit"><span data-ui-ja="検索" data-ui-en="Search">検索 / Search</span></button></form></div></div>
 <!-- /site-top -->
-<main class="profile-main search-main" data-search-index="/search/index.json?v=93ed51f0ddbb">
+<main class="profile-main search-main" data-search-index="/search/index.json?v=bca4c4ed40dc">
 <p class="eyebrow">SEARCH THE PUBLIC ARCHIVES</p>
 <h1 data-ui-ja="サイト内検索" data-ui-en="Search this site">サイト内検索 / Search this site</h1>
-<p class="intro" data-ui-ja="教材の本文、研究記録、ノートや資料の書誌情報から探せます。" data-ui-en="Find lessons, research records, and bibliographic information for notebooks and resources.">教材の本文、研究記録、ノートや資料の書誌情報から探せます。</p>
+<p class="intro" data-ui-ja="手法名・略称から解説・関連コード・テストへ。教材の本文や研究資料も検索できます。" data-ui-en="Find method explanations, related code and tests by name or abbreviation. You can also search lessons and research resources.">手法名・略称から解説・関連コード・テストへ。教材の本文や研究資料も検索できます。</p>
 <form class="search-form" action="/search/" role="search" aria-label="公開資料の検索 / Search public resources" data-site-search-form>
 <input id="search-query" type="search" data-site-search-input aria-label="検索語 / Search terms" placeholder="キーワードを入力 / Enter a keyword" maxlength="200" autocomplete="off" enterkeyhint="search">
 <button type="submit"><span data-ui-ja="検索" data-ui-en="Search">検索 / Search</span></button>
 </form>
+<div class="search-filters"><label for="search-scope" data-ui-ja="検索範囲" data-ui-en="Search scope">検索範囲 / Search scope</label><select id="search-scope"><option value="atlas" data-ui-ja="数値計算法アトラス" data-ui-en="Numerical Methods Atlas">数値計算法アトラス</option><option value="all" data-ui-ja="サイト全体" data-ui-en="Whole site">サイト全体</option></select></div>
 <p class="search-note" data-ui-ja="検索語はこのブラウザ内で処理します。画像・PDFの中身や、外部サイトは検索対象に含みません。" data-ui-en="Search terms are processed in your browser. Image contents, PDF text and external websites are not included.">検索語はこのブラウザ内で処理します。画像・PDFの中身や、外部サイトは検索対象に含みません。</p>
 <p class="search-status" id="search-status" role="status" aria-live="polite" aria-atomic="true"></p>
 <ol class="search-results" id="search-results"></ol>
+<details class="method-search-related" id="search-related" hidden><summary id="search-related-title"></summary><ol class="search-results" id="search-related-results"></ol></details>
 <button class="search-more" id="search-more" type="button" hidden><span data-ui-ja="もっと表示" data-ui-en="Show more">もっと表示 / Show more</span></button>
 <section class="search-examples" id="search-examples"><h2 data-ui-ja="たとえば" data-ui-en="Try a search">たとえば / Try a search</h2><ul>
 <li><a href="#q=Lane%20Emden">Lane–Emden</a></li><li><a href="#q=Poisson">Poisson</a></li><li><a href="#q=%E7%86%B1%E7%9A%84%E4%B8%8D%E5%AE%89%E5%AE%9A%E6%80%A7">熱的不安定性</a></li><li><a href="#q=%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6">量子力学</a></li><li><a href="#q=HPCI">HPCI</a></li>

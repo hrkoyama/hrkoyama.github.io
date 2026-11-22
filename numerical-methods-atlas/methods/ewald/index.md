@@ -8,6 +8,8 @@ Split a periodic Coulomb sum into real, reciprocal and self-correction terms. Th
 
 Under construction. No dedicated implementation or verification result is provided yet. Cutoff convergence and numerical energy/force/self-term comparisons remain future work.
 
+Other names: Ewald summation, エワルド法, エバルト法, エワルド和
+
 
 ## 条件と確認範囲 (ja)
 

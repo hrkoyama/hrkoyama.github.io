@@ -8,6 +8,8 @@ Read about Ralston RK2, follow the original references and inspect related educa
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Ralston法, ラルストン法, Ralston method
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/
 

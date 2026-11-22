@@ -8,6 +8,8 @@ Read about Guo forcing, follow the original references and inspect related educa
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: Guo forcing, Guo外力法, Guo forcing scheme
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/lattice-boltzmann/
 

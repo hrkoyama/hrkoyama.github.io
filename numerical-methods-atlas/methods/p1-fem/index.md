@@ -8,6 +8,8 @@ Poisson方程式の弱形式を、連続区分線形要素で離散化する。�
 
 Not a general mesh generator or implementation of curved elements, variable coefficients or mixed elements. Existing second-order L2 and first-order H1-seminorm tests concern smooth manufactured solutions on these meshes; do not generalize them unconditionally to corner singularities or arbitrary domains.
 
+Other names: FEM, FEM法, 有限要素法, 有限要素, finite element method, P1 FEM, 連続Galerkin法, continuous Galerkin
+
 
 ## 条件と確認範囲 (ja)
 

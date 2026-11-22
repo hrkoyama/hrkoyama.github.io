@@ -8,6 +8,8 @@ A second-order reversible symplectic method using half kick, drift and half kick
 
 The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver.
 
+Other names: Verlet法, ベルレ法, 速度ベルレ法, velocity Verlet, particle leapfrog
+
 
 ## 条件と確認範囲 (ja)
 

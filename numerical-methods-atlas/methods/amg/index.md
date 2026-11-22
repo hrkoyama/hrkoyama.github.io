@@ -8,6 +8,8 @@ Distinguish algebraic coarse problems and preconditioners from geometric multigr
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: AMG法, algebraic multigrid, 代数マルチグリッド, 代数的多重格子法
+
 
 
 

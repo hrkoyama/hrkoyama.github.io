@@ -8,6 +8,8 @@ Read about Horizontal-periodic slab Green-function FFT, follow the original refe
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: slab gravity, スラブ重力, slab Green function, 水平周期境界の重力, 水平周期スラブ境界
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gravity-boundaries/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/gravity-boundaries/
 

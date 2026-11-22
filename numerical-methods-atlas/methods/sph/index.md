@@ -8,6 +8,8 @@ Read about SPH kernel reconstruction, follow the original references and inspect
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: SPH法, smoothed particle hydrodynamics, 平滑化粒子法, SPH kernel interpolation
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particles-sph/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/particles-sph/
 

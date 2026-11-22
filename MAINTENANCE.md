@@ -64,6 +64,8 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 手法情報の正本は `catalog/atlas-methods.json`。`scripts/build-atlas-resources.py` が手法一覧と個別のHTML・JSON・Markdown、取得案内を生成する。予定項目にコードや検証済み状態を付けない。関連コードの割当てが章単位か手法単位かを区別し、単位・境界等の未整理はnullと確認範囲で明示する。英語しかない解説は英語のURLへ案内する。
 
+手法検索の名称・別名も同じ台帳の `name`・`aliases` を正本にする。`scripts/atlas_search_methods.py` が公開済みの解説・コード・テスト・個別実行例だけを検索へ渡し、`search/method-search.mjs` を全体検索とアトラス内検索で共用する。手法名の一致を一つのカードへまとめ、本文中の言及は関連資料へ折りたたむ。具体的な問題名に実行・コード等を添えた検索では、対応する公開実行例を展開して先頭に置く。アトラスからの共通検索は `scope=atlas` を初期範囲とし、検索語はURLフラグメントとブラウザ内だけで扱う。全143手法のID・日英名・別名、略語の誤一致、公開状況と直接リンクは `scripts/method-search.test.mjs` と `scripts/atlas-search-methods.test.mjs` で確認する。
+
 手法一覧の絞り込みは同じ生成処理が出す143項目に `atlas-methods.mjs` と一覧専用の `styles/atlas-methods.css` を適用する。状態は正本の教育用例91・解説のみ17・収録予定35を維持し、比較解説の有無で格上げしない。日英の名称・別名・分野・概要・状態ラベルを両言語で検索でき、空白区切りの全語と選択状態を組み合わせる。検索条件はタブ内のsessionStorageで引き継ぎ、URLや科学計算の台帳・検証記録を書き換えない。保存を拒否されても動作し、JavaScriptなしでは全項目を読める。`scripts/atlas-method-filters.test.mjs` が実生成HTMLと正本の一致、日英同期・日本語入力・件数・リセット等を確認する。
 
 収録方針は同じ台帳の `editorial_policy` を正本とする。数理的な手法・定式化・適用条件・検証を中心に扱い、AMR・並列化・mixed precisionなどの計算効率化・実装上の技巧は独立した収録・開発の対象から外す。通常の丸め誤差と数値安定性は基礎に含む。除外したAMRを予定項目として復活させない。

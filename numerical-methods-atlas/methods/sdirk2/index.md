@@ -8,6 +8,8 @@ A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The 
 
 L-stability concerns the linear test equation with accurate stage solves; it guarantees neither large-step accuracy, nonlinear convergence nor positivity. A Newton failure raises in the fixed version and rejects a trial in the adaptive wrapper. Adaptivity uses step doubling, not an embedded pair; rtol/atol control a local error scale, not a guaranteed final global error. General DAEs, mass matrices and events are not implemented.
 
+Other names: SDIRK2法, 2次SDIRK, L-stable SDIRK2
+
 
 ## 条件と確認範囲 (ja)
 

@@ -8,6 +8,8 @@ Read about GLM divergence cleaning, follow the original references and inspect r
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: GLM法, GLM divergence cleaning, divergence cleaning, 発散クリーニング, div cleaning
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mhd/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/mhd/
 

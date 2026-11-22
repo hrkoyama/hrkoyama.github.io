@@ -8,6 +8,8 @@ Read about IMEX Euler, follow the original references and inspect related educat
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: IMEX Euler法, IMEXオイラー法, implicit explicit Euler
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/
 

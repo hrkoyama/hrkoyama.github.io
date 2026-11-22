@@ -128,7 +128,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "前進差分",
+        "前進差分法",
+        "forward difference",
+        "forward finite difference"
+      ]
     },
     {
       "id": "backward-difference",
@@ -186,7 +192,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "後退差分",
+        "後退差分法",
+        "backward difference",
+        "backward finite difference"
+      ]
     },
     {
       "id": "centered-difference",
@@ -244,7 +256,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "中心差分",
+        "中心差分法",
+        "中央差分",
+        "central difference",
+        "central finite difference"
+      ]
     },
     {
       "id": "upwind",
@@ -407,7 +426,14 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "風上差分",
+        "風上差分法",
+        "風上法",
+        "upwind scheme",
+        "upwind differencing"
+      ]
     },
     {
       "id": "lax-friedrichs",
@@ -465,7 +491,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Lax-Friedrichs法",
+        "Lax Friedrichs scheme",
+        "ラックス・フリードリヒス法"
+      ]
     },
     {
       "id": "lax-wendroff",
@@ -523,7 +554,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Lax-Wendroff法",
+        "Lax Wendroff scheme",
+        "ラックス・ヴェンドロフ法",
+        "ラックス・ウェンドロフ法",
+        "LW法"
+      ]
     },
     {
       "id": "godunov",
@@ -755,7 +793,14 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Godunov法",
+        "Godunov method",
+        "Godunov scheme",
+        "ゴドノフ法",
+        "ゴドゥノフ法"
+      ]
     },
     {
       "id": "muscl",
@@ -821,7 +866,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "MUSCL法",
+        "MUSCLスキーム",
+        "MUSCL scheme"
+      ]
     },
     {
       "id": "weno-js",
@@ -887,7 +937,16 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "WENO-JS",
+        "WENO5JS",
+        "WENO-JS法",
+        "WENO",
+        "WENO法",
+        "WENOスキーム",
+        "Jiang-Shu WENO"
+      ]
     },
     {
       "id": "dg",
@@ -953,7 +1012,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "DG法",
+        "不連続ガラーキン法",
+        "不連続Galerkin法",
+        "discontinuous Galerkin method",
+        "discontinuous Galerkin"
+      ]
     },
     {
       "id": "fourier",
@@ -1019,7 +1085,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "フーリエ法",
+        "フーリエスペクトル法",
+        "Fourier spectral method",
+        "Fourier differentiation"
+      ]
     },
     {
       "id": "cip",
@@ -1081,7 +1153,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "CIP法",
+        "CIPスキーム",
+        "CIP scheme",
+        "三次Hermite CIP",
+        "3次エルミートCIP"
+      ]
     },
     {
       "id": "p1-fem",
@@ -1243,7 +1322,17 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "FEM",
+        "FEM法",
+        "有限要素法",
+        "有限要素",
+        "finite element method",
+        "P1 FEM",
+        "連続Galerkin法",
+        "continuous Galerkin"
+      ]
     },
     {
       "id": "rusanov",
@@ -1309,7 +1398,16 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Rusanov法",
+        "Rusanov flux",
+        "局所Lax-Friedrichs法",
+        "local Lax Friedrichs flux",
+        "LLF",
+        "ルサノフ法",
+        "ルサノフ流束"
+      ]
     },
     {
       "id": "hll",
@@ -1375,7 +1473,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "HLL法",
+        "HLL流束",
+        "HLLリーマンソルバー",
+        "Harten-Lax-van Leer"
+      ]
     },
     {
       "id": "hllc",
@@ -1584,7 +1688,13 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "HLLC法",
+        "HLLC流束",
+        "HLLC solver",
+        "HLLCリーマンソルバー"
+      ]
     },
     {
       "id": "roe",
@@ -1650,7 +1760,15 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Roe法",
+        "Roeスキーム",
+        "Roe solver",
+        "Roe method",
+        "Roeリーマンソルバー",
+        "ロー法"
+      ]
     },
     {
       "id": "hlle",
@@ -1716,7 +1834,15 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "HLLE法",
+        "HLLE流束",
+        "Einfeldt",
+        "Einfeldt波速",
+        "HLLE solver",
+        "アインフェルト波速"
+      ]
     },
     {
       "id": "entropy-fix",
@@ -1791,7 +1917,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "entropy fix",
+        "エントロピー修正",
+        "エントロピーフィックス",
+        "Roe entropy fix",
+        "Roeエントロピー修正"
+      ]
     },
     {
       "id": "rotated-hybrid",
@@ -1862,7 +1995,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "rotated Riemann solver",
+        "rotated hybrid Riemann solver",
+        "回転リーマンソルバー",
+        "rotated-hybrid solver"
+      ]
     },
     {
       "id": "minmod",
@@ -1911,7 +2050,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "minmod法",
+        "minmod limiter",
+        "minmod制限関数",
+        "minmod勾配制限"
+      ]
     },
     {
       "id": "superbee",
@@ -1960,7 +2105,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "superbee法",
+        "superbee limiter",
+        "superbee制限関数",
+        "スーパービー制限関数"
+      ]
     },
     {
       "id": "mc",
@@ -2009,7 +2160,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "MC制限関数",
+        "MC limiter",
+        "monotonized central limiter",
+        "単調中心制限関数"
+      ]
     },
     {
       "id": "van-leer",
@@ -2058,7 +2215,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "van Leer法",
+        "van Leer slope limiter",
+        "van Leer制限関数"
+      ]
     },
     {
       "id": "van-albada",
@@ -2107,7 +2269,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "van Albada法",
+        "van Albada limiter",
+        "van Albada制限関数"
+      ]
     },
     {
       "id": "tvb",
@@ -2159,7 +2326,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "TVB法",
+        "TVB limiter",
+        "TVB制限関数",
+        "TVB modified minmod"
+      ]
     },
     {
       "id": "positive-scaling",
@@ -2211,7 +2384,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "正値性スケーリング",
+        "正値性保持スケーリング",
+        "positive state scaling",
+        "mean preserving scaling"
+      ]
     },
     {
       "id": "forward-euler",
@@ -2262,7 +2441,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "前進オイラー法",
+        "陽的Euler法",
+        "陽的オイラー法",
+        "explicit Euler",
+        "forward Euler method"
+      ]
     },
     {
       "id": "backward-euler",
@@ -2313,7 +2499,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "後退オイラー法",
+        "陰的Euler法",
+        "陰的オイラー法",
+        "implicit Euler",
+        "backward Euler method"
+      ]
     },
     {
       "id": "heun",
@@ -2364,7 +2557,15 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "ホイン法",
+        "SSPRK22",
+        "SSPRK2",
+        "SSP RK2",
+        "explicit trapezoidal method",
+        "陽的台形則"
+      ]
     },
     {
       "id": "explicit-midpoint",
@@ -2415,7 +2616,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "陽的中点法",
+        "explicit midpoint method",
+        "midpoint RK2"
+      ]
     },
     {
       "id": "ralston",
@@ -2466,7 +2672,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Ralston法",
+        "ラルストン法",
+        "Ralston method"
+      ]
     },
     {
       "id": "kutta3",
@@ -2517,7 +2728,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Kuttaの3次法",
+        "クッタの3次法",
+        "Kutta third order"
+      ]
     },
     {
       "id": "ssprk33",
@@ -2568,7 +2784,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "SSPRK33",
+        "SSPRK3",
+        "Shu-Osher RK3",
+        "SSP RK3",
+        "TVD RK3"
+      ]
     },
     {
       "id": "ssprk43",
@@ -2619,7 +2842,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "SSPRK43",
+        "SSP RK(4,3)",
+        "4段3次SSPRK"
+      ]
     },
     {
       "id": "rk4",
@@ -2795,7 +3023,14 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "RK4法",
+        "古典的Runge-Kutta法",
+        "classical Runge-Kutta",
+        "classical fourth-order Runge-Kutta",
+        "4次ルンゲクッタ法"
+      ]
     },
     {
       "id": "ssprk54",
@@ -2846,7 +3081,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "SSPRK54",
+        "SSP RK(5,4)",
+        "5段4次SSPRK"
+      ]
     },
     {
       "id": "implicit-midpoint",
@@ -2897,7 +3137,11 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "陰的中点法",
+        "implicit midpoint rule"
+      ]
     },
     {
       "id": "leapfrog",
@@ -2948,7 +3192,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "leapfrog法",
+        "リープフロッグ法",
+        "two step leapfrog"
+      ]
     },
     {
       "id": "crank-nicolson",
@@ -3009,7 +3258,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Crank Nicolson",
+        "Crank-Nicolson法",
+        "クランク・ニコルソン法",
+        "CN法"
+      ]
     },
     {
       "id": "bdf2",
@@ -3061,7 +3316,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "BDF2法",
+        "2次後退微分公式",
+        "second order backward differentiation formula"
+      ]
     },
     {
       "id": "sdirk2",
@@ -3242,7 +3502,12 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "SDIRK2法",
+        "2次SDIRK",
+        "L-stable SDIRK2"
+      ]
     },
     {
       "id": "imex-euler",
@@ -3294,7 +3559,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "IMEX Euler法",
+        "IMEXオイラー法",
+        "implicit explicit Euler"
+      ]
     },
     {
       "id": "step-doubling",
@@ -3346,7 +3616,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "ステップ倍分割法",
+        "step doubling",
+        "適応SDIRK2",
+        "adaptive SDIRK2"
+      ]
     },
     {
       "id": "symplectic-euler",
@@ -3398,7 +3674,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "symplectic Euler法",
+        "symplectic Euler method",
+        "シンプレクティックオイラー法"
+      ]
     },
     {
       "id": "verlet",
@@ -3578,7 +3859,14 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Verlet法",
+        "ベルレ法",
+        "速度ベルレ法",
+        "velocity Verlet",
+        "particle leapfrog"
+      ]
     },
     {
       "id": "yoshida4",
@@ -3630,7 +3918,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Yoshida4",
+        "Yoshida fourth order",
+        "吉田法",
+        "吉田4次法"
+      ]
     },
     {
       "id": "thomas",
@@ -3691,7 +3985,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Thomas algorithm",
+        "トーマス法",
+        "トーマスアルゴリズム",
+        "三重対角行列算法",
+        "TDMA"
+      ]
     },
     {
       "id": "jacobi-iteration",
@@ -3752,7 +4053,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Jacobi法",
+        "Jacobi反復法",
+        "ヤコビ法",
+        "ヤコビ反復法",
+        "Jacobi iteration"
+      ]
     },
     {
       "id": "gauss-seidel",
@@ -3813,7 +4121,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Gauss Seidel",
+        "Gauss-Seidel法",
+        "Gauss-Seidel反復法",
+        "ガウス・ザイデル法",
+        "ガウスザイデル法"
+      ]
     },
     {
       "id": "sor",
@@ -3874,7 +4189,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "SOR法",
+        "逐次過緩和",
+        "過緩和法",
+        "successive over relaxation"
+      ]
     },
     {
       "id": "cg",
@@ -4050,7 +4371,14 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "CG法",
+        "conjugate gradient",
+        "conjugate gradient method",
+        "共役勾配",
+        "共役勾配法"
+      ]
     },
     {
       "id": "rbgs",
@@ -4111,7 +4439,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "RBGS法",
+        "red black Gauss Seidel",
+        "レッドブラックGauss-Seidel法",
+        "赤黒Gauss-Seidel法",
+        "赤黒ガウスザイデル法"
+      ]
     },
     {
       "id": "multigrid",
@@ -4282,7 +4617,16 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "マルチグリッド法",
+        "多重格子法",
+        "multigrid method",
+        "geometric multigrid",
+        "GMG",
+        "V-cycle",
+        "Vサイクル"
+      ]
     },
     {
       "id": "gmres",
@@ -4334,7 +4678,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "GMRES法",
+        "一般化最小残差法",
+        "generalized minimal residual",
+        "restarted GMRES"
+      ]
     },
     {
       "id": "bicgstab",
@@ -4386,7 +4736,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "BiCGSTAB法",
+        "Bi-CGSTAB",
+        "stabilized biconjugate gradient"
+      ]
     },
     {
       "id": "jacobi-preconditioner",
@@ -4438,7 +4793,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Jacobi前処理",
+        "ヤコビ前処理",
+        "対角前処理",
+        "diagonal preconditioner",
+        "Jacobi preconditioner"
+      ]
     },
     {
       "id": "ilu0",
@@ -4490,7 +4852,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "ILU(0)",
+        "ILU0",
+        "不完全LU分解",
+        "zero fill incomplete LU",
+        "incomplete LU factorization"
+      ]
     },
     {
       "id": "newton",
@@ -4670,7 +5039,15 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Newton法",
+        "ニュートン法",
+        "Newton method",
+        "damped Newton",
+        "減衰Newton法",
+        "Armijo Newton"
+      ]
     },
     {
       "id": "newton-krylov",
@@ -4722,7 +5099,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Newton Krylov",
+        "Newton-Krylov法",
+        "ニュートン・クリロフ法",
+        "Newton Krylov method"
+      ]
     },
     {
       "id": "dual-time",
@@ -4797,7 +5180,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "dual time stepping",
+        "デュアルタイムステッピング",
+        "二重時間積分法",
+        "二重時間法"
+      ]
     },
     {
       "id": "residual-distribution",
@@ -4872,7 +5261,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "residual distribution scheme",
+        "残差分配法",
+        "残差分布法",
+        "RD法"
+      ]
     },
     {
       "id": "low-mach-preconditioning",
@@ -4940,7 +5335,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "low Mach preconditioning",
+        "低マッハ数前処理",
+        "低Mach数前処理",
+        "PDE preconditioning"
+      ]
     },
     {
       "id": "ct",
@@ -5024,7 +5425,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "CT法",
+        "constrained transport",
+        "制約輸送",
+        "制約輸送法"
+      ]
     },
     {
       "id": "glm",
@@ -5108,7 +5515,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "GLM法",
+        "GLM divergence cleaning",
+        "divergence cleaning",
+        "発散クリーニング",
+        "div cleaning"
+      ]
     },
     {
       "id": "projection",
@@ -5155,7 +5569,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "射影法",
+        "圧力射影法",
+        "projection method",
+        "MAC projection",
+        "pressure projection"
+      ]
     },
     {
       "id": "d2q9-bgk",
@@ -5212,7 +5633,19 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "LBM",
+        "LBM法",
+        "lattice Boltzmann",
+        "lattice Boltzmann method",
+        "格子Boltzmann法",
+        "格子ボルツマン法",
+        "D2Q9 BGK",
+        "D2Q9-BGK法",
+        "D2Q9",
+        "BGK collision"
+      ]
     },
     {
       "id": "guo",
@@ -5269,7 +5702,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Guo forcing",
+        "Guo外力法",
+        "Guo forcing scheme"
+      ]
     },
     {
       "id": "bounce-back",
@@ -5326,7 +5764,15 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "bounce back",
+        "バウンスバック",
+        "バウンスバック境界条件",
+        "halfway bounce back",
+        "half way bounce back",
+        "中間壁バウンスバック境界"
+      ]
     },
     {
       "id": "hyperbolic-diffusion",
@@ -5378,7 +5824,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "双曲型拡散法",
+        "双曲型拡散",
+        "hyperbolic diffusion method",
+        "Nishikawa hyperbolic diffusion",
+        "西川の双曲型拡散法"
+      ]
     },
     {
       "id": "sph",
@@ -5430,7 +5883,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "SPH法",
+        "smoothed particle hydrodynamics",
+        "平滑化粒子法",
+        "SPH kernel interpolation"
+      ]
     },
     {
       "id": "ale",
@@ -5477,7 +5936,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "ALE法",
+        "任意ラグランジュ・オイラー法",
+        "任意ラグランジュオイラー法",
+        "Arbitrary Lagrangian Eulerian",
+        "arbitrary Lagrangian Eulerian method"
+      ]
     },
     {
       "id": "gsph",
@@ -5535,7 +6001,16 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "GSPH法",
+        "Godunov SPH",
+        "Godunov smoothed particle hydrodynamics",
+        "ゴドノフSPH",
+        "Inutsuka GSPH",
+        "Inutuka GSPH",
+        "犬塚のGSPH"
+      ]
     },
     {
       "id": "cic",
@@ -5592,7 +6067,11 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "CIC法",
+        "cloud in cell"
+      ]
     },
     {
       "id": "pm",
@@ -5754,7 +6233,13 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "PM法",
+        "particle mesh",
+        "粒子格子法",
+        "particle mesh method"
+      ]
     },
     {
       "id": "barnes-hut",
@@ -5939,7 +6424,14 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Barnes Hut",
+        "Barnes-Hut法",
+        "バーンズ・ハット法",
+        "Barnes Hut tree",
+        "BH tree"
+      ]
     },
     {
       "id": "multipole",
@@ -5986,7 +6478,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "多重極展開",
+        "multipole expansion",
+        "単極と2次モーメント",
+        "monopole and second moment expansion"
+      ]
     },
     {
       "id": "hockney",
@@ -6043,7 +6541,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "Hockney法",
+        "Hockney-Eastwood法",
+        "ホックニー法",
+        "isolated boundary FFT",
+        "isolated FFT convolution"
+      ]
     },
     {
       "id": "slab",
@@ -6100,7 +6605,14 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "slab gravity",
+        "スラブ重力",
+        "slab Green function",
+        "水平周期境界の重力",
+        "水平周期スラブ境界"
+      ]
     },
     {
       "id": "p3m",
@@ -6153,7 +6665,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "P3M",
+        "P^3M",
+        "P³M法",
+        "particle particle particle mesh"
+      ]
     },
     {
       "id": "treepm",
@@ -6196,7 +6714,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "TreePM法",
+        "tree PM",
+        "Tree Particle Mesh",
+        "ツリーPM法"
+      ]
     },
     {
       "id": "fmm",
@@ -6239,7 +6763,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "FMM法",
+        "fast multipole method",
+        "高速多重極法",
+        "高速多重極展開法"
+      ]
     },
     {
       "id": "keep",
@@ -6305,7 +6835,14 @@
       "reading_label": {
         "ja": "差分式・2点流束の解説を読む",
         "en": "Read the difference formula and two-point flux"
-      }
+      },
+      "aliases": [
+        "KEEP法",
+        "KEEPスキーム",
+        "KEEP scheme",
+        "kinetic energy and entropy preserving",
+        "運動エネルギー・エントロピー保存法"
+      ]
     },
     {
       "id": "legendre-basis",
@@ -6466,7 +7003,13 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Legendre基底",
+        "Legendre polynomials",
+        "ルジャンドル基底",
+        "ルジャンドル多項式"
+      ]
     },
     {
       "id": "nodal-basis",
@@ -6627,7 +7170,15 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Lagrange基底",
+        "Lagrange interpolation basis",
+        "ラグランジュ基底",
+        "節点基底",
+        "GLL",
+        "Gauss-Lobatto-Legendre"
+      ]
     },
     {
       "id": "hlld",
@@ -6711,7 +7262,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "HLLD法",
+        "HLLD流束",
+        "HLLD solver",
+        "HLLDリーマンソルバー"
+      ]
     },
     {
       "id": "ppm",
@@ -6782,7 +7339,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "PPM法",
+        "piecewise parabolic method",
+        "区分放物線法"
+      ]
     },
     {
       "id": "characteristic-reconstruction",
@@ -6849,7 +7411,13 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "特性変数再構成",
+        "特性再構成",
+        "characteristic reconstruction",
+        "characteristic variable reconstruction"
+      ]
     },
     {
       "id": "weno-z",
@@ -7049,7 +7617,15 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "WENO-Z",
+        "WENO5Z",
+        "WENO-Z法",
+        "WENO",
+        "WENO法",
+        "WENOスキーム"
+      ]
     },
     {
       "id": "ausm",
@@ -7120,7 +7696,12 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "AUSM法",
+        "AUSM流束",
+        "advection upstream splitting method"
+      ]
     },
     {
       "id": "ewald",
@@ -7285,7 +7866,13 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "Ewald summation",
+        "エワルド法",
+        "エバルト法",
+        "エワルド和"
+      ]
     },
     {
       "id": "pme",
@@ -7454,7 +8041,12 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "PME法",
+        "particle mesh Ewald",
+        "粒子メッシュEwald法"
+      ]
     },
     {
       "id": "spme",
@@ -7623,7 +8215,12 @@
             ]
           }
         }
-      }
+      },
+      "aliases": [
+        "SPME法",
+        "smooth PME",
+        "smooth particle mesh Ewald"
+      ]
     },
     {
       "id": "slab-ewald",
@@ -7660,7 +8257,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "2D periodic Ewald",
+        "2次元周期Ewald",
+        "slab Ewald",
+        "スラブEwald法"
+      ]
     },
     {
       "id": "schrodinger",
@@ -9956,7 +10559,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "FDTD法",
+        "finite difference time domain",
+        "有限差分時間領域法",
+        "Yee法"
+      ]
     },
     {
       "id": "pic",
@@ -9993,7 +10602,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "PIC法",
+        "particle in cell",
+        "粒子セル法",
+        "粒子インセル法"
+      ]
     },
     {
       "id": "amg",
@@ -10030,7 +10645,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "AMG法",
+        "algebraic multigrid",
+        "代数マルチグリッド",
+        "代数的多重格子法"
+      ]
     },
     {
       "id": "qr-svd",
@@ -10067,7 +10688,15 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "QR分解",
+        "SVD",
+        "特異値分解",
+        "singular value decomposition",
+        "least squares",
+        "最小二乗法"
+      ]
     },
     {
       "id": "eigensolvers",
@@ -10104,7 +10733,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "固有値解法",
+        "eigenvalue solver",
+        "Krylov eigensolver",
+        "クリロフ固有値法"
+      ]
     },
     {
       "id": "splines",
@@ -10141,7 +10776,12 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "スプライン",
+        "スプライン補間法",
+        "spline interpolation"
+      ]
     },
     {
       "id": "quadrature",
@@ -10178,7 +10818,15 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "数値求積",
+        "数値積分",
+        "Gauss求積",
+        "Gaussian quadrature",
+        "ガウス求積",
+        "適応積分"
+      ]
     },
     {
       "id": "chebyshev",
@@ -10215,7 +10863,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "チェビシェフ近似",
+        "チェビシェフ多項式",
+        "Chebyshev polynomials",
+        "Chebyshev approximation"
+      ]
     },
     {
       "id": "wavelets",
@@ -10252,7 +10906,12 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "ウェーブレット変換",
+        "wavelet transform",
+        "wavelet method"
+      ]
     },
     {
       "id": "optimization",
@@ -10289,7 +10948,15 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "数値最適化",
+        "勾配降下法",
+        "準Newton法",
+        "準ニュートン法",
+        "gradient descent",
+        "quasi Newton"
+      ]
     },
     {
       "id": "monte-carlo",
@@ -10326,7 +10993,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "モンテカルロ法",
+        "モンテカルロ積分",
+        "Monte Carlo method",
+        "Monte Carlo integration"
+      ]
     },
     {
       "id": "mcmc",
@@ -10363,7 +11036,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "MCMC法",
+        "Markov chain Monte Carlo",
+        "マルコフ連鎖モンテカルロ",
+        "マルコフ連鎖Monte Carlo"
+      ]
     },
     {
       "id": "sde",
@@ -10400,7 +11079,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "SDE",
+        "SDE法",
+        "stochastic differential equation",
+        "確率微分方程式法"
+      ]
     },
     {
       "id": "adjoint",
@@ -10437,7 +11122,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "随伴法",
+        "随伴解析",
+        "adjoint method",
+        "adjoint analysis"
+      ]
     },
     {
       "id": "radiation-transport",
@@ -10474,7 +11165,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "放射輸送法",
+        "radiative transfer",
+        "radiation transport",
+        "放射モーメント法"
+      ]
     },
     {
       "id": "dsmc",
@@ -10511,7 +11208,12 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "DSMC法",
+        "direct simulation Monte Carlo",
+        "直接シミュレーションモンテカルロ法"
+      ]
     },
     {
       "id": "dae",
@@ -10548,7 +11250,12 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "DAE法",
+        "differential algebraic equation",
+        "微分代数方程式法"
+      ]
     },
     {
       "id": "automatic-differentiation",
@@ -10585,7 +11292,13 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "AD",
+        "自動微分法",
+        "automatic differentiation",
+        "アルゴリズム微分"
+      ]
     },
     {
       "id": "pinn-operators",
@@ -10622,7 +11335,15 @@
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
         "on": "2026-11-21"
-      }
+      },
+      "aliases": [
+        "PINN",
+        "PINN法",
+        "physics informed neural network",
+        "物理情報ニューラルネットワーク",
+        "neural operator",
+        "ニューラルオペレーター"
+      ]
     },
     {
       "id": "velocity-rescaling",

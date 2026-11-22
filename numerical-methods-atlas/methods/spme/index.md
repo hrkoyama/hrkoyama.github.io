@@ -8,6 +8,8 @@ PMEの補間をcardinal B-splineへ置き換え、滑らかな近似エネルギ
 
 Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified.
 
+Other names: SPME法, smooth PME, smooth particle mesh Ewald
+
 
 ## 条件と確認範囲 (ja)
 

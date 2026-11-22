@@ -8,6 +8,8 @@ Map angular/frequency representations, closures and fluid coupling.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: 放射輸送法, radiative transfer, radiation transport, 放射モーメント法
+
 
 
 

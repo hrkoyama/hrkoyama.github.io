@@ -8,6 +8,8 @@ Connect polynomial approximation, node choice and spectral convergence.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: チェビシェフ近似, チェビシェフ多項式, Chebyshev polynomials, Chebyshev approximation
+
 
 
 

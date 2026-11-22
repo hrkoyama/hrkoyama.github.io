@@ -7,6 +7,7 @@
   try { saved = localStorage.getItem(key); } catch {}
   const initial = supported(requested) ? requested : supported(saved) ? saved : 'ja';
   let activeLanguage = initial;
+  const atlasSearchScope=()=>location.pathname.startsWith('/numerical-methods-atlas/') || new URLSearchParams(location.search).get('scope')==='atlas';
   function languageURL(language) {
     const alternate = document.body.dataset.contentLanguage && document.querySelector(`link[rel="alternate"][hreflang="${language}"]`);
     const destination = alternate ? new URL(alternate.href) : null;
@@ -32,8 +33,9 @@
     });
     document.querySelectorAll('[data-site-language]').forEach(element => { element.hidden = element.dataset.siteLanguage !== language; });
     document.querySelectorAll('[data-site-search-input]').forEach(field => {
-      field.placeholder = language === 'en' ? 'Search this site' : 'サイト内検索';
-      field.setAttribute('aria-label', language === 'en' ? 'Search this site' : 'サイト内検索');
+      const label=atlasSearchScope()?(language==='en'?'Search the atlas':'アトラスを検索'):(language === 'en' ? 'Search this site' : 'サイト内検索');
+      field.placeholder = label;
+      field.setAttribute('aria-label',label);
     });
     const title = document.querySelector('[data-page-title-ja][data-page-title-en]');
     if (title) document.title = language === 'en' ? title.dataset.pageTitleEn : title.dataset.pageTitleJa;
@@ -54,6 +56,7 @@
       const url = new URL(raw, location.href);
       if (url.origin !== location.origin || !(/\/$/.test(url.pathname) || /\.html$/.test(url.pathname))) return;
       url.searchParams.set('lang', supported(link.hreflang) ? link.hreflang : language); link.href = url.href;
+      if(url.pathname==='/search/'){url.searchParams.set('scope',atlasSearchScope()?'atlas':'all');link.href=url.href;}
     });
   }
   apply(initial);
@@ -82,6 +85,8 @@
     const query = input.value.trim().slice(0, 200);
     const destination = new URL('/search/', location.origin);
     destination.searchParams.set('lang', activeLanguage);
+    const scope=document.querySelector('#search-scope')?.value || (atlasSearchScope()?'atlas':'all');
+    destination.searchParams.set('scope',scope==='atlas'?'atlas':'all');
     if (query) destination.hash = new URLSearchParams({ q: query }).toString();
     if (location.pathname === '/search/') {
       if (location.href !== destination.href) history.pushState(null, '', destination.href);
@@ -90,4 +95,6 @@
   });
   // Existing bilingual archives own their content; their language controls also update the shared navigation.
   document.addEventListener('archive-language-change', event => apply(event.detail));
+  document.addEventListener('site-search-query',()=>apply(activeLanguage));
+  addEventListener('popstate',()=>apply(activeLanguage));
 })();

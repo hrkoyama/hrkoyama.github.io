@@ -8,6 +8,8 @@ Compare particle-sampled collisions and transport with continuum models.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: DSMC法, direct simulation Monte Carlo, 直接シミュレーションモンテカルロ法
+
 
 
 

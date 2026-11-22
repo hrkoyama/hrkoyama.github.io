@@ -8,6 +8,8 @@ Connect orthogonal factorizations, low rank, conditioning and least squares.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: QR分解, SVD, 特異値分解, singular value decomposition, least squares, 最小二乗法
+
 
 
 

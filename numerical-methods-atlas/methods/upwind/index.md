@@ -8,6 +8,8 @@ A first-order baseline for one-dimensional constant-speed transport using the up
 
 First order in both space and time and generally diffusive for waves and contacts. The explicit periodic update is unstable for |C|>1. This constant-speed scalar example establishes no conservation or stability guarantee for variable-coefficient, nonlinear-system or multidimensional extensions.
 
+Other names: 風上差分, 風上差分法, 風上法, upwind scheme, upwind differencing
+
 
 ## 条件と確認範囲 (ja)
 

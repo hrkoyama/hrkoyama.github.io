@@ -8,6 +8,8 @@ Maxwell方程式の格子上の変数配置と時間更新を扱う。
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: FDTD法, finite difference time domain, 有限差分時間領域法, Yee法
+
 
 
 

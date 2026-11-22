@@ -8,6 +8,8 @@ Read about P³M short-range correction, follow the original references. No dedic
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: P3M, P^3M, P³M法, particle particle particle mesh
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/particle-gravity/
 

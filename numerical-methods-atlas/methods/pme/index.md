@@ -8,6 +8,8 @@ Ewaldの逆空間項をLagrange補間・格子上の畳み込み・FFTで近似�
 
 Under construction. No dedicated implementation or verification result is provided yet. Dispersion terms, intramolecular exclusions, general cells, slab corrections and timing comparisons remain unverified.
 
+Other names: PME法, particle mesh Ewald, 粒子メッシュEwald法
+
 
 ## 条件と確認範囲 (ja)
 

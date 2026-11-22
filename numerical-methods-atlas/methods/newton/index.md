@@ -8,6 +8,8 @@ Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires s
 
 Convergence depends on the initial guess, Jacobian nonsingularity and residual scaling; global convergence is not guaranteed. Singular dense solves or preconditioner construction may raise exceptions rather than return a failure reason. No matrix-free Jv, trust region or continuation is provided.
 
+Other names: Newton法, ニュートン法, Newton method, damped Newton, 減衰Newton法, Armijo Newton
+
 
 ## 条件と確認範囲 (ja)
 

@@ -8,6 +8,8 @@ Map quadrature rules and error estimation.
 
 Under construction. No dedicated implementation or verification result is provided yet.
 
+Other names: 数値求積, 数値積分, Gauss求積, Gaussian quadrature, ガウス求積, 適応積分
+
 
 
 

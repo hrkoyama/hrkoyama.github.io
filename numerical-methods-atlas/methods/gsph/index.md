@@ -8,6 +8,8 @@ Read about Godunov SPH / GSPH, follow the original references. No dedicated impl
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
+Other names: GSPH法, Godunov SPH, Godunov smoothed particle hydrodynamics, ゴドノフSPH, Inutsuka GSPH, Inutuka GSPH, 犬塚のGSPH
+
 - Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gsph/
 - Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/gsph/
 

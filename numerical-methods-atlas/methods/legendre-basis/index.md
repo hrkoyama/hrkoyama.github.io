@@ -8,6 +8,8 @@ Represent reference-interval functions in Legendre modes. The implementation tab
 
 Educational tabulation for modest degrees, without high-degree stability/performance guarantees. Discontinuities limit single-polynomial approximation and quadrature. Do not confuse Chebyshev weights with the unit Legendre weight, or GLL quadrature's highest-mode mass with exact mass.
 
+Other names: Legendre基底, Legendre polynomials, ルジャンドル基底, ルジャンドル多項式
+
 
 ## 条件と確認範囲 (ja)
 
