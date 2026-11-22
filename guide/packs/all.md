@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-5eb0344eca
-Captured (UTC): 2026-11-22T11:03:54+00:00
+Snapshot: 2026-11-22-acc345a82d
+Captured (UTC): 2026-11-22T11:23:19+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -1327,9 +1327,7 @@ Coverage: reading
 
 This survey selects 22 biological and biologically motivated model families,
 from population growth to stochastic gene regulation and fluid–structure
-coupling. It expands the equation map beyond conservation-law CFD. All 22
-entries are literature and proposed benchmark designs; this addition implements
-no biological solver and reports no simulated biological result.
+coupling. It expands the equation map beyond conservation-law CFD. The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley.
 The equations below use conventional simplified or normalized forms. A source
 identifies the model lineage, not a claim that every coefficient and variable
 matches that paper. The structured catalog
@@ -1472,7 +1470,7 @@ Sources: Hodgkin, A. L. and Huxley, A. F. (1952).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#09-1952-turing-reactiondiffusion-framework
 Coverage: reading
 
-Supplement scoped to linear Schnakenberg onset and a short nonlinear run. A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g.
+Separate scoped checks of linear onset, nonlinear evolution and post-growth patterns for fixed 1D Schnakenberg systems. A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g.
 u_t=D_u\Delta u+f(u,v),\qquad v_t=D_v\Delta v+g(u,v).
 Numerical issue. Physical versus numerical instability, domain eigenmodes and errors in the discrete Laplacian dispersion relation.
 Proposed verification. For a selected kinetic law compare eigenvalues of J−k²diag(Du,Dv) with early-time Fourier-mode growth. Show that the k=0 reaction equilibrium is stable before asserting diffusion-driven instability.
@@ -1568,7 +1566,7 @@ Sources: Taylor, Peter D. and Jonker, Leo B. (1978).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#17-1979-schnakenberg-reactiondiffusion
 Coverage: reading
 
-Runnable checks for early Schnakenberg growth; mature patterns unvalidated. A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests.
+Finite-amplitude nonlinear evolution and post-growth patterns compared with independent references and separate space/time refinement; no general pattern-selection claim. A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests.
 u_t=D_u\Delta u+a-u+u^2v,\qquad v_t=D_v\Delta v+b-u^2v.
 Numerical issue. Reaction stiffness, positive concentrations and the distinction between kinetic Hopf and spatial Turing instabilities.
 Proposed verification. Check u*=a+b, v*=b/(a+b)², then compare mode-growth rates with the linearized discrete and continuum operators under fixed boundaries.
@@ -10257,6 +10255,8 @@ Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. Or
 G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling. 10.1063/1.2408420
 G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes. 10.1016/j.cpc.2008.01.006
 Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling. Original source
+G. Strang (1968). On the Construction and Comparison of Difference Schemes. 10.1137/0705041
+E. Hairer (2010). Geometric Numerical Integration, Lecture2. Original source
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -11631,8 +11631,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 129 methods and building blocks · 235 journal/conference papers · 285 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 86 reading chapters including this inventory.
+46 equation/model entries · 129 methods and building blocks · 236 journal/conference papers · 287 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 87 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -11879,7 +11879,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-229 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+230 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -13387,6 +13387,516 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integrat
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Independent validation of nonlinear reaction–diffusion and pattern formation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/
+Coverage: reading
+
+Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#run-all
+Coverage: reading
+
+Run inside atlas-biology-2026-11-22 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Finite-amplitude Schnakenberg transient: nonlinearity and independent reference [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/
+Coverage: reading
+
+Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics.
+Initial failure and step-refinement record · Initial input
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-assumptions
+Coverage: reading
+
+1D periodic x∈[0,2π), a=.1,b=.9,D=(.01,1). Common IC u=1+.08cos(2x)+.01cos(4x), v=.9−.03cos(2x)−.002cos(4x), restricted to a reflection-even, pi-periodic invariant subspace with a fixed origin.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-algorithm
+Coverage: reading
+
+Strang-compose exact half-step diffusion of the FD matrix, diagonalized by FFT with symbol −4sin²(πk/N)/dx², and a full implicit-midpoint reaction step solved by local2×2 Newton iterations. FFT does not change FD space into spectral space. Fail on nonconvergence/budget excess; never clip concentrations.
+u_t=D_u u_{xx}+a-u+u^2v,\qquad v_t=D_v v_{xx}+b-u^2v\frac{d\langle u+v\rangle}{dt}=a+b-\langle u\rangle,\quad S_{n+1}-S_n=h(a+b-\langle\bar u\rangle)\lambda_{h,k}=-4\sin^2(\pi k/N)/\Delta x^2,\quad\Phi_h=e^{hDL_h/2}\,\Phi_{\rm midpoint}^{F}(h)\,e^{hDL_h/2}\|e\|_1=\max_s\frac1N\sum_j|e_{s,j}|,\quad\|e\|_2=\max_s\sqrt{\frac1N\sum_j e_{s,j}^2},\quad\|e\|_\infty=\max_{s,j}|e_{s,j}|
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-validation
+Coverage: reading
+
+Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Radau reference (K32/64/96, cubic projection M=4(K+1)>4K, analytic Jacobian). Separately check K and ODE-tolerance sensitivity. Measure time order against a separately implemented Radau integration of the SAME FD semidiscretization. Norms are per-species mean-absolute/RMS/maximum, then the worse species. Record source/sink balance, every-step positive concentrations, initially absent k≥5 (first allowed k6 here), and departure from linearization. Convergence norms and reference sensitivities are assessed at the fixed final time; intermediate snapshot errors are separate evolution diagnostics.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-limits
+Coverage: reading
+
+A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+spatial_finest_linf0.00278961128098
+temporal_finest_linf0.000635430117965
+minimum_spatial_order1.95041811221
+minimum_temporal_order1.98451979644
+reference_spatial_linf3.2551739082e-13
+reference_tolerance_linf4.4497738827e-13
+reference_to_primary_error_ratio2.76201485255e-10
+temporal_contamination_ratio0.0359074460735
+minimum_concentration0.224468016685
+minimum_newton_iterate0.224468016685
+maximum_midpoint_residual1.9676968388e-13
+maximum_reaction_balance_error1.67643676718e-14
+maximum_newton_iterations3
+nonlinear_relative_difference0.797394767283
+pattern_amplitude1.58485430717
+higher_harmonic_ratio0.239737092959
+dominant_mode_u2
+mean_u1.02128432457
+mean_v0.780910088389
+判定 / checkPassed
+spatial_finest_linftrue
+temporal_finest_linftrue
+reference_spatial_linftrue
+reference_tolerance_linftrue
+reference_to_primary_error_ratiotrue
+temporal_contamination_ratiotrue
+maximum_midpoint_residualtrue
+maximum_reaction_balance_errortrue
+minimum_spatial_ordertrue
+minimum_temporal_ordertrue
+positive_without_clippingtrue
+nonlinear_relative_differencetrue
+pattern_amplitudetrue
+higher_harmonic_ratiotrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+seriesnfevnjevnlumodesproduct_pointsrtolatolerror_l1error_l2error_linfndtl1l2linftemporal_l1temporal_l2temporal_linfsemidiscrete_spatial_l1semidiscrete_spatial_l2semidiscrete_spatial_linfinverse_dttimemean_umean_vamplitude_udominant_mode_umode2_amplitude_uhigher_harmonic_ratioreference_mean_ureference_mean_vreference_amplitude_ureference_dominant_mode_ureference_mode2_amplitude_ureference_higher_harmonic_ratioxuvreference_ureference_v
+reference-refinement30762480321322e-102e-121.37278459756e-071.54985302648e-072.61174841309e-07——————————————————————————————
+reference-refinement28562480642602e-102e-121.34854177521e-131.71442841926e-134.90718576884e-13——————————————————————————————
+reference-refinement27112478963882e-102e-121.34170886207e-131.85410767024e-134.4497738827e-13——————————————————————————————
+reference-tolerance7917338963882e-122e-141.34170886207e-131.85410767024e-134.4497738827e-13——————————————————————————————
+space——————————320.001250.0129604210020.01858897856870.04654093531481.92356383824e-053.31933534744e-050.0001087375664340.01297669242290.01861256901280.0465836748161———————————————————
+space——————————640.001250.003353395315980.004630125514280.0113951430722.0469862124e-053.35368278889e-050.0001029975586260.003371361416460.004657002184120.011438467817———————————————————
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+space——————————1280.001250.0008255070132460.001142301214340.002789611280982.0094223577e-053.33303199266e-050.0001017078712140.0008424630458590.001169113634390.00283250084134———————————————————
+time——————————1280.01250.001981555882310.003286184906610.0100756681044——————80——————————————————
+time——————————1280.006250.0005006032267440.0008304089301440.00253791262708——————160——————————————————
+time——————————1280.0031250.00012549196490.0002081587573520.000635430117965——————320——————————————————
+evolution———————000————————————010.90.0820.081.39064010628e-1510.90.0820.081.39064010628e-15—————
+evolution———————3.94656789321e-054.39491637722e-056.52281853184e-05————————————21.002351764040.8956307379010.19026083667420.1876148005610.01409490716061.002357145530.8956213169730.19032215243820.1876764768170.0140881829262—————
+evolution———————0.0001864692762250.000207185689980.00031345928869————————————41.009365805620.8784586643750.45970155849220.4350381652530.05606127859231.009395288430.8783963400140.45996146607820.4353250413010.0559708975759—————
+evolution———————0.0004465628679450.0005193626904460.001052707179————————————61.025278731970.8277572362991.0153566589220.8825601483790.148142940461.025368017950.8275167358791.0156598324420.8831934577730.147726468606—————
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+evolution———————0.0008255070132460.001142301214340.00278961128098————————————81.021189827560.7813525591041.5855305346721.285845896140.2408269830641.021284324570.7809100883891.5848543071721.286254499270.239737092959—————
+profile——————————————————————8————————————03.395530116410.3421786731743.3939138510.342339722981
+profile——————————————————————8————————————0.09817477042473.251342720660.3565106628083.249727413390.356627506667
+profile——————————————————————8————————————0.1963495408492.836884834750.3977851725472.836189578050.39775912192
+profile——————————————————————8————————————0.2945243112742.237556570130.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————0.3926990816991.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————0.4908738521231.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————0.5890486225480.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————0.6872233929730.5331984014880.7706079134720.5332345889120.769984221661
+profile——————————————————————8————————————0.7853981633970.4041750954810.8381913612350.4038440761280.837581200784
+profile——————————————————————8————————————0.8835729338220.3287218494480.898364234390.3283061661020.897771934382
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————0.9817477042470.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————1.079922474670.2580632984720.9952054941340.2577122823680.994646378074
+profile——————————————————————8————————————1.17809724510.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————1.276272015520.2331733678751.059950220890.2328852077041.05941449674
+profile——————————————————————8————————————1.374446785950.227933660111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————1.472621556370.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————1.570796326790.2244690470671.096390673850.2242052366511.09586836906
+profile——————————————————————8————————————1.668971097220.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————1.767145867640.2279336601111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————1.865320638070.2331733678751.059950220890.2328852077041.05941449674
+profile——————————————————————8————————————1.963495408490.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————2.061670178920.2580632984720.9952054941340.2577122823680.994646378074
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————2.159844949340.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————2.258019719770.3287218494480.898364234390.3283061661020.897771934382
+profile——————————————————————8————————————2.356194490190.404175095480.8381913612340.4038440761280.837581200784
+profile——————————————————————8————————————2.454369260620.5331984014880.7706079134720.5332345889120.769984221661
+profile——————————————————————8————————————2.552544031040.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————2.650718801471.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————2.748893571891.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————2.847068342322.237556570140.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————2.945243112742.836884834750.3977851725462.836189578050.39775912192
+profile——————————————————————8————————————3.043417883173.251342720660.3565106628083.249727413390.356627506667
+profile——————————————————————8————————————3.141592653593.395530116410.3421786731743.3939138510.342339722981
+profile——————————————————————8————————————3.239767424013.251342720660.3565106628083.249727413390.356627506667
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————3.337942194442.836884834750.3977851725472.836189578050.39775912192
+profile——————————————————————8————————————3.436116964862.237556570130.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————3.534291735291.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————3.632466505711.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————3.730641276140.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————3.828816046560.5331984014880.7706079134720.5332345889120.769984221661
+profile——————————————————————8————————————3.926990816990.4041750954810.8381913612350.4038440761280.837581200784
+profile——————————————————————8————————————4.025165587410.3287218494480.898364234390.3283061661020.897771934382
+profile——————————————————————8————————————4.123340357840.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————4.221515128260.2580632984720.9952054941340.2577122823680.994646378074
+profile——————————————————————8————————————4.319689898690.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————4.417864669110.2331733678751.059950220890.2328852077041.05941449674
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————4.516039439540.227933660111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————4.614214209960.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————4.712388980380.2244690470671.096390673850.2242052366511.09586836906
+profile——————————————————————8————————————4.810563750810.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————4.908738521230.2279336601111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————5.006913291660.2331733678751.059950220890.2328852077041.05941449674
+profile——————————————————————8————————————5.105088062080.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————5.203262832510.2580632984720.9952054941340.2577122823680.994646378074
+profile——————————————————————8————————————5.301437602930.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————5.399612373360.3287218494480.898364234390.3283061661020.897771934382
+profile——————————————————————8————————————5.497787143780.404175095480.8381913612340.4038440761280.837581200784
+profile——————————————————————8————————————5.595961914210.5331984014880.7706079134720.5332345889120.769984221661
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————5.694136684630.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————5.792311455061.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————5.890486225481.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————5.988660995912.237556570140.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————6.086835766332.836884834750.3977851725462.836189578050.39775912192
+profile——————————————————————8————————————6.185010536753.251342720660.3565106628083.249727413390.356627506667
+Measurements and complete records / JSON
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. M. Turing (1952). The Chemical Basis of Morphogenesis · DOI: 10.1098/rstb.1952.0012
+Review scope / review_level: original-paper-selected-sections
+Checked the university-hosted original scan, sections 6–7 (printed pp.46–50), ring formulation/linearization and bibliography. Distinct from the adopted coefficients, finite-amplitude reference and mature shape.
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+Review scope / review_level: official-bibliography-and-publisher-indexed-abstract
+Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments.
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+Review scope / review_level: original-paper-selected-nonlinear-composition
+Checked original pp.510–512 for half-step composition and nonlinear second-order construction. This does not guarantee positivity or accuracy at arbitrary steps in the adopted model.
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear-references
+Coverage: reading
+
+Review scope / review_level: author-lecture-selected-midpoint-and-splitting
+Checked theorem3 and section5 of the author-hosted lecture for implicit-midpoint formula/order and symmetric splitting. Hamiltonian symplectic claims are not transferred to this chemical model.
+The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
+Review scope / review_level: official-versioned-api-specification
+Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/
+Coverage: reading
+
+Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
+Initial failure and step-refinement record · Initial input
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-assumptions
+Coverage: reading
+
+1D periodic x∈[0,2π), a=.1,b=.9,D=(.01,1). Common IC u=1+.08cos(2x)+.01cos(4x), v=.9−.03cos(2x)−.002cos(4x), restricted to a reflection-even, pi-periodic invariant subspace with a fixed origin.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-algorithm
+Coverage: reading
+
+Strang-compose exact half-step diffusion of the FD matrix, diagonalized by FFT with symbol −4sin²(πk/N)/dx², and a full implicit-midpoint reaction step solved by local2×2 Newton iterations. FFT does not change FD space into spectral space. Fail on nonconvergence/budget excess; never clip concentrations.
+u_t=D_u u_{xx}+a-u+u^2v,\qquad v_t=D_v v_{xx}+b-u^2v\frac{d\langle u+v\rangle}{dt}=a+b-\langle u\rangle,\quad S_{n+1}-S_n=h(a+b-\langle\bar u\rangle)\lambda_{h,k}=-4\sin^2(\pi k/N)/\Delta x^2,\quad\Phi_h=e^{hDL_h/2}\,\Phi_{\rm midpoint}^{F}(h)\,e^{hDL_h/2}\|e\|_1=\max_s\frac1N\sum_j|e_{s,j}|,\quad\|e\|_2=\max_s\sqrt{\frac1N\sum_j e_{s,j}^2},\quad\|e\|_\infty=\max_{s,j}|e_{s,j}|
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-validation
+Coverage: reading
+
+Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Radau reference (K32/64/96, cubic projection M=4(K+1)>4K, analytic Jacobian). Separately check K and ODE-tolerance sensitivity. Measure time order against a separately implemented Radau integration of the SAME FD semidiscretization. Norms are per-species mean-absolute/RMS/maximum, then the worse species. Record source/sink balance, every-step positive concentrations, initially absent k≥5 (first allowed k6 here), and departure from linearization. Convergence norms and reference sensitivities are assessed at the fixed final time; intermediate snapshot errors are separate evolution diagnostics.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-limits
+Coverage: reading
+
+A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations. Near-saturation refers to the reference90→100 test window; it proves no exact steady state, nonlinear stability or long-term attractor. A huge late linearized difference diagnoses failure of linearization, not numerical error.
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+spatial_finest_linf0.00274215130944
+temporal_finest_linf0.000445135730611
+minimum_spatial_order2.09475504349
+minimum_temporal_order1.7547591907
+reference_spatial_linf5.15436582305e-11
+reference_tolerance_linf1.49658063719e-12
+reference_to_primary_error_ratio1.9342564608e-08
+temporal_contamination_ratio0.0208322171577
+minimum_concentration0.114127542651
+minimum_newton_iterate0.114127542651
+maximum_midpoint_residual1.9676968388e-13
+maximum_reaction_balance_error7.10903558243e-13
+maximum_newton_iterations3
+nonlinear_relative_difference1.14260005745e+21
+pattern_amplitude1.96216591999
+higher_harmonic_ratio0.322732244876
+dominant_mode_u2
+mean_u1
+mean_v0.749760059417
+saturation_change5.03302608479e-08
+saturation_rhs1.87733589785e-09
+saturation_projected_rhs1.87734637359e-09
+saturation_fd_rhs0.00115869746559
+saturation_amplitude_change2.51751792746e-08
+判定 / checkPassed
+spatial_finest_linftrue
+temporal_finest_linftrue
+reference_spatial_linftrue
+reference_tolerance_linftrue
+reference_to_primary_error_ratiotrue
+temporal_contamination_ratiotrue
+maximum_midpoint_residualtrue
+maximum_reaction_balance_errortrue
+minimum_spatial_ordertrue
+minimum_temporal_ordertrue
+positive_without_clippingtrue
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+nonlinear_relative_differencetrue
+pattern_amplitudetrue
+higher_harmonic_ratiotrue
+saturation_changetrue
+saturation_rhstrue
+saturation_amplitude_changetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriesnfevnjevnlumodesproduct_pointsrtolatolerror_l1error_l2error_linfndtl1l2linftemporal_l1temporal_l2temporal_linfsemidiscrete_spatial_l1semidiscrete_spatial_l2semidiscrete_spatial_linfinverse_dttimemean_umean_vamplitude_udominant_mode_umode2_amplitude_uhigher_harmonic_ratioreference_mean_ureference_mean_vreference_amplitude_ureference_dominant_mode_ureference_mode2_amplitude_ureference_higher_harmonic_ratioxuvreference_ureference_v
+reference-refinement555334152321322e-102e-125.521686075e-067.69391054646e-062.06032453676e-05——————————————————————————————
+reference-refinement512334150642602e-102e-121.53798716655e-112.0269498968e-115.20028464734e-11——————————————————————————————
+reference-refinement487635154963882e-102e-122.90690092982e-134.91627551545e-131.49658063719e-12——————————————————————————————
+reference-tolerance14549498963882e-122e-142.90690092982e-134.91627551545e-131.49658063719e-12——————————————————————————————
+space——————————640.001250.009523470135120.01923140011530.07155883171172.19520021267e-054.48200095359e-050.0001787912228950.009543064918450.01927492994180.0717376229346———————————————————
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+space——————————1280.001250.001841742454540.003484123631580.01219012073081.09725720447e-052.13646777638e-057.45609891188e-050.00185195792570.003504772994760.0122646817199———————————————————
+space——————————2560.001250.0004311662886810.0008029790344930.002742151309441.04154499196e-051.91299132029e-055.83404525338e-050.0004399060895930.0008208418519730.00280049176197———————————————————
+time——————————1280.01250.001046899694690.001754446066340.00538429906153——————80——————————————————
+time——————————1280.006250.0002587258623670.0004838603443960.00150219948116——————160——————————————————
+time——————————1280.0031256.76770320133e-050.0001302998271910.000445135730611——————320——————————————————
+evolution———————000————————————010.90.0820.081.45520411438e-1510.90.0820.081.45520411438e-15—————
+evolution———————8.14274602031e-059.12274387084e-050.000151531975688————————————51.017424778760.8572069309340.70255506524120.6398280776730.09641273989531.017439844970.8571724777740.70265498138120.6399508011660.0963654815452—————
+evolution———————0.0003401485221480.0005288851812470.00120989917797————————————101.010693906930.760413988231.8462488021321.463174678440.2890041198211.010701281710.7602845777211.8460697777821.463144629060.288623534817—————
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+evolution———————0.0004268601101840.0007505768667870.00214962308327————————————201.000025376460.749871965981.9555122490721.532298123180.3206019591541.000025306920.7497760476271.95659013121.532290962290.320507922033—————
+evolution———————0.0004311431148050.0008026071969590.00273782820471————————————401.000000005390.7498573150691.9606194091621.533228745480.3226380167931.000000016870.7497601407591.961991777721.53327360130.322663085109—————
+evolution———————0.0004311822952880.0008030316298380.00274250024813————————————601.000000000180.749857289211.9607855330621.533256868990.322703948181.000000000540.7497600619931.9621602402621.533302236060.322730068762—————
+evolution———————0.0004311672951250.0008029826303730.00274217696686————————————801.000000000010.7498572883421.9607910004521.533257794550.322706118121.000000000020.7497600594961.9621655459921.533303137890.32273217845—————
+evolution———————0.0004311664755180.000802979711720.00274215619636————————————9010.7498572883181.9607911527221.533257820320.32270617855410.7497600594291.9621656878721.5333031620.322732234865—————
+evolution———————0.0004311662886810.0008029790344930.00274215130944————————————10010.7498572883141.9607911803421.5332578250.32270618951610.7497600594171.9621657130521.533303166280.322732244876—————
+profile——————————————————————100————————————04.035709990280.2592884524534.038452141590.259279092472
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————0.09817477042473.889594661640.2752752390493.890627636960.275285085468
+profile——————————————————————100————————————0.1963495408493.385393736330.3224227638683.383725031020.32245230066
+profile——————————————————————100————————————0.2945243112742.516443179530.3959117410012.51498576720.395907403433
+profile——————————————————————100————————————0.3926990816991.564050974870.4847855292921.564339959950.484715711214
+profile——————————————————————100————————————0.4908738521230.8532479047460.5768813888790.8538925987930.576767380539
+profile——————————————————————100————————————0.5890486225480.4508665909630.6647184592190.4510820229520.664588158972
+profile——————————————————————100————————————0.6872233929730.2578693691620.7453247878790.2578059009450.745190613748
+profile——————————————————————100————————————0.7853981633970.1730186031640.8177756810620.1728956778520.817641055386
+profile——————————————————————100————————————0.8835729338220.1373363130560.8817998183420.1372384287580.88166542736
+profile——————————————————————100————————————0.9817477042470.122764346630.9373135062750.1227023939410.937179410842
+profile——————————————————————100————————————1.079922474670.1170244902820.9842902014510.1169888358110.984156348316
+profile——————————————————————100————————————1.17809724510.1149154988681.022722837150.1148956267141.02258916549
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————1.276272015520.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————1.374446785950.1141276296111.0739578170.1141207154951.07382436352
+profile——————————————————————100————————————1.472621556370.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————1.570796326790.1141719219251.091033346950.1141675739961.09089996108
+profile——————————————————————100————————————1.668971097220.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————1.767145867640.1141276296111.0739578170.1141207154951.07382436352
+profile——————————————————————100————————————1.865320638070.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————1.963495408490.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————2.061670178920.1170244902820.9842902014490.1169888358110.984156348316
+profile——————————————————————100————————————2.159844949340.122764346630.9373135062730.1227023939410.937179410842
+profile——————————————————————100————————————2.258019719770.1373363130570.8817998183390.1372384287580.88166542736
+profile——————————————————————100————————————2.356194490190.1730186031670.8177756810580.1728956778520.817641055386
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————2.454369260620.2578693691690.7453247878750.2578059009450.745190613748
+profile——————————————————————100————————————2.552544031040.4508665909780.6647184592140.4510820229520.664588158972
+profile——————————————————————100————————————2.650718801470.8532479047750.5768813888740.8538925987930.576767380539
+profile——————————————————————100————————————2.748893571891.564050974920.4847855292871.564339959950.484715711214
+profile——————————————————————100————————————2.847068342322.516443179580.3959117409962.51498576720.395907403433
+profile——————————————————————100————————————2.945243112743.385393736370.3224227638643.383725031020.32245230066
+profile——————————————————————100————————————3.043417883173.889594661650.2752752390473.890627636960.275285085468
+profile——————————————————————100————————————3.141592653594.035709990280.2592884524534.038452141590.259279092472
+profile——————————————————————100————————————3.239767424013.889594661640.2752752390493.890627636960.275285085468
+profile——————————————————————100————————————3.337942194443.385393736330.3224227638683.383725031020.32245230066
+profile——————————————————————100————————————3.436116964862.516443179530.3959117410012.51498576720.395907403433
+profile——————————————————————100————————————3.534291735291.564050974870.4847855292921.564339959950.484715711214
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————3.632466505710.8532479047460.5768813888790.8538925987930.576767380539
+profile——————————————————————100————————————3.730641276140.4508665909630.6647184592190.4510820229520.664588158972
+profile——————————————————————100————————————3.828816046560.2578693691620.7453247878790.2578059009450.745190613748
+profile——————————————————————100————————————3.926990816990.1730186031640.8177756810620.1728956778520.817641055386
+profile——————————————————————100————————————4.025165587410.1373363130560.8817998183420.1372384287580.88166542736
+profile——————————————————————100————————————4.123340357840.122764346630.9373135062750.1227023939410.937179410842
+profile——————————————————————100————————————4.221515128260.1170244902820.9842902014510.1169888358110.984156348316
+profile——————————————————————100————————————4.319689898690.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————4.417864669110.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————4.516039439540.1141276296111.0739578170.1141207154951.07382436352
+profile——————————————————————100————————————4.614214209960.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————4.712388980380.1141719219251.091033346950.1141675739961.09089996108
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————4.810563750810.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————4.908738521230.1141276296111.0739578170.1141207154951.07382436352
+profile——————————————————————100————————————5.006913291660.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————5.105088062080.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————5.203262832510.1170244902820.9842902014490.1169888358110.984156348316
+profile——————————————————————100————————————5.301437602930.122764346630.9373135062730.1227023939410.937179410842
+profile——————————————————————100————————————5.399612373360.1373363130570.8817998183390.1372384287580.88166542736
+profile——————————————————————100————————————5.497787143780.1730186031670.8177756810580.1728956778520.817641055386
+profile——————————————————————100————————————5.595961914210.2578693691690.7453247878750.2578059009450.745190613748
+profile——————————————————————100————————————5.694136684630.4508665909780.6647184592140.4510820229520.664588158972
+profile——————————————————————100————————————5.792311455060.8532479047750.5768813888740.8538925987930.576767380539
+profile——————————————————————100————————————5.890486225481.564050974920.4847855292871.564339959950.484715711214
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————5.988660995912.516443179580.3959117409962.51498576720.395907403433
+profile——————————————————————100————————————6.086835766333.385393736370.3224227638643.383725031020.32245230066
+profile——————————————————————100————————————6.185010536753.889594661650.2752752390473.890627636960.275285085468
+Measurements and complete records / JSON
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. M. Turing (1952). The Chemical Basis of Morphogenesis · DOI: 10.1098/rstb.1952.0012
+Review scope / review_level: original-paper-selected-sections
+Checked the university-hosted original scan, sections 6–7 (printed pp.46–50), ring formulation/linearization and bibliography. Distinct from the adopted coefficients, finite-amplitude reference and mature shape.
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+Review scope / review_level: official-bibliography-and-publisher-indexed-abstract
+Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments.
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+Review scope / review_level: original-paper-selected-nonlinear-composition
+Checked original pp.510–512 for half-step composition and nonlinear second-order construction. This does not guarantee positivity or accuracy at arbitrary steps in the adopted model.
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern-references
+Coverage: reading
+
+Review scope / review_level: author-lecture-selected-midpoint-and-splitting
+Checked theorem3 and section5 of the author-hosted lecture for implicit-midpoint formula/order and symmetric splitting. Hamiltonian symplectic claims are not transferred to this chemical model.
+The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
+Review scope / review_level: official-versioned-api-specification
+Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy.
 
 ## AMG, factorizations, eigenvalues and quadrature — AMG, factorizations, eigenvalues and quadrature [en]
 
@@ -17992,7 +18502,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
 Coverage: reading
 
-個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22モデル族の文献解説に、既存のロジスティック増殖・閉鎖SIRと、新しい線形反応拡散Fourierモード・SchnakenbergのTuring発現・FitzHugh–Nagumo励起回復の小さな専用例を接続。全22モデルやHodgkin–Huxleyの実装を意味しません。
+個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。
 以下は慣用的な簡略形・規格化形です。出典はモデルの系譜を示し、すべての係数や変数が原論文と一致するという意味ではありません。構造化カタログに、各項目の引用、数値的な課題、検証目標、範囲を記録しています。現代数理生物学の網羅的総説ではなく、数値計算の多様性を重視した選定です。出典確認日は2026年11月6日です。
 
 ## 生物モデル方程式と数値検証 — 生物の問いと数値計算法の対応# [ja]
@@ -18116,7 +18626,7 @@ C_m\dot V=I_{app}-\bar g_{Na}m^3h(V-E_{Na})-\bar g_Kn^4(V-E_K)-g_L(V-E_L),\quad\
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#09-1952-turing-reactiondiffusion-framework
 Coverage: reading
 
-Schnakenbergの線形発現と短い非線形例に限定した補助実装あり。 一様な反応平衡のまわりで拡散駆動の模様が生じる枠組みです。f,gを一意に指定するモデルではありません。
+固定1次元Schnakenberg系の線形発現・非線形発展・成長後パターンを別々に検証。 一様な反応平衡のまわりで拡散駆動の模様が生じる枠組みです。f,gを一意に指定するモデルではありません。
 u_t=D_u\Delta u+f(u,v),\qquad v_t=D_v\Delta v+g(u,v).
 数値的な課題。 物理不安定性と数値不安定性、領域の固有モード、離散Laplacianの分散関係の誤差を区別します。
 検証案。 反応則を指定し、J−k²diag(Du,Dv)の固有値と初期のFourierモード成長を比較します。拡散駆動不安定性を論じる前にk=0の反応平衡が安定であることを示します。
@@ -18212,7 +18722,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#17-1979-schnakenberg-reactiondiffusion
 Coverage: reading
 
-Schnakenberg初期成長の実行・検証例あり。成熟模様は未検証。 単純な自己触媒反応則を空間へ拡張したもので、再現可能なTuring不安定性の発生テストに適しています。
+有限振幅の非線形発展と成長後パターンを独立参照・空間/時間収束で比較。一般の模様選択は対象外。 単純な自己触媒反応則を空間へ拡張したもので、再現可能なTuring不安定性の発生テストに適しています。
 u_t=D_u\Delta u+a-u+u^2v,\qquad v_t=D_v\Delta v+b-u^2v.
 数値的な課題。 反応の硬さ、濃度の正値性、反応系のHopf不安定性と空間的なTuring不安定性の違いを調べます。
 検証案。 u*=a+b、v*=b/(a+b)²を確認し、固定した境界条件のもとで、離散・連続の線形化作用素とモード成長率を比較します。
@@ -25327,6 +25837,8 @@ Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. Or
 G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling. 10.1063/1.2408420
 G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes. 10.1016/j.cpc.2008.01.006
 Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling. Original source
+G. Strang (1968). On the Construction and Comparison of Difference Schemes. 10.1137/0705041
+E. Hairer (2010). Geometric Numerical Integration, Lecture2. Original source
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -26296,8 +26808,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文235件・全参考資料285件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め86章です。
+方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文236件・全参考資料287件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め87章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -26544,7 +27056,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-229件：学術誌論文（総説・翻訳・採録済み論文を含む）
+230件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -27915,6 +28427,504 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integrat
 Coverage: reading
 
 シンプレクティック積分の章では、調和・4次Hamilton系に対して、力学的なkick–drift–kick Verlet、吉田の4次合成、シンプレクティックEuler、陰的中点則を実装します。写像ノートではRK4と比較し、正準構造と厳密なエネルギー保存を分けます。
+
+## 非線形反応拡散・パターン形成の独立検証 — 非線形反応拡散・パターン形成の独立検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/
+Coverage: reading
+
+小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
+
+## 非線形反応拡散・パターン形成の独立検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#run-all
+Coverage: reading
+
+ZIPの atlas-biology-2026-11-22 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 非線形反応拡散・パターン形成の独立検証 — Schnakenberg有限振幅過渡：非線形性と独立参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/
+Coverage: reading
+
+t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。
+初回の不合格と刻み細分化の記録 · 初回の入力
+
+## 非線形反応拡散・パターン形成の独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-assumptions
+Coverage: reading
+
+1D周期x∈[0,2π)、a=.1,b=.9、D=(.01,1)。共通初期値u=1+.08cos2x+.01cos4x、v=.9−.03cos2x−.002cos4x。反射対称かつπ周期の不変部分空間で、原点を固定します。
+
+## 非線形反応拡散・パターン形成の独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-algorithm
+Coverage: reading
+
+二次中心FD行列の固有値−4sin²(πk/N)/Δx²をFFTで対角化して拡散を厳密に半刻み進め、反応を各点2×2 Newtonのimplicit midpointで全刻み進めるStrang合成。FFT使用時も空間離散はFDです。未収束・予算超過は失敗とし、濃度のclippingはしません。
+u_t=D_u u_{xx}+a-u+u^2v,\qquad v_t=D_v v_{xx}+b-u^2v\frac{d\langle u+v\rangle}{dt}=a+b-\langle u\rangle,\quad S_{n+1}-S_n=h(a+b-\langle\bar u\rangle)\lambda_{h,k}=-4\sin^2(\pi k/N)/\Delta x^2,\quad\Phi_h=e^{hDL_h/2}\,\Phi_{\rm midpoint}^{F}(h)\,e^{hDL_h/2}\|e\|_1=\max_s\frac1N\sum_j|e_{s,j}|,\quad\|e\|_2=\max_s\sqrt{\frac1N\sum_j e_{s,j}^2},\quad\|e\|_\infty=\max_{s,j}|e_{s,j}|
+
+## 非線形反応拡散・パターン形成の独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-validation
+Coverage: reading
+
+空間も異なるcosine Fourier–Galerkin＋Radau参照（K32/64/96、cubic投影M=4(K+1)>4K、analytic Jacobian）とraw L1/L2/L∞を比較。参照のK感度とODE公差感度を別検査し、時間次数は同じFD半離散系を別実装Radauで積分した値に対して測定。平均L1・RMS L2・最大L∞を成分ごとに求め悪い方を採用。反応収支・全step正濃度・初期ゼロのk≥5（本対称性で最初はk6）・線形化との差を記録します。 収束ノルムと参照感度は固定最終時刻で判定し、途中スナップショット誤差は別の推移診断です。
+
+## 非線形反応拡散・パターン形成の独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-limits
+Coverage: reading
+
+選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+spatial_finest_linf0.00278961128098
+temporal_finest_linf0.000635430117965
+minimum_spatial_order1.95041811221
+minimum_temporal_order1.98451979644
+reference_spatial_linf3.2551739082e-13
+reference_tolerance_linf4.4497738827e-13
+reference_to_primary_error_ratio2.76201485255e-10
+temporal_contamination_ratio0.0359074460735
+minimum_concentration0.224468016685
+minimum_newton_iterate0.224468016685
+maximum_midpoint_residual1.9676968388e-13
+maximum_reaction_balance_error1.67643676718e-14
+maximum_newton_iterations3
+nonlinear_relative_difference0.797394767283
+pattern_amplitude1.58485430717
+higher_harmonic_ratio0.239737092959
+dominant_mode_u2
+mean_u1.02128432457
+mean_v0.780910088389
+判定 / check合格
+spatial_finest_linftrue
+temporal_finest_linftrue
+reference_spatial_linftrue
+reference_tolerance_linftrue
+reference_to_primary_error_ratiotrue
+temporal_contamination_ratiotrue
+maximum_midpoint_residualtrue
+maximum_reaction_balance_errortrue
+minimum_spatial_ordertrue
+minimum_temporal_ordertrue
+positive_without_clippingtrue
+nonlinear_relative_differencetrue
+pattern_amplitudetrue
+higher_harmonic_ratiotrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+seriesnfevnjevnlumodesproduct_pointsrtolatolerror_l1error_l2error_linfndtl1l2linftemporal_l1temporal_l2temporal_linfsemidiscrete_spatial_l1semidiscrete_spatial_l2semidiscrete_spatial_linfinverse_dttimemean_umean_vamplitude_udominant_mode_umode2_amplitude_uhigher_harmonic_ratioreference_mean_ureference_mean_vreference_amplitude_ureference_dominant_mode_ureference_mode2_amplitude_ureference_higher_harmonic_ratioxuvreference_ureference_v
+reference-refinement30762480321322e-102e-121.37278459756e-071.54985302648e-072.61174841309e-07——————————————————————————————
+reference-refinement28562480642602e-102e-121.34854177521e-131.71442841926e-134.90718576884e-13——————————————————————————————
+reference-refinement27112478963882e-102e-121.34170886207e-131.85410767024e-134.4497738827e-13——————————————————————————————
+reference-tolerance7917338963882e-122e-141.34170886207e-131.85410767024e-134.4497738827e-13——————————————————————————————
+space——————————320.001250.0129604210020.01858897856870.04654093531481.92356383824e-053.31933534744e-050.0001087375664340.01297669242290.01861256901280.0465836748161———————————————————
+space——————————640.001250.003353395315980.004630125514280.0113951430722.0469862124e-053.35368278889e-050.0001029975586260.003371361416460.004657002184120.011438467817———————————————————
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+space——————————1280.001250.0008255070132460.001142301214340.002789611280982.0094223577e-053.33303199266e-050.0001017078712140.0008424630458590.001169113634390.00283250084134———————————————————
+time——————————1280.01250.001981555882310.003286184906610.0100756681044——————80——————————————————
+time——————————1280.006250.0005006032267440.0008304089301440.00253791262708——————160——————————————————
+time——————————1280.0031250.00012549196490.0002081587573520.000635430117965——————320——————————————————
+evolution———————000————————————010.90.0820.081.39064010628e-1510.90.0820.081.39064010628e-15—————
+evolution———————3.94656789321e-054.39491637722e-056.52281853184e-05————————————21.002351764040.8956307379010.19026083667420.1876148005610.01409490716061.002357145530.8956213169730.19032215243820.1876764768170.0140881829262—————
+evolution———————0.0001864692762250.000207185689980.00031345928869————————————41.009365805620.8784586643750.45970155849220.4350381652530.05606127859231.009395288430.8783963400140.45996146607820.4353250413010.0559708975759—————
+evolution———————0.0004465628679450.0005193626904460.001052707179————————————61.025278731970.8277572362991.0153566589220.8825601483790.148142940461.025368017950.8275167358791.0156598324420.8831934577730.147726468606—————
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+evolution———————0.0008255070132460.001142301214340.00278961128098————————————81.021189827560.7813525591041.5855305346721.285845896140.2408269830641.021284324570.7809100883891.5848543071721.286254499270.239737092959—————
+profile——————————————————————8————————————03.395530116410.3421786731743.3939138510.342339722981
+profile——————————————————————8————————————0.09817477042473.251342720660.3565106628083.249727413390.356627506667
+profile——————————————————————8————————————0.1963495408492.836884834750.3977851725472.836189578050.39775912192
+profile——————————————————————8————————————0.2945243112742.237556570130.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————0.3926990816991.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————0.4908738521231.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————0.5890486225480.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————0.6872233929730.5331984014880.7706079134720.5332345889120.769984221661
+profile——————————————————————8————————————0.7853981633970.4041750954810.8381913612350.4038440761280.837581200784
+profile——————————————————————8————————————0.8835729338220.3287218494480.898364234390.3283061661020.897771934382
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————0.9817477042470.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————1.079922474670.2580632984720.9952054941340.2577122823680.994646378074
+profile——————————————————————8————————————1.17809724510.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————1.276272015520.2331733678751.059950220890.2328852077041.05941449674
+profile——————————————————————8————————————1.374446785950.227933660111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————1.472621556370.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————1.570796326790.2244690470671.096390673850.2242052366511.09586836906
+profile——————————————————————8————————————1.668971097220.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————1.767145867640.2279336601111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————1.865320638070.2331733678751.059950220890.2328852077041.05941449674
+profile——————————————————————8————————————1.963495408490.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————2.061670178920.2580632984720.9952054941340.2577122823680.994646378074
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————2.159844949340.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————2.258019719770.3287218494480.898364234390.3283061661020.897771934382
+profile——————————————————————8————————————2.356194490190.404175095480.8381913612340.4038440761280.837581200784
+profile——————————————————————8————————————2.454369260620.5331984014880.7706079134720.5332345889120.769984221661
+profile——————————————————————8————————————2.552544031040.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————2.650718801471.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————2.748893571891.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————2.847068342322.237556570140.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————2.945243112742.836884834750.3977851725462.836189578050.39775912192
+profile——————————————————————8————————————3.043417883173.251342720660.3565106628083.249727413390.356627506667
+profile——————————————————————8————————————3.141592653593.395530116410.3421786731743.3939138510.342339722981
+profile——————————————————————8————————————3.239767424013.251342720660.3565106628083.249727413390.356627506667
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————3.337942194442.836884834750.3977851725472.836189578050.39775912192
+profile——————————————————————8————————————3.436116964862.237556570130.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————3.534291735291.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————3.632466505711.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————3.730641276140.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————3.828816046560.5331984014880.7706079134720.5332345889120.769984221661
+profile——————————————————————8————————————3.926990816990.4041750954810.8381913612350.4038440761280.837581200784
+profile——————————————————————8————————————4.025165587410.3287218494480.898364234390.3283061661020.897771934382
+profile——————————————————————8————————————4.123340357840.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————4.221515128260.2580632984720.9952054941340.2577122823680.994646378074
+profile——————————————————————8————————————4.319689898690.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————4.417864669110.2331733678751.059950220890.2328852077041.05941449674
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————4.516039439540.227933660111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————4.614214209960.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————4.712388980380.2244690470671.096390673850.2242052366511.09586836906
+profile——————————————————————8————————————4.810563750810.2252776645321.092341555810.2250116909331.09181775088
+profile——————————————————————8————————————4.908738521230.2279336601111.080194301560.2276603484691.07966601008
+profile——————————————————————8————————————5.006913291660.2331733678751.059950220890.2328852077041.05941449674
+profile——————————————————————8————————————5.105088062080.2424027321031.031615086680.2420891838751.03106905065
+profile——————————————————————8————————————5.203262832510.2580632984720.9952054941340.2577122823680.994646378074
+profile——————————————————————8————————————5.301437602930.284370957350.9507605473210.2839763366560.950185813231
+profile——————————————————————8————————————5.399612373360.3287218494480.898364234390.3283061661020.897771934382
+profile——————————————————————8————————————5.497787143780.404175095480.8381913612340.4038440761280.837581200784
+profile——————————————————————8————————————5.595961914210.5331984014880.7706079134720.5332345889120.769984221661
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-measurements
+Coverage: reading
+
+profile——————————————————————8————————————5.694136684630.7511252795450.696396486240.7520345089230.695775596838
+profile——————————————————————8————————————5.792311455061.102168527780.6172408067591.104349035340.616664883623
+profile——————————————————————8————————————5.890486225481.612642699440.5365926473661.615432310720.536139731056
+profile——————————————————————8————————————5.988660995912.237556570140.4605997809442.239036921770.460353671607
+profile——————————————————————8————————————6.086835766332.836884834750.3977851725462.836189578050.39775912192
+profile——————————————————————8————————————6.185010536753.251342720660.3565106628083.249727413390.356627506667
+この例の実測値・全記録 / JSON
+
+## 非線形反応拡散・パターン形成の独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. M. Turing (1952). The Chemical Basis of Morphogenesis · DOI: 10.1098/rstb.1952.0012
+確認範囲 / review_level: original-paper-selected-sections
+大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+確認範囲 / review_level: official-bibliography-and-publisher-indexed-abstract
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+確認範囲 / review_level: original-paper-selected-nonlinear-composition
+原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+確認範囲 / review_level: author-lecture-selected-midpoint-and-splitting
+著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。
+The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
+確認範囲 / review_level: official-versioned-api-specification
+Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
+
+## 非線形反応拡散・パターン形成の独立検証 — Schnakenberg飽和パターン：近定常性と格子・時間収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/
+Coverage: reading
+
+t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
+初回の不合格と刻み細分化の記録 · 初回の入力
+
+## 非線形反応拡散・パターン形成の独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-assumptions
+Coverage: reading
+
+1D周期x∈[0,2π)、a=.1,b=.9、D=(.01,1)。共通初期値u=1+.08cos2x+.01cos4x、v=.9−.03cos2x−.002cos4x。反射対称かつπ周期の不変部分空間で、原点を固定します。
+
+## 非線形反応拡散・パターン形成の独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-algorithm
+Coverage: reading
+
+二次中心FD行列の固有値−4sin²(πk/N)/Δx²をFFTで対角化して拡散を厳密に半刻み進め、反応を各点2×2 Newtonのimplicit midpointで全刻み進めるStrang合成。FFT使用時も空間離散はFDです。未収束・予算超過は失敗とし、濃度のclippingはしません。
+u_t=D_u u_{xx}+a-u+u^2v,\qquad v_t=D_v v_{xx}+b-u^2v\frac{d\langle u+v\rangle}{dt}=a+b-\langle u\rangle,\quad S_{n+1}-S_n=h(a+b-\langle\bar u\rangle)\lambda_{h,k}=-4\sin^2(\pi k/N)/\Delta x^2,\quad\Phi_h=e^{hDL_h/2}\,\Phi_{\rm midpoint}^{F}(h)\,e^{hDL_h/2}\|e\|_1=\max_s\frac1N\sum_j|e_{s,j}|,\quad\|e\|_2=\max_s\sqrt{\frac1N\sum_j e_{s,j}^2},\quad\|e\|_\infty=\max_{s,j}|e_{s,j}|
+
+## 非線形反応拡散・パターン形成の独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-validation
+Coverage: reading
+
+空間も異なるcosine Fourier–Galerkin＋Radau参照（K32/64/96、cubic投影M=4(K+1)>4K、analytic Jacobian）とraw L1/L2/L∞を比較。参照のK感度とODE公差感度を別検査し、時間次数は同じFD半離散系を別実装Radauで積分した値に対して測定。平均L1・RMS L2・最大L∞を成分ごとに求め悪い方を採用。反応収支・全step正濃度・初期ゼロのk≥5（本対称性で最初はk6）・線形化との差を記録します。 収束ノルムと参照感度は固定最終時刻で判定し、途中スナップショット誤差は別の推移診断です。
+
+## 非線形反応拡散・パターン形成の独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-limits
+Coverage: reading
+
+選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。 近飽和は参照の90→100の検査窓に対する判定で、厳密定常解・非線形安定性・長期吸引の証明ではありません。lateの巨大な線形差は線形化の破綻診断で、精度誤差ではありません。
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+spatial_finest_linf0.00274215130944
+temporal_finest_linf0.000445135730611
+minimum_spatial_order2.09475504349
+minimum_temporal_order1.7547591907
+reference_spatial_linf5.15436582305e-11
+reference_tolerance_linf1.49658063719e-12
+reference_to_primary_error_ratio1.9342564608e-08
+temporal_contamination_ratio0.0208322171577
+minimum_concentration0.114127542651
+minimum_newton_iterate0.114127542651
+maximum_midpoint_residual1.9676968388e-13
+maximum_reaction_balance_error7.10903558243e-13
+maximum_newton_iterations3
+nonlinear_relative_difference1.14260005745e+21
+pattern_amplitude1.96216591999
+higher_harmonic_ratio0.322732244876
+dominant_mode_u2
+mean_u1
+mean_v0.749760059417
+saturation_change5.03302608479e-08
+saturation_rhs1.87733589785e-09
+saturation_projected_rhs1.87734637359e-09
+saturation_fd_rhs0.00115869746559
+saturation_amplitude_change2.51751792746e-08
+判定 / check合格
+spatial_finest_linftrue
+temporal_finest_linftrue
+reference_spatial_linftrue
+reference_tolerance_linftrue
+reference_to_primary_error_ratiotrue
+temporal_contamination_ratiotrue
+maximum_midpoint_residualtrue
+maximum_reaction_balance_errortrue
+minimum_spatial_ordertrue
+minimum_temporal_ordertrue
+positive_without_clippingtrue
+nonlinear_relative_differencetrue
+pattern_amplitudetrue
+higher_harmonic_ratiotrue
+saturation_changetrue
+saturation_rhstrue
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+saturation_amplitude_changetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesnfevnjevnlumodesproduct_pointsrtolatolerror_l1error_l2error_linfndtl1l2linftemporal_l1temporal_l2temporal_linfsemidiscrete_spatial_l1semidiscrete_spatial_l2semidiscrete_spatial_linfinverse_dttimemean_umean_vamplitude_udominant_mode_umode2_amplitude_uhigher_harmonic_ratioreference_mean_ureference_mean_vreference_amplitude_ureference_dominant_mode_ureference_mode2_amplitude_ureference_higher_harmonic_ratioxuvreference_ureference_v
+reference-refinement555334152321322e-102e-125.521686075e-067.69391054646e-062.06032453676e-05——————————————————————————————
+reference-refinement512334150642602e-102e-121.53798716655e-112.0269498968e-115.20028464734e-11——————————————————————————————
+reference-refinement487635154963882e-102e-122.90690092982e-134.91627551545e-131.49658063719e-12——————————————————————————————
+reference-tolerance14549498963882e-122e-142.90690092982e-134.91627551545e-131.49658063719e-12——————————————————————————————
+space——————————640.001250.009523470135120.01923140011530.07155883171172.19520021267e-054.48200095359e-050.0001787912228950.009543064918450.01927492994180.0717376229346———————————————————
+space——————————1280.001250.001841742454540.003484123631580.01219012073081.09725720447e-052.13646777638e-057.45609891188e-050.00185195792570.003504772994760.0122646817199———————————————————
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+space——————————2560.001250.0004311662886810.0008029790344930.002742151309441.04154499196e-051.91299132029e-055.83404525338e-050.0004399060895930.0008208418519730.00280049176197———————————————————
+time——————————1280.01250.001046899694690.001754446066340.00538429906153——————80——————————————————
+time——————————1280.006250.0002587258623670.0004838603443960.00150219948116——————160——————————————————
+time——————————1280.0031256.76770320133e-050.0001302998271910.000445135730611——————320——————————————————
+evolution———————000————————————010.90.0820.081.45520411438e-1510.90.0820.081.45520411438e-15—————
+evolution———————8.14274602031e-059.12274387084e-050.000151531975688————————————51.017424778760.8572069309340.70255506524120.6398280776730.09641273989531.017439844970.8571724777740.70265498138120.6399508011660.0963654815452—————
+evolution———————0.0003401485221480.0005288851812470.00120989917797————————————101.010693906930.760413988231.8462488021321.463174678440.2890041198211.010701281710.7602845777211.8460697777821.463144629060.288623534817—————
+evolution———————0.0004268601101840.0007505768667870.00214962308327————————————201.000025376460.749871965981.9555122490721.532298123180.3206019591541.000025306920.7497760476271.95659013121.532290962290.320507922033—————
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+evolution———————0.0004311431148050.0008026071969590.00273782820471————————————401.000000005390.7498573150691.9606194091621.533228745480.3226380167931.000000016870.7497601407591.961991777721.53327360130.322663085109—————
+evolution———————0.0004311822952880.0008030316298380.00274250024813————————————601.000000000180.749857289211.9607855330621.533256868990.322703948181.000000000540.7497600619931.9621602402621.533302236060.322730068762—————
+evolution———————0.0004311672951250.0008029826303730.00274217696686————————————801.000000000010.7498572883421.9607910004521.533257794550.322706118121.000000000020.7497600594961.9621655459921.533303137890.32273217845—————
+evolution———————0.0004311664755180.000802979711720.00274215619636————————————9010.7498572883181.9607911527221.533257820320.32270617855410.7497600594291.9621656878721.5333031620.322732234865—————
+evolution———————0.0004311662886810.0008029790344930.00274215130944————————————10010.7498572883141.9607911803421.5332578250.32270618951610.7497600594171.9621657130521.533303166280.322732244876—————
+profile——————————————————————100————————————04.035709990280.2592884524534.038452141590.259279092472
+profile——————————————————————100————————————0.09817477042473.889594661640.2752752390493.890627636960.275285085468
+profile——————————————————————100————————————0.1963495408493.385393736330.3224227638683.383725031020.32245230066
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————0.2945243112742.516443179530.3959117410012.51498576720.395907403433
+profile——————————————————————100————————————0.3926990816991.564050974870.4847855292921.564339959950.484715711214
+profile——————————————————————100————————————0.4908738521230.8532479047460.5768813888790.8538925987930.576767380539
+profile——————————————————————100————————————0.5890486225480.4508665909630.6647184592190.4510820229520.664588158972
+profile——————————————————————100————————————0.6872233929730.2578693691620.7453247878790.2578059009450.745190613748
+profile——————————————————————100————————————0.7853981633970.1730186031640.8177756810620.1728956778520.817641055386
+profile——————————————————————100————————————0.8835729338220.1373363130560.8817998183420.1372384287580.88166542736
+profile——————————————————————100————————————0.9817477042470.122764346630.9373135062750.1227023939410.937179410842
+profile——————————————————————100————————————1.079922474670.1170244902820.9842902014510.1169888358110.984156348316
+profile——————————————————————100————————————1.17809724510.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————1.276272015520.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————1.374446785950.1141276296111.0739578170.1141207154951.07382436352
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————1.472621556370.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————1.570796326790.1141719219251.091033346950.1141675739961.09089996108
+profile——————————————————————100————————————1.668971097220.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————1.767145867640.1141276296111.0739578170.1141207154951.07382436352
+profile——————————————————————100————————————1.865320638070.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————1.963495408490.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————2.061670178920.1170244902820.9842902014490.1169888358110.984156348316
+profile——————————————————————100————————————2.159844949340.122764346630.9373135062730.1227023939410.937179410842
+profile——————————————————————100————————————2.258019719770.1373363130570.8817998183390.1372384287580.88166542736
+profile——————————————————————100————————————2.356194490190.1730186031670.8177756810580.1728956778520.817641055386
+profile——————————————————————100————————————2.454369260620.2578693691690.7453247878750.2578059009450.745190613748
+profile——————————————————————100————————————2.552544031040.4508665909780.6647184592140.4510820229520.664588158972
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————2.650718801470.8532479047750.5768813888740.8538925987930.576767380539
+profile——————————————————————100————————————2.748893571891.564050974920.4847855292871.564339959950.484715711214
+profile——————————————————————100————————————2.847068342322.516443179580.3959117409962.51498576720.395907403433
+profile——————————————————————100————————————2.945243112743.385393736370.3224227638643.383725031020.32245230066
+profile——————————————————————100————————————3.043417883173.889594661650.2752752390473.890627636960.275285085468
+profile——————————————————————100————————————3.141592653594.035709990280.2592884524534.038452141590.259279092472
+profile——————————————————————100————————————3.239767424013.889594661640.2752752390493.890627636960.275285085468
+profile——————————————————————100————————————3.337942194443.385393736330.3224227638683.383725031020.32245230066
+profile——————————————————————100————————————3.436116964862.516443179530.3959117410012.51498576720.395907403433
+profile——————————————————————100————————————3.534291735291.564050974870.4847855292921.564339959950.484715711214
+profile——————————————————————100————————————3.632466505710.8532479047460.5768813888790.8538925987930.576767380539
+profile——————————————————————100————————————3.730641276140.4508665909630.6647184592190.4510820229520.664588158972
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————3.828816046560.2578693691620.7453247878790.2578059009450.745190613748
+profile——————————————————————100————————————3.926990816990.1730186031640.8177756810620.1728956778520.817641055386
+profile——————————————————————100————————————4.025165587410.1373363130560.8817998183420.1372384287580.88166542736
+profile——————————————————————100————————————4.123340357840.122764346630.9373135062750.1227023939410.937179410842
+profile——————————————————————100————————————4.221515128260.1170244902820.9842902014510.1169888358110.984156348316
+profile——————————————————————100————————————4.319689898690.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————4.417864669110.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————4.516039439540.1141276296111.0739578170.1141207154951.07382436352
+profile——————————————————————100————————————4.614214209960.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————4.712388980380.1141719219251.091033346950.1141675739961.09089996108
+profile——————————————————————100————————————4.810563750810.1141507319921.086764609360.114145813461.0866312068
+profile——————————————————————100————————————4.908738521230.1141276296111.0739578170.1141207154951.07382436352
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————5.006913291660.114255010731.052611333520.1142437308991.05247779216
+profile——————————————————————100————————————5.105088062080.1149154988681.022722837150.1148956267141.02258916549
+profile——————————————————————100————————————5.203262832510.1170244902820.9842902014490.1169888358110.984156348316
+profile——————————————————————100————————————5.301437602930.122764346630.9373135062730.1227023939410.937179410842
+profile——————————————————————100————————————5.399612373360.1373363130570.8817998183390.1372384287580.88166542736
+profile——————————————————————100————————————5.497787143780.1730186031670.8177756810580.1728956778520.817641055386
+profile——————————————————————100————————————5.595961914210.2578693691690.7453247878750.2578059009450.745190613748
+profile——————————————————————100————————————5.694136684630.4508665909780.6647184592140.4510820229520.664588158972
+profile——————————————————————100————————————5.792311455060.8532479047750.5768813888740.8538925987930.576767380539
+profile——————————————————————100————————————5.890486225481.564050974920.4847855292871.564339959950.484715711214
+profile——————————————————————100————————————5.988660995912.516443179580.3959117409962.51498576720.395907403433
+profile——————————————————————100————————————6.086835766333.385393736370.3224227638643.383725031020.32245230066
+
+## 非線形反応拡散・パターン形成の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-measurements
+Coverage: reading
+
+profile——————————————————————100————————————6.185010536753.889594661650.2752752390473.890627636960.275285085468
+この例の実測値・全記録 / JSON
+
+## 非線形反応拡散・パターン形成の独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. M. Turing (1952). The Chemical Basis of Morphogenesis · DOI: 10.1098/rstb.1952.0012
+確認範囲 / review_level: original-paper-selected-sections
+大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+確認範囲 / review_level: official-bibliography-and-publisher-indexed-abstract
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+確認範囲 / review_level: original-paper-selected-nonlinear-composition
+原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+確認範囲 / review_level: author-lecture-selected-midpoint-and-splitting
+著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。
+The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
+確認範囲 / review_level: official-versioned-api-specification
+Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
 
 ## AMG・行列分解・固有値・求積 — AMG・行列分解・固有値・求積 [ja]
 

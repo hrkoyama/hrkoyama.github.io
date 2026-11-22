@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "scope": "Predeclared deterministic 1D Schnakenberg tests in a reflection-even, pi-periodic subspace of the 2pi periodic domain. Educational coefficients, no biological calibration. No quantum calculations.",
+  "maximum_total_seconds": 120.0,
+  "cases": {
+    "schnakenberg-nonlinear": {
+      "a": 0.1,
+      "b": 0.9,
+      "diffusion": [
+        0.01,
+        1.0
+      ],
+      "initial_cosine_coefficients": [
+        [
+          1.0,
+          0.0,
+          0.08,
+          0.0,
+          0.01
+        ],
+        [
+          0.9,
+          0.0,
+          -0.03,
+          0.0,
+          -0.002
+        ]
+      ],
+      "time": 8.0,
+      "snapshot_times": [
+        0.0,
+        2.0,
+        4.0,
+        6.0,
+        8.0
+      ],
+      "grids": [
+        32,
+        64,
+        128
+      ],
+      "space_step": 0.00125,
+      "temporal_grid": 128,
+      "time_steps": [
+        0.0125,
+        0.00625,
+        0.003125
+      ],
+      "reference_modes": [
+        32,
+        64,
+        96
+      ],
+      "reference_rtol": 2e-10,
+      "reference_atol": 2e-12,
+      "tight_rtol": 2e-12,
+      "tight_atol": 2e-14,
+      "diagnostic_grid": 1024,
+      "newton_tolerance": 2e-13,
+      "newton_iterations": 12,
+      "acceptance": {
+        "spatial_finest_linf": 0.02,
+        "minimum_spatial_order": 1.7,
+        "temporal_finest_linf": 0.003,
+        "minimum_temporal_order": 1.7,
+        "reference_spatial_linf": 1e-05,
+        "reference_tolerance_linf": 1e-07,
+        "reference_to_primary_error_ratio": 0.02,
+        "temporal_contamination_ratio": 0.1,
+        "minimum_concentration": 0.0,
+        "maximum_midpoint_residual": 2e-12,
+        "maximum_reaction_balance_error": 2e-10,
+        "minimum_nonlinear_relative_difference": 0.1,
+        "minimum_pattern_amplitude": 0.4,
+        "minimum_higher_harmonic_ratio": 0.02
+      }
+    },
+    "schnakenberg-pattern": {
+      "a": 0.1,
+      "b": 0.9,
+      "diffusion": [
+        0.01,
+        1.0
+      ],
+      "initial_cosine_coefficients": [
+        [
+          1.0,
+          0.0,
+          0.08,
+          0.0,
+          0.01
+        ],
+        [
+          0.9,
+          0.0,
+          -0.03,
+          0.0,
+          -0.002
+        ]
+      ],
+      "time": 100.0,
+      "snapshot_times": [
+        0.0,
+        5.0,
+        10.0,
+        20.0,
+        40.0,
+        60.0,
+        80.0,
+        90.0,
+        100.0
+      ],
+      "grids": [
+        64,
+        128,
+        256
+      ],
+      "space_step": 0.00125,
+      "temporal_grid": 128,
+      "time_steps": [
+        0.0125,
+        0.00625,
+        0.003125
+      ],
+      "reference_modes": [
+        32,
+        64,
+        96
+      ],
+      "reference_rtol": 2e-10,
+      "reference_atol": 2e-12,
+      "tight_rtol": 2e-12,
+      "tight_atol": 2e-14,
+      "diagnostic_grid": 1024,
+      "newton_tolerance": 2e-13,
+      "newton_iterations": 12,
+      "acceptance": {
+        "spatial_finest_linf": 0.03,
+        "minimum_spatial_order": 1.7,
+        "temporal_finest_linf": 0.005,
+        "minimum_temporal_order": 1.7,
+        "reference_spatial_linf": 1e-05,
+        "reference_tolerance_linf": 1e-07,
+        "reference_to_primary_error_ratio": 0.02,
+        "temporal_contamination_ratio": 0.1,
+        "minimum_concentration": 0.0,
+        "maximum_midpoint_residual": 2e-12,
+        "maximum_reaction_balance_error": 2e-09,
+        "minimum_nonlinear_relative_difference": 0.1,
+        "minimum_pattern_amplitude": 0.4,
+        "minimum_higher_harmonic_ratio": 0.02,
+        "saturation_start_time": 90.0,
+        "maximum_saturation_change": 0.001,
+        "maximum_saturation_rhs": 0.0001,
+        "maximum_saturation_amplitude_change": 0.001
+      }
+    }
+  }
+}

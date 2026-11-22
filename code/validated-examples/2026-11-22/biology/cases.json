@@ -1,0 +1,240 @@
+[
+  {
+    "method_ids": [
+      "centered-difference",
+      "implicit-midpoint"
+    ],
+    "domains": [
+      "biology",
+      "diffusion",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "biology.py"
+    ],
+    "assumptions": {
+      "ja": "1D周期x∈[0,2π)、a=.1,b=.9、D=(.01,1)。共通初期値u=1+.08cos2x+.01cos4x、v=.9−.03cos2x−.002cos4x。反射対称かつπ周期の不変部分空間で、原点を固定します。",
+      "en": "1D periodic x∈[0,2π), a=.1,b=.9,D=(.01,1). Common IC u=1+.08cos(2x)+.01cos(4x), v=.9−.03cos(2x)−.002cos(4x), restricted to a reflection-even, pi-periodic invariant subspace with a fixed origin."
+    },
+    "algorithm": {
+      "ja": "二次中心FD行列の固有値−4sin²(πk/N)/Δx²をFFTで対角化して拡散を厳密に半刻み進め、反応を各点2×2 Newtonのimplicit midpointで全刻み進めるStrang合成。FFT使用時も空間離散はFDです。未収束・予算超過は失敗とし、濃度のclippingはしません。",
+      "en": "Strang-compose exact half-step diffusion of the FD matrix, diagonalized by FFT with symbol −4sin²(πk/N)/dx², and a full implicit-midpoint reaction step solved by local2×2 Newton iterations. FFT does not change FD space into spectral space. Fail on nonconvergence/budget excess; never clip concentrations."
+    },
+    "validation": {
+      "ja": "空間も異なるcosine Fourier–Galerkin＋Radau参照（K32/64/96、cubic投影M=4(K+1)>4K、analytic Jacobian）とraw L1/L2/L∞を比較。参照のK感度とODE公差感度を別検査し、時間次数は同じFD半離散系を別実装Radauで積分した値に対して測定。平均L1・RMS L2・最大L∞を成分ごとに求め悪い方を採用。反応収支・全step正濃度・初期ゼロのk≥5（本対称性で最初はk6）・線形化との差を記録します。 収束ノルムと参照感度は固定最終時刻で判定し、途中スナップショット誤差は別の推移診断です。",
+      "en": "Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Radau reference (K32/64/96, cubic projection M=4(K+1)>4K, analytic Jacobian). Separately check K and ODE-tolerance sensitivity. Measure time order against a separately implemented Radau integration of the SAME FD semidiscretization. Norms are per-species mean-absolute/RMS/maximum, then the worse species. Record source/sink balance, every-step positive concentrations, initially absent k≥5 (first allowed k6 here), and departure from linearization. Convergence norms and reference sensitivities are assessed at the fixed final time; intermediate snapshot errors are separate evolution diagnostics."
+    },
+    "limits": {
+      "ja": "選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。",
+      "en": "A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations."
+    },
+    "formulas": [
+      "u_t=D_u u_{xx}+a-u+u^2v,\\qquad v_t=D_v v_{xx}+b-u^2v",
+      "\\frac{d\\langle u+v\\rangle}{dt}=a+b-\\langle u\\rangle,\\quad S_{n+1}-S_n=h(a+b-\\langle\\bar u\\rangle)",
+      "\\lambda_{h,k}=-4\\sin^2(\\pi k/N)/\\Delta x^2,\\quad\\Phi_h=e^{hDL_h/2}\\,\\Phi_{\\rm midpoint}^{F}(h)\\,e^{hDL_h/2}",
+      "\\|e\\|_1=\\max_s\\frac1N\\sum_j|e_{s,j}|,\\quad\\|e\\|_2=\\max_s\\sqrt{\\frac1N\\sum_j e_{s,j}^2},\\quad\\|e\\|_\\infty=\\max_{s,j}|e_{s,j}|"
+    ],
+    "references": [
+      {
+        "id": "turing1952",
+        "author": "A. M. Turing",
+        "year": 1952,
+        "title": "The Chemical Basis of Morphogenesis",
+        "journal": "Philosophical Transactions of the Royal Society B 237(641), 37–72",
+        "doi": "10.1098/rstb.1952.0012",
+        "url": "https://www.mit.edu/~kardar/research/seminars/EPB/Turing.pdf",
+        "type": "article",
+        "review_level": "original-paper-selected-sections",
+        "review": {
+          "ja": "大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。",
+          "en": "Checked the university-hosted original scan, sections 6–7 (printed pp.46–50), ring formulation/linearization and bibliography. Distinct from the adopted coefficients, finite-amplitude reference and mature shape."
+        }
+      },
+      {
+        "id": "schnakenberg1979",
+        "author": "J. Schnakenberg",
+        "year": 1979,
+        "title": "Simple chemical reaction systems with limit cycle behaviour",
+        "journal": "Journal of Theoretical Biology 81(3), 389–400",
+        "doi": "10.1016/0022-5193(79)90042-0",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+        "type": "article",
+        "review_level": "official-bibliography-and-publisher-indexed-abstract",
+        "review": {
+          "ja": "PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。",
+          "en": "Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments."
+        }
+      },
+      {
+        "id": "strang1968",
+        "author": "G. Strang",
+        "year": 1968,
+        "title": "On the Construction and Comparison of Difference Schemes",
+        "journal": "SIAM Journal on Numerical Analysis 5(3), 506–517",
+        "doi": "10.1137/0705041",
+        "url": "https://epubs.siam.org/doi/pdf/10.1137/0705041",
+        "type": "article",
+        "review_level": "original-paper-selected-nonlinear-composition",
+        "review": {
+          "ja": "原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。",
+          "en": "Checked original pp.510–512 for half-step composition and nonlinear second-order construction. This does not guarantee positivity or accuracy at arbitrary steps in the adopted model."
+        }
+      },
+      {
+        "id": "hairer2010-geometric-lecture2",
+        "author": "E. Hairer",
+        "year": 2010,
+        "title": "Geometric Numerical Integration, Lecture2",
+        "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "type": "misc",
+        "review_level": "author-lecture-selected-midpoint-and-splitting",
+        "review": {
+          "ja": "著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。",
+          "en": "Checked theorem3 and section5 of the author-hosted lecture for implicit-midpoint formula/order and symmetric splitting. Hamiltonian symplectic claims are not transferred to this chemical model."
+        }
+      },
+      {
+        "id": "scipy-1.14.1-radau",
+        "author": "The SciPy community",
+        "year": 2024,
+        "title": "SciPy1.14.1 solve_ivp and Radau reference",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "type": "documentation",
+        "review_level": "official-versioned-api-specification",
+        "review": {
+          "ja": "Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。",
+          "en": "Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy."
+        }
+      }
+    ],
+    "id": "schnakenberg-nonlinear",
+    "title": {
+      "ja": "Schnakenberg有限振幅過渡：非線形性と独立参照",
+      "en": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference"
+    },
+    "summary": {
+      "ja": "t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。",
+      "en": "Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics."
+    }
+  },
+  {
+    "method_ids": [
+      "centered-difference",
+      "implicit-midpoint"
+    ],
+    "domains": [
+      "biology",
+      "diffusion",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "biology.py"
+    ],
+    "assumptions": {
+      "ja": "1D周期x∈[0,2π)、a=.1,b=.9、D=(.01,1)。共通初期値u=1+.08cos2x+.01cos4x、v=.9−.03cos2x−.002cos4x。反射対称かつπ周期の不変部分空間で、原点を固定します。",
+      "en": "1D periodic x∈[0,2π), a=.1,b=.9,D=(.01,1). Common IC u=1+.08cos(2x)+.01cos(4x), v=.9−.03cos(2x)−.002cos(4x), restricted to a reflection-even, pi-periodic invariant subspace with a fixed origin."
+    },
+    "algorithm": {
+      "ja": "二次中心FD行列の固有値−4sin²(πk/N)/Δx²をFFTで対角化して拡散を厳密に半刻み進め、反応を各点2×2 Newtonのimplicit midpointで全刻み進めるStrang合成。FFT使用時も空間離散はFDです。未収束・予算超過は失敗とし、濃度のclippingはしません。",
+      "en": "Strang-compose exact half-step diffusion of the FD matrix, diagonalized by FFT with symbol −4sin²(πk/N)/dx², and a full implicit-midpoint reaction step solved by local2×2 Newton iterations. FFT does not change FD space into spectral space. Fail on nonconvergence/budget excess; never clip concentrations."
+    },
+    "validation": {
+      "ja": "空間も異なるcosine Fourier–Galerkin＋Radau参照（K32/64/96、cubic投影M=4(K+1)>4K、analytic Jacobian）とraw L1/L2/L∞を比較。参照のK感度とODE公差感度を別検査し、時間次数は同じFD半離散系を別実装Radauで積分した値に対して測定。平均L1・RMS L2・最大L∞を成分ごとに求め悪い方を採用。反応収支・全step正濃度・初期ゼロのk≥5（本対称性で最初はk6）・線形化との差を記録します。 収束ノルムと参照感度は固定最終時刻で判定し、途中スナップショット誤差は別の推移診断です。",
+      "en": "Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Radau reference (K32/64/96, cubic projection M=4(K+1)>4K, analytic Jacobian). Separately check K and ODE-tolerance sensitivity. Measure time order against a separately implemented Radau integration of the SAME FD semidiscretization. Norms are per-species mean-absolute/RMS/maximum, then the worse species. Record source/sink balance, every-step positive concentrations, initially absent k≥5 (first allowed k6 here), and departure from linearization. Convergence norms and reference sensitivities are assessed at the fixed final time; intermediate snapshot errors are separate evolution diagnostics."
+    },
+    "limits": {
+      "ja": "選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。 近飽和は参照の90→100の検査窓に対する判定で、厳密定常解・非線形安定性・長期吸引の証明ではありません。lateの巨大な線形差は線形化の破綻診断で、精度誤差ではありません。",
+      "en": "A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations. Near-saturation refers to the reference90→100 test window; it proves no exact steady state, nonlinear stability or long-term attractor. A huge late linearized difference diagnoses failure of linearization, not numerical error."
+    },
+    "formulas": [
+      "u_t=D_u u_{xx}+a-u+u^2v,\\qquad v_t=D_v v_{xx}+b-u^2v",
+      "\\frac{d\\langle u+v\\rangle}{dt}=a+b-\\langle u\\rangle,\\quad S_{n+1}-S_n=h(a+b-\\langle\\bar u\\rangle)",
+      "\\lambda_{h,k}=-4\\sin^2(\\pi k/N)/\\Delta x^2,\\quad\\Phi_h=e^{hDL_h/2}\\,\\Phi_{\\rm midpoint}^{F}(h)\\,e^{hDL_h/2}",
+      "\\|e\\|_1=\\max_s\\frac1N\\sum_j|e_{s,j}|,\\quad\\|e\\|_2=\\max_s\\sqrt{\\frac1N\\sum_j e_{s,j}^2},\\quad\\|e\\|_\\infty=\\max_{s,j}|e_{s,j}|"
+    ],
+    "references": [
+      {
+        "id": "turing1952",
+        "author": "A. M. Turing",
+        "year": 1952,
+        "title": "The Chemical Basis of Morphogenesis",
+        "journal": "Philosophical Transactions of the Royal Society B 237(641), 37–72",
+        "doi": "10.1098/rstb.1952.0012",
+        "url": "https://www.mit.edu/~kardar/research/seminars/EPB/Turing.pdf",
+        "type": "article",
+        "review_level": "original-paper-selected-sections",
+        "review": {
+          "ja": "大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。",
+          "en": "Checked the university-hosted original scan, sections 6–7 (printed pp.46–50), ring formulation/linearization and bibliography. Distinct from the adopted coefficients, finite-amplitude reference and mature shape."
+        }
+      },
+      {
+        "id": "schnakenberg1979",
+        "author": "J. Schnakenberg",
+        "year": 1979,
+        "title": "Simple chemical reaction systems with limit cycle behaviour",
+        "journal": "Journal of Theoretical Biology 81(3), 389–400",
+        "doi": "10.1016/0022-5193(79)90042-0",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+        "type": "article",
+        "review_level": "official-bibliography-and-publisher-indexed-abstract",
+        "review": {
+          "ja": "PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。",
+          "en": "Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments."
+        }
+      },
+      {
+        "id": "strang1968",
+        "author": "G. Strang",
+        "year": 1968,
+        "title": "On the Construction and Comparison of Difference Schemes",
+        "journal": "SIAM Journal on Numerical Analysis 5(3), 506–517",
+        "doi": "10.1137/0705041",
+        "url": "https://epubs.siam.org/doi/pdf/10.1137/0705041",
+        "type": "article",
+        "review_level": "original-paper-selected-nonlinear-composition",
+        "review": {
+          "ja": "原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。",
+          "en": "Checked original pp.510–512 for half-step composition and nonlinear second-order construction. This does not guarantee positivity or accuracy at arbitrary steps in the adopted model."
+        }
+      },
+      {
+        "id": "hairer2010-geometric-lecture2",
+        "author": "E. Hairer",
+        "year": 2010,
+        "title": "Geometric Numerical Integration, Lecture2",
+        "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "type": "misc",
+        "review_level": "author-lecture-selected-midpoint-and-splitting",
+        "review": {
+          "ja": "著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。",
+          "en": "Checked theorem3 and section5 of the author-hosted lecture for implicit-midpoint formula/order and symmetric splitting. Hamiltonian symplectic claims are not transferred to this chemical model."
+        }
+      },
+      {
+        "id": "scipy-1.14.1-radau",
+        "author": "The SciPy community",
+        "year": 2024,
+        "title": "SciPy1.14.1 solve_ivp and Radau reference",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "type": "documentation",
+        "review_level": "official-versioned-api-specification",
+        "review": {
+          "ja": "Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。",
+          "en": "Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy."
+        }
+      }
+    ],
+    "id": "schnakenberg-pattern",
+    "title": {
+      "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
+      "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
+    },
+    "summary": {
+      "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
+      "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
+    }
+  }
+]

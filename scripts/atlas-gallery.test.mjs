@@ -78,6 +78,20 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
   assert.ok(!gallery.items.some(x=>x.id==='csvr-kinetic-kernel'));
 });
 
+test('nonlinear Schnakenberg runs are additional entrances and retain the saved onset illustration',()=>{
+  const identifiers=['schnakenberg-nonlinear','schnakenberg-pattern'];
+  const item=gallery.items.find(x=>x.id==='turing-schnakenberg');
+  assert.equal(gallery.items.length,81);
+  assert.equal(gallery.counts.runnable_problems,37);
+  assert.equal(item.image,'/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
+  assert.equal(item.image_sha256,'d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893');
+  assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers]);
+  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
+  const base='code/validated-examples/2026-11-22/biology/';
+  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...identifiers.map(x=>'results/'+x+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
+  assert.equal(manifest.calculations_sha256,'d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6');
+});
+
 test('filters combine domains with normalized multilingual AND searches and handle empty results', () => {
   const sample = {group: 'elliptic', search: 'Poisson–Robin 境界値 ＰＯＩＳＳＯＮ'};
   assert.ok(galleryMatches(sample, 'all', ''));

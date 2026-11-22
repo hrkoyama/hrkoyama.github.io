@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "checked_on": "2026-11-22",
-  "scope": "22 surveyed biological families. Shared logistic and closed-SIR examples are preserved. Supplemental linear reaction–diffusion, early Schnakenberg Turing growth and reduced FHN excitation/recovery have scoped fixed-input checks. Full HH, SEIR, mature patterns and other families remain unimplemented or unvalidated.",
+  "scope": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley.",
   "models": [
     {
       "id": "logistic",
@@ -165,11 +165,13 @@
       "status": "scoped-educational-example",
       "scope": "A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes.",
       "supplemental_examples": [
-        "turing-schnakenberg"
+        "turing-schnakenberg",
+        "schnakenberg-nonlinear",
+        "schnakenberg-pattern"
       ],
       "implementation_scope": {
-        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
-        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+        "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
+        "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
       },
       "execution_url": "/numerical-methods-atlas/validation/turing-schnakenberg/"
     },
@@ -310,11 +312,13 @@
       "status": "scoped-educational-example",
       "scope": "A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue.",
       "supplemental_examples": [
-        "turing-schnakenberg"
+        "turing-schnakenberg",
+        "schnakenberg-nonlinear",
+        "schnakenberg-pattern"
       ],
       "implementation_scope": {
-        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
-        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+        "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
+        "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
       },
       "execution_url": "/numerical-methods-atlas/validation/turing-schnakenberg/"
     },

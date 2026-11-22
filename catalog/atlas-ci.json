@@ -110,8 +110,8 @@
     "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-depth-linux.yml",
     "guide": "/numerical-methods-atlas/validation/",
     "scope": {
-      "ja": "通常は5配布版・22補助ケースをNumPy/SciPy/pytestで検査します。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
-      "en": "Routine checks run five supplements and 22 supplementary cases with NumPy/SciPy/pytest. The separate common 22-case suite, including quantum-DFT convergence sweeps, remains a detailed manual check on explicit need."
+      "ja": "通常は6配布版・24補助ケースをNumPy/SciPy/pytestで検査します。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
+      "en": "Routine checks run six supplements and 24 supplementary cases with NumPy/SciPy/pytest. The separate common 22-case suite, including quantum-DFT convergence sweeps, remains a detailed manual check on explicit need."
     }
   }
 }

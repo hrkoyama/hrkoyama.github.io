@@ -58,14 +58,14 @@ function shellBlocks() {
 }
 const pythonBlocks = shellBlocks().flatMap(block => [...block.matchAll(/python(?:3)? - <<'PY'\n([\s\S]*?)\nPY/g)].map(match => match[1]));
 
-test('registry and two workflow pins describe exactly the frozen five releases and twenty-two cases', () => {
+test('registry and two workflow pins describe exactly the frozen six releases and twenty-four cases', () => {
   const registry = json(registryPath);
-  assert.equal(registry.case_count, 22);
-  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats']);
+  assert.equal(registry.case_count, 24);
+  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology']);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);
-  assert.deepEqual(registry.releases.map(x => x.case_ids.length), [4, 5, 6, 4, 3]);
-  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 22);
+  assert.deepEqual(registry.releases.map(x => x.case_ids.length), [4, 5, 6, 4, 3, 2]);
+  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 24);
   for (const release of registry.releases) {
     const base = `code/validated-examples/${registry.edition}/${release.group}/`;
     assert.equal(release.base, 'https://hrkoyama.github.io/' + base);
@@ -310,8 +310,8 @@ test('full verifier state machine accepts twenty-two saved fixture cases without
 with tempfile.TemporaryDirectory() as temporary:
     report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'run')
     assert report['passed'] is True, report
-    assert report['phase']=='complete' and report['case_count']==22 and report['tests']==sum(g['tests'] for g in registry['releases'])
-    assert len(report['acquisitions'])==21 and all(r['passed'] for r in report['acquisitions'])
+    assert report['phase']=='complete' and report['case_count']==24 and report['tests']==sum(g['tests'] for g in registry['releases'])
+    assert len(report['acquisitions'])==25 and all(r['passed'] for r in report['acquisitions'])
     assert all(g['pytest']['skipped']==0 and g['passed'] and g['generated_csv'] for g in report['groups'])
     assert v.strict_json((Path(temporary)/'run/report.json').read_bytes())['passed'] is True
     for group in v.GROUPS:

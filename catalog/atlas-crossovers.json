@@ -532,8 +532,8 @@
         "en": "Reaction–diffusion → biological and fluid transport"
       },
       "summary": {
-        "ja": "反応源と拡散演算子を共有しても、線形モード、模様形成、膜興奮、流れとの連成では検証量が変わります。1次元の固定反応拡散例と0次元の膜興奮例から、流体と結ぶための追加条件をたどります。",
-        "en": "Shared reaction sources and diffusion operators lead to different checks for linear modes, pattern onset, excitability and flow coupling. Follow fixed 1D reaction–diffusion and zero-dimensional excitability examples toward the extra requirements for fluid coupling."
+        "ja": "線形モード、有限振幅の非線形発展、成長後パターン、0次元の膜興奮では検証量が変わります。固定した1次元Schnakenberg系の独立参照・空間/時間収束から、流体と結ぶために残る検証をたどります。",
+        "en": "Linear modes, finite-amplitude nonlinear evolution, post-growth patterns and zero-dimensional excitability require different checks. Follow independent references and space/time refinement for fixed 1D Schnakenberg systems toward the additional validation needed for fluid coupling."
       },
       "keywords": [
         "reaction–diffusion",
@@ -565,12 +565,13 @@
             "en": "Reaction–diffusion framework"
           },
           "summary": {
-            "ja": "∂_t c = ∇·(D∇c) + R(c)。反応則・拡散・初期値・境界を指定します。1次元周期の線形FourierモードとSchnakenberg反応拡散を、専用補助版の解析解・独立参照・空間/時間収束で検査します。",
-            "en": "For ∂_t c = ∇·(D∇c) + R(c), specify kinetics, diffusion, initial data and boundaries. Dedicated supplements check 1D periodic linear Fourier modes and Schnakenberg reaction–diffusion using analytic/independent references and space/time refinement."
+            "ja": "反応則・拡散・初期値・境界を指定し、線形Fourierモード、Schnakenbergの線形発現、有限振幅の非線形発展と成長後パターンを分けます。新しい固定1次元周期例は中心差分＋陰的中点反応のStrang分割を独立な脱エイリアスFourier–Galerkin/Radau参照へ照合します。",
+            "en": "Specify kinetics, diffusion, initial data and boundaries; distinguish linear Fourier modes, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth patterns. New fixed 1D periodic cases compare centered-difference diffusion/implicit-midpoint reaction Strang splitting with independent dealiased Fourier–Galerkin/Radau references."
           },
           "method_ids": [
             "centered-difference",
-            "rk4"
+            "rk4",
+            "implicit-midpoint"
           ],
           "example_ids": [],
           "reading": [
@@ -593,6 +594,16 @@
                 "ja": "線形反応拡散の空間・時間収束",
                 "en": "Space/time refinement for linear reaction–diffusion"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-biology/",
+                "en": "/numerical-methods-atlas/en/read/validation-biology/"
+              },
+              "label": {
+                "ja": "非線形Schnakenbergと成長後パターンの独立参照・収束",
+                "en": "Nonlinear Schnakenberg/post-growth patterns: independent references and refinement"
+              }
             }
           ],
           "gap": {
@@ -606,27 +617,30 @@
           ],
           "supplemental_ids": [
             "reaction-diffusion-fourier",
-            "turing-schnakenberg"
+            "turing-schnakenberg",
+            "schnakenberg-nonlinear",
+            "schnakenberg-pattern"
           ],
           "supplemental_role": "scoped-component",
           "supplemental_scope": {
-            "ja": "線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。",
-            "en": "Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification."
+            "ja": "旧線形モード例を保持し、固定した1次元周期Schnakenberg系の非線形解と成長後パターンの空間/時間誤差を分けて測定します。同じ差分半離散系のRadauは時間誤差用で、独立な連続PDE参照とは区別します。汎用の生物モデルや流体連成の認証ではありません。",
+            "en": "Preserve the earlier linear-mode examples and separate space/time errors for nonlinear solutions and post-growth patterns in a fixed 1D periodic Schnakenberg system. Radau on the same finite-difference semidiscretization isolates time error and is distinct from the independent continuum-PDE reference. No general biological-model or fluid-coupling certification."
           }
         },
         {
           "id": "biological-fronts",
           "title": {
-            "ja": "生物：模様形成・膜興奮と前線",
-            "en": "Biology: pattern onset, excitability and fronts"
+            "ja": "生物：非線形模様形成・膜興奮と前線",
+            "en": "Biology: nonlinear patterns, excitability and fronts"
           },
           "summary": {
-            "ja": "SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumoの刺激応答を0次元ODEで検証します。Fisher–KPP前線は解説段階です。反応則や次元の違いを、生物現象の同一性や組織データへの適合と取り違えません。",
-            "en": "Validate initial Schnakenberg Turing growth with 1D reaction–diffusion and FitzHugh–Nagumo stimulus response with a zero-dimensional ODE. Fisher–KPP fronts remain reading-only. Different kinetics/dimensions do not establish identical biological phenomena or agreement with tissue data."
+            "ja": "Schnakenbergは1次元周期の線形発現・有限振幅発展・成長後パターンを、FitzHugh–Nagumoは0次元の刺激応答を検証します。非線形の独立参照と格子/時間収束を、生体組織への適合やFisher–KPP前線の検証へは転用しません。",
+            "en": "Validate linear onset, finite-amplitude evolution and post-growth patterns for 1D periodic Schnakenberg, and zero-dimensional FitzHugh–Nagumo stimulus response. Independent nonlinear references and grid/time refinement do not establish tissue calibration or verification of Fisher–KPP fronts."
           },
           "method_ids": [
             "centered-difference",
-            "rk4"
+            "rk4",
+            "implicit-midpoint"
           ],
           "example_ids": [],
           "reading": [
@@ -679,11 +693,21 @@
                 "ja": "FitzHugh–Nagumoの0次元刺激応答",
                 "en": "Zero-dimensional FitzHugh–Nagumo stimulus response"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-biology/",
+                "en": "/numerical-methods-atlas/en/read/validation-biology/"
+              },
+              "label": {
+                "ja": "非線形Schnakenbergと成長後パターンの独立参照・収束",
+                "en": "Nonlinear Schnakenberg/post-growth patterns: independent references and refinement"
+              }
             }
           ],
           "gap": {
-            "ja": "Turingは短時間の線形成長と有限振幅の区別まで、FitzHugh–Nagumoは空間を持たない単一素子です。伝播する膜パルス、Fisher前線速度、生物実験データへの較正、流体との連成は未検証です。",
-            "en": "Turing evidence separates short-time linear growth from finite-amplitude behavior; FitzHugh–Nagumo is a spatially uniform single unit. Propagating membrane pulses, Fisher front speeds, biological-data calibration and fluid coupling remain unvalidated."
+            "ja": "固定した反射対称初期値と有限時間の1次元Schnakenbergです。一般初期値からの模様選択・2次元形態、伝播する膜パルス、Fisher前線速度、生物実験への較正と流体連成は未検証です。FHNは空間なしです。",
+            "en": "Schnakenberg checks use fixed reflection-symmetric initial data, finite times and one spatial dimension. General pattern selection, 2D morphology, propagating membrane pulses, Fisher front speeds, biological calibration and fluid coupling remain unvalidated. FHN has no spatial dimension."
           },
           "model_ids": [
             "fisher-kpp",
@@ -693,12 +717,14 @@
           ],
           "supplemental_ids": [
             "turing-schnakenberg",
-            "fitzhugh-nagumo"
+            "fitzhugh-nagumo",
+            "schnakenberg-nonlinear",
+            "schnakenberg-pattern"
           ],
           "supplemental_role": "scoped-component",
           "supplemental_scope": {
-            "ja": "Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。",
-            "en": "Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation."
+            "ja": "1次元Schnakenbergの線形発現・非線形発展・成長後パターンと、0次元FitzHugh–Nagumo刺激応答という別々の固定要素例です。独立参照と空間/時間誤差を区別し、膜の空間伝播へ広げません。",
+            "en": "Separate fixed components: 1D Schnakenberg linear onset, nonlinear evolution and post-growth patterns, and zero-dimensional FitzHugh–Nagumo stimulus response. Distinguish independent-reference and space/time errors; no spatial membrane-propagation claim."
           }
         },
         {
@@ -828,8 +854,8 @@
             "en": "For fronts, compare analytic profile/speed and separate finite-boundary, spatial and temporal errors. For Turing onset, establish k=0 stability and compare early growth of boundary-admissible nonzero modes with J−k²D and the discrete-Laplacian prediction."
           },
           "existing_evidence": {
-            "ja": "Schnakenbergは許される周期モードの成長をJ−k²Dと離散Laplacianの予測、空間/時間細分化で比較済みです。FitzHugh–Nagumoは独立DOP853との0次元照合です。Fisher–KPP前線は未実行です。",
-            "en": "Schnakenberg compares admissible periodic-mode growth with J−k²D, discrete-Laplacian predictions and space/time refinement. FitzHugh–Nagumo has a zero-dimensional independent DOP853 comparison. Fisher–KPP fronts have not been executed."
+            "ja": "Schnakenbergは旧線形発現に加え、固定した1次元周期・有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照、空間・時間細分化で比較します。FHNは0次元DOP853照合、Fisher–KPP前線は未実行です。",
+            "en": "Schnakenberg supplements extend the earlier linear onset to finite-amplitude nonlinear evolution and post-growth patterns from fixed 1D periodic data, with independent Fourier–Galerkin/Radau references and separate space/time refinement. FHN retains a zero-dimensional DOP853 comparison; Fisher–KPP fronts are unexecuted."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -924,8 +950,8 @@
             "en": "Check concentration balance with boundary fluxes and reaction sources, nonnegativity, ∇·u, space/time refinement and splitting order/step dependence. Use a manufactured or independent coupled reference; active coupling also requires force/heat balance checks."
           },
           "existing_evidence": {
-            "ja": "線形/Schnakenberg反応拡散の補助例、周期一定速度advection-sine、周期粘性taylor-greenを別々に検証しています。濃度・反応・流体を結んだ実行はありません。",
-            "en": "Linear/Schnakenberg reaction–diffusion supplements, periodic constant-speed advection-sine and periodic viscous taylor-green are verified separately. No execution couples concentration, reaction and flow."
+            "ja": "線形/非線形Schnakenberg反応拡散と成長後パターン、周期移流、Taylor–Green流れは別々の要素検証です。反応・拡散のStrang誤差を測っても、濃度・移流・流体を結ぶ分割誤差を検証したことにはなりません。",
+            "en": "Linear/nonlinear Schnakenberg reaction–diffusion, post-growth patterns, periodic advection and Taylor–Green flow are separate component checks. Measured reaction/diffusion Strang error does not establish splitting error for coupled concentration, advection and flow."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -954,8 +980,8 @@
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "1次元線形反応拡散とSchnakenbergのTuring初期成長、0次元FitzHugh–Nagumoは専用補助例で実行済みです。ロジスティック/SIR、移流、周期流体の共通台帳例も別の要素根拠として残します。反応・拡散・移流/流体を結ぶ経路全体は未実行です。",
-          "en": "Dedicated supplements execute 1D linear reaction–diffusion, initial Schnakenberg Turing growth and zero-dimensional FitzHugh–Nagumo. Logistic/SIR, advection and periodic-flow runs remain separate common-registry component evidence. The complete reaction–diffusion–advection/fluid route is unexecuted."
+          "ja": "固定した1次元周期Schnakenbergの非線形発展と成長後パターンを独立参照・空間/時間収束で、線形反応拡散と0次元FHNを各専用例で検証します。ロジスティック/SIR、移流、周期流体も別々の要素根拠です。反応・拡散・移流/流体を結ぶ経路全体は未実行です。",
+          "en": "Fixed 1D periodic nonlinear Schnakenberg evolution/post-growth patterns have independent-reference and space/time refinement checks; linear reaction–diffusion and zero-dimensional FHN retain separate examples. Logistic/SIR, advection and periodic flow are also component evidence. The complete reaction–diffusion–advection/fluid route remains unexecuted."
         },
         "example_ids": []
       }

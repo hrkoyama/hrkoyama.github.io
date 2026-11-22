@@ -1023,8 +1023,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "10dc29013eccbec935955bcbb4cf0f61805c9d14fab51e381b22c7a29b4a76f5",
-    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
+    "catalog/atlas-test-problems.json": "e9ad072afebf3b67a70c177f50e02d604e8e07a40eb7073332860b4b2ba392e9",
+    "catalog/atlas-depth-expansion.json": "b7280de8fae51ff8f1b81557c7b83b22df6c366e02679e193908210a36f902b8",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1071,7 +1071,14 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
     "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
-    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a"
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/inputs.json": "375d70f40187400bf812dcd09d4beb0a8f7f3a79baf6a67c818b940bf82bbb84",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

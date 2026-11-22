@@ -1244,8 +1244,8 @@
         "en": "Reaction–diffusion → biological and fluid transport"
       },
       "summary": {
-        "ja": "反応源と拡散演算子を共有しても、線形モード、模様形成、膜興奮、流れとの連成では検証量が変わります。1次元の固定反応拡散例と0次元の膜興奮例から、流体と結ぶための追加条件をたどります。",
-        "en": "Shared reaction sources and diffusion operators lead to different checks for linear modes, pattern onset, excitability and flow coupling. Follow fixed 1D reaction–diffusion and zero-dimensional excitability examples toward the extra requirements for fluid coupling."
+        "ja": "線形モード、有限振幅の非線形発展、成長後パターン、0次元の膜興奮では検証量が変わります。固定した1次元Schnakenberg系の独立参照・空間/時間収束から、流体と結ぶために残る検証をたどります。",
+        "en": "Linear modes, finite-amplitude nonlinear evolution, post-growth patterns and zero-dimensional excitability require different checks. Follow independent references and space/time refinement for fixed 1D Schnakenberg systems toward the additional validation needed for fluid coupling."
       },
       "keywords": [
         "reaction–diffusion",
@@ -1277,12 +1277,13 @@
             "en": "Reaction–diffusion framework"
           },
           "summary": {
-            "ja": "∂_t c = ∇·(D∇c) + R(c)。反応則・拡散・初期値・境界を指定します。1次元周期の線形FourierモードとSchnakenberg反応拡散を、専用補助版の解析解・独立参照・空間/時間収束で検査します。",
-            "en": "For ∂_t c = ∇·(D∇c) + R(c), specify kinetics, diffusion, initial data and boundaries. Dedicated supplements check 1D periodic linear Fourier modes and Schnakenberg reaction–diffusion using analytic/independent references and space/time refinement."
+            "ja": "反応則・拡散・初期値・境界を指定し、線形Fourierモード、Schnakenbergの線形発現、有限振幅の非線形発展と成長後パターンを分けます。新しい固定1次元周期例は中心差分＋陰的中点反応のStrang分割を独立な脱エイリアスFourier–Galerkin/Radau参照へ照合します。",
+            "en": "Specify kinetics, diffusion, initial data and boundaries; distinguish linear Fourier modes, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth patterns. New fixed 1D periodic cases compare centered-difference diffusion/implicit-midpoint reaction Strang splitting with independent dealiased Fourier–Galerkin/Radau references."
           },
           "method_ids": [
             "centered-difference",
-            "rk4"
+            "rk4",
+            "implicit-midpoint"
           ],
           "example_ids": [],
           "reading": [
@@ -1305,6 +1306,16 @@
                 "ja": "線形反応拡散の空間・時間収束",
                 "en": "Space/time refinement for linear reaction–diffusion"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-biology/",
+                "en": "/numerical-methods-atlas/en/read/validation-biology/"
+              },
+              "label": {
+                "ja": "非線形Schnakenbergと成長後パターンの独立参照・収束",
+                "en": "Nonlinear Schnakenberg/post-growth patterns: independent references and refinement"
+              }
             }
           ],
           "gap": {
@@ -1318,12 +1329,14 @@
           ],
           "supplemental_ids": [
             "reaction-diffusion-fourier",
-            "turing-schnakenberg"
+            "turing-schnakenberg",
+            "schnakenberg-nonlinear",
+            "schnakenberg-pattern"
           ],
           "supplemental_role": "scoped-component",
           "supplemental_scope": {
-            "ja": "線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。",
-            "en": "Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification."
+            "ja": "旧線形モード例を保持し、固定した1次元周期Schnakenberg系の非線形解と成長後パターンの空間/時間誤差を分けて測定します。同じ差分半離散系のRadauは時間誤差用で、独立な連続PDE参照とは区別します。汎用の生物モデルや流体連成の認証ではありません。",
+            "en": "Preserve the earlier linear-mode examples and separate space/time errors for nonlinear solutions and post-growth patterns in a fixed 1D periodic Schnakenberg system. Radau on the same finite-difference semidiscretization isolates time error and is distinct from the independent continuum-PDE reference. No general biological-model or fluid-coupling certification."
           },
           "evidence": {
             "stage_status": "scoped-supplement",
@@ -1342,12 +1355,15 @@
                 "code_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1376,13 +1392,39 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+              },
+              {
+                "id": "implicit-midpoint",
+                "name": {
+                  "ja": "陰的中点則",
+                  "en": "Implicit midpoint"
+                },
+                "status": "educational-example",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/"
+                },
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/time_integration.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [],
             "supplemental_role": "scoped-component",
             "supplemental_scope": {
-              "ja": "線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。",
-              "en": "Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification."
+              "ja": "旧線形モード例を保持し、固定した1次元周期Schnakenberg系の非線形解と成長後パターンの空間/時間誤差を分けて測定します。同じ差分半離散系のRadauは時間誤差用で、独立な連続PDE参照とは区別します。汎用の生物モデルや流体連成の認証ではありません。",
+              "en": "Preserve the earlier linear-mode examples and separate space/time errors for nonlinear solutions and post-growth patterns in a fixed 1D periodic Schnakenberg system. Radau on the same finite-difference semidiscretization isolates time error and is distinct from the independent continuum-PDE reference. No general biological-model or fluid-coupling certification."
             },
             "supplements": [
               {
@@ -1517,6 +1559,190 @@
                   "pattern_amplitude_growth": 5.535462628423193
                 },
                 "source_mode": "independently-extracted-supplement"
+              },
+              {
+                "id": "schnakenberg-nonlinear",
+                "group": "biology",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Schnakenberg有限振幅過渡：非線形性と独立参照",
+                  "en": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference"
+                },
+                "scope": {
+                  "ja": "t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。",
+                  "en": "Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics."
+                },
+                "limits": {
+                  "ja": "選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。",
+                  "en": "A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "implicit-midpoint"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json",
+                  "sha256": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+                  "passed_tests": 28,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "spatial_finest_linf": true,
+                  "temporal_finest_linf": true,
+                  "reference_spatial_linf": true,
+                  "reference_tolerance_linf": true,
+                  "reference_to_primary_error_ratio": true,
+                  "temporal_contamination_ratio": true,
+                  "maximum_midpoint_residual": true,
+                  "maximum_reaction_balance_error": true,
+                  "minimum_spatial_order": true,
+                  "minimum_temporal_order": true,
+                  "positive_without_clipping": true,
+                  "nonlinear_relative_difference": true,
+                  "pattern_amplitude": true,
+                  "higher_harmonic_ratio": true
+                },
+                "metrics": {
+                  "spatial_finest_linf": 0.0027896112809786544,
+                  "temporal_finest_linf": 0.0006354301179647415,
+                  "minimum_spatial_order": 1.950418112212569,
+                  "minimum_temporal_order": 1.9845197964375065,
+                  "reference_spatial_linf": 3.255173908200959e-13,
+                  "reference_tolerance_linf": 4.4497738826976274e-13,
+                  "reference_to_primary_error_ratio": 2.7620148525480325e-10,
+                  "temporal_contamination_ratio": 0.03590744607345364,
+                  "minimum_concentration": 0.22446801668493407,
+                  "minimum_newton_iterate": 0.22446801668493407,
+                  "maximum_midpoint_residual": 1.9676968388004923e-13,
+                  "maximum_reaction_balance_error": 1.6764367671839864e-14,
+                  "maximum_newton_iterations": 3,
+                  "nonlinear_relative_difference": 0.7973947672828199,
+                  "pattern_amplitude": 1.584854307174442,
+                  "higher_harmonic_ratio": 0.23973709295898224,
+                  "dominant_mode_u": 2,
+                  "mean_u": 1.0212843245725893,
+                  "mean_v": 0.7809100883890534
+                },
+                "source_mode": "independently-extracted-supplement"
+              },
+              {
+                "id": "schnakenberg-pattern",
+                "group": "biology",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
+                  "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
+                },
+                "scope": {
+                  "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
+                  "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
+                },
+                "limits": {
+                  "ja": "選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。 近飽和は参照の90→100の検査窓に対する判定で、厳密定常解・非線形安定性・長期吸引の証明ではありません。lateの巨大な線形差は線形化の破綻診断で、精度誤差ではありません。",
+                  "en": "A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations. Near-saturation refers to the reference90→100 test window; it proves no exact steady state, nonlinear stability or long-term attractor. A huge late linearized difference diagnoses failure of linearization, not numerical error."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "implicit-midpoint"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json",
+                  "sha256": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+                  "passed_tests": 28,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "spatial_finest_linf": true,
+                  "temporal_finest_linf": true,
+                  "reference_spatial_linf": true,
+                  "reference_tolerance_linf": true,
+                  "reference_to_primary_error_ratio": true,
+                  "temporal_contamination_ratio": true,
+                  "maximum_midpoint_residual": true,
+                  "maximum_reaction_balance_error": true,
+                  "minimum_spatial_order": true,
+                  "minimum_temporal_order": true,
+                  "positive_without_clipping": true,
+                  "nonlinear_relative_difference": true,
+                  "pattern_amplitude": true,
+                  "higher_harmonic_ratio": true,
+                  "saturation_change": true,
+                  "saturation_rhs": true,
+                  "saturation_amplitude_change": true
+                },
+                "metrics": {
+                  "spatial_finest_linf": 0.0027421513094392225,
+                  "temporal_finest_linf": 0.0004451357306107795,
+                  "minimum_spatial_order": 2.0947550434887137,
+                  "minimum_temporal_order": 1.7547591906992372,
+                  "reference_spatial_linf": 5.154365823045737e-11,
+                  "reference_tolerance_linf": 1.496580637194711e-12,
+                  "reference_to_primary_error_ratio": 1.9342564607967953e-08,
+                  "temporal_contamination_ratio": 0.020832217157728455,
+                  "minimum_concentration": 0.11412754265070092,
+                  "minimum_newton_iterate": 0.11412754265070092,
+                  "maximum_midpoint_residual": 1.9676968388004923e-13,
+                  "maximum_reaction_balance_error": 7.109035582431034e-13,
+                  "maximum_newton_iterations": 3,
+                  "nonlinear_relative_difference": 1.1426000574491519e+21,
+                  "pattern_amplitude": 1.9621659199933201,
+                  "higher_harmonic_ratio": 0.32273224487596686,
+                  "dominant_mode_u": 2,
+                  "mean_u": 1.0000000000005342,
+                  "mean_v": 0.7497600594170122,
+                  "saturation_change": 5.0330260847886166e-08,
+                  "saturation_rhs": 1.8773358978485533e-09,
+                  "saturation_projected_rhs": 1.877346373585754e-09,
+                  "saturation_fd_rhs": 0.0011586974655886095,
+                  "saturation_amplitude_change": 2.517517927458357e-08
+                },
+                "source_mode": "independently-extracted-supplement"
               }
             ]
           }
@@ -1524,16 +1750,17 @@
         {
           "id": "biological-fronts",
           "title": {
-            "ja": "生物：模様形成・膜興奮と前線",
-            "en": "Biology: pattern onset, excitability and fronts"
+            "ja": "生物：非線形模様形成・膜興奮と前線",
+            "en": "Biology: nonlinear patterns, excitability and fronts"
           },
           "summary": {
-            "ja": "SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumoの刺激応答を0次元ODEで検証します。Fisher–KPP前線は解説段階です。反応則や次元の違いを、生物現象の同一性や組織データへの適合と取り違えません。",
-            "en": "Validate initial Schnakenberg Turing growth with 1D reaction–diffusion and FitzHugh–Nagumo stimulus response with a zero-dimensional ODE. Fisher–KPP fronts remain reading-only. Different kinetics/dimensions do not establish identical biological phenomena or agreement with tissue data."
+            "ja": "Schnakenbergは1次元周期の線形発現・有限振幅発展・成長後パターンを、FitzHugh–Nagumoは0次元の刺激応答を検証します。非線形の独立参照と格子/時間収束を、生体組織への適合やFisher–KPP前線の検証へは転用しません。",
+            "en": "Validate linear onset, finite-amplitude evolution and post-growth patterns for 1D periodic Schnakenberg, and zero-dimensional FitzHugh–Nagumo stimulus response. Independent nonlinear references and grid/time refinement do not establish tissue calibration or verification of Fisher–KPP fronts."
           },
           "method_ids": [
             "centered-difference",
-            "rk4"
+            "rk4",
+            "implicit-midpoint"
           ],
           "example_ids": [],
           "reading": [
@@ -1586,11 +1813,21 @@
                 "ja": "FitzHugh–Nagumoの0次元刺激応答",
                 "en": "Zero-dimensional FitzHugh–Nagumo stimulus response"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-biology/",
+                "en": "/numerical-methods-atlas/en/read/validation-biology/"
+              },
+              "label": {
+                "ja": "非線形Schnakenbergと成長後パターンの独立参照・収束",
+                "en": "Nonlinear Schnakenberg/post-growth patterns: independent references and refinement"
+              }
             }
           ],
           "gap": {
-            "ja": "Turingは短時間の線形成長と有限振幅の区別まで、FitzHugh–Nagumoは空間を持たない単一素子です。伝播する膜パルス、Fisher前線速度、生物実験データへの較正、流体との連成は未検証です。",
-            "en": "Turing evidence separates short-time linear growth from finite-amplitude behavior; FitzHugh–Nagumo is a spatially uniform single unit. Propagating membrane pulses, Fisher front speeds, biological-data calibration and fluid coupling remain unvalidated."
+            "ja": "固定した反射対称初期値と有限時間の1次元Schnakenbergです。一般初期値からの模様選択・2次元形態、伝播する膜パルス、Fisher前線速度、生物実験への較正と流体連成は未検証です。FHNは空間なしです。",
+            "en": "Schnakenberg checks use fixed reflection-symmetric initial data, finite times and one spatial dimension. General pattern selection, 2D morphology, propagating membrane pulses, Fisher front speeds, biological calibration and fluid coupling remain unvalidated. FHN has no spatial dimension."
           },
           "model_ids": [
             "fisher-kpp",
@@ -1600,12 +1837,14 @@
           ],
           "supplemental_ids": [
             "turing-schnakenberg",
-            "fitzhugh-nagumo"
+            "fitzhugh-nagumo",
+            "schnakenberg-nonlinear",
+            "schnakenberg-pattern"
           ],
           "supplemental_role": "scoped-component",
           "supplemental_scope": {
-            "ja": "Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。",
-            "en": "Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation."
+            "ja": "1次元Schnakenbergの線形発現・非線形発展・成長後パターンと、0次元FitzHugh–Nagumo刺激応答という別々の固定要素例です。独立参照と空間/時間誤差を区別し、膜の空間伝播へ広げません。",
+            "en": "Separate fixed components: 1D Schnakenberg linear onset, nonlinear evolution and post-growth patterns, and zero-dimensional FitzHugh–Nagumo stimulus response. Distinguish independent-reference and space/time errors; no spatial membrane-propagation claim."
           },
           "evidence": {
             "stage_status": "scoped-supplement",
@@ -1624,12 +1863,15 @@
                 "code_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1658,13 +1900,39 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+              },
+              {
+                "id": "implicit-midpoint",
+                "name": {
+                  "ja": "陰的中点則",
+                  "en": "Implicit midpoint"
+                },
+                "status": "educational-example",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/"
+                },
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/time_integration.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [],
             "supplemental_role": "scoped-component",
             "supplemental_scope": {
-              "ja": "Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。",
-              "en": "Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation."
+              "ja": "1次元Schnakenbergの線形発現・非線形発展・成長後パターンと、0次元FitzHugh–Nagumo刺激応答という別々の固定要素例です。独立参照と空間/時間誤差を区別し、膜の空間伝播へ広げません。",
+              "en": "Separate fixed components: 1D Schnakenberg linear onset, nonlinear evolution and post-growth patterns, and zero-dimensional FitzHugh–Nagumo stimulus response. Distinguish independent-reference and space/time errors; no spatial membrane-propagation claim."
             },
             "supplements": [
               {
@@ -1801,6 +2069,190 @@
                   "peak_v_error": 2.613303262677391e-08,
                   "peak_time_error": 0.0,
                   "recovery_distance": 2.3590633279280127e-05
+                },
+                "source_mode": "independently-extracted-supplement"
+              },
+              {
+                "id": "schnakenberg-nonlinear",
+                "group": "biology",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Schnakenberg有限振幅過渡：非線形性と独立参照",
+                  "en": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference"
+                },
+                "scope": {
+                  "ja": "t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。",
+                  "en": "Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics."
+                },
+                "limits": {
+                  "ja": "選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。",
+                  "en": "A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "implicit-midpoint"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json",
+                  "sha256": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+                  "passed_tests": 28,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "spatial_finest_linf": true,
+                  "temporal_finest_linf": true,
+                  "reference_spatial_linf": true,
+                  "reference_tolerance_linf": true,
+                  "reference_to_primary_error_ratio": true,
+                  "temporal_contamination_ratio": true,
+                  "maximum_midpoint_residual": true,
+                  "maximum_reaction_balance_error": true,
+                  "minimum_spatial_order": true,
+                  "minimum_temporal_order": true,
+                  "positive_without_clipping": true,
+                  "nonlinear_relative_difference": true,
+                  "pattern_amplitude": true,
+                  "higher_harmonic_ratio": true
+                },
+                "metrics": {
+                  "spatial_finest_linf": 0.0027896112809786544,
+                  "temporal_finest_linf": 0.0006354301179647415,
+                  "minimum_spatial_order": 1.950418112212569,
+                  "minimum_temporal_order": 1.9845197964375065,
+                  "reference_spatial_linf": 3.255173908200959e-13,
+                  "reference_tolerance_linf": 4.4497738826976274e-13,
+                  "reference_to_primary_error_ratio": 2.7620148525480325e-10,
+                  "temporal_contamination_ratio": 0.03590744607345364,
+                  "minimum_concentration": 0.22446801668493407,
+                  "minimum_newton_iterate": 0.22446801668493407,
+                  "maximum_midpoint_residual": 1.9676968388004923e-13,
+                  "maximum_reaction_balance_error": 1.6764367671839864e-14,
+                  "maximum_newton_iterations": 3,
+                  "nonlinear_relative_difference": 0.7973947672828199,
+                  "pattern_amplitude": 1.584854307174442,
+                  "higher_harmonic_ratio": 0.23973709295898224,
+                  "dominant_mode_u": 2,
+                  "mean_u": 1.0212843245725893,
+                  "mean_v": 0.7809100883890534
+                },
+                "source_mode": "independently-extracted-supplement"
+              },
+              {
+                "id": "schnakenberg-pattern",
+                "group": "biology",
+                "edition": "2026-11-22",
+                "title": {
+                  "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
+                  "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
+                },
+                "scope": {
+                  "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
+                  "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
+                },
+                "limits": {
+                  "ja": "選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。 近飽和は参照の90→100の検査窓に対する判定で、厳密定常解・非線形安定性・長期吸引の証明ではありません。lateの巨大な線形差は線形化の破綻診断で、精度誤差ではありません。",
+                  "en": "A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations. Near-saturation refers to the reference90→100 test window; it proves no exact steady state, nonlinear stability or long-term attractor. A huge late linearized difference diagnoses failure of linearization, not numerical error."
+                },
+                "method_ids": [
+                  "centered-difference",
+                  "implicit-midpoint"
+                ],
+                "domains": [
+                  "biology",
+                  "diffusion",
+                  "time"
+                ],
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/",
+                "reading": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern"
+                },
+                "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                ],
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
+                "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/results/result.json",
+                "source_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/source-manifest.json",
+                "verification_receipt": {
+                  "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json",
+                  "sha256": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+                  "passed_tests": 28,
+                  "all_cases_rerun": true,
+                  "source_mode": "independently-extracted-supplement"
+                },
+                "numerical_checks_passed": true,
+                "checks": {
+                  "spatial_finest_linf": true,
+                  "temporal_finest_linf": true,
+                  "reference_spatial_linf": true,
+                  "reference_tolerance_linf": true,
+                  "reference_to_primary_error_ratio": true,
+                  "temporal_contamination_ratio": true,
+                  "maximum_midpoint_residual": true,
+                  "maximum_reaction_balance_error": true,
+                  "minimum_spatial_order": true,
+                  "minimum_temporal_order": true,
+                  "positive_without_clipping": true,
+                  "nonlinear_relative_difference": true,
+                  "pattern_amplitude": true,
+                  "higher_harmonic_ratio": true,
+                  "saturation_change": true,
+                  "saturation_rhs": true,
+                  "saturation_amplitude_change": true
+                },
+                "metrics": {
+                  "spatial_finest_linf": 0.0027421513094392225,
+                  "temporal_finest_linf": 0.0004451357306107795,
+                  "minimum_spatial_order": 2.0947550434887137,
+                  "minimum_temporal_order": 1.7547591906992372,
+                  "reference_spatial_linf": 5.154365823045737e-11,
+                  "reference_tolerance_linf": 1.496580637194711e-12,
+                  "reference_to_primary_error_ratio": 1.9342564607967953e-08,
+                  "temporal_contamination_ratio": 0.020832217157728455,
+                  "minimum_concentration": 0.11412754265070092,
+                  "minimum_newton_iterate": 0.11412754265070092,
+                  "maximum_midpoint_residual": 1.9676968388004923e-13,
+                  "maximum_reaction_balance_error": 7.109035582431034e-13,
+                  "maximum_newton_iterations": 3,
+                  "nonlinear_relative_difference": 1.1426000574491519e+21,
+                  "pattern_amplitude": 1.9621659199933201,
+                  "higher_harmonic_ratio": 0.32273224487596686,
+                  "dominant_mode_u": 2,
+                  "mean_u": 1.0000000000005342,
+                  "mean_v": 0.7497600594170122,
+                  "saturation_change": 5.0330260847886166e-08,
+                  "saturation_rhs": 1.8773358978485533e-09,
+                  "saturation_projected_rhs": 1.877346373585754e-09,
+                  "saturation_fd_rhs": 0.0011586974655886095,
+                  "saturation_amplitude_change": 2.517517927458357e-08
                 },
                 "source_mode": "independently-extracted-supplement"
               }
@@ -2075,8 +2527,8 @@
             "en": "For fronts, compare analytic profile/speed and separate finite-boundary, spatial and temporal errors. For Turing onset, establish k=0 stability and compare early growth of boundary-admissible nonzero modes with J−k²D and the discrete-Laplacian prediction."
           },
           "existing_evidence": {
-            "ja": "Schnakenbergは許される周期モードの成長をJ−k²Dと離散Laplacianの予測、空間/時間細分化で比較済みです。FitzHugh–Nagumoは独立DOP853との0次元照合です。Fisher–KPP前線は未実行です。",
-            "en": "Schnakenberg compares admissible periodic-mode growth with J−k²D, discrete-Laplacian predictions and space/time refinement. FitzHugh–Nagumo has a zero-dimensional independent DOP853 comparison. Fisher–KPP fronts have not been executed."
+            "ja": "Schnakenbergは旧線形発現に加え、固定した1次元周期・有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照、空間・時間細分化で比較します。FHNは0次元DOP853照合、Fisher–KPP前線は未実行です。",
+            "en": "Schnakenberg supplements extend the earlier linear onset to finite-amplitude nonlinear evolution and post-growth patterns from fixed 1D periodic data, with independent Fourier–Galerkin/Radau references and separate space/time refinement. FHN retains a zero-dimensional DOP853 comparison; Fisher–KPP fronts are unexecuted."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -2171,8 +2623,8 @@
             "en": "Check concentration balance with boundary fluxes and reaction sources, nonnegativity, ∇·u, space/time refinement and splitting order/step dependence. Use a manufactured or independent coupled reference; active coupling also requires force/heat balance checks."
           },
           "existing_evidence": {
-            "ja": "線形/Schnakenberg反応拡散の補助例、周期一定速度advection-sine、周期粘性taylor-greenを別々に検証しています。濃度・反応・流体を結んだ実行はありません。",
-            "en": "Linear/Schnakenberg reaction–diffusion supplements, periodic constant-speed advection-sine and periodic viscous taylor-green are verified separately. No execution couples concentration, reaction and flow."
+            "ja": "線形/非線形Schnakenberg反応拡散と成長後パターン、周期移流、Taylor–Green流れは別々の要素検証です。反応・拡散のStrang誤差を測っても、濃度・移流・流体を結ぶ分割誤差を検証したことにはなりません。",
+            "en": "Linear/nonlinear Schnakenberg reaction–diffusion, post-growth patterns, periodic advection and Taylor–Green flow are separate component checks. Measured reaction/diffusion Strang error does not establish splitting error for coupled concentration, advection and flow."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -2201,8 +2653,8 @@
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "1次元線形反応拡散とSchnakenbergのTuring初期成長、0次元FitzHugh–Nagumoは専用補助例で実行済みです。ロジスティック/SIR、移流、周期流体の共通台帳例も別の要素根拠として残します。反応・拡散・移流/流体を結ぶ経路全体は未実行です。",
-          "en": "Dedicated supplements execute 1D linear reaction–diffusion, initial Schnakenberg Turing growth and zero-dimensional FitzHugh–Nagumo. Logistic/SIR, advection and periodic-flow runs remain separate common-registry component evidence. The complete reaction–diffusion–advection/fluid route is unexecuted."
+          "ja": "固定した1次元周期Schnakenbergの非線形発展と成長後パターンを独立参照・空間/時間収束で、線形反応拡散と0次元FHNを各専用例で検証します。ロジスティック/SIR、移流、周期流体も別々の要素根拠です。反応・拡散・移流/流体を結ぶ経路全体は未実行です。",
+          "en": "Fixed 1D periodic nonlinear Schnakenberg evolution/post-growth patterns have independent-reference and space/time refinement checks; linear reaction–diffusion and zero-dimensional FHN retain separate examples. Logistic/SIR, advection and periodic flow are also component evidence. The complete reaction–diffusion–advection/fluid route remains unexecuted."
         },
         "example_ids": []
       },
@@ -3096,15 +3548,20 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-crossovers.json": "d9c4d89910ec2cf0bf5d9e5d1c0f21b06ebd77d2f7eca967e759401f952c4be6",
-    "catalog/atlas-methods.json": "86d8a97874746420beee41a486fd94ea18f867cd602a2f1aa28d2c4825a5b355",
-    "numerical-methods-atlas/methods/index.json": "a6187b985a89e11f12f9ecc798f575ba8ea7b40bfde270d5b008b681142ba468",
+    "catalog/atlas-crossovers.json": "0b9163e06d478475ecc39f8aa1d79088e9d6952b84eece36b3719292977420bf",
+    "catalog/atlas-methods.json": "48353ae1cde8bbf61237e83a02bad9d9fd1b26d5da9c2704fae597ba4632f239",
+    "numerical-methods-atlas/methods/index.json": "1229e83620e55fe26e3fbf6f3ac2fdcf2a60b601fe21f15455d3fb88a04b6d47",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/assets/biological-models.json": "a6d4834d379e36d4b55fba48ec881a8a813fc5156056a9c86ca5c17b43fbe6ae"
+    "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
+    "catalog/atlas-depth-expansion.json": "e31773063e009a6d982fb5829a083b766d8012db85aa6cfb38817da9b601d651",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
@@ -3117,6 +3574,13 @@
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65"
   },
   "supplemental_verification_receipts": {
+    "biology": {
+      "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json",
+      "sha256": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+      "passed_tests": 28,
+      "all_cases_rerun": true,
+      "source_mode": "independently-extracted-supplement"
+    },
     "models": {
       "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
       "sha256": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",

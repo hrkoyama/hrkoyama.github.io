@@ -278,6 +278,10 @@ bad=copy.deepcopy(data);next(e for e in bad['routes'][0]['connections'] if e['id
 for ident in ['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']:
  bad=copy.deepcopy(data);stage=next(s for s in bad['routes'][0]['stages'] if s['id']=='first-principles-md');stage.update(supplemental_ids=[ident],supplemental_role='scoped-component',supplemental_scope={'ja':'古典要素','en':'Classical component'});cases.append(('CSVR component borrowed for AIMD: '+ident,bad))
  bad=copy.deepcopy(data);bad['routes'][0]['coupled_validation']['supplemental_ids']=[ident];cases.append(('CSVR component borrowed for full route: '+ident,bad))
+for ident in ['schnakenberg-nonlinear','schnakenberg-pattern']:
+ bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='thermostat')['supplemental_ids']=[ident];cases.append(('nonlinear biology borrowed as thermostat evidence: '+ident,bad))
+ bad=copy.deepcopy(data);route=next(r for r in bad['routes'] if r['id']=='reaction-transport');route['coupled_validation']['supplemental_ids']=[ident];cases.append(('nonlinear biology borrowed for full transport route: '+ident,bad))
+ bad=copy.deepcopy(data);route=next(r for r in bad['routes'] if r['id']=='reaction-transport');next(e for e in route['connections'] if e['id']=='rd-to-flow')['coupled_validation']['supplemental_ids']=[ident];cases.append(('nonlinear biology borrowed for flow coupling: '+ident,bad))
 for label,bad in cases:
  try:b.validate_catalog(bad)
  except ValueError:pass
@@ -380,7 +384,7 @@ test('published connections distinguish fixed force evidence and a local MD inte
       }
       for (const supplement of evidence.supplements) {
         assert.equal(supplement.source_mode, 'independently-extracted-supplement');
-        assert.equal(supplement.group, supplement.id.startsWith('csvr-')?'thermostats':'models');
+        assert.equal(supplement.group, supplement.id.startsWith('csvr-')?'thermostats':supplement.id.startsWith('schnakenberg-')?'biology':'models');
         assert.equal(supplement.numerical_checks_passed, true);
         assert.ok(Object.keys(supplement.checks).length > 0);
         assert.ok(Object.values(supplement.checks).every(value => value === true));
@@ -405,8 +409,8 @@ test('published connections distinguish fixed force evidence and a local MD inte
   assert.equal(stage('first-principles-md').evidence.stage_status, 'reading');
   for (const id of ['thermostat', 'reaction-diffusion', 'biological-fronts']) assert.equal(stage(id).evidence.stage_status, 'scoped-supplement', id);
   assert.deepEqual(stage('thermostat').evidence.supplements.map(row => row.id), ['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']);
-  assert.deepEqual(stage('reaction-diffusion').evidence.supplements.map(row => row.id), ['reaction-diffusion-fourier', 'turing-schnakenberg']);
-  assert.deepEqual(stage('biological-fronts').evidence.supplements.map(row => row.id), ['turing-schnakenberg', 'fitzhugh-nagumo']);
+  assert.deepEqual(stage('reaction-diffusion').evidence.supplements.map(row => row.id), ['reaction-diffusion-fourier', 'turing-schnakenberg', 'schnakenberg-nonlinear', 'schnakenberg-pattern']);
+  assert.deepEqual(stage('biological-fronts').evidence.supplements.map(row => row.id), ['turing-schnakenberg', 'fitzhugh-nagumo', 'schnakenberg-nonlinear', 'schnakenberg-pattern']);
   for (const id of ['fluid-transport', 'hartree-field']) {
     assert.equal(stage(id).example_role, 'component-only');
     assert.equal(stage(id).evidence.stage_status, 'component-only');
@@ -567,7 +571,7 @@ test('citations and machine-readable provenance retain review scope and matching
     }
   }
   for (const [path, digest] of Object.entries(published.source_sha256)) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), digest, path);
-  assert.deepEqual(Object.keys(published.supplemental_verification_receipts).sort(), ['models','thermostats']);
+  assert.deepEqual(Object.keys(published.supplemental_verification_receipts).sort(), ['biology','models','thermostats']);
   assert.ok(Object.keys(published.supplemental_source_sha256).length >= 5);
   for (const [path, digest] of Object.entries(published.supplemental_source_sha256)) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), digest, 'separate supplement '+path);
   for(const supplementReceipt of Object.values(published.supplemental_verification_receipts)){

@@ -12,8 +12,8 @@ const methods=json('catalog/atlas-methods.json').methods;
 const expected={
  'bio-logistic':{common:['logistic-growth'],supplemental:[]},
  'bio-sir':{common:['sir-epidemic'],supplemental:[]},
- 'bio-turing':{common:[],supplemental:['turing-schnakenberg']},
- 'bio-schnakenberg':{common:[],supplemental:['turing-schnakenberg']},
+ 'bio-turing':{common:[],supplemental:['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']},
+ 'bio-schnakenberg':{common:[],supplemental:['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']},
  'bio-fitzhugh-nagumo':{common:[],supplemental:['fitzhugh-nagumo']},
 };
 const prelude=String.raw`
@@ -42,14 +42,14 @@ test('five biology labels expose only their verified common or supplemental scop
  assert.ok(equations.find(x=>x.id==='bio-fitzhugh-nagumo').note.en.includes('D=0'));
  for(const id of ['bio-hodgkin-huxley','bio-gray-scott'])assert.equal(equations.find(x=>x.id===id).status,'reading');
  const uniqueSupplementIds=new Set(Object.keys(expected).flatMap(id=>equations.find(x=>x.id===id).supplemental_examples||[]));
- assert.deepEqual([...uniqueSupplementIds].sort(),['fitzhugh-nagumo','turing-schnakenberg']);
+ assert.deepEqual([...uniqueSupplementIds].sort(),['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']);
  assert.equal(createHash('sha256').update(read('numerical-methods-atlas/code-and-data/examples.json')).digest('hex'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
 });
 
 test('actual evidence resolves immutable receipts and refuses borrowed, missing or inflated biological executions',()=>{
  python(String.raw`
 value=equation_evidence(ROOT,equations,discovery)
-assert value['supplemental_case_ids']==['fitzhugh-nagumo','turing-schnakenberg']
+assert value['supplemental_case_ids']==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
 assert len(value['common']['bio-logistic'])==len(value['common']['bio-sir'])==1
 for scenario in ['borrow-hh','wrong-case','missing-common','inflated-scope']:
  rows=copy.deepcopy(equations);d=copy.deepcopy(discovery);byid={x['id']:x for x in rows}
@@ -89,16 +89,16 @@ html=captured[str(ROOT/'numerical-methods-atlas/equations/index.html')]
 public=json.loads(captured[str(ROOT/'numerical-methods-atlas/equations/index.json')])
 assert public['counts']['total']==46 and public['counts']['local_example']==23
 assert public['execution_example_count']==22
-assert public['supplemental_case_ids']==['fitzhugh-nagumo','turing-schnakenberg']
+assert public['supplemental_case_ids']==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
 rows={x['id']:x for x in public['equations']}
 for ident in ['bio-turing','bio-schnakenberg']:
  assert rows[ident]['execution_examples']==[]
- assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==['turing-schnakenberg']
+ assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']
 for ident,case in [('bio-logistic','logistic-growth'),('bio-sir','sir-epidemic')]:
  assert [x['id'] for x in rows[ident]['execution_examples']]==[case]
  assert rows[ident]['supplemental_execution_examples']==[]
 for lang in ['ja','en']:
- for case in ['fitzhugh-nagumo','turing-schnakenberg']:
+ for case in ['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']:
   assert '/numerical-methods-atlas/validation/'+case+'/?lang='+lang in html
  assert '/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang='+lang in html
 assert 'D=0' in html and 'katex-error' not in html

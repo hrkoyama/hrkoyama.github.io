@@ -3311,6 +3311,38 @@
     "origin": "curated-method-metadata"
   },
   {
+    "id": "strang1968",
+    "author": "G. Strang",
+    "year": 1968,
+    "title": "On the Construction and Comparison of Difference Schemes",
+    "journal": "SIAM Journal on Numerical Analysis 5(3), 506–517",
+    "doi": "10.1137/0705041",
+    "url": "https://epubs.siam.org/doi/pdf/10.1137/0705041",
+    "type": "article",
+    "review_level": "original-paper-selected-nonlinear-composition",
+    "review": {
+      "ja": "原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。",
+      "en": "Checked original pp.510–512 for half-step composition and nonlinear second-order construction. This does not guarantee positivity or accuracy at arbitrary steps in the adopted model."
+    },
+    "source": "https://epubs.siam.org/doi/pdf/10.1137/0705041",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "hairer2010-geometric-lecture2",
+    "author": "E. Hairer",
+    "year": 2010,
+    "title": "Geometric Numerical Integration, Lecture2",
+    "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+    "type": "misc",
+    "review_level": "author-lecture-selected-midpoint-and-splitting",
+    "review": {
+      "ja": "著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。",
+      "en": "Checked theorem3 and section5 of the author-hosted lecture for implicit-midpoint formula/order and symmetric splitting. Hamiltonian symplectic claims are not transferred to this chemical model."
+    },
+    "source": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+    "origin": "curated-method-metadata"
+  },
+  {
     "id": "schrodinger1926",
     "year": 1926,
     "author": "Schrödinger, E.",

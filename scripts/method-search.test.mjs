@@ -208,8 +208,8 @@ test('purpose search retains common executions and adds only the selected indepe
     }
   }
   const biology=findMethods(published,'生物モデルを比較したい');
-  for(const [id,expected] of [['bio-patterns','turing-schnakenberg'],['bio-reaction-fourier','reaction-diffusion-fourier'],['bio-fhn','fitzhugh-nagumo']]){
-    assert.deepEqual(biology.find(row=>row.id===id).method.execution_examples.map(example=>example.id),[expected],id+' one applicable component');
+  for(const [id,expected] of [['bio-patterns',['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']],['bio-reaction-fourier',['reaction-diffusion-fourier']],['bio-fhn',['fitzhugh-nagumo']]]){
+    assert.deepEqual(biology.find(row=>row.id===id).method.execution_examples.map(example=>example.id),expected,id+' applicable components');
   }
   assert.deepEqual(biology.find(row=>row.id==='bio-excitation').method.execution_examples,[],'Hodgkin–Huxley does not borrow a FitzHugh–Nagumo implementation');
 }));

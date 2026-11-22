@@ -73,6 +73,33 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.passed,true);
   assert.equal(receipt.errors+receipt.failures,0);
 });
+test('nonlinear Schnakenberg refinements reuse one physical problem and preserve the original onset evidence',()=>{
+  const identifiers=['schnakenberg-nonlinear','schnakenberg-pattern'];
+  const base='code/validated-examples/2026-11-22/biology/';
+  const metadata=JSON.parse(read(base+'cases.json'));
+  const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
+  const problem=catalog.problems.find(x=>x.id==='turing-schnakenberg');
+  assert.equal(catalog.problems.length,81);
+  assert.equal(inventory.counts.groups.biology,5);
+  assert.equal(problem.chapter,'validation-models');
+  assert.equal(problem.code_base,'/code/validated-examples/2026-11-22/models/');
+  assert.deepEqual(problem.supplemental_examples.map(x=>x.id),['turing-schnakenberg',...identifiers]);
+  for(const id of identifiers){
+    assert.equal(mapping[id],problem.id);
+    assert.ok(!catalog.problems.some(x=>x.id===id));
+    assert.deepEqual(problem.supplemental_examples.find(x=>x.id===id).name,metadata.find(x=>x.id===id).title);
+    assert.deepEqual(metadata.find(x=>x.id===id).method_ids,['centered-difference','implicit-midpoint']);
+  }
+  assert.equal(problem.evidence[0].path,'code/validated-examples/2026-11-22/models/results/result.json');
+  assert.equal(problem.evidence[1].path,'code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
+  const output=JSON.parse(read(base+'results/result.json'));
+  assert.equal(output.input_sha256,hash(readFileSync(new URL(base+'inputs.json',root))));
+  assert.equal(output.passed,true);
+  assert.deepEqual(output.cases.map(x=>x.id).sort(),[...identifiers].sort());
+  assert.ok(output.cases.every(x=>x.passed&&Object.values(x.checks).every(v=>v===true)));
+  const verification=JSON.parse(read(base+'verification.json'));
+  assert.equal(verification.passed,true);assert.equal(verification.all_cases_rerun,true);
+});
 test('the public landing, coverage highlights and indexes expose the whole inventory',()=>{
   const page=read('numerical-methods-atlas/test-cases/index.html');
   assert.ok(page.includes('テスト計算：'+inventory.problems.length+'問題'));

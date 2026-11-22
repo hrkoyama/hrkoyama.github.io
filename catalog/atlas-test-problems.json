@@ -1950,6 +1950,22 @@
             "ja": "Turing不安定性：線形成長率と小振幅パターン",
             "en": "Turing instability: linear growth and small-amplitude patterns"
           }
+        },
+        {
+          "id": "schnakenberg-nonlinear",
+          "url": "/numerical-methods-atlas/validation/schnakenberg-nonlinear/",
+          "name": {
+            "ja": "Schnakenberg有限振幅過渡：非線形性と独立参照",
+            "en": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference"
+          }
+        },
+        {
+          "id": "schnakenberg-pattern",
+          "url": "/numerical-methods-atlas/validation/schnakenberg-pattern/",
+          "name": {
+            "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
+            "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
+          }
         }
       ]
     },

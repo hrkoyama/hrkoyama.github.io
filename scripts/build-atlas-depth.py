@@ -80,21 +80,21 @@ document='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name=
 # Keep the survey chapter explicit about its newly implemented subset, in SPA and static text.
 for lang in ['ja','en']:
     biology=next(f for f in data['fields'] if f['id']=='biology')
-    notice='<aside class="resource-summary" id="biological-execution-scope"><h2>'+('小さなモデルから実行・検証する' if lang=='ja' else 'Run and validate small model examples')+'</h2><p>'+e(biology['scope'][lang])+'</p><ul>'+''.join('<li>'+link(supplements[ident]['url']+'?lang='+lang,supplements[ident]['title'][lang])+'</li>' for ident in biology.get('supplemental_examples',[]))+'</ul><p>'+link(BASE+'?lang='+lang+'#biology-'+lang,'実装範囲・結果・残る差' if lang=='ja' else 'Implementation scope, results and gaps')+'</p></aside>'
+    notice='<aside class="resource-summary" id="biological-execution-scope"><h2>'+('小さなモデルから実行・検証する' if lang=='ja' else 'Run and validate small model examples')+'</h2><p>'+e(biology['scope'][lang])+'</p><ul>'+''.join('<li>'+link(supplements[ident]['url']+'?lang='+lang,supplements[ident]['title'][lang])+'</li>' for ident in biology.get('supplemental_examples',[]))+'</ul><p>'+e(biology['reference'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/validation-biology/','非線形発展・成長後パターンの手法と独立参照を読む' if lang=='ja' else 'Read about nonlinear evolution, post-growth patterns and independent references')+' · '+link(BASE+'?lang='+lang+'#biology-'+lang,'実装範囲・結果・残る差' if lang=='ja' else 'Implementation scope, results and gaps')+'</p></aside>'
     def adapt(text):
         text=re.sub(r'<!-- atlas-biology-depth -->.*?<!-- /atlas-biology-depth -->','',text,flags=re.S)
-        text=text.replace('22項目すべてが文献調査とベンチマーク設計案です。この追加では生物ソルバーを実装しておらず、生物系のシミュレーション結果も示していません。','22項目の文献調査を基に、ロジスティック増殖と閉鎖SIRの固定入力計算・参照比較・時間収束を追加しました。その他のモデルは検証案の段階です。')
-        text=re.sub(r'All 22 entries are literature and proposed\s+benchmark designs; this addition implements no biological solver and reports\s+no simulated biological result\.', 'The 22-entry survey now links fixed-input logistic and closed-SIR calculations, reference comparisons and time refinement. Other models remain proposed verification designs.',text)
-        text=text.replace('22項目の文献調査を基に、ロジスティック増殖と閉鎖SIRの固定入力計算・参照比較・時間収束を追加しました。その他のモデルは検証案の段階です。',biology['scope']['ja'])
-        text=text.replace('The 22-entry survey now links fixed-input logistic and closed-SIR calculations, reference comparisons and time refinement. Other models remain proposed verification designs.',biology['scope']['en'])
-        description=('22モデル族の解説と、小規模な増殖・SIR・反応拡散・Schnakenberg発現・FHNの実行検証。完全HHは未実装。' if lang=='ja' else 'A 22-family survey with small logistic, SIR, reaction–diffusion, Schnakenberg-onset and FHN validations. Full HH is unimplemented.')
+        # The imported survey has wrapped English text and earlier overlays.
+        # Replace its introductory scope structurally so a second refresh is identical.
+        pattern=r'(<h1\b[^>]*>.*?</h1>\s*<p>.*?<strong>).*?(</strong>)'
+        text=re.sub(pattern,lambda m:m[1]+e(biology['scope'][lang])+m[2],text,count=1,flags=re.S)
+        description=('22モデル族の解説と小規模な増殖・SIR・反応拡散・非線形Schnakenbergパターン・FHNの検証。完全HH・流体連成は未実装。' if lang=='ja' else 'A 22-family survey with small logistic, SIR, nonlinear Schnakenberg patterns and FHN checks. Full HH and fluid coupling remain unimplemented.')
         text=re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="'+description+'">',text)
         text=re.sub(r'<meta property="og:description"[^>]*>', '<meta property="og:description" content="'+description+'">',text)
         for anchor,ident in [('01-1838-logistic-population-growth','logistic-growth'),('05-1927-sir-and-seir-compartment-models','sir-epidemic')]:
             pattern=r'(<h3 id="'+anchor+r'".*?</h3>\s*<p><strong>)(.*?)(</strong>)'
             label=('ロジスティックの固定入力・解析解比較あり。' if ident=='logistic-growth' else '閉鎖SIRの実行例あり。SEIRは未実装。') if lang=='ja' else ('Logistic fixed-input / analytic checks available.' if ident=='logistic-growth' else 'Closed-SIR example available; SEIR unimplemented.')
             text=re.sub(pattern,lambda m:m[1]+label+m[3],text,flags=re.S)
-        for anchor,label in [('09-1952-turing-reactiondiffusion-framework',('Schnakenbergの線形発現と短い非線形例に限定した補助実装あり。','Supplement scoped to linear Schnakenberg onset and a short nonlinear run.')),('10-1961-fitzhughnagumo-excitation-and-recovery',('FHNの励起回復ODE・時間収束例あり。完全HHは未実装。','FHN excitation/recovery ODE and time refinement available; full HH unimplemented.')),('17-1979-schnakenberg-reactiondiffusion',('Schnakenberg初期成長の実行・検証例あり。成熟模様は未検証。','Runnable checks for early Schnakenberg growth; mature patterns unvalidated.'))]:
+        for anchor,label in [('09-1952-turing-reactiondiffusion-framework',('固定1次元Schnakenberg系の線形発現・非線形発展・成長後パターンを別々に検証。','Separate scoped checks of linear onset, nonlinear evolution and post-growth patterns for fixed 1D Schnakenberg systems.')),('10-1961-fitzhughnagumo-excitation-and-recovery',('FHNの励起回復ODE・時間収束例あり。完全HHは未実装。','FHN excitation/recovery ODE and time refinement available; full HH unimplemented.')),('17-1979-schnakenberg-reactiondiffusion',('有限振幅の非線形発展と成長後パターンを独立参照・空間/時間収束で比較。一般の模様選択は対象外。','Finite-amplitude nonlinear evolution and post-growth patterns compared with independent references and separate space/time refinement; no general pattern-selection claim.'))]:
             pattern=r'(<h3 id="'+anchor+r'".*?</h3>\s*<p><strong>)(.*?)(</strong>)'
             text=re.sub(pattern,lambda m:m[1]+label[0 if lang=='ja' else 1]+m[3],text,flags=re.S)
         return re.sub(r'(</h1>)',lambda m:m[1]+'<!-- atlas-biology-depth -->'+notice+'<!-- /atlas-biology-depth -->',text,count=1)
@@ -102,15 +102,16 @@ for lang in ['ja','en']:
     for filename in [f'content.{lang}.json']+(['content.json'] if lang=='en' else []):
         path=ROOT/'numerical-methods-atlas'/filename;docs=json.loads(path.read_text());docs['biological-models']['html']=adapt(docs['biological-models']['html']);path.write_text(json.dumps(docs,ensure_ascii=False,separators=(',',':'))+'\n')
 bio=ROOT/'numerical-methods-atlas/assets/biological-models.json';survey=json.loads(bio.read_text())
-survey.update(checked_on=data['reviewed_on'],scope='22 surveyed biological families. Shared logistic and closed-SIR examples are preserved. Supplemental linear reaction–diffusion, early Schnakenberg Turing growth and reduced FHN excitation/recovery have scoped fixed-input checks. Full HH, SEIR, mature patterns and other families remain unimplemented or unvalidated.')
+survey.update(checked_on=data['reviewed_on'],scope=biology['scope']['en'])
 for model in survey['models']:
     ident={'logistic':'logistic-growth','sir':'sir-epidemic'}.get(model['id'])
     if ident:
         model.update(status='scoped-educational-example',execution_examples=[ident],implementation_scope=examples[ident]['scope'])
-    extra={'turing':'turing-schnakenberg','schnakenberg':'turing-schnakenberg','fitzhugh-nagumo':'fitzhugh-nagumo'}.get(model['id'])
+    extra={'turing':['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern'],'schnakenberg':['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern'],'fitzhugh-nagumo':['fitzhugh-nagumo']}.get(model['id'])
     if extra:
-        model.update(status='scoped-educational-example',supplemental_examples=[extra],implementation_scope=supplements[extra]['limits'],execution_url=supplements[extra]['url'])
+        scope=biology['schnakenberg_scope'] if model['id'] in ['turing','schnakenberg'] else supplements[extra[0]]['limits']
+        model.update(status='scoped-educational-example',supplemental_examples=extra,implementation_scope=scope,execution_url=supplements[extra[0]]['url'])
 bio.write_text(json.dumps(survey,ensure_ascii=False,indent=2)+'\n')
 guide=ROOT/'llms.txt';text=re.sub(r'^- \[Field-specific validation depth\].*\n?','',guide.read_text(),flags=re.M)
-guide.write_text(text.rstrip()+'\n- [Field-specific validation depth]('+ORIGIN+BASE+'): bilingual scope/evidence/gaps by field. Preserve the shared 22-example registry and link '+str(len(supplements))+' independently rerun supplements across foundations, models, particles/transport, fluid/MHD and Langevin/CSVR comparisons. Preserve the earlier harmonic BAOAB example separately from new two-degree same-OBABO harmonic/quartic comparisons and the CSVR-kernel diagnostic. Full HH, the other 10 thermostats, general many-body and first-principles-MD coupling remain unimplemented or unvalidated.\n')
+guide.write_text(text.rstrip()+'\n- [Field-specific validation depth]('+ORIGIN+BASE+'): bilingual scope/evidence/gaps by field. Preserve the shared 22-example registry and link '+str(len(supplements))+' independently rerun supplements across foundations, nonlinear Schnakenberg reaction-diffusion and post-growth patterns, other models, particles/transport, fluid/MHD and Langevin/CSVR comparisons. Preserve the earlier harmonic BAOAB example separately from new two-degree same-OBABO harmonic/quartic comparisons and the CSVR-kernel diagnostic. Full HH, the other 10 thermostats, general many-body and first-principles-MD coupling remain unimplemented or unvalidated.\n')
 print('Built field-specific evidence and validation gaps:',len(data['fields']),'fields,',len(supplements),'separate supplements; common registry unchanged.')

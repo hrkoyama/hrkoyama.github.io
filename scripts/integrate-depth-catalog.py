@@ -9,6 +9,7 @@ def read(p):return json.loads(p.read_text())
 def write(p,d):p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 def doi(r):return re.sub(r'^https?://(?:dx\.)?doi.org/','',(r.get('doi') or '').strip(),flags=re.I).lower()
 def title(r):return (''.join(c for c in unicodedata.normalize('NFKC',r['title']).lower() if c.isalnum()),int(r['year']))
+def source_url(r):return (r.get('source') or r.get('url') or '').strip().rstrip('/')
 def main():
     config=read(ROOT/'catalog/atlas-depth-expansion.json');catalog=read(ROOT/'catalog/atlas-methods.json');byid={m['id']:m for m in catalog['methods']};bindings=defaultdict(list);refs=[]
     for group in config['groups']:
@@ -53,7 +54,8 @@ def main():
     write(ROOT/'catalog/atlas-methods.json',catalog)
     source=read(ROOT/'catalog/atlas-method-primary-references.json');existing=source['references']+read(ROOT/'numerical-methods-atlas/references.json');added=0
     for r in refs:
-        matches=[p for p in existing if (doi(r) and doi(r)==doi(p)) or title(r)==title(p)]
+        matches=[p for p in existing if (doi(r) and doi(r)==doi(p)) or title(r)==title(p)
+                 or (not doi(r) and not doi(p) and source_url(r) and source_url(r)==source_url(p))]
         if matches:continue
         if any(p['id']==r['id'] for p in existing):raise ValueError('Reference ID collision: '+r['id'])
         x={**r,'source':r['url'],'type':('misc' if r.get('type')=='documentation' else r.get('type','article' if doi(r) else 'misc'))}

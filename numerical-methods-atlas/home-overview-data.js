@@ -945,6 +945,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-biology": [
+    "ja",
+    "en"
+  ],
   "validation-foundations": [
     "ja",
     "en"

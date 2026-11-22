@@ -185,8 +185,8 @@
         "en": "Biology"
       },
       "scope": {
-        "ja": "22モデル族の文献解説に、既存のロジスティック増殖・閉鎖SIRと、新しい線形反応拡散Fourierモード・SchnakenbergのTuring発現・FitzHugh–Nagumo励起回復の小さな専用例を接続。全22モデルやHodgkin–Huxleyの実装を意味しません。",
-        "en": "The 22-family survey links the existing logistic-growth/closed-SIR examples and small new examples of a linear reaction–diffusion Fourier mode, Schnakenberg Turing onset and FitzHugh–Nagumo excitation/recovery. This does not implement all 22 families or Hodgkin–Huxley."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley."
       },
       "examples": [
         "logistic-growth",
@@ -197,22 +197,28 @@
         "en": "/numerical-methods-atlas/en/read/biological-models/"
       },
       "reference": {
-        "ja": "ロジスティックと線形反応拡散は解析解。SIR・FHNは別実装DOP853。Turing線形段階は2×2 Fourier行列の指数関数。",
-        "en": "Analytic logistic and linear reaction–diffusion solutions; independent DOP853 for SIR/FHN; a 2×2 Fourier matrix exponential for the linear Turing stage."
+        "ja": "ロジスティック・線形反応拡散は解析解、SIR/FHNは別実装DOP853、線形Turingは行列指数です。新しい非線形Schnakenbergは、脱エイリアスしたFourier–Galerkin＋Radauの独立参照と、時間誤差用の同じ差分半離散系のRadau参照を区別します。",
+        "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error."
       },
       "refinement": {
-        "ja": "ODEの時間収束に加え、反応拡散の空間2次・時間4次とTuring初期成長を分離。短い非線形Schnakenberg計算の有界性を測定。",
-        "en": "In addition to ODE time refinement, separate second-order spatial and fourth-order temporal refinement for reaction–diffusion and initial Turing growth. Check boundedness only for the short nonlinear Schnakenberg run."
+        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。",
+        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns."
       },
       "next": {
-        "ja": "SEIR・完全HH・成熟した非線形模様・実測較正は未実装または未検証。反応拡散の一般生物モデルへ結果を外挿しない。",
-        "en": "SEIR, full HH, mature nonlinear patterns and observational calibration remain unimplemented or unvalidated. Do not extrapolate to general biological reaction–diffusion models."
+        "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIR・完全HH、実験データへの較正と移流・流体連成は未検証です。",
+        "en": "Validation is limited to fixed reflection-symmetric initial data in 1D periodic domains. Pattern selection from general starts, 2D/nonperiodic problems, other kinetics, SEIR/full HH, experimental calibration and advection/fluid coupling remain unvalidated."
       },
       "supplemental_examples": [
         "reaction-diffusion-fourier",
         "turing-schnakenberg",
-        "fitzhugh-nagumo"
-      ]
+        "fitzhugh-nagumo",
+        "schnakenberg-nonlinear",
+        "schnakenberg-pattern"
+      ],
+      "schnakenberg_scope": {
+        "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
+        "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+      }
     },
     {
       "id": "probability",
@@ -419,10 +425,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "5b368b28e7c641836414e1e5755d3d2a5a9f114ae45eceb8d1ff2a4b5bfbb237",
+    "catalog/atlas-depth.json": "c0f730efa9954d4838fb05c58372ea0d3917cfeb54ec2a2aa205b82c11e793e9",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
+    "catalog/atlas-depth-expansion.json": "e31773063e009a6d982fb5829a083b766d8012db85aa6cfb38817da9b601d651",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -433,6 +439,11 @@
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
     "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
     "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",

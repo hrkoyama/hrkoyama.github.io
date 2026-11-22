@@ -55,7 +55,7 @@ print(json.dumps([x['id'] for x in load_supplemental_examples(r,ids)]))`],{cwd:r
  for(const lang of ['ja','en']){
   const html=bytes(`numerical-methods-atlas/${lang}/read/biological-models/index.html`).toString();
   assert.ok(html.includes('biological-execution-scope'));assert.ok(!html.includes('22項目すべてが文献調査とベンチマーク設計案です。'));assert.ok(!/All 22 entries are literature and proposed/.test(html));
-  for(const id of ['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo'])assert.ok(html.includes('/numerical-methods-atlas/validation/'+id+'/?lang='+lang));
+  for(const id of ['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern'])assert.ok(html.includes('/numerical-methods-atlas/validation/'+id+'/?lang='+lang));
   const thermo=bytes(`numerical-methods-atlas/${lang}/read/thermostats/index.html`).toString();
   for(const id of ['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'])assert.ok(thermo.includes('/numerical-methods-atlas/validation/'+id+'/?lang='+lang));
   assert.ok(thermo.includes('OBABO')&&thermo.includes('BAOAB'));

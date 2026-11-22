@@ -12,14 +12,14 @@
   "counts": {
     "equations": 46,
     "methods": 129,
-    "papers": 235,
-    "references": 285,
-    "journal_articles": 229,
+    "papers": 236,
+    "references": 287,
+    "journal_articles": 230,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 19,
+    "other_sources": 20,
     "local_equations": 23,
     "reading_equations": 23,
     "local_methods": 114,
@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 86,
+    "reading_chapters": 87,
     "test_problems": 81,
     "saved_test_problems": 81,
     "code_test_problems": 0
@@ -514,15 +514,6 @@
       "kind": "method",
       "id": "ssprk54",
       "label": "SSPRK(5,4)",
-      "chapter": "time-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "implicit-midpoint",
-      "label": "Implicit midpoint",
       "chapter": "time-integration",
       "status": "local-example",
       "group": "Time integration",
@@ -1039,7 +1030,7 @@
       "chapter": "biological-models",
       "status": "local-example",
       "group": "Biological model survey",
-      "scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      "scope": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
     },
     {
       "kind": "equation",
@@ -1111,7 +1102,7 @@
       "chapter": "biological-models",
       "status": "local-example",
       "group": "Biological model survey",
-      "scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      "scope": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
     },
     {
       "kind": "equation",
@@ -1465,7 +1456,7 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.",
+      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.",
       "origin": "curated-depth-example"
     },
     {
@@ -1486,6 +1477,16 @@
       "status": "local-example",
       "group": "Time integration",
       "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "implicit-midpoint",
+      "label": "Implicit midpoint",
+      "chapter": "validation-biology",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.",
       "origin": "curated-depth-example"
     },
     {
@@ -2978,6 +2979,18 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "strang1968",
+      "type": "article",
+      "identity": "doi:10.1137/0705041",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "hairer2010-geometric-lecture2",
+      "type": "misc",
+      "identity": "url:https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3208,20 +3221,25 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "86d8a97874746420beee41a486fd94ea18f867cd602a2f1aa28d2c4825a5b355",
-    "catalog/atlas-equations.json": "5ca32ef73b869b25924bcbac13dec95e692952edf207dd0359b01582b431481d",
-    "catalog/atlas-method-primary-references.json": "f0d19e755e9ebb9478989ca75ed84ee23dbf9d3e270375b659a4568bc8c404df"
+    "catalog/atlas-methods.json": "48353ae1cde8bbf61237e83a02bad9d9fd1b26d5da9c2704fae597ba4632f239",
+    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-method-primary-references.json": "ddc8883d8fd4a9ae5a431ffba133520478ccdc700eb51726656f3d1104d0665e"
   },
   "equation_execution_source_sha256": {
-    "numerical-methods-atlas/assets/biological-models.json": "a6d4834d379e36d4b55fba48ec881a8a813fc5156056a9c86ca5c17b43fbe6ae",
+    "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "5ca32ef73b869b25924bcbac13dec95e692952edf207dd0359b01582b431481d",
+    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
     "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
-    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c"
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979"
   }
 }

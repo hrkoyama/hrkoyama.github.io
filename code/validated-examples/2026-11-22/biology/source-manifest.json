@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "family": "depth-biology",
+  "group": "biology",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/",
+  "files": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "21bf4c4e93d76d1a583fdcc82ff7ce4c9fbe303dc4a6a717efaf1b99aa39a1a2",
+    "biology.py": "6d5960324d4e52c360a46e3e07fdfc0cb3101cd3bd3d7b0b1ccd9b369ff1f9b2",
+    "cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "inputs-initial.json": "aa97550f4d965505da9841d2e565b066a02e7af1d7585585e001bea0eb52accb",
+    "inputs.json": "375d70f40187400bf812dcd09d4beb0a8f7f3a79baf6a67c818b940bf82bbb84",
+    "plot.py": "013af95c5b3ade07f15fd60155e73393be8b003b123a8c0833b5dc361d4928f6",
+    "protocol-history.json": "93ae1098ac4239d2e2070e4e7cace853418d4a201e4c80f6a5eb86ba7592d59b",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "results/schnakenberg-nonlinear.csv": "6f2989bd3e37117e116a3a32b80a36f25936ddbe5d63abef99a1e1e5345449bd",
+    "results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
+    "results/schnakenberg-pattern.csv": "b64180c393b374350e0e410e69a28b880393dafe975c0d40ddf46e2861340ed2",
+    "results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59",
+    "run.py": "820c6ebac7258279e525f0193efef9d6ec56566c6bdf0824b26dd2949e66df1d",
+    "test_biology.py": "eb77ed0c12a32e0ab7d7e4eb094b62009da8e4359e35732474df84980116ec28"
+  },
+  "case_ids": [
+    "schnakenberg-nonlinear",
+    "schnakenberg-pattern"
+  ],
+  "scope": "Small fixed-input educational validations; each case states its own model, reference, acceptance and exclusions."
+}

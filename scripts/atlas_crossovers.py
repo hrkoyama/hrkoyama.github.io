@@ -12,8 +12,8 @@ ORIGIN = 'https://hrkoyama.github.io'
 # from being borrowed as evidence for this stage or for a complete coupled run.
 SUPPLEMENT_STAGE_CASES = {
     'thermostat': {'langevin-harmonic', 'csvr-kinetic-kernel', 'csvr-langevin-harmonic', 'csvr-langevin-quartic'},
-    'reaction-diffusion': {'reaction-diffusion-fourier', 'turing-schnakenberg'},
-    'biological-fronts': {'turing-schnakenberg', 'fitzhugh-nagumo'},
+    'reaction-diffusion': {'reaction-diffusion-fourier', 'turing-schnakenberg', 'schnakenberg-nonlinear', 'schnakenberg-pattern'},
+    'biological-fronts': {'turing-schnakenberg', 'fitzhugh-nagumo', 'schnakenberg-nonlinear', 'schnakenberg-pattern'},
 }
 
 

@@ -2786,6 +2786,22 @@
             "ja": "Turing不安定性：線形成長率と小振幅パターン",
             "en": "Turing instability: linear growth and small-amplitude patterns"
           }
+        },
+        {
+          "id": "schnakenberg-nonlinear",
+          "url": "/numerical-methods-atlas/validation/schnakenberg-nonlinear/",
+          "name": {
+            "ja": "Schnakenberg有限振幅過渡：非線形性と独立参照",
+            "en": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference"
+          }
+        },
+        {
+          "id": "schnakenberg-pattern",
+          "url": "/numerical-methods-atlas/validation/schnakenberg-pattern/",
+          "name": {
+            "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
+            "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
+          }
         }
       ],
       "reading": {
@@ -3250,7 +3266,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "10dc29013eccbec935955bcbb4cf0f61805c9d14fab51e381b22c7a29b4a76f5",
+    "catalog/atlas-test-problems.json": "e9ad072afebf3b67a70c177f50e02d604e8e07a40eb7073332860b4b2ba392e9",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",

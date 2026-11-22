@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 22,
+  "case_count": 24,
   "releases": [
     {
       "group": "foundations",
@@ -89,6 +89,21 @@
         "csvr-langevin-quartic"
       ],
       "tests": 42
+    },
+    {
+      "group": "biology",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/",
+      "archive": "atlas-biology-2026-11-22.zip",
+      "archive_sha256": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+      "manifest_sha256": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+      "verification_sha256": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "schnakenberg-nonlinear",
+        "schnakenberg-pattern"
+      ],
+      "tests": 28
     }
   ]
 }

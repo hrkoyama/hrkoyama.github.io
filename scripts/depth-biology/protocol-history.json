@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "reason": "Strengthen temporal resolution after the initial split-step temporal error obscured spatial convergence; no acceptance threshold, spatial grid, IC, physical time, reference or model changed.",
+  "initial_input_sha256": "aa97550f4d965505da9841d2e565b066a02e7af1d7585585e001bea0eb52accb",
+  "revised_input_sha256": "375d70f40187400bf812dcd09d4beb0a8f7f3a79baf6a67c818b940bf82bbb84",
+  "initial_run_seconds": 6.776878708000368,
+  "initial_failed_checks": {
+    "schnakenberg-nonlinear": [
+      "temporal_finest_linf",
+      "temporal_contamination_ratio",
+      "minimum_spatial_order",
+      "minimum_temporal_order"
+    ],
+    "schnakenberg-pattern": [
+      "temporal_finest_linf",
+      "temporal_contamination_ratio",
+      "minimum_spatial_order",
+      "minimum_temporal_order"
+    ]
+  },
+  "initial_metrics": {
+    "schnakenberg-nonlinear": {
+      "spatial_finest_linf": 0.004755354492735453,
+      "temporal_finest_linf": 0.038779503473942434,
+      "minimum_spatial_order": 0.8714127230659698,
+      "minimum_temporal_order": 1.4782331500786043,
+      "reference_spatial_linf": 3.255173908200959e-13,
+      "reference_tolerance_linf": 4.4497738826976274e-13,
+      "reference_to_primary_error_ratio": 1.6202678060424513e-10,
+      "temporal_contamination_ratio": 2.28537541206901,
+      "minimum_concentration": 0.2244917096703679,
+      "minimum_newton_iterate": 0.2244917096703679,
+      "maximum_midpoint_residual": 1.9427775360680855e-13,
+      "maximum_reaction_balance_error": 7.507883204027621e-15,
+      "maximum_newton_iterations": 3,
+      "nonlinear_relative_difference": 0.7973947672828199,
+      "pattern_amplitude": 1.584854307174442,
+      "higher_harmonic_ratio": 0.23973709295898224,
+      "dominant_mode_u": 2,
+      "mean_u": 1.0212843245725893,
+      "mean_v": 0.7809100883890534
+    },
+    "schnakenberg-pattern": {
+      "spatial_finest_linf": 0.0022485336285011925,
+      "temporal_finest_linf": 0.024638560497743267,
+      "minimum_spatial_order": 1.3896213657945695,
+      "minimum_temporal_order": 1.6555642503891108,
+      "reference_spatial_linf": 5.154365823045737e-11,
+      "reference_tolerance_linf": 1.496580637194711e-12,
+      "reference_to_primary_error_ratio": 2.3588812813534465e-08,
+      "temporal_contamination_ratio": 1.2203560615060798,
+      "minimum_concentration": 0.11413262434805953,
+      "minimum_newton_iterate": 0.11413262434805953,
+      "maximum_midpoint_residual": 1.9427775360680855e-13,
+      "maximum_reaction_balance_error": 4.0772940579358874e-14,
+      "maximum_newton_iterations": 3,
+      "nonlinear_relative_difference": 1.1426000574491519e+21,
+      "pattern_amplitude": 1.9621659199933201,
+      "higher_harmonic_ratio": 0.32273224487596686,
+      "dominant_mode_u": 2,
+      "mean_u": 1.0000000000005342,
+      "mean_v": 0.7497600594170122,
+      "saturation_change": 5.0330260847886166e-08,
+      "saturation_rhs": 1.8773358978485533e-09,
+      "saturation_projected_rhs": 1.877346373585754e-09,
+      "saturation_fd_rhs": 0.0576201160227825,
+      "saturation_amplitude_change": 2.517517927458357e-08
+    }
+  }
+}

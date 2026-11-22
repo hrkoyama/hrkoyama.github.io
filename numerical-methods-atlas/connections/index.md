@@ -147,34 +147,42 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=ja#reaction-transport-ja)
 
-反応源と拡散演算子を共有しても、線形モード、模様形成、膜興奮、流れとの連成では検証量が変わります。1次元の固定反応拡散例と0次元の膜興奮例から、流体と結ぶための追加条件をたどります。
+線形モード、有限振幅の非線形発展、成長後パターン、0次元の膜興奮では検証量が変わります。固定した1次元Schnakenberg系の独立参照・空間/時間収束から、流体と結ぶために残る検証をたどります。
 
-この経路で確認できる範囲：1次元線形反応拡散とSchnakenbergのTuring初期成長、0次元FitzHugh–Nagumoは専用補助例で実行済みです。ロジスティック/SIR、移流、周期流体の共通台帳例も別の要素根拠として残します。反応・拡散・移流/流体を結ぶ経路全体は未実行です。
+この経路で確認できる範囲：固定した1次元周期Schnakenbergの非線形発展と成長後パターンを独立参照・空間/時間収束で、線形反応拡散と0次元FHNを各専用例で検証します。ロジスティック/SIR、移流、周期流体も別々の要素根拠です。反応・拡散・移流/流体を結ぶ経路全体は未実行です。
 
 ### 反応と拡散の枠組み
 
-∂_t c = ∇·(D∇c) + R(c)。反応則・拡散・初期値・境界を指定します。1次元周期の線形FourierモードとSchnakenberg反応拡散を、専用補助版の解析解・独立参照・空間/時間収束で検査します。
+反応則・拡散・初期値・境界を指定し、線形Fourierモード、Schnakenbergの線形発現、有限振幅の非線形発展と成長後パターンを分けます。新しい固定1次元周期例は中心差分＋陰的中点反応のStrang分割を独立な脱エイリアスFourier–Galerkin/Radau参照へ照合します。
 
 段階の状態: scoped-supplement
 
 - [生物モデルと反応拡散の検証案](/numerical-methods-atlas/ja/read/biological-models/)
 - [線形反応拡散の空間・時間収束](/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier)
+- [非線形Schnakenbergと成長後パターンの独立参照・収束](/numerical-methods-atlas/ja/read/validation-biology/)
 - [空間中心差分](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja): educational-example
 - [古典的RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja): educational-example
+- [陰的中点則](https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=ja): educational-example
 
-別管理の固定補助例: 線形反応拡散のFourier解とSchnakenbergの1次元初期モードを調べる固定例。汎用の生物モデルや流体連成の認証ではありません。
+別管理の固定補助例: 旧線形モード例を保持し、固定した1次元周期Schnakenberg系の非線形解と成長後パターンの空間/時間誤差を分けて測定します。同じ差分半離散系のRadauは時間誤差用で、独立な連続PDE参照とは区別します。汎用の生物モデルや流体連成の認証ではありません。
 - [反応拡散：空間2次と時間4次を分けて測る](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja): 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。
   線形・周期・滑らかな単一モードだけを検証します。非線形のFisher前線、複雑境界、空間生態系や一般の反応ネットワークの検証ではありません。
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#reaction-diffusion-fourier)
 - [Turing不安定性：線形成長率と小振幅パターン](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja): Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
   1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg)
+- [Schnakenberg有限振幅過渡：非線形性と独立参照](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja): t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。
+  選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear)
+- [Schnakenberg飽和パターン：近定常性と格子・時間収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=ja): t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
+  選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。 近飽和は参照の90→100の検査窓に対する判定で、厳密定常解・非線形安定性・長期吸引の証明ではありません。lateの巨大な線形差は線形化の破綻診断で、精度誤差ではありません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern)
 
 残る差: 固定した1次元周期問題の範囲です。一般の反応則・非周期境界、Fisher–KPP前線、流れとの移流反応拡散は未検証です。拡散単体と反応拡散の結果を分けて示します。
 
-### 生物：模様形成・膜興奮と前線
+### 生物：非線形模様形成・膜興奮と前線
 
-SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumoの刺激応答を0次元ODEで検証します。Fisher–KPP前線は解説段階です。反応則や次元の違いを、生物現象の同一性や組織データへの適合と取り違えません。
+Schnakenbergは1次元周期の線形発現・有限振幅発展・成長後パターンを、FitzHugh–Nagumoは0次元の刺激応答を検証します。非線形の独立参照と格子/時間収束を、生体組織への適合やFisher–KPP前線の検証へは転用しません。
 
 段階の状態: scoped-supplement
 
@@ -183,18 +191,26 @@ SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumo�
 - [Schnakenbergの反応則](/numerical-methods-atlas/ja/read/biological-models/#17-1979-schnakenberg-reactiondiffusion)
 - [Turing初期成長と独立参照](/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg)
 - [FitzHugh–Nagumoの0次元刺激応答](/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo)
+- [非線形Schnakenbergと成長後パターンの独立参照・収束](/numerical-methods-atlas/ja/read/validation-biology/)
 - [空間中心差分](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja): educational-example
 - [古典的RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja): educational-example
+- [陰的中点則](https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=ja): educational-example
 
-別管理の固定補助例: Schnakenbergの1次元モードとFitzHugh–Nagumoの0次元刺激応答という別々の固定要素例。FitzHugh–Nagumoを空間的な膜伝播の例にしません。
+別管理の固定補助例: 1次元Schnakenbergの線形発現・非線形発展・成長後パターンと、0次元FitzHugh–Nagumo刺激応答という別々の固定要素例です。独立参照と空間/時間誤差を区別し、膜の空間伝播へ広げません。
 - [Turing不安定性：線形成長率と小振幅パターン](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja): Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
   1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#turing-schnakenberg)
 - [FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照](https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja): 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。
   FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#fitzhugh-nagumo)
+- [Schnakenberg有限振幅過渡：非線形性と独立参照](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja): t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。
+  選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-nonlinear)
+- [Schnakenberg飽和パターン：近定常性と格子・時間収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=ja): t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
+  選択対称性を持つ1D教育用モデルで、乱数からの自由な波数選択・位相安定性・2D斑点・実生物の較正を検証しません。原著の係数や実験の再現ではありません。陰的midpointはA安定でもL安定・無条件正値ではなく、反応でu+vは保存しません。初回粗刻みは不合格で、受入基準を変えず時間解像度を強化した履歴を保持。量子計算は追加しません。 近飽和は参照の90→100の検査窓に対する判定で、厳密定常解・非線形安定性・長期吸引の証明ではありません。lateの巨大な線形差は線形化の破綻診断で、精度誤差ではありません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#schnakenberg-pattern)
 
-残る差: Turingは短時間の線形成長と有限振幅の区別まで、FitzHugh–Nagumoは空間を持たない単一素子です。伝播する膜パルス、Fisher前線速度、生物実験データへの較正、流体との連成は未検証です。
+残る差: 固定した反射対称初期値と有限時間の1次元Schnakenbergです。一般初期値からの模様選択・2次元形態、伝播する膜パルス、Fisher前線速度、生物実験への較正と流体連成は未検証です。FHNは空間なしです。
 
 ### 実行できる反応のみの0次元例
 
@@ -235,7 +251,7 @@ SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumo�
 
 **異なる点:** 前線速度の誤差とTuringの分散関係は別の検証量。生物の模様に似た画像でも機構やパラメータの妥当性は決まらない。
 
-**既存の要素根拠:** Schnakenbergは許される周期モードの成長をJ−k²Dと離散Laplacianの予測、空間/時間細分化で比較済みです。FitzHugh–Nagumoは独立DOP853との0次元照合です。Fisher–KPP前線は未実行です。
+**既存の要素根拠:** Schnakenbergは旧線形発現に加え、固定した1次元周期・有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照、空間・時間細分化で比較します。FHNは0次元DOP853照合、Fisher–KPP前線は未実行です。
 
 **接続に必要な検証:** 前線は解析プロファイル/速度と比較し、有限領域の境界影響と空間/時間誤差を分ける。Turingはk=0の安定性を確かめ、境界が許す非零モードの初期成長をJ−k²Dおよび離散Laplacianの予測と比べる。
 
@@ -267,7 +283,7 @@ SchnakenbergのTuring初期成長を1次元反応拡散で、FitzHugh–Nagumo�
 
 **異なる点:** 保存形と移流形の同値には∇·u=0などの条件がある。移流CFL、拡散の刻み制限、反応の剛性、圧力境界は異なる。受動輸送と双方向連成の誤差も異なる。
 
-**既存の要素根拠:** 線形/Schnakenberg反応拡散の補助例、周期一定速度advection-sine、周期粘性taylor-greenを別々に検証しています。濃度・反応・流体を結んだ実行はありません。
+**既存の要素根拠:** 線形/非線形Schnakenberg反応拡散と成長後パターン、周期移流、Taylor–Green流れは別々の要素検証です。反応・拡散のStrang誤差を測っても、濃度・移流・流体を結ぶ分割誤差を検証したことにはなりません。
 
 **接続に必要な検証:** 境界流束と反応源を含む濃度収支、非負性、∇·u、空間/時間収束、分割順序・刻み依存を調べる。製造解または独立な連成参照を設け、能動連成では返す力/熱の収支も確認する。
 
@@ -438,6 +454,8 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 
 根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 
+Supplement biology: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json); SHA-256=5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd
+
 Supplement models: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json); SHA-256=f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2
 
 Supplement thermostats: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json); SHA-256=c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905
@@ -591,34 +609,42 @@ Coupled execution: not performed. Thermostatted first-principles MD has not been
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=en#reaction-transport-en)
 
-Shared reaction sources and diffusion operators lead to different checks for linear modes, pattern onset, excitability and flow coupling. Follow fixed 1D reaction–diffusion and zero-dimensional excitability examples toward the extra requirements for fluid coupling.
+Linear modes, finite-amplitude nonlinear evolution, post-growth patterns and zero-dimensional excitability require different checks. Follow independent references and space/time refinement for fixed 1D Schnakenberg systems toward the additional validation needed for fluid coupling.
 
-Evidence scope of this route: Dedicated supplements execute 1D linear reaction–diffusion, initial Schnakenberg Turing growth and zero-dimensional FitzHugh–Nagumo. Logistic/SIR, advection and periodic-flow runs remain separate common-registry component evidence. The complete reaction–diffusion–advection/fluid route is unexecuted.
+Evidence scope of this route: Fixed 1D periodic nonlinear Schnakenberg evolution/post-growth patterns have independent-reference and space/time refinement checks; linear reaction–diffusion and zero-dimensional FHN retain separate examples. Logistic/SIR, advection and periodic flow are also component evidence. The complete reaction–diffusion–advection/fluid route remains unexecuted.
 
 ### Reaction–diffusion framework
 
-For ∂_t c = ∇·(D∇c) + R(c), specify kinetics, diffusion, initial data and boundaries. Dedicated supplements check 1D periodic linear Fourier modes and Schnakenberg reaction–diffusion using analytic/independent references and space/time refinement.
+Specify kinetics, diffusion, initial data and boundaries; distinguish linear Fourier modes, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth patterns. New fixed 1D periodic cases compare centered-difference diffusion/implicit-midpoint reaction Strang splitting with independent dealiased Fourier–Galerkin/Radau references.
 
 Stage state: scoped-supplement
 
 - [Biological models and proposed reaction–diffusion checks](/numerical-methods-atlas/en/read/biological-models/)
 - [Space/time refinement for linear reaction–diffusion](/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier)
+- [Nonlinear Schnakenberg/post-growth patterns: independent references and refinement](/numerical-methods-atlas/en/read/validation-biology/)
 - [Centered spatial difference](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en): educational-example
 - [Classical RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en): educational-example
+- [Implicit midpoint](https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=en): educational-example
 
-Separately managed fixed supplements: Fixed checks of linear reaction–diffusion Fourier solutions and initial 1D Schnakenberg modes; no general biological-model or fluid-coupling certification.
+Separately managed fixed supplements: Preserve the earlier linear-mode examples and separate space/time errors for nonlinear solutions and post-growth patterns in a fixed 1D periodic Schnakenberg system. Radau on the same finite-difference semidiscretization isolates time error and is distinct from the independent continuum-PDE reference. No general biological-model or fluid-coupling certification.
 - [Reaction-diffusion: separate second-order space and fourth-order time](https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en): Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions.
   Only a linear, periodic, smooth single mode is verified. Nonlinear Fisher fronts, complex boundaries, spatial ecosystems and general reaction networks remain outside scope.
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#reaction-diffusion-fourier)
 - [Turing instability: linear growth and small-amplitude patterns](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en): Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
   One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg)
+- [Finite-amplitude Schnakenberg transient: nonlinearity and independent reference](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en): Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics.
+  A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear)
+- [Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=en): Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
+  A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations. Near-saturation refers to the reference90→100 test window; it proves no exact steady state, nonlinear stability or long-term attractor. A huge late linearized difference diagnoses failure of linearization, not numerical error.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern)
 
 Remaining gap: Limited to fixed 1D periodic problems. General kinetics, nonperiodic boundaries, Fisher–KPP fronts and advective reaction–diffusion coupled to flow remain unvalidated. Diffusion-only and reaction–diffusion evidence are distinct.
 
-### Biology: pattern onset, excitability and fronts
+### Biology: nonlinear patterns, excitability and fronts
 
-Validate initial Schnakenberg Turing growth with 1D reaction–diffusion and FitzHugh–Nagumo stimulus response with a zero-dimensional ODE. Fisher–KPP fronts remain reading-only. Different kinetics/dimensions do not establish identical biological phenomena or agreement with tissue data.
+Validate linear onset, finite-amplitude evolution and post-growth patterns for 1D periodic Schnakenberg, and zero-dimensional FitzHugh–Nagumo stimulus response. Independent nonlinear references and grid/time refinement do not establish tissue calibration or verification of Fisher–KPP fronts.
 
 Stage state: scoped-supplement
 
@@ -627,18 +653,26 @@ Stage state: scoped-supplement
 - [Schnakenberg kinetics](/numerical-methods-atlas/en/read/biological-models/#17-1979-schnakenberg-reactiondiffusion)
 - [Initial Turing growth and independent references](/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg)
 - [Zero-dimensional FitzHugh–Nagumo stimulus response](/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo)
+- [Nonlinear Schnakenberg/post-growth patterns: independent references and refinement](/numerical-methods-atlas/en/read/validation-biology/)
 - [Centered spatial difference](https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en): educational-example
 - [Classical RK4](https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en): educational-example
+- [Implicit midpoint](https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=en): educational-example
 
-Separately managed fixed supplements: Separate fixed components: 1D Schnakenberg modes and zero-dimensional FitzHugh–Nagumo stimulus response. FitzHugh–Nagumo is not presented as spatial membrane propagation.
+Separately managed fixed supplements: Separate fixed components: 1D Schnakenberg linear onset, nonlinear evolution and post-growth patterns, and zero-dimensional FitzHugh–Nagumo stimulus response. Distinguish independent-reference and space/time errors; no spatial membrane-propagation claim.
 - [Turing instability: linear growth and small-amplitude patterns](https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en): Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
   One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#turing-schnakenberg)
 - [FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference](https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en): Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.
   Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction.
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#fitzhugh-nagumo)
+- [Finite-amplitude Schnakenberg transient: nonlinearity and independent reference](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en): Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics.
+  A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-nonlinear)
+- [Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=en): Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
+  A selected-symmetry1D educational model: no test of free noise-driven wavenumber selection, phase stability,2D spots or biological calibration. Not an original-paper reproduction. Implicit midpoint is A-stable but not L-stable or unconditionally positive; reactions do not conserve u+v. The initial coarse protocol failed; temporal resolution was strengthened while retaining every acceptance threshold and the failed record. No quantum calculations. Near-saturation refers to the reference90→100 test window; it proves no exact steady state, nonlinear stability or long-term attractor. A huge late linearized difference diagnoses failure of linearization, not numerical error.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#schnakenberg-pattern)
 
-Remaining gap: Turing evidence separates short-time linear growth from finite-amplitude behavior; FitzHugh–Nagumo is a spatially uniform single unit. Propagating membrane pulses, Fisher front speeds, biological-data calibration and fluid coupling remain unvalidated.
+Remaining gap: Schnakenberg checks use fixed reflection-symmetric initial data, finite times and one spatial dimension. General pattern selection, 2D morphology, propagating membrane pulses, Fisher front speeds, biological calibration and fluid coupling remain unvalidated. FHN has no spatial dimension.
 
 ### Runnable zero-dimensional reaction-only examples
 
@@ -679,7 +713,7 @@ Model application
 
 **What differs:** Front-speed error differs from a Turing dispersion relation. Resemblance to a biological pattern establishes neither mechanism nor parameter validity.
 
-**Existing component evidence:** Schnakenberg compares admissible periodic-mode growth with J−k²D, discrete-Laplacian predictions and space/time refinement. FitzHugh–Nagumo has a zero-dimensional independent DOP853 comparison. Fisher–KPP fronts have not been executed.
+**Existing component evidence:** Schnakenberg supplements extend the earlier linear onset to finite-amplitude nonlinear evolution and post-growth patterns from fixed 1D periodic data, with independent Fourier–Galerkin/Radau references and separate space/time refinement. FHN retains a zero-dimensional DOP853 comparison; Fisher–KPP fronts are unexecuted.
 
 **Validation required:** For fronts, compare analytic profile/speed and separate finite-boundary, spatial and temporal errors. For Turing onset, establish k=0 stability and compare early growth of boundary-admissible nonzero modes with J−k²D and the discrete-Laplacian prediction.
 
@@ -711,7 +745,7 @@ Quantity handoff
 
 **What differs:** Equivalence of conservative and advective forms requires conditions such as ∇·u=0. Advection CFL, diffusion step restrictions, reaction stiffness and pressure boundaries differ, as do passive and two-way coupling errors.
 
-**Existing component evidence:** Linear/Schnakenberg reaction–diffusion supplements, periodic constant-speed advection-sine and periodic viscous taylor-green are verified separately. No execution couples concentration, reaction and flow.
+**Existing component evidence:** Linear/nonlinear Schnakenberg reaction–diffusion, post-growth patterns, periodic advection and Taylor–Green flow are separate component checks. Measured reaction/diffusion Strang error does not establish splitting error for coupled concentration, advection and flow.
 
 **Validation required:** Check concentration balance with boundary fluxes and reaction sources, nonnegativity, ∇·u, space/time refinement and splitting order/step dependence. Use a manufactured or independent coupled reference; active coupling also requires force/heat balance checks.
 
@@ -881,6 +915,8 @@ Thermostatted MD requires distributions, correlations and finite-sample uncertai
 - [Thermostat comparisons](/numerical-methods-atlas/en/read/thermostats/)
 
 Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+
+Supplement biology: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json); SHA-256=5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd
 
 Supplement models: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json); SHA-256=f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2
 

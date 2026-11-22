@@ -64,6 +64,20 @@
       "fields": [
         "temperature"
       ]
+    },
+    {
+      "id": "biology",
+      "title": {
+        "ja": "非線形反応拡散・パターン形成の独立検証",
+        "en": "Independent validation of nonlinear reaction–diffusion and pattern formation"
+      },
+      "fields": [
+        "biology"
+      ],
+      "intro": {
+        "ja": "Schnakenbergの1次元周期系で、有限振幅の過渡から成長後のパターンまでをたどります。別の数値解法で得た参照に照合し、格子・時間刻み・参照自身の誤差を分けて調べます。",
+        "en": "Follow a 1D periodic Schnakenberg system from finite-amplitude transients to post-growth patterns. Compare with a separate numerical reference and distinguish grid, time-step and reference errors."
+      }
     }
   ],
   "case_problem_ids": {
@@ -88,16 +102,26 @@
     "glm-fourier-mode": null,
     "csvr-kinetic-kernel": null,
     "csvr-langevin-harmonic": "langevin-harmonic",
-    "csvr-langevin-quartic": "thermostatted-quartic"
+    "csvr-langevin-quartic": "thermostatted-quartic",
+    "schnakenberg-nonlinear": "turing-schnakenberg",
+    "schnakenberg-pattern": "turing-schnakenberg"
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する5グループです。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs five NumPy/SciPy/pytest groups. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する6グループです。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs six NumPy/SciPy/pytest groups. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {
       "ja": "採用GLMはch=3、減衰率κ=0.18 ch nです。nは各軸のセル数で、この減衰は格子依存です。同じ連続初期場・終了時刻・CFLを用いますが、CT/GLMで実ステップ数とdiv Bのnative演算子は異なります。",
       "en": "The adopted GLM uses ch=3 and damping rate kappa=0.18 ch n, with n cells per axis: damping is grid dependent. Both use the same continuous initial field, final time and CFL, while actual step counts and native div B operators differ."
+    },
+    "schnakenberg-nonlinear": {
+      "ja": "空間比較は別のFourier–Galerkin/Radau参照に、時間比較は同じ差分半離散系を別に解くRadau参照に照合します。後者を連続PDEの厳密解とは呼びません。最初の粗い時間刻みでは分割誤差が空間誤差を覆ったため、判定基準を維持して刻みを細かくしました。旧入力と失敗指標も配布版に残します。",
+      "en": "Space refinement uses a separate Fourier–Galerkin/Radau reference; time refinement uses an independently integrated Radau solution of the same FD semidiscrete system, not an exact continuous-PDE solution. Splitting error masked spatial error in the first coarse-step pilot. Steps were refined while keeping the acceptance criteria; the original input and failed metrics remain in the release."
+    },
+    "schnakenberg-pattern": {
+      "ja": "近定常の判定は高精度のGalerkin参照に対する有限時間の確認です。有限刻みの分割法の固定点と、半離散PDEの定常解は一般に一致しないため、主計算のfull RHS残差を別に示します。線形化との差の大きさは非線形化の指標であり、精度や定常性の証明には使いません。選んだ反射対称・π周期の部分空間での確認です。",
+      "en": "Near-stationarity is a finite-time check of the high-accuracy Galerkin reference. A finite-step splitting fixed point need not solve the semidiscrete PDE’s steady equations, so the primary full-RHS residual is reported separately. A large difference from linearization indicates nonlinearity, not accuracy or stationarity. The selected reflection-even, pi-periodic subspace is the scope of the test."
     }
   }
 }

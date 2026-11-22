@@ -15,13 +15,14 @@ const sha = path => createHash('sha256').update(bytes(path)).digest('hex');
 const catalog = json('catalog/atlas-depth-expansion.json');
 const base = group => `code/validated-examples/${catalog.edition}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats'];
+const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology'];
 const expectedIds = [
   'sa-amg', 'qr-svd-factorization', 'krylov-eigenvalues', 'gauss-adaptive-quadrature',
   'gaussian-mcmc', 'langevin-harmonic', 'reaction-diffusion-fourier', 'turing-schnakenberg', 'fitzhugh-nagumo',
   'ewald', 'spme', 'fmm', 'pic', 'dsmc', 'radiation-transport',
   'ct-glm-independent', 'brio-independent', 'shu-independent', 'glm-fourier-mode',
   'csvr-kinetic-kernel', 'csvr-langevin-harmonic', 'csvr-langevin-quartic',
+  'schnakenberg-nonlinear', 'schnakenberg-pattern',
 ].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
@@ -30,11 +31,11 @@ const metadata = group => {
 const measured = group => json(base(group) + 'results/result.json');
 const actualCases = groupIds.flatMap(group => metadata(group).map(item => ({group, item})));
 
-test('twenty-two additional cases and five releases stay distinct from the existing execution registry', () => {
+test('twenty-four additional cases and six releases stay distinct from the existing execution registry', () => {
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 22);
+  assert.equal(index.case_count, 24);
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);
   assert.equal(index.common_registry.modified_by_this_builder, false);
@@ -116,7 +117,7 @@ test('each bilingual entry exposes its actual measurement, code, input, tests, f
   }
 });
 
-test('all five readings preserve measured records, real KaTeX output and machine-readable sibling documents', () => {
+test('all six readings preserve measured records, real KaTeX output and machine-readable sibling documents', () => {
   for (const group of groupIds) for (const lang of ['ja', 'en']) {
     const path = `numerical-methods-atlas/${lang}/read/validation-${group}/`;
     const doc = json(path + 'index.json'), html = text(path + 'index.html'), md = text(path + 'index.md');
@@ -144,7 +145,7 @@ test('all five readings preserve measured records, real KaTeX output and machine
   }
 });
 
-test('existing readings, bilingual contents and search keep one additive marker and five searchable chapters', () => {
+test('existing readings, bilingual contents and search keep one additive marker and six searchable chapters', () => {
   const search = json('numerical-methods-atlas/home-search-index.json');
   const entries = search.entries.filter(x => x.origin === 'depth-examples');
   assert.deepEqual(entries.map(x => x.id).sort(), groupIds.map(x => 'reading-validation-' + x).sort());
