@@ -3,7 +3,7 @@
 import argparse,hashlib,importlib.metadata,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GROUPS=['foundations','models','particles','mhd']
+GROUPS=['foundations','models','particles','mhd','thermostats']
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n')

@@ -21,7 +21,7 @@ Comparison notes: Active-space dependence is distinct from grid error. Track orb
 
 - Reference: https://doi.org/10.1016/0301-0104(80)80045-0 — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: A small comparison with an explicit active space.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/multireference/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

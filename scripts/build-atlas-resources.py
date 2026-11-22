@@ -10,7 +10,7 @@ from atlas_sensitivity_release import sensitivity_release_record
 from atlas_inverse_release import inverse_release_record
 from atlas_fdtd_release import fdtd_release_record
 from atlas_multinverse_release import multinverse_release_record
-from atlas_depth_release import depth_release_record
+from atlas_depth_release import depth_release_records
 from atlas_method_review import (validate_method_reviews, review_intro, field_note,
                                  verification_html, references_html, review_markdown)
 
@@ -191,17 +191,19 @@ def public_record(x):
         record.update(multinverse_release_record(ROOT,x))
     record['execution_examples']=execution_links(x['id'])
     if x.get('depth_release'):
-        supplement=depth_release_record(ROOT,x)
-        record['depth_release']=supplement
+        supplements=depth_release_records(ROOT,x)
+        record['depth_release']=supplements[0]
+        if len(supplements)>1:record['depth_additional_releases']=supplements[1:]
         had_code=bool(record['code_urls'])
-        record['code_urls']=list(dict.fromkeys(record['code_urls']+supplement['code_urls']))
-        record['test_urls']=list(dict.fromkeys(record['test_urls']+supplement['test_urls']))
         if not had_code:
             for key in ['code_base','code_edition','code_download','code_manifest','code_verification','code_archive_sha256','results','run_commands','run_from']:
-                record[key]=supplement[key]
+                record[key]=supplements[0][key]
+        for supplement in supplements:
+            record['code_urls']=list(dict.fromkeys(record['code_urls']+supplement['code_urls']))
+            record['test_urls']=list(dict.fromkeys(record['test_urls']+supplement['test_urls']))
+            record['execution_examples'] += [{'id':e['id'],'registry_url':ORIGIN+'/numerical-methods-atlas/validation/releases.json',
+                'guide':{lang:e['entry']+'?lang='+lang for lang in ['ja','en']},'kind':'dedicated-supplement'} for e in supplement['examples']]
         record['code_mapping_scope']='Scoped fixed-input examples; original method variants and earlier releases remain distinct.'
-        record['execution_examples'] += [{'id':e['id'],'registry_url':ORIGIN+'/numerical-methods-atlas/validation/releases.json',
-            'guide':{lang:e['entry']+'?lang='+lang for lang in ['ja','en']},'kind':'dedicated-supplement'} for e in supplement['examples']]
     return record
 
 
@@ -364,10 +366,11 @@ for x in METHODS:
             forces=record['force_release'];force_base=forces['code_base']
             body+='<h2>'+('周期He₂の原子間力とBOMDへの接続' if ja else 'Periodic He₂ forces and the BOMD interface')+'</h2><p>'+esc(x['force_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/periodic-forces/','力の有限差分・独立参照・収束' if ja else 'Force finite differences, independent reference and refinement')+' · '+link(force_base+'periodic_forces.py','Python force driver')+' · '+link(force_base+'bomd.py','BOMD adapter')+' · '+link(force_base+'test_periodic_forces.py','Tests')+' · '+link(forces['release']['download'],'ZIP')+'</p>'
         if x.get('depth_release'):
-            extra=record['depth_release']
-            body+='<h2>'+('小規模な専用実装と実測検証' if ja else 'Small dedicated implementations and measured checks')+'</h2><p>'+esc(x['depth_scope'][lang])+'</p><ul>'
-            body+=''.join('<li>'+link(e['entry']+'?lang='+lang,e['title'][lang])+' · '+link(e['reading'][lang],'条件・数式・一次文献' if ja else 'Conditions, equations and primary sources')+'</li>' for e in extra['examples'])
-            body+='</ul><p>'+link(extra['code_download'],'コード・固定入力・テスト・結果 ZIP' if ja else 'Code, fixed inputs, tests and results ZIP')+' · '+link(extra['code_verification'],str(extra['passed_tests'])+('件の検査と独立展開記録' if ja else ' tests and independent-extraction receipt'))+'</p><p>'+('選択した固定例の検証です。共通22例の台帳とは別の補助配布版で、各手法の全変種を検証するものではありません。' if ja else 'Validation applies to the selected fixed examples. These supplements are separate from the shared22-case registry and do not verify every variant of a named method.')+'</p>'
+            body+='<h2>'+('小規模な専用実装と実測検証' if ja else 'Small dedicated implementations and measured checks')+'</h2><p>'+esc(x['depth_scope'][lang])+'</p>'
+            for extra in [record['depth_release'],*record.get('depth_additional_releases',[])]:
+                body+='<ul>'+''.join('<li>'+link(e['entry']+'?lang='+lang,e['title'][lang])+' · '+link(e['reading'][lang],'条件・数式・一次文献' if ja else 'Conditions, equations and primary sources')+'</li>' for e in extra['examples'])+'</ul>'
+                body+='<p>'+link(extra['code_download'],'コード・固定入力・テスト・結果 ZIP' if ja else 'Code, fixed inputs, tests and results ZIP')+' · '+link(extra['code_verification'],str(extra['passed_tests'])+('件の検査と独立展開記録' if ja else ' tests and independent-extraction receipt'))+'</p>'
+            body+='<p>'+('選択した固定例の検証です。共通22例の台帳とは別の補助配布版で、各手法の全変種を検証するものではありません。' if ja else 'Validation applies to the selected fixed examples. These supplements are separate from the shared 22-case registry and do not verify every variant of a named method.')+'</p>'
         for common in execution_links(x['id']):
             body+='<p class="resource-summary">'+link(common['guide'][lang],'入力・実行・結果判定・引用の共通手順' if ja else 'Shared input, execution, validation and citation steps')+'</p>'
         if x.get('example'):
@@ -410,10 +413,10 @@ for x in METHODS:
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('force_examples'):md+='Force scope: '+x['force_scope']['en']+'\n\n'+json.dumps(record['force_release'],ensure_ascii=False,indent=2)+'\n\n'
     if x.get('depth_release'):
-        extra=record['depth_release']
-        md+='## Small fixed-input validation supplement\n\n'+x['depth_scope']['en']+'\n\n'+x['depth_scope']['ja']+'\n\n'
-        md+='\n'.join('- '+e['title']['en']+': '+e['entry'] for e in extra['examples'])+'\n\n'
-        md+='Download: '+extra['code_download']+'\nVerification: '+extra['code_verification']+'\nResults: '+extra['results']+'\n\n'
+        md+='## Small fixed-input validation supplements\n\n'+x['depth_scope']['en']+'\n\n'+x['depth_scope']['ja']+'\n\n'
+        for extra in [record['depth_release'],*record.get('depth_additional_releases',[])]:
+            md+='\n'.join('- '+e['title']['en']+': '+e['entry'] for e in extra['examples'])+'\n\n'
+            md+='Download: '+extra['code_download']+'\nVerification: '+extra['code_verification']+'\nResults: '+extra['results']+'\n\n'
     if x.get('inverse_release'):
         scalar=record.get('scalar_inverse_release',record)
         md+='Bratu inverse supplement: bounded projected adjoint-gradient fitting of one scalar parameter from fixed synthetic observations. Same-model consistency, continuous-observation grid bias and fixed-noise shifts are separate checks.\n\n'

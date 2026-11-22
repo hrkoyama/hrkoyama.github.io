@@ -7,7 +7,7 @@
   },
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "registry_sha256": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
-  "source_sha256": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1",
+  "source_sha256": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
   "examples": [
     {
       "id": "advection-sine",
@@ -869,7 +869,9 @@
     {
       "id": "logistic-growth",
       "problem_id": "logistic-growth",
-      "equation_ids": [],
+      "equation_ids": [
+        "bio-logistic"
+      ],
       "keywords": [
         "logistic-growth",
         "ロジスティック増殖：解析解と刻み幅の収束",
@@ -914,7 +916,9 @@
     {
       "id": "sir-epidemic",
       "problem_id": "sir-epidemic",
-      "equation_ids": [],
+      "equation_ids": [
+        "bio-sir"
+      ],
       "keywords": [
         "sir-epidemic",
         "SIR：独立DOP853参照・人口保存・収束",

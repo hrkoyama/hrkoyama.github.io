@@ -11,25 +11,25 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 128,
-    "papers": 233,
-    "references": 282,
-    "journal_articles": 227,
+    "methods": 129,
+    "papers": 235,
+    "references": 285,
+    "journal_articles": 229,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 18,
-    "local_equations": 18,
-    "reading_equations": 28,
-    "local_methods": 113,
+    "other_sources": 19,
+    "local_equations": 23,
+    "reading_equations": 23,
+    "local_methods": 114,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 85,
-    "test_problems": 80,
-    "saved_test_problems": 80,
+    "reading_chapters": 86,
+    "test_problems": 81,
+    "saved_test_problems": 81,
     "code_test_problems": 0
   },
   "items": [
@@ -965,9 +965,9 @@
       "id": "bio-logistic",
       "label": "Logistic population growth",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": "The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map."
+      "scope": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
     },
     {
       "kind": "equation",
@@ -1001,9 +1001,9 @@
       "id": "bio-sir",
       "label": "SIR and SEIR compartment models",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": "The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions."
+      "scope": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
     },
     {
       "kind": "equation",
@@ -1037,18 +1037,18 @@
       "id": "bio-turing",
       "label": "Turing reaction–diffusion framework",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": "A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes."
+      "scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
     },
     {
       "kind": "equation",
       "id": "bio-fitzhugh-nagumo",
       "label": "FitzHugh–Nagumo excitation and recovery",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": "This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations."
+      "scope": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
     },
     {
       "kind": "equation",
@@ -1109,9 +1109,9 @@
       "id": "bio-schnakenberg",
       "label": "Schnakenberg reaction–diffusion",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": "A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue."
+      "scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
     },
     {
       "kind": "equation",
@@ -1465,7 +1465,7 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.",
+      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.",
       "origin": "curated-depth-example"
     },
     {
@@ -1485,7 +1485,7 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.",
+      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.",
       "origin": "curated-depth-example"
     },
     {
@@ -1505,7 +1505,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.",
+      "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.",
       "origin": "curated-depth-example"
     },
     {
@@ -1645,7 +1645,17 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Thermostats and molecular dynamics",
-      "scope": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.",
+      "scope": "Langevin thermostat: canonical distributions, timestep bias and correlation: Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations. CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes: Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations. Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature: Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "stochastic-velocity-rescaling",
+      "label": "Stochastic velocity rescaling (CSVR)",
+      "chapter": "validation-thermostats",
+      "status": "local-example",
+      "group": "Thermostats and molecular dynamics",
+      "scope": "Exact CSVR bath: conditional laws, fluctuations and kinetic correlation: Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations. CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes: Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations. Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature: Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.",
       "origin": "curated-depth-example"
     }
   ],
@@ -2950,6 +2960,24 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "bussi2007csvr",
+      "type": "article",
+      "identity": "doi:10.1063/1.2408420",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "bussi2008localglobal",
+      "type": "article",
+      "identity": "doi:10.1016/j.cpc.2008.01.006",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "bussi-csvr-author-algorithms",
+      "type": "misc",
+      "identity": "url:https://sites.google.com/site/giovannibussi/Research/algorithms",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3180,8 +3208,20 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "eaa16c7a3fd6513f7eb347c90b8e67c0009a6a118406da1b51374c68321dc634",
-    "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "bb74159621ec8d84c8413b71c7e32dbee44b2c949dbe328dbd02e7653e0bab67"
+    "catalog/atlas-methods.json": "f3a43dde3d9ced90744b025a0283067c3be49e582f9967d504a154f33940c806",
+    "catalog/atlas-equations.json": "5ca32ef73b869b25924bcbac13dec95e692952edf207dd0359b01582b431481d",
+    "catalog/atlas-method-primary-references.json": "a2817147caf728caedfd91ab94e686dfd6f9f8f8f52eb3af4d4a2cff8d520ccb"
+  },
+  "equation_execution_source_sha256": {
+    "numerical-methods-atlas/assets/biological-models.json": "a6d4834d379e36d4b55fba48ec881a8a813fc5156056a9c86ca5c17b43fbe6ae",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "catalog/atlas-equations.json": "5ca32ef73b869b25924bcbac13dec95e692952edf207dd0359b01582b431481d",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c"
   }
 }

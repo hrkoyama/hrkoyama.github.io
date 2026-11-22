@@ -142,8 +142,8 @@
         "en": "Stored radial-grid convergence, SCF residuals and termination; not an exact correlated-energy calculation."
       },
       "next": {
-        "ja": "原子の検証を保持し、別配布のH₂分子RHFとの数値表現の違いを比較する。",
-        "en": "Preserve atomic validation and compare its numerical representation with the separately packaged H₂ RHF example."
+        "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
+        "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
       "supplemental_examples": []
     },
@@ -173,8 +173,8 @@
         "en": "Separate SCF density/energy/commutator checks from adjacent nested-s-basis energy changes. Report the final change and tolerance outcome. Angular/complete-basis convergence is not established."
       },
       "next": {
-        "ja": "分極関数を含むH₂の基底比較、一般分子DFT・FCIは今後の課題。周期Heの限定例は別欄に掲載。",
-        "en": "Polarized H₂ basis comparisons, general molecular DFT and FCI remain future work. The scoped periodic-He example has a separate field."
+        "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
+        "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
       "supplemental_examples": []
     },
@@ -255,8 +255,8 @@
         "en": "Temperature control"
       },
       "scope": {
-        "ja": "12手法を比較解説。LangevinのBAOABによる1次元調和振動子NVTだけに専用コード・固定入力・分布検証を追加。他の11手法は実装予定です。",
-        "en": "Comparative reading covers 12 methods. Dedicated code, fixed inputs and distribution checks cover only a 1D harmonic-oscillator NVT example with Langevin BAOAB. The other 11 methods remain planned."
+        "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
+        "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
       },
       "examples": [],
       "reading": {
@@ -264,19 +264,22 @@
         "en": "/numerical-methods-atlas/en/read/thermostats/"
       },
       "reference": {
-        "ja": "連続の線形Gaussian伝播の行列指数関数と、独立な離散Lyapunov方程式による定常共分散。正準位置・運動量・全エネルギーCDFと照合。",
-        "en": "A continuous linear-Gaussian matrix-exponential propagator and an independent discrete-Lyapunov stationary covariance. Compare canonical position, momentum and total-energy CDFs."
+        "ja": "CSVR核はGamma正準分布・CIRの条件付きモーメントと解析的な運動エネルギーACFに照合。新調和系はOBABOの共通shadow Gaussian、quartic系は独立求積の正準分布・モーメントを参照。旧BAOABの離散Lyapunov照合は別版の根拠として保持。",
+        "en": "Check the CSVR kernel against canonical Gamma statistics, CIR conditional moments and analytic kinetic-energy ACF. New harmonic runs use the shared OBABO shadow Gaussian; quartic runs use independent quadrature for canonical distributions and moments. Preserve the earlier BAOAB discrete-Lyapunov check as evidence for its separate edition."
       },
       "refinement": {
-        "ja": "dt=0.4/0.2/0.1、32768独立レプリカ。位置・運動量共分散の刻み依存、時差相関、有限burn-inの残差を分離。固定seedでの分布判定。",
-        "en": "dt=0.4/0.2/0.1 with 32768 independent replicas. Separate covariance step bias, lagged correlations and finite-burn-in residuals. Distribution acceptance is for fixed seeds."
+        "ja": "同じOBABO分割で浴の種類を比較し、刻み・結合・独立系列の標本不確かさを分離。分布・温度揺らぎと時間相関を別々に確認し、LangevinとCSVRの相関の一致は要求しません。相関は方法依存の標本化動力学です。",
+        "en": "Compare bath choices under the same OBABO splitting; separate step/coupling effects and independent-stream sampling uncertainty. Check distributions and temperature fluctuations separately from correlations. Langevin and CSVR correlations need not agree: they describe method-dependent sampling dynamics."
       },
       "next": {
-        "ja": "非調和・多粒子系、結合時間の広い走査、Nosé–Hoover・CSVRなど他11手法の専用検証は未実装。",
-        "en": "Anharmonic/many-particle systems, broad coupling-time sweeps and dedicated checks for the other 11 methods, including Nosé–Hoover/CSVR, remain unimplemented."
+        "ja": "非調和系は固定した小さな2自由度例に限定。一般多体系・拘束・重心除去、広い結合時間走査、他10手法、BOMD／CPMDと熱浴の連成は未検証。CSVR核の診断を独立した物理問題へ加算しません。",
+        "en": "Anharmonic evidence covers only the fixed small two-degree example. General many-body systems, constraints/center-of-mass removal, broad coupling sweeps, the other 10 methods and BOMD/CPMD-to-bath coupling remain unvalidated. The CSVR-kernel diagnostic is not an additional independent physical problem."
       },
       "supplemental_examples": [
-        "langevin-harmonic"
+        "langevin-harmonic",
+        "csvr-kinetic-kernel",
+        "csvr-langevin-harmonic",
+        "csvr-langevin-quartic"
       ]
     },
     {
@@ -306,8 +309,8 @@
         "en": "Distinguish total-energy and force convergence. Save k-point, Gaussian-basis, FFT-grid, SCF, displacement-step and independent plane-wave-cutoff sequences."
       },
       "next": {
-        "ja": "BOMDの長時間NVE保存量と刻み幅・SCF公差への感度を検証し、他物質・非局所擬ポテンシャル・金属は別に検証する。",
-        "en": "Validate long BOMD NVE conservation and timestep/SCF sensitivity. Other materials, nonlocal pseudopotentials and metals need separate evidence."
+        "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
+        "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
       "supplemental_examples": []
     },
@@ -416,10 +419,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "06c3a86e6b3066ae036147965f6b5f44ffbbce27ff12a2fcac1ff2bd333c200f",
+    "catalog/atlas-depth.json": "5b368b28e7c641836414e1e5755d3d2a5a9f114ae45eceb8d1ff2a4b5bfbb237",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
+    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -430,6 +433,11 @@
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
     "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",

@@ -26,7 +26,7 @@ Other names: CT法, constrained transport, 制約輸送, 制約輸送法
 - Reference: https://doi.org/10.1016/0021-9991(88)90120-9 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://arxiv.org/abs/0911.3410 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.
 

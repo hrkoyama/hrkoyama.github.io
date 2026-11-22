@@ -7,7 +7,7 @@ import re
 import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
-GROUPS = ('foundations', 'models', 'particles', 'mhd')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats')
 EDITION_PATTERN = r'\d{4}-\d{2}-\d{2}(?:-r\d+)?'
 
 
@@ -152,8 +152,7 @@ def load_depth_group(root, group, edition):
             'test_urls': [ORIGIN+base+name for name in tests]}
 
 
-def depth_release_record(root, method):
-    config = method['depth_release']
+def _depth_release_record(root, method, config):
     assert method['status'] == 'educational-example'
     assert set(config) >= {'group', 'edition', 'case_ids'}
     data = load_depth_group(root, config['group'], config['edition'])
@@ -179,6 +178,22 @@ def depth_release_record(root, method):
             'code_archive_sha256': data['verification']['archive']['sha256'],
             'results': base+'results/result.json', 'passed_tests': data['verification']['passed_tests'],
             'examples': examples}
+
+
+def depth_release_record(root, method):
+    """Resolve the primary release, retaining the original public API."""
+    return _depth_release_record(root, method, method['depth_release'])
+
+
+def depth_release_records(root, method):
+    """Resolve separately verified editions without replacing earlier evidence."""
+    configs = [method['depth_release'], *method.get('depth_additional_releases', [])]
+    identities = [(item['group'], item['edition']) for item in configs]
+    assert len(identities) == len(set(identities)), 'Repeated supplement release'
+    records = [_depth_release_record(root, method, config) for config in configs]
+    identifiers = [ident for record in records for ident in record['case_ids']]
+    assert len(identifiers) == len(set(identifiers)), 'Repeated supplement case across releases'
+    return records
 
 
 def depth_code_urls(data, case_ids):

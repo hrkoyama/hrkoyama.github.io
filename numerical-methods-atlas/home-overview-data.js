@@ -961,6 +961,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-thermostats": [
+    "ja",
+    "en"
+  ],
   "wavelets": [
     "ja",
     "en"

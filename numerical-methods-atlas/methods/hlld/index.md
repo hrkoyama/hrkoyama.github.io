@@ -26,7 +26,7 @@ Other names: HLLD法, HLLD流束, HLLD solver, HLLDリーマンソルバー
 - Reference: https://doi.org/10.1016/0021-9991(88)90120-9 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://arxiv.org/abs/0911.3410 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit.
 

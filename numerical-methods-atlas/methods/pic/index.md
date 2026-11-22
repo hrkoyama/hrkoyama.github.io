@@ -18,7 +18,7 @@ Other names: PIC法, particle in cell, 粒子セル法, 粒子インセル法
 - Reference: https://doi.org/10.1063/1.1706638 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://doi.org/10.1201/9780367806934 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently.
 

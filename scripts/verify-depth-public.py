@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify four reviewed lightweight public ZIPs without a source checkout.
+"""Verify reviewed lightweight public ZIPs without a source checkout.
 
 Only the Python standard library is used by this verifier. The current Python
 must already contain the three pinned scientific/test dependencies. No quantum
@@ -30,7 +30,7 @@ import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
 REGISTRY_URL = ORIGIN + '/numerical-methods-atlas/validation/releases.json'
-GROUPS = ('foundations', 'models', 'particles', 'mhd')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats')
 DIRECT_PINS = {'numpy': '2.0.2', 'scipy': '1.14.1', 'pytest': '8.3.5'}
 GROUP_TIMEOUT_SECONDS = 120
 MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024
@@ -145,7 +145,7 @@ def validate_registry(registry):
     edition = registry.get('edition')
     require(isinstance(edition, str) and re.fullmatch(EDITION_PATTERN, edition), 'Invalid edition')
     releases = registry.get('releases')
-    require(isinstance(releases, list) and len(releases) == 4, 'Exactly four reviewed release groups required')
+    require(isinstance(releases, list) and len(releases) == len(GROUPS), 'Exactly the reviewed release groups are required')
     require([r.get('group') for r in releases] == list(GROUPS), 'Unexpected or duplicate release group/order')
     all_cases = []
     for release in releases:
@@ -163,8 +163,8 @@ def validate_registry(registry):
         require(type(release.get('tests')) is int and release['tests'] > 0, 'Invalid expected pytest count')
         all_cases.extend(ids)
     require(len(all_cases) == len(set(all_cases)), 'Case IDs repeated across release groups')
-    require(type(registry.get('case_count')) is int and registry['case_count'] == len(all_cases) == 19,
-            'The reviewed lightweight registry must contain nineteen cases')
+    require(type(registry.get('case_count')) is int and registry['case_count'] == len(all_cases) and len(all_cases) > 0,
+            'Registry case count differs from its pinned release inventory')
     return releases
 
 

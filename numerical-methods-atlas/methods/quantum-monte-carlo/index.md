@@ -21,7 +21,7 @@ Comparison notes: Statistical error bars do not capture fixed-node, time-step or
 
 - Reference: https://doi.org/10.1103/PhysRevLett.45.566 — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: Separate representative methods and their verification plans.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/quantum-monte-carlo/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

@@ -338,6 +338,14 @@ def connection_html(edge, stages, math, lang):
     return body
 
 
+def route_reference_ids(route):
+    """Include connection-specific citations in both public text formats."""
+    return list(dict.fromkeys(
+        ident for item in [route, *route['connections']]
+        for ident in item.get('reference_ids', [])
+    ))
+
+
 def render_language(data, context, lang):
     ja = lang == 'ja'
     math = {entry['id']: entry for entry in data['math_families']}
@@ -365,7 +373,7 @@ def render_language(data, context, lang):
         body += '<h3>' + ('接続を選ぶ' if ja else 'Choose a connection') + '</h3>' + connection_flow_html(route, stages, context, lang)
         body += '<h3>' + ('各要素の解説と現在の根拠' if ja else 'Readings and current evidence for each component') + '</h3><div class="crossover-stages">' + ''.join(stage_html(stage, context, lang) for stage in route['stages']) + '</div>'
         body += '<h3>' + ('量の受け渡し・共通数理・検証の違い' if ja else 'Quantities, shared mathematics and different validation needs') + '</h3>' + ''.join(connection_html(edge, stages, math, lang) for edge in route['connections'])
-        ids = route.get('reference_ids', [])
+        ids = route_reference_ids(route)
         if ids:
             body += '<h3>' + ('一次文献と確認した範囲' if ja else 'Primary references and scope of review') + '</h3><ul class="crossover-reference-list">'
             for ident in ids:
@@ -414,9 +422,9 @@ def render_markdown(data, context):
                 for key, title_ja, title_en in [('exchanged_quantity', '受け渡す量', 'Exchanged quantity'), ('shared_math', '共通する数理', 'Shared mathematics'), ('what_differs', '異なる点', 'What differs'), ('existing_evidence', '既存の要素根拠', 'Existing component evidence'), ('validation_required', '接続に必要な検証', 'Validation required')]:
                     lines += ['**' + (title_ja if ja else title_en) + ':** ' + edge[key][lang], '']
                 lines += [connection_scope_label(edge, lang) + edge['coupled_validation']['scope'][lang], '']
-            if route.get('reference_ids'):
+            if route_reference_ids(route):
                 lines += ['### ' + ('一次文献と確認した範囲' if ja else 'Primary references and scope of review'), '']
-                for ident in route['reference_ids']:
+                for ident in route_reference_ids(route):
                     reference = references[ident]
                     title = reference['title'][lang] if isinstance(reference['title'], dict) else reference['title']
                     lines += ['- ' + str(reference['author']) + ' (' + str(reference['year']) + '). [' + title + '](' + reference['url'] + '). ' + reference['review'][lang]]

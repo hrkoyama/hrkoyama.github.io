@@ -24,7 +24,7 @@ Comparison notes: This is an introduction to concepts, conditions and their comp
 - Reference: https://doi.org/10.1107/S1600576717011712 — Primary source for band-symmetry concepts and conventions. Introductory review; no atlas band-structure calculation or irrep assignment has been numerically reproduced.
 - Reference: https://doi.org/10.1103/PhysRevB.76.045302 — Primary source for band-symmetry concepts and conventions. Introductory review; no atlas band-structure calculation or irrep assignment has been numerically reproduced.
 
-Next: Classify an explicit crystal with stated SOC, magnetism and structural tolerances, and compare little groups, irreps and degeneracies against independent sources.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/band-symmetry/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

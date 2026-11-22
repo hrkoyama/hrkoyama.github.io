@@ -18,7 +18,7 @@ Other names: MCMC法, Markov chain Monte Carlo, マルコフ連鎖モンテカ�
 - Reference: https://doi.org/10.1063/1.1699114 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://doi.org/10.1093/biomet/57.1.97 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence.
 

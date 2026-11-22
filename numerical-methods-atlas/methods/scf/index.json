@@ -92,8 +92,8 @@
   "units": "Atomic/molecular examples: Mixing alpha and iteration number are dimensionless. Radial p is in bohr^(-1), integral |p_out-p_in| dr is electron number, and energy changes/normalized orbital residuals are in hartree. Published tolerances belong to this normalization and model. Molecular branch: normalized 3D AO functions in bohr^(-3/2); overlap, AO density matrix and electron count dimensionless; transformed Fock commutator in hartree. Molecular tolerances are stated separately. Periodic He: bohr, inverse bohr and hartree per neutral primitive cell; reciprocal-lattice fractional k coordinates.",
   "boundary_conditions": "Atomic/molecular examples: SCF mixing itself imposes no spatial boundary condition. The supplied helium fixed-point map uses reduced-orbital u(0)=u(r_max)=0 and an isolated finite-origin, N/r Hartree field; see the HF/KS/Hartree records. Separate H2 branch: isolated molecule, analytic whole-space Gaussian integrals; no finite radial box. Periodic He: three-dimensional Bloch boundaries in the fixed one-atom simple-cubic cell.",
   "next_deliverable": {
-    "ja": "電子数・残差・エネルギー変化を保存する基準例。",
-    "en": "A baseline recording electron number, residuals and energy changes."
+    "ja": "既存の小規模例の固定入力・保存済み参照・配布物の整合を維持し、必要時に少数の代表ケースを再実行する。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMDは、必要性が指定された場合だけ別途検討する。",
+    "en": "Maintain fixed inputs, saved references and release integrity for the existing small examples; rerun a few representative cases when needed. Large basis/k-point sweeps, expensive independent-reference regeneration and long BOMD/CPMD trajectories are considered separately only on explicit need."
   },
   "limitations": {
     "ja": "原子・分子の実行例の範囲：エネルギー変化だけで収束を宣言しない。電子数が2に保たれることは実装の整合性検査であり、独立な物理検証ではない。異なる初期値での一致も解の一意性・軌道安定性・大域的最低エネルギーを証明しない。Pulay文献は未採用の加速法の文脈用で、単純密度混合の実装出典ではない。 H₂では別の分子積分実装を用いる。分子DFT・一般多中心分子・開殻・軌道安定性解析は未実装。 周期He側では別のPySCFドライバーがVWN5相関と周期k点積分を扱う。",

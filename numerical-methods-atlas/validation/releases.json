@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 19,
+  "case_count": 22,
   "releases": [
     {
       "group": "foundations",
@@ -73,6 +73,22 @@
         "shu-independent"
       ],
       "tests": 11
+    },
+    {
+      "group": "thermostats",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/",
+      "archive": "atlas-thermostats-2026-11-22.zip",
+      "archive_sha256": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+      "manifest_sha256": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+      "verification_sha256": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "csvr-kinetic-kernel",
+        "csvr-langevin-harmonic",
+        "csvr-langevin-quartic"
+      ],
+      "tests": 42
     }
   ]
 }

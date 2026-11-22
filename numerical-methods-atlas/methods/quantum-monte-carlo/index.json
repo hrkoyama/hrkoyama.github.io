@@ -37,8 +37,8 @@
   "units": "Atomic units in the displayed electronic equations (hbar = m_e = e = 4 pi epsilon_0 = 1); dimensionless conventions are stated where needed.",
   "boundary_conditions": "Isolated or periodic conditions must be selected for each physical system; no numerical boundary-value example is published here yet.",
   "next_deliverable": {
-    "ja": "代表手法を分けた文献・検証計画。",
-    "en": "Separate representative methods and their verification plans."
+    "ja": "解説・一次文献と既存の小規模例との対応を保守する。専用実装の追加は必要性が指定された場合に小さな教育用例から検討し、重い収束走査・独立参照の再生成・長時間MDは通常の作業へ含めない。",
+    "en": "Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD."
   },
   "limitations": {
     "ja": "日英の導入・代表式・一次文献を公開。専用の実装・数値検証はUnder construction。統計誤差の棒だけでは固定節・時間刻み・有限サイズ等の系統誤差を表せません。量子コンピュータを使う計算という意味でもありません。",

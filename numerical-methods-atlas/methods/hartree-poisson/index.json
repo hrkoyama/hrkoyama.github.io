@@ -89,8 +89,8 @@
   "units": "Atomic units: r in bohr, n in bohr^(-3), p in bohr^(-1), N an electron number, v_H and E_H in hartree. The positive-number-density convention fixes the Poisson sign.",
   "boundary_conditions": "Isolated spherical Coulomb boundary: v_H is finite at the origin and equals N/r outside the truncated density support. It is not a zero-Dirichlet condition at r_max. Endpoint p=0 is inherited from the reduced orbital; no periodic neutrality/background convention is implemented.",
   "next_deliverable": {
-    "ja": "孤立と周期の小規模参照例。",
-    "en": "Small isolated and periodic reference examples."
+    "ja": "既存の小規模例の固定入力・保存済み参照・配布物の整合を維持し、必要時に少数の代表ケースを再実行する。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMDは、必要性が指定された場合だけ別途検討する。",
+    "en": "Maintain fixed inputs, saved references and release integrity for the existing small examples; rerun a few representative cases when needed. Large basis/k-point sweeps, expensive independent-reference regeneration and long BOMD/CPMD trajectories are considered separately only on explicit need."
   },
   "limitations": {
     "ja": "球対称・孤立・有限箱で切断した密度用の積分評価。非球対称、一般の境界形状、周期系、Ewaldや背景電荷、点電荷の特異自己エネルギーは扱わない。同半径標本の重複回避は求積の会計であり、DFTの物理的自己相互作用を除去する操作ではない。He HFでの自己相互作用相殺は別の交換簡約に由来する。",

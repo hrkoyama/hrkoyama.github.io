@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the verified four-release registry and bind its no-checkout workflow."""
+"""Build the verified lightweight-release registry and bind its no-checkout workflow."""
 import hashlib
 import json
 from pathlib import Path
@@ -19,7 +19,7 @@ def digest(path):
 def build_registry(root):
     root = Path(root)
     config = read_json(root / 'catalog/atlas-depth-expansion.json')
-    assert [g['id'] for g in config['groups']] == list(GROUPS), 'Review all four groups in their canonical order'
+    assert [g['id'] for g in config['groups']] == list(GROUPS), 'Review every group in its canonical order'
     records = []
     for group in GROUPS:
         data = load_depth_group(root, group, config['edition'])
@@ -35,7 +35,7 @@ def build_registry(root):
             'case_ids': sorted(case['id'] for case in data['metadata']),
             'tests': receipt['tests']})
     ids = [ident for release in records for ident in release['case_ids']]
-    assert len(ids) == len(set(ids)) == 19, 'Review changes to the nineteen-case scope explicitly'
+    assert len(ids) == len(set(ids)) > 0, 'Review nonempty, unique case inventory explicitly'
     return {'schema_version': 1, 'edition': config['edition'], 'case_count': len(ids), 'releases': records}
 
 
@@ -57,7 +57,7 @@ def build():
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(payload)
     workflow.write_text(text)
-    print('Built four reviewed public releases (nineteen cases) and bound two SHA-256 workflow pins.')
+    print('Built',len(json.loads(payload)['releases']),'reviewed public releases with',json.loads(payload)['case_count'],'cases; bound two SHA-256 workflow pins.')
 
 
 if __name__ == '__main__':

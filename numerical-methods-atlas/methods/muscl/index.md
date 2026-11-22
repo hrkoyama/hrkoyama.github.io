@@ -24,7 +24,7 @@ Other names: MUSCL法, MUSCLスキーム, MUSCL scheme
 - Reference: https://doi.org/10.1016/0021-9991(91)90211-3 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://doi.org/10.1017/CBO9780511791253 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code.
 

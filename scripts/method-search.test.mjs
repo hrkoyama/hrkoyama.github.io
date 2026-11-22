@@ -38,7 +38,8 @@ test('acronyms, fullwidth forms and Japanese suffixes identify methods without s
   }
   for(const [query,id] of [['CG','cg'],['CG法','cg'],['CT','ct'],['CT法','ct'],
     ['LBM','d2q9-bgk'],['格子ボルツマン法','d2q9-bgk'],['DG法','dg'],
-    ['Roe法','roe'],['ロー法','roe'],['GSPH','gsph']]){
+    ['Roe法','roe'],['ロー法','roe'],['GSPH','gsph'],
+    ['CSVR','stochastic-velocity-rescaling'],['CSVR法','stochastic-velocity-rescaling'],['ＣＳＶＲ法','stochastic-velocity-rescaling']]){
     assert.equal(findMethods(catalog,query)[0]?.id,id,query);
   }
   assert.ok(!ids(findMethods(catalog,'CG')).includes('bicgstab'));
@@ -124,7 +125,7 @@ function withDOM(run){
 
 test('published method cards expose every real related code/test URL and preserve availability',()=>withDOM(({render})=>{
   assert.equal(published.length,145);
-  assert.equal(published.filter(method=>method.status==='educational-example').length,113);
+  assert.equal(published.filter(method=>method.status==='educational-example').length,114);
   for(const method of published){
     for(const language of ['ja','en']){
       const card=render(method,language),anchors=links(card),urls=anchors.map(anchor=>new URL(anchor.href,origin));
@@ -217,7 +218,7 @@ test('goal selections do not inherit unrelated common or supplemental executions
   const borrowed=['mc-integral','periodic-he-forces','gaussian-mcmc','turing-schnakenberg'].map(id=>({id,name:{ja:id,en:id},guide:{ja:`/numerical-methods-atlas/validation/${id}/?lang=ja`}}));
   const contaminated=published.map(method=>({...method,execution_examples:[...(method.execution_examples||[]),...borrowed]}));
   const thermostat=findMethods(contaminated,'温度を制御したい');
-  assert.deepEqual(thermostat.find(row=>row.id==='langevin-thermostat').method.execution_examples.map(example=>example.id),['langevin-harmonic']);
+  assert.deepEqual(thermostat.find(row=>row.id==='langevin-thermostat').method.execution_examples.map(example=>example.id),['langevin-harmonic','csvr-langevin-harmonic','csvr-langevin-quartic']);
   for(const row of findMethods(contaminated,'分子のdftを学びたい')){
     assert.equal(row.method.status,'reading-only');
     assert.deepEqual(row.method.execution_examples,[]);

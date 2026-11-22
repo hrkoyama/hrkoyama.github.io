@@ -44,6 +44,35 @@ test('all nine profile cases are included once, while repeated solver and Mach v
   assert.ok(!inventory.problems.some(x=>['wedge-m2','wedge-m2.5'].includes(x.id)));
   assert.ok(!inventory.problems.some(x=>/planned|reference-only/.test(x.availability)));
 });
+test('the new thermostat comparisons add one quartic problem and retain the original harmonic release',()=>{
+  const base='code/validated-examples/2026-11-22/thermostats/';
+  const cases=JSON.parse(read(base+'cases.json'));
+  const results=JSON.parse(read(base+'results/result.json'));
+  const receipt=JSON.parse(read(base+'verification.json'));
+  const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
+  assert.equal(catalog.problems.length,81);
+  assert.equal(inventory.counts.groups.time,8);
+  assert.equal(mapping['csvr-kinetic-kernel'],null);
+  assert.equal(mapping['csvr-langevin-harmonic'],'langevin-harmonic');
+  assert.equal(mapping['csvr-langevin-quartic'],'thermostatted-quartic');
+  for(const id of ['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'])assert.ok(!catalog.problems.some(x=>x.id===id));
+  const harmonic=catalog.problems.find(x=>x.id==='langevin-harmonic');
+  assert.equal(harmonic.chapter,'validation-models');
+  assert.equal(harmonic.code_base,'/code/validated-examples/2026-11-22/models/');
+  assert.deepEqual(harmonic.supplemental_examples.map(x=>x.id),['langevin-harmonic','csvr-langevin-harmonic']);
+  const quartic=catalog.problems.find(x=>x.id==='thermostatted-quartic');
+  const metadata=cases.find(x=>x.id==='csvr-langevin-quartic');
+  assert.equal(quartic.group,'time');
+  assert.equal(quartic.chapter,'validation-thermostats');
+  assert.deepEqual(quartic.name,metadata.title);
+  assert.deepEqual(quartic.supplemental_examples.map(x=>x.id),['csvr-langevin-quartic']);
+  assert.equal(results.input_sha256,hash(readFileSync(new URL(base+'inputs.json',root))));
+  assert.equal(results.passed,true);
+  for(const row of results.cases){assert.match(row.input_sha256,/^[a-f0-9]{64}$/);assert.equal(row.passed,true);assert.ok(Object.values(row.checks).every(Boolean));}
+  assert.equal(receipt.group,'thermostats');
+  assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.passed,true);
+  assert.equal(receipt.errors+receipt.failures,0);
+});
 test('the public landing, coverage highlights and indexes expose the whole inventory',()=>{
   const page=read('numerical-methods-atlas/test-cases/index.html');
   assert.ok(page.includes('テスト計算：'+inventory.problems.length+'問題'));

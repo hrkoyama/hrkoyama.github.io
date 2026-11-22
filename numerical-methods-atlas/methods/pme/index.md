@@ -66,7 +66,7 @@ References:
 
 problem: Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field.
 
-variant: The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original1993 Lagrange-interpolation form.
+variant: The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original 1993 Lagrange-interpolation form.
 
 use_when:
 - Meshing the reciprocal contribution of a 3D periodic Coulomb problem for comparison with the same Ewald formulation.
@@ -122,7 +122,7 @@ References:
 - Reference: https://doi.org/10.1063/1.464397 — Original PME: Lagrange weights, gridded charges and convolution-based reciprocal energies and forces, distinct from B-spline SPME.
 - Reference: https://doi.org/10.1063/1.470117 — Primary comparison distinguishing original Lagrange PME from B-spline interpolation and analytic gradients.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.
 

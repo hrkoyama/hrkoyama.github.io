@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "thermostats",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+  "archive": {
+    "file": "atlas-thermostats-2026-11-22.zip",
+    "sha256": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "bytes": 724947,
+    "archive_directory": "atlas-thermostats-2026-11-22"
+  },
+  "archive_sha256": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+  "returncode": 0,
+  "passed_tests": 42,
+  "tests": 42,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "csvr-kinetic-kernel",
+    "csvr-langevin-harmonic",
+    "csvr-langevin-quartic"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 5.816155500000605,
+  "independent_rerun_seconds": 5.882585583000036,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

@@ -202,7 +202,9 @@
   "discovery": {
     "id": "sir-epidemic",
     "problem_id": "sir-epidemic",
-    "equation_ids": [],
+    "equation_ids": [
+      "bio-sir"
+    ],
     "keywords": [
       "sir-epidemic",
       "SIR：独立DOP853参照・人口保存・収束",

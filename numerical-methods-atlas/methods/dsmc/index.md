@@ -18,7 +18,7 @@ Other names: DSMC法, direct simulation Monte Carlo, 直接シミュレーショ
 - Reference: https://doi.org/10.1063/1.1710976 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://global.oup.com/academic/product/molecular-gas-dynamics-and-the-direct-simulation-of-gas-flows-9780198561958 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
 

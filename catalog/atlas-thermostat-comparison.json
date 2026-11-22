@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "case_ids": [
+    "csvr-kinetic-kernel",
+    "csvr-langevin-harmonic",
+    "csvr-langevin-quartic"
+  ],
+  "title": {
+    "ja": "CSVRとLangevin：正準分布・揺らぎ・相関を比べる",
+    "en": "CSVR and Langevin: shared canonical targets, distinct correlations"
+  },
+  "intro": {
+    "ja": "新しい比較は古典的な少自由度系に限定します。CSVRとLangevinに同じOBABO分割、自由度、温度、ポテンシャル、観測時刻を使い、分布・揺らぎ・相関を別々に評価します。従来のBAOAB調和振動子の結果は別の配布版として保持します。",
+    "en": "The new comparison is limited to small classical systems. CSVR and Langevin use matched OBABO splitting, degrees of freedom, temperature, potential and observation times. Distribution, fluctuations and correlations are separate diagnostics. The earlier BAOAB harmonic results remain in their original release."
+  },
+  "formulas": {
+    "csvr-canonical": "K=\\sum_{i=1}^{f}\\frac{p_i^2}{2m_i},\\quad \\bar K=\\frac{f k_B T_0}{2},\\quad T_{\\rm inst}=\\frac{2K}{f k_B}",
+    "csvr-fluctuations": "\\frac{2K}{k_B T_0}\\sim\\chi_f^2,\\quad \\operatorname{Var}K=\\frac{f(k_B T_0)^2}{2},\\quad \\operatorname{Var}T_{\\rm inst}=\\frac{2T_0^2}{f}",
+    "csvr-cir": "dK=\\frac{\\bar K-K}{\\tau}\\,dt+2\\sqrt{\\frac{K\\bar K}{f\\tau}}\\,dW",
+    "csvr-update": "c=e^{-h/\\tau},\\quad a=\\frac{(1-c)\\bar K}{f},\\quad K^+=\\left(\\sqrt{cK}+\\sqrt a\\,R\\right)^2+aS,\\quad R\\sim N(0,1),\\quad S\\sim\\chi^2_{f-1}",
+    "csvr-sign": "\\alpha=\\operatorname{sign}\\!\\left(\\sqrt{cK}+\\sqrt a\\,R\\right)\\sqrt{K^+/K},\\qquad p_i^+=\\alpha p_i",
+    "csvr-matched": "\\tau=(2\\gamma)^{-1},\\qquad p^+=e^{-\\gamma h}p+\\sqrt{m k_B T_0(1-e^{-2\\gamma h})}\\,R_{\\rm phys}\\quad(f=1)",
+    "csvr-kinetic-reference": "\\mathbb E[K^+\\mid K]=cK+fa,\\quad\\operatorname{Var}(K^+\\mid K)=2fa^2+4acK,\\quad \\rho_K(t)=e^{-t/\\tau}\\ \\text{(bath only)}",
+    "csvr-quantities": "C_X(t)=\\langle(X(t)-\\langle X\\rangle)(X(0)-\\langle X\\rangle)\\rangle,\\qquad \\rho_X(t)=C_X(t)/C_X(0)"
+  },
+  "sections": [
+    {
+      "id": "csvr-exact",
+      "title": {
+        "ja": "CSVRの確率的更新と符号",
+        "en": "The stochastic CSVR update and its sign"
+      },
+      "paragraphs": {
+        "ja": [
+          "CSVRは各運動量成分へ独立なノイズを加えず、全自由度の運動エネルギーを確率的に進め、同じ係数で運動量を拡大・縮小します。2007年論文の運動エネルギーSDEと厳密伝播式、2008年論文の符号付き係数を採用します。以下のhは熱浴のサブステップです。",
+          "同じ正規乱数RをKの更新と符号の判定に使います。少自由度では符号反転を捨てられません。Sは自由度f−1のχ²乱数で、f=1では厳密に0です。原著者は2007年論文のGammaによる二乗和生成の説明に誤植を指摘しているため、採用コードはχ²を直接生成します。"
+        ],
+        "en": [
+          "CSVR evolves the total kinetic energy stochastically and scales all momenta together. The implementation uses the 2007 kinetic-energy SDE and exact propagator, with the signed factor in the 2008 paper. Here h denotes a thermostat substep.",
+          "The same Gaussian R determines energy and sign. Momentum flips matter for a few degrees of freedom. Draw S directly from a chi-square law with f−1 degrees, with S=0 at f=1; this avoids the Gamma-construction typo identified by the original author."
+        ]
+      },
+      "formulas": [
+        "csvr-cir",
+        "csvr-update",
+        "csvr-sign"
+      ],
+      "references": [
+        "bussi2007csvr",
+        "bussi2008localglobal",
+        "bussi-csvr-author-algorithms"
+      ]
+    },
+    {
+      "id": "matched-splitting",
+      "title": {
+        "ja": "同じ分割順序で比べる",
+        "en": "Compare with the same splitting"
+      },
+      "paragraphs": {
+        "ja": [
+          "今回の2方式は、MD刻みをΔtとしてO(Δt/2)–B(Δt/2)–A(Δt)–B(Δt/2)–O(Δt/2)という同じOBABO順序を使います。Aは座標移動、Bは力による運動量更新、Oは熱浴です。CSVR更新式ではh=Δt/2を使います。OBABOの中央にはvelocity Verletがあり、両端の熱浴だけを入れ替えます。",
+          "τ=(2γ)⁻¹として、ポテンシャルのない熱浴の運動エネルギー緩和を揃えます。同じ数字のτを摩擦時間γ⁻¹と同一視しません。f=1では符号付きCSVRとLangevinの熱浴は同じ遷移分布となり、採用実装は与えたノイズを対応させて照合します。",
+          "以前のBAOAB例はB–A–O–A–Bという別の分割です。旧結果と独立線形参照は保存したまま、今回のOBABOの離散参照や誤差の結果に置き換えません。"
+        ],
+        "en": [
+          "Both new methods use O(Δt/2)–B(Δt/2)–A(Δt)–B(Δt/2)–O(Δt/2) for MD step Δt: A moves coordinates, B applies forces and O is the thermostat. The CSVR formula uses bath substep h=Δt/2. They share a velocity-Verlet core and differ in the bath updates.",
+          "Set τ=(2γ)⁻¹ to match kinetic-energy relaxation for the force-free bath. This τ is not the friction time γ⁻¹. At f=1, signed CSVR has the Langevin transition law; a paired-noise check tests the implementation.",
+          "The earlier BAOAB example uses a different B–A–O–A–B splitting. Its release and independent linear reference remain unchanged; the new OBABO references and errors do not replace them."
+        ]
+      },
+      "formulas": [
+        "csvr-matched"
+      ],
+      "references": [
+        "bussi2008localglobal"
+      ]
+    },
+    {
+      "id": "distribution-fluctuation-correlation",
+      "title": {
+        "ja": "分布・揺らぎ・相関の三つの判定",
+        "en": "Three separate questions: distribution, fluctuation and correlation"
+      },
+      "paragraphs": {
+        "ja": [
+          "静的な正準分布は両方式で共通です。運動量と運動エネルギー、瞬間温度の分布・平均・分散を確認し、位置の参照は調和系の解析分布、非調和系では別の数値求積から作ります。温度の平均だけが一致しても、揺らぎの再現は確認できません。",
+          "動的な相関は熱浴の方式と結合時間に依存します。座標q、運動量p、運動エネルギーK、全エネルギーHを観測し、方法間で一致することを成功条件にはしません。Langevinの調和系は連続行列指数とOBABOの離散定常共分散・伝播を分け、他の全系相関は測定値・不確かさ・刻み依存として示します。",
+          "ρK(t)=exp(−t/τ)という厳密参照は、Hamiltonianの力や位置更新を含まない熱浴単独の検査です。調和・非調和の全系ではKとUが交換するので、この式をそのまま当てません。",
+          "CDFの誤差は、入力で先に固定した位置・エネルギーの各5点、条件付き熱浴では3分位点などで調べた最大差です。分布全域の上限を取るKolmogorov–Smirnov統計量ではありません。全系の相関は正準参照の平均・分散で中心化・正規化しているため、有限刻みの零時差値が厳密に1とは限りません。"
+        ],
+        "en": [
+          "Both methods share the static canonical target. Check momentum, kinetic energy and instantaneous-temperature distributions, means and variances. Position references are analytic for harmonic systems and use separate quadrature for the anharmonic case. Matching the mean temperature alone does not check fluctuations.",
+          "Dynamic correlations depend on the method and coupling time. Measure position q, momentum p, kinetic energy K and total energy H without requiring agreement between methods. For harmonic Langevin, distinguish the continuous matrix exponential from the OBABO discrete stationary covariance/propagator. Other full-system correlations are measured with uncertainty and timestep dependence.",
+          "The exact ρK(t)=exp(−t/τ) reference applies only to the isolated bath. Full harmonic or anharmonic motion exchanges K and U, so that expression is not used as its correlation target.",
+          "CDF errors are maxima over predeclared checkpoints: five position/energy points and, for the conditional bath, three quantile points. They are not Kolmogorov–Smirnov suprema over the whole distribution. Full-system correlations use canonical-reference centering and normalization, so finite-step zero-lag values need not equal one exactly."
+        ]
+      },
+      "formulas": [
+        "csvr-canonical",
+        "csvr-fluctuations",
+        "csvr-quantities",
+        "csvr-kinetic-reference"
+      ],
+      "references": []
+    },
+    {
+      "id": "sampling-and-boundaries",
+      "title": {
+        "ja": "標本化の限界と実装の境界",
+        "en": "Sampling limits and implementation boundaries"
+      },
+      "paragraphs": {
+        "ja": [
+          "正準な初期アンサンブルを保つ検査と、温度をずらした初期値から平衡へ近づく検査を区別します。複数の独立レプリカと固定seed、有限の観測窓を使い、標本誤差と刻み誤差・結合時間依存を混ぜません。採用した少自由度の検査は任意の初期値からの一般的な混合保証ではありません。 相関の標準誤差は、各時差で独立レプリカ間の積のばらつきから求めています。単一軌道の時間平均や、有効標本数を評価した誤差ではありません。非調和系の全系相関には独立な動的参照をまだ持たず、誤差ゼロとは表示しません。",
+          "全体を同じ係数でスケールする熱浴は、運動量空間の向きを直接ランダム化しません。対称性のある系で全運動量ゼロなどを保つ不変条件や、閉じた不変部分空間、同一周波数の特殊な系などによる探索不足を、正しいK分布だけで否定できません。今回の自由度には拘束や重心除去を追加していません。",
+          "正の熱浴刻みでK=0なら元の向きがなく、速度の比によるglobal rescaleは定義できないため、採用コードは明示的に拒否します。そこへ任意の向きを注入する別アルゴリズムとしては扱いません。非有限値、非正の温度・質量、無効な自由度や時間も検査します。"
+        ],
+        "en": [
+          "Preservation from a canonical initial ensemble and relaxation from temperature-perturbed starts are distinct checks. Use independent replicas, fixed seeds and finite observation windows; separate sampling uncertainty from timestep and coupling effects. These small tests do not guarantee mixing from arbitrary starts. Correlation standard errors use the spread of products across independent replicas at each lag; they are not uncertainties of a single-trajectory time average or an effective-sample-size estimate. No independent dynamical reference is claimed for the anharmonic full-system correlations, which are not presented as having zero error.",
+          "A common scaling factor does not directly randomize momentum direction. A correct K distribution cannot rule out restricted sampling from invariant conditions such as zero total momentum in a symmetric system, or from invariant subspaces. The adopted degrees of freedom include no added constraints or removed center-of-mass mode.",
+          "For a positive bath step, at K=0 the direction is undefined, so this implementation rejects global rescaling explicitly. It does not inject an arbitrary direction as an undocumented algorithm. Nonfinite or nonphysical parameters are also checked."
+        ]
+      },
+      "formulas": [],
+      "references": [
+        "bussi2007csvr"
+      ]
+    }
+  ],
+  "verification": {
+    "ja": "3つの新例は、熱浴単独の厳密則、少自由度の調和系、弱い非調和系を別々に検査します。各例で固定入力、実測値、誤差と不確かさ、受入条件、コード、テスト、配布ZIP、独立展開からの追試記録へ進めます。旧BAOAB例は別の根拠です。他の10手法は専用の実装・検証をまだ持ちません。",
+    "en": "Three new cases separate the exact isolated-bath law, a few-degree harmonic system and a weakly anharmonic system. Each entry exposes fixed inputs, measurements, errors/uncertainty, criteria, code, tests, ZIP and independent-extraction receipt. The earlier BAOAB example is separate evidence. The other 10 methods still have no dedicated implementation or validation."
+  },
+  "source_scope": {
+    "ja": "CSVRについては2007年原著の著者稿の運動エネルギー式と付録、2008年原著の著者稿の符号付き更新式、原著者の誤植訂正を確認し、採用した小規模な古典例を独立参照・求積・再実行で検証しています。原著のLennard–JonesやTIP4P水の数値実験の再現ではありません。他の10方式は比較解説・一次文献への案内であり、ここで数値検証したと表示しません。Gaussian isokineticの個別原論文の整理も継続課題です。",
+    "en": "For CSVR, the kinetic-energy equations/appendix in the 2007 author manuscript, signed update in the 2008 manuscript and author correction were checked. The adopted small classical examples are validated by separate references, quadrature and actual reruns. They do not reproduce the original Lennard–Jones or TIP4P-water experiments. The other ten schemes remain comparative reading and primary-source entry points, not numerically validated here. Individual original-paper curation for Gaussian isokinetic remains open."
+  },
+  "references": [
+    {
+      "id": "bussi2007csvr",
+      "author": "G. Bussi, D. Donadio and M. Parrinello",
+      "year": 2007,
+      "title": "Canonical sampling through velocity rescaling",
+      "type": "article",
+      "doi": "10.1063/1.2408420",
+      "url": "https://arxiv.org/html/0803.4060v1",
+      "review_level": "selected-original-equations-and-appendix",
+      "review_note": {
+        "ja": "著者稿のII.1–II.3、運動エネルギーSDE(7)と付録A(16)–(22)を確認。Gamma二乗和生成には著者の訂正も参照。",
+        "en": "Checked author-manuscript sections II.1–II.3, kinetic SDE (7), and appendix A (16)–(22); consult the author correction for Gamma-based squared-noise generation."
+      }
+    },
+    {
+      "id": "bussi2008localglobal",
+      "author": "G. Bussi and M. Parrinello",
+      "year": 2008,
+      "title": "Stochastic thermostats: comparison of local and global schemes",
+      "type": "article",
+      "doi": "10.1016/j.cpc.2008.01.006",
+      "url": "https://arxiv.org/html/0803.4397v1",
+      "review_level": "selected-original-equations",
+      "review_note": {
+        "ja": "著者稿のI–II節、τ=(2γ)⁻¹、有限刻みの(8)–(9)とf=1極限を確認。書誌はSISSAで照合。",
+        "en": "Checked manuscript sections I–II, τ=(2γ)⁻¹, finite-step (8)–(9) and f=1; bibliography cross-checked with SISSA."
+      }
+    },
+    {
+      "id": "bussi-csvr-author-algorithms",
+      "author": "Giovanni Bussi",
+      "year": 2026,
+      "title": "Algorithms: stochastic velocity rescaling, author correction note",
+      "type": "misc",
+      "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+      "review_level": "author-maintained-correction-note",
+      "review_note": {
+        "ja": "2007年論文のGamma生成説明の誤植を指摘する著者注記を確認。年は閲覧年で、訂正の発表年を意味しません。",
+        "en": "Checked the author note identifying the 2007 Gamma-generation typo. Year denotes access, not the correction publication year."
+      }
+    }
+  ]
+}

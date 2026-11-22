@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "family": "depth-thermostats",
+  "group": "thermostats",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/",
+  "files": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "33e685d8c66fd13c6cc3c12ba126e3218f370aa9191545c5a578728bc61123d7",
+    "cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "inputs.json": "8097b48107f42800ce6883aeaf73f22cf37f01e2269884f2f965d85a315f2a38",
+    "plot.py": "8ddddca1ad7fcc0427f0d0ff97435d3b8bdcb9b7b04f52668ca8da1b15c2e875",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/csvr-kinetic-kernel.csv": "304dc8583a98c9e6fe233853cbc984780befa803a179808733e308f7a8142dab",
+    "results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
+    "results/csvr-langevin-harmonic.csv": "3f06a84b330b10a3bfb5fb58ebbe8e128d74ff97c11968470c0140ae6bbf1495",
+    "results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
+    "results/csvr-langevin-quartic.csv": "50c3ad52a51e6744e33e35cb8347cbb970c544abd716c1f273b157f9340a5bd6",
+    "results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "run.py": "2b28cfe60d8f0134fbe5f80a8238a8c9af983041c85fbac86552834786544b2e",
+    "test_thermostats.py": "8e2c24946b974240375f3d4996d7328ecdb30dbd891ef6b635e604f09359b7ab",
+    "thermostats.py": "1eb97de6b6cdb0ff95210cc144af3bddaf697f5eb5c935f35c2dcf8a928ccc52"
+  },
+  "case_ids": [
+    "csvr-kinetic-kernel",
+    "csvr-langevin-harmonic",
+    "csvr-langevin-quartic"
+  ],
+  "scope": "Small fixed-input educational validations; each case states its own model, reference, acceptance and exclusions."
+}

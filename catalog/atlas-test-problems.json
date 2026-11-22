@@ -1854,6 +1854,14 @@
             "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
             "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
           }
+        },
+        {
+          "id": "csvr-langevin-harmonic",
+          "url": "/numerical-methods-atlas/validation/csvr-langevin-harmonic/",
+          "name": {
+            "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+            "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+          }
         }
       ]
     },
@@ -2227,24 +2235,74 @@
           }
         }
       ]
+    },
+    {
+      "id": "thermostatted-quartic",
+      "group": "time",
+      "name": {
+        "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+        "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+      },
+      "chapter": "validation-thermostats",
+      "reading_section": "csvr-langevin-quartic",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/thermostats/",
+      "verification": "/code/validated-examples/2026-11-22/thermostats/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "csvr-langevin-quartic"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/inputs.json",
+          "json_pointer": "/cases/csvr-langevin-quartic"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "csvr-langevin-quartic",
+          "url": "/numerical-methods-atlas/validation/csvr-langevin-quartic/",
+          "name": {
+            "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+            "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+          }
+        }
+      ]
     }
   ],
   "excluded_examples": {
     "ja": [
-      "生物モデル22項目：文献調査のみ",
+      "生物モデル22ラベルのうち17ラベルは文献調査のみ。限定実装済みの5ラベルは対象範囲だけを表示し、同じSchnakenberg例を指すTuring/Schnakenbergは問題数へ重複加算しません。",
       "参照解ライブラリ18項目：参照評価を重複加算しない",
       "球面格子・接続図：流体計算ではない",
       "基底行列・Fourier記号・分散関係・正値性・幾何保存則等の局所検査：独立した問題数にはしない",
-      "AMR・並列化・混合精度、予定中のサーモスタット、未実装の量子化学・DFTの拡張",
-      "補助例glm-fourier-modeはGLMの縦方向発散誤差の減衰診断として別掲し、独立した物理テスト問題へは加算しません。"
+      "AMR・並列化・混合精度、専用実装が未整備のサーモスタット10手法、未実装の量子化学・DFTの拡張",
+      "補助例glm-fourier-modeはGLMの縦方向発散誤差の減衰診断として別掲し、独立した物理テスト問題へは加算しません。",
+      "補助例csvr-kinetic-kernelはCSVR熱浴単独の条件付き分布・揺らぎ・相関の診断として別掲し、独立した物理テスト問題へは加算しません。調和系のCSVR/Langevin比較も既存langevin-harmonicへの手法追加として統合し、四次ポテンシャルのthermostatted-quarticだけを新しい問題として1件加算します。"
     ],
     "en": [
-      "22 biological entries: literature surveys",
+      "17 of 22 biological labels remain survey-only. Five labels expose only scoped educational implementations; Turing and Schnakenberg share one example and do not add duplicate problems.",
       "18 reference-library entries: do not add reference evaluations again",
       "Spherical and connectivity diagrams: no flow solve",
       "Local basis-matrix, Fourier-symbol, dispersion, positivity and geometric-conservation checks: not separate problems",
-      "AMR, parallelization, mixed precision, planned thermostats and unimplemented quantum/DFT extensions",
-      "The glm-fourier-mode supplement is a longitudinal GLM divergence-error damping diagnostic and does not add an independent physical test problem."
+      "AMR, parallelization, mixed precision, the ten thermostats without dedicated implementations, and unimplemented quantum/DFT extensions",
+      "The glm-fourier-mode supplement is a longitudinal GLM divergence-error damping diagnostic and does not add an independent physical test problem.",
+      "The csvr-kinetic-kernel supplement diagnoses conditional laws, fluctuations and correlations of the isolated CSVR bath and adds no physical problem. The harmonic CSVR/Langevin comparison extends the existing langevin-harmonic problem; only the quartic-potential thermostatted-quartic case adds one new problem."
     ]
   }
 }

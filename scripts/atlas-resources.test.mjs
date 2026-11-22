@@ -73,8 +73,8 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
   assert.equal(methods.length,12);
   assert.equal(methods.filter(x=>x.tier==='basic').length,8);
   assert.ok(methods.every(x=>!x.code_modules.length&&x.references.length));
-  assert.deepEqual(methods.filter(x=>x.status==='educational-example').map(x=>x.id),['langevin-thermostat']);
-  assert.equal(methods.filter(x=>x.status==='planned').length,11);
+  assert.deepEqual(methods.filter(x=>x.status==='educational-example').map(x=>x.id),['langevin-thermostat','stochastic-velocity-rescaling']);
+  assert.equal(methods.filter(x=>x.status==='planned').length,10);
   const langevin=methods.find(x=>x.id==='langevin-thermostat');
   assert.equal(langevin.depth_release.group,'models');
   assert.deepEqual(langevin.depth_release.case_ids,['langevin-harmonic']);
@@ -90,7 +90,7 @@ test('thermostat overview is bilingual and distinguishes comparisons from execut
     assert.ok(JSON.parse(read('guide/index.json')).pages.some(x=>x.url==='https://hrkoyama.github.io'+route));
     assert.ok(html.includes(`/numerical-methods-atlas/validation/langevin-harmonic/?lang=${lang}`));
     assert.ok(html.includes('BAOAB'));
-    assert.ok(html.includes(lang==='ja'?'他の11手法は実装予定':'other 11 methods remain planned'));
+    assert.ok(html.includes(lang==='ja'?'他の10手法は実装予定':'other 10 methods remain planned'));
   }
   const html=read('numerical-methods-atlas/methods/nose-hoover/index.html');
   assert.ok(html.includes('のせフーバー')&&html.includes('解説あり・実装予定'));

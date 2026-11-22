@@ -43,8 +43,8 @@
   "boundary_conditions": "Choose isolated or periodic boundaries for the target system; no executed MD case is published.",
   "boundary_conditions_ja": "対象に応じて孤立・周期境界を選びます。実行済みのMD例は未公開。",
   "next_deliverable": {
-    "ja": "多原子の力を独立参照と照合し、時間刻み・SCF公差または仮想質量への感度とNVEドリフトを測る。",
-    "en": "Compare multiatom forces with an independent reference, then measure timestep/SCF or fictitious-mass sensitivity and NVE drift."
+    "ja": "解説・一次文献と既存の小規模例との対応を保守する。専用実装の追加は必要性が指定された場合に小さな教育用例から検討し、重い収束走査・独立参照の再生成・長時間MDは通常の作業へ含めない。",
+    "en": "Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD."
   },
   "limitations": {
     "ja": "解説のみ。仮想電子運動の断熱性、エネルギー移動、長時間軌道は未検証です。",

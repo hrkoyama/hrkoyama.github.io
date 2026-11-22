@@ -435,17 +435,21 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "収容力Kを持つ密度依存の連続時間増殖モデル。離散ロジスティック写像とは区別します。 文献解説のみ。",
-        "en": "Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline. The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map. Literature-only."
+        "ja": "収容力Kを持つ密度依存の連続時間増殖モデル。離散ロジスティック写像とは区別します。 限定した実行例：無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+        "en": "Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline. The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map. Scoped executed example: One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
       },
       "section": "01-1838-logistic-population-growth",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "logistic"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map."
+      "coverage_scope": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models.",
+      "execution_scope": {
+        "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+        "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+      }
     },
     {
       "id": "bio-enzyme",
@@ -533,17 +537,21 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "閉じた一様混合集団の規格化SIR系。SEIRは曝露区画を追加します。人数と割合ではβの定義が異なります。 文献解説のみ。",
-        "en": "Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate. The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions. Literature-only."
+        "ja": "閉じた一様混合集団の規格化SIR系。SEIRは曝露区画を追加します。人数と割合ではβの定義が異なります。 限定した実行例：閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate. The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions. Scoped executed example: Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
       },
       "section": "05-1927-sir-and-seir-compartment-models",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "sir"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions."
+      "coverage_scope": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations.",
+      "execution_scope": {
+        "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+      }
     },
     {
       "id": "bio-fisher-kpp",
@@ -630,17 +638,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "2成分反応拡散の枠組み。f・gは個別に指定する必要があり、模様の画像だけでTuring機構とは判定できません。 文献解説のみ。",
-        "en": "A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g. A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes. Literature-only."
+        "ja": "2成分反応拡散の枠組み。f・gは個別に指定する必要があり、模様の画像だけでTuring機構とは判定できません。 限定した実行例：1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g. A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes. Scoped executed example: One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
       },
       "section": "09-1952-turing-reactiondiffusion-framework",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "turing"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes."
+      "coverage_scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.",
+      "execution_scope": {
+        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      },
+      "supplemental_examples": [
+        "turing-schnakenberg"
+      ]
     },
     {
       "id": "bio-fitzhugh-nagumo",
@@ -654,17 +669,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "高速の興奮と低速の回復を結ぶ規格化した代表形。係数・符号・空間拡張には複数の規約があります。 文献解説のみ。",
-        "en": "A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space. This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations. Literature-only."
+        "ja": "高速の興奮と低速の回復を結ぶ規格化した代表形。係数・符号・空間拡張には複数の規約があります。 限定した実行例：公開実行例はD=0の空間なしの縮約ODEです。FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space. This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations. Scoped executed example: The executed case has D=0 and no spatial coordinate. Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
       },
       "section": "10-1961-fitzhughnagumo-excitation-and-recovery",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "fitzhugh-nagumo"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations."
+      "coverage_scope": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction.",
+      "execution_scope": {
+        "ja": "FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
+      },
+      "supplemental_examples": [
+        "fitzhugh-nagumo"
+      ]
     },
     {
       "id": "bio-keller-segel",
@@ -822,17 +844,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 文献解説のみ。",
-        "en": "A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests. A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue. Literature-only."
+        "ja": "自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 限定した実行例：1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests. A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue. Scoped executed example: One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
       },
       "section": "17-1979-schnakenberg-reactiondiffusion",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "schnakenberg"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue."
+      "coverage_scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.",
+      "execution_scope": {
+        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      },
+      "supplemental_examples": [
+        "turing-schnakenberg"
+      ]
     },
     {
       "id": "bio-skt",

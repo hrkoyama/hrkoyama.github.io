@@ -12,6 +12,8 @@ import re
 import subprocess
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
+from atlas_execution_discovery import load_discovery
+from atlas_equation_availability import equation_evidence
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
@@ -111,12 +113,23 @@ text+='\n% BEGIN QUANTUM READING\n'
 for r in refs.values():text+='@article{'+r['id']+',\n'+''.join('  '+k+' = {'+str(r[k])+'},\n' for k in ['author','title','journal','year','doi'])+'}\n\n'
 path.write_text(text+'% END QUANTUM READING\n')
 
-equations=[x for x in load(ROOT/'catalog/atlas-equations.json')['equations'] if x['group']=='quantum']
+all_equations=load(ROOT/'catalog/atlas-equations.json')['equations']
+equation_by_id={x['id']:x for x in all_equations}
+equation_examples=equation_evidence(ROOT,all_equations,load_discovery(ROOT))
+equations=[x for x in all_equations if x['group']=='quantum']
 for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
     coverage=load(path)
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-quantum-reading']
     for x in methods.values():coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':'quantum-chemistry','status':'local-example' if x.get('quantum_examples') or x.get('molecular_examples') or x.get('periodic_examples') else 'reading','group':'Electronic structure & quantum chemistry','scope':' '.join(s['en'] for s in [x.get('example_scope',{}),x.get('molecular_scope',{}),x.get('periodic_scope',{})] if s.get('en')) if x.get('quantum_examples') or x.get('molecular_examples') or x.get('periodic_examples') else 'Introductory formulation only; no dedicated solver or numerical validation.','origin':'curated-quantum-reading'})
     for x in equations:coverage['items'].append({'kind':'equation','id':x['id'],'label':x['name']['en'],'chapter':x['chapter'],'status':x['status'],'group':'Electronic structure & quantum chemistry','scope':x['note']['en'],'origin':'curated-quantum-reading'})
+    # Align previously imported biology labels with their verified scoped runs.
+    # Counts refer to equation/model entries, never independent physical problems.
+    for item in coverage['items']:
+        if item['kind']=='equation':
+            canonical=equation_by_id[item['id']]
+            item['status']=canonical['status']
+            item['scope']=canonical.get('coverage_scope',canonical['note']['en'])
+    coverage['equation_execution_source_sha256']=equation_examples['source_sha256']
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-model-example']
     for x in load(ROOT/'catalog/atlas-methods.json')['methods']:
         if x.get('model_examples'):
@@ -309,9 +322,9 @@ new_copy={
     'planned.quantum.eyebrow':{'ja':'導入解説 / 量子化学・DFT','en':'READING / QUANTUM CHEMISTRY + DFT'},
     'planned.quantum.title':{'ja':'基底関数から電子状態計算へ。','en':'From basis functions to electronic structure.'},
     'planned.quantum.scope':{'ja':f'Schrödinger、HF・DFT、基底・SCF、バンドの対称群、電子相関・励起まで{len(methods)}項目の導入を日英で公開しています。','en':f'Bilingual introductions to {len(methods)} entries cover Schrödinger, HF and DFT, bases, SCF, band symmetry, correlation and excitations.'},
-    'planned.quantum.status':{'ja':'導入解説・一次文献と水素型原子・Heの実行検証例を公開。小分子・周期系はUnder constructionです。','en':'Reading, primary references and runnable hydrogenic/He checks are available. Molecular and periodic examples are under construction.'},
+    'planned.quantum.status':{'ja':'原子・H₂ RHF・小さな周期Heと力の限定例を維持します。大規模な基底・k点走査、重い参照再生成、長時間MDは必要性が指定された場合だけ扱います。','en':'Maintain scoped atoms, H₂ RHF, small periodic-He and force examples. Large basis/k-point sweeps, expensive reference regeneration and long MD are considered only on explicit need.'},
     'planned.quantum.link':{'ja':'量子化学・DFTの解説を読む','en':'Read the quantum chemistry and DFT overview'},
-    'home-map.future':{'ja':'量子化学・DFTの導入解説と、水素型原子・Heの実行検証例を公開しました。小分子・周期系は次段階です。','en':'Quantum chemistry and DFT have introductory readings and runnable hydrogenic/He checks. Molecular and periodic examples remain next.'},
+    'home-map.future':{'ja':'量子は原子・H₂ RHF・小さな周期Heセルと原子間力の検証例に範囲を限定します。各分野の小規模な参照比較と収束確認を優先します。','en':'Quantum examples stay limited to atoms, H₂ RHF, small periodic He cells and forces. Small reference comparisons and refinement checks take priority across fields.'},
 }
 old_copy={key:translations[key] for key in new_copy}
 translations.update(new_copy);write(messages,translations)

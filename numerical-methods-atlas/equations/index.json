@@ -62,7 +62,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "heat",
@@ -88,7 +89,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "poisson-laplace",
@@ -149,7 +151,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "burgers",
@@ -172,7 +175,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/equation-gallery/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/equation-gallery/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "traffic",
@@ -195,7 +199,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/equation-gallery/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/equation-gallery/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "euler",
@@ -243,7 +248,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "shallow-water",
@@ -272,7 +278,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/geophysical-grids/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/geophysical-grids/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "isothermal",
@@ -296,7 +303,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "mhd",
@@ -334,7 +342,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "navier-stokes",
@@ -370,7 +379,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bgk",
@@ -393,7 +403,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/lattice-boltzmann/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "hamiltonian",
@@ -429,7 +440,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "particle-gravity",
@@ -476,7 +488,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bratu",
@@ -512,7 +525,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "hyperbolic-diffusion",
@@ -536,7 +550,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/hyperbolic-diffusion/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/hyperbolic-diffusion/"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "srhd",
@@ -561,7 +576,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#what-changes-from-the-existing-euler-examples",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/#what-changes-from-the-existing-euler-examples"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "grhd",
@@ -586,7 +602,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#19721998-from-curved-background-flows-to-conservative-hrsc",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/#19721998-from-curved-background-flows-to-conservative-hrsc"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "grmhd",
@@ -612,7 +629,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#19992006-magnetic-constraints-and-dynamical-spacetime",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/#19992006-magnetic-constraints-and-dynamical-spacetime"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "m1-radiation",
@@ -637,7 +655,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#2013-onward-radiation-and-microphysics-add-stiff-systems",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/#2013-onward-radiation-and-microphysics-add-stiff-systems"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "causal-viscous",
@@ -662,7 +681,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/#a-parallel-19792019-branch-causal-viscous-fluid-theory",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/#a-parallel-19792019-branch-causal-viscous-fluid-theory"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-logistic",
@@ -675,22 +695,39 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "収容力Kを持つ密度依存の連続時間増殖モデル。離散ロジスティック写像とは区別します。 文献解説のみ。",
-        "en": "Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline. The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map. Literature-only."
+        "ja": "収容力Kを持つ密度依存の連続時間増殖モデル。離散ロジスティック写像とは区別します。 限定した実行例：無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+        "en": "Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline. The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map. Scoped executed example: One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
       },
       "section": "01-1838-logistic-population-growth",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "logistic"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map.",
+      "coverage_scope": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models.",
+      "execution_scope": {
+        "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+        "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#01-1838-logistic-population-growth",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#01-1838-logistic-population-growth"
       },
-      "execution_examples": []
+      "execution_examples": [
+        {
+          "id": "logistic-growth",
+          "name": {
+            "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+            "en": "Logistic growth: analytic solution and time refinement"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
+          }
+        }
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-enzyme",
@@ -719,7 +756,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#02-1913-michaelismenten-and-full-enzyme-kinetics",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#02-1913-michaelismenten-and-full-enzyme-kinetics"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-lotka-volterra",
@@ -748,7 +786,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#03-1920-lotkavolterra-predatorprey",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#03-1920-lotkavolterra-predatorprey"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-age-structure",
@@ -777,7 +816,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#04-1926-mckendrick-age-structured-population",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#04-1926-mckendrick-age-structured-population"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-sir",
@@ -793,22 +833,39 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "閉じた一様混合集団の規格化SIR系。SEIRは曝露区画を追加します。人数と割合ではβの定義が異なります。 文献解説のみ。",
-        "en": "Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate. The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions. Literature-only."
+        "ja": "閉じた一様混合集団の規格化SIR系。SEIRは曝露区画を追加します。人数と割合ではβの定義が異なります。 限定した実行例：閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate. The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions. Scoped executed example: Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
       },
       "section": "05-1927-sir-and-seir-compartment-models",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "sir"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The original general epidemic framework is broader than this SIR specialization. Population-count and fraction conventions give different β definitions.",
+      "coverage_scope": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations.",
+      "execution_scope": {
+        "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+        "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models"
       },
-      "execution_examples": []
+      "execution_examples": [
+        {
+          "id": "sir-epidemic",
+          "name": {
+            "ja": "SIR：独立DOP853参照・人口保存・収束",
+            "en": "SIR: independent DOP853 reference, conservation and convergence"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
+          }
+        }
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-fisher-kpp",
@@ -837,7 +894,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#06-1937-fisherkpp-invasion-front",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#06-1937-fisherkpp-invasion-front"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-monod",
@@ -867,7 +925,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#07-1949-monod-growth-and-chemostat",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#07-1949-monod-growth-and-chemostat"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-hodgkin-huxley",
@@ -896,7 +955,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#08-1952-hodgkinhuxley-membrane-dynamics",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#08-1952-hodgkinhuxley-membrane-dynamics"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-turing",
@@ -910,22 +970,51 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "2成分反応拡散の枠組み。f・gは個別に指定する必要があり、模様の画像だけでTuring機構とは判定できません。 文献解説のみ。",
-        "en": "A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g. A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes. Literature-only."
+        "ja": "2成分反応拡散の枠組み。f・gは個別に指定する必要があり、模様の画像だけでTuring機構とは判定できません。 限定した実行例：1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "A framework for diffusion-driven pattern onset around a homogeneous reaction equilibrium, not a unique choice of f and g. A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes. Scoped executed example: One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
       },
       "section": "09-1952-turing-reactiondiffusion-framework",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "turing"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "A spot image or unequal diffusion coefficients alone do not establish a Turing mechanism. Boundary conditions determine the available modes.",
+      "coverage_scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.",
+      "execution_scope": {
+        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      },
+      "supplemental_examples": [
+        "turing-schnakenberg"
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#09-1952-turing-reactiondiffusion-framework",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#09-1952-turing-reactiondiffusion-framework"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "turing-schnakenberg",
+          "name": {
+            "ja": "Turing不安定性：線形成長率と小振幅パターン",
+            "en": "Turing instability: linear growth and small-amplitude patterns"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+          "results": "/code/validated-examples/2026-11-22/models/results/result.json"
+        }
+      ]
     },
     {
       "id": "bio-fitzhugh-nagumo",
@@ -939,22 +1028,51 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "高速の興奮と低速の回復を結ぶ規格化した代表形。係数・符号・空間拡張には複数の規約があります。 文献解説のみ。",
-        "en": "A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space. This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations. Literature-only."
+        "ja": "高速の興奮と低速の回復を結ぶ規格化した代表形。係数・符号・空間拡張には複数の規約があります。 限定した実行例：公開実行例はD=0の空間なしの縮約ODEです。FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "A normalized fast excitation/slow recovery model for pulses, refractoriness and spiral waves when extended in space. This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations. Scoped executed example: The executed case has D=0 and no spatial coordinate. Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
       },
       "section": "10-1961-fitzhughnagumo-excitation-and-recovery",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "fitzhugh-nagumo"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "This is a common normalized variant; cubic coefficients, recovery signs and nondimensionalization differ between formulations.",
+      "coverage_scope": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction.",
+      "execution_scope": {
+        "ja": "FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。",
+        "en": "Scoped verification of an FHN/BVP-style reduced ODE. It excludes full HH ion channels, spatial axons, patient data and experimental electrophysiology reproduction."
+      },
+      "supplemental_examples": [
+        "fitzhugh-nagumo"
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#10-1961-fitzhughnagumo-excitation-and-recovery",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#10-1961-fitzhughnagumo-excitation-and-recovery"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "fitzhugh-nagumo",
+          "name": {
+            "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+            "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+          "results": "/code/validated-examples/2026-11-22/models/results/result.json"
+        }
+      ]
     },
     {
       "id": "bio-keller-segel",
@@ -983,7 +1101,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#11-1970-kellersegel-chemotaxis",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#11-1970-kellersegel-chemotaxis"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-gierer-meinhardt",
@@ -1012,7 +1131,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#12-1972-gierermeinhardt-activatorinhibitor",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#12-1972-gierermeinhardt-activatorinhibitor"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-immersed-boundary",
@@ -1042,7 +1162,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#13-1972-fluidelastic-structure-and-immersed-boundaries",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#13-1972-fluidelastic-structure-and-immersed-boundaries"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-chemical-master",
@@ -1070,7 +1191,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#14-1977-chemical-master-equation-and-gillespie-ssa",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#14-1977-chemical-master-equation-and-gillespie-ssa"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-mackey-glass",
@@ -1098,7 +1220,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#15-1977-mackeyglass-delayed-physiological-feedback",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#15-1977-mackeyglass-delayed-physiological-feedback"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-replicator",
@@ -1128,7 +1251,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#16-1978-replicator-evolutionary-game-dynamics",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#16-1978-replicator-evolutionary-game-dynamics"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-schnakenberg",
@@ -1142,22 +1266,51 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 文献解説のみ。",
-        "en": "A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests. A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue. Literature-only."
+        "ja": "自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 限定した実行例：1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests. A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue. Scoped executed example: One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
       },
       "section": "17-1979-schnakenberg-reactiondiffusion",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "schnakenberg"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue.",
+      "coverage_scope": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration.",
+      "execution_scope": {
+        "ja": "1つの平衡近傍の発生段階です。原著係数や原著実験の再現、成熟模様、ランダム擾乱からの波数選択、実生物の較正は主張しません。",
+        "en": "One near-equilibrium onset experiment. No claim reproduces original-paper parameters/experiments, mature patterns, wavenumber selection from random noise or biological calibration."
+      },
+      "supplemental_examples": [
+        "turing-schnakenberg"
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#17-1979-schnakenberg-reactiondiffusion",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#17-1979-schnakenberg-reactiondiffusion"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "turing-schnakenberg",
+          "name": {
+            "ja": "Turing不安定性：線形成長率と小振幅パターン",
+            "en": "Turing instability: linear growth and small-amplitude patterns"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-22/models/verification.json",
+          "results": "/code/validated-examples/2026-11-22/models/results/result.json"
+        }
+      ]
     },
     {
       "id": "bio-skt",
@@ -1186,7 +1339,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#18-1979-shigesadakawasakiteramoto-cross-diffusion",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#18-1979-shigesadakawasakiteramoto-cross-diffusion"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-gray-scott",
@@ -1215,7 +1369,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#19-1983-grayscott-spatial-autocatalysis",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#19-1983-grayscott-spatial-autocatalysis"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-cardiac",
@@ -1244,7 +1399,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#20-1996-alievpanfilov-cardiac-excitation",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#20-1996-alievpanfilov-cardiac-excitation"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-repressilator",
@@ -1274,7 +1430,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#21-2000-repressilator-mrnaprotein-network",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#21-2000-repressilator-mrnaprotein-network"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "bio-toggle",
@@ -1303,7 +1460,8 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#22-2000-genetic-toggle-switch",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#22-2000-genetic-toggle-switch"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     },
     {
       "id": "stationary-schrodinger",
@@ -1341,7 +1499,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "hartree-fock-model",
@@ -1391,7 +1550,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "kohn-sham-model",
@@ -1453,7 +1613,8 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"
           }
         }
-      ]
+      ],
+      "supplemental_execution_examples": []
     },
     {
       "id": "time-dependent-kohn-sham",
@@ -1476,14 +1637,15 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#tddft",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#tddft"
       },
-      "execution_examples": []
+      "execution_examples": [],
+      "supplemental_execution_examples": []
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/equations/",
   "counts": {
     "total": 46,
-    "local_example": 18,
-    "reading_only": 28,
+    "local_example": 23,
+    "reading_only": 23,
     "groups": {
       "physical": 15,
       "relativistic": 5,
@@ -1496,13 +1658,29 @@
     "version": "0.19.1"
   },
   "execution_example_count": 22,
+  "supplemental_case_ids": [
+    "fitzhugh-nagumo",
+    "turing-schnakenberg"
+  ],
+  "execution_evidence_source_sha256": {
+    "numerical-methods-atlas/assets/biological-models.json": "a6d4834d379e36d4b55fba48ec881a8a813fc5156056a9c86ca5c17b43fbe6ae",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "catalog/atlas-equations.json": "5ca32ef73b869b25924bcbac13dec95e692952edf207dd0359b01582b431481d",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c"
+  },
   "execution_formula_scope": {
     "ja": "公開済み22問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
     "en": "Discovery metadata for the twenty-two published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
   },
   "execution_discovery_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-execution-discovery.json",
-    "sha256": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1"
+    "sha256": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f"
   },
   "execution_examples": [
     {
@@ -2335,7 +2513,9 @@
     {
       "id": "logistic-growth",
       "problem_id": "logistic-growth",
-      "equation_ids": [],
+      "equation_ids": [
+        "bio-logistic"
+      ],
       "keywords": [
         "logistic-growth",
         "ロジスティック増殖：解析解と刻み幅の収束",
@@ -2378,7 +2558,9 @@
     {
       "id": "sir-epidemic",
       "problem_id": "sir-epidemic",
-      "equation_ids": [],
+      "equation_ids": [
+        "bio-sir"
+      ],
       "keywords": [
         "sir-epidemic",
         "SIR：独立DOP853参照・人口保存・収束",

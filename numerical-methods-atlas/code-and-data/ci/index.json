@@ -172,14 +172,14 @@
     "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-depth-linux.yml",
     "guide": "/numerical-methods-atlas/validation/",
     "scope": {
-      "ja": "通常は新しい4配布版・19固定ケースをNumPy/SciPy/pytestだけで検査します。量子DFTの全収束走査を含む従来22例は、必要時に手動で実行する詳細検査として保持します。",
-      "en": "Routine checks run the new four supplements and19 fixed cases with NumPy/SciPy/pytest only. The existing22-case run, including quantum-DFT convergence sweeps, remains available as an explicit detailed manual check."
+      "ja": "通常は5配布版・22補助ケースをNumPy/SciPy/pytestで検査します。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
+      "en": "Routine checks run five supplements and 22 supplementary cases with NumPy/SciPy/pytest. The separate common 22-case suite, including quantum-DFT convergence sweeps, remains a detailed manual check on explicit need."
     }
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "30483089ec180e4ebc247f53be8f830ffec4a3fa9c2fff276f84cdf95bec8962"
+    "sha256": "3d183072174031ee34617ed268c5a9b04739e89323ddcc80bd7390b6623a1b0e"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",

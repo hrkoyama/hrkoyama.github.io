@@ -182,7 +182,9 @@
   "discovery": {
     "id": "logistic-growth",
     "problem_id": "logistic-growth",
-    "equation_ids": [],
+    "equation_ids": [
+      "bio-logistic"
+    ],
     "keywords": [
       "logistic-growth",
       "ロジスティック増殖：解析解と刻み幅の収束",

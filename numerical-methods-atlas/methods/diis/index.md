@@ -21,7 +21,7 @@ Comparison notes: Extrapolation guarantees neither convergence nor monotonic ene
 
 - Reference: https://doi.org/10.1016/0009-2614(80)80396-4 — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: Compare damping and DIIS under the same stopping criteria, including failures.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/diis/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

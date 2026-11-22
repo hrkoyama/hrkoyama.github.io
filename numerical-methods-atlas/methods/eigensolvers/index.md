@@ -18,7 +18,7 @@ Other names: 固有値解法, eigenvalue solver, Krylov eigensolver, クリロ�
 - Reference: https://doi.org/10.1090/qam/42792 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://doi.org/10.6028/jres.045.026 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references.
 

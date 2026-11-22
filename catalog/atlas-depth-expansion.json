@@ -54,6 +54,16 @@
         "fluid",
         "mhd"
       ]
+    },
+    {
+      "id": "thermostats",
+      "title": {
+        "ja": "CSVRとLangevin：分布・揺らぎ・相関",
+        "en": "CSVR and Langevin: distributions, fluctuations and correlations"
+      },
+      "fields": [
+        "temperature"
+      ]
     }
   ],
   "case_problem_ids": {
@@ -75,11 +85,14 @@
     "ct-glm-independent": "orszag-tang",
     "brio-independent": "brio-wu",
     "shu-independent": "shu-osher",
-    "glm-fourier-mode": null
+    "glm-fourier-mode": null,
+    "csvr-kinetic-kernel": null,
+    "csvr-langevin-harmonic": "langevin-harmonic",
+    "csvr-langevin-quartic": "thermostatted-quartic"
   },
   "routine_policy": {
-    "ja": "通常の新規補助例CIはNumPy・SciPy・pytestで実行する4グループです。重い量子収束を含む従来22例の詳細CIは明示的な手動実行へ分け、検証済み配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs four NumPy/SciPy/pytest groups. The existing detailed 22-case CI, including expensive quantum convergence sweeps, is kept as an explicit manual run with released artifacts, criteria and history preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する5グループです。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs five NumPy/SciPy/pytest groups. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {

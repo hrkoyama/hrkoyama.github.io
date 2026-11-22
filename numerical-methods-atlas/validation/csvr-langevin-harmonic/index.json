@@ -1,0 +1,2550 @@
+{
+  "method_ids": [
+    "stochastic-velocity-rescaling",
+    "langevin-thermostat"
+  ],
+  "domains": [
+    "temperature",
+    "time"
+  ],
+  "code_files": [
+    "run.py",
+    "thermostats.py"
+  ],
+  "id": "csvr-langevin-harmonic",
+  "title": {
+    "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+    "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+  },
+  "summary": {
+    "ja": "異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。",
+    "en": "Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations."
+  },
+  "assumptions": {
+    "ja": "m=kB=T=1、ω=(1,1.7)、Nf=2。τ=0.25/1、h=0.1/0.05。正準初期8192複製とq,pを1.4倍した4096複製を別にt=20まで進めます。相関lagは0/0.5/1/2/4。",
+    "en": "m=kB=T=1, omega=(1,1.7), Nf=2. tau=0.25/1, h=0.1/0.05. Evolve 8192 canonically initialized replicas and a separate 4096-replica ensemble with q,p scaled by 1.4 to t=20. Correlation lags are 0/0.5/1/2/4."
+  },
+  "algorithm": {
+    "ja": "両方式とも厳密な浴O(h/2)–velocity-Verlet–O(h/2)（OBABO）。CSVRは全運動量に同じ係数、Langevinは各成分に独立OU雑音を作用。γ=1/(2τ)で自由浴のK緩和時間をそろえます。以前のBAOAB例は変更せず別の分割として残します。",
+    "en": "Both use exact O(h/2)–velocity-Verlet–O(h/2), or OBABO. CSVR applies one factor to all momenta; Langevin uses independent component-wise OU noise. gamma=1/(2 tau) matches bath-only K relaxation. The earlier BAOAB release is retained as a different splitting."
+  },
+  "validation": {
+    "ja": "正準Gaussian・Gamma分布とK/U/Hの平均・分散を照合。有限刻みではVerletのshadow二次形式を使い、位置分散T/[ω²(1−h²ω²/4)]、運動量分散Tを別導出したLyapunov解と比較します。h=0.2/0.1/0.05の決定論的偏りで2次性を確認。Langevinのq,p,K,H相関は独立の離散伝播と照合し、CSVRの相関は独立複製の標準誤差とτ・h依存を表示します。",
+    "en": "Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For finite steps, compare the Verlet-shadow position variance T/[omega²(1−h² omega²/4)] and momentum variance T against a separately constructed Lyapunov solution. Deterministic biases at h=0.2/0.1/0.05 establish second order. Check Langevin q,p,K,H correlations against independent discrete propagation; report CSVR correlations with independent-replica standard errors and tau/h dependence."
+  },
+  "limits": {
+    "ja": "global CSVRとlocal Langevinの運動相関が等しいとは要求しません。CDF差は指定5点の最大であり全実数上のKS距離ではありません。正準初期分布の保存と温度摂動からの有限時間確認は一般のエルゴード性証明ではなく、軸上の励起されない自由度が残る反例もテストします。分子・拘束・BOMDには外挿しません。",
+    "en": "Global-CSVR and local-Langevin dynamical correlations are not required to agree. CDF errors are maxima over five declared points, not whole-line KS distances. Canonical-start preservation and the heated-start finite-time check do not prove ergodicity; tests retain an invariant unexcited-axis counterexample. No extrapolation to molecules, constraints or BOMD."
+  },
+  "formulas": [
+    "U(q)=\\frac12\\sum_{i=1}^2\\omega_i^2q_i^2,\\quad H=K+U,\\quad\\gamma=\\frac1{2\\tau}",
+    "\\Sigma_{h,i}=\\operatorname{diag}\\left(\\frac{T}{\\omega_i^2(1-h^2\\omega_i^2/4)},T\\right),\\quad\\Sigma_h=M\\Sigma_hM^T+Q",
+    "K\\sim\\operatorname{Gamma}(1,T),\\quad H\\sim\\operatorname{Gamma}(2,T),\\quad\\operatorname{Var}K=T^2,\\quad\\operatorname{Var}H=2T^2",
+    "C_X(t)=\\frac{\\mathbb E[(X_t-\\mu_X)(X_0-\\mu_X)]}{\\sigma_X^2},\\quad\\operatorname{SE}(\\widehat C_X)=\\frac{s_{\\rm products}}{\\sqrt{N_{\\rm replicas}}}"
+  ],
+  "references": [
+    {
+      "id": "bussi2007csvr",
+      "author": "G. Bussi, D. Donadio and M. Parrinello",
+      "year": 2007,
+      "title": "Canonical sampling through velocity rescaling",
+      "type": "article",
+      "journal": "The Journal of Chemical Physics 126, 014101",
+      "doi": "10.1063/1.2408420",
+      "url": "https://arxiv.org/html/0803.4060v1",
+      "review_level": "author-manuscript-selected-theory-and-appendix",
+      "review": {
+        "ja": "2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。",
+        "en": "Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author."
+      }
+    },
+    {
+      "id": "bussi2008localglobal",
+      "author": "G. Bussi and M. Parrinello",
+      "year": 2008,
+      "title": "Stochastic thermostats: comparison of local and global schemes",
+      "type": "article",
+      "journal": "Computer Physics Communications 179(1–3), 26–29",
+      "doi": "10.1016/j.cpc.2008.01.006",
+      "url": "https://arxiv.org/html/0803.4397v1",
+      "review_level": "author-manuscript-selected-equations-and-algorithm",
+      "review": {
+        "ja": "著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。",
+        "en": "Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced."
+      }
+    },
+    {
+      "id": "bussi-csvr-author-algorithms",
+      "author": "Giovanni Bussi",
+      "year": 2026,
+      "title": "Research algorithms: stochastic velocity rescaling",
+      "type": "misc",
+      "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+      "review_level": "author-official-algorithm-note",
+      "review": {
+        "ja": "著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。",
+        "en": "Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code."
+      }
+    }
+  ],
+  "group": "thermostats",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "csvr-langevin-harmonic",
+    "passed": true,
+    "checks": {
+      "canonical_position_momentum_energy_cdfs": true,
+      "canonical_energy_means": true,
+      "canonical_energy_fluctuations": true,
+      "heated_start_cdfs": true,
+      "heated_start_energy_means": true,
+      "heated_start_energy_fluctuations": true,
+      "quadrature_reference_refined": true,
+      "independent_replica_correlation_uncertainty": true,
+      "langevin_independent_discrete_correlation": true,
+      "shadow_covariance_identity": true,
+      "deterministic_second_order_bias": true,
+      "finest_shadow_bias": true
+    },
+    "metrics": {
+      "maximum_canonical_cdf": 0.015625,
+      "maximum_canonical_mean": 0.013405172680857502,
+      "maximum_canonical_variance": 0.05977288750654294,
+      "maximum_heated_cdf": 0.01733397470983844,
+      "maximum_heated_mean": 0.026796700361769732,
+      "maximum_heated_variance": 0.11505796375558419,
+      "maximum_acf_standard_error": 0.03519420852454281,
+      "maximum_langevin_acf_absolute_error": 0.05177769481005279,
+      "maximum_langevin_acf_z": 2.526881902370831,
+      "quadrature_refinement_error": 4.440892098500626e-16,
+      "minimum_shadow_bias_order": 2.0078530846410816,
+      "maximum_shadow_covariance_error": 2.4424906541753444e-15,
+      "finest_shadow_position_bias": 0.0006261309490266931
+    },
+    "records": [
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.1,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.0023643897606792086,
+        "momentum_cdf_error": 0.007970722631042926,
+        "kinetic_cdf_error": 0.01016855903736652,
+        "total_energy_cdf_error": 0.007196197931049864,
+        "k_mean_relative_error": 0.009755523478193417,
+        "k_variance_relative_error": 0.032285839798283256,
+        "u_mean_relative_error": 0.0035123645096035716,
+        "u_variance_relative_error": 0.029538467322913528,
+        "h_mean_relative_error": 0.003121579484294923,
+        "h_variance_relative_error": 0.006884917385780674,
+        "temperature_mean": 1.0097555234781934,
+        "temperature_variance": 1.0322858397982833,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0220947265625,
+            0.1602783203125,
+            0.501953125,
+            0.8392333984375,
+            0.9796142578125
+          ],
+          [
+            0.0,
+            0.0455322265625,
+            0.501708984375,
+            0.95458984375,
+            0.9996337890625
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.0230712890625,
+            0.1600341796875,
+            0.4949951171875,
+            0.84130859375,
+            0.98046875
+          ],
+          [
+            0.02197265625,
+            0.1593017578125,
+            0.4949951171875,
+            0.8333740234375,
+            0.977783203125
+          ]
+        ],
+        "k_cdf": [
+          0.38330078125,
+          0.630126953125,
+          0.864501953125,
+          0.982177734375,
+          0.9964599609375
+        ],
+        "h_cdf": [
+          0.0830078125,
+          0.2587890625,
+          0.5919189453125,
+          0.910888671875,
+          0.983154296875
+        ],
+        "q_variance": [
+          0.9922997377696702,
+          0.3462545097616351
+        ],
+        "p_variance": [
+          0.9961671662229573,
+          1.023343880733429
+        ],
+        "energy_means": {
+          "kinetic": 1.0097555234781934,
+          "potential": 0.9964876354903964,
+          "total": 2.00624315896859
+        },
+        "energy_variances": {
+          "kinetic": 1.0322858397982833,
+          "potential": 0.9704615326770869,
+          "total": 1.986230165228439
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.1,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.0166015625,
+        "momentum_cdf_error": 0.012659160181457074,
+        "kinetic_cdf_error": 0.001993605703557666,
+        "total_energy_cdf_error": 0.00488282216516156,
+        "k_mean_relative_error": 0.00023922439792611883,
+        "k_variance_relative_error": 0.007863071959832713,
+        "u_mean_relative_error": 0.00969041571887519,
+        "u_variance_relative_error": 0.06933875829912559,
+        "h_mean_relative_error": 0.004725595660474591,
+        "h_variance_relative_error": 0.023212541090136592,
+        "temperature_mean": 1.0002392243979261,
+        "temperature_variance": 0.9921369280401673,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.02294921875,
+            0.16259765625,
+            0.510498046875,
+            0.8447265625,
+            0.978515625
+          ],
+          [
+            0.0,
+            0.040771484375,
+            0.5166015625,
+            0.95263671875,
+            1.0
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.025390625,
+            0.16064453125,
+            0.512451171875,
+            0.841552734375,
+            0.97705078125
+          ],
+          [
+            0.02294921875,
+            0.14599609375,
+            0.492919921875,
+            0.835205078125,
+            0.97607421875
+          ]
+        ],
+        "k_cdf": [
+          0.39453125,
+          0.630126953125,
+          0.86376953125,
+          0.98193359375,
+          0.997802734375
+        ],
+        "h_cdf": [
+          0.088134765625,
+          0.264892578125,
+          0.589111328125,
+          0.91259765625,
+          0.981689453125
+        ],
+        "q_variance": [
+          0.9893727993669037,
+          0.3429918232509843
+        ],
+        "p_variance": [
+          1.0049360517238013,
+          0.9955423970720485
+        ],
+        "energy_means": {
+          "kinetic": 1.0002392243979261,
+          "potential": 0.9903095842811248,
+          "total": 1.9905488086790508
+        },
+        "energy_variances": {
+          "kinetic": 0.9921369280401673,
+          "potential": 0.9306612417008748,
+          "total": 1.9535749178197273
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 0.9964876354903963,
+        "q_acf_standard_error": 0.010884806168799081,
+        "p_acf": 1.0097555234781934,
+        "p_acf_standard_error": 0.011226167609168525,
+        "k_acf": 1.0323810100366169,
+        "k_acf_standard_error": 0.03519420852454281,
+        "h_acf": 0.993134571131173,
+        "h_acf_standard_error": 0.02551995967665274
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.7914863484022907,
+        "q_acf_standard_error": 0.009863195176655536,
+        "p_acf": 0.4304429834911394,
+        "p_acf_standard_error": 0.008892544730109149,
+        "k_acf": 0.048780350493924304,
+        "k_acf_standard_error": 0.012807189406729688,
+        "h_acf": 0.5104724783151244,
+        "h_acf_standard_error": 0.01651984412241579
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.39507829559555785,
+        "q_acf_standard_error": 0.008510464763438742,
+        "p_acf": -0.04401665029605309,
+        "p_acf_standard_error": 0.008399194376996917,
+        "k_acf": 0.01370358536947444,
+        "k_acf_standard_error": 0.011818172072225665,
+        "h_acf": 0.30591119887908425,
+        "h_acf_standard_error": 0.014550208650789778
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": -0.10925403797193974,
+        "q_acf_standard_error": 0.008716168042136681,
+        "p_acf": -0.3154965455238718,
+        "p_acf_standard_error": 0.008662487350294465,
+        "k_acf": 0.03544987046840288,
+        "k_acf_standard_error": 0.011311249202510905,
+        "h_acf": 0.02181753978408834,
+        "h_acf_standard_error": 0.010917196563388422
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": -0.0012263030466483013,
+        "q_acf_standard_error": 0.008138365554142582,
+        "p_acf": 0.015241302665463682,
+        "p_acf_standard_error": 0.008315317454035244,
+        "k_acf": -0.0069684102693722775,
+        "k_acf_standard_error": 0.010728257643007173,
+        "h_acf": -0.009611163151384284,
+        "h_acf_standard_error": 0.010515155281160525
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.1,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.004552753881043037,
+        "momentum_cdf_error": 0.010498046875,
+        "kinetic_cdf_error": 0.0032105512248665202,
+        "total_energy_cdf_error": 0.0025575260560498636,
+        "k_mean_relative_error": 0.008113744423882352,
+        "k_variance_relative_error": 0.012161885286162688,
+        "u_mean_relative_error": 0.007916951412096473,
+        "u_variance_relative_error": 0.01914974173453387,
+        "h_mean_relative_error": 0.008015347917989413,
+        "h_variance_relative_error": 0.013271086396805961,
+        "temperature_mean": 1.0081137444238824,
+        "temperature_variance": 1.0121618852861627,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.023681640625,
+            0.160400390625,
+            0.499755859375,
+            0.8367919921875,
+            0.9791259765625
+          ],
+          [
+            0.00048828125,
+            0.0472412109375,
+            0.5040283203125,
+            0.952392578125,
+            0.999755859375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.0216064453125,
+            0.1556396484375,
+            0.498046875,
+            0.8436279296875,
+            0.97705078125
+          ],
+          [
+            0.0242919921875,
+            0.157470703125,
+            0.489501953125,
+            0.832275390625,
+            0.9754638671875
+          ]
+        ],
+        "k_cdf": [
+          0.3902587890625,
+          0.6295166015625,
+          0.86376953125,
+          0.9808349609375,
+          0.997802734375
+        ],
+        "h_cdf": [
+          0.087646484375,
+          0.2620849609375,
+          0.5919189453125,
+          0.908203125,
+          0.9822998046875
+        ],
+        "q_variance": [
+          0.9909187718663152,
+          0.3546419138262545
+        ],
+        "p_variance": [
+          0.9880476742701764,
+          1.02817981457759
+        ],
+        "energy_means": {
+          "kinetic": 1.0081137444238824,
+          "potential": 1.0079169514120965,
+          "total": 2.016030695835979
+        },
+        "energy_variances": {
+          "kinetic": 1.0121618852861627,
+          "potential": 1.0191497417345343,
+          "total": 2.0265421727936124
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.1,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.007080078125,
+        "momentum_cdf_error": 0.012170878931457074,
+        "kinetic_cdf_error": 0.01717519096263348,
+        "total_energy_cdf_error": 0.012370210467884724,
+        "k_mean_relative_error": 0.022564803680862222,
+        "k_variance_relative_error": 0.02550480632104213,
+        "u_mean_relative_error": 0.011624456512669745,
+        "u_variance_relative_error": 0.057642916671592354,
+        "h_mean_relative_error": 0.005470173584096072,
+        "h_variance_relative_error": 0.024387220697988037,
+        "temperature_mean": 0.9774351963191378,
+        "temperature_variance": 0.9744951936789579,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0234375,
+            0.156982421875,
+            0.507080078125,
+            0.845703125,
+            0.9814453125
+          ],
+          [
+            0.000244140625,
+            0.044921875,
+            0.4951171875,
+            0.953125,
+            0.99951171875
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.023681640625,
+            0.15869140625,
+            0.502685546875,
+            0.853515625,
+            0.978515625
+          ],
+          [
+            0.02294921875,
+            0.147705078125,
+            0.4970703125,
+            0.843017578125,
+            0.97607421875
+          ]
+        ],
+        "k_cdf": [
+          0.41064453125,
+          0.64501953125,
+          0.87353515625,
+          0.980712890625,
+          0.998291015625
+        ],
+        "h_cdf": [
+          0.092041015625,
+          0.276611328125,
+          0.6015625,
+          0.900146484375,
+          0.98291015625
+        ],
+        "q_variance": [
+          0.9848790126322388,
+          0.3592975433886167
+        ],
+        "p_variance": [
+          0.9749013302105001,
+          0.9799690624277732
+        ],
+        "energy_means": {
+          "kinetic": 0.9774351963191378,
+          "potential": 1.0116244565126697,
+          "total": 1.9890596528318079
+        },
+        "energy_variances": {
+          "kinetic": 0.9744951936789579,
+          "potential": 1.0576429166715928,
+          "total": 2.0487744413959765
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 1.0079169514120965,
+        "q_acf_standard_error": 0.011154511007949208,
+        "p_acf": 1.0081137444238824,
+        "p_acf_standard_error": 0.011116204472130515,
+        "k_acf": 1.0122277181347386,
+        "k_acf_standard_error": 0.03150953506138051,
+        "h_acf": 1.0133995780012988,
+        "h_acf_standard_error": 0.02537135366233651,
+        "q_acf_discrete_reference": 1.004891923091707,
+        "q_acf_absolute_error": 0.0030250283203894224,
+        "q_acf_z": 0.271193270438628,
+        "p_acf_discrete_reference": 1.0000000000000007,
+        "p_acf_absolute_error": 0.008113744423881686,
+        "p_acf_z": 0.7299024090663041,
+        "k_acf_discrete_reference": 1.0000000000000013,
+        "k_acf_absolute_error": 0.01222771813473722,
+        "k_acf_z": 0.38806406095544255,
+        "h_acf_discrete_reference": 1.0049186996839237,
+        "h_acf_absolute_error": 0.008480878317375096,
+        "h_acf_z": 0.3342698395302756,
+        "q_acf_continuum_reference": 1.0
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.8309727695349569,
+        "q_acf_standard_error": 0.010340255438646567,
+        "p_acf": 0.24293117992777208,
+        "p_acf_standard_error": 0.00811003274844896,
+        "k_acf": 0.07174762397387843,
+        "k_acf_standard_error": 0.01299641678019494,
+        "h_acf": 0.5498781207709381,
+        "h_acf_standard_error": 0.018858930981987067,
+        "q_acf_discrete_reference": 0.8303881733850165,
+        "q_acf_absolute_error": 0.0005845961499404417,
+        "q_acf_z": 0.05653594859518861,
+        "p_acf_discrete_reference": 0.24730093477064508,
+        "p_acf_absolute_error": 0.004369754842872997,
+        "p_acf_z": 0.5388085323957181,
+        "k_acf_discrete_reference": 0.06437398121520405,
+        "k_acf_absolute_error": 0.007373642758674387,
+        "k_acf_z": 0.5673596717759144,
+        "h_acf_discrete_reference": 0.539964723134917,
+        "h_acf_absolute_error": 0.00991339763602117,
+        "h_acf_z": 0.5256606350322751,
+        "q_acf_continuum_reference": 0.8292644571825692
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.5265540691211623,
+        "q_acf_standard_error": 0.009101358489420676,
+        "p_acf": -0.10684422931714516,
+        "p_acf_standard_error": 0.007926871400232838,
+        "k_acf": 0.02138757680798029,
+        "k_acf_standard_error": 0.01160073788927624,
+        "h_acf": 0.3422767614751263,
+        "h_acf_standard_error": 0.01559214768635403,
+        "q_acf_discrete_reference": 0.5331551164563695,
+        "q_acf_absolute_error": 0.006601047335207166,
+        "q_acf_z": 0.7252815437256047,
+        "p_acf_discrete_reference": -0.09445797101416155,
+        "p_acf_absolute_error": 0.012386258302983608,
+        "p_acf_z": 1.5625658191729694,
+        "k_acf_discrete_reference": 0.017980091387224652,
+        "k_acf_absolute_error": 0.003407485420755637,
+        "k_acf_z": 0.29373005866338275,
+        "h_acf_discrete_reference": 0.33868520401600843,
+        "h_acf_absolute_error": 0.003591557459117878,
+        "h_acf_z": 0.230343986688963,
+        "q_acf_continuum_reference": 0.5349395985421814
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": 0.1361729941476098,
+        "q_acf_standard_error": 0.008222535090354102,
+        "p_acf": -0.1522746769391031,
+        "p_acf_standard_error": 0.00790312060071718,
+        "k_acf": 0.014957962660713465,
+        "k_acf_standard_error": 0.012036768274315617,
+        "h_acf": 0.08637894579789909,
+        "h_acf_standard_error": 0.012916757385168088,
+        "q_acf_discrete_reference": 0.1569503692590347,
+        "q_acf_absolute_error": 0.020777375111424884,
+        "q_acf_z": 2.526881902370831,
+        "p_acf_discrete_reference": -0.14824659314149735,
+        "p_acf_absolute_error": 0.004028083797605747,
+        "p_acf_z": 0.5096826938513646,
+        "k_acf_discrete_reference": 0.022157574484029136,
+        "k_acf_absolute_error": 0.007199611823315671,
+        "k_acf_z": 0.5981349527745249,
+        "h_acf_discrete_reference": 0.09233296813088726,
+        "h_acf_absolute_error": 0.005954022332988168,
+        "h_acf_z": 0.46095333027041197,
+        "q_acf_continuum_reference": 0.15927571161433696
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.1,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": 0.04714002387464413,
+        "q_acf_standard_error": 0.007982848116685362,
+        "p_acf": -0.009831984072275504,
+        "p_acf_standard_error": 0.007805138289366583,
+        "k_acf": -0.012268022619451976,
+        "k_acf_standard_error": 0.01054497449343717,
+        "h_acf": 0.0006352178454708144,
+        "h_acf_standard_error": 0.01101197871308906,
+        "q_acf_discrete_reference": 0.047200438113183446,
+        "q_acf_absolute_error": 6.041423853931499e-05,
+        "q_acf_z": 0.0075680055108451934,
+        "p_acf_discrete_reference": -0.01608755515135865,
+        "p_acf_absolute_error": 0.006255571079083148,
+        "p_acf_z": 0.8014683208887527,
+        "k_acf_discrete_reference": 0.001734402108133254,
+        "k_acf_absolute_error": 0.01400242472758523,
+        "k_acf_z": 1.3278765857897388,
+        "h_acf_discrete_reference": 0.005661091125288738,
+        "h_acf_absolute_error": 0.005025873279817923,
+        "h_acf_z": 0.4564005625840948,
+        "q_acf_continuum_reference": 0.04756896074244641
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.05,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.005212871118956963,
+        "momentum_cdf_error": 0.0054931640625,
+        "kinetic_cdf_error": 0.006551103549112702,
+        "total_energy_cdf_error": 0.0061289756936708795,
+        "k_mean_relative_error": 0.013405172680857502,
+        "k_variance_relative_error": 0.023447291652802793,
+        "u_mean_relative_error": 0.010041121848716417,
+        "u_variance_relative_error": 0.03557090894236524,
+        "h_mean_relative_error": 0.01172314726478696,
+        "h_variance_relative_error": 0.04564389850459693,
+        "temperature_mean": 0.9865948273191425,
+        "temperature_variance": 0.9765527083471972,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0185546875,
+            0.157470703125,
+            0.4986572265625,
+            0.8465576171875,
+            0.979736328125
+          ],
+          [
+            0.0001220703125,
+            0.0443115234375,
+            0.49560546875,
+            0.955810546875,
+            0.999755859375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.0194091796875,
+            0.1572265625,
+            0.4996337890625,
+            0.8433837890625,
+            0.9775390625
+          ],
+          [
+            0.02001953125,
+            0.161376953125,
+            0.4945068359375,
+            0.841552734375,
+            0.978515625
+          ]
+        ],
+        "k_cdf": [
+          0.394775390625,
+          0.6318359375,
+          0.8712158203125,
+          0.9813232421875,
+          0.997314453125
+        ],
+        "h_cdf": [
+          0.0889892578125,
+          0.2630615234375,
+          0.60009765625,
+          0.91455078125,
+          0.9840087890625
+        ],
+        "q_variance": [
+          0.9645264346407592,
+          0.3513464780836703
+        ],
+        "p_variance": [
+          0.982376180121432,
+          0.9908134745168556
+        ],
+        "energy_means": {
+          "kinetic": 0.9865948273191425,
+          "potential": 0.9899588781512836,
+          "total": 1.976553705470426
+        },
+        "energy_variances": {
+          "kinetic": 0.9765527083471972,
+          "potential": 0.9644290910576352,
+          "total": 1.9087122029908066
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.05,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.007568359375,
+        "momentum_cdf_error": 0.015380859375,
+        "kinetic_cdf_error": 0.00943613716236652,
+        "total_energy_cdf_error": 0.0044199913186708795,
+        "k_mean_relative_error": 0.011288878211709985,
+        "k_variance_relative_error": 0.02753227208110065,
+        "u_mean_relative_error": 0.008202182066684438,
+        "u_variance_relative_error": 0.04661867542976859,
+        "h_mean_relative_error": 0.0015433480725128845,
+        "h_variance_relative_error": 0.010260084814102342,
+        "temperature_mean": 1.01128887821171,
+        "temperature_variance": 1.0275322720811007,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0224609375,
+            0.15966796875,
+            0.497314453125,
+            0.8388671875,
+            0.977783203125
+          ],
+          [
+            0.000244140625,
+            0.039794921875,
+            0.492431640625,
+            0.95556640625,
+            0.999755859375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.020751953125,
+            0.1640625,
+            0.501953125,
+            0.84130859375,
+            0.97705078125
+          ],
+          [
+            0.02490234375,
+            0.1572265625,
+            0.515380859375,
+            0.841064453125,
+            0.977783203125
+          ]
+        ],
+        "k_cdf": [
+          0.384033203125,
+          0.627197265625,
+          0.86767578125,
+          0.98095703125,
+          0.99609375
+        ],
+        "h_cdf": [
+          0.09130859375,
+          0.26318359375,
+          0.595947265625,
+          0.912841796875,
+          0.980712890625
+        ],
+        "q_variance": [
+          0.9930242741751973,
+          0.3427582566406361
+        ],
+        "p_variance": [
+          1.0098888765311334,
+          1.0126888798922855
+        ],
+        "energy_means": {
+          "kinetic": 1.01128887821171,
+          "potential": 0.9917978179333156,
+          "total": 2.0030866961450258
+        },
+        "energy_variances": {
+          "kinetic": 1.0275322720811007,
+          "potential": 0.9533813245702318,
+          "total": 2.020520169628205
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 0.9899588781512836,
+        "q_acf_standard_error": 0.010850923158761322,
+        "p_acf": 0.9865948273191425,
+        "p_acf_standard_error": 0.010918912392108519,
+        "k_acf": 0.9767324070018009,
+        "k_acf_standard_error": 0.030184358577303994,
+        "h_acf": 0.9546309658589869,
+        "h_acf_standard_error": 0.022486880217982945
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.7853144131392453,
+        "q_acf_standard_error": 0.009788738048976713,
+        "p_acf": 0.46869911353115734,
+        "p_acf_standard_error": 0.008405970318373505,
+        "k_acf": 0.029845044855181014,
+        "k_acf_standard_error": 0.010848084796683682,
+        "h_acf": 0.4878370804112435,
+        "h_acf_standard_error": 0.01609287051309176
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.38331537683950545,
+        "q_acf_standard_error": 0.008436108678848454,
+        "p_acf": -0.02346665704452083,
+        "p_acf_standard_error": 0.008162470535154983,
+        "k_acf": 0.027763742291148117,
+        "k_acf_standard_error": 0.011526554085158514,
+        "h_acf": 0.2903070234551026,
+        "h_acf_standard_error": 0.014040716430121912
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": -0.15396462462239885,
+        "q_acf_standard_error": 0.008671149525666269,
+        "p_acf": -0.3256603104089042,
+        "p_acf_standard_error": 0.008503990148357943,
+        "k_acf": 0.031002864769737258,
+        "k_acf_standard_error": 0.012012015798055546,
+        "h_acf": 0.04093595758253535,
+        "h_acf_standard_error": 0.012596705784518407
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": -0.0023518244156988154,
+        "q_acf_standard_error": 0.008292679219325734,
+        "p_acf": 0.010039282393417056,
+        "p_acf_standard_error": 0.0082104782331982,
+        "k_acf": 0.0019835974736266884,
+        "k_acf_standard_error": 0.010841386594158921,
+        "h_acf": -0.005969487184536933,
+        "h_acf_standard_error": 0.010538238319706598
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.05,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.005457011743956963,
+        "momentum_cdf_error": 0.0089111328125,
+        "kinetic_cdf_error": 0.002726027578557666,
+        "total_energy_cdf_error": 0.0058182660946152764,
+        "k_mean_relative_error": 3.072568745765558e-06,
+        "k_variance_relative_error": 0.00134620071833913,
+        "u_mean_relative_error": 0.000998116350785505,
+        "u_variance_relative_error": 0.02401364038000685,
+        "h_mean_relative_error": 0.0005005944597656908,
+        "h_variance_relative_error": 0.025071952534282176,
+        "temperature_mean": 0.9999969274312542,
+        "temperature_variance": 1.0013462007183391,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0208740234375,
+            0.1632080078125,
+            0.505126953125,
+            0.8468017578125,
+            0.9771728515625
+          ],
+          [
+            0.0,
+            0.0433349609375,
+            0.4974365234375,
+            0.9566650390625,
+            0.999755859375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.0250244140625,
+            0.166259765625,
+            0.5089111328125,
+            0.844970703125,
+            0.9742431640625
+          ],
+          [
+            0.0234375,
+            0.1514892578125,
+            0.4932861328125,
+            0.838623046875,
+            0.9805908203125
+          ]
+        ],
+        "k_cdf": [
+          0.3922119140625,
+          0.62939453125,
+          0.86279296875,
+          0.981689453125,
+          0.997802734375
+        ],
+        "h_cdf": [
+          0.0863037109375,
+          0.2584228515625,
+          0.5916748046875,
+          0.9117431640625,
+          0.98388671875
+        ],
+        "q_variance": [
+          0.989189386872317,
+          0.3490707198706279
+        ],
+        "p_variance": [
+          1.0337683153704518,
+          0.9662255394920625
+        ],
+        "energy_means": {
+          "kinetic": 0.9999969274312542,
+          "potential": 0.9990018836492145,
+          "total": 1.9989988110804686
+        },
+        "energy_variances": {
+          "kinetic": 1.0013462007183391,
+          "potential": 0.9759863596199936,
+          "total": 1.949856094931436
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 0.25,
+        "gamma_langevin": 2.0,
+        "dt": 0.05,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.011962890625,
+        "momentum_cdf_error": 0.009313496068542926,
+        "kinetic_cdf_error": 0.00504160591236652,
+        "total_energy_cdf_error": 0.0036366493063291205,
+        "k_mean_relative_error": 0.005245122233207056,
+        "k_variance_relative_error": 0.011149794378713995,
+        "u_mean_relative_error": 0.004281423103126181,
+        "u_variance_relative_error": 0.02067842500597993,
+        "h_mean_relative_error": 0.000481849565040271,
+        "h_variance_relative_error": 0.024468301457474688,
+        "temperature_mean": 1.005245122233207,
+        "temperature_variance": 0.988850205621286,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.022705078125,
+            0.159912109375,
+            0.5087890625,
+            0.837646484375,
+            0.97509765625
+          ],
+          [
+            0.0,
+            0.0439453125,
+            0.511962890625,
+            0.957275390625,
+            0.999755859375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.023681640625,
+            0.16796875,
+            0.50634765625,
+            0.836181640625,
+            0.976318359375
+          ],
+          [
+            0.0224609375,
+            0.1533203125,
+            0.499755859375,
+            0.837890625,
+            0.98046875
+          ]
+        ],
+        "k_cdf": [
+          0.388427734375,
+          0.628662109375,
+          0.8642578125,
+          0.97998046875,
+          0.99853515625
+        ],
+        "h_cdf": [
+          0.090087890625,
+          0.267578125,
+          0.5908203125,
+          0.90478515625,
+          0.984619140625
+        ],
+        "q_variance": [
+          1.0245609383316732,
+          0.33455924410452464
+        ],
+        "p_variance": [
+          1.0361281665290527,
+          0.9743620779373577
+        ],
+        "energy_means": {
+          "kinetic": 1.005245122233207,
+          "potential": 0.9957185768968738,
+          "total": 2.0009636991300805
+        },
+        "energy_variances": {
+          "kinetic": 0.988850205621286,
+          "potential": 1.0206784250059804,
+          "total": 2.04893660291495
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 0.9990018836492144,
+        "q_acf_standard_error": 0.010915745738159314,
+        "p_acf": 0.9999969274312542,
+        "p_acf_standard_error": 0.011056652598557289,
+        "k_acf": 1.00134620072778,
+        "k_acf_standard_error": 0.03250366862373314,
+        "h_acf": 0.9749285486553443,
+        "h_acf_standard_error": 0.024097822988031817,
+        "q_acf_discrete_reference": 1.0012174546559902,
+        "q_acf_absolute_error": 0.0022155710067758294,
+        "q_acf_z": 0.20297019186060977,
+        "p_acf_discrete_reference": 0.9999999999999996,
+        "p_acf_absolute_error": 3.072568745321469e-06,
+        "p_acf_z": 0.000277893215684681,
+        "k_acf_discrete_reference": 0.999999999999999,
+        "k_acf_absolute_error": 0.0013462007277810217,
+        "k_acf_z": 0.04141688568649968,
+        "h_acf_discrete_reference": 1.001219112121593,
+        "h_acf_absolute_error": 0.026290563466248695,
+        "h_acf_z": 1.0909933017312767,
+        "q_acf_continuum_reference": 1.0
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.8278979049303613,
+        "q_acf_standard_error": 0.01006937633502467,
+        "p_acf": 0.23767223324908815,
+        "p_acf_standard_error": 0.008154535676892633,
+        "k_acf": 0.06998982362453351,
+        "k_acf_standard_error": 0.013644340437822158,
+        "h_acf": 0.5252206331863125,
+        "h_acf_standard_error": 0.018608991499877457,
+        "q_acf_discrete_reference": 0.8295453158494999,
+        "q_acf_absolute_error": 0.0016474109191385589,
+        "q_acf_z": 0.16360605307880996,
+        "p_acf_discrete_reference": 0.24636849743533862,
+        "p_acf_absolute_error": 0.008696264186250469,
+        "p_acf_z": 1.0664327842593075,
+        "k_acf_discrete_reference": 0.06395598836743945,
+        "k_acf_absolute_error": 0.0060338352570940695,
+        "k_acf_z": 0.44222256726812953,
+        "h_acf_discrete_reference": 0.5386492250694301,
+        "h_acf_absolute_error": 0.013428591883117624,
+        "h_acf_z": 0.7216184650955455,
+        "q_acf_continuum_reference": 0.8292644571825692
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.5321692047570503,
+        "q_acf_standard_error": 0.008860247300513841,
+        "p_acf": -0.09191721580324592,
+        "p_acf_standard_error": 0.007752236766544205,
+        "k_acf": 0.015797004615231904,
+        "k_acf_standard_error": 0.011872522496004111,
+        "h_acf": 0.32907069655275123,
+        "h_acf_standard_error": 0.015250408457344104,
+        "q_acf_discrete_reference": 0.5344963461595778,
+        "q_acf_absolute_error": 0.002327141402527433,
+        "q_acf_z": 0.26264971209014365,
+        "p_acf_discrete_reference": -0.09517018024379356,
+        "p_acf_absolute_error": 0.003252964440547637,
+        "p_acf_z": 0.4196162396105124,
+        "k_acf_discrete_reference": 0.01814878617186931,
+        "k_acf_absolute_error": 0.002351781556637407,
+        "k_acf_z": 0.19808608974452876,
+        "h_acf_discrete_reference": 0.3393387749749742,
+        "h_acf_absolute_error": 0.010268078422222993,
+        "h_acf_z": 0.6732985841620667,
+        "q_acf_continuum_reference": 0.5349395985421814
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": 0.15292952225705028,
+        "q_acf_standard_error": 0.008131793740771717,
+        "p_acf": -0.14392265066664411,
+        "p_acf_standard_error": 0.007846888504217341,
+        "k_acf": 0.03138193221519027,
+        "k_acf_standard_error": 0.011211812253459396,
+        "h_acf": 0.08884901417868465,
+        "h_acf_standard_error": 0.011931452698350315,
+        "q_acf_discrete_reference": 0.1586945942420564,
+        "q_acf_absolute_error": 0.005765071985006115,
+        "q_acf_z": 0.70895452698226,
+        "p_acf_discrete_reference": -0.14881687448513103,
+        "p_acf_absolute_error": 0.00489422381848692,
+        "p_acf_z": 0.623715223665597,
+        "k_acf_discrete_reference": 0.02233177744861556,
+        "k_acf_absolute_error": 0.009050154766574711,
+        "k_acf_z": 0.8071982086377064,
+        "h_acf_discrete_reference": 0.09282459900342666,
+        "h_acf_absolute_error": 0.003975584824742001,
+        "h_acf_z": 0.3332020773372952,
+        "q_acf_continuum_reference": 0.15927571161433696
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 0.25,
+        "dt": 0.05,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": 0.054213199676048,
+        "q_acf_standard_error": 0.007865980818420168,
+        "p_acf": -0.028894017915664944,
+        "p_acf_standard_error": 0.007847864524311677,
+        "k_acf": 0.018511076202815575,
+        "k_acf_standard_error": 0.011072252677734906,
+        "h_acf": 0.007619244528538698,
+        "h_acf_standard_error": 0.010987609202915713,
+        "q_acf_discrete_reference": 0.047476346425680584,
+        "q_acf_absolute_error": 0.006736853250367415,
+        "q_acf_z": 0.8564543196687414,
+        "p_acf_discrete_reference": -0.01623544650657635,
+        "p_acf_absolute_error": 0.012658571409088593,
+        "p_acf_z": 1.6129956588666845,
+        "k_acf_discrete_reference": 0.001753523006980399,
+        "k_acf_absolute_error": 0.016757553195835176,
+        "k_acf_z": 1.5134727939810109,
+        "h_acf_discrete_reference": 0.0057562935451225174,
+        "h_acf_absolute_error": 0.0018629509834161805,
+        "h_acf_z": 0.1695501677400231,
+        "q_acf_continuum_reference": 0.04756896074244641
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.1,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.006215787241456959,
+        "momentum_cdf_error": 0.0079345703125,
+        "kinetic_cdf_error": 0.00631093315013348,
+        "total_energy_cdf_error": 0.00561522470983844,
+        "k_mean_relative_error": 0.006826203958086419,
+        "k_variance_relative_error": 0.017547172315065973,
+        "u_mean_relative_error": 0.0038559584498716326,
+        "u_variance_relative_error": 0.02094002858896681,
+        "h_mean_relative_error": 0.005341081203978804,
+        "h_variance_relative_error": 0.026528437225766137,
+        "temperature_mean": 0.9931737960419136,
+        "temperature_variance": 0.982452827684934,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.021240234375,
+            0.15380859375,
+            0.4970703125,
+            0.8367919921875,
+            0.9786376953125
+          ],
+          [
+            0.00048828125,
+            0.05078125,
+            0.5020751953125,
+            0.9537353515625,
+            0.9998779296875
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.0238037109375,
+            0.15869140625,
+            0.4969482421875,
+            0.84228515625,
+            0.975830078125
+          ],
+          [
+            0.0211181640625,
+            0.1529541015625,
+            0.4920654296875,
+            0.83935546875,
+            0.97705078125
+          ]
+        ],
+        "k_cdf": [
+          0.3997802734375,
+          0.6317138671875,
+          0.865234375,
+          0.982177734375,
+          0.9974365234375
+        ],
+        "h_cdf": [
+          0.086669921875,
+          0.2633056640625,
+          0.599609375,
+          0.9056396484375,
+          0.9830322265625
+        ],
+        "q_variance": [
+          0.9791694325091936,
+          0.3505600867097103
+        ],
+        "p_variance": [
+          1.0061395760115632,
+          0.9802080160722645
+        ],
+        "energy_means": {
+          "kinetic": 0.9931737960419136,
+          "potential": 0.9961440415501284,
+          "total": 1.9893178375920424
+        },
+        "energy_variances": {
+          "kinetic": 0.982452827684934,
+          "potential": 0.9790599714110336,
+          "total": 1.9469431255484682
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.1,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.007848652318543037,
+        "momentum_cdf_error": 0.005859375,
+        "kinetic_cdf_error": 0.00838612846263348,
+        "total_energy_cdf_error": 0.0062666948428847236,
+        "k_mean_relative_error": 0.026796700361769732,
+        "k_variance_relative_error": 0.11505796375558419,
+        "u_mean_relative_error": 0.014296083005923554,
+        "u_variance_relative_error": 0.04468871540380357,
+        "h_mean_relative_error": 0.006250308677923089,
+        "h_variance_relative_error": 0.010105113031846134,
+        "temperature_mean": 0.9732032996382303,
+        "temperature_variance": 0.8849420362444158,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.022705078125,
+            0.1552734375,
+            0.505859375,
+            0.83349609375,
+            0.97705078125
+          ],
+          [
+            0.00146484375,
+            0.0419921875,
+            0.494873046875,
+            0.95556640625,
+            0.999267578125
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.017822265625,
+            0.153076171875,
+            0.494140625,
+            0.842529296875,
+            0.976318359375
+          ],
+          [
+            0.01953125,
+            0.154296875,
+            0.502197265625,
+            0.843505859375,
+            0.978271484375
+          ]
+        ],
+        "k_cdf": [
+          0.40185546875,
+          0.633056640625,
+          0.868408203125,
+          0.98583984375,
+          0.998779296875
+        ],
+        "h_cdf": [
+          0.09033203125,
+          0.2705078125,
+          0.591552734375,
+          0.911865234375,
+          0.98095703125
+        ],
+        "q_variance": [
+          1.0124330883406227,
+          0.3516121376024998
+        ],
+        "p_variance": [
+          0.974139491995191,
+          0.9722671072812699
+        ],
+        "energy_means": {
+          "kinetic": 0.9732032996382303,
+          "potential": 1.0142960830059236,
+          "total": 1.9874993826441538
+        },
+        "energy_variances": {
+          "kinetic": 0.8849420362444158,
+          "potential": 1.044688715403804,
+          "total": 2.0202102260636927
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 0.9961440415501284,
+        "q_acf_standard_error": 0.010932920359078606,
+        "p_acf": 0.9931737960419136,
+        "p_acf_standard_error": 0.010951847568663868,
+        "k_acf": 0.9824994247454115,
+        "k_acf_standard_error": 0.029363863955607698,
+        "h_acf": 0.9735286170710888,
+        "h_acf_standard_error": 0.02214050799266783
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.7670728409242333,
+        "q_acf_standard_error": 0.009629580844494888,
+        "p_acf": 0.6758103760437058,
+        "p_acf_standard_error": 0.009223233349696236,
+        "k_acf": 0.3611047825904595,
+        "k_acf_standard_error": 0.018101860589717078,
+        "h_acf": 0.7838161013172231,
+        "h_acf_standard_error": 0.01991708971461454
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.24701053383894273,
+        "q_acf_standard_error": 0.008036097131904292,
+        "p_acf": 0.122373707497623,
+        "p_acf_standard_error": 0.007921733957331221,
+        "k_acf": 0.01885741362917404,
+        "k_acf_standard_error": 0.011263639600294072,
+        "h_acf": 0.6108728610503558,
+        "h_acf_standard_error": 0.017954094117639288
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": -0.5141063146303471,
+        "q_acf_standard_error": 0.008607226047467043,
+        "p_acf": -0.5651811420489636,
+        "p_acf_standard_error": 0.008690707154905428,
+        "k_acf": 0.22817281048494253,
+        "k_acf_standard_error": 0.014709735971911898,
+        "h_acf": 0.370431112206491,
+        "h_acf_standard_error": 0.015384508588902992
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": 0.05872901748815202,
+        "q_acf_standard_error": 0.00849954662836074,
+        "p_acf": 0.07030409525787022,
+        "p_acf_standard_error": 0.008098510868883343,
+        "k_acf": 0.04680949971920519,
+        "k_acf_standard_error": 0.012473186813413951,
+        "h_acf": 0.13426515825444474,
+        "h_acf_standard_error": 0.012886081624287386
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.1,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.0069580078125,
+        "momentum_cdf_error": 0.007568359375,
+        "kinetic_cdf_error": 0.007161667733942334,
+        "total_energy_cdf_error": 0.0050303428811708795,
+        "k_mean_relative_error": 0.013252770058771901,
+        "k_variance_relative_error": 0.051953330724281654,
+        "u_mean_relative_error": 0.005689901368043593,
+        "u_variance_relative_error": 0.006312447292228571,
+        "h_mean_relative_error": 0.003781434345364154,
+        "h_variance_relative_error": 0.03643637582692837,
+        "temperature_mean": 0.9867472299412281,
+        "temperature_variance": 0.9480466692757183,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.020751953125,
+            0.1533203125,
+            0.4930419921875,
+            0.83642578125,
+            0.9757080078125
+          ],
+          [
+            0.000244140625,
+            0.0472412109375,
+            0.498046875,
+            0.9525146484375,
+            0.99951171875
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.024169921875,
+            0.157958984375,
+            0.507568359375,
+            0.8424072265625,
+            0.97802734375
+          ],
+          [
+            0.0244140625,
+            0.153076171875,
+            0.4945068359375,
+            0.8438720703125,
+            0.977783203125
+          ]
+        ],
+        "k_cdf": [
+          0.3992919921875,
+          0.6392822265625,
+          0.8653564453125,
+          0.98388671875,
+          0.99853515625
+        ],
+        "h_cdf": [
+          0.09130859375,
+          0.2607421875,
+          0.597412109375,
+          0.9134521484375,
+          0.98388671875
+        ],
+        "q_variance": [
+          0.9926301372808998,
+          0.3525085347595794
+        ],
+        "p_variance": [
+          0.994057370117648,
+          0.9794370897648101
+        ],
+        "energy_means": {
+          "kinetic": 0.9867472299412281,
+          "potential": 1.0056899013680436,
+          "total": 1.9924371313092717
+        },
+        "energy_variances": {
+          "kinetic": 0.9480466692757183,
+          "potential": 0.9936875527077719,
+          "total": 1.9271272483461437
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.1,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.010290058568543037,
+        "momentum_cdf_error": 0.012451171875,
+        "kinetic_cdf_error": 0.012166550546442334,
+        "total_energy_cdf_error": 0.01733397470983844,
+        "k_mean_relative_error": 0.015518535610164808,
+        "k_variance_relative_error": 0.0022418330355933325,
+        "u_mean_relative_error": 0.004919647311843245,
+        "u_variance_relative_error": 0.006716820455355485,
+        "h_mean_relative_error": 0.010219091461004082,
+        "h_variance_relative_error": 0.005576879660747268,
+        "temperature_mean": 0.9844814643898352,
+        "temperature_variance": 1.0022418330355933,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.022705078125,
+            0.15185546875,
+            0.495361328125,
+            0.8310546875,
+            0.974365234375
+          ],
+          [
+            0.0,
+            0.044677734375,
+            0.509033203125,
+            0.955078125,
+            0.999267578125
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.02001953125,
+            0.1533203125,
+            0.487548828125,
+            0.8291015625,
+            0.974853515625
+          ],
+          [
+            0.02392578125,
+            0.1494140625,
+            0.489501953125,
+            0.84228515625,
+            0.97802734375
+          ]
+        ],
+        "k_cdf": [
+          0.3974609375,
+          0.644287109375,
+          0.86767578125,
+          0.98095703125,
+          0.997314453125
+        ],
+        "h_cdf": [
+          0.08935546875,
+          0.27978515625,
+          0.611328125,
+          0.907958984375,
+          0.982421875
+        ],
+        "q_variance": [
+          1.0018029428661999,
+          0.34199230536682207
+        ],
+        "p_variance": [
+          0.9860242873501361,
+          0.9829386414295329
+        ],
+        "energy_means": {
+          "kinetic": 0.9844814643898352,
+          "potential": 0.9950803526881568,
+          "total": 1.9795618170779918
+        },
+        "energy_variances": {
+          "kinetic": 1.0022418330355933,
+          "potential": 0.993283179544645,
+          "total": 1.988846240678506
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 1.0056899013680436,
+        "q_acf_standard_error": 0.011014288855506057,
+        "p_acf": 0.9867472299412281,
+        "p_acf_standard_error": 0.010758367994450024,
+        "k_acf": 0.948222305189949,
+        "k_acf_standard_error": 0.02642878623227804,
+        "h_acf": 0.9635922226644882,
+        "h_acf_standard_error": 0.022450531061163435,
+        "q_acf_discrete_reference": 1.0048919230917068,
+        "q_acf_absolute_error": 0.0007979782763367638,
+        "q_acf_z": 0.07244936888847375,
+        "p_acf_discrete_reference": 1.0000000000000009,
+        "p_acf_absolute_error": 0.01325277005877279,
+        "p_acf_z": 1.2318569197121316,
+        "k_acf_discrete_reference": 1.0000000000000018,
+        "k_acf_absolute_error": 0.05177769481005279,
+        "k_acf_z": 1.9591400965215566,
+        "h_acf_discrete_reference": 1.0049186996839237,
+        "h_acf_absolute_error": 0.04132647701943548,
+        "h_acf_z": 1.840779485654352,
+        "q_acf_continuum_reference": 1.0
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.7903457946007788,
+        "q_acf_standard_error": 0.009895134205936343,
+        "p_acf": 0.5704348971139452,
+        "p_acf_standard_error": 0.008797091312256235,
+        "k_acf": 0.32568367707713514,
+        "k_acf_standard_error": 0.016602196418980662,
+        "h_acf": 0.7737189277015275,
+        "h_acf_standard_error": 0.020766323645581748,
+        "q_acf_discrete_reference": 0.7892272360175047,
+        "q_acf_absolute_error": 0.001118558583274143,
+        "q_acf_z": 0.11304127463001878,
+        "p_acf_discrete_reference": 0.5831408718657105,
+        "p_acf_absolute_error": 0.01270597475176527,
+        "p_acf_z": 1.4443381682378496,
+        "k_acf_discrete_reference": 0.3485425739137745,
+        "k_acf_absolute_error": 0.022858896836639386,
+        "k_acf_z": 1.3768597997374417,
+        "h_acf_discrete_reference": 0.803886689798395,
+        "h_acf_absolute_error": 0.030167762096867445,
+        "h_acf_z": 1.4527252204935153,
+        "q_acf_continuum_reference": 0.7867197847178922
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.3125468428708576,
+        "q_acf_standard_error": 0.008343776921624144,
+        "p_acf": 0.03777318279562226,
+        "p_acf_standard_error": 0.007887941834812352,
+        "k_acf": 0.03874731455030957,
+        "k_acf_standard_error": 0.01143637459679365,
+        "h_acf": 0.6275265849886751,
+        "h_acf_standard_error": 0.019532823206672167,
+        "q_acf_discrete_reference": 0.31690950244613486,
+        "q_acf_absolute_error": 0.004362659575277261,
+        "q_acf_z": 0.5228638800218612,
+        "p_acf_discrete_reference": 0.037181657343608565,
+        "p_acf_absolute_error": 0.0005915254520136928,
+        "p_acf_z": 0.07499110216597644,
+        "k_acf_discrete_reference": 0.058391444543515095,
+        "k_acf_absolute_error": 0.019644129993205528,
+        "k_acf_z": 1.717688575775844,
+        "h_acf_discrete_reference": 0.6499839827888871,
+        "h_acf_absolute_error": 0.022457397800212053,
+        "h_acf_z": 1.149726159019393,
+        "q_acf_continuum_reference": 0.318040422076593
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": -0.34653326409937035,
+        "q_acf_standard_error": 0.008567949067126672,
+        "p_acf": -0.45821917335098017,
+        "p_acf_standard_error": 0.00867289575266086,
+        "k_acf": 0.21684366061712423,
+        "k_acf_standard_error": 0.015542713659306047,
+        "h_acf": 0.36768349938989997,
+        "h_acf_standard_error": 0.01490943061111924,
+        "q_acf_discrete_reference": -0.3438024547860329,
+        "q_acf_absolute_error": 0.002730809313337468,
+        "q_acf_z": 0.31872380332126155,
+        "p_acf_discrete_reference": -0.4671290006616446,
+        "p_acf_absolute_error": 0.00890982731066442,
+        "p_acf_z": 1.027318621687672,
+        "k_acf_discrete_reference": 0.2290262960044171,
+        "k_acf_absolute_error": 0.012182635387292862,
+        "k_acf_z": 0.7838164978352173,
+        "h_acf_discrete_reference": 0.39136321888453307,
+        "h_acf_absolute_error": 0.0236797194946331,
+        "h_acf_z": 1.5882376807182097,
+        "q_acf_continuum_reference": -0.34108539105447055
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.1,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": 0.005878333234217688,
+        "q_acf_standard_error": 0.008318689421756799,
+        "p_acf": 0.04230346722287974,
+        "p_acf_standard_error": 0.008012534501334203,
+        "k_acf": 0.06933179756303084,
+        "k_acf_standard_error": 0.012123675747904702,
+        "h_acf": 0.14304719077983608,
+        "h_acf_standard_error": 0.012401229916286172,
+        "q_acf_discrete_reference": 0.0098495368994036,
+        "q_acf_absolute_error": 0.003971203665185911,
+        "q_acf_z": 0.4773833309366711,
+        "p_acf_discrete_reference": 0.04870608227868571,
+        "p_acf_absolute_error": 0.006402615055805971,
+        "p_acf_z": 0.7990748813299765,
+        "k_acf_discrete_reference": 0.0692580291166685,
+        "k_acf_absolute_error": 7.376844636233781e-05,
+        "k_acf_z": 0.006084660122577675,
+        "h_acf_discrete_reference": 0.14069625902042662,
+        "h_acf_absolute_error": 0.0023509317594094525,
+        "h_acf_z": 0.18957246783418175,
+        "q_acf_continuum_reference": 0.009295454874724912
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.05,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.010986328125,
+        "momentum_cdf_error": 0.015625,
+        "kinetic_cdf_error": 0.004557294888387298,
+        "total_energy_cdf_error": 0.0028330772561708795,
+        "k_mean_relative_error": 3.375312429287902e-05,
+        "k_variance_relative_error": 0.012692377311524172,
+        "u_mean_relative_error": 0.009388771731669632,
+        "u_variance_relative_error": 0.05977288750654294,
+        "h_mean_relative_error": 0.004677509303688376,
+        "h_variance_relative_error": 0.015465289853450633,
+        "temperature_mean": 1.0000337531242929,
+        "temperature_variance": 1.0126923773115242,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0216064453125,
+            0.1558837890625,
+            0.5037841796875,
+            0.8402099609375,
+            0.97705078125
+          ],
+          [
+            0.000244140625,
+            0.045166015625,
+            0.510986328125,
+            0.956298828125,
+            0.999755859375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.023193359375,
+            0.1600341796875,
+            0.500732421875,
+            0.8428955078125,
+            0.9749755859375
+          ],
+          [
+            0.0225830078125,
+            0.1517333984375,
+            0.484375,
+            0.8399658203125,
+            0.974365234375
+          ]
+        ],
+        "k_cdf": [
+          0.3970947265625,
+          0.6358642578125,
+          0.860107421875,
+          0.9798583984375,
+          0.9979248046875
+        ],
+        "h_cdf": [
+          0.090087890625,
+          0.264404296875,
+          0.5968017578125,
+          0.9112548828125,
+          0.9833984375
+        ],
+        "q_variance": [
+          0.9876101980984383,
+          0.3438104700478292
+        ],
+        "p_variance": [
+          1.0093752319591853,
+          0.9906922742893992
+        ],
+        "energy_means": {
+          "kinetic": 1.0000337531242929,
+          "potential": 0.9906112282683304,
+          "total": 1.9906449813926232
+        },
+        "energy_variances": {
+          "kinetic": 1.0126923773115242,
+          "potential": 0.9402271124934575,
+          "total": 1.9690694202930992
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "csvr",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.05,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.007604511693543037,
+        "momentum_cdf_error": 0.008581074193542926,
+        "kinetic_cdf_error": 0.00748301216236652,
+        "total_energy_cdf_error": 0.0072987586813291205,
+        "k_mean_relative_error": 0.010930995595228143,
+        "k_variance_relative_error": 0.04580546623777826,
+        "u_mean_relative_error": 0.00897312098423031,
+        "u_variance_relative_error": 0.029962534274961858,
+        "h_mean_relative_error": 0.009952058289729226,
+        "h_variance_relative_error": 0.008870932379044348,
+        "temperature_mean": 1.0109309955952281,
+        "temperature_variance": 1.0458054662377783,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.02392578125,
+            0.1533203125,
+            0.496826171875,
+            0.833740234375,
+            0.976318359375
+          ],
+          [
+            0.0,
+            0.04736328125,
+            0.500732421875,
+            0.951904296875,
+            0.99951171875
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.023193359375,
+            0.154541015625,
+            0.501708984375,
+            0.832763671875,
+            0.973876953125
+          ],
+          [
+            0.02001953125,
+            0.162353515625,
+            0.507080078125,
+            0.840576171875,
+            0.978515625
+          ]
+        ],
+        "k_cdf": [
+          0.385986328125,
+          0.632568359375,
+          0.86572265625,
+          0.9794921875,
+          0.99658203125
+        ],
+        "h_cdf": [
+          0.0869140625,
+          0.25830078125,
+          0.590576171875,
+          0.901123046875,
+          0.983642578125
+        ],
+        "q_variance": [
+          1.0078316091035961,
+          0.3495206342092963
+        ],
+        "p_variance": [
+          1.0242156879882853,
+          0.9976463032021691
+        ],
+        "energy_means": {
+          "kinetic": 1.0109309955952281,
+          "potential": 1.0089731209842303,
+          "total": 2.0199041165794585
+        },
+        "energy_variances": {
+          "kinetic": 1.0458054662377783,
+          "potential": 1.0299625342749623,
+          "total": 2.017741864758089
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 0.9906112282683304,
+        "q_acf_standard_error": 0.010713908233193107,
+        "p_acf": 1.0000337531242929,
+        "p_acf_standard_error": 0.011119117190651484,
+        "k_acf": 1.0126923784507975,
+        "k_acf_standard_error": 0.02986145253805968,
+        "h_acf": 0.9845784683331216,
+        "h_acf_standard_error": 0.02358733321628803
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.7739686950695579,
+        "q_acf_standard_error": 0.009754814899334491,
+        "p_acf": 0.6724376581361049,
+        "p_acf_standard_error": 0.009133969448255924,
+        "k_acf": 0.34399134382798785,
+        "k_acf_standard_error": 0.018111511176247076,
+        "h_acf": 0.7924005662371147,
+        "h_acf_standard_error": 0.020984491901779066
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.25995289577186337,
+        "q_acf_standard_error": 0.008321854178388493,
+        "p_acf": 0.10975643278974392,
+        "p_acf_standard_error": 0.008183323860043402,
+        "k_acf": 0.056116546550912055,
+        "k_acf_standard_error": 0.012572318791101515,
+        "h_acf": 0.6478856231580037,
+        "h_acf_standard_error": 0.018721418648530812
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": -0.5111507826835213,
+        "q_acf_standard_error": 0.008627629422438351,
+        "p_acf": -0.5860397714661746,
+        "p_acf_standard_error": 0.008933922409978368,
+        "k_acf": 0.23667168100624086,
+        "k_acf_standard_error": 0.016002869383936923,
+        "h_acf": 0.38966152661990794,
+        "h_acf_standard_error": 0.016295458660665074
+      },
+      {
+        "series": "correlation",
+        "method": "csvr",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": 0.044591187600231716,
+        "q_acf_standard_error": 0.008412628937165427,
+        "p_acf": 0.07940108053487258,
+        "p_acf_standard_error": 0.008083189524308526,
+        "k_acf": 0.03321727732518338,
+        "k_acf_standard_error": 0.012032064573228921,
+        "h_acf": 0.12339217328267162,
+        "h_acf_standard_error": 0.012822459982102635
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.05,
+        "initial_ensemble": "canonical",
+        "replicas": 8192,
+        "position_cdf_error": 0.005823222681456963,
+        "momentum_cdf_error": 0.007604511693542926,
+        "kinetic_cdf_error": 0.00687266059986652,
+        "total_energy_cdf_error": 0.00439452158483844,
+        "k_mean_relative_error": 0.0009173219318651116,
+        "k_variance_relative_error": 0.028558464391818417,
+        "u_mean_relative_error": 0.006627327288130314,
+        "u_variance_relative_error": 0.028741058236873215,
+        "h_mean_relative_error": 0.0028550026781326565,
+        "h_variance_relative_error": 0.015790025370717494,
+        "temperature_mean": 0.9990826780681349,
+        "temperature_variance": 0.9714415356081816,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0233154296875,
+            0.1614990234375,
+            0.500732421875,
+            0.84716796875,
+            0.9769287109375
+          ],
+          [
+            0.0001220703125,
+            0.0445556640625,
+            0.4951171875,
+            0.95068359375,
+            0.9991455078125
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.021240234375,
+            0.166259765625,
+            0.5054931640625,
+            0.8377685546875,
+            0.976806640625
+          ],
+          [
+            0.019287109375,
+            0.15625,
+            0.507080078125,
+            0.835205078125,
+            0.977294921875
+          ]
+        ],
+        "k_cdf": [
+          0.3865966796875,
+          0.626953125,
+          0.8690185546875,
+          0.984130859375,
+          0.9964599609375
+        ],
+        "h_cdf": [
+          0.0904541015625,
+          0.264892578125,
+          0.598388671875,
+          0.9073486328125,
+          0.9814453125
+        ],
+        "q_variance": [
+          0.992423760841831,
+          0.3532286829530893
+        ],
+        "p_variance": [
+          1.0161094424322923,
+          0.9820559137039786
+        ],
+        "energy_means": {
+          "kinetic": 0.9990826780681349,
+          "potential": 1.0066273272881303,
+          "total": 2.0057100053562653
+        },
+        "energy_variances": {
+          "kinetic": 0.9714415356081816,
+          "potential": 1.0287410582368737,
+          "total": 2.0315800507414354
+        }
+      },
+      {
+        "series": "distribution",
+        "method": "langevin",
+        "tau": 1.0,
+        "gamma_langevin": 0.5,
+        "dt": 0.05,
+        "initial_ensemble": "heated",
+        "replicas": 4096,
+        "position_cdf_error": 0.009765625,
+        "momentum_cdf_error": 0.010706035181457074,
+        "kinetic_cdf_error": 0.01138926216236652,
+        "total_energy_cdf_error": 0.0048573524313291205,
+        "k_mean_relative_error": 0.010738785079605462,
+        "k_variance_relative_error": 0.017500310280612608,
+        "u_mean_relative_error": 0.010837722402054606,
+        "u_variance_relative_error": 0.047374116641727616,
+        "h_mean_relative_error": 4.9468661224683075e-05,
+        "h_variance_relative_error": 0.02626984544709287,
+        "temperature_mean": 1.0107387850796055,
+        "temperature_variance": 0.9824996897193874,
+        "exact_temperature_mean": 1.0,
+        "exact_temperature_variance": 1.0,
+        "q_cdf": [
+          [
+            0.0224609375,
+            0.1572265625,
+            0.506591796875,
+            0.846435546875,
+            0.976806640625
+          ],
+          [
+            0.000732421875,
+            0.04248046875,
+            0.490234375,
+            0.952880859375,
+            0.9990234375
+          ]
+        ],
+        "p_cdf": [
+          [
+            0.0263671875,
+            0.166015625,
+            0.499267578125,
+            0.835693359375,
+            0.978271484375
+          ],
+          [
+            0.02001953125,
+            0.14794921875,
+            0.50048828125,
+            0.832275390625,
+            0.979248046875
+          ]
+        ],
+        "k_cdf": [
+          0.382080078125,
+          0.62158203125,
+          0.866455078125,
+          0.983642578125,
+          0.997802734375
+        ],
+        "h_cdf": [
+          0.090576171875,
+          0.264404296875,
+          0.598388671875,
+          0.903564453125,
+          0.980224609375
+        ],
+        "q_variance": [
+          0.9884434162423191,
+          0.3425194252434515
+        ],
+        "p_variance": [
+          1.029686692186644,
+          0.9917908779725658
+        ],
+        "energy_means": {
+          "kinetic": 1.0107387850796055,
+          "potential": 0.9891622775979454,
+          "total": 1.9999010626775506
+        },
+        "energy_variances": {
+          "kinetic": 0.9824996897193874,
+          "potential": 1.047374116641728,
+          "total": 2.052539690894186
+        }
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 0.0,
+        "replicas": 8192,
+        "q_acf": 1.0066273272881303,
+        "q_acf_standard_error": 0.011206876182433217,
+        "p_acf": 0.9990826780681349,
+        "p_acf_standard_error": 0.01089030069379816,
+        "k_acf": 0.9714423770877083,
+        "k_acf_standard_error": 0.03219801576280126,
+        "h_acf": 1.0158063274513016,
+        "h_acf_standard_error": 0.025244744057410652,
+        "q_acf_discrete_reference": 1.0012174546559904,
+        "q_acf_absolute_error": 0.005409872632139878,
+        "q_acf_z": 0.48272797379700294,
+        "p_acf_discrete_reference": 1.0,
+        "p_acf_absolute_error": 0.0009173219318651116,
+        "p_acf_z": 0.08423292961851005,
+        "k_acf_discrete_reference": 1.0000000000000002,
+        "k_acf_absolute_error": 0.028557622912291913,
+        "k_acf_z": 0.8869373542355011,
+        "h_acf_discrete_reference": 1.0012191121215936,
+        "h_acf_absolute_error": 0.01458721532970797,
+        "h_acf_z": 0.5778317774398611,
+        "q_acf_continuum_reference": 1.0
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 0.5,
+        "replicas": 8192,
+        "q_acf": 0.796628784864325,
+        "q_acf_standard_error": 0.010074457231953358,
+        "p_acf": 0.5699278105565607,
+        "p_acf_standard_error": 0.008996391288247016,
+        "k_acf": 0.33795914517133535,
+        "k_acf_standard_error": 0.017755258834456358,
+        "h_acf": 0.8119512857853836,
+        "h_acf_standard_error": 0.02175537881000332,
+        "q_acf_discrete_reference": 0.7873447038576425,
+        "q_acf_absolute_error": 0.009284081006682432,
+        "q_acf_z": 0.9215465203659733,
+        "p_acf_discrete_reference": 0.5829592439518666,
+        "p_acf_absolute_error": 0.01303143339530588,
+        "p_acf_z": 1.448517853189677,
+        "k_acf_discrete_reference": 0.3483299517367902,
+        "k_acf_absolute_error": 0.01037080656545486,
+        "k_acf_z": 0.584097740401789,
+        "h_acf_discrete_reference": 0.8006691647302608,
+        "h_acf_absolute_error": 0.011282121055122718,
+        "h_acf_z": 0.5185899612989086,
+        "q_acf_continuum_reference": 0.7867197847178922
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 1.0,
+        "replicas": 8192,
+        "q_acf": 0.32124758874369486,
+        "q_acf_standard_error": 0.008511377571214647,
+        "p_acf": 0.04216485504261436,
+        "p_acf_standard_error": 0.00799652691346352,
+        "k_acf": 0.07488129347375547,
+        "k_acf_standard_error": 0.01256378758584997,
+        "h_acf": 0.6658003063841618,
+        "h_acf_standard_error": 0.019174805102220336,
+        "q_acf_discrete_reference": 0.31776044501919837,
+        "q_acf_absolute_error": 0.0034871437244964887,
+        "q_acf_z": 0.40970379886447017,
+        "p_acf_discrete_reference": 0.03726164979785346,
+        "p_acf_absolute_error": 0.0049032052447609,
+        "p_acf_z": 0.6131668532879587,
+        "k_acf_discrete_reference": 0.05827396245680608,
+        "k_acf_absolute_error": 0.01660733101694939,
+        "k_acf_z": 1.3218411170572064,
+        "h_acf_discrete_reference": 0.6479067944803077,
+        "h_acf_absolute_error": 0.01789351190385402,
+        "h_acf_z": 0.9331782935192416,
+        "q_acf_continuum_reference": 0.318040422076593
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 2.0,
+        "replicas": 8192,
+        "q_acf": -0.34356109660271117,
+        "q_acf_standard_error": 0.008675216525011863,
+        "p_acf": -0.4598889902138094,
+        "p_acf_standard_error": 0.008621579500106015,
+        "k_acf": 0.22403605209714003,
+        "k_acf_standard_error": 0.015589496272093637,
+        "h_acf": 0.39623909621309705,
+        "h_acf_standard_error": 0.015330066365639277,
+        "q_acf_discrete_reference": -0.34176262933215346,
+        "q_acf_absolute_error": 0.0017984672705577132,
+        "q_acf_z": 0.20731093747026144,
+        "p_acf_discrete_reference": -0.46742973844754276,
+        "p_acf_absolute_error": 0.007540748233733352,
+        "p_acf_z": 0.8746365133721296,
+        "k_acf_discrete_reference": 0.22936695966850262,
+        "k_acf_absolute_error": 0.005330907571362592,
+        "k_acf_z": 0.341955088113098,
+        "h_acf_discrete_reference": 0.39008097911576817,
+        "h_acf_absolute_error": 0.006158117097328886,
+        "h_acf_z": 0.4017019202951172,
+        "q_acf_continuum_reference": -0.34108539105447055
+      },
+      {
+        "series": "correlation",
+        "method": "langevin",
+        "tau": 1.0,
+        "dt": 0.05,
+        "lag": 4.0,
+        "replicas": 8192,
+        "q_acf": 0.007626882334223951,
+        "q_acf_standard_error": 0.008383246987493162,
+        "p_acf": 0.03426146597232088,
+        "p_acf_standard_error": 0.008048852825771778,
+        "k_acf": 0.054625930999072814,
+        "k_acf_standard_error": 0.011826990212591376,
+        "h_acf": 0.12821753748710968,
+        "h_acf_standard_error": 0.012307161079891077,
+        "q_acf_discrete_reference": 0.009435125576603448,
+        "q_acf_absolute_error": 0.0018082432423794969,
+        "q_acf_z": 0.21569724058914014,
+        "p_acf_discrete_reference": 0.04915118628338659,
+        "p_acf_absolute_error": 0.01488972031106571,
+        "p_acf_z": 1.8499183217004573,
+        "k_acf_discrete_reference": 0.0697010081605248,
+        "k_acf_absolute_error": 0.015075077161451983,
+        "k_acf_z": 1.27463343509007,
+        "h_acf_discrete_reference": 0.14010280010097612,
+        "h_acf_absolute_error": 0.011885262613866437,
+        "h_acf_z": 0.9657192700017563,
+        "q_acf_continuum_reference": 0.009295454874724912
+      },
+      {
+        "series": "deterministic-shadow-reference",
+        "dt": 0.2,
+        "maximum_position_variance_bias": 0.010297600659046502,
+        "lyapunov_difference": 6.661338147750939e-16
+      },
+      {
+        "series": "deterministic-shadow-reference",
+        "dt": 0.1,
+        "maximum_position_variance_bias": 0.0025181939512981533,
+        "lyapunov_difference": 1.1102230246251565e-15
+      },
+      {
+        "series": "deterministic-shadow-reference",
+        "dt": 0.05,
+        "maximum_position_variance_bias": 0.0006261309490266931,
+        "lyapunov_difference": 2.4424906541753444e-15
+      }
+    ],
+    "canonical_reference": {
+      "normalizers": [
+        2.5066282746310002,
+        1.4744872203711767
+      ],
+      "q_variance": [
+        1.0,
+        0.3460207612456748
+      ],
+      "u_mean": 1.0,
+      "u_variance": 1.0000000000000004,
+      "k_mean": 1.0,
+      "k_variance": 1.0,
+      "h_mean": 2.0,
+      "h_variance": 2.0000000000000004,
+      "position_cdf": [
+        [
+          0.02275013194817921,
+          0.15865525393145707,
+          0.5,
+          0.841344746068543,
+          0.9772498680518208
+        ],
+        [
+          0.000336929265676881,
+          0.04456546275854304,
+          0.5,
+          0.9554345372414571,
+          0.9996630707343233
+        ]
+      ],
+      "energy_cdf": [
+        0.09020401043104986,
+        0.2642411176571153,
+        0.5939941502901616,
+        0.9084218055563291,
+        0.9826487347633355
+      ]
+    },
+    "comparison_policy": {
+      "splitting": "O/2 - velocity-Verlet - O/2 (OBABO)",
+      "coupling_match": "gamma=1/(2*tau), equal bath-only kinetic relaxation",
+      "correlation_policy": "Measure q,p,K,H separately. Global and local full-MD correlations need not agree.",
+      "canonical_start": "Tests invariance, not ergodicity.",
+      "heated_start": "Finite-time full-support ensemble check, not a general mixing proof."
+    },
+    "duration_seconds": 2.6368119579983613,
+    "input_sha256": "93b2950037a0b0bf51c489608f0519aa2ccc40da104f61606d37d1b5f1d939df"
+  },
+  "problem_id": "langevin-harmonic",
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/",
+    "archive": {
+      "file": "atlas-thermostats-2026-11-22.zip",
+      "sha256": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+      "bytes": 724947,
+      "archive_directory": "atlas-thermostats-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+    ],
+    "passed_tests": 42
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

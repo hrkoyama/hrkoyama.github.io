@@ -151,8 +151,8 @@
         "nvt"
       ],
       "scope": {
-        "ja": "12手法を比較解説。LangevinのBAOABによる1次元調和振動子NVTだけに専用コード・固定入力・分布検証を追加。他の11手法は実装予定です。",
-        "en": "Comparative reading covers 12 methods. Dedicated code, fixed inputs and distribution checks cover only a 1D harmonic-oscillator NVT example with Langevin BAOAB. The other 11 methods remain planned."
+        "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
+        "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
       },
       "methods": [
         "nose-hoover",
@@ -165,7 +165,10 @@
         "temperature"
       ],
       "supplemental_examples": [
-        "langevin-harmonic"
+        "langevin-harmonic",
+        "csvr-kinetic-kernel",
+        "csvr-langevin-harmonic",
+        "csvr-langevin-quartic"
       ]
     },
     {

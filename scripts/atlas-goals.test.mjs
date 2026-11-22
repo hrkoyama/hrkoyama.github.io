@@ -31,7 +31,9 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, scoped
  assert.equal(methods.find(m=>m.id==='kohn-sham-dft').status,'educational-example','goal restrictions do not change the canonical atomic implementation status');
  const temperature=findMethods(methods,'温度を制御したい');
  const langevin=temperature.find(x=>x.method.id==='langevin-thermostat');assert.equal(langevin?.method.status,'educational-example');assert.ok(langevin.method.execution_examples.some(e=>e.id==='langevin-harmonic'));
- assert.ok(temperature.filter(x=>x.method.id!=='langevin-thermostat').every(x=>x.method.status==='planned' && x.method.code_urls.length===0));
+ const csvr=temperature.find(x=>x.method.id==='stochastic-velocity-rescaling');assert.equal(csvr?.method.status,'educational-example');
+ assert.deepEqual(new Set(csvr.method.execution_examples.map(x=>x.id)),new Set(['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']));
+ assert.ok(temperature.filter(x=>!['langevin-thermostat','stochastic-velocity-rescaling'].includes(x.method.id)).every(x=>x.method.status==='planned' && x.method.code_urls.length===0));
  const bio=findMethods(methods,'生物モデルを調べたい');assert.equal(bio.filter(x=>x.method.status==='educational-example').length,5);assert.ok(bio.every(x=>x.method.resource_type==='model'));
 });
 test('static new-domain sections have status labels and do not advertise atomic code for molecules or simulations for surveys',()=>{
@@ -41,7 +43,7 @@ test('static new-domain sections have status labels and do not advertise atomic 
   assert.ok(section.includes('goal-availability'));assert.ok(!section.includes('href="https://hrkoyama.github.io/code/'));
   assert.ok(!section.includes('/code-and-data/examples/'));
  }
- assert.ok(html.includes('/validation/langevin-harmonic/'));
+ for(const id of ['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'])assert.ok(html.includes('/validation/'+id+'/'));
  assert.ok(html.includes('Langevin') && html.includes('BAOAB'));
  assert.ok(html.includes('Reading only; no dedicated implementation'));
 });

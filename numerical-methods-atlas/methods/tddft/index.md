@@ -21,7 +21,7 @@ Comparison notes: Bare ground-state KS eigenvalue differences are not TDDFT exci
 
 - Reference: https://doi.org/10.1103/PhysRevLett.52.997 — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: Primary linear-response references and a small-molecule baseline.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/tddft/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

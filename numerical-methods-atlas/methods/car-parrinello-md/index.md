@@ -21,7 +21,7 @@ Comparison notes: Reading only. Adiabatic separation, fictitious-to-nuclear ener
 
 - Reference: https://doi.org/10.1103/PhysRevLett.55.2471 — Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced.
 
-Next: Compare multiatom forces with an independent reference, then measure timestep/SCF or fictitious-mass sensitivity and NVE drift.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

@@ -76,7 +76,7 @@
     "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
   },
   "metadata_review": {
-    "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
+    "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
     "on": "2026-11-22"
   },
   "assumptions_ja": [
@@ -96,7 +96,7 @@
     },
     "variant": {
       "ja": "今回の実行例はcardinal B-splineによるEssmann型SPMEです。PME族の採用変種として示し、1993年のLagrange補間による原法を実装したとは呼びません。",
-      "en": "The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original1993 Lagrange-interpolation form."
+      "en": "The executed example adopts Essmann-style SPME with cardinal B-splines. It is a PME-family variant, not an implementation of the original 1993 Lagrange-interpolation form."
     },
     "use_when": {
       "ja": [

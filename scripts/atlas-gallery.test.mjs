@@ -55,6 +55,29 @@ test('scientific inputs and additional checks are receipted and the nine former 
   assert.equal(inventory.counts.code_test_problems, 0);
 });
 
+test('the quartic visual comes from the new frozen comparison while the harmonic BAOAB visual stays intact', () => {
+  const base='code/validated-examples/2026-11-22/thermostats/';
+  const cases=json(base+'cases.json');
+  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
+  const quartic=gallery.items.find(x=>x.id==='thermostatted-quartic');
+  const metadata=cases.find(x=>x.id==='csvr-langevin-quartic');
+  assert.equal(gallery.items.length,81);
+  assert.equal(quartic.image,'/'+base+'results/csvr-langevin-quartic.png');
+  assert.equal(quartic.image_sha256,digest(base+'results/csvr-langevin-quartic.png'));
+  assert.deepEqual(quartic.caption,metadata.summary);
+  assert.equal(quartic.source_kind,'existing-figure');
+  assert.deepEqual(quartic.supplemental_execution_entries.map(x=>x.id),['csvr-langevin-quartic']);
+  const harmonic=gallery.items.find(x=>x.id==='langevin-harmonic');
+  assert.equal(harmonic.image,'/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png');
+  assert.equal(harmonic.image_sha256,'0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14');
+  assert.ok(harmonic.caption.en.includes('BAOAB'));
+  assert.deepEqual(harmonic.supplemental_execution_entries.map(x=>x.id),['langevin-harmonic','csvr-langevin-harmonic']);
+  assert.equal(manifest.calculations_sha256,'d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6');
+  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json','results/csvr-langevin-quartic.png'])assert.equal(manifest.source_sha256[base+name],digest(base+name));
+  assert.equal(manifest.source_sha256['catalog/atlas-depth-expansion.json'],digest('catalog/atlas-depth-expansion.json'));
+  assert.ok(!gallery.items.some(x=>x.id==='csvr-kinetic-kernel'));
+});
+
 test('filters combine domains with normalized multilingual AND searches and handle empty results', () => {
   const sample = {group: 'elliptic', search: 'Poisson–Robin 境界値 ＰＯＩＳＳＯＮ'};
   assert.ok(galleryMatches(sample, 'all', ''));

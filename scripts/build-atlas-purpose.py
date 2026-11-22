@@ -40,7 +40,7 @@ def validation_teaser(lang):
     cases=sum(len(r['case_ids']) for r in receipts);tests=sum(r['passed_tests'] for r in receipts)
     title='6分野の小さな実装・検証例' if ja else 'Small validated examples across six fields'
     text=(f'{cases}固定ケース・{len(receipts)}配布版・{tests}自動検査。基盤手法、確率、生物、温度制御、粒子・輸送、流体・MHDを、条件・参照・収束とともにたどれます。' if ja else f'{cases} fixed cases, {len(receipts)} supplements and {tests} automated tests. Explore foundations, stochastic models, biology, thermostats, particles/transport and fluid/MHD with conditions, references and refinement.')
-    return '<section class="page-width atlas-purpose" aria-labelledby="small-validation-'+lang+'"><h2 id="small-validation-'+lang+'">'+title+'</h2><p>'+text+'</p><p><a href="/numerical-methods-atlas/validation/?lang='+lang+'">'+('19例の結果・コード・テストと進捗を見る' if ja else 'See the 19 results, code, tests and progress')+'</a></p></section>'
+    return '<section class="page-width atlas-purpose" aria-labelledby="small-validation-'+lang+'"><h2 id="small-validation-'+lang+'">'+title+'</h2><p>'+text+'</p><p><a href="/numerical-methods-atlas/validation/?lang='+lang+'">'+(f'{cases}例の結果・コード・テストと進捗を見る' if ja else f'See the {cases} results, code, tests and progress')+'</a></p></section>'
 
 def goal_start(lang, static=False):
     data=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
@@ -160,4 +160,6 @@ text=re.sub(r'^- \[Cross-field connections\].*\n?','',guide.read_text(),flags=re
 guide.write_text(text.rstrip()+'\n- [Cross-field connections](https://hrkoyama.github.io/numerical-methods-atlas/connections/): bilingual routes from DFT to first-principles MD and thermostats, reaction–diffusion to biology and fluids, and Poisson operators to pressure, Hartree and gravity. Shared mathematics, transferred quantities and distinct validation requirements are explicit; component examples do not establish a validated coupled pipeline. Canonical metadata: /catalog/atlas-crossovers.json.\n')
 
 guide=ROOT/'llms.txt';text=guide.read_text();text=re.sub(r'^- \[Small cross-field validation supplements\].*\n?','',text,flags=re.M)
-guide.write_text(text.rstrip()+'\n- [Small cross-field validation supplements](https://hrkoyama.github.io/numerical-methods-atlas/validation/):19 fixed cases in4 independently extracted releases;93 automated tests, bilingual assumptions, original/adopted algorithms, primary sources, measured refinement and scope. Lightweight public-only Linux CI; separate from the shared22-case detailed registry.\n')
+supplement_index=json.loads((ATLAS/'validation/index.json').read_text())
+supplement_tests=sum(group['passed_tests'] for group in supplement_index['groups'])
+guide.write_text(text.rstrip()+f"\n- [Small cross-field validation supplements](https://hrkoyama.github.io/numerical-methods-atlas/validation/): {supplement_index['case_count']} fixed cases in {len(supplement_index['groups'])} independently extracted releases; {supplement_tests} automated tests, bilingual assumptions, adopted algorithms, primary sources, measured refinement and scope. Lightweight public-only Linux CI; separate from the shared 22-case detailed registry.\n")

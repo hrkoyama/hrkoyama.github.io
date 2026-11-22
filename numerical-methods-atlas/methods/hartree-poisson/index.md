@@ -165,7 +165,7 @@ python run.py --input inputs.json --output output --figures
 
 Common execution records: [{"id": "helium-ground-state", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#helium-ground-state-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#helium-ground-state-en"}}]
 
-Next: Small isolated and periodic reference examples.
+Next: Maintain fixed inputs, saved references and release integrity for the existing small examples; rerun a few representative cases when needed. Large basis/k-point sweeps, expensive independent-reference regeneration and long BOMD/CPMD trajectories are considered separately only on explicit need.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-poisson/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

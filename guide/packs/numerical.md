@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-4fbe2de560
-Captured (UTC): 2026-11-22T10:31:11+00:00
+Snapshot: 2026-11-22-95ce1b6339
+Captured (UTC): 2026-11-22T10:58:23+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -7996,7 +7996,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 80-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 81-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -10164,6 +10164,9 @@ J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adapti
 Jean-Pierre Bérenger (1994). A Perfectly Matched Layer for the Absorption of Electromagnetic Waves. 10.1006/jcph.1994.1159
 Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs). Original source
 Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. Original source
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling. 10.1063/1.2408420
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes. 10.1016/j.cpc.2008.01.006
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling. Original source
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -11538,8 +11541,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 128 methods and building blocks · 233 journal/conference papers · 282 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 85 reading chapters including this inventory.
+46 equation/model entries · 129 methods and building blocks · 235 journal/conference papers · 285 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 86 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -11547,7 +11550,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-18 entries have scoped local examples; 28 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+23 entries have scoped local examples; 23 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -11633,7 +11636,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-113 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+114 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -11786,7 +11789,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-227 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+229 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -12959,7 +12962,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
 Coverage: reading
 
 Compare fluctuations, ergodicity and time correlations as well as mean temperature, from Nosé–Hoover and velocity rescaling to stochastic and momentum-conserving methods.
-Comparative reading covers 12 methods. Dedicated code, fixed inputs and distribution checks cover only a 1D harmonic-oscillator NVT example with Langevin BAOAB. The other 11 methods remain planned.
+Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned.
+JSON · Markdown
 
 ## Thermostats: temperature control and distributions — Define the controlled temperature [en]
 
@@ -12982,14 +12986,93 @@ Coverage: reading
 
 An invariant distribution does not ensure adequate finite-time exploration. Even correct equilibrium sampling can coexist with friction- or collision-induced changes in velocity autocorrelations and diffusion. Assess integration error, heat-bath coupling time and random-seed dependence.
 
-## Thermostats: temperature control and distributions — Runnable harmonic-Langevin validation [en]
+## Thermostats: temperature control and distributions — CSVR and Langevin: shared canonical targets, distinct correlations [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
 Coverage: reading
 
-dt=0.4/0.2/0.1 with 32768 independent replicas. Separate covariance step bias, lagged correlations and finite-burn-in residuals. Distribution acceptance is for fixed seeds.
+The new comparison is limited to small classical systems. CSVR and Langevin use matched OBABO splitting, degrees of freedom, temperature, potential and observation times. Distribution, fluctuations and correlations are separate diagnostics. The earlier BAOAB harmonic results remain in their original release.
+
+## Thermostats: temperature control and distributions — The stochastic CSVR update and its sign [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#csvr-exact
+Coverage: reading
+
+CSVR evolves the total kinetic energy stochastically and scales all momenta together. The implementation uses the 2007 kinetic-energy SDE and exact propagator, with the signed factor in the 2008 paper. Here h denotes a thermostat substep.
+The same Gaussian R determines energy and sign. Momentum flips matter for a few degrees of freedom. Draw S directly from a chi-square law with f−1 degrees, with S=0 at f=1; this avoids the Gamma-construction typo identified by the original author.
+dK=\frac{\bar K-K}{\tau}\,dt+2\sqrt{\frac{K\bar K}{f\tau}}\,dWc=e^{-h/\tau},\quad a=\frac{(1-c)\bar K}{f},\quad K^+=\left(\sqrt{cK}+\sqrt a\,R\right)^2+aS,\quad R\sim N(0,1),\quad S\sim\chi^2_{f-1}\alpha=\operatorname{sign}\!\left(\sqrt{cK}+\sqrt a\,R\right)\sqrt{K^+/K},\qquad p_i^+=\alpha p_i
+Sources: Canonical sampling through velocity rescaling · Stochastic thermostats: comparison of local and global schemes · Algorithms: stochastic velocity rescaling, author correction note
+
+## Thermostats: temperature control and distributions — Compare with the same splitting [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#matched-splitting
+Coverage: reading
+
+Both new methods use O(Δt/2)–B(Δt/2)–A(Δt)–B(Δt/2)–O(Δt/2) for MD step Δt: A moves coordinates, B applies forces and O is the thermostat. The CSVR formula uses bath substep h=Δt/2. They share a velocity-Verlet core and differ in the bath updates.
+Set τ=(2γ)⁻¹ to match kinetic-energy relaxation for the force-free bath. This τ is not the friction time γ⁻¹. At f=1, signed CSVR has the Langevin transition law; a paired-noise check tests the implementation.
+The earlier BAOAB example uses a different B–A–O–A–B splitting. Its release and independent linear reference remain unchanged; the new OBABO references and errors do not replace them.
+\tau=(2\gamma)^{-1},\qquad p^+=e^{-\gamma h}p+\sqrt{m k_B T_0(1-e^{-2\gamma h})}\,R_{\rm phys}\quad(f=1)
+Sources: Stochastic thermostats: comparison of local and global schemes
+
+## Thermostats: temperature control and distributions — Three separate questions: distribution, fluctuation and correlation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#distribution-fluctuation-correlation
+Coverage: reading
+
+Both methods share the static canonical target. Check momentum, kinetic energy and instantaneous-temperature distributions, means and variances. Position references are analytic for harmonic systems and use separate quadrature for the anharmonic case. Matching the mean temperature alone does not check fluctuations.
+Dynamic correlations depend on the method and coupling time. Measure position q, momentum p, kinetic energy K and total energy H without requiring agreement between methods. For harmonic Langevin, distinguish the continuous matrix exponential from the OBABO discrete stationary covariance/propagator. Other full-system correlations are measured with uncertainty and timestep dependence.
+The exact ρK(t)=exp(−t/τ) reference applies only to the isolated bath. Full harmonic or anharmonic motion exchanges K and U, so that expression is not used as its correlation target.
+CDF errors are maxima over predeclared checkpoints: five position/energy points and, for the conditional bath, three quantile points. They are not Kolmogorov–Smirnov suprema over the whole distribution. Full-system correlations use canonical-reference centering and normalization, so finite-step zero-lag values need not equal one exactly.
+
+## Thermostats: temperature control and distributions — Three separate questions: distribution, fluctuation and correlation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#distribution-fluctuation-correlation
+Coverage: reading
+
+K=\sum_{i=1}^{f}\frac{p_i^2}{2m_i},\quad \bar K=\frac{f k_B T_0}{2},\quad T_{\rm inst}=\frac{2K}{f k_B}\frac{2K}{k_B T_0}\sim\chi_f^2,\quad \operatorname{Var}K=\frac{f(k_B T_0)^2}{2},\quad \operatorname{Var}T_{\rm inst}=\frac{2T_0^2}{f}C_X(t)=\langle(X(t)-\langle X\rangle)(X(0)-\langle X\rangle)\rangle,\qquad \rho_X(t)=C_X(t)/C_X(0)\mathbb E[K^+\mid K]=cK+fa,\quad\operatorname{Var}(K^+\mid K)=2fa^2+4acK,\quad \rho_K(t)=e^{-t/\tau}\ \text{(bath only)}
+
+## Thermostats: temperature control and distributions — Sampling limits and implementation boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#sampling-and-boundaries
+Coverage: reading
+
+Preservation from a canonical initial ensemble and relaxation from temperature-perturbed starts are distinct checks. Use independent replicas, fixed seeds and finite observation windows; separate sampling uncertainty from timestep and coupling effects. These small tests do not guarantee mixing from arbitrary starts. Correlation standard errors use the spread of products across independent replicas at each lag; they are not uncertainties of a single-trajectory time average or an effective-sample-size estimate. No independent dynamical reference is claimed for the anharmonic full-system correlations, which are not presented as having zero error.
+A common scaling factor does not directly randomize momentum direction. A correct K distribution cannot rule out restricted sampling from invariant conditions such as zero total momentum in a symmetric system, or from invariant subspaces. The adopted degrees of freedom include no added constraints or removed center-of-mass mode.
+For a positive bath step, at K=0 the direction is undefined, so this implementation rejects global rescaling explicitly. It does not inject an arbitrary direction as an undocumented algorithm. Nonfinite or nonphysical parameters are also checked.
+Sources: Canonical sampling through velocity rescaling
+
+## Thermostats: temperature control and distributions — Primary sources for the adopted equations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
+Coverage: reading
+
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+Checked author-manuscript sections II.1–II.3, kinetic SDE (7), and appendix A (16)–(22); consult the author correction for Gamma-based squared-noise generation.
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+Checked manuscript sections I–II, τ=(2γ)⁻¹, finite-step (8)–(9) and f=1; bibliography cross-checked with SISSA.
+Giovanni Bussi (2026). Algorithms: stochastic velocity rescaling, author correction note
+Checked the author note identifying the 2007 Gamma-generation typo. Year denotes access, not the correction publication year.
+
+## Thermostats: temperature control and distributions — Runnable CSVR/Langevin validations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
+Coverage: reading
+
+Compare bath choices under the same OBABO splitting; separate step/coupling effects and independent-stream sampling uncertainty. Check distributions and temperature fluctuations separately from correlations. Langevin and CSVR correlations need not agree: they describe method-dependent sampling dynamics.
 Langevin thermostat: canonical distributions, timestep bias and correlation · ZIP · Stored results · Rerun receipt
 Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD.
+Exact CSVR bath: conditional laws, fluctuations and kinetic correlation · ZIP · Stored results · Rerun receipt
+A bath diagnostic, not another independent physical problem. Correct K sampling does not thermalize momentum directions by global scaling alone. The bath-only exp(−t/tau) identity is not a full-MD kinetic ACF. Statistical decisions apply to fixed seeds/budgets, not general mixing guarantees.
+CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes · ZIP · Stored results · Rerun receipt
+
+## Thermostats: temperature control and distributions — Runnable CSVR/Langevin validations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/
+Coverage: reading
+
+Global-CSVR and local-Langevin dynamical correlations are not required to agree. CDF errors are maxima over five declared points, not whole-line KS distances. Canonical-start preservation and the heated-start finite-time check do not prove ergodicity; tests retain an invariant unexcited-axis counterexample. No extrapolation to molecules, constraints or BOMD.
+Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature · ZIP · Stored results · Rerun receipt
+A small example for one separable two-mode quartic potential and fixed seeds. H is not treated as harmonic Gamma. No independent exact full-system dynamical reference is claimed, and neither matching correlations nor time order hidden by sampling noise is an acceptance claim. Molecular transport, quantum and ab initio MD are outside scope.
 
 ## Thermostats: temperature control and distributions — Direct velocity rescaling [en]
 
@@ -13031,7 +13114,7 @@ GROMACS: temperature coupling
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#langevin-thermostat
 Coverage: reading
 
-Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
+Langevin thermostat: canonical distributions, timestep bias and correlation: Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations. CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes: Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations. Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature: Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
 Friction changes dynamical correlations and diffusion. Finite-step sampling errors must be assessed together with the integration scheme.
 Other names: ランジュバン / ランジュヴァン / friction and noise
 Method status, JSON and Markdown
@@ -13078,9 +13161,9 @@ LAMMPS: fix nvt / tchain
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#stochastic-velocity-rescaling
 Coverage: reading
 
-Use a stochastic global scale factor designed to generate canonical kinetic-energy fluctuations. This is distinct from directly fixing the kinetic energy.
+Exact CSVR bath: conditional laws, fluctuations and kinetic correlation: Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations. CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes: Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations. Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature: Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
 Assess equilibrium distributions separately from real-time dynamics. State the coupling time, integration step and degree-of-freedom count.
-Other names: Bussi–Donadio–Parrinello / Bussi thermostat / v-rescale / canonical velocity rescaling / 確率的速度スケーリング
+Other names: CSVR / Bussi–Donadio–Parrinello / Bussi thermostat / v-rescale / canonical velocity rescaling / 確率的速度スケーリング
 Method status, JSON and Markdown
 Bussi, Donadio & Parrinello (2007), Canonical sampling through velocity rescaling
 Author preprint: arXiv:0803.4060
@@ -13136,14 +13219,14 @@ Lowe (1999), An alternative approach to dissipative particle dynamics
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#verification
 Coverage: reading
 
-Harmonic Langevin BAOAB now has measured position/momentum/total-energy distributions, an independent discrete-Lyapunov reference, continuous Gaussian propagation, step bias and lagged correlations. Future verification plans include anharmonic oscillators, ideal gases, a small Lennard–Jones system, coupling-time dependence and dedicated implementations of the other 11 methods. Include a small-system example where Nosé–Hoover does not explore adequately.
+Three new cases separate the exact isolated-bath law, a few-degree harmonic system and a weakly anharmonic system. Each entry exposes fixed inputs, measurements, errors/uncertainty, criteria, code, tests, ZIP and independent-extraction receipt. The earlier BAOAB example is separate evidence. The other 10 methods still have no dedicated implementation or validation.
 
 ## Thermostats: temperature control and distributions — Sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/#source-scope
 Coverage: reading
 
-An introduction linking original-paper DOIs, author preprints and official GROMACS/LAMMPS documentation. Full equation audits and numerical reproductions have not been performed. The Gaussian isokinetic entry currently links an originator-authored monograph; individual original-paper curation remains open.
+For CSVR, the kinetic-energy equations/appendix in the 2007 author manuscript, signed update in the 2008 manuscript and author correction were checked. The adopted small classical examples are validated by separate references, quadrature and actual reruns. They do not reproduce the original Lennard–Jones or TIP4P-water experiments. The other ten schemes remain comparative reading and primary-source entry points, not numerically validated here. Individual original-paper curation for Gaussian isokinetic remains open.
 Citation and reuse · Method registry / JSON
 
 ## Time integration and leapfrog [en]
@@ -16181,6 +16264,746 @@ Publisher HTML bibliography, abstract and base transfer equation checked; cited 
 NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
 Review scope / review_level: official-documentation
 Official integral representation of the generalized exponential integral checked; year denotes access year.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — CSVR and Langevin: distributions, fluctuations and correlations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#run-all
+Coverage: reading
+
+Run inside atlas-thermostats-2026-11-22 from the ZIP. This command executes all 3 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Exact CSVR bath: conditional laws, fluctuations and kinetic correlation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-assumptions
+Coverage: reading
+
+kB=1, T=1.3, tau=0.5, h=0.2, 65536 independent replicas. Test three initial energies at each of three degree counts. No Hamiltonian force, positions, constraints or center-of-mass removal.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-algorithm
+Coverage: reading
+
+Use the completed-square exact CIR transition with normal R and independent chi-square(Nf−1) S. The same R sets the sign of global alpha; S=0 for Nf=1. Reconstruct momentum from its unit direction and new radius without a tiny-K energy ratio. Reject K=0 because its direction is undefined.
+\bar K=\frac{N_fT}{2},\quad c=e^{-h/\tau},\quad A=\frac{T(1-c)}2,\quad R\sim N(0,1),\ S\sim\chi^2_{N_f-1}K^\prime=(\sqrt{cK}+\sqrt A R)^2+AS,\quad \operatorname{sign}\alpha=\operatorname{sign}(\sqrt{cK}+\sqrt A R)\mathbb E[K^\prime\mid K]=cK+(1-c)\bar K,\quad\operatorname{Var}(K^\prime\mid K)=2TKc(1-c)+\frac{N_fT^2}{2}(1-c)^2K\sim\operatorname{Gamma}(N_f/2,T),\quad\operatorname{Var}(T_{\rm inst})=\frac{2T^2}{N_f},\quad C_K^{\rm bath}(t)=e^{-t/\tau}
+
+## CSVR and Langevin: distributions, fluctuations and correlations — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-validation
+Coverage: reading
+
+Compare with separate CIR conditional moments, three SciPy noncentral-chi-square quantile probabilities, stationary Gamma K and bath-only exp(−t/tau) correlation. A separate noiseless mean-relaxation control demonstrates loss of fluctuations.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-limits
+Coverage: reading
+
+A bath diagnostic, not another independent physical problem. Correct K sampling does not thermalize momentum directions by global scaling alone. The bath-only exp(−t/tau) identity is not a full-MD kinetic ACF. Statistical decisions apply to fixed seeds/budgets, not general mixing guarantees.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_conditional_mean_z1.36544939439
+maximum_conditional_variance_relative_error0.0152493911243
+maximum_cdf_error0.00397338867187
+maximum_stationary_mean_relative_error0.0141188712472
+maximum_stationary_variance_relative_error0.0297245707456
+maximum_kinetic_acf_error0.0117219624779
+noiseless_variance_fraction2.04036373345e-09
+判定 / checkPassed
+conditional_meantrue
+conditional_variancetrue
+transition_and_stationary_cdftrue
+stationary_meantrue
+stationary_fluctuationstrue
+kinetic_correlationtrue
+noiseless_control_loses_fluctuationstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriesdofinitial_energy_ratiosample_meanexact_meansample_varianceexact_variancemean_zvariance_relative_errornoncentral_chi_square_cdf_errorlagmeasured_acfacf_standard_errorexact_acftemperature_varianceexact_temperature_variancegamma_cdf_error
+conditional10.10.2574817886780.2578627730690.1306422455550.1291895897230.2713522258390.01124437220850.00196228027344———————
+conditional110.6488181383870.650.4633532090790.4653170253210.4435393143170.0042203833840.00178527832031———————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+conditional141.954196015881.957124089771.590566120751.585741810650.5952587100640.003042304915550.00236511230469———————
+stationary-acf1—0.6495465620350.650.8526207540230.845———01.009018887130.014808892237913.410483016093.380.0019265967301
+stationary-acf1—0.6554264045950.650.8480827932770.845———0.20.6719803985240.01115932807460.6703200460363.392331173113.380.0026586786919
+stationary-acf1—0.6591772663110.650.870117262280.845———0.60.3115144744540.007928553335280.3011942119123.480469049123.380.0036352411919
+stationary-acf1—0.6521065307810.650.8565649462860.845———10.1367812071020.00599572882920.1353352832373.426259785143.380.00105650584034
+stationary-acf1—0.6499509292460.650.8497308112370.845———20.008365955940490.004104732035570.01831563888873.398923244953.380.00127808888622
+conditional20.10.5184367639010.5157255461380.2613636387720.2583791794461.365449394390.01155069588760.00186157226562———————
+conditional211.297085482051.30.930726180760.9306340506420.7734232615169.89971498599e-050.00397338867187———————
+conditional243.914044879293.914248179543.171374424523.171483621290.02922447023943.44308182526e-050.000936889648437———————
+stationary-acf2—1.297869462391.31.670185344221.69———00.9882780375220.010778632629711.670185344221.690.00164050110828
+stationary-acf2—1.294531048371.31.673835930491.69———0.20.6632368190860.008567841117310.6703200460361.673835930491.690.00366740503863
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+stationary-acf2—1.30092299191.31.686910672261.69———0.60.2915334318970.005928006150520.3011942119121.686910672261.690.00119799622547
+stationary-acf2—1.297527912981.31.685750370941.69———10.1288634099110.004795893694050.1353352832371.685750370941.690.000752763705363
+stationary-acf2—1.294713678811.31.663274009851.69———20.02052649921350.004008046490580.01831563888871.663274009851.690.00226338382255
+conditional60.11.548342809241.547176638410.7869579138350.7751375383380.339088259640.01524939112430.00145568847656———————
+conditional613.893976960723.92.784932821262.791902151930.9227957042230.002496266089090.00225830078125———————
+conditional6411.73686642211.74274453869.585653590949.514450863880.4878499850470.007483640208950.00200500488281———————
+stationary-acf6—3.895319655493.95.018861290095.07———00.9899177900820.0076044272404410.5576512544550.5633333333330.00220969914659
+stationary-acf6—3.894966544543.95.053725686035.07———0.20.6661434177410.006179316760230.6703200460360.5615250762260.5633333333330.000653265895841
+stationary-acf6—3.897298675473.95.044532762395.07———0.60.2944159434150.004796906309970.3011942119120.5605036402650.5633333333330.00123882394791
+stationary-acf6—3.897615475563.95.053411854715.07———10.1332976878880.004241687367750.1353352832370.5614902060790.5633333333330.00123882394791
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+stationary-acf6—3.910353595673.95.103438748885.07———20.02508963233140.003969653927820.01831563888870.5670487498760.5633333333330.00201133488878
+Measurements and complete records / JSON
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+Review scope / review_level: author-manuscript-selected-theory-and-appendix
+Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author.
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+Review scope / review_level: author-manuscript-selected-equations-and-algorithm
+Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced.
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
+Review scope / review_level: author-official-algorithm-note
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel-references
+Coverage: reading
+
+Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-assumptions
+Coverage: reading
+
+m=kB=T=1, omega=(1,1.7), Nf=2. tau=0.25/1, h=0.1/0.05. Evolve 8192 canonically initialized replicas and a separate 4096-replica ensemble with q,p scaled by 1.4 to t=20. Correlation lags are 0/0.5/1/2/4.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-algorithm
+Coverage: reading
+
+Both use exact O(h/2)–velocity-Verlet–O(h/2), or OBABO. CSVR applies one factor to all momenta; Langevin uses independent component-wise OU noise. gamma=1/(2 tau) matches bath-only K relaxation. The earlier BAOAB release is retained as a different splitting.
+U(q)=\frac12\sum_{i=1}^2\omega_i^2q_i^2,\quad H=K+U,\quad\gamma=\frac1{2\tau}\Sigma_{h,i}=\operatorname{diag}\left(\frac{T}{\omega_i^2(1-h^2\omega_i^2/4)},T\right),\quad\Sigma_h=M\Sigma_hM^T+QK\sim\operatorname{Gamma}(1,T),\quad H\sim\operatorname{Gamma}(2,T),\quad\operatorname{Var}K=T^2,\quad\operatorname{Var}H=2T^2C_X(t)=\frac{\mathbb E[(X_t-\mu_X)(X_0-\mu_X)]}{\sigma_X^2},\quad\operatorname{SE}(\widehat C_X)=\frac{s_{\rm products}}{\sqrt{N_{\rm replicas}}}
+
+## CSVR and Langevin: distributions, fluctuations and correlations — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-validation
+Coverage: reading
+
+Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For finite steps, compare the Verlet-shadow position variance T/[omega²(1−h² omega²/4)] and momentum variance T against a separately constructed Lyapunov solution. Deterministic biases at h=0.2/0.1/0.05 establish second order. Check Langevin q,p,K,H correlations against independent discrete propagation; report CSVR correlations with independent-replica standard errors and tau/h dependence.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-limits
+Coverage: reading
+
+Global-CSVR and local-Langevin dynamical correlations are not required to agree. CDF errors are maxima over five declared points, not whole-line KS distances. Canonical-start preservation and the heated-start finite-time check do not prove ergodicity; tests retain an invariant unexcited-axis counterexample. No extrapolation to molecules, constraints or BOMD.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_canonical_cdf0.015625
+maximum_canonical_mean0.0134051726809
+maximum_canonical_variance0.0597728875065
+maximum_heated_cdf0.0173339747098
+maximum_heated_mean0.0267967003618
+maximum_heated_variance0.115057963756
+maximum_acf_standard_error0.0351942085245
+maximum_langevin_acf_absolute_error0.0517776948101
+maximum_langevin_acf_z2.52688190237
+quadrature_refinement_error4.4408920985e-16
+minimum_shadow_bias_order2.00785308464
+maximum_shadow_covariance_error2.44249065418e-15
+finest_shadow_position_bias0.000626130949027
+判定 / checkPassed
+canonical_position_momentum_energy_cdfstrue
+canonical_energy_meanstrue
+canonical_energy_fluctuationstrue
+heated_start_cdfstrue
+heated_start_energy_meanstrue
+heated_start_energy_fluctuationstrue
+quadrature_reference_refinedtrue
+independent_replica_correlation_uncertaintytrue
+langevin_independent_discrete_correlationtrue
+shadow_covariance_identitytrue
+deterministic_second_order_biastrue
+finest_shadow_biastrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+seriesmethodtaugamma_langevindtinitial_ensemblereplicasposition_cdf_errormomentum_cdf_errorkinetic_cdf_errortotal_energy_cdf_errork_mean_relative_errork_variance_relative_erroru_mean_relative_erroru_variance_relative_errorh_mean_relative_errorh_variance_relative_errortemperature_meantemperature_varianceexact_temperature_meanexact_temperature_varianceq_cdfp_cdfk_cdfh_cdfq_variancep_varianceenergy_meansenergy_varianceslagq_acfq_acf_standard_errorp_acfp_acf_standard_errork_acfk_acf_standard_errorh_acfh_acf_standard_errorq_acf_discrete_referenceq_acf_absolute_errorq_acf_zp_acf_discrete_referencep_acf_absolute_errorp_acf_zk_acf_discrete_referencek_acf_absolute_errork_acf_zh_acf_discrete_referenceh_acf_absolute_errorh_acf_zq_acf_continuum_referencemaximum_position_variance_biaslyapunov_difference
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1canonical81920.002364389760680.007970722631040.01016855903740.007196197931050.009755523478190.03228583979830.00351236450960.02953846732290.003121579484290.006884917385781.009755523481.032285839811[[0.0220947265625,0.1602783203125,0.501953125,0.8392333984375,0.9796142578125],[0.0,0.0455322265625,0.501708984375,0.95458984375,0.9996337890625]][[0.0230712890625,0.1600341796875,0.4949951171875,0.84130859375,0.98046875],[0.02197265625,0.1593017578125,0.4949951171875,0.8333740234375,0.977783203125]][0.38330078125,0.630126953125,0.864501953125,0.982177734375,0.9964599609375][0.0830078125,0.2587890625,0.5919189453125,0.910888671875,0.983154296875][0.9922997377696702,0.3462545097616351][0.9961671662229573,1.023343880733429]{"kinetic":1.0097555234781934,"potential":0.9964876354903964,"total":2.00624315896859}{"kinetic":1.0322858397982833,"potential":0.9704615326770869,"total":1.986230165228439}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1heated40960.01660156250.01265916018150.001993605703560.004882822165160.0002392243979260.007863071959830.009690415718880.06933875829910.004725595660470.02321254109011.00023922440.9921369280411[[0.02294921875,0.16259765625,0.510498046875,0.8447265625,0.978515625],[0.0,0.040771484375,0.5166015625,0.95263671875,1.0]][[0.025390625,0.16064453125,0.512451171875,0.841552734375,0.97705078125],[0.02294921875,0.14599609375,0.492919921875,0.835205078125,0.97607421875]][0.39453125,0.630126953125,0.86376953125,0.98193359375,0.997802734375][0.088134765625,0.264892578125,0.589111328125,0.91259765625,0.981689453125][0.9893727993669037,0.3429918232509843][1.0049360517238013,0.9955423970720485]{"kinetic":1.0002392243979261,"potential":0.9903095842811248,"total":1.9905488086790508}{"kinetic":0.9921369280401673,"potential":0.9306612417008748,"total":1.9535749178197273}————————————————————————
+correlationcsvr0.25—0.1—8192——————————————————————00.996487635490.01088480616881.009755523480.01122616760921.032381010040.03519420852450.9931345711310.0255199596767———————————————
+correlationcsvr0.25—0.1—8192——————————————————————0.50.7914863484020.009863195176660.4304429834910.008892544730110.04878035049390.01280718940670.5104724783150.0165198441224———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.1—8192——————————————————————10.3950782955960.00851046476344-0.04401665029610.0083991943770.01370358536950.01181817207220.3059111988790.0145502086508———————————————
+correlationcsvr0.25—0.1—8192——————————————————————2-0.1092540379720.00871616804214-0.3154965455240.008662487350290.03544987046840.01131124920250.02181753978410.0109171965634———————————————
+correlationcsvr0.25—0.1—8192——————————————————————4-0.001226303046650.008138365554140.01524130266550.00831531745404-0.006968410269370.010728257643-0.009611163151380.0105151552812———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1canonical81920.004552753881040.0104980468750.003210551224870.002557526056050.008113744423880.01216188528620.00791695141210.01914974173450.008015347917990.01327108639681.008113744421.0121618852911[[0.023681640625,0.160400390625,0.499755859375,0.8367919921875,0.9791259765625],[0.00048828125,0.0472412109375,0.5040283203125,0.952392578125,0.999755859375]][[0.0216064453125,0.1556396484375,0.498046875,0.8436279296875,0.97705078125],[0.0242919921875,0.157470703125,0.489501953125,0.832275390625,0.9754638671875]][0.3902587890625,0.6295166015625,0.86376953125,0.9808349609375,0.997802734375][0.087646484375,0.2620849609375,0.5919189453125,0.908203125,0.9822998046875][0.9909187718663152,0.3546419138262545][0.9880476742701764,1.02817981457759]{"kinetic":1.0081137444238824,"potential":1.0079169514120965,"total":2.016030695835979}{"kinetic":1.0121618852861627,"potential":1.0191497417345343,"total":2.0265421727936124}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1heated40960.0070800781250.01217087893150.01717519096260.01237021046790.02256480368090.0255048063210.01162445651270.05764291667160.00547017358410.0243872206980.9774351963190.97449519367911[[0.0234375,0.156982421875,0.507080078125,0.845703125,0.9814453125],[0.000244140625,0.044921875,0.4951171875,0.953125,0.99951171875]][[0.023681640625,0.15869140625,0.502685546875,0.853515625,0.978515625],[0.02294921875,0.147705078125,0.4970703125,0.843017578125,0.97607421875]][0.41064453125,0.64501953125,0.87353515625,0.980712890625,0.998291015625][0.092041015625,0.276611328125,0.6015625,0.900146484375,0.98291015625][0.9848790126322388,0.3592975433886167][0.9749013302105001,0.9799690624277732]{"kinetic":0.9774351963191378,"potential":1.0116244565126697,"total":1.9890596528318079}{"kinetic":0.9744951936789579,"potential":1.0576429166715928,"total":2.0487744413959765}————————————————————————
+correlationlangevin0.25—0.1—8192——————————————————————01.007916951410.01115451100791.008113744420.01111620447211.012227718130.03150953506141.0133995780.02537135366231.004891923090.003025028320390.27119327043910.008113744423880.72990240906610.01222771813470.3880640609551.004918699680.008480878317380.334269839531——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.1—8192——————————————————————0.50.8309727695350.01034025543860.2429311799280.008110032748450.07174762397390.01299641678020.5498781207710.0188589309820.8303881733850.000584596149940.05653594859520.2473009347710.004369754842870.5388085323960.06437398121520.007373642758670.5673596717760.5399647231350.009913397636020.5256606350320.829264457183——
+correlationlangevin0.25—0.1—8192——————————————————————10.5265540691210.00910135848942-0.1068442293170.007926871400230.0213875768080.01160073788930.3422767614750.01559214768640.5331551164560.006601047335210.725281543726-0.09445797101420.0123862583031.562565819170.01798009138720.003407485420760.2937300586630.3386852040160.003591557459120.2303439866890.534939598542——
+correlationlangevin0.25—0.1—8192——————————————————————20.1361729941480.00822253509035-0.1522746769390.007903120600720.01495796266070.01203676827430.08637894579790.01291675738520.1569503692590.02077737511142.52688190237-0.1482465931410.004028083797610.5096826938510.0221575744840.007199611823320.5981349527750.09233296813090.005954022332990.460953330270.159275711614——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.1—8192——————————————————————40.04714002387460.00798284811669-0.009831984072280.00780513828937-0.01226802261950.01054497449340.0006352178454710.01101197871310.04720043811326.04142385393e-050.00756800551085-0.01608755515140.006255571079080.8014683208890.001734402108130.01400242472761.327876585790.005661091125290.005025873279820.4564005625840.0475689607424——
+distributioncsvr0.2520.05canonical81920.005212871118960.00549316406250.006551103549110.006128975693670.01340517268090.02344729165280.01004112184870.03557090894240.01172314726480.04564389850460.9865948273190.97655270834711[[0.0185546875,0.157470703125,0.4986572265625,0.8465576171875,0.979736328125],[0.0001220703125,0.0443115234375,0.49560546875,0.955810546875,0.999755859375]][[0.0194091796875,0.1572265625,0.4996337890625,0.8433837890625,0.9775390625],[0.02001953125,0.161376953125,0.4945068359375,0.841552734375,0.978515625]][0.394775390625,0.6318359375,0.8712158203125,0.9813232421875,0.997314453125][0.0889892578125,0.2630615234375,0.60009765625,0.91455078125,0.9840087890625][0.9645264346407592,0.3513464780836703][0.982376180121432,0.9908134745168556]{"kinetic":0.9865948273191425,"potential":0.9899588781512836,"total":1.976553705470426}{"kinetic":0.9765527083471972,"potential":0.9644290910576352,"total":1.9087122029908066}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.05heated40960.0075683593750.0153808593750.009436137162370.004419991318670.01128887821170.02753227208110.008202182066680.04661867542980.001543348072510.01026008481411.011288878211.0275322720811[[0.0224609375,0.15966796875,0.497314453125,0.8388671875,0.977783203125],[0.000244140625,0.039794921875,0.492431640625,0.95556640625,0.999755859375]][[0.020751953125,0.1640625,0.501953125,0.84130859375,0.97705078125],[0.02490234375,0.1572265625,0.515380859375,0.841064453125,0.977783203125]][0.384033203125,0.627197265625,0.86767578125,0.98095703125,0.99609375][0.09130859375,0.26318359375,0.595947265625,0.912841796875,0.980712890625][0.9930242741751973,0.3427582566406361][1.0098888765311334,1.0126888798922855]{"kinetic":1.01128887821171,"potential":0.9917978179333156,"total":2.0030866961450258}{"kinetic":1.0275322720811007,"potential":0.9533813245702318,"total":2.020520169628205}————————————————————————
+correlationcsvr0.25—0.05—8192——————————————————————00.9899588781510.01085092315880.9865948273190.01091891239210.9767324070020.03018435857730.9546309658590.022486880218———————————————
+correlationcsvr0.25—0.05—8192——————————————————————0.50.7853144131390.009788738048980.4686991135310.008405970318370.02984504485520.01084808479670.4878370804110.0160928705131———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.05—8192——————————————————————10.383315376840.00843610867885-0.02346665704450.008162470535150.02776374229110.01152655408520.2903070234550.0140407164301———————————————
+correlationcsvr0.25—0.05—8192——————————————————————2-0.1539646246220.00867114952567-0.3256603104090.008503990148360.03100286476970.01201201579810.04093595758250.0125967057845———————————————
+correlationcsvr0.25—0.05—8192——————————————————————4-0.00235182441570.008292679219330.01003928239340.00821047823320.001983597473630.0108413865942-0.005969487184540.0105382383197———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05canonical81920.005457011743960.00891113281250.002726027578560.005818266094623.07256874577e-060.001346200718340.0009981163507860.024013640380.0005005944597660.02507195253430.9999969274311.0013462007211[[0.0208740234375,0.1632080078125,0.505126953125,0.8468017578125,0.9771728515625],[0.0,0.0433349609375,0.4974365234375,0.9566650390625,0.999755859375]][[0.0250244140625,0.166259765625,0.5089111328125,0.844970703125,0.9742431640625],[0.0234375,0.1514892578125,0.4932861328125,0.838623046875,0.9805908203125]][0.3922119140625,0.62939453125,0.86279296875,0.981689453125,0.997802734375][0.0863037109375,0.2584228515625,0.5916748046875,0.9117431640625,0.98388671875][0.989189386872317,0.3490707198706279][1.0337683153704518,0.9662255394920625]{"kinetic":0.9999969274312542,"potential":0.9990018836492145,"total":1.9989988110804686}{"kinetic":1.0013462007183391,"potential":0.9759863596199936,"total":1.949856094931436}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05heated40960.0119628906250.009313496068540.005041605912370.003636649306330.005245122233210.01114979437870.004281423103130.0206784250060.000481849565040.02446830145751.005245122230.98885020562111[[0.022705078125,0.159912109375,0.5087890625,0.837646484375,0.97509765625],[0.0,0.0439453125,0.511962890625,0.957275390625,0.999755859375]][[0.023681640625,0.16796875,0.50634765625,0.836181640625,0.976318359375],[0.0224609375,0.1533203125,0.499755859375,0.837890625,0.98046875]][0.388427734375,0.628662109375,0.8642578125,0.97998046875,0.99853515625][0.090087890625,0.267578125,0.5908203125,0.90478515625,0.984619140625][1.0245609383316732,0.33455924410452464][1.0361281665290527,0.9743620779373577]{"kinetic":1.005245122233207,"potential":0.9957185768968738,"total":2.0009636991300805}{"kinetic":0.988850205621286,"potential":1.0206784250059804,"total":2.04893660291495}————————————————————————
+correlationlangevin0.25—0.05—8192——————————————————————00.9990018836490.01091574573820.9999969274310.01105665259861.001346200730.03250366862370.9749285486550.0240978229881.001217454660.002215571006780.20297019186113.07256874532e-060.00027789321568510.001346200727780.04141688568651.001219112120.02629056346621.090993301731——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.05—8192——————————————————————0.50.827897904930.0100693763350.2376722332490.008154535676890.06998982362450.01364434043780.5252206331860.01860899149990.8295453158490.001647410919140.1636060530790.2463684974350.008696264186251.066432784260.06395598836740.006033835257090.4422225672680.5386492250690.01342859188310.7216184650960.829264457183——
+correlationlangevin0.25—0.05—8192——————————————————————10.5321692047570.00886024730051-0.09191721580320.007752236766540.01579700461520.0118725224960.3290706965530.01525040845730.534496346160.002327141402530.26264971209-0.09517018024380.003252964440550.4196162396110.01814878617190.002351781556640.1980860897450.3393387749750.01026807842220.6732985841620.534939598542——
+correlationlangevin0.25—0.05—8192——————————————————————20.1529295222570.00813179374077-0.1439226506670.007846888504220.03138193221520.01121181225350.08884901417870.01193145269840.1586945942420.005765071985010.708954526982-0.1488168744850.004894223818490.6237152236660.02233177744860.009050154766570.8071982086380.09282459900340.003975584824740.3332020773370.159275711614——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.05—8192——————————————————————40.0542131996760.00786598081842-0.02889401791570.007847864524310.01851107620280.01107225267770.007619244528540.01098760920290.04747634642570.006736853250370.856454319669-0.01623544650660.01265857140911.612995658870.001753523006980.01675755319581.513472793980.005756293545120.001862950983420.169550167740.0475689607424——
+distributioncsvr10.50.1canonical81920.006215787241460.00793457031250.006310933150130.005615224709840.006826203958090.01754717231510.003855958449870.0209400285890.005341081203980.02652843722580.9931737960420.98245282768511[[0.021240234375,0.15380859375,0.4970703125,0.8367919921875,0.9786376953125],[0.00048828125,0.05078125,0.5020751953125,0.9537353515625,0.9998779296875]][[0.0238037109375,0.15869140625,0.4969482421875,0.84228515625,0.975830078125],[0.0211181640625,0.1529541015625,0.4920654296875,0.83935546875,0.97705078125]][0.3997802734375,0.6317138671875,0.865234375,0.982177734375,0.9974365234375][0.086669921875,0.2633056640625,0.599609375,0.9056396484375,0.9830322265625][0.9791694325091936,0.3505600867097103][1.0061395760115632,0.9802080160722645]{"kinetic":0.9931737960419136,"potential":0.9961440415501284,"total":1.9893178375920424}{"kinetic":0.982452827684934,"potential":0.9790599714110336,"total":1.9469431255484682}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr10.50.1heated40960.007848652318540.0058593750.008386128462630.006266694842880.02679670036180.1150579637560.01429608300590.04468871540380.006250308677920.01010511303180.9732032996380.88494203624411[[0.022705078125,0.1552734375,0.505859375,0.83349609375,0.97705078125],[0.00146484375,0.0419921875,0.494873046875,0.95556640625,0.999267578125]][[0.017822265625,0.153076171875,0.494140625,0.842529296875,0.976318359375],[0.01953125,0.154296875,0.502197265625,0.843505859375,0.978271484375]][0.40185546875,0.633056640625,0.868408203125,0.98583984375,0.998779296875][0.09033203125,0.2705078125,0.591552734375,0.911865234375,0.98095703125][1.0124330883406227,0.3516121376024998][0.974139491995191,0.9722671072812699]{"kinetic":0.9732032996382303,"potential":1.0142960830059236,"total":1.9874993826441538}{"kinetic":0.8849420362444158,"potential":1.044688715403804,"total":2.0202102260636927}————————————————————————
+correlationcsvr1—0.1—8192——————————————————————00.996144041550.01093292035910.9931737960420.01095184756870.9824994247450.02936386395560.9735286170710.0221405079927———————————————
+correlationcsvr1—0.1—8192——————————————————————0.50.7670728409240.009629580844490.6758103760440.00922323334970.361104782590.01810186058970.7838161013170.0199170897146———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr1—0.1—8192——————————————————————10.2470105338390.00803609713190.1223737074980.007921733957330.01885741362920.01126363960030.610872861050.0179540941176———————————————
+correlationcsvr1—0.1—8192——————————————————————2-0.514106314630.00860722604747-0.5651811420490.008690707154910.2281728104850.01470973597190.3704311122060.0153845085889———————————————
+correlationcsvr1—0.1—8192——————————————————————40.05872901748820.008499546628360.07030409525790.008098510868880.04680949971920.01247318681340.1342651582540.0128860816243———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.1canonical81920.00695800781250.0075683593750.007161667733940.005030342881170.01325277005880.05195333072430.005689901368040.006312447292230.003781434345360.03643637582690.9867472299410.94804666927611[[0.020751953125,0.1533203125,0.4930419921875,0.83642578125,0.9757080078125],[0.000244140625,0.0472412109375,0.498046875,0.9525146484375,0.99951171875]][[0.024169921875,0.157958984375,0.507568359375,0.8424072265625,0.97802734375],[0.0244140625,0.153076171875,0.4945068359375,0.8438720703125,0.977783203125]][0.3992919921875,0.6392822265625,0.8653564453125,0.98388671875,0.99853515625][0.09130859375,0.2607421875,0.597412109375,0.9134521484375,0.98388671875][0.9926301372808998,0.3525085347595794][0.994057370117648,0.9794370897648101]{"kinetic":0.9867472299412281,"potential":1.0056899013680436,"total":1.9924371313092717}{"kinetic":0.9480466692757183,"potential":0.9936875527077719,"total":1.9271272483461437}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.1heated40960.01029005856850.0124511718750.01216655054640.01733397470980.01551853561020.002241833035590.004919647311840.006716820455360.0102190914610.005576879660750.984481464391.0022418330411[[0.022705078125,0.15185546875,0.495361328125,0.8310546875,0.974365234375],[0.0,0.044677734375,0.509033203125,0.955078125,0.999267578125]][[0.02001953125,0.1533203125,0.487548828125,0.8291015625,0.974853515625],[0.02392578125,0.1494140625,0.489501953125,0.84228515625,0.97802734375]][0.3974609375,0.644287109375,0.86767578125,0.98095703125,0.997314453125][0.08935546875,0.27978515625,0.611328125,0.907958984375,0.982421875][1.0018029428661999,0.34199230536682207][0.9860242873501361,0.9829386414295329]{"kinetic":0.9844814643898352,"potential":0.9950803526881568,"total":1.9795618170779918}{"kinetic":1.0022418330355933,"potential":0.993283179544645,"total":1.988846240678506}————————————————————————
+correlationlangevin1—0.1—8192——————————————————————01.005689901370.01101428885550.9867472299410.01075836799450.948222305190.02642878623230.9635922226640.02245053106121.004891923090.0007979782763370.072449368888510.01325277005881.2318569197110.05177769481011.959140096521.004918699680.04132647701941.840779485651——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.1—8192——————————————————————0.50.7903457946010.009895134205940.5704348971140.008797091312260.3256836770770.0166021964190.7737189277020.02076632364560.7892272360180.001118558583270.113041274630.5831408718660.01270597475181.444338168240.3485425739140.02285889683661.376859799740.8038866897980.03016776209691.452725220490.786719784718——
+correlationlangevin1—0.1—8192——————————————————————10.3125468428710.008343776921620.03777318279560.007887941834810.03874731455030.01143637459680.6275265849890.01953282320670.3169095024460.004362659575280.5228638800220.03718165734360.0005915254520140.0749911021660.05839144454350.01964412999321.717688575780.6499839827890.02245739780021.149726159020.318040422077——
+correlationlangevin1—0.1—8192——————————————————————2-0.3465332640990.00856794906713-0.4582191733510.008672895752660.2168436606170.01554271365930.367683499390.0149094306111-0.3438024547860.002730809313340.318723803321-0.4671290006620.008909827310661.027318621690.2290262960040.01218263538730.7838164978350.3913632188850.02367971949461.58823768072-0.341085391054——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.1—8192——————————————————————40.005878333234220.008318689421760.04230346722290.008012534501330.0693317975630.01212367574790.143047190780.01240122991630.00984953689940.003971203665190.4773833309370.04870608227870.006402615055810.799074881330.06925802911677.37684463623e-050.006084660122580.140696259020.002350931759410.1895724678340.00929545487472——
+distributioncsvr10.50.05canonical81920.0109863281250.0156250.004557294888390.002833077256173.37531242929e-050.01269237731150.009388771731670.05977288750650.004677509303690.01546528985351.000033753121.0126923773111[[0.0216064453125,0.1558837890625,0.5037841796875,0.8402099609375,0.97705078125],[0.000244140625,0.045166015625,0.510986328125,0.956298828125,0.999755859375]][[0.023193359375,0.1600341796875,0.500732421875,0.8428955078125,0.9749755859375],[0.0225830078125,0.1517333984375,0.484375,0.8399658203125,0.974365234375]][0.3970947265625,0.6358642578125,0.860107421875,0.9798583984375,0.9979248046875][0.090087890625,0.264404296875,0.5968017578125,0.9112548828125,0.9833984375][0.9876101980984383,0.3438104700478292][1.0093752319591853,0.9906922742893992]{"kinetic":1.0000337531242929,"potential":0.9906112282683304,"total":1.9906449813926232}{"kinetic":1.0126923773115242,"potential":0.9402271124934575,"total":1.9690694202930992}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr10.50.05heated40960.007604511693540.008581074193540.007483012162370.007298758681330.01093099559520.04580546623780.008973120984230.0299625342750.009952058289730.008870932379041.01093099561.0458054662411[[0.02392578125,0.1533203125,0.496826171875,0.833740234375,0.976318359375],[0.0,0.04736328125,0.500732421875,0.951904296875,0.99951171875]][[0.023193359375,0.154541015625,0.501708984375,0.832763671875,0.973876953125],[0.02001953125,0.162353515625,0.507080078125,0.840576171875,0.978515625]][0.385986328125,0.632568359375,0.86572265625,0.9794921875,0.99658203125][0.0869140625,0.25830078125,0.590576171875,0.901123046875,0.983642578125][1.0078316091035961,0.3495206342092963][1.0242156879882853,0.9976463032021691]{"kinetic":1.0109309955952281,"potential":1.0089731209842303,"total":2.0199041165794585}{"kinetic":1.0458054662377783,"potential":1.0299625342749623,"total":2.017741864758089}————————————————————————
+correlationcsvr1—0.05—8192——————————————————————00.9906112282680.01071390823321.000033753120.01111911719071.012692378450.02986145253810.9845784683330.0235873332163———————————————
+correlationcsvr1—0.05—8192——————————————————————0.50.773968695070.009754814899330.6724376581360.009133969448260.3439913438280.01811151117620.7924005662370.0209844919018———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr1—0.05—8192——————————————————————10.2599528957720.008321854178390.109756432790.008183323860040.05611654655090.01257231879110.6478856231580.0187214186485———————————————
+correlationcsvr1—0.05—8192——————————————————————2-0.5111507826840.00862762942244-0.5860397714660.008933922409980.2366716810060.01600286938390.389661526620.0162954586607———————————————
+correlationcsvr1—0.05—8192——————————————————————40.04459118760020.008412628937170.07940108053490.008083189524310.03321727732520.01203206457320.1233921732830.0128224599821———————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05canonical81920.005823222681460.007604511693540.006872660599870.004394521584840.0009173219318650.02855846439180.006627327288130.02874105823690.002855002678130.01579002537070.9990826780680.97144153560811[[0.0233154296875,0.1614990234375,0.500732421875,0.84716796875,0.9769287109375],[0.0001220703125,0.0445556640625,0.4951171875,0.95068359375,0.9991455078125]][[0.021240234375,0.166259765625,0.5054931640625,0.8377685546875,0.976806640625],[0.019287109375,0.15625,0.507080078125,0.835205078125,0.977294921875]][0.3865966796875,0.626953125,0.8690185546875,0.984130859375,0.9964599609375][0.0904541015625,0.264892578125,0.598388671875,0.9073486328125,0.9814453125][0.992423760841831,0.3532286829530893][1.0161094424322923,0.9820559137039786]{"kinetic":0.9990826780681349,"potential":1.0066273272881303,"total":2.0057100053562653}{"kinetic":0.9714415356081816,"potential":1.0287410582368737,"total":2.0315800507414354}————————————————————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05heated40960.0097656250.01070603518150.01138926216240.004857352431330.01073878507960.01750031028060.01083772240210.04737411664174.94686612247e-050.02626984544711.010738785080.98249968971911[[0.0224609375,0.1572265625,0.506591796875,0.846435546875,0.976806640625],[0.000732421875,0.04248046875,0.490234375,0.952880859375,0.9990234375]][[0.0263671875,0.166015625,0.499267578125,0.835693359375,0.978271484375],[0.02001953125,0.14794921875,0.50048828125,0.832275390625,0.979248046875]][0.382080078125,0.62158203125,0.866455078125,0.983642578125,0.997802734375][0.090576171875,0.264404296875,0.598388671875,0.903564453125,0.980224609375][0.9884434162423191,0.3425194252434515][1.029686692186644,0.9917908779725658]{"kinetic":1.0107387850796055,"potential":0.9891622775979454,"total":1.9999010626775506}{"kinetic":0.9824996897193874,"potential":1.047374116641728,"total":2.052539690894186}————————————————————————
+correlationlangevin1—0.05—8192——————————————————————01.006627327290.01120687618240.9990826780680.01089030069380.9714423770880.03219801576281.015806327450.02524474405741.001217454660.005409872632140.48272797379710.0009173219318650.084232929618510.02855762291230.8869373542361.001219112120.01458721532970.577831777441——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.05—8192——————————————————————0.50.7966287848640.0100744572320.5699278105570.008996391288250.3379591451710.01775525883450.8119512857850.021755378810.7873447038580.009284081006680.9215465203660.5829592439520.01303143339531.448517853190.3483299517370.01037080656550.5840977404020.800669164730.01128212105510.5185899612990.786719784718——
+correlationlangevin1—0.05—8192——————————————————————10.3212475887440.008511377571210.04216485504260.007996526913460.07488129347380.01256378758580.6658003063840.01917480510220.3177604450190.00348714372450.4097037988640.03726164979790.004903205244760.6131668532880.05827396245680.01660733101691.321841117060.647906794480.01789351190390.9331782935190.318040422077——
+correlationlangevin1—0.05—8192——————————————————————2-0.3435610966030.00867521652501-0.4598889902140.008621579500110.2240360520970.01558949627210.3962390962130.0153300663656-0.3417626293320.001798467270560.20731093747-0.4674297384480.007540748233730.8746365133720.2293669596690.005330907571360.3419550881130.3900809791160.006158117097330.401701920295-0.341085391054——
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.05—8192——————————————————————40.007626882334220.008383246987490.03426146597230.008048852825770.05462593099910.01182699021260.1282175374870.01230716107990.00943512557660.001808243242380.2156972405890.04915118628340.01488972031111.84991832170.06970100816050.01507507716151.274633435090.1401028001010.01188526261390.9657192700020.00929545487472——
+deterministic-shadow-reference———0.2——————————————————————————————————————————————0.0102976006596.66133814775e-16
+deterministic-shadow-reference———0.1——————————————————————————————————————————————0.00251819395131.11022302463e-15
+deterministic-shadow-reference———0.05——————————————————————————————————————————————0.0006261309490272.44249065418e-15
+Measurements and complete records / JSON
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+Review scope / review_level: author-manuscript-selected-theory-and-appendix
+Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author.
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+Review scope / review_level: author-manuscript-selected-equations-and-algorithm
+Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced.
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
+Review scope / review_level: author-official-algorithm-note
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic-references
+Coverage: reading
+
+Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-assumptions
+Coverage: reading
+
+m=kB=T=1, omega=(1,1.7), lambda=0.2, U=sum(omega²q²/2+lambda q⁴/4). Use 8192 canonical and 4096 heated replicas, t=20, tau=0.25/1, h=0.1/0.05, lags 0/0.5/1/2/4.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-algorithm
+Coverage: reading
+
+Compare global CSVR and local OU with the same OBABO splitting. Draw initial canonical positions by independent Gaussian-envelope rejection and momenta from Maxwell distributions, and evolve a separate heated initial ensemble.
+U(q)=\sum_{i=1}^2\left(\frac{\omega_i^2q_i^2}{2}+\frac{\lambda q_i^4}{4}\right),\quad\rho(q)=Z^{-1}e^{-U(q)/T}F_H(E)=\int_{U(q)\le E}\rho(q)\left[1-e^{-(E-U(q))/T}\right]dq,\qquad N_f=2\mathbb E H=\mathbb E K+\mathbb E U,\quad\operatorname{Var}H=\operatorname{Var}K+\operatorname{Var}U
+
+## CSVR and Langevin: distributions, fluctuations and correlations — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-validation
+Coverage: reading
+
+Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-limits
+Coverage: reading
+
+A small example for one separable two-mode quartic potential and fixed seeds. H is not treated as harmonic Gamma. No independent exact full-system dynamical reference is claimed, and neither matching correlations nor time order hidden by sampling noise is an acceptance claim. Molecular transport, quantum and ab initio MD are outside scope.
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_canonical_cdf0.00997361330646
+maximum_canonical_mean0.0276867626278
+maximum_canonical_variance0.0655045188307
+maximum_heated_cdf0.0202834299099
+maximum_heated_mean0.0370817393827
+maximum_heated_variance0.0874094991263
+maximum_acf_standard_error0.0330970376535
+quadrature_refinement_error2.1561918917e-13
+判定 / checkPassed
+canonical_position_momentum_energy_cdfstrue
+canonical_energy_meanstrue
+canonical_energy_fluctuationstrue
+heated_start_cdfstrue
+heated_start_energy_meanstrue
+heated_start_energy_fluctuationstrue
+quadrature_reference_refinedtrue
+independent_replica_correlation_uncertaintytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+seriesmethodtaugamma_langevindtinitial_ensemblereplicasposition_cdf_errormomentum_cdf_errorkinetic_cdf_errortotal_energy_cdf_errork_mean_relative_errork_variance_relative_erroru_mean_relative_erroru_variance_relative_errorh_mean_relative_errorh_variance_relative_errortemperature_meantemperature_varianceexact_temperature_meanexact_temperature_varianceq_cdfp_cdfk_cdfh_cdfq_variancep_varianceenergy_meansenergy_varianceslagq_acfq_acf_standard_errorp_acfp_acf_standard_errork_acfk_acf_standard_errorh_acfh_acf_standard_error
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1canonical81920.006021494645410.007604511693540.005167433828560.002338364206230.007526651582320.03053858522130.002033355120660.01980990401220.00490079199140.01638951132020.9924733484180.96946141477911[[0.0062255859375,0.12109375,0.4951171875,0.8680419921875,0.993896484375],[0.0,0.0390625,0.49755859375,0.958251953125,1.0]][[0.0242919921875,0.166259765625,0.50439453125,0.8433837890625,0.9791259765625],[0.0224609375,0.1561279296875,0.492431640625,0.8416748046875,0.97998046875]][0.3912353515625,0.626953125,0.86474609375,0.98388671875,0.99755859375][0.1005859375,0.2825927734375,0.6201171875,0.9217529296875,0.9844970703125][0.7167844438213621,0.3262344391152629][1.0046980607836582,0.9802486360516937]{"kinetic":0.9924733484176781,"potential":0.9138894434319016,"total":1.9063627918495796}{"kinetic":0.9694614147787388,"potential":0.8827372602081417,"total":1.835013896778885}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1heated40960.0124511718750.01395216794350.01773691841240.02028342990990.02594724680750.004423603552670.03515014682460.06404986570170.03034634003740.04107016844431.025947246811.0044236035511[[0.005615234375,0.1357421875,0.512451171875,0.862060546875,0.992919921875],[0.0,0.043212890625,0.4931640625,0.9599609375,0.999755859375]][[0.0244140625,0.16162109375,0.50146484375,0.83349609375,0.97607421875],[0.021484375,0.159423828125,0.4931640625,0.827392578125,0.974365234375]][0.375732421875,0.617919921875,0.861083984375,0.982421875,0.99755859375][0.087158203125,0.267578125,0.59814453125,0.917236328125,0.986083984375][0.7632514874360237,0.32892363251359674][1.0296449348483268,1.02224955876666]{"kinetic":1.0259472468074942,"potential":0.9479402907943836,"total":1.9738875376018776}{"kinetic":1.004423603552672,"potential":0.9210309288809544,"total":1.9422101010545942}—————————
+correlationcsvr0.25—0.1—8192——————————————————————00.9970376608670.01045358692620.9924733484180.01087919600540.9695180652630.0300536952450.9836577379040.0230956414724
+correlationcsvr0.25—0.1—8192——————————————————————0.50.7741505072880.009216925758610.4248678425330.008782349836620.05121927732580.01188461583360.495377079460.0168754679379
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.1—8192——————————————————————10.3375935099260.00773635346016-0.1054404884590.008245980319880.0122725773410.01138603987780.2296938930220.0136904941635
+correlationcsvr0.25—0.1—8192——————————————————————2-0.202677652350.00894074811351-0.3366896796450.008606771083480.008633553655610.0105687725425-0.02468014433840.0108205065652
+correlationcsvr0.25—0.1—8192——————————————————————4-0.0001662533391190.008254090034440.04702033248630.00829530107944-0.02539129778710.01033455528030.0001050682162990.0106942113717
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1canonical81920.003417968750.007848652318540.006262309037370.003926008034860.0120252858390.01397173783290.0001247928500990.05484328356890.006336711797930.01888988878611.012025285841.0139717378311[[0.005859375,0.12548828125,0.5032958984375,0.870849609375,0.991455078125],[0.0001220703125,0.0384521484375,0.50341796875,0.9622802734375,0.999755859375]][[0.023193359375,0.162353515625,0.4970703125,0.8416748046875,0.97900390625],[0.024169921875,0.16650390625,0.504150390625,0.846435546875,0.9757080078125]][0.38720703125,0.62744140625,0.8597412109375,0.9814453125,0.9970703125][0.0966796875,0.282958984375,0.614501953125,0.917236328125,0.9866943359375][0.7377827573602163,0.31831619238073267][1.0028590659698853,1.021191505708047]{"kinetic":1.012025285838965,"potential":0.9158657706548192,"total":1.9278910564937841}{"kinetic":1.013971737832923,"potential":0.9130618034038817,"total":1.9008307930097672}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1heated40960.0109863281250.0129394531250.01322407445360.01151107401460.02452334405270.05053482950.01530288521870.007953809096540.02011585750410.01874769550491.024523344051.050534829511[[0.0078125,0.125,0.489013671875,0.8720703125,0.993896484375],[0.000244140625,0.043212890625,0.5029296875,0.963623046875,0.999755859375]][[0.023681640625,0.163330078125,0.512939453125,0.843994140625,0.976806640625],[0.025146484375,0.158203125,0.5068359375,0.838623046875,0.974853515625]][0.389404296875,0.618896484375,0.857421875,0.98046875,0.996826171875][0.091796875,0.271484375,0.60888671875,0.91259765625,0.984130859375][0.7386244555276764,0.3275010639704623][1.0181513460106066,1.0308953420947098]{"kinetic":1.024523344052659,"potential":0.9297651313782382,"total":1.9542884754308976}{"kinetic":1.0505348294999683,"potential":0.8724747429473657,"total":1.9005655186455273}—————————
+correlationlangevin0.25—0.1—8192——————————————————————00.9993522266560.01062463139171.012025285840.01112613850821.014116345330.03239508491881.018968882050.0262825129308
+correlationlangevin0.25—0.1—8192——————————————————————0.50.7976646145670.009430451521610.2500152019210.008257866999230.07414280560020.01393022215610.5211916475790.019022888914
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.1—8192——————————————————————10.4669579439180.00801452360969-0.1096669602830.007849953973960.01513175149830.0126465314590.2631701218550.014938157826
+correlationlangevin0.25—0.1—8192——————————————————————20.07445496786120.00774945701367-0.1745543274290.007896439283280.008703791283820.01124028182150.01339126531670.011180084582
+correlationlangevin0.25—0.1—8192——————————————————————4-0.001995983732730.00773966880627-0.003235465138140.007861132755410.007763450430710.0108502680044-0.02344625452690.011005837851
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.05canonical81920.00500488281250.0041503906250.007287495650130.007482753702090.004861130171650.03196228140810.008758596728610.02612140286710.006724164510010.01145651321681.004861130171.0319622814111[[0.00634765625,0.1273193359375,0.4949951171875,0.87451171875,0.9942626953125],[0.0,0.04248046875,0.5045166015625,0.960693359375,0.9998779296875]][[0.0242919921875,0.15625,0.4991455078125,0.8414306640625,0.9771728515625],[0.021728515625,0.159912109375,0.504150390625,0.840576171875,0.9781494140625]][0.4007568359375,0.63134765625,0.8616943359375,0.981201171875,0.99755859375][0.0960693359375,0.2755126953125,0.6141357421875,0.9158935546875,0.98583984375][0.7240853858083866,0.3307356099467782][1.0105649370858119,0.999157323257477]{"kinetic":1.004861130171645,"potential":0.9237721894331575,"total":1.9286333196048024}{"kinetic":1.0319622814081457,"potential":0.8429795800434856,"total":1.8869631618421217}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.05heated40960.01269531250.009069355443540.01163340278740.009802089639590.005740778911170.02982565391540.01297416242130.08740949912630.003205180684210.04276222824571.005740778910.97017434608511[[0.0048828125,0.13818359375,0.5126953125,0.873291015625,0.99560546875],[0.0,0.0419921875,0.501220703125,0.9619140625,0.999755859375]][[0.025634765625,0.154052734375,0.502197265625,0.832275390625,0.977294921875],[0.022705078125,0.159912109375,0.493408203125,0.83984375,0.97998046875]][0.3818359375,0.6318359375,0.8671875,0.9814453125,0.99755859375][0.09814453125,0.273193359375,0.614990234375,0.92724609375,0.9853515625][0.7156243307000846,0.3226376600157572][1.0182200211745631,0.9932615366477827]{"kinetic":1.0057407789111728,"potential":0.9038703828290087,"total":1.9096111617401816}{"kinetic":0.9701743460846264,"potential":0.7899292164783038,"total":1.7858132196703163}—————————
+correlationcsvr0.25—0.05—8192——————————————————————01.009006450160.0102782799011.004861130170.01122440811331.031985911990.03309703765351.011545461750.0257019305543
+correlationcsvr0.25—0.05—8192——————————————————————0.50.777901113360.009017394865420.427626726340.008580338661080.02588264138940.0114498737940.4930737803830.0177889694176
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.05—8192——————————————————————10.315681841990.00764983926835-0.0810832072090.008476409486570.04579678759370.01222422646390.2357644082490.0142056738195
+correlationcsvr0.25—0.05—8192——————————————————————2-0.2517608108740.0087967648047-0.356104274660.008531774093990.0160202938270.0111436963425-0.04072416708340.0108280352614
+correlationcsvr0.25—0.05—8192——————————————————————40.03142351116210.008423775449660.07616407450980.00829718516163-0.01222242439660.01121470048640.01709478717160.0112640841372
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05canonical81920.0046386718750.00720214843750.004679152578560.002339093972360.003799194899930.003638890162210.004044172152650.004875014091224.99742372755e-050.003312044904841.00379919490.99636110983811[[0.005615234375,0.126220703125,0.4981689453125,0.87451171875,0.9942626953125],[0.0003662109375,0.0361328125,0.495361328125,0.9586181640625,1.0]][[0.025390625,0.1551513671875,0.4927978515625,0.8387451171875,0.9769287109375],[0.0220947265625,0.1571044921875,0.501708984375,0.84130859375,0.9757080078125]][0.3927001953125,0.62744140625,0.8621826171875,0.9814453125,0.9979248046875][0.096435546875,0.2850341796875,0.6160888671875,0.9197998046875,0.9864501953125][0.7222065743533667,0.32373091102449][1.0139566856518627,0.9936417041479894]{"kinetic":1.0037991948999263,"potential":0.9120480347358894,"total":1.9158472296358156}{"kinetic":0.9963611098377931,"potential":0.8613702418164149,"total":1.871768923160949}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05heated40960.0097656250.009973613306460.02022319117140.01072242946510.03708173938270.0534027579010.009653085723610.02357514062310.01474194949660.02863592767780.9629182606170.94659724209911[[0.0048828125,0.126220703125,0.509765625,0.8798828125,0.993896484375],[0.0,0.04638671875,0.490966796875,0.95703125,0.99951171875]][[0.020263671875,0.148681640625,0.490234375,0.8369140625,0.973388671875],[0.02197265625,0.15185546875,0.4931640625,0.843994140625,0.98046875]][0.4091796875,0.65234375,0.872314453125,0.98388671875,0.997802734375][0.09912109375,0.287109375,0.629150390625,0.9228515625,0.98583984375][0.7058928895935258,0.3377915795607767][0.9724070084165913,0.9534295128180094]{"kinetic":0.9629182606173011,"potential":0.924591319064387,"total":1.887509579681688}{"kinetic":0.9465972420990043,"potential":0.8859964113860829,"total":1.8121671048214336}—————————
+correlationlangevin0.25—0.05—8192——————————————————————00.9969290961060.01034197561021.00379919490.01102909610040.996375543720.02958965152731.003312049820.0257446761965
+correlationlangevin0.25—0.05—8192——————————————————————0.50.8133224631540.00944391510250.2088610325930.007919326969780.06463814886170.01234438278160.5137583552680.0196762035437
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.05—8192——————————————————————10.4864545403290.00805716203435-0.126808934220.008055491817820.0534560524680.01266415554760.3073623543120.0157538681864
+correlationlangevin0.25—0.05—8192——————————————————————20.08893667177920.00765185969598-0.1581665309720.007846443305370.02671293144020.01156258953910.03470559414650.0112222811021
+correlationlangevin0.25—0.05—8192——————————————————————40.007612465350520.00784502167219-0.01274275693210.00789527683080.01084312248930.0113523257870.003638287487480.0113216817285
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.1canonical81920.007324218750.003942402318540.008947855912370.009924159952090.0001396168365950.01686887589570.02768676262780.06153015004910.01330747287410.01576237481221.000139616840.98313112410411[[0.0067138671875,0.1334228515625,0.5059814453125,0.86767578125,0.994140625],[0.000244140625,0.04052734375,0.49267578125,0.9541015625,0.9998779296875]][[0.02294921875,0.16259765625,0.49951171875,0.84033203125,0.977783203125],[0.02197265625,0.1595458984375,0.5029296875,0.839599609375,0.9769287109375]][0.384521484375,0.6302490234375,0.8631591796875,0.984130859375,0.9979248046875][0.0919189453125,0.2730712890625,0.6146240234375,0.91650390625,0.9853515625][0.7400906690415618,0.33498168300383185][1.0133079723391567,0.9869712613340352]{"kinetic":1.0001396168365955,"potential":0.9411056855851039,"total":1.9412453024216993}{"kinetic":0.9831311241043252,"potential":0.918849888195888,"total":1.894996134198614}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.1heated40960.0100097656250.01464843750.006795456796440.01534439473540.02074884916190.04779752891810.01052057577350.03422149462130.01585961553630.004351690103750.9792511508380.95220247108211[[0.00537109375,0.120849609375,0.49462890625,0.8740234375,0.994384765625],[0.0,0.039306640625,0.510009765625,0.959228515625,0.999267578125]][[0.0234375,0.15185546875,0.4853515625,0.846923828125,0.975341796875],[0.01708984375,0.15478515625,0.4951171875,0.846435546875,0.97802734375]][0.39453125,0.638916015625,0.869873046875,0.985595703125,0.997802734375][0.09765625,0.29833984375,0.62890625,0.92236328125,0.98486328125][0.7119880536759541,0.323118895685399][0.9914901505953939,0.9670121510808704]{"kinetic":0.9792511508381326,"potential":0.9061172584610917,"total":1.8853684092992244}{"kinetic":0.9522024710819182,"potential":0.8952117889996807,"total":1.8574715357257474}—————————
+correlationcsvr1—0.1—8192——————————————————————01.026593450050.01068445422321.000139616840.01095562755540.9831311435970.03247286487781.016110754890.0263397012963
+correlationcsvr1—0.1—8192——————————————————————0.50.7633569819860.009231239243790.6381103849270.008928586802070.2915057325150.01671438290020.7917497242410.022384393286
+correlationcsvr1—0.1—8192——————————————————————10.1699486089960.007461535432380.02117164831580.008113597109710.04440869809060.01144456274340.6061950908010.0192003218564
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr1—0.1—8192——————————————————————2-0.6351519319470.00874479168342-0.6423838341290.008871921497280.2777458784370.01678358647440.3294667250820.0154504441431
+correlationcsvr1—0.1—8192——————————————————————40.1973416759830.007845143805570.2310533157870.00792319464649-0.01841347572840.01135388618230.126033145810.0119803851611
+distributionlangevin10.50.1canonical81920.004922861832910.00720214843750.004964189486610.007792741965140.007355437564590.0352077793030.01698505822120.03438098342340.01195850822250.02262843773340.9926445624350.96479222069711[[0.005615234375,0.1221923828125,0.4954833984375,0.8690185546875,0.9920654296875],[0.000244140625,0.0362548828125,0.501220703125,0.9600830078125,1.0]][[0.025390625,0.1578369140625,0.5003662109375,0.8433837890625,0.9766845703125],[0.021728515625,0.160888671875,0.4927978515625,0.846923828125,0.9818115234375]][0.3902587890625,0.634033203125,0.86962890625,0.9818115234375,0.9981689453125][0.1036376953125,0.2890625,0.626220703125,0.923583984375,0.986572265625][0.7221514205258232,0.31527932481380666][1.0089556825504875,0.9763334423203223]{"kinetic":0.9926445624354081,"potential":0.9001973990183997,"total":1.8928419614538077}{"kinetic":0.9647922206969863,"potential":0.8358301696661294,"total":1.823374618018677}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin10.50.1heated40960.0134277343750.0080566406250.005132045138730.005595476340140.01606756685720.08688677751090.001912495262180.008594791090660.009301278023650.0283011698140.9839324331430.91311322248911[[0.007080078125,0.135498046875,0.510986328125,0.87060546875,0.9931640625],[0.0,0.0390625,0.513427734375,0.9638671875,0.999755859375]][[0.022705078125,0.1650390625,0.506103515625,0.837890625,0.976806640625],[0.024169921875,0.156982421875,0.491943359375,0.839111328125,0.97998046875]][0.390625,0.63330078125,0.86669921875,0.98681640625,0.999267578125][0.100341796875,0.284912109375,0.6240234375,0.92041015625,0.987060546875][0.7402195728523555,0.3164627884696467][0.9870980064455608,0.98076685984002]{"kinetic":0.9839324331427891,"potential":0.9140001210275572,"total":1.897932554170346}{"kinetic":0.913113222489129,"potential":0.8730295705550415,"total":1.812791625746398}—————————
+correlationlangevin1—0.1—8192——————————————————————00.9838843725580.01020685818880.9926445624350.0108529657770.9648463231590.02805950320340.9776528923350.0238293023953
+correlationlangevin1—0.1—8192——————————————————————0.50.7445893485840.008894350313080.5581504531040.008864694030440.314456634570.01713052405310.7796053523470.0210328264282
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin1—0.1—8192——————————————————————10.2293624166140.00757979753041-0.04165493979270.00809369748860.08100241730050.01225739918360.6106152371820.0180611892705
+correlationlangevin1—0.1—8192——————————————————————2-0.4272346528120.00844643080858-0.5186212765890.008776009839010.2775388891350.01684793967680.3484575937150.0145970791695
+correlationlangevin1—0.1—8192——————————————————————40.1005494207080.007738116178910.1515630213330.007914982140060.03799935500950.0111469382250.1174790850350.0122227612875
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.05canonical81920.005086903792090.00488281250.003901157986270.004619643606270.001778720047040.03695584399330.01700062521820.05372781495770.007198025377170.03620036464940.9982212799531.0369558439911[[0.006103515625,0.1322021484375,0.502197265625,0.87060546875,0.9927978515625],[0.0001220703125,0.041015625,0.5037841796875,0.9613037109375,0.9998779296875]][[0.0238037109375,0.1585693359375,0.5048828125,0.84228515625,0.9765625],[0.022705078125,0.158447265625,0.499267578125,0.841796875,0.978759765625]][0.3953857421875,0.634765625,0.865478515625,0.977783203125,0.9967041015625][0.100341796875,0.2843017578125,0.6224365234375,0.914794921875,0.98388671875][0.7424965213519003,0.32640625794383055][0.998499093659561,0.9979434662463564]{"kinetic":0.9982212799529568,"potential":0.9313198393148281,"total":1.9295411192677852}{"kinetic":1.0369558439932653,"potential":0.9120962649228286,"total":1.9331250437671899}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.05heated40960.01871680714540.015136718750.009358720736610.009257585715140.01877438546970.06131951444510.01066720527970.02456074557660.01489905905940.04064430260410.981225614530.93868048555511[[0.006103515625,0.1083984375,0.496337890625,0.8642578125,0.993408203125],[0.000244140625,0.042236328125,0.492919921875,0.962890625,1.0]][[0.022705078125,0.16357421875,0.51513671875,0.8486328125,0.979248046875],[0.018310546875,0.150146484375,0.4951171875,0.83349609375,0.981201171875]][0.3955078125,0.63427734375,0.8740234375,0.98486328125,0.9970703125][0.0966796875,0.283935546875,0.627685546875,0.922607421875,0.987548828125][0.7101048564011396,0.32391726261203085][0.9956336193792787,0.9668176096813275]{"kinetic":0.9812256145303033,"potential":0.9059829822721344,"total":1.8872085968024377}{"kinetic":0.9386804855549453,"potential":0.8443304693958524,"total":1.7897644005792746}—————————
+correlationcsvr1—0.05—8192——————————————————————01.015057595040.0106061040510.9982212799530.0112515322361.036959007840.03215555321161.036302291570.0252266852292
+correlationcsvr1—0.05—8192——————————————————————0.50.754134279360.009162329283860.6425011530970.009122190837150.3253627055440.01783883946110.8268894360350.0225728707888
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr1—0.05—8192——————————————————————10.1624403614980.007488249050930.02416778994160.008251218107330.05601109357440.01259874620390.6433687364260.0197649540153
+correlationcsvr1—0.05—8192——————————————————————2-0.6338710579920.00873828724515-0.6566256812510.0091122250960.2984715676670.01805301652770.3533745693470.0166512676819
+correlationcsvr1—0.05—8192——————————————————————40.2006580366670.007789550328150.2292749676060.00797843937438-0.02144695846590.01118957583080.1190196200810.01261788858
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05canonical81920.0041503906250.009973613306460.006188862837630.007060320090140.01577806396180.03918588551080.009671972248640.06550451883070.01285928111440.04567864088630.9842219360380.96081411448911[[0.005859375,0.125732421875,0.504150390625,0.87109375,0.996337890625],[0.0,0.0379638671875,0.4984130859375,0.96142578125,0.999755859375]][[0.02099609375,0.1566162109375,0.498779296875,0.8427734375,0.9779052734375],[0.0216064453125,0.157958984375,0.5054931640625,0.851318359375,0.9786376953125]][0.399658203125,0.6322021484375,0.868896484375,0.982421875,0.997802734375][0.101806640625,0.2784423828125,0.62548828125,0.924072265625,0.9859619140625][0.7184811294146521,0.3227970794435426][0.9914037720234794,0.977040100053016]{"kinetic":0.984221936038247,"potential":0.9068943684045945,"total":1.8911163044428414}{"kinetic":0.9608141144892,"potential":0.808889948488252,"total":1.7803723893967636}—————————
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05heated40960.0153808593750.0148925781250.009680277787370.01100608615990.01310580051410.009016748719010.02079269394320.05548560267620.01678022496510.02372875914261.013105800511.0090167487211[[0.007080078125,0.131591796875,0.515380859375,0.87548828125,0.99267578125],[0.0,0.042724609375,0.4970703125,0.957763671875,1.0]][[0.02783203125,0.154296875,0.50537109375,0.8388671875,0.979736328125],[0.021240234375,0.161376953125,0.485107421875,0.834716796875,0.975341796875]][0.3837890625,0.624755859375,0.859619140625,0.982421875,0.998046875][0.102783203125,0.2802734375,0.607421875,0.908935546875,0.986328125][0.7338674054645311,0.33264213485311533][1.0095061228331434,1.0167054781950515]{"kinetic":1.0131058005140983,"potential":0.9347924319052907,"total":1.947898232419389}{"kinetic":1.0090167487190067,"potential":0.9136177884033647,"total":1.909858141183838}—————————
+correlationlangevin1—0.05—8192——————————————————————00.9929193570650.01009672151230.9842219360380.01083056776920.9610630617920.02786247714550.9546466676950.022129022119
+correlationlangevin1—0.05—8192——————————————————————0.50.7433347460750.008870135991620.5539898909260.008986741729870.3234908213850.01663866455370.7488044282550.0189284518172
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin1—0.05—8192——————————————————————10.2161728402820.00761969875647-0.02916411037450.008089792290280.06346660783340.01151392445160.5673608330260.0160379612991
+correlationlangevin1—0.05—8192——————————————————————2-0.4507446926040.00835334884993-0.5098158507620.008679479772760.2611004805370.0153608777320.3308726452260.0137956090342
+correlationlangevin1—0.05—8192——————————————————————40.1026445570190.007779428220990.1411146261850.007709578561940.02350782168060.0113010254290.1122553929180.0118824131695
+Measurements and complete records / JSON
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+Review scope / review_level: author-manuscript-selected-theory-and-appendix
+Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author.
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+Review scope / review_level: author-manuscript-selected-equations-and-algorithm
+Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced.
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
+Review scope / review_level: author-official-algorithm-note
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic-references
+Coverage: reading
+
+Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code.
 
 ## Wavelets — Wavelets [en]
 
@@ -22253,7 +23076,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全80問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全81問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -24327,6 +25150,9 @@ J. M. Stone, K. Tomida, C. J. White and K. G. Felker (2020). The Athena++ Adapti
 Jean-Pierre Bérenger (1994). A Perfectly Matched Layer for the Absorption of Electromagnetic Waves. 10.1006/jcph.1994.1159
 Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs). Original source
 Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. Original source
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling. 10.1063/1.2408420
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes. 10.1016/j.cpc.2008.01.006
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling. Original source
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -25290,8 +26116,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素128項目・学術誌／会議論文233件・全参考資料282件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め85章です。
+方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文235件・全参考資料285件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め86章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -25299,7 +26125,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は18、文献解説のみは28で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は23、文献解説のみは23で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -25386,7 +26212,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は113、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は114、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -25538,7 +26364,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-227件：学術誌論文（総説・翻訳・採録済み論文を含む）
+229件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -26592,7 +27418,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
 Coverage: reading
 
 温度の平均だけでなく、揺らぎ・エルゴード性・時間相関を比べる。Nosé–Hoover、速度スケーリングから確率的・運動量保存型の手法まで。
-12手法を比較解説。LangevinのBAOABによる1次元調和振動子NVTだけに専用コード・固定入力・分布検証を追加。他の11手法は実装予定です。
+12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。
+JSON · Markdown
 
 ## サーモスタット：温度制御と分布の比較 — 何の温度を制御するか [ja]
 
@@ -26615,14 +27442,81 @@ Coverage: reading
 
 正しい不変分布を持っていても、有限時間の軌道が十分に探索するとは限らない。また平衡分布が正しくても、摩擦や衝突で速度自己相関や拡散は変わり得る。有限時間刻みの誤差、熱浴の結合時間、乱数依存性まで含めて評価する。
 
-## サーモスタット：温度制御と分布の比較 — 調和Langevinの実行・検証例 [ja]
+## サーモスタット：温度制御と分布の比較 — CSVRとLangevin：正準分布・揺らぎ・相関を比べる [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
 Coverage: reading
 
-dt=0.4/0.2/0.1、32768独立レプリカ。位置・運動量共分散の刻み依存、時差相関、有限burn-inの残差を分離。固定seedでの分布判定。
+新しい比較は古典的な少自由度系に限定します。CSVRとLangevinに同じOBABO分割、自由度、温度、ポテンシャル、観測時刻を使い、分布・揺らぎ・相関を別々に評価します。従来のBAOAB調和振動子の結果は別の配布版として保持します。
+
+## サーモスタット：温度制御と分布の比較 — CSVRの確率的更新と符号 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#csvr-exact
+Coverage: reading
+
+CSVRは各運動量成分へ独立なノイズを加えず、全自由度の運動エネルギーを確率的に進め、同じ係数で運動量を拡大・縮小します。2007年論文の運動エネルギーSDEと厳密伝播式、2008年論文の符号付き係数を採用します。以下のhは熱浴のサブステップです。
+同じ正規乱数RをKの更新と符号の判定に使います。少自由度では符号反転を捨てられません。Sは自由度f−1のχ²乱数で、f=1では厳密に0です。原著者は2007年論文のGammaによる二乗和生成の説明に誤植を指摘しているため、採用コードはχ²を直接生成します。
+dK=\frac{\bar K-K}{\tau}\,dt+2\sqrt{\frac{K\bar K}{f\tau}}\,dWc=e^{-h/\tau},\quad a=\frac{(1-c)\bar K}{f},\quad K^+=\left(\sqrt{cK}+\sqrt a\,R\right)^2+aS,\quad R\sim N(0,1),\quad S\sim\chi^2_{f-1}\alpha=\operatorname{sign}\!\left(\sqrt{cK}+\sqrt a\,R\right)\sqrt{K^+/K},\qquad p_i^+=\alpha p_i
+出典：Canonical sampling through velocity rescaling · Stochastic thermostats: comparison of local and global schemes · Algorithms: stochastic velocity rescaling, author correction note
+
+## サーモスタット：温度制御と分布の比較 — 同じ分割順序で比べる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#matched-splitting
+Coverage: reading
+
+今回の2方式は、MD刻みをΔtとしてO(Δt/2)–B(Δt/2)–A(Δt)–B(Δt/2)–O(Δt/2)という同じOBABO順序を使います。Aは座標移動、Bは力による運動量更新、Oは熱浴です。CSVR更新式ではh=Δt/2を使います。OBABOの中央にはvelocity Verletがあり、両端の熱浴だけを入れ替えます。
+τ=(2γ)⁻¹として、ポテンシャルのない熱浴の運動エネルギー緩和を揃えます。同じ数字のτを摩擦時間γ⁻¹と同一視しません。f=1では符号付きCSVRとLangevinの熱浴は同じ遷移分布となり、採用実装は与えたノイズを対応させて照合します。
+以前のBAOAB例はB–A–O–A–Bという別の分割です。旧結果と独立線形参照は保存したまま、今回のOBABOの離散参照や誤差の結果に置き換えません。
+\tau=(2\gamma)^{-1},\qquad p^+=e^{-\gamma h}p+\sqrt{m k_B T_0(1-e^{-2\gamma h})}\,R_{\rm phys}\quad(f=1)
+出典：Stochastic thermostats: comparison of local and global schemes
+
+## サーモスタット：温度制御と分布の比較 — 分布・揺らぎ・相関の三つの判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#distribution-fluctuation-correlation
+Coverage: reading
+
+静的な正準分布は両方式で共通です。運動量と運動エネルギー、瞬間温度の分布・平均・分散を確認し、位置の参照は調和系の解析分布、非調和系では別の数値求積から作ります。温度の平均だけが一致しても、揺らぎの再現は確認できません。
+動的な相関は熱浴の方式と結合時間に依存します。座標q、運動量p、運動エネルギーK、全エネルギーHを観測し、方法間で一致することを成功条件にはしません。Langevinの調和系は連続行列指数とOBABOの離散定常共分散・伝播を分け、他の全系相関は測定値・不確かさ・刻み依存として示します。
+ρK(t)=exp(−t/τ)という厳密参照は、Hamiltonianの力や位置更新を含まない熱浴単独の検査です。調和・非調和の全系ではKとUが交換するので、この式をそのまま当てません。
+CDFの誤差は、入力で先に固定した位置・エネルギーの各5点、条件付き熱浴では3分位点などで調べた最大差です。分布全域の上限を取るKolmogorov–Smirnov統計量ではありません。全系の相関は正準参照の平均・分散で中心化・正規化しているため、有限刻みの零時差値が厳密に1とは限りません。
+K=\sum_{i=1}^{f}\frac{p_i^2}{2m_i},\quad \bar K=\frac{f k_B T_0}{2},\quad T_{\rm inst}=\frac{2K}{f k_B}\frac{2K}{k_B T_0}\sim\chi_f^2,\quad \operatorname{Var}K=\frac{f(k_B T_0)^2}{2},\quad \operatorname{Var}T_{\rm inst}=\frac{2T_0^2}{f}C_X(t)=\langle(X(t)-\langle X\rangle)(X(0)-\langle X\rangle)\rangle,\qquad \rho_X(t)=C_X(t)/C_X(0)\mathbb E[K^+\mid K]=cK+fa,\quad\operatorname{Var}(K^+\mid K)=2fa^2+4acK,\quad \rho_K(t)=e^{-t/\tau}\ \text{(bath only)}
+
+## サーモスタット：温度制御と分布の比較 — 標本化の限界と実装の境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#sampling-and-boundaries
+Coverage: reading
+
+正準な初期アンサンブルを保つ検査と、温度をずらした初期値から平衡へ近づく検査を区別します。複数の独立レプリカと固定seed、有限の観測窓を使い、標本誤差と刻み誤差・結合時間依存を混ぜません。採用した少自由度の検査は任意の初期値からの一般的な混合保証ではありません。 相関の標準誤差は、各時差で独立レプリカ間の積のばらつきから求めています。単一軌道の時間平均や、有効標本数を評価した誤差ではありません。非調和系の全系相関には独立な動的参照をまだ持たず、誤差ゼロとは表示しません。
+全体を同じ係数でスケールする熱浴は、運動量空間の向きを直接ランダム化しません。対称性のある系で全運動量ゼロなどを保つ不変条件や、閉じた不変部分空間、同一周波数の特殊な系などによる探索不足を、正しいK分布だけで否定できません。今回の自由度には拘束や重心除去を追加していません。
+正の熱浴刻みでK=0なら元の向きがなく、速度の比によるglobal rescaleは定義できないため、採用コードは明示的に拒否します。そこへ任意の向きを注入する別アルゴリズムとしては扱いません。非有限値、非正の温度・質量、無効な自由度や時間も検査します。
+出典：Canonical sampling through velocity rescaling
+
+## サーモスタット：温度制御と分布の比較 — 採用式の一次資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
+Coverage: reading
+
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+著者稿のII.1–II.3、運動エネルギーSDE(7)と付録A(16)–(22)を確認。Gamma二乗和生成には著者の訂正も参照。
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+著者稿のI–II節、τ=(2γ)⁻¹、有限刻みの(8)–(9)とf=1極限を確認。書誌はSISSAで照合。
+Giovanni Bussi (2026). Algorithms: stochastic velocity rescaling, author correction note
+2007年論文のGamma生成説明の誤植を指摘する著者注記を確認。年は閲覧年で、訂正の発表年を意味しません。
+
+## サーモスタット：温度制御と分布の比較 — CSVR・Langevinの実行・検証例 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
+Coverage: reading
+
+同じOBABO分割で浴の種類を比較し、刻み・結合・独立系列の標本不確かさを分離。分布・温度揺らぎと時間相関を別々に確認し、LangevinとCSVRの相関の一致は要求しません。相関は方法依存の標本化動力学です。
 Langevin温度制御：正準分布・刻み偏り・時間相関 · ZIP · 保存結果 · 追試記録
 調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。
+CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関 · ZIP · 保存結果 · 追試記録
+浴の診断用ケースで独立した物理問題数へ加算しません。浴がKを正しく分布させてもglobal rescalingだけでは方向を熱化しません。exp(−t/τ)を力付きMDのK相関へ流用しません。固定seedと予算に対する統計判定で、一般の混合保証ではありません。
+CSVRとLangevin：調和2自由度の分布・揺らぎ・相関 · ZIP · 保存結果 · 追試記録
+global CSVRとlocal Langevinの運動相関が等しいとは要求しません。CDF差は指定5点の最大であり全実数上のKS距離ではありません。正準初期分布の保存と温度摂動からの有限時間確認は一般のエルゴード性証明ではなく、軸上の励起されない自由度が残る反例もテストします。分子・拘束・BOMDには外挿しません。
+非調和CSVRとLangevin：Boltzmann求積との分布比較 · ZIP · 保存結果 · 追試記録
+特定の分離可能な四次2自由度・固定seedだけの小さな例です。Hを調和系のGamma分布と扱いません。全系相関には独立な厳密動力学参照がなく、相関一致や統計誤差に隠れる時間次数を合格主張しません。成熟分子系・輸送係数・量子・第一原理MDの検証ではありません。
 
 ## サーモスタット：温度制御と分布の比較 — 単純な速度スケーリング [ja]
 
@@ -26664,7 +27558,7 @@ GROMACS: temperature coupling
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#langevin-thermostat
 Coverage: reading
 
-調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
+Langevin温度制御：正準分布・刻み偏り・時間相関: 調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。 CSVRとLangevin：調和2自由度の分布・揺らぎ・相関: 異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。 非調和CSVRとLangevin：Boltzmann求積との分布比較: 弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
 摩擦は実時間の相関・拡散に影響する。有限刻みでの標本化誤差は積分法と刻み幅も含めて調べる。
 別名・表記：ランジュバン / ランジュヴァン / friction and noise
 項目の状況・JSON・Markdown
@@ -26711,9 +27605,9 @@ LAMMPS: fix nvt / tchain
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#stochastic-velocity-rescaling
 Coverage: reading
 
-全体の速度に確率的な係数を掛け、正準分布の運動エネルギー揺らぎを生成するよう設計する。単純な速度固定とは別手法。
+CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関: 自由度1・2・6のCSVR浴だけを実装し、厳密な条件付きモーメントと非心χ²分布、正準Gamma分布と運動エネルギー相関を照合します。 CSVRとLangevin：調和2自由度の分布・揺らぎ・相関: 異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。 非調和CSVRとLangevin：Boltzmann求積との分布比較: 弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
 分布の正しさと実時間の運動の再現を別々に調べる。結合時間・積分刻み・自由度数を明記する。
-別名・表記：Bussi–Donadio–Parrinello / Bussi thermostat / v-rescale / canonical velocity rescaling / 確率的速度スケーリング
+別名・表記：CSVR / Bussi–Donadio–Parrinello / Bussi thermostat / v-rescale / canonical velocity rescaling / 確率的速度スケーリング
 項目の状況・JSON・Markdown
 Bussi, Donadio & Parrinello (2007), Canonical sampling through velocity rescaling
 Author preprint: arXiv:0803.4060
@@ -26769,14 +27663,14 @@ Lowe (1999), An alternative approach to dissipative particle dynamics
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#verification
 Coverage: reading
 
-調和Langevin BAOABでは位置・運動量・全エネルギーの分布、離散Lyapunov参照、連続Gaussian伝播、刻み依存と時差相関を測定済み。以下は将来の検証案です。非調和振動子・理想気体・小さなLennard–Jones系、結合時間への依存、他の11手法の専用実装へ広げる。Nosé–Hooverには小自由度系で探索が不十分になる例も付ける。
+3つの新例は、熱浴単独の厳密則、少自由度の調和系、弱い非調和系を別々に検査します。各例で固定入力、実測値、誤差と不確かさ、受入条件、コード、テスト、配布ZIP、独立展開からの追試記録へ進めます。旧BAOAB例は別の根拠です。他の10手法は専用の実装・検証をまだ持ちません。
 
 ## サーモスタット：温度制御と分布の比較 — 出典と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/#source-scope
 Coverage: reading
 
-原論文のDOIと著者公開版、GROMACS・LAMMPS公式資料への案内を付けた導入です。原論文の全式の監査や数値再現は未実施です。Gaussian isokineticは提案者による教科書への入口を付けており、個別原論文の整理は継続中です。
+CSVRについては2007年原著の著者稿の運動エネルギー式と付録、2008年原著の著者稿の符号付き更新式、原著者の誤植訂正を確認し、採用した小規模な古典例を独立参照・求積・再実行で検証しています。原著のLennard–JonesやTIP4P水の数値実験の再現ではありません。他の10方式は比較解説・一次文献への案内であり、ここで数値検証したと表示しません。Gaussian isokineticの個別原論文の整理も継続課題です。
 引用と利用条件 · Method registry / JSON
 
 ## 時間積分とleapfrog法 [ja]
@@ -29802,6 +30696,716 @@ K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable 
 NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
 確認範囲 / review_level: official-documentation
 一般化指数積分の積分表示を公式資料で確認。年は確認年。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — CSVRとLangevin：分布・揺らぎ・相関 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/
+Coverage: reading
+
+小規模な固定入力で、計算法・参照・誤差・収束・失敗条件を確かめます。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#run-all
+Coverage: reading
+
+ZIPの atlas-thermostats-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/
+Coverage: reading
+
+自由度1・2・6のCSVR浴だけを実装し、厳密な条件付きモーメントと非心χ²分布、正準Gamma分布と運動エネルギー相関を照合します。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-assumptions
+Coverage: reading
+
+kB=1、T=1.3、τ=0.5、h=0.2、65536独立複製。3初期Kと3自由度で条件付き分布を測定。Hamiltonianの力・座標・拘束・COM除去は含みません。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-algorithm
+Coverage: reading
+
+平方完成した厳密CIR遷移を、標準正規Rと独立χ²(Nf−1)のSから作ります。同じRでglobal αの符号を決め、Nf=1ではS=0。単位方向と新しい半径からpを再構成し、極小KでKnew/Kを作りません。K=0は方向が未定義として拒否します。
+\bar K=\frac{N_fT}{2},\quad c=e^{-h/\tau},\quad A=\frac{T(1-c)}2,\quad R\sim N(0,1),\ S\sim\chi^2_{N_f-1}K^\prime=(\sqrt{cK}+\sqrt A R)^2+AS,\quad \operatorname{sign}\alpha=\operatorname{sign}(\sqrt{cK}+\sqrt A R)\mathbb E[K^\prime\mid K]=cK+(1-c)\bar K,\quad\operatorname{Var}(K^\prime\mid K)=2TKc(1-c)+\frac{N_fT^2}{2}(1-c)^2K\sim\operatorname{Gamma}(N_f/2,T),\quad\operatorname{Var}(T_{\rm inst})=\frac{2T^2}{N_f},\quad C_K^{\rm bath}(t)=e^{-t/\tau}
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-validation
+Coverage: reading
+
+条件付き平均・分散は独立なCIR式、CDFの3確率点はSciPyの非心χ²分位点、定常KはGamma分布、浴単独ACFはexp(−t/τ)と照合。無雑音の平均緩和は分散を失う対照として別表示します。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-limits
+Coverage: reading
+
+浴の診断用ケースで独立した物理問題数へ加算しません。浴がKを正しく分布させてもglobal rescalingだけでは方向を熱化しません。exp(−t/τ)を力付きMDのK相関へ流用しません。固定seedと予算に対する統計判定で、一般の混合保証ではありません。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_conditional_mean_z1.36544939439
+maximum_conditional_variance_relative_error0.0152493911243
+maximum_cdf_error0.00397338867187
+maximum_stationary_mean_relative_error0.0141188712472
+maximum_stationary_variance_relative_error0.0297245707456
+maximum_kinetic_acf_error0.0117219624779
+noiseless_variance_fraction2.04036373345e-09
+判定 / check合格
+conditional_meantrue
+conditional_variancetrue
+transition_and_stationary_cdftrue
+stationary_meantrue
+stationary_fluctuationstrue
+kinetic_correlationtrue
+noiseless_control_loses_fluctuationstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesdofinitial_energy_ratiosample_meanexact_meansample_varianceexact_variancemean_zvariance_relative_errornoncentral_chi_square_cdf_errorlagmeasured_acfacf_standard_errorexact_acftemperature_varianceexact_temperature_variancegamma_cdf_error
+conditional10.10.2574817886780.2578627730690.1306422455550.1291895897230.2713522258390.01124437220850.00196228027344———————
+conditional110.6488181383870.650.4633532090790.4653170253210.4435393143170.0042203833840.00178527832031———————
+conditional141.954196015881.957124089771.590566120751.585741810650.5952587100640.003042304915550.00236511230469———————
+stationary-acf1—0.6495465620350.650.8526207540230.845———01.009018887130.014808892237913.410483016093.380.0019265967301
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+stationary-acf1—0.6554264045950.650.8480827932770.845———0.20.6719803985240.01115932807460.6703200460363.392331173113.380.0026586786919
+stationary-acf1—0.6591772663110.650.870117262280.845———0.60.3115144744540.007928553335280.3011942119123.480469049123.380.0036352411919
+stationary-acf1—0.6521065307810.650.8565649462860.845———10.1367812071020.00599572882920.1353352832373.426259785143.380.00105650584034
+stationary-acf1—0.6499509292460.650.8497308112370.845———20.008365955940490.004104732035570.01831563888873.398923244953.380.00127808888622
+conditional20.10.5184367639010.5157255461380.2613636387720.2583791794461.365449394390.01155069588760.00186157226562———————
+conditional211.297085482051.30.930726180760.9306340506420.7734232615169.89971498599e-050.00397338867187———————
+conditional243.914044879293.914248179543.171374424523.171483621290.02922447023943.44308182526e-050.000936889648437———————
+stationary-acf2—1.297869462391.31.670185344221.69———00.9882780375220.010778632629711.670185344221.690.00164050110828
+stationary-acf2—1.294531048371.31.673835930491.69———0.20.6632368190860.008567841117310.6703200460361.673835930491.690.00366740503863
+stationary-acf2—1.30092299191.31.686910672261.69———0.60.2915334318970.005928006150520.3011942119121.686910672261.690.00119799622547
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-measurements
+Coverage: reading
+
+stationary-acf2—1.297527912981.31.685750370941.69———10.1288634099110.004795893694050.1353352832371.685750370941.690.000752763705363
+stationary-acf2—1.294713678811.31.663274009851.69———20.02052649921350.004008046490580.01831563888871.663274009851.690.00226338382255
+conditional60.11.548342809241.547176638410.7869579138350.7751375383380.339088259640.01524939112430.00145568847656———————
+conditional613.893976960723.92.784932821262.791902151930.9227957042230.002496266089090.00225830078125———————
+conditional6411.73686642211.74274453869.585653590949.514450863880.4878499850470.007483640208950.00200500488281———————
+stationary-acf6—3.895319655493.95.018861290095.07———00.9899177900820.0076044272404410.5576512544550.5633333333330.00220969914659
+stationary-acf6—3.894966544543.95.053725686035.07———0.20.6661434177410.006179316760230.6703200460360.5615250762260.5633333333330.000653265895841
+stationary-acf6—3.897298675473.95.044532762395.07———0.60.2944159434150.004796906309970.3011942119120.5605036402650.5633333333330.00123882394791
+stationary-acf6—3.897615475563.95.053411854715.07———10.1332976878880.004241687367750.1353352832370.5614902060790.5633333333330.00123882394791
+stationary-acf6—3.910353595673.95.103438748885.07———20.02508963233140.003969653927820.01831563888870.5670487498760.5633333333330.00201133488878
+この例の実測値・全記録 / JSON
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+確認範囲 / review_level: author-manuscript-selected-theory-and-appendix
+2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+確認範囲 / review_level: author-manuscript-selected-equations-and-algorithm
+著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
+確認範囲 / review_level: author-official-algorithm-note
+著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — CSVRとLangevin：調和2自由度の分布・揺らぎ・相関 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/
+Coverage: reading
+
+異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-assumptions
+Coverage: reading
+
+m=kB=T=1、ω=(1,1.7)、Nf=2。τ=0.25/1、h=0.1/0.05。正準初期8192複製とq,pを1.4倍した4096複製を別にt=20まで進めます。相関lagは0/0.5/1/2/4。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-algorithm
+Coverage: reading
+
+両方式とも厳密な浴O(h/2)–velocity-Verlet–O(h/2)（OBABO）。CSVRは全運動量に同じ係数、Langevinは各成分に独立OU雑音を作用。γ=1/(2τ)で自由浴のK緩和時間をそろえます。以前のBAOAB例は変更せず別の分割として残します。
+U(q)=\frac12\sum_{i=1}^2\omega_i^2q_i^2,\quad H=K+U,\quad\gamma=\frac1{2\tau}\Sigma_{h,i}=\operatorname{diag}\left(\frac{T}{\omega_i^2(1-h^2\omega_i^2/4)},T\right),\quad\Sigma_h=M\Sigma_hM^T+QK\sim\operatorname{Gamma}(1,T),\quad H\sim\operatorname{Gamma}(2,T),\quad\operatorname{Var}K=T^2,\quad\operatorname{Var}H=2T^2C_X(t)=\frac{\mathbb E[(X_t-\mu_X)(X_0-\mu_X)]}{\sigma_X^2},\quad\operatorname{SE}(\widehat C_X)=\frac{s_{\rm products}}{\sqrt{N_{\rm replicas}}}
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-validation
+Coverage: reading
+
+正準Gaussian・Gamma分布とK/U/Hの平均・分散を照合。有限刻みではVerletのshadow二次形式を使い、位置分散T/[ω²(1−h²ω²/4)]、運動量分散Tを別導出したLyapunov解と比較します。h=0.2/0.1/0.05の決定論的偏りで2次性を確認。Langevinのq,p,K,H相関は独立の離散伝播と照合し、CSVRの相関は独立複製の標準誤差とτ・h依存を表示します。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-limits
+Coverage: reading
+
+global CSVRとlocal Langevinの運動相関が等しいとは要求しません。CDF差は指定5点の最大であり全実数上のKS距離ではありません。正準初期分布の保存と温度摂動からの有限時間確認は一般のエルゴード性証明ではなく、軸上の励起されない自由度が残る反例もテストします。分子・拘束・BOMDには外挿しません。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_canonical_cdf0.015625
+maximum_canonical_mean0.0134051726809
+maximum_canonical_variance0.0597728875065
+maximum_heated_cdf0.0173339747098
+maximum_heated_mean0.0267967003618
+maximum_heated_variance0.115057963756
+maximum_acf_standard_error0.0351942085245
+maximum_langevin_acf_absolute_error0.0517776948101
+maximum_langevin_acf_z2.52688190237
+quadrature_refinement_error4.4408920985e-16
+minimum_shadow_bias_order2.00785308464
+maximum_shadow_covariance_error2.44249065418e-15
+finest_shadow_position_bias0.000626130949027
+判定 / check合格
+canonical_position_momentum_energy_cdfstrue
+canonical_energy_meanstrue
+canonical_energy_fluctuationstrue
+heated_start_cdfstrue
+heated_start_energy_meanstrue
+heated_start_energy_fluctuationstrue
+quadrature_reference_refinedtrue
+independent_replica_correlation_uncertaintytrue
+langevin_independent_discrete_correlationtrue
+shadow_covariance_identitytrue
+deterministic_second_order_biastrue
+finest_shadow_biastrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+seriesmethodtaugamma_langevindtinitial_ensemblereplicasposition_cdf_errormomentum_cdf_errorkinetic_cdf_errortotal_energy_cdf_errork_mean_relative_errork_variance_relative_erroru_mean_relative_erroru_variance_relative_errorh_mean_relative_errorh_variance_relative_errortemperature_meantemperature_varianceexact_temperature_meanexact_temperature_varianceq_cdfp_cdfk_cdfh_cdfq_variancep_varianceenergy_meansenergy_varianceslagq_acfq_acf_standard_errorp_acfp_acf_standard_errork_acfk_acf_standard_errorh_acfh_acf_standard_errorq_acf_discrete_referenceq_acf_absolute_errorq_acf_zp_acf_discrete_referencep_acf_absolute_errorp_acf_zk_acf_discrete_referencek_acf_absolute_errork_acf_zh_acf_discrete_referenceh_acf_absolute_errorh_acf_zq_acf_continuum_referencemaximum_position_variance_biaslyapunov_difference
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1canonical81920.002364389760680.007970722631040.01016855903740.007196197931050.009755523478190.03228583979830.00351236450960.02953846732290.003121579484290.006884917385781.009755523481.032285839811[[0.0220947265625,0.1602783203125,0.501953125,0.8392333984375,0.9796142578125],[0.0,0.0455322265625,0.501708984375,0.95458984375,0.9996337890625]][[0.0230712890625,0.1600341796875,0.4949951171875,0.84130859375,0.98046875],[0.02197265625,0.1593017578125,0.4949951171875,0.8333740234375,0.977783203125]][0.38330078125,0.630126953125,0.864501953125,0.982177734375,0.9964599609375][0.0830078125,0.2587890625,0.5919189453125,0.910888671875,0.983154296875][0.9922997377696702,0.3462545097616351][0.9961671662229573,1.023343880733429]{"kinetic":1.0097555234781934,"potential":0.9964876354903964,"total":2.00624315896859}{"kinetic":1.0322858397982833,"potential":0.9704615326770869,"total":1.986230165228439}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1heated40960.01660156250.01265916018150.001993605703560.004882822165160.0002392243979260.007863071959830.009690415718880.06933875829910.004725595660470.02321254109011.00023922440.9921369280411[[0.02294921875,0.16259765625,0.510498046875,0.8447265625,0.978515625],[0.0,0.040771484375,0.5166015625,0.95263671875,1.0]][[0.025390625,0.16064453125,0.512451171875,0.841552734375,0.97705078125],[0.02294921875,0.14599609375,0.492919921875,0.835205078125,0.97607421875]][0.39453125,0.630126953125,0.86376953125,0.98193359375,0.997802734375][0.088134765625,0.264892578125,0.589111328125,0.91259765625,0.981689453125][0.9893727993669037,0.3429918232509843][1.0049360517238013,0.9955423970720485]{"kinetic":1.0002392243979261,"potential":0.9903095842811248,"total":1.9905488086790508}{"kinetic":0.9921369280401673,"potential":0.9306612417008748,"total":1.9535749178197273}————————————————————————
+correlationcsvr0.25—0.1—8192——————————————————————00.996487635490.01088480616881.009755523480.01122616760921.032381010040.03519420852450.9931345711310.0255199596767———————————————
+correlationcsvr0.25—0.1—8192——————————————————————0.50.7914863484020.009863195176660.4304429834910.008892544730110.04878035049390.01280718940670.5104724783150.0165198441224———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.1—8192——————————————————————10.3950782955960.00851046476344-0.04401665029610.0083991943770.01370358536950.01181817207220.3059111988790.0145502086508———————————————
+correlationcsvr0.25—0.1—8192——————————————————————2-0.1092540379720.00871616804214-0.3154965455240.008662487350290.03544987046840.01131124920250.02181753978410.0109171965634———————————————
+correlationcsvr0.25—0.1—8192——————————————————————4-0.001226303046650.008138365554140.01524130266550.00831531745404-0.006968410269370.010728257643-0.009611163151380.0105151552812———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1canonical81920.004552753881040.0104980468750.003210551224870.002557526056050.008113744423880.01216188528620.00791695141210.01914974173450.008015347917990.01327108639681.008113744421.0121618852911[[0.023681640625,0.160400390625,0.499755859375,0.8367919921875,0.9791259765625],[0.00048828125,0.0472412109375,0.5040283203125,0.952392578125,0.999755859375]][[0.0216064453125,0.1556396484375,0.498046875,0.8436279296875,0.97705078125],[0.0242919921875,0.157470703125,0.489501953125,0.832275390625,0.9754638671875]][0.3902587890625,0.6295166015625,0.86376953125,0.9808349609375,0.997802734375][0.087646484375,0.2620849609375,0.5919189453125,0.908203125,0.9822998046875][0.9909187718663152,0.3546419138262545][0.9880476742701764,1.02817981457759]{"kinetic":1.0081137444238824,"potential":1.0079169514120965,"total":2.016030695835979}{"kinetic":1.0121618852861627,"potential":1.0191497417345343,"total":2.0265421727936124}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1heated40960.0070800781250.01217087893150.01717519096260.01237021046790.02256480368090.0255048063210.01162445651270.05764291667160.00547017358410.0243872206980.9774351963190.97449519367911[[0.0234375,0.156982421875,0.507080078125,0.845703125,0.9814453125],[0.000244140625,0.044921875,0.4951171875,0.953125,0.99951171875]][[0.023681640625,0.15869140625,0.502685546875,0.853515625,0.978515625],[0.02294921875,0.147705078125,0.4970703125,0.843017578125,0.97607421875]][0.41064453125,0.64501953125,0.87353515625,0.980712890625,0.998291015625][0.092041015625,0.276611328125,0.6015625,0.900146484375,0.98291015625][0.9848790126322388,0.3592975433886167][0.9749013302105001,0.9799690624277732]{"kinetic":0.9774351963191378,"potential":1.0116244565126697,"total":1.9890596528318079}{"kinetic":0.9744951936789579,"potential":1.0576429166715928,"total":2.0487744413959765}————————————————————————
+correlationlangevin0.25—0.1—8192——————————————————————01.007916951410.01115451100791.008113744420.01111620447211.012227718130.03150953506141.0133995780.02537135366231.004891923090.003025028320390.27119327043910.008113744423880.72990240906610.01222771813470.3880640609551.004918699680.008480878317380.334269839531——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.1—8192——————————————————————0.50.8309727695350.01034025543860.2429311799280.008110032748450.07174762397390.01299641678020.5498781207710.0188589309820.8303881733850.000584596149940.05653594859520.2473009347710.004369754842870.5388085323960.06437398121520.007373642758670.5673596717760.5399647231350.009913397636020.5256606350320.829264457183——
+correlationlangevin0.25—0.1—8192——————————————————————10.5265540691210.00910135848942-0.1068442293170.007926871400230.0213875768080.01160073788930.3422767614750.01559214768640.5331551164560.006601047335210.725281543726-0.09445797101420.0123862583031.562565819170.01798009138720.003407485420760.2937300586630.3386852040160.003591557459120.2303439866890.534939598542——
+correlationlangevin0.25—0.1—8192——————————————————————20.1361729941480.00822253509035-0.1522746769390.007903120600720.01495796266070.01203676827430.08637894579790.01291675738520.1569503692590.02077737511142.52688190237-0.1482465931410.004028083797610.5096826938510.0221575744840.007199611823320.5981349527750.09233296813090.005954022332990.460953330270.159275711614——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.1—8192——————————————————————40.04714002387460.00798284811669-0.009831984072280.00780513828937-0.01226802261950.01054497449340.0006352178454710.01101197871310.04720043811326.04142385393e-050.00756800551085-0.01608755515140.006255571079080.8014683208890.001734402108130.01400242472761.327876585790.005661091125290.005025873279820.4564005625840.0475689607424——
+distributioncsvr0.2520.05canonical81920.005212871118960.00549316406250.006551103549110.006128975693670.01340517268090.02344729165280.01004112184870.03557090894240.01172314726480.04564389850460.9865948273190.97655270834711[[0.0185546875,0.157470703125,0.4986572265625,0.8465576171875,0.979736328125],[0.0001220703125,0.0443115234375,0.49560546875,0.955810546875,0.999755859375]][[0.0194091796875,0.1572265625,0.4996337890625,0.8433837890625,0.9775390625],[0.02001953125,0.161376953125,0.4945068359375,0.841552734375,0.978515625]][0.394775390625,0.6318359375,0.8712158203125,0.9813232421875,0.997314453125][0.0889892578125,0.2630615234375,0.60009765625,0.91455078125,0.9840087890625][0.9645264346407592,0.3513464780836703][0.982376180121432,0.9908134745168556]{"kinetic":0.9865948273191425,"potential":0.9899588781512836,"total":1.976553705470426}{"kinetic":0.9765527083471972,"potential":0.9644290910576352,"total":1.9087122029908066}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.05heated40960.0075683593750.0153808593750.009436137162370.004419991318670.01128887821170.02753227208110.008202182066680.04661867542980.001543348072510.01026008481411.011288878211.0275322720811[[0.0224609375,0.15966796875,0.497314453125,0.8388671875,0.977783203125],[0.000244140625,0.039794921875,0.492431640625,0.95556640625,0.999755859375]][[0.020751953125,0.1640625,0.501953125,0.84130859375,0.97705078125],[0.02490234375,0.1572265625,0.515380859375,0.841064453125,0.977783203125]][0.384033203125,0.627197265625,0.86767578125,0.98095703125,0.99609375][0.09130859375,0.26318359375,0.595947265625,0.912841796875,0.980712890625][0.9930242741751973,0.3427582566406361][1.0098888765311334,1.0126888798922855]{"kinetic":1.01128887821171,"potential":0.9917978179333156,"total":2.0030866961450258}{"kinetic":1.0275322720811007,"potential":0.9533813245702318,"total":2.020520169628205}————————————————————————
+correlationcsvr0.25—0.05—8192——————————————————————00.9899588781510.01085092315880.9865948273190.01091891239210.9767324070020.03018435857730.9546309658590.022486880218———————————————
+correlationcsvr0.25—0.05—8192——————————————————————0.50.7853144131390.009788738048980.4686991135310.008405970318370.02984504485520.01084808479670.4878370804110.0160928705131———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.05—8192——————————————————————10.383315376840.00843610867885-0.02346665704450.008162470535150.02776374229110.01152655408520.2903070234550.0140407164301———————————————
+correlationcsvr0.25—0.05—8192——————————————————————2-0.1539646246220.00867114952567-0.3256603104090.008503990148360.03100286476970.01201201579810.04093595758250.0125967057845———————————————
+correlationcsvr0.25—0.05—8192——————————————————————4-0.00235182441570.008292679219330.01003928239340.00821047823320.001983597473630.0108413865942-0.005969487184540.0105382383197———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05canonical81920.005457011743960.00891113281250.002726027578560.005818266094623.07256874577e-060.001346200718340.0009981163507860.024013640380.0005005944597660.02507195253430.9999969274311.0013462007211[[0.0208740234375,0.1632080078125,0.505126953125,0.8468017578125,0.9771728515625],[0.0,0.0433349609375,0.4974365234375,0.9566650390625,0.999755859375]][[0.0250244140625,0.166259765625,0.5089111328125,0.844970703125,0.9742431640625],[0.0234375,0.1514892578125,0.4932861328125,0.838623046875,0.9805908203125]][0.3922119140625,0.62939453125,0.86279296875,0.981689453125,0.997802734375][0.0863037109375,0.2584228515625,0.5916748046875,0.9117431640625,0.98388671875][0.989189386872317,0.3490707198706279][1.0337683153704518,0.9662255394920625]{"kinetic":0.9999969274312542,"potential":0.9990018836492145,"total":1.9989988110804686}{"kinetic":1.0013462007183391,"potential":0.9759863596199936,"total":1.949856094931436}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05heated40960.0119628906250.009313496068540.005041605912370.003636649306330.005245122233210.01114979437870.004281423103130.0206784250060.000481849565040.02446830145751.005245122230.98885020562111[[0.022705078125,0.159912109375,0.5087890625,0.837646484375,0.97509765625],[0.0,0.0439453125,0.511962890625,0.957275390625,0.999755859375]][[0.023681640625,0.16796875,0.50634765625,0.836181640625,0.976318359375],[0.0224609375,0.1533203125,0.499755859375,0.837890625,0.98046875]][0.388427734375,0.628662109375,0.8642578125,0.97998046875,0.99853515625][0.090087890625,0.267578125,0.5908203125,0.90478515625,0.984619140625][1.0245609383316732,0.33455924410452464][1.0361281665290527,0.9743620779373577]{"kinetic":1.005245122233207,"potential":0.9957185768968738,"total":2.0009636991300805}{"kinetic":0.988850205621286,"potential":1.0206784250059804,"total":2.04893660291495}————————————————————————
+correlationlangevin0.25—0.05—8192——————————————————————00.9990018836490.01091574573820.9999969274310.01105665259861.001346200730.03250366862370.9749285486550.0240978229881.001217454660.002215571006780.20297019186113.07256874532e-060.00027789321568510.001346200727780.04141688568651.001219112120.02629056346621.090993301731——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.05—8192——————————————————————0.50.827897904930.0100693763350.2376722332490.008154535676890.06998982362450.01364434043780.5252206331860.01860899149990.8295453158490.001647410919140.1636060530790.2463684974350.008696264186251.066432784260.06395598836740.006033835257090.4422225672680.5386492250690.01342859188310.7216184650960.829264457183——
+correlationlangevin0.25—0.05—8192——————————————————————10.5321692047570.00886024730051-0.09191721580320.007752236766540.01579700461520.0118725224960.3290706965530.01525040845730.534496346160.002327141402530.26264971209-0.09517018024380.003252964440550.4196162396110.01814878617190.002351781556640.1980860897450.3393387749750.01026807842220.6732985841620.534939598542——
+correlationlangevin0.25—0.05—8192——————————————————————20.1529295222570.00813179374077-0.1439226506670.007846888504220.03138193221520.01121181225350.08884901417870.01193145269840.1586945942420.005765071985010.708954526982-0.1488168744850.004894223818490.6237152236660.02233177744860.009050154766570.8071982086380.09282459900340.003975584824740.3332020773370.159275711614——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.05—8192——————————————————————40.0542131996760.00786598081842-0.02889401791570.007847864524310.01851107620280.01107225267770.007619244528540.01098760920290.04747634642570.006736853250370.856454319669-0.01623544650660.01265857140911.612995658870.001753523006980.01675755319581.513472793980.005756293545120.001862950983420.169550167740.0475689607424——
+distributioncsvr10.50.1canonical81920.006215787241460.00793457031250.006310933150130.005615224709840.006826203958090.01754717231510.003855958449870.0209400285890.005341081203980.02652843722580.9931737960420.98245282768511[[0.021240234375,0.15380859375,0.4970703125,0.8367919921875,0.9786376953125],[0.00048828125,0.05078125,0.5020751953125,0.9537353515625,0.9998779296875]][[0.0238037109375,0.15869140625,0.4969482421875,0.84228515625,0.975830078125],[0.0211181640625,0.1529541015625,0.4920654296875,0.83935546875,0.97705078125]][0.3997802734375,0.6317138671875,0.865234375,0.982177734375,0.9974365234375][0.086669921875,0.2633056640625,0.599609375,0.9056396484375,0.9830322265625][0.9791694325091936,0.3505600867097103][1.0061395760115632,0.9802080160722645]{"kinetic":0.9931737960419136,"potential":0.9961440415501284,"total":1.9893178375920424}{"kinetic":0.982452827684934,"potential":0.9790599714110336,"total":1.9469431255484682}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr10.50.1heated40960.007848652318540.0058593750.008386128462630.006266694842880.02679670036180.1150579637560.01429608300590.04468871540380.006250308677920.01010511303180.9732032996380.88494203624411[[0.022705078125,0.1552734375,0.505859375,0.83349609375,0.97705078125],[0.00146484375,0.0419921875,0.494873046875,0.95556640625,0.999267578125]][[0.017822265625,0.153076171875,0.494140625,0.842529296875,0.976318359375],[0.01953125,0.154296875,0.502197265625,0.843505859375,0.978271484375]][0.40185546875,0.633056640625,0.868408203125,0.98583984375,0.998779296875][0.09033203125,0.2705078125,0.591552734375,0.911865234375,0.98095703125][1.0124330883406227,0.3516121376024998][0.974139491995191,0.9722671072812699]{"kinetic":0.9732032996382303,"potential":1.0142960830059236,"total":1.9874993826441538}{"kinetic":0.8849420362444158,"potential":1.044688715403804,"total":2.0202102260636927}————————————————————————
+correlationcsvr1—0.1—8192——————————————————————00.996144041550.01093292035910.9931737960420.01095184756870.9824994247450.02936386395560.9735286170710.0221405079927———————————————
+correlationcsvr1—0.1—8192——————————————————————0.50.7670728409240.009629580844490.6758103760440.00922323334970.361104782590.01810186058970.7838161013170.0199170897146———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr1—0.1—8192——————————————————————10.2470105338390.00803609713190.1223737074980.007921733957330.01885741362920.01126363960030.610872861050.0179540941176———————————————
+correlationcsvr1—0.1—8192——————————————————————2-0.514106314630.00860722604747-0.5651811420490.008690707154910.2281728104850.01470973597190.3704311122060.0153845085889———————————————
+correlationcsvr1—0.1—8192——————————————————————40.05872901748820.008499546628360.07030409525790.008098510868880.04680949971920.01247318681340.1342651582540.0128860816243———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.1canonical81920.00695800781250.0075683593750.007161667733940.005030342881170.01325277005880.05195333072430.005689901368040.006312447292230.003781434345360.03643637582690.9867472299410.94804666927611[[0.020751953125,0.1533203125,0.4930419921875,0.83642578125,0.9757080078125],[0.000244140625,0.0472412109375,0.498046875,0.9525146484375,0.99951171875]][[0.024169921875,0.157958984375,0.507568359375,0.8424072265625,0.97802734375],[0.0244140625,0.153076171875,0.4945068359375,0.8438720703125,0.977783203125]][0.3992919921875,0.6392822265625,0.8653564453125,0.98388671875,0.99853515625][0.09130859375,0.2607421875,0.597412109375,0.9134521484375,0.98388671875][0.9926301372808998,0.3525085347595794][0.994057370117648,0.9794370897648101]{"kinetic":0.9867472299412281,"potential":1.0056899013680436,"total":1.9924371313092717}{"kinetic":0.9480466692757183,"potential":0.9936875527077719,"total":1.9271272483461437}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.1heated40960.01029005856850.0124511718750.01216655054640.01733397470980.01551853561020.002241833035590.004919647311840.006716820455360.0102190914610.005576879660750.984481464391.0022418330411[[0.022705078125,0.15185546875,0.495361328125,0.8310546875,0.974365234375],[0.0,0.044677734375,0.509033203125,0.955078125,0.999267578125]][[0.02001953125,0.1533203125,0.487548828125,0.8291015625,0.974853515625],[0.02392578125,0.1494140625,0.489501953125,0.84228515625,0.97802734375]][0.3974609375,0.644287109375,0.86767578125,0.98095703125,0.997314453125][0.08935546875,0.27978515625,0.611328125,0.907958984375,0.982421875][1.0018029428661999,0.34199230536682207][0.9860242873501361,0.9829386414295329]{"kinetic":0.9844814643898352,"potential":0.9950803526881568,"total":1.9795618170779918}{"kinetic":1.0022418330355933,"potential":0.993283179544645,"total":1.988846240678506}————————————————————————
+correlationlangevin1—0.1—8192——————————————————————01.005689901370.01101428885550.9867472299410.01075836799450.948222305190.02642878623230.9635922226640.02245053106121.004891923090.0007979782763370.072449368888510.01325277005881.2318569197110.05177769481011.959140096521.004918699680.04132647701941.840779485651——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.1—8192——————————————————————0.50.7903457946010.009895134205940.5704348971140.008797091312260.3256836770770.0166021964190.7737189277020.02076632364560.7892272360180.001118558583270.113041274630.5831408718660.01270597475181.444338168240.3485425739140.02285889683661.376859799740.8038866897980.03016776209691.452725220490.786719784718——
+correlationlangevin1—0.1—8192——————————————————————10.3125468428710.008343776921620.03777318279560.007887941834810.03874731455030.01143637459680.6275265849890.01953282320670.3169095024460.004362659575280.5228638800220.03718165734360.0005915254520140.0749911021660.05839144454350.01964412999321.717688575780.6499839827890.02245739780021.149726159020.318040422077——
+correlationlangevin1—0.1—8192——————————————————————2-0.3465332640990.00856794906713-0.4582191733510.008672895752660.2168436606170.01554271365930.367683499390.0149094306111-0.3438024547860.002730809313340.318723803321-0.4671290006620.008909827310661.027318621690.2290262960040.01218263538730.7838164978350.3913632188850.02367971949461.58823768072-0.341085391054——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.1—8192——————————————————————40.005878333234220.008318689421760.04230346722290.008012534501330.0693317975630.01212367574790.143047190780.01240122991630.00984953689940.003971203665190.4773833309370.04870608227870.006402615055810.799074881330.06925802911677.37684463623e-050.006084660122580.140696259020.002350931759410.1895724678340.00929545487472——
+distributioncsvr10.50.05canonical81920.0109863281250.0156250.004557294888390.002833077256173.37531242929e-050.01269237731150.009388771731670.05977288750650.004677509303690.01546528985351.000033753121.0126923773111[[0.0216064453125,0.1558837890625,0.5037841796875,0.8402099609375,0.97705078125],[0.000244140625,0.045166015625,0.510986328125,0.956298828125,0.999755859375]][[0.023193359375,0.1600341796875,0.500732421875,0.8428955078125,0.9749755859375],[0.0225830078125,0.1517333984375,0.484375,0.8399658203125,0.974365234375]][0.3970947265625,0.6358642578125,0.860107421875,0.9798583984375,0.9979248046875][0.090087890625,0.264404296875,0.5968017578125,0.9112548828125,0.9833984375][0.9876101980984383,0.3438104700478292][1.0093752319591853,0.9906922742893992]{"kinetic":1.0000337531242929,"potential":0.9906112282683304,"total":1.9906449813926232}{"kinetic":1.0126923773115242,"potential":0.9402271124934575,"total":1.9690694202930992}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributioncsvr10.50.05heated40960.007604511693540.008581074193540.007483012162370.007298758681330.01093099559520.04580546623780.008973120984230.0299625342750.009952058289730.008870932379041.01093099561.0458054662411[[0.02392578125,0.1533203125,0.496826171875,0.833740234375,0.976318359375],[0.0,0.04736328125,0.500732421875,0.951904296875,0.99951171875]][[0.023193359375,0.154541015625,0.501708984375,0.832763671875,0.973876953125],[0.02001953125,0.162353515625,0.507080078125,0.840576171875,0.978515625]][0.385986328125,0.632568359375,0.86572265625,0.9794921875,0.99658203125][0.0869140625,0.25830078125,0.590576171875,0.901123046875,0.983642578125][1.0078316091035961,0.3495206342092963][1.0242156879882853,0.9976463032021691]{"kinetic":1.0109309955952281,"potential":1.0089731209842303,"total":2.0199041165794585}{"kinetic":1.0458054662377783,"potential":1.0299625342749623,"total":2.017741864758089}————————————————————————
+correlationcsvr1—0.05—8192——————————————————————00.9906112282680.01071390823321.000033753120.01111911719071.012692378450.02986145253810.9845784683330.0235873332163———————————————
+correlationcsvr1—0.05—8192——————————————————————0.50.773968695070.009754814899330.6724376581360.009133969448260.3439913438280.01811151117620.7924005662370.0209844919018———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationcsvr1—0.05—8192——————————————————————10.2599528957720.008321854178390.109756432790.008183323860040.05611654655090.01257231879110.6478856231580.0187214186485———————————————
+correlationcsvr1—0.05—8192——————————————————————2-0.5111507826840.00862762942244-0.5860397714660.008933922409980.2366716810060.01600286938390.389661526620.0162954586607———————————————
+correlationcsvr1—0.05—8192——————————————————————40.04459118760020.008412628937170.07940108053490.008083189524310.03321727732520.01203206457320.1233921732830.0128224599821———————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05canonical81920.005823222681460.007604511693540.006872660599870.004394521584840.0009173219318650.02855846439180.006627327288130.02874105823690.002855002678130.01579002537070.9990826780680.97144153560811[[0.0233154296875,0.1614990234375,0.500732421875,0.84716796875,0.9769287109375],[0.0001220703125,0.0445556640625,0.4951171875,0.95068359375,0.9991455078125]][[0.021240234375,0.166259765625,0.5054931640625,0.8377685546875,0.976806640625],[0.019287109375,0.15625,0.507080078125,0.835205078125,0.977294921875]][0.3865966796875,0.626953125,0.8690185546875,0.984130859375,0.9964599609375][0.0904541015625,0.264892578125,0.598388671875,0.9073486328125,0.9814453125][0.992423760841831,0.3532286829530893][1.0161094424322923,0.9820559137039786]{"kinetic":0.9990826780681349,"potential":1.0066273272881303,"total":2.0057100053562653}{"kinetic":0.9714415356081816,"potential":1.0287410582368737,"total":2.0315800507414354}————————————————————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05heated40960.0097656250.01070603518150.01138926216240.004857352431330.01073878507960.01750031028060.01083772240210.04737411664174.94686612247e-050.02626984544711.010738785080.98249968971911[[0.0224609375,0.1572265625,0.506591796875,0.846435546875,0.976806640625],[0.000732421875,0.04248046875,0.490234375,0.952880859375,0.9990234375]][[0.0263671875,0.166015625,0.499267578125,0.835693359375,0.978271484375],[0.02001953125,0.14794921875,0.50048828125,0.832275390625,0.979248046875]][0.382080078125,0.62158203125,0.866455078125,0.983642578125,0.997802734375][0.090576171875,0.264404296875,0.598388671875,0.903564453125,0.980224609375][0.9884434162423191,0.3425194252434515][1.029686692186644,0.9917908779725658]{"kinetic":1.0107387850796055,"potential":0.9891622775979454,"total":1.9999010626775506}{"kinetic":0.9824996897193874,"potential":1.047374116641728,"total":2.052539690894186}————————————————————————
+correlationlangevin1—0.05—8192——————————————————————01.006627327290.01120687618240.9990826780680.01089030069380.9714423770880.03219801576281.015806327450.02524474405741.001217454660.005409872632140.48272797379710.0009173219318650.084232929618510.02855762291230.8869373542361.001219112120.01458721532970.577831777441——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.05—8192——————————————————————0.50.7966287848640.0100744572320.5699278105570.008996391288250.3379591451710.01775525883450.8119512857850.021755378810.7873447038580.009284081006680.9215465203660.5829592439520.01303143339531.448517853190.3483299517370.01037080656550.5840977404020.800669164730.01128212105510.5185899612990.786719784718——
+correlationlangevin1—0.05—8192——————————————————————10.3212475887440.008511377571210.04216485504260.007996526913460.07488129347380.01256378758580.6658003063840.01917480510220.3177604450190.00348714372450.4097037988640.03726164979790.004903205244760.6131668532880.05827396245680.01660733101691.321841117060.647906794480.01789351190390.9331782935190.318040422077——
+correlationlangevin1—0.05—8192——————————————————————2-0.3435610966030.00867521652501-0.4598889902140.008621579500110.2240360520970.01558949627210.3962390962130.0153300663656-0.3417626293320.001798467270560.20731093747-0.4674297384480.007540748233730.8746365133720.2293669596690.005330907571360.3419550881130.3900809791160.006158117097330.401701920295-0.341085391054——
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-measurements
+Coverage: reading
+
+correlationlangevin1—0.05—8192——————————————————————40.007626882334220.008383246987490.03426146597230.008048852825770.05462593099910.01182699021260.1282175374870.01230716107990.00943512557660.001808243242380.2156972405890.04915118628340.01488972031111.84991832170.06970100816050.01507507716151.274633435090.1401028001010.01188526261390.9657192700020.00929545487472——
+deterministic-shadow-reference———0.2——————————————————————————————————————————————0.0102976006596.66133814775e-16
+deterministic-shadow-reference———0.1——————————————————————————————————————————————0.00251819395131.11022302463e-15
+deterministic-shadow-reference———0.05——————————————————————————————————————————————0.0006261309490272.44249065418e-15
+この例の実測値・全記録 / JSON
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+確認範囲 / review_level: author-manuscript-selected-theory-and-appendix
+2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+確認範囲 / review_level: author-manuscript-selected-equations-and-algorithm
+著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
+確認範囲 / review_level: author-official-algorithm-note
+著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 非調和CSVRとLangevin：Boltzmann求積との分布比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/
+Coverage: reading
+
+弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-assumptions
+Coverage: reading
+
+m=kB=T=1、ω=(1,1.7)、λ=0.2、U=Σ(ω²q²/2+λq⁴/4)。正準8192複製、温度摂動4096複製、t=20、τ=0.25/1、h=0.1/0.05、lag=0/0.5/1/2/4。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-algorithm
+Coverage: reading
+
+同じOBABO分割でglobal CSVRとlocal OUを比較。正準初期座標はGaussianを包絡にした独立棄却法、運動量はMaxwell分布から生成し、別の温度摂動初期集団も進めます。
+U(q)=\sum_{i=1}^2\left(\frac{\omega_i^2q_i^2}{2}+\frac{\lambda q_i^4}{4}\right),\quad\rho(q)=Z^{-1}e^{-U(q)/T}F_H(E)=\int_{U(q)\le E}\rho(q)\left[1-e^{-(E-U(q))/T}\right]dq,\qquad N_f=2\mathbb E H=\mathbb E K+\mathbb E U,\quad\operatorname{Var}H=\operatorname{Var}K+\operatorname{Var}U
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-validation
+Coverage: reading
+
+座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-limits
+Coverage: reading
+
+特定の分離可能な四次2自由度・固定seedだけの小さな例です。Hを調和系のGamma分布と扱いません。全系相関には独立な厳密動力学参照がなく、相関一致や統計誤差に隠れる時間次数を合格主張しません。成熟分子系・輸送係数・量子・第一原理MDの検証ではありません。
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_canonical_cdf0.00997361330646
+maximum_canonical_mean0.0276867626278
+maximum_canonical_variance0.0655045188307
+maximum_heated_cdf0.0202834299099
+maximum_heated_mean0.0370817393827
+maximum_heated_variance0.0874094991263
+maximum_acf_standard_error0.0330970376535
+quadrature_refinement_error2.1561918917e-13
+判定 / check合格
+canonical_position_momentum_energy_cdfstrue
+canonical_energy_meanstrue
+canonical_energy_fluctuationstrue
+heated_start_cdfstrue
+heated_start_energy_meanstrue
+heated_start_energy_fluctuationstrue
+quadrature_reference_refinedtrue
+independent_replica_correlation_uncertaintytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesmethodtaugamma_langevindtinitial_ensemblereplicasposition_cdf_errormomentum_cdf_errorkinetic_cdf_errortotal_energy_cdf_errork_mean_relative_errork_variance_relative_erroru_mean_relative_erroru_variance_relative_errorh_mean_relative_errorh_variance_relative_errortemperature_meantemperature_varianceexact_temperature_meanexact_temperature_varianceq_cdfp_cdfk_cdfh_cdfq_variancep_varianceenergy_meansenergy_varianceslagq_acfq_acf_standard_errorp_acfp_acf_standard_errork_acfk_acf_standard_errorh_acfh_acf_standard_error
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1canonical81920.006021494645410.007604511693540.005167433828560.002338364206230.007526651582320.03053858522130.002033355120660.01980990401220.00490079199140.01638951132020.9924733484180.96946141477911[[0.0062255859375,0.12109375,0.4951171875,0.8680419921875,0.993896484375],[0.0,0.0390625,0.49755859375,0.958251953125,1.0]][[0.0242919921875,0.166259765625,0.50439453125,0.8433837890625,0.9791259765625],[0.0224609375,0.1561279296875,0.492431640625,0.8416748046875,0.97998046875]][0.3912353515625,0.626953125,0.86474609375,0.98388671875,0.99755859375][0.1005859375,0.2825927734375,0.6201171875,0.9217529296875,0.9844970703125][0.7167844438213621,0.3262344391152629][1.0046980607836582,0.9802486360516937]{"kinetic":0.9924733484176781,"potential":0.9138894434319016,"total":1.9063627918495796}{"kinetic":0.9694614147787388,"potential":0.8827372602081417,"total":1.835013896778885}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.1heated40960.0124511718750.01395216794350.01773691841240.02028342990990.02594724680750.004423603552670.03515014682460.06404986570170.03034634003740.04107016844431.025947246811.0044236035511[[0.005615234375,0.1357421875,0.512451171875,0.862060546875,0.992919921875],[0.0,0.043212890625,0.4931640625,0.9599609375,0.999755859375]][[0.0244140625,0.16162109375,0.50146484375,0.83349609375,0.97607421875],[0.021484375,0.159423828125,0.4931640625,0.827392578125,0.974365234375]][0.375732421875,0.617919921875,0.861083984375,0.982421875,0.99755859375][0.087158203125,0.267578125,0.59814453125,0.917236328125,0.986083984375][0.7632514874360237,0.32892363251359674][1.0296449348483268,1.02224955876666]{"kinetic":1.0259472468074942,"potential":0.9479402907943836,"total":1.9738875376018776}{"kinetic":1.004423603552672,"potential":0.9210309288809544,"total":1.9422101010545942}—————————
+correlationcsvr0.25—0.1—8192——————————————————————00.9970376608670.01045358692620.9924733484180.01087919600540.9695180652630.0300536952450.9836577379040.0230956414724
+correlationcsvr0.25—0.1—8192——————————————————————0.50.7741505072880.009216925758610.4248678425330.008782349836620.05121927732580.01188461583360.495377079460.0168754679379
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.1—8192——————————————————————10.3375935099260.00773635346016-0.1054404884590.008245980319880.0122725773410.01138603987780.2296938930220.0136904941635
+correlationcsvr0.25—0.1—8192——————————————————————2-0.202677652350.00894074811351-0.3366896796450.008606771083480.008633553655610.0105687725425-0.02468014433840.0108205065652
+correlationcsvr0.25—0.1—8192——————————————————————4-0.0001662533391190.008254090034440.04702033248630.00829530107944-0.02539129778710.01033455528030.0001050682162990.0106942113717
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1canonical81920.003417968750.007848652318540.006262309037370.003926008034860.0120252858390.01397173783290.0001247928500990.05484328356890.006336711797930.01888988878611.012025285841.0139717378311[[0.005859375,0.12548828125,0.5032958984375,0.870849609375,0.991455078125],[0.0001220703125,0.0384521484375,0.50341796875,0.9622802734375,0.999755859375]][[0.023193359375,0.162353515625,0.4970703125,0.8416748046875,0.97900390625],[0.024169921875,0.16650390625,0.504150390625,0.846435546875,0.9757080078125]][0.38720703125,0.62744140625,0.8597412109375,0.9814453125,0.9970703125][0.0966796875,0.282958984375,0.614501953125,0.917236328125,0.9866943359375][0.7377827573602163,0.31831619238073267][1.0028590659698853,1.021191505708047]{"kinetic":1.012025285838965,"potential":0.9158657706548192,"total":1.9278910564937841}{"kinetic":1.013971737832923,"potential":0.9130618034038817,"total":1.9008307930097672}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.1heated40960.0109863281250.0129394531250.01322407445360.01151107401460.02452334405270.05053482950.01530288521870.007953809096540.02011585750410.01874769550491.024523344051.050534829511[[0.0078125,0.125,0.489013671875,0.8720703125,0.993896484375],[0.000244140625,0.043212890625,0.5029296875,0.963623046875,0.999755859375]][[0.023681640625,0.163330078125,0.512939453125,0.843994140625,0.976806640625],[0.025146484375,0.158203125,0.5068359375,0.838623046875,0.974853515625]][0.389404296875,0.618896484375,0.857421875,0.98046875,0.996826171875][0.091796875,0.271484375,0.60888671875,0.91259765625,0.984130859375][0.7386244555276764,0.3275010639704623][1.0181513460106066,1.0308953420947098]{"kinetic":1.024523344052659,"potential":0.9297651313782382,"total":1.9542884754308976}{"kinetic":1.0505348294999683,"potential":0.8724747429473657,"total":1.9005655186455273}—————————
+correlationlangevin0.25—0.1—8192——————————————————————00.9993522266560.01062463139171.012025285840.01112613850821.014116345330.03239508491881.018968882050.0262825129308
+correlationlangevin0.25—0.1—8192——————————————————————0.50.7976646145670.009430451521610.2500152019210.008257866999230.07414280560020.01393022215610.5211916475790.019022888914
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.1—8192——————————————————————10.4669579439180.00801452360969-0.1096669602830.007849953973960.01513175149830.0126465314590.2631701218550.014938157826
+correlationlangevin0.25—0.1—8192——————————————————————20.07445496786120.00774945701367-0.1745543274290.007896439283280.008703791283820.01124028182150.01339126531670.011180084582
+correlationlangevin0.25—0.1—8192——————————————————————4-0.001995983732730.00773966880627-0.003235465138140.007861132755410.007763450430710.0108502680044-0.02344625452690.011005837851
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.05canonical81920.00500488281250.0041503906250.007287495650130.007482753702090.004861130171650.03196228140810.008758596728610.02612140286710.006724164510010.01145651321681.004861130171.0319622814111[[0.00634765625,0.1273193359375,0.4949951171875,0.87451171875,0.9942626953125],[0.0,0.04248046875,0.5045166015625,0.960693359375,0.9998779296875]][[0.0242919921875,0.15625,0.4991455078125,0.8414306640625,0.9771728515625],[0.021728515625,0.159912109375,0.504150390625,0.840576171875,0.9781494140625]][0.4007568359375,0.63134765625,0.8616943359375,0.981201171875,0.99755859375][0.0960693359375,0.2755126953125,0.6141357421875,0.9158935546875,0.98583984375][0.7240853858083866,0.3307356099467782][1.0105649370858119,0.999157323257477]{"kinetic":1.004861130171645,"potential":0.9237721894331575,"total":1.9286333196048024}{"kinetic":1.0319622814081457,"potential":0.8429795800434856,"total":1.8869631618421217}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr0.2520.05heated40960.01269531250.009069355443540.01163340278740.009802089639590.005740778911170.02982565391540.01297416242130.08740949912630.003205180684210.04276222824571.005740778910.97017434608511[[0.0048828125,0.13818359375,0.5126953125,0.873291015625,0.99560546875],[0.0,0.0419921875,0.501220703125,0.9619140625,0.999755859375]][[0.025634765625,0.154052734375,0.502197265625,0.832275390625,0.977294921875],[0.022705078125,0.159912109375,0.493408203125,0.83984375,0.97998046875]][0.3818359375,0.6318359375,0.8671875,0.9814453125,0.99755859375][0.09814453125,0.273193359375,0.614990234375,0.92724609375,0.9853515625][0.7156243307000846,0.3226376600157572][1.0182200211745631,0.9932615366477827]{"kinetic":1.0057407789111728,"potential":0.9038703828290087,"total":1.9096111617401816}{"kinetic":0.9701743460846264,"potential":0.7899292164783038,"total":1.7858132196703163}—————————
+correlationcsvr0.25—0.05—8192——————————————————————01.009006450160.0102782799011.004861130170.01122440811331.031985911990.03309703765351.011545461750.0257019305543
+correlationcsvr0.25—0.05—8192——————————————————————0.50.777901113360.009017394865420.427626726340.008580338661080.02588264138940.0114498737940.4930737803830.0177889694176
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr0.25—0.05—8192——————————————————————10.315681841990.00764983926835-0.0810832072090.008476409486570.04579678759370.01222422646390.2357644082490.0142056738195
+correlationcsvr0.25—0.05—8192——————————————————————2-0.2517608108740.0087967648047-0.356104274660.008531774093990.0160202938270.0111436963425-0.04072416708340.0108280352614
+correlationcsvr0.25—0.05—8192——————————————————————40.03142351116210.008423775449660.07616407450980.00829718516163-0.01222242439660.01121470048640.01709478717160.0112640841372
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05canonical81920.0046386718750.00720214843750.004679152578560.002339093972360.003799194899930.003638890162210.004044172152650.004875014091224.99742372755e-050.003312044904841.00379919490.99636110983811[[0.005615234375,0.126220703125,0.4981689453125,0.87451171875,0.9942626953125],[0.0003662109375,0.0361328125,0.495361328125,0.9586181640625,1.0]][[0.025390625,0.1551513671875,0.4927978515625,0.8387451171875,0.9769287109375],[0.0220947265625,0.1571044921875,0.501708984375,0.84130859375,0.9757080078125]][0.3927001953125,0.62744140625,0.8621826171875,0.9814453125,0.9979248046875][0.096435546875,0.2850341796875,0.6160888671875,0.9197998046875,0.9864501953125][0.7222065743533667,0.32373091102449][1.0139566856518627,0.9936417041479894]{"kinetic":1.0037991948999263,"potential":0.9120480347358894,"total":1.9158472296358156}{"kinetic":0.9963611098377931,"potential":0.8613702418164149,"total":1.871768923160949}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin0.2520.05heated40960.0097656250.009973613306460.02022319117140.01072242946510.03708173938270.0534027579010.009653085723610.02357514062310.01474194949660.02863592767780.9629182606170.94659724209911[[0.0048828125,0.126220703125,0.509765625,0.8798828125,0.993896484375],[0.0,0.04638671875,0.490966796875,0.95703125,0.99951171875]][[0.020263671875,0.148681640625,0.490234375,0.8369140625,0.973388671875],[0.02197265625,0.15185546875,0.4931640625,0.843994140625,0.98046875]][0.4091796875,0.65234375,0.872314453125,0.98388671875,0.997802734375][0.09912109375,0.287109375,0.629150390625,0.9228515625,0.98583984375][0.7058928895935258,0.3377915795607767][0.9724070084165913,0.9534295128180094]{"kinetic":0.9629182606173011,"potential":0.924591319064387,"total":1.887509579681688}{"kinetic":0.9465972420990043,"potential":0.8859964113860829,"total":1.8121671048214336}—————————
+correlationlangevin0.25—0.05—8192——————————————————————00.9969290961060.01034197561021.00379919490.01102909610040.996375543720.02958965152731.003312049820.0257446761965
+correlationlangevin0.25—0.05—8192——————————————————————0.50.8133224631540.00944391510250.2088610325930.007919326969780.06463814886170.01234438278160.5137583552680.0196762035437
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin0.25—0.05—8192——————————————————————10.4864545403290.00805716203435-0.126808934220.008055491817820.0534560524680.01266415554760.3073623543120.0157538681864
+correlationlangevin0.25—0.05—8192——————————————————————20.08893667177920.00765185969598-0.1581665309720.007846443305370.02671293144020.01156258953910.03470559414650.0112222811021
+correlationlangevin0.25—0.05—8192——————————————————————40.007612465350520.00784502167219-0.01274275693210.00789527683080.01084312248930.0113523257870.003638287487480.0113216817285
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.1canonical81920.007324218750.003942402318540.008947855912370.009924159952090.0001396168365950.01686887589570.02768676262780.06153015004910.01330747287410.01576237481221.000139616840.98313112410411[[0.0067138671875,0.1334228515625,0.5059814453125,0.86767578125,0.994140625],[0.000244140625,0.04052734375,0.49267578125,0.9541015625,0.9998779296875]][[0.02294921875,0.16259765625,0.49951171875,0.84033203125,0.977783203125],[0.02197265625,0.1595458984375,0.5029296875,0.839599609375,0.9769287109375]][0.384521484375,0.6302490234375,0.8631591796875,0.984130859375,0.9979248046875][0.0919189453125,0.2730712890625,0.6146240234375,0.91650390625,0.9853515625][0.7400906690415618,0.33498168300383185][1.0133079723391567,0.9869712613340352]{"kinetic":1.0001396168365955,"potential":0.9411056855851039,"total":1.9412453024216993}{"kinetic":0.9831311241043252,"potential":0.918849888195888,"total":1.894996134198614}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.1heated40960.0100097656250.01464843750.006795456796440.01534439473540.02074884916190.04779752891810.01052057577350.03422149462130.01585961553630.004351690103750.9792511508380.95220247108211[[0.00537109375,0.120849609375,0.49462890625,0.8740234375,0.994384765625],[0.0,0.039306640625,0.510009765625,0.959228515625,0.999267578125]][[0.0234375,0.15185546875,0.4853515625,0.846923828125,0.975341796875],[0.01708984375,0.15478515625,0.4951171875,0.846435546875,0.97802734375]][0.39453125,0.638916015625,0.869873046875,0.985595703125,0.997802734375][0.09765625,0.29833984375,0.62890625,0.92236328125,0.98486328125][0.7119880536759541,0.323118895685399][0.9914901505953939,0.9670121510808704]{"kinetic":0.9792511508381326,"potential":0.9061172584610917,"total":1.8853684092992244}{"kinetic":0.9522024710819182,"potential":0.8952117889996807,"total":1.8574715357257474}—————————
+correlationcsvr1—0.1—8192——————————————————————01.026593450050.01068445422321.000139616840.01095562755540.9831311435970.03247286487781.016110754890.0263397012963
+correlationcsvr1—0.1—8192——————————————————————0.50.7633569819860.009231239243790.6381103849270.008928586802070.2915057325150.01671438290020.7917497242410.022384393286
+correlationcsvr1—0.1—8192——————————————————————10.1699486089960.007461535432380.02117164831580.008113597109710.04440869809060.01144456274340.6061950908010.0192003218564
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr1—0.1—8192——————————————————————2-0.6351519319470.00874479168342-0.6423838341290.008871921497280.2777458784370.01678358647440.3294667250820.0154504441431
+correlationcsvr1—0.1—8192——————————————————————40.1973416759830.007845143805570.2310533157870.00792319464649-0.01841347572840.01135388618230.126033145810.0119803851611
+distributionlangevin10.50.1canonical81920.004922861832910.00720214843750.004964189486610.007792741965140.007355437564590.0352077793030.01698505822120.03438098342340.01195850822250.02262843773340.9926445624350.96479222069711[[0.005615234375,0.1221923828125,0.4954833984375,0.8690185546875,0.9920654296875],[0.000244140625,0.0362548828125,0.501220703125,0.9600830078125,1.0]][[0.025390625,0.1578369140625,0.5003662109375,0.8433837890625,0.9766845703125],[0.021728515625,0.160888671875,0.4927978515625,0.846923828125,0.9818115234375]][0.3902587890625,0.634033203125,0.86962890625,0.9818115234375,0.9981689453125][0.1036376953125,0.2890625,0.626220703125,0.923583984375,0.986572265625][0.7221514205258232,0.31527932481380666][1.0089556825504875,0.9763334423203223]{"kinetic":0.9926445624354081,"potential":0.9001973990183997,"total":1.8928419614538077}{"kinetic":0.9647922206969863,"potential":0.8358301696661294,"total":1.823374618018677}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin10.50.1heated40960.0134277343750.0080566406250.005132045138730.005595476340140.01606756685720.08688677751090.001912495262180.008594791090660.009301278023650.0283011698140.9839324331430.91311322248911[[0.007080078125,0.135498046875,0.510986328125,0.87060546875,0.9931640625],[0.0,0.0390625,0.513427734375,0.9638671875,0.999755859375]][[0.022705078125,0.1650390625,0.506103515625,0.837890625,0.976806640625],[0.024169921875,0.156982421875,0.491943359375,0.839111328125,0.97998046875]][0.390625,0.63330078125,0.86669921875,0.98681640625,0.999267578125][0.100341796875,0.284912109375,0.6240234375,0.92041015625,0.987060546875][0.7402195728523555,0.3164627884696467][0.9870980064455608,0.98076685984002]{"kinetic":0.9839324331427891,"potential":0.9140001210275572,"total":1.897932554170346}{"kinetic":0.913113222489129,"potential":0.8730295705550415,"total":1.812791625746398}—————————
+correlationlangevin1—0.1—8192——————————————————————00.9838843725580.01020685818880.9926445624350.0108529657770.9648463231590.02805950320340.9776528923350.0238293023953
+correlationlangevin1—0.1—8192——————————————————————0.50.7445893485840.008894350313080.5581504531040.008864694030440.314456634570.01713052405310.7796053523470.0210328264282
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin1—0.1—8192——————————————————————10.2293624166140.00757979753041-0.04165493979270.00809369748860.08100241730050.01225739918360.6106152371820.0180611892705
+correlationlangevin1—0.1—8192——————————————————————2-0.4272346528120.00844643080858-0.5186212765890.008776009839010.2775388891350.01684793967680.3484575937150.0145970791695
+correlationlangevin1—0.1—8192——————————————————————40.1005494207080.007738116178910.1515630213330.007914982140060.03799935500950.0111469382250.1174790850350.0122227612875
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.05canonical81920.005086903792090.00488281250.003901157986270.004619643606270.001778720047040.03695584399330.01700062521820.05372781495770.007198025377170.03620036464940.9982212799531.0369558439911[[0.006103515625,0.1322021484375,0.502197265625,0.87060546875,0.9927978515625],[0.0001220703125,0.041015625,0.5037841796875,0.9613037109375,0.9998779296875]][[0.0238037109375,0.1585693359375,0.5048828125,0.84228515625,0.9765625],[0.022705078125,0.158447265625,0.499267578125,0.841796875,0.978759765625]][0.3953857421875,0.634765625,0.865478515625,0.977783203125,0.9967041015625][0.100341796875,0.2843017578125,0.6224365234375,0.914794921875,0.98388671875][0.7424965213519003,0.32640625794383055][0.998499093659561,0.9979434662463564]{"kinetic":0.9982212799529568,"potential":0.9313198393148281,"total":1.9295411192677852}{"kinetic":1.0369558439932653,"potential":0.9120962649228286,"total":1.9331250437671899}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributioncsvr10.50.05heated40960.01871680714540.015136718750.009358720736610.009257585715140.01877438546970.06131951444510.01066720527970.02456074557660.01489905905940.04064430260410.981225614530.93868048555511[[0.006103515625,0.1083984375,0.496337890625,0.8642578125,0.993408203125],[0.000244140625,0.042236328125,0.492919921875,0.962890625,1.0]][[0.022705078125,0.16357421875,0.51513671875,0.8486328125,0.979248046875],[0.018310546875,0.150146484375,0.4951171875,0.83349609375,0.981201171875]][0.3955078125,0.63427734375,0.8740234375,0.98486328125,0.9970703125][0.0966796875,0.283935546875,0.627685546875,0.922607421875,0.987548828125][0.7101048564011396,0.32391726261203085][0.9956336193792787,0.9668176096813275]{"kinetic":0.9812256145303033,"potential":0.9059829822721344,"total":1.8872085968024377}{"kinetic":0.9386804855549453,"potential":0.8443304693958524,"total":1.7897644005792746}—————————
+correlationcsvr1—0.05—8192——————————————————————01.015057595040.0106061040510.9982212799530.0112515322361.036959007840.03215555321161.036302291570.0252266852292
+correlationcsvr1—0.05—8192——————————————————————0.50.754134279360.009162329283860.6425011530970.009122190837150.3253627055440.01783883946110.8268894360350.0225728707888
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationcsvr1—0.05—8192——————————————————————10.1624403614980.007488249050930.02416778994160.008251218107330.05601109357440.01259874620390.6433687364260.0197649540153
+correlationcsvr1—0.05—8192——————————————————————2-0.6338710579920.00873828724515-0.6566256812510.0091122250960.2984715676670.01805301652770.3533745693470.0166512676819
+correlationcsvr1—0.05—8192——————————————————————40.2006580366670.007789550328150.2292749676060.00797843937438-0.02144695846590.01118957583080.1190196200810.01261788858
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05canonical81920.0041503906250.009973613306460.006188862837630.007060320090140.01577806396180.03918588551080.009671972248640.06550451883070.01285928111440.04567864088630.9842219360380.96081411448911[[0.005859375,0.125732421875,0.504150390625,0.87109375,0.996337890625],[0.0,0.0379638671875,0.4984130859375,0.96142578125,0.999755859375]][[0.02099609375,0.1566162109375,0.498779296875,0.8427734375,0.9779052734375],[0.0216064453125,0.157958984375,0.5054931640625,0.851318359375,0.9786376953125]][0.399658203125,0.6322021484375,0.868896484375,0.982421875,0.997802734375][0.101806640625,0.2784423828125,0.62548828125,0.924072265625,0.9859619140625][0.7184811294146521,0.3227970794435426][0.9914037720234794,0.977040100053016]{"kinetic":0.984221936038247,"potential":0.9068943684045945,"total":1.8911163044428414}{"kinetic":0.9608141144892,"potential":0.808889948488252,"total":1.7803723893967636}—————————
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+distributionlangevin10.50.05heated40960.0153808593750.0148925781250.009680277787370.01100608615990.01310580051410.009016748719010.02079269394320.05548560267620.01678022496510.02372875914261.013105800511.0090167487211[[0.007080078125,0.131591796875,0.515380859375,0.87548828125,0.99267578125],[0.0,0.042724609375,0.4970703125,0.957763671875,1.0]][[0.02783203125,0.154296875,0.50537109375,0.8388671875,0.979736328125],[0.021240234375,0.161376953125,0.485107421875,0.834716796875,0.975341796875]][0.3837890625,0.624755859375,0.859619140625,0.982421875,0.998046875][0.102783203125,0.2802734375,0.607421875,0.908935546875,0.986328125][0.7338674054645311,0.33264213485311533][1.0095061228331434,1.0167054781950515]{"kinetic":1.0131058005140983,"potential":0.9347924319052907,"total":1.947898232419389}{"kinetic":1.0090167487190067,"potential":0.9136177884033647,"total":1.909858141183838}—————————
+correlationlangevin1—0.05—8192——————————————————————00.9929193570650.01009672151230.9842219360380.01083056776920.9610630617920.02786247714550.9546466676950.022129022119
+correlationlangevin1—0.05—8192——————————————————————0.50.7433347460750.008870135991620.5539898909260.008986741729870.3234908213850.01663866455370.7488044282550.0189284518172
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-measurements
+Coverage: reading
+
+correlationlangevin1—0.05—8192——————————————————————10.2161728402820.00761969875647-0.02916411037450.008089792290280.06346660783340.01151392445160.5673608330260.0160379612991
+correlationlangevin1—0.05—8192——————————————————————2-0.4507446926040.00835334884993-0.5098158507620.008679479772760.2611004805370.0153608777320.3308726452260.0137956090342
+correlationlangevin1—0.05—8192——————————————————————40.1026445570190.007779428220990.1411146261850.007709578561940.02350782168060.0113010254290.1122553929180.0118824131695
+この例の実測値・全記録 / JSON
+
+## CSVRとLangevin：分布・揺らぎ・相関 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling · DOI: 10.1063/1.2408420
+確認範囲 / review_level: author-manuscript-selected-theory-and-appendix
+2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。
+G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes · DOI: 10.1016/j.cpc.2008.01.006
+確認範囲 / review_level: author-manuscript-selected-equations-and-algorithm
+著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。
+Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
+確認範囲 / review_level: author-official-algorithm-note
+著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。
 
 ## ウェーブレット — ウェーブレット [ja]
 

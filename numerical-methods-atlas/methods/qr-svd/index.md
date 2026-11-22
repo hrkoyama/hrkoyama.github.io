@@ -18,7 +18,7 @@ Other names: QR分解, SVD, 特異値分解, singular value decomposition, least
 - Reference: https://doi.org/10.1145/320941.320947 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://doi.org/10.1007/bf02163027 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions.
 

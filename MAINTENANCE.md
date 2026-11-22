@@ -284,3 +284,15 @@ PMLの電場・磁場の仕事は場と係数から直接集計し、修正離�
 `build-atlas-purpose.py` と `atlas_home_layout.py` が日英の静的トップと次の階層を生成する。ライブ表示は `home-overview.js` と `home-search.js`、静的表示は同じレンダラーの `render-atlas-landing.mjs` を使う。詳細な地図と読む順番はexplore、目的フィルターはstartに保持する。科学的な台帳、既存のJSON・Markdown、固定配布版はこの表示整理で変更しない。`home-navigation.mjs` は以前の地図・分野・絞り込みURLを適切な次ページへ案内する。全条件がallのトップURLはトップのままとする。
 
 ホームの外枠は `body.atlas-home` と `atlas-home-shell.css` で簡素化し、他の展示のナビゲーションを保持する。検索語は従来どおりブラウザ内だけで処理する。JavaScriptなしでは3入口と専用検索ページへのリンクを使える。通常のrefreshと全サイト検査後、日英・390px・検索・3入口・既存ブックマークを確認して公開する。
+
+## 表示同期とCSVR／Langevin比較（2026-11-22）
+
+生物の実装状況は `atlas_equation_availability.py` で、共通例と補助例の実在・不変配布物・追試記録を照合する。ロジスティック、閉鎖SIR、Turing発現／Schnakenberg、空間なしFHNの限定範囲を方程式一覧へ接続し、方程式総数46を保って実例23・解説23とする。TuringとSchnakenbergの同一実行を物理問題へ二重加算しない。Ewald／SPMEの古い実装前注記は正本と統合スクリプトで修正し、量子の次課題は軽量保守と必要性指定時の重い検査に位置付ける。
+
+新しい温度比較の編集用ソースは `scripts/depth-thermostats/`、不変配布版は `code/validated-examples/2026-11-22/thermostats/`。CSVRの浴単独、CSVR／Langevinの調和2自由度、弱い四次非調和2自由度の3固定ケースを持つ。浴単独は診断で物理問題数へ加算しない。調和比較は既存のLangevin調和問題へ補助リンクを追加し、非調和問題だけを新しい1問題として数える。旧4補助配布版、既存BAOAB例、共通22実行例の配布物・入力・公差・履歴は変更しない。
+
+CSVRは2007年原著の厳密な運動エネルギー更新に、2008年の式8–9の同じGaussianを使う符号を採る。Gamma生成は著者公式訂正も参照する。局所Langevinとはτ=(2γ)⁻¹で浴の運動エネルギー緩和を合わせ、両者に同じOBABO分割を使う。旧BAOABと同じ積分法とは表示しない。正準分布、HOの有限刻みshadow Gaussian、非調和Boltzmann求積を区別し、相関の一致や一般のエルゴード性を合格条件にしない。固定点CDF差はKS全域距離ではなく、誤差帯は独立複製間の標準誤差である。軸上不変の反例、ゼロK拒否、刻みと結合時間の範囲も明示する。
+
+`build-thermostat-reading.py` と `catalog/atlas-thermostat-comparison.json` は日英の本文・8式・出典・JSON/Markdownを同じ根拠から生成する。Langevinの旧主配布版は `depth_release` に保持し、新比較は `depth_additional_releases` へ追加する。`depth_release_records` は各版・選択ケースを個別に照合し、異用途の例や重複した根拠の流用を拒否する。CSVRとLangevin以外の10温度制御法は実装予定を維持する。
+
+軽量公開CIの対象は5補助配布版・22補助ケース・135 pytestであり、量子を含む従来の共通22例とは別の台帳である。通常のrefreshでは保存物を照合して描画し、科学計算と重い量子参照再生成は行わない。数値ソース・入力を変更する場合は新しい不変版を作り、ZIPの独立展開と全固定入力の再実行を行う。受入基準を失敗隠しのために緩めない。

@@ -54,7 +54,7 @@ test('crossovers preserve the scientific inventory and canonical availability', 
     assert.deepEqual(method.test_urls, [], id);
     assert.deepEqual(method.execution_examples, [], id);
   }
-  for (const id of ['nose-hoover', 'nose-hoover-chains', 'velocity-rescaling', 'stochastic-velocity-rescaling']) {
+  for (const id of ['nose-hoover', 'nose-hoover-chains', 'velocity-rescaling']) {
     const method = publishedMethods.find(item => item.id === id);
     assert.equal(method.status, 'planned', id);
     assert.deepEqual(method.code_urls, [], id);
@@ -63,7 +63,10 @@ test('crossovers preserve the scientific inventory and canonical availability', 
   }
   const langevin = publishedMethods.find(item => item.id === 'langevin-thermostat');
   assert.equal(langevin.status, 'educational-example');
-  assert.deepEqual(langevin.execution_examples.map(row => row.id), ['langevin-harmonic']);
+  assert.deepEqual(new Set(langevin.execution_examples.map(row => row.id)),new Set(['langevin-harmonic','csvr-langevin-harmonic','csvr-langevin-quartic']));
+  const csvr=publishedMethods.find(item=>item.id==='stochastic-velocity-rescaling');
+  assert.equal(csvr.status,'educational-example');
+  assert.deepEqual(new Set(csvr.execution_examples.map(row=>row.id)),new Set(['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']));
   assert.ok(!examples.some(row => row.id === 'langevin-harmonic'), 'supplement is not silently added to the common execution registry');
 });
 
@@ -272,6 +275,9 @@ bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='
 bad=copy.deepcopy(data);stage=next(s for s in bad['routes'][0]['stages'] if s['id']=='first-principles-md');stage.update(supplemental_ids=['langevin-harmonic'],supplemental_role='scoped-component',supplemental_scope={'ja':'調和振動子','en':'Oscillator'});cases.append(('oscillator borrowed for full AIMD',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['coupled_validation']['supplemental_ids']=['langevin-harmonic'];cases.append(('supplement borrowed for whole route',bad))
 bad=copy.deepcopy(data);next(e for e in bad['routes'][0]['connections'] if e['id']=='md-to-thermostat')['coupled_validation']['supplemental_ids']=['langevin-harmonic'];cases.append(('supplement borrowed for MD-thermostat connection',bad))
+for ident in ['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']:
+ bad=copy.deepcopy(data);stage=next(s for s in bad['routes'][0]['stages'] if s['id']=='first-principles-md');stage.update(supplemental_ids=[ident],supplemental_role='scoped-component',supplemental_scope={'ja':'古典要素','en':'Classical component'});cases.append(('CSVR component borrowed for AIMD: '+ident,bad))
+ bad=copy.deepcopy(data);bad['routes'][0]['coupled_validation']['supplemental_ids']=[ident];cases.append(('CSVR component borrowed for full route: '+ident,bad))
 for label,bad in cases:
  try:b.validate_catalog(bad)
  except ValueError:pass
@@ -374,7 +380,7 @@ test('published connections distinguish fixed force evidence and a local MD inte
       }
       for (const supplement of evidence.supplements) {
         assert.equal(supplement.source_mode, 'independently-extracted-supplement');
-        assert.equal(supplement.group, 'models');
+        assert.equal(supplement.group, supplement.id.startsWith('csvr-')?'thermostats':'models');
         assert.equal(supplement.numerical_checks_passed, true);
         assert.ok(Object.keys(supplement.checks).length > 0);
         assert.ok(Object.values(supplement.checks).every(value => value === true));
@@ -398,7 +404,7 @@ test('published connections distinguish fixed force evidence and a local MD inte
   for (const id of ['first-principles-md', 'thermostat', 'reaction-diffusion', 'biological-fronts']) assert.deepEqual(stage(id).evidence.examples, [], id);
   assert.equal(stage('first-principles-md').evidence.stage_status, 'reading');
   for (const id of ['thermostat', 'reaction-diffusion', 'biological-fronts']) assert.equal(stage(id).evidence.stage_status, 'scoped-supplement', id);
-  assert.deepEqual(stage('thermostat').evidence.supplements.map(row => row.id), ['langevin-harmonic']);
+  assert.deepEqual(stage('thermostat').evidence.supplements.map(row => row.id), ['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']);
   assert.deepEqual(stage('reaction-diffusion').evidence.supplements.map(row => row.id), ['reaction-diffusion-fourier', 'turing-schnakenberg']);
   assert.deepEqual(stage('biological-fronts').evidence.supplements.map(row => row.id), ['turing-schnakenberg', 'fitzhugh-nagumo']);
   for (const id of ['fluid-transport', 'hartree-field']) {
@@ -556,17 +562,19 @@ test('citations and machine-readable provenance retain review scope and matching
       const reference = references.get(id); assert.ok(reference, id);
       assert.ok(reference.review_level);
       assert.ok(html.includes(`href="${reference.url}"`), id);
+      assert.ok(text('numerical-methods-atlas/connections/index.md').includes(']('+reference.url+')'), id+' Markdown citation');
       for (const lang of ['ja', 'en']) assert.ok(reference.review[lang].trim());
     }
   }
   for (const [path, digest] of Object.entries(published.source_sha256)) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), digest, path);
-  assert.deepEqual(Object.keys(published.supplemental_verification_receipts), ['models']);
+  assert.deepEqual(Object.keys(published.supplemental_verification_receipts).sort(), ['models','thermostats']);
   assert.ok(Object.keys(published.supplemental_source_sha256).length >= 5);
   for (const [path, digest] of Object.entries(published.supplemental_source_sha256)) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), digest, 'separate supplement '+path);
-  const supplementReceipt = published.supplemental_verification_receipts.models;
-  assert.equal(supplementReceipt.source_mode, 'independently-extracted-supplement');
-  const supplementURL = new URL(supplementReceipt.url);
-  assert.equal(supplementReceipt.sha256, createHash('sha256').update(readFileSync(new URL(supplementURL.pathname.slice(1), root))).digest('hex'));
+  for(const supplementReceipt of Object.values(published.supplemental_verification_receipts)){
+   assert.equal(supplementReceipt.source_mode, 'independently-extracted-supplement');
+   const supplementURL = new URL(supplementReceipt.url);
+   assert.equal(supplementReceipt.sha256, createHash('sha256').update(readFileSync(new URL(supplementURL.pathname.slice(1), root))).digest('hex'));
+  }
   const receipt = json(new URL(published.verification_receipt).pathname.slice(1));
   assert.equal(receipt.passed, true);
   assert.equal(receipt.registry_sha256, createHash('sha256').update(readFileSync(new URL(new URL(published.registry).pathname.slice(1), root))).digest('hex'));
@@ -575,9 +583,12 @@ test('citations and machine-readable provenance retain review scope and matching
 test('supplement descriptions keep oscillator and zero-dimensional excitability evidence separate from coupled physical routes', () => {
   const stage = id => published.routes.flatMap(route => route.stages).find(item => item.id === id);
   const thermostat = stage('thermostat');
-  assert.match(thermostat.gap.ja, /他11手法/);
-  assert.match(thermostat.gap.en, /other 11 methods/);
+  assert.match(thermostat.gap.ja, /他10手法/);
+  assert.match(thermostat.gap.en, /other 10 methods/);
   assert.match(thermostat.supplemental_scope.en, /one harmonic-oscillator degree of freedom/i);
+  assert.match(thermostat.supplemental_scope.en, /same OBABO/);
+  assert.match(thermostat.supplemental_scope.en, /quartic lambda=0.2/);
+  assert.match(thermostat.gap.en,/bath-dependent correlations/);
   assert.match(stage('biological-fronts').supplemental_scope.ja, /0次元/);
   assert.match(stage('biological-fronts').supplemental_scope.en, /zero-dimensional/);
   assert.match(stage('biological-fronts').gap.en, /Fisher front speeds/);

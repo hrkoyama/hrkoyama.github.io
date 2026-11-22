@@ -15,7 +15,7 @@ Other names: Ewald summation, エワルド法, エバルト法, エワルド和
 
 problem: 周期像を含む中性点電荷のCoulombエネルギーと力。孤立重力や電子密度のHartree場とは区別します。
 
-variant: 実装前の検証仕様：中性3D点電荷、まず立方体・tin-foil境界、直接Ewald和。メッシュ近似を導入する前に打切り収束を確認します。
+variant: 公開例は中性3D点電荷・立方体・tin-foil境界の直接Ewald和です。実空間・逆空間・自己項を含み、打切り・分割パラメータ、エネルギー有限差分の力と独立theta積分を検査しています。
 
 use_when:
 - 周期像を含むCoulombエネルギーと力を、明示した境界規約で評価したい場合。
@@ -64,7 +64,7 @@ References:
 
 problem: Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field.
 
-variant: Pre-implementation specification: neutral 3D point charges, initially cubic/tin-foil boundaries and direct Ewald summation, with cutoff convergence before introducing a mesh approximation.
+variant: The released example is direct Ewald summation for neutral 3D point charges in a cubic cell with tin-foil boundaries. It includes real/reciprocal/self terms and checks cutoffs, splitting, energy-difference forces and an independent theta integral.
 
 use_when:
 - A periodically replicated Coulomb problem with explicitly stated boundary conventions.
@@ -118,7 +118,7 @@ References:
 - Reference: https://doi.org/10.1002/andp.19213690304 — Bibliographic origin of the real/reciprocal decomposition; the complete 1921 derivation was not audited.
 - Reference: https://doi.org/10.1063/1.470117 — Full-text formulation used here to check neutrality, self corrections and surface conventions.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.
 

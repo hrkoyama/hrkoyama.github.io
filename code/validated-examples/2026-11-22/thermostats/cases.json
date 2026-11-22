@@ -1,0 +1,269 @@
+[
+  {
+    "id": "csvr-kinetic-kernel",
+    "method_ids": [
+      "stochastic-velocity-rescaling"
+    ],
+    "domains": [
+      "temperature"
+    ],
+    "code_files": [
+      "run.py",
+      "thermostats.py"
+    ],
+    "title": {
+      "ja": "CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関",
+      "en": "Exact CSVR bath: conditional laws, fluctuations and kinetic correlation"
+    },
+    "summary": {
+      "ja": "自由度1・2・6のCSVR浴だけを実装し、厳密な条件付きモーメントと非心χ²分布、正準Gamma分布と運動エネルギー相関を照合します。",
+      "en": "Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations."
+    },
+    "assumptions": {
+      "ja": "kB=1、T=1.3、τ=0.5、h=0.2、65536独立複製。3初期Kと3自由度で条件付き分布を測定。Hamiltonianの力・座標・拘束・COM除去は含みません。",
+      "en": "kB=1, T=1.3, tau=0.5, h=0.2, 65536 independent replicas. Test three initial energies at each of three degree counts. No Hamiltonian force, positions, constraints or center-of-mass removal."
+    },
+    "algorithm": {
+      "ja": "平方完成した厳密CIR遷移を、標準正規Rと独立χ²(Nf−1)のSから作ります。同じRでglobal αの符号を決め、Nf=1ではS=0。単位方向と新しい半径からpを再構成し、極小KでKnew/Kを作りません。K=0は方向が未定義として拒否します。",
+      "en": "Use the completed-square exact CIR transition with normal R and independent chi-square(Nf−1) S. The same R sets the sign of global alpha; S=0 for Nf=1. Reconstruct momentum from its unit direction and new radius without a tiny-K energy ratio. Reject K=0 because its direction is undefined."
+    },
+    "validation": {
+      "ja": "条件付き平均・分散は独立なCIR式、CDFの3確率点はSciPyの非心χ²分位点、定常KはGamma分布、浴単独ACFはexp(−t/τ)と照合。無雑音の平均緩和は分散を失う対照として別表示します。",
+      "en": "Compare with separate CIR conditional moments, three SciPy noncentral-chi-square quantile probabilities, stationary Gamma K and bath-only exp(−t/tau) correlation. A separate noiseless mean-relaxation control demonstrates loss of fluctuations."
+    },
+    "limits": {
+      "ja": "浴の診断用ケースで独立した物理問題数へ加算しません。浴がKを正しく分布させてもglobal rescalingだけでは方向を熱化しません。exp(−t/τ)を力付きMDのK相関へ流用しません。固定seedと予算に対する統計判定で、一般の混合保証ではありません。",
+      "en": "A bath diagnostic, not another independent physical problem. Correct K sampling does not thermalize momentum directions by global scaling alone. The bath-only exp(−t/tau) identity is not a full-MD kinetic ACF. Statistical decisions apply to fixed seeds/budgets, not general mixing guarantees."
+    },
+    "formulas": [
+      "\\bar K=\\frac{N_fT}{2},\\quad c=e^{-h/\\tau},\\quad A=\\frac{T(1-c)}2,\\quad R\\sim N(0,1),\\ S\\sim\\chi^2_{N_f-1}",
+      "K^\\prime=(\\sqrt{cK}+\\sqrt A R)^2+AS,\\quad \\operatorname{sign}\\alpha=\\operatorname{sign}(\\sqrt{cK}+\\sqrt A R)",
+      "\\mathbb E[K^\\prime\\mid K]=cK+(1-c)\\bar K,\\quad\\operatorname{Var}(K^\\prime\\mid K)=2TKc(1-c)+\\frac{N_fT^2}{2}(1-c)^2",
+      "K\\sim\\operatorname{Gamma}(N_f/2,T),\\quad\\operatorname{Var}(T_{\\rm inst})=\\frac{2T^2}{N_f},\\quad C_K^{\\rm bath}(t)=e^{-t/\\tau}"
+    ],
+    "references": [
+      {
+        "id": "bussi2007csvr",
+        "author": "G. Bussi, D. Donadio and M. Parrinello",
+        "year": 2007,
+        "title": "Canonical sampling through velocity rescaling",
+        "type": "article",
+        "journal": "The Journal of Chemical Physics 126, 014101",
+        "doi": "10.1063/1.2408420",
+        "url": "https://arxiv.org/html/0803.4060v1",
+        "review_level": "author-manuscript-selected-theory-and-appendix",
+        "review": {
+          "ja": "2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。",
+          "en": "Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author."
+        }
+      },
+      {
+        "id": "bussi2008localglobal",
+        "author": "G. Bussi and M. Parrinello",
+        "year": 2008,
+        "title": "Stochastic thermostats: comparison of local and global schemes",
+        "type": "article",
+        "journal": "Computer Physics Communications 179(1–3), 26–29",
+        "doi": "10.1016/j.cpc.2008.01.006",
+        "url": "https://arxiv.org/html/0803.4397v1",
+        "review_level": "author-manuscript-selected-equations-and-algorithm",
+        "review": {
+          "ja": "著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。",
+          "en": "Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced."
+        }
+      },
+      {
+        "id": "bussi-csvr-author-algorithms",
+        "author": "Giovanni Bussi",
+        "year": 2026,
+        "title": "Research algorithms: stochastic velocity rescaling",
+        "type": "misc",
+        "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+        "review_level": "author-official-algorithm-note",
+        "review": {
+          "ja": "著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。",
+          "en": "Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code."
+        }
+      }
+    ]
+  },
+  {
+    "method_ids": [
+      "stochastic-velocity-rescaling",
+      "langevin-thermostat"
+    ],
+    "domains": [
+      "temperature",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "thermostats.py"
+    ],
+    "id": "csvr-langevin-harmonic",
+    "title": {
+      "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+      "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+    },
+    "summary": {
+      "ja": "異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。",
+      "en": "Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations."
+    },
+    "assumptions": {
+      "ja": "m=kB=T=1、ω=(1,1.7)、Nf=2。τ=0.25/1、h=0.1/0.05。正準初期8192複製とq,pを1.4倍した4096複製を別にt=20まで進めます。相関lagは0/0.5/1/2/4。",
+      "en": "m=kB=T=1, omega=(1,1.7), Nf=2. tau=0.25/1, h=0.1/0.05. Evolve 8192 canonically initialized replicas and a separate 4096-replica ensemble with q,p scaled by 1.4 to t=20. Correlation lags are 0/0.5/1/2/4."
+    },
+    "algorithm": {
+      "ja": "両方式とも厳密な浴O(h/2)–velocity-Verlet–O(h/2)（OBABO）。CSVRは全運動量に同じ係数、Langevinは各成分に独立OU雑音を作用。γ=1/(2τ)で自由浴のK緩和時間をそろえます。以前のBAOAB例は変更せず別の分割として残します。",
+      "en": "Both use exact O(h/2)–velocity-Verlet–O(h/2), or OBABO. CSVR applies one factor to all momenta; Langevin uses independent component-wise OU noise. gamma=1/(2 tau) matches bath-only K relaxation. The earlier BAOAB release is retained as a different splitting."
+    },
+    "validation": {
+      "ja": "正準Gaussian・Gamma分布とK/U/Hの平均・分散を照合。有限刻みではVerletのshadow二次形式を使い、位置分散T/[ω²(1−h²ω²/4)]、運動量分散Tを別導出したLyapunov解と比較します。h=0.2/0.1/0.05の決定論的偏りで2次性を確認。Langevinのq,p,K,H相関は独立の離散伝播と照合し、CSVRの相関は独立複製の標準誤差とτ・h依存を表示します。",
+      "en": "Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For finite steps, compare the Verlet-shadow position variance T/[omega²(1−h² omega²/4)] and momentum variance T against a separately constructed Lyapunov solution. Deterministic biases at h=0.2/0.1/0.05 establish second order. Check Langevin q,p,K,H correlations against independent discrete propagation; report CSVR correlations with independent-replica standard errors and tau/h dependence."
+    },
+    "limits": {
+      "ja": "global CSVRとlocal Langevinの運動相関が等しいとは要求しません。CDF差は指定5点の最大であり全実数上のKS距離ではありません。正準初期分布の保存と温度摂動からの有限時間確認は一般のエルゴード性証明ではなく、軸上の励起されない自由度が残る反例もテストします。分子・拘束・BOMDには外挿しません。",
+      "en": "Global-CSVR and local-Langevin dynamical correlations are not required to agree. CDF errors are maxima over five declared points, not whole-line KS distances. Canonical-start preservation and the heated-start finite-time check do not prove ergodicity; tests retain an invariant unexcited-axis counterexample. No extrapolation to molecules, constraints or BOMD."
+    },
+    "formulas": [
+      "U(q)=\\frac12\\sum_{i=1}^2\\omega_i^2q_i^2,\\quad H=K+U,\\quad\\gamma=\\frac1{2\\tau}",
+      "\\Sigma_{h,i}=\\operatorname{diag}\\left(\\frac{T}{\\omega_i^2(1-h^2\\omega_i^2/4)},T\\right),\\quad\\Sigma_h=M\\Sigma_hM^T+Q",
+      "K\\sim\\operatorname{Gamma}(1,T),\\quad H\\sim\\operatorname{Gamma}(2,T),\\quad\\operatorname{Var}K=T^2,\\quad\\operatorname{Var}H=2T^2",
+      "C_X(t)=\\frac{\\mathbb E[(X_t-\\mu_X)(X_0-\\mu_X)]}{\\sigma_X^2},\\quad\\operatorname{SE}(\\widehat C_X)=\\frac{s_{\\rm products}}{\\sqrt{N_{\\rm replicas}}}"
+    ],
+    "references": [
+      {
+        "id": "bussi2007csvr",
+        "author": "G. Bussi, D. Donadio and M. Parrinello",
+        "year": 2007,
+        "title": "Canonical sampling through velocity rescaling",
+        "type": "article",
+        "journal": "The Journal of Chemical Physics 126, 014101",
+        "doi": "10.1063/1.2408420",
+        "url": "https://arxiv.org/html/0803.4060v1",
+        "review_level": "author-manuscript-selected-theory-and-appendix",
+        "review": {
+          "ja": "2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。",
+          "en": "Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author."
+        }
+      },
+      {
+        "id": "bussi2008localglobal",
+        "author": "G. Bussi and M. Parrinello",
+        "year": 2008,
+        "title": "Stochastic thermostats: comparison of local and global schemes",
+        "type": "article",
+        "journal": "Computer Physics Communications 179(1–3), 26–29",
+        "doi": "10.1016/j.cpc.2008.01.006",
+        "url": "https://arxiv.org/html/0803.4397v1",
+        "review_level": "author-manuscript-selected-equations-and-algorithm",
+        "review": {
+          "ja": "著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。",
+          "en": "Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced."
+        }
+      },
+      {
+        "id": "bussi-csvr-author-algorithms",
+        "author": "Giovanni Bussi",
+        "year": 2026,
+        "title": "Research algorithms: stochastic velocity rescaling",
+        "type": "misc",
+        "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+        "review_level": "author-official-algorithm-note",
+        "review": {
+          "ja": "著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。",
+          "en": "Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code."
+        }
+      }
+    ]
+  },
+  {
+    "method_ids": [
+      "stochastic-velocity-rescaling",
+      "langevin-thermostat"
+    ],
+    "domains": [
+      "temperature",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "thermostats.py"
+    ],
+    "id": "csvr-langevin-quartic",
+    "title": {
+      "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+      "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+    },
+    "summary": {
+      "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+      "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+    },
+    "assumptions": {
+      "ja": "m=kB=T=1、ω=(1,1.7)、λ=0.2、U=Σ(ω²q²/2+λq⁴/4)。正準8192複製、温度摂動4096複製、t=20、τ=0.25/1、h=0.1/0.05、lag=0/0.5/1/2/4。",
+      "en": "m=kB=T=1, omega=(1,1.7), lambda=0.2, U=sum(omega²q²/2+lambda q⁴/4). Use 8192 canonical and 4096 heated replicas, t=20, tau=0.25/1, h=0.1/0.05, lags 0/0.5/1/2/4."
+    },
+    "algorithm": {
+      "ja": "同じOBABO分割でglobal CSVRとlocal OUを比較。正準初期座標はGaussianを包絡にした独立棄却法、運動量はMaxwell分布から生成し、別の温度摂動初期集団も進めます。",
+      "en": "Compare global CSVR and local OU with the same OBABO splitting. Draw initial canonical positions by independent Gaussian-envelope rejection and momenta from Maxwell distributions, and evolve a separate heated initial ensemble."
+    },
+    "validation": {
+      "ja": "座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。",
+      "en": "Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise."
+    },
+    "limits": {
+      "ja": "特定の分離可能な四次2自由度・固定seedだけの小さな例です。Hを調和系のGamma分布と扱いません。全系相関には独立な厳密動力学参照がなく、相関一致や統計誤差に隠れる時間次数を合格主張しません。成熟分子系・輸送係数・量子・第一原理MDの検証ではありません。",
+      "en": "A small example for one separable two-mode quartic potential and fixed seeds. H is not treated as harmonic Gamma. No independent exact full-system dynamical reference is claimed, and neither matching correlations nor time order hidden by sampling noise is an acceptance claim. Molecular transport, quantum and ab initio MD are outside scope."
+    },
+    "formulas": [
+      "U(q)=\\sum_{i=1}^2\\left(\\frac{\\omega_i^2q_i^2}{2}+\\frac{\\lambda q_i^4}{4}\\right),\\quad\\rho(q)=Z^{-1}e^{-U(q)/T}",
+      "F_H(E)=\\int_{U(q)\\le E}\\rho(q)\\left[1-e^{-(E-U(q))/T}\\right]dq,\\qquad N_f=2",
+      "\\mathbb E H=\\mathbb E K+\\mathbb E U,\\quad\\operatorname{Var}H=\\operatorname{Var}K+\\operatorname{Var}U"
+    ],
+    "references": [
+      {
+        "id": "bussi2007csvr",
+        "author": "G. Bussi, D. Donadio and M. Parrinello",
+        "year": 2007,
+        "title": "Canonical sampling through velocity rescaling",
+        "type": "article",
+        "journal": "The Journal of Chemical Physics 126, 014101",
+        "doi": "10.1063/1.2408420",
+        "url": "https://arxiv.org/html/0803.4060v1",
+        "review_level": "author-manuscript-selected-theory-and-appendix",
+        "review": {
+          "ja": "2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。",
+          "en": "Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author."
+        }
+      },
+      {
+        "id": "bussi2008localglobal",
+        "author": "G. Bussi and M. Parrinello",
+        "year": 2008,
+        "title": "Stochastic thermostats: comparison of local and global schemes",
+        "type": "article",
+        "journal": "Computer Physics Communications 179(1–3), 26–29",
+        "doi": "10.1016/j.cpc.2008.01.006",
+        "url": "https://arxiv.org/html/0803.4397v1",
+        "review_level": "author-manuscript-selected-equations-and-algorithm",
+        "review": {
+          "ja": "著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。",
+          "en": "Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced."
+        }
+      },
+      {
+        "id": "bussi-csvr-author-algorithms",
+        "author": "Giovanni Bussi",
+        "year": 2026,
+        "title": "Research algorithms: stochastic velocity rescaling",
+        "type": "misc",
+        "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+        "review_level": "author-official-algorithm-note",
+        "review": {
+          "ja": "著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。",
+          "en": "Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code."
+        }
+      }
+    ]
+  }
+]

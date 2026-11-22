@@ -37,8 +37,8 @@
   "units": "Atomic units in the displayed electronic equations (hbar = m_e = e = 4 pi epsilon_0 = 1); dimensionless conventions are stated where needed.",
   "boundary_conditions": "Isolated or periodic conditions must be selected for each physical system; no numerical boundary-value example is published here yet.",
   "next_deliverable": {
-    "ja": "減衰反復とDIISを、同じ停止条件と失敗例で比較。",
-    "en": "Compare damping and DIIS under the same stopping criteria, including failures."
+    "ja": "解説・一次文献と既存の小規模例との対応を保守する。専用実装の追加は必要性が指定された場合に小さな教育用例から検討し、重い収束走査・独立参照の再生成・長時間MDは通常の作業へ含めない。",
+    "en": "Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD."
   },
   "limitations": {
     "ja": "日英の導入・代表式・一次文献を公開。専用の実装・数値検証はUnder construction。外挿は収束やエネルギーの単調減少を保証しません。残差が見かけ上小さい場合、初期値依存や停留解の不安定性も確認します。",

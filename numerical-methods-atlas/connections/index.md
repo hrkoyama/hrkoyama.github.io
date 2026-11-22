@@ -8,9 +8,9 @@
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=ja#dft-md-ja)
 
-静的な電子状態から核の力、軌道、熱浴へ。固定Heのエネルギー・力と、独立したLangevin振動子の分布検証をたどり、MD連成で追加すべき条件を確かめます。
+静的な電子状態から核の力、軌道、熱浴へ。固定Heの力と、別の古典系でのLangevin／CSVRの分布・揺らぎ・相関をたどり、第一原理MDとの連成に残る検証を確かめます。
 
-この経路で確認できる範囲：静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認まで。Langevin調和振動子の温度・エネルギー分布と相関は独立した補助例で検証しています。BOMD/CPMDと熱浴を結んだ経路全体は未実行です。
+この経路で確認できる範囲：静的Heと多原子He₂の力は実行可能で、BOMD接続は短い局所確認まで。Langevin／CSVRの調和・quartic分布と相関は、独立した古典補助例で検証します。BOMD／CPMDと熱浴を結ぶ経路全体は未実行です。
 
 ### 固定セルの周期He KS-LDA
 
@@ -58,23 +58,33 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 
 ### サーモスタットと分布の確認
 
-12手法の比較解説に加え、Langevin調和振動子のBAOAB積分を専用補助例で検証。温度・位置/エネルギー分布・時間相関を解析的な調和振動子と比較します。
+12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。
 
 段階の状態: scoped-supplement
 
 - [温度制御と分布の比較](/numerical-methods-atlas/ja/read/thermostats/)
 - [Langevin振動子：分布・相関・刻み幅の実測](/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic)
+- [CSVRとLangevin：分布・揺らぎ・方法依存の相関](/numerical-methods-atlas/ja/read/validation-thermostats/)
 - [Nosé–Hooverサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=ja): planned
 - [Nosé–Hoover chain](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=ja): planned
 - [Langevinサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja): educational-example
-- [確率的速度リスケーリング（CSVR）](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja): planned
+- [確率的速度リスケーリング（CSVR）](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja): educational-example
 
-別管理の固定補助例: Langevin/BAOAB・1自由度の調和振動子という固定した要素例。BOMD/CPMDからの核座標や原子間力は受け取りません。
+別管理の固定補助例: 旧1自由度の調和Langevin/BAOABと、新しい同OBABO分割の2自由度CSVR／Langevin比較（調和・quartic λ=0.2）、CSVR核の限定診断。BOMD／CPMDの核配置・原子間力は受け取らず、DFTと熱浴を連成した計算ではありません。
 - [Langevin温度制御：正準分布・刻み偏り・時間相関](https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja): 調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
   調和ポテンシャル・固定seedの分布検証です。位置分散が正確でも運動量には有限刻み偏りがあります。他のサーモスタット、一般分子系、長時間の第一原理MDへ検証を移しません。
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic)
+- [CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=ja): 自由度1・2・6のCSVR浴だけを実装し、厳密な条件付きモーメントと非心χ²分布、正準Gamma分布と運動エネルギー相関を照合します。
+  浴の診断用ケースで独立した物理問題数へ加算しません。浴がKを正しく分布させてもglobal rescalingだけでは方向を熱化しません。exp(−t/τ)を力付きMDのK相関へ流用しません。固定seedと予算に対する統計判定で、一般の混合保証ではありません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel)
+- [CSVRとLangevin：調和2自由度の分布・揺らぎ・相関](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja): 異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。
+  global CSVRとlocal Langevinの運動相関が等しいとは要求しません。CDF差は指定5点の最大であり全実数上のKS距離ではありません。正準初期分布の保存と温度摂動からの有限時間確認は一般のエルゴード性証明ではなく、軸上の励起されない自由度が残る反例もテストします。分子・拘束・BOMDには外挿しません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-harmonic)
+- [非調和CSVRとLangevin：Boltzmann求積との分布比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja): 弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
+  特定の分離可能な四次2自由度・固定seedだけの小さな例です。Hを調和系のGamma分布と扱いません。全系相関には独立な厳密動力学参照がなく、相関一致や統計誤差に隠れる時間次数を合格主張しません。成熟分子系・輸送係数・量子・第一原理MDの検証ではありません。
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic)
 
-残る差: この実行済み部分は独立した調和振動子だけです。他11手法、一般の多体系、第一原理MDとの連成は検証していません。平均温度の一致と正準分布・相関の一致を区別します。
+残る差: 専用実装は2手法で、他10手法は未実装。新しい2自由度調和・quartic比較とCSVR核は別の古典要素例です。旧BAOABも保持します。平衡分布・揺らぎと、浴に依存する時間相関を区別し、一般多体系や第一原理MDとの連成へ証拠を移しません。
 
 ### 多原子セルでエネルギー微分と力を照合する
 
@@ -118,7 +128,7 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 
 **異なる点:** 平均温度の一致だけでは正準分布やエルゴード性を示さない。熱浴は拡散・速度相関を変え得る。CPでは核と仮想電子自由度の温度を混同しない。
 
-**既存の要素根拠:** Langevin調和振動子の専用コード・固定入力・分布/相関/刻み幅の補助検証を公開。第一原理MDの力供給APIとは独立しており、両者を結んだ軌道は実行していません。
+**既存の要素根拠:** 旧BAOABと、新しい同OBABO分割のCSVR／Langevin調和・quartic比較、Gamma/CIRを参照するCSVR核診断が古典要素例として利用可能。温度・エネルギー分布、揺らぎ、方法依存の相関を確認します。第一原理MDの力供給APIとは独立で、両者を結んだ軌道は実行していません。
 
 **接続に必要な検証:** 調和振動子・理想気体などで位置分布とKのχ²分布、自己相関、独立系列の不確かさを確認し、刻み幅と結合時間を変える。核MDとの連成前に小自由度の探索失敗も調べる。
 
@@ -131,6 +141,7 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
 - R. Car and M. Parrinello (1985). [Unified Approach for Molecular Dynamics and Density-Functional Theory](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471). 出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。
 - William G. Hoover (1985). [Canonical dynamics: Equilibrium phase-space distributions](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.31.1695). 既存サーモスタット台帳の原著。今回出版社の書誌・抄録を確認し、拡張位相空間分布と調和振動子の例の範囲を参照。全文の監査・数値再現は未実施。
 - B. Leimkuhler and C. Matthews (2013). [Rational Construction of Stochastic Numerical Methods for Molecular Sampling](https://arxiv.org/abs/1203.5428). 著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。
+- G. Bussi, D. Donadio and M. Parrinello (2007). [Canonical sampling through velocity rescaling](https://arxiv.org/html/0803.4060v1). 著者稿のII.1–II.3、運動エネルギーSDE(7)と付録A(16)–(22)を確認。Gamma二乗和生成には著者の訂正も参照。
 
 ## 反応拡散 → 生物・流体の輸送
 
@@ -429,6 +440,8 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 
 Supplement models: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json); SHA-256=f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2
 
+Supplement thermostats: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json); SHA-256=c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905
+
 # Crossovers between numerical fields
 
 Explore quantum chemistry, molecular dynamics, reaction–diffusion, biology, fluids and gravity through exchanged quantities and shared mathematics. Each connection states its validation needs and distinguishes runnable fixed examples, reading-only stages and unexecuted coupling.
@@ -439,9 +452,9 @@ Common-registry executions and fixed checks from independently extracted supplem
 
 [HTML](https://hrkoyama.github.io/numerical-methods-atlas/connections/?lang=en#dft-md-en)
 
-Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He energy/force evidence and separate Langevin-oscillator distribution checks, then inspect the extra requirements for coupled MD.
+Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He forces and separate classical Langevin/CSVR distribution, fluctuation and correlation checks, then inspect the remaining first-principles-MD coupling requirements.
 
-Evidence scope of this route: Static He and multiatom-He₂ forces are runnable; the BOMD interface has only a short local check. Temperature/energy distributions and correlations of a Langevin harmonic oscillator are validated in a separate supplement. The complete BOMD/CPMD-to-heat-bath route has not been executed.
+Evidence scope of this route: Static He and multiatom-He2 forces are runnable; the BOMD interface has only a short local check. Langevin/CSVR harmonic/quartic distributions and correlations are checked in separate classical supplements. The complete BOMD/CPMD-to-heat-bath route remains unexecuted.
 
 ### Fixed-cell periodic-He KS-LDA
 
@@ -489,23 +502,33 @@ Remaining gap: Long BOMD NVE drift and systematic timestep/SCF trajectory conver
 
 ### Thermostats and distribution checks
 
-Alongside comparative reading for 12 methods, a dedicated supplement validates BAOAB Langevin integration for a harmonic oscillator through temperature, position/energy distributions and time correlations against analytic oscillator results.
+Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned.
 
 Stage state: scoped-supplement
 
 - [Temperature control and distribution comparisons](/numerical-methods-atlas/en/read/thermostats/)
 - [Langevin oscillator: measured distributions, correlations and steps](/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic)
+- [CSVR and Langevin: distributions, fluctuations and method-dependent correlations](/numerical-methods-atlas/en/read/validation-thermostats/)
 - [Nosé–Hoover thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=en): planned
 - [Nosé–Hoover chains](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=en): planned
 - [Langevin thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en): educational-example
-- [Stochastic velocity rescaling (CSVR)](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en): planned
+- [Stochastic velocity rescaling (CSVR)](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en): educational-example
 
-Separately managed fixed supplements: A fixed Langevin/BAOAB component with one harmonic-oscillator degree of freedom. It consumes neither nuclear coordinates nor interatomic forces from BOMD/CPMD.
+Separately managed fixed supplements: Retain the earlier one harmonic-oscillator degree of freedom with Langevin/BAOAB. Add separate two-degree CSVR/Langevin comparisons with the same OBABO splitting (harmonic and quartic lambda=0.2), plus a scoped CSVR-kernel diagnostic. They consume neither BOMD/CPMD nuclear geometries nor interatomic forces and do not couple DFT to a heat bath.
 - [Langevin thermostat: canonical distributions, timestep bias and correlation](https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en): Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
   Distribution checks use a harmonic potential and fixed seeds. Exact position variance does not remove finite-step momentum bias. Evidence does not transfer to other thermostats, general molecules or long ab initio MD.
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic)
+- [Exact CSVR bath: conditional laws, fluctuations and kinetic correlation](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=en): Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations.
+  A bath diagnostic, not another independent physical problem. Correct K sampling does not thermalize momentum directions by global scaling alone. The bath-only exp(−t/tau) identity is not a full-MD kinetic ACF. Statistical decisions apply to fixed seeds/budgets, not general mixing guarantees.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel)
+- [CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en): Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations.
+  Global-CSVR and local-Langevin dynamical correlations are not required to agree. CDF errors are maxima over five declared points, not whole-line KS distances. Canonical-start preservation and the heated-start finite-time check do not prove ergodicity; tests retain an invariant unexcited-axis counterexample. No extrapolation to molecules, constraints or BOMD.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-harmonic)
+- [Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en): Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
+  A small example for one separable two-mode quartic potential and fixed seeds. H is not treated as harmonic Gamma. No independent exact full-system dynamical reference is claimed, and neither matching correlations nor time order hidden by sampling noise is an acceptance claim. Molecular transport, quantum and ab initio MD are outside scope.
+  [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic)
 
-Remaining gap: The executed subset is a standalone harmonic oscillator only. The other 11 methods, general many-body systems and first-principles-MD coupling remain unvalidated. Mean-temperature agreement is distinct from agreement of canonical distributions and correlations.
+Remaining gap: Dedicated implementations cover two methods; the other 10 methods are unimplemented. The new two-degree harmonic/quartic comparisons and CSVR kernel are separate classical components, alongside the retained BAOAB case. Distinguish equilibrium distributions/fluctuations from bath-dependent correlations, without transferring evidence to general many-body or first-principles-MD coupling.
 
 ### Check energy derivatives against forces in a multiatom cell
 
@@ -549,7 +572,7 @@ Quantity handoff
 
 **What differs:** Correct mean temperature establishes neither canonical sampling nor ergodicity. A bath can change diffusion and velocity correlations. Keep nuclear and fictitious electronic temperatures distinct in CP.
 
-**Existing component evidence:** Dedicated Langevin-oscillator code, fixed inputs and distribution/correlation/timestep checks are published as a supplement. It is independent of the first-principles force API; no trajectory joins the two.
+**Existing component evidence:** The earlier BAOAB case, new same-OBABO CSVR/Langevin harmonic/quartic comparisons and a CSVR-kernel Gamma/CIR diagnostic provide classical component evidence. They check temperature/energy distributions, fluctuations and method-dependent correlations. They are independent of the first-principles force API; no trajectory joins the two.
 
 **Validation required:** Use oscillators/ideal gases to check position distributions and the chi-square distribution of kinetic energy, autocorrelations and independent-stream uncertainty; vary step size and coupling time. Include small-system sampling failures before coupling to nuclear MD.
 
@@ -562,6 +585,7 @@ Coupled execution: not performed. Thermostatted first-principles MD has not been
 - R. Car and M. Parrinello (1985). [Unified Approach for Molecular Dynamics and Density-Functional Theory](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471). Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced.
 - William G. Hoover (1985). [Canonical dynamics: Equilibrium phase-space distributions](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.31.1695). Existing thermostat-registry primary reference. Publisher metadata/abstract checked for extended phase-space distributions and the harmonic-oscillator example. No full-paper audit or numerical reproduction.
 - B. Leimkuhler and C. Matthews (2013). [Rational Construction of Stochastic Numerical Methods for Molecular Sampling](https://arxiv.org/abs/1203.5428). Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here.
+- G. Bussi, D. Donadio and M. Parrinello (2007). [Canonical sampling through velocity rescaling](https://arxiv.org/html/0803.4060v1). Checked author-manuscript sections II.1–II.3, kinetic SDE (7), and appendix A (16)–(22); consult the author correction for Gamma-based squared-noise generation.
 
 ## Reaction–diffusion → biological and fluid transport
 
@@ -859,3 +883,5 @@ Thermostatted MD requires distributions, correlations and finite-sample uncertai
 Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 
 Supplement models: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json); SHA-256=f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2
+
+Supplement thermostats: [independently-extracted-supplement](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json); SHA-256=c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905

@@ -767,6 +767,15 @@
         "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
         "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
       }
+    },
+    {
+      "id": "thermostatted-quartic",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+      "caption": {
+        "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+        "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+      }
     }
   ]
 }

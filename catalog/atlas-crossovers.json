@@ -156,8 +156,8 @@
         "en": "DFT → first-principles MD → temperature control"
       },
       "summary": {
-        "ja": "静的な電子状態から核の力、軌道、熱浴へ。固定Heのエネルギー・力と、独立したLangevin振動子の分布検証をたどり、MD連成で追加すべき条件を確かめます。",
-        "en": "Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He energy/force evidence and separate Langevin-oscillator distribution checks, then inspect the extra requirements for coupled MD."
+        "ja": "静的な電子状態から核の力、軌道、熱浴へ。固定Heの力と、別の古典系でのLangevin／CSVRの分布・揺らぎ・相関をたどり、第一原理MDとの連成に残る検証を確かめます。",
+        "en": "Move from static electronic structure to nuclear forces, trajectories and a heat bath. Follow fixed-He forces and separate classical Langevin/CSVR distribution, fluctuation and correlation checks, then inspect the remaining first-principles-MD coupling requirements."
       },
       "keywords": [
         "DFT",
@@ -305,8 +305,8 @@
             "en": "Thermostats and distribution checks"
           },
           "summary": {
-            "ja": "12手法の比較解説に加え、Langevin調和振動子のBAOAB積分を専用補助例で検証。温度・位置/エネルギー分布・時間相関を解析的な調和振動子と比較します。",
-            "en": "Alongside comparative reading for 12 methods, a dedicated supplement validates BAOAB Langevin integration for a harmonic oscillator through temperature, position/energy distributions and time correlations against analytic oscillator results."
+            "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
+            "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
           },
           "method_ids": [
             "nose-hoover",
@@ -335,19 +335,32 @@
                 "ja": "Langevin振動子：分布・相関・刻み幅の実測",
                 "en": "Langevin oscillator: measured distributions, correlations and steps"
               }
+            },
+            {
+              "url": {
+                "ja": "/numerical-methods-atlas/ja/read/validation-thermostats/",
+                "en": "/numerical-methods-atlas/en/read/validation-thermostats/"
+              },
+              "label": {
+                "ja": "CSVRとLangevin：分布・揺らぎ・方法依存の相関",
+                "en": "CSVR and Langevin: distributions, fluctuations and method-dependent correlations"
+              }
             }
           ],
           "gap": {
-            "ja": "この実行済み部分は独立した調和振動子だけです。他11手法、一般の多体系、第一原理MDとの連成は検証していません。平均温度の一致と正準分布・相関の一致を区別します。",
-            "en": "The executed subset is a standalone harmonic oscillator only. The other 11 methods, general many-body systems and first-principles-MD coupling remain unvalidated. Mean-temperature agreement is distinct from agreement of canonical distributions and correlations."
+            "ja": "専用実装は2手法で、他10手法は未実装。新しい2自由度調和・quartic比較とCSVR核は別の古典要素例です。旧BAOABも保持します。平衡分布・揺らぎと、浴に依存する時間相関を区別し、一般多体系や第一原理MDとの連成へ証拠を移しません。",
+            "en": "Dedicated implementations cover two methods; the other 10 methods are unimplemented. The new two-degree harmonic/quartic comparisons and CSVR kernel are separate classical components, alongside the retained BAOAB case. Distinguish equilibrium distributions/fluctuations from bath-dependent correlations, without transferring evidence to general many-body or first-principles-MD coupling."
           },
           "supplemental_ids": [
-            "langevin-harmonic"
+            "langevin-harmonic",
+            "csvr-kinetic-kernel",
+            "csvr-langevin-harmonic",
+            "csvr-langevin-quartic"
           ],
           "supplemental_role": "scoped-component",
           "supplemental_scope": {
-            "ja": "Langevin/BAOAB・1自由度の調和振動子という固定した要素例。BOMD/CPMDからの核座標や原子間力は受け取りません。",
-            "en": "A fixed Langevin/BAOAB component with one harmonic-oscillator degree of freedom. It consumes neither nuclear coordinates nor interatomic forces from BOMD/CPMD."
+            "ja": "旧1自由度の調和Langevin/BAOABと、新しい同OBABO分割の2自由度CSVR／Langevin比較（調和・quartic λ=0.2）、CSVR核の限定診断。BOMD／CPMDの核配置・原子間力は受け取らず、DFTと熱浴を連成した計算ではありません。",
+            "en": "Retain the earlier one harmonic-oscillator degree of freedom with Langevin/BAOAB. Add separate two-degree CSVR/Langevin comparisons with the same OBABO splitting (harmonic and quartic lambda=0.2), plus a scoped CSVR-kernel diagnostic. They consume neither BOMD/CPMD nuclear geometries nor interatomic forces and do not couple DFT to a heat bath."
           }
         }
       ],
@@ -477,8 +490,8 @@
             "en": "Use oscillators/ideal gases to check position distributions and the chi-square distribution of kinetic energy, autocorrelations and independent-stream uncertainty; vary step size and coupling time. Include small-system sampling failures before coupling to nuclear MD."
           },
           "existing_evidence": {
-            "ja": "Langevin調和振動子の専用コード・固定入力・分布/相関/刻み幅の補助検証を公開。第一原理MDの力供給APIとは独立しており、両者を結んだ軌道は実行していません。",
-            "en": "Dedicated Langevin-oscillator code, fixed inputs and distribution/correlation/timestep checks are published as a supplement. It is independent of the first-principles force API; no trajectory joins the two."
+            "ja": "旧BAOABと、新しい同OBABO分割のCSVR／Langevin調和・quartic比較、Gamma/CIRを参照するCSVR核診断が古典要素例として利用可能。温度・エネルギー分布、揺らぎ、方法依存の相関を確認します。第一原理MDの力供給APIとは独立で、両者を結んだ軌道は実行していません。",
+            "en": "The earlier BAOAB case, new same-OBABO CSVR/Langevin harmonic/quartic comparisons and a CSVR-kernel Gamma/CIR diagnostic provide classical component evidence. They check temperature/energy distributions, fluctuations and method-dependent correlations. They are independent of the first-principles force API; no trajectory joins the two."
           },
           "coupled_validation": {
             "status": "not-executed",
@@ -490,7 +503,8 @@
           },
           "reference_ids": [
             "hoover1985",
-            "leimkuhler-matthews2013"
+            "leimkuhler-matthews2013",
+            "bussi2007csvr"
           ],
           "connection_kind": "handoff"
         }
@@ -505,8 +519,8 @@
       "coupled_validation": {
         "status": "not-executed",
         "scope": {
-          "ja": "静的Heと多原子He₂の力が実行可能。BOMD接続は短い局所確認まで。Langevin調和振動子の温度・エネルギー分布と相関は独立した補助例で検証しています。BOMD/CPMDと熱浴を結んだ経路全体は未実行です。",
-          "en": "Static He and multiatom-He₂ forces are runnable; the BOMD interface has only a short local check. Temperature/energy distributions and correlations of a Langevin harmonic oscillator are validated in a separate supplement. The complete BOMD/CPMD-to-heat-bath route has not been executed."
+          "ja": "静的Heと多原子He₂の力は実行可能で、BOMD接続は短い局所確認まで。Langevin／CSVRの調和・quartic分布と相関は、独立した古典補助例で検証します。BOMD／CPMDと熱浴を結ぶ経路全体は未実行です。",
+          "en": "Static He and multiatom-He2 forces are runnable; the BOMD interface has only a short local check. Langevin/CSVR harmonic/quartic distributions and correlations are checked in separate classical supplements. The complete BOMD/CPMD-to-heat-bath route remains unexecuted."
         },
         "example_ids": []
       }
@@ -1497,6 +1511,18 @@
       "review": {
         "ja": "IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。",
         "en": "IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed."
+      }
+    },
+    {
+      "id": "bussi2007csvr",
+      "author": "G. Bussi, D. Donadio and M. Parrinello",
+      "year": 2007,
+      "title": "Canonical sampling through velocity rescaling",
+      "url": "https://arxiv.org/html/0803.4060v1",
+      "review_level": "selected-original-equations-and-appendix",
+      "review": {
+        "ja": "著者稿のII.1–II.3、運動エネルギーSDE(7)と付録A(16)–(22)を確認。Gamma二乗和生成には著者の訂正も参照。",
+        "en": "Checked author-manuscript sections II.1–II.3, kinetic SDE (7), and appendix A (16)–(22); consult the author correction for Gamma-based squared-noise generation."
       }
     }
   ]

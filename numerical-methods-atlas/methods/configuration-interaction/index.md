@@ -21,7 +21,7 @@ Comparison notes: Finite-basis FCI is not the exact continuum solution. Check si
 
 - Reference: https://doi.org/10.1016/0009-2614(84)85513-X — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: Define a small-basis reference and comparison criteria.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/configuration-interaction/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

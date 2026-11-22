@@ -90,8 +90,8 @@
   "units": "Atomic units (hbar=m_e=e=4 pi epsilon_0=1): r in bohr, energies/effective potentials in hartree, and normalized reduced orbitals u in bohr^(-1/2). Positive electron-number density n(r) is in bohr^(-3); radial number density p(r)=4 pi r^2 n(r) is in bohr^(-1), with integral p dr=N. p is not signed charge density. Molecular branch: normalized 3D AO functions in bohr^(-3/2); overlap, AO density matrix and electron count dimensionless; transformed Fock commutator in hartree. Molecular tolerances are stated separately.",
   "boundary_conditions": "Helium reduced orbital: u(0)=u(r_max)=0, baseline r_max=16 bohr with a separate 4/8/12/16-bohr domain study. The Hartree field is finite at the origin and joins N/r outside the density; it is not fixed to zero at r_max. Separate H2 branch: isolated molecule, analytic whole-space Gaussian integrals; no finite radial box.",
   "next_deliverable": {
-    "ja": "小分子・最小基底の入力と独立した参照値の照合。",
-    "en": "Small-molecule minimal-basis inputs checked against an independent reference."
+    "ja": "既存の小規模例の固定入力・保存済み参照・配布物の整合を維持し、必要時に少数の代表ケースを再実行する。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMDは、必要性が指定された場合だけ別途検討する。",
+    "en": "Maintain fixed inputs, saved references and release integrity for the existing small examples; rerun a few representative cases when needed. Large basis/k-point sweeps, expensive independent-reference regeneration and long BOMD/CPMD trajectories are considered separately only on explicit need."
   },
   "limitations": {
     "ja": "この局所交換の簡約を多軌道・開殻・分子・周期系へそのまま拡張できない。原子版ではUHF/ROHF・分子積分・軌道安定性解析を扱わない。保存PySCF RHF参照は独立な有限Gaussian基底計算であり、相関を含むHeの厳密エネルギーではない。格子・箱幅・SCF収束と物理モデル誤差を区別する。 H₂では別の分子積分実装を用いる。分子DFT・一般多中心分子・開殻・軌道安定性解析は未実装。",

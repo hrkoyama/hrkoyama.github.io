@@ -10,7 +10,7 @@ const published = JSON.parse(read('numerical-methods-atlas/methods/index.json'))
 const html = read('numerical-methods-atlas/methods/index.html');
 const storageKey = 'hrkoyama.atlas.methodFilters.v1';
 const statuses = ['all', 'educational-example', 'reading-only', 'planned'];
-const expectedCounts = {'educational-example': 113, 'reading-only': 15, planned: 17};
+const expectedCounts = {'educational-example': 114, 'reading-only': 15, planned: 16};
 const byId = new Map(catalog.methods.map(method => [method.id, method]));
 
 const decode = value => value.replace(/&(?:amp|lt|gt|quot|#39|#x[\da-f]+|#\d+);/gi, entity => {
@@ -52,6 +52,13 @@ test('all 145 canonical records retain exact IDs, statuses, scientific metadata 
         for (const field of ['group', 'case_ids']) assert.deepEqual(record[key][field], value[field], `${original.id}.${key}.${field}`);
         assert.equal(record[key].code_edition, value.edition);
         assert.deepEqual(record[key].examples.map(example => example.id), value.case_ids);
+      } else if (key === 'depth_additional_releases') {
+        assert.equal(record[key].length, value.length);
+        value.forEach((release, index) => {
+          for (const field of ['group', 'case_ids']) assert.deepEqual(record[key][index][field], release[field], `${original.id}.${key}.${index}.${field}`);
+          assert.equal(record[key][index].code_edition, release.edition);
+          assert.deepEqual(record[key][index].examples.map(example => example.id), release.case_ids);
+        });
       } else if (key === 'code_mapping_scope' && original.depth_release) {
         assert.equal(record[key], 'Scoped fixed-input examples; original method variants and earlier releases remain distinct.');
       } else assert.deepEqual(record[key], value, `${original.id}.${key}`);
@@ -131,7 +138,7 @@ test('actual bilingual names, aliases, groups and AND terms combine with exact c
     for (const query of ['CG', 'ｃｇ', '共役勾配', 'Conjugate 勾配']) assert.ok(methodMatches(lookup.get('cg'), 'educational-example', query), `${lang}: ${query}`);
     for (const query of ['Nosé–Hoover', 'Nose-Hoover', 'のせフーバー', 'ノセ・フーバー', 'thermostats 温度制御']) assert.ok(methodMatches(lookup.get('nose-hoover'), 'planned', query), `${lang}: ${query}`);
     assert.ok(methodMatches(lookup.get('velocity-rescaling'), 'planned', 'ベロシティースケーリング'));
-    assert.ok(methodMatches(lookup.get('stochastic-velocity-rescaling'), 'planned', 'CSVR'));
+    assert.ok(methodMatches(lookup.get('stochastic-velocity-rescaling'), 'educational-example', 'CSVR'));
     assert.ok(!methodMatches(lookup.get('cg'), 'planned', 'CG'));
     assert.ok(!methodMatches(lookup.get('cg'), 'all', 'CG __absent_term__'));
     assert.ok(!methodMatches(lookup.get('nose-hoover'), 'educational-example', 'Nosé'));

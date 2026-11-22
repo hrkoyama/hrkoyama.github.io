@@ -75,7 +75,7 @@
     "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
   },
   "metadata_review": {
-    "level": "method-specific source curation; planned formulation; no dedicated implementation or new numerical verification",
+    "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
     "on": "2026-11-22"
   },
   "assumptions_ja": [
@@ -93,8 +93,8 @@
       "en": "Coulomb energy and forces for neutral point charges and periodic images, distinct from isolated gravity or an electron-density Hartree field."
     },
     "variant": {
-      "ja": "実装前の検証仕様：中性3D点電荷、まず立方体・tin-foil境界、直接Ewald和。メッシュ近似を導入する前に打切り収束を確認します。",
-      "en": "Pre-implementation specification: neutral 3D point charges, initially cubic/tin-foil boundaries and direct Ewald summation, with cutoff convergence before introducing a mesh approximation."
+      "ja": "公開例は中性3D点電荷・立方体・tin-foil境界の直接Ewald和です。実空間・逆空間・自己項を含み、打切り・分割パラメータ、エネルギー有限差分の力と独立theta積分を検査しています。",
+      "en": "The released example is direct Ewald summation for neutral 3D point charges in a cubic cell with tin-foil boundaries. It includes real/reciprocal/self terms and checks cutoffs, splitting, energy-difference forces and an independent theta integral."
     },
     "use_when": {
       "ja": [

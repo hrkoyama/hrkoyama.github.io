@@ -5125,8 +5125,8 @@
     "en": "Bilingual introductions to 20 entries cover Schrödinger, HF and DFT, bases, SCF, band symmetry, correlation and excitations."
   },
   "planned.quantum.status": {
-    "ja": "導入解説・一次文献と水素型原子・Heの実行検証例を公開。小分子・周期系はUnder constructionです。",
-    "en": "Reading, primary references and runnable hydrogenic/He checks are available. Molecular and periodic examples are under construction."
+    "ja": "原子・H₂ RHF・小さな周期Heと力の限定例を維持します。大規模な基底・k点走査、重い参照再生成、長時間MDは必要性が指定された場合だけ扱います。",
+    "en": "Maintain scoped atoms, H₂ RHF, small periodic-He and force examples. Large basis/k-point sweeps, expensive reference regeneration and long MD are considered only on explicit need."
   },
   "planned.quantum.link": {
     "ja": "量子化学・DFTの解説を読む",
@@ -7217,8 +7217,8 @@
     "ja": "日英用語集"
   },
   "home-map.future": {
-    "ja": "量子化学・DFTの導入解説と、水素型原子・Heの実行検証例を公開しました。小分子・周期系は次段階です。",
-    "en": "Quantum chemistry and DFT have introductory readings and runnable hydrogenic/He checks. Molecular and periodic examples remain next."
+    "ja": "量子は原子・H₂ RHF・小さな周期Heセルと原子間力の検証例に範囲を限定します。各分野の小規模な参照比較と収束確認を優先します。",
+    "en": "Quantum examples stay limited to atoms, H₂ RHF, small periodic He cells and forces. Small reference comparisons and refinement checks take priority across fields."
   },
   "home-map.roadmap": {
     "en": "Read the development roadmap",

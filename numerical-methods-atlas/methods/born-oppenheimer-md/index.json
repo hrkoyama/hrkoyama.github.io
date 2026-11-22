@@ -50,8 +50,8 @@
   "boundary_conditions": "Choose isolated or periodic boundaries for the model; the published local interface uses the fixed periodic He₂ cell.",
   "boundary_conditions_ja": "モデルに応じて孤立・周期境界を選ぶ。公開した局所接続例は固定した周期He₂セル。",
   "next_deliverable": {
-    "ja": "独立参照と照合した力を使い、長時間NVEドリフトと時間刻み・SCF公差への軌道の感度を系統的に測る。",
-    "en": "Use independently checked forces to measure long-time NVE drift and systematic trajectory sensitivity to timestep and SCF tolerance."
+    "ja": "解説・一次文献と既存の小規模例との対応を保守する。専用実装の追加は必要性が指定された場合に小さな教育用例から検討し、重い収束走査・独立参照の再生成・長時間MDは通常の作業へ含めない。",
+    "en": "Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD."
   },
   "limitations": {
     "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",

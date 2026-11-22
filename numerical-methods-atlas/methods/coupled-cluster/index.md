@@ -21,7 +21,7 @@ Comparison notes: Conventional projected CC energies are not variational upper b
 
 - Reference: https://doi.org/10.1016/S0009-2614(89)87395-6 — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: Select original references, a reference implementation and a small molecule.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/coupled-cluster/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

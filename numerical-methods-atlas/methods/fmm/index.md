@@ -17,7 +17,7 @@ Other names: FMM法, fast multipole method, 高速多重極法, 高速多重極�
 
 - Reference: https://doi.org/10.1016/0021-9991(87)90140-9 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
 

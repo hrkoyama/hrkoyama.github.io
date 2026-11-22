@@ -4,12 +4,12 @@
   "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 80,
-    "runnable_problems": 36,
+    "test_problems": 81,
+    "runnable_problems": 37,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 17,
-    "supplemental_case_count": 18,
-    "supplemental_release_case_count": 19,
+    "supplemental_runnable_problems": 18,
+    "supplemental_case_count": 20,
+    "supplemental_release_case_count": 22,
     "groups": {
       "transport": 9,
       "fluid": 16,
@@ -17,7 +17,7 @@
       "viscous": 3,
       "elliptic": 13,
       "gravity": 7,
-      "time": 7,
+      "time": 8,
       "approximation": 6,
       "quantum": 5,
       "biology": 5,
@@ -26,7 +26,7 @@
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 44,
+      "existing-figure": 45,
       "computed-preview": 9
     }
   },
@@ -4641,6 +4641,14 @@
             "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
             "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
           }
+        },
+        {
+          "id": "csvr-langevin-harmonic",
+          "url": "/numerical-methods-atlas/validation/csvr-langevin-harmonic/",
+          "name": {
+            "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+            "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+          }
         }
       ],
       "reading": {
@@ -4697,6 +4705,28 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+        },
+        {
+          "id": "csvr-langevin-harmonic",
+          "title": {
+            "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+            "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+          },
+          "group": "thermostats",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json"
         }
       ]
     },
@@ -5580,10 +5610,114 @@
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
         }
       ]
+    },
+    {
+      "id": "thermostatted-quartic",
+      "group": "time",
+      "name": {
+        "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+        "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+      },
+      "chapter": "validation-thermostats",
+      "reading_section": "csvr-langevin-quartic",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/thermostats/",
+      "verification": "/code/validated-examples/2026-11-22/thermostats/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "csvr-langevin-quartic"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/inputs.json",
+          "json_pointer": "/cases/csvr-langevin-quartic"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/thermostats/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "csvr-langevin-quartic",
+          "url": "/numerical-methods-atlas/validation/csvr-langevin-quartic/",
+          "name": {
+            "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+            "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#thermostatted-quartic",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+      "image_sha256": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+      "width": 1690,
+      "height": 936,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+        "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+      },
+      "visual_input": {
+        "id": "thermostatted-quartic",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+        "caption": {
+          "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+          "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#thermostatted-quartic-ja",
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "csvr-langevin-quartic",
+          "title": {
+            "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+            "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+          },
+          "group": "thermostats",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "7a0a4b517c5a21483562e641a8a0142bd8a825b40e802611bb6db3846dbdcc8f",
+    "catalog/atlas-gallery.json": "f8fa1f253fd3fa2fb7d5d2ff18cc0046f6ad77bc28a2a3ca423df42c518db781",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -5630,8 +5764,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "4aab1018d7efa4f5522b2483406ce1db460efb5dea78cbb1bc2d9d9f95f4a32c",
-    "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
+    "catalog/atlas-test-problems.json": "10dc29013eccbec935955bcbb4cf0f61805c9d14fab51e381b22c7a29b4a76f5",
+    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -5671,22 +5805,31 @@
     "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
     "code/validated-examples/2026-11-22/mhd/results/shu-independent.png": "0e5cc09c13e29f99160d4a22b489f98c9f24f4416515f01d1531d8112680a4e1",
     "code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png": "d1e2a41d58baa80ea3910c7bab4d7efa0e6fcaa46a694eb102e2cc172d60795f",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/inputs.json": "8097b48107f42800ce6883aeaf73f22cf37f01e2269884f2f965d85a315f2a38",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "0eac2e54602605732d1a3d18ef46258066ee3d4337889637e9e932741615ca57",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "11550e415c017e94a899dbce0bf5f13469691b11f241c7224fa754ed3cc5a39c",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "fec60b85c7ea24e33e918905f2605e0ac50b1b227d97560f93bc7927797f8e99",
-    "catalog/atlas-execution-discovery.json": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1",
+    "numerical-methods-atlas/test-cases/index.json": "8a8917aed7ae88b6c116e3fa71ce6aa8679565dfda6659be8e0e95e860dec887",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "d12ed24ed82c238178601eb363926241da7b2cbd7d5ac141977cbc174c5df04c",
+    "scripts/atlas_depth_release.py": "31217594ffa39ee548abd0e734a294005712a80a396938085d7c889128b2a06a",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
     "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
-    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16"
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65"
   }
 }

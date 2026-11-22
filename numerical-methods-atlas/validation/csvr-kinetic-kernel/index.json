@@ -1,0 +1,514 @@
+{
+  "id": "csvr-kinetic-kernel",
+  "method_ids": [
+    "stochastic-velocity-rescaling"
+  ],
+  "domains": [
+    "temperature"
+  ],
+  "code_files": [
+    "run.py",
+    "thermostats.py"
+  ],
+  "title": {
+    "ja": "CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関",
+    "en": "Exact CSVR bath: conditional laws, fluctuations and kinetic correlation"
+  },
+  "summary": {
+    "ja": "自由度1・2・6のCSVR浴だけを実装し、厳密な条件付きモーメントと非心χ²分布、正準Gamma分布と運動エネルギー相関を照合します。",
+    "en": "Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations."
+  },
+  "assumptions": {
+    "ja": "kB=1、T=1.3、τ=0.5、h=0.2、65536独立複製。3初期Kと3自由度で条件付き分布を測定。Hamiltonianの力・座標・拘束・COM除去は含みません。",
+    "en": "kB=1, T=1.3, tau=0.5, h=0.2, 65536 independent replicas. Test three initial energies at each of three degree counts. No Hamiltonian force, positions, constraints or center-of-mass removal."
+  },
+  "algorithm": {
+    "ja": "平方完成した厳密CIR遷移を、標準正規Rと独立χ²(Nf−1)のSから作ります。同じRでglobal αの符号を決め、Nf=1ではS=0。単位方向と新しい半径からpを再構成し、極小KでKnew/Kを作りません。K=0は方向が未定義として拒否します。",
+    "en": "Use the completed-square exact CIR transition with normal R and independent chi-square(Nf−1) S. The same R sets the sign of global alpha; S=0 for Nf=1. Reconstruct momentum from its unit direction and new radius without a tiny-K energy ratio. Reject K=0 because its direction is undefined."
+  },
+  "validation": {
+    "ja": "条件付き平均・分散は独立なCIR式、CDFの3確率点はSciPyの非心χ²分位点、定常KはGamma分布、浴単独ACFはexp(−t/τ)と照合。無雑音の平均緩和は分散を失う対照として別表示します。",
+    "en": "Compare with separate CIR conditional moments, three SciPy noncentral-chi-square quantile probabilities, stationary Gamma K and bath-only exp(−t/tau) correlation. A separate noiseless mean-relaxation control demonstrates loss of fluctuations."
+  },
+  "limits": {
+    "ja": "浴の診断用ケースで独立した物理問題数へ加算しません。浴がKを正しく分布させてもglobal rescalingだけでは方向を熱化しません。exp(−t/τ)を力付きMDのK相関へ流用しません。固定seedと予算に対する統計判定で、一般の混合保証ではありません。",
+    "en": "A bath diagnostic, not another independent physical problem. Correct K sampling does not thermalize momentum directions by global scaling alone. The bath-only exp(−t/tau) identity is not a full-MD kinetic ACF. Statistical decisions apply to fixed seeds/budgets, not general mixing guarantees."
+  },
+  "formulas": [
+    "\\bar K=\\frac{N_fT}{2},\\quad c=e^{-h/\\tau},\\quad A=\\frac{T(1-c)}2,\\quad R\\sim N(0,1),\\ S\\sim\\chi^2_{N_f-1}",
+    "K^\\prime=(\\sqrt{cK}+\\sqrt A R)^2+AS,\\quad \\operatorname{sign}\\alpha=\\operatorname{sign}(\\sqrt{cK}+\\sqrt A R)",
+    "\\mathbb E[K^\\prime\\mid K]=cK+(1-c)\\bar K,\\quad\\operatorname{Var}(K^\\prime\\mid K)=2TKc(1-c)+\\frac{N_fT^2}{2}(1-c)^2",
+    "K\\sim\\operatorname{Gamma}(N_f/2,T),\\quad\\operatorname{Var}(T_{\\rm inst})=\\frac{2T^2}{N_f},\\quad C_K^{\\rm bath}(t)=e^{-t/\\tau}"
+  ],
+  "references": [
+    {
+      "id": "bussi2007csvr",
+      "author": "G. Bussi, D. Donadio and M. Parrinello",
+      "year": 2007,
+      "title": "Canonical sampling through velocity rescaling",
+      "type": "article",
+      "journal": "The Journal of Chemical Physics 126, 014101",
+      "doi": "10.1063/1.2408420",
+      "url": "https://arxiv.org/html/0803.4060v1",
+      "review_level": "author-manuscript-selected-theory-and-appendix",
+      "review": {
+        "ja": "2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。",
+        "en": "Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author."
+      }
+    },
+    {
+      "id": "bussi2008localglobal",
+      "author": "G. Bussi and M. Parrinello",
+      "year": 2008,
+      "title": "Stochastic thermostats: comparison of local and global schemes",
+      "type": "article",
+      "journal": "Computer Physics Communications 179(1–3), 26–29",
+      "doi": "10.1016/j.cpc.2008.01.006",
+      "url": "https://arxiv.org/html/0803.4397v1",
+      "review_level": "author-manuscript-selected-equations-and-algorithm",
+      "review": {
+        "ja": "著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。",
+        "en": "Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced."
+      }
+    },
+    {
+      "id": "bussi-csvr-author-algorithms",
+      "author": "Giovanni Bussi",
+      "year": 2026,
+      "title": "Research algorithms: stochastic velocity rescaling",
+      "type": "misc",
+      "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+      "review_level": "author-official-algorithm-note",
+      "review": {
+        "ja": "著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。",
+        "en": "Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code."
+      }
+    }
+  ],
+  "group": "thermostats",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "csvr-kinetic-kernel",
+    "passed": true,
+    "checks": {
+      "conditional_mean": true,
+      "conditional_variance": true,
+      "transition_and_stationary_cdf": true,
+      "stationary_mean": true,
+      "stationary_fluctuations": true,
+      "kinetic_correlation": true,
+      "noiseless_control_loses_fluctuations": true
+    },
+    "metrics": {
+      "maximum_conditional_mean_z": 1.3654493943919508,
+      "maximum_conditional_variance_relative_error": 0.01524939112434133,
+      "maximum_cdf_error": 0.0039733886718749944,
+      "maximum_stationary_mean_relative_error": 0.014118871247168655,
+      "maximum_stationary_variance_relative_error": 0.029724570745614808,
+      "maximum_kinetic_acf_error": 0.011721962477943104,
+      "noiseless_variance_fraction": 2.0403637334495363e-09
+    },
+    "records": [
+      {
+        "series": "conditional",
+        "dof": 1,
+        "initial_energy_ratio": 0.1,
+        "sample_mean": 0.25748178867847915,
+        "exact_mean": 0.257862773069151,
+        "sample_variance": 0.13064224555534726,
+        "exact_variance": 0.1291895897230344,
+        "mean_z": 0.2713522258388496,
+        "variance_relative_error": 0.01124437220852825,
+        "noncentral_chi_square_cdf_error": 0.0019622802734375056
+      },
+      {
+        "series": "conditional",
+        "dof": 1,
+        "initial_energy_ratio": 1.0,
+        "sample_mean": 0.6488181383869174,
+        "exact_mean": 0.65,
+        "sample_variance": 0.4633532090789896,
+        "exact_variance": 0.46531702532094776,
+        "mean_z": 0.44353931431698035,
+        "variance_relative_error": 0.004220383384002896,
+        "noncentral_chi_square_cdf_error": 0.0017852783203125
+      },
+      {
+        "series": "conditional",
+        "dof": 1,
+        "initial_energy_ratio": 4.0,
+        "sample_mean": 1.9541960158778933,
+        "exact_mean": 1.9571240897694968,
+        "sample_variance": 1.590566120752658,
+        "exact_variance": 1.5857418106473256,
+        "mean_z": 0.5952587100638267,
+        "variance_relative_error": 0.003042304915554381,
+        "noncentral_chi_square_cdf_error": 0.0023651123046875
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 1,
+        "lag": 0.0,
+        "measured_acf": 1.0090188871344514,
+        "acf_standard_error": 0.01480889223789061,
+        "exact_acf": 1.0,
+        "sample_mean": 0.6495465620351616,
+        "exact_mean": 0.65,
+        "sample_variance": 0.8526207540226236,
+        "exact_variance": 0.8450000000000001,
+        "temperature_variance": 3.4104830160904944,
+        "exact_temperature_variance": 3.3800000000000003,
+        "gamma_cdf_error": 0.0019265967301016484
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 1,
+        "lag": 0.2,
+        "measured_acf": 0.6719803985240528,
+        "acf_standard_error": 0.011159328074610547,
+        "exact_acf": 0.6703200460356393,
+        "sample_mean": 0.6554264045945231,
+        "exact_mean": 0.65,
+        "sample_variance": 0.8480827932767107,
+        "exact_variance": 0.8450000000000001,
+        "temperature_variance": 3.3923311731068426,
+        "exact_temperature_variance": 3.3800000000000003,
+        "gamma_cdf_error": 0.002658678691902616
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 1,
+        "lag": 0.6,
+        "measured_acf": 0.31151447445382674,
+        "acf_standard_error": 0.007928553335276535,
+        "exact_acf": 0.30119421191220214,
+        "sample_mean": 0.6591772663106596,
+        "exact_mean": 0.65,
+        "sample_variance": 0.8701172622800446,
+        "exact_variance": 0.8450000000000001,
+        "temperature_variance": 3.4804690491201784,
+        "exact_temperature_variance": 3.3800000000000003,
+        "gamma_cdf_error": 0.003635241191902616
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 1,
+        "lag": 1.0,
+        "measured_acf": 0.13678120710206437,
+        "acf_standard_error": 0.005995728829200575,
+        "exact_acf": 0.1353352832366127,
+        "sample_mean": 0.6521065307805672,
+        "exact_mean": 0.65,
+        "sample_variance": 0.8565649462860683,
+        "exact_variance": 0.8450000000000001,
+        "temperature_variance": 3.426259785144273,
+        "exact_temperature_variance": 3.3800000000000003,
+        "gamma_cdf_error": 0.0010565058403401162
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 1,
+        "lag": 2.0,
+        "measured_acf": 0.008365955940485462,
+        "acf_standard_error": 0.004104732035567331,
+        "exact_acf": 0.01831563888873418,
+        "sample_mean": 0.6499509292459891,
+        "exact_mean": 0.65,
+        "sample_variance": 0.8497308112371521,
+        "exact_variance": 0.8450000000000001,
+        "temperature_variance": 3.3989232449486084,
+        "exact_temperature_variance": 3.3800000000000003,
+        "gamma_cdf_error": 0.0012780888862223838
+      },
+      {
+        "series": "conditional",
+        "dof": 2,
+        "initial_energy_ratio": 0.1,
+        "sample_mean": 0.5184367639013205,
+        "exact_mean": 0.515725546138302,
+        "sample_variance": 0.26136363877154856,
+        "exact_variance": 0.2583791794460688,
+        "mean_z": 1.3654493943919508,
+        "variance_relative_error": 0.011550695887640947,
+        "noncentral_chi_square_cdf_error": 0.001861572265625
+      },
+      {
+        "series": "conditional",
+        "dof": 2,
+        "initial_energy_ratio": 1.0,
+        "sample_mean": 1.2970854820537219,
+        "exact_mean": 1.3,
+        "sample_variance": 0.9307261807604716,
+        "exact_variance": 0.9306340506418955,
+        "mean_z": 0.7734232615162536,
+        "variance_relative_error": 9.899714985989514e-05,
+        "noncentral_chi_square_cdf_error": 0.0039733886718749944
+      },
+      {
+        "series": "conditional",
+        "dof": 2,
+        "initial_energy_ratio": 4.0,
+        "sample_mean": 3.914044879286299,
+        "exact_mean": 3.9142481795389936,
+        "sample_variance": 3.171374424518495,
+        "exact_variance": 3.171483621294651,
+        "mean_z": 0.029224470239372784,
+        "variance_relative_error": 3.4430818252618e-05,
+        "noncentral_chi_square_cdf_error": 0.0009368896484374944
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 2,
+        "lag": 0.0,
+        "measured_acf": 0.9882780375220569,
+        "acf_standard_error": 0.010778632629731109,
+        "exact_acf": 1.0,
+        "sample_mean": 1.2978694623885643,
+        "exact_mean": 1.3,
+        "sample_variance": 1.6701853442217622,
+        "exact_variance": 1.6900000000000002,
+        "temperature_variance": 1.6701853442217622,
+        "exact_temperature_variance": 1.6900000000000002,
+        "gamma_cdf_error": 0.0016405011082826215
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 2,
+        "lag": 0.2,
+        "measured_acf": 0.6632368190858344,
+        "acf_standard_error": 0.008567841117306935,
+        "exact_acf": 0.6703200460356393,
+        "sample_mean": 1.2945310483700325,
+        "exact_mean": 1.3,
+        "sample_variance": 1.6738359304857369,
+        "exact_variance": 1.6900000000000002,
+        "temperature_variance": 1.6738359304857369,
+        "exact_temperature_variance": 1.6900000000000002,
+        "gamma_cdf_error": 0.003667405038629834
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 2,
+        "lag": 0.6,
+        "measured_acf": 0.2915334318966669,
+        "acf_standard_error": 0.005928006150518348,
+        "exact_acf": 0.30119421191220214,
+        "sample_mean": 1.3009229918970882,
+        "exact_mean": 1.3,
+        "sample_variance": 1.686910672257943,
+        "exact_variance": 1.6900000000000002,
+        "temperature_variance": 1.686910672257943,
+        "exact_temperature_variance": 1.6900000000000002,
+        "gamma_cdf_error": 0.0011979962254701215
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 2,
+        "lag": 1.0,
+        "measured_acf": 0.12886340991135778,
+        "acf_standard_error": 0.004795893694048865,
+        "exact_acf": 0.1353352832366127,
+        "sample_mean": 1.297527912975268,
+        "exact_mean": 1.3,
+        "sample_variance": 1.685750370943541,
+        "exact_variance": 1.6900000000000002,
+        "temperature_variance": 1.685750370943541,
+        "exact_temperature_variance": 1.6900000000000002,
+        "gamma_cdf_error": 0.0007527637053627023
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 2,
+        "lag": 2.0,
+        "measured_acf": 0.020526499213517988,
+        "acf_standard_error": 0.004008046490581209,
+        "exact_acf": 0.01831563888873418,
+        "sample_mean": 1.294713678810149,
+        "exact_mean": 1.3,
+        "sample_variance": 1.6632740098510923,
+        "exact_variance": 1.6900000000000002,
+        "temperature_variance": 1.6632740098510923,
+        "exact_temperature_variance": 1.6900000000000002,
+        "gamma_cdf_error": 0.0022633838225502023
+      },
+      {
+        "series": "conditional",
+        "dof": 6,
+        "initial_energy_ratio": 0.1,
+        "sample_mean": 1.548342809241442,
+        "exact_mean": 1.5471766384149062,
+        "sample_variance": 0.786957913835485,
+        "exact_variance": 0.7751375383382065,
+        "mean_z": 0.3390882596401506,
+        "variance_relative_error": 0.01524939112434133,
+        "noncentral_chi_square_cdf_error": 0.0014556884765624944
+      },
+      {
+        "series": "conditional",
+        "dof": 6,
+        "initial_energy_ratio": 1.0,
+        "sample_mean": 3.8939769607190713,
+        "exact_mean": 3.9000000000000004,
+        "sample_variance": 2.7849328212597713,
+        "exact_variance": 2.7919021519256866,
+        "mean_z": 0.9227957042232008,
+        "variance_relative_error": 0.0024962660890920883,
+        "noncentral_chi_square_cdf_error": 0.00225830078125
+      },
+      {
+        "series": "conditional",
+        "dof": 6,
+        "initial_energy_ratio": 4.0,
+        "sample_mean": 11.736866422045503,
+        "exact_mean": 11.742744538616982,
+        "sample_variance": 9.585653590935022,
+        "exact_variance": 9.514450863883953,
+        "mean_z": 0.4878499850471481,
+        "variance_relative_error": 0.0074836402089530005,
+        "noncentral_chi_square_cdf_error": 0.002005004882812522
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 6,
+        "lag": 0.0,
+        "measured_acf": 0.9899177900821378,
+        "acf_standard_error": 0.007604427240442242,
+        "exact_acf": 1.0,
+        "sample_mean": 3.8953196554909413,
+        "exact_mean": 3.9000000000000004,
+        "sample_variance": 5.018861290091715,
+        "exact_variance": 5.07,
+        "temperature_variance": 0.557651254454635,
+        "exact_temperature_variance": 0.5633333333333334,
+        "gamma_cdf_error": 0.0022096991465939686
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 6,
+        "lag": 0.2,
+        "measured_acf": 0.6661434177408455,
+        "acf_standard_error": 0.006179316760225722,
+        "exact_acf": 0.6703200460356393,
+        "sample_mean": 3.8949665445391504,
+        "exact_mean": 3.9000000000000004,
+        "sample_variance": 5.053725686031484,
+        "exact_variance": 5.07,
+        "temperature_variance": 0.5615250762257205,
+        "exact_temperature_variance": 0.5633333333333334,
+        "gamma_cdf_error": 0.0006532658958410265
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 6,
+        "lag": 0.6,
+        "measured_acf": 0.29441594341453425,
+        "acf_standard_error": 0.0047969063099707375,
+        "exact_acf": 0.30119421191220214,
+        "sample_mean": 3.8972986754747376,
+        "exact_mean": 3.9000000000000004,
+        "sample_variance": 5.0445327623860585,
+        "exact_variance": 5.07,
+        "temperature_variance": 0.5605036402651176,
+        "exact_temperature_variance": 0.5633333333333334,
+        "gamma_cdf_error": 0.0012388239479089735
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 6,
+        "lag": 1.0,
+        "measured_acf": 0.1332976878875096,
+        "acf_standard_error": 0.004241687367754493,
+        "exact_acf": 0.1353352832366127,
+        "sample_mean": 3.8976154755555483,
+        "exact_mean": 3.9000000000000004,
+        "sample_variance": 5.053411854712516,
+        "exact_variance": 5.07,
+        "temperature_variance": 0.5614902060791686,
+        "exact_temperature_variance": 0.5633333333333334,
+        "gamma_cdf_error": 0.0012388239479089735
+      },
+      {
+        "series": "stationary-acf",
+        "dof": 6,
+        "lag": 2.0,
+        "measured_acf": 0.025089632331409217,
+        "acf_standard_error": 0.003969653927820749,
+        "exact_acf": 0.01831563888873418,
+        "sample_mean": 3.910353595665142,
+        "exact_mean": 3.9000000000000004,
+        "sample_variance": 5.103438748881148,
+        "exact_variance": 5.07,
+        "temperature_variance": 0.5670487498756831,
+        "exact_temperature_variance": 0.5633333333333334,
+        "gamma_cdf_error": 0.0020113348887814686
+      }
+    ],
+    "duration_seconds": 0.1379702089998318,
+    "input_sha256": "83548530c899f62b097689035bf279d3d762bc576b8c9c875a82f1d11a77586f"
+  },
+  "problem_id": null,
+  "editorial_note": null,
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-kinetic-kernel",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-kinetic-kernel"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/",
+    "archive": {
+      "file": "atlas-thermostats-2026-11-22.zip",
+      "sha256": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+      "bytes": 724947,
+      "archive_directory": "atlas-thermostats-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+    ],
+    "passed_tests": 42
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "521f4c289eaedb32ac2c3d6a6bd34436a4c7c46dab42b370f9f73ff00f9c9692",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

@@ -19,11 +19,11 @@ Other names: 中心差分, 中心差分法, 中央差分, central difference, ce
 - Reference: https://doi.org/10.1002/cpa.3160070112 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 - Reference: https://doi.org/10.1002/cpa.3160130205 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
-Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
+Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
 
-線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
+反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
 
 - Reaction-diffusion: separate second-order space and fourth-order time: https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/
 - Turing instability: linear growth and small-amplitude patterns: https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/

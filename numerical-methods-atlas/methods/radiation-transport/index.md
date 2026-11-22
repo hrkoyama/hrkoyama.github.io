@@ -17,7 +17,7 @@ Other names: 放射輸送法, radiative transfer, radiation transport, 放射モ
 
 - Reference: https://doi.org/10.1016/0022-4073(84)90112-2 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux.
 

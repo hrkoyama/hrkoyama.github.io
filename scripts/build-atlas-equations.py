@@ -10,6 +10,7 @@ import re
 import subprocess
 import xml.etree.ElementTree as ET
 from atlas_execution_discovery import load_discovery, entry_url
+from atlas_equation_availability import equation_evidence
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
@@ -21,6 +22,7 @@ inventory={x['id']:x for x in coverage['items'] if x['kind']=='equation'}
 records=data['equations']
 discovery=load_discovery(ROOT)
 execution_examples=discovery['examples']
+evidence=equation_evidence(ROOT,records,discovery)
 assert len({x['id'] for x in records})==len(records)
 assert {x['id'] for x in records}==set(inventory),'Reconcile equation formulas with the shared coverage inventory'
 assert len(records)==coverage['counts']['equations']
@@ -55,7 +57,7 @@ def reading(chapter,lang,section=None):
     return f'/numerical-methods-atlas/{lang}/read/{chapter}/'+('#'+section if section else '')
 
 def related_examples(model_id):
-    return [x for x in execution_examples if model_id in x['equation_ids']]
+    return evidence['common'][model_id]
 
 def execution_shortcuts(lang):
     ja=lang=='ja'
@@ -113,16 +115,23 @@ for lang in ['ja','en']:
             body+='<article class="equation-entry'+wide+'" id="'+x['id']+'-'+lang+'" data-equation-id="'+x['id']+'" data-equation-status="'+x['status']+'">'
             for alias in x.get('anchor_aliases',[]):body+='<span id="'+alias+'-'+lang+'"></span>'
             body+='<h3>'+esc(x['name'][lang])+'</h3>'
-            label=('計算例あり' if x['status']=='local-example' else '文献解説のみ・専用ソルバーなし') if ja else ('Scoped local example' if x['status']=='local-example' else 'Literature only / no dedicated solver')
+            label=('限定した計算例あり' if x.get('execution_scope') else '計算例あり') if x['status']=='local-example' and ja else ('Scoped local example' if x['status']=='local-example' else ('文献解説のみ・専用ソルバーなし' if ja else 'Literature only / no dedicated solver'))
             body+='<p class="resource-status">'+label+'</p><div class="equation-preview">'+''.join(math['rendered'][x['id']])+'</div>'
             if wide:body+='<p class="equation-scroll-note">'+('長い数式は横にスクロールして読めます。' if ja else 'Scroll horizontally to read long equations.')+'</p>'
             body+='<p>'+esc(x['note'][lang])+'</p>'+link(route,'このモデルの解説へ →' if ja else 'Read this model →')
             for chapter in x.get('related_chapters',[]):body+=' · '+link(reading(chapter,lang),'関連するテストの解説' if ja else 'Related test definitions')
+            if x.get('execution_scope'):
+                body+='<p class="equation-execution-scope">'+esc(x['execution_scope'][lang])+'</p>'
             examples=related_examples(x['id'])
             if examples:
                 assert x['status']=='local-example','Reading-only entries cannot gain executable claims'
                 body+='<div class="model-execution-links"><p>'+('このモデルに対応する固定入力・実行例' if ja else 'Fixed-input execution examples for this model')+'</p><ul>'
                 body+=''.join('<li>'+link(entry_url(e['id'],lang),e['execution']['name'][lang])+'</li>' for e in examples)+'</ul></div>'
+            supplements=evidence['supplemental'][x['id']]
+            if supplements:
+                assert x['status']=='local-example'
+                body+='<div class="model-supplemental-links"><p>'+('共通22実行例とは別の、限定した補助実行例' if ja else 'Scoped supplemental runs, separate from the common 22 registry')+'</p><ul>'
+                body+=''.join('<li>'+link(e['url']+'?lang='+lang,e['title'][lang])+'</li>' for e in supplements)+'</ul></div>'
             body+='</article>'
         body+='</div></section>'
     body+='</section>'
@@ -140,8 +149,11 @@ head+='<link rel="stylesheet" href="/styles/atlas-purpose.css?v='+digest(ROOT/'s
 head+='<link rel="stylesheet" href="/styles/atlas-equations.css?v='+digest(ROOT/'styles/atlas-equations.css')+'"></head>'
 dest=ROOT/URL.lstrip('/');dest.mkdir(parents=True,exist_ok=True)
 (dest/'index.html').write_text(head+'<body class="profile-page"><main id="main" class="profile-main atlas-resource-main">'+''.join(sections)+'</main></body></html>\n')
-public={**data,'url':ORIGIN+URL,'counts':{'total':len(records),'local_example':status_counts['local-example'],'reading_only':status_counts['reading'],'groups':dict(counts)},'formula_renderer':{'name':math['renderer'],'version':math['version']},'equations':[{**x,'reading':{lang:ORIGIN+reading(x['chapter'],lang,x.get('section')) for lang in ['ja','en']},'execution_examples':[{'id':e['id'],'name':e['execution']['name'],'entry':{lang:entry_url(e['id'],lang) for lang in ['ja','en']}} for e in related_examples(x['id'])]} for x in records],
+public={**data,'url':ORIGIN+URL,'counts':{'total':len(records),'local_example':status_counts['local-example'],'reading_only':status_counts['reading'],'groups':dict(counts)},'formula_renderer':{'name':math['renderer'],'version':math['version']},'equations':[{**x,'reading':{lang:ORIGIN+reading(x['chapter'],lang,x.get('section')) for lang in ['ja','en']},'execution_examples':[{'id':e['id'],'name':e['execution']['name'],'entry':{lang:entry_url(e['id'],lang) for lang in ['ja','en']}} for e in related_examples(x['id'])],
+        'supplemental_execution_examples':[{'id':e['id'],'name':e['title'],'entry':{lang:ORIGIN+e['url']+'?lang='+lang for lang in ['ja','en']},'code_urls':e['code_urls'],'test_urls':e['test_urls'],'verification':e['verification'],'results':e['results']} for e in evidence['supplemental'][x['id']]]} for x in records],
         'execution_example_count':len(execution_examples),
+        'supplemental_case_ids':evidence['supplemental_case_ids'],
+        'execution_evidence_source_sha256':evidence['source_sha256'],
         'execution_formula_scope':discovery['scope'],
         'execution_discovery_source':{'url':ORIGIN+'/catalog/atlas-execution-discovery.json','sha256':discovery['source_sha256']},
         'execution_examples':[{**{k:v for k,v in x.items() if k!='execution'},'name':x['execution']['name'],'method_ids':x['execution']['method_ids'],'entry':{lang:entry_url(x['id'],lang) for lang in ['ja','en']},'input':x['execution']['inputs']['url'],'reference_type':x['execution'].get('reference_type')} for x in execution_examples]}
@@ -151,6 +163,6 @@ if ORIGIN+URL not in {x.text for x in root.findall('.//{*}loc')}:ET.SubElement(E
 ET.register_namespace('',ns[1:-1]);xml.write(path,encoding='utf-8',xml_declaration=True)
 guide=ROOT/'llms.txt';text=guide.read_text()
 text=re.sub(r'^- \[Equation/model index\].*\n?','',text,flags=re.M)
-line=f'- [Equation/model index]({ORIGIN}{URL}): {len(execution_examples)} scoped fixed-input example formulas with direct execution links, separately from all {len(records)} shared model entries and their unchanged local-example/literature-only status. Machine-readable records are at {ORIGIN}{URL}index.json.\n'
+line=f'- [Equation/model index]({ORIGIN}{URL}): {len(execution_examples)} scoped fixed-input example formulas with direct execution links, separately from all {len(records)} shared model entries with scoped local-example/literature-only status; biological model links resolve to their verified common or supplemental cases without adding physical problems. Machine-readable records are at {ORIGIN}{URL}index.json.\n'
 guide.write_text(text.rstrip()+'\n'+line)
 print('Built complete equation/model index:',len(records),'entries;',dict(status_counts))

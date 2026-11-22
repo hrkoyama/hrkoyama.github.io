@@ -1383,6 +1383,52 @@
         "scope": "Author textbook, selected sections 7-6-1 and 7-6-2, printed pages 522–524 (PDF pages 36–38): tangential E/H continuity, normal-incidence field reflection/transmission and impedance weighting of power. A textbook exposition, not an original Fresnel publication.",
         "scope_ja": "著者の教科書7-6-1/7-6-2節、印刷522–524頁（PDF36–38頁）を参照。接線E/Hの連続、垂直入射の振幅反射・透過、インピーダンスによるパワー換算。Fresnelの原著とは区別。"
       }
+    },
+    {
+      "id": "bussi2007csvr",
+      "author": "G. Bussi, D. Donadio and M. Parrinello",
+      "year": 2007,
+      "title": "Canonical sampling through velocity rescaling",
+      "type": "article",
+      "journal": "The Journal of Chemical Physics 126, 014101",
+      "doi": "10.1063/1.2408420",
+      "url": "https://arxiv.org/html/0803.4060v1",
+      "review_level": "author-manuscript-selected-theory-and-appendix",
+      "review": {
+        "ja": "2007年原著の著者稿arXiv:0803.4060v1（2008年掲示）のII.1–II.3、Appendix Aの厳密運動エネルギー更新を確認。SISSAの出版社PDFは取得できず、原著の分子系を再現したものではありません。χ²は直接生成し、著者が後に指摘したΓ生成手順のtypoを写しません。",
+        "en": "Checked theory II.1–II.3 and the exact kinetic-energy propagator in Appendix A of the author manuscript arXiv:0803.4060v1 (posted 2008 for the 2007 article). The SISSA publisher PDF was unavailable. Original molecular applications are not reproduced. Direct chi-square sampling avoids copying the gamma-generation typo later noted by the author."
+      },
+      "source": "https://arxiv.org/html/0803.4060v1"
+    },
+    {
+      "id": "bussi2008localglobal",
+      "author": "G. Bussi and M. Parrinello",
+      "year": 2008,
+      "title": "Stochastic thermostats: comparison of local and global schemes",
+      "type": "article",
+      "journal": "Computer Physics Communications 179(1–3), 26–29",
+      "doi": "10.1016/j.cpc.2008.01.006",
+      "url": "https://arxiv.org/html/0803.4397v1",
+      "review_level": "author-manuscript-selected-equations-and-algorithm",
+      "review": {
+        "ja": "著者稿のI・II節、式(8)の有限刻み更新、式(9)のα符号、同じGaussianの使用、Nf=1のLangevin同値、τ=1/(2γ)を確認。原著Lennard-Jonesの長時間輸送係数は再現していません。",
+        "en": "Checked sections I–II, finite-step update Eq. (8), the sign of alpha in Eq. (9) using the same Gaussian, the Nf=1 Langevin limit and tau=1/(2 gamma). The original long Lennard-Jones transport calculations are not reproduced."
+      },
+      "source": "https://arxiv.org/html/0803.4397v1"
+    },
+    {
+      "id": "bussi-csvr-author-algorithms",
+      "author": "Giovanni Bussi",
+      "year": 2026,
+      "title": "Research algorithms: stochastic velocity rescaling",
+      "type": "misc",
+      "url": "https://sites.google.com/site/giovannibussi/Research/algorithms",
+      "review_level": "author-official-algorithm-note",
+      "review": {
+        "ja": "著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。",
+        "en": "Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code."
+      },
+      "source": "https://sites.google.com/site/giovannibussi/Research/algorithms"
     }
   ]
 }

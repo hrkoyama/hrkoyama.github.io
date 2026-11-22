@@ -18,7 +18,7 @@ Other names: 数値求積, 数値積分, Gauss求積, Gaussian quadrature, ガ�
 - Reference: https://doi.org/10.1090/s0025-5718-69-99647-1 — Method-specific source; see the detailed reading for source role and actual review depth.
 - Reference: https://doi.org/10.1007/978-3-642-61786-7 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK.
 

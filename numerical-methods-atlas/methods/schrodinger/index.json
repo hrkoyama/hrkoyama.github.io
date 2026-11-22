@@ -70,8 +70,8 @@
   "units": "Atomic units (hbar=m_e=e=4 pi epsilon_0=1): r in bohr, energies/effective potentials in hartree, and normalized reduced orbitals u in bohr^(-1/2).",
   "boundary_conditions": "u(0)=u(r_max)=0. Released hydrogenic refinement inputs use r_max=60 bohr; a separate Z=1 1s study uses r_max=4,8,16,32 bohr. Origin and infinity are approximated by regularity and finite-box Dirichlet conditions.",
   "next_deliverable": {
-    "ja": "調和振動子・水素型原子で領域と格子の誤差を分離。",
-    "en": "Separate domain and resolution errors for oscillator and hydrogenic models."
+    "ja": "既存の小規模例の固定入力・保存済み参照・配布物の整合を維持し、必要時に少数の代表ケースを再実行する。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMDは、必要性が指定された場合だけ別途検討する。",
+    "en": "Maintain fixed inputs, saved references and release integrity for the existing small examples; rerun a few representative cases when needed. Large basis/k-point sweeps, expensive independent-reference regeneration and long BOMD/CPMD trajectories are considered separately only on explicit need."
   },
   "limitations": {
     "ja": "一般の多電子Schrödinger方程式の直接解法、時間発展、分子、周期系、相対論・核運動・スピン軌道相互作用は未実装。小さい離散固有値残差だけでは格子・領域誤差は除けず、有限差分の固有値は連続問題の変分上界とは限らない。",

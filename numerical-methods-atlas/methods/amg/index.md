@@ -17,7 +17,7 @@ Other names: AMG法, algebraic multigrid, 代数マルチグリッド, 代数的
 
 - Reference: https://doi.org/10.1137/1.9781611971057.ch4 — Method-specific source; see the detailed reading for source role and actual review depth.
 
-## Small fixed-input validation supplement
+## Small fixed-input validation supplements
 
 Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution.
 

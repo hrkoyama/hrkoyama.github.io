@@ -351,7 +351,7 @@ def build():
             ET.SubElement(ET.SubElement(xml, namespace+'url'), namespace+'loc').text = ORIGIN+route
     ET.register_namespace('', namespace[1:-1]); tree.write(sitemap, encoding='utf-8', xml_declaration=True)
     assert digest(registry_path) == registry_hash, 'Common execution registry must remain unchanged'
-    print('Built', len(identifiers), 'additional validation entries and four bilingual readings from verified frozen measurements.')
+    print('Built', len(identifiers), 'additional validation entries and', len(catalog['groups']), 'bilingual readings from verified frozen measurements.')
 
 
 if __name__ == '__main__':

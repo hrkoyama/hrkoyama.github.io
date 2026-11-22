@@ -55,7 +55,9 @@ test('equation records link to existing chapters in both languages and expose a 
 test('every displayed model has static math and valid deep links without inflating implementation status',()=>{
   const published=JSON.parse(read('numerical-methods-atlas/equations/index.json'));
   const html=read('numerical-methods-atlas/equations/index.html');
+  const implementedBiology=['bio-logistic','bio-sir','bio-turing','bio-schnakenberg','bio-fitzhugh-nagumo'];
   assert.equal(published.equations.filter(x=>x.id.startsWith('bio-')).length,22);
+  assert.equal(published.equations.filter(x=>x.id.startsWith('bio-')&&x.status==='reading').length,17);
   for(const x of published.equations){
     const expected=coverage.items.find(item=>item.kind==='equation'&&item.id===x.id);
     assert.equal(x.status,expected.status);
@@ -67,7 +69,14 @@ test('every displayed model has static math and valid deep links without inflati
       assert.ok(html.includes('id="'+x.id+'-'+lang+'"'));
     }
     if(x.id.startsWith('bio-')){
-      assert.equal(x.status,'reading');
+      assert.equal(x.status,implementedBiology.includes(x.id)?'local-example':'reading');
+      if(implementedBiology.includes(x.id)){
+        assert.ok(x.execution_scope.ja&&x.execution_scope.en);
+        assert.ok(x.execution_examples.length||x.supplemental_execution_examples.length);
+      }else{
+        assert.deepEqual(x.execution_examples,[]);
+        assert.deepEqual(x.supplemental_execution_examples,[]);
+      }
       assert.ok(x.reading.ja.includes('#')&&x.reading.en.includes('#'));
     }
   }

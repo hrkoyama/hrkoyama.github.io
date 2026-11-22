@@ -11,7 +11,7 @@ ORIGIN = 'https://hrkoyama.github.io'
 # Explicit applicability prevents a useful solver/diagnostic in another field
 # from being borrowed as evidence for this stage or for a complete coupled run.
 SUPPLEMENT_STAGE_CASES = {
-    'thermostat': {'langevin-harmonic'},
+    'thermostat': {'langevin-harmonic', 'csvr-kinetic-kernel', 'csvr-langevin-harmonic', 'csvr-langevin-quartic'},
     'reaction-diffusion': {'reaction-diffusion-fourier', 'turing-schnakenberg'},
     'biological-fronts': {'turing-schnakenberg', 'fitzhugh-nagumo'},
 }
@@ -36,7 +36,7 @@ def load_supplemental_evidence(root, case_ids):
             by_id[case['id']] = group['id']
     assert set(case_ids) <= by_id.keys(), 'Unknown supplemental evidence ID'
     groups = {group: load_depth_group(root, group, catalog['edition'])
-              for group in {by_id[ident] for ident in case_ids}}
+              for group in sorted({by_id[ident] for ident in case_ids})}
     sources = {'catalog/atlas-depth-expansion.json': digest(catalog_path)}
     receipts, cases = {}, {}
     for group, data in groups.items():

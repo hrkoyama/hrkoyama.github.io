@@ -21,7 +21,7 @@ Comparison notes: Small denominators and strong static correlation can invalidat
 
 - Reference: https://doi.org/10.1103/PhysRev.46.618 — Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.
 
-Next: Select primary references and a small-molecule benchmark.
+Next: Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/mp2/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
