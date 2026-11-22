@@ -953,6 +953,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-mcmc": [
+    "ja",
+    "en"
+  ],
   "validation-mhd": [
     "ja",
     "en"

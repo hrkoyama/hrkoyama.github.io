@@ -110,6 +110,7 @@
 
 - [Monte Carlo積分](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/monte-carlo/)
 - [Markov連鎖Monte Carlo](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/)
+- [多峰性MCMC：混合不良と収束診断の独立検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/)
 - [確率微分方程式](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sde/)
 - [生物モデル方程式と数値検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/)
 - [非線形反応拡散・パターン形成の独立検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/)

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family": "depth-mcmc",
+  "group": "mcmc",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/",
+  "files": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "a014ed36c53144d573f5e51e8cadb6a6eda188c58a08a9ee02e0e62bca2a1d69",
+    "arviz-upstream-source.json": "cbc23d0595ff8973f4c723a6835aa92a5562e76c09648fca72ad63dac016847a",
+    "cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "diagnostics.py": "d429b715f7397a33359a8a64719820f1e2eb27f6cdfc49d8387003a3c8cb0e0f",
+    "experiments.py": "93a835c1d4e317c67bc77d82e4c628d953ca3a413df68fafe51c17828f848549",
+    "fixtures.py": "2f0b6d6fc7e888bf374b8e5fc65ccf930bc8cef947b8e9bd1d25ef49aadc2bd3",
+    "generate-arviz-reference.py": "849903002d14e6ab55c76a673bdc64d650fe29acebce2e25e8465320b0d1beab",
+    "inputs.json": "b20b594ab2d001426fbc58d1fe86fe4719bd42455f6a10f502966f85fb6eb49a",
+    "plot.py": "9f1425cf52b59776029bcdb208a9fd5d3e48c948320720eeb441ff411dc9f4ad",
+    "prepare-reference-input.py": "144fe901d0faf9aee0a3054a5cc23c65075f270dea2e8882813d48eaf7b94def",
+    "reference.json": "8383a59e2e23e4c0f6b64560194c9fb0b2c68b2a42f7c4f42d905eac66b2fad4",
+    "requirements-arviz-reference.lock.txt": "f6ed3eda4f5a03f1f88d4c397e7c7a98babb38874b7d2547e20e2140c3fadad9",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/mcmc-diagnostic-reference.csv": "b342445032f76d0cc1d4dc33e73f58f4a978de9bf5f1395acf0a6156b2e71b92",
+    "results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67",
+    "results/mcmc-multimodal-mixing.csv": "92eabf9096eb1ca68001b77a06c6d9283ba0ae7354ce2e5d9709ae39735b6e34",
+    "results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "run.py": "034bb594972bb97b8b010292f9be5fd4118e70fea71dfb14de030af8cb845dc4",
+    "sampler.py": "5736a06fbfb505ff4c4aebf7ca77149f365ba77f6ebaf130eee8e656b7d95a6d",
+    "test_mcmc.py": "a13b6127f94d33b52742ff036632c4a131bd12d730dc170715bc27febeaec674"
+  },
+  "case_ids": [
+    "mcmc-diagnostic-reference",
+    "mcmc-multimodal-mixing"
+  ],
+  "scope": "Small fixed-input educational validations; each case states its own model, reference, acceptance and exclusions."
+}

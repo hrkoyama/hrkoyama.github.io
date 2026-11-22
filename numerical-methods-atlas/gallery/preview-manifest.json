@@ -973,10 +973,22 @@
         "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
         "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
       }
+    },
+    {
+      "id": "mcmc-bimodal-mixture",
+      "image": "/code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png",
+      "image_sha256": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+      "width": 2240,
+      "height": 1260,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。",
+        "en": "Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "f8fa1f253fd3fa2fb7d5d2ff18cc0046f6ad77bc28a2a3ca423df42c518db781",
+    "catalog/atlas-gallery.json": "c7e6546164ee274303c2deffedfe185196658b7f9465850fae074d288bceab70",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1023,8 +1035,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "e9ad072afebf3b67a70c177f50e02d604e8e07a40eb7073332860b4b2ba392e9",
-    "catalog/atlas-depth-expansion.json": "b7280de8fae51ff8f1b81557c7b83b22df6c366e02679e193908210a36f902b8",
+    "catalog/atlas-test-problems.json": "b916648f2913c2300dd05c8f9b8257b40d7c9b2d1ab6f2f88a98e0f85e776bfc",
+    "catalog/atlas-depth-expansion.json": "9b5f02038f79e4db4b35a96a26d89c17e0f1b918e07e1b5a5d195b32e4594856",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1078,7 +1090,14 @@
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
     "code/validated-examples/2026-11-22/biology/results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
-    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59"
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/inputs.json": "b20b594ab2d001426fbc58d1fe86fe4719bd42455f6a10f502966f85fb6eb49a",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

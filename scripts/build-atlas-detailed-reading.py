@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import xml.etree.ElementTree as ET
+from atlas_goal_availability import load_supplemental_examples
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
@@ -27,6 +28,37 @@ def link(url,label):return '<a href="'+escape(url,quote=True)+'">'+escape(label)
 def heading(ident,title):return '<h2 id="'+ident+'">'+escape(title)+'</h2>'
 def paragraph(text):return '<p>'+escape(text)+'</p>'
 def url(chapter,lang):return f'/numerical-methods-atlas/{lang}/read/{chapter}/'
+def scoped_supplement_html(cases,lang):
+    """Keep historical editions, target runs and diagnostic controls distinct."""
+    if not cases:return ''
+    ja=lang=='ja'
+    body=heading('scoped-examples','固定入力で確かめる：別々の配布版' if ja else 'Check fixed inputs: separate scoped releases')
+    body+=paragraph('各例の分布・観測量・診断の定義と適用範囲を確認します。検査の合格と、混合や推定の成功は同じ意味ではありません。旧版の入力・測定・公差は保持します。' if ja else 'Check each example’s target, observable, diagnostic definition and scope. Passing an acceptance check differs from successful mixing or estimation. Historical inputs, measurements and criteria are preserved.')
+    for case in cases:
+        role=('診断対照：物理問題数へ非加算' if ja else 'Diagnostic control: no additional physical problem') if case['problem_id'] is None else ('固定した標的の計算例' if ja else 'Computation for a fixed target')
+        body+='<article class="resource-summary" id="supplement-'+case['id']+'"><h3>'+escape(case['title'][lang])+'</h3>'+paragraph(role)+paragraph(case['summary'][lang])+paragraph(case['limits'][lang])
+        entries=[link(case['url']+'?lang='+lang,'入力・結果・受入条件' if ja else 'Input, results and acceptance'),link(case['reading'][lang],'手法・式・一次文献' if ja else 'Method, equations and sources')]
+        entries+=[link(u,('コード：' if ja else 'Code: ')+u.rsplit('/',1)[-1]) for u in case['code_urls']]
+        entries+=[link(u,('テスト：' if ja else 'Tests: ')+u.rsplit('/',1)[-1]) for u in case['test_urls']]
+        entries+=[link(case['download'],'配布ZIP' if ja else 'Release ZIP'),link(case['results'],'保存結果' if ja else 'Saved results'),link(case['verification'],'独立展開からの追試記録' if ja else 'Independent-extraction rerun receipt')]
+        body+='<p>'+' · '.join(entries)+'</p></article>'
+    return body
+
+def scoped_supplement_markdown(cases,lang):
+    if not cases:return ''
+    ja=lang=='ja'
+    body='## '+('固定入力の実行例と診断対照' if ja else 'Fixed-input examples and diagnostic controls')+'\n\n'
+    body+=('検査の合格と混合・推定の成功は区別します。旧版の入力・測定・公差は保持します。' if ja else 'Distinguish passing a check from successful mixing/estimation; preserve historical inputs, measurements and criteria.')+'\n\n'
+    for case in cases:
+        role=('診断対照・物理問題数へ非加算' if ja else 'Diagnostic control; no physical-problem increment') if case['problem_id'] is None else ('固定標的の計算例' if ja else 'Fixed-target computation')
+        body+='### '+case['title'][lang]+'\n\n'+role+'\n\n'+case['summary'][lang]+'\n\n'+case['limits'][lang]+'\n\n'
+        entries=[(case['url']+'?lang='+lang,'入力・結果・受入条件' if ja else 'Input, results and acceptance'),(case['reading'][lang],'手法・一次文献' if ja else 'Method and sources')]
+        entries+=[(u,('コード ' if ja else 'Code ')+u.rsplit('/',1)[-1]) for u in case['code_urls']]
+        entries+=[(u,('テスト ' if ja else 'Tests ')+u.rsplit('/',1)[-1]) for u in case['test_urls']]
+        entries+=[(case['download'],'ZIP'),(case['results'],'結果' if ja else 'Results'),(case['verification'],'追試記録' if ja else 'Rerun receipt')]
+        body+=' · '.join('['+label+']('+target+')' for target,label in entries)+'\n\n'
+    return body
+
 def bibliography(chapter,lang):
     ja=lang=='ja'
     result=heading('sources','一次文献・関連資料と確認範囲' if ja else 'Primary publications, supporting sources and review scope')
@@ -45,6 +77,14 @@ def bibliography(chapter,lang):
 for chapter in data['chapters']:
     ident=chapter['id'];assert all(i in methods for i in chapter['methods'])
     assert chapter['references'] and all(i in refs for i in chapter['references'])
+    scoped=load_supplemental_examples(ROOT,chapter.get('scoped_supplements',[]))
+    scoped_fields={}
+    if scoped:
+        bindings=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())['case_problem_ids']
+        for case in scoped:case['problem_id']=bindings[case['id']]
+        scoped_fields={'scoped_supplements':[{key:case[key] for key in ['id','title','group','problem_id','summary','limits','reading','url','code_urls','test_urls','download','results','verification']} for case in scoped],
+                       'supplemental_source_sha256':{'catalog/atlas-depth-expansion.json':hashlib.sha256((ROOT/'catalog/atlas-depth-expansion.json').read_bytes()).hexdigest(),
+                           **{path:digest for case in scoped for path,digest in case['source_sha256'].items()}}}
     anchors={}
     for lang in ['ja','en']:
         ja=lang=='ja';title=chapter['title'][lang];assert title.strip()
@@ -57,6 +97,7 @@ for chapter in data['chapters']:
                 assert section['paragraphs'][lang] and all(p.strip() for p in section['paragraphs'][lang])
                 for p in section['paragraphs'][lang]:body+=paragraph(p)
                 body+=''.join('<math-placeholder id="'+f+'"></math-placeholder>' for f in section.get('formulas',[]))
+        body+=scoped_supplement_html(scoped,lang)
         body+=heading('publication-scope','公開範囲と関連項目' if ja else 'Publication scope and related entries')
         if all(methods[i]['status']=='planned' for i in chapter['methods']):
             scope='解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。' if ja else 'Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.'
@@ -80,7 +121,7 @@ for chapter in data['chapters']:
         navigation='<nav class="resource-nav">'+link(f'/numerical-methods-atlas/{lang}/read/','解説章の目次' if ja else 'Reading contents')+' · '+link('/numerical-methods-atlas/methods/?lang='+lang,'手法一覧' if ja else 'Method map')+' · '+link(SOURCE,'編集用正本 / Source JSON' if ja else 'Editable source / JSON')+' · '+link(url(ident,lang)+'index.md','Markdown')+' · '+link(url(ident,lang)+'index.json','JSON')+'</nav>'
         doc='<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(title)+' | Numerical Methods Atlas</title><meta name="description" content="'+escape(title+'：'+('代表式・計算手順・条件・検証案・一次文献' if ja else 'equations, algorithm, assumptions, proposed checks and primary sources'),quote=True)+'"><link rel="canonical" href="https://hrkoyama.github.io'+url(ident,lang)+'">'+''.join('<link rel="alternate" hreflang="'+l+'" href="https://hrkoyama.github.io'+url(ident,l)+'">' for l in ['ja','en'])+'<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/numerical-methods-atlas/style.css"><link rel="stylesheet" href="/styles/atlas-resources.css"><style>.detailed-reading{max-width:1000px;margin:auto;padding:1.2rem}.detailed-reading .prose{max-width:78ch}.detailed-reading .math-block{max-width:100%;overflow-x:auto}.detailed-reading .resource-nav,.detailed-reading>nav{display:flex;flex-wrap:wrap;gap:.6rem}.detailed-reading>nav a{padding:.35rem}.reading-sources li{margin-bottom:1rem}.reading-sources p{font-size:.95rem;overflow-wrap:anywhere}h2{scroll-margin-top:1rem}</style></head><body class="profile-page" data-content-language="'+lang+'"><main id="main" class="detailed-reading">'+navigation+toc+'<article class="prose" lang="'+lang+'">'+static+'</article><p>'+link('/using/','引用と利用条件' if ja else 'Citation and reuse')+'</p></main></body></html>\n'
         (directory/'index.html').write_text(doc)
-        write(directory/'index.json',{**entry,'url':'https://hrkoyama.github.io'+url(ident,lang),'methods':chapter['methods'],'implementation_status':{i:methods[i]['status'] for i in chapter['methods']},'references':[refs[i] for i in chapter['references']],'source_sha256':source_hash})
+        write(directory/'index.json',{**entry,'url':'https://hrkoyama.github.io'+url(ident,lang),'methods':chapter['methods'],'implementation_status':{i:methods[i]['status'] for i in chapter['methods']},'references':[refs[i] for i in chapter['references']],'source_sha256':source_hash,**scoped_fields})
         # A simple readable extraction retains LaTeX source and citations.
         markdown='# '+title+'\n\n'
         if 'html' not in chapter:
@@ -94,6 +135,7 @@ for chapter in data['chapters']:
             plain=re.sub(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>',lambda m:'['+re.sub('<[^>]+>','',m[2])+']('+m[1]+')',plain,flags=re.S)
             plain=re.sub(r'</(?:p|h[1-6]|li|ul)>','\n\n',plain)
             markdown+=unescape(re.sub('<[^>]+>','',plain)).strip()+'\n\n'
+        markdown+=scoped_supplement_markdown(scoped,lang)
         markdown+='## '+('公開範囲' if ja else 'Publication scope')+'\n\n'+scope+'\n\n'
         markdown+='## '+('文献' if ja else 'Sources')+'\n\n'+'\n'.join('- '+refs[i]['author']+' ('+str(refs[i]['year'])+'). '+refs[i]['title']+'. '+('https://doi.org/'+refs[i]['doi'] if refs[i].get('doi') else refs[i]['source']) for i in chapter['references'])+'\n'
         (directory/'index.md').write_text(markdown)

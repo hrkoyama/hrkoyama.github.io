@@ -11,22 +11,22 @@ const registry=json('catalog/atlas-execution-examples.json');
 const targets=['advection-sine','sod','shu-osher','poisson-1d-dirichlet','poisson-2d-sine','bratu','harmonic-oscillator','stiff-cosine','smooth-function-projection','isolated-particles','periodic-particles','taylor-green','brio-wu','hydrogenic-atoms','helium-ground-state','logistic-growth','sir-epidemic','mc-integral','gbm-sde','h2-rhf','periodic-he-dft','periodic-he-forces'];
 const prefix='code/numerical-methods-atlas/2026-11-22/';
 const path=url=>new URL(url).pathname.slice(1);
-const supplementalProblemIds=['matrix-factorization','krylov-spectrum','quadrature-moments','gaussian-mcmc','langevin-harmonic','reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo','neutral-periodic-charges','logarithmic-particles','cold-plasma-pic','maxwell-collisions','absorbing-slab','thermostatted-quartic'];
+const supplementalProblemIds=['matrix-factorization','krylov-spectrum','quadrature-moments','gaussian-mcmc','langevin-harmonic','reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo','neutral-periodic-charges','logarithmic-particles','cold-plasma-pic','maxwell-collisions','absorbing-slab','thermostatted-quartic','mcmc-bimodal-mixture'];
 
-test('all 22 runnable representative problems have one reproduction record within the 81-problem inventory',()=>{
+test('all 22 runnable representative problems have one reproduction record within the 82-problem inventory',()=>{
   assert.equal(registry.examples.length,22);
   assert.deepEqual(registry.examples.map(x=>x.problem_id).sort(),[...targets].sort());
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length,81);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,81);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length,82);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,82);
   assert.equal(registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22').length,12);
   for(const id of ['barnes-hut','hydrogenic-atoms','helium-ground-state'])assert.equal(registry.examples.find(x=>x.id===id).release.version,'2026-11-21');
 });
 
-test('fourteen additional physical problems bind to successful immutable supplements without multiplying shared cases',()=>{
+test('fifteen additional physical problems bind to successful immutable supplements without multiplying shared cases',()=>{
   const inventory=json('catalog/atlas-test-problems.json').problems;
   const mapping=json('catalog/atlas-depth-expansion.json').case_problem_ids;
   const selected=inventory.filter(x=>supplementalProblemIds.includes(x.id));
-  assert.equal(selected.length,14);assert.equal(inventory.length-selected.length,67);
+  assert.equal(selected.length,15);assert.equal(inventory.length-selected.length,67);
   assert.equal(mapping.ewald,mapping.spme);assert.equal(mapping['glm-fourier-mode'],null);
   assert.equal(inventory.filter(x=>x.id==='neutral-periodic-charges').length,1);
   for(const problem of selected){

@@ -131,8 +131,8 @@
         "en": "Probability distributions, fluctuations and sampling"
       },
       "summary": {
-        "ja": "熱浴を付けたMDでは平均温度だけでなく分布・相関・有限標本誤差を調べる。不変分布の式だけでは有限時間の探索や輸送特性は保証されない。",
-        "en": "Thermostatted MD requires distributions, correlations and finite-sample uncertainty as well as mean temperature. An invariant-density formula does not establish finite-time exploration or transport properties."
+        "ja": "熱浴やMCMCでは平均だけでなく分布・相関・有限標本誤差を調べます。不変密度の式、R-hat≈1、大きなESSだけでは有限時間の探索や輸送特性は保証されません。MCMCの診断対照をMDや熱浴の連成検証へ流用しません。",
+        "en": "Thermostats and MCMC require distributions, correlations and finite-sample uncertainty as well as means. Invariant-density formulas, R-hat near one or large ESS do not guarantee finite-time exploration or transport properties. MCMC diagnostic controls do not establish MD/thermostat coupling."
       },
       "reading": [
         {
@@ -143,6 +143,26 @@
           "label": {
             "ja": "サーモスタットの比較",
             "en": "Thermostat comparisons"
+          }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/mcmc/",
+            "en": "/numerical-methods-atlas/en/read/mcmc/"
+          },
+          "label": {
+            "ja": "MCMC：不変分布・混合・診断の違い",
+            "en": "MCMC: invariance, mixing and diagnostic limits"
+          }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/validation-mcmc/",
+            "en": "/numerical-methods-atlas/en/read/validation-mcmc/"
+          },
+          "label": {
+            "ja": "2峰混合と独立診断比較の固定例",
+            "en": "Fixed bimodal-mixture and independent-diagnostic comparisons"
           }
         }
       ]
@@ -3548,15 +3568,15 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-crossovers.json": "0b9163e06d478475ecc39f8aa1d79088e9d6952b84eece36b3719292977420bf",
-    "catalog/atlas-methods.json": "c3b279c7ee212ea5310a5053828ab9d055b3dccb32c7f9e64e1c7ffcc1d73e7e",
-    "numerical-methods-atlas/methods/index.json": "d0a249ee6402084fda473b732222b1e690ebae6fad94563b575f74b6ec6bc50a",
+    "catalog/atlas-crossovers.json": "7fa40b5af1c17e2fca72c771ddbb744803b6031f10c929d55c85aee6ee5e1864",
+    "catalog/atlas-methods.json": "59cddd024215a156427bb6299b6bdb616ff1649584b12068c2c9a54b00485c50",
+    "numerical-methods-atlas/methods/index.json": "6243f7142203e56474b7bf33ba58ac420a3363c9af8fc55444d24f4b16924d20",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b7280de8fae51ff8f1b81557c7b83b22df6c366e02679e193908210a36f902b8",
+    "catalog/atlas-depth-expansion.json": "9b5f02038f79e4db4b35a96a26d89c17e0f1b918e07e1b5a5d195b32e4594856",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

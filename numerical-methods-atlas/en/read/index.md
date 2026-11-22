@@ -110,6 +110,7 @@ Compare stochastic error, population models and temperature control through thei
 
 - [Monte Carlo integration](https://hrkoyama.github.io/numerical-methods-atlas/en/read/monte-carlo/)
 - [Markov-chain Monte Carlo / MCMC](https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/)
+- [Multimodal MCMC: independent checks of poor mixing and convergence diagnostics](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/)
 - [Stochastic differential equations](https://hrkoyama.github.io/numerical-methods-atlas/en/read/sde/)
 - [Biological model equations and numerical verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/)
 - [Independent validation of nonlinear reaction–diffusion and pattern formation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/)

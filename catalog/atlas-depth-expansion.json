@@ -78,6 +78,20 @@
         "ja": "Schnakenbergの1次元周期系で、有限振幅の過渡から成長後のパターンまでをたどります。別の数値解法で得た参照に照合し、格子・時間刻み・参照自身の誤差を分けて調べます。",
         "en": "Follow a 1D periodic Schnakenberg system from finite-amplitude transients to post-growth patterns. Compare with a separate numerical reference and distinguish grid, time-step and reference errors."
       }
+    },
+    {
+      "id": "mcmc",
+      "title": {
+        "ja": "多峰性MCMC：混合不良と収束診断の独立検証",
+        "en": "Multimodal MCMC: independent checks of poor mixing and convergence diagnostics"
+      },
+      "fields": [
+        "probability"
+      ],
+      "intro": {
+        "ja": "二峰性分布で、局所的な閉じ込めと峰間の移動を比べます。自己相関・有効標本数・収束診断の計算を独立実装と照合し、診断値だけでは見逃す探索不足も示します。",
+        "en": "Compare local trapping and between-mode movement on a bimodal target. Check autocorrelation, effective sample size and convergence diagnostics against an independent implementation, and expose missed exploration that diagnostics alone cannot detect."
+      }
     }
   ],
   "case_problem_ids": {
@@ -104,11 +118,13 @@
     "csvr-langevin-harmonic": "langevin-harmonic",
     "csvr-langevin-quartic": "thermostatted-quartic",
     "schnakenberg-nonlinear": "turing-schnakenberg",
-    "schnakenberg-pattern": "turing-schnakenberg"
+    "schnakenberg-pattern": "turing-schnakenberg",
+    "mcmc-multimodal-mixing": "mcmc-bimodal-mixture",
+    "mcmc-diagnostic-reference": null
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する6グループです。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs six NumPy/SciPy/pytest groups. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する7グループです。独立ライブラリの診断参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs seven NumPy/SciPy/pytest groups, comparing independent-library diagnostic references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {
@@ -122,6 +138,14 @@
     "schnakenberg-pattern": {
       "ja": "近定常の判定は高精度のGalerkin参照に対する有限時間の確認です。有限刻みの分割法の固定点と、半離散PDEの定常解は一般に一致しないため、主計算のfull RHS残差を別に示します。線形化との差の大きさは非線形化の指標であり、精度や定常性の証明には使いません。選んだ反射対称・π周期の部分空間での確認です。",
       "en": "Near-stationarity is a finite-time check of the high-accuracy Galerkin reference. A finite-step splitting fixed point need not solve the semidiscrete PDE’s steady equations, so the primary full-RHS residual is reported separately. A large difference from linearization indicates nonlinearity, not accuracy or stationarity. The selected reflection-even, pi-periodic subspace is the scope of the test."
+    },
+    "mcmc-multimodal-mixing": {
+      "ja": "この検証の「合格」は、混合する系列の分布確認と、意図的に混合しない系列の失敗・診断の盲点を正しく示したことを表します。全系列が収束したという意味ではありません。RhatやESSは観測量・有限標本・初期値に依存し、同じ峰に閉じ込められた全鎖では良く見えることがあります。反射ジャンプは既知の対称性を利用する比較用の提案であり、一般の未知の多峰性を解く保証ではありません。",
+      "en": "Passing this validation means confirming the well-mixing run and correctly exposing failures and diagnostic blind spots in deliberately trapped runs; it does not mean every run converged. Rhat and ESS depend on the observable, finite sample and initial states, and can look reassuring when all chains miss the same mode. Reflection jumps exploit known target symmetry for this comparison and do not guarantee exploration of arbitrary unknown multimodal targets."
+    },
+    "mcmc-diagnostic-reference": {
+      "ja": "独立ライブラリとの一致は診断値の計算の照合であり、目標分布を十分探索した証明ではありません。定数や峰指示関数の変動不足は数値のESSへ置き換えず、状態と理由を併記します。負の自己相関ではESSが標本数を超える場合があり、旧Gaussian例の保守的な下限規約とは区別します。",
+      "en": "Agreement with an independent library checks diagnostic computation; it does not prove adequate target exploration. Constants and insufficiently varying mode indicators carry explicit states and reasons rather than a reassuring numeric ESS. Negative autocorrelation can yield ESS above the draw count; this is distinct from the conservative floor used in the earlier Gaussian example."
     }
   }
 }

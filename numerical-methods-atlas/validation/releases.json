@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 24,
+  "case_count": 26,
   "releases": [
     {
       "group": "foundations",
@@ -104,6 +104,21 @@
         "schnakenberg-pattern"
       ],
       "tests": 28
+    },
+    {
+      "group": "mcmc",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/",
+      "archive": "atlas-mcmc-2026-11-22.zip",
+      "archive_sha256": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+      "manifest_sha256": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+      "verification_sha256": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "mcmc-diagnostic-reference",
+        "mcmc-multimodal-mixing"
+      ],
+      "tests": 39
     }
   ]
 }

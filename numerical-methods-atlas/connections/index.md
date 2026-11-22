@@ -448,9 +448,11 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 
 ### 確率分布・揺らぎ・標本化
 
-熱浴を付けたMDでは平均温度だけでなく分布・相関・有限標本誤差を調べる。不変分布の式だけでは有限時間の探索や輸送特性は保証されない。
+熱浴やMCMCでは平均だけでなく分布・相関・有限標本誤差を調べます。不変密度の式、R-hat≈1、大きなESSだけでは有限時間の探索や輸送特性は保証されません。MCMCの診断対照をMDや熱浴の連成検証へ流用しません。
 
 - [サーモスタットの比較](/numerical-methods-atlas/ja/read/thermostats/)
+- [MCMC：不変分布・混合・診断の違い](/numerical-methods-atlas/ja/read/mcmc/)
+- [2峰混合と独立診断比較の固定例](/numerical-methods-atlas/ja/read/validation-mcmc/)
 
 根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 
@@ -910,9 +912,11 @@ Eigenvalues describe KS orbitals, reaction-equilibrium stability and diffusion-m
 
 ### Probability distributions, fluctuations and sampling
 
-Thermostatted MD requires distributions, correlations and finite-sample uncertainty as well as mean temperature. An invariant-density formula does not establish finite-time exploration or transport properties.
+Thermostats and MCMC require distributions, correlations and finite-sample uncertainty as well as means. Invariant-density formulas, R-hat near one or large ESS do not guarantee finite-time exploration or transport properties. MCMC diagnostic controls do not establish MD/thermostat coupling.
 
 - [Thermostat comparisons](/numerical-methods-atlas/en/read/thermostats/)
+- [MCMC: invariance, mixing and diagnostic limits](/numerical-methods-atlas/en/read/mcmc/)
+- [Fixed bimodal-mixture and independent-diagnostic comparisons](/numerical-methods-atlas/en/read/validation-mcmc/)
 
 Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 

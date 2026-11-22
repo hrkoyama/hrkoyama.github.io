@@ -39,6 +39,9 @@ def main():
             m['next_deliverable']={'ja':'公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。','en':'Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions.'}
         if ident in ['langevin-thermostat','stochastic-velocity-rescaling']:
             m['metadata_review']['level']='method-specific primary-source equations and scoped dedicated classical examples; independent ZIP rerun and explicit limits'
+        if ident=='mcmc':
+            m['metadata_review']['on']='2026-11-22'
+            m['metadata_review']['level']='scoped Gaussian and multimodal examples; rank/folded diagnostics independently compared with a pinned library, without inferring general convergence'
         if ident in ['ewald','pme','spme']:
             m['metadata_review']['level']='method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified'
             if ident=='ewald':

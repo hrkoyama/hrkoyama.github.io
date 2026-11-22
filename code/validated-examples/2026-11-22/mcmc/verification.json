@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "mcmc",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+  "archive": {
+    "file": "atlas-mcmc-2026-11-22.zip",
+    "sha256": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "bytes": 837427,
+    "archive_directory": "atlas-mcmc-2026-11-22"
+  },
+  "archive_sha256": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+  "returncode": 0,
+  "passed_tests": 39,
+  "tests": 39,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "mcmc-diagnostic-reference",
+    "mcmc-multimodal-mixing"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 3.184119292000105,
+  "independent_rerun_seconds": 3.1921588750010415,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

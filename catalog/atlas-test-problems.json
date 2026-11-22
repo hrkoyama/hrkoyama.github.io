@@ -2299,6 +2299,54 @@
           }
         }
       ]
+    },
+    {
+      "id": "mcmc-bimodal-mixture",
+      "group": "probability",
+      "name": {
+        "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+        "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+      },
+      "chapter": "validation-mcmc",
+      "reading_section": "mcmc-multimodal-mixing",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/mcmc/",
+      "verification": "/code/validated-examples/2026-11-22/mcmc/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "mcmc-multimodal-mixing"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/inputs.json",
+          "json_pointer": "/cases/mcmc-multimodal-mixing"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "mcmc-multimodal-mixing",
+          "url": "/numerical-methods-atlas/validation/mcmc-multimodal-mixing/",
+          "name": {
+            "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+            "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+          }
+        }
+      ]
     }
   ],
   "excluded_examples": {
@@ -2309,7 +2357,8 @@
       "基底行列・Fourier記号・分散関係・正値性・幾何保存則等の局所検査：独立した問題数にはしない",
       "AMR・並列化・混合精度、専用実装が未整備のサーモスタット10手法、未実装の量子化学・DFTの拡張",
       "補助例glm-fourier-modeはGLMの縦方向発散誤差の減衰診断として別掲し、独立した物理テスト問題へは加算しません。",
-      "補助例csvr-kinetic-kernelはCSVR熱浴単独の条件付き分布・揺らぎ・相関の診断として別掲し、独立した物理テスト問題へは加算しません。調和系のCSVR/Langevin比較も既存langevin-harmonicへの手法追加として統合し、四次ポテンシャルのthermostatted-quarticだけを新しい問題として1件加算します。"
+      "補助例csvr-kinetic-kernelはCSVR熱浴単独の条件付き分布・揺らぎ・相関の診断として別掲し、独立した物理テスト問題へは加算しません。調和系のCSVR/Langevin比較も既存langevin-harmonicへの手法追加として統合し、四次ポテンシャルのthermostatted-quarticだけを新しい問題として1件加算します。",
+      "mcmc-diagnostic-referenceはACF・rank Rhat・bulk/tail ESSと退化条件の診断対照で、物理問題数へ加算しません。2峰混合の初期値・局所/反射提案・seed違いはmcmc-bimodal-mixtureの1問題へ統合し、旧単峰gaussian-mcmcとは別に数えます。混合不良を期待通り再現した検査の合格は、そのシナリオの推定成功を意味しません。"
     ],
     "en": [
       "17 of 22 biological labels remain survey-only. Five labels expose only scoped educational implementations; Turing and Schnakenberg share one example and do not add duplicate problems.",
@@ -2318,7 +2367,8 @@
       "Local basis-matrix, Fourier-symbol, dispersion, positivity and geometric-conservation checks: not separate problems",
       "AMR, parallelization, mixed precision, the ten thermostats without dedicated implementations, and unimplemented quantum/DFT extensions",
       "The glm-fourier-mode supplement is a longitudinal GLM divergence-error damping diagnostic and does not add an independent physical test problem.",
-      "The csvr-kinetic-kernel supplement diagnoses conditional laws, fluctuations and correlations of the isolated CSVR bath and adds no physical problem. The harmonic CSVR/Langevin comparison extends the existing langevin-harmonic problem; only the quartic-potential thermostatted-quartic case adds one new problem."
+      "The csvr-kinetic-kernel supplement diagnoses conditional laws, fluctuations and correlations of the isolated CSVR bath and adds no physical problem. The harmonic CSVR/Langevin comparison extends the existing langevin-harmonic problem; only the quartic-potential thermostatted-quartic case adds one new problem.",
+      "mcmc-diagnostic-reference is an ACF/rank-Rhat/bulk-tail-ESS and degeneracy control, not an additional physical problem. Different starts, local/reflection proposals and seeds for the bimodal target form one mcmc-bimodal-mixture problem, distinct from the old unimodal gaussian-mcmc. Passing an intentional mixing-failure check does not mean estimation succeeded in that scenario."
     ]
   }
 }

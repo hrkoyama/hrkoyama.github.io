@@ -61,7 +61,7 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
   const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
   const quartic=gallery.items.find(x=>x.id==='thermostatted-quartic');
   const metadata=cases.find(x=>x.id==='csvr-langevin-quartic');
-  assert.equal(gallery.items.length,81);
+  assert.equal(gallery.items.length,82);
   assert.equal(quartic.image,'/'+base+'results/csvr-langevin-quartic.png');
   assert.equal(quartic.image_sha256,digest(base+'results/csvr-langevin-quartic.png'));
   assert.deepEqual(quartic.caption,metadata.summary);
@@ -81,8 +81,8 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
 test('nonlinear Schnakenberg runs are additional entrances and retain the saved onset illustration',()=>{
   const identifiers=['schnakenberg-nonlinear','schnakenberg-pattern'];
   const item=gallery.items.find(x=>x.id==='turing-schnakenberg');
-  assert.equal(gallery.items.length,81);
-  assert.equal(gallery.counts.runnable_problems,37);
+  assert.equal(gallery.items.length,82);
+  assert.equal(gallery.counts.runnable_problems,38);
   assert.equal(item.image,'/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
   assert.equal(item.image_sha256,'d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893');
   assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers]);
@@ -90,6 +90,24 @@ test('nonlinear Schnakenberg runs are additional entrances and retain the saved 
   const base='code/validated-examples/2026-11-22/biology/';
   for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...identifiers.map(x=>'results/'+x+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
   assert.equal(manifest.calculations_sha256,'d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6');
+});
+
+test('the bimodal MCMC visual is one new physical target and preserves the old standard-normal illustration',()=>{
+  const base='code/validated-examples/2026-11-22/mcmc/';
+  const metadata=json(base+'cases.json').find(x=>x.id==='mcmc-multimodal-mixing');
+  const problem=gallery.items.find(x=>x.id==='mcmc-bimodal-mixture');
+  assert.equal(gallery.items.length,82);assert.equal(gallery.counts.runnable_problems,38);
+  assert.equal(problem.image,'/'+base+'results/mcmc-multimodal-mixing.png');
+  assert.equal(problem.image_sha256,digest(base+'results/mcmc-multimodal-mixing.png'));
+  assert.deepEqual(problem.caption,metadata.summary);
+  assert.deepEqual(problem.supplemental_execution_entries.map(x=>x.id),['mcmc-multimodal-mixing']);
+  assert.ok(!gallery.items.some(x=>x.id==='mcmc-diagnostic-reference'));
+  const old=gallery.items.find(x=>x.id==='gaussian-mcmc');
+  assert.equal(old.image,'/code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png');
+  assert.equal(old.image_sha256,'a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44');
+  assert.deepEqual(old.supplemental_execution_entries.map(x=>x.id),['gaussian-mcmc']);
+  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
+  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json','results/mcmc-multimodal-mixing.png','results/mcmc-diagnostic-reference.png'])assert.equal(manifest.source_sha256[base+name],digest(base+name));
 });
 
 test('filters combine domains with normalized multilingual AND searches and handle empty results', () => {

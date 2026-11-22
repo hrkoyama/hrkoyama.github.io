@@ -227,8 +227,8 @@
         "en": "Stochastic computation"
       },
       "scope": {
-        "ja": "既存IID x²積分・スカラーItô幾何Brown運動に、1次元Gaussian標的のMetropolis–Hastings MCMCを追加。確率計算法全般の完成を意味しません。",
-        "en": "Add Metropolis–Hastings MCMC for a 1D Gaussian target to the existing IID x² integration and scalar Itô geometric Brownian motion. These do not complete stochastic computation."
+        "ja": "既存のIID x²積分・スカラーItô GBM・単峰Gaussian MCMCを保持し、等重み2峰Gaussian混合の混合不良・同じ峰に留まる診断の盲点・対称反射提案を固定例で比較します。新しいrank/bulk/tail診断の照合は別の対照例です。確率計算全般の完成を意味しません。",
+        "en": "Preserve existing IID x² integration, scalar Itô GBM and unimodal Gaussian MCMC. Fixed examples compare poor mixing, the same-mode diagnostic blind spot and symmetry-reflection proposals for an equal-weight bimodal Gaussian mixture. New rank/bulk/tail diagnostic comparisons are separate controls, not completion of stochastic computation."
       },
       "examples": [
         "mc-integral",
@@ -239,19 +239,21 @@
         "en": "/numerical-methods-atlas/en/read/monte-carlo/"
       },
       "reference": {
-        "ja": "解析積分・分散・共有Brown経路上のGBM解析解。MCMCはGaussianの既知モーメントとCDF、自己相関診断は既知AR(1)と比較。",
-        "en": "Analytic integral/variance and GBM on common Brownian paths. Compare MCMC with known Gaussian moments/CDF and autocorrelation diagnostics with known AR(1)."
+        "ja": "旧例の解析積分・GBM解・Gaussianモーメント/CDF・既知AR(1)を保持。新標的は混合正規の既知モーメント・CDF・峰占有率と照合し、同じ鎖のACFは直接和、rank正規化split/folded R-hatとbulk/tail ESSはArviZ 0.20の独立実行へ照合します。",
+        "en": "Retain analytic integral/GBM solutions, Gaussian moments/CDF and known AR(1) controls. Compare the new mixture with its known moments, CDF and mode occupancy; compare ACF on identical chains with direct sums, and rank-normalized split/folded R-hat plus bulk/tail ESS with independently executed ArviZ 0.20."
       },
       "refinement": {
-        "ja": "既存MCの256 seed・GBMの4096経路に加え、MCMCの32独立連鎖、正値系列自己相関時間・ESS・古典的split R-hatを確認。固定seed・予算での統計的判定であり、全seedや全標的での保証ではありません。",
-        "en": "In addition to the existing 256-seed MC and 4096-path GBM runs, check 32 independent MCMC chains, positive-sequence autocorrelation time/ESS and classical split R-hat. Statistical acceptance is specific to the fixed seeds/budgets, not every seed or target."
+        "ja": "旧MCの256 seed・GBMの4096経路・単峰MCMCの32鎖を保持。新混合例は3シナリオ×3固定seedで、分布誤差・峰移動・観測量x/峰指示変数の診断を分けます。意図した混合不良が検査に合格しても推定成功とは表示せず、固定閾値を普遍的な保証や偽陽性率と扱いません。",
+        "en": "Retain the old 256-seed MC, 4096-path GBM and 32-chain unimodal MCMC checks. For the new mixture use three scenarios × three fixed seeds, separating distribution errors, mode transitions and diagnostics for x/mode indicators. Passing an intentional poor-mixing check is not estimation success; thresholds are neither universal guarantees nor false-positive rates."
       },
       "next": {
-        "ja": "多峰性・高次元標的、希少事象、一般SDEや診断の普遍性は未検証。",
-        "en": "Multimodal/high-dimensional targets, rare events, general SDEs and universal diagnostic reliability remain unvalidated."
+        "ja": "既知対称性を持つ1次元2峰標的の限定比較です。任意の多峰性・高次元・実際の推論モデル、一般SDE、普遍的な混合保証や診断の信頼性は未検証です。R-hat≈1や大きなESSだけでは未探索の峰を否定できません。",
+        "en": "A scoped comparison for a 1D bimodal target with known symmetry. Arbitrary multimodal/high-dimensional or real inference models, general SDEs, universal mixing guarantees and diagnostic reliability remain unvalidated. R-hat near one or large ESS cannot rule out unexplored modes."
       },
       "supplemental_examples": [
-        "gaussian-mcmc"
+        "gaussian-mcmc",
+        "mcmc-multimodal-mixing",
+        "mcmc-diagnostic-reference"
       ]
     },
     {

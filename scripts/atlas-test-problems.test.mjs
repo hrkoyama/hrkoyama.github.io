@@ -50,7 +50,7 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   const results=JSON.parse(read(base+'results/result.json'));
   const receipt=JSON.parse(read(base+'verification.json'));
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
-  assert.equal(catalog.problems.length,81);
+  assert.equal(catalog.problems.length,82);
   assert.equal(inventory.counts.groups.time,8);
   assert.equal(mapping['csvr-kinetic-kernel'],null);
   assert.equal(mapping['csvr-langevin-harmonic'],'langevin-harmonic');
@@ -79,7 +79,7 @@ test('nonlinear Schnakenberg refinements reuse one physical problem and preserve
   const metadata=JSON.parse(read(base+'cases.json'));
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
   const problem=catalog.problems.find(x=>x.id==='turing-schnakenberg');
-  assert.equal(catalog.problems.length,81);
+  assert.equal(catalog.problems.length,82);
   assert.equal(inventory.counts.groups.biology,5);
   assert.equal(problem.chapter,'validation-models');
   assert.equal(problem.code_base,'/code/validated-examples/2026-11-22/models/');
@@ -99,6 +99,31 @@ test('nonlinear Schnakenberg refinements reuse one physical problem and preserve
   assert.ok(output.cases.every(x=>x.passed&&Object.values(x.checks).every(v=>v===true)));
   const verification=JSON.parse(read(base+'verification.json'));
   assert.equal(verification.passed,true);assert.equal(verification.all_cases_rerun,true);
+});
+test('bimodal MCMC adds one target problem while the diagnostic control and old unimodal release remain separate',()=>{
+  const base='code/validated-examples/2026-11-22/mcmc/';
+  const cases=JSON.parse(read(base+'cases.json'));
+  const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
+  const problem=catalog.problems.find(x=>x.id==='mcmc-bimodal-mixture');
+  assert.equal(catalog.problems.length,82);
+  assert.equal(inventory.counts.groups.probability,4);
+  assert.equal(mapping['mcmc-multimodal-mixing'],problem.id);
+  assert.equal(mapping['mcmc-diagnostic-reference'],null);
+  assert.equal(problem.chapter,'validation-mcmc');
+  assert.deepEqual(problem.name,cases.find(x=>x.id==='mcmc-multimodal-mixing').title);
+  assert.deepEqual(problem.supplemental_examples.map(x=>x.id),['mcmc-multimodal-mixing']);
+  for(const id of ['mcmc-multimodal-mixing','mcmc-diagnostic-reference'])assert.ok(!catalog.problems.some(x=>x.id===id));
+  const old=catalog.problems.find(x=>x.id==='gaussian-mcmc');
+  assert.equal(old.code_base,'/code/validated-examples/2026-11-22/models/');
+  assert.deepEqual(old.supplemental_examples.map(x=>x.id),['gaussian-mcmc']);
+  for(const row of cases)assert.deepEqual(row.method_ids,['mcmc']);
+  const result=JSON.parse(read(base+'results/result.json'));
+  assert.equal(result.input_sha256,hash(readFileSync(new URL(base+'inputs.json',root))));
+  assert.equal(result.passed,true);
+  assert.deepEqual(result.cases.map(x=>x.id).sort(),['mcmc-diagnostic-reference','mcmc-multimodal-mixing']);
+  assert.ok(result.cases.every(x=>x.passed&&Object.values(x.checks).every(v=>v===true)));
+  const receipt=JSON.parse(read(base+'verification.json'));
+  assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.passed,true);
 });
 test('the public landing, coverage highlights and indexes expose the whole inventory',()=>{
   const page=read('numerical-methods-atlas/test-cases/index.html');

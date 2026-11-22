@@ -12,14 +12,14 @@
   "counts": {
     "equations": 46,
     "methods": 129,
-    "papers": 236,
-    "references": 287,
-    "journal_articles": 230,
+    "papers": 238,
+    "references": 290,
+    "journal_articles": 232,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 20,
+    "other_sources": 21,
     "local_equations": 23,
     "reading_equations": 23,
     "local_methods": 114,
@@ -27,9 +27,9 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 87,
-    "test_problems": 81,
-    "saved_test_problems": 81,
+    "reading_chapters": 88,
+    "test_problems": 82,
+    "saved_test_problems": 82,
     "code_test_problems": 0
   },
   "items": [
@@ -1616,7 +1616,7 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Optimization & stochastic methods",
-      "scope": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence.",
+      "scope": "Gaussian-target MCMC: distribution, autocorrelation and ESS: Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence. Multimodal MCMC: trapping, false reassurance and a global proposal: Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration. Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies: Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences.",
       "origin": "curated-depth-example"
     },
     {
@@ -2991,6 +2991,24 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "vehtari2021rhat",
+      "type": "article",
+      "identity": "doi:10.1214/20-ba1221",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "gelman-rubin1992",
+      "type": "article",
+      "identity": "doi:10.1214/ss/1177011136",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "arviz020-diagnostics",
+      "type": "misc",
+      "identity": "url:https://python.arviz.org/en/v0.20.0/api/generated/arviz.rhat.html",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3221,9 +3239,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "c3b279c7ee212ea5310a5053828ab9d055b3dccb32c7f9e64e1c7ffcc1d73e7e",
+    "catalog/atlas-methods.json": "59cddd024215a156427bb6299b6bdb616ff1649584b12068c2c9a54b00485c50",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
-    "catalog/atlas-method-primary-references.json": "cf4bf88789007a7e9388824bfa5490c553998f80721f5e468ccf9b8e21189a22"
+    "catalog/atlas-method-primary-references.json": "3e3d4080f33c6e97372717ec81c73463a4e1573619710aee26fc331579fa2083"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",

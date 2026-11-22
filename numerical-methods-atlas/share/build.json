@@ -2,8 +2,8 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "c3b279c7ee212ea5310a5053828ab9d055b3dccb32c7f9e64e1c7ffcc1d73e7e",
-    "numerical-methods-atlas/coverage.json": "e594f34754ae922c13c7c1fd3cb46e3ce547cb51b555768fd384403c4c96eb11",
+    "catalog/atlas-methods.json": "59cddd024215a156427bb6299b6bdb616ff1649584b12068c2c9a54b00485c50",
+    "numerical-methods-atlas/coverage.json": "c6cda2c43791991d4efaa6ce801b98e503a583cf0b21503111d75566ecfcc8ba",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f"
   },
@@ -19,18 +19,18 @@
   },
   "images": {
     "ja": {
-      "svg_sha256": "5c00c91685c1bb9542163efa6cc740ecc956cba39e09f61afe6415a6fe61de99",
-      "png_sha256": "f3a0798207c66506444c286c3a54e85f72795499439dd9041dae284081e9ded2",
-      "content_input_sha256": "1d738ed67b9e9cd9499d4cc54146adc9262c5e4bea063f0d8ed5db80f872dc2d",
-      "render_input_sha256": "4baab8494b93f4b9031a61f0f02eb417b2f7d158ba99558451c62a1d671c87b2",
+      "svg_sha256": "dc42827b7dfc1f625a6c0c2ee14b879ad281a2858abbd5854f761d2fa35a4a98",
+      "png_sha256": "506a0c08aab1bde504c9a5d4ab1d7a29df029a0edaad783b9e3c244d88965880",
+      "content_input_sha256": "a68474cb7138d48129670d7801b4937013ae6c34e5a1b1d2b7b0e100a0ecfe5b",
+      "render_input_sha256": "1fefb9da9eb41bdb0eeaedf465a772276845451739a14b66343d0095c7306347",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "1ec4ac7df3df259d45943a9d3a7f1d1cd723aeb7703749ef61cc2d4384fe6dac",
-      "png_sha256": "12ee4203aac67004c81829942c9022c2d98549496b3230a8740bc5ae669e8b9a",
-      "content_input_sha256": "efe709ca10e64e97be29b9c801bcf14335b4cdf5ae2532d28ecfa8acdc79b7e1",
-      "render_input_sha256": "ad21323db177f8e2476ce7e30c07aa2b529c7ec0819d8770dc702b38b255b102",
+      "svg_sha256": "1e4440f8547efdccfb648c1c15f7f8252c05adc6ed83108e71362e5f7d2f6155",
+      "png_sha256": "3f13d9c6c22743a2f8d8bab381ed163318e4c6ccb9a5a9255a1537549c2deb14",
+      "content_input_sha256": "9d4c9704a2ea03b325e9031d61414be5497c2a443551fee0adea700e5a9062f5",
+      "render_input_sha256": "79316e8cf22488fa619be929dada79d8b2bb820b6de6cef7caffe571f7d390a7",
       "width": 1200,
       "height": 630
     }

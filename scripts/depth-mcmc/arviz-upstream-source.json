@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/arviz-devs/arviz",
+  "tag": "v0.20.0",
+  "commit": "94113176cae99a05ba41d1e93739ee2d5bdbe9b1",
+  "commit_url": "https://github.com/arviz-devs/arviz/commit/94113176cae99a05ba41d1e93739ee2d5bdbe9b1",
+  "commit_date": "2024-09-28T20:14:16Z",
+  "files": {
+    "stats/diagnostics.py": {
+      "url": "https://raw.githubusercontent.com/arviz-devs/arviz/94113176cae99a05ba41d1e93739ee2d5bdbe9b1/arviz/stats/diagnostics.py",
+      "upstream_sha256": "a8622bab6e7c134be5fed2706520af9a9d1d6d0c6fcacadd27ccf322c68ae740",
+      "installed_sha256": "a8622bab6e7c134be5fed2706520af9a9d1d6d0c6fcacadd27ccf322c68ae740",
+      "identical": true
+    },
+    "stats/stats_utils.py": {
+      "url": "https://raw.githubusercontent.com/arviz-devs/arviz/94113176cae99a05ba41d1e93739ee2d5bdbe9b1/arviz/stats/stats_utils.py",
+      "upstream_sha256": "5c6f082cf56cf096e1fefee3ccb7f03249b61eb693da3dbe1f17bf9046252e34",
+      "installed_sha256": "5c6f082cf56cf096e1fefee3ccb7f03249b61eb693da3dbe1f17bf9046252e34",
+      "identical": true
+    },
+    "__init__.py": {
+      "url": "https://raw.githubusercontent.com/arviz-devs/arviz/94113176cae99a05ba41d1e93739ee2d5bdbe9b1/arviz/__init__.py",
+      "upstream_sha256": "719fbf6a1101e76d3ac2269069a4dedcb8ccf15202d38180915fa7a04c5cda4c",
+      "installed_sha256": "719fbf6a1101e76d3ac2269069a4dedcb8ccf15202d38180915fa7a04c5cda4c",
+      "identical": true
+    }
+  }
+}

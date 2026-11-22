@@ -1454,8 +1454,8 @@
         "en": "Markov-chain Monte Carlo / MCMC"
       },
       "intro": {
-        "ja": "MCMCは目的分布を不変分布に持つMarkov連鎖を作り、独立標本を直接生成しにくい積分を推定します。不変性と、有限時間で十分探索できることは別の条件です。",
-        "en": "MCMC constructs a Markov chain with a chosen invariant distribution when direct independent sampling is difficult. Invariance and adequate exploration in a finite run are separate requirements."
+        "ja": "MCMCは目的分布を不変分布に持つMarkov連鎖を作ります。不変性、有限時間での混合、観測量の推定精度は別の問いです。旧単峰Gaussian例を保持し、多峰性による混合不良、診断の盲点と独立実装比較を新しい限定配布版で確かめます。",
+        "en": "MCMC constructs a chain with a chosen invariant distribution. Invariance, finite-time mixing and accuracy for a particular observable are separate questions. Preserve the earlier unimodal Gaussian example while a separate scoped release examines multimodal mixing failures, diagnostic blind spots and independent implementation comparisons."
       },
       "sections": [
         {
@@ -1466,10 +1466,12 @@
           },
           "paragraphs": {
             "ja": [
-              "非正規化密度π(x)と提案密度q(y|x)に対し、Metropolis–Hastings受理確率を使います。πの未知の正規化定数は比で消えます。対称なqでは提案比が消えますが、非対称提案でこれを省略すると目的分布を変えます。"
+              "非正規化密度π(x)と提案密度q(y|x)に対し、Metropolis–Hastings受理確率を使います。πの未知の正規化定数は比で消えます。対称なqでは提案比が消えますが、非対称提案でこれを省略すると目的分布を変えます。",
+              "新しい標的は1次元の等重みGaussian混合、π(x)=[N(−6,1)+N(6,1)]/2です。平均・分散・CDF・右側占有率を既知の目標と比べます。既存の標準正規標的とは異なる1つのテスト問題で、同じ目標の初期値・提案法・seed違いは問題数へ重複加算しません。"
             ],
             "en": [
-              "For an unnormalized target π and proposal q(y|x), use the Metropolis–Hastings acceptance probability. Unknown target normalization cancels. Proposal factors cancel only for symmetric proposals; omitting them for an asymmetric proposal changes the target."
+              "For an unnormalized target π and proposal q(y|x), use the Metropolis–Hastings acceptance probability. Unknown target normalization cancels. Proposal factors cancel only for symmetric proposals; omitting them for an asymmetric proposal changes the target.",
+              "The new target is the one-dimensional equal-weight Gaussian mixture π(x)=[N(−6,1)+N(6,1)]/2. Compare moments, CDF and right-mode occupancy with known targets. It is one new test problem, distinct from the existing standard-normal target; different initializations, proposals and seeds do not add problems."
             ]
           },
           "formulas": [
@@ -1484,10 +1486,16 @@
           },
           "paragraphs": {
             "ja": [
-              "候補yを引いて受理/棄却し、棄却時にも現在の状態を標本に残します。初期過渡を評価し、複数の異なる初期値から鎖を動かします。自己相関ρₖを使う有効標本数N_effの近似は、定常性と自己相関の推定が妥当な場合に解釈します。"
+              "候補yを引いて受理/棄却し、棄却時にも現在の状態を標本に残します。初期過渡を評価し、複数の異なる初期値から鎖を動かします。自己相関ρₖを使う有効標本数N_effの近似は、定常性と自己相関の推定が妥当な場合に解釈します。",
+              "追加版は、峰ごとに分散させた初期値の局所ランダムウォーク、全鎖を同じ峰から始める局所ランダムウォーク、既知の対称性x→−xを使うreflection jumpを含む提案を区別します。最後の提案はこの標的の対称性を利用する対照で、未知の多峰分布に使える汎用解決策ではありません。",
+              "観測量xと右峰の指示変数を分けて評価します。古典的split R-hatと平均観測量のESSは旧版のまま保持し、新版ではrank正規化split/folded R-hat、bulk/tail ESSを別の定義として示します。ACF・ESSは観測量、有限標本、定常性と推定の約束に依存し、単一の「この鎖のESS」として万能視しません。",
+              "rank変換したbulk ESSを、原スケールの平均のMonte Carlo標準誤差（MCSE）へそのまま流用しません。定数observableでライブラリがESS=Nを返しても、それを良好な混合の証拠とは扱いません。"
             ],
             "en": [
-              "Propose y, accept or retain x, and keep rejected repetitions as samples. Assess initial transients and use dispersed initial states across chains. Interpret autocorrelation-based effective sample size only when stationarity and autocorrelation estimation are credible."
+              "Propose y, accept or retain x, and keep rejected repetitions as samples. Assess initial transients and use dispersed initial states across chains. Interpret autocorrelation-based effective sample size only when stationarity and autocorrelation estimation are credible.",
+              "The new release distinguishes local random walks from dispersed mode-specific starts, local random walks with every chain starting in the same mode, and proposals containing reflection jumps that exploit the known symmetry x→−x. The last is a target-specific control, not a general solution for unknown multimodal distributions.",
+              "Evaluate x and the right-mode indicator separately. Preserve the old release’s classical split R-hat and mean-observable ESS; the new release adds rank-normalized split/folded R-hat and bulk/tail ESS as distinct definitions. ACF/ESS depend on the observable, sample budget, stationarity and estimator conventions; no single ESS universally characterizes a chain.",
+              "Do not use rank-transformed bulk ESS directly as an estimator of the raw-scale mean’s Monte Carlo standard error (MCSE). A library returning ESS=N for a constant observable is not evidence of good mixing."
             ]
           }
         },
@@ -1499,10 +1507,16 @@
           },
           "paragraphs": {
             "ja": [
-              "詳細釣合いだけでは既約性や非周期性は保証されません。多峰性、強い相関、境界で混合が遅くなります。高い受理率だけを目標にすると微小移動に終わり得ます。鎖の間引きは、固定した計算量で情報を増やす一般的な解決策ではありません。"
+              "詳細釣合いだけでは既約性や非周期性は保証されません。多峰性、強い相関、境界で混合が遅くなります。高い受理率だけを目標にすると微小移動に終わり得ます。鎖の間引きは、固定した計算量で情報を増やす一般的な解決策ではありません。",
+              "異なる峰に滞留した鎖は鎖間診断で混合不良を見つけやすくても、全鎖が同じ峰に閉じ込められるとR-hatが1付近でも未探索の峰が残ります。良好そうなR-hatや大きなESSだけで収束とせず、既知CDF・峰の占有率・峰間の遷移も確認します。反射提案による峰の移動だけで峰内の探索まで保証したとも扱いません。",
+              "意図した混合不良や診断の盲点を再現する検査が合格しても、そのシナリオの推定が成功したという意味ではありません。固定入力の閾値はこの小さな比較の受入条件であり、有限計算の保証、診断の偽陽性率、任意のseedや標的での信頼性を与えません。",
+              "今回の局所GaussianランダムウォークMHも理論上は既約です。有限時間に峰を移れないことを、恒久的に非エルゴードなアルゴリズムだとは呼びません。"
             ],
             "en": [
-              "Detailed balance alone does not establish irreducibility or aperiodicity. Multimodality, correlations and boundaries can slow mixing. High acceptance can simply reflect tiny moves. Thinning is not a general way to increase information for a fixed computational budget."
+              "Detailed balance alone does not establish irreducibility or aperiodicity. Multimodality, correlations and boundaries can slow mixing. High acceptance can simply reflect tiny moves. Thinning is not a general way to increase information for a fixed computational budget.",
+              "Chains trapped in different modes can reveal a between-chain discrepancy, while chains all trapped in one mode can have R-hat near one despite a completely unexplored mode. Check known CDFs, mode occupancy and transitions alongside apparently favorable R-hat/ESS. Reflection-induced mode changes alone do not establish within-mode exploration.",
+              "Passing a test that intentionally reproduces poor mixing or a diagnostic blind spot does not mean estimation succeeded in that scenario. Fixed-input thresholds are acceptance criteria for this small comparison, not finite-run guarantees, diagnostic false-positive rates or reliability for every seed and target.",
+              "The local Gaussian random-walk MH used here is theoretically irreducible. Failure to leave a mode in a finite run is not described as a permanently nonergodic algorithm."
             ]
           }
         },
@@ -1514,10 +1528,16 @@
           },
           "paragraphs": {
             "ja": [
-              "Gaussianなど既知分布で平均・分散・分位点を確認し、非対称提案の補正と棄却標本も試験します。多峰性の例では鎖間比較・自己相関・有効標本数・期待値の不確かさを報告し、見た目の定常性だけで収束としません。"
+              "Gaussianなど既知分布で平均・分散・分位点を確認し、非対称提案の補正と棄却標本も試験します。多峰性の例では鎖間比較・自己相関・有効標本数・期待値の不確かさを報告し、見た目の定常性だけで収束としません。",
+              "新版の診断対照は、保存した同じ鎖についてACFを直接和と比較し、rank正規化R-hatとbulk/tail ESSをArviZ 0.20の独立実行で照合します。IID・既知の相関を持つ対照と定数系列などの境界例を、本来の混合正規サンプラーの推定精度と区別します。定義・中心化・分割・ties・端点の扱いと、どの指標を照合したかは専用例の固定入力・参照資料で確認します。",
+              "3つのシナリオと固定した3 seedについて、分布の誤差、峰の占有・移動、観測量別診断を並べます。旧Gaussian版の正値系列ESSや古典的split R-hatを書き換えたり、新しい診断の検証として流用したりしません。",
+              "定数系列などの退化例や非有限入力の扱いは分類・方針の検査であり、有限な診断量の数値一致とは区別します。参照fixtureの総欄数をそのまま数値一致の件数とは表示しません。"
             ],
             "en": [
-              "Check means, variances and quantiles for known targets, including asymmetric proposals and rejections. For multimodal cases report between-chain comparisons, autocorrelations, effective sample sizes and uncertainty; visually flat traces alone are not proof of convergence."
+              "Check means, variances and quantiles for known targets, including asymmetric proposals and rejections. For multimodal cases report between-chain comparisons, autocorrelations, effective sample sizes and uncertainty; visually flat traces alone are not proof of convergence.",
+              "The new diagnostic controls compare ACF with direct summation on the same saved chains, and rank-normalized R-hat plus bulk/tail ESS with an independent ArviZ 0.20 execution. Keep IID, known-correlation and boundary controls such as constant series separate from estimation accuracy of the mixture sampler. Dedicated fixed inputs and references specify definitions, centering, splitting, ties, endpoints and the exact metrics compared.",
+              "For three scenarios and three fixed seeds, place distribution errors, mode occupancy/transitions and observable-specific diagnostics side by side. The old Gaussian release’s positive-sequence ESS and classical split R-hat remain unchanged and are not borrowed as verification of the new diagnostics.",
+              "Degenerate controls such as constant series and policies for nonfinite input are classification checks, separate from numerical agreement of finite diagnostics. The total number of reference-fixture fields is not presented as the number of numerical agreements."
             ]
           }
         }
@@ -1525,6 +1545,15 @@
       "references": [
         "metropolis1953",
         "hastings1970"
+      ],
+      "publication_scope": {
+        "ja": "旧単峰Gaussian版と、新しい2峰混合の探索比較・診断対照を別々の不変配布版として案内します。混合不良の再現も検査の対象です。既知対称性を利用した低次元・固定seedの教育用例で、一般のMCMC・高次元・実際の推論モデルの収束保証ではありません。",
+        "en": "The earlier unimodal Gaussian release remains separate from the new bimodal exploration comparison and diagnostic controls. Reproducing poor mixing is also an intended check. These are low-dimensional, fixed-seed educational examples using a known symmetry, not general MCMC, high-dimensional or scientific-model convergence guarantees."
+      },
+      "scoped_supplements": [
+        "gaussian-mcmc",
+        "mcmc-multimodal-mixing",
+        "mcmc-diagnostic-reference"
       ]
     },
     {

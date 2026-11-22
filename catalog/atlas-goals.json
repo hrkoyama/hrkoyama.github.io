@@ -550,11 +550,20 @@
         "自己相関",
         "Metropolis Hastings",
         "effective sample size",
-        "Markov chain"
+        "Markov chain",
+        "多峰性MCMC",
+        "MCMCが混ざらない",
+        "混合不良",
+        "収束診断",
+        "R-hat",
+        "bulk ESS",
+        "tail ESS",
+        "multimodal mixing",
+        "MCMC convergence diagnostics"
       ],
       "scope": {
-        "ja": "既存IID x²積分・スカラーItô幾何Brown運動に、1次元Gaussian標的のMetropolis–Hastings MCMCを追加。確率計算法全般の完成を意味しません。",
-        "en": "Add Metropolis–Hastings MCMC for a 1D Gaussian target to the existing IID x² integration and scalar Itô geometric Brownian motion. These do not complete stochastic computation."
+        "ja": "既存のIID x²積分・スカラーItô GBM・単峰Gaussian MCMCを保持し、等重み2峰Gaussian混合の混合不良・同じ峰に留まる診断の盲点・対称反射提案を固定例で比較します。新しいrank/bulk/tail診断の照合は別の対照例です。確率計算全般の完成を意味しません。",
+        "en": "Preserve existing IID x² integration, scalar Itô GBM and unimodal Gaussian MCMC. Fixed examples compare poor mixing, the same-mode diagnostic blind spot and symmetry-reflection proposals for an equal-weight bimodal Gaussian mixture. New rank/bulk/tail diagnostic comparisons are separate controls, not completion of stochastic computation."
       },
       "methods": [
         "monte-carlo",
@@ -571,7 +580,9 @@
         "time"
       ],
       "supplemental_examples": [
-        "gaussian-mcmc"
+        "gaussian-mcmc",
+        "mcmc-multimodal-mixing",
+        "mcmc-diagnostic-reference"
       ]
     },
     {

@@ -3223,6 +3223,65 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "mcmc-bimodal-mixture",
+      "group": "probability",
+      "name": {
+        "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+        "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+      },
+      "chapter": "validation-mcmc",
+      "reading_section": "mcmc-multimodal-mixing",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-22/mcmc/",
+      "verification": "/code/validated-examples/2026-11-22/mcmc/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "mcmc-multimodal-mixing"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/inputs.json",
+          "json_pointer": "/cases/mcmc-multimodal-mixing"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/mcmc/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "mcmc-multimodal-mixing",
+          "url": "/numerical-methods-atlas/validation/mcmc-multimodal-mixing/",
+          "name": {
+            "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+            "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#mcmc-bimodal-mixture",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -3233,7 +3292,8 @@
       "基底行列・Fourier記号・分散関係・正値性・幾何保存則等の局所検査：独立した問題数にはしない",
       "AMR・並列化・混合精度、専用実装が未整備のサーモスタット10手法、未実装の量子化学・DFTの拡張",
       "補助例glm-fourier-modeはGLMの縦方向発散誤差の減衰診断として別掲し、独立した物理テスト問題へは加算しません。",
-      "補助例csvr-kinetic-kernelはCSVR熱浴単独の条件付き分布・揺らぎ・相関の診断として別掲し、独立した物理テスト問題へは加算しません。調和系のCSVR/Langevin比較も既存langevin-harmonicへの手法追加として統合し、四次ポテンシャルのthermostatted-quarticだけを新しい問題として1件加算します。"
+      "補助例csvr-kinetic-kernelはCSVR熱浴単独の条件付き分布・揺らぎ・相関の診断として別掲し、独立した物理テスト問題へは加算しません。調和系のCSVR/Langevin比較も既存langevin-harmonicへの手法追加として統合し、四次ポテンシャルのthermostatted-quarticだけを新しい問題として1件加算します。",
+      "mcmc-diagnostic-referenceはACF・rank Rhat・bulk/tail ESSと退化条件の診断対照で、物理問題数へ加算しません。2峰混合の初期値・局所/反射提案・seed違いはmcmc-bimodal-mixtureの1問題へ統合し、旧単峰gaussian-mcmcとは別に数えます。混合不良を期待通り再現した検査の合格は、そのシナリオの推定成功を意味しません。"
     ],
     "en": [
       "17 of 22 biological labels remain survey-only. Five labels expose only scoped educational implementations; Turing and Schnakenberg share one example and do not add duplicate problems.",
@@ -3242,13 +3302,14 @@
       "Local basis-matrix, Fourier-symbol, dispersion, positivity and geometric-conservation checks: not separate problems",
       "AMR, parallelization, mixed precision, the ten thermostats without dedicated implementations, and unimplemented quantum/DFT extensions",
       "The glm-fourier-mode supplement is a longitudinal GLM divergence-error damping diagnostic and does not add an independent physical test problem.",
-      "The csvr-kinetic-kernel supplement diagnoses conditional laws, fluctuations and correlations of the isolated CSVR bath and adds no physical problem. The harmonic CSVR/Langevin comparison extends the existing langevin-harmonic problem; only the quartic-potential thermostatted-quartic case adds one new problem."
+      "The csvr-kinetic-kernel supplement diagnoses conditional laws, fluctuations and correlations of the isolated CSVR bath and adds no physical problem. The harmonic CSVR/Langevin comparison extends the existing langevin-harmonic problem; only the quartic-potential thermostatted-quartic case adds one new problem.",
+      "mcmc-diagnostic-reference is an ACF/rank-Rhat/bulk-tail-ESS and degeneracy control, not an additional physical problem. Different starts, local/reflection proposals and seeds for the bimodal target form one mcmc-bimodal-mixture problem, distinct from the old unimodal gaussian-mcmc. Passing an intentional mixing-failure check does not mean estimation succeeded in that scenario."
     ]
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 81,
-    "saved_test_problems": 81,
+    "test_problems": 82,
+    "saved_test_problems": 82,
     "code_test_problems": 0,
     "groups": {
       "transport": 9,
@@ -3261,12 +3322,12 @@
       "approximation": 6,
       "quantum": 5,
       "biology": 5,
-      "probability": 3,
+      "probability": 4,
       "kinetic": 2
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "e9ad072afebf3b67a70c177f50e02d604e8e07a40eb7073332860b4b2ba392e9",
+    "catalog/atlas-test-problems.json": "b916648f2913c2300dd05c8f9b8257b40d7c9b2d1ab6f2f88a98e0f85e776bfc",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3349,7 +3410,11 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
     "code/validated-examples/2026-11-22/thermostats/inputs.json": "8097b48107f42800ce6883aeaf73f22cf37f01e2269884f2f965d85a315f2a38",
-    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905"
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "code/validated-examples/2026-11-22/mcmc/inputs.json": "b20b594ab2d001426fbc58d1fe86fe4719bd42455f6a10f502966f85fb6eb49a",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-6c192fad49
-Captured (UTC): 2026-11-22T12:10:35+00:00
+Snapshot: 2026-11-22-ffa135a6a4
+Captured (UTC): 2026-11-22T12:31:23+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -5799,7 +5799,7 @@ Author-uploaded original full text inspected, including the four Property U cond
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/
 Coverage: reading
 
-MCMC constructs a Markov chain with a chosen invariant distribution when direct independent sampling is difficult. Invariance and adequate exploration in a finite run are separate requirements.
+MCMC constructs a chain with a chosen invariant distribution. Invariance, finite-time mixing and accuracy for a particular observable are separate questions. Preserve the earlier unimodal Gaussian example while a separate scoped release examines multimodal mixing failures, diagnostic blind spots and independent implementation comparisons.
 
 ## Markov-chain Monte Carlo / MCMC — Problem and representative equations [en]
 
@@ -5807,6 +5807,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#model
 Coverage: reading
 
 For an unnormalized target π and proposal q(y|x), use the Metropolis–Hastings acceptance probability. Unknown target normalization cancels. Proposal factors cancel only for symmetric proposals; omitting them for an asymmetric proposal changes the target.
+The new target is the one-dimensional equal-weight Gaussian mixture π(x)=[N(−6,1)+N(6,1)]/2. Compare moments, CDF and right-mode occupancy with known targets. It is one new test problem, distinct from the existing standard-normal target; different initializations, proposals and seeds do not add problems.
 a(x,y)=\min\!\left(1,\frac{\pi(y)q(x\mid y)}{\pi(x)q(y\mid x)}\right),\qquad N_{\rm eff}\approx\frac{N}{1+2\sum_{k\ge1}\rho_k}.
 
 ## Markov-chain Monte Carlo / MCMC — Algorithm [en]
@@ -5815,6 +5816,9 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#algorit
 Coverage: reading
 
 Propose y, accept or retain x, and keep rejected repetitions as samples. Assess initial transients and use dispersed initial states across chains. Interpret autocorrelation-based effective sample size only when stationarity and autocorrelation estimation are credible.
+The new release distinguishes local random walks from dispersed mode-specific starts, local random walks with every chain starting in the same mode, and proposals containing reflection jumps that exploit the known symmetry x→−x. The last is a target-specific control, not a general solution for unknown multimodal distributions.
+Evaluate x and the right-mode indicator separately. Preserve the old release’s classical split R-hat and mean-observable ESS; the new release adds rank-normalized split/folded R-hat and bulk/tail ESS as distinct definitions. ACF/ESS depend on the observable, sample budget, stationarity and estimator conventions; no single ESS universally characterizes a chain.
+Do not use rank-transformed bulk ESS directly as an estimator of the raw-scale mean’s Monte Carlo standard error (MCSE). A library returning ESS=N for a constant observable is not evidence of good mixing.
 
 ## Markov-chain Monte Carlo / MCMC — Conditions and pitfalls [en]
 
@@ -5822,6 +5826,9 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#conditi
 Coverage: reading
 
 Detailed balance alone does not establish irreducibility or aperiodicity. Multimodality, correlations and boundaries can slow mixing. High acceptance can simply reflect tiny moves. Thinning is not a general way to increase information for a fixed computational budget.
+Chains trapped in different modes can reveal a between-chain discrepancy, while chains all trapped in one mode can have R-hat near one despite a completely unexplored mode. Check known CDFs, mode occupancy and transitions alongside apparently favorable R-hat/ESS. Reflection-induced mode changes alone do not establish within-mode exploration.
+Passing a test that intentionally reproduces poor mixing or a diagnostic blind spot does not mean estimation succeeded in that scenario. Fixed-input thresholds are acceptance criteria for this small comparison, not finite-run guarantees, diagnostic false-positive rates or reliability for every seed and target.
+The local Gaussian random-walk MH used here is theoretically irreducible. Failure to leave a mode in a finite run is not described as a permanently nonergodic algorithm.
 
 ## Markov-chain Monte Carlo / MCMC — What to check [en]
 
@@ -5829,13 +5836,53 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#verific
 Coverage: reading
 
 Check means, variances and quantiles for known targets, including asymmetric proposals and rejections. For multimodal cases report between-chain comparisons, autocorrelations, effective sample sizes and uncertainty; visually flat traces alone are not proof of convergence.
+The new diagnostic controls compare ACF with direct summation on the same saved chains, and rank-normalized R-hat plus bulk/tail ESS with an independent ArviZ 0.20 execution. Keep IID, known-correlation and boundary controls such as constant series separate from estimation accuracy of the mixture sampler. Dedicated fixed inputs and references specify definitions, centering, splitting, ties, endpoints and the exact metrics compared.
+For three scenarios and three fixed seeds, place distribution errors, mode occupancy/transitions and observable-specific diagnostics side by side. The old Gaussian release’s positive-sequence ESS and classical split R-hat remain unchanged and are not borrowed as verification of the new diagnostics.
+Degenerate controls such as constant series and policies for nonfinite input are classification checks, separate from numerical agreement of finite diagnostics. The total number of reference-fixture fields is not presented as the number of numerical agreements.
+
+## Markov-chain Monte Carlo / MCMC — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#scoped-examples
+Coverage: reading
+
+Check each example’s target, observable, diagnostic definition and scope. Passing an acceptance check differs from successful mixing or estimation. Historical inputs, measurements and criteria are preserved.
+
+## Markov-chain Monte Carlo / MCMC — Gaussian-target MCMC: distribution, autocorrelation and ESS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/
+Coverage: reading
+
+Computation for a fixed target
+Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence.
+Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: models.py · Tests: test_models.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Markov-chain Monte Carlo / MCMC — Multimodal MCMC: trapping, false reassurance and a global proposal [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/
+Coverage: reading
+
+Computation for a fixed target
+Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration.
+An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: sampler.py · Code: diagnostics.py · Code: experiments.py · Code: fixtures.py · Code: generate-arviz-reference.py · Code: prepare-reference-input.py · Tests: test_mcmc.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Markov-chain Monte Carlo / MCMC — Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/
+Coverage: reading
+
+Diagnostic control: no additional physical problem
+Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences.
+An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations. ArviZ raw constant-ESS=N is not evidence of mixing. Globally identical values yield null/status; differing per-chain constants yield null/infinite-separation Rhat while retaining raw huge-finite/infinite library values outside ordinary finite comparisons. Bulk ESS is not a raw-mean MCSE estimator.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: sampler.py · Code: diagnostics.py · Code: experiments.py · Code: fixtures.py · Code: generate-arviz-reference.py · Code: prepare-reference-input.py · Tests: test_mcmc.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## Markov-chain Monte Carlo / MCMC — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#publication-scope
 Coverage: reading
 
-Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
+The earlier unimodal Gaussian release remains separate from the new bimodal exploration comparison and diagnostic controls. Reproducing poor mixing is also an intended check. These are low-dimensional, fixed-seed educational examples using a known symmetry, not general MCMC, high-dimensional or scientific-model convergence guarantees.
 Markov-chain Monte Carlo / MCMC
 
 ## Markov-chain Monte Carlo / MCMC — Primary publications, supporting sources and review scope [en]
@@ -8230,7 +8277,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 81-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 82-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -10404,6 +10451,15 @@ Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling. Origi
 G. Strang (1968). On the Construction and Comparison of Difference Schemes. 10.1137/0705041
 E. Hairer (2010). Geometric Numerical Integration, Lecture2. Original source
 
+## References by original publication year — Sources added by priority-method curation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
+Coverage: reading
+
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion). 10.1214/20-BA1221
+A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. 10.1214/ss/1177011136
+The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. Original source
+
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
@@ -11777,8 +11833,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 129 methods and building blocks · 236 journal/conference papers · 287 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 87 reading chapters including this inventory.
+46 equation/model entries · 129 methods and building blocks · 238 journal/conference papers · 290 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 88 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12025,7 +12081,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-230 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+232 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -14386,6 +14442,1541 @@ Review scope / review_level: publisher-search-first-page-and-metadata
 J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
 Review scope / review_level: publisher-metadata
 Official reference-implementation documentation: scipy.special.roots_legendre.html · scipy.integrate.quad.html
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Multimodal MCMC: independent checks of poor mixing and convergence diagnostics [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/
+Coverage: reading
+
+Compare local trapping and between-mode movement on a bimodal target. Check autocorrelation, effective sample size and convergence diagnostics against an independent implementation, and expose missed exploration that diagnostics alone cannot detect.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#run-all
+Coverage: reading
+
+Run inside atlas-mcmc-2026-11-22 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Multimodal MCMC: trapping, false reassurance and a global proposal [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/
+Coverage: reading
+
+Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-assumptions
+Coverage: reading
+
+Dimensionless1D target p=.5N(−6,1)+.5N(6,1), mean0/variance37/positive occupancy.5. Three fixed seeds, four chains,1024 warmup and16384 retained draws/chain. Prefixes1024/4096/16384 are nested, not independent replications. Rejections/self-transitions are retained.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-algorithm
+Coverage: reading
+
+Local scale.8; mixed uses y=−x+.8Z with probability.1, otherwise y=x+.8Z. The state-independent mixture is symmetric q(y|x)=q(x|y), so MH uses the log-target ratio. Chains use independent PCG64 streams, with no adaptation or removal of rejected states.
+\pi(x)=\tfrac12\phi(x+6)+\tfrac12\phi(x-6),\quad E[X]=0,\quad\operatorname{Var}X=37F(x)=\tfrac12\Phi(x+6)+\tfrac12\Phi(x-6),\quad P(X>0)=\tfrac12q(y\mid x)=(1-p)\phi_s(y-x)+p\phi_s(y+x)=q(x\mid y),\quad s=.8,\ p=.1\alpha(x,y)=\min\{1,\pi(y)/\pi(x)\},\quad I_n=\mathbf1\{X_n>0\}
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-validation
+Coverage: reading
+
+Compare with analytic moments, seven declared CDF points and positive occupancy. Record per-chain occupancies/transitions, rank/folded split Rhat, bulk/tail/mean and mode-indicator ESS, and within-only ACF/ESS. Dispersed trapped chains can have a good pooled distribution yet fail between-chain diagnostics; same-mode chains can have reassuring Rhat yet fail the known target. A control scenario passes when its intended failure is detected. CDF error is a declared-point maximum, not whole-line KS distance or an IID-test p-value.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-limits
+Coverage: reading
+
+An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_fft_direct_acov_error7.1054273576e-15
+mixed_maximum_mean_error0.127641398902
+mixed_maximum_variance_error0.154176469424
+mixed_maximum_cdf_error0.0112835132397
+mixed_maximum_occupancy_error0.010986328125
+mixed_maximum_rank_rhat1.00084880191
+mixed_minimum_bulk_ess6255.35095406
+mixed_minimum_tail_ess9814.32336082
+mixed_minimum_mode_ess4932.87923209
+mixed_minimum_transitions_per_chain1183
+intentionally_trapped_scenarios6
+判定 / checkPassed
+dispersed-2026112251-acceptancetrue
+dispersed-2026112251-intentionally_trappedtrue
+dispersed-2026112251-between_chain_failure_detectedtrue
+dispersed-2026112251-mode_variance_failure_explicittrue
+dispersed-2026112252-acceptancetrue
+dispersed-2026112252-intentionally_trappedtrue
+dispersed-2026112252-between_chain_failure_detectedtrue
+dispersed-2026112252-mode_variance_failure_explicittrue
+dispersed-2026112253-acceptancetrue
+dispersed-2026112253-intentionally_trappedtrue
+dispersed-2026112253-between_chain_failure_detectedtrue
+dispersed-2026112253-mode_variance_failure_explicittrue
+same_mode-2026112251-acceptancetrue
+same_mode-2026112251-intentionally_trappedtrue
+same_mode-2026112251-apparently_benign_diagnosticstrue
+same_mode-2026112251-wrong_target_cdftrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+same_mode-2026112251-wrong_target_meantrue
+same_mode-2026112251-wrong_target_occupancytrue
+same_mode-2026112251-constant_mode_indicator_undefinedtrue
+same_mode-2026112252-acceptancetrue
+same_mode-2026112252-intentionally_trappedtrue
+same_mode-2026112252-apparently_benign_diagnosticstrue
+same_mode-2026112252-wrong_target_cdftrue
+same_mode-2026112252-wrong_target_meantrue
+same_mode-2026112252-wrong_target_occupancytrue
+same_mode-2026112252-constant_mode_indicator_undefinedtrue
+same_mode-2026112253-acceptancetrue
+same_mode-2026112253-intentionally_trappedtrue
+same_mode-2026112253-apparently_benign_diagnosticstrue
+same_mode-2026112253-wrong_target_cdftrue
+same_mode-2026112253-wrong_target_meantrue
+same_mode-2026112253-wrong_target_occupancytrue
+same_mode-2026112253-constant_mode_indicator_undefinedtrue
+mixed-2026112251-acceptancetrue
+mixed-2026112251-mean_absolute_errortrue
+mixed-2026112251-variance_absolute_errortrue
+mixed-2026112251-cdf_max_errortrue
+mixed-2026112251-occupancy_absolute_errortrue
+mixed-2026112251-rank_rhattrue
+mixed-2026112251-bulk_esstrue
+mixed-2026112251-tail_esstrue
+mixed-2026112251-mode_esstrue
+mixed-2026112251-per_chain_mode_transitionstrue
+mixed-2026112252-acceptancetrue
+mixed-2026112252-mean_absolute_errortrue
+mixed-2026112252-variance_absolute_errortrue
+mixed-2026112252-cdf_max_errortrue
+mixed-2026112252-occupancy_absolute_errortrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+mixed-2026112252-rank_rhattrue
+mixed-2026112252-bulk_esstrue
+mixed-2026112252-tail_esstrue
+mixed-2026112252-mode_esstrue
+mixed-2026112252-per_chain_mode_transitionstrue
+mixed-2026112253-acceptancetrue
+mixed-2026112253-mean_absolute_errortrue
+mixed-2026112253-variance_absolute_errortrue
+mixed-2026112253-cdf_max_errortrue
+mixed-2026112253-occupancy_absolute_errortrue
+mixed-2026112253-rank_rhattrue
+mixed-2026112253-bulk_esstrue
+mixed-2026112253-tail_esstrue
+mixed-2026112253-mode_esstrue
+mixed-2026112253-per_chain_mode_transitionstrue
+fft_vs_direct_autocovariancetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriesscenarioseeddraws_per_chainexpected_behaviormeanvariancemean_absolute_errorvariance_absolute_errorcdf_max_errorcdfcdf_pointsexact_cdfcdf_point_errorspooled_occupancyper_chain_occupancyoccupancy_absolute_errorper_chain_transitionsminimum_transitions_per_chaintotal_transitionsx_diagnosticsmode_diagnosticswithin_chainarray_sha256acceptance_per_chain
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122511024intentional_nonmixing_control0.064729842601936.73780630950.06472984260190.2621936905320.017333984375[0.0078125,0.232666015625,0.489013671875,0.5,0.5078125,0.735107421875,0.987060546875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.003562565974089599,-0.017333984375,0.0003887378490896043,0.0,-0.0035625659740895488,-0.014892578125,-0.0015643871509103402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7424469012468258,"rhat_z":1.7424469012468258,"rhat_folded":1.0054721087161211,"rhat_split":6.796925029733925,"ess_bulk":6.143348451685772,"ess_tail":434.2715247112975,"ess_mean":4.12449770703817,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.031496062992126,"ess_tail":4.031496062992126,"ess_mean":4.031496062992126,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.7975642237591112,0.6359971378592295,0.40458573382662766,0.21086683790428856,0.028147075699845238,-0.023289144149807553,0.04309995133747896
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+6],"ess_sum":442.1583515294861,"status":"within_chain_only_not_global_mixing"}6c2bbb33633c3b39c330b9275d48566c40fd45cf8733c9b043f22e462e4cd16b—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122514096intentional_nonmixing_control-0.0010464235550236.94120110660.001046423555020.05879889336510.00344049566159[0.0079345703125,0.25311279296875,0.4915771484375,0.5,0.51177978515625,0.74676513671875,0.9893798828125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.003440495661589599,0.00311279296875,0.0029522144115896043,0.0,0.0004047191821604512,-0.00323486328125,0.0007549487865896598]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7368071710094268,"rhat_z":1.7368071710094268,"rhat_folded":1.0189758333262142,"rhat_split":6.739469302116261,"ess_bulk":6.110271684970746,"ess_tail":135.4748413987613,"ess_mean":4.101476174074813,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.007827788649706,"ess_tail":4.007827788649706,"ess_mean":4.007827788649706,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8076490616775069,0.6535232180123229,0.43189159699284685,0.19446781284225031,0.01718953489972423,0.0032547680234
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+843537,0.029457248986284344],"ess_sum":1770.2251551740117,"status":"within_chain_only_not_global_mixing"}8d181e38d1b7d27b660be77e139b948227103ac88d7e4cfc967d39fb50de579c—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed202611225116384intentional_nonmixing_control0.00077488563077436.99447028920.0007748856307740.005529710820290.00186884038815[0.0095062255859375,0.2510833740234375,0.4901275634765625,0.5,0.511199951171875,0.7495269775390625,0.9875946044921875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.001868840388152099,0.0010833740234375,0.0015026294506521043,0.0,-0.00017511480221454878,-0.0004730224609375,-0.0010303295337228402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7330167954713502,"rhat_z":1.7330167954713502,"rhat_folded":1.0004050595204101,"rhat_split":6.561682333462328,"ess_bulk":6.066847027810659,"ess_tail":102.65916411607769,"ess_mean":4.099438460122872,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.001954079140205,"ess_tail":4.001954079140205,"ess_mean":4.001954079140205,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8204729040467321,0.6756623052174253,0.46065508060399624,0.21535214621092091,0.04130926
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+4318092044,-0.002510931733146769,0.007254786533874587],"ess_sum":6441.058964006071,"status":"within_chain_only_not_global_mixing"}ec9ccb2087a60b48833b3821df6628f946ea1d5dcc7e2651ad2580b66beea345[0.7623291015625,0.7623291015625,0.76092529296875,0.75439453125]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122521024intentional_nonmixing_control-0.051987577266737.0008351130.05198757726670.0008351130020830.00927734375[0.013916015625,0.24755859375,0.490234375,0.5,0.514404296875,0.75927734375,0.984619140625][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.002540949650910401,-0.00244140625,0.0016094409740896043,0.0,0.0030292309009104512,0.00927734375,-0.00400579340091034]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7428663882304203,"rhat_z":1.7428663882304203,"rhat_folded":1.0177060705086889,"rhat_split":6.455399019148532,"ess_bulk":6.3058714418076285,"ess_tail":209.8765378361427,"ess_mean":4.139957837650113,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.031496062992126,"ess_tail":4.031496062992126,"ess_mean":4.031496062992126,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8251728195132676,0.686557082582832,0.48036742837289326,0.19733195574372783,-0.03329083888142198,-0.011056971511325875,-0.006723584681596
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+907],"ess_sum":438.32492427767954,"status":"within_chain_only_not_global_mixing"}037b621f0135f04bf2bf77af73d366f2b0b832ae26ac7d35ec6b36f14dd6e902—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122524096intentional_nonmixing_control0.025651528832236.89784033840.02565152883220.1021596615580.00506591796875[0.00775146484375,0.24493408203125,0.48809814453125,0.5,0.5115966796875,0.7493896484375,0.9869384765625][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.003623601130339599,-0.00506591796875,-0.0005267894946603957,0.0,0.00022161371341045122,-0.0006103515625,-0.0016864574634103402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.734577745164631,"rhat_z":1.734577745164631,"rhat_folded":1.0154697006789541,"rhat_split":6.517065360748919,"ess_bulk":6.123282366825756,"ess_tail":141.66444828640886,"ess_mean":4.108801925373455,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.007827788649706,"ess_tail":4.007827788649706,"ess_mean":4.007827788649706,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8243657379685116,0.6832893306073191,0.46852724725012135,0.20919724071079365,0.013607249078804472,-0.0007673834756
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+485216,-0.010843557167346703],"ess_sum":1678.774138267862,"status":"within_chain_only_not_global_mixing"}9d7eb49499218671338672109d1d1e057531439d4e0f8c8e623d9131872c6648—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed202611225216384intentional_nonmixing_control0.0026724039333636.89632486440.002672403933360.1036751355730.0023193359375[0.010986328125,0.248291015625,0.4879150390625,0.5,0.513275146484375,0.7523193359375,0.9888153076171875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0003887378490895991,-0.001708984375,-0.0007098949634103957,0.0,0.0019000805102854512,0.0023193359375,0.0001903735912771598]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7333920577653097,"rhat_z":1.7333920577653097,"rhat_folded":1.0011977400615806,"rhat_split":6.45274908911091,"ess_bulk":6.083354354918666,"ess_tail":100.07316744401147,"ess_mean":4.103345632814397,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.001954079140205,"ess_tail":4.001954079140205,"ess_mean":4.001954079140205,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8291572281095778,0.6899140106379236,0.4801395850778156,0.23205669149593955,0.05053405226269619,0.00550850371598679
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+2,-0.006141502036506561],"ess_sum":5944.958115877383,"status":"within_chain_only_not_global_mixing"}4e113ce9766c6c4fec110798c0225122063002201b99cabb974d1a2be74b1783[0.75799560546875,0.7598876953125,0.76080322265625,0.76239013671875]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122531024intentional_nonmixing_control-0.01214027565936.43687916350.0121402756590.5631208365240.01025390625[0.01171875,0.24365234375,0.487060546875,0.5,0.5146484375,0.76025390625,0.990966796875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.0003436840259104009,-0.00634765625,-0.0015643871509103957,0.0,0.0032733715259104512,0.01025390625,0.00234186284908966]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7394578615090175,"rhat_z":1.7394578615090175,"rhat_folded":1.010769742376789,"rhat_split":6.513679051266962,"ess_bulk":6.203955833214271,"ess_tail":243.83666886218273,"ess_mean":4.135833966938513,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.031496062992126,"ess_tail":4.031496062992126,"ess_mean":4.031496062992126,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8204704980522802,0.6747453397338593,0.45920104280321367,0.23237879033291214,0.08963817665331081,0.0033598846917884204,-0.028163370458802475],"e
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+ss_sum":337.95193848124717,"status":"within_chain_only_not_global_mixing"}1257e442a4922a0f6ad32cc0be800be793c39af7f4486c405da056246a6c68da—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122534096intentional_nonmixing_control-0.037520166241237.00298717180.03752016624120.002987171830060.00653076171875[0.0126953125,0.25518798828125,0.48883056640625,0.5,0.51190185546875,0.75653076171875,0.9920654296875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001320246525910401,0.00518798828125,0.0002056323803396043,0.0,0.0005267894946604512,0.00653076171875,0.00344049566158966]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7362287071267726,"rhat_z":1.7362287071267726,"rhat_folded":1.0024667142977652,"rhat_split":6.499968371135631,"ess_bulk":6.120236307254853,"ess_tail":163.70824132450463,"ess_mean":4.109129677828217,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.007827788649706,"ess_tail":4.007827788649706,"ess_mean":4.007827788649706,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8252027070315617,0.6846220969408163,0.4732278830408568,0.23273182532606929,0.05942522555596575,-0.0005868644014006556
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+,-0.013389227407952543],"ess_sum":1449.3789206509805,"status":"within_chain_only_not_global_mixing"}67dd63e381178202635efdd09d17a18a2e4a348960dc9c6d155ad81a05de49b5—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed202611225316384intentional_nonmixing_control0.0067385547962137.08711928670.006738554796210.08711928674630.00213623046875[0.0112457275390625,0.249786376953125,0.4880828857421875,0.5,0.5108795166015625,0.74786376953125,0.9876708984375][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0001293384350270991,-0.000213623046875,-0.0005420482837228957,0.0,-0.0004955493725270488,-0.00213623046875,-0.0009540355884103402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7339665692206894,"rhat_z":1.7339665692206894,"rhat_folded":1.0421265407460572,"rhat_split":6.49937611789769,"ess_bulk":6.083337149311072,"ess_tail":109.4495549437642,"ess_mean":4.101758642974462,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.001954079140205,"ess_tail":4.001954079140205,"ess_mean":4.001954079140205,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8267967610713574,0.685796204684495,0.47497150504574875,0.24071448274480847,0.06010473786405587,0.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0037596685577627634,0.0058212467195625315],"ess_sum":5805.525879815823,"status":"within_chain_only_not_global_mixing"}3262e7f5a966acfab11d1fc6995bbdee332a03adce4c117cb8290a0835d9bfdf[0.75970458984375,0.76629638671875,0.75634765625,0.756103515625]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122511024intentional_nonmixing_control-5.933683934860.9188026860065.9336839348636.0811973140.5[0.01611328125,0.47802734375,0.97607421875,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.004738215275910401,0.22802734375,0.4874492847240896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0098615719637702,"rhat_z":1.0098615719637702,"rhat_folded":1.0049967672041284,"rhat_split":1.0099332935750476,"ess_bulk":356.4218331074027,"ess_tail":557.9489762832166,"ess_mean":354.74575684239187,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8078911599032926,0.6529388118295331,0.42435518551119794,0.1727452807553365,0.06372092586399682,0.10057944341371183,-0.006056023745530293],"ess_sum":358.87347566270677,"status":"within_chain_only_not_global_mixing"}142f2bd91a0cb562881de21d40adea7be5df
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+4ed61fcffb89ccd23ef0083200c3—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122514096intentional_nonmixing_control-5.947043740150.9851642401155.9470437401536.01483575990.5[0.01947021484375,0.48211669921875,0.97357177734375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.008095148869660401,0.23211669921875,0.4849468433178396,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0022375634010967,"rhat_z":1.0022375634010967,"rhat_folded":1.0014376616982297,"rhat_split":1.0022352196251698,"ess_bulk":1331.1106900557118,"ess_tail":2135.548823635862,"ess_mean":1324.4021637265155,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8242204699695128,0.683415372389963,0.4705270208141102,0.2221746490464455,0.08080120974471965,0.037258375503313915,0.011987600232172149],"ess_sum":1290.3257632960986,"status":"within_chain_only_not_global_mixing"}12bdf50cb03abe847c356e23
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+1e7767422e1153dd157ca48a17acc0454627cc9d—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode202611225116384intentional_nonmixing_control-6.001851067111.006090748736.0018510671135.99390925130.5[0.0229339599609375,0.5012969970703125,0.97650146484375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011558893986847901,0.2512969970703125,0.4878765308178396,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0003279663343752,"rhat_z":1.0003279663343752,"rhat_folded":1.0001836088798375,"rhat_split":1.0003257541457724,"ess_bulk":5595.605024964256,"ess_tail":9047.292742806121,"ess_mean":5592.880612857582,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8284929230375894,0.6893215040006101,0.48027826541083307,0.2369625581601723,0.06770946465582613,0.012320438104019666,0.002805683884781877],"ess_sum":5603.724239153978,"status":"within_chain_only_not_global_mixing"}c0ef0d2474894aeb0df
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+07fc304385903b707e84b6ac6d0173fcd3347fb2ae295[0.75750732421875,0.75970458984375,0.75836181640625,0.7574462890625]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122521024intentional_nonmixing_control-6.029865850440.9827793402386.0298658504436.01722065980.5[0.01513671875,0.522705078125,0.9736328125,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.003761652775910401,0.272705078125,0.4850078784740896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0050484964286723,"rhat_z":1.0038493457882918,"rhat_folded":1.0050484964286723,"rhat_split":1.0040403667071434,"ess_bulk":346.5114648364165,"ess_tail":474.5816694307272,"ess_mean":340.5339980592517,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8105426309898184,0.6616001331736016,0.44068976956089817,0.20478158918748646,0.06371539870537143,0.035634625276696384,-0.02605132409418667],"ess_sum":399.10972658741287,"status":"within_chain_only_not_global_mixing"}7029adc6addc6942d60d3774ba38159fdb
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+1d2facb24b1881a9a29aaccbc3d065—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122524096intentional_nonmixing_control-6.022888524120.9999531912856.0228885241236.00004680870.5[0.02215576171875,0.511962890625,0.9776611328125,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.010780695744660401,0.261962890625,0.4890361987865896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0023368795228556,"rhat_z":1.0023368795228556,"rhat_folded":1.000626739659205,"rhat_split":1.0023681591218372,"ess_bulk":1402.9200056697323,"ess_tail":2168.6465048046266,"ess_mean":1406.1790552999862,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8237618401958671,0.6820917834722006,0.4682455001952993,0.23064424779569884,0.06390627427725808,0.01963572508774985,0.007083896321579679],"ess_sum":1435.8036236199605,"status":"within_chain_only_not_global_mixing"}91c9c8ab0a6071302c789850bf20
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+47e6f11dc79e31392feebc5915af8aa0f4fc—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode202611225216384intentional_nonmixing_control-6.002653691851.006390838446.0026536918535.99360916160.5[0.02301025390625,0.501220703125,0.9775543212890625,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011635187932160401,0.251220703125,0.4889293872631521,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.001042937079019,"rhat_z":1.001042937079019,"rhat_folded":1.0002631771994364,"rhat_split":1.001040593268704,"ess_bulk":5692.123893308554,"ess_tail":9240.436206774886,"ess_mean":5702.227961468005,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8271551700527922,0.6886361539625051,0.47834018175330906,0.2369741861654825,0.06248083122323455,0.009263065868680692,0.011634440448519839],"ess_sum":5678.1864639170635,"status":"within_chain_only_not_global_mixing"}26a4231b15403379b5b88e841ca2d
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0b317cccaf1f4239e29e47256e8afb03808[0.75286865234375,0.75311279296875,0.76116943359375,0.76226806640625]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122531024intentional_nonmixing_control-5.940565076450.9310981400115.9405650764536.068901860.5[0.016845703125,0.4833984375,0.9736328125,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.005470637150910401,0.2333984375,0.4850078784740896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0054690685922862,"rhat_z":1.0040883815211126,"rhat_folded":1.0054690685922862,"rhat_split":1.0041394182796917,"ess_bulk":455.1499713628486,"ess_tail":549.6655859889977,"ess_mean":454.18449080757256,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8133206516191277,0.6657565736420945,0.44782251866329653,0.20189303199852243,-0.01730758940999589,0.04588944791872429,-0.055773982536117685],"ess_sum":449.74902254215357,"status":"within_chain_only_not_global_mixing"}43a65c26ca677f92b7a93af82b1e1947eb13e
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+30d938707c984520b1771a687dd—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122534096intentional_nonmixing_control-5.975463143450.9800156896485.9754631434536.01998431040.5[0.0230712890625,0.491943359375,0.9769287109375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011696223088410401,0.241943359375,0.4883037769115896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0024880378879701,"rhat_z":1.0024880378879701,"rhat_folded":1.001333013905465,"rhat_split":1.002516676839009,"ess_bulk":1418.968315311838,"ess_tail":1938.9070138351312,"ess_mean":1409.5947527315143,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8259510980729102,0.6847272763541531,0.47127541994774913,0.22137277082061257,0.03829557137455915,0.029558831434680063,0.0008370982791920528],"ess_sum":1522.9420997113223,"status":"within_chain_only_not_global_mixing"}475a2f49d7e54f7b598933fd8224
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0b40875a2b30cb466444208186db22c2b785—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode202611225316384intentional_nonmixing_control-6.00683806910.9787287703686.006838069136.02127122960.5[0.0228118896484375,0.50433349609375,0.9782562255859375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011436823674347901,0.25433349609375,0.4896312915600271,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0001309758395969,"rhat_z":1.0001309758395969,"rhat_folded":1.00002984353963,"rhat_split":1.0001308397233837,"ess_bulk":5946.228319376368,"ess_tail":9556.884560567896,"ess_mean":5946.140851557149,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8239419319084734,0.6828931216566595,0.47195839352356767,0.21987498334352212,0.040445618812279836,0.008533338001651309,0.014709253157286814],"ess_sum":6155.99531789516,"status":"within_chain_only_not_global_mixing"}8a6ac96fbdb7dbd5601168f
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+dbb80b276486fe0adb336b9250dbdc69f790063f6[0.7608642578125,0.764404296875,0.7587890625,0.76068115234375]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122511024mixing_check0.017195634331337.68690127580.01719563433130.6869012757970.018310546875[0.01123046875,0.268310546875,0.48876953125,0.49365234375,0.505126953125,0.7529296875,0.988525390625][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0001445972240895991,0.018310546875,0.0001445972240896043,-0.00634765625,-0.006248112849089549,0.0029296875,-9.95434009103402e-05]0.50634765625[0.4638671875,0.498046875,0.51953125,0.5439453125]0.00634765625[82,67,67,83]67299{"rhat_rank":1.0070282010511993,"rhat_z":1.0070282010511993,"rhat_folded":1.0060464291873434,"rhat_split":1.01129616672079,"ess_bulk":320.94099327529506,"ess_tail":540.3464054435931,"ess_mean":246.1567833813926,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0115819742528165,"rhat_z":1.0115819742528165,"rhat_folded":1.0115819742528165,"rhat_split":1.0115819742528165,"ess_bulk":250.64762288515007,"ess_tail":250.64762288515013,"ess_mean":250.64762288515013,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8481137348570459,0.7287300494538942,0.5262982785419442,0.26651033433182975,0.09289535021687978
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+,0.05408242650362614,0.04650814383427969],"ess_sum":316.9934570782656,"status":"within_chain_only_not_global_mixing"}1050a34f6cdfa04e7cf0c09c6d9572c780db4b7cddeb2ac8e1fb1f1e16e79cd9—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122514096mixing_check0.0057720679979937.4779188950.005772067997990.4779188949920.00933837890625[0.01336669921875,0.25933837890625,0.4876708984375,0.49658203125,0.5072021484375,0.74920654296875,0.98858642578125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001991633244660401,0.00933837890625,-0.0009540355884103957,-0.00341796875,-0.004172917536589549,-0.00079345703125,-3.8508244660340196e-05]0.50341796875[0.463134765625,0.5126953125,0.51953125,0.518310546875]0.00341796875[321,294,308,333]2941256{"rhat_rank":1.0016958686613902,"rhat_z":1.0016958686613902,"rhat_folded":1.00123995119144,"rhat_split":1.0018268597437785,"ess_bulk":1829.9022529651902,"ess_tail":2429.3213838463653,"ess_mean":1432.221393791708,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0017404533253085,"rhat_z":1.0017404533253085,"rhat_folded":1.0017404533253085,"rhat_split":1.0017404533253085,"ess_bulk":1405.0788723772002,"ess_tail":1405.0788723772007,"ess_mean":1405.0788723772007,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8417372769619953,0.7085066646872311,0.5040590759282013,0.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+25141902709610525,0.050955172875179824,0.00477692468136119,0.008572292244583769],"ess_sum":1423.7416031507971,"status":"within_chain_only_not_global_mixing"}7329a241f51cae278d5fc2a6b2b3827de855aefc1aa1b16bb62bad9dda17c0b5—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed202611225116384mixing_check0.0048586358092536.90891242610.004858635809250.09108757393550.00538635253906[0.0110321044921875,0.25115966796875,0.487518310546875,0.497955322265625,0.5098114013671875,0.7553863525390625,0.989532470703125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0003429614819020991,0.00115966796875,-0.0011066234790353957,-0.002044677734375,-0.0015636646069020488,0.0053863525390625,0.0009075366772146598]0.502044677734[0.490478515625,0.50872802734375,0.50341796875,0.50555419921875]0.00204467773438[1251,1205,1281,1270]12055007{"rhat_rank":1.000259870070031,"rhat_z":1.000259870070031,"rhat_folded":1.0002173764642661,"rhat_split":1.0005894206981374,"ess_bulk":6255.350954061888,"ess_tail":9814.323360820285,"ess_mean":5003.916819018095,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0006436937623966,"rhat_z":1.0006436937623966,"rhat_folded":1.0006436937623966,"rhat_split":1.0006436937623966,"ess_bulk":4932.879232093141,"ess_tail":4932.879232093147,"ess_mean":4932.879232093147,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8439782484727948,0.71
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+34622062882743,0.5111218941469258,0.2662830020998359,0.0742452055245634,0.02569870182857517,-0.008302501319188674],"ess_sum":4985.38986892621,"status":"within_chain_only_not_global_mixing"}676a32729d11d72569cacff3365bef57a08787c857657d4464f3f5107edfcef5[0.76123046875,0.7572021484375,0.75982666015625,0.7601318359375]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122521024mixing_check0.24483799560437.92131584430.2448379956040.9213158442640.0218731128491[0.0146484375,0.24951171875,0.474853515625,0.480712890625,0.489501953125,0.733642578125,0.982421875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.003273371525910401,-0.00048828125,-0.013771418400910396,-0.019287109375,-0.02187311284908955,-0.016357421875,-0.00620305902591034]0.519287109375[0.5087890625,0.4658203125,0.4755859375,0.626953125]0.019287109375[67,71,66,73]66277{"rhat_rank":1.0139123339342355,"rhat_z":1.0100505074151824,"rhat_folded":1.0139123339342355,"rhat_split":1.0118666590360192,"ess_bulk":339.92038653256833,"ess_tail":432.56316209415496,"ess_mean":309.16524361059044,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0121116358731062,"rhat_z":1.0121116358731062,"rhat_folded":1.0121116358731062,"rhat_split":1.0121116358731062,"ess_bulk":297.325225033984,"ess_tail":297.3252250339837,"ess_mean":297.3252250339837,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8589245206753479,0.7365127019140139,0.5537618132854286,0.30853953423410724,0.082291334321767
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+45,0.02525431071113266,-0.011739672196237455],"ess_sum":308.74838493292737,"status":"within_chain_only_not_global_mixing"}c2271cb53a393aef03c63cbbe89bd17fb42f5bcc52e94e606bd4cb15716c27a8—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122524096mixing_check-0.025802413480636.92219364370.02580241348060.07780635627050.00543212890625[0.01263427734375,0.24456787109375,0.49322509765625,0.505126953125,0.51409912109375,0.7510986328125,0.98760986328125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001259211369660401,-0.00543212890625,0.004600163630339604,0.005126953125,0.0027240551196604512,0.0010986328125,-0.0010150707446603402]0.494873046875[0.507568359375,0.496826171875,0.46533203125,0.509765625]0.005126953125[290,317,304,312]2901223{"rhat_rank":1.0023305997480085,"rhat_z":1.0016379574683951,"rhat_folded":1.0023305997480085,"rhat_split":1.0009551566175303,"ess_bulk":1484.5623685946573,"ess_tail":2071.7844915476953,"ess_mean":1362.1243188873561,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0007464228230747,"rhat_z":1.0007464228230747,"rhat_folded":1.0007464228230747,"rhat_split":1.0007464228230747,"ess_bulk":1371.3306547046661,"ess_tail":1371.3306547046654,"ess_mean":1371.3306547046654,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8488481361792471,0.7184628579394698,0.5187175713346
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+217,0.2842874187644142,0.06905501429706795,-0.00941114616426299,0.004257033361995679],"ess_sum":1336.5773861235612,"status":"within_chain_only_not_global_mixing"}1f85967f4917fc003b565b3d8b00764ce1d0ab82d938e8e08a52364471344d8b—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed202611225216384mixing_check-0.014568127150936.84582353060.01456812715090.1541764694240.00575256347656[0.010589599609375,0.2491302490234375,0.4895172119140625,0.5012664794921875,0.5111541748046875,0.7557525634765625,0.989013671875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0007854663647145991,-0.0008697509765625,0.0008922778881521043,0.0012664794921875,-0.00022089116940204878,0.0057525634765625,0.0003887378490896598]0.498733520508[0.50372314453125,0.4857177734375,0.49163818359375,0.51385498046875]0.00126647949219[1237,1258,1233,1216]12164944{"rhat_rank":1.000848801908244,"rhat_z":1.000848801908244,"rhat_folded":1.0003843308326887,"rhat_split":1.0007858250700212,"ess_bulk":6350.326154746331,"ess_tail":9919.83992907867,"ess_mean":5277.806783950583,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0007380610307044,"rhat_z":1.0007380610307044,"rhat_folded":1.0007380610307044,"rhat_split":1.0007380610307044,"ess_bulk":5220.580666936556,"ess_tail":5220.580666936549,"ess_mean":5220.580666936549,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8465277519624687,
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0.7161755670077182,0.5154779768853739,0.27151312445146863,0.0782570145212151,0.005506348311040553,0.01034398342295211],"ess_sum":5275.233805945207,"status":"within_chain_only_not_global_mixing"}3fe77b4b9d8d04c94b76e498d6dd0620c2bb1fdcc4228a8b86a1a538264efcce[0.755859375,0.75762939453125,0.760986328125,0.7540283203125]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122531024mixing_check-0.31671795898738.11407558740.3167179589871.114075587390.036865234375[0.01806640625,0.286865234375,0.514892578125,0.525146484375,0.52734375,0.744873046875,0.990234375][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.006691340275910401,0.036865234375,0.026267644099089604,0.025146484375,0.01596868402591045,-0.005126953125,0.0016094409740896598]0.474853515625[0.392578125,0.5400390625,0.3896484375,0.5771484375]0.025146484375[89,71,62,78]62300{"rhat_rank":1.0278600397991573,"rhat_z":1.0253608330066284,"rhat_folded":1.0278600397991573,"rhat_split":1.0293923286983806,"ess_bulk":246.2280012252451,"ess_tail":725.0442359329238,"ess_mean":260.71935072949685,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0275985117058677,"rhat_z":1.0275985117058677,"rhat_folded":1.0275985117058677,"rhat_split":1.0275985117058677,"ess_bulk":285.8604488936633,"ess_tail":285.8604488936632,"ess_mean":285.8604488936632,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.84317916268943,0.7151073994974941,0.5195149628663434,0.2407842515708014,0.03660390700525458,0.0031
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+02471947681623,0.007123954239193733],"ess_sum":318.5476692128987,"status":"within_chain_only_not_global_mixing"}cce678514a9e10a51cd6264cc690034f93037e28be90ee289b23070eec1527d2—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122534096mixing_check-0.11552670151137.48582019610.1155267015110.4858201960750.0125732421875[0.012451171875,0.2625732421875,0.49993896484375,0.5091552734375,0.5172119140625,0.748291015625,0.9886474609375][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001076105900910401,0.0125732421875,0.011314030817839604,0.0091552734375,0.005836848088410451,-0.001708984375,2.2526911589659804e-05]0.490844726562[0.45703125,0.510986328125,0.457763671875,0.53759765625]0.0091552734375[293,303,293,298]2931187{"rhat_rank":1.0045626940751644,"rhat_z":1.0033971790627205,"rhat_folded":1.0045626940751644,"rhat_split":1.005229141986432,"ess_bulk":1407.5777207212295,"ess_tail":2234.295385372272,"ess_mean":1227.5886741295978,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0054968433127427,"rhat_z":1.0054968433127427,"rhat_folded":1.0054968433127427,"rhat_split":1.0054968433127425,"ess_bulk":1228.052737687608,"ess_tail":1228.0527376876087,"ess_mean":1228.0527376876087,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8513968214376497,0.7237389051817189,0.5165027848602322,0.25025119
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+78670262,0.07731521574939611,0.014036194111588098,0.0013259989290641877],"ess_sum":1264.7059150657929,"status":"within_chain_only_not_global_mixing"}72b44d1ad583131cd42c1229505ab2988925e206363bbe4af261051d2eb41a14—
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed202611225316384mixing_check-0.12764139890237.06144315920.1276413989020.06144315918910.0112835132397[0.0109405517578125,0.2568359375,0.499908447265625,0.510986328125,0.5218505859375,0.753326416015625,0.9884490966796875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0004345142162770991,0.0068359375,0.011283513239714604,0.010986328125,0.010475519963410451,0.003326416015625,-0.0001758373462228402]0.489013671875[0.48663330078125,0.4774169921875,0.49554443359375,0.4964599609375]0.010986328125[1257,1271,1252,1183]11834963{"rhat_rank":1.0002727982111421,"rhat_z":1.0002703884116997,"rhat_folded":1.0002727982111421,"rhat_split":1.0004640336791524,"ess_bulk":6482.8603996580705,"ess_tail":9997.473955694415,"ess_mean":5439.957170777199,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0004803503078386,"rhat_z":1.0004803503078386,"rhat_folded":1.0004803503078386,"rhat_split":1.0004803503078383,"ess_bulk":5365.687636097212,"ess_tail":5365.687636097215,"ess_mean":5365.687636097215,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8451283532906969,0.7153436897848012,0.51252
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+58894370842,0.2624856641287666,0.070403552851393,0.00209705692936887,0.008824702485585945],"ess_sum":5382.274560849906,"status":"within_chain_only_not_global_mixing"}ab9798ccf252552ae0a375f1f40441e30d04ef43055f7dbf350708d7d8029aaa[0.75860595703125,0.75994873046875,0.75933837890625,0.76214599609375]
+Measurements and complete records / JSON
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion) · DOI: 10.1214/20-BA1221
+Review scope / review_level: corrected-author-paper-selected-sections
+Checked original sections3–4, the2021-06-22 correction of Eq4.1 to denominator S+1/4, and the constant-indicator warning. This does not reproduce every original numerical experiment.
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo · DOI: 10.1214/ss/1177011137
+Review scope / review_level: original-selected-paired-sequence-theory
+Checked section3.3 and Theorems3.1/3.2 for reversibility assumptions and initial-positive/monotone sequences. Main article pp473–483 are distinguished from combined discussion pagination; no claim gives exact true ESS from finite chains.
+A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences · DOI: 10.1214/ss/1177011136
+Review scope / review_level: original-selected-multiple-chain-starting-points
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-references
+Coverage: reading
+
+Checked the original introduction/section2 on multiple sequences and overdispersed starts. Distinct from the later rank/folded method, and not a reproduction of every1992 finite-sample correction.
+The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source
+Review scope / review_level: official-versioned-source-and-actual-independent-execution
+Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied.
+N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines · DOI: 10.1063/1.1699114
+Review scope / review_level: publisher-abstract-and-metadata
+Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed.
+W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications · DOI: 10.1093/biomet/57.1.97
+Review scope / review_level: original-paper-excerpt-and-metadata
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-multimodal-mixing-references
+Coverage: reading
+
+Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/
+Coverage: reading
+
+Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-assumptions
+Coverage: reading
+
+Dimensionless1D target p=.5N(−6,1)+.5N(6,1), mean0/variance37/positive occupancy.5. Three fixed seeds, four chains,1024 warmup and16384 retained draws/chain. Prefixes1024/4096/16384 are nested, not independent replications. Rejections/self-transitions are retained.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-algorithm
+Coverage: reading
+
+Original equation-based implementation: split with the odd center dropped, average-tie Blom ranks using corrected S+1/4, re-rank folded deviations, and take the larger Rhat. Bulk ESS uses rank-split draws; tail ESS first determines Type7 quantiles on original full draws, then splits <= indicators. Use initial-positive/monotone pairs, declared endpoint handling and tau>=1/log10(total), without clipping antithetic ESS to N.
+\widehat R=\sqrt{\widehat V^+/W},\quad\widehat V^+=\tfrac{N-1}{N}W+\tfrac BNz_s=\Phi^{-1}\!\left(\frac{r_s-3/8}{S+1/4}\right),\quad\widehat R_{\rm rank}=\max(\widehat R_z,\widehat R_{\rm folded})\widehat N_{\rm eff}=MN/\widehat\tau,\quad\widehat\tau=-1+2\sum_k\widehat P_k,\quad\widehat P_k=\widehat\rho_{2k}+\widehat\rho_{2k+1}\operatorname{ESS}_{\rm tail}=\min\{\operatorname{ESS}(\mathbf1[X\le q_{.05}]),\operatorname{ESS}(\mathbf1[X\le q_{.95}])\}
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-validation
+Coverage: reading
+
+62 datasets: nine actual chains times three prefixes times x/indicator plus eight small fixtures. Regenerate and hash identical bytes; compare ordinary finite Rhat/ESS/ACF and test constants, zero within-chain variance, odd lengths, ties, shift and scale. Direct lag sums and infinite-series stationary-AR(1) tau=(1+rho)/(1−rho) provide separate checks of finite estimates. Routine runs compare stored references; live ArviZ regeneration is a separate optional procedure.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-limits
+Coverage: reading
+
+An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations. ArviZ raw constant-ESS=N is not evidence of mixing. Globally identical values yield null/status; differing per-chain constants yield null/infinite-separation Rhat while retaining raw huge-finite/infinite library values outside ordinary finite comparisons. Bulk ESS is not a raw-mean MCSE estimator.
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_datasets62
+finite_rhat_comparisons168
+finite_ess_comparisons156
+global_constant_datasets10
+global_constant_metric_exclusions70
+exact_row_rhat_policy_checks30
+nonfinite_classification_checks10
+raw_nonfinite_reference_metrics62
+maximum_rhat_absolute_error8.881784197e-16
+maximum_ess_relative_error3.44138231377e-15
+maximum_fft_direct_acov_error2.22044604925e-16
+maximum_independent_acf_error1.11022302463e-16
+maximum_ar1_acf_error0.0107038620716
+maximum_ar1_tau_relative_error0.0364175224425
+判定 / checkPassed
+dispersed__2026112251__1024__x-rhat_ranktrue
+dispersed__2026112251__1024__x-rhat_ztrue
+dispersed__2026112251__1024__x-rhat_foldedtrue
+dispersed__2026112251__1024__x-rhat_splittrue
+dispersed__2026112251__1024__x-ess_bulktrue
+dispersed__2026112251__1024__x-ess_tailtrue
+dispersed__2026112251__1024__x-ess_meantrue
+dispersed__2026112251__1024__x-independent-acftrue
+dispersed__2026112251__1024__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112251__1024__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112251__1024__positive_indicator-rhat_foldedtrue
+dispersed__2026112251__1024__positive_indicator-rhat_split-degeneracy-policytrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112251__1024__positive_indicator-ess_bulktrue
+dispersed__2026112251__1024__positive_indicator-ess_tailtrue
+dispersed__2026112251__1024__positive_indicator-ess_meantrue
+dispersed__2026112251__4096__x-rhat_ranktrue
+dispersed__2026112251__4096__x-rhat_ztrue
+dispersed__2026112251__4096__x-rhat_foldedtrue
+dispersed__2026112251__4096__x-rhat_splittrue
+dispersed__2026112251__4096__x-ess_bulktrue
+dispersed__2026112251__4096__x-ess_tailtrue
+dispersed__2026112251__4096__x-ess_meantrue
+dispersed__2026112251__4096__x-independent-acftrue
+dispersed__2026112251__4096__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112251__4096__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112251__4096__positive_indicator-rhat_foldedtrue
+dispersed__2026112251__4096__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112251__4096__positive_indicator-ess_bulktrue
+dispersed__2026112251__4096__positive_indicator-ess_tailtrue
+dispersed__2026112251__4096__positive_indicator-ess_meantrue
+dispersed__2026112251__16384__x-rhat_ranktrue
+dispersed__2026112251__16384__x-rhat_ztrue
+dispersed__2026112251__16384__x-rhat_foldedtrue
+dispersed__2026112251__16384__x-rhat_splittrue
+dispersed__2026112251__16384__x-ess_bulktrue
+dispersed__2026112251__16384__x-ess_tailtrue
+dispersed__2026112251__16384__x-ess_meantrue
+dispersed__2026112251__16384__x-independent-acftrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112251__16384__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112251__16384__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112251__16384__positive_indicator-rhat_foldedtrue
+dispersed__2026112251__16384__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112251__16384__positive_indicator-ess_bulktrue
+dispersed__2026112251__16384__positive_indicator-ess_tailtrue
+dispersed__2026112251__16384__positive_indicator-ess_meantrue
+dispersed__2026112252__1024__x-rhat_ranktrue
+dispersed__2026112252__1024__x-rhat_ztrue
+dispersed__2026112252__1024__x-rhat_foldedtrue
+dispersed__2026112252__1024__x-rhat_splittrue
+dispersed__2026112252__1024__x-ess_bulktrue
+dispersed__2026112252__1024__x-ess_tailtrue
+dispersed__2026112252__1024__x-ess_meantrue
+dispersed__2026112252__1024__x-independent-acftrue
+dispersed__2026112252__1024__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112252__1024__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112252__1024__positive_indicator-rhat_foldedtrue
+dispersed__2026112252__1024__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112252__1024__positive_indicator-ess_bulktrue
+dispersed__2026112252__1024__positive_indicator-ess_tailtrue
+dispersed__2026112252__1024__positive_indicator-ess_meantrue
+dispersed__2026112252__4096__x-rhat_ranktrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112252__4096__x-rhat_ztrue
+dispersed__2026112252__4096__x-rhat_foldedtrue
+dispersed__2026112252__4096__x-rhat_splittrue
+dispersed__2026112252__4096__x-ess_bulktrue
+dispersed__2026112252__4096__x-ess_tailtrue
+dispersed__2026112252__4096__x-ess_meantrue
+dispersed__2026112252__4096__x-independent-acftrue
+dispersed__2026112252__4096__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112252__4096__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112252__4096__positive_indicator-rhat_foldedtrue
+dispersed__2026112252__4096__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112252__4096__positive_indicator-ess_bulktrue
+dispersed__2026112252__4096__positive_indicator-ess_tailtrue
+dispersed__2026112252__4096__positive_indicator-ess_meantrue
+dispersed__2026112252__16384__x-rhat_ranktrue
+dispersed__2026112252__16384__x-rhat_ztrue
+dispersed__2026112252__16384__x-rhat_foldedtrue
+dispersed__2026112252__16384__x-rhat_splittrue
+dispersed__2026112252__16384__x-ess_bulktrue
+dispersed__2026112252__16384__x-ess_tailtrue
+dispersed__2026112252__16384__x-ess_meantrue
+dispersed__2026112252__16384__x-independent-acftrue
+dispersed__2026112252__16384__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112252__16384__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112252__16384__positive_indicator-rhat_foldedtrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112252__16384__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112252__16384__positive_indicator-ess_bulktrue
+dispersed__2026112252__16384__positive_indicator-ess_tailtrue
+dispersed__2026112252__16384__positive_indicator-ess_meantrue
+dispersed__2026112253__1024__x-rhat_ranktrue
+dispersed__2026112253__1024__x-rhat_ztrue
+dispersed__2026112253__1024__x-rhat_foldedtrue
+dispersed__2026112253__1024__x-rhat_splittrue
+dispersed__2026112253__1024__x-ess_bulktrue
+dispersed__2026112253__1024__x-ess_tailtrue
+dispersed__2026112253__1024__x-ess_meantrue
+dispersed__2026112253__1024__x-independent-acftrue
+dispersed__2026112253__1024__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112253__1024__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112253__1024__positive_indicator-rhat_foldedtrue
+dispersed__2026112253__1024__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112253__1024__positive_indicator-ess_bulktrue
+dispersed__2026112253__1024__positive_indicator-ess_tailtrue
+dispersed__2026112253__1024__positive_indicator-ess_meantrue
+dispersed__2026112253__4096__x-rhat_ranktrue
+dispersed__2026112253__4096__x-rhat_ztrue
+dispersed__2026112253__4096__x-rhat_foldedtrue
+dispersed__2026112253__4096__x-rhat_splittrue
+dispersed__2026112253__4096__x-ess_bulktrue
+dispersed__2026112253__4096__x-ess_tailtrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112253__4096__x-ess_meantrue
+dispersed__2026112253__4096__x-independent-acftrue
+dispersed__2026112253__4096__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112253__4096__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112253__4096__positive_indicator-rhat_foldedtrue
+dispersed__2026112253__4096__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112253__4096__positive_indicator-ess_bulktrue
+dispersed__2026112253__4096__positive_indicator-ess_tailtrue
+dispersed__2026112253__4096__positive_indicator-ess_meantrue
+dispersed__2026112253__16384__x-rhat_ranktrue
+dispersed__2026112253__16384__x-rhat_ztrue
+dispersed__2026112253__16384__x-rhat_foldedtrue
+dispersed__2026112253__16384__x-rhat_splittrue
+dispersed__2026112253__16384__x-ess_bulktrue
+dispersed__2026112253__16384__x-ess_tailtrue
+dispersed__2026112253__16384__x-ess_meantrue
+dispersed__2026112253__16384__x-independent-acftrue
+dispersed__2026112253__16384__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112253__16384__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112253__16384__positive_indicator-rhat_foldedtrue
+dispersed__2026112253__16384__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112253__16384__positive_indicator-ess_bulktrue
+dispersed__2026112253__16384__positive_indicator-ess_tailtrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112253__16384__positive_indicator-ess_meantrue
+same_mode__2026112251__1024__x-rhat_ranktrue
+same_mode__2026112251__1024__x-rhat_ztrue
+same_mode__2026112251__1024__x-rhat_foldedtrue
+same_mode__2026112251__1024__x-rhat_splittrue
+same_mode__2026112251__1024__x-ess_bulktrue
+same_mode__2026112251__1024__x-ess_tailtrue
+same_mode__2026112251__1024__x-ess_meantrue
+same_mode__2026112251__1024__x-independent-acftrue
+same_mode__2026112251__1024__positive_indicator-constant-undefinedtrue
+same_mode__2026112251__4096__x-rhat_ranktrue
+same_mode__2026112251__4096__x-rhat_ztrue
+same_mode__2026112251__4096__x-rhat_foldedtrue
+same_mode__2026112251__4096__x-rhat_splittrue
+same_mode__2026112251__4096__x-ess_bulktrue
+same_mode__2026112251__4096__x-ess_tailtrue
+same_mode__2026112251__4096__x-ess_meantrue
+same_mode__2026112251__4096__x-independent-acftrue
+same_mode__2026112251__4096__positive_indicator-constant-undefinedtrue
+same_mode__2026112251__16384__x-rhat_ranktrue
+same_mode__2026112251__16384__x-rhat_ztrue
+same_mode__2026112251__16384__x-rhat_foldedtrue
+same_mode__2026112251__16384__x-rhat_splittrue
+same_mode__2026112251__16384__x-ess_bulktrue
+same_mode__2026112251__16384__x-ess_tailtrue
+same_mode__2026112251__16384__x-ess_meantrue
+same_mode__2026112251__16384__x-independent-acftrue
+same_mode__2026112251__16384__positive_indicator-constant-undefinedtrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+same_mode__2026112252__1024__x-rhat_ranktrue
+same_mode__2026112252__1024__x-rhat_ztrue
+same_mode__2026112252__1024__x-rhat_foldedtrue
+same_mode__2026112252__1024__x-rhat_splittrue
+same_mode__2026112252__1024__x-ess_bulktrue
+same_mode__2026112252__1024__x-ess_tailtrue
+same_mode__2026112252__1024__x-ess_meantrue
+same_mode__2026112252__1024__x-independent-acftrue
+same_mode__2026112252__1024__positive_indicator-constant-undefinedtrue
+same_mode__2026112252__4096__x-rhat_ranktrue
+same_mode__2026112252__4096__x-rhat_ztrue
+same_mode__2026112252__4096__x-rhat_foldedtrue
+same_mode__2026112252__4096__x-rhat_splittrue
+same_mode__2026112252__4096__x-ess_bulktrue
+same_mode__2026112252__4096__x-ess_tailtrue
+same_mode__2026112252__4096__x-ess_meantrue
+same_mode__2026112252__4096__x-independent-acftrue
+same_mode__2026112252__4096__positive_indicator-constant-undefinedtrue
+same_mode__2026112252__16384__x-rhat_ranktrue
+same_mode__2026112252__16384__x-rhat_ztrue
+same_mode__2026112252__16384__x-rhat_foldedtrue
+same_mode__2026112252__16384__x-rhat_splittrue
+same_mode__2026112252__16384__x-ess_bulktrue
+same_mode__2026112252__16384__x-ess_tailtrue
+same_mode__2026112252__16384__x-ess_meantrue
+same_mode__2026112252__16384__x-independent-acftrue
+same_mode__2026112252__16384__positive_indicator-constant-undefinedtrue
+same_mode__2026112253__1024__x-rhat_ranktrue
+same_mode__2026112253__1024__x-rhat_ztrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+same_mode__2026112253__1024__x-rhat_foldedtrue
+same_mode__2026112253__1024__x-rhat_splittrue
+same_mode__2026112253__1024__x-ess_bulktrue
+same_mode__2026112253__1024__x-ess_tailtrue
+same_mode__2026112253__1024__x-ess_meantrue
+same_mode__2026112253__1024__x-independent-acftrue
+same_mode__2026112253__1024__positive_indicator-constant-undefinedtrue
+same_mode__2026112253__4096__x-rhat_ranktrue
+same_mode__2026112253__4096__x-rhat_ztrue
+same_mode__2026112253__4096__x-rhat_foldedtrue
+same_mode__2026112253__4096__x-rhat_splittrue
+same_mode__2026112253__4096__x-ess_bulktrue
+same_mode__2026112253__4096__x-ess_tailtrue
+same_mode__2026112253__4096__x-ess_meantrue
+same_mode__2026112253__4096__x-independent-acftrue
+same_mode__2026112253__4096__positive_indicator-constant-undefinedtrue
+same_mode__2026112253__16384__x-rhat_ranktrue
+same_mode__2026112253__16384__x-rhat_ztrue
+same_mode__2026112253__16384__x-rhat_foldedtrue
+same_mode__2026112253__16384__x-rhat_splittrue
+same_mode__2026112253__16384__x-ess_bulktrue
+same_mode__2026112253__16384__x-ess_tailtrue
+same_mode__2026112253__16384__x-ess_meantrue
+same_mode__2026112253__16384__x-independent-acftrue
+same_mode__2026112253__16384__positive_indicator-constant-undefinedtrue
+mixed__2026112251__1024__x-rhat_ranktrue
+mixed__2026112251__1024__x-rhat_ztrue
+mixed__2026112251__1024__x-rhat_foldedtrue
+mixed__2026112251__1024__x-rhat_splittrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112251__1024__x-ess_bulktrue
+mixed__2026112251__1024__x-ess_tailtrue
+mixed__2026112251__1024__x-ess_meantrue
+mixed__2026112251__1024__x-independent-acftrue
+mixed__2026112251__1024__positive_indicator-rhat_ranktrue
+mixed__2026112251__1024__positive_indicator-rhat_ztrue
+mixed__2026112251__1024__positive_indicator-rhat_foldedtrue
+mixed__2026112251__1024__positive_indicator-rhat_splittrue
+mixed__2026112251__1024__positive_indicator-ess_bulktrue
+mixed__2026112251__1024__positive_indicator-ess_tailtrue
+mixed__2026112251__1024__positive_indicator-ess_meantrue
+mixed__2026112251__1024__positive_indicator-independent-acftrue
+mixed__2026112251__4096__x-rhat_ranktrue
+mixed__2026112251__4096__x-rhat_ztrue
+mixed__2026112251__4096__x-rhat_foldedtrue
+mixed__2026112251__4096__x-rhat_splittrue
+mixed__2026112251__4096__x-ess_bulktrue
+mixed__2026112251__4096__x-ess_tailtrue
+mixed__2026112251__4096__x-ess_meantrue
+mixed__2026112251__4096__x-independent-acftrue
+mixed__2026112251__4096__positive_indicator-rhat_ranktrue
+mixed__2026112251__4096__positive_indicator-rhat_ztrue
+mixed__2026112251__4096__positive_indicator-rhat_foldedtrue
+mixed__2026112251__4096__positive_indicator-rhat_splittrue
+mixed__2026112251__4096__positive_indicator-ess_bulktrue
+mixed__2026112251__4096__positive_indicator-ess_tailtrue
+mixed__2026112251__4096__positive_indicator-ess_meantrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112251__4096__positive_indicator-independent-acftrue
+mixed__2026112251__16384__x-rhat_ranktrue
+mixed__2026112251__16384__x-rhat_ztrue
+mixed__2026112251__16384__x-rhat_foldedtrue
+mixed__2026112251__16384__x-rhat_splittrue
+mixed__2026112251__16384__x-ess_bulktrue
+mixed__2026112251__16384__x-ess_tailtrue
+mixed__2026112251__16384__x-ess_meantrue
+mixed__2026112251__16384__x-independent-acftrue
+mixed__2026112251__16384__positive_indicator-rhat_ranktrue
+mixed__2026112251__16384__positive_indicator-rhat_ztrue
+mixed__2026112251__16384__positive_indicator-rhat_foldedtrue
+mixed__2026112251__16384__positive_indicator-rhat_splittrue
+mixed__2026112251__16384__positive_indicator-ess_bulktrue
+mixed__2026112251__16384__positive_indicator-ess_tailtrue
+mixed__2026112251__16384__positive_indicator-ess_meantrue
+mixed__2026112251__16384__positive_indicator-independent-acftrue
+mixed__2026112252__1024__x-rhat_ranktrue
+mixed__2026112252__1024__x-rhat_ztrue
+mixed__2026112252__1024__x-rhat_foldedtrue
+mixed__2026112252__1024__x-rhat_splittrue
+mixed__2026112252__1024__x-ess_bulktrue
+mixed__2026112252__1024__x-ess_tailtrue
+mixed__2026112252__1024__x-ess_meantrue
+mixed__2026112252__1024__x-independent-acftrue
+mixed__2026112252__1024__positive_indicator-rhat_ranktrue
+mixed__2026112252__1024__positive_indicator-rhat_ztrue
+mixed__2026112252__1024__positive_indicator-rhat_foldedtrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112252__1024__positive_indicator-rhat_splittrue
+mixed__2026112252__1024__positive_indicator-ess_bulktrue
+mixed__2026112252__1024__positive_indicator-ess_tailtrue
+mixed__2026112252__1024__positive_indicator-ess_meantrue
+mixed__2026112252__1024__positive_indicator-independent-acftrue
+mixed__2026112252__4096__x-rhat_ranktrue
+mixed__2026112252__4096__x-rhat_ztrue
+mixed__2026112252__4096__x-rhat_foldedtrue
+mixed__2026112252__4096__x-rhat_splittrue
+mixed__2026112252__4096__x-ess_bulktrue
+mixed__2026112252__4096__x-ess_tailtrue
+mixed__2026112252__4096__x-ess_meantrue
+mixed__2026112252__4096__x-independent-acftrue
+mixed__2026112252__4096__positive_indicator-rhat_ranktrue
+mixed__2026112252__4096__positive_indicator-rhat_ztrue
+mixed__2026112252__4096__positive_indicator-rhat_foldedtrue
+mixed__2026112252__4096__positive_indicator-rhat_splittrue
+mixed__2026112252__4096__positive_indicator-ess_bulktrue
+mixed__2026112252__4096__positive_indicator-ess_tailtrue
+mixed__2026112252__4096__positive_indicator-ess_meantrue
+mixed__2026112252__4096__positive_indicator-independent-acftrue
+mixed__2026112252__16384__x-rhat_ranktrue
+mixed__2026112252__16384__x-rhat_ztrue
+mixed__2026112252__16384__x-rhat_foldedtrue
+mixed__2026112252__16384__x-rhat_splittrue
+mixed__2026112252__16384__x-ess_bulktrue
+mixed__2026112252__16384__x-ess_tailtrue
+mixed__2026112252__16384__x-ess_meantrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112252__16384__x-independent-acftrue
+mixed__2026112252__16384__positive_indicator-rhat_ranktrue
+mixed__2026112252__16384__positive_indicator-rhat_ztrue
+mixed__2026112252__16384__positive_indicator-rhat_foldedtrue
+mixed__2026112252__16384__positive_indicator-rhat_splittrue
+mixed__2026112252__16384__positive_indicator-ess_bulktrue
+mixed__2026112252__16384__positive_indicator-ess_tailtrue
+mixed__2026112252__16384__positive_indicator-ess_meantrue
+mixed__2026112252__16384__positive_indicator-independent-acftrue
+mixed__2026112253__1024__x-rhat_ranktrue
+mixed__2026112253__1024__x-rhat_ztrue
+mixed__2026112253__1024__x-rhat_foldedtrue
+mixed__2026112253__1024__x-rhat_splittrue
+mixed__2026112253__1024__x-ess_bulktrue
+mixed__2026112253__1024__x-ess_tailtrue
+mixed__2026112253__1024__x-ess_meantrue
+mixed__2026112253__1024__x-independent-acftrue
+mixed__2026112253__1024__positive_indicator-rhat_ranktrue
+mixed__2026112253__1024__positive_indicator-rhat_ztrue
+mixed__2026112253__1024__positive_indicator-rhat_foldedtrue
+mixed__2026112253__1024__positive_indicator-rhat_splittrue
+mixed__2026112253__1024__positive_indicator-ess_bulktrue
+mixed__2026112253__1024__positive_indicator-ess_tailtrue
+mixed__2026112253__1024__positive_indicator-ess_meantrue
+mixed__2026112253__1024__positive_indicator-independent-acftrue
+mixed__2026112253__4096__x-rhat_ranktrue
+mixed__2026112253__4096__x-rhat_ztrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112253__4096__x-rhat_foldedtrue
+mixed__2026112253__4096__x-rhat_splittrue
+mixed__2026112253__4096__x-ess_bulktrue
+mixed__2026112253__4096__x-ess_tailtrue
+mixed__2026112253__4096__x-ess_meantrue
+mixed__2026112253__4096__x-independent-acftrue
+mixed__2026112253__4096__positive_indicator-rhat_ranktrue
+mixed__2026112253__4096__positive_indicator-rhat_ztrue
+mixed__2026112253__4096__positive_indicator-rhat_foldedtrue
+mixed__2026112253__4096__positive_indicator-rhat_splittrue
+mixed__2026112253__4096__positive_indicator-ess_bulktrue
+mixed__2026112253__4096__positive_indicator-ess_tailtrue
+mixed__2026112253__4096__positive_indicator-ess_meantrue
+mixed__2026112253__4096__positive_indicator-independent-acftrue
+mixed__2026112253__16384__x-rhat_ranktrue
+mixed__2026112253__16384__x-rhat_ztrue
+mixed__2026112253__16384__x-rhat_foldedtrue
+mixed__2026112253__16384__x-rhat_splittrue
+mixed__2026112253__16384__x-ess_bulktrue
+mixed__2026112253__16384__x-ess_tailtrue
+mixed__2026112253__16384__x-ess_meantrue
+mixed__2026112253__16384__x-independent-acftrue
+mixed__2026112253__16384__positive_indicator-rhat_ranktrue
+mixed__2026112253__16384__positive_indicator-rhat_ztrue
+mixed__2026112253__16384__positive_indicator-rhat_foldedtrue
+mixed__2026112253__16384__positive_indicator-rhat_splittrue
+mixed__2026112253__16384__positive_indicator-ess_bulktrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112253__16384__positive_indicator-ess_tailtrue
+mixed__2026112253__16384__positive_indicator-ess_meantrue
+mixed__2026112253__16384__positive_indicator-independent-acftrue
+edge__iid-rhat_ranktrue
+edge__iid-rhat_ztrue
+edge__iid-rhat_foldedtrue
+edge__iid-rhat_splittrue
+edge__iid-ess_bulktrue
+edge__iid-ess_tailtrue
+edge__iid-ess_meantrue
+edge__iid-independent-acftrue
+edge__odd-rhat_ranktrue
+edge__odd-rhat_ztrue
+edge__odd-rhat_foldedtrue
+edge__odd-rhat_splittrue
+edge__odd-ess_bulktrue
+edge__odd-ess_tailtrue
+edge__odd-ess_meantrue
+edge__odd-independent-acftrue
+edge__ties-rhat_ranktrue
+edge__ties-rhat_ztrue
+edge__ties-rhat_foldedtrue
+edge__ties-rhat_splittrue
+edge__ties-ess_bulktrue
+edge__ties-ess_tailtrue
+edge__ties-ess_meantrue
+edge__ties-independent-acftrue
+edge__scale-rhat_ranktrue
+edge__scale-rhat_ztrue
+edge__scale-rhat_foldedtrue
+edge__scale-rhat_splittrue
+edge__scale-ess_bulktrue
+edge__scale-ess_tailtrue
+edge__scale-ess_meantrue
+edge__scale-independent-acftrue
+edge__shift-rhat_ranktrue
+edge__shift-rhat_ztrue
+edge__shift-rhat_foldedtrue
+edge__shift-rhat_splittrue
+edge__shift-ess_bulktrue
+edge__shift-ess_tailtrue
+edge__shift-ess_meantrue
+edge__shift-independent-acftrue
+edge__antithetic-rhat_ranktrue
+edge__antithetic-rhat_ztrue
+edge__antithetic-rhat_foldedtrue
+edge__antithetic-rhat_splittrue
+edge__antithetic-ess_bulktrue
+edge__antithetic-ess_tailtrue
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+edge__antithetic-ess_meantrue
+edge__antithetic-independent-acftrue
+edge__constant-constant-undefinedtrue
+edge__separated_constants-rhat_rank-degeneracy-policytrue
+edge__separated_constants-rhat_z-degeneracy-policytrue
+edge__separated_constants-rhat_foldedtrue
+edge__separated_constants-rhat_split-degeneracy-policytrue
+edge__separated_constants-ess_bulktrue
+edge__separated_constants-ess_tailtrue
+edge__separated_constants-ess_meantrue
+iid_effective_size_scaletrue
+folding_detects_scale_differencetrue
+rank_detects_shifttrue
+antithetic_ess_can_exceed_drawstrue
+ar1_acftrue
+ar1_tautrue
+ar1_fft_vs_directtrue
+all_reference_metric_slots_accounted_fortrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+seriesdatasetdraws_per_chainarray_sha256atlas_statuscomparison_statusreference_nonfinite_kindsrhat_rankreference_rhat_rankrhat_zreference_rhat_zrhat_foldedreference_rhat_foldedrhat_splitreference_rhat_splitess_bulkreference_ess_bulkess_tailreference_ess_tailess_meanreference_ess_meandegeneracy_noterhoseedexact_stationary_tauestimated_mean_taumean_essraw_drawstau_relative_erroracf_max_erroracf_lagsempirical_acfexact_acf
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__1024__x10246c2bbb33633c3b39c330b9275d48566c40fd45cf8733c9b043f22e462e4cd16bok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.742446901251.742446901251.742446901251.742446901251.005472108721.005472108726.796925029736.796925029736.143348451696.14334845169434.271524711434.2715247114.124497707044.12449770704————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__1024__positive_indicator10246ca71a30c420e22f4fa1de9b74b40da9ffa9ce7dabed2532a361c914a87a3440infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.48792246614e+15—6.48792246614e+15————4.031496062994.031496062994.031496062994.031496062994.031496062994.03149606299Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__4096__x40968d181e38d1b7d27b660be77e139b948227103ac88d7e4cfc967d39fb50de579cok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.736807171011.736807171011.736807171011.736807171011.018975833331.018975833336.739469302126.739469302126.110271684976.11027168497135.474841399135.4748413994.101476174074.10147617407————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__4096__positive_indicator4096ad14cc350e42153002e30ce9c314a955d7cd93e913bcc0e96969e02ef1cd6fe0infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.49302857076e+15—6.49302857076e+15————4.007827788654.007827788654.007827788654.007827788654.007827788654.00782778865Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__16384__x16384ec9ccb2087a60b48833b3821df6628f946ea1d5dcc7e2651ad2580b66beea345ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.733016795471.733016795471.733016795471.733016795471.000405059521.000405059526.561682333466.561682333466.066847027816.06684702781102.659164116102.6591641164.099438460124.09943846012————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__16384__positive_indicator163848200c214587b6efae9240bdedd28d8473234ef7c9d4d3d07b6a874044d3f3707infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—3.24715231876e+15—3.24715231876e+15————4.001954079144.001954079144.001954079144.001954079144.001954079144.00195407914Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__1024__x1024037b621f0135f04bf2bf77af73d366f2b0b832ae26ac7d35ec6b36f14dd6e902ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.742866388231.742866388231.742866388231.742866388231.017706070511.017706070516.455399019156.455399019156.305871441816.30587144181209.876537836209.8765378364.139957837654.13995783765————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__1024__positive_indicator10246ca71a30c420e22f4fa1de9b74b40da9ffa9ce7dabed2532a361c914a87a3440infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.48792246614e+15—6.48792246614e+15————4.031496062994.031496062994.031496062994.031496062994.031496062994.03149606299Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__4096__x40969d7eb49499218671338672109d1d1e057531439d4e0f8c8e623d9131872c6648ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.734577745161.734577745161.734577745161.734577745161.015469700681.015469700686.517065360756.517065360756.123282366836.12328236683141.664448286141.6644482864.108801925374.10880192537————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__4096__positive_indicator4096ad14cc350e42153002e30ce9c314a955d7cd93e913bcc0e96969e02ef1cd6fe0infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.49302857076e+15—6.49302857076e+15————4.007827788654.007827788654.007827788654.007827788654.007827788654.00782778865Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__16384__x163844e113ce9766c6c4fec110798c0225122063002201b99cabb974d1a2be74b1783ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.733392057771.733392057771.733392057771.733392057771.001197740061.001197740066.452749089116.452749089116.083354354926.08335435492100.073167444100.0731674444.103345632814.10334563281————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__16384__positive_indicator163848200c214587b6efae9240bdedd28d8473234ef7c9d4d3d07b6a874044d3f3707infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—3.24715231876e+15—3.24715231876e+15————4.001954079144.001954079144.001954079144.001954079144.001954079144.00195407914Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__1024__x10241257e442a4922a0f6ad32cc0be800be793c39af7f4486c405da056246a6c68daok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.739457861511.739457861511.739457861511.739457861511.010769742381.010769742386.513679051276.513679051276.203955833216.20395583321243.836668862243.8366688624.135833966944.13583396694————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__1024__positive_indicator10246ca71a30c420e22f4fa1de9b74b40da9ffa9ce7dabed2532a361c914a87a3440infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.48792246614e+15—6.48792246614e+15————4.031496062994.031496062994.031496062994.031496062994.031496062994.03149606299Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__4096__x409667dd63e381178202635efdd09d17a18a2e4a348960dc9c6d155ad81a05de49b5ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.736228707131.736228707131.736228707131.736228707131.00246671431.00246671436.499968371146.499968371146.120236307256.12023630725163.708241325163.7082413254.109129677834.10912967783————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__4096__positive_indicator4096ad14cc350e42153002e30ce9c314a955d7cd93e913bcc0e96969e02ef1cd6fe0infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.49302857076e+15—6.49302857076e+15————4.007827788654.007827788654.007827788654.007827788654.007827788654.00782778865Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__16384__x163843262e7f5a966acfab11d1fc6995bbdee332a03adce4c117cb8290a0835d9bfdfok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.733966569221.733966569221.733966569221.733966569221.042126540751.042126540756.49937611796.49937611796.083337149316.08333714931109.449554944109.4495549444.101758642974.10175864297————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__16384__positive_indicator163848200c214587b6efae9240bdedd28d8473234ef7c9d4d3d07b6a874044d3f3707infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—3.24715231876e+15—3.24715231876e+15————4.001954079144.001954079144.001954079144.001954079144.001954079144.00195407914Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112251__1024__x1024142f2bd91a0cb562881de21d40adea7be5df4ed61fcffb89ccd23ef0083200c3ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.009861571961.009861571961.009861571961.009861571961.00499676721.00499676721.009933293581.00993329358356.421833107356.421833107557.948976283557.948976283354.745756842354.745756842————————————
+arviz-comparisonsame_mode__2026112251__1024__positive_indicator1024c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————4096—4096—4096————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112251__4096__x409612bdf50cb03abe847c356e231e7767422e1153dd157ca48a17acc0454627cc9dok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.00223756341.00223756341.00223756341.00223756341.00143766171.00143766171.002235219631.002235219631331.110690061331.110690062135.548823642135.548823641324.402163731324.40216373————————————
+arviz-comparisonsame_mode__2026112251__4096__positive_indicator4096fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————16384—16384—16384————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112251__16384__x16384c0ef0d2474894aeb0df07fc304385903b707e84b6ac6d0173fcd3347fb2ae295ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000327966331.000327966331.000327966331.000327966331.000183608881.000183608881.000325754151.000325754155595.605024965595.605024969047.292742819047.292742815592.880612865592.88061286————————————
+arviz-comparisonsame_mode__2026112251__16384__positive_indicator1638407854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————65536—65536—65536————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112252__1024__x10247029adc6addc6942d60d3774ba38159fdb1d2facb24b1881a9a29aaccbc3d065ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.005048496431.005048496431.003849345791.003849345791.005048496431.005048496431.004040366711.00404036671346.511464836346.511464836474.581669431474.581669431340.533998059340.533998059————————————
+arviz-comparisonsame_mode__2026112252__1024__positive_indicator1024c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————4096—4096—4096————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112252__4096__x409691c9c8ab0a6071302c789850bf2047e6f11dc79e31392feebc5915af8aa0f4fcok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.002336879521.002336879521.002336879521.002336879521.000626739661.000626739661.002368159121.002368159121402.920005671402.920005672168.64650482168.64650481406.17905531406.1790553————————————
+arviz-comparisonsame_mode__2026112252__4096__positive_indicator4096fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————16384—16384—16384————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112252__16384__x1638426a4231b15403379b5b88e841ca2d0b317cccaf1f4239e29e47256e8afb03808ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001042937081.001042937081.001042937081.001042937081.00026317721.00026317721.001040593271.001040593275692.123893315692.123893319240.436206779240.436206775702.227961475702.22796147————————————
+arviz-comparisonsame_mode__2026112252__16384__positive_indicator1638407854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————65536—65536—65536————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112253__1024__x102443a65c26ca677f92b7a93af82b1e1947eb13e30d938707c984520b1771a687ddok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.005469068591.005469068591.004088381521.004088381521.005469068591.005469068591.004139418281.00413941828455.149971363455.149971363549.665585989549.665585989454.184490808454.184490808————————————
+arviz-comparisonsame_mode__2026112253__1024__positive_indicator1024c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————4096—4096—4096————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112253__4096__x4096475a2f49d7e54f7b598933fd82240b40875a2b30cb466444208186db22c2b785ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.002488037891.002488037891.002488037891.002488037891.001333013911.001333013911.002516676841.002516676841418.968315311418.968315311938.907013841938.907013841409.594752731409.59475273————————————
+arviz-comparisonsame_mode__2026112253__4096__positive_indicator4096fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————16384—16384—16384————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112253__16384__x163848a6ac96fbdb7dbd5601168fdbb80b276486fe0adb336b9250dbdc69f790063f6ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000130975841.000130975841.000130975841.000130975841.000029843541.000029843541.000130839721.000130839725946.228319385946.228319389556.884560579556.884560575946.140851565946.14085156————————————
+arviz-comparisonsame_mode__2026112253__16384__positive_indicator1638407854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————65536—65536—65536————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__1024__x10241050a34f6cdfa04e7cf0c09c6d9572c780db4b7cddeb2ac8e1fb1f1e16e79cd9ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.007028201051.007028201051.007028201051.007028201051.006046429191.006046429191.011296166721.01129616672320.940993275320.940993275540.346405444540.346405444246.156783381246.156783381————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__1024__positive_indicator10249a3df1def085960e5e92a8c27cd785731e930ee0b9f962cb8bb1cedf9aa91bd0ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.011581974251.011581974251.011581974251.011581974251.011581974251.011581974251.011581974251.01158197425250.647622885250.647622885250.647622885250.647622885250.647622885250.647622885————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__4096__x40967329a241f51cae278d5fc2a6b2b3827de855aefc1aa1b16bb62bad9dda17c0b5ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001695868661.001695868661.001695868661.001695868661.001239951191.001239951191.001826859741.001826859741829.902252971829.902252972429.321383852429.321383851432.221393791432.22139379————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__4096__positive_indicator4096636a830d4d098fe40b08dc7ad6d46d64ac51cc6c638a8f848d97b9f195185a70ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001740453331.001740453331.001740453331.001740453331.001740453331.001740453331.001740453331.001740453331405.078872381405.078872381405.078872381405.078872381405.078872381405.07887238————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__16384__x16384676a32729d11d72569cacff3365bef57a08787c857657d4464f3f5107edfcef5ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000259870071.000259870071.000259870071.000259870071.000217376461.000217376461.00058942071.00058942076255.350954066255.350954069814.323360829814.323360825003.916819025003.91681902————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__16384__positive_indicator1638437ba4b39f9f602bb42dabf0fcb520459fe5a3d1b78e91849d17136020b02c5e9ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000643693761.000643693761.000643693761.000643693761.000643693761.000643693761.000643693761.000643693764932.879232094932.879232094932.879232094932.879232094932.879232094932.87923209————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__1024__x1024c2271cb53a393aef03c63cbbe89bd17fb42f5bcc52e94e606bd4cb15716c27a8ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.013912333931.013912333931.010050507421.010050507421.013912333931.013912333931.011866659041.01186665904339.920386533339.920386533432.563162094432.563162094309.165243611309.165243611————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__1024__positive_indicator10248d5a6fa511a8502ae1d11640e5aadf1b26101ff71a3ee229f131c89d5a8a9aa7ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.012111635871.012111635871.012111635871.012111635871.012111635871.012111635871.012111635871.01211163587297.325225034297.325225034297.325225034297.325225034297.325225034297.325225034————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__4096__x40961f85967f4917fc003b565b3d8b00764ce1d0ab82d938e8e08a52364471344d8bok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.002330599751.002330599751.001637957471.001637957471.002330599751.002330599751.000955156621.000955156621484.562368591484.562368592071.784491552071.784491551362.124318891362.12431889————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__4096__positive_indicator4096547576e0286050a61006468a807da43a5fa37b74f514520af4bb8ca44ef6599eok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000746422821.000746422821.000746422821.000746422821.000746422821.000746422821.000746422821.000746422821371.33065471371.33065471371.33065471371.33065471371.33065471371.3306547————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__16384__x163843fe77b4b9d8d04c94b76e498d6dd0620c2bb1fdcc4228a8b86a1a538264efcceok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000848801911.000848801911.000848801911.000848801911.000384330831.000384330831.000785825071.000785825076350.326154756350.326154759919.839929089919.839929085277.806783955277.80678395————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__16384__positive_indicator16384ba541ba1054ccd5a15da6d5c5c78721110f03376bfd62ed7e61869ce8e3009ceok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000738061031.000738061031.000738061031.000738061031.000738061031.000738061031.000738061031.000738061035220.580666945220.580666945220.580666945220.580666945220.580666945220.58066694————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__1024__x1024cce678514a9e10a51cd6264cc690034f93037e28be90ee289b23070eec1527d2ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.02786003981.02786003981.025360833011.025360833011.02786003981.02786003981.02939232871.0293923287246.228001225246.228001225725.044235933725.044235933260.719350729260.719350729————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__1024__positive_indicator102485987b90684e71b3644be16a6d9260bb5e19c23403702f3234228c6a95eb56f3ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.027598511711.027598511711.027598511711.027598511711.027598511711.027598511711.027598511711.02759851171285.860448894285.860448894285.860448894285.860448894285.860448894285.860448894————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__4096__x409672b44d1ad583131cd42c1229505ab2988925e206363bbe4af261051d2eb41a14ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.004562694081.004562694081.003397179061.003397179061.004562694081.004562694081.005229141991.005229141991407.577720721407.577720722234.295385372234.295385371227.588674131227.58867413————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__4096__positive_indicator40967558f6bf8e5c13b494d7e1e3be20f8b9a5a869b09c2fbcb376b432e288f57638ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.005496843311.005496843311.005496843311.005496843311.005496843311.005496843311.005496843311.005496843311228.052737691228.052737691228.052737691228.052737691228.052737691228.05273769————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__16384__x16384ab9798ccf252552ae0a375f1f40441e30d04ef43055f7dbf350708d7d8029aaaok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000272798211.000272798211.000270388411.000270388411.000272798211.000272798211.000464033681.000464033686482.860399666482.860399669997.473955699997.473955695439.957170785439.95717078————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__16384__positive_indicator163841792005dcd953e31fc2374b6778b636f50a0543037a7f716b001640c2ab02617ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000480350311.000480350311.000480350311.000480350311.000480350311.000480350311.000480350311.000480350315365.68763615365.68763615365.68763615365.68763615365.68763615365.6876361————————————
+arviz-comparisonedge__iid2048866d11bdb9e2d0d7c5f2ebccd53c432542d72ca7352ddafbfc2a256dd0fe485dok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000320363811.000320363811.000320363811.000320363810.9999838998470.9999838998471.000311651261.000311651268062.257229598062.257229597694.072228627694.072228628083.066159788083.06615978————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__odd2578afff3e8410931c38a7806f39bc6a20c2070c194bbd3acd7e53c0a8b9cb11e64ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.007548917631.007548917630.9995706703130.9995706703131.007548917631.007548917630.9996205845140.9996205845141035.99236431035.9923643979.758547496979.7585474961036.715577931036.71557793————————————
+arviz-comparisonedge__ties2048b43df209a8ddc58353622a37edddd1b1ab8cab8379a65a04a198d1ad828eefd7ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000330993091.000330993091.000330993091.000330993091.00000985631.00000985631.000320086961.000320086968116.536187758116.536187758062.793593948062.793593948129.427203748129.42720374————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__scale2048d06a8db9a98f0d1728a9cd5d098740767179f237acb84d22a2e1e72520ab7b01ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.147360573761.147360573760.9999905951530.9999905951531.147360573761.147360573761.000035846141.000035846148392.121549028392.1215490234.565303087934.56530308798396.350071388396.35007138————————————
+arviz-comparisonedge__shift2048c6dfdeb6e1d72220714ead73cf1b59186e4bdb90fcb94f940ebb383b087b1144ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.474155616331.474155616331.474155616331.474155616331.312832139281.312832139281.707615925661.707615925667.540654004817.5406540048127.87679665227.8767966526.16245800216.1624580021————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__antithetic2048e7e5b3c8dc81217093c8a5f25123795fdd742d7deb10c4b02a45dd5ca7ef437fok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001064697981.001064697980.9995937604750.9995937604751.001064697981.001064697980.9995935970120.99959359701225419.647923625419.64792367871.904232937871.9042329325371.052504425371.0525044————————————
+arviz-comparisonedge__constant12805db1543dd4c49926866352bc24cc053df8dda793005b1b5d71d5861c36d32b0zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————512—512—512————————————
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__separated_constants1287cd22244c5795ed9035c232ef4fba01f589dbba8eb906a868cd659051741da0dinfinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":"positive_infinity","rhat_z":"positive_infinity","rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}————————4.266666666674.266666666674.266666666674.266666666674.266666666674.26666666667Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+ar1-calibration—————————————————————-0.520261122610.3333333333330.331023796358395959.4489641310720.006928610925030.00294039640028[0,1,2,4,8,16][1.0,-0.5023648460037271,0.2510147529309931,0.05955960359972147,0.0033721337858313373,0.0005529173690875841][1.0,-0.5,0.25,0.0625,0.00390625,1.52587890625e-05]
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+ar1-calibration—————————————————————-0.520261122620.3333333333330.321194159186408077.15911310720.03641752244250.00758659944171[0,1,2,4,8,16][1.0,-0.500145912058898,0.2493450659545163,0.054913400558288854,0.0035221826674918595,0.002656394368758145][1.0,-0.5,0.25,0.0625,0.00390625,1.52587890625e-05]
+ar1-calibration—————————————————————0.8202611226199.1865907251414267.75219681310720.02073230279310.00687807520145[0,1,2,4,8,16][1.0,0.798538001424816,0.638782942217482,0.4084614469096897,0.17465023520145018,0.03472472796793311][1.0,0.8,0.6400000000000001,0.4096000000000001,0.1677721600000001,0.028147497671065624]
+ar1-calibration—————————————————————0.8202611226299.1978873426314250.22889691310720.02198748251420.0107038620716[0,1,2,4,8,16][1.0,0.7973402552595114,0.6350839109056095,0.39889613792838713,0.1586834197332639,0.023496449649582373][1.0,0.8,0.6400000000000001,0.4096000000000001,0.1677721600000001,0.028147497671065624]
+Measurements and complete records / JSON
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion) · DOI: 10.1214/20-BA1221
+Review scope / review_level: corrected-author-paper-selected-sections
+Checked original sections3–4, the2021-06-22 correction of Eq4.1 to denominator S+1/4, and the constant-indicator warning. This does not reproduce every original numerical experiment.
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo · DOI: 10.1214/ss/1177011137
+Review scope / review_level: original-selected-paired-sequence-theory
+Checked section3.3 and Theorems3.1/3.2 for reversibility assumptions and initial-positive/monotone sequences. Main article pp473–483 are distinguished from combined discussion pagination; no claim gives exact true ESS from finite chains.
+A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences · DOI: 10.1214/ss/1177011136
+Review scope / review_level: original-selected-multiple-chain-starting-points
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#mcmc-diagnostic-reference-references
+Coverage: reading
+
+Checked the original introduction/section2 on multiple sequences and overdispersed starts. Distinct from the later rank/folded method, and not a reproduction of every1992 finite-sample correction.
+The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source
+Review scope / review_level: official-versioned-source-and-actual-independent-execution
+Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Independent fluid/MHD comparisons and CT/GLM [en]
 
@@ -21991,7 +23582,7 @@ DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。�
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/
 Coverage: reading
 
-MCMCは目的分布を不変分布に持つMarkov連鎖を作り、独立標本を直接生成しにくい積分を推定します。不変性と、有限時間で十分探索できることは別の条件です。
+MCMCは目的分布を不変分布に持つMarkov連鎖を作ります。不変性、有限時間での混合、観測量の推定精度は別の問いです。旧単峰Gaussian例を保持し、多峰性による混合不良、診断の盲点と独立実装比較を新しい限定配布版で確かめます。
 
 ## Markov連鎖Monte Carlo — 対象と代表式 [ja]
 
@@ -21999,6 +23590,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#model
 Coverage: reading
 
 非正規化密度π(x)と提案密度q(y|x)に対し、Metropolis–Hastings受理確率を使います。πの未知の正規化定数は比で消えます。対称なqでは提案比が消えますが、非対称提案でこれを省略すると目的分布を変えます。
+新しい標的は1次元の等重みGaussian混合、π(x)=[N(−6,1)+N(6,1)]/2です。平均・分散・CDF・右側占有率を既知の目標と比べます。既存の標準正規標的とは異なる1つのテスト問題で、同じ目標の初期値・提案法・seed違いは問題数へ重複加算しません。
 a(x,y)=\min\!\left(1,\frac{\pi(y)q(x\mid y)}{\pi(x)q(y\mid x)}\right),\qquad N_{\rm eff}\approx\frac{N}{1+2\sum_{k\ge1}\rho_k}.
 
 ## Markov連鎖Monte Carlo — 計算の流れ [ja]
@@ -22007,6 +23599,9 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#algorit
 Coverage: reading
 
 候補yを引いて受理/棄却し、棄却時にも現在の状態を標本に残します。初期過渡を評価し、複数の異なる初期値から鎖を動かします。自己相関ρₖを使う有効標本数N_effの近似は、定常性と自己相関の推定が妥当な場合に解釈します。
+追加版は、峰ごとに分散させた初期値の局所ランダムウォーク、全鎖を同じ峰から始める局所ランダムウォーク、既知の対称性x→−xを使うreflection jumpを含む提案を区別します。最後の提案はこの標的の対称性を利用する対照で、未知の多峰分布に使える汎用解決策ではありません。
+観測量xと右峰の指示変数を分けて評価します。古典的split R-hatと平均観測量のESSは旧版のまま保持し、新版ではrank正規化split/folded R-hat、bulk/tail ESSを別の定義として示します。ACF・ESSは観測量、有限標本、定常性と推定の約束に依存し、単一の「この鎖のESS」として万能視しません。
+rank変換したbulk ESSを、原スケールの平均のMonte Carlo標準誤差（MCSE）へそのまま流用しません。定数observableでライブラリがESS=Nを返しても、それを良好な混合の証拠とは扱いません。
 
 ## Markov連鎖Monte Carlo — 適用条件と落とし穴 [ja]
 
@@ -22014,6 +23609,9 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#conditi
 Coverage: reading
 
 詳細釣合いだけでは既約性や非周期性は保証されません。多峰性、強い相関、境界で混合が遅くなります。高い受理率だけを目標にすると微小移動に終わり得ます。鎖の間引きは、固定した計算量で情報を増やす一般的な解決策ではありません。
+異なる峰に滞留した鎖は鎖間診断で混合不良を見つけやすくても、全鎖が同じ峰に閉じ込められるとR-hatが1付近でも未探索の峰が残ります。良好そうなR-hatや大きなESSだけで収束とせず、既知CDF・峰の占有率・峰間の遷移も確認します。反射提案による峰の移動だけで峰内の探索まで保証したとも扱いません。
+意図した混合不良や診断の盲点を再現する検査が合格しても、そのシナリオの推定が成功したという意味ではありません。固定入力の閾値はこの小さな比較の受入条件であり、有限計算の保証、診断の偽陽性率、任意のseedや標的での信頼性を与えません。
+今回の局所GaussianランダムウォークMHも理論上は既約です。有限時間に峰を移れないことを、恒久的に非エルゴードなアルゴリズムだとは呼びません。
 
 ## Markov連鎖Monte Carlo — 検証するときに見る量 [ja]
 
@@ -22021,13 +23619,53 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#verific
 Coverage: reading
 
 Gaussianなど既知分布で平均・分散・分位点を確認し、非対称提案の補正と棄却標本も試験します。多峰性の例では鎖間比較・自己相関・有効標本数・期待値の不確かさを報告し、見た目の定常性だけで収束としません。
+新版の診断対照は、保存した同じ鎖についてACFを直接和と比較し、rank正規化R-hatとbulk/tail ESSをArviZ 0.20の独立実行で照合します。IID・既知の相関を持つ対照と定数系列などの境界例を、本来の混合正規サンプラーの推定精度と区別します。定義・中心化・分割・ties・端点の扱いと、どの指標を照合したかは専用例の固定入力・参照資料で確認します。
+3つのシナリオと固定した3 seedについて、分布の誤差、峰の占有・移動、観測量別診断を並べます。旧Gaussian版の正値系列ESSや古典的split R-hatを書き換えたり、新しい診断の検証として流用したりしません。
+定数系列などの退化例や非有限入力の扱いは分類・方針の検査であり、有限な診断量の数値一致とは区別します。参照fixtureの総欄数をそのまま数値一致の件数とは表示しません。
+
+## Markov連鎖Monte Carlo — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#scoped-examples
+Coverage: reading
+
+各例の分布・観測量・診断の定義と適用範囲を確認します。検査の合格と、混合や推定の成功は同じ意味ではありません。旧版の入力・測定・公差は保持します。
+
+## Markov連鎖Monte Carlo — Gaussian標的のMCMC：分布・自己相関・ESS [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/
+Coverage: reading
+
+固定した標的の計算例
+32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。
+固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：models.py · テスト：test_models.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Markov連鎖Monte Carlo — 多峰性MCMC：峰への閉じ込め・偽の安心・大域提案 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/
+Coverage: reading
+
+固定した標的の計算例
+同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。
+固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：sampler.py · コード：diagnostics.py · コード：experiments.py · コード：fixtures.py · コード：generate-arviz-reference.py · コード：prepare-reference-input.py · テスト：test_mcmc.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Markov連鎖Monte Carlo — MCMC診断の独立照合：rank Rhat・bulk/tail ESS・退化条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/
+Coverage: reading
+
+診断対照：物理問題数へ非加算
+同一鎖の62datasetを別環境ArviZ0.20.0で実計算し、固定recipe・入力・鎖・公式ソースSHAで結びます。通常の有限値照合と、不定値のpolicy差を分けて検査します。
+固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。 定数observableのESS=NというArviZ raw規約を混合の証拠にしません。全同値はnull＋status、鎖ごとに異なる定数のRhatはnull＋infinite-separationとして、ライブラリの巨大finite/infを残し通常有限値の一致点から除外します。bulk ESSは原スケール平均のMCSEへ流用しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：sampler.py · コード：diagnostics.py · コード：experiments.py · コード：fixtures.py · コード：generate-arviz-reference.py · コード：prepare-reference-input.py · テスト：test_mcmc.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## Markov連鎖Monte Carlo — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#publication-scope
 Coverage: reading
 
-既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+旧単峰Gaussian版と、新しい2峰混合の探索比較・診断対照を別々の不変配布版として案内します。混合不良の再現も検査の対象です。既知対称性を利用した低次元・固定seedの教育用例で、一般のMCMC・高次元・実際の推論モデルの収束保証ではありません。
 Markov連鎖Monte Carlo
 
 ## Markov連鎖Monte Carlo — 一次文献・関連資料と確認範囲 [ja]
@@ -24022,7 +25660,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全81問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全82問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -26102,6 +27740,15 @@ Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling. Origi
 G. Strang (1968). On the Construction and Comparison of Difference Schemes. 10.1137/0705041
 E. Hairer (2010). Geometric Numerical Integration, Lecture2. Original source
 
+## 原著の出版年順に並べた参考文献 — 主要手法の条件整理で追加した一次文献・資料 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
+Coverage: reading
+
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion). 10.1214/20-BA1221
+A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. 10.1214/ss/1177011136
+The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. Original source
+
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
@@ -27070,8 +28717,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文236件・全参考資料287件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め87章です。
+方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文238件・全参考資料290件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め88章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -27318,7 +28965,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-230件：学術誌論文（総説・翻訳・採録済み論文を含む）
+232件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -29530,6 +31177,1529 @@ G. H. Golub and J. H. Welsch (1969). Calculation of Gauss Quadrature Rules · DO
 J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
 確認範囲 / review_level: publisher-metadata
 独立参照の公式資料：scipy.special.roots_legendre.html · scipy.integrate.quad.html
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 多峰性MCMC：混合不良と収束診断の独立検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/
+Coverage: reading
+
+二峰性分布で、局所的な閉じ込めと峰間の移動を比べます。自己相関・有効標本数・収束診断の計算を独立実装と照合し、診断値だけでは見逃す探索不足も示します。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#run-all
+Coverage: reading
+
+ZIPの atlas-mcmc-2026-11-22 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 多峰性MCMC：峰への閉じ込め・偽の安心・大域提案 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/
+Coverage: reading
+
+同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-assumptions
+Coverage: reading
+
+無次元1D標的p=.5N(−6,1)+.5N(6,1)、平均0/分散37/正側占有.5。3固定seed・4鎖、burn1024、保持16384標本/鎖。prefix1024/4096/16384は入れ子で独立再試行ではありません。棄却と自己遷移を保持します。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-algorithm
+Coverage: reading
+
+局所幅.8、mixedのみ確率.1でy=−x+.8Z、それ以外y=x+.8Z。混合率は状態非依存でq(y|x)=q(x|y)のため対数標的比でMH判定。各鎖は独立PCG64 stream、提案の適応・棄却の間引きなし。
+\pi(x)=\tfrac12\phi(x+6)+\tfrac12\phi(x-6),\quad E[X]=0,\quad\operatorname{Var}X=37F(x)=\tfrac12\Phi(x+6)+\tfrac12\Phi(x-6),\quad P(X>0)=\tfrac12q(y\mid x)=(1-p)\phi_s(y-x)+p\phi_s(y+x)=q(x\mid y),\quad s=.8,\ p=.1\alpha(x,y)=\min\{1,\pi(y)/\pi(x)\},\quad I_n=\mathbf1\{X_n>0\}
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-validation
+Coverage: reading
+
+解析平均・分散・CDFの指定7点・正側占有と照合。各鎖の占有率と峰間遷移、rank/folded split Rhat、bulk/tail/mean・modeindicator ESS、鎖内だけのACF/ESSを記録。分散trapped鎖はpooled分布が良くてもRhat/多鎖ESSで失敗、same-mode鎖はRhatが良くても既知標的に失敗する対照です。scenario passはこの期待失敗を検出できた意味です。CDF差は指定点最大でKS全域距離・IID検定p値ではありません。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-limits
+Coverage: reading
+
+固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_fft_direct_acov_error7.1054273576e-15
+mixed_maximum_mean_error0.127641398902
+mixed_maximum_variance_error0.154176469424
+mixed_maximum_cdf_error0.0112835132397
+mixed_maximum_occupancy_error0.010986328125
+mixed_maximum_rank_rhat1.00084880191
+mixed_minimum_bulk_ess6255.35095406
+mixed_minimum_tail_ess9814.32336082
+mixed_minimum_mode_ess4932.87923209
+mixed_minimum_transitions_per_chain1183
+intentionally_trapped_scenarios6
+判定 / check合格
+dispersed-2026112251-acceptancetrue
+dispersed-2026112251-intentionally_trappedtrue
+dispersed-2026112251-between_chain_failure_detectedtrue
+dispersed-2026112251-mode_variance_failure_explicittrue
+dispersed-2026112252-acceptancetrue
+dispersed-2026112252-intentionally_trappedtrue
+dispersed-2026112252-between_chain_failure_detectedtrue
+dispersed-2026112252-mode_variance_failure_explicittrue
+dispersed-2026112253-acceptancetrue
+dispersed-2026112253-intentionally_trappedtrue
+dispersed-2026112253-between_chain_failure_detectedtrue
+dispersed-2026112253-mode_variance_failure_explicittrue
+same_mode-2026112251-acceptancetrue
+same_mode-2026112251-intentionally_trappedtrue
+same_mode-2026112251-apparently_benign_diagnosticstrue
+same_mode-2026112251-wrong_target_cdftrue
+same_mode-2026112251-wrong_target_meantrue
+same_mode-2026112251-wrong_target_occupancytrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+same_mode-2026112251-constant_mode_indicator_undefinedtrue
+same_mode-2026112252-acceptancetrue
+same_mode-2026112252-intentionally_trappedtrue
+same_mode-2026112252-apparently_benign_diagnosticstrue
+same_mode-2026112252-wrong_target_cdftrue
+same_mode-2026112252-wrong_target_meantrue
+same_mode-2026112252-wrong_target_occupancytrue
+same_mode-2026112252-constant_mode_indicator_undefinedtrue
+same_mode-2026112253-acceptancetrue
+same_mode-2026112253-intentionally_trappedtrue
+same_mode-2026112253-apparently_benign_diagnosticstrue
+same_mode-2026112253-wrong_target_cdftrue
+same_mode-2026112253-wrong_target_meantrue
+same_mode-2026112253-wrong_target_occupancytrue
+same_mode-2026112253-constant_mode_indicator_undefinedtrue
+mixed-2026112251-acceptancetrue
+mixed-2026112251-mean_absolute_errortrue
+mixed-2026112251-variance_absolute_errortrue
+mixed-2026112251-cdf_max_errortrue
+mixed-2026112251-occupancy_absolute_errortrue
+mixed-2026112251-rank_rhattrue
+mixed-2026112251-bulk_esstrue
+mixed-2026112251-tail_esstrue
+mixed-2026112251-mode_esstrue
+mixed-2026112251-per_chain_mode_transitionstrue
+mixed-2026112252-acceptancetrue
+mixed-2026112252-mean_absolute_errortrue
+mixed-2026112252-variance_absolute_errortrue
+mixed-2026112252-cdf_max_errortrue
+mixed-2026112252-occupancy_absolute_errortrue
+mixed-2026112252-rank_rhattrue
+mixed-2026112252-bulk_esstrue
+mixed-2026112252-tail_esstrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+mixed-2026112252-mode_esstrue
+mixed-2026112252-per_chain_mode_transitionstrue
+mixed-2026112253-acceptancetrue
+mixed-2026112253-mean_absolute_errortrue
+mixed-2026112253-variance_absolute_errortrue
+mixed-2026112253-cdf_max_errortrue
+mixed-2026112253-occupancy_absolute_errortrue
+mixed-2026112253-rank_rhattrue
+mixed-2026112253-bulk_esstrue
+mixed-2026112253-tail_esstrue
+mixed-2026112253-mode_esstrue
+mixed-2026112253-per_chain_mode_transitionstrue
+fft_vs_direct_autocovariancetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesscenarioseeddraws_per_chainexpected_behaviormeanvariancemean_absolute_errorvariance_absolute_errorcdf_max_errorcdfcdf_pointsexact_cdfcdf_point_errorspooled_occupancyper_chain_occupancyoccupancy_absolute_errorper_chain_transitionsminimum_transitions_per_chaintotal_transitionsx_diagnosticsmode_diagnosticswithin_chainarray_sha256acceptance_per_chain
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122511024intentional_nonmixing_control0.064729842601936.73780630950.06472984260190.2621936905320.017333984375[0.0078125,0.232666015625,0.489013671875,0.5,0.5078125,0.735107421875,0.987060546875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.003562565974089599,-0.017333984375,0.0003887378490896043,0.0,-0.0035625659740895488,-0.014892578125,-0.0015643871509103402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7424469012468258,"rhat_z":1.7424469012468258,"rhat_folded":1.0054721087161211,"rhat_split":6.796925029733925,"ess_bulk":6.143348451685772,"ess_tail":434.2715247112975,"ess_mean":4.12449770703817,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.031496062992126,"ess_tail":4.031496062992126,"ess_mean":4.031496062992126,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.7975642237591112,0.6359971378592295,0.40458573382662766,0.21086683790428856,0.028147075699845238,-0.023289144149807553,0.04309995133747896
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+6],"ess_sum":442.1583515294861,"status":"within_chain_only_not_global_mixing"}6c2bbb33633c3b39c330b9275d48566c40fd45cf8733c9b043f22e462e4cd16b—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122514096intentional_nonmixing_control-0.0010464235550236.94120110660.001046423555020.05879889336510.00344049566159[0.0079345703125,0.25311279296875,0.4915771484375,0.5,0.51177978515625,0.74676513671875,0.9893798828125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.003440495661589599,0.00311279296875,0.0029522144115896043,0.0,0.0004047191821604512,-0.00323486328125,0.0007549487865896598]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7368071710094268,"rhat_z":1.7368071710094268,"rhat_folded":1.0189758333262142,"rhat_split":6.739469302116261,"ess_bulk":6.110271684970746,"ess_tail":135.4748413987613,"ess_mean":4.101476174074813,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.007827788649706,"ess_tail":4.007827788649706,"ess_mean":4.007827788649706,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8076490616775069,0.6535232180123229,0.43189159699284685,0.19446781284225031,0.01718953489972423,0.0032547680234
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+843537,0.029457248986284344],"ess_sum":1770.2251551740117,"status":"within_chain_only_not_global_mixing"}8d181e38d1b7d27b660be77e139b948227103ac88d7e4cfc967d39fb50de579c—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed202611225116384intentional_nonmixing_control0.00077488563077436.99447028920.0007748856307740.005529710820290.00186884038815[0.0095062255859375,0.2510833740234375,0.4901275634765625,0.5,0.511199951171875,0.7495269775390625,0.9875946044921875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.001868840388152099,0.0010833740234375,0.0015026294506521043,0.0,-0.00017511480221454878,-0.0004730224609375,-0.0010303295337228402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7330167954713502,"rhat_z":1.7330167954713502,"rhat_folded":1.0004050595204101,"rhat_split":6.561682333462328,"ess_bulk":6.066847027810659,"ess_tail":102.65916411607769,"ess_mean":4.099438460122872,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.001954079140205,"ess_tail":4.001954079140205,"ess_mean":4.001954079140205,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8204729040467321,0.6756623052174253,0.46065508060399624,0.21535214621092091,0.04130926
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+4318092044,-0.002510931733146769,0.007254786533874587],"ess_sum":6441.058964006071,"status":"within_chain_only_not_global_mixing"}ec9ccb2087a60b48833b3821df6628f946ea1d5dcc7e2651ad2580b66beea345[0.7623291015625,0.7623291015625,0.76092529296875,0.75439453125]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122521024intentional_nonmixing_control-0.051987577266737.0008351130.05198757726670.0008351130020830.00927734375[0.013916015625,0.24755859375,0.490234375,0.5,0.514404296875,0.75927734375,0.984619140625][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.002540949650910401,-0.00244140625,0.0016094409740896043,0.0,0.0030292309009104512,0.00927734375,-0.00400579340091034]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7428663882304203,"rhat_z":1.7428663882304203,"rhat_folded":1.0177060705086889,"rhat_split":6.455399019148532,"ess_bulk":6.3058714418076285,"ess_tail":209.8765378361427,"ess_mean":4.139957837650113,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.031496062992126,"ess_tail":4.031496062992126,"ess_mean":4.031496062992126,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8251728195132676,0.686557082582832,0.48036742837289326,0.19733195574372783,-0.03329083888142198,-0.011056971511325875,-0.006723584681596
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+907],"ess_sum":438.32492427767954,"status":"within_chain_only_not_global_mixing"}037b621f0135f04bf2bf77af73d366f2b0b832ae26ac7d35ec6b36f14dd6e902—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122524096intentional_nonmixing_control0.025651528832236.89784033840.02565152883220.1021596615580.00506591796875[0.00775146484375,0.24493408203125,0.48809814453125,0.5,0.5115966796875,0.7493896484375,0.9869384765625][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.003623601130339599,-0.00506591796875,-0.0005267894946603957,0.0,0.00022161371341045122,-0.0006103515625,-0.0016864574634103402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.734577745164631,"rhat_z":1.734577745164631,"rhat_folded":1.0154697006789541,"rhat_split":6.517065360748919,"ess_bulk":6.123282366825756,"ess_tail":141.66444828640886,"ess_mean":4.108801925373455,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.007827788649706,"ess_tail":4.007827788649706,"ess_mean":4.007827788649706,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8243657379685116,0.6832893306073191,0.46852724725012135,0.20919724071079365,0.013607249078804472,-0.0007673834756
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+485216,-0.010843557167346703],"ess_sum":1678.774138267862,"status":"within_chain_only_not_global_mixing"}9d7eb49499218671338672109d1d1e057531439d4e0f8c8e623d9131872c6648—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed202611225216384intentional_nonmixing_control0.0026724039333636.89632486440.002672403933360.1036751355730.0023193359375[0.010986328125,0.248291015625,0.4879150390625,0.5,0.513275146484375,0.7523193359375,0.9888153076171875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0003887378490895991,-0.001708984375,-0.0007098949634103957,0.0,0.0019000805102854512,0.0023193359375,0.0001903735912771598]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7333920577653097,"rhat_z":1.7333920577653097,"rhat_folded":1.0011977400615806,"rhat_split":6.45274908911091,"ess_bulk":6.083354354918666,"ess_tail":100.07316744401147,"ess_mean":4.103345632814397,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.001954079140205,"ess_tail":4.001954079140205,"ess_mean":4.001954079140205,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8291572281095778,0.6899140106379236,0.4801395850778156,0.23205669149593955,0.05053405226269619,0.00550850371598679
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+2,-0.006141502036506561],"ess_sum":5944.958115877383,"status":"within_chain_only_not_global_mixing"}4e113ce9766c6c4fec110798c0225122063002201b99cabb974d1a2be74b1783[0.75799560546875,0.7598876953125,0.76080322265625,0.76239013671875]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122531024intentional_nonmixing_control-0.01214027565936.43687916350.0121402756590.5631208365240.01025390625[0.01171875,0.24365234375,0.487060546875,0.5,0.5146484375,0.76025390625,0.990966796875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.0003436840259104009,-0.00634765625,-0.0015643871509103957,0.0,0.0032733715259104512,0.01025390625,0.00234186284908966]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7394578615090175,"rhat_z":1.7394578615090175,"rhat_folded":1.010769742376789,"rhat_split":6.513679051266962,"ess_bulk":6.203955833214271,"ess_tail":243.83666886218273,"ess_mean":4.135833966938513,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.031496062992126,"ess_tail":4.031496062992126,"ess_mean":4.031496062992126,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8204704980522802,0.6747453397338593,0.45920104280321367,0.23237879033291214,0.08963817665331081,0.0033598846917884204,-0.028163370458802475],"e
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+ss_sum":337.95193848124717,"status":"within_chain_only_not_global_mixing"}1257e442a4922a0f6ad32cc0be800be793c39af7f4486c405da056246a6c68da—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed20261122534096intentional_nonmixing_control-0.037520166241237.00298717180.03752016624120.002987171830060.00653076171875[0.0126953125,0.25518798828125,0.48883056640625,0.5,0.51190185546875,0.75653076171875,0.9920654296875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001320246525910401,0.00518798828125,0.0002056323803396043,0.0,0.0005267894946604512,0.00653076171875,0.00344049566158966]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7362287071267726,"rhat_z":1.7362287071267726,"rhat_folded":1.0024667142977652,"rhat_split":6.499968371135631,"ess_bulk":6.120236307254853,"ess_tail":163.70824132450463,"ess_mean":4.109129677828217,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.007827788649706,"ess_tail":4.007827788649706,"ess_mean":4.007827788649706,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8252027070315617,0.6846220969408163,0.4732278830408568,0.23273182532606929,0.05942522555596575,-0.0005868644014006556
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+,-0.013389227407952543],"ess_sum":1449.3789206509805,"status":"within_chain_only_not_global_mixing"}67dd63e381178202635efdd09d17a18a2e4a348960dc9c6d155ad81a05de49b5—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetdispersed202611225316384intentional_nonmixing_control0.0067385547962137.08711928670.006738554796210.08711928674630.00213623046875[0.0112457275390625,0.249786376953125,0.4880828857421875,0.5,0.5108795166015625,0.74786376953125,0.9876708984375][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0001293384350270991,-0.000213623046875,-0.0005420482837228957,0.0,-0.0004955493725270488,-0.00213623046875,-0.0009540355884103402]0.5[0.0,0.0,1.0,1.0]0[0,0,0,0]00{"rhat_rank":1.7339665692206894,"rhat_z":1.7339665692206894,"rhat_folded":1.0421265407460572,"rhat_split":6.49937611789769,"ess_bulk":6.083337149311072,"ess_tail":109.4495549437642,"ess_mean":4.101758642974462,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":4.001954079140205,"ess_tail":4.001954079140205,"ess_mean":4.001954079140205,"status":"infinite_separation","metric_status":{"rhat_rank":"infinite_separation","rhat_z":"infinite_separation","rhat_folded":"zero_variance","rhat_split":"infinite_separation","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8267967610713574,0.685796204684495,0.47497150504574875,0.24071448274480847,0.06010473786405587,0.
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0037596685577627634,0.0058212467195625315],"ess_sum":5805.525879815823,"status":"within_chain_only_not_global_mixing"}3262e7f5a966acfab11d1fc6995bbdee332a03adce4c117cb8290a0835d9bfdf[0.75970458984375,0.76629638671875,0.75634765625,0.756103515625]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122511024intentional_nonmixing_control-5.933683934860.9188026860065.9336839348636.0811973140.5[0.01611328125,0.47802734375,0.97607421875,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.004738215275910401,0.22802734375,0.4874492847240896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0098615719637702,"rhat_z":1.0098615719637702,"rhat_folded":1.0049967672041284,"rhat_split":1.0099332935750476,"ess_bulk":356.4218331074027,"ess_tail":557.9489762832166,"ess_mean":354.74575684239187,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8078911599032926,0.6529388118295331,0.42435518551119794,0.1727452807553365,0.06372092586399682,0.10057944341371183,-0.006056023745530293],"ess_sum":358.87347566270677,"status":"within_chain_only_not_global_mixing"}142f2bd91a0cb562881de21d40adea7be5df
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+4ed61fcffb89ccd23ef0083200c3—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122514096intentional_nonmixing_control-5.947043740150.9851642401155.9470437401536.01483575990.5[0.01947021484375,0.48211669921875,0.97357177734375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.008095148869660401,0.23211669921875,0.4849468433178396,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0022375634010967,"rhat_z":1.0022375634010967,"rhat_folded":1.0014376616982297,"rhat_split":1.0022352196251698,"ess_bulk":1331.1106900557118,"ess_tail":2135.548823635862,"ess_mean":1324.4021637265155,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8242204699695128,0.683415372389963,0.4705270208141102,0.2221746490464455,0.08080120974471965,0.037258375503313915,0.011987600232172149],"ess_sum":1290.3257632960986,"status":"within_chain_only_not_global_mixing"}12bdf50cb03abe847c356e23
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+1e7767422e1153dd157ca48a17acc0454627cc9d—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode202611225116384intentional_nonmixing_control-6.001851067111.006090748736.0018510671135.99390925130.5[0.0229339599609375,0.5012969970703125,0.97650146484375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011558893986847901,0.2512969970703125,0.4878765308178396,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0003279663343752,"rhat_z":1.0003279663343752,"rhat_folded":1.0001836088798375,"rhat_split":1.0003257541457724,"ess_bulk":5595.605024964256,"ess_tail":9047.292742806121,"ess_mean":5592.880612857582,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8284929230375894,0.6893215040006101,0.48027826541083307,0.2369625581601723,0.06770946465582613,0.012320438104019666,0.002805683884781877],"ess_sum":5603.724239153978,"status":"within_chain_only_not_global_mixing"}c0ef0d2474894aeb0df
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+07fc304385903b707e84b6ac6d0173fcd3347fb2ae295[0.75750732421875,0.75970458984375,0.75836181640625,0.7574462890625]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122521024intentional_nonmixing_control-6.029865850440.9827793402386.0298658504436.01722065980.5[0.01513671875,0.522705078125,0.9736328125,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.003761652775910401,0.272705078125,0.4850078784740896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0050484964286723,"rhat_z":1.0038493457882918,"rhat_folded":1.0050484964286723,"rhat_split":1.0040403667071434,"ess_bulk":346.5114648364165,"ess_tail":474.5816694307272,"ess_mean":340.5339980592517,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8105426309898184,0.6616001331736016,0.44068976956089817,0.20478158918748646,0.06371539870537143,0.035634625276696384,-0.02605132409418667],"ess_sum":399.10972658741287,"status":"within_chain_only_not_global_mixing"}7029adc6addc6942d60d3774ba38159fdb
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+1d2facb24b1881a9a29aaccbc3d065—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122524096intentional_nonmixing_control-6.022888524120.9999531912856.0228885241236.00004680870.5[0.02215576171875,0.511962890625,0.9776611328125,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.010780695744660401,0.261962890625,0.4890361987865896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0023368795228556,"rhat_z":1.0023368795228556,"rhat_folded":1.000626739659205,"rhat_split":1.0023681591218372,"ess_bulk":1402.9200056697323,"ess_tail":2168.6465048046266,"ess_mean":1406.1790552999862,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8237618401958671,0.6820917834722006,0.4682455001952993,0.23064424779569884,0.06390627427725808,0.01963572508774985,0.007083896321579679],"ess_sum":1435.8036236199605,"status":"within_chain_only_not_global_mixing"}91c9c8ab0a6071302c789850bf20
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+47e6f11dc79e31392feebc5915af8aa0f4fc—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode202611225216384intentional_nonmixing_control-6.002653691851.006390838446.0026536918535.99360916160.5[0.02301025390625,0.501220703125,0.9775543212890625,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011635187932160401,0.251220703125,0.4889293872631521,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.001042937079019,"rhat_z":1.001042937079019,"rhat_folded":1.0002631771994364,"rhat_split":1.001040593268704,"ess_bulk":5692.123893308554,"ess_tail":9240.436206774886,"ess_mean":5702.227961468005,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8271551700527922,0.6886361539625051,0.47834018175330906,0.2369741861654825,0.06248083122323455,0.009263065868680692,0.011634440448519839],"ess_sum":5678.1864639170635,"status":"within_chain_only_not_global_mixing"}26a4231b15403379b5b88e841ca2d
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0b317cccaf1f4239e29e47256e8afb03808[0.75286865234375,0.75311279296875,0.76116943359375,0.76226806640625]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122531024intentional_nonmixing_control-5.940565076450.9310981400115.9405650764536.068901860.5[0.016845703125,0.4833984375,0.9736328125,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.005470637150910401,0.2333984375,0.4850078784740896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0054690685922862,"rhat_z":1.0040883815211126,"rhat_folded":1.0054690685922862,"rhat_split":1.0041394182796917,"ess_bulk":455.1499713628486,"ess_tail":549.6655859889977,"ess_mean":454.18449080757256,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8133206516191277,0.6657565736420945,0.44782251866329653,0.20189303199852243,-0.01730758940999589,0.04588944791872429,-0.055773982536117685],"ess_sum":449.74902254215357,"status":"within_chain_only_not_global_mixing"}43a65c26ca677f92b7a93af82b1e1947eb13e
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+30d938707c984520b1771a687dd—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode20261122534096intentional_nonmixing_control-5.975463143450.9800156896485.9754631434536.01998431040.5[0.0230712890625,0.491943359375,0.9769287109375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011696223088410401,0.241943359375,0.4883037769115896,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0024880378879701,"rhat_z":1.0024880378879701,"rhat_folded":1.001333013905465,"rhat_split":1.002516676839009,"ess_bulk":1418.968315311838,"ess_tail":1938.9070138351312,"ess_mean":1409.5947527315143,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8259510980729102,0.6847272763541531,0.47127541994774913,0.22137277082061257,0.03829557137455915,0.029558831434680063,0.0008370982791920528],"ess_sum":1522.9420997113223,"status":"within_chain_only_not_global_mixing"}475a2f49d7e54f7b598933fd8224
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0b40875a2b30cb466444208186db22c2b785—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetsame_mode202611225316384intentional_nonmixing_control-6.00683806910.9787287703686.006838069136.02127122960.5[0.0228118896484375,0.50433349609375,0.9782562255859375,1.0,1.0,1.0,1.0][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.011436823674347901,0.25433349609375,0.4896312915600271,0.5,0.48862493402591045,0.25,0.01137506597408966]0[0.0,0.0,0.0,0.0]0.5[0,0,0,0]00{"rhat_rank":1.0001309758395969,"rhat_z":1.0001309758395969,"rhat_folded":1.00002984353963,"rhat_split":1.0001308397233837,"ess_bulk":5946.228319376368,"ess_tail":9556.884560567896,"ess_mean":5946.140851557149,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null,"status":"zero_global_variance","metric_status":{"rhat_rank":"undefined","rhat_z":"undefined","rhat_folded":"undefined","rhat_split":"undefined","ess_bulk":"undefined","ess_tail":"undefined","ess_mean":"undefined"}}{"acf":[1.0,0.8239419319084734,0.6828931216566595,0.47195839352356767,0.21987498334352212,0.040445618812279836,0.008533338001651309,0.014709253157286814],"ess_sum":6155.99531789516,"status":"within_chain_only_not_global_mixing"}8a6ac96fbdb7dbd5601168f
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+dbb80b276486fe0adb336b9250dbdc69f790063f6[0.7608642578125,0.764404296875,0.7587890625,0.76068115234375]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122511024mixing_check0.017195634331337.68690127580.01719563433130.6869012757970.018310546875[0.01123046875,0.268310546875,0.48876953125,0.49365234375,0.505126953125,0.7529296875,0.988525390625][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0001445972240895991,0.018310546875,0.0001445972240896043,-0.00634765625,-0.006248112849089549,0.0029296875,-9.95434009103402e-05]0.50634765625[0.4638671875,0.498046875,0.51953125,0.5439453125]0.00634765625[82,67,67,83]67299{"rhat_rank":1.0070282010511993,"rhat_z":1.0070282010511993,"rhat_folded":1.0060464291873434,"rhat_split":1.01129616672079,"ess_bulk":320.94099327529506,"ess_tail":540.3464054435931,"ess_mean":246.1567833813926,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0115819742528165,"rhat_z":1.0115819742528165,"rhat_folded":1.0115819742528165,"rhat_split":1.0115819742528165,"ess_bulk":250.64762288515007,"ess_tail":250.64762288515013,"ess_mean":250.64762288515013,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8481137348570459,0.7287300494538942,0.5262982785419442,0.26651033433182975,0.09289535021687978
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+,0.05408242650362614,0.04650814383427969],"ess_sum":316.9934570782656,"status":"within_chain_only_not_global_mixing"}1050a34f6cdfa04e7cf0c09c6d9572c780db4b7cddeb2ac8e1fb1f1e16e79cd9—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122514096mixing_check0.0057720679979937.4779188950.005772067997990.4779188949920.00933837890625[0.01336669921875,0.25933837890625,0.4876708984375,0.49658203125,0.5072021484375,0.74920654296875,0.98858642578125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001991633244660401,0.00933837890625,-0.0009540355884103957,-0.00341796875,-0.004172917536589549,-0.00079345703125,-3.8508244660340196e-05]0.50341796875[0.463134765625,0.5126953125,0.51953125,0.518310546875]0.00341796875[321,294,308,333]2941256{"rhat_rank":1.0016958686613902,"rhat_z":1.0016958686613902,"rhat_folded":1.00123995119144,"rhat_split":1.0018268597437785,"ess_bulk":1829.9022529651902,"ess_tail":2429.3213838463653,"ess_mean":1432.221393791708,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0017404533253085,"rhat_z":1.0017404533253085,"rhat_folded":1.0017404533253085,"rhat_split":1.0017404533253085,"ess_bulk":1405.0788723772002,"ess_tail":1405.0788723772007,"ess_mean":1405.0788723772007,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8417372769619953,0.7085066646872311,0.5040590759282013,0.
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+25141902709610525,0.050955172875179824,0.00477692468136119,0.008572292244583769],"ess_sum":1423.7416031507971,"status":"within_chain_only_not_global_mixing"}7329a241f51cae278d5fc2a6b2b3827de855aefc1aa1b16bb62bad9dda17c0b5—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed202611225116384mixing_check0.0048586358092536.90891242610.004858635809250.09108757393550.00538635253906[0.0110321044921875,0.25115966796875,0.487518310546875,0.497955322265625,0.5098114013671875,0.7553863525390625,0.989532470703125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0003429614819020991,0.00115966796875,-0.0011066234790353957,-0.002044677734375,-0.0015636646069020488,0.0053863525390625,0.0009075366772146598]0.502044677734[0.490478515625,0.50872802734375,0.50341796875,0.50555419921875]0.00204467773438[1251,1205,1281,1270]12055007{"rhat_rank":1.000259870070031,"rhat_z":1.000259870070031,"rhat_folded":1.0002173764642661,"rhat_split":1.0005894206981374,"ess_bulk":6255.350954061888,"ess_tail":9814.323360820285,"ess_mean":5003.916819018095,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0006436937623966,"rhat_z":1.0006436937623966,"rhat_folded":1.0006436937623966,"rhat_split":1.0006436937623966,"ess_bulk":4932.879232093141,"ess_tail":4932.879232093147,"ess_mean":4932.879232093147,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8439782484727948,0.71
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+34622062882743,0.5111218941469258,0.2662830020998359,0.0742452055245634,0.02569870182857517,-0.008302501319188674],"ess_sum":4985.38986892621,"status":"within_chain_only_not_global_mixing"}676a32729d11d72569cacff3365bef57a08787c857657d4464f3f5107edfcef5[0.76123046875,0.7572021484375,0.75982666015625,0.7601318359375]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122521024mixing_check0.24483799560437.92131584430.2448379956040.9213158442640.0218731128491[0.0146484375,0.24951171875,0.474853515625,0.480712890625,0.489501953125,0.733642578125,0.982421875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.003273371525910401,-0.00048828125,-0.013771418400910396,-0.019287109375,-0.02187311284908955,-0.016357421875,-0.00620305902591034]0.519287109375[0.5087890625,0.4658203125,0.4755859375,0.626953125]0.019287109375[67,71,66,73]66277{"rhat_rank":1.0139123339342355,"rhat_z":1.0100505074151824,"rhat_folded":1.0139123339342355,"rhat_split":1.0118666590360192,"ess_bulk":339.92038653256833,"ess_tail":432.56316209415496,"ess_mean":309.16524361059044,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0121116358731062,"rhat_z":1.0121116358731062,"rhat_folded":1.0121116358731062,"rhat_split":1.0121116358731062,"ess_bulk":297.325225033984,"ess_tail":297.3252250339837,"ess_mean":297.3252250339837,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8589245206753479,0.7365127019140139,0.5537618132854286,0.30853953423410724,0.082291334321767
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+45,0.02525431071113266,-0.011739672196237455],"ess_sum":308.74838493292737,"status":"within_chain_only_not_global_mixing"}c2271cb53a393aef03c63cbbe89bd17fb42f5bcc52e94e606bd4cb15716c27a8—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122524096mixing_check-0.025802413480636.92219364370.02580241348060.07780635627050.00543212890625[0.01263427734375,0.24456787109375,0.49322509765625,0.505126953125,0.51409912109375,0.7510986328125,0.98760986328125][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001259211369660401,-0.00543212890625,0.004600163630339604,0.005126953125,0.0027240551196604512,0.0010986328125,-0.0010150707446603402]0.494873046875[0.507568359375,0.496826171875,0.46533203125,0.509765625]0.005126953125[290,317,304,312]2901223{"rhat_rank":1.0023305997480085,"rhat_z":1.0016379574683951,"rhat_folded":1.0023305997480085,"rhat_split":1.0009551566175303,"ess_bulk":1484.5623685946573,"ess_tail":2071.7844915476953,"ess_mean":1362.1243188873561,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0007464228230747,"rhat_z":1.0007464228230747,"rhat_folded":1.0007464228230747,"rhat_split":1.0007464228230747,"ess_bulk":1371.3306547046661,"ess_tail":1371.3306547046654,"ess_mean":1371.3306547046654,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8488481361792471,0.7184628579394698,0.5187175713346
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+217,0.2842874187644142,0.06905501429706795,-0.00941114616426299,0.004257033361995679],"ess_sum":1336.5773861235612,"status":"within_chain_only_not_global_mixing"}1f85967f4917fc003b565b3d8b00764ce1d0ab82d938e8e08a52364471344d8b—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed202611225216384mixing_check-0.014568127150936.84582353060.01456812715090.1541764694240.00575256347656[0.010589599609375,0.2491302490234375,0.4895172119140625,0.5012664794921875,0.5111541748046875,0.7557525634765625,0.989013671875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0007854663647145991,-0.0008697509765625,0.0008922778881521043,0.0012664794921875,-0.00022089116940204878,0.0057525634765625,0.0003887378490896598]0.498733520508[0.50372314453125,0.4857177734375,0.49163818359375,0.51385498046875]0.00126647949219[1237,1258,1233,1216]12164944{"rhat_rank":1.000848801908244,"rhat_z":1.000848801908244,"rhat_folded":1.0003843308326887,"rhat_split":1.0007858250700212,"ess_bulk":6350.326154746331,"ess_tail":9919.83992907867,"ess_mean":5277.806783950583,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0007380610307044,"rhat_z":1.0007380610307044,"rhat_folded":1.0007380610307044,"rhat_split":1.0007380610307044,"ess_bulk":5220.580666936556,"ess_tail":5220.580666936549,"ess_mean":5220.580666936549,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8465277519624687,
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+0.7161755670077182,0.5154779768853739,0.27151312445146863,0.0782570145212151,0.005506348311040553,0.01034398342295211],"ess_sum":5275.233805945207,"status":"within_chain_only_not_global_mixing"}3fe77b4b9d8d04c94b76e498d6dd0620c2bb1fdcc4228a8b86a1a538264efcce[0.755859375,0.75762939453125,0.760986328125,0.7540283203125]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122531024mixing_check-0.31671795898738.11407558740.3167179589871.114075587390.036865234375[0.01806640625,0.286865234375,0.514892578125,0.525146484375,0.52734375,0.744873046875,0.990234375][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.006691340275910401,0.036865234375,0.026267644099089604,0.025146484375,0.01596868402591045,-0.005126953125,0.0016094409740896598]0.474853515625[0.392578125,0.5400390625,0.3896484375,0.5771484375]0.025146484375[89,71,62,78]62300{"rhat_rank":1.0278600397991573,"rhat_z":1.0253608330066284,"rhat_folded":1.0278600397991573,"rhat_split":1.0293923286983806,"ess_bulk":246.2280012252451,"ess_tail":725.0442359329238,"ess_mean":260.71935072949685,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0275985117058677,"rhat_z":1.0275985117058677,"rhat_folded":1.0275985117058677,"rhat_split":1.0275985117058677,"ess_bulk":285.8604488936633,"ess_tail":285.8604488936632,"ess_mean":285.8604488936632,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.84317916268943,0.7151073994974941,0.5195149628663434,0.2407842515708014,0.03660390700525458,0.0031
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+02471947681623,0.007123954239193733],"ess_sum":318.5476692128987,"status":"within_chain_only_not_global_mixing"}cce678514a9e10a51cd6264cc690034f93037e28be90ee289b23070eec1527d2—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed20261122534096mixing_check-0.11552670151137.48582019610.1155267015110.4858201960750.0125732421875[0.012451171875,0.2625732421875,0.49993896484375,0.5091552734375,0.5172119140625,0.748291015625,0.9886474609375][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][0.001076105900910401,0.0125732421875,0.011314030817839604,0.0091552734375,0.005836848088410451,-0.001708984375,2.2526911589659804e-05]0.490844726562[0.45703125,0.510986328125,0.457763671875,0.53759765625]0.0091552734375[293,303,293,298]2931187{"rhat_rank":1.0045626940751644,"rhat_z":1.0033971790627205,"rhat_folded":1.0045626940751644,"rhat_split":1.005229141986432,"ess_bulk":1407.5777207212295,"ess_tail":2234.295385372272,"ess_mean":1227.5886741295978,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0054968433127427,"rhat_z":1.0054968433127427,"rhat_folded":1.0054968433127427,"rhat_split":1.0054968433127425,"ess_bulk":1228.052737687608,"ess_tail":1228.0527376876087,"ess_mean":1228.0527376876087,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8513968214376497,0.7237389051817189,0.5165027848602322,0.25025119
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+78670262,0.07731521574939611,0.014036194111588098,0.0013259989290641877],"ess_sum":1264.7059150657929,"status":"within_chain_only_not_global_mixing"}72b44d1ad583131cd42c1229505ab2988925e206363bbe4af261051d2eb41a14—
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+scenario-budgetmixed202611225316384mixing_check-0.12764139890237.06144315920.1276413989020.06144315918910.0112835132397[0.0109405517578125,0.2568359375,0.499908447265625,0.510986328125,0.5218505859375,0.753326416015625,0.9884490966796875][-8.0,-6.0,-4.0,0.0,4.0,6.0,8.0][0.011375065974089599,0.25,0.4886249340259104,0.5,0.5113750659740895,0.75,0.9886249340259103][-0.0004345142162770991,0.0068359375,0.011283513239714604,0.010986328125,0.010475519963410451,0.003326416015625,-0.0001758373462228402]0.489013671875[0.48663330078125,0.4774169921875,0.49554443359375,0.4964599609375]0.010986328125[1257,1271,1252,1183]11834963{"rhat_rank":1.0002727982111421,"rhat_z":1.0002703884116997,"rhat_folded":1.0002727982111421,"rhat_split":1.0004640336791524,"ess_bulk":6482.8603996580705,"ess_tail":9997.473955694415,"ess_mean":5439.957170777199,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"rhat_rank":1.0004803503078386,"rhat_z":1.0004803503078386,"rhat_folded":1.0004803503078386,"rhat_split":1.0004803503078383,"ess_bulk":5365.687636097212,"ess_tail":5365.687636097215,"ess_mean":5365.687636097215,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}}{"acf":[1.0,0.8451283532906969,0.7153436897848012,0.51252
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-measurements
+Coverage: reading
+
+58894370842,0.2624856641287666,0.070403552851393,0.00209705692936887,0.008824702485585945],"ess_sum":5382.274560849906,"status":"within_chain_only_not_global_mixing"}ab9798ccf252552ae0a375f1f40441e30d04ef43055f7dbf350708d7d8029aaa[0.75860595703125,0.75994873046875,0.75933837890625,0.76214599609375]
+この例の実測値・全記録 / JSON
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion) · DOI: 10.1214/20-BA1221
+確認範囲 / review_level: corrected-author-paper-selected-sections
+訂正済み著者公開PDFの第3–4節、式4.1の分母S+1/4への2021-06-22訂正、定数indicatorの注意を確認。原著の全数値実験を再現したものではありません。
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo · DOI: 10.1214/ss/1177011137
+確認範囲 / review_level: original-selected-paired-sequence-theory
+原著第3.3節・定理3.1/3.2で可逆性等の条件とinitial-positive/monotone列を確認。本論文473–483頁と合本の討論頁を区別。有限鎖から真のESSが厳密に分かる保証とは扱いません。
+A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences · DOI: 10.1214/ss/1177011136
+確認範囲 / review_level: original-selected-multiple-chain-starting-points
+原著の序論・第2節で複数鎖と分散した初期値を確認。現代のrank/folded Rhatの原典とは区別し、1992年版の全有限標本補正の再現とも呼びません。
+The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source
+確認範囲 / review_level: official-versioned-source-and-actual-independent-execution
+公式v0.20.0のrhat/ess API、diagnostics.py/stats_utils.pyでsplit・rank・Type7 quantile・端点・定数規約を確認。commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1と導入ソースSHAを照合し、atlas診断をimportしない別環境で同じ62datasetを実計算。元コード本文は転載せず、参照値・版・hash・再生成コードを同梱します。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-multimodal-mixing-references
+Coverage: reading
+
+N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines · DOI: 10.1063/1.1699114
+確認範囲 / review_level: publisher-abstract-and-metadata
+出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。
+W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications · DOI: 10.1093/biomet/57.1.97
+確認範囲 / review_level: original-paper-excerpt-and-metadata
+大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — MCMC診断の独立照合：rank Rhat・bulk/tail ESS・退化条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/
+Coverage: reading
+
+同一鎖の62datasetを別環境ArviZ0.20.0で実計算し、固定recipe・入力・鎖・公式ソースSHAで結びます。通常の有限値照合と、不定値のpolicy差を分けて検査します。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-assumptions
+Coverage: reading
+
+無次元1D標的p=.5N(−6,1)+.5N(6,1)、平均0/分散37/正側占有.5。3固定seed・4鎖、burn1024、保持16384標本/鎖。prefix1024/4096/16384は入れ子で独立再試行ではありません。棄却と自己遷移を保持します。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-algorithm
+Coverage: reading
+
+原著式から独自実装。odd長は中央1標本を落としてsplit、平均順位のBlom式は訂正済みS+1/4、fold後再rank、最大Rhatを採用。bulk ESSはrank split、tail ESSは元の全鎖のType7分位点を先に求めた≤indicatorをsplit。Geyer initial-positive/monotoneと宣言した端点処理・tau≥1/log10(total)を用い、反相関ESSをNへclipしません。
+\widehat R=\sqrt{\widehat V^+/W},\quad\widehat V^+=\tfrac{N-1}{N}W+\tfrac BNz_s=\Phi^{-1}\!\left(\frac{r_s-3/8}{S+1/4}\right),\quad\widehat R_{\rm rank}=\max(\widehat R_z,\widehat R_{\rm folded})\widehat N_{\rm eff}=MN/\widehat\tau,\quad\widehat\tau=-1+2\sum_k\widehat P_k,\quad\widehat P_k=\widehat\rho_{2k}+\widehat\rho_{2k+1}\operatorname{ESS}_{\rm tail}=\min\{\operatorname{ESS}(\mathbf1[X\le q_{.05}]),\operatorname{ESS}(\mathbf1[X\le q_{.95}])\}
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-validation
+Coverage: reading
+
+実鎖9組×3prefix×x/indicator＋8小fixtureの62組。同じbytesを再生成して照合し、通常の有限値Rhat/ESS/ACFと、定数・鎖内ゼロ分散・odd・ties・shift・scaleを検査。別の直接lag和、定常AR(1)の無限列tau=(1+rho)/(1−rho)で有限推定の誤差も測定します。routineは保存参照との照合で、ArviZのその場再実行は任意の別手順です。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-limits
+Coverage: reading
+
+固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。 定数observableのESS=NというArviZ raw規約を混合の証拠にしません。全同値はnull＋status、鎖ごとに異なる定数のRhatはnull＋infinite-separationとして、ライブラリの巨大finite/infを残し通常有限値の一致点から除外します。bulk ESSは原スケール平均のMCSEへ流用しません。
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_datasets62
+finite_rhat_comparisons168
+finite_ess_comparisons156
+global_constant_datasets10
+global_constant_metric_exclusions70
+exact_row_rhat_policy_checks30
+nonfinite_classification_checks10
+raw_nonfinite_reference_metrics62
+maximum_rhat_absolute_error8.881784197e-16
+maximum_ess_relative_error3.44138231377e-15
+maximum_fft_direct_acov_error2.22044604925e-16
+maximum_independent_acf_error1.11022302463e-16
+maximum_ar1_acf_error0.0107038620716
+maximum_ar1_tau_relative_error0.0364175224425
+判定 / check合格
+dispersed__2026112251__1024__x-rhat_ranktrue
+dispersed__2026112251__1024__x-rhat_ztrue
+dispersed__2026112251__1024__x-rhat_foldedtrue
+dispersed__2026112251__1024__x-rhat_splittrue
+dispersed__2026112251__1024__x-ess_bulktrue
+dispersed__2026112251__1024__x-ess_tailtrue
+dispersed__2026112251__1024__x-ess_meantrue
+dispersed__2026112251__1024__x-independent-acftrue
+dispersed__2026112251__1024__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112251__1024__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112251__1024__positive_indicator-rhat_foldedtrue
+dispersed__2026112251__1024__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112251__1024__positive_indicator-ess_bulktrue
+dispersed__2026112251__1024__positive_indicator-ess_tailtrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112251__1024__positive_indicator-ess_meantrue
+dispersed__2026112251__4096__x-rhat_ranktrue
+dispersed__2026112251__4096__x-rhat_ztrue
+dispersed__2026112251__4096__x-rhat_foldedtrue
+dispersed__2026112251__4096__x-rhat_splittrue
+dispersed__2026112251__4096__x-ess_bulktrue
+dispersed__2026112251__4096__x-ess_tailtrue
+dispersed__2026112251__4096__x-ess_meantrue
+dispersed__2026112251__4096__x-independent-acftrue
+dispersed__2026112251__4096__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112251__4096__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112251__4096__positive_indicator-rhat_foldedtrue
+dispersed__2026112251__4096__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112251__4096__positive_indicator-ess_bulktrue
+dispersed__2026112251__4096__positive_indicator-ess_tailtrue
+dispersed__2026112251__4096__positive_indicator-ess_meantrue
+dispersed__2026112251__16384__x-rhat_ranktrue
+dispersed__2026112251__16384__x-rhat_ztrue
+dispersed__2026112251__16384__x-rhat_foldedtrue
+dispersed__2026112251__16384__x-rhat_splittrue
+dispersed__2026112251__16384__x-ess_bulktrue
+dispersed__2026112251__16384__x-ess_tailtrue
+dispersed__2026112251__16384__x-ess_meantrue
+dispersed__2026112251__16384__x-independent-acftrue
+dispersed__2026112251__16384__positive_indicator-rhat_rank-degeneracy-policytrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112251__16384__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112251__16384__positive_indicator-rhat_foldedtrue
+dispersed__2026112251__16384__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112251__16384__positive_indicator-ess_bulktrue
+dispersed__2026112251__16384__positive_indicator-ess_tailtrue
+dispersed__2026112251__16384__positive_indicator-ess_meantrue
+dispersed__2026112252__1024__x-rhat_ranktrue
+dispersed__2026112252__1024__x-rhat_ztrue
+dispersed__2026112252__1024__x-rhat_foldedtrue
+dispersed__2026112252__1024__x-rhat_splittrue
+dispersed__2026112252__1024__x-ess_bulktrue
+dispersed__2026112252__1024__x-ess_tailtrue
+dispersed__2026112252__1024__x-ess_meantrue
+dispersed__2026112252__1024__x-independent-acftrue
+dispersed__2026112252__1024__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112252__1024__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112252__1024__positive_indicator-rhat_foldedtrue
+dispersed__2026112252__1024__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112252__1024__positive_indicator-ess_bulktrue
+dispersed__2026112252__1024__positive_indicator-ess_tailtrue
+dispersed__2026112252__1024__positive_indicator-ess_meantrue
+dispersed__2026112252__4096__x-rhat_ranktrue
+dispersed__2026112252__4096__x-rhat_ztrue
+dispersed__2026112252__4096__x-rhat_foldedtrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112252__4096__x-rhat_splittrue
+dispersed__2026112252__4096__x-ess_bulktrue
+dispersed__2026112252__4096__x-ess_tailtrue
+dispersed__2026112252__4096__x-ess_meantrue
+dispersed__2026112252__4096__x-independent-acftrue
+dispersed__2026112252__4096__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112252__4096__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112252__4096__positive_indicator-rhat_foldedtrue
+dispersed__2026112252__4096__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112252__4096__positive_indicator-ess_bulktrue
+dispersed__2026112252__4096__positive_indicator-ess_tailtrue
+dispersed__2026112252__4096__positive_indicator-ess_meantrue
+dispersed__2026112252__16384__x-rhat_ranktrue
+dispersed__2026112252__16384__x-rhat_ztrue
+dispersed__2026112252__16384__x-rhat_foldedtrue
+dispersed__2026112252__16384__x-rhat_splittrue
+dispersed__2026112252__16384__x-ess_bulktrue
+dispersed__2026112252__16384__x-ess_tailtrue
+dispersed__2026112252__16384__x-ess_meantrue
+dispersed__2026112252__16384__x-independent-acftrue
+dispersed__2026112252__16384__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112252__16384__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112252__16384__positive_indicator-rhat_foldedtrue
+dispersed__2026112252__16384__positive_indicator-rhat_split-degeneracy-policytrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112252__16384__positive_indicator-ess_bulktrue
+dispersed__2026112252__16384__positive_indicator-ess_tailtrue
+dispersed__2026112252__16384__positive_indicator-ess_meantrue
+dispersed__2026112253__1024__x-rhat_ranktrue
+dispersed__2026112253__1024__x-rhat_ztrue
+dispersed__2026112253__1024__x-rhat_foldedtrue
+dispersed__2026112253__1024__x-rhat_splittrue
+dispersed__2026112253__1024__x-ess_bulktrue
+dispersed__2026112253__1024__x-ess_tailtrue
+dispersed__2026112253__1024__x-ess_meantrue
+dispersed__2026112253__1024__x-independent-acftrue
+dispersed__2026112253__1024__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112253__1024__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112253__1024__positive_indicator-rhat_foldedtrue
+dispersed__2026112253__1024__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112253__1024__positive_indicator-ess_bulktrue
+dispersed__2026112253__1024__positive_indicator-ess_tailtrue
+dispersed__2026112253__1024__positive_indicator-ess_meantrue
+dispersed__2026112253__4096__x-rhat_ranktrue
+dispersed__2026112253__4096__x-rhat_ztrue
+dispersed__2026112253__4096__x-rhat_foldedtrue
+dispersed__2026112253__4096__x-rhat_splittrue
+dispersed__2026112253__4096__x-ess_bulktrue
+dispersed__2026112253__4096__x-ess_tailtrue
+dispersed__2026112253__4096__x-ess_meantrue
+dispersed__2026112253__4096__x-independent-acftrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+dispersed__2026112253__4096__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112253__4096__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112253__4096__positive_indicator-rhat_foldedtrue
+dispersed__2026112253__4096__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112253__4096__positive_indicator-ess_bulktrue
+dispersed__2026112253__4096__positive_indicator-ess_tailtrue
+dispersed__2026112253__4096__positive_indicator-ess_meantrue
+dispersed__2026112253__16384__x-rhat_ranktrue
+dispersed__2026112253__16384__x-rhat_ztrue
+dispersed__2026112253__16384__x-rhat_foldedtrue
+dispersed__2026112253__16384__x-rhat_splittrue
+dispersed__2026112253__16384__x-ess_bulktrue
+dispersed__2026112253__16384__x-ess_tailtrue
+dispersed__2026112253__16384__x-ess_meantrue
+dispersed__2026112253__16384__x-independent-acftrue
+dispersed__2026112253__16384__positive_indicator-rhat_rank-degeneracy-policytrue
+dispersed__2026112253__16384__positive_indicator-rhat_z-degeneracy-policytrue
+dispersed__2026112253__16384__positive_indicator-rhat_foldedtrue
+dispersed__2026112253__16384__positive_indicator-rhat_split-degeneracy-policytrue
+dispersed__2026112253__16384__positive_indicator-ess_bulktrue
+dispersed__2026112253__16384__positive_indicator-ess_tailtrue
+dispersed__2026112253__16384__positive_indicator-ess_meantrue
+same_mode__2026112251__1024__x-rhat_ranktrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+same_mode__2026112251__1024__x-rhat_ztrue
+same_mode__2026112251__1024__x-rhat_foldedtrue
+same_mode__2026112251__1024__x-rhat_splittrue
+same_mode__2026112251__1024__x-ess_bulktrue
+same_mode__2026112251__1024__x-ess_tailtrue
+same_mode__2026112251__1024__x-ess_meantrue
+same_mode__2026112251__1024__x-independent-acftrue
+same_mode__2026112251__1024__positive_indicator-constant-undefinedtrue
+same_mode__2026112251__4096__x-rhat_ranktrue
+same_mode__2026112251__4096__x-rhat_ztrue
+same_mode__2026112251__4096__x-rhat_foldedtrue
+same_mode__2026112251__4096__x-rhat_splittrue
+same_mode__2026112251__4096__x-ess_bulktrue
+same_mode__2026112251__4096__x-ess_tailtrue
+same_mode__2026112251__4096__x-ess_meantrue
+same_mode__2026112251__4096__x-independent-acftrue
+same_mode__2026112251__4096__positive_indicator-constant-undefinedtrue
+same_mode__2026112251__16384__x-rhat_ranktrue
+same_mode__2026112251__16384__x-rhat_ztrue
+same_mode__2026112251__16384__x-rhat_foldedtrue
+same_mode__2026112251__16384__x-rhat_splittrue
+same_mode__2026112251__16384__x-ess_bulktrue
+same_mode__2026112251__16384__x-ess_tailtrue
+same_mode__2026112251__16384__x-ess_meantrue
+same_mode__2026112251__16384__x-independent-acftrue
+same_mode__2026112251__16384__positive_indicator-constant-undefinedtrue
+same_mode__2026112252__1024__x-rhat_ranktrue
+same_mode__2026112252__1024__x-rhat_ztrue
+same_mode__2026112252__1024__x-rhat_foldedtrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+same_mode__2026112252__1024__x-rhat_splittrue
+same_mode__2026112252__1024__x-ess_bulktrue
+same_mode__2026112252__1024__x-ess_tailtrue
+same_mode__2026112252__1024__x-ess_meantrue
+same_mode__2026112252__1024__x-independent-acftrue
+same_mode__2026112252__1024__positive_indicator-constant-undefinedtrue
+same_mode__2026112252__4096__x-rhat_ranktrue
+same_mode__2026112252__4096__x-rhat_ztrue
+same_mode__2026112252__4096__x-rhat_foldedtrue
+same_mode__2026112252__4096__x-rhat_splittrue
+same_mode__2026112252__4096__x-ess_bulktrue
+same_mode__2026112252__4096__x-ess_tailtrue
+same_mode__2026112252__4096__x-ess_meantrue
+same_mode__2026112252__4096__x-independent-acftrue
+same_mode__2026112252__4096__positive_indicator-constant-undefinedtrue
+same_mode__2026112252__16384__x-rhat_ranktrue
+same_mode__2026112252__16384__x-rhat_ztrue
+same_mode__2026112252__16384__x-rhat_foldedtrue
+same_mode__2026112252__16384__x-rhat_splittrue
+same_mode__2026112252__16384__x-ess_bulktrue
+same_mode__2026112252__16384__x-ess_tailtrue
+same_mode__2026112252__16384__x-ess_meantrue
+same_mode__2026112252__16384__x-independent-acftrue
+same_mode__2026112252__16384__positive_indicator-constant-undefinedtrue
+same_mode__2026112253__1024__x-rhat_ranktrue
+same_mode__2026112253__1024__x-rhat_ztrue
+same_mode__2026112253__1024__x-rhat_foldedtrue
+same_mode__2026112253__1024__x-rhat_splittrue
+same_mode__2026112253__1024__x-ess_bulktrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+same_mode__2026112253__1024__x-ess_tailtrue
+same_mode__2026112253__1024__x-ess_meantrue
+same_mode__2026112253__1024__x-independent-acftrue
+same_mode__2026112253__1024__positive_indicator-constant-undefinedtrue
+same_mode__2026112253__4096__x-rhat_ranktrue
+same_mode__2026112253__4096__x-rhat_ztrue
+same_mode__2026112253__4096__x-rhat_foldedtrue
+same_mode__2026112253__4096__x-rhat_splittrue
+same_mode__2026112253__4096__x-ess_bulktrue
+same_mode__2026112253__4096__x-ess_tailtrue
+same_mode__2026112253__4096__x-ess_meantrue
+same_mode__2026112253__4096__x-independent-acftrue
+same_mode__2026112253__4096__positive_indicator-constant-undefinedtrue
+same_mode__2026112253__16384__x-rhat_ranktrue
+same_mode__2026112253__16384__x-rhat_ztrue
+same_mode__2026112253__16384__x-rhat_foldedtrue
+same_mode__2026112253__16384__x-rhat_splittrue
+same_mode__2026112253__16384__x-ess_bulktrue
+same_mode__2026112253__16384__x-ess_tailtrue
+same_mode__2026112253__16384__x-ess_meantrue
+same_mode__2026112253__16384__x-independent-acftrue
+same_mode__2026112253__16384__positive_indicator-constant-undefinedtrue
+mixed__2026112251__1024__x-rhat_ranktrue
+mixed__2026112251__1024__x-rhat_ztrue
+mixed__2026112251__1024__x-rhat_foldedtrue
+mixed__2026112251__1024__x-rhat_splittrue
+mixed__2026112251__1024__x-ess_bulktrue
+mixed__2026112251__1024__x-ess_tailtrue
+mixed__2026112251__1024__x-ess_meantrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112251__1024__x-independent-acftrue
+mixed__2026112251__1024__positive_indicator-rhat_ranktrue
+mixed__2026112251__1024__positive_indicator-rhat_ztrue
+mixed__2026112251__1024__positive_indicator-rhat_foldedtrue
+mixed__2026112251__1024__positive_indicator-rhat_splittrue
+mixed__2026112251__1024__positive_indicator-ess_bulktrue
+mixed__2026112251__1024__positive_indicator-ess_tailtrue
+mixed__2026112251__1024__positive_indicator-ess_meantrue
+mixed__2026112251__1024__positive_indicator-independent-acftrue
+mixed__2026112251__4096__x-rhat_ranktrue
+mixed__2026112251__4096__x-rhat_ztrue
+mixed__2026112251__4096__x-rhat_foldedtrue
+mixed__2026112251__4096__x-rhat_splittrue
+mixed__2026112251__4096__x-ess_bulktrue
+mixed__2026112251__4096__x-ess_tailtrue
+mixed__2026112251__4096__x-ess_meantrue
+mixed__2026112251__4096__x-independent-acftrue
+mixed__2026112251__4096__positive_indicator-rhat_ranktrue
+mixed__2026112251__4096__positive_indicator-rhat_ztrue
+mixed__2026112251__4096__positive_indicator-rhat_foldedtrue
+mixed__2026112251__4096__positive_indicator-rhat_splittrue
+mixed__2026112251__4096__positive_indicator-ess_bulktrue
+mixed__2026112251__4096__positive_indicator-ess_tailtrue
+mixed__2026112251__4096__positive_indicator-ess_meantrue
+mixed__2026112251__4096__positive_indicator-independent-acftrue
+mixed__2026112251__16384__x-rhat_ranktrue
+mixed__2026112251__16384__x-rhat_ztrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112251__16384__x-rhat_foldedtrue
+mixed__2026112251__16384__x-rhat_splittrue
+mixed__2026112251__16384__x-ess_bulktrue
+mixed__2026112251__16384__x-ess_tailtrue
+mixed__2026112251__16384__x-ess_meantrue
+mixed__2026112251__16384__x-independent-acftrue
+mixed__2026112251__16384__positive_indicator-rhat_ranktrue
+mixed__2026112251__16384__positive_indicator-rhat_ztrue
+mixed__2026112251__16384__positive_indicator-rhat_foldedtrue
+mixed__2026112251__16384__positive_indicator-rhat_splittrue
+mixed__2026112251__16384__positive_indicator-ess_bulktrue
+mixed__2026112251__16384__positive_indicator-ess_tailtrue
+mixed__2026112251__16384__positive_indicator-ess_meantrue
+mixed__2026112251__16384__positive_indicator-independent-acftrue
+mixed__2026112252__1024__x-rhat_ranktrue
+mixed__2026112252__1024__x-rhat_ztrue
+mixed__2026112252__1024__x-rhat_foldedtrue
+mixed__2026112252__1024__x-rhat_splittrue
+mixed__2026112252__1024__x-ess_bulktrue
+mixed__2026112252__1024__x-ess_tailtrue
+mixed__2026112252__1024__x-ess_meantrue
+mixed__2026112252__1024__x-independent-acftrue
+mixed__2026112252__1024__positive_indicator-rhat_ranktrue
+mixed__2026112252__1024__positive_indicator-rhat_ztrue
+mixed__2026112252__1024__positive_indicator-rhat_foldedtrue
+mixed__2026112252__1024__positive_indicator-rhat_splittrue
+mixed__2026112252__1024__positive_indicator-ess_bulktrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112252__1024__positive_indicator-ess_tailtrue
+mixed__2026112252__1024__positive_indicator-ess_meantrue
+mixed__2026112252__1024__positive_indicator-independent-acftrue
+mixed__2026112252__4096__x-rhat_ranktrue
+mixed__2026112252__4096__x-rhat_ztrue
+mixed__2026112252__4096__x-rhat_foldedtrue
+mixed__2026112252__4096__x-rhat_splittrue
+mixed__2026112252__4096__x-ess_bulktrue
+mixed__2026112252__4096__x-ess_tailtrue
+mixed__2026112252__4096__x-ess_meantrue
+mixed__2026112252__4096__x-independent-acftrue
+mixed__2026112252__4096__positive_indicator-rhat_ranktrue
+mixed__2026112252__4096__positive_indicator-rhat_ztrue
+mixed__2026112252__4096__positive_indicator-rhat_foldedtrue
+mixed__2026112252__4096__positive_indicator-rhat_splittrue
+mixed__2026112252__4096__positive_indicator-ess_bulktrue
+mixed__2026112252__4096__positive_indicator-ess_tailtrue
+mixed__2026112252__4096__positive_indicator-ess_meantrue
+mixed__2026112252__4096__positive_indicator-independent-acftrue
+mixed__2026112252__16384__x-rhat_ranktrue
+mixed__2026112252__16384__x-rhat_ztrue
+mixed__2026112252__16384__x-rhat_foldedtrue
+mixed__2026112252__16384__x-rhat_splittrue
+mixed__2026112252__16384__x-ess_bulktrue
+mixed__2026112252__16384__x-ess_tailtrue
+mixed__2026112252__16384__x-ess_meantrue
+mixed__2026112252__16384__x-independent-acftrue
+mixed__2026112252__16384__positive_indicator-rhat_ranktrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112252__16384__positive_indicator-rhat_ztrue
+mixed__2026112252__16384__positive_indicator-rhat_foldedtrue
+mixed__2026112252__16384__positive_indicator-rhat_splittrue
+mixed__2026112252__16384__positive_indicator-ess_bulktrue
+mixed__2026112252__16384__positive_indicator-ess_tailtrue
+mixed__2026112252__16384__positive_indicator-ess_meantrue
+mixed__2026112252__16384__positive_indicator-independent-acftrue
+mixed__2026112253__1024__x-rhat_ranktrue
+mixed__2026112253__1024__x-rhat_ztrue
+mixed__2026112253__1024__x-rhat_foldedtrue
+mixed__2026112253__1024__x-rhat_splittrue
+mixed__2026112253__1024__x-ess_bulktrue
+mixed__2026112253__1024__x-ess_tailtrue
+mixed__2026112253__1024__x-ess_meantrue
+mixed__2026112253__1024__x-independent-acftrue
+mixed__2026112253__1024__positive_indicator-rhat_ranktrue
+mixed__2026112253__1024__positive_indicator-rhat_ztrue
+mixed__2026112253__1024__positive_indicator-rhat_foldedtrue
+mixed__2026112253__1024__positive_indicator-rhat_splittrue
+mixed__2026112253__1024__positive_indicator-ess_bulktrue
+mixed__2026112253__1024__positive_indicator-ess_tailtrue
+mixed__2026112253__1024__positive_indicator-ess_meantrue
+mixed__2026112253__1024__positive_indicator-independent-acftrue
+mixed__2026112253__4096__x-rhat_ranktrue
+mixed__2026112253__4096__x-rhat_ztrue
+mixed__2026112253__4096__x-rhat_foldedtrue
+mixed__2026112253__4096__x-rhat_splittrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112253__4096__x-ess_bulktrue
+mixed__2026112253__4096__x-ess_tailtrue
+mixed__2026112253__4096__x-ess_meantrue
+mixed__2026112253__4096__x-independent-acftrue
+mixed__2026112253__4096__positive_indicator-rhat_ranktrue
+mixed__2026112253__4096__positive_indicator-rhat_ztrue
+mixed__2026112253__4096__positive_indicator-rhat_foldedtrue
+mixed__2026112253__4096__positive_indicator-rhat_splittrue
+mixed__2026112253__4096__positive_indicator-ess_bulktrue
+mixed__2026112253__4096__positive_indicator-ess_tailtrue
+mixed__2026112253__4096__positive_indicator-ess_meantrue
+mixed__2026112253__4096__positive_indicator-independent-acftrue
+mixed__2026112253__16384__x-rhat_ranktrue
+mixed__2026112253__16384__x-rhat_ztrue
+mixed__2026112253__16384__x-rhat_foldedtrue
+mixed__2026112253__16384__x-rhat_splittrue
+mixed__2026112253__16384__x-ess_bulktrue
+mixed__2026112253__16384__x-ess_tailtrue
+mixed__2026112253__16384__x-ess_meantrue
+mixed__2026112253__16384__x-independent-acftrue
+mixed__2026112253__16384__positive_indicator-rhat_ranktrue
+mixed__2026112253__16384__positive_indicator-rhat_ztrue
+mixed__2026112253__16384__positive_indicator-rhat_foldedtrue
+mixed__2026112253__16384__positive_indicator-rhat_splittrue
+mixed__2026112253__16384__positive_indicator-ess_bulktrue
+mixed__2026112253__16384__positive_indicator-ess_tailtrue
+mixed__2026112253__16384__positive_indicator-ess_meantrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+mixed__2026112253__16384__positive_indicator-independent-acftrue
+edge__iid-rhat_ranktrue
+edge__iid-rhat_ztrue
+edge__iid-rhat_foldedtrue
+edge__iid-rhat_splittrue
+edge__iid-ess_bulktrue
+edge__iid-ess_tailtrue
+edge__iid-ess_meantrue
+edge__iid-independent-acftrue
+edge__odd-rhat_ranktrue
+edge__odd-rhat_ztrue
+edge__odd-rhat_foldedtrue
+edge__odd-rhat_splittrue
+edge__odd-ess_bulktrue
+edge__odd-ess_tailtrue
+edge__odd-ess_meantrue
+edge__odd-independent-acftrue
+edge__ties-rhat_ranktrue
+edge__ties-rhat_ztrue
+edge__ties-rhat_foldedtrue
+edge__ties-rhat_splittrue
+edge__ties-ess_bulktrue
+edge__ties-ess_tailtrue
+edge__ties-ess_meantrue
+edge__ties-independent-acftrue
+edge__scale-rhat_ranktrue
+edge__scale-rhat_ztrue
+edge__scale-rhat_foldedtrue
+edge__scale-rhat_splittrue
+edge__scale-ess_bulktrue
+edge__scale-ess_tailtrue
+edge__scale-ess_meantrue
+edge__scale-independent-acftrue
+edge__shift-rhat_ranktrue
+edge__shift-rhat_ztrue
+edge__shift-rhat_foldedtrue
+edge__shift-rhat_splittrue
+edge__shift-ess_bulktrue
+edge__shift-ess_tailtrue
+edge__shift-ess_meantrue
+edge__shift-independent-acftrue
+edge__antithetic-rhat_ranktrue
+edge__antithetic-rhat_ztrue
+edge__antithetic-rhat_foldedtrue
+edge__antithetic-rhat_splittrue
+edge__antithetic-ess_bulktrue
+edge__antithetic-ess_tailtrue
+edge__antithetic-ess_meantrue
+edge__antithetic-independent-acftrue
+edge__constant-constant-undefinedtrue
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+edge__separated_constants-rhat_rank-degeneracy-policytrue
+edge__separated_constants-rhat_z-degeneracy-policytrue
+edge__separated_constants-rhat_foldedtrue
+edge__separated_constants-rhat_split-degeneracy-policytrue
+edge__separated_constants-ess_bulktrue
+edge__separated_constants-ess_tailtrue
+edge__separated_constants-ess_meantrue
+iid_effective_size_scaletrue
+folding_detects_scale_differencetrue
+rank_detects_shifttrue
+antithetic_ess_can_exceed_drawstrue
+ar1_acftrue
+ar1_tautrue
+ar1_fft_vs_directtrue
+all_reference_metric_slots_accounted_fortrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+seriesdatasetdraws_per_chainarray_sha256atlas_statuscomparison_statusreference_nonfinite_kindsrhat_rankreference_rhat_rankrhat_zreference_rhat_zrhat_foldedreference_rhat_foldedrhat_splitreference_rhat_splitess_bulkreference_ess_bulkess_tailreference_ess_tailess_meanreference_ess_meandegeneracy_noterhoseedexact_stationary_tauestimated_mean_taumean_essraw_drawstau_relative_erroracf_max_erroracf_lagsempirical_acfexact_acf
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__1024__x10246c2bbb33633c3b39c330b9275d48566c40fd45cf8733c9b043f22e462e4cd16bok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.742446901251.742446901251.742446901251.742446901251.005472108721.005472108726.796925029736.796925029736.143348451696.14334845169434.271524711434.2715247114.124497707044.12449770704————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__1024__positive_indicator10246ca71a30c420e22f4fa1de9b74b40da9ffa9ce7dabed2532a361c914a87a3440infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.48792246614e+15—6.48792246614e+15————4.031496062994.031496062994.031496062994.031496062994.031496062994.03149606299Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__4096__x40968d181e38d1b7d27b660be77e139b948227103ac88d7e4cfc967d39fb50de579cok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.736807171011.736807171011.736807171011.736807171011.018975833331.018975833336.739469302126.739469302126.110271684976.11027168497135.474841399135.4748413994.101476174074.10147617407————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__4096__positive_indicator4096ad14cc350e42153002e30ce9c314a955d7cd93e913bcc0e96969e02ef1cd6fe0infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.49302857076e+15—6.49302857076e+15————4.007827788654.007827788654.007827788654.007827788654.007827788654.00782778865Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__16384__x16384ec9ccb2087a60b48833b3821df6628f946ea1d5dcc7e2651ad2580b66beea345ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.733016795471.733016795471.733016795471.733016795471.000405059521.000405059526.561682333466.561682333466.066847027816.06684702781102.659164116102.6591641164.099438460124.09943846012————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112251__16384__positive_indicator163848200c214587b6efae9240bdedd28d8473234ef7c9d4d3d07b6a874044d3f3707infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—3.24715231876e+15—3.24715231876e+15————4.001954079144.001954079144.001954079144.001954079144.001954079144.00195407914Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__1024__x1024037b621f0135f04bf2bf77af73d366f2b0b832ae26ac7d35ec6b36f14dd6e902ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.742866388231.742866388231.742866388231.742866388231.017706070511.017706070516.455399019156.455399019156.305871441816.30587144181209.876537836209.8765378364.139957837654.13995783765————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__1024__positive_indicator10246ca71a30c420e22f4fa1de9b74b40da9ffa9ce7dabed2532a361c914a87a3440infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.48792246614e+15—6.48792246614e+15————4.031496062994.031496062994.031496062994.031496062994.031496062994.03149606299Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__4096__x40969d7eb49499218671338672109d1d1e057531439d4e0f8c8e623d9131872c6648ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.734577745161.734577745161.734577745161.734577745161.015469700681.015469700686.517065360756.517065360756.123282366836.12328236683141.664448286141.6644482864.108801925374.10880192537————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__4096__positive_indicator4096ad14cc350e42153002e30ce9c314a955d7cd93e913bcc0e96969e02ef1cd6fe0infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.49302857076e+15—6.49302857076e+15————4.007827788654.007827788654.007827788654.007827788654.007827788654.00782778865Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__16384__x163844e113ce9766c6c4fec110798c0225122063002201b99cabb974d1a2be74b1783ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.733392057771.733392057771.733392057771.733392057771.001197740061.001197740066.452749089116.452749089116.083354354926.08335435492100.073167444100.0731674444.103345632814.10334563281————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112252__16384__positive_indicator163848200c214587b6efae9240bdedd28d8473234ef7c9d4d3d07b6a874044d3f3707infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—3.24715231876e+15—3.24715231876e+15————4.001954079144.001954079144.001954079144.001954079144.001954079144.00195407914Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__1024__x10241257e442a4922a0f6ad32cc0be800be793c39af7f4486c405da056246a6c68daok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.739457861511.739457861511.739457861511.739457861511.010769742381.010769742386.513679051276.513679051276.203955833216.20395583321243.836668862243.8366688624.135833966944.13583396694————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__1024__positive_indicator10246ca71a30c420e22f4fa1de9b74b40da9ffa9ce7dabed2532a361c914a87a3440infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.48792246614e+15—6.48792246614e+15————4.031496062994.031496062994.031496062994.031496062994.031496062994.03149606299Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__4096__x409667dd63e381178202635efdd09d17a18a2e4a348960dc9c6d155ad81a05de49b5ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.736228707131.736228707131.736228707131.736228707131.00246671431.00246671436.499968371146.499968371146.120236307256.12023630725163.708241325163.7082413254.109129677834.10912967783————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__4096__positive_indicator4096ad14cc350e42153002e30ce9c314a955d7cd93e913bcc0e96969e02ef1cd6fe0infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—6.49302857076e+15—6.49302857076e+15————4.007827788654.007827788654.007827788654.007827788654.007827788654.00782778865Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__16384__x163843262e7f5a966acfab11d1fc6995bbdee332a03adce4c117cb8290a0835d9bfdfok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.733966569221.733966569221.733966569221.733966569221.042126540751.042126540756.49937611796.49937611796.083337149316.08333714931109.449554944109.4495549444.101758642974.10175864297————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisondispersed__2026112253__16384__positive_indicator163848200c214587b6efae9240bdedd28d8473234ef7c9d4d3d07b6a874044d3f3707infinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}—3.24715231876e+15—3.24715231876e+15————4.001954079144.001954079144.001954079144.001954079144.001954079144.00195407914Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112251__1024__x1024142f2bd91a0cb562881de21d40adea7be5df4ed61fcffb89ccd23ef0083200c3ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.009861571961.009861571961.009861571961.009861571961.00499676721.00499676721.009933293581.00993329358356.421833107356.421833107557.948976283557.948976283354.745756842354.745756842————————————
+arviz-comparisonsame_mode__2026112251__1024__positive_indicator1024c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————4096—4096—4096————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112251__4096__x409612bdf50cb03abe847c356e231e7767422e1153dd157ca48a17acc0454627cc9dok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.00223756341.00223756341.00223756341.00223756341.00143766171.00143766171.002235219631.002235219631331.110690061331.110690062135.548823642135.548823641324.402163731324.40216373————————————
+arviz-comparisonsame_mode__2026112251__4096__positive_indicator4096fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————16384—16384—16384————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112251__16384__x16384c0ef0d2474894aeb0df07fc304385903b707e84b6ac6d0173fcd3347fb2ae295ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000327966331.000327966331.000327966331.000327966331.000183608881.000183608881.000325754151.000325754155595.605024965595.605024969047.292742819047.292742815592.880612865592.88061286————————————
+arviz-comparisonsame_mode__2026112251__16384__positive_indicator1638407854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————65536—65536—65536————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112252__1024__x10247029adc6addc6942d60d3774ba38159fdb1d2facb24b1881a9a29aaccbc3d065ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.005048496431.005048496431.003849345791.003849345791.005048496431.005048496431.004040366711.00404036671346.511464836346.511464836474.581669431474.581669431340.533998059340.533998059————————————
+arviz-comparisonsame_mode__2026112252__1024__positive_indicator1024c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————4096—4096—4096————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112252__4096__x409691c9c8ab0a6071302c789850bf2047e6f11dc79e31392feebc5915af8aa0f4fcok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.002336879521.002336879521.002336879521.002336879521.000626739661.000626739661.002368159121.002368159121402.920005671402.920005672168.64650482168.64650481406.17905531406.1790553————————————
+arviz-comparisonsame_mode__2026112252__4096__positive_indicator4096fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————16384—16384—16384————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112252__16384__x1638426a4231b15403379b5b88e841ca2d0b317cccaf1f4239e29e47256e8afb03808ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001042937081.001042937081.001042937081.001042937081.00026317721.00026317721.001040593271.001040593275692.123893315692.123893319240.436206779240.436206775702.227961475702.22796147————————————
+arviz-comparisonsame_mode__2026112252__16384__positive_indicator1638407854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————65536—65536—65536————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112253__1024__x102443a65c26ca677f92b7a93af82b1e1947eb13e30d938707c984520b1771a687ddok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.005469068591.005469068591.004088381521.004088381521.005469068591.005469068591.004139418281.00413941828455.149971363455.149971363549.665585989549.665585989454.184490808454.184490808————————————
+arviz-comparisonsame_mode__2026112253__1024__positive_indicator1024c35020473aed1b4642cd726cad727b63fff2824ad68cedd7ffb73c7cbd890479zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————4096—4096—4096————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112253__4096__x4096475a2f49d7e54f7b598933fd82240b40875a2b30cb466444208186db22c2b785ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.002488037891.002488037891.002488037891.002488037891.001333013911.001333013911.002516676841.002516676841418.968315311418.968315311938.907013841938.907013841409.594752731409.59475273————————————
+arviz-comparisonsame_mode__2026112253__4096__positive_indicator4096fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————16384—16384—16384————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonsame_mode__2026112253__16384__x163848a6ac96fbdb7dbd5601168fdbb80b276486fe0adb336b9250dbdc69f790063f6ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000130975841.000130975841.000130975841.000130975841.000029843541.000029843541.000130839721.000130839725946.228319385946.228319389556.884560579556.884560575946.140851565946.14085156————————————
+arviz-comparisonsame_mode__2026112253__16384__positive_indicator1638407854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————65536—65536—65536————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__1024__x10241050a34f6cdfa04e7cf0c09c6d9572c780db4b7cddeb2ac8e1fb1f1e16e79cd9ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.007028201051.007028201051.007028201051.007028201051.006046429191.006046429191.011296166721.01129616672320.940993275320.940993275540.346405444540.346405444246.156783381246.156783381————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__1024__positive_indicator10249a3df1def085960e5e92a8c27cd785731e930ee0b9f962cb8bb1cedf9aa91bd0ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.011581974251.011581974251.011581974251.011581974251.011581974251.011581974251.011581974251.01158197425250.647622885250.647622885250.647622885250.647622885250.647622885250.647622885————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__4096__x40967329a241f51cae278d5fc2a6b2b3827de855aefc1aa1b16bb62bad9dda17c0b5ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001695868661.001695868661.001695868661.001695868661.001239951191.001239951191.001826859741.001826859741829.902252971829.902252972429.321383852429.321383851432.221393791432.22139379————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__4096__positive_indicator4096636a830d4d098fe40b08dc7ad6d46d64ac51cc6c638a8f848d97b9f195185a70ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001740453331.001740453331.001740453331.001740453331.001740453331.001740453331.001740453331.001740453331405.078872381405.078872381405.078872381405.078872381405.078872381405.07887238————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__16384__x16384676a32729d11d72569cacff3365bef57a08787c857657d4464f3f5107edfcef5ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000259870071.000259870071.000259870071.000259870071.000217376461.000217376461.00058942071.00058942076255.350954066255.350954069814.323360829814.323360825003.916819025003.91681902————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112251__16384__positive_indicator1638437ba4b39f9f602bb42dabf0fcb520459fe5a3d1b78e91849d17136020b02c5e9ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000643693761.000643693761.000643693761.000643693761.000643693761.000643693761.000643693761.000643693764932.879232094932.879232094932.879232094932.879232094932.879232094932.87923209————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__1024__x1024c2271cb53a393aef03c63cbbe89bd17fb42f5bcc52e94e606bd4cb15716c27a8ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.013912333931.013912333931.010050507421.010050507421.013912333931.013912333931.011866659041.01186665904339.920386533339.920386533432.563162094432.563162094309.165243611309.165243611————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__1024__positive_indicator10248d5a6fa511a8502ae1d11640e5aadf1b26101ff71a3ee229f131c89d5a8a9aa7ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.012111635871.012111635871.012111635871.012111635871.012111635871.012111635871.012111635871.01211163587297.325225034297.325225034297.325225034297.325225034297.325225034297.325225034————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__4096__x40961f85967f4917fc003b565b3d8b00764ce1d0ab82d938e8e08a52364471344d8bok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.002330599751.002330599751.001637957471.001637957471.002330599751.002330599751.000955156621.000955156621484.562368591484.562368592071.784491552071.784491551362.124318891362.12431889————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__4096__positive_indicator4096547576e0286050a61006468a807da43a5fa37b74f514520af4bb8ca44ef6599eok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000746422821.000746422821.000746422821.000746422821.000746422821.000746422821.000746422821.000746422821371.33065471371.33065471371.33065471371.33065471371.33065471371.3306547————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__16384__x163843fe77b4b9d8d04c94b76e498d6dd0620c2bb1fdcc4228a8b86a1a538264efcceok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000848801911.000848801911.000848801911.000848801911.000384330831.000384330831.000785825071.000785825076350.326154756350.326154759919.839929089919.839929085277.806783955277.80678395————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112252__16384__positive_indicator16384ba541ba1054ccd5a15da6d5c5c78721110f03376bfd62ed7e61869ce8e3009ceok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000738061031.000738061031.000738061031.000738061031.000738061031.000738061031.000738061031.000738061035220.580666945220.580666945220.580666945220.580666945220.580666945220.58066694————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__1024__x1024cce678514a9e10a51cd6264cc690034f93037e28be90ee289b23070eec1527d2ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.02786003981.02786003981.025360833011.025360833011.02786003981.02786003981.02939232871.0293923287246.228001225246.228001225725.044235933725.044235933260.719350729260.719350729————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__1024__positive_indicator102485987b90684e71b3644be16a6d9260bb5e19c23403702f3234228c6a95eb56f3ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.027598511711.027598511711.027598511711.027598511711.027598511711.027598511711.027598511711.02759851171285.860448894285.860448894285.860448894285.860448894285.860448894285.860448894————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__4096__x409672b44d1ad583131cd42c1229505ab2988925e206363bbe4af261051d2eb41a14ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.004562694081.004562694081.003397179061.003397179061.004562694081.004562694081.005229141991.005229141991407.577720721407.577720722234.295385372234.295385371227.588674131227.58867413————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__4096__positive_indicator40967558f6bf8e5c13b494d7e1e3be20f8b9a5a869b09c2fbcb376b432e288f57638ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.005496843311.005496843311.005496843311.005496843311.005496843311.005496843311.005496843311.005496843311228.052737691228.052737691228.052737691228.052737691228.052737691228.05273769————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__16384__x16384ab9798ccf252552ae0a375f1f40441e30d04ef43055f7dbf350708d7d8029aaaok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000272798211.000272798211.000270388411.000270388411.000272798211.000272798211.000464033681.000464033686482.860399666482.860399669997.473955699997.473955695439.957170785439.95717078————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonmixed__2026112253__16384__positive_indicator163841792005dcd953e31fc2374b6778b636f50a0543037a7f716b001640c2ab02617ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000480350311.000480350311.000480350311.000480350311.000480350311.000480350311.000480350311.000480350315365.68763615365.68763615365.68763615365.68763615365.68763615365.6876361————————————
+arviz-comparisonedge__iid2048866d11bdb9e2d0d7c5f2ebccd53c432542d72ca7352ddafbfc2a256dd0fe485dok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000320363811.000320363811.000320363811.000320363810.9999838998470.9999838998471.000311651261.000311651268062.257229598062.257229597694.072228627694.072228628083.066159788083.06615978————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__odd2578afff3e8410931c38a7806f39bc6a20c2070c194bbd3acd7e53c0a8b9cb11e64ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.007548917631.007548917630.9995706703130.9995706703131.007548917631.007548917630.9996205845140.9996205845141035.99236431035.9923643979.758547496979.7585474961036.715577931036.71557793————————————
+arviz-comparisonedge__ties2048b43df209a8ddc58353622a37edddd1b1ab8cab8379a65a04a198d1ad828eefd7ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.000330993091.000330993091.000330993091.000330993091.00000985631.00000985631.000320086961.000320086968116.536187758116.536187758062.793593948062.793593948129.427203748129.42720374————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__scale2048d06a8db9a98f0d1728a9cd5d098740767179f237acb84d22a2e1e72520ab7b01ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.147360573761.147360573760.9999905951530.9999905951531.147360573761.147360573761.000035846141.000035846148392.121549028392.1215490234.565303087934.56530308798396.350071388396.35007138————————————
+arviz-comparisonedge__shift2048c6dfdeb6e1d72220714ead73cf1b59186e4bdb90fcb94f940ebb383b087b1144ok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.474155616331.474155616331.474155616331.474155616331.312832139281.312832139281.707615925661.707615925667.540654004817.5406540048127.87679665227.8767966526.16245800216.1624580021————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__antithetic2048e7e5b3c8dc81217093c8a5f25123795fdd742d7deb10c4b02a45dd5ca7ef437fok{"rhat_rank":"finite_numeric_comparison","rhat_z":"finite_numeric_comparison","rhat_folded":"finite_numeric_comparison","rhat_split":"finite_numeric_comparison","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":null,"rhat_z":null,"rhat_folded":null,"rhat_split":null,"ess_bulk":null,"ess_tail":null,"ess_mean":null}1.001064697981.001064697980.9995937604750.9995937604751.001064697981.001064697980.9995935970120.99959359701225419.647923625419.64792367871.904232937871.9042329325371.052504425371.0525044————————————
+arviz-comparisonedge__constant12805db1543dd4c49926866352bc24cc053df8dda793005b1b5d71d5861c36d32b0zero_global_variance{"rhat_rank":"global_constant_undefined_policy","rhat_z":"global_constant_undefined_policy","rhat_folded":"global_constant_undefined_policy","rhat_split":"global_constant_undefined_policy","ess_bulk":"global_constant_undefined_policy","ess_tail":"global_constant_undefined_policy","ess_mean":"global_constant_undefined_policy"}{"rhat_rank":"nan","rhat_z":"nan","rhat_folded":"nan","rhat_split":"nan","ess_bulk":null,"ess_tail":null,"ess_mean":null}—————————512—512—512————————————
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+arviz-comparisonedge__separated_constants1287cd22244c5795ed9035c232ef4fba01f589dbba8eb906a868cd659051741da0dinfinite_separation{"rhat_rank":"exact_zero_within_variance_policy","rhat_z":"exact_zero_within_variance_policy","rhat_folded":"nonfinite_classification_match","rhat_split":"exact_zero_within_variance_policy","ess_bulk":"finite_numeric_comparison","ess_tail":"finite_numeric_comparison","ess_mean":"finite_numeric_comparison"}{"rhat_rank":"positive_infinity","rhat_z":"positive_infinity","rhat_folded":"nan","rhat_split":"positive_infinity","ess_bulk":null,"ess_tail":null,"ess_mean":null}————————4.266666666674.266666666674.266666666674.266666666674.266666666674.26666666667Exact zero within-chain variation: Atlas null/infinite-separation; raw ArviZ may be huge finite or infinity. Not a finite numerical-comparison point.———————————
+ar1-calibration—————————————————————-0.520261122610.3333333333330.331023796358395959.4489641310720.006928610925030.00294039640028[0,1,2,4,8,16][1.0,-0.5023648460037271,0.2510147529309931,0.05955960359972147,0.0033721337858313373,0.0005529173690875841][1.0,-0.5,0.25,0.0625,0.00390625,1.52587890625e-05]
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-measurements
+Coverage: reading
+
+ar1-calibration—————————————————————-0.520261122620.3333333333330.321194159186408077.15911310720.03641752244250.00758659944171[0,1,2,4,8,16][1.0,-0.500145912058898,0.2493450659545163,0.054913400558288854,0.0035221826674918595,0.002656394368758145][1.0,-0.5,0.25,0.0625,0.00390625,1.52587890625e-05]
+ar1-calibration—————————————————————0.8202611226199.1865907251414267.75219681310720.02073230279310.00687807520145[0,1,2,4,8,16][1.0,0.798538001424816,0.638782942217482,0.4084614469096897,0.17465023520145018,0.03472472796793311][1.0,0.8,0.6400000000000001,0.4096000000000001,0.1677721600000001,0.028147497671065624]
+ar1-calibration—————————————————————0.8202611226299.1978873426314250.22889691310720.02198748251420.0107038620716[0,1,2,4,8,16][1.0,0.7973402552595114,0.6350839109056095,0.39889613792838713,0.1586834197332639,0.023496449649582373][1.0,0.8,0.6400000000000001,0.4096000000000001,0.1677721600000001,0.028147497671065624]
+この例の実測値・全記録 / JSON
+
+## 多峰性MCMC：混合不良と収束診断の独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#mcmc-diagnostic-reference-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion) · DOI: 10.1214/20-BA1221
+確認範囲 / review_level: corrected-author-paper-selected-sections
+訂正済み著者公開PDFの第3–4節、式4.1の分母S+1/4への2021-06-22訂正、定数indicatorの注意を確認。原著の全数値実験を再現したものではありません。
+C. J. Geyer (1992). Practical Markov Chain Monte Carlo · DOI: 10.1214/ss/1177011137
+確認範囲 / review_level: original-selected-paired-sequence-theory
+原著第3.3節・定理3.1/3.2で可逆性等の条件とinitial-positive/monotone列を確認。本論文473–483頁と合本の討論頁を区別。有限鎖から真のESSが厳密に分かる保証とは扱いません。
+A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences · DOI: 10.1214/ss/1177011136
+確認範囲 / review_level: original-selected-multiple-chain-starting-points
+原著の序論・第2節で複数鎖と分散した初期値を確認。現代のrank/folded Rhatの原典とは区別し、1992年版の全有限標本補正の再現とも呼びません。
+The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source
+確認範囲 / review_level: official-versioned-source-and-actual-independent-execution
+公式v0.20.0のrhat/ess API、diagnostics.py/stats_utils.pyでsplit・rank・Type7 quantile・端点・定数規約を確認。commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1と導入ソースSHAを照合し、atlas診断をimportしない別環境で同じ62datasetを実計算。元コード本文は転載せず、参照値・版・hash・再生成コードを同梱します。
 
 ## 流体・MHDの独立照合とCT／GLM — 流体・MHDの独立照合とCT／GLM [ja]
 

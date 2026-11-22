@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "688c0dd34df64bf5be95532b60c10323ad1b7f5b358c509e2809406c39006bf1",
-  "chapter_count": 87,
+  "source_sha256": "9e91d81ce2b9e0a1f22cdff3159345418a25e7efdc2cd808f1349ddb891d20b8",
+  "chapter_count": 88,
   "groups": [
     {
       "id": "foundations-time",
@@ -819,6 +819,17 @@
             "en"
           ],
           "search_text": "mcmc Markov連鎖Monte Carlo Markov-chain Monte Carlo / MCMC 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-mcmc",
+          "title": "Multimodal MCMC: independent checks of poor mixing and convergence diagnostics",
+          "url": "/numerical-methods-atlas/en/read/validation-mcmc/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-mcmc 多峰性MCMC：混合不良と収束診断の独立検証 Multimodal MCMC: independent checks of poor mixing and convergence diagnostics 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
         },
         {
           "id": "sde",
