@@ -613,6 +613,15 @@
         "ja": "固定Heセルの周期LDA：Γ点とkメッシュ、Gaussian軌道基底・FFT格子・SCFを分離。DFTK平面波参照の打切り収束と差も表示。",
         "en": "Periodic LDA for fixed He: separate Gamma/k sampling, Gaussian orbital basis, FFT grid and SCF. Includes independently converged DFTK plane-wave reference differences."
       }
+    },
+    {
+      "id": "periodic-he-forces",
+      "kind": "image",
+      "source": "/code/periodic-forces/2026-11-22/results/preview.png",
+      "caption": {
+        "ja": "非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。",
+        "en": "Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check."
+      }
     }
   ]
 }

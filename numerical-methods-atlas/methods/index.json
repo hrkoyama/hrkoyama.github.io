@@ -10435,6 +10435,13 @@
         "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
         "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
+      "force_examples": [
+        "periodic-he-forces"
+      ],
+      "force_scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/index.md",
@@ -10442,11 +10449,15 @@
         "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular_hf.py",
         "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/run.py",
         "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
       ],
       "run_commands": [
         "python run.py --input inputs.json --output output"
@@ -10506,6 +10517,30 @@
         },
         "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
       },
+      "force_release": {
+        "release": {
+          "family": "periodic-forces",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+          "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+          "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+          "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+          "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+          "archive_directory": "periodic-forces-2026-11-22"
+        },
+        "code_base": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/",
+        "examples": [
+          "periodic-he-forces"
+        ],
+        "run_commands": [
+          "python run.py --input inputs.json --output output"
+        ],
+        "scope": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        },
+        "implementation": "Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory."
+      },
       "execution_examples": [
         {
           "id": "h2-rhf",
@@ -10521,6 +10556,14 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        },
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
           }
         }
       ]
@@ -11116,6 +11159,13 @@
         "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
         "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
+      "force_examples": [
+        "periodic-he-forces"
+      ],
+      "force_scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/kohn-sham-dft/index.md",
@@ -11123,11 +11173,15 @@
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/atomic_radial.py",
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/run.py",
         "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
       ],
       "run_commands": [
         "python -m pytest -q",
@@ -11181,6 +11235,30 @@
         },
         "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
       },
+      "force_release": {
+        "release": {
+          "family": "periodic-forces",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+          "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+          "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+          "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+          "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+          "archive_directory": "periodic-forces-2026-11-22"
+        },
+        "code_base": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/",
+        "examples": [
+          "periodic-he-forces"
+        ],
+        "run_commands": [
+          "python run.py --input inputs.json --output output"
+        ],
+        "scope": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        },
+        "implementation": "Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory."
+      },
       "execution_examples": [
         {
           "id": "helium-ground-state",
@@ -11196,6 +11274,14 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        },
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
           }
         }
       ]
@@ -11451,6 +11537,13 @@
         "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
         "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
+      "force_examples": [
+        "periodic-he-forces"
+      ],
+      "force_scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/index.md",
@@ -11460,12 +11553,16 @@
         "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular_hf.py",
         "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/run.py",
         "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
         "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
       ],
       "run_commands": [
         "python -m pytest -q",
@@ -11542,6 +11639,30 @@
         },
         "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
       },
+      "force_release": {
+        "release": {
+          "family": "periodic-forces",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+          "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+          "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+          "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+          "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+          "archive_directory": "periodic-forces-2026-11-22"
+        },
+        "code_base": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/",
+        "examples": [
+          "periodic-he-forces"
+        ],
+        "run_commands": [
+          "python run.py --input inputs.json --output output"
+        ],
+        "scope": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        },
+        "implementation": "Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory."
+      },
       "execution_examples": [
         {
           "id": "helium-ground-state",
@@ -11565,6 +11686,14 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        },
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
           }
         }
       ]
@@ -12163,6 +12292,13 @@
         "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
         "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
+      "force_examples": [
+        "periodic-he-forces"
+      ],
+      "force_scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/xc-functionals/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/xc-functionals/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/xc-functionals/index.md",
@@ -12170,11 +12306,15 @@
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/atomic_radial.py",
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/run.py",
         "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
       ],
       "run_commands": [
         "python -m pytest -q",
@@ -12228,6 +12368,30 @@
         },
         "implementation": "Original educational workflow using PySCF; independent reference uses DFTK."
       },
+      "force_release": {
+        "release": {
+          "family": "periodic-forces",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+          "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+          "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+          "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+          "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+          "archive_directory": "periodic-forces-2026-11-22"
+        },
+        "code_base": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/",
+        "examples": [
+          "periodic-he-forces"
+        ],
+        "run_commands": [
+          "python run.py --input inputs.json --output output"
+        ],
+        "scope": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        },
+        "implementation": "Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory."
+      },
       "execution_examples": [
         {
           "id": "helium-ground-state",
@@ -12243,6 +12407,14 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        },
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
           }
         }
       ]
@@ -12340,15 +12512,26 @@
         "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
         "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
+      "force_examples": [
+        "periodic-he-forces"
+      ],
+      "force_scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/index.md",
       "code_urls": [
         "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
       ],
       "test_urls": [
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
       ],
       "run_commands": [
         "python run.py --input inputs.json --output output"
@@ -12385,6 +12568,30 @@
       "inputs": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
       "results": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/result.json",
       "independent_reference": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/reference-dftk.json",
+      "force_release": {
+        "release": {
+          "family": "periodic-forces",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+          "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+          "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+          "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+          "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+          "archive_directory": "periodic-forces-2026-11-22"
+        },
+        "code_base": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/",
+        "examples": [
+          "periodic-he-forces"
+        ],
+        "run_commands": [
+          "python run.py --input inputs.json --output output"
+        ],
+        "scope": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        },
+        "implementation": "Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory."
+      },
       "execution_examples": [
         {
           "id": "periodic-he-dft",
@@ -12392,6 +12599,14 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        },
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
           }
         }
       ]
@@ -12475,15 +12690,26 @@
         "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
         "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
       },
+      "force_examples": [
+        "periodic-he-forces"
+      ],
+      "force_scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/index.md",
       "code_urls": [
         "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic_dft.py",
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
       ],
       "test_urls": [
-        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py"
+        "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
+        "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
       ],
       "run_commands": [
         "python run.py --input inputs.json --output output"
@@ -12520,6 +12746,30 @@
       "inputs": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
       "results": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/result.json",
       "independent_reference": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/reference-dftk.json",
+      "force_release": {
+        "release": {
+          "family": "periodic-forces",
+          "version": "2026-11-22",
+          "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+          "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+          "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+          "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+          "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+          "archive_directory": "periodic-forces-2026-11-22"
+        },
+        "code_base": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/",
+        "examples": [
+          "periodic-he-forces"
+        ],
+        "run_commands": [
+          "python run.py --input inputs.json --output output"
+        ],
+        "scope": {
+          "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+          "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        },
+        "implementation": "Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory."
+      },
       "execution_examples": [
         {
           "id": "periodic-he-dft",
@@ -12527,6 +12777,14 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-dft-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-dft-en"
+          }
+        },
+        {
+          "id": "periodic-he-forces",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
           }
         }
       ]
@@ -15403,28 +15661,28 @@
         }
       ],
       "assumptions": [
-        "Classical nuclei and a selected adiabatic electronic ground-state model; no verified MD implementation.",
-        "Displayed extended-Lagrangian formulas assume fixed cell and fixed occupations."
+        "Classical nuclei and a selected adiabatic electronic ground state. A fixed-He₂ force-provider/local-Verlet check exists, while full trajectories remain unvalidated.",
+        "The published interface fixes the periodic cell, occupations and electronic model, and reconverges SCF at every visited geometry."
       ],
       "assumptions_ja": [
-        "核は古典力学、電子は選択した断熱的基底状態モデル。MDの実装・検証は未実施。",
-        "表示する拡張ラグランジアンは固定セル・固定占有を仮定。"
+        "核は古典力学、電子は選択した断熱的基底状態。固定He₂の力供給と局所Verlet確認があるが、軌道全体は未検証。",
+        "公開接続例は周期セル・占有・電子モデルを固定し、訪れた各核配置でSCFを解き直す。"
       ],
-      "units": "Atomic units for energies/forces/time with nuclear masses stated explicitly; CP orbital mass is a numerical convention.",
-      "units_ja": "エネルギー・力・時間は原子単位系とし、核質量を明示。CPの軌道仮想質量は数値的な規約。",
-      "boundary_conditions": "Choose isolated or periodic boundaries for the target system; no executed MD case is published.",
-      "boundary_conditions_ja": "対象に応じて孤立・周期境界を選びます。実行済みのMD例は未公開。",
+      "units": "Atomic units: energies hartree, forces hartree/bohr, positions bohr, time atomic units and explicit nuclear masses in electron masses.",
+      "units_ja": "原子単位：エネルギー hartree、力 hartree/bohr、座標 bohr、時間 原子時間、核質量 電子質量。",
+      "boundary_conditions": "Choose isolated or periodic boundaries for the model; the published local interface uses the fixed periodic He₂ cell.",
+      "boundary_conditions_ja": "モデルに応じて孤立・周期境界を選ぶ。公開した局所接続例は固定した周期He₂セル。",
       "next_deliverable": {
-        "ja": "多原子の力を独立参照と照合し、時間刻み・SCF公差または仮想質量への感度とNVEドリフトを測る。",
-        "en": "Compare multiatom forces with an independent reference, then measure timestep/SCF or fictitious-mass sensitivity and NVE drift."
+        "ja": "独立参照と照合した力を使い、長時間NVEドリフトと時間刻み・SCF公差への軌道の感度を系統的に測る。",
+        "en": "Use independently checked forces to measure long-time NVE drift and systematic trajectory sensitivity to timestep and SCF tolerance."
       },
       "limitations": {
-        "ja": "解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。",
-        "en": "Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats."
+        "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",
+        "en": "Overall BOMD remains reading only. The separate force release’s short Verlet interface check does not validate long trajectories or thermostats."
       },
       "caution": {
-        "ja": "解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。",
-        "en": "Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats."
+        "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",
+        "en": "Overall BOMD remains reading only. The separate force release’s short Verlet interface check does not validate long trajectories or thermostats."
       },
       "aliases": [
         "BOMD",
@@ -15435,7 +15693,7 @@
         "ボルン・オッペンハイマー分子動力学"
       ],
       "metadata_review": {
-        "level": "Primary publisher metadata and selected Car–Parrinello equations reviewed; explanatory reading only, no force or trajectory validation.",
+        "level": "Primary publisher metadata and scoped force-provider evidence reviewed; local interface check available, without validated long-time BOMD trajectories.",
         "on": "2026-11-22"
       },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/",

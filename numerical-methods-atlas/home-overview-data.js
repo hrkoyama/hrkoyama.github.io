@@ -434,6 +434,11 @@ export const homeAreas = [
           "name": "home-map.execution.periodic-he-dft",
           "route": "/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/",
           "kind": "execution"
+        },
+        {
+          "name": "home-map.execution.periodic-he-forces",
+          "route": "/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/",
+          "kind": "execution"
         }
       ]
     ]

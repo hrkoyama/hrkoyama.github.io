@@ -306,13 +306,14 @@ def main(argv=None):
     parser.add_argument('--registry', default=REGISTRY_URL)
     parser.add_argument('--python', default=sys.executable)
     parser.add_argument('--output', type=Path, required=True, help='New report JSON; existing receipts are never overwritten')
-    parser.add_argument('--timeout', type=int, default=900)
+    parser.add_argument('--timeout', type=int, default=3600)
     parser.add_argument('--artifacts-dir', type=Path, help='Retain group logs and partial JSON/CSV outputs')
     parser.add_argument('--expected-registry-sha256', help='Pin remote or local registry bytes')
     args = parser.parse_args(argv)
     report = {'schema_version':1,'verified_on':datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'registry_url':REGISTRY_URL,'registry_sha256':None,'registry_source_mode':'unavailable',
               'expected_registry_sha256':args.expected_registry_sha256,
+              'registry_acquisition_url':args.registry if args.registry.startswith('https://') else None,
               'verification_tool':{'verifier_url':registry_module.ORIGIN+'/scripts/verify-atlas-execution-examples.py',
                   'verifier_sha256':sha(Path(__file__).read_bytes()),
                   'registry_builder_url':registry_module.ORIGIN+'/scripts/build-atlas-execution-examples.py',

@@ -1492,6 +1492,33 @@
           "python_symbol": "test_fixed_input_validation"
         }
       ]
+    },
+    {
+      "id": "periodic-he-forces",
+      "group": "quantum",
+      "name": {
+        "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+        "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+      },
+      "chapter": "periodic-forces",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/periodic-forces/2026-11-22/",
+      "verification": "/code/periodic-forces/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_periodic_forces.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/periodic-forces/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/periodic-forces/2026-11-22/test_periodic_forces.py",
+          "python_symbol": "test_saved_full_run_passes"
+        }
+      ]
     }
   ],
   "excluded_examples": {

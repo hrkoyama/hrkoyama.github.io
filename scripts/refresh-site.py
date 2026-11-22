@@ -15,6 +15,7 @@ for command in [
     [sys.executable, 'scripts/build-atlas-detailed-reading.py'],
     [sys.executable, 'scripts/build-atlas-h2.py'],
     [sys.executable, 'scripts/build-atlas-periodic.py'],
+    [sys.executable, 'scripts/build-atlas-forces.py'],
     [sys.executable, 'scripts/build-atlas-quantum.py'],
     [sys.executable, 'scripts/build-atlas-resources.py'],
     [sys.executable, 'scripts/build-atlas-autodiff.py'],

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "reviewed_on": "2026-11-22",
-  "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json",
+  "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "policy": {
-    "ja": "既存15問題の固定入力・実行・出力・数値判定を結ぶ共通案内です。解析解・数値参照・保存則・残差を区別し、実行終了と数値条件の合格を別々に記録します。原子2例は同じrunnerを1回実行して個別に判定します。既存の60問題へ15を加算せず、版をまたぐ自動検査も合算しません。",
-    "en": "Fixed inputs, execution, output and numerical acceptance for 15 existing problem families. Analytic references, numerical references, conservation and residuals are distinct; process completion and numerical acceptance are recorded separately. Both atomic cases share one runner and receive separate decisions. Do not add these 15 to the existing 60 atlas problems or sum repeated tests across editions."
+    "ja": "公開済みの固定入力・実行・出力・数値判定を結ぶ共通案内です。解析解・独立参照・保存則・残差を区別し、実行終了と数値条件の合格を別々に記録します。原子2例は1つのrunnerを共有し、各条件を別に判定します。これらは全問題台帳から選んだ代表例であり、全問題へ再加算したり、版をまたぐ自動検査数を合算したりしません。",
+    "en": "A common guide connects public fixed inputs, execution, outputs and numerical acceptance. Distinguish analytic solutions, independent references, conservation and residuals, and record process completion separately from numerical decisions. Two atomic cases share one runner and receive separate decisions. These examples are selected from the full problem inventory, not added to it again; repeated automated tests across editions are not summed."
   },
   "examples": [
     {
@@ -5061,11 +5061,484 @@
         "ja": "不正入力・重なり行列の悪条件・SCF未収束・公差不達を明示して失敗。低い残差だけでk点／基底収束や物理モデルを保証しない。",
         "en": "Invalid inputs, excessive overlap conditioning, SCF nonconvergence and missed tolerances fail explicitly. Small residuals alone do not establish k/basis convergence or physical-model accuracy."
       }
+    },
+    {
+      "id": "periodic-he-forces",
+      "name": {
+        "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+        "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+      },
+      "problem_id": "periodic-he-forces",
+      "method_ids": [
+        "kohn-sham-dft",
+        "electronic-bases",
+        "scf",
+        "xc-functionals",
+        "pseudopotentials",
+        "k-point"
+      ],
+      "scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
+      "assumptions": {
+        "ja": "固定した非対称2原子Heセル（5 bohr立方、4価電子、非偏極・整数占有、局所GTH、LDA_X＋VWN5）。PySCFライブラリを使う検証ドライバー。物理的な平衡He物質や長時間MDではありません。",
+        "en": "Fixed asymmetric two-He cell (5-bohr cubic lattice, four valence electrons, unpolarized integer occupations, local GTH and LDA_X plus VWN5). A library-backed PySCF validation driver; not physical equilibrium helium or long-time MD."
+      },
+      "units": {
+        "ja": "原子単位：エネルギー hartree/cell、力 hartree/bohr、核座標 bohr、質量 電子質量、時間 原子時間。",
+        "en": "Atomic units: energy hartree/cell, force hartree/bohr, coordinates bohr, masses electron masses and atomic time."
+      },
+      "boundaries": {
+        "ja": "3次元Bloch周期境界。中性セルにHe2原子・価電子4個。イオンEwald項を含む全エネルギーのCartesian微分。",
+        "en": "Three-dimensional Bloch periodic boundaries. Two He atoms and four valence electrons per neutral cell. Cartesian derivatives of the total energy including ionic Ewald interactions."
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/"
+      },
+      "release": {
+        "family": "periodic-forces",
+        "version": "2026-11-22",
+        "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+        "sha256": "137d7981769d503d231b0c4bcc60a2ca61746faaadd0ee39d544dcf4efa07b19",
+        "manifest": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/source-manifest.json",
+        "manifest_sha256": "57f7180fcaf148dcffa60f2a689e7e39b2938fb4083c642d3ac7cc1813cccbc8",
+        "verification": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/verification.json",
+        "archive_directory": "periodic-forces-2026-11-22"
+      },
+      "citation": {
+        "creator": "Hiroshi Koyama",
+        "title": {
+          "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+          "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+        },
+        "version": "2026-11-22",
+        "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/",
+        "method_publications": [
+          "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.54.1703",
+          "https://doi.org/10.1139/p80-159",
+          "https://doi.org/10.1063/5.0006074",
+          "https://proceedings.juliacon.org/papers/10.21105/jcon.00069",
+          "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+          "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+          "https://journals.aps.org/pr/abstract/10.1103/PhysRev.56.340",
+          "https://www.tandfonline.com/doi/abs/10.1080/00268976900100941",
+          "https://pubs.rsc.org/en/content/articlelanding/2005/cp/b509494a"
+        ]
+      },
+      "terms": {
+        "code": "MIT",
+        "code_license": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/LICENSE",
+        "content_and_data": "https://hrkoyama.github.io/rights/",
+        "scope": {
+          "ja": "自作ドライバー・検証コードはMIT。PySCF・DFTK・LibxcとGTH／Gaussian基底データはそれぞれの条件を保持。入力・数値・図・本文は個別条件。本台帳は一括許諾を追加しません。",
+          "en": "Original driver and validation code is MIT. PySCF, DFTK, Libxc and GTH/Gaussian basis data retain their own terms. Inputs, numerical data, figures and prose retain item-specific terms; this registry adds no blanket permission."
+        }
+      },
+      "execution_group": "periodic-he-forces",
+      "shared_runner_cases": [
+        "periodic-he-forces"
+      ],
+      "inputs": {
+        "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/inputs.json",
+        "path": "inputs.json",
+        "sha256": "d25fe56cf92f1486d9553ead5e7851db49fb3f319b7d32d7813278cc4103c097"
+      },
+      "dependencies": {
+        "core": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/requirements.txt",
+        "testing": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/requirements.txt"
+      },
+      "commands": {
+        "install": "python -m pip install -r requirements.txt",
+        "run": "python run.py --input inputs.json --output output",
+        "tests": "python -m pytest -q test_periodic_forces.py",
+        "run_argv": [
+          "python",
+          "run.py",
+          "--input",
+          "inputs.json",
+          "--output",
+          "{output}"
+        ],
+        "tests_argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "test_periodic_forces.py"
+        ]
+      },
+      "outputs": [
+        {
+          "id": "results",
+          "format": "json",
+          "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/result.json",
+          "path": "results/result.json",
+          "sha256": "dfdb8284a52b5dfb7f4e6acc790b60ff2378068b498d9c27bd4de30984d231a5",
+          "generated_path": "result.json"
+        },
+        {
+          "id": "solution",
+          "format": "csv",
+          "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/solution.csv",
+          "path": "results/solution.csv",
+          "sha256": "099c48b82588f1d9858e91f12a96dd8cef364df91d47e28f9e73926318dfd05b",
+          "generated_path": "solution.csv"
+        },
+        {
+          "id": "scf",
+          "format": "csv",
+          "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/scf.csv",
+          "path": "results/scf.csv",
+          "sha256": "d20c85b6983c8b269b4a11c9141ef606934ca05efd5342dc3b2087451a346148",
+          "generated_path": "scf.csv"
+        },
+        {
+          "id": "finite-difference",
+          "format": "csv",
+          "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/finite-difference.csv",
+          "path": "results/finite-difference.csv",
+          "sha256": "cd8aafc3868abc055a2b383732c348ae76bdd7251568b7bae94e6adecc489bae",
+          "generated_path": "finite-difference.csv"
+        }
+      ],
+      "checks": [
+        {
+          "id": "numerical-flags",
+          "pointer": "/checks",
+          "comparison": "all_true",
+          "description": {
+            "ja": "固定入力の全数値判定",
+            "en": "All fixed-input numerical checks"
+          }
+        },
+        {
+          "id": "input-provenance",
+          "pointer": "/input_sha256",
+          "comparison": "equals",
+          "expected": "d25fe56cf92f1486d9553ead5e7851db49fb3f319b7d32d7813278cc4103c097",
+          "description": {
+            "ja": "固定入力のSHA-256",
+            "en": "Fixed-input SHA-256"
+          }
+        },
+        {
+          "id": "reference-provenance",
+          "pointer": "/reference_sha256",
+          "comparison": "equals",
+          "expected": "f4beb96c3672066378e34ad756ea9a2b08aab10c5b16aae31537644b23303db7",
+          "description": {
+            "ja": "独立参照のSHA-256",
+            "en": "Independent-reference SHA-256"
+          }
+        },
+        {
+          "id": "finite_difference_max_error",
+          "pointer": "/metrics/finite_difference_max_error",
+          "comparison": "maximum",
+          "tolerance": 2e-06,
+          "description": {
+            "ja": "finite_difference_max_error（定義・単位は解説）",
+            "en": "finite_difference_max_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "finite_difference_scan_max_error",
+          "pointer": "/metrics/finite_difference_scan_max_error",
+          "comparison": "maximum",
+          "tolerance": 1e-05,
+          "description": {
+            "ja": "finite_difference_scan_max_error（定義・単位は解説）",
+            "en": "finite_difference_scan_max_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_electron_count_error",
+          "pointer": "/metrics/max_electron_count_error",
+          "comparison": "maximum",
+          "tolerance": 1e-08,
+          "description": {
+            "ja": "max_electron_count_error（定義・単位は解説）",
+            "en": "max_electron_count_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_orthogonality_error",
+          "pointer": "/metrics/max_orthogonality_error",
+          "comparison": "maximum",
+          "tolerance": 1e-07,
+          "description": {
+            "ja": "max_orthogonality_error（定義・単位は解説）",
+            "en": "max_orthogonality_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_energy_reconstruction_error",
+          "pointer": "/metrics/max_energy_reconstruction_error",
+          "comparison": "maximum",
+          "tolerance": 1e-08,
+          "description": {
+            "ja": "max_energy_reconstruction_error（定義・単位は解説）",
+            "en": "max_energy_reconstruction_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "min_sampled_ks_gap",
+          "pointer": "/metrics/min_sampled_ks_gap",
+          "comparison": "minimum",
+          "tolerance": 0.1,
+          "description": {
+            "ja": "min_sampled_ks_gap（定義・単位は解説）",
+            "en": "min_sampled_ks_gap (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_overlap_condition",
+          "pointer": "/metrics/max_overlap_condition",
+          "comparison": "maximum",
+          "tolerance": 100000000000.0,
+          "description": {
+            "ja": "max_overlap_condition（定義・単位は解説）",
+            "en": "max_overlap_condition (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "finest_net_force",
+          "pointer": "/metrics/finest_net_force",
+          "comparison": "maximum",
+          "tolerance": 1e-07,
+          "description": {
+            "ja": "finest_net_force（定義・単位は解説）",
+            "en": "finest_net_force (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "bomd_position_step_difference",
+          "pointer": "/metrics/bomd_position_step_difference",
+          "comparison": "maximum",
+          "tolerance": 1e-06,
+          "description": {
+            "ja": "bomd_position_step_difference（定義・単位は解説）",
+            "en": "bomd_position_step_difference (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "kpoint_last_change",
+          "pointer": "/metrics/kpoint_last_change",
+          "comparison": "maximum",
+          "tolerance": 0.001,
+          "description": {
+            "ja": "kpoint_last_change（定義・単位は解説）",
+            "en": "kpoint_last_change (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "basis_last_change",
+          "pointer": "/metrics/basis_last_change",
+          "comparison": "maximum",
+          "tolerance": 0.0001,
+          "description": {
+            "ja": "basis_last_change（定義・単位は解説）",
+            "en": "basis_last_change (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "basis-k2_last_change",
+          "pointer": "/metrics/basis-k2_last_change",
+          "comparison": "maximum",
+          "tolerance": 0.0001,
+          "description": {
+            "ja": "basis-k2_last_change（定義・単位は解説）",
+            "en": "basis-k2_last_change (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "auxiliary_last_change",
+          "pointer": "/metrics/auxiliary_last_change",
+          "comparison": "maximum",
+          "tolerance": 1e-05,
+          "description": {
+            "ja": "auxiliary_last_change（定義・単位は解説）",
+            "en": "auxiliary_last_change (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "scf_last_change",
+          "pointer": "/metrics/scf_last_change",
+          "comparison": "maximum",
+          "tolerance": 1e-06,
+          "description": {
+            "ja": "scf_last_change（定義・単位は解説）",
+            "en": "scf_last_change (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_reference_force_error",
+          "pointer": "/metrics/max_reference_force_error",
+          "comparison": "maximum",
+          "tolerance": 0.0002,
+          "description": {
+            "ja": "max_reference_force_error（定義・単位は解説）",
+            "en": "max_reference_force_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_reference_energy_error",
+          "pointer": "/metrics/max_reference_energy_error",
+          "comparison": "maximum",
+          "tolerance": 0.0002,
+          "description": {
+            "ja": "max_reference_energy_error（定義・単位は解説）",
+            "en": "max_reference_energy_error (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "max_tight_scf_commutator",
+          "pointer": "/metrics/max_tight_scf_commutator",
+          "comparison": "maximum",
+          "tolerance": 1e-06,
+          "description": {
+            "ja": "max_tight_scf_commutator（定義・単位は解説）",
+            "en": "max_tight_scf_commutator (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "bomd_full_step_energy_defect",
+          "pointer": "/metrics/bomd_full_step_energy_defect",
+          "comparison": "maximum",
+          "tolerance": 1e-06,
+          "description": {
+            "ja": "bomd_full_step_energy_defect（定義・単位は解説）",
+            "en": "bomd_full_step_energy_defect (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "bomd_two_half_steps_energy_defect",
+          "pointer": "/metrics/bomd_two_half_steps_energy_defect",
+          "comparison": "maximum",
+          "tolerance": 1e-06,
+          "description": {
+            "ja": "bomd_two_half_steps_energy_defect（定義・単位は解説）",
+            "en": "bomd_two_half_steps_energy_defect (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "reference_cutoff_force_change",
+          "pointer": "/metrics/reference_cutoff_force_change",
+          "comparison": "maximum",
+          "tolerance": 1e-05,
+          "description": {
+            "ja": "reference_cutoff_force_change（定義・単位は解説）",
+            "en": "reference_cutoff_force_change (definitions and units in reading)"
+          }
+        },
+        {
+          "id": "reference_finite_difference_max_error",
+          "pointer": "/metrics/reference_finite_difference_max_error",
+          "comparison": "maximum",
+          "tolerance": 1e-05,
+          "description": {
+            "ja": "reference_finite_difference_max_error（定義・単位は解説）",
+            "en": "reference_finite_difference_max_error (definitions and units in reading)"
+          }
+        }
+      ],
+      "expected_failures": [],
+      "references": [
+        {
+          "type": "independent-numerical-reference",
+          "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/reference-dftk.json",
+          "path": "reference-dftk.json",
+          "sha256": "f4beb96c3672066378e34ad756ea9a2b08aab10c5b16aae31537644b23303db7",
+          "description": {
+            "ja": "独立DFTK平面波計算：Γ／2³の解析力、8カットオフ設定、全6座標のエネルギー有限差分。共通Libxcと異なる有限基底の制約を明記。",
+            "en": "Independent DFTK plane waves: Gamma/2³ analytic forces, eight cutoff settings and all-six-coordinate energy finite differences. State shared Libxc formulas and different finite-basis limits."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.54.1703",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://doi.org/10.1139/p80-159",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://doi.org/10.1063/5.0006074",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://proceedings.juliacon.org/papers/10.21105/jcon.00069",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.56.340",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://www.tandfonline.com/doi/abs/10.1080/00268976900100941",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://pubs.rsc.org/en/content/articlelanding/2005/cp/b509494a",
+          "description": {
+            "ja": "原法・解析微分・独立実装の文献。確認範囲は解説に明記。",
+            "en": "Primary formulation, analytic differentiation or independent implementation; reading states review depth."
+          }
+        }
+      ],
+      "failure_scope": {
+        "ja": "不正モデル・非有限値・参照の改変・SCF未収束・力/収束公差不達を拒否。未収束の力をBOMDへ渡さない。短い刻み比較は長時間NVEを保証しない。",
+        "en": "Reject invalid models, nonfinite values, altered references, SCF nonconvergence and missed force/refinement criteria. Do not pass unconverged forces to BOMD. A short step comparison does not establish long-time NVE conservation."
+      }
     }
   ],
   "verification_receipt_history": [
     "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-21.json",
-    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-21-public.json"
+    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-21-public.json",
+    "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json"
   ],
   "representative_problem_ids": [
     "advection-sine",
@@ -5087,6 +5560,6 @@
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-execution-examples.json",
-    "sha256": "6072b8b1c04a471a8d2c51cb455094cb22018e92f2788c59108682ec6af62cd3"
+    "sha256": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2"
   }
 }

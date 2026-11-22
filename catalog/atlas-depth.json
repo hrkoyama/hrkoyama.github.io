@@ -260,15 +260,16 @@
     {
       "id": "quantum-periodic",
       "name": {
-        "ja": "周期DFT：固定Heセル",
-        "en": "Periodic DFT: fixed He cell"
+        "ja": "周期DFT：静的Heと多原子の力",
+        "en": "Periodic DFT: static He and multiatom forces"
       },
       "scope": {
-        "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
-        "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+        "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
       },
       "examples": [
-        "periodic-he-dft"
+        "periodic-he-dft",
+        "periodic-he-forces"
       ],
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/periodic-dft/",
@@ -279,12 +280,12 @@
         "en": "Compare independent DFTK plane waves at identical geometry, GTH coefficients and Libxc functionals. State each convergence difference because finite Gaussian/plane-wave basis differences remain."
       },
       "refinement": {
-        "ja": "kメッシュ・Gaussian軌道基底・FFT補助格子・SCF公差を一つずつ変える。各最終差と指定公差、標本k点でのKSギャップを保存。",
-        "en": "Vary k mesh, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances separately; save last differences, declared thresholds and sampled KS gaps."
+        "ja": "全エネルギーと力を区別し、k点・Gaussian基底・FFT補助格子・SCF、変位幅、独立平面波カットオフの各系列を保存。",
+        "en": "Distinguish total-energy and force convergence. Save k-point, Gaussian-basis, FFT-grid, SCF, displacement-step and independent plane-wave-cutoff sequences."
       },
       "next": {
-        "ja": "他の絶縁体・バンド経路・金属の占有数とsmearingへ広げる前に、それぞれ独立参照と収束を用意する。",
-        "en": "Before extending to other insulators, band paths or metallic occupations/smearing, establish their own independent references and convergence evidence."
+        "ja": "BOMDの長時間NVE保存量と刻み幅・SCF公差への感度を検証し、他物質・非局所擬ポテンシャル・金属は別に検証する。",
+        "en": "Validate long BOMD NVE conservation and timestep/SCF sensitivity. Other materials, nonlocal pseudopotentials and metals need separate evidence."
       }
     }
   ]

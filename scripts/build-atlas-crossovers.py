@@ -135,7 +135,7 @@ def validate_catalog(data, root=ROOT):
             fail(set(examples) <= context['examples'].keys(), stage_label + ': unknown execution example')
             if examples:
                 fail(stage.get('example_role') in ('exact-stage', 'component-only'), stage_label + ': examples require an explicit example_role')
-                fail(stage['id'] not in {'nuclear-forces', 'first-principles-md', 'thermostat'}, stage_label + ': no force/AIMD/thermostat execution is available; component examples cannot validate this stage')
+                fail(stage['id'] not in {'first-principles-md', 'thermostat'}, stage_label + ': no complete AIMD/thermostat execution is available; component examples cannot validate this stage')
             for ident in examples:
                 example = context['examples'][ident]
                 fail(set(example['method_ids']) & set(method_ids), stage_label + ': execution is not linked to a declared component method: ' + ident)
@@ -166,7 +166,15 @@ def validate_catalog(data, root=ROOT):
             for key in ('title', 'exchanged_quantity', 'shared_math', 'what_differs', 'validation_required', 'existing_evidence'):
                 bilingual(edge.get(key), edge_label + '.' + key)
             coupled = edge.get('coupled_validation', {})
-            fail(coupled.get('status') == 'not-executed' and coupled.get('example_ids') == [], edge_label + ': edge coupled validation must remain not-executed; do not borrow component example_ids')
+            if edge['id'] in {'dft-to-forces', 'forces-to-md'}:
+                expected = 'fixed-input' if edge['id'] == 'dft-to-forces' else 'interface-only'
+                fail(coupled.get('status') == expected and coupled.get('example_ids') == ['periodic-he-forces'], edge_label + ': only the scoped force example validates this connection')
+                force_check = context['checks'].get('periodic-he-forces', {})
+                fail(force_check.get('execution', {}).get('completed') is True and force_check.get('validation', {}).get('passed') is True, edge_label + ': force execution and validation receipt required')
+                force_stage = next(stage for stage in stages if stage['id'] == 'nuclear-forces')
+                fail(force_stage.get('example_ids') == ['periodic-he-forces'] and force_stage.get('example_role') == 'exact-stage', edge_label + ': dedicated force-stage evidence required')
+            else:
+                fail(coupled.get('status') == 'not-executed' and coupled.get('example_ids') == [], edge_label + ': do not borrow component example_ids for an unvalidated connection')
             bilingual(coupled.get('scope'), edge_label + '.coupled_validation.scope')
             fail(set(edge.get('reference_ids', [])) <= set(reference_ids), edge_label + ': unknown reference ID')
         fail(set(route.get('reference_ids', [])) <= set(reference_ids), label + ': unknown reference ID')
@@ -245,6 +253,11 @@ def connection_kind_label(edge, lang):
 
 
 def connection_scope_label(edge, lang):
+    status = edge['coupled_validation']['status']
+    if status == 'fixed-input':
+        return '固定例で接続を検証：' if lang == 'ja' else 'Connection validated for the fixed example: '
+    if status == 'interface-only':
+        return '局所的な接続のみ確認：' if lang == 'ja' else 'Local interface check only: '
     labels = {
         'handoff': ('連成実行：未実施。', 'Coupled execution: not performed. '),
         'model-application': ('空間モデルの実行：未実施。', 'Spatial-model execution: not performed. '),
@@ -265,7 +278,7 @@ def connection_flow_html(route, stages, context, lang):
             if endpoint == 'to':
                 body += '<span class="crossover-flow-arrow" aria-hidden="true">' + ('↔' if edge['connection_kind'] in ('component-reference', 'operator-correspondence') else '→') + '</span>'
             body += '<a class="crossover-flow-node" data-crossover-flow-node="' + endpoint + '" data-stage-status="' + state + '" href="#' + stage['id'] + '-' + lang + '"><span class="crossover-flow-name">' + esc(stage['title'][lang]) + '</span><span class="crossover-status" data-state="' + state + '">' + stage_state_label(state, lang) + '</span></a>'
-        body += '</div><p class="crossover-flow-detail">' + link('#' + edge['id'] + '-' + lang, edge['title'][lang]) + '<small data-coupled-status="not-executed">' + connection_kind_label(edge, lang) + '</small></p></li>'
+        body += '</div><p class="crossover-flow-detail">' + link('#' + edge['id'] + '-' + lang, edge['title'][lang]) + '<small data-coupled-status="' + edge['coupled_validation']['status'] + '">' + connection_kind_label(edge, lang) + '</small></p></li>'
     return body + '</ul>'
 
 
@@ -281,7 +294,7 @@ def connection_html(edge, stages, math, lang):
     for key, title_ja, title_en in labels:
         classname = ' class="crossover-existing"' if key == 'existing_evidence' else ' class="crossover-required"' if key == 'validation_required' else ''
         body += '<div' + classname + '><dt>' + (title_ja if ja else title_en) + '</dt><dd>' + esc(edge[key][lang]) + '</dd></div>'
-    body += '</dl><p class="crossover-no-coupling" data-coupled-status="not-executed"><strong>' + connection_scope_label(edge, lang) + '</strong>' + esc(edge['coupled_validation']['scope'][lang]) + '</p></article>'
+    body += '</dl><p class="crossover-no-coupling" data-coupled-status="' + edge['coupled_validation']['status'] + '"><strong>' + connection_scope_label(edge, lang) + '</strong>' + esc(edge['coupled_validation']['scope'][lang]) + '</p></article>'
     return body
 
 

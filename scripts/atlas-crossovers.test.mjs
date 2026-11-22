@@ -43,9 +43,10 @@ function localTarget(href) {
 test('crossovers preserve the scientific inventory and canonical availability', () => {
   assert.equal(methods.length, 145);
   assert.equal(json('catalog/atlas-equations.json').equations.length, 46);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.papers, 221);
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length, 66);
-  assert.equal(examples.length, 21);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.papers, 224);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.references, 265);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length, 67);
+  assert.equal(examples.length, 22);
   for (const id of ['born-oppenheimer-md', 'car-parrinello-md']) {
     const method = publishedMethods.find(item => item.id === id);
     assert.equal(method.status, 'reading-only', id);
@@ -253,6 +254,10 @@ bad=copy.deepcopy(data);bad['routes'][0]['stages'][0]['method_ids']=['unknown-me
 bad=copy.deepcopy(data);bad['routes'][0]['stages'][0]['example_ids']=['unknown-example'];cases.append(('example',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['stages'][0]['example_role']='coupled-proof';cases.append(('role',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['coupled_validation']['example_ids']=['periodic-he-dft'];cases.append(('borrowed coupled evidence',bad))
+bad=copy.deepcopy(data);next(s for s in bad['routes'][0]['stages'] if s['id']=='nuclear-forces')['example_ids']=['periodic-he-dft'];cases.append(('static energy borrowed as forces',bad))
+bad=copy.deepcopy(data);bad['routes'][0]['connections'][1]['coupled_validation']['status']='fixed-input';cases.append(('local interface promoted to full MD',bad))
+bad=copy.deepcopy(data);bad['routes'][0]['coupled_validation'].update(status='fixed-input',example_ids=['periodic-he-forces']);cases.append(('force example borrowed for complete route',bad))
+bad=copy.deepcopy(data);bad['routes'][2]['connections'][0]['coupled_validation'].update(status='fixed-input',example_ids=['periodic-he-forces']);cases.append(('unrelated force example borrowed for pressure bridge',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['coupled_validation']['status']='passed';cases.append(('unmeasured coupling',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['reference_ids']=['unknown-reference'];cases.append(('citation',bad))
 bad=copy.deepcopy(data);bad['routes'][0]['connections'][0]['connection_kind']='coupled-proof';cases.append(('connection kind',bad))
@@ -266,7 +271,7 @@ print('validated source and rejected misleading catalogs')
   assert.match(execFileSync('python3', ['-c', program], {cwd: root, encoding: 'utf8'}), /validated source/);
 });
 
-test('the first home entrance keeps all thirteen goals and introduces crossovers before counts and directories', () => {
+test('the first home entrance keeps all fourteen goals and introduces crossovers before counts and directories', () => {
   const home = text('numerical-methods-atlas/index.html');
   for (const lang of ['ja', 'en']) {
     configureLocale(json('numerical-methods-atlas/locales/messages.json'), lang);
@@ -274,7 +279,7 @@ test('the first home entrance keeps all thirteen goals and introduces crossovers
     const runtime = homeOverviewPage(json('numerical-methods-atlas/coverage.json'));
     const intro = start.match(/<section\b[^>]*class="intro[^>]*>[\s\S]*?<\/section>/)?.[0];
     assert.ok(intro, lang + ' goal introduction');
-    assert.equal((intro.match(/class="home-goal-choice"/g) || []).length, 13);
+    assert.equal((intro.match(/class="home-goal-choice"/g) || []).length, 14);
     assert.ok(start.indexOf('atlas-crossover-teaser') > start.indexOf('</section>'));
     assert.ok(runtime.indexOf('atlas-crossover-teaser') < runtime.indexOf('atlas-metrics'));
     assert.ok(runtime.indexOf('atlas-crossover-teaser') < runtime.indexOf('atlas-ways'));
@@ -325,7 +330,7 @@ test('search permits exact connection fragments while retaining legacy navigatio
   assert.equal(searchChapters({entries: [row(connectionURL, 'execution-example')]}, 'needle', 'en')[0].url, null);
 });
 
-test('published connections retain exact component evidence and never promote it to coupled validation', () => {
+test('published connections distinguish fixed force evidence and a local MD interface from unexecuted full routes', () => {
   assert.deepEqual(source.routes.map(route => route.id), routeIDs);
   assert.deepEqual(source.math_families.map(family => family.id), mathIDs);
   assert.deepEqual(published.routes.map(route => route.id), routeIDs);
@@ -334,8 +339,9 @@ test('published connections retain exact component evidence and never promote it
     const stageIDs = route.stages.map(stage => stage.id);
     assert.equal(new Set(stageIDs).size, stageIDs.length);
     for (const item of [route, ...route.connections]) {
-      assert.equal(item.coupled_validation.status, 'not-executed');
-      assert.deepEqual(item.coupled_validation.example_ids, []);
+      const measured = {'dft-to-forces': 'fixed-input', 'forces-to-md': 'interface-only'}[item.id];
+      assert.equal(item.coupled_validation.status, measured || 'not-executed');
+      assert.deepEqual(item.coupled_validation.example_ids, measured ? ['periodic-he-forces'] : []);
       for (const lang of ['ja', 'en']) assert.ok(item.coupled_validation.scope[lang].trim());
     }
     for (const edge of route.connections) {
@@ -363,7 +369,10 @@ test('published connections retain exact component evidence and never promote it
     }
   }
   const stage = id => published.routes.flatMap(route => route.stages).find(stage => stage.id === id);
-  for (const id of ['nuclear-forces', 'first-principles-md', 'thermostat', 'reaction-diffusion', 'biological-fronts']) assert.deepEqual(stage(id).evidence.examples, [], id);
+  assert.deepEqual(stage('nuclear-forces').evidence.examples.map(example => example.id), ['periodic-he-forces']);
+  assert.equal(stage('nuclear-forces').example_role, 'exact-stage');
+  assert.equal(stage('nuclear-forces').evidence.stage_status, 'fixed-input');
+  for (const id of ['first-principles-md', 'thermostat', 'reaction-diffusion', 'biological-fronts']) assert.deepEqual(stage(id).evidence.examples, [], id);
   assert.equal(stage('first-principles-md').evidence.stage_status, 'reading');
   assert.equal(stage('thermostat').evidence.stage_status, 'planned');
   for (const id of ['fluid-transport', 'hartree-field']) {
@@ -442,7 +451,7 @@ test('flow diagrams preserve every declared branch and link nodes to their actua
   }
 });
 
-test('operator comparisons preserve existing field validations while DFT handoffs remain unexecuted', () => {
+test('operator comparisons and DFT handoffs expose the separate scopes of their measured evidence', () => {
   const poisson = source.routes.find(route => route.id === 'poisson-fields');
   const dft = source.routes.find(route => route.id === 'dft-md');
   for (const lang of ['ja', 'en']) {
@@ -457,7 +466,14 @@ test('operator comparisons preserve existing field validations while DFT handoff
     for (const edge of dft.connections) {
       assert.equal(edge.connection_kind, 'handoff');
       const markup = html.match(new RegExp(`<article\\b[^>]*id="${edge.id}-${lang}"[^>]*>[\\s\\S]*?</article>`))?.[0];
-      assert.ok(markup?.includes(lang === 'ja' ? '連成実行：未実施。' : 'Coupled execution: not performed.'), edge.id + ' unexecuted handoff');
+      const status = {'dft-to-forces': 'fixed-input', 'forces-to-md': 'interface-only'}[edge.id] || 'not-executed';
+      const labels = {
+        'fixed-input': {ja: '固定例で接続を検証：', en: 'Connection validated for the fixed example:'},
+        'interface-only': {ja: '局所的な接続のみ確認：', en: 'Local interface check only:'},
+        'not-executed': {ja: '連成実行：未実施。', en: 'Coupled execution: not performed.'}
+      };
+      assert.ok(markup?.includes(labels[status][lang]), edge.id + ' scoped handoff');
+      assert.ok(markup.includes(`data-coupled-status="${status}"`), edge.id + ' machine-readable evidence scope');
     }
   }
 });

@@ -12,9 +12,9 @@
   "counts": {
     "equations": 46,
     "methods": 113,
-    "papers": 221,
-    "references": 262,
-    "journal_articles": 215,
+    "papers": 224,
+    "references": 265,
+    "journal_articles": 218,
     "conference_papers": 6,
     "books": 24,
     "chapters": 3,
@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 78,
+    "reading_chapters": 79,
     "test_problems": 66,
     "saved_test_problems": 66,
     "code_test_problems": 0
@@ -2673,6 +2673,24 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "feynman1939",
+      "type": "article",
+      "identity": "doi:10.1103/physrev.56.340",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "pulay1969",
+      "type": "article",
+      "identity": "doi:10.1080/00268976900100941",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "herbert-head-gordon2005",
+      "type": "article",
+      "identity": "doi:10.1039/b509494a",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -2902,9 +2920,9 @@
     "reviewed_on": "2026-11-22"
   },
   "public_extension_sha256": {
-    "catalog/atlas-quantum.json": "22ba356f826fcbf95ba84ba169ae75e29134c9adb6313da6591b801ba4940ba4",
-    "catalog/atlas-methods.json": "db573608a41361dfa9399cb55c09a97df448c1f83ee711a60aa4ea0ea33ca819",
+    "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
+    "catalog/atlas-methods.json": "23585110bad792baf5926659a4ff901d57dbd8690be71191b29b4e9e6bf105fd",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "e388cfbb852195fc7683b3d1688557e7b00dd5d443b2c0c1d0ce199b0be79f94"
+    "catalog/atlas-method-primary-references.json": "9b4a042d5c6d48637f51c9667083cb4bdc9531ea737deebe2fdce44070e83380"
   }
 }

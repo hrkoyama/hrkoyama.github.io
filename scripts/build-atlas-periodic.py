@@ -160,6 +160,7 @@ def build():
         body += '<aside class="resource-summary">' + para(data['scope'][lang]) + '</aside>'
         example_url = '/numerical-methods-atlas/code-and-data/examples/' + EXAMPLE + '/?lang=' + lang
         body += '<nav class="resource-nav">' + link(example_url, '固定入力・コード・テスト・判定条件' if ja else 'Fixed input, code, tests and acceptance') + ' · ' + link(base + package['archive'], 'ZIP') + ' · ' + link(base + 'verification.json', '独立展開の検証 / JSON' if ja else 'Independent-extraction verification / JSON') + '</nav>'
+        body += '<p>' + link('/numerical-methods-atlas/'+lang+'/read/periodic-forces/', '次に読む：多原子DFTの原子間力とBOMDへの接続' if ja else 'Read next: multiatom DFT forces and the BOMD interface') + '</p>'
         body += measured(results, lang, base)
         markdown = '# ' + title + '\n\n' + data['intro'][lang] + '\n\n' + data['scope'][lang] + '\n\n'
         for section in data['sections']:

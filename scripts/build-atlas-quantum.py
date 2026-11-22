@@ -61,6 +61,8 @@ for lang in ['ja','en']:
             body+='<p class="resource-summary">'+esc(methods[x['id']]['molecular_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/h2-hf/','H₂の入力・コード・独立参照・収束' if ja else 'H₂ inputs, code, independent references and refinement')+'</p>'
         if methods[x['id']].get('periodic_examples'):
             body+='<p class="resource-summary">'+esc(methods[x['id']]['periodic_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/periodic-dft/','周期DFTの条件・コード・収束・独立参照' if ja else 'Periodic DFT conditions, code, convergence and independent reference')+'</p>'
+        if methods[x['id']].get('force_examples'):
+            body+='<p class="resource-summary">'+esc(methods[x['id']]['force_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/periodic-forces/','原子間力・有限差分・独立参照・BOMD接続' if ja else 'Atomic forces, finite differences, independent reference and BOMD interface')+'</p>'
         if math[x['id']]:
             body+='<div class="quantum-math">'+''.join(math[x['id']])+'</div>'
             if any(len(f)>90 for f in x['formula']):body+='<p class="quantum-scroll-note">'+('長い式は横にスクロールできます。' if ja else 'Long equations scroll horizontally.')+'</p>'

@@ -168,6 +168,16 @@ def public_record(x):
                           inputs=base+'inputs.json',results=base+'results/result.json',independent_reference=base+'reference-dftk.json',
                           run_commands=[e['commands']['run'] for e in cases],run_from='Extracted periodic-dft edition directory')
     if x.get('autodiff_release'):record.update(autodiff_release_record(x))
+    if x.get('force_examples'):
+        cases=[e for e in EXECUTION_RECORDS if e['id'] in x['force_examples']]
+        assert {e['id'] for e in cases}==set(x['force_examples']) and x['status']=='educational-example'
+        assert all(e['release']['family']=='periodic-forces' and x['id'] in e['method_ids'] for e in cases)
+        force_base=cases[0]['release']['manifest'].rsplit('/',1)[0]+'/'
+        record['code_urls'] += [force_base+'periodic_forces.py',force_base+'bomd.py',force_base+'run.py']
+        record['test_urls'] += [force_base+'test_periodic_forces.py']
+        record['force_release']={'release':cases[0]['release'],'code_base':force_base,'examples':x['force_examples'],
+            'run_commands':[e['commands']['run'] for e in cases],'scope':x['force_scope'],
+            'implementation':'Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory.'}
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -288,6 +298,9 @@ for x in METHODS:
         if x.get('periodic_examples'):
             periodic=record['periodic_release'];base=periodic['code_base']
             body+='<h2>'+('周期HeセルのDFT：PySCFの実行・収束検査' if ja else 'Periodic-He DFT: PySCF execution and convergence checks')+'</h2><p>'+esc(x['periodic_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/periodic-dft/','Γ点・k点・基底・SCFと独立参照' if ja else 'Gamma, k mesh, basis, SCF and independent reference')+' · '+link(base+'periodic_dft.py','Python driver')+' · '+link(base+'test_periodic_dft.py','Tests')+' · '+link(periodic['release']['download'],'ZIP')+'</p>'
+        if x.get('force_examples'):
+            forces=record['force_release'];force_base=forces['code_base']
+            body+='<h2>'+('周期He₂の原子間力とBOMDへの接続' if ja else 'Periodic He₂ forces and the BOMD interface')+'</h2><p>'+esc(x['force_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/periodic-forces/','力の有限差分・独立参照・収束' if ja else 'Force finite differences, independent reference and refinement')+' · '+link(force_base+'periodic_forces.py','Python force driver')+' · '+link(force_base+'bomd.py','BOMD adapter')+' · '+link(force_base+'test_periodic_forces.py','Tests')+' · '+link(forces['release']['download'],'ZIP')+'</p>'
         for common in execution_links(x['id']):
             body+='<p class="resource-summary">'+link(common['guide'][lang],'入力・実行・結果判定・引用の共通手順' if ja else 'Shared input, execution, validation and citation steps')+'</p>'
         if x.get('example'):
@@ -324,6 +337,7 @@ for x in METHODS:
         md+='Forward-mode AD supplement: analytic/finite-difference/AD Bratu derivatives, Newton convergence and spatial refinement. Reverse-mode execution and implicit sensitivities are not implemented.\n\n'
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
+    if x.get('force_examples'):md+='Force scope: '+x['force_scope']['en']+'\n\n'+json.dumps(record['force_release'],ensure_ascii=False,indent=2)+'\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'
     if x.get('example'):md+='Runnable example:\n\n'+json.dumps(x['example'],ensure_ascii=False,indent=2)+'\n\n'

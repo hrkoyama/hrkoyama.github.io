@@ -79,11 +79,11 @@ test('DFT is discoverable by Japanese, English and aliases, and all new equation
 });
 
 test('only executed quantum examples enter test-problem counts and specialist AI is deferred until 2027',()=>{
-  assert.equal(data.verification_plan.filter(x=>x.state==='verified-educational-example').length,4);
-  assert.equal(data.verification_plan.length,4);
+  assert.equal(data.verification_plan.filter(x=>x.state==='verified-educational-example').length,5);
+  assert.equal(data.verification_plan.length,5);
   assert.equal(data.verification_plan.filter(x=>x.state==='planned').length,0);
   const tests=json('numerical-methods-atlas/test-cases/index.json');
-  assert.equal(tests.problems.length,66);
+  assert.equal(tests.problems.length,67);
   assert.equal(tests.problems.filter(x=>x.chapter==='quantum-atoms').length,2);
   assert.ok(!tests.problems.some(x=>x.chapter==='quantum-chemistry'));
   const work=json('catalog/atlas-work-queue.json').items;

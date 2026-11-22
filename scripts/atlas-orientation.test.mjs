@@ -64,9 +64,9 @@ test('orientation and sharing retain scientific counts and the already-verified 
   assert.deepEqual(Object.fromEntries(['educational-example', 'reading-only', 'planned'].map(status => [status, methods.filter(method => method.status === status).length])),
     {'educational-example': 97, 'reading-only': 16, planned: 32});
   assert.equal(json('catalog/atlas-equations.json').equations.length, 46);
-  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 66);
-  assert.equal(examples.examples.length, 21);
-  const receipt = json('numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json');
+  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 67);
+  assert.equal(examples.examples.length, 22);
+  const receipt = json(new URL(examples.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_source_mode, 'public-registry'); assert.equal(receipt.passed, true);
   assert.equal(digest('numerical-methods-atlas/code-and-data/examples.json'), receipt.registry_sha256);
   assert.deepEqual(json('numerical-methods-atlas/code-and-data/examples.json').examples, examples.examples);
@@ -107,7 +107,7 @@ test('the eight actual areas render in both languages with real reading/executio
     assert.match(quantum, lang === 'ja' ? /交換のみ/ : /exchange.only/i);
     const quantumEntries = hrefs(areas.find(area => area.id === 'quantum').html)
       .map(href => new URL(href, atlas).pathname.match(/\/code-and-data\/examples\/([^/]+)\//)?.[1]).filter(Boolean);
-    assert.deepEqual([...new Set(quantumEntries)].sort(), ['h2-rhf', 'helium-ground-state', 'hydrogenic-atoms', 'periodic-he-dft']);
+    assert.deepEqual([...new Set(quantumEntries)].sort(), ['h2-rhf', 'helium-ground-state', 'hydrogenic-atoms', 'periodic-he-dft', 'periodic-he-forces']);
     const thermostatHTML = areas.find(area => area.id === 'thermostats').html;
     const thermostat = text(thermostatHTML);
     assert.match(thermostat, lang === 'ja' ? /予定|未実装|専用実装なし/ : /planned|not implemented|no dedicated/i);
@@ -160,7 +160,7 @@ test('sharing provides real 1200 by 630 PNG/SVG artwork and matching localized s
   const catalog = json('catalog/atlas-sharing.json');
   const published = json(shareBase + 'sharing.json');
   const build = json(shareBase + 'build.json');
-  const expectedCounts = {...coverage.counts, method_records: 145, educational_examples: 97, reading_only: 16, planned: 32, execution_examples: 21};
+  const expectedCounts = {...coverage.counts, method_records: 145, educational_examples: 97, reading_only: 16, planned: 32, execution_examples: 22};
   for (const [key, value] of Object.entries(expectedCounts)) assert.equal(published.counts[key], value, key);
   assert.deepEqual(published.sources, build.sources);
   for (const [path, sha256] of Object.entries(build.sources)) assert.equal(digest(path), sha256, path);
@@ -207,7 +207,7 @@ test('bilingual sharing text uses scoped examples and confines sharing terms to 
     assert.equal(published.introductions[lang].short, formatCopy(catalog.copy[lang].short));
     assert.equal(published.introductions[lang].paragraph, formatCopy(catalog.copy[lang].paragraph));
     assert.equal(published.sharing_terms[lang], catalog.sharing_terms[lang]);
-    assert.match(short, /21/);
+    assert.match(short, /22/);
     assert.match(short, lang === 'ja' ? /代表|例|問題/ : /representative|examples|problems/i);
     assert.match(short + paragraph, lang === 'ja' ? /固定入力/ : /fixed inputs/i);
     assert.match(paragraph, lang === 'ja' ? /参照|照合|許容誤差/ : /reference|comparisons|tolerances/i);

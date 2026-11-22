@@ -24,7 +24,7 @@ jobs:
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 90
     env:
       ATLAS_BOOTSTRAP_SHA256: '71923ee9e9be62fce9549d3273bbfaaee405f5f6409cfc6cf8461c26e885ce06'
       ATLAS_VERIFIER_SHA256: '4e612dbecaead4f95c4a524a9bcf9ea1ab566b326fdac2c23b5424f2e5da9033'
@@ -66,7 +66,7 @@ jobs:
         with:
           python-version: '3.12'
           check-latest: false
-      - name: Download public verifier and run the fifteen fixed-input cases
+      - name: Download public verifier and run the fixed-input cases
         env:
           REPORT_DIR: ${{ runner.temp }}/atlas-public-linux-report
         shell: bash
@@ -116,7 +116,7 @@ jobs:
               --registry-sha256 "$ATLAS_REGISTRY_SHA256" \
               --verifier-sha256 "$ATLAS_VERIFIER_SHA256" \
               --builder-sha256 "$ATLAS_BUILDER_SHA256" \
-              --timeout 900
+              --timeout 3600
           } 2>&1 | tee "$REPORT_DIR/bootstrap.log"
       - name: Write the run summary even when verification fails
         if: always()

@@ -25,8 +25,8 @@
         "en": "Close validation gaps between fields"
       },
       "scope": {
-        "ja": "生物2例・確率2例・H₂ RHFに続き、固定Heセルの周期LDAを追加。現行21例の実行経路を整備。周期Heはk点・軌道基底・FFT・SCF収束と独立DFTK全エネルギーを確認。次候補は他の絶縁体、反応拡散、既知分布MCMC、温度制御の分布・相関で、これらは未実装。",
-        "en": "Following two biology/two stochastic examples and H₂ RHF, add fixed-He periodic LDA, bringing the current execution paths to 21. Periodic He checks k sampling, orbital basis, FFT and SCF refinement against independent DFTK total energies. Other insulators, reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations remain unimplemented candidates."
+        "ja": "生物2例・確率2例・H₂ RHF・固定Heの周期LDAに続き、非対称He₂の原子間力を追加し、現行22例の実行経路を整備。力を全6座標の有限差分と独立DFTK参照で照合し、基底/k点/SCF/FFTを分離検査。BOMDの力供給は局所確認まで。長時間NVE、他物質、反応拡散、MCMC、温度制御の分布・相関は次の検証候補。",
+        "en": "Following two biology/two stochastic examples, H₂ RHF and fixed-He periodic LDA, add asymmetric-He₂ forces for 22 execution paths. Compare forces with all-six-coordinate finite differences and independent DFTK, separately checking basis/k/SCF/FFT refinement. BOMD coverage is a local force-interface check. Long NVE, other materials, reaction–diffusion, MCMC and thermostat distributions/correlations remain future validation."
       },
       "links": [
         {
@@ -58,6 +58,30 @@
           "label": {
             "ja": "固定He周期DFTの数値検証",
             "en": "Fixed-He periodic-DFT numerical checks"
+          }
+        }
+      ]
+    },
+    {
+      "id": "periodic-forces-validation",
+      "target_year": 2026,
+      "state": "published-verified-example",
+      "track": "current",
+      "priority": "P0",
+      "title": {
+        "ja": "多原子周期DFTの原子間力を実装・検証",
+        "en": "Implement and validate multiatom periodic DFT forces"
+      },
+      "scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
+      "links": [
+        {
+          "url": "/numerical-methods-atlas/ja/read/periodic-forces/",
+          "label": {
+            "ja": "DFTの原子間力を確かめ、BOMDへ渡したい",
+            "en": "Validate DFT atomic forces and pass them to BOMD"
           }
         }
       ]

@@ -2954,6 +2954,54 @@
     "origin": "curated-method-metadata"
   },
   {
+    "id": "feynman1939",
+    "author": "R. P. Feynman",
+    "year": 1939,
+    "title": "Forces in Molecules",
+    "journal": "Physical Review 56, 340–343",
+    "source": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.56.340",
+    "review_level": "abstract-and-metadata",
+    "review": {
+      "ja": "出版社の書誌と抄録を確認。Hellmann–Feynmanの力の関係の歴史的な一次文献として引用し、有限基底や擬ポテンシャルの勾配実装をこの原著だけで検証したとは主張しません。",
+      "en": "Publisher bibliography and abstract consulted. Cited as a historical primary source for the Hellmann–Feynman force relation, not as sole validation of finite-basis or pseudopotential gradient implementations."
+    },
+    "doi": "10.1103/PhysRev.56.340",
+    "type": "article",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "pulay1969",
+    "author": "P. Pulay",
+    "year": 1969,
+    "title": "Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory",
+    "journal": "Molecular Physics 17(2), 197–204",
+    "source": "https://www.tandfonline.com/doi/abs/10.1080/00268976900100941",
+    "review_level": "search-abstract-and-metadata",
+    "review": {
+      "ja": "検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。原子位置に依存する有限基底でのエネルギー微分を論じる力の原著として引用し、SCF加速DIISのPulay(1980)とは区別します。原著全文の監査は行っていません。",
+      "en": "Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Cited for finite position-dependent basis derivatives, distinct from Pulay (1980) on DIIS. No full-text audit is claimed."
+    },
+    "doi": "10.1080/00268976900100941",
+    "type": "article",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "herbert-head-gordon2005",
+    "author": "J. M. Herbert and M. Head-Gordon",
+    "year": 2005,
+    "title": "Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation",
+    "journal": "Physical Chemistry Chemical Physics 7, 3269–3275",
+    "source": "https://pubs.rsc.org/en/content/articlelanding/2005/cp/b509494a",
+    "review_level": "search-abstract-and-metadata",
+    "review": {
+      "ja": "検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。SCFの解き残し・初期推定と力・NVEドリフトを区別する根拠として参照し、論文の外挿法や分子軌道を今回実装・再現したとは主張しません。",
+      "en": "Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Used to distinguish SCF solution error, electronic guesses, forces and NVE drift; the paper’s extrapolation method and trajectories are not claimed as implemented or reproduced."
+    },
+    "doi": "10.1039/B509494A",
+    "type": "article",
+    "origin": "curated-method-metadata"
+  },
+  {
     "id": "schrodinger1926",
     "year": 1926,
     "author": "Schrödinger, E.",

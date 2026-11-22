@@ -160,7 +160,7 @@ def collect_requirements(registry, downloads_dir, acquisitions):
         release=example['release'];key=(release['family'],release['version'],release['manifest_sha256'])
         item=editions.setdefault(key,{'release':release,'core':example['dependencies']['core']})
         if item['core']!=example['dependencies']['core']:raise ValueError('One edition has inconsistent core requirements')
-    if len(editions)!=6:raise ValueError('Expected the six public code editions')
+    if len(editions)!=7:raise ValueError('Expected the seven public code editions')
     pins={};downloads_dir=Path(downloads_dir)
     for index,item in enumerate(editions.values()):
         release=item['release'];valid_hash(release['manifest_sha256'])
@@ -224,9 +224,9 @@ def validate_registry(registry):
             or not isinstance(registry.get('catalog_source'),dict)):
         raise ValueError('Expected a canonical public registry')
     records=registry.get('examples')
-    if not isinstance(records,list) or len(records)!=21:raise ValueError('Expected all twenty-one public examples')
+    if not isinstance(records,list) or len(records)!=22:raise ValueError('Expected all twenty-two public examples')
     ids=[row['id'] for row in records]
-    if len(set(ids))!=21 or any(not re.fullmatch('[a-z0-9-]+',ident) for ident in ids):raise ValueError('Invalid example inventory')
+    if len(set(ids))!=22 or any(not re.fullmatch('[a-z0-9-]+',ident) for ident in ids):raise ValueError('Invalid example inventory')
 
 
 def validate_scientific_report(report, registry, expected):
@@ -239,7 +239,7 @@ def validate_scientific_report(report, registry, expected):
     if tool.get('verifier_sha256')!=expected['verifier'] or tool.get('registry_builder_sha256')!=expected['builder']:return False
     groups={example['execution_group'] for example in registry['examples']}
     releases=report.get('releases',[])
-    if (len(groups)!=20 or type(report.get('unique_runner_executions')) is not int
+    if (len(groups)!=21 or type(report.get('unique_runner_executions')) is not int
             or report['unique_runner_executions']!=len(groups) or not isinstance(releases,list)
             or len(releases)!=len(groups)):
         return False

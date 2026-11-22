@@ -613,6 +613,75 @@
       "domains": [
         "quantum"
       ]
+    },
+    {
+      "id": "periodic-forces",
+      "title": {
+        "ja": "DFTの原子間力を確かめ、BOMDへ渡したい",
+        "en": "Validate DFT atomic forces and pass them to BOMD"
+      },
+      "terms": [
+        "原子間力",
+        "DFTの力",
+        "DFT forces",
+        "atomic forces",
+        "Hellmann Feynman",
+        "ヘルマン ファインマン",
+        "Pulay force",
+        "Pulay力",
+        "エネルギーの有限差分",
+        "BOMD force provider"
+      ],
+      "scope": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
+      "methods": [],
+      "examples": [
+        "periodic-he-forces"
+      ],
+      "resources": [
+        {
+          "id": "periodic-he-forces-resource",
+          "name": {
+            "ja": "DFTの原子間力を確かめ、BOMDへ渡したい",
+            "en": "Validate DFT atomic forces and pass them to BOMD"
+          },
+          "group": {
+            "ja": "周期DFTの限定例",
+            "en": "Scoped periodic DFT"
+          },
+          "summary": {
+            "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+            "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+          },
+          "status": "educational-example",
+          "resource_type": "scoped-example",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
+            "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+          ],
+          "execution_examples": [
+            {
+              "id": "periodic-he-forces",
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"
+              }
+            }
+          ]
+        }
+      ],
+      "domains": [
+        "quantum"
+      ]
     }
   ],
   "home": {

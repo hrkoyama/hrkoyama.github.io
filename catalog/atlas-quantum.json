@@ -583,11 +583,11 @@
       "paragraphs": {
         "ja": [
           "BOMDは各核配置で電子エネルギーを最小化し、Born–Oppenheimer面の勾配を力として核運動を積分します。エネルギーの公差と力の精度は同じ判定ではなく、有限の移動基底では基底の位置依存も考慮します。",
-          "静的DFTの収束からMD軌道の正しさは結論できません。力の独立照合、刻み幅とSCF公差の感度、NVEのエネルギードリフトを今後の検証対象とします。周期DFT章の第一原理MD節でCPMDとの違いを説明します。"
+          "静的DFTの収束からMD軌道の正しさは結論できません。別章「DFTから原子間力へ」では非対称He₂の力を独立照合し、BOMDの力供給と短い局所刻み比較までを確認しています。長時間NVEドリフトと刻み幅・SCF公差の系統的な軌道収束は今後の対象です。周期DFT章の第一原理MD節でCPMDとの違いを説明します。"
         ],
         "en": [
           "BOMD minimizes electronic energy at each nuclear configuration and integrates nuclear motion with the gradient of the Born–Oppenheimer surface. Energy tolerances and force accuracy are separate criteria; a moving finite basis also contributes position derivatives.",
-          "Static DFT convergence does not establish a correct MD trajectory. Independent force comparisons, timestep/SCF sensitivity and NVE energy drift remain future validation tasks. The periodic-DFT chapter contrasts BOMD with CPMD."
+          "Static DFT convergence does not establish a correct MD trajectory. The separate From DFT to atomic forces chapter independently checks asymmetric-He₂ forces and a BOMD force interface with a short local step comparison. Long NVE drift and systematic trajectory convergence versus timestep and SCF tolerance remain future validation tasks. The periodic-DFT chapter contrasts BOMD with CPMD."
         ]
       },
       "formula": [
@@ -598,8 +598,8 @@
         "car-parrinello1985"
       ],
       "caution": {
-        "ja": "解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。",
-        "en": "Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats."
+        "ja": "BOMD全体の手法状態は解説のみ。力の専用配布版にある短い接続確認を、長時間MD軌道・温度制御の検証として数えません。",
+        "en": "The overall BOMD method record remains reading only. The force release’s short interface check does not validate long MD trajectories or thermostats."
       }
     },
     {
@@ -1124,6 +1124,22 @@
       "url": {
         "ja": "/numerical-methods-atlas/ja/read/periodic-dft/",
         "en": "/numerical-methods-atlas/en/read/periodic-dft/"
+      }
+    },
+    {
+      "id": "periodic-forces",
+      "state": "verified-educational-example",
+      "title": {
+        "ja": "多原子周期系：力の独立照合とBOMDの局所接続",
+        "en": "Multiatom periodic cell: independent forces and a local BOMD interface"
+      },
+      "check": {
+        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+      },
+      "url": {
+        "ja": "/numerical-methods-atlas/ja/read/periodic-forces/",
+        "en": "/numerical-methods-atlas/en/read/periodic-forces/"
       }
     }
   ],

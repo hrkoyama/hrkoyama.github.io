@@ -34,7 +34,7 @@ for x in catalog['methods']:
     index['entries'][-1]['method']=method_records[x['id']]
 add('public-method-map',{'ja':'手法の見取り図','en':'A map of numerical methods'},['手法 見取り図','method map','主要24手法','適用条件','条件と制約','一次文献','primary references','priority methods'],{lang:'/numerical-methods-atlas/methods/?lang='+lang for lang in ['ja','en']})
 add('public-code-guide',{'ja':'コード・入力・検証を取得する','en':'Get code, inputs and verification'},['公開コード','データ','download','code edition'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
-add('shared-execution-guide',{'ja':'代表21問題を固定入力から実行・検証する','en':'Run and validate 21 fixed-input representative problems'},['共通手順','実行方法','検証','固定入力','コード データ','再現','Barnes Hut','水素型原子','ヘリウム','reproduce','validation','execution guide','代表21問題','線形移流','Sod','Shu Osher','Poisson','Bratu','調和振動子','硬いODE','周期PM','Taylor Green','Brio Wu'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
+add('shared-execution-guide',{'ja':'代表22問題を固定入力から実行・検証する','en':'Run and validate 22 fixed-input representative problems'},['共通手順','実行方法','検証','固定入力','コード データ','再現','Barnes Hut','水素型原子','ヘリウム','reproduce','validation','execution guide','代表22問題','線形移流','Sod','Shu Osher','Poisson','Bratu','調和振動子','硬いODE','周期PM','Taylor Green','Brio Wu'],{lang:'/numerical-methods-atlas/code-and-data/?lang='+lang for lang in ['ja','en']})
 add('thermostats',{'ja':'サーモスタット：温度制御と分布の比較','en':'Thermostats: temperature control and distributions'},['サーモスタット','温度制御','thermostat','NVT'],{lang:f'/numerical-methods-atlas/{lang}/read/thermostats/' for lang in ['ja','en']})
 add('equation-index',{'ja':'数式から探す','en':'Browse by equation'},['数式検索','方程式の一覧','equation index','formula'],{lang:'/numerical-methods-atlas/equations/?lang='+lang for lang in ['ja','en']})
 add('test-inventory',{'ja':'テスト計算の全体一覧','en':'Atlas-wide test-problem inventory'},['テスト計算','検証問題','benchmark','test problems'],{lang:'/numerical-methods-atlas/test-cases/?lang='+lang for lang in ['ja','en']})
@@ -66,7 +66,7 @@ for item in load_discovery(ROOT)['examples']:
         'routes':{lang:entry_path(item['id'])+'?lang='+lang for lang in ['ja','en']},
         'kind':'execution-example','origin':'public-execution-discovery',
     })
-index['scope']='chapter titles, section headings, model and method labels, glossary aliases, reviewed applicability conditions, 21 individually scoped runnable execution examples, and cross-field routes with distinct validation requirements'
+index['scope']='chapter titles, section headings, model and method labels, glossary aliases, reviewed applicability conditions, 22 individually scoped runnable execution examples, and cross-field routes with distinct validation requirements'
 path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
 module=ATLAS/'home-search.js';text=module.read_text()
 text=re.sub(r"from '../search/method-search[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/method-search.mjs?v="+version_method_search(ROOT)+"'", text)

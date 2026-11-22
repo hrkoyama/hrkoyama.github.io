@@ -2,6 +2,14 @@
 
 このリポジトリの `main` 直下を GitHub Pages で公開する。公開先は https://hrkoyama.github.io/ 。作業開始時に `git status` とリモートの最新版を確認し、他の未完了変更を上書きしない。
 
+## 公開先の固定ルール
+
+2026年11月22日のユーザー指示により、今後の公開先は **https://hrkoyama.github.io/** 配下だけとする。公開用リポジトリは **`hrkoyama/hrkoyama.github.io`**、公開ブランチは **`main`**。数値計算アトラスは `/numerical-methods-atlas/` に公開する。
+
+**`koyamarium` 配下へ変更を反映しない。** push、PR作成・マージ、リリース、アップロード、公開・デプロイ用ワークフローの起動を行わない。上流ソースのローカル編集・検証は可能だが、上流へ push してから公開する手順は使わない。`koyamarium.github.io` と旧 `koyamahr.github.io` は公開先にしない。過去のURL・履歴の参照と、現在の公開先を区別する。
+
+公開直前に、実際の push 先と公開URLがこの指定に一致することを確認する。不一致なら正しい公開用作業コピーへ切り替える。公開側の独自拡張と他作業の未コミット変更を保持し、今回の変更だけを統合する。常時適用する指示は `AGENTS.md` にも記録する。
+
 ## 通常の更新
 
 Python 3.10以上とNode.js 22以上を使う。以下はPython標準ライブラリとNode標準機能だけで実行でき、ChatGPTやEnterpriseへの接続、推論APIキーは不要。
@@ -10,7 +18,7 @@ Python 3.10以上とNode.js 22以上を使う。以下はPython標準ライブ�
 2. `python3 scripts/refresh-site.py` を実行する。公開用の進捗と取得案内、共通ナビゲーション、サイトマップ、研究相談索引、サイト内検索を順に更新する。
 3. `node --test scripts/*.test.mjs` を実行する。`python3 scripts/check-site.py` は更新コマンド内でも実行される。
 4. `python3 -m http.server 4180 --bind 127.0.0.1` で見本を開き、日本語・英語と狭い画面を確認する。終了時はサーバーを停止する。
-5. `git diff --check` と差分を確認してコミットし、`git push origin main` で公開する。
+5. `git diff --check` と差分を確認してコミットする。`git remote get-url --push origin` が `hrkoyama/hrkoyama.github.io` を指すことを確認してから、`git push origin main` で公開する。
 6. GitHubのPages公開処理の成功後、変更したURLとダウンロード先をログアウトした状態で開き、本文・ファイル・版を確認する。
 
 検索語や訪問者入力を集めるアクセス解析は追加しない。GitHubの通常の配信記録は別。Googleの反映・検索順位は公開完了と区別する。
@@ -189,3 +197,15 @@ DFTから力・第一原理MD・温度制御、反応拡散から生物・流体
 `automatic-differentiation` の正本は既存の `catalog/atlas-detailed-reading.json` と `catalog/atlas-methods.json`。前進モードの教育用実装だけを実装済みとし、逆モード・陰関数感度・随伴法の説明と実行検証を区別する。既存の章URLと節IDを保持する。
 
 専用の不変配布版は `/code/autodiff/2026-11-22/`。旧コード版は上書きしない。`scripts/package-autodiff.py` が明示した公開ソースだけを梱包し、8件のテスト、manifest、ZIPとBratuの測定記録を残す。`build-atlas-autodiff.py` が専用版の図・JSONをアトラスへ配置し、疎行列・陰的積分・ロードマップへつなぐ。通常の `refresh-site.py` で本文・手法台帳・検索・ホームへの導線を再生成する。この補助比較を既存の21実行例・66テスト問題の件数へ加算しない。
+
+## 多原子DFTの原子間力（2026-11-22）
+
+原子間力は `scripts/periodic-forces/` と新しい不変配布版 `code/periodic-forces/2026-11-22/` に分離する。既存の1原子周期DFT版・参照値・配布ZIPは上書きしない。正本本文は `catalog/atlas-forces-reading.json`、生成は `scripts/build-atlas-forces.py`。非対称なHe₂・5 bohr立方セル・4価電子・局所GTH・LDA交換＋VWN5を固定し、PySCF解析力（原子中心Gaussian基底の微分・イオン項を含む）を全6座標の中心エネルギー有限差分とDFTKの独立平面波力で照合する。変位幅、Gaussian軌道基底、k点、FFT補助格子、SCF公差、参照側の平面波打切りを別系列で記録する。各末尾差は経験的な停止目安で、真の誤差上界ではない。
+
+BOMDの力供給APIとvelocity-Verletの1ステップ対2半ステップは局所的な接続の確認に限定する。原子間力を実装したことを、長時間NVE軌道、温度制御、一般物質・非局所擬ポテンシャル・応力・金属・CPMDの検証へ移さない。BOMD/CPMDの手法状態はreading-onlyのまま保持し、`force_examples` と `force_scope` は力を実際に用いたKS/基底/SCF/XC/擬ポテンシャル/k点の6手法へだけ付ける。
+
+共通実行台帳は22例・7配布版・21 runner、全問題は67。別のAD補助配布版をこの共通台帳へ加算しない。現行の手法145レコード（教育用97・解説のみ16・予定32）はAD追加後の状態を引き継ぎ、力例で手法数・状態件数を増やさない。再実行時間を確保するため、共通runnerの上限は3600秒、Linuxジョブは90分。過去の21例・66問題等は当時の版の記録として保持する。公開前の検証は、コードと最終台帳と同一バイト列の候補を `code/periodic-forces/verification-candidates/` に先に公開して実行できる。候補取得URL・SHAを追試記録へ明示し、最終の正規台帳と完全一致する場合だけ同じ成功記録を使う。これにより既存の公開台帳・件数を、未検証の候補へ途中で切り替えない。
+
+クロスオーバーの力段階は専用固定例に限って実行済みとする。DFT→力はfixed-input、力→MDはinterface-onlyで、各接続に成功した力例の公開追試記録を必須とする。経路全体・長時間MD・温度制御のnot-executed状態は保持する。Feynmanの力の原論文、Pulayの解析微分、BOMDのSCFと保存性に関する一次論文を、抄録・書誌／公式実装の確認範囲とともに日英で引用する。
+
+公開ファイル追試の初回は保存領域のENOSPCで20例の完了後に停止した。未公開だった失敗記録は内容を変更せず `2026-11-22-forces-enospc.json` へ名前を付けて保持し、保存先の書き込み確認後、同じ公開台帳・配布物で全22例を新規実行し直す。途中の成功を未実行の周期2例へ流用しない。

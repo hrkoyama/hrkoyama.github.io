@@ -38,28 +38,28 @@
     }
   ],
   "assumptions": [
-    "Classical nuclei and a selected adiabatic electronic ground-state model; no verified MD implementation.",
-    "Displayed extended-Lagrangian formulas assume fixed cell and fixed occupations."
+    "Classical nuclei and a selected adiabatic electronic ground state. A fixed-He₂ force-provider/local-Verlet check exists, while full trajectories remain unvalidated.",
+    "The published interface fixes the periodic cell, occupations and electronic model, and reconverges SCF at every visited geometry."
   ],
   "assumptions_ja": [
-    "核は古典力学、電子は選択した断熱的基底状態モデル。MDの実装・検証は未実施。",
-    "表示する拡張ラグランジアンは固定セル・固定占有を仮定。"
+    "核は古典力学、電子は選択した断熱的基底状態。固定He₂の力供給と局所Verlet確認があるが、軌道全体は未検証。",
+    "公開接続例は周期セル・占有・電子モデルを固定し、訪れた各核配置でSCFを解き直す。"
   ],
-  "units": "Atomic units for energies/forces/time with nuclear masses stated explicitly; CP orbital mass is a numerical convention.",
-  "units_ja": "エネルギー・力・時間は原子単位系とし、核質量を明示。CPの軌道仮想質量は数値的な規約。",
-  "boundary_conditions": "Choose isolated or periodic boundaries for the target system; no executed MD case is published.",
-  "boundary_conditions_ja": "対象に応じて孤立・周期境界を選びます。実行済みのMD例は未公開。",
+  "units": "Atomic units: energies hartree, forces hartree/bohr, positions bohr, time atomic units and explicit nuclear masses in electron masses.",
+  "units_ja": "原子単位：エネルギー hartree、力 hartree/bohr、座標 bohr、時間 原子時間、核質量 電子質量。",
+  "boundary_conditions": "Choose isolated or periodic boundaries for the model; the published local interface uses the fixed periodic He₂ cell.",
+  "boundary_conditions_ja": "モデルに応じて孤立・周期境界を選ぶ。公開した局所接続例は固定した周期He₂セル。",
   "next_deliverable": {
-    "ja": "多原子の力を独立参照と照合し、時間刻み・SCF公差または仮想質量への感度とNVEドリフトを測る。",
-    "en": "Compare multiatom forces with an independent reference, then measure timestep/SCF or fictitious-mass sensitivity and NVE drift."
+    "ja": "独立参照と照合した力を使い、長時間NVEドリフトと時間刻み・SCF公差への軌道の感度を系統的に測る。",
+    "en": "Use independently checked forces to measure long-time NVE drift and systematic trajectory sensitivity to timestep and SCF tolerance."
   },
   "limitations": {
-    "ja": "解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。",
-    "en": "Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats."
+    "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",
+    "en": "Overall BOMD remains reading only. The separate force release’s short Verlet interface check does not validate long trajectories or thermostats."
   },
   "caution": {
-    "ja": "解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。",
-    "en": "Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats."
+    "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",
+    "en": "Overall BOMD remains reading only. The separate force release’s short Verlet interface check does not validate long trajectories or thermostats."
   },
   "aliases": [
     "BOMD",
@@ -70,7 +70,7 @@
     "ボルン・オッペンハイマー分子動力学"
   ],
   "metadata_review": {
-    "level": "Primary publisher metadata and selected Car–Parrinello equations reviewed; explanatory reading only, no force or trajectory validation.",
+    "level": "Primary publisher metadata and scoped force-provider evidence reviewed; local interface check available, without validated long-time BOMD trajectories.",
     "on": "2026-11-22"
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/",

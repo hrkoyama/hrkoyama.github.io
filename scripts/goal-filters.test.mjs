@@ -33,20 +33,20 @@ function environment(fn,blocked=false){
  if(result?.then)return result.finally(restore);restore();return result;
 }
 test('published goals classify runnable examples as also having code/tests, without promoting reading or planned goals',()=>{
- assert.equal(records.length,13);
- for(const [filter,count] of [['all',13],['run',10],['code',11],['reading',1],['planned',1]])assert.equal(records.filter(r=>goalMatches(r.states,filter)).length,count,filter);
+ assert.equal(records.length,14);
+ for(const [filter,count] of [['all',14],['run',11],['code',12],['reading',1],['planned',1]])assert.equal(records.filter(r=>goalMatches(r.states,filter)).length,count,filter);
  assert.equal(records.find(r=>r.id==='molecular-dft').states,'reading');
  assert.equal(records.find(r=>r.id==='biological-models').states,'run code');
  assert.equal(records.find(r=>r.id==='temperature-control').states,'planned');
 });
 test('selection filters both navigation and articles, counts unique goals, persists across language/pages, and resets',()=>environment(()=>{
  const f=fixture();const [homeController]=wireGoalFilters(f.scope);assert.equal(f.controls.hidden,false);
- f.choose('reading');assert.deepEqual(f.visible(),['molecular-dft']);assert.equal(f.status.textContent,'1 / 13 件の目的');assert.equal(f.empty.hidden,true);
+ f.choose('reading');assert.deepEqual(f.visible(),['molecular-dft']);assert.equal(f.status.textContent,'1 / 14 件の目的');assert.equal(f.empty.hidden,true);
  assert.equal(f.items.filter(x=>!x.hidden).length,2);
- const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.field.value,'reading');assert.equal(en.status.textContent,'1 of 13 goals');
+ const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.field.value,'reading');assert.equal(en.status.textContent,'1 of 14 goals');
  en.chooseDomain('temperature');en.choose('planned');assert.deepEqual(en.visible(),['temperature-control']);
  homeController.sync();assert.equal(f.field.value,'planned');assert.equal(f.domain.value,'temperature');assert.deepEqual(f.visible(),['temperature-control'],'restored pages use the latest session selection');
- en.reset.fire('click');assert.equal(en.visible().length,13);assert.equal(en.field.value,'all');assert.equal(en.domain.value,'all');
+ en.reset.fire('click');assert.equal(en.visible().length,14);assert.equal(en.field.value,'all');assert.equal(en.domain.value,'all');
  assert.equal(wireGoalFilters(en.scope).length,1);
 }));
 test('direct links reveal a hidden target; intentionally changing filters clears an excluded anchor',()=>environment((loc,history)=>{
@@ -78,7 +78,7 @@ test('generated bilingual home and goal pages provide all filters, matching attr
 test('field and availability intersect, overlapping MHD membership does not duplicate goals, and empty combinations reset',()=>environment(()=>{
  const f=fixture();wireGoalFilters(f.scope);
  for(const [domain,availability,ids] of [
-  ['quantum','run',['atomic-electrons','molecular-hf','periodic-dft']],
+  ['quantum','run',['atomic-electrons','molecular-hf','periodic-dft','periodic-forces']],
   ['quantum','reading',['molecular-dft']],
   ['biology','code',['biological-models']],
   ['temperature','planned',['temperature-control']],
@@ -89,10 +89,10 @@ test('field and availability intersect, overlapping MHD membership does not dupl
   ['gravity','run',['particle-gravity']]
  ]){
   f.chooseDomain(domain);f.choose(availability);assert.deepEqual(f.visible(),ids,domain+' + '+availability);
-  assert.equal(f.status.textContent,`${ids.length} / 13 件の目的`);assert.equal(f.empty.hidden,ids.length!==0);
+  assert.equal(f.status.textContent,`${ids.length} / 14 件の目的`);assert.equal(f.empty.hidden,ids.length!==0);
  }
  const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.domain.value,'gravity');assert.equal(en.field.value,'run');
- f.chooseDomain('temperature');assert.equal(f.empty.hidden,false);f.reset.fire('click');assert.equal(f.visible().length,13);assert.equal(f.domain.value,'all');assert.equal(f.field.value,'all');
+ f.chooseDomain('temperature');assert.equal(f.empty.hidden,false);f.reset.fire('click');assert.equal(f.visible().length,14);assert.equal(f.domain.value,'all');assert.equal(f.field.value,'all');
 }));
 test('changing only the field clears an excluded anchor and direct links reset a conflicting field',()=>environment((loc,history)=>{
  const f=fixture();const [controller]=wireGoalFilters(f.scope);
@@ -103,27 +103,27 @@ test('changing only the field clears an excluded anchor and direct links reset a
 test('URL conditions override session preferences, missing partners and unknown values resolve to all',()=>environment((loc,history,values)=>{
  values.set('atlas-goal-domain','biology');values.set('atlas-goal-availability','reading');
  loc.search='?lang=en&goal-domain=quantum&goal-availability=run';
- const f=fixture('en');const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft']);
+ const f=fixture('en');const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft','periodic-forces']);
  assert.equal(values.get('atlas-goal-domain'),'quantum');
- loc.search='?lang=en&goal-domain=quantum';controller.sync();assert.equal(f.field.value,'all');assert.deepEqual(f.visible(),['atomic-electrons','molecular-dft','molecular-hf','periodic-dft']);
- loc.search='?lang=en&goal-domain=unknown&goal-availability=invalid';controller.sync();assert.equal(f.visible().length,13);assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
- loc.search='?lang=en&goal-domain=all&goal-availability=all';values.set('atlas-goal-domain','biology');controller.sync();assert.equal(f.visible().length,13);
+ loc.search='?lang=en&goal-domain=quantum';controller.sync();assert.equal(f.field.value,'all');assert.deepEqual(f.visible(),['atomic-electrons','molecular-dft','molecular-hf','periodic-dft','periodic-forces']);
+ loc.search='?lang=en&goal-domain=unknown&goal-availability=invalid';controller.sync();assert.equal(f.visible().length,14);assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
+ loc.search='?lang=en&goal-domain=all&goal-availability=all';values.set('atlas-goal-domain','biology');controller.sync();assert.equal(f.visible().length,14);
 }));
 test('filter URLs preserve unrelated parameters and anchors; changes, back/forward and reset restore their own conditions',()=>environment((loc,history)=>{
  loc.search='?lang=ja&view=compact';loc.hash='#top';
  const f=fixture();const [controller]=wireGoalFilters(f.scope);
  f.chooseDomain('quantum');f.choose('run');
  const shared=loc.href;assert.equal(loc.searchParams.get('goal-domain'),'quantum');assert.equal(loc.searchParams.get('goal-availability'),'run');assert.equal(loc.searchParams.get('view'),'compact');assert.equal(loc.hash,'#top');assert.deepEqual(history.state,{atlas:'retained'});
- history.back();controller.sync();assert.equal(f.domain.value,'quantum');assert.equal(f.field.value,'all');assert.equal(f.visible().length,4);
- history.forward();controller.sync();assert.equal(loc.href,shared);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft']);
+ history.back();controller.sync();assert.equal(f.domain.value,'quantum');assert.equal(f.field.value,'all');assert.equal(f.visible().length,5);
+ history.forward();controller.sync();assert.equal(loc.href,shared);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft','periodic-forces']);
  f.reset.fire('click');assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
- history.back();controller.sync();assert.equal(loc.href,shared);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft']);
+ history.back();controller.sync();assert.equal(loc.href,shared);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft','periodic-forces']);
  const url=goalFilterURL('https://hrkoyama.github.io/numerical-methods-atlas/start/?lang=en&view=compact#atomic-electrons-en','run','quantum');
  assert.equal(url.searchParams.get('lang'),'en');assert.equal(url.hash,'#atomic-electrons-en');assert.equal(url.searchParams.get('view'),'compact');
 }));
 test('URL conditions work when storage is unavailable and conflicting direct anchors normalize the shared URL',()=>environment((loc)=>{
  loc.search='?lang=ja&goal-domain=quantum&goal-availability=run';
- const f=fixture();const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft']);
+ const f=fixture();const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft','periodic-forces']);
  loc.hash='#magnetic-divergence-ja';controller.revealAnchor();assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');assert.equal(loc.hash,'#magnetic-divergence-ja');
 },true));
 test('only same-origin home, purpose and language links carry the current conditions, including copied or new-tab links',()=>environment(()=>{

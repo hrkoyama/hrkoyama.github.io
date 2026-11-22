@@ -15,7 +15,7 @@ const sorted=items=>[...items].sort();
 const entry=(id,lang)=>`https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/${id}/?lang=${lang}`;
 
 test('all execution families have scoped bilingual formula and outcome metadata',()=>{
-  assert.equal(config.examples.length,21);
+  assert.equal(config.examples.length,22);
   assert.deepEqual(sorted(config.examples.map(x=>x.id)),sorted(registry.examples.map(x=>x.id)));
   const equations=new Map(source.equations.map(x=>[x.id,x]));
   for(const row of config.examples){
@@ -35,16 +35,16 @@ test('all execution families have scoped bilingual formula and outcome metadata'
   for(const id of ['stiff-cosine','smooth-function-projection'])assert.deepEqual(config.examples.find(x=>x.id===id).equation_ids,[]);
 });
 
-test('twenty-one execution formulas stay separate from the unchanged model inventory',()=>{
+test('twenty-two execution formulas stay separate from the unchanged model inventory',()=>{
   assert.equal(published.counts.total,coverage.counts.equations);
   assert.equal(published.counts.total,46);
   assert.equal(published.equations.length,source.equations.length);
   assert.equal(published.counts.local_example,coverage.counts.local_equations);
   assert.equal(published.counts.reading_only,coverage.counts.reading_equations);
-  assert.equal(published.execution_example_count,21);
+  assert.equal(published.execution_example_count,22);
   assert.deepEqual(sorted(published.execution_examples.map(x=>x.id)),sorted(config.examples.map(x=>x.id)));
   assert.equal((html.match(/data-equation-id=/g)||[]).length,2*coverage.counts.equations);
-  assert.equal((html.match(/data-execution-equation-id=/g)||[]).length,42);
+  assert.equal((html.match(/data-execution-equation-id=/g)||[]).length,44);
   for(const model of published.equations){
     const previous=source.equations.find(x=>x.id===model.id);
     assert.equal(model.status,previous.status);
@@ -54,7 +54,7 @@ test('twenty-one execution formulas stay separate from the unchanged model inven
     if(model.status==='reading')assert.deepEqual(model.execution_examples,[]);
   }
   assert.deepEqual(published.equations.find(x=>x.id==='time-dependent-kohn-sham').execution_examples,[]);
-  assert.equal(coverage.counts.test_problems,66);
+  assert.equal(coverage.counts.test_problems,67);
 });
 
 test('formula shortcuts contain static math and direct input/run/validation routes',()=>{

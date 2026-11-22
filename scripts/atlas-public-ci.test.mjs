@@ -8,7 +8,7 @@ const root = new URL('../', import.meta.url);
 const read = path => readFileSync(new URL(path, root), 'utf8');
 const hash = path => createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex');
 const pythonPrelude = String.raw`
-import copy, hashlib, importlib.util, io, json, os, pathlib, subprocess, sys, tempfile, urllib.error
+import copy, hashlib, importlib.util, io, json, os, pathlib, subprocess, sys, tempfile, urllib.error, urllib.parse
 from unittest import mock
 ROOT=pathlib.Path.cwd()
 def module(name,path):
@@ -302,7 +302,7 @@ c=module('public_ci_bootstrap',ROOT/'scripts/run-atlas-public-ci.py')
 registry=(ROOT/'numerical-methods-atlas/code-and-data/examples.json').read_bytes()
 verifier=(ROOT/'scripts/verify-atlas-execution-examples.py').read_bytes()
 builder=(ROOT/'scripts/build-atlas-execution-examples.py').read_bytes()
-good=json.loads((ROOT/'numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json').read_text())
+good=json.loads((ROOT/urllib.parse.urlparse(json.loads((ROOT/'catalog/atlas-execution-examples.json').read_text())['verification_receipt']).path.lstrip('/')).read_text())
 good['verification_tool']['verifier_sha256']=hashlib.sha256(verifier).hexdigest()
 good['verification_tool']['registry_builder_sha256']=hashlib.sha256(builder).hexdigest()
 # Adapt the old saved success to the new diagnostic field in memory only.
@@ -381,7 +381,7 @@ test('a saved Linux success rechecks observations and rejects failed setup, anot
 p=module('ci_page',ROOT/'scripts/build-atlas-ci-page.py')
 config=json.loads((ROOT/'catalog/atlas-ci.json').read_text())
 raw=(ROOT/'numerical-methods-atlas/code-and-data/examples.json').read_bytes();registry=json.loads(raw);sha=hashlib.sha256(raw).hexdigest()
-report=json.loads((ROOT/'numerical-methods-atlas/code-and-data/verification/2026-11-22-periodic.json').read_text())
+report=json.loads((ROOT/urllib.parse.urlparse(json.loads((ROOT/'catalog/atlas-execution-examples.json').read_text())['verification_receipt']).path.lstrip('/')).read_text())
 report['environment']['operating_system']='Linux'
 url='https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/unit-fixture.json'
 envelope={'schema_version':1,'ci':{'setup_passed':True,'scientific_passed':True,'passed':True,'error':None},'verification':report,
@@ -390,7 +390,7 @@ envelope={'schema_version':1,'ci':{'setup_passed':True,'scientific_passed':True,
           'artifact_url':'https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/12345/artifacts/67890'}
 valid=p.validate_snapshot(url,envelope,registry,sha,config,b)
 assert valid['recorded_success'] is True and valid['registry_matches_current'] is True
-assert valid['example_count']==21 and valid['runner_count']==20
+assert valid['example_count']==22 and valid['runner_count']==21
 for scenario in ['setup','science','overall','os','incomplete','criterion']:
  bad=copy.deepcopy(envelope)
  if scenario in ['setup','science','overall']:bad['ci'][{'setup':'setup_passed','science':'scientific_passed','overall':'passed'}[scenario]]=False

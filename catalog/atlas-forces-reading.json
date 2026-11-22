@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-11-22",
+  "id": "periodic-forces",
+  "example_id": "periodic-he-forces",
+  "title": {
+    "ja": "DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続",
+    "en": "From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface"
+  },
+  "intro": {
+    "ja": "多原子の周期Heセルで、全エネルギーの位置微分から原子間力を求めます。解析勾配、エネルギーの有限差分、独立した平面波計算を比較し、基底・k点・補助格子・SCFが力に与える影響を分けて確かめます。BOMDへ渡す力の条件と、軌道の検証で追加すべき条件もつなぎます。",
+    "en": "Atomic forces are obtained as position derivatives of the total energy in a multiatom periodic He cell. Analytic gradients, finite differences of energies and an independent plane-wave calculation are compared, separating orbital-basis, k-point, auxiliary-grid and SCF effects on forces. The requirements for a BOMD force interface are distinguished from the additional validation of trajectories."
+  },
+  "scope": {
+    "ja": "固定セル・局所He GTH・スピン非分極LDAの教育用検証です。PySCFの解析核勾配を利用する実行・検証ドライバーであり、自作の電子状態エンジンではありません。この配置の力の一致は、他元素・非局所擬ポテンシャル・応力・長時間BOMDや温度制御の検証を意味しません。",
+    "en": "This educational verification uses a fixed cell, a local He GTH potential and spin-unpolarized LDA. It is an execution and validation driver using PySCF analytic nuclear gradients, rather than a new electronic-structure engine. Agreement for this configuration does not validate other elements, nonlocal pseudopotentials, stress, long BOMD trajectories or thermostats."
+  },
+  "methods": [
+    "kohn-sham-dft",
+    "electronic-bases",
+    "scf",
+    "xc-functionals",
+    "pseudopotentials",
+    "k-point"
+  ],
+  "reading_only_methods": [
+    "born-oppenheimer-md",
+    "car-parrinello-md"
+  ],
+  "package": {
+    "base": "/code/periodic-forces/2026-11-22/",
+    "archive": "periodic-forces-2026-11-22.zip",
+    "results": "results/result.json",
+    "preview": "results/preview.png",
+    "input": "inputs.json",
+    "reference": "reference-dftk.json"
+  },
+  "keywords": [
+    "atomic forces",
+    "原子間力",
+    "核勾配",
+    "analytic gradients",
+    "解析勾配",
+    "Hellmann Feynman",
+    "ヘルマン ファインマン",
+    "Pulay forces",
+    "Pulay力",
+    "プーレイ力",
+    "有限差分",
+    "finite difference",
+    "force convergence",
+    "力の収束",
+    "periodic DFT",
+    "周期DFT",
+    "BOMD",
+    "Born Oppenheimer",
+    "第一原理MD",
+    "DFTK",
+    "PySCF",
+    "SCF",
+    "k点",
+    "Gaussian basis",
+    "plane waves"
+  ],
+  "sections": [
+    {
+      "id": "force-definition",
+      "title": {
+        "ja": "全エネルギーの負の勾配を力にする",
+        "en": "Forces are negative gradients of the total energy"
+      },
+      "paragraphs": {
+        "ja": [
+          "固定した格子、電子数、汎関数、擬ポテンシャルのもとで、各原子配置における電子基底状態を求めます。Born–Oppenheimerエネルギーは電子項と周期イオン間項を含むセル全体のエネルギーです。原子IのCartesian成分αに働く力は、その座標についての全微分に負号を付けた値です。勾配と力の符号を区別し、座標をbohr、エネルギーをhartreeで扱うと力の単位はhartree/bohrになります。",
+          "入力は一辺5 bohrの立方セルで、Heの位置は(0.37, 0.61, 0.83)と(2.13, 2.27, 2.41) bohrです。価電子4・閉殻の固定配置で、対称性だけですべての力がゼロになる検査を避けます。力の大きさだけでなく、各原子のx・y・z成分と方向を照合します。この人工配置の数値的一致を、実在するヘリウム結晶の平衡構造や化学精度の予測と読み替えません。セルを変形する応力・圧力の微分は、固定セルでの原子位置微分とは別の検証です。"
+        ],
+        "en": [
+          "For a fixed lattice, electron count, functional and pseudopotential, the electronic ground state is solved at each atomic configuration. The Born–Oppenheimer energy is the total cell energy, including electronic and periodic ion–ion terms. The force on Cartesian component α of atom I is minus the total derivative with respect to that coordinate. Gradient and force signs must be distinguished: coordinates in bohr and energies in hartree give forces in hartree/bohr.",
+          "The input is a cubic cell of side 5 bohr with He positions (0.37, 0.61, 0.83) and (2.13, 2.27, 2.41) bohr: four valence electrons in a closed-shell fixed configuration. It avoids a check in which symmetry makes every force zero. Directions and all x, y and z components are compared, as well as magnitudes. Numerical agreement for this artificial arrangement does not predict an equilibrium helium crystal or establish chemical accuracy. Stress and pressure require cell derivatives, separate from atomic-position derivatives at fixed cell."
+        ]
+      },
+      "formulas": [
+        "forces-bo-surface",
+        "forces-definition"
+      ],
+      "references": [
+        "born-oppenheimer1927",
+        "feynman1939"
+      ]
+    },
+    {
+      "id": "hellmann-feynman-and-pulay",
+      "title": {
+        "ja": "Hellmann–Feynmanの定理と、移動する基底のPulay項",
+        "en": "The Hellmann–Feynman theorem and Pulay terms from moving bases"
+      },
+      "paragraphs": {
+        "ja": [
+          "規格化された厳密な固有状態では、エネルギーのパラメータ微分をHamiltonianの微分の期待値として表せます。これがHellmann–Feynmanの関係です。Feynmanの1939年論文は分子の力を直接評価する歴史的な一次文献です。この定理だけで、有限の原子中心基底で求めた電子状態のすべての力が正しく得られるわけではありません。下のHとΨは定理の一般形を表し、Kohn–Shamの全エネルギーを軌道固有値の和だけに置き換える式ではありません。",
+          "原子に追随するGaussian基底では、核を動かすと基底関数と重なり行列も変わります。変分計算で軌道係数を十分に最適化していても、この基底の位置依存に由来する項を含めて、離散化したエネルギーを微分する必要があります。これらをPulay項と呼びます。一般化固有値問題に現れるエネルギー重み付き密度と重なり微分の項はその一部です。今回のドライバーはPySCFの解析核勾配を利用し、単純な裸のイオン–電子Coulomb力へ置き換えません。",
+          "固定セルと固定カットオフで用いる平面波は原子位置に追随する基底ではありません。それでも有限カットオフによる力の誤差は残り、SCFや密度格子も収束させる必要があります。「Pulay項が不要」という理由だけで平面波の力が厳密になるわけではありません。セル変形に伴う基底変化とPulay応力の議論も、この固定セル検査の対象から分けます。"
+        ],
+        "en": [
+          "For a normalized exact eigenstate, the energy derivative with respect to a parameter equals the expectation of the Hamiltonian derivative. This is the Hellmann–Feynman relation. Feynman’s 1939 paper is a historical primary source for evaluating molecular forces directly. The theorem alone does not make every force correct for an electronic state represented in a finite atom-centered basis. The H and Ψ below express the general theorem; they do not replace the Kohn–Sham total energy by a sum of orbital eigenvalues.",
+          "A Gaussian basis moving with the atoms changes its functions and overlap matrix when nuclei move. Even with variationally optimized orbital coefficients, derivatives of this basis dependence must be included when differentiating the discrete energy. These are Pulay terms. The overlap derivative contracted with an energy-weighted density in the generalized eigenproblem is one contribution. The driver uses PySCF analytic nuclear gradients; it does not substitute a bare electron–ion Coulomb force.",
+          "At fixed cell and cutoff, plane waves do not move with atomic positions. Finite-cutoff force errors nevertheless remain, and SCF and density-grid errors must still be controlled. The absence of moving-atom basis terms does not make plane-wave forces exact. Basis changes under cell deformation and Pulay stress are distinct from this fixed-cell test."
+        ]
+      },
+      "formulas": [
+        "forces-hellmann-feynman",
+        "forces-overlap-term"
+      ],
+      "references": [
+        "feynman1939",
+        "pulay1969",
+        "pyscf-krhf-grad-docs",
+        "dftk-api-docs"
+      ]
+    },
+    {
+      "id": "energy-finite-differences",
+      "title": {
+        "ja": "有限差分照合：変位幅を小さくするだけでは足りない",
+        "en": "Finite-difference checks: smaller displacements are not always better"
+      },
+      "paragraphs": {
+        "ja": [
+          "基準配置から1つの原子の1成分だけを±h動かし、それぞれの配置でSCFを独立に収束させた全エネルギーを用いて中心差分の力を求めます。格子、k点と重み、基底名、FFT格子、汎関数、擬ポテンシャル、電子数をそろえます。原子中心基底も移動させるため、差分は基底の位置依存を含む同じ離散化エネルギーの微分を検査します。",
+          "滑らかなエネルギー面では中心差分の切断誤差はO(h²)です。一方で、エネルギーにSCFの解き残しや丸め誤差があれば、その差を2hで割るため小さすぎる変位で誤差が増えることがあります。複数のhを記録し、解析力との差が安定する範囲を確認します。実測の系列が必ずきれいなU字を描くとは仮定しません。入力したSCFのエネルギー公差そのものを、各エネルギーの厳密な誤差上界とは扱いません。",
+          "解析力と同一エンジンの有限差分の一致は、符号・成分・基底微分を含む内部整合性の検査です。両者が共通の汎関数や擬ポテンシャルの実装を使うため、これだけを独立した物理参照との一致とは呼びません。今回の独立照合には別実装の平面波DFTKも用います。"
+        ],
+        "en": [
+          "One Cartesian component of one atom is displaced by ±h from the baseline configuration. At each displaced geometry the SCF is converged independently, and the resulting total energies give a central-difference force. The lattice, k points and weights, basis name, FFT grid, functional, pseudopotential and electron count are aligned. The atom-centered basis moves too, so this probes derivatives of the same discrete energy including basis-position dependence.",
+          "For a smooth energy surface, central-difference truncation is O(h²). SCF solution and roundoff errors in energies are divided by 2h, so very small displacements can increase errors. Several h values are retained to locate a stable agreement range with analytic forces. A clean U-shaped measured curve is not assumed. An input SCF energy tolerance is not interpreted as a rigorous bound on the error of each energy.",
+          "Agreement with finite differences from the same engine checks internal consistency, including signs, components and basis derivatives. Both use shared functional and pseudopotential implementations, so this alone is not an independent physical reference. A separate plane-wave DFTK implementation provides the independent comparison here."
+        ]
+      },
+      "formulas": [
+        "forces-central-difference",
+        "forces-fd-errors"
+      ],
+      "references": [
+        "pulay1969",
+        "pyscf-krks-grad-docs"
+      ]
+    },
+    {
+      "id": "separate-force-convergence",
+      "title": {
+        "ja": "力について基底・k点・補助格子・SCFを別々に収束させる",
+        "en": "Converge basis, k points, auxiliary grids and SCF for forces separately"
+      },
+      "paragraphs": {
+        "ja": [
+          "エネルギー差が小さくなったという理由だけで、力も十分に収束したと判断しません。Gaussian軌道基底、Brillouinゾーンのk点メッシュ、FFTの補助格子、SCF停止条件を1つずつ変え、同じ原子・成分の力の差を測ります。基準と比べるときは原子の順序とCartesian軸を固定します。今回の要約は全成分の絶対値最大を用いるL∞型のノルムで、原子ごとのベクトル長や成分平均とは区別します。",
+          "基底名のzeta数を増やす系列は、必ずしも入れ子の空間や単調な力の変化を与えません。k点メッシュもすべてが入れ子ではありません。最後の2設定の力の差を公開した目安と比較しますが、それを完全基底や無限k点での厳密な誤差上界とは呼びません。密度や局所ポテンシャルを載せる補助FFT格子は、Gaussianの軌道空間と独立の収束軸です。",
+          "SCFの未収束は力にも現れます。終了フラグと反復回数だけでなく、電子数、軌道・SCF残差など、保存した状態の診断量を併せて読みます。厳しい停止条件に対して力が変わらないことを直接測り、未収束の電子状態をBOMDへ正常な力として返さないようにします。",
+          "各走査は、公開入力で指定した有限の基底・格子・k点を固定して1軸だけを変えます。Γ点と2³では基底系列もそれぞれ確認しますが、4³・最大Gaussian基底・最細FFTを同時に組み合わせた完全な収束計算は行っていません。独立参照との一致もΓ点と2³の指定ケースに限られます。"
+        ],
+        "en": [
+          "A small energy change alone does not establish converged forces. The Gaussian orbital basis, Brillouin-zone mesh, auxiliary FFT grid and SCF stopping conditions are varied one at a time, comparing forces on the same atoms and Cartesian components. Atom ordering and axes are fixed. Summaries use an L∞-type maximum absolute component norm, distinct from a per-atom vector magnitude or a component average.",
+          "Increasing a basis’s zeta label does not necessarily produce nested spaces or monotonic force changes. Nor are all k meshes nested. The final pair of settings is compared with a published target, without presenting the increment as a rigorous complete-basis or infinite-k-point error bound. The auxiliary FFT representation of density and local potentials is a separate convergence axis from the Gaussian orbital space.",
+          "Incomplete SCF convergence also affects forces. Alongside termination flags and iteration counts, inspect stored electron-count, orbital and SCF residual diagnostics. Force sensitivity to tighter stopping conditions is measured directly, and an unconverged electronic state must not be returned to BOMD as an accepted force.",
+          "Each sweep varies one control while holding the finite basis, grid and k mesh specified in the input fixed. Basis sequences are checked separately at Γ and 2³, but no joint calculation combines 4³ sampling, the largest Gaussian basis and the finest FFT grid. Independent-reference agreement applies only to the designated Γ and 2³ cases."
+        ]
+      },
+      "formulas": [
+        "forces-component-norm",
+        "forces-separate-errors"
+      ],
+      "references": [
+        "pyscf-pbc-settings-docs",
+        "dftk-api-docs",
+        "herbert-head-gordon2005"
+      ]
+    },
+    {
+      "id": "independent-reference",
+      "title": {
+        "ja": "独立参照：同じモデルを異なる離散化で比較する",
+        "en": "Independent reference: the same model in a different discretization"
+      },
+      "paragraphs": {
+        "ja": [
+          "PySCF側は周期Gaussian基底とFFTDFを用い、参照側はDFTKの平面波Hamiltonian、SCF、周期イオン間計算と解析力を用います。両側で格子と全原子位置、価電子数、非偏極・整数占有、局所GTHの全係数、LibxcのLDA_XとLDA_C_VWN（VWN5）、分率k点と重みを一致させます。エネルギーの原点を後から合わせる定数や、力を合わせる補正は加えません。",
+          "DFTK側でも平面波の打切りを上げ、力の末尾の差を確かめます。比較は同じ有限行列の丸め誤差を測るものではありません。有限のGaussian空間と平面波空間の差を含むため、公開した受入幅と両側の収束診断を併せて評価します。両エンジンがLibxcを共有することも独立性の限界として明示します。",
+          "DFTKのcompute_forcesは分率座標に対応する表現を返し、Cartesian力を得るAPIはcompute_forces_cartです。座標と力の変換は同じではありません。今回の照合はCartesian成分・hartree/bohrで統一します。参照の生成スクリプト、Juliaの固定環境、擬ポテンシャル、入力と結果のハッシュを保存し、通常のPython実行による保存参照との比較と、Juliaで参照そのものを再生成する操作を区別します。"
+        ],
+        "en": [
+          "PySCF uses a periodic Gaussian basis and FFTDF; the reference uses DFTK’s plane-wave Hamiltonian, SCF, periodic ion interactions and analytic forces. Lattice and all atomic positions, valence count, spin restriction and integer occupations, every local-GTH coefficient, Libxc LDA_X plus LDA_C_VWN (VWN5), fractional k points and weights are matched. No fitted energy offset or force correction is applied.",
+          "The DFTK plane-wave cutoff is increased separately and its final force increment is measured. This is not a rounding-error comparison of identical finite matrices. Different finite Gaussian and plane-wave spaces are assessed using the published acceptance width and convergence diagnostics on both sides. Both engines share Libxc, which limits the extent of implementation independence.",
+          "DFTK compute_forces returns a representation associated with fractional coordinates; the Cartesian API is compute_forces_cart. Coordinate and force transformations are different. Comparisons here use Cartesian components in hartree/bohr throughout. The generation script, pinned Julia environment, pseudopotential, input and result hashes are retained. Comparing against the saved reference in Python and regenerating the reference in Julia are distinct operations."
+        ]
+      },
+      "formulas": [
+        "forces-coordinate-transform"
+      ],
+      "references": [
+        "gth1996",
+        "vwn1980",
+        "sun2020pyscf",
+        "dftk2021",
+        "dftk-api-docs"
+      ]
+    },
+    {
+      "id": "translation-and-component-checks",
+      "title": {
+        "ja": "成分・並進・非零の力を確認する",
+        "en": "Check components, translation and nonzero forces"
+      },
+      "paragraphs": {
+        "ja": [
+          "力がすべてほぼゼロの配置では、符号が逆でも検査が通ってしまうことがあります。非零の力を持つ多原子配置を用い、成分ごとの解析力、有限差分力、独立参照を比較します。成分の並べ替え、原子番号の取り違え、単位の誤りを、力のノルム1つだけで検査しないようにします。",
+          "外場がない理想的な周期系では、全原子の一様並進に対して全エネルギーが不変で、全力の和はゼロです。有限の実空間格子などはこの性質を数値的に破ることがあり、残った全力を記録すると格子や微分の診断になります。並進に関する検査だけでは相対配置に働く力の精度は保証できないため、エネルギー差分と独立参照を併用します。"
+        ],
+        "en": [
+          "A configuration with nearly zero forces can pass even with a sign error. A multiatom configuration carrying nonzero forces is used, with componentwise comparisons of analytic forces, finite differences and the independent reference. A single force norm should not hide component permutations, atom-order mistakes or incorrect units.",
+          "In an ideal periodic system without external fields, uniform translation leaves the total energy unchanged and the sum of atomic forces vanishes. Finite real-space grids can numerically break this property; the remaining total force is a useful grid and differentiation diagnostic. Translation checks alone do not establish accurate relative forces, so energy differences and an independent reference are used alongside them."
+        ]
+      },
+      "formulas": [
+        "forces-total-force"
+      ],
+      "references": [
+        "dftk-api-docs",
+        "pyscf-pbc-settings-docs"
+      ]
+    },
+    {
+      "id": "bomd-interface",
+      "title": {
+        "ja": "BOMDへ渡すものと、軌道で追加検証するもの",
+        "en": "The BOMD interface and additional trajectory validation"
+      },
+      "paragraphs": {
+        "ja": [
+          "BOMDの力供給部energy_and_forcesは、原子位置（positions_bohr）を受け取り、同じエネルギー面の全エネルギー（energy_per_cell）と力（forces_cartesian）、SCFの収束状態・残差を返します。電子状態が未収束なら計算を失敗として扱います。質量は核運動の時間積分で使い、DFTから求めるポテンシャルエネルギーや力へ掛けません。周期セル内での位置の折り返しは表示と連続した軌道の記録を区別します。",
+          "速度Verletなら、力で速度を半刻み進め、位置を更新し、新しい配置で電子状態を再び解いて力を得た後、残り半刻みの速度更新を行います。電子の初期推定を前のステップから引き継ぐことは高速化ですが、SCF収束の要件を置き換えるものではありません。今回の検証は原子間力とBOMDへ渡す接続を中心にし、単発の力評価や短い接続試験を長時間のMD検証として数えません。",
+          "実用的な軌道の受入には、時間刻みを細分化した比較、SCF公差を厳しくした比較、温度制御を使わないNVEでの全エネルギーと運動量、必要なら時間反転の検査を追加します。温度制御でエネルギーのずれを吸収させると力や積分器の誤差が見えにくくなるため、まず無温度制御で検査します。短時間のドリフトが小さいことを、長時間の安定性や正しい統計分布の保証とはしません。",
+          "Car–Parrinello法は仮想電子自由度を核と同時に進める別の定式化です。ここで用意するBorn–Oppenheimer面の力供給をCPMDの実装として扱いません。DFTから力、核の時間積分、温度制御のどこまでが実行済みかは、分野間をつなぐ入口でも段階ごとに示します。"
+        ],
+        "en": [
+          "The BOMD force provider energy_and_forces accepts positions_bohr and returns energy_per_cell and forces_cartesian from the same energy surface, together with SCF convergence and residual diagnostics. An unconverged electronic state is treated as a failure. Masses belong to nuclear time integration, not as factors multiplying the DFT potential energy or forces. Wrapped positions inside a periodic cell must be distinguished from a continuous trajectory record.",
+          "Velocity Verlet advances velocities by half a step, updates positions, solves the electronic problem again for the new forces, then completes the velocity update. Carrying an electronic guess from a previous step accelerates the calculation but does not replace SCF convergence. This verification focuses on atomic forces and the BOMD handoff; a single force evaluation or short interface smoke test is not counted as validation of long trajectories.",
+          "Accepting a practical trajectory additionally requires timestep refinement, tighter-SCF comparisons, total-energy and momentum checks in unthermostatted NVE, and time-reversal checks where appropriate. Thermostats can hide force or integration errors by absorbing energy changes, so unthermostatted checks come first. Small short-time drift does not guarantee long-time stability or a correct statistical distribution.",
+          "Car–Parrinello dynamics is a distinct formulation propagating fictitious electronic degrees of freedom alongside nuclei. A force provider on the Born–Oppenheimer surface is not a CPMD implementation. The cross-field navigation separately shows the executed scope of DFT, force evaluation, nuclear integration and temperature control."
+        ]
+      },
+      "formulas": [
+        "forces-verlet",
+        "forces-nve-energy"
+      ],
+      "references": [
+        "born-oppenheimer1927",
+        "herbert-head-gordon2005",
+        "car-parrinello1985"
+      ]
+    }
+  ],
+  "formulas": {
+    "forces-bo-surface": "E_{\\mathrm{BO}}(\\mathbf R;A)=\\min_{\\langle\\psi_i|\\psi_j\\rangle=\\delta_{ij}}E_{\\mathrm{KS}}[\\{\\psi_i\\};\\mathbf R,A]",
+    "forces-definition": "F_{I\\alpha}=-\\left.\\frac{d E_{\\mathrm{BO}}}{dR_{I\\alpha}}\\right|_{A,N_e},\\qquad [F_{I\\alpha}]=E_h/a_0",
+    "forces-hellmann-feynman": "H(\\lambda)\\Psi=E(\\lambda)\\Psi,\\quad\\langle\\Psi|\\Psi\\rangle=1\\quad\\Longrightarrow\\quad\\frac{dE}{d\\lambda}=\\left\\langle\\Psi\\left|\\frac{\\partial H}{\\partial\\lambda}\\right|\\Psi\\right\\rangle",
+    "forces-overlap-term": "F_{\\mathbf k}C_{\\mathbf k}=S_{\\mathbf k}C_{\\mathbf k}\\varepsilon_{\\mathbf k},\\quad W_{\\mathbf k}=C_{\\mathbf k}f_{\\mathbf k}\\varepsilon_{\\mathbf k}C_{\\mathbf k}^{\\dagger},\\quad \\left.\\frac{dE}{dR_{I\\alpha}}\\right|_{\\text{overlap term}}=-\\sum_qw_q\\operatorname{Tr}\\!\\left(W_{\\mathbf k_q}\\frac{\\partial S_{\\mathbf k_q}}{\\partial R_{I\\alpha}}\\right)",
+    "forces-central-difference": "F^{\\mathrm{FD}}_{I\\alpha}(h)=-\\frac{E(\\mathbf R+h\\mathbf e_{I\\alpha})-E(\\mathbf R-h\\mathbf e_{I\\alpha})}{2h}",
+    "forces-fd-errors": "F^{\\mathrm{FD}}(h)-F=\\mathcal O(h^2)+\\mathcal O(\\delta E/h)",
+    "forces-component-norm": "\\|\\Delta\\mathbf F\\|_{\\infty}=\\max_{I,\\alpha\\in\\{x,y,z\\}}|F^{(a)}_{I\\alpha}-F^{(b)}_{I\\alpha}|",
+    "forces-separate-errors": "\\Delta_{\\mathrm{basis}}\\mathbf F,\\quad\\Delta_{\\mathbf k}\\mathbf F,\\quad\\Delta_{\\mathrm{FFT}}\\mathbf F,\\quad\\mathbf F_{\\tau}-\\mathbf F_{\\mathrm{tight}}",
+    "forces-coordinate-transform": "\\mathbf R=A\\boldsymbol\\xi,\\qquad \\mathbf F_{\\mathrm{cart}}=-A^{-\\mathsf T}\\nabla_{\\boldsymbol\\xi}E",
+    "forces-total-force": "E(\\{\\mathbf R_I+\\mathbf t\\})=E(\\{\\mathbf R_I\\})\\quad\\Longrightarrow\\quad\\sum_I\\mathbf F_I=\\mathbf 0",
+    "forces-verlet": "\\mathbf v_{n+1/2}=\\mathbf v_n+\\frac{\\Delta t}{2M}\\mathbf F(\\mathbf R_n),\\quad\\mathbf R_{n+1}=\\mathbf R_n+\\Delta t\\,\\mathbf v_{n+1/2},\\quad\\mathbf v_{n+1}=\\mathbf v_{n+1/2}+\\frac{\\Delta t}{2M}\\mathbf F(\\mathbf R_{n+1})",
+    "forces-nve-energy": "\\mathcal E_n=E_{\\mathrm{BO}}(\\mathbf R_n)+\\sum_I\\frac{M_I}{2}|\\mathbf v_{I,n}|^2,\\qquad \\Delta\\mathcal E_n=\\mathcal E_n-\\mathcal E_0"
+  },
+  "references": [
+    {
+      "id": "gth1996",
+      "author": "S. Goedecker, M. Teter and J. Hutter",
+      "year": 1996,
+      "title": "Separable dual-space Gaussian pseudopotentials",
+      "journal": "Physical Review B 54, 1703–1710",
+      "doi": "10.1103/PhysRevB.54.1703",
+      "source": "https://journals.aps.org/prb/abstract/10.1103/PhysRevB.54.1703",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録を確認。実際のHe係数は同梱データと両ライブラリで照合し、原論文の表からの全桁の直接転記とは扱いません。",
+        "en": "Publisher bibliography and abstract consulted. Actual He coefficients are aligned through the packaged data and libraries, not presented as a full-precision transcription from the paper’s tables."
+      }
+    },
+    {
+      "id": "vwn1980",
+      "author": "S. H. Vosko, L. Wilk and M. Nusair",
+      "year": 1980,
+      "title": "Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis",
+      "journal": "Canadian Journal of Physics 58, 1200–1211",
+      "doi": "10.1139/p80-159",
+      "source": "https://doi.org/10.1139/p80-159",
+      "review_level": "metadata",
+      "review": {
+        "ja": "公式Libxc資料のLDA_C_VWN（VWN5）の原著DOIと書誌を確認。出版社本文へはアクセスできず、全文や表の監査は行っていません。",
+        "en": "Original DOI and bibliography checked through official Libxc documentation identifying LDA_C_VWN as VWN5. Publisher text was inaccessible; no full-text or table audit was performed."
+      }
+    },
+    {
+      "id": "sun2020pyscf",
+      "author": "Qiming Sun et al.",
+      "year": 2020,
+      "title": "Recent developments in the PySCF program package",
+      "journal": "The Journal of Chemical Physics 153, 024109",
+      "doi": "10.1063/5.0006074",
+      "source": "https://doi.org/10.1063/5.0006074",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録と既存アトラスの登録を確認。今回使用する周期APIは下記の公式資料と固定版コードでも確認します。",
+        "en": "Publisher bibliography/abstract and the existing Atlas entry consulted. The periodic APIs used here are additionally checked against official documentation and pinned code."
+      }
+    },
+    {
+      "id": "dftk2021",
+      "author": "M. F. Herbst, A. Levitt and E. Cancès",
+      "year": 2021,
+      "title": "DFTK: A Julian approach for simulating electrons in solids",
+      "journal": "Proceedings of the JuliaCon Conferences 3(26), 69",
+      "doi": "10.21105/jcon.00069",
+      "source": "https://proceedings.juliacon.org/papers/10.21105/jcon.00069",
+      "review_level": "selected-full-text",
+      "review": {
+        "ja": "出版社の書誌と公開論文の導入部を確認。今回の参照計算は独立した数値検査であり、論文中の全例の再現ではありません。",
+        "en": "Publisher bibliography and the introduction of the open paper consulted. The reference calculation is a separate numerical check, not a reproduction of all paper examples."
+      }
+    },
+    {
+      "id": "dftk-api-docs",
+      "author": "DFTK developers",
+      "year": 2026,
+      "title": "DFTK API and pseudopotentials",
+      "journal": "Official DFTK documentation",
+      "source": "https://docs.dftk.org/stable/api/",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "compute_forcesとcompute_forces_cartの座標・単位・離散化エネルギー微分の説明を参照。実際の参照生成は配布物のDFTK固定版で実行し、その版のソースも確認します。",
+        "en": "Selected API descriptions of compute_forces, compute_forces_cart, coordinates, units and derivatives of discrete energies consulted. Reference generation uses the packaged pinned DFTK environment, whose source is also checked."
+      }
+    },
+    {
+      "id": "born-oppenheimer1927",
+      "author": "M. Born and R. Oppenheimer",
+      "year": 1927,
+      "title": "Zur Quantentheorie der Molekeln",
+      "journal": "Annalen der Physik 389(20), 457–484",
+      "doi": "10.1002/andp.19273892002",
+      "source": "https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002",
+      "review_level": "metadata",
+      "review": {
+        "ja": "出版社の書誌・DOIを確認。Born–Oppenheimer分離の歴史的基礎として引用し、原文全文の監査や現代のMD実装の再現は主張しません。",
+        "en": "Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation."
+      }
+    },
+    {
+      "id": "car-parrinello1985",
+      "author": "R. Car and M. Parrinello",
+      "year": 1985,
+      "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+      "journal": "Physical Review Letters 55, 2471–2474",
+      "doi": "10.1103/PhysRevLett.55.2471",
+      "source": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+      "review_level": "selected-full-text",
+      "review": {
+        "ja": "出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。",
+        "en": "Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced."
+      }
+    },
+    {
+      "id": "feynman1939",
+      "author": "R. P. Feynman",
+      "year": 1939,
+      "title": "Forces in Molecules",
+      "journal": "Physical Review 56, 340–343",
+      "source": "https://journals.aps.org/pr/abstract/10.1103/PhysRev.56.340",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌と抄録を確認。Hellmann–Feynmanの力の関係の歴史的な一次文献として引用し、有限基底や擬ポテンシャルの勾配実装をこの原著だけで検証したとは主張しません。",
+        "en": "Publisher bibliography and abstract consulted. Cited as a historical primary source for the Hellmann–Feynman force relation, not as sole validation of finite-basis or pseudopotential gradient implementations."
+      },
+      "doi": "10.1103/PhysRev.56.340"
+    },
+    {
+      "id": "pulay1969",
+      "author": "P. Pulay",
+      "year": 1969,
+      "title": "Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory",
+      "journal": "Molecular Physics 17(2), 197–204",
+      "source": "https://www.tandfonline.com/doi/abs/10.1080/00268976900100941",
+      "review_level": "search-abstract-and-metadata",
+      "review": {
+        "ja": "検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。原子位置に依存する有限基底でのエネルギー微分を論じる力の原著として引用し、SCF加速DIISのPulay(1980)とは区別します。原著全文の監査は行っていません。",
+        "en": "Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Cited for finite position-dependent basis derivatives, distinct from Pulay (1980) on DIIS. No full-text audit is claimed."
+      },
+      "doi": "10.1080/00268976900100941"
+    },
+    {
+      "id": "pyscf-krks-grad-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "pyscf.pbc.grad.krks: analytic nuclear gradients with k-point sampling",
+      "journal": "Official PySCF source documentation",
+      "source": "https://pyscf.org/_modules/pyscf/pbc/grad/krks.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "周期KRKSの解析核勾配、LDAの交換相関微分、対応していない設定を公式ソースで確認。配布版のPySCF 2.11.0でも使用箇所を照合します。",
+        "en": "Official source documentation consulted for periodic KRKS analytic nuclear gradients, LDA XC derivatives and unsupported settings; executed calls are also checked in pinned PySCF 2.11.0."
+      }
+    },
+    {
+      "id": "pyscf-krhf-grad-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "pyscf.pbc.grad.krhf: electronic, overlap, pseudopotential and nuclear gradient terms",
+      "journal": "Official PySCF source documentation",
+      "source": "https://pyscf.org/_modules/pyscf/pbc/grad/krhf.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "grad_elecの密度・エネルギー重み付き密度と重なり微分、擬ポテンシャルの微分、周期イオン項の該当箇所を確認。第三者ソースコードを教材へ複製しません。",
+        "en": "Relevant source sections for grad_elec, density and energy-weighted density, overlap derivatives, pseudopotential derivatives and periodic ionic terms consulted. Third-party source is not copied into the tutorial."
+      }
+    },
+    {
+      "id": "pyscf-pbc-settings-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "Guidelines for PBC DFT Parameter Settings",
+      "journal": "Official PySCF documentation",
+      "source": "https://pyscf.org/user/pbc/dft-settings.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "FFTDFの補助平面波と実空間格子、核勾配への適用範囲の説明を参照。Gaussian軌道基底とFFT格子の収束を分けるための実装資料です。",
+        "en": "Selected discussion of FFTDF auxiliary plane waves, real-space grids and nuclear gradients consulted as implementation guidance distinguishing orbital-basis and auxiliary-grid convergence."
+      }
+    },
+    {
+      "id": "herbert-head-gordon2005",
+      "author": "J. M. Herbert and M. Head-Gordon",
+      "year": 2005,
+      "title": "Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation",
+      "journal": "Physical Chemistry Chemical Physics 7, 3269–3275",
+      "source": "https://pubs.rsc.org/en/content/articlelanding/2005/cp/b509494a",
+      "review_level": "search-abstract-and-metadata",
+      "review": {
+        "ja": "検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。SCFの解き残し・初期推定と力・NVEドリフトを区別する根拠として参照し、論文の外挿法や分子軌道を今回実装・再現したとは主張しません。",
+        "en": "Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Used to distinguish SCF solution error, electronic guesses, forces and NVE drift; the paper’s extrapolation method and trajectories are not claimed as implemented or reproduced."
+      },
+      "doi": "10.1039/B509494A"
+    }
+  ]
+}

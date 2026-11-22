@@ -74,7 +74,7 @@ def build():
         for lang in ['ja','en']:
             ja=lang=='ja'
             body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">'+('固定入力から実行・検証' if ja else 'FIXED INPUT · EXECUTION · VALIDATION')+'</p>'
-            body+='<nav class="resource-nav">'+link(ENTRY_BASE+'?lang='+lang,'21問題から選ぶ' if ja else 'Choose among 21 problems')+link('/numerical-methods-atlas/?lang='+lang,'アトラスの冒頭' if ja else 'Atlas home')+'</nav>'
+            body+='<nav class="resource-nav">'+link(ENTRY_BASE+'?lang='+lang,'22問題から選ぶ' if ja else 'Choose among 22 problems')+link('/numerical-methods-atlas/?lang='+lang,'アトラスの冒頭' if ja else 'Atlas home')+'</nav>'
             example=guide.render_example(x,read_result(x),lang,heading_level=1)
             intro='<p class="intro execution-outcome">'+ESC(item['outcome'][lang])+'</p><nav class="resource-nav entry-actions">'+link(x['inputs']['url'],'固定入力 / JSON' if ja else 'Fixed input / JSON')+link(x['release']['download'],'対応するコード / ZIP' if ja else 'Code edition / ZIP')+link('/numerical-methods-atlas/code-and-data/?lang='+lang+'#execution-steps-'+lang,'環境準備と共通手順' if ja else 'Setup and common steps')+'</nav>'
             example=example.replace('</h1>','</h1>'+intro,1)
@@ -95,19 +95,19 @@ def build():
     parent=ROOT/ENTRY_BASE.lstrip('/');sections=[]
     for lang in ['ja','en']:
         ja=lang=='ja'
-        body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">21 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する21の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-one paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p><nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'
+        body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">22 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する22の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-two paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p><nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'
         for item in data['examples']:
             x=item['execution'];body+='<li data-entry-id="'+x['id']+'"><h2>'+link(entry_url(x['id'],lang),x['name'][lang])+'</h2><p>'+ESC(item['outcome'][lang])+'</p>'+link(entry_url(x['id'],lang),'入力・実行・判定へ →' if ja else 'Input, execution and checks →')+'</li>'
-        body+='</ul><p>'+link('index.json','21例の入口台帳 / JSON' if ja else 'Discovery records for 21 examples / JSON')+' · '+link(REGISTRY_URL,'実行条件の正本 / JSON' if ja else 'Authoritative execution conditions / JSON')+'</p></section>'
+        body+='</ul><p>'+link('index.json','22例の入口台帳 / JSON' if ja else 'Discovery records for 22 examples / JSON')+' · '+link(REGISTRY_URL,'実行条件の正本 / JSON' if ja else 'Authoritative execution conditions / JSON')+'</p></section>'
         sections.append(body)
-    title={'ja':'代表21問題の実行・検証例 | 数値計算法アトラス','en':'21 runnable verification examples | Numerical Methods Atlas'}
+    title={'ja':'代表22問題の実行・検証例 | 数値計算法アトラス','en':'22 runnable verification examples | Numerical Methods Atlas'}
     write(parent/'index.html',document(ENTRY_BASE,title,data['scope'],sections));write(parent/'index.json',json_text(public))
     path=ROOT/'numerical-methods-atlas/sitemap.xml';xml=ET.parse(path);node=xml.getroot();ns='{http://www.sitemaps.org/schemas/sitemap/0.9}';known={x.text for x in node.findall('.//{*}loc')}
     for url in [ORIGIN+ENTRY_BASE,*[entry_url(x['id']) for x in data['examples']]]:
         if url not in known:ET.SubElement(ET.SubElement(node,ns+'url'),ns+'loc').text=url
     ET.register_namespace('',ns[1:-1]);xml.write(path,encoding='utf-8',xml_declaration=True)
     path=ROOT/'llms.txt';text=re.sub(r'^- \[Execution example entry pages\].*\n?','',path.read_text(),flags=re.M)
-    path.write_text(text.rstrip()+'\n- [Execution example entry pages]('+ORIGIN+ENTRY_BASE+'): 21 stable bilingual pages, each with fixed input, versioned code, acceptance criteria, failure scope and a public-file rerun receipt. Each has index.json and index.md; the discovery index is '+ORIGIN+ENTRY_BASE+'index.json. Navigation metadata preserves the original execution registry and its receipt hash.\n')
-    print('Built21 stable execution pages, their HTML/JSON/Markdown and discovery index.')
+    path.write_text(text.rstrip()+'\n- [Execution example entry pages]('+ORIGIN+ENTRY_BASE+'): 22 stable bilingual pages, each with fixed input, versioned code, acceptance criteria, failure scope and a public-file rerun receipt. Each has index.json and index.md; the discovery index is '+ORIGIN+ENTRY_BASE+'index.json. Navigation metadata preserves the original execution registry and its receipt hash.\n')
+    print('Built22 stable execution pages, their HTML/JSON/Markdown and discovery index.')
 
 if __name__=='__main__':build()
