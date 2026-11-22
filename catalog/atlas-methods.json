@@ -11063,8 +11063,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
-        "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+        "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
+        "en": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11089,12 +11089,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。",
-        "en": "Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error."
+        "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。 AMGの条件数・異方性・残差と前進誤差: 固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。",
+        "en": "Matrix-based AMG: distinguish residual and solution error: Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error. AMG: conditioning, anisotropy, residual and forward error: Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+        "on": "2026-11-22"
       },
       "aliases": [
         "AMG法",
@@ -11111,9 +11111,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
-        "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
-      }
+        "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
+        "en": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "foundations-conditioning",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "amg-conditioning"
+          ]
+        }
+      ]
     },
     {
       "id": "qr-svd",
@@ -11127,8 +11136,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
-        "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗: 実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。 QR/SVD：既定特異値・摂動増幅・数値階数: 二進で厳密に表現できる16×4行列の条件数を1から2³⁶まで変え、再構成誤差と解誤差を分けます。実際のbinary64入力に対し別環境で実行した80/120桁参照とLAPACKを比較します。",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares: Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions. QR/SVD: prescribed spectra, perturbation gain and numerical rank: Vary condition number from 1 to 2³⁶ for exactly representable 16×4 dyadic matrices, separating reconstruction from forward solution error. Compare LAPACK and separately executed 80/120-digit references for the actual binary64 inputs."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11158,12 +11167,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。",
-        "en": "Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results."
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗: 完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。 QR/SVD：既定特異値・摂動増幅・数値階数: LAPACKと教材の射影コアには共通の数値基盤が含まれます。mpmath SVDは別実装の二重対角化とQR反復、mpmath最小二乗は同じHouseholder群の別高精度実装です。どの高条件数行列にも微小特異値の相対高精度を保証するものではありません。",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares: Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results. QR/SVD: prescribed spectra, perturbation gain and numerical rank: Some LAPACK and projected-core numerical infrastructure is shared. mpmath SVD uses separate bidiagonalization and QR iteration; mpmath least squares is a separate high-precision implementation of the same Householder family. Tiny-singular-value relative accuracy is not guaranteed for arbitrary ill-conditioned matrices."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+        "on": "2026-11-22"
       },
       "aliases": [
         "QR分解",
@@ -11182,9 +11191,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。",
-        "en": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions."
-      }
+        "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗: 実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。 QR/SVD：既定特異値・摂動増幅・数値階数: 二進で厳密に表現できる16×4行列の条件数を1から2³⁶まで変え、再構成誤差と解誤差を分けます。実際のbinary64入力に対し別環境で実行した80/120桁参照とLAPACKを比較します。",
+        "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares: Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions. QR/SVD: prescribed spectra, perturbation gain and numerical rank: Vary condition number from 1 to 2³⁶ for exactly representable 16×4 dyadic matrices, separating reconstruction from forward solution error. Compare LAPACK and separately executed 80/120-digit references for the actual binary64 inputs."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "foundations-conditioning",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "qr-svd-conditioning"
+          ]
+        }
+      ]
     },
     {
       "id": "eigensolvers",
@@ -11198,8 +11216,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
-        "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。 Krylov固有値：クラスター部分空間と非正規感度: 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11229,12 +11247,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
-        "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。 Krylov固有値：クラスター部分空間と非正規感度: NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+        "on": "2026-11-22"
       },
       "aliases": [
         "固有値解法",
@@ -11251,9 +11269,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
-        "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
-      }
+        "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。 Krylov固有値：クラスター部分空間と非正規感度: 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
+        "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "foundations-conditioning",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "krylov-eigen-conditioning"
+          ]
+        }
+      ]
     },
     {
       "id": "splines",
@@ -11318,8 +11345,8 @@
         "en": "Approximation & quadrature"
       },
       "summary": {
-        "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
-        "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
+        "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ: Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。 求積：狭いピーク・相殺・端点・誤差推定の盲点: Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。",
+        "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11349,12 +11376,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。",
-        "en": "The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK."
+        "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ: Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。 求積：狭いピーク・相殺・端点・誤差推定の盲点: Simpsonの推定値は厳密誤差上界ではありません。盲点の検出に合格しても積分精度への合格ではありません。平方根の直接積分は深さ予算で未収束と表示し得ます。任意の振動・特異性の完全な探索や認証付き求積は主張しません。",
+        "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: The Simpson estimate is not a certified error bound. Passing the blind-spot control does not mean accurate integration. Direct square-root integration may honestly terminate at its depth budget. Exhaustive oscillatory/singular exploration and certified quadrature are not claimed."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+        "on": "2026-11-22"
       },
       "aliases": [
         "数値求積",
@@ -11373,9 +11400,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
-        "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
-      }
+        "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ: Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。 求積：狭いピーク・相殺・端点・誤差推定の盲点: Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。",
+        "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "foundations-conditioning",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "quadrature-conditioning"
+          ]
+        }
+      ]
     },
     {
       "id": "chebyshev",

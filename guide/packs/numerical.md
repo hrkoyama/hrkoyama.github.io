@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-e8541c8fcb
-Captured (UTC): 2026-11-22T13:13:49+00:00
+Snapshot: 2026-11-22-7c58675620
+Captured (UTC): 2026-11-22T14:12:05+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -740,6 +740,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/#conditio
 Coverage: reading
 
 Success on a scalar elliptic problem does not ensure robustness for nonsymmetric advection, saddle points or strong anisotropy. CG preconditioning requires compatible symmetry/positive-definiteness properties. A pure-Neumann problem still has a constant nullspace and a right-hand-side compatibility condition.
+Condition number alone does not determine AMG performance. Anisotropy direction, strength selection, the near-nullspace represented by interpolation and relaxation all affect convergence, even for positive-definite systems. Fixed isotropic/anisotropic matrix controls do not certify arbitrary elliptic problems or large parallel calculations.
 
 ## Algebraic multigrid / AMG — What to check [en]
 
@@ -747,13 +748,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/#verifica
 Coverage: reading
 
 Use manufactured Poisson solutions while varying mesh size and coefficient contrast. Measure true residuals, solution errors and per-cycle reduction; record hierarchy sizes and nonzero counts. Few iterations do not establish small discretization error.
+Preserve the historical manufactured-Poisson example. The additional release forms right-hand sides from known algebraic solutions and compares linear solves with an independent sparse direct solver and discrete-sine-transform diagonalization, also checking the analytic discrete spectrum. Record true relative residual, relative solution error, iteration history and hierarchy complexity separately while varying matrix size, anisotropy and conditioning at fixed residual tolerance and iteration budget. This added case is an algebraic conditioning diagnostic; it does not establish mesh convergence or accuracy against the continuous Poisson solution.
+
+## Algebraic multigrid / AMG — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Algebraic multigrid / AMG — Matrix-based AMG: distinguish residual and solution error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/
+Coverage: reading
+
+Computation for a fixed target
+Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution.
+Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: solvers.py · Tests: test_foundations.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Algebraic multigrid / AMG — AMG: conditioning, anisotropy, residual and forward error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/
+Coverage: reading
+
+Diagnostic control: no additional physical problem
+Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error.
+Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: experiments.py · Code: fixtures.py · Code: mpmath_reference.py · Code: solvers.py · Tests: test_conditioning.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## Algebraic multigrid / AMG — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/amg/#publication-scope
 Coverage: reading
 
-Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
+Historical inputs, measurements and tolerances are preserved. Additional conditioning, residual and convergence checks have a separate scoped release. Passing a diagnostic control can mean that its intended limitation was observed; it does not establish general success or reproduction of an entire paper.
 Algebraic multigrid / AMG
 
 ## Algebraic multigrid / AMG — Primary publications, supporting sources and review scope [en]
@@ -765,6 +794,9 @@ Distinguish original research, later variants, author monographs, pedagogical ar
 J. W. Ruge and K. Stüben (1987). 4. Algebraic Multigrid. Multigrid Methods
 Research publication: proposal or related formulation · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+P. Vaněk, M. Brezina, J. Mandel (2001). Convergence of algebraic multigrid based on smoothed aggregation. Numerische Mathematik
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+Distinguish theory conditional on weak approximation and related assumptions from observations on a small matrix family; no general anisotropy robustness claim.
 
 ## Automatic differentiation: derivatives for numerical solvers — Automatic differentiation: derivatives for numerical solvers [en]
 
@@ -2868,6 +2900,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/
 Coverage: reading
 
 Finite-precision loss of orthogonality can create ghost duplicates. For nonnormal matrices, a small residual need not imply a comparably small eigenvalue error. State B and the inner product in generalized problems Ax=λBx, and assess inner-solve tolerances for shift-invert.
+A small eigen-residual supplies backward-error information about an eigenpair of a nearby matrix; it need not imply small eigenvalue or eigenvector forward error for a nonnormal matrix. Individual-vector matching can be unstable in a close cluster, where principal angles between invariant subspaces can be more appropriate.
 
 ## Krylov eigenvalue solvers — What to check [en]
 
@@ -2875,13 +2908,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/
 Coverage: reading
 
 Check scaled residuals ∥Ax−θx∥/(∥A∥+|θ|), orthogonality, known eigenpairs and clustered/repeated eigenvalues. For symmetric cases compare Rayleigh quotients, and record restarts and initial-vector sensitivity.
+The added release separates eigenvalue spacing from nonnormality on small matrices and compares eigenvalue/subspace errors with independent references as Krylov dimension and residual vary. Passing a residual check alone is not presented as an accurate true eigenvalue. Report conditioning alongside measured errors in clustered and nonnormal controls; no guarantee for arbitrary large nonsymmetric systems is implied. Projected solves and dense references may share LAPACK infrastructure and are not described as fully independent backends. Analytic eigenvalues and constructed pseudoeigenpair controls provide additional checks.
+
+## Krylov eigenvalue solvers — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Krylov eigenvalue solvers — Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/
+Coverage: reading
+
+Computation for a fixed target
+Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references.
+Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: solvers.py · Tests: test_foundations.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Krylov eigenvalue solvers — Krylov eigenvalues: cluster subspaces and nonnormal sensitivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/
+Coverage: reading
+
+Computation for a fixed target
+Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace.
+NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: experiments.py · Code: fixtures.py · Code: mpmath_reference.py · Code: solvers.py · Tests: test_conditioning.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## Krylov eigenvalue solvers — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/#publication-scope
 Coverage: reading
 
-Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
+Historical inputs, measurements and tolerances are preserved. Additional conditioning, residual and convergence checks have a separate scoped release. Passing a diagnostic control can mean that its intended limitation was observed; it does not establish general success or reproduction of an entire paper.
 Krylov eigenvalue solvers
 
 ## Krylov eigenvalue solvers — Primary publications, supporting sources and review scope [en]
@@ -2896,6 +2957,15 @@ Bibliographic identity checked against the DOI registration on 2026-11-22. Relev
 C. Lanczos (1950). An iteration method for the solution of the eigenvalue problem of linear differential and integral operators. Journal of Research of the National Bureau of Standards
 Research publication: proposal or related formulation · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview.
+
+## Krylov eigenvalue solvers — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/#sources
+Coverage: reading
+
+Official reference documentation · Selected source passages consulted · Consulted record
+Do not equate a small eigenpair residual with small forward eigenvalue error for nonnormal matrices; distinguish eigenvalue sensitivity, individual vectors, and clustered invariant subspaces.
 
 ## Diffusion, elliptic equations, boundary conditions, and iteration [en]
 
@@ -5845,7 +5915,7 @@ Degenerate controls such as constant series and policies for nonfinite input are
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/mcmc/#scoped-examples
 Coverage: reading
 
-Check each example’s target, observable, diagnostic definition and scope. Passing an acceptance check differs from successful mixing or estimation. Historical inputs, measurements and criteria are preserved.
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
 
 ## Markov-chain Monte Carlo / MCMC — Gaussian-target MCMC: distribution, autocorrelation and ESS [en]
 
@@ -7718,6 +7788,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/#condi
 Coverage: reading
 
 For full column rank, κ₂(AᵀA)=κ₂(A)². A small residual can coexist with uncertain coefficients under ill-conditioning or noise. Choose a numerical-rank threshold relative to scale, rounding and measurement uncertainty, and consider column scaling when variables have different units.
+Distinguish residual/backward error from forward errors in coefficients or singular values. At large condition numbers, small changes to the input or right-hand side can cause large coefficient changes. Numerical rank depends on a singular-value threshold and arithmetic precision; a truncated least-squares solution need not solve the original problem exactly.
+General least-squares sensitivity also depends on the angle between the right-hand side and the column space, not only on condition number. Published relative-accuracy results for one-sided Jacobi SVD depend on stopping rules and componentwise conditioning. Agreement for small singular values in these small matrices is not a universal relative-accuracy guarantee for arbitrary ill-conditioned matrices.
 
 ## QR, SVD and least squares — What to check [en]
 
@@ -7725,13 +7797,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/#verif
 Coverage: reading
 
 Check relative factorization residuals, orthogonality and Aᵀ(Ax−b). Test prescribed singular values and rank-deficient cases, and compare solution changes under controlled data perturbations.
+The added release compares errors across small matrices with prescribed singular values, fixed right-hand-side perturbations and numerical-rank thresholds. Measure QR/SVD reconstruction and orthogonality, least-squares residual, coefficient forward error and numerical rank separately. Distinguish LAPACK references from independent high-precision references constructed from the actual binary floating-point input. Condition-number squaring for normal equations is explained above as theory; it is not an executed control in this added case.
+
+## QR, SVD and least squares — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## QR, SVD and least squares — Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/
+Coverage: reading
+
+Computation for a fixed target
+Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions.
+Not a full LAPACK replacement or validation of complex/wide matrices, arbitrary extreme scales or optimal relative singular-value accuracy. The 10⁻¹² cutoff defines numerical rather than exact mathematical rank. The experiment does not establish all hypotheses of the Demmel–Veselić accuracy results.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: solvers.py · Tests: test_foundations.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## QR, SVD and least squares — QR/SVD: prescribed spectra, perturbation gain and numerical rank [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/
+Coverage: reading
+
+Computation for a fixed target
+Vary condition number from 1 to 2³⁶ for exactly representable 16×4 dyadic matrices, separating reconstruction from forward solution error. Compare LAPACK and separately executed 80/120-digit references for the actual binary64 inputs.
+Some LAPACK and projected-core numerical infrastructure is shared. mpmath SVD uses separate bidiagonalization and QR iteration; mpmath least squares is a separate high-precision implementation of the same Householder family. Tiny-singular-value relative accuracy is not guaranteed for arbitrary ill-conditioned matrices.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: experiments.py · Code: fixtures.py · Code: mpmath_reference.py · Code: solvers.py · Tests: test_conditioning.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## QR, SVD and least squares — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/#publication-scope
 Coverage: reading
 
-Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
+Historical inputs, measurements and tolerances are preserved. Additional conditioning, residual and convergence checks have a separate scoped release. Passing a diagnostic control can mean that its intended limitation was observed; it does not establish general success or reproduction of an entire paper.
 QR, SVD and least squares
 
 ## QR, SVD and least squares — Primary publications, supporting sources and review scope [en]
@@ -7746,6 +7846,18 @@ Bibliographic identity checked against the DOI registration on 2026-11-22. Relev
 G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. Numerische Mathematik
 Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
 Consulted the original introduction on page 403, including the SVD, ordering of singular values and relation to rank, through the Göttingen digitization. This does not claim reproduction of the ALGOL implementation or a proof of global nonlinear parameter identifiability.
+J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR. SIAM Journal on Matrix Analysis and Applications
+
+## QR, SVD and least squares — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/qr-svd/#sources
+Coverage: reading
+
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+Checked the dependence of relative-accuracy statements on stopping rules and componentwise sensitivity; not a blanket accuracy guarantee for tiny singular values of arbitrary ill-conditioned matrices.
+LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems.
+Official reference documentation · Selected source passages consulted · Consulted record
+Checked backward versus forward error, the residual-angle dependence of least-squares sensitivity, and numerical-rank truncation controlled by RCOND.
 
 ## Gaussian and adaptive quadrature — Gaussian and adaptive quadrature [en]
 
@@ -7775,6 +7887,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/#c
 Coverage: reading
 
 Singularities, jumps, rapid oscillations and narrow peaks can be missed by sampled nodes. Split at known discontinuities and consider transformations or matched weighted rules. Relative tolerance alone is unsuitable when the integral is close to zero.
+When cancellation makes an integral small, a cancellation condition number such as integral(|f|)/|integral(f)| is informative. Absolute/relative true errors differ from a rule’s internal error estimate. If finitely many sample points miss a narrow bump, agreement between two approximations can coexist with a large true integration error. State the input-perturbation norm and perturbation model when comparing condition numbers; if the integral is zero, relative condition and relative error are undefined, so report absolute quantities.
 
 ## Gaussian and adaptive quadrature — What to check [en]
 
@@ -7782,13 +7895,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/#v
 Coverage: reading
 
 Verify degree of exactness on monomials, then test nonpolynomials with known integrals, singularities and narrow peaks. Record estimated versus true error, evaluation count and termination caused by subdivision limits.
+The added release varies rule order and tolerance for smooth functions with known integrals, cancellation-sensitive functions and a fixed narrow-bump control. Compare against independent references and record true error, estimated error and function evaluations separately. Distinguish an explicitly split calculation that resolves the bump from a missed-bump diagnostic; neither supplies a universal guarantee for all integrands. Compare an endpoint-derivative singularity before and after a change of variables, and retain evaluation/depth-budget exhaustion as an explicit termination status.
+
+## Gaussian and adaptive quadrature — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Gaussian and adaptive quadrature — Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/
+Coverage: reading
+
+Computation for a fixed target
+Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK.
+The local Simpson estimate is not a rigorous error bound for arbitrary functions. The implementation does not generally solve missed high frequencies, singularities or roundoff stagnation, and it is not a reimplementation of Gauss–Kronrod or all of QUADPACK.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: solvers.py · Tests: test_foundations.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Gaussian and adaptive quadrature — Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/
+Coverage: reading
+
+Computation for a fixed target
+Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.
+The Simpson estimate is not a certified error bound. Passing the blind-spot control does not mean accurate integration. Direct square-root integration may honestly terminate at its depth budget. Exhaustive oscillatory/singular exploration and certified quadrature are not claimed.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: experiments.py · Code: fixtures.py · Code: mpmath_reference.py · Code: solvers.py · Tests: test_conditioning.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## Gaussian and adaptive quadrature — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/#publication-scope
 Coverage: reading
 
-Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
+Historical inputs, measurements and tolerances are preserved. Additional conditioning, residual and convergence checks have a separate scoped release. Passing a diagnostic control can mean that its intended limitation was observed; it does not establish general success or reproduction of an entire paper.
 Gaussian and adaptive quadrature
 
 ## Gaussian and adaptive quadrature — Primary publications, supporting sources and review scope [en]
@@ -7803,6 +7944,15 @@ Bibliographic identity checked against the DOI registration on 2026-11-22. Relev
 Robert Piessens and Elise de Doncker-Kapenga and Christoph W. Überhuber and David K. Kahaner (1983). QUADPACK: A Subroutine Package for Automatic Integration. Springer
 Author monograph / supporting reference · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. ACM Transactions on Mathematical Software
+
+## Gaussian and adaptive quadrature — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quadrature/#sources
+Coverage: reading
+
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Checked selected original discussion of accidentally small differences between quadrature estimates. The educational Simpson counterexample is original test design, not an implementation of the paper’s new integrators.
 
 ## Hydrogenic atoms and helium: runnable validation examples [en]
 
@@ -10537,6 +10687,11 @@ A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-
 A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. 10.1214/ss/1177011136
 The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. Original source
 T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. 10.1016/j.jcp.2004.11.016
+P. Vaněk, M. Brezina, J. Mandel (2001). Convergence of algebraic multigrid based on smoothed aggregation. 10.1007/s002110000226
+LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems. Original source
+mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation. Original source
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview. Original source
+P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. 10.1145/1824801.1824804
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -11911,8 +12066,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 129 methods and building blocks · 239 journal/conference papers · 291 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 89 reading chapters including this inventory.
+46 equation/model entries · 129 methods and building blocks · 241 journal/conference papers · 296 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 90 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12159,7 +12314,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-233 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+235 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -14177,6 +14332,589 @@ Checked theorem3 and section5 of the author-hosted lecture for implicit-midpoint
 The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
 Review scope / review_level: official-versioned-api-specification
 Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Numerical foundations: conditioning, residuals, convergence and independent references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Compare AMG, QR/SVD, Krylov eigenvalue methods and quadrature across fixed conditioning families. Separate residuals from forward error and matrix from integral conditioning; check independent references alongside convergence limits and diagnostic blind spots.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#run-all
+Coverage: reading
+
+Run inside atlas-foundations-conditioning-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — AMG: conditioning, anisotropy, residual and forward error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-assumptions
+Coverage: reading
+
+A=T⊗I+εI⊗T with n=7/15/31 and ε=1/.1/.01. This is a known-solution algebraic diagnostic; continuum PDE validation remains in the earlier Poisson example. At fixed square n, κ₂ is independent of ε.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-algorithm
+Coverage: reading
+
+Reuse the earlier MIT-licensed Atlas educational smoothed-aggregation AMG in a separate source release. Matrix-only hierarchy setup uses strength .08, Jacobi smoothing, fixed relative tolerance 10⁻¹⁰ and at most 180 V-cycles. Sine-transform spectral inversion is reference-side only.
+\kappa_2(A)=\cot^2\!\left(\frac{\pi}{2(n+1)}\right)\frac{\|x-\hat x\|_2}{\|x\|_2}\le\kappa_2(A)\frac{\|b-A\hat x\|_2}{\|b\|_2}
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-validation
+Coverage: reading
+
+Store true residual, forward error, DST agreement, operator complexity and complete histories. Perturb a maximal-eigenmode RHS in the minimal-eigenmode direction and check the predicted relative amplification κ₂ with direct solves. Isotropic runs must converge; the predeclared anisotropy stress policy permits honestly reported budget exhaustion. A one-cycle control detects nonconvergence.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-limits
+Coverage: reading
+
+Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_condition_2414.345062232
+maximum_actual_relative_residual9.21350937163e-11
+maximum_actual_forward_error6.24977661486e-11
+stress_budget_exhaustions0
+maximum_condition_gain_relative_error3.20974358203e-11
+判定 / checkPassed
+n7-eps1-true-residualtrue
+n7-eps1-forward-boundtrue
+n7-eps1-condition-gaintrue
+n7-eps1-complexitytrue
+n7-eps1-independent-dsttrue
+n7-eps1-resolvedtrue
+n7-eps0.1-true-residualtrue
+n7-eps0.1-forward-boundtrue
+n7-eps0.1-condition-gaintrue
+n7-eps0.1-complexitytrue
+n7-eps0.1-independent-dsttrue
+n7-eps0.1-stress-honesttrue
+n7-eps0.01-true-residualtrue
+n7-eps0.01-forward-boundtrue
+n7-eps0.01-condition-gaintrue
+n7-eps0.01-complexitytrue
+n7-eps0.01-independent-dsttrue
+n7-eps0.01-stress-honesttrue
+n7-independent-spectrumtrue
+n15-eps1-true-residualtrue
+n15-eps1-forward-boundtrue
+n15-eps1-condition-gaintrue
+n15-eps1-complexitytrue
+n15-eps1-independent-dsttrue
+n15-eps1-resolvedtrue
+n15-eps0.1-true-residualtrue
+n15-eps0.1-forward-boundtrue
+n15-eps0.1-condition-gaintrue
+n15-eps0.1-complexitytrue
+n15-eps0.1-independent-dsttrue
+n15-eps0.1-stress-honesttrue
+n15-eps0.01-true-residualtrue
+n15-eps0.01-forward-boundtrue
+n15-eps0.01-condition-gaintrue
+n15-eps0.01-complexitytrue
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+n15-eps0.01-independent-dsttrue
+n15-eps0.01-stress-honesttrue
+n15-independent-spectrumtrue
+n31-eps1-true-residualtrue
+n31-eps1-forward-boundtrue
+n31-eps1-condition-gaintrue
+n31-eps1-complexitytrue
+n31-eps1-independent-dsttrue
+n31-eps1-resolvedtrue
+n31-eps0.1-true-residualtrue
+n31-eps0.1-forward-boundtrue
+n31-eps0.1-condition-gaintrue
+n31-eps0.1-complexitytrue
+n31-eps0.1-independent-dsttrue
+n31-eps0.1-stress-honesttrue
+n31-eps0.01-true-residualtrue
+n31-eps0.01-forward-boundtrue
+n31-eps0.01-condition-gaintrue
+n31-eps0.01-complexitytrue
+n31-eps0.01-independent-dsttrue
+n31-eps0.01-stress-honesttrue
+n31-independent-spectrumtrue
+short-budget-failure-explicittrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+nunknownsepsiloncondition_2_analyticlambda_minlambda_maxcyclesrelative_residualrelative_forward_errorsparse_direct_vs_dstdst_vs_known_solutioncondition_times_residualcondition_gain_directoperator_complexitylevelssolver_convergedterminationscope
+749125.274142369119.4868396771492.513160323149.21350937163e-116.24977661486e-116.58028481271e-162.70031144144e-162.32863547577e-0925.27414236931.635944700463trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+7490.125.274142369110.7177618224270.882238178397.42251708835e-115.53558472823e-119.04861788632e-169.22482518958e-161.87597753628e-0925.27414236961.649769585253trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+7490.0125.27414236919.84085403694248.71914596394.20322856925e-112.80543908092e-116.63377993796e-165.48525530324e-161.06232997269e-0925.27414236992.336405529953trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+152251103.0868689219.67587286712028.32412713193.60517601057e-111.8781585884e-116.48489883048e-161.53727481047e-163.71646306835e-09103.0868689182.531455399064trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+152250.1103.0868689210.82173007691115.57826992577.4357877687e-112.47962622774e-113.72554594048e-153.71347351458e-157.66532079028e-09103.0868689172.580281690144trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+152250.01103.086868929.936315797881024.3036842126.15872636311e-115.66164906862e-111.28933973888e-155.61520436591e-166.34883817307e-09103.0868689213.262910798124trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+319611414.34506223219.72335955078172.27664045254.3661442862e-111.98843747939e-112.95602630833e-156.45054017893e-161.80909032598e-08414.3450622383.196752830594trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+319610.1414.34506223210.84784775294494.75215225699.16001396763e-111.35274755134e-111.41931431821e-141.54486700169e-143.79540655746e-08414.3450622293.329416791284trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+319610.01414.3450622329.960296573094126.99970343186.47787201507e-114.71450586535e-113.49299889028e-152.06494037936e-152.68407428322e-08414.345062234.002777184365trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+Measurements and complete records / JSON
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+P. Vaněk, J. Mandel and M. Brezina (1996). Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems · DOI: 10.1007/BF02238511
+Review scope / review_level: publisher-abstract-and-metadata
+P. Vaněk, M. Brezina, J. Mandel (2001). Convergence of algebraic multigrid based on smoothed aggregation · DOI: 10.1007/s002110000226
+Review scope / review_level: author-hosted original preprint abstract and opening text via official university search extraction
+Distinguish theory conditional on weak approximation and related assumptions from observations on a small matrix family; no general anisotropy robustness claim.
+Official reference-implementation documentation: scipy.sparse.linalg.spsolve.html
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — QR/SVD: prescribed spectra, perturbation gain and numerical rank [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Vary condition number from 1 to 2³⁶ for exactly representable 16×4 dyadic matrices, separating reconstruction from forward solution error. Compare LAPACK and separately executed 80/120-digit references for the actual binary64 inputs.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-assumptions
+Coverage: reading
+
+Use Hadamard orthogonal factors U,V and sⱼ=2⁻qj for q=0/4/8/12. Fixed b=u₀ and b+2⁻⁴⁰u_min measure perturbation amplification. Individual singular vectors are nonunique for the repeated singular values at q=0.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-algorithm
+Coverage: reading
+
+Implement Householder QR, one-sided Jacobi SVD and triangular back substitution. Vary rank cutoffs 10⁻⁸/10⁻¹²/10⁻¹⁴ and compare with LAPACK solutions using the same truncation convention. No executed normal-equations comparison is added.
+A=U\operatorname{diag}(2^{-qj})V^T,\quad\kappa_2(A)=2^{3q}\delta b=\eta u_{\min},\quad\delta x=\eta\sigma_{\min}^{-1}v_{\min}
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-validation
+Coverage: reading
+
+Save reconstruction, orthogonality, singular values, solution perturbations, least-squares stationarity and an exact rank-two control. The mpmath1.3.0 SVD and QR reference was actually executed using integer-ratio conversions of binary inputs. Runtime SHA and completeness guards check all four inputs at both precisions and never substitute analytic truth after a mismatch.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-limits
+Coverage: reading
+
+Some LAPACK and projected-core numerical infrastructure is shared. mpmath SVD uses separate bidiagonalization and QR iteration; mpmath least squares is a separate high-precision implementation of the same Householder family. Tiny-singular-value relative accuracy is not guaranteed for arbitrary ill-conditioned matrices.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+largest_condition_268719476736
+maximum_backward_reconstruction6.07460414636e-16
+maximum_forward_error0.000492095337384
+minimum_numerical_rank2
+reference_precision_digits120
+判定 / checkPassed
+q0-factorizationtrue
+q0-high-precision-spectrumtrue
+q0-condition-aware-forwardtrue
+q0-lapack-referencetrue
+q0-perturbation-gaintrue
+q4-factorizationtrue
+q4-high-precision-spectrumtrue
+q4-condition-aware-forwardtrue
+q4-lapack-referencetrue
+q4-perturbation-gaintrue
+q8-factorizationtrue
+q8-high-precision-spectrumtrue
+q8-condition-aware-forwardtrue
+q8-lapack-referencetrue
+q8-perturbation-gaintrue
+q12-factorizationtrue
+q12-high-precision-spectrumtrue
+q12-condition-aware-forwardtrue
+q12-lapack-referencetrue
+q12-perturbation-gaintrue
+cutoff1e-08-rank-awaretrue
+cutoff1e-12-rank-awaretrue
+cutoff1e-14-rank-awaretrue
+exact-rank-deficiencytrue
+sweep-budget-failure-explicittrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-measurements
+Coverage: reading
+
+kindexponentcondition_2rankqr_reconstructionsvd_reconstructionorthogonalityscaled_singular_errorsmallest_singular_relative_errormaximum_relative_forward_errorforward_acceptance_budgetqr_relative_residualsvd_relative_residualpredicted_perturbation_solution_normperturbation_projection_absolute_errorjacobi_sweepsrank_rtolreference_rankeffective_condition_2least_squares_stationarityrelative_truncated_reference_errorbias_to_untruncated_solution
+prescribed-spectrum0145.08768104863e-1606.66133814775e-16001.57009245868e-161e-10009.09494701773e-131.11022302463e-160——————
+prescribed-spectrum4409644.83782623996e-163.30099235322e-168.99631371026e-161.88651178012e-177.72715225139e-144.54746551287e-131e-101.92296268638e-161.66533453694e-163.72529029846e-091.40359945888e-134——————
+prescribed-spectrum81677721643.4219110723e-165.61317495834e-162.43909158419e-152.50687871069e-171.08998254866e-103.22470540349e-083.72529029846e-072.48253415325e-162.01987375699e-151.52587890625e-055.73891434374e-104——————
+prescribed-spectrum126871947673646.07460414636e-163.53270792676e-164.38827104819e-141.11022302463e-161.23935746377e-060.0004920953373840.001525878906253.33066907388e-167.1333449289e-150.06257.74597454511e-083——————
+rank-cutoff——3————————————1e-08316777216.00561.11022302463e-163.39113328535e-090.0623782894601
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-measurements
+Coverage: reading
+
+rank-cutoff——4————————————1e-12468719391568.12.77555756156e-170.0004919887551470.000491059711436
+rank-cutoff——4————————————1e-14468719391568.12.77555756156e-170.0004919887551470.000491059711436
+Measurements and complete records / JSON
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix · DOI: 10.1145/320941.320947
+Review scope / review_level: publisher-metadata
+J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR · DOI: 10.1137/0613074
+Review scope / review_level: primary publisher abstract and bibliographic metadata
+Checked the dependence of relative-accuracy statements on stopping rules and componentwise sensitivity; not a blanket accuracy guarantee for tiny singular values of arbitrary ill-conditioned matrices.
+LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems
+Review scope / review_level: official implementation documentation, error-analysis and numerical-rank sections
+Checked backward versus forward error, the residual-angle dependence of least-squares sensitivity, and numerical-rank truncation controlled by RCOND.
+mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation
+Review scope / review_level: official matrix documentation and selected installed mpmath1.3.0 source (svd_r_raw, qr_solve), plus actual 80/120dps fixed-input execution
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#qr-svd-conditioning-references
+Coverage: reading
+
+SVD uses Householder bidiagonalization and a QR variant; least squares uses a separate high-precision Householder QR implementation. The latter shares the educational QR mathematical family and is not called a different algorithm family. Actual binary floating-point inputs were loaded by integer ratios and executed in a generation-only environment.
+Official reference-implementation documentation: scipy.linalg.svd.html · scipy.linalg.lstsq.html
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Krylov eigenvalues: cluster subspaces and nonnormal sensitivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-assumptions
+Coverage: reading
+
+Top symmetric gaps are1/.1/.01. Nonnormal matrices are actual floating-point upper-triangular inputs with K=10/1000 and known diagonal eigenvalues. Nominal spectra after floating-point similarity construction are not labelled exact truth.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-algorithm
+Coverage: reading
+
+Use fully reorthogonalized Lanczos and two-pass MGS Arnoldi; only the small projected matrix is solved densely. Compare QR-spanned top-two subspace projectors, invariant under signs and cluster rotations.
+\kappa(\lambda)=\frac{\|y\|_2\|x\|_2}{|y^*x|}A=\begin{pmatrix}1&K\\0&1+\delta\end{pmatrix},\quad\|A\tilde v-\tilde\lambda\tilde v\|_2=\frac{\delta^2}{4K\sqrt{1+(\delta/(2K))^2}}
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-validation
+Coverage: reading
+
+Compare analytic triangular eigenvalues, SciPy dense eigenvalues and left/right eigenvector condition numbers. A separately constructed2×2 pseudoeigenpair has residual about2.5×10⁻⁸ but eigenvalue error.005 at K=1000. It is a sensitivity control, not a failure produced by the iterative solver.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-limits
+Coverage: reading
+
+NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_basis_orthogonality6.81397930341e-16
+largest_eigenvalue_condition100000.000005
+constructed_small_residual2.49999999997e-08
+constructed_forward_error0.005
+判定 / checkPassed
+gap1-analytic-spectrumtrue
+gap1-resolvedtrue
+gap1-basistrue
+gap0.1-analytic-spectrumtrue
+gap0.1-resolvedtrue
+gap0.1-basistrue
+gap0.01-analytic-spectrumtrue
+gap0.01-resolvedtrue
+gap0.01-basistrue
+K10-conditiontrue
+K10-analytic-spectrumtrue
+K10-resolvedtrue
+K10-basistrue
+K1000-conditiontrue
+K1000-analytic-spectrumtrue
+K1000-resolvedtrue
+K1000-basistrue
+pseudoK1-literal-formulatrue
+pseudoK10-literal-formulatrue
+pseudoK1000-literal-formulatrue
+small-residual-does-not-certify-forward-errortrue
+short-dimension-has-residualtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+dimensioneigenvalue_realeigenvalue_imageigenvalue_errorabsolute_residualrelative_backward_residualorthogonalitytop_two_projector_errorhappy_breakdownkindgapeigenvalue_conditioncouplingcondition_aware_eigenvalue_error_budgetstatus
+44.9963359041300.00366409587030.06736654996320.006739124276064.5810728913e-160.916317095507falsesymmetric-cluster11———
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+84.9999999992907.06867453459e-105.8604275954e-055.86042759582e-064.70465316134e-160.000493742348267falsesymmetric-cluster11———
+16502.6645352591e-155.06766171196e-135.06766171196e-144.75713054469e-162.6666916925e-11falsesymmetric-cluster11———
+32502.6645352591e-153.41985411681e-153.41985411681e-165.09375984398e-161.35041647969e-15falsesymmetric-cluster11———
+44.9986685942900.001331405705570.01721438938150.001721668162033.92113059378e-160.998731459242falsesymmetric-cluster0.11———
+84.9999998913901.08613617655e-070.0007269733305297.26973338425e-054.10887907987e-160.00143754794881falsesymmetric-cluster0.11———
+16507.9936057773e-156.29352614028e-126.29352614028e-135.82451279364e-161.47508486927e-11falsesymmetric-cluster0.11———
+32501.06581410364e-143.72927946317e-153.72927946317e-166.14137670237e-161.34229948678e-15falsesymmetric-cluster0.11———
+44.9998212287800.0001787712232630.01292505194520.00129252830122.67455401137e-160.999986749538falsesymmetric-cluster0.011———
+84.9999895340401.04659606412e-050.006873399918520.000687340711225.23724166511e-160.0128893795413falsesymmetric-cluster0.011———
+16501.33226762955e-146.41582155759e-116.41582155759e-125.32704945939e-161.14213851155e-10falsesymmetric-cluster0.011———
+32501.42108547152e-143.17215995395e-153.17215995395e-166.13536632048e-161.29104836895e-15falsesymmetric-cluster0.011———
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+45.4380101671700.4280101671690.09962789774940.005688921212573.87794284752e-160.193971947601falsenonnormal-arnoldi—1000.000510——
+85.0100007239507.23948866188e-071.50539402039e-058.81140538065e-074.00734902481e-164.88304422303e-05falsenonnormal-arnoldi—1000.000510——
+165.0104.29878355135e-131.1924773726e-136.9798350732e-154.80861944453e-168.10357677514e-13falsenonnormal-arnoldi—1000.000510——
+325.0105.39124300758e-131.01641114469e-145.94928031299e-165.28155618768e-169.18529560621e-14falsenonnormal-arnoldi—1000.0005101e-08—
+45.4223603238800.4123603238850.001067708245711.06192351322e-064.78359039524e-160.165879384794falsenonnormal-arnoldi—100000.0000051000——
+85.0100006760206.76017343437e-071.50539496811e-071.4978532022e-105.90706078152e-164.55069731768e-05falsenonnormal-arnoldi—100000.0000051000——
+165.0100000000302.905142793e-116.75258940078e-146.71876011156e-176.05961517179e-165.47370714188e-12falsenonnormal-arnoldi—100000.0000051000——
+325.0100000000404.19984047539e-116.39950223803e-146.36744185361e-176.81397930341e-163.69348708135e-12falsenonnormal-arnoldi—100000.00000510002.86045189409e-06—
+———0.0052.49996875059e-05————constructed-pseudoeigenpair0.01100.0049998751—constructed sensitivity control; not a solver-produced pair
+———0.0052.4999996875e-06————constructed-pseudoeigenpair0.011000.000510—constructed sensitivity control; not a solver-produced pair
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+———0.0052.49999999997e-08————constructed-pseudoeigenpair0.01100000.0000051000—constructed sensitivity control; not a solver-produced pair
+Measurements and complete records / JSON
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+C. Lanczos (1950). An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators · DOI: 10.6028/jres.045.026
+Review scope / review_level: primary-first-page-and-official-metadata
+W. E. Arnoldi (1951). The principle of minimized iterations in the solution of the matrix eigenvalue problem · DOI: 10.1090/qam/42792
+Review scope / review_level: publisher-metadata-and-reference-list
+Y. Saad (1980). Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices · DOI: 10.1016/0024-3795(80)90169-X
+Review scope / review_level: publisher-abstract-and-metadata
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview
+Review scope / review_level: official implementation documentation, error-bound overview and cluster/invariant-subspace distinction
+Do not equate a small eigenpair residual with small forward eigenvalue error for nonnormal matrices; distinguish eigenvalue sensitivity, individual vectors, and clustered invariant subspaces.
+Official reference-implementation documentation: scipy.linalg.eigh.html · scipy.linalg.eig.html
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-assumptions
+Coverage: reading
+
+Use[0,1], Gauss orders8/16/32/64/128 and tolerances10⁻⁵/10⁻⁷/10⁻⁹. Lorentz widths are.1/.03/.01; cancellation scales are0/2¹²/2²⁴/2³⁶. A zero integral has undefined relative condition, stored as null.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-algorithm
+Coverage: reading
+
+Implement Golub–Welsch nodes/weights and adaptive Simpson with a local difference/15 estimate. Companion checks use x=t² for the endpoint and a known-support split for the narrow bump; these are not general automatic rescue mechanisms.
+\kappa_{\rm cancel}=\frac{\int_a^b|f(x)|\,dx}{|\int_a^bf(x)\,dx|}\int_{c-w}^{c+w}(1-((x-c)/w)^2)^4\,dx=\frac{256w}{315}
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-validation
+Coverage: reading
+
+Compare roots_legendre, analytic atan integrals,2/3,the bump integral256w/315 and independent QUADPACK. Preserve QUADPACK status, estimated error, evaluation count and warning message. Cancellation uses a roundoff-aware absolute budget. When all initial five bump samples vanish, expose estimated error0 versus actual error about.00813.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-limits
+Coverage: reading
+
+The Simpson estimate is not a certified error bound. Passing the blind-spot control does not mean accurate integration. Direct square-root integration may honestly terminate at its depth budget. Exhaustive oscillatory/singular exploration and certified quadrature are not claimed.
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_cancellation_condition68719476737
+blind_bump_actual_error0.00812698412698
+blind_bump_reported_error0
+resolved_bump_actual_error1.08844183666e-12
+zero_integral_relative_condition—
+判定 / checkPassed
+width0.1-referencetrue
+n8-independent-ruletrue
+n16-independent-ruletrue
+n32-independent-ruletrue
+n64-independent-ruletrue
+n128-independent-ruletrue
+width0.1-gauss-refinementtrue
+width0.1-tol1e-05true
+width0.1-tol1e-07true
+width0.1-tol1e-09true
+width0.03-referencetrue
+width0.03-gauss-refinementtrue
+width0.03-tol1e-05true
+width0.03-tol1e-07true
+width0.03-tol1e-09true
+width0.01-referencetrue
+width0.01-gauss-refinementtrue
+width0.01-tol1e-05true
+width0.01-tol1e-07true
+width0.01-tol1e-09true
+endpoint-tol1e-05true
+endpoint-tol1e-07true
+endpoint-tol1e-09true
+C0-absolute-errortrue
+C4096-absolute-errortrue
+C1.67772e+07-absolute-errortrue
+C6.87195e+10-absolute-errortrue
+conditioned-input-perturbation-gaintrue
+zero-integral-relative-condition-undefinedtrue
+heuristic-blind-spot-explicittrue
+known-support-companion-resolvestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+kindwidthordervalueabsolute_errorintegral_condition_1statustoleranceestimated_errorevaluationssolver_convergedreference_statusscalecondition_infinitycancellation_condition_1input_relative_infinity_perturbationpredicted_integral_changeobserved_integral_changeroundoff_acceptance_budgetrelative_condition
+narrow-gauss0.180.2783797145170.006315220484441fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.1160.272455969720.0003914756870951fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.1320.2720651226616.28628108956e-071fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.1640.2720644940337.1054273576e-141fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.11280.2720644940331.66533453694e-161fixed-order measurement; not a tolerance certificate—————————————
+narrow-adaptive0.1—0.2720653200118.25978231811e-07—estimated_tolerance1e-052.8620361602e-0657truecompleted————————
+narrow-adaptive0.1—0.2720644936833.49922646414e-10—estimated_tolerance1e-073.04713195365e-08173truecompleted————————
+narrow-adaptive0.1—0.2720644940321.33193456264e-12—estimated_tolerance1e-093.6692922063e-10521truecompleted————————
+narrow-gauss0.0380.08519574868780.005201662529681fixed-order measurement; not a tolerance certificate—————————————
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+narrow-gauss0.03160.1062311459080.01583373469091fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.03320.09148987152120.001092460303721fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.03640.0904334822093.60709915213e-051fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.031280.09039742403741.28199452026e-081fixed-order measurement; not a tolerance certificate—————————————
+narrow-adaptive0.03—0.09039717484292.36374497073e-07—estimated_tolerance1e-051.41213599128e-0677truecompleted————————
+narrow-adaptive0.03—0.09039741274791.5304618961e-09—estimated_tolerance1e-073.93509694754e-08221truecompleted————————
+narrow-adaptive0.03—0.09039741121851.04835584658e-12—estimated_tolerance1e-093.27131381604e-10737truecompleted————————
+narrow-gauss0.0180.01376364219190.01722383869371fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.01160.04140256867530.01041508778971fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.01320.03194289389130.0009554130057141fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.01640.03359848518480.002611004299261fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.011280.03113241953250.0001449386469221fixed-order measurement; not a tolerance certificate—————————————
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+narrow-adaptive0.01—0.03099208775924.6068736642e-06—estimated_tolerance1e-054.56418266683e-0681truecompleted————————
+narrow-adaptive0.01—0.03098748876337.87777324623e-09—estimated_tolerance1e-075.00527032245e-08257truecompleted————————
+narrow-adaptive0.01—0.03098748088913.49423961987e-12—estimated_tolerance1e-093.33219322393e-10821truecompleted————————
+endpoint-direct——0.6666661430015.23665272367e-07—estimated_tolerance1e-05—61true—————————
+endpoint-transformed——0.6666666666671.11022302463e-16—estimated_tolerance1e-05—5true—————————
+endpoint-direct——0.6666666658658.01578137199e-10—estimated_tolerance1e-07—185true—————————
+endpoint-transformed——0.6666666666671.11022302463e-16—estimated_tolerance1e-07—5true—————————
+endpoint-direct——0.6666666666661.03095310067e-12—depth_budget1e-09—513false—————————
+endpoint-transformed——0.6666666666671.11022302463e-16—estimated_tolerance1e-09—5true—————————
+cancellation——10—estimated_tolerance———true—0119.09494701773e-139.09494701773e-139.09494701773e-132.84217094304e-14—
+cancellation——10—estimated_tolerance———true—409640972048.000122079.09494701773e-133.72619979316e-093.7258360841e-091.16415321827e-10—
+cancellation——10—estimated_tolerance———true—167772161677721783886089.09494701773e-131.5258789972e-051.52587890625e-054.76837158203e-07—
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+cancellation——10—estimated_tolerance———true—6871947673668719476737343597383689.09494701773e-130.06250000000090.06250.001953125—
+zero-integral——00—undefined relative condition because the exact integral is zero—————————————
+compact-bump-blind——00.00812698412698—expected false reassurance, not an accurate integral—05true—————————
+compact-bump-split——0.008126984128071.08844183666e-12—estimated_tolerance—4.35752060817e-10161true—————————
+Measurements and complete records / JSON
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. H. Golub and J. H. Welsch (1969). Calculation of Gauss Quadrature Rules · DOI: 10.1090/S0025-5718-69-99647-1
+Review scope / review_level: publisher-search-first-page-and-metadata
+J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
+Review scope / review_level: publisher-metadata
+P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants · DOI: 10.1145/1824801.1824804
+Review scope / review_level: primary author paper, abstract and selected introduction/error-estimation text (§3)
+Checked selected original discussion of accidentally small differences between quadrature estimates. The educational Simpson counterexample is original test design, not an implementation of the paper’s new integrators.
+Official reference-implementation documentation: scipy.special.roots_legendre.html · scipy.integrate.quad.html
 
 ## AMG, factorizations, eigenvalues and quadrature — AMG, factorizations, eigenvalues and quadrature [en]
 
@@ -20348,6 +21086,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/#conditio
 Coverage: reading
 
 単一スカラー楕円型で良好でも、非対称移流、鞍点系、強異方性で同じ設定が通るとは限りません。CGの前処理に使うなら、作用素とサイクルの対称正定値性を確認します。純Neumann問題の定数零空間と右辺の適合条件も残ります。
+条件数だけでAMGの性能は決まりません。条件数が同じ正定値行列でも、異方性の方向、強結合の判定、補間が表す近零空間と緩和法によって収束が変わります。固定した等方・異方行列の対照は、任意の楕円型問題や大規模並列計算の頑健性の保証ではありません。
 
 ## 代数的マルチグリッド（AMG） — 検証するときに見る量 [ja]
 
@@ -20355,13 +21094,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/#verifica
 Coverage: reading
 
 製造解Poissonで格子細分化と係数コントラストを変え、真の残差、解の誤差、サイクル当たりの減衰率を調べます。粗行列の非零数と階層の大きさも記録します。反復回数が少ないことと離散化誤差が小さいことは別です。
+旧版の製造解Poisson例を保持し、追加版では既知の代数解から右辺を作った線形系について、独立疎直接解・離散正弦変換による対角化と比較し、解析的な離散スペクトルも照合します。真の相対残差、解の相対誤差、反復履歴、階層の複雑さを分けて記録し、行列の大きさ・異方性・条件数に対する依存を、固定した残差許容値と反復上限で調べます。この追加版は代数的な条件数診断であり、格子収束や連続Poisson解の精度を検証したことにはしません。
+
+## 代数的マルチグリッド（AMG） — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## 代数的マルチグリッド（AMG） — 行列から粗視化するAMG：残差と解誤差を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/
+Coverage: reading
+
+固定した標的の計算例
+正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。
+3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：solvers.py · テスト：test_foundations.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## 代数的マルチグリッド（AMG） — AMGの条件数・異方性・残差と前進誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/
+Coverage: reading
+
+診断対照：物理問題数へ非加算
+49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。
+固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：experiments.py · コード：fixtures.py · コード：mpmath_reference.py · コード：solvers.py · テスト：test_conditioning.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## 代数的マルチグリッド（AMG） — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/#publication-scope
 Coverage: reading
 
-既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+旧版の入力・測定値・公差を保持し、条件数・残差・収束の追加検証を別の配布版として案内します。診断対照の合格は、その対照で意図した限界を確認した意味を含み、一般的な成功や原論文全体の再現を意味しません。
 代数的マルチグリッド（AMG）
 
 ## 代数的マルチグリッド（AMG） — 一次文献・関連資料と確認範囲 [ja]
@@ -20373,6 +21140,9 @@ Coverage: reading
 J. W. Ruge and K. Stüben (1987). 4. Algebraic Multigrid. Multigrid Methods
 研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+P. Vaněk, M. Brezina, J. Mandel (2001). Convergence of algebraic multigrid based on smoothed aggregation. Numerische Mathematik
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+弱近似性等の仮定に基づく理論と、教材の限られた行列系列での観測を区別します。任意異方性への頑健性は主張しません。
 
 ## 自動微分：数値ソルバーのための微分計算 — 自動微分：数値ソルバーのための微分計算 [ja]
 
@@ -21951,6 +22721,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/
 Coverage: reading
 
 有限精度では直交性の喪失により重複した見かけの固有値が出ます。非正規行列の小残差は小さい固有値誤差を保証しません。一般化問題Ax=λBxではBの性質と内積を明記し、シフト反転の内部許容誤差も評価します。
+小さな固有残差は近い行列の固有対という後退誤差の情報を与えますが、非正規行列で真の固有値・固有ベクトルが近いとは限りません。近接固有値では個々の固有ベクトルの対応付けが不安定になるため、クラスターの不変部分空間を主角などで比較する方が適切な場合があります。
 
 ## Krylov固有値解法 — 検証するときに見る量 [ja]
 
@@ -21958,13 +22729,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/
 Coverage: reading
 
 正規化した残差∥Ax−θx∥/(∥A∥+|θ|)、直交性、既知固有対、縮退/近接固有値を確認します。対称問題ではRayleigh商も比較し、再スタート数や初期ベクトル依存を記録します。
+追加版は固有値間隔と非正規性を分けた小行列で、Krylov空間の大きさや残差に対する固有値誤差・部分空間誤差を独立参照と比較します。残差だけの合格を「真の固有値を高精度に得た」と読み替えず、近接・非正規の対照では条件付けと観測した誤差を併記します。任意の大規模非対称系の保証には広げません。 射影コアと密行列参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとは呼びません。解析固有値と構成した擬似固有対の対照も併用します。
+
+## Krylov固有値解法 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## Krylov固有値解法 — Lanczos・Arnoldi：Ritz値と固有対残差の収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/
+Coverage: reading
+
+固定した標的の計算例
+32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。
+非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：solvers.py · テスト：test_foundations.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Krylov固有値解法 — Krylov固有値：クラスター部分空間と非正規感度 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/
+Coverage: reading
+
+固定した標的の計算例
+48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。
+NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：experiments.py · コード：fixtures.py · コード：mpmath_reference.py · コード：solvers.py · テスト：test_conditioning.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## Krylov固有値解法 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/#publication-scope
 Coverage: reading
 
-既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+旧版の入力・測定値・公差を保持し、条件数・残差・収束の追加検証を別の配布版として案内します。診断対照の合格は、その対照で意図した限界を確認した意味を含み、一般的な成功や原論文全体の再現を意味しません。
 Krylov固有値解法
 
 ## Krylov固有値解法 — 一次文献・関連資料と確認範囲 [ja]
@@ -21979,6 +22778,9 @@ DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。�
 C. Lanczos (1950). An iteration method for the solution of the eigenvalue problem of linear differential and integral operators. Journal of Research of the National Bureau of Standards
 研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview.
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+非正規行列では小さな固有対残差と前進固有値誤差を同一視しません。固有値感度、個別固有ベクトル、固有値クラスターの不変部分空間を区別します。
 
 ## 拡散、楕円型方程式、境界条件、反復法 [ja]
 
@@ -24105,7 +24907,7 @@ Gaussianなど既知分布で平均・分散・分位点を確認し、非対称
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/#scoped-examples
 Coverage: reading
 
-各例の分布・観測量・診断の定義と適用範囲を確認します。検査の合格と、混合や推定の成功は同じ意味ではありません。旧版の入力・測定・公差は保持します。
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
 
 ## Markov連鎖Monte Carlo — Gaussian標的のMCMC：分布・自己相関・ESS [ja]
 
@@ -25620,6 +26422,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/#condi
 Coverage: reading
 
 2ノルムではκ₂(AᵀA)=κ₂(A)²となり、正規方程式は条件を悪化させます。小さい残差でも、悪条件やノイズがあれば係数は不確かです。ランクの閾値はスケール・丸め・観測誤差に応じて定め、単位の違う列のスケーリングも検討します。
+残差・後退誤差と、求めた係数・特異値の前進誤差を区別します。条件数が大きければ、入力や右辺の小さな摂動が係数を大きく変えることがあります。数値階数は特異値の閾値と精度に依存する規約で、階数を切り捨てた最小二乗解は元と同じ問題の厳密解とは限りません。
+一般の最小二乗問題では、条件数だけでなく右辺と列空間の角度にも感度が依存します。片側Jacobi SVDの高い相対精度に関する文献上の結果にも、停止規準や成分ごとの条件付けという仮定があります。今回の小行列で微小特異値が一致しても、任意の悪条件行列への万能な相対精度を意味しません。
 
 ## QR・SVD・最小二乗 — 検証するときに見る量 [ja]
 
@@ -25627,13 +26431,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/#verif
 Coverage: reading
 
 A−QR、QᵀQ−I、A−UΣVᵀの相対ノルム、最小二乗の正規性Aᵀ(Ax−b)を調べます。特異値が既知の行列とランク欠損例で、入力摂動に対する解の変化も比較します。
+追加版では既知の特異値を持つ小行列、右辺の固定摂動、階数判定の閾値を用い、条件数に沿って誤差を比較します。QR・SVDの再構成と直交性、最小二乗残差、係数の前進誤差、数値階数を別々に測ります。LAPACK参照に加え、実際の二進浮動小数点入力を高精度演算に移した独立参照を区別します。正規方程式による条件数の二乗化は上の理論説明であり、この追加例で実行した対照とはしません。
+
+## QR・SVD・最小二乗 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## QR・SVD・最小二乗 — Householder QRと片側Jacobi SVD：直交性・階数・最小二乗 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/
+Coverage: reading
+
+固定した標的の計算例
+実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。
+完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：solvers.py · テスト：test_foundations.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## QR・SVD・最小二乗 — QR/SVD：既定特異値・摂動増幅・数値階数 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/
+Coverage: reading
+
+固定した標的の計算例
+二進で厳密に表現できる16×4行列の条件数を1から2³⁶まで変え、再構成誤差と解誤差を分けます。実際のbinary64入力に対し別環境で実行した80/120桁参照とLAPACKを比較します。
+LAPACKと教材の射影コアには共通の数値基盤が含まれます。mpmath SVDは別実装の二重対角化とQR反復、mpmath最小二乗は同じHouseholder群の別高精度実装です。どの高条件数行列にも微小特異値の相対高精度を保証するものではありません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：experiments.py · コード：fixtures.py · コード：mpmath_reference.py · コード：solvers.py · テスト：test_conditioning.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## QR・SVD・最小二乗 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/qr-svd/#publication-scope
 Coverage: reading
 
-既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+旧版の入力・測定値・公差を保持し、条件数・残差・収束の追加検証を別の配布版として案内します。診断対照の合格は、その対照で意図した限界を確認した意味を含み、一般的な成功や原論文全体の再現を意味しません。
 QR・SVD・最小二乗
 
 ## QR・SVD・最小二乗 — 一次文献・関連資料と確認範囲 [ja]
@@ -25648,6 +26480,12 @@ DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。�
 G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. Numerische Mathematik
 研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
 Göttingenの原論文デジタル版で403頁の導入部にあるSVD、特異値の順序とランクの関係を参照。ALGOL実装の再現や、非線形パラメータの大域的識別可能性の証明を主張しません。
+J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR. SIAM Journal on Matrix Analysis and Applications
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+適切な停止規準と行列の成分ごとの条件に依存する相対精度の主張を確認しました。一般の高条件数行列における微小特異値の万能な相対精度とはしません。
+LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems.
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+小さな後退誤差と前進誤差を区別し、最小二乗では条件数だけでなく残差の角度にも依存すること、RCONDによる切捨ては数値階数の規約であることを確認しました。
 
 ## Gauss求積・適応積分 — Gauss求積・適応積分 [ja]
 
@@ -25677,6 +26515,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/#c
 Coverage: reading
 
 点特異性、不連続、高速振動、広い領域の細いピークでは、評価点が構造を見落とします。既知の不連続で区間を分け、必要なら変数変換や重み付き則を使います。積分値が0に近いと相対誤差だけの停止判定は不適切です。
+積分が相殺で小さくなるときは、∫|f|/|∫f|のような相殺条件数も有用です。絶対誤差・相対誤差と、積分則内部の誤差推定値は別の量です。有限個の評価点が狭い山をすべて見逃す対照では、二つの近似の差が小さくても真の積分誤差が大きくなり得ます。 条件数を比べるときは入力摂動のノルムと摂動モデルを明示し、積分値が0なら相対条件数・相対誤差を未定義として絶対量で評価します。
 
 ## Gauss求積・適応積分 — 検証するときに見る量 [ja]
 
@@ -25684,13 +26523,41 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/#v
 Coverage: reading
 
 単項式の厳密積分で厳密次数を確認し、解析積分できる非多項式、特異点と細いピークでも試します。推定誤差と真の誤差、評価回数、分割上限到達の終了理由を分けて残します。
+追加版では求積点数・許容誤差を変え、既知の積分値を持つ滑らかな関数、相殺を伴う関数、固定した狭い山の対照を独立参照と比較します。真の誤差、推定誤差、関数評価回数を分けて記録します。狭い山を明示的に分割して捉える計算と見逃す診断対照を区別し、全ての被積分関数への誤差保証とはしません。 端点で導関数が特異になる例は変数変換の前後を比較し、評価回数や再帰深さの上限への到達も終了状態として残します。
+
+## Gauss求積・適応積分 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## Gauss求積・適応積分 — Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/
+Coverage: reading
+
+固定した標的の計算例
+Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。
+Simpsonの局所推定は任意の関数に対する厳密な誤差上界ではありません。高周波の見落とし、特異点、丸め誤差の停滞を一般に解決する実装ではなく、Gauss–KronrodやQUADPACK全体の再実装でもありません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：solvers.py · テスト：test_foundations.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Gauss求積・適応積分 — 求積：狭いピーク・相殺・端点・誤差推定の盲点 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/
+Coverage: reading
+
+固定した標的の計算例
+Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。
+Simpsonの推定値は厳密誤差上界ではありません。盲点の検出に合格しても積分精度への合格ではありません。平方根の直接積分は深さ予算で未収束と表示し得ます。任意の振動・特異性の完全な探索や認証付き求積は主張しません。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：experiments.py · コード：fixtures.py · コード：mpmath_reference.py · コード：solvers.py · テスト：test_conditioning.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## Gauss求積・適応積分 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quadrature/#publication-scope
 Coverage: reading
 
-既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+旧版の入力・測定値・公差を保持し、条件数・残差・収束の追加検証を別の配布版として案内します。診断対照の合格は、その対照で意図した限界を確認した意味を含み、一般的な成功や原論文全体の再現を意味しません。
 Gauss求積・適応積分
 
 ## Gauss求積・適応積分 — 一次文献・関連資料と確認範囲 [ja]
@@ -25705,6 +26572,9 @@ DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。�
 Robert Piessens and Elise de Doncker-Kapenga and Christoph W. Überhuber and David K. Kahaner (1983). QUADPACK: A Subroutine Package for Automatic Integration. Springer
 著者による著書・関連資料 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. ACM Transactions on Mathematical Software
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+二つの近似積分値の差が偶然小さい場合の誤差推定失敗を原文の選択節で確認しました。今回のSimpson対照は教材独自の構成であり、同論文の新積分器を実装したとは呼びません。
 
 ## 水素型原子とHe：実行・検証例 [ja]
 
@@ -28296,6 +29166,11 @@ A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-
 A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. 10.1214/ss/1177011136
 The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. Original source
 T. A. Gardiner and J. M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. 10.1016/j.jcp.2004.11.016
+P. Vaněk, M. Brezina, J. Mandel (2001). Convergence of algebraic multigrid based on smoothed aggregation. 10.1007/s002110000226
+LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems. Original source
+mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation. Original source
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview. Original source
+P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. 10.1145/1824801.1824804
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -29265,8 +30140,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文239件・全参考資料291件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め89章です。
+方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文241件・全参考資料296件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め90章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -29513,7 +30388,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-233件：学術誌論文（総説・翻訳・採録済み論文を含む）
+235件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -31382,6 +32257,577 @@ E. Hairer (2010). Geometric Numerical Integration, Lecture2
 The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
 確認範囲 / review_level: official-versioned-api-specification
 Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 基盤手法：条件数・残差・収束と独立参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/
+Coverage: reading
+
+AMG、QR／SVD、Krylov固有値解法、求積を固定した条件系列で比較します。残差と前進誤差、行列と積分の条件の違いを測り、独立参照との一致だけでなく、収束の限界や診断の見落としも確かめます。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#run-all
+Coverage: reading
+
+ZIPの atlas-foundations-conditioning-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 基盤手法：条件数・残差・収束と独立参照 — AMGの条件数・異方性・残差と前進誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/
+Coverage: reading
+
+49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-assumptions
+Coverage: reading
+
+正方格子から作るA=T⊗I+εI⊗T、n=7/15/31、ε=1/.1/.01です。これは既知解を持つ代数系の診断であり、連続PDEの精度検証は既存Poisson例に残します。同じnではκ₂はεによらず一定です。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-algorithm
+Coverage: reading
+
+MITライセンスの既存アトラス教材の平滑化集約AMGを新しい独立ソースへ再利用します。階層は行列だけから構築し、強度閾値.08、Jacobi平滑化、固定相対公差10⁻¹⁰、最大180 V-cycleを使います。DSTの正弦変換による直接反転は参照側だけです。
+\kappa_2(A)=\cot^2\!\left(\frac{\pi}{2(n+1)}\right)\frac{\|x-\hat x\|_2}{\|x\|_2}\le\kappa_2(A)\frac{\|b-A\hat x\|_2}{\|b\|_2}
+
+## 基盤手法：条件数・残差・収束と独立参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-validation
+Coverage: reading
+
+真の残差、独立直接解との差、DSTとの差、operator complexity、全残差履歴を保存します。最大固有値方向の右辺へ最小固有値方向の摂動を加え、相対増幅κ₂を直接解で照合します。等方例は収束必須、異方性stress例は予算終了も正直に記録する事前基準です。1-cycle対照は未収束を検出します。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-limits
+Coverage: reading
+
+固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_condition_2414.345062232
+maximum_actual_relative_residual9.21350937163e-11
+maximum_actual_forward_error6.24977661486e-11
+stress_budget_exhaustions0
+maximum_condition_gain_relative_error3.20974358203e-11
+判定 / check合格
+n7-eps1-true-residualtrue
+n7-eps1-forward-boundtrue
+n7-eps1-condition-gaintrue
+n7-eps1-complexitytrue
+n7-eps1-independent-dsttrue
+n7-eps1-resolvedtrue
+n7-eps0.1-true-residualtrue
+n7-eps0.1-forward-boundtrue
+n7-eps0.1-condition-gaintrue
+n7-eps0.1-complexitytrue
+n7-eps0.1-independent-dsttrue
+n7-eps0.1-stress-honesttrue
+n7-eps0.01-true-residualtrue
+n7-eps0.01-forward-boundtrue
+n7-eps0.01-condition-gaintrue
+n7-eps0.01-complexitytrue
+n7-eps0.01-independent-dsttrue
+n7-eps0.01-stress-honesttrue
+n7-independent-spectrumtrue
+n15-eps1-true-residualtrue
+n15-eps1-forward-boundtrue
+n15-eps1-condition-gaintrue
+n15-eps1-complexitytrue
+n15-eps1-independent-dsttrue
+n15-eps1-resolvedtrue
+n15-eps0.1-true-residualtrue
+n15-eps0.1-forward-boundtrue
+n15-eps0.1-condition-gaintrue
+n15-eps0.1-complexitytrue
+n15-eps0.1-independent-dsttrue
+n15-eps0.1-stress-honesttrue
+n15-eps0.01-true-residualtrue
+n15-eps0.01-forward-boundtrue
+n15-eps0.01-condition-gaintrue
+n15-eps0.01-complexitytrue
+n15-eps0.01-independent-dsttrue
+n15-eps0.01-stress-honesttrue
+n15-independent-spectrumtrue
+n31-eps1-true-residualtrue
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+n31-eps1-forward-boundtrue
+n31-eps1-condition-gaintrue
+n31-eps1-complexitytrue
+n31-eps1-independent-dsttrue
+n31-eps1-resolvedtrue
+n31-eps0.1-true-residualtrue
+n31-eps0.1-forward-boundtrue
+n31-eps0.1-condition-gaintrue
+n31-eps0.1-complexitytrue
+n31-eps0.1-independent-dsttrue
+n31-eps0.1-stress-honesttrue
+n31-eps0.01-true-residualtrue
+n31-eps0.01-forward-boundtrue
+n31-eps0.01-condition-gaintrue
+n31-eps0.01-complexitytrue
+n31-eps0.01-independent-dsttrue
+n31-eps0.01-stress-honesttrue
+n31-independent-spectrumtrue
+short-budget-failure-explicittrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+nunknownsepsiloncondition_2_analyticlambda_minlambda_maxcyclesrelative_residualrelative_forward_errorsparse_direct_vs_dstdst_vs_known_solutioncondition_times_residualcondition_gain_directoperator_complexitylevelssolver_convergedterminationscope
+749125.274142369119.4868396771492.513160323149.21350937163e-116.24977661486e-116.58028481271e-162.70031144144e-162.32863547577e-0925.27414236931.635944700463trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+7490.125.274142369110.7177618224270.882238178397.42251708835e-115.53558472823e-119.04861788632e-169.22482518958e-161.87597753628e-0925.27414236961.649769585253trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+7490.0125.27414236919.84085403694248.71914596394.20322856925e-112.80543908092e-116.63377993796e-165.48525530324e-161.06232997269e-0925.27414236992.336405529953trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+152251103.0868689219.67587286712028.32412713193.60517601057e-111.8781585884e-116.48489883048e-161.53727481047e-163.71646306835e-09103.0868689182.531455399064trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+152250.1103.0868689210.82173007691115.57826992577.4357877687e-112.47962622774e-113.72554594048e-153.71347351458e-157.66532079028e-09103.0868689172.580281690144trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+152250.01103.086868929.936315797881024.3036842126.15872636311e-115.66164906862e-111.28933973888e-155.61520436591e-166.34883817307e-09103.0868689213.262910798124trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+319611414.34506223219.72335955078172.27664045254.3661442862e-111.98843747939e-112.95602630833e-156.45054017893e-161.80909032598e-08414.3450622383.196752830594trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-measurements
+Coverage: reading
+
+319610.1414.34506223210.84784775294494.75215225699.16001396763e-111.35274755134e-111.41931431821e-141.54486700169e-143.79540655746e-08414.3450622293.329416791284trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+319610.01414.3450622329.960296573094126.99970343186.47787201507e-114.71450586535e-113.49299889028e-152.06494037936e-152.68407428322e-08414.345062234.002777184365trueresidual_tolerancealgebraic known-solution system; no continuum PDE order
+この例の実測値・全記録 / JSON
+
+## 基盤手法：条件数・残差・収束と独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+P. Vaněk, J. Mandel and M. Brezina (1996). Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems · DOI: 10.1007/BF02238511
+確認範囲 / review_level: publisher-abstract-and-metadata
+P. Vaněk, M. Brezina, J. Mandel (2001). Convergence of algebraic multigrid based on smoothed aggregation · DOI: 10.1007/s002110000226
+確認範囲 / review_level: author-hosted original preprint abstract and opening text via official university search extraction
+弱近似性等の仮定に基づく理論と、教材の限られた行列系列での観測を区別します。任意異方性への頑健性は主張しません。
+独立参照の公式資料：scipy.sparse.linalg.spsolve.html
+
+## 基盤手法：条件数・残差・収束と独立参照 — QR/SVD：既定特異値・摂動増幅・数値階数 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/
+Coverage: reading
+
+二進で厳密に表現できる16×4行列の条件数を1から2³⁶まで変え、再構成誤差と解誤差を分けます。実際のbinary64入力に対し別環境で実行した80/120桁参照とLAPACKを比較します。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-assumptions
+Coverage: reading
+
+Hadamard直交因子U,Vとsⱼ=2⁻qj、q=0/4/8/12を使います。b=u₀とb+2⁻⁴⁰u_minを固定し、摂動増幅を測ります。q=0の重複特異値では個々の特異ベクトルは一意ではありません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-algorithm
+Coverage: reading
+
+Householder QR、片側Jacobi SVD、三角後退代入を実装します。SVDの数値階数閾値を10⁻⁸/10⁻¹²/10⁻¹⁴へ変え、同じ切捨て規約のLAPACK解と比較します。正規方程式の計算例は追加していません。
+A=U\operatorname{diag}(2^{-qj})V^T,\quad\kappa_2(A)=2^{3q}\delta b=\eta u_{\min},\quad\delta x=\eta\sigma_{\min}^{-1}v_{\min}
+
+## 基盤手法：条件数・残差・収束と独立参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-validation
+Coverage: reading
+
+再構成・直交性・特異値・右辺摂動による解差・最小二乗停留残差・厳密階数2の対照を保存します。高精度参照は実二進入力を整数比へ変換し、mpmath 1.3.0のSVDとQRを独立実行済みです。SHAと全4入力・両精度の完全性を実行時に検査し、不一致を解析解へ置換しません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-limits
+Coverage: reading
+
+LAPACKと教材の射影コアには共通の数値基盤が含まれます。mpmath SVDは別実装の二重対角化とQR反復、mpmath最小二乗は同じHouseholder群の別高精度実装です。どの高条件数行列にも微小特異値の相対高精度を保証するものではありません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+largest_condition_268719476736
+maximum_backward_reconstruction6.07460414636e-16
+maximum_forward_error0.000492095337384
+minimum_numerical_rank2
+reference_precision_digits120
+判定 / check合格
+q0-factorizationtrue
+q0-high-precision-spectrumtrue
+q0-condition-aware-forwardtrue
+q0-lapack-referencetrue
+q0-perturbation-gaintrue
+q4-factorizationtrue
+q4-high-precision-spectrumtrue
+q4-condition-aware-forwardtrue
+q4-lapack-referencetrue
+q4-perturbation-gaintrue
+q8-factorizationtrue
+q8-high-precision-spectrumtrue
+q8-condition-aware-forwardtrue
+q8-lapack-referencetrue
+q8-perturbation-gaintrue
+q12-factorizationtrue
+q12-high-precision-spectrumtrue
+q12-condition-aware-forwardtrue
+q12-lapack-referencetrue
+q12-perturbation-gaintrue
+cutoff1e-08-rank-awaretrue
+cutoff1e-12-rank-awaretrue
+cutoff1e-14-rank-awaretrue
+exact-rank-deficiencytrue
+sweep-budget-failure-explicittrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-measurements
+Coverage: reading
+
+kindexponentcondition_2rankqr_reconstructionsvd_reconstructionorthogonalityscaled_singular_errorsmallest_singular_relative_errormaximum_relative_forward_errorforward_acceptance_budgetqr_relative_residualsvd_relative_residualpredicted_perturbation_solution_normperturbation_projection_absolute_errorjacobi_sweepsrank_rtolreference_rankeffective_condition_2least_squares_stationarityrelative_truncated_reference_errorbias_to_untruncated_solution
+prescribed-spectrum0145.08768104863e-1606.66133814775e-16001.57009245868e-161e-10009.09494701773e-131.11022302463e-160——————
+prescribed-spectrum4409644.83782623996e-163.30099235322e-168.99631371026e-161.88651178012e-177.72715225139e-144.54746551287e-131e-101.92296268638e-161.66533453694e-163.72529029846e-091.40359945888e-134——————
+prescribed-spectrum81677721643.4219110723e-165.61317495834e-162.43909158419e-152.50687871069e-171.08998254866e-103.22470540349e-083.72529029846e-072.48253415325e-162.01987375699e-151.52587890625e-055.73891434374e-104——————
+prescribed-spectrum126871947673646.07460414636e-163.53270792676e-164.38827104819e-141.11022302463e-161.23935746377e-060.0004920953373840.001525878906253.33066907388e-167.1333449289e-150.06257.74597454511e-083——————
+rank-cutoff——3————————————1e-08316777216.00561.11022302463e-163.39113328535e-090.0623782894601
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-measurements
+Coverage: reading
+
+rank-cutoff——4————————————1e-12468719391568.12.77555756156e-170.0004919887551470.000491059711436
+rank-cutoff——4————————————1e-14468719391568.12.77555756156e-170.0004919887551470.000491059711436
+この例の実測値・全記録 / JSON
+
+## 基盤手法：条件数・残差・収束と独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix · DOI: 10.1145/320941.320947
+確認範囲 / review_level: publisher-metadata
+J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR · DOI: 10.1137/0613074
+確認範囲 / review_level: primary publisher abstract and bibliographic metadata
+適切な停止規準と行列の成分ごとの条件に依存する相対精度の主張を確認しました。一般の高条件数行列における微小特異値の万能な相対精度とはしません。
+LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems
+確認範囲 / review_level: official implementation documentation, error-analysis and numerical-rank sections
+小さな後退誤差と前進誤差を区別し、最小二乗では条件数だけでなく残差の角度にも依存すること、RCONDによる切捨ては数値階数の規約であることを確認しました。
+mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation
+確認範囲 / review_level: official matrix documentation and selected installed mpmath1.3.0 source (svd_r_raw, qr_solve), plus actual 80/120dps fixed-input execution
+SVDはHouseholder二重対角化とQR反復、最小二乗は別実装の高精度Householder QRです。後者は教材のQRと同じ数理的手法群であり、別の手法群とは呼びません。実際の二進浮動小数点入力を整数比で読み込み、生成専用環境で実行しました。
+独立参照の公式資料：scipy.linalg.svd.html · scipy.linalg.lstsq.html
+
+## 基盤手法：条件数・残差・収束と独立参照 — Krylov固有値：クラスター部分空間と非正規感度 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/
+Coverage: reading
+
+48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-assumptions
+Coverage: reading
+
+対称行列の上位2固有値の間隔は1/.1/.01です。非正規行列は実浮動小数点の上三角行列でK=10/1000とし、対角が既知固有値です。浮動小数点の相似変換後に名目スペクトルを厳密真値とは呼びません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-algorithm
+Coverage: reading
+
+全再直交化Lanczosと2回MGSのArnoldiで縮約し、小さい射影行列だけを密に解きます。上位2ベクトルはQRで張る空間へ変換し、符号や回転に不変な射影行列差を測ります。
+\kappa(\lambda)=\frac{\|y\|_2\|x\|_2}{|y^*x|}A=\begin{pmatrix}1&K\\0&1+\delta\end{pmatrix},\quad\|A\tilde v-\tilde\lambda\tilde v\|_2=\frac{\delta^2}{4K\sqrt{1+(\delta/(2K))^2}}
+
+## 基盤手法：条件数・残差・収束と独立参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-validation
+Coverage: reading
+
+解析的対角固有値とSciPy密固有値、左右固有ベクトルによる条件数を照合します。別に構成した2×2擬固有対ではK=1000で残差約2.5×10⁻⁸に対し固有値誤差.005を示します。これは反復法が出力した失敗例ではなく、残差だけでは保証できないことを示す感度対照です。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-limits
+Coverage: reading
+
+NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_basis_orthogonality6.81397930341e-16
+largest_eigenvalue_condition100000.000005
+constructed_small_residual2.49999999997e-08
+constructed_forward_error0.005
+判定 / check合格
+gap1-analytic-spectrumtrue
+gap1-resolvedtrue
+gap1-basistrue
+gap0.1-analytic-spectrumtrue
+gap0.1-resolvedtrue
+gap0.1-basistrue
+gap0.01-analytic-spectrumtrue
+gap0.01-resolvedtrue
+gap0.01-basistrue
+K10-conditiontrue
+K10-analytic-spectrumtrue
+K10-resolvedtrue
+K10-basistrue
+K1000-conditiontrue
+K1000-analytic-spectrumtrue
+K1000-resolvedtrue
+K1000-basistrue
+pseudoK1-literal-formulatrue
+pseudoK10-literal-formulatrue
+pseudoK1000-literal-formulatrue
+small-residual-does-not-certify-forward-errortrue
+short-dimension-has-residualtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+dimensioneigenvalue_realeigenvalue_imageigenvalue_errorabsolute_residualrelative_backward_residualorthogonalitytop_two_projector_errorhappy_breakdownkindgapeigenvalue_conditioncouplingcondition_aware_eigenvalue_error_budgetstatus
+44.9963359041300.00366409587030.06736654996320.006739124276064.5810728913e-160.916317095507falsesymmetric-cluster11———
+84.9999999992907.06867453459e-105.8604275954e-055.86042759582e-064.70465316134e-160.000493742348267falsesymmetric-cluster11———
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+16502.6645352591e-155.06766171196e-135.06766171196e-144.75713054469e-162.6666916925e-11falsesymmetric-cluster11———
+32502.6645352591e-153.41985411681e-153.41985411681e-165.09375984398e-161.35041647969e-15falsesymmetric-cluster11———
+44.9986685942900.001331405705570.01721438938150.001721668162033.92113059378e-160.998731459242falsesymmetric-cluster0.11———
+84.9999998913901.08613617655e-070.0007269733305297.26973338425e-054.10887907987e-160.00143754794881falsesymmetric-cluster0.11———
+16507.9936057773e-156.29352614028e-126.29352614028e-135.82451279364e-161.47508486927e-11falsesymmetric-cluster0.11———
+32501.06581410364e-143.72927946317e-153.72927946317e-166.14137670237e-161.34229948678e-15falsesymmetric-cluster0.11———
+44.9998212287800.0001787712232630.01292505194520.00129252830122.67455401137e-160.999986749538falsesymmetric-cluster0.011———
+84.9999895340401.04659606412e-050.006873399918520.000687340711225.23724166511e-160.0128893795413falsesymmetric-cluster0.011———
+16501.33226762955e-146.41582155759e-116.41582155759e-125.32704945939e-161.14213851155e-10falsesymmetric-cluster0.011———
+32501.42108547152e-143.17215995395e-153.17215995395e-166.13536632048e-161.29104836895e-15falsesymmetric-cluster0.011———
+45.4380101671700.4280101671690.09962789774940.005688921212573.87794284752e-160.193971947601falsenonnormal-arnoldi—1000.000510——
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-measurements
+Coverage: reading
+
+85.0100007239507.23948866188e-071.50539402039e-058.81140538065e-074.00734902481e-164.88304422303e-05falsenonnormal-arnoldi—1000.000510——
+165.0104.29878355135e-131.1924773726e-136.9798350732e-154.80861944453e-168.10357677514e-13falsenonnormal-arnoldi—1000.000510——
+325.0105.39124300758e-131.01641114469e-145.94928031299e-165.28155618768e-169.18529560621e-14falsenonnormal-arnoldi—1000.0005101e-08—
+45.4223603238800.4123603238850.001067708245711.06192351322e-064.78359039524e-160.165879384794falsenonnormal-arnoldi—100000.0000051000——
+85.0100006760206.76017343437e-071.50539496811e-071.4978532022e-105.90706078152e-164.55069731768e-05falsenonnormal-arnoldi—100000.0000051000——
+165.0100000000302.905142793e-116.75258940078e-146.71876011156e-176.05961517179e-165.47370714188e-12falsenonnormal-arnoldi—100000.0000051000——
+325.0100000000404.19984047539e-116.39950223803e-146.36744185361e-176.81397930341e-163.69348708135e-12falsenonnormal-arnoldi—100000.00000510002.86045189409e-06—
+———0.0052.49996875059e-05————constructed-pseudoeigenpair0.01100.0049998751—constructed sensitivity control; not a solver-produced pair
+———0.0052.4999996875e-06————constructed-pseudoeigenpair0.011000.000510—constructed sensitivity control; not a solver-produced pair
+———0.0052.49999999997e-08————constructed-pseudoeigenpair0.01100000.0000051000—constructed sensitivity control; not a solver-produced pair
+この例の実測値・全記録 / JSON
+
+## 基盤手法：条件数・残差・収束と独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+C. Lanczos (1950). An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators · DOI: 10.6028/jres.045.026
+確認範囲 / review_level: primary-first-page-and-official-metadata
+W. E. Arnoldi (1951). The principle of minimized iterations in the solution of the matrix eigenvalue problem · DOI: 10.1090/qam/42792
+確認範囲 / review_level: publisher-metadata-and-reference-list
+Y. Saad (1980). Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices · DOI: 10.1016/0024-3795(80)90169-X
+確認範囲 / review_level: publisher-abstract-and-metadata
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview
+確認範囲 / review_level: official implementation documentation, error-bound overview and cluster/invariant-subspace distinction
+非正規行列では小さな固有対残差と前進固有値誤差を同一視しません。固有値感度、個別固有ベクトル、固有値クラスターの不変部分空間を区別します。
+独立参照の公式資料：scipy.linalg.eigh.html · scipy.linalg.eig.html
+
+## 基盤手法：条件数・残差・収束と独立参照 — 求積：狭いピーク・相殺・端点・誤差推定の盲点 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/
+Coverage: reading
+
+Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-assumptions
+Coverage: reading
+
+区間[0,1]、Gauss次数8/16/32/64/128、公差10⁻⁵/10⁻⁷/10⁻⁹です。Lorentz幅.1/.03/.01、相殺係数0/2¹²/2²⁴/2³⁶を固定します。零積分の相対条件数は未定義としてnullで保存します。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-algorithm
+Coverage: reading
+
+Golub–Welschの節点・重みと、局所差/15を用いる適応Simpsonを実装します。端点ではx=t²変換を別対照とし、狭いbumpには既知支持区間を分割した対照を用意します。これは一般的な自動救済機構ではありません。
+\kappa_{\rm cancel}=\frac{\int_a^b|f(x)|\,dx}{|\int_a^bf(x)\,dx|}\int_{c-w}^{c+w}(1-((x-c)/w)^2)^4\,dx=\frac{256w}{315}
+
+## 基盤手法：条件数・残差・収束と独立参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-validation
+Coverage: reading
+
+roots_legendre、解析atan積分、2/3、bumpの256w/315、独立QUADPACKを比較します。QUADPACKの状態・推定誤差・評価回数・警告文も保存します。相殺はε_machine×積分絶対量に対応する絶対予算を使います。初期5点が全て零のbumpでは推定誤差0と実誤差約.00813を明示します。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-limits
+Coverage: reading
+
+Simpsonの推定値は厳密誤差上界ではありません。盲点の検出に合格しても積分精度への合格ではありません。平方根の直接積分は深さ予算で未収束と表示し得ます。任意の振動・特異性の完全な探索や認証付き求積は主張しません。
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_cancellation_condition68719476737
+blind_bump_actual_error0.00812698412698
+blind_bump_reported_error0
+resolved_bump_actual_error1.08844183666e-12
+zero_integral_relative_condition—
+判定 / check合格
+width0.1-referencetrue
+n8-independent-ruletrue
+n16-independent-ruletrue
+n32-independent-ruletrue
+n64-independent-ruletrue
+n128-independent-ruletrue
+width0.1-gauss-refinementtrue
+width0.1-tol1e-05true
+width0.1-tol1e-07true
+width0.1-tol1e-09true
+width0.03-referencetrue
+width0.03-gauss-refinementtrue
+width0.03-tol1e-05true
+width0.03-tol1e-07true
+width0.03-tol1e-09true
+width0.01-referencetrue
+width0.01-gauss-refinementtrue
+width0.01-tol1e-05true
+width0.01-tol1e-07true
+width0.01-tol1e-09true
+endpoint-tol1e-05true
+endpoint-tol1e-07true
+endpoint-tol1e-09true
+C0-absolute-errortrue
+C4096-absolute-errortrue
+C1.67772e+07-absolute-errortrue
+C6.87195e+10-absolute-errortrue
+conditioned-input-perturbation-gaintrue
+zero-integral-relative-condition-undefinedtrue
+heuristic-blind-spot-explicittrue
+known-support-companion-resolvestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+kindwidthordervalueabsolute_errorintegral_condition_1statustoleranceestimated_errorevaluationssolver_convergedreference_statusscalecondition_infinitycancellation_condition_1input_relative_infinity_perturbationpredicted_integral_changeobserved_integral_changeroundoff_acceptance_budgetrelative_condition
+narrow-gauss0.180.2783797145170.006315220484441fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.1160.272455969720.0003914756870951fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.1320.2720651226616.28628108956e-071fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.1640.2720644940337.1054273576e-141fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.11280.2720644940331.66533453694e-161fixed-order measurement; not a tolerance certificate—————————————
+narrow-adaptive0.1—0.2720653200118.25978231811e-07—estimated_tolerance1e-052.8620361602e-0657truecompleted————————
+narrow-adaptive0.1—0.2720644936833.49922646414e-10—estimated_tolerance1e-073.04713195365e-08173truecompleted————————
+narrow-adaptive0.1—0.2720644940321.33193456264e-12—estimated_tolerance1e-093.6692922063e-10521truecompleted————————
+narrow-gauss0.0380.08519574868780.005201662529681fixed-order measurement; not a tolerance certificate—————————————
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+narrow-gauss0.03160.1062311459080.01583373469091fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.03320.09148987152120.001092460303721fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.03640.0904334822093.60709915213e-051fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.031280.09039742403741.28199452026e-081fixed-order measurement; not a tolerance certificate—————————————
+narrow-adaptive0.03—0.09039717484292.36374497073e-07—estimated_tolerance1e-051.41213599128e-0677truecompleted————————
+narrow-adaptive0.03—0.09039741274791.5304618961e-09—estimated_tolerance1e-073.93509694754e-08221truecompleted————————
+narrow-adaptive0.03—0.09039741121851.04835584658e-12—estimated_tolerance1e-093.27131381604e-10737truecompleted————————
+narrow-gauss0.0180.01376364219190.01722383869371fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.01160.04140256867530.01041508778971fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.01320.03194289389130.0009554130057141fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.01640.03359848518480.002611004299261fixed-order measurement; not a tolerance certificate—————————————
+narrow-gauss0.011280.03113241953250.0001449386469221fixed-order measurement; not a tolerance certificate—————————————
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+narrow-adaptive0.01—0.03099208775924.6068736642e-06—estimated_tolerance1e-054.56418266683e-0681truecompleted————————
+narrow-adaptive0.01—0.03098748876337.87777324623e-09—estimated_tolerance1e-075.00527032245e-08257truecompleted————————
+narrow-adaptive0.01—0.03098748088913.49423961987e-12—estimated_tolerance1e-093.33219322393e-10821truecompleted————————
+endpoint-direct——0.6666661430015.23665272367e-07—estimated_tolerance1e-05—61true—————————
+endpoint-transformed——0.6666666666671.11022302463e-16—estimated_tolerance1e-05—5true—————————
+endpoint-direct——0.6666666658658.01578137199e-10—estimated_tolerance1e-07—185true—————————
+endpoint-transformed——0.6666666666671.11022302463e-16—estimated_tolerance1e-07—5true—————————
+endpoint-direct——0.6666666666661.03095310067e-12—depth_budget1e-09—513false—————————
+endpoint-transformed——0.6666666666671.11022302463e-16—estimated_tolerance1e-09—5true—————————
+cancellation——10—estimated_tolerance———true—0119.09494701773e-139.09494701773e-139.09494701773e-132.84217094304e-14—
+cancellation——10—estimated_tolerance———true—409640972048.000122079.09494701773e-133.72619979316e-093.7258360841e-091.16415321827e-10—
+cancellation——10—estimated_tolerance———true—167772161677721783886089.09494701773e-131.5258789972e-051.52587890625e-054.76837158203e-07—
+
+## 基盤手法：条件数・残差・収束と独立参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-measurements
+Coverage: reading
+
+cancellation——10—estimated_tolerance———true—6871947673668719476737343597383689.09494701773e-130.06250000000090.06250.001953125—
+zero-integral——00—undefined relative condition because the exact integral is zero—————————————
+compact-bump-blind——00.00812698412698—expected false reassurance, not an accurate integral—05true—————————
+compact-bump-split——0.008126984128071.08844183666e-12—estimated_tolerance—4.35752060817e-10161true—————————
+この例の実測値・全記録 / JSON
+
+## 基盤手法：条件数・残差・収束と独立参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. H. Golub and J. H. Welsch (1969). Calculation of Gauss Quadrature Rules · DOI: 10.1090/S0025-5718-69-99647-1
+確認範囲 / review_level: publisher-search-first-page-and-metadata
+J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
+確認範囲 / review_level: publisher-metadata
+P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants · DOI: 10.1145/1824801.1824804
+確認範囲 / review_level: primary author paper, abstract and selected introduction/error-estimation text (§3)
+二つの近似積分値の差が偶然小さい場合の誤差推定失敗を原文の選択節で確認しました。今回のSimpson対照は教材独自の構成であり、同論文の新積分器を実装したとは呼びません。
+独立参照の公式資料：scipy.special.roots_legendre.html · scipy.integrate.quad.html
 
 ## AMG・行列分解・固有値・求積 — AMG・行列分解・固有値・求積 [ja]
 

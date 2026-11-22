@@ -335,28 +335,32 @@
         "sa-amg",
         "qr-svd-factorization",
         "krylov-eigenvalues",
-        "gauss-adaptive-quadrature"
+        "gauss-adaptive-quadrature",
+        "amg-conditioning",
+        "qr-svd-conditioning",
+        "krylov-eigen-conditioning",
+        "quadrature-conditioning"
       ],
       "scope": {
-        "ja": "SA-AMG、Householder QR・one-sided Jacobi SVD、再直交化Krylov固有値、Gauss・適応求積の小規模固定例。",
-        "en": "Small fixed-input examples of SA-AMG, Householder QR/one-sided Jacobi SVD, reorthogonalized Krylov eigenvalues and Gauss/adaptive quadrature."
+        "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",
+        "en": "Preserve the historical SA-AMG, QR/SVD, Krylov and quadrature examples; a separate release compares conditioning, residuals and accuracy with anisotropy, right-hand-side perturbation/rank thresholds, nonnormality and narrow-bump controls. The added AMG case is algebraic and supplies no additional Poisson mesh-accuracy claim."
       },
       "reference": {
-        "ja": "Poissonの解析解・独立疎直接解、NumPy/SciPyの独立分解・固有値、解析積分。",
-        "en": "Analytic Poisson/independent sparse direct solve, independent NumPy/SciPy factorizations/eigenvalues and analytic integrals."
+        "ja": "旧版の解析Poisson解を保持。追加版は疎直接解・DST、LAPACK、実際の二進入力に対する別環境の高精度演算、解析スペクトル・積分を役割別に照合。NumPy/SciPyはLAPACKを共有し得るため、全層が独立した参照とはしません。",
+        "en": "Retain the historical analytic Poisson reference. Distinguish sparse direct/DST, LAPACK, separately executed high-precision references for actual binary input, and analytic spectra/integrals. NumPy/SciPy may share LAPACK; independence at every computational layer is not claimed."
       },
       "refinement": {
-        "ja": "残差と解誤差、直交性と再構成、固有残差と真値の距離、求積誤差を別々に測定。",
-        "en": "Measure residual/solution errors, orthogonality/reconstruction, eigen-residual/reference distance and quadrature errors separately."
+        "ja": "AMGの行列サイズ・異方性・条件数と固定許容残差、QR／SVDの条件数・階数閾値、Krylov次元・固有値間隔・非正規性、求積点数・許容誤差と相殺感度を分離。残差・前進誤差・部分空間誤差・真の積分誤差を別々に測定。",
+        "en": "Separate AMG size/anisotropy/conditioning at fixed residual tolerance, QR/SVD conditioning/rank thresholds, Krylov dimension/spacing/nonnormality and quadrature order/tolerances/cancellation sensitivity. Measure residuals, forward errors, subspace errors and true integral errors separately."
       },
       "next": {
-        "ja": "小さな教育用実装。大規模並列AMG、任意の非対称・悪条件行列、全求積問題の保証はない。",
-        "en": "Small educational implementations; no certification of large parallel AMG, arbitrary nonsymmetric/ill-conditioned matrices or all integrands."
+        "ja": "小さな固定入力での教育用比較。大規模並列AMG、任意の悪条件・非正規行列、全ての被積分関数、他分野との連成計算の保証には広げません。",
+        "en": "Small fixed-input educational comparisons; no certification of large parallel AMG, arbitrary ill-conditioned/nonnormal matrices, all integrands or coupled applications in other fields."
       },
       "examples": [],
       "reading": {
-        "ja": "/numerical-methods-atlas/ja/read/validation-foundations/",
-        "en": "/numerical-methods-atlas/en/read/validation-foundations/"
+        "ja": "/numerical-methods-atlas/ja/read/validation-foundations-conditioning/",
+        "en": "/numerical-methods-atlas/en/read/validation-foundations-conditioning/"
       }
     },
     {
@@ -430,10 +434,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "335c5bc6d0bcbd5a48b089582be9d0d76654bd0a9fc2c379015c88fca0b949ba",
+    "catalog/atlas-depth.json": "d972c6c6359ba8e263cc06b8eb20a7311a4802f6c2e8858e05427768837b707b",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -469,6 +473,11 @@
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",

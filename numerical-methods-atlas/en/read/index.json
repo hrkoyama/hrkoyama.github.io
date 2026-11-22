@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "dea97ce8d91460bd136744a136cbac533283209e2fbb99544b1bbbb86e47e823",
-  "chapter_count": 89,
+  "source_sha256": "f080e39586e6f7c7c5ebaf8f69b454778464df25016f8c650c654e812c0b64b1",
+  "chapter_count": 90,
   "groups": [
     {
       "id": "foundations-time",
@@ -227,6 +227,17 @@
             "en"
           ],
           "search_text": "validation-foundations AMG・行列分解・固有値・求積 AMG, factorizations, eigenvalues and quadrature 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-foundations-conditioning",
+          "title": "Numerical foundations: conditioning, residuals, convergence and independent references",
+          "url": "/numerical-methods-atlas/en/read/validation-foundations-conditioning/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-foundations-conditioning 基盤手法：条件数・残差・収束と独立参照 Numerical foundations: conditioning, residuals, convergence and independent references 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
         }
       ]
     },

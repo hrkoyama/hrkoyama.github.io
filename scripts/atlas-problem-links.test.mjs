@@ -42,6 +42,28 @@ test('the constructed MHD equilibrium has its own hub and keeps active-cleaning 
   assert.deepEqual(ot.executions.map(row=>row.id),['ct-glm-independent','ct-glm-ot-convergence']);
 });
 
+test('conditioning releases extend only their three algebraic or integral families and keep AMG diagnostics outside PDE evidence',()=>{
+  const additions=[['matrix-factorization','qr-svd','qr-svd-factorization','qr-svd-conditioning'],['krylov-spectrum','eigensolvers','krylov-eigenvalues','krylov-eigen-conditioning'],['quadrature-moments','quadrature','gauss-adaptive-quadrature','quadrature-conditioning']];
+  for(const [id,method,previous,added] of additions){
+    const source=mapping.problems.find(row=>row.id===id),problem=index.problems.find(row=>row.id===id);
+    assert.deepEqual(source.equation_ids,[],'algebraic or integral checks do not invent a PDE equation');
+    assert.deepEqual(source.references,[],'no distinct physical reference-library problem is borrowed');
+    assert.deepEqual(source.method_ids,[method]);
+    assert.deepEqual(problem.executions.map(row=>row.id),[previous,added]);
+    assert.deepEqual(problem.methods.map(row=>row.id),[method]);
+    assert.deepEqual(problem.formulations.map(row=>row.id),['supplement-'+previous,'supplement-'+added]);
+    const execution=problem.executions.find(row=>row.id===added);
+    assert.ok(execution.download.includes('/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip'));
+    for(const lang of ['ja','en'])assert.ok(execution.guide[lang].includes('/validation/'+added+'/?lang='+lang));
+  }
+  assert.equal(supplements['amg-conditioning'],null);
+  assert.ok(!index.problems.some(row=>row.id==='amg-conditioning'));
+  assert.ok(!index.problems.some(row=>row.executions.some(execution=>execution.id==='amg-conditioning')));
+  const poisson=index.problems.find(row=>row.id==='poisson-2d-sine');
+  assert.ok(poisson.executions.some(row=>row.id==='sa-amg'));
+  assert.match(poisson.reference_note.en,/not borrowed as evidence/);
+});
+
 function blocks(html,attribute,value){
   const result=[];
   for(const opening of html.matchAll(/<([a-z][\w:-]*)\b[^>]*>/gi)){

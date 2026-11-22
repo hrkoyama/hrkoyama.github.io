@@ -432,6 +432,32 @@
       ],
       "supplemental_examples": [
         "sa-amg"
+      ],
+      "resources": [
+        {
+          "id": "amg-conditioning-reading",
+          "name": {
+            "ja": "代数的な残差とPDEの格子誤差の違い",
+            "en": "Algebraic residuals versus PDE mesh error"
+          },
+          "group": {
+            "ja": "関連する代数的診断",
+            "en": "Related algebraic diagnostics"
+          },
+          "summary": {
+            "ja": "既知の代数解を使う等方・異方行列の比較です。Poissonの格子収束は旧製造解例を参照します。",
+            "en": "Compare isotropic/anisotropic matrices with known algebraic solutions. Use the historical manufactured-solution example for Poisson mesh convergence."
+          },
+          "status": "reading-only",
+          "resource_type": "reading",
+          "reading": {
+            "ja": "/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning",
+            "en": "/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": []
+        }
       ]
     },
     {

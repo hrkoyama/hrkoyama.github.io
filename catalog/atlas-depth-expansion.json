@@ -107,6 +107,20 @@
         "ja": "数値流束族・LLF係数・時間刻み・物理減衰率を固定し、CTとGLMの離散化を比較します。構成した滑らかな厳密解と独立Athena++参照を使い、格子誤差・時間積分誤差・参照自身の差を分けて確かめます。",
         "en": "Compare CT and GLM discretizations with a matched flux family, LLF coefficient, time steps and fixed physical damping. Use a constructed smooth exact solution and independent Athena++ results to separate spatial, time-integration and reference differences."
       }
+    },
+    {
+      "id": "foundations-conditioning",
+      "title": {
+        "ja": "基盤手法：条件数・残差・収束と独立参照",
+        "en": "Numerical foundations: conditioning, residuals, convergence and independent references"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "AMG、QR／SVD、Krylov固有値解法、求積を固定した条件系列で比較します。残差と前進誤差、行列と積分の条件の違いを測り、独立参照との一致だけでなく、収束の限界や診断の見落としも確かめます。",
+        "en": "Compare AMG, QR/SVD, Krylov eigenvalue methods and quadrature across fixed conditioning families. Separate residuals from forward error and matrix from integral conditioning; check independent references alongside convergence limits and diagnostic blind spots."
+      }
     }
   ],
   "case_problem_ids": {
@@ -138,11 +152,15 @@
     "mcmc-diagnostic-reference": null,
     "ct-glm-smooth-convergence": "advected-magnetostatic-equilibrium",
     "ct-glm-ot-convergence": "orszag-tang",
-    "ct-glm-constraint-control": null
+    "ct-glm-constraint-control": null,
+    "amg-conditioning": null,
+    "qr-svd-conditioning": "matrix-factorization",
+    "krylov-eigen-conditioning": "krylov-spectrum",
+    "quadrature-conditioning": "quadrature-moments"
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する8グループです。独立ライブラリの診断参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs eight NumPy/SciPy/pytest groups, comparing independent-library diagnostic references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する9グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs nine NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {
@@ -176,6 +194,22 @@
     "ct-glm-constraint-control": {
       "ja": "発散制約を意図的に破った初期場を共通のセル磁場として与える診断です。正当な発散ゼロ初期条件のCT計算とは区別し、CTが初期制約誤差を保持する性質を確認します。GLMは減衰なしの対照とも比較し、磁場とpsiの波エネルギーを使って輸送の位相変化や数値拡散を物理減衰と混同しません。",
       "en": "This diagnostic deliberately violates the divergence constraint while giving both methods the same initial cell magnetic field. It is separate from legitimate divergence-free CT initial data and checks CT preservation of an existing constraint error. Compare GLM with an undamped control using magnetic-plus-psi wave energy, distinguishing wave phase and numerical diffusion from physical damping."
+    },
+    "amg-conditioning": {
+      "ja": "これは行列の代数的な条件と反復誤差の診断であり、旧Poisson製造解の連続PDE精度の確認とは別です。同じ格子の異方性と2ノルム条件数は一致する指標ではありません。残差、解誤差、反復予算切れを区別します。",
+      "en": "This diagnoses algebraic matrix conditioning and iteration error, separately from the earlier Poisson manufactured-solution PDE accuracy. Anisotropy and the 2-norm condition number need not vary together on a fixed grid. Distinguish residual, solution error and an exhausted iteration budget."
+    },
+    "qr-svd-conditioning": {
+      "ja": "再構成・直交性・後退誤差が小さくても、悪条件問題の前進誤差は大きくなり得ます。入力した浮動小数点行列と理想的に指定した特異値を区別し、数値階数の閾値も明記します。",
+      "en": "Small reconstruction, orthogonality and backward errors do not ensure small forward error for an ill-conditioned problem. Distinguish the actual floating-point matrix from its intended singular values and state the numerical-rank threshold."
+    },
+    "krylov-eigen-conditioning": {
+      "ja": "固有対残差、固有値・不変部分空間の誤差、スペクトルの間隔と非正規性を区別します。構成した感度対照を実際のKrylov反復の出力や万能な失敗例と同一視しません。",
+      "en": "Separate eigenpair residuals, eigenvalue/invariant-subspace errors, spectral gaps and nonnormality. A constructed sensitivity control is distinct from actual Krylov iteration output or a universal failure example."
+    },
+    "quadrature-conditioning": {
+      "ja": "適応推定値や計算間の一致は任意の被積分関数の厳密誤差上界ではありません。相殺時の絶対誤差と相対誤差、未検出の局所構造、評価予算を分けて記録します。",
+      "en": "An adaptive estimate or agreement between calculations is not a rigorous error bound for arbitrary integrands. Distinguish absolute and relative error under cancellation, unresolved local structure and evaluation budgets."
     }
   }
 }

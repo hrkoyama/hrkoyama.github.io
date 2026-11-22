@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
-    "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。 Krylov固有値：クラスター部分空間と非正規感度: 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -41,12 +41,12 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。",
-    "en": "Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices."
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。 Krylov固有値：クラスター部分空間と非正規感度: NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope."
   },
   "metadata_review": {
-    "level": "candidate outline; scientific derivation and literature review incomplete",
-    "on": "2026-11-21"
+    "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+    "on": "2026-11-22"
   },
   "aliases": [
     "固有値解法",
@@ -333,18 +333,493 @@
     ]
   },
   "depth_scope": {
-    "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
-    "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。 Krylov固有値：クラスター部分空間と非正規感度: 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
   },
+  "depth_additional_releases": [
+    {
+      "group": "foundations-conditioning",
+      "case_ids": [
+        "krylov-eigen-conditioning"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/",
+      "code_edition": "2026-11-22",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-foundations-conditioning-2026-11-22",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+      "code_archive_sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+      "passed_tests": 49,
+      "examples": [
+        {
+          "id": "krylov-eigen-conditioning",
+          "title": {
+            "ja": "Krylov固有値：クラスター部分空間と非正規感度",
+            "en": "Krylov eigenvalues: cluster subspaces and nonnormal sensitivity"
+          },
+          "method_ids": [
+            "eigensolvers"
+          ],
+          "summary": {
+            "ja": "48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
+            "en": "Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
+          },
+          "assumptions": {
+            "ja": "対称行列の上位2固有値の間隔は1/.1/.01です。非正規行列は実浮動小数点の上三角行列でK=10/1000とし、対角が既知固有値です。浮動小数点の相似変換後に名目スペクトルを厳密真値とは呼びません。",
+            "en": "Top symmetric gaps are1/.1/.01. Nonnormal matrices are actual floating-point upper-triangular inputs with K=10/1000 and known diagonal eigenvalues. Nominal spectra after floating-point similarity construction are not labelled exact truth."
+          },
+          "algorithm": {
+            "ja": "全再直交化Lanczosと2回MGSのArnoldiで縮約し、小さい射影行列だけを密に解きます。上位2ベクトルはQRで張る空間へ変換し、符号や回転に不変な射影行列差を測ります。",
+            "en": "Use fully reorthogonalized Lanczos and two-pass MGS Arnoldi; only the small projected matrix is solved densely. Compare QR-spanned top-two subspace projectors, invariant under signs and cluster rotations."
+          },
+          "validation": {
+            "ja": "解析的対角固有値とSciPy密固有値、左右固有ベクトルによる条件数を照合します。別に構成した2×2擬固有対ではK=1000で残差約2.5×10⁻⁸に対し固有値誤差.005を示します。これは反復法が出力した失敗例ではなく、残差だけでは保証できないことを示す感度対照です。",
+            "en": "Compare analytic triangular eigenvalues, SciPy dense eigenvalues and left/right eigenvector condition numbers. A separately constructed2×2 pseudoeigenpair has residual about2.5×10⁻⁸ but eigenvalue error.005 at K=1000. It is a sensitivity control, not a failure produced by the iterative solver."
+          },
+          "limits": {
+            "ja": "NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。",
+            "en": "NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope."
+          },
+          "references": [
+            {
+              "id": "lanczos1950",
+              "author": "C. Lanczos",
+              "year": 1950,
+              "title": "An Iteration Method for the Solution of the Eigenvalue Problem of Linear Differential and Integral Operators",
+              "doi": "10.6028/jres.045.026",
+              "url": "https://nvlpubs.nist.gov/nistpubs/jres/045/jresv45n4p255_A1b.pdf",
+              "review_level": "primary-first-page-and-official-metadata",
+              "journal": "Journal of Research of the National Bureau of Standards 45(4), 255–282",
+              "type": "article"
+            },
+            {
+              "id": "arnoldi1951",
+              "author": "W. E. Arnoldi",
+              "year": 1951,
+              "title": "The principle of minimized iterations in the solution of the matrix eigenvalue problem",
+              "doi": "10.1090/qam/42792",
+              "url": "https://doi.org/10.1090/qam/42792",
+              "review_level": "publisher-metadata-and-reference-list",
+              "journal": "Quarterly of Applied Mathematics 9, 17–29",
+              "type": "article"
+            },
+            {
+              "id": "saad1980",
+              "author": "Y. Saad",
+              "year": 1980,
+              "title": "Variations on Arnoldi’s method for computing eigenelements of large unsymmetric matrices",
+              "doi": "10.1016/0024-3795(80)90169-X",
+              "url": "https://www.sciencedirect.com/science/article/pii/002437958090169X",
+              "review_level": "publisher-abstract-and-metadata",
+              "journal": "Linear Algebra and its Applications 34, 269–295",
+              "type": "article"
+            },
+            {
+              "id": "lapack-eigen-error",
+              "author": "LAPACK authors",
+              "year": 1999,
+              "title": "Error Bounds for the Nonsymmetric Eigenproblem; Overview",
+              "url": "https://www.netlib.org/lapack/lug/node91.html",
+              "supporting_url": "https://www.netlib.org/lapack/lug/node93.html",
+              "review_level": "official implementation documentation, error-bound overview and cluster/invariant-subspace distinction",
+              "review": {
+                "ja": "非正規行列では小さな固有対残差と前進固有値誤差を同一視しません。固有値感度、個別固有ベクトル、固有値クラスターの不変部分空間を区別します。",
+                "en": "Do not equate a small eigenpair residual with small forward eigenvalue error for nonnormal matrices; distinguish eigenvalue sensitivity, individual vectors, and clustered invariant subspaces."
+              }
+            }
+          ],
+          "reference_implementations": [
+            "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eigh.html",
+            "https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eig.html"
+          ],
+          "equations": [
+            "\\kappa(\\lambda)=\\frac{\\|y\\|_2\\|x\\|_2}{|y^*x|}",
+            "A=\\begin{pmatrix}1&K\\\\0&1+\\delta\\end{pmatrix},\\quad\\|A\\tilde v-\\tilde\\lambda\\tilde v\\|_2=\\frac{\\delta^2}{4K\\sqrt{1+(\\delta/(2K))^2}}"
+          ],
+          "measured": {
+            "id": "krylov-eigen-conditioning",
+            "passed": true,
+            "checks": {
+              "gap1-analytic-spectrum": true,
+              "gap1-resolved": true,
+              "gap1-basis": true,
+              "gap0.1-analytic-spectrum": true,
+              "gap0.1-resolved": true,
+              "gap0.1-basis": true,
+              "gap0.01-analytic-spectrum": true,
+              "gap0.01-resolved": true,
+              "gap0.01-basis": true,
+              "K10-condition": true,
+              "K10-analytic-spectrum": true,
+              "K10-resolved": true,
+              "K10-basis": true,
+              "K1000-condition": true,
+              "K1000-analytic-spectrum": true,
+              "K1000-resolved": true,
+              "K1000-basis": true,
+              "pseudoK1-literal-formula": true,
+              "pseudoK10-literal-formula": true,
+              "pseudoK1000-literal-formula": true,
+              "small-residual-does-not-certify-forward-error": true,
+              "short-dimension-has-residual": true
+            },
+            "metrics": {
+              "maximum_basis_orthogonality": 6.813979303412138e-16,
+              "largest_eigenvalue_condition": 100000.00000500213,
+              "constructed_small_residual": 2.4999999999688053e-08,
+              "constructed_forward_error": 0.004999999999999893
+            },
+            "records": [
+              {
+                "dimension": 4,
+                "eigenvalue_real": 4.99633590412968,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 0.0036640958703042514,
+                "absolute_residual": 0.06736654996319132,
+                "relative_backward_residual": 0.006739124276062088,
+                "orthogonality": 4.581072891301978e-16,
+                "top_two_projector_error": 0.9163170955067055,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 1.0,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 8,
+                "eigenvalue_real": 4.999999999293117,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 7.068674534593811e-10,
+                "absolute_residual": 5.86042759540452e-05,
+                "relative_backward_residual": 5.86042759581879e-06,
+                "orthogonality": 4.704653161340859e-16,
+                "top_two_projector_error": 0.0004937423482667621,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 1.0,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 16,
+                "eigenvalue_real": 4.999999999999987,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 2.6645352591003757e-15,
+                "absolute_residual": 5.06766171196242e-13,
+                "relative_backward_residual": 5.0676617119624333e-14,
+                "orthogonality": 4.757130544692364e-16,
+                "top_two_projector_error": 2.666691692501088e-11,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 1.0,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 32,
+                "eigenvalue_real": 4.999999999999987,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 2.6645352591003757e-15,
+                "absolute_residual": 3.4198541168134538e-15,
+                "relative_backward_residual": 3.4198541168134623e-16,
+                "orthogonality": 5.093759843977837e-16,
+                "top_two_projector_error": 1.3504164796940468e-15,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 1.0,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 4,
+                "eigenvalue_real": 4.998668594294411,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 0.0013314057055682227,
+                "absolute_residual": 0.01721438938146817,
+                "relative_backward_residual": 0.0017216681620282246,
+                "orthogonality": 3.921130593781859e-16,
+                "top_two_projector_error": 0.998731459241614,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.1,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 8,
+                "eigenvalue_real": 4.999999891386362,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 1.0861361765535094e-07,
+                "absolute_residual": 0.0007269733305287233,
+                "relative_backward_residual": 7.269733384246462e-05,
+                "orthogonality": 4.1088790798736905e-16,
+                "top_two_projector_error": 0.0014375479488068328,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.1,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 16,
+                "eigenvalue_real": 4.999999999999988,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 7.993605777301127e-15,
+                "absolute_residual": 6.293526140277869e-12,
+                "relative_backward_residual": 6.293526140277885e-13,
+                "orthogonality": 5.824512793638116e-16,
+                "top_two_projector_error": 1.4750848692739218e-11,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.1,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 32,
+                "eigenvalue_real": 4.99999999999999,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 1.0658141036401503e-14,
+                "absolute_residual": 3.729279463168335e-15,
+                "relative_backward_residual": 3.729279463168343e-16,
+                "orthogonality": 6.141376702365652e-16,
+                "top_two_projector_error": 1.342299486781427e-15,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.1,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 4,
+                "eigenvalue_real": 4.999821228776712,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 0.00017877122326304118,
+                "absolute_residual": 0.01292505194516126,
+                "relative_backward_residual": 0.0012925283012026815,
+                "orthogonality": 2.6745540113699627e-16,
+                "top_two_projector_error": 0.9999867495375978,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.01,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 8,
+                "eigenvalue_real": 4.999989534039334,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 1.0465960641248273e-05,
+                "absolute_residual": 0.006873399918518679,
+                "relative_backward_residual": 0.0006873407112199536,
+                "orthogonality": 5.237241665114369e-16,
+                "top_two_projector_error": 0.012889379541327916,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.01,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 16,
+                "eigenvalue_real": 4.9999999999999885,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 1.3322676295501878e-14,
+                "absolute_residual": 6.41582155758729e-11,
+                "relative_backward_residual": 6.415821557587307e-12,
+                "orthogonality": 5.327049459390452e-16,
+                "top_two_projector_error": 1.1421385115501277e-10,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.01,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 32,
+                "eigenvalue_real": 4.999999999999989,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 1.4210854715202004e-14,
+                "absolute_residual": 3.172159953948481e-15,
+                "relative_backward_residual": 3.172159953948489e-16,
+                "orthogonality": 6.135366320475745e-16,
+                "top_two_projector_error": 1.2910483689524174e-15,
+                "happy_breakdown": false,
+                "kind": "symmetric-cluster",
+                "gap": 0.01,
+                "eigenvalue_condition": 1.0
+              },
+              {
+                "dimension": 4,
+                "eigenvalue_real": 5.4380101671693115,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 0.42801016716931173,
+                "absolute_residual": 0.09962789774939454,
+                "relative_backward_residual": 0.005688921212567508,
+                "orthogonality": 3.8779428475200654e-16,
+                "top_two_projector_error": 0.19397194760051614,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 10.0,
+                "eigenvalue_condition": 1000.0004999998963
+              },
+              {
+                "dimension": 8,
+                "eigenvalue_real": 5.010000723948866,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 7.239488661880955e-07,
+                "absolute_residual": 1.5053940203903695e-05,
+                "relative_backward_residual": 8.811405380647538e-07,
+                "orthogonality": 4.007349024805803e-16,
+                "top_two_projector_error": 4.883044223026098e-05,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 10.0,
+                "eigenvalue_condition": 1000.0004999998963
+              },
+              {
+                "dimension": 16,
+                "eigenvalue_real": 5.00999999999957,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 4.298783551348606e-13,
+                "absolute_residual": 1.1924773726037158e-13,
+                "relative_backward_residual": 6.979835073199329e-15,
+                "orthogonality": 4.808619444526885e-16,
+                "top_two_projector_error": 8.10357677513588e-13,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 10.0,
+                "eigenvalue_condition": 1000.0004999998963
+              },
+              {
+                "dimension": 32,
+                "eigenvalue_real": 5.010000000000539,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 5.39124300757976e-13,
+                "absolute_residual": 1.0164111446924694e-14,
+                "relative_backward_residual": 5.94928031298786e-16,
+                "orthogonality": 5.281556187678034e-16,
+                "top_two_projector_error": 9.185295606205434e-14,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 10.0,
+                "eigenvalue_condition": 1000.0004999998963,
+                "condition_aware_eigenvalue_error_budget": 1e-08
+              },
+              {
+                "dimension": 4,
+                "eigenvalue_real": 5.422360323884675,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 0.41236032388467514,
+                "absolute_residual": 0.0010677082457146282,
+                "relative_backward_residual": 1.0619235132187757e-06,
+                "orthogonality": 4.783590395240855e-16,
+                "top_two_projector_error": 0.16587938479353992,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 1000.0,
+                "eigenvalue_condition": 100000.00000500213
+              },
+              {
+                "dimension": 8,
+                "eigenvalue_real": 5.010000676017343,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 6.760173434372518e-07,
+                "absolute_residual": 1.5053949681149766e-07,
+                "relative_backward_residual": 1.4978532022016251e-10,
+                "orthogonality": 5.907060781523087e-16,
+                "top_two_projector_error": 4.5506973176757395e-05,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 1000.0,
+                "eigenvalue_condition": 100000.00000500213
+              },
+              {
+                "dimension": 16,
+                "eigenvalue_real": 5.010000000029051,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 2.9051427929971396e-11,
+                "absolute_residual": 6.752589400784106e-14,
+                "relative_backward_residual": 6.718760111564077e-17,
+                "orthogonality": 6.059615171785281e-16,
+                "top_two_projector_error": 5.4737071418781875e-12,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 1000.0,
+                "eigenvalue_condition": 100000.00000500213
+              },
+              {
+                "dimension": 32,
+                "eigenvalue_real": 5.010000000041998,
+                "eigenvalue_imag": 0.0,
+                "eigenvalue_error": 4.199840475394012e-11,
+                "absolute_residual": 6.39950223803488e-14,
+                "relative_backward_residual": 6.367441853606631e-17,
+                "orthogonality": 6.813979303412138e-16,
+                "top_two_projector_error": 3.6934870813542615e-12,
+                "happy_breakdown": false,
+                "kind": "nonnormal-arnoldi",
+                "coupling": 1000.0,
+                "eigenvalue_condition": 100000.00000500213,
+                "condition_aware_eigenvalue_error_budget": 2.8604518940881725e-06
+              },
+              {
+                "kind": "constructed-pseudoeigenpair",
+                "coupling": 1.0,
+                "gap": 0.01,
+                "absolute_residual": 2.499968750585991e-05,
+                "eigenvalue_error": 0.004999999999999893,
+                "eigenvalue_condition": 100.00499987500625,
+                "status": "constructed sensitivity control; not a solver-produced pair"
+              },
+              {
+                "kind": "constructed-pseudoeigenpair",
+                "coupling": 10.0,
+                "gap": 0.01,
+                "absolute_residual": 2.499999687500089e-06,
+                "eigenvalue_error": 0.004999999999999893,
+                "eigenvalue_condition": 1000.000499999875,
+                "status": "constructed sensitivity control; not a solver-produced pair"
+              },
+              {
+                "kind": "constructed-pseudoeigenpair",
+                "coupling": 1000.0,
+                "gap": 0.01,
+                "absolute_residual": 2.4999999999688053e-08,
+                "eigenvalue_error": 0.004999999999999893,
+                "eigenvalue_condition": 100000.000005,
+                "status": "constructed sensitivity control; not a solver-produced pair"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#krylov-eigen-conditioning",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#krylov-eigen-conditioning"
+          }
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -360,6 +835,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "krylov-eigen-conditioning",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=en"
       },
       "kind": "dedicated-supplement"
     }

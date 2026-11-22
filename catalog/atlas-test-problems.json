@@ -1695,6 +1695,21 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "qr-svd-conditioning"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -1704,6 +1719,14 @@
           "name": {
             "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
             "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+          }
+        },
+        {
+          "id": "qr-svd-conditioning",
+          "url": "/numerical-methods-atlas/validation/qr-svd-conditioning/",
+          "name": {
+            "ja": "QR/SVD：既定特異値・摂動増幅・数値階数",
+            "en": "QR/SVD: prescribed spectra, perturbation gain and numerical rank"
           }
         }
       ]
@@ -1739,6 +1762,21 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "krylov-eigen-conditioning"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -1748,6 +1786,14 @@
           "name": {
             "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
             "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+          }
+        },
+        {
+          "id": "krylov-eigen-conditioning",
+          "url": "/numerical-methods-atlas/validation/krylov-eigen-conditioning/",
+          "name": {
+            "ja": "Krylov固有値：クラスター部分空間と非正規感度",
+            "en": "Krylov eigenvalues: cluster subspaces and nonnormal sensitivity"
           }
         }
       ]
@@ -1783,6 +1829,21 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "quadrature-conditioning"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -1792,6 +1853,14 @@
           "name": {
             "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
             "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+          }
+        },
+        {
+          "id": "quadrature-conditioning",
+          "url": "/numerical-methods-atlas/validation/quadrature-conditioning/",
+          "name": {
+            "ja": "求積：狭いピーク・相殺・端点・誤差推定の盲点",
+            "en": "Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots"
           }
         }
       ]
@@ -2433,7 +2502,8 @@
       "AMR・並列化・混合精度、専用実装が未整備のサーモスタット10手法、未実装の量子化学・DFTの拡張",
       "補助例glm-fourier-modeはGLMの縦方向発散誤差の減衰診断として別掲し、独立した物理テスト問題へは加算しません。",
       "補助例csvr-kinetic-kernelはCSVR熱浴単独の条件付き分布・揺らぎ・相関の診断として別掲し、独立した物理テスト問題へは加算しません。調和系のCSVR/Langevin比較も既存langevin-harmonicへの手法追加として統合し、四次ポテンシャルのthermostatted-quarticだけを新しい問題として1件加算します。",
-      "mcmc-diagnostic-referenceはACF・rank Rhat・bulk/tail ESSと退化条件の診断対照で、物理問題数へ加算しません。2峰混合の初期値・局所/反射提案・seed違いはmcmc-bimodal-mixtureの1問題へ統合し、旧単峰gaussian-mcmcとは別に数えます。混合不良を期待通り再現した検査の合格は、そのシナリオの推定成功を意味しません。"
+      "mcmc-diagnostic-referenceはACF・rank Rhat・bulk/tail ESSと退化条件の診断対照で、物理問題数へ加算しません。2峰混合の初期値・局所/反射提案・seed違いはmcmc-bimodal-mixtureの1問題へ統合し、旧単峰gaussian-mcmcとは別に数えます。混合不良を期待通り再現した検査の合格は、そのシナリオの推定成功を意味しません。",
+      "amg-conditioningは既知の代数解を使う条件数・残差・異方性の診断で、物理問題への紐付けはありません。Poissonの格子精度の証拠へ流用しません。QR／SVD、Krylov固有値、求積の条件系列は、それぞれ既存のmatrix-factorization、krylov-spectrum、quadrature-momentsへの追加検証として統合し、パラメータや診断対照ごとに問題数を増やしません。"
     ],
     "en": [
       "17 of 22 biological labels remain survey-only. Five labels expose only scoped educational implementations; Turing and Schnakenberg share one example and do not add duplicate problems.",
@@ -2443,7 +2513,8 @@
       "AMR, parallelization, mixed precision, the ten thermostats without dedicated implementations, and unimplemented quantum/DFT extensions",
       "The glm-fourier-mode supplement is a longitudinal GLM divergence-error damping diagnostic and does not add an independent physical test problem.",
       "The csvr-kinetic-kernel supplement diagnoses conditional laws, fluctuations and correlations of the isolated CSVR bath and adds no physical problem. The harmonic CSVR/Langevin comparison extends the existing langevin-harmonic problem; only the quartic-potential thermostatted-quartic case adds one new problem.",
-      "mcmc-diagnostic-reference is an ACF/rank-Rhat/bulk-tail-ESS and degeneracy control, not an additional physical problem. Different starts, local/reflection proposals and seeds for the bimodal target form one mcmc-bimodal-mixture problem, distinct from the old unimodal gaussian-mcmc. Passing an intentional mixing-failure check does not mean estimation succeeded in that scenario."
+      "mcmc-diagnostic-reference is an ACF/rank-Rhat/bulk-tail-ESS and degeneracy control, not an additional physical problem. Different starts, local/reflection proposals and seeds for the bimodal target form one mcmc-bimodal-mixture problem, distinct from the old unimodal gaussian-mcmc. Passing an intentional mixing-failure check does not mean estimation succeeded in that scenario.",
+      "amg-conditioning is a known-algebraic-solution diagnostic of conditioning, residuals and anisotropy, with no physical-problem binding; its evidence is not borrowed for Poisson mesh accuracy. QR/SVD, Krylov and quadrature conditioning families extend matrix-factorization, krylov-spectrum and quadrature-moments respectively; parameters and diagnostic controls do not add separate problems."
     ]
   }
 }

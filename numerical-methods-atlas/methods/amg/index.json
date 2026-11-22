@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
-    "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+    "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
+    "en": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -36,12 +36,12 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。",
-    "en": "Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error."
+    "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。 AMGの条件数・異方性・残差と前進誤差: 固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。",
+    "en": "Matrix-based AMG: distinguish residual and solution error: Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error. AMG: conditioning, anisotropy, residual and forward error: Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence."
   },
   "metadata_review": {
-    "level": "candidate outline; scientific derivation and literature review incomplete",
-    "on": "2026-11-21"
+    "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+    "on": "2026-11-22"
   },
   "aliases": [
     "AMG法",
@@ -192,18 +192,2011 @@
     ]
   },
   "depth_scope": {
-    "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
-    "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+    "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
+    "en": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
   },
+  "depth_additional_releases": [
+    {
+      "group": "foundations-conditioning",
+      "case_ids": [
+        "amg-conditioning"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/",
+      "code_edition": "2026-11-22",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-foundations-conditioning-2026-11-22",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+      "code_archive_sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+      "passed_tests": 49,
+      "examples": [
+        {
+          "id": "amg-conditioning",
+          "title": {
+            "ja": "AMGの条件数・異方性・残差と前進誤差",
+            "en": "AMG: conditioning, anisotropy, residual and forward error"
+          },
+          "method_ids": [
+            "amg"
+          ],
+          "summary": {
+            "ja": "49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
+            "en": "Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
+          },
+          "assumptions": {
+            "ja": "正方格子から作るA=T⊗I+εI⊗T、n=7/15/31、ε=1/.1/.01です。これは既知解を持つ代数系の診断であり、連続PDEの精度検証は既存Poisson例に残します。同じnではκ₂はεによらず一定です。",
+            "en": "A=T⊗I+εI⊗T with n=7/15/31 and ε=1/.1/.01. This is a known-solution algebraic diagnostic; continuum PDE validation remains in the earlier Poisson example. At fixed square n, κ₂ is independent of ε."
+          },
+          "algorithm": {
+            "ja": "MITライセンスの既存アトラス教材の平滑化集約AMGを新しい独立ソースへ再利用します。階層は行列だけから構築し、強度閾値.08、Jacobi平滑化、固定相対公差10⁻¹⁰、最大180 V-cycleを使います。DSTの正弦変換による直接反転は参照側だけです。",
+            "en": "Reuse the earlier MIT-licensed Atlas educational smoothed-aggregation AMG in a separate source release. Matrix-only hierarchy setup uses strength .08, Jacobi smoothing, fixed relative tolerance 10⁻¹⁰ and at most 180 V-cycles. Sine-transform spectral inversion is reference-side only."
+          },
+          "validation": {
+            "ja": "真の残差、独立直接解との差、DSTとの差、operator complexity、全残差履歴を保存します。最大固有値方向の右辺へ最小固有値方向の摂動を加え、相対増幅κ₂を直接解で照合します。等方例は収束必須、異方性stress例は予算終了も正直に記録する事前基準です。1-cycle対照は未収束を検出します。",
+            "en": "Store true residual, forward error, DST agreement, operator complexity and complete histories. Perturb a maximal-eigenmode RHS in the minimal-eigenmode direction and check the predicted relative amplification κ₂ with direct solves. Isotropic runs must converge; the predeclared anisotropy stress policy permits honestly reported budget exhaustion. A one-cycle control detects nonconvergence."
+          },
+          "limits": {
+            "ja": "固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。",
+            "en": "Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence."
+          },
+          "references": [
+            {
+              "id": "vanek1996",
+              "author": "P. Vaněk, J. Mandel and M. Brezina",
+              "year": 1996,
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "doi": "10.1007/BF02238511",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-and-metadata",
+              "journal": "Computing 56, 179–196",
+              "type": "article"
+            },
+            {
+              "id": "vanek2001",
+              "author": "P. Vaněk, M. Brezina, J. Mandel",
+              "year": 2001,
+              "title": "Convergence of algebraic multigrid based on smoothed aggregation",
+              "doi": "10.1007/s002110000226",
+              "url": "https://ww3.math.ucla.edu/camreport/cam99-29.pdf",
+              "review_level": "author-hosted original preprint abstract and opening text via official university search extraction",
+              "review": {
+                "ja": "弱近似性等の仮定に基づく理論と、教材の限られた行列系列での観測を区別します。任意異方性への頑健性は主張しません。",
+                "en": "Distinguish theory conditional on weak approximation and related assumptions from observations on a small matrix family; no general anisotropy robustness claim."
+              }
+            }
+          ],
+          "reference_implementations": [
+            "https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.spsolve.html"
+          ],
+          "equations": [
+            "\\kappa_2(A)=\\cot^2\\!\\left(\\frac{\\pi}{2(n+1)}\\right)",
+            "\\frac{\\|x-\\hat x\\|_2}{\\|x\\|_2}\\le\\kappa_2(A)\\frac{\\|b-A\\hat x\\|_2}{\\|b\\|_2}"
+          ],
+          "measured": {
+            "id": "amg-conditioning",
+            "passed": true,
+            "checks": {
+              "n7-eps1-true-residual": true,
+              "n7-eps1-forward-bound": true,
+              "n7-eps1-condition-gain": true,
+              "n7-eps1-complexity": true,
+              "n7-eps1-independent-dst": true,
+              "n7-eps1-resolved": true,
+              "n7-eps0.1-true-residual": true,
+              "n7-eps0.1-forward-bound": true,
+              "n7-eps0.1-condition-gain": true,
+              "n7-eps0.1-complexity": true,
+              "n7-eps0.1-independent-dst": true,
+              "n7-eps0.1-stress-honest": true,
+              "n7-eps0.01-true-residual": true,
+              "n7-eps0.01-forward-bound": true,
+              "n7-eps0.01-condition-gain": true,
+              "n7-eps0.01-complexity": true,
+              "n7-eps0.01-independent-dst": true,
+              "n7-eps0.01-stress-honest": true,
+              "n7-independent-spectrum": true,
+              "n15-eps1-true-residual": true,
+              "n15-eps1-forward-bound": true,
+              "n15-eps1-condition-gain": true,
+              "n15-eps1-complexity": true,
+              "n15-eps1-independent-dst": true,
+              "n15-eps1-resolved": true,
+              "n15-eps0.1-true-residual": true,
+              "n15-eps0.1-forward-bound": true,
+              "n15-eps0.1-condition-gain": true,
+              "n15-eps0.1-complexity": true,
+              "n15-eps0.1-independent-dst": true,
+              "n15-eps0.1-stress-honest": true,
+              "n15-eps0.01-true-residual": true,
+              "n15-eps0.01-forward-bound": true,
+              "n15-eps0.01-condition-gain": true,
+              "n15-eps0.01-complexity": true,
+              "n15-eps0.01-independent-dst": true,
+              "n15-eps0.01-stress-honest": true,
+              "n15-independent-spectrum": true,
+              "n31-eps1-true-residual": true,
+              "n31-eps1-forward-bound": true,
+              "n31-eps1-condition-gain": true,
+              "n31-eps1-complexity": true,
+              "n31-eps1-independent-dst": true,
+              "n31-eps1-resolved": true,
+              "n31-eps0.1-true-residual": true,
+              "n31-eps0.1-forward-bound": true,
+              "n31-eps0.1-condition-gain": true,
+              "n31-eps0.1-complexity": true,
+              "n31-eps0.1-independent-dst": true,
+              "n31-eps0.1-stress-honest": true,
+              "n31-eps0.01-true-residual": true,
+              "n31-eps0.01-forward-bound": true,
+              "n31-eps0.01-condition-gain": true,
+              "n31-eps0.01-complexity": true,
+              "n31-eps0.01-independent-dst": true,
+              "n31-eps0.01-stress-honest": true,
+              "n31-independent-spectrum": true,
+              "short-budget-failure-explicit": true
+            },
+            "metrics": {
+              "maximum_condition_2": 414.3450622319016,
+              "maximum_actual_relative_residual": 9.213509371626832e-11,
+              "maximum_actual_forward_error": 6.249776614864638e-11,
+              "stress_budget_exhaustions": 0,
+              "maximum_condition_gain_relative_error": 3.2097435820332976e-11
+            },
+            "records": [
+              {
+                "n": 7,
+                "unknowns": 49,
+                "epsilon": 1.0,
+                "condition_2_analytic": 25.274142369088185,
+                "lambda_min": 19.486839677110588,
+                "lambda_max": 492.5131603228894,
+                "cycles": 14,
+                "relative_residual": 9.213509371626832e-11,
+                "relative_forward_error": 6.249776614864638e-11,
+                "sparse_direct_vs_dst": 6.580284812705319e-16,
+                "dst_vs_known_solution": 2.7003114414439344e-16,
+                "condition_times_residual": 2.328635475774248e-09,
+                "condition_gain_direct": 25.274142369334907,
+                "operator_complexity": 1.6359447004608296,
+                "levels": 3,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 7,
+                "unknowns": 49,
+                "epsilon": 0.1,
+                "condition_2_analytic": 25.274142369088185,
+                "lambda_min": 10.717761822410823,
+                "lambda_max": 270.8822381775892,
+                "cycles": 39,
+                "relative_residual": 7.422517088353343e-11,
+                "relative_forward_error": 5.535584728227881e-11,
+                "sparse_direct_vs_dst": 9.048617886315513e-16,
+                "dst_vs_known_solution": 9.224825189580645e-16,
+                "condition_times_residual": 1.875977536280323e-09,
+                "condition_gain_direct": 25.27414236959624,
+                "operator_complexity": 1.6497695852534562,
+                "levels": 3,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 7,
+                "unknowns": 49,
+                "epsilon": 0.01,
+                "condition_2_analytic": 25.274142369088185,
+                "lambda_min": 9.840854036940847,
+                "lambda_max": 248.71914596305916,
+                "cycles": 9,
+                "relative_residual": 4.203228569247382e-11,
+                "relative_forward_error": 2.805439080920481e-11,
+                "sparse_direct_vs_dst": 6.633779937962923e-16,
+                "dst_vs_known_solution": 5.485255303243521e-16,
+                "condition_times_residual": 1.0623299726897718e-09,
+                "condition_gain_direct": 25.27414236989942,
+                "operator_complexity": 2.336405529953917,
+                "levels": 3,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 15,
+                "unknowns": 225,
+                "epsilon": 1.0,
+                "condition_2_analytic": 103.08686891981743,
+                "lambda_min": 19.67587286709202,
+                "lambda_max": 2028.3241271329077,
+                "cycles": 19,
+                "relative_residual": 3.605176010571747e-11,
+                "relative_forward_error": 1.8781585884017555e-11,
+                "sparse_direct_vs_dst": 6.484898830477013e-16,
+                "dst_vs_known_solution": 1.5372748104659514e-16,
+                "condition_times_residual": 3.7164630683468006e-09,
+                "condition_gain_direct": 103.08686891778736,
+                "operator_complexity": 2.531455399061033,
+                "levels": 4,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 15,
+                "unknowns": 225,
+                "epsilon": 0.1,
+                "condition_2_analytic": 103.08686891981743,
+                "lambda_min": 10.821730076900613,
+                "lambda_max": 1115.5782699230992,
+                "cycles": 57,
+                "relative_residual": 7.435787768700038e-11,
+                "relative_forward_error": 2.4796262277425306e-11,
+                "sparse_direct_vs_dst": 3.725545940476824e-15,
+                "dst_vs_known_solution": 3.713473514580418e-15,
+                "condition_times_residual": 7.665320790275626e-09,
+                "condition_gain_direct": 103.08686891725311,
+                "operator_complexity": 2.580281690140845,
+                "levels": 4,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 15,
+                "unknowns": 225,
+                "epsilon": 0.01,
+                "condition_2_analytic": 103.08686891981743,
+                "lambda_min": 9.936315797881472,
+                "lambda_max": 1024.3036842021183,
+                "cycles": 12,
+                "relative_residual": 6.158726363110633e-11,
+                "relative_forward_error": 5.661649068621169e-11,
+                "sparse_direct_vs_dst": 1.289339738878363e-15,
+                "dst_vs_known_solution": 5.615204365913709e-16,
+                "condition_times_residual": 6.348838173070098e-09,
+                "condition_gain_direct": 103.08686892102615,
+                "operator_complexity": 3.262910798122066,
+                "levels": 4,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 31,
+                "unknowns": 961,
+                "epsilon": 1.0,
+                "condition_2_analytic": 414.3450622319016,
+                "lambda_min": 19.723359550681554,
+                "lambda_max": 8172.276640449319,
+                "cycles": 25,
+                "relative_residual": 4.366144286201904e-11,
+                "relative_forward_error": 1.988437479389017e-11,
+                "sparse_direct_vs_dst": 2.956026308325435e-15,
+                "dst_vs_known_solution": 6.450540178932574e-16,
+                "condition_times_residual": 1.8090903259797894e-08,
+                "condition_gain_direct": 414.3450622379904,
+                "operator_complexity": 3.196752830591753,
+                "levels": 4,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 31,
+                "unknowns": 961,
+                "epsilon": 0.1,
+                "condition_2_analytic": 414.3450622319016,
+                "lambda_min": 10.847847752874856,
+                "lambda_max": 4494.752152247125,
+                "cycles": 69,
+                "relative_residual": 9.160013967630156e-11,
+                "relative_forward_error": 1.3527475513386436e-11,
+                "sparse_direct_vs_dst": 1.4193143182147126e-14,
+                "dst_vs_known_solution": 1.5448670016851908e-14,
+                "condition_times_residual": 3.7954065574628046e-08,
+                "condition_gain_direct": 414.34506222867026,
+                "operator_complexity": 3.329416791283913,
+                "levels": 4,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              },
+              {
+                "n": 31,
+                "unknowns": 961,
+                "epsilon": 0.01,
+                "condition_2_analytic": 414.3450622319016,
+                "lambda_min": 9.960296573094185,
+                "lambda_max": 4126.999703426906,
+                "cycles": 18,
+                "relative_residual": 6.477872015072842e-11,
+                "relative_forward_error": 4.714505865352947e-11,
+                "sparse_direct_vs_dst": 3.4929988902786134e-15,
+                "dst_vs_known_solution": 2.064940379359527e-15,
+                "condition_times_residual": 2.6840742832156503e-08,
+                "condition_gain_direct": 414.34506222993974,
+                "operator_complexity": 4.002777184362316,
+                "levels": 5,
+                "solver_converged": true,
+                "termination": "residual_tolerance",
+                "scope": "algebraic known-solution system; no continuum PDE order"
+              }
+            ],
+            "residual_histories": [
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 1,
+                "relative_residual": 0.19602383424488565
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 2,
+                "relative_residual": 0.03770739588487714
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 3,
+                "relative_residual": 0.007220399944692979
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 4,
+                "relative_residual": 0.001382558644455108
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 5,
+                "relative_residual": 0.00026481638583068903
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 6,
+                "relative_residual": 5.073366525304877e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 7,
+                "relative_residual": 9.720456683290827e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 8,
+                "relative_residual": 1.8624630504203818e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 9,
+                "relative_residual": 3.568510929129892e-07
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 10,
+                "relative_residual": 6.837245812147546e-08
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 11,
+                "relative_residual": 1.309997361481218e-08
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 12,
+                "relative_residual": 2.5098994634039345e-09
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 13,
+                "relative_residual": 4.808844202240956e-10
+              },
+              {
+                "n": 7,
+                "epsilon": 1.0,
+                "cycle": 14,
+                "relative_residual": 9.213509371626832e-11
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 1,
+                "relative_residual": 0.16916484573659743
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 2,
+                "relative_residual": 0.08641801092671138
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 3,
+                "relative_residual": 0.0478201870257935
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 4,
+                "relative_residual": 0.026968720509847166
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 5,
+                "relative_residual": 0.015312186082730214
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 6,
+                "relative_residual": 0.008712949083501875
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 7,
+                "relative_residual": 0.004961086748807794
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 8,
+                "relative_residual": 0.0028252665972586482
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 9,
+                "relative_residual": 0.0016089780478957469
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 10,
+                "relative_residual": 0.0009162912549897855
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 11,
+                "relative_residual": 0.0005218051975313566
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 12,
+                "relative_residual": 0.0002971506944944835
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 13,
+                "relative_residual": 0.0001692157792005876
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 14,
+                "relative_residual": 9.636126085296004e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 15,
+                "relative_residual": 5.4873516481849694e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 16,
+                "relative_residual": 3.1248025912556656e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 17,
+                "relative_residual": 1.779435872920846e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 18,
+                "relative_residual": 1.0133100695195122e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 19,
+                "relative_residual": 5.770358808627528e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 20,
+                "relative_residual": 3.2859718098164217e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 21,
+                "relative_residual": 1.871222653632814e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 22,
+                "relative_residual": 1.0655841612426498e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 23,
+                "relative_residual": 6.068071992674572e-07
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 24,
+                "relative_residual": 3.455527727662919e-07
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 25,
+                "relative_residual": 1.9677899320765316e-07
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 26,
+                "relative_residual": 1.1205823602445375e-07
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 27,
+                "relative_residual": 6.381305322759428e-08
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 28,
+                "relative_residual": 3.633925013354338e-08
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 29,
+                "relative_residual": 2.0693935279302364e-08
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 30,
+                "relative_residual": 1.178449286939918e-08
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 31,
+                "relative_residual": 6.710878782899977e-09
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 32,
+                "relative_residual": 3.821629373723174e-09
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 33,
+                "relative_residual": 2.176298281515515e-09
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 34,
+                "relative_residual": 1.2393355362098702e-09
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 35,
+                "relative_residual": 7.057650303761719e-10
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 36,
+                "relative_residual": 4.019129444711173e-10
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 37,
+                "relative_residual": 2.288782678291506e-10
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 38,
+                "relative_residual": 1.3033999100107493e-10
+              },
+              {
+                "n": 7,
+                "epsilon": 0.1,
+                "cycle": 39,
+                "relative_residual": 7.422517088353343e-11
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 1,
+                "relative_residual": 0.06154351671738232
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 2,
+                "relative_residual": 0.00444518624576458
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 3,
+                "relative_residual": 0.0003173294185816312
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 4,
+                "relative_residual": 2.26499834584031e-05
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 5,
+                "relative_residual": 1.6169036905179392e-06
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 6,
+                "relative_residual": 1.1543773824884546e-07
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 7,
+                "relative_residual": 8.242398508982308e-09
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 8,
+                "relative_residual": 5.885713497174658e-10
+              },
+              {
+                "n": 7,
+                "epsilon": 0.01,
+                "cycle": 9,
+                "relative_residual": 4.203228569247382e-11
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 1,
+                "relative_residual": 0.33969177232387365
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 2,
+                "relative_residual": 0.08362606443491515
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 3,
+                "relative_residual": 0.020768279093866332
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 4,
+                "relative_residual": 0.005276154917286211
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 5,
+                "relative_residual": 0.0013745359772810003
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 6,
+                "relative_residual": 0.00036759132976364706
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 7,
+                "relative_residual": 0.00010077473344697615
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 8,
+                "relative_residual": 2.821753056620929e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 9,
+                "relative_residual": 8.03095056570843e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 10,
+                "relative_residual": 2.312228948834047e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 11,
+                "relative_residual": 6.70815795012738e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 12,
+                "relative_residual": 1.955343260162353e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 13,
+                "relative_residual": 5.715145940099812e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 14,
+                "relative_residual": 1.6728549015651418e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 15,
+                "relative_residual": 4.899718648838639e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 16,
+                "relative_residual": 1.4353652729705555e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 17,
+                "relative_residual": 4.2045412871901944e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 18,
+                "relative_residual": 1.23135084312568e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 1.0,
+                "cycle": 19,
+                "relative_residual": 3.605176010571747e-11
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 1,
+                "relative_residual": 0.2716258864013418
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 2,
+                "relative_residual": 0.13961978983071127
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 3,
+                "relative_residual": 0.08977899248249767
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 4,
+                "relative_residual": 0.06022467278759059
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 5,
+                "relative_residual": 0.040748150617443926
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 6,
+                "relative_residual": 0.027634861648684863
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 7,
+                "relative_residual": 0.018757211235646838
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 8,
+                "relative_residual": 0.01273577350368154
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 9,
+                "relative_residual": 0.008648553904297166
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 10,
+                "relative_residual": 0.005873368924793318
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 11,
+                "relative_residual": 0.0039887955003796915
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 12,
+                "relative_residual": 0.002708948623900302
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 13,
+                "relative_residual": 0.0018397623592183254
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 14,
+                "relative_residual": 0.0012494636359074833
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 15,
+                "relative_residual": 0.0008485667872377244
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 16,
+                "relative_residual": 0.000576300224318249
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 17,
+                "relative_residual": 0.0003913918981846436
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 18,
+                "relative_residual": 0.0002658123352210102
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 19,
+                "relative_residual": 0.00018052554918260798
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 20,
+                "relative_residual": 0.00012260338421673847
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 21,
+                "relative_residual": 8.326576530969106e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 22,
+                "relative_residual": 5.6549755711592415e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 23,
+                "relative_residual": 3.840565909680785e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 24,
+                "relative_residual": 2.608314442438789e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 25,
+                "relative_residual": 1.771433703735004e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 26,
+                "relative_residual": 1.203067776390147e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 27,
+                "relative_residual": 8.170629537200615e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 28,
+                "relative_residual": 5.549082464779405e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 29,
+                "relative_residual": 3.76866099135747e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 30,
+                "relative_residual": 2.55948860477225e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 31,
+                "relative_residual": 1.7382793178484845e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 32,
+                "relative_residual": 1.1805548243707e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 33,
+                "relative_residual": 8.017758901221994e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 34,
+                "relative_residual": 5.445278037460863e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 35,
+                "relative_residual": 3.698174181835063e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 36,
+                "relative_residual": 2.5116255929180163e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 37,
+                "relative_residual": 1.7057786423813939e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 38,
+                "relative_residual": 1.1584857071557702e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 39,
+                "relative_residual": 7.867901669405908e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 40,
+                "relative_residual": 5.343519535503553e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 41,
+                "relative_residual": 3.6290764326649734e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 42,
+                "relative_residual": 2.4647056716638873e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 43,
+                "relative_residual": 1.6739182676046417e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 44,
+                "relative_residual": 1.1368513141044971e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 45,
+                "relative_residual": 7.720995905178105e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 46,
+                "relative_residual": 5.243764813341628e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 47,
+                "relative_residual": 3.5613391231412976e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 48,
+                "relative_residual": 2.4187094523509797e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 49,
+                "relative_residual": 1.6426849351109619e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 50,
+                "relative_residual": 1.115642626746754e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 51,
+                "relative_residual": 7.57698007905903e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 52,
+                "relative_residual": 5.145971962173908e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 53,
+                "relative_residual": 3.4949353862643475e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 54,
+                "relative_residual": 2.373618055907661e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 55,
+                "relative_residual": 1.6120656749015706e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 56,
+                "relative_residual": 1.0948515508629491e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.1,
+                "cycle": 57,
+                "relative_residual": 7.435787768700038e-11
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 1,
+                "relative_residual": 0.1398295555377723
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 2,
+                "relative_residual": 0.01809360627571364
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 3,
+                "relative_residual": 0.002475542622531901
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 4,
+                "relative_residual": 0.00034756790672935687
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 5,
+                "relative_residual": 4.9390912319730056e-05
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 6,
+                "relative_residual": 7.057981083106201e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 7,
+                "relative_residual": 1.011174197015971e-06
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 8,
+                "relative_residual": 1.4503714405756076e-07
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 9,
+                "relative_residual": 2.0814481778431297e-08
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 10,
+                "relative_residual": 2.9878672551994405e-09
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 11,
+                "relative_residual": 4.289541367807021e-10
+              },
+              {
+                "n": 15,
+                "epsilon": 0.01,
+                "cycle": 12,
+                "relative_residual": 6.158726363110633e-11
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 1,
+                "relative_residual": 0.5934270308309764
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 2,
+                "relative_residual": 0.18822034835662643
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 3,
+                "relative_residual": 0.06462144258490951
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 4,
+                "relative_residual": 0.023671879836227493
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 5,
+                "relative_residual": 0.008945579714270624
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 6,
+                "relative_residual": 0.003422367123412588
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 7,
+                "relative_residual": 0.0013148336029848396
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 8,
+                "relative_residual": 0.0005057034752882737
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 9,
+                "relative_residual": 0.0001945066374413667
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 10,
+                "relative_residual": 7.479123078531219e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 11,
+                "relative_residual": 2.8749275007343218e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 12,
+                "relative_residual": 1.104795546095004e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 13,
+                "relative_residual": 4.244649471981709e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 14,
+                "relative_residual": 1.630535874599617e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 15,
+                "relative_residual": 6.262769907670567e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 16,
+                "relative_residual": 2.405273511500262e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 17,
+                "relative_residual": 9.237085408083233e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 18,
+                "relative_residual": 3.547199391069467e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 19,
+                "relative_residual": 1.3621405601400033e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 20,
+                "relative_residual": 5.230556520863848e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 21,
+                "relative_residual": 2.0084747478550484e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 22,
+                "relative_residual": 7.712222342779004e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 23,
+                "relative_residual": 2.9613371271814126e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 24,
+                "relative_residual": 1.1370930652615394e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 1.0,
+                "cycle": 25,
+                "relative_residual": 4.366144286201904e-11
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 1,
+                "relative_residual": 0.44465996749281855
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 2,
+                "relative_residual": 0.21400524865168516
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 3,
+                "relative_residual": 0.14115371335333604
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 4,
+                "relative_residual": 0.10070439983195928
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 5,
+                "relative_residual": 0.07273052402920407
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 6,
+                "relative_residual": 0.05258710667728665
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 7,
+                "relative_residual": 0.038032161353742586
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 8,
+                "relative_residual": 0.027520092110334456
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 9,
+                "relative_residual": 0.01992673758932599
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 10,
+                "relative_residual": 0.014437787142022538
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 11,
+                "relative_residual": 0.010466546832594218
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 12,
+                "relative_residual": 0.007590990619168184
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 13,
+                "relative_residual": 0.005507361536435361
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 14,
+                "relative_residual": 0.003996720685635305
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 15,
+                "relative_residual": 0.002901024000776967
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 16,
+                "relative_residual": 0.0021060306574446548
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 17,
+                "relative_residual": 0.0015290705846001556
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 18,
+                "relative_residual": 0.001110267131801168
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 19,
+                "relative_residual": 0.0008062230851973797
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 20,
+                "relative_residual": 0.0005854688471717798
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 21,
+                "relative_residual": 0.00042517521693536005
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 22,
+                "relative_residual": 0.00030877616848579343
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 23,
+                "relative_residual": 0.00022424789087439092
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 24,
+                "relative_residual": 0.00016286191649742514
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 25,
+                "relative_residual": 0.00011828118541768503
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 26,
+                "relative_residual": 8.590442481121394e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 27,
+                "relative_residual": 6.239046644999325e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 28,
+                "relative_residual": 4.5313028290888436e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 29,
+                "relative_residual": 3.291012972803473e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 30,
+                "relative_residual": 2.390217257117946e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 31,
+                "relative_residual": 1.7359857553077304e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 32,
+                "relative_residual": 1.2608276496433603e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 33,
+                "relative_residual": 9.157267966251082e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 34,
+                "relative_residual": 6.650842106911377e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 35,
+                "relative_residual": 4.830452123032125e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 36,
+                "relative_residual": 3.5083207465460453e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 37,
+                "relative_residual": 2.548068616923515e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 38,
+                "relative_residual": 1.8506454696844265e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 39,
+                "relative_residual": 1.3441124183571168e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 40,
+                "relative_residual": 9.7622111048012e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 41,
+                "relative_residual": 7.090241333303601e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 42,
+                "relative_residual": 5.149606586125666e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 43,
+                "relative_residual": 3.740135084895922e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 44,
+                "relative_residual": 2.716443784384497e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 45,
+                "relative_residual": 1.9729421350403458e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 46,
+                "relative_residual": 1.432940520229486e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 47,
+                "relative_residual": 1.0407398093729336e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 48,
+                "relative_residual": 7.558860929101016e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 49,
+                "relative_residual": 5.4899795716828425e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 50,
+                "relative_residual": 3.987358491488062e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 51,
+                "relative_residual": 2.8960097553612258e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 52,
+                "relative_residual": 2.1033664580806873e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 53,
+                "relative_residual": 1.527671731574426e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 54,
+                "relative_residual": 1.109546040765659e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 55,
+                "relative_residual": 8.058622232924003e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 56,
+                "relative_residual": 5.852971888210889e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 57,
+                "relative_residual": 4.251011371733838e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 58,
+                "relative_residual": 3.0875092732431916e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 59,
+                "relative_residual": 2.2424586289414256e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 60,
+                "relative_residual": 1.6286989924165898e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 61,
+                "relative_residual": 1.1829256852147602e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 62,
+                "relative_residual": 8.591601202284505e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 63,
+                "relative_residual": 6.240093097767766e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 64,
+                "relative_residual": 4.532190173737877e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 65,
+                "relative_residual": 3.2917394903584167e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 66,
+                "relative_residual": 2.390797602412803e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 67,
+                "relative_residual": 1.7364421027359053e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 68,
+                "relative_residual": 1.2611823245326154e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.1,
+                "cycle": 69,
+                "relative_residual": 9.160013967630156e-11
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 0,
+                "relative_residual": 1.0
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 1,
+                "relative_residual": 0.3211469798187467
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 2,
+                "relative_residual": 0.0785138860834111
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 3,
+                "relative_residual": 0.020997290622662812
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 4,
+                "relative_residual": 0.005689878790397321
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 5,
+                "relative_residual": 0.0015427504405584461
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 6,
+                "relative_residual": 0.0004180380870649794
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 7,
+                "relative_residual": 0.0001132219204104366
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 8,
+                "relative_residual": 3.0656861557129146e-05
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 9,
+                "relative_residual": 8.29970405604271e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 10,
+                "relative_residual": 2.246807765080286e-06
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 11,
+                "relative_residual": 6.082106410972057e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 12,
+                "relative_residual": 1.6464006673211202e-07
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 13,
+                "relative_residual": 4.4567162249674075e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 14,
+                "relative_residual": 1.2064092627105775e-08
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 15,
+                "relative_residual": 3.265695876548389e-09
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 16,
+                "relative_residual": 8.840131294757777e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 17,
+                "relative_residual": 2.3930074484607017e-10
+              },
+              {
+                "n": 31,
+                "epsilon": 0.01,
+                "cycle": 18,
+                "relative_residual": 6.477872015072842e-11
+              }
+            ],
+            "short_budget": {
+              "converged": false,
+              "relative_residual": 0.3211469798187467,
+              "termination": "cycle_budget"
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/amg-conditioning/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#amg-conditioning",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#amg-conditioning"
+          }
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -219,6 +2212,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "amg-conditioning",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/amg-conditioning/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/amg-conditioning/?lang=en"
       },
       "kind": "dedicated-supplement"
     }

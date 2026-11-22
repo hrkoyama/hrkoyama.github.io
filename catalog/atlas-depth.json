@@ -335,28 +335,32 @@
         "sa-amg",
         "qr-svd-factorization",
         "krylov-eigenvalues",
-        "gauss-adaptive-quadrature"
+        "gauss-adaptive-quadrature",
+        "amg-conditioning",
+        "qr-svd-conditioning",
+        "krylov-eigen-conditioning",
+        "quadrature-conditioning"
       ],
       "scope": {
-        "ja": "SA-AMG、Householder QR・one-sided Jacobi SVD、再直交化Krylov固有値、Gauss・適応求積の小規模固定例。",
-        "en": "Small fixed-input examples of SA-AMG, Householder QR/one-sided Jacobi SVD, reorthogonalized Krylov eigenvalues and Gauss/adaptive quadrature."
+        "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",
+        "en": "Preserve the historical SA-AMG, QR/SVD, Krylov and quadrature examples; a separate release compares conditioning, residuals and accuracy with anisotropy, right-hand-side perturbation/rank thresholds, nonnormality and narrow-bump controls. The added AMG case is algebraic and supplies no additional Poisson mesh-accuracy claim."
       },
       "reference": {
-        "ja": "Poissonの解析解・独立疎直接解、NumPy/SciPyの独立分解・固有値、解析積分。",
-        "en": "Analytic Poisson/independent sparse direct solve, independent NumPy/SciPy factorizations/eigenvalues and analytic integrals."
+        "ja": "旧版の解析Poisson解を保持。追加版は疎直接解・DST、LAPACK、実際の二進入力に対する別環境の高精度演算、解析スペクトル・積分を役割別に照合。NumPy/SciPyはLAPACKを共有し得るため、全層が独立した参照とはしません。",
+        "en": "Retain the historical analytic Poisson reference. Distinguish sparse direct/DST, LAPACK, separately executed high-precision references for actual binary input, and analytic spectra/integrals. NumPy/SciPy may share LAPACK; independence at every computational layer is not claimed."
       },
       "refinement": {
-        "ja": "残差と解誤差、直交性と再構成、固有残差と真値の距離、求積誤差を別々に測定。",
-        "en": "Measure residual/solution errors, orthogonality/reconstruction, eigen-residual/reference distance and quadrature errors separately."
+        "ja": "AMGの行列サイズ・異方性・条件数と固定許容残差、QR／SVDの条件数・階数閾値、Krylov次元・固有値間隔・非正規性、求積点数・許容誤差と相殺感度を分離。残差・前進誤差・部分空間誤差・真の積分誤差を別々に測定。",
+        "en": "Separate AMG size/anisotropy/conditioning at fixed residual tolerance, QR/SVD conditioning/rank thresholds, Krylov dimension/spacing/nonnormality and quadrature order/tolerances/cancellation sensitivity. Measure residuals, forward errors, subspace errors and true integral errors separately."
       },
       "next": {
-        "ja": "小さな教育用実装。大規模並列AMG、任意の非対称・悪条件行列、全求積問題の保証はない。",
-        "en": "Small educational implementations; no certification of large parallel AMG, arbitrary nonsymmetric/ill-conditioned matrices or all integrands."
+        "ja": "小さな固定入力での教育用比較。大規模並列AMG、任意の悪条件・非正規行列、全ての被積分関数、他分野との連成計算の保証には広げません。",
+        "en": "Small fixed-input educational comparisons; no certification of large parallel AMG, arbitrary ill-conditioned/nonnormal matrices, all integrands or coupled applications in other fields."
       },
       "examples": [],
       "reading": {
-        "ja": "/numerical-methods-atlas/ja/read/validation-foundations/",
-        "en": "/numerical-methods-atlas/en/read/validation-foundations/"
+        "ja": "/numerical-methods-atlas/ja/read/validation-foundations-conditioning/",
+        "en": "/numerical-methods-atlas/en/read/validation-foundations-conditioning/"
       }
     },
     {

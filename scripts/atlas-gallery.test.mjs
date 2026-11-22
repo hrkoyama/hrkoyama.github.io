@@ -20,7 +20,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
  assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
- assert.equal(gallery.counts.supplemental_release_case_count,29);
+ assert.equal(gallery.counts.supplemental_release_case_count,33);
  assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
  assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
  assert.deepEqual(item.caption,metadata.summary);
@@ -31,7 +31,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  assert.deepEqual(ot.supplemental_execution_entries.map(x=>x.id),['ct-glm-independent','ct-glm-ot-convergence']);
  assert.ok(!gallery.items.some(x=>x.id==='ct-glm-constraint-control'));
  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
- assert.equal(Object.keys(manifest.source_sha256).length,118);
+ assert.equal(Object.keys(manifest.source_sha256).length,127);
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
 });
 

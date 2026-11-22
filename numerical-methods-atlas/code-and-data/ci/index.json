@@ -172,14 +172,14 @@
     "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-depth-linux.yml",
     "guide": "/numerical-methods-atlas/validation/",
     "scope": {
-      "ja": "通常は8配布版・29補助ケースをNumPy/SciPy/pytestで検査します。独立診断参照の再生成は別の任意手順です。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
-      "en": "Routine checks run eight supplements and 29 supplementary cases with NumPy/SciPy/pytest. Independent diagnostic-reference regeneration is a separate optional procedure. The common 22-case suite, including quantum-DFT convergence sweeps, remains manual on explicit need."
+      "ja": "通常は9配布版・33補助ケースをNumPy/SciPy/pytestで検査します。独立参照の再生成は別の任意手順です。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
+      "en": "Routine checks run nine supplements and 33 supplementary cases with NumPy/SciPy/pytest. Independent-reference regeneration is a separate optional procedure. The common 22-case suite, including quantum-DFT convergence sweeps, remains manual on explicit need."
     }
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "38b042ec8a78ebab20362e578e4e8bb99d4d76eb18c6fc4f53e947174cc0eda9"
+    "sha256": "a789e32c5d29c93dcf552763f9b2889d9421a2e7d5b17f711dc3112a3392edd5"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",

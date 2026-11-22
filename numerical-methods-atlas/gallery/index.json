@@ -8,8 +8,8 @@
     "runnable_problems": 39,
     "common_runnable_problems": 22,
     "supplemental_runnable_problems": 20,
-    "supplemental_case_count": 25,
-    "supplemental_release_case_count": 29,
+    "supplemental_case_count": 28,
+    "supplemental_release_case_count": 33,
     "groups": {
       "transport": 9,
       "fluid": 16,
@@ -4549,6 +4549,21 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "qr-svd-conditioning"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -4558,6 +4573,14 @@
           "name": {
             "ja": "Householder QRと片側Jacobi SVD：直交性・階数・最小二乗",
             "en": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares"
+          }
+        },
+        {
+          "id": "qr-svd-conditioning",
+          "url": "/numerical-methods-atlas/validation/qr-svd-conditioning/",
+          "name": {
+            "ja": "QR/SVD：既定特異値・摂動増幅・数値階数",
+            "en": "QR/SVD: prescribed spectra, perturbation gain and numerical rank"
           }
         }
       ],
@@ -4619,6 +4642,31 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        },
+        {
+          "id": "qr-svd-conditioning",
+          "title": {
+            "ja": "QR/SVD：既定特異値・摂動増幅・数値階数",
+            "en": "QR/SVD: prescribed spectra, perturbation gain and numerical rank"
+          },
+          "group": "foundations-conditioning",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-conditioning/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-conditioning/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json"
         }
       ]
     },
@@ -4653,6 +4701,21 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "krylov-eigen-conditioning"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -4662,6 +4725,14 @@
           "name": {
             "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
             "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+          }
+        },
+        {
+          "id": "krylov-eigen-conditioning",
+          "url": "/numerical-methods-atlas/validation/krylov-eigen-conditioning/",
+          "name": {
+            "ja": "Krylov固有値：クラスター部分空間と非正規感度",
+            "en": "Krylov eigenvalues: cluster subspaces and nonnormal sensitivity"
           }
         }
       ],
@@ -4723,6 +4794,31 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        },
+        {
+          "id": "krylov-eigen-conditioning",
+          "title": {
+            "ja": "Krylov固有値：クラスター部分空間と非正規感度",
+            "en": "Krylov eigenvalues: cluster subspaces and nonnormal sensitivity"
+          },
+          "group": "foundations-conditioning",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json"
         }
       ]
     },
@@ -4757,6 +4853,21 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "quadrature-conditioning"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -4766,6 +4877,14 @@
           "name": {
             "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
             "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+          }
+        },
+        {
+          "id": "quadrature-conditioning",
+          "url": "/numerical-methods-atlas/validation/quadrature-conditioning/",
+          "name": {
+            "ja": "求積：狭いピーク・相殺・端点・誤差推定の盲点",
+            "en": "Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots"
           }
         }
       ],
@@ -4827,6 +4946,31 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+        },
+        {
+          "id": "quadrature-conditioning",
+          "title": {
+            "ja": "求積：狭いピーク・相殺・端点・誤差推定の盲点",
+            "en": "Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots"
+          },
+          "group": "foundations-conditioning",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json"
         }
       ]
     },
@@ -6420,8 +6564,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "50d09c172de1187a6f25b13ac63abf872de840c98219e45f2783ed56b23c0331",
-    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
+    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -6491,18 +6635,27 @@
     "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
     "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
     "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/inputs.json": "142f7fdeb264f130c64d402f417eb34e0a64e269431137eba5b821e85484306f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/amg-conditioning.png": "5f49ba07a6c8041814cb9232a60c60cabd0c606f4045916cad93caf7667716b8",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png": "ebc0a58aaaa831fdce8faa446b1ae8b42823fd5d817a7dd9330058ccf2fd65df",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "9576c7be1ce76001122f70a2750e6d39eba769e7f3ae024fc3b94ad09d75e9fa",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "48bdc69ae40da77e96df220ecd8c342c1aef50e444d9b462e5bf9fb2273148e6",
+    "numerical-methods-atlas/test-cases/index.json": "e045b5272262f09cc4bd039faf679ba62d24002fef3c1a588ec1a84f7c0bb1a5",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "8baed3d92ee3d13a5c3e1df1be276eee5c384fad8f16fe11aef7c790c2ca9c5a",
+    "scripts/atlas_depth_release.py": "2b7d2e92b384400be6ea730c7584a7dd21ea333d8dbaf1cd6cb917cdcdcc4bf0",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -6511,6 +6664,7 @@
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
-    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866"
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d"
   }
 }

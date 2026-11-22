@@ -26,9 +26,23 @@ $$
 
 Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。
 
+#### 求積：狭いピーク・相殺・端点・誤差推定の盲点
+
+補助実行例 · 実行例の定義・検証式
+
+$$
+\kappa_{\rm cancel}=\frac{\int_a^b|f(x)|\,dx}{|\int_a^bf(x)\,dx|}
+$$
+
+$$
+\int_{c-w}^{c+w}(1-((x-c)/w)^2)^4\,dx=\frac{256w}{315}
+$$
+
+Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。
+
 ### 厳密解・参照解
 
-多項式モーメントの既知積分値と独立求積参照を使い、厳密性・推定誤差・評価回数制限を確認します。
+多項式モーメントの既知積分値と独立求積参照を使い、厳密性・推定誤差・評価回数制限を確認します。 別版では求積点数・許容誤差と相殺の感度を比較し、真の積分誤差と内部の推定誤差を区別します。狭い山を見逃す対照も診断対象であり、診断の合格は積分推定の成功と同じではありません。
 
 #### Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ
 
@@ -37,6 +51,14 @@ Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次まで
 - [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json)
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=ja)
+
+#### 求積：狭いピーク・相殺・端点・誤差推定の盲点
+
+roots_legendre、解析atan積分、2/3、bumpの256w/315、独立QUADPACKを比較します。QUADPACKの状態・推定誤差・評価回数・警告文も保存します。相殺はε_machine×積分絶対量に対応する絶対予算を使います。初期5点が全て零のbumpでは推定誤差0と実誤差約.00813を明示します。
+
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json)
+
+[参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=ja)
 
 ### 計算法
 
@@ -75,6 +97,35 @@ Simpsonの局所推定は任意の関数に対する厳密な誤差上界では�
 - [/code/validated-examples/2026-11-22/foundations/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py)
 - [/code/validated-examples/2026-11-22/foundations/test_foundations.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py)
 
+#### [求積：狭いピーク・相殺・端点・誤差推定の盲点](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=ja)
+
+補助実行例
+
+Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。
+
+区間[0,1]、Gauss次数8/16/32/64/128、公差10⁻⁵/10⁻⁷/10⁻⁹です。Lorentz幅.1/.03/.01、相殺係数0/2¹²/2²⁴/2³⁶を固定します。零積分の相対条件数は未定義としてnullで保存します。
+
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/inputs.json)
+
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json)
+
+ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+Simpsonの推定値は厳密誤差上界ではありません。盲点の検出に合格しても積分精度への合格ではありません。平方根の直接積分は深さ予算で未収束と表示し得ます。任意の振動・特異性の完全な探索や認証付き求積は主張しません。
+
+同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
+
+- [/code/validated-examples/2026-11-22/foundations-conditioning/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py)
+- [/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py)
+
 ## English
 
 [Saved Gauss–Legendre order and adaptive-Simpson tolerance sweeps against analytic exponential/Lorentzian integrals; estimated errors are not rigorous bounds.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png)
@@ -99,9 +150,23 @@ $$
 
 Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK.
 
+#### Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots
+
+Supplementary execution example · Example definition or validation formula
+
+$$
+\kappa_{\rm cancel}=\frac{\int_a^b|f(x)|\,dx}{|\int_a^bf(x)\,dx|}
+$$
+
+$$
+\int_{c-w}^{c+w}(1-((x-c)/w)^2)^4\,dx=\frac{256w}{315}
+$$
+
+Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.
+
 ### Exact and reference solutions
 
-Use known polynomial integrals and independent quadrature references to check exactness, estimated errors and evaluation budgets.
+Use known polynomial integrals and independent quadrature references to check exactness, estimated errors and evaluation budgets. A separate release compares rule order, tolerance and cancellation sensitivity while distinguishing true integration error from the internal estimate. A missed narrow bump is an intended diagnostic; passing that diagnostic does not mean the integral estimate succeeded.
 
 #### Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets
 
@@ -110,6 +175,14 @@ Measure polynomial moments for every chosen order, node/weight differences from 
 - [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json)
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=en)
+
+#### Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots
+
+Compare roots_legendre, analytic atan integrals,2/3,the bump integral256w/315 and independent QUADPACK. Preserve QUADPACK status, estimated error, evaluation count and warning message. Cancellation uses a roundoff-aware absolute budget. When all initial five bump samples vanish, expose estimated error0 versus actual error about.00813.
+
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json)
+
+[Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=en)
 
 ### Numerical methods
 
@@ -147,3 +220,32 @@ These source and test lists include files shared across the package; they are no
 
 - [/code/validated-examples/2026-11-22/foundations/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py)
 - [/code/validated-examples/2026-11-22/foundations/test_foundations.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py)
+
+#### [Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=en)
+
+Supplementary execution example
+
+Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.
+
+Use[0,1], Gauss orders8/16/32/64/128 and tolerances10⁻⁵/10⁻⁷/10⁻⁹. Lorentz widths are.1/.03/.01; cancellation scales are0/2¹²/2²⁴/2³⁶. A zero integral has undefined relative condition, stored as null.
+
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/inputs.json)
+
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json)
+
+After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+The Simpson estimate is not a certified error bound. Passing the blind-spot control does not mean accurate integration. Direct square-root integration may honestly terminate at its depth budget. Exhaustive oscillatory/singular exploration and certified quadrature are not claimed.
+
+These source and test lists include files shared across the package; they are not all dedicated to this problem.
+
+- [/code/validated-examples/2026-11-22/foundations-conditioning/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py)
+- [/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py)

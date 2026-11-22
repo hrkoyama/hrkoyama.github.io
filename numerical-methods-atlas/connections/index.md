@@ -434,6 +434,7 @@ Schnakenbergは1次元周期の線形発現・有限振幅発展・成長後パ�
 Poisson型演算子は圧力投影、Hartree場、重力場に現れる。右辺・符号・境界・零空間・自己項が異なれば別の問題になる。
 
 - [楕円型方程式](/numerical-methods-atlas/ja/read/elliptic/)
+- [AMG：代数的条件数診断とPDE誤差を区別](/numerical-methods-atlas/ja/read/amg/#scoped-examples)
 
 ### 非線形反復・自己無撞着性
 
@@ -446,6 +447,7 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 固有値はKS軌道、反応平衡の安定性、拡散モードの減衰などに現れる。同じ固有値計算でも、固有値の物理的意味と検証する量は異なる。
 
 - [安定性の基礎](/numerical-methods-atlas/ja/read/stability/)
+- [固有値：残差・非正規性・不変部分空間](/numerical-methods-atlas/ja/read/eigensolvers/#scoped-examples)
 
 ### 確率分布・揺らぎ・標本化
 
@@ -899,6 +901,7 @@ Nuclear motion, reactions, advection and diffusion lead to time integration afte
 Poisson-type operators appear in pressure projection, Hartree fields and gravity. Different sources, signs, boundaries, nullspaces and self terms define different problems.
 
 - [Elliptic equations](/numerical-methods-atlas/en/read/elliptic/)
+- [AMG: separate algebraic conditioning from PDE error](/numerical-methods-atlas/en/read/amg/#scoped-examples)
 
 ### Nonlinear iteration and self-consistency
 
@@ -911,6 +914,7 @@ SCF and implicit reaction updates require iterative residual reduction. Separate
 Eigenvalues describe KS orbitals, reaction-equilibrium stability and diffusion-mode decay. Their physical interpretation and validation targets differ even when the algebra overlaps.
 
 - [Stability foundations](/numerical-methods-atlas/en/read/stability/)
+- [Eigenvalues: residuals, nonnormality and invariant subspaces](/numerical-methods-atlas/en/read/eigensolvers/#scoped-examples)
 
 ### Probability distributions, fluctuations and sampling
 

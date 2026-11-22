@@ -12,14 +12,14 @@
   "counts": {
     "equations": 46,
     "methods": 129,
-    "papers": 239,
-    "references": 291,
-    "journal_articles": 233,
+    "papers": 241,
+    "references": 296,
+    "journal_articles": 235,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 21,
+    "other_sources": 24,
     "local_equations": 23,
     "reading_equations": 23,
     "local_methods": 114,
@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 89,
+    "reading_chapters": 90,
     "test_problems": 83,
     "saved_test_problems": 83,
     "code_test_problems": 0
@@ -1576,7 +1576,7 @@
       "chapter": "validation-foundations",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
-      "scope": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution.",
+      "scope": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error.",
       "origin": "curated-depth-example"
     },
     {
@@ -1586,7 +1586,7 @@
       "chapter": "validation-foundations",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
-      "scope": "Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions.",
+      "scope": "Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares: Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions. QR/SVD: prescribed spectra, perturbation gain and numerical rank: Vary condition number from 1 to 2³⁶ for exactly representable 16×4 dyadic matrices, separating reconstruction from forward solution error. Compare LAPACK and separately executed 80/120-digit references for the actual binary64 inputs.",
       "origin": "curated-depth-example"
     },
     {
@@ -1596,7 +1596,7 @@
       "chapter": "validation-foundations",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
-      "scope": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references.",
+      "scope": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace.",
       "origin": "curated-depth-example"
     },
     {
@@ -1606,7 +1606,7 @@
       "chapter": "validation-foundations",
       "status": "local-example",
       "group": "Approximation & quadrature",
-      "scope": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK.",
+      "scope": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.",
       "origin": "curated-depth-example"
     },
     {
@@ -3015,6 +3015,36 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "vanek2001",
+      "type": "article",
+      "identity": "doi:10.1007/s002110000226",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "lapack-ls-error",
+      "type": "misc",
+      "identity": "url:https://netlib.org/lapack/lug/node83.html",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "mpmath130-reference",
+      "type": "misc",
+      "identity": "url:https://mpmath.org/doc/1.3.0/matrices.html",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "lapack-eigen-error",
+      "type": "misc",
+      "identity": "url:https://www.netlib.org/lapack/lug/node91.html",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "gonnet2010",
+      "type": "article",
+      "identity": "doi:10.1145/1824801.1824804",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3245,9 +3275,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "cc325168a36eba044df5a6312d6fbedf313f2c494a34b95fa44f419e3c372414",
+    "catalog/atlas-methods.json": "9f82a08d7e5c40b432bac0e8994fa6fdee62e7e69648c5561b3b3f45236c731b",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
-    "catalog/atlas-method-primary-references.json": "ed4b32888fdf168f743562aa297b0ffc4db244ef768e62bcccfc8e9e2c2de864"
+    "catalog/atlas-method-primary-references.json": "11e106d28d92e8bd7254d1bff56f2291bee3d5ad45387d5fea56bf09c3e66c00"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",

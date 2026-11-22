@@ -85,6 +85,16 @@
             "ja": "楕円型方程式",
             "en": "Elliptic equations"
           }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/amg/#scoped-examples",
+            "en": "/numerical-methods-atlas/en/read/amg/#scoped-examples"
+          },
+          "label": {
+            "ja": "AMG：代数的条件数診断とPDE誤差を区別",
+            "en": "AMG: separate algebraic conditioning from PDE error"
+          }
         }
       ]
     },
@@ -130,6 +140,16 @@
           "label": {
             "ja": "安定性の基礎",
             "en": "Stability foundations"
+          }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/eigensolvers/#scoped-examples",
+            "en": "/numerical-methods-atlas/en/read/eigensolvers/#scoped-examples"
+          },
+          "label": {
+            "ja": "固有値：残差・非正規性・不変部分空間",
+            "en": "Eigenvalues: residuals, nonnormality and invariant subspaces"
           }
         }
       ]

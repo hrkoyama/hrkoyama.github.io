@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 29,
+  "case_count": 33,
   "releases": [
     {
       "group": "foundations",
@@ -135,6 +135,23 @@
         "ct-glm-smooth-convergence"
       ],
       "tests": 46
+    },
+    {
+      "group": "foundations-conditioning",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/",
+      "archive": "atlas-foundations-conditioning-2026-11-22.zip",
+      "archive_sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+      "manifest_sha256": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+      "verification_sha256": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "amg-conditioning",
+        "krylov-eigen-conditioning",
+        "qr-svd-conditioning",
+        "quadrature-conditioning"
+      ],
+      "tests": 49
     }
   ]
 }

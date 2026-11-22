@@ -30,6 +30,7 @@ Go from boundary-value problems and sparse solvers to eigenvalues, basis functio
 - [Chebyshev approximation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/chebyshev/)
 - [Wavelets](https://hrkoyama.github.io/numerical-methods-atlas/en/read/wavelets/)
 - [AMG, factorizations, eigenvalues and quadrature](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/)
+- [Numerical foundations: conditioning, residuals, convergence and independent references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/)
 
 ## Differentiation, optimization and inverse problems
 

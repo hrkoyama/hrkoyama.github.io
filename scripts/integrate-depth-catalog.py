@@ -42,6 +42,9 @@ def main():
         if ident=='mcmc':
             m['metadata_review']['on']='2026-11-22'
             m['metadata_review']['level']='scoped Gaussian and multimodal examples; rank/folded diagnostics independently compared with a pinned library, without inferring general convergence'
+        if ident in ['amg','qr-svd','eigensolvers','quadrature']:
+            m['metadata_review']['on']='2026-11-22'
+            m['metadata_review']['level']='scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls'
         if ident in ['ct','glm']:
             m['metadata_review']['on']='2026-11-22'
             m['metadata_review']['level']='scoped CT/GLM whole-discretization comparisons under matched controls, conserved-average exact solutions and independent Athena references; separate grid and time errors'

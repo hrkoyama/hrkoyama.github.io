@@ -30,6 +30,7 @@
 - [Chebyshev近似](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/chebyshev/)
 - [ウェーブレット](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wavelets/)
 - [AMG・行列分解・固有値・求積](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/)
+- [基盤手法：条件数・残差・収束と独立参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/)
 
 ## 自動微分・最適化・逆問題
 

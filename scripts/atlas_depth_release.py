@@ -7,7 +7,7 @@ import re
 import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning')
 EDITION_PATTERN = r'\d{4}-\d{2}-\d{2}(?:-r\d+)?'
 
 

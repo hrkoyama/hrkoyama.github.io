@@ -958,8 +958,8 @@
         "poisson-laplace"
       ],
       "reference_note": {
-        "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。",
-        "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference."
+        "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。",
+        "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference."
       },
       "references": [
         {
@@ -1607,8 +1607,8 @@
       "id": "matrix-factorization",
       "equation_ids": [],
       "reference_note": {
-        "ja": "独立NumPy/SciPy参照、行列再構成・直交性・特異値・階数・最小二乗残差を確認します。PDEの参照解カードとは別の線形代数検証です。",
-        "en": "Check independent NumPy/SciPy references, reconstruction, orthogonality, singular values, rank and least-squares residuals. This is linear-algebra validation rather than a PDE reference-solution card."
+        "ja": "独立NumPy/SciPy参照、行列再構成・直交性・特異値・階数・最小二乗残差を確認します。PDEの参照解カードとは別の線形代数検証です。 別版では条件数、右辺摂動、数値階数の閾値を変え、残差と係数の前進誤差を分けます。LAPACKと実際の二進入力から作る高精度参照の役割を区別し、QR／SVD全般や任意の悪条件行列の保証にはしません。",
+        "en": "Check independent NumPy/SciPy references, reconstruction, orthogonality, singular values, rank and least-squares residuals. This is linear-algebra validation rather than a PDE reference-solution card. A separate release varies conditioning, right-hand-side perturbations and numerical-rank thresholds while separating residual from coefficient forward error. Distinguish LAPACK from high-precision references built from actual binary input; no general QR/SVD or arbitrary ill-conditioned-matrix guarantee is implied."
       },
       "references": [],
       "method_ids": [
@@ -1627,8 +1627,8 @@
       "id": "krylov-spectrum",
       "equation_ids": [],
       "reference_note": {
-        "ja": "独立固有値参照と、各Ritz値・固有対の残差、直交性と反復収束を確認します。",
-        "en": "Check independent eigenvalue references together with Ritz/eigenpair residuals, orthogonality and iterative convergence."
+        "ja": "独立固有値参照と、各Ritz値・固有対の残差、直交性と反復収束を確認します。 別版では固有値間隔・非正規性・Krylov次元を分け、小さな残差と真の固有値誤差を区別します。近接固有値の部分空間比較を、個別ベクトルの精度や他の物理モデルの検証と同一視しません。",
+        "en": "Check independent eigenvalue references together with Ritz/eigenpair residuals, orthogonality and iterative convergence. A separate release separates spectral spacing, nonnormality and Krylov dimension, distinguishing small residuals from true eigenvalue errors. A clustered-subspace comparison does not certify individual vectors or another physical model."
       },
       "references": [],
       "method_ids": [
@@ -1647,8 +1647,8 @@
       "id": "quadrature-moments",
       "equation_ids": [],
       "reference_note": {
-        "ja": "多項式モーメントの既知積分値と独立求積参照を使い、厳密性・推定誤差・評価回数制限を確認します。",
-        "en": "Use known polynomial integrals and independent quadrature references to check exactness, estimated errors and evaluation budgets."
+        "ja": "多項式モーメントの既知積分値と独立求積参照を使い、厳密性・推定誤差・評価回数制限を確認します。 別版では求積点数・許容誤差と相殺の感度を比較し、真の積分誤差と内部の推定誤差を区別します。狭い山を見逃す対照も診断対象であり、診断の合格は積分推定の成功と同じではありません。",
+        "en": "Use known polynomial integrals and independent quadrature references to check exactness, estimated errors and evaluation budgets. A separate release compares rule order, tolerance and cancellation sensitivity while distinguishing true integration error from the internal estimate. A missed narrow bump is an intended diagnostic; passing that diagnostic does not mean the integral estimate succeeded."
       },
       "references": [],
       "method_ids": [

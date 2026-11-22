@@ -1520,6 +1520,80 @@
       },
       "source": "https://arxiv.org/abs/astro-ph/0501557",
       "type": "article"
+    },
+    {
+      "id": "vanek2001",
+      "author": "P. Vaněk, M. Brezina, J. Mandel",
+      "year": 2001,
+      "title": "Convergence of algebraic multigrid based on smoothed aggregation",
+      "doi": "10.1007/s002110000226",
+      "url": "https://ww3.math.ucla.edu/camreport/cam99-29.pdf",
+      "review_level": "author-hosted original preprint abstract and opening text via official university search extraction",
+      "review": {
+        "ja": "弱近似性等の仮定に基づく理論と、教材の限られた行列系列での観測を区別します。任意異方性への頑健性は主張しません。",
+        "en": "Distinguish theory conditional on weak approximation and related assumptions from observations on a small matrix family; no general anisotropy robustness claim."
+      },
+      "source": "https://ww3.math.ucla.edu/camreport/cam99-29.pdf",
+      "type": "article"
+    },
+    {
+      "id": "lapack-ls-error",
+      "author": "LAPACK authors",
+      "year": 1999,
+      "title": "Further Details: Error Bounds for Linear Least Squares Problems",
+      "url": "https://netlib.org/lapack/lug/node83.html",
+      "review_level": "official implementation documentation, error-analysis and numerical-rank sections",
+      "review": {
+        "ja": "小さな後退誤差と前進誤差を区別し、最小二乗では条件数だけでなく残差の角度にも依存すること、RCONDによる切捨ては数値階数の規約であることを確認しました。",
+        "en": "Checked backward versus forward error, the residual-angle dependence of least-squares sensitivity, and numerical-rank truncation controlled by RCOND."
+      },
+      "source": "https://netlib.org/lapack/lug/node83.html",
+      "type": "misc"
+    },
+    {
+      "id": "mpmath130-reference",
+      "author": "mpmath developers",
+      "year": 2023,
+      "title": "mpmath 1.3.0 matrix documentation and installed implementation",
+      "url": "https://mpmath.org/doc/1.3.0/matrices.html",
+      "supporting_url": "https://pypi.org/pypi/mpmath/1.3.0/json",
+      "review_level": "official matrix documentation and selected installed mpmath1.3.0 source (svd_r_raw, qr_solve), plus actual 80/120dps fixed-input execution",
+      "review": {
+        "ja": "SVDはHouseholder二重対角化とQR反復、最小二乗は別実装の高精度Householder QRです。後者は教材のQRと同じ数理的手法群であり、別の手法群とは呼びません。実際の二進浮動小数点入力を整数比で読み込み、生成専用環境で実行しました。",
+        "en": "SVD uses Householder bidiagonalization and a QR variant; least squares uses a separate high-precision Householder QR implementation. The latter shares the educational QR mathematical family and is not called a different algorithm family. Actual binary floating-point inputs were loaded by integer ratios and executed in a generation-only environment."
+      },
+      "source": "https://mpmath.org/doc/1.3.0/matrices.html",
+      "type": "misc"
+    },
+    {
+      "id": "lapack-eigen-error",
+      "author": "LAPACK authors",
+      "year": 1999,
+      "title": "Error Bounds for the Nonsymmetric Eigenproblem; Overview",
+      "url": "https://www.netlib.org/lapack/lug/node91.html",
+      "supporting_url": "https://www.netlib.org/lapack/lug/node93.html",
+      "review_level": "official implementation documentation, error-bound overview and cluster/invariant-subspace distinction",
+      "review": {
+        "ja": "非正規行列では小さな固有対残差と前進固有値誤差を同一視しません。固有値感度、個別固有ベクトル、固有値クラスターの不変部分空間を区別します。",
+        "en": "Do not equate a small eigenpair residual with small forward eigenvalue error for nonnormal matrices; distinguish eigenvalue sensitivity, individual vectors, and clustered invariant subspaces."
+      },
+      "source": "https://www.netlib.org/lapack/lug/node91.html",
+      "type": "misc"
+    },
+    {
+      "id": "gonnet2010",
+      "author": "P. Gonnet",
+      "year": 2010,
+      "title": "Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants",
+      "doi": "10.1145/1824801.1824804",
+      "url": "https://arxiv.org/abs/1006.3962",
+      "review_level": "primary author paper, abstract and selected introduction/error-estimation text (§3)",
+      "review": {
+        "ja": "二つの近似積分値の差が偶然小さい場合の誤差推定失敗を原文の選択節で確認しました。今回のSimpson対照は教材独自の構成であり、同論文の新積分器を実装したとは呼びません。",
+        "en": "Checked selected original discussion of accidentally small differences between quadrature estimates. The educational Simpson counterexample is original test design, not an implementation of the paper’s new integrators."
+      },
+      "source": "https://arxiv.org/abs/1006.3962",
+      "type": "article"
     }
   ]
 }

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "group": "foundations-conditioning",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+  "archive": {
+    "file": "atlas-foundations-conditioning-2026-11-22.zip",
+    "sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "bytes": 431747,
+    "archive_directory": "atlas-foundations-conditioning-2026-11-22"
+  },
+  "archive_sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+  "returncode": 0,
+  "passed_tests": 49,
+  "tests": 49,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "amg-conditioning",
+    "krylov-eigen-conditioning",
+    "qr-svd-conditioning",
+    "quadrature-conditioning"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.359594500001549,
+  "independent_rerun_seconds": 0.3644064170002821,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

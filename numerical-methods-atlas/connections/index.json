@@ -85,6 +85,16 @@
             "ja": "楕円型方程式",
             "en": "Elliptic equations"
           }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/amg/#scoped-examples",
+            "en": "/numerical-methods-atlas/en/read/amg/#scoped-examples"
+          },
+          "label": {
+            "ja": "AMG：代数的条件数診断とPDE誤差を区別",
+            "en": "AMG: separate algebraic conditioning from PDE error"
+          }
         }
       ]
     },
@@ -130,6 +140,16 @@
           "label": {
             "ja": "安定性の基礎",
             "en": "Stability foundations"
+          }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/eigensolvers/#scoped-examples",
+            "en": "/numerical-methods-atlas/en/read/eigensolvers/#scoped-examples"
+          },
+          "label": {
+            "ja": "固有値：残差・非正規性・不変部分空間",
+            "en": "Eigenvalues: residuals, nonnormality and invariant subspaces"
           }
         }
       ]
@@ -3578,15 +3598,15 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-crossovers.json": "ac181e89adacd93e4d20767de849aaf1a9b3dca9840e40216155ba2eae365dba",
-    "catalog/atlas-methods.json": "cc325168a36eba044df5a6312d6fbedf313f2c494a34b95fa44f419e3c372414",
-    "numerical-methods-atlas/methods/index.json": "45d4d82cd73212b7fd1a9d1dad106db30ab877d892a8d2efb41cb41762504e44",
+    "catalog/atlas-crossovers.json": "e1d58aa6b60517f97f7bf9339776590ed54b46699c08e2909a6138f47d5d601d",
+    "catalog/atlas-methods.json": "9f82a08d7e5c40b432bac0e8994fa6fdee62e7e69648c5561b3b3f45236c731b",
+    "numerical-methods-atlas/methods/index.json": "bcab514e0144d7dbf07f5382144d9d362e8878e358d03fc09577d0c15b4fbc24",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

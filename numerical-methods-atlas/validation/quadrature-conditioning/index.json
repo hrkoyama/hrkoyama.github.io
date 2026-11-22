@@ -1,0 +1,629 @@
+{
+  "id": "quadrature-conditioning",
+  "title": {
+    "ja": "求積：狭いピーク・相殺・端点・誤差推定の盲点",
+    "en": "Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots"
+  },
+  "method_ids": [
+    "quadrature"
+  ],
+  "summary": {
+    "ja": "Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。",
+    "en": "Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK."
+  },
+  "assumptions": {
+    "ja": "区間[0,1]、Gauss次数8/16/32/64/128、公差10⁻⁵/10⁻⁷/10⁻⁹です。Lorentz幅.1/.03/.01、相殺係数0/2¹²/2²⁴/2³⁶を固定します。零積分の相対条件数は未定義としてnullで保存します。",
+    "en": "Use[0,1], Gauss orders8/16/32/64/128 and tolerances10⁻⁵/10⁻⁷/10⁻⁹. Lorentz widths are.1/.03/.01; cancellation scales are0/2¹²/2²⁴/2³⁶. A zero integral has undefined relative condition, stored as null."
+  },
+  "algorithm": {
+    "ja": "Golub–Welschの節点・重みと、局所差/15を用いる適応Simpsonを実装します。端点ではx=t²変換を別対照とし、狭いbumpには既知支持区間を分割した対照を用意します。これは一般的な自動救済機構ではありません。",
+    "en": "Implement Golub–Welsch nodes/weights and adaptive Simpson with a local difference/15 estimate. Companion checks use x=t² for the endpoint and a known-support split for the narrow bump; these are not general automatic rescue mechanisms."
+  },
+  "validation": {
+    "ja": "roots_legendre、解析atan積分、2/3、bumpの256w/315、独立QUADPACKを比較します。QUADPACKの状態・推定誤差・評価回数・警告文も保存します。相殺はε_machine×積分絶対量に対応する絶対予算を使います。初期5点が全て零のbumpでは推定誤差0と実誤差約.00813を明示します。",
+    "en": "Compare roots_legendre, analytic atan integrals,2/3,the bump integral256w/315 and independent QUADPACK. Preserve QUADPACK status, estimated error, evaluation count and warning message. Cancellation uses a roundoff-aware absolute budget. When all initial five bump samples vanish, expose estimated error0 versus actual error about.00813."
+  },
+  "limits": {
+    "ja": "Simpsonの推定値は厳密誤差上界ではありません。盲点の検出に合格しても積分精度への合格ではありません。平方根の直接積分は深さ予算で未収束と表示し得ます。任意の振動・特異性の完全な探索や認証付き求積は主張しません。",
+    "en": "The Simpson estimate is not a certified error bound. Passing the blind-spot control does not mean accurate integration. Direct square-root integration may honestly terminate at its depth budget. Exhaustive oscillatory/singular exploration and certified quadrature are not claimed."
+  },
+  "references": [
+    {
+      "id": "golub-welsch1969",
+      "author": "G. H. Golub and J. H. Welsch",
+      "year": 1969,
+      "title": "Calculation of Gauss Quadrature Rules",
+      "doi": "10.1090/S0025-5718-69-99647-1",
+      "url": "https://www.ams.org/journals/mcom/1969-23-106/S0025-5718-69-99647-1/S0025-5718-69-99647-1.pdf",
+      "review_level": "publisher-search-first-page-and-metadata",
+      "journal": "Mathematics of Computation 23(106), 221–230",
+      "type": "article"
+    },
+    {
+      "id": "lyness1969",
+      "author": "J. N. Lyness",
+      "year": 1969,
+      "title": "Notes on the Adaptive Simpson Quadrature Routine",
+      "doi": "10.1145/321526.321537",
+      "url": "https://dl.acm.org/doi/10.1145/321526.321537",
+      "review_level": "publisher-metadata",
+      "journal": "Journal of the ACM 16(3), 483–495",
+      "type": "article"
+    },
+    {
+      "id": "gonnet2010",
+      "author": "P. Gonnet",
+      "year": 2010,
+      "title": "Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants",
+      "doi": "10.1145/1824801.1824804",
+      "url": "https://arxiv.org/abs/1006.3962",
+      "review_level": "primary author paper, abstract and selected introduction/error-estimation text (§3)",
+      "review": {
+        "ja": "二つの近似積分値の差が偶然小さい場合の誤差推定失敗を原文の選択節で確認しました。今回のSimpson対照は教材独自の構成であり、同論文の新積分器を実装したとは呼びません。",
+        "en": "Checked selected original discussion of accidentally small differences between quadrature estimates. The educational Simpson counterexample is original test design, not an implementation of the paper’s new integrators."
+      }
+    }
+  ],
+  "reference_implementations": [
+    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.roots_legendre.html",
+    "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html"
+  ],
+  "equations": [
+    "\\kappa_{\\rm cancel}=\\frac{\\int_a^b|f(x)|\\,dx}{|\\int_a^bf(x)\\,dx|}",
+    "\\int_{c-w}^{c+w}(1-((x-c)/w)^2)^4\\,dx=\\frac{256w}{315}"
+  ],
+  "group": "foundations-conditioning",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "quadrature-conditioning",
+    "passed": true,
+    "checks": {
+      "width0.1-reference": true,
+      "n8-independent-rule": true,
+      "n16-independent-rule": true,
+      "n32-independent-rule": true,
+      "n64-independent-rule": true,
+      "n128-independent-rule": true,
+      "width0.1-gauss-refinement": true,
+      "width0.1-tol1e-05": true,
+      "width0.1-tol1e-07": true,
+      "width0.1-tol1e-09": true,
+      "width0.03-reference": true,
+      "width0.03-gauss-refinement": true,
+      "width0.03-tol1e-05": true,
+      "width0.03-tol1e-07": true,
+      "width0.03-tol1e-09": true,
+      "width0.01-reference": true,
+      "width0.01-gauss-refinement": true,
+      "width0.01-tol1e-05": true,
+      "width0.01-tol1e-07": true,
+      "width0.01-tol1e-09": true,
+      "endpoint-tol1e-05": true,
+      "endpoint-tol1e-07": true,
+      "endpoint-tol1e-09": true,
+      "C0-absolute-error": true,
+      "C4096-absolute-error": true,
+      "C1.67772e+07-absolute-error": true,
+      "C6.87195e+10-absolute-error": true,
+      "conditioned-input-perturbation-gain": true,
+      "zero-integral-relative-condition-undefined": true,
+      "heuristic-blind-spot-explicit": true,
+      "known-support-companion-resolves": true
+    },
+    "metrics": {
+      "maximum_cancellation_condition": 68719476737.0,
+      "blind_bump_actual_error": 0.008126984126984127,
+      "blind_bump_reported_error": 0.0,
+      "resolved_bump_actual_error": 1.0884418366607918e-12,
+      "zero_integral_relative_condition": null
+    },
+    "records": [
+      {
+        "kind": "narrow-gauss",
+        "width": 0.1,
+        "order": 8,
+        "value": 0.2783797145174345,
+        "absolute_error": 0.006315220484442885,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.1,
+        "order": 16,
+        "value": 0.2724559697200861,
+        "absolute_error": 0.0003914756870945224,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.1,
+        "order": 32,
+        "value": 0.27206512266110056,
+        "absolute_error": 6.286281089562529e-07,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.1,
+        "order": 64,
+        "value": 0.27206449403292055,
+        "absolute_error": 7.105427357601002e-14,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.1,
+        "order": 128,
+        "value": 0.27206449403299143,
+        "absolute_error": 1.6653345369377348e-16,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.1,
+        "tolerance": 1e-05,
+        "value": 0.2720653200112234,
+        "absolute_error": 8.259782318109643e-07,
+        "estimated_error": 2.8620361601994913e-06,
+        "evaluations": 57,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.1,
+        "tolerance": 1e-07,
+        "value": 0.27206449368306895,
+        "absolute_error": 3.499226464143135e-10,
+        "estimated_error": 3.047131953651944e-08,
+        "evaluations": 173,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.1,
+        "tolerance": 1e-09,
+        "value": 0.27206449403165966,
+        "absolute_error": 1.3319345626428003e-12,
+        "estimated_error": 3.6692922063032614e-10,
+        "evaluations": 521,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.03,
+        "order": 8,
+        "value": 0.0851957486877645,
+        "absolute_error": 0.005201662529675952,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.03,
+        "order": 16,
+        "value": 0.10623114590832058,
+        "absolute_error": 0.015833734690880133,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.03,
+        "order": 32,
+        "value": 0.09148987152116302,
+        "absolute_error": 0.0010924603037225644,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.03,
+        "order": 64,
+        "value": 0.09043348220896173,
+        "absolute_error": 3.6070991521280904e-05,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.03,
+        "order": 128,
+        "value": 0.09039742403738565,
+        "absolute_error": 1.281994520263563e-08,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.03,
+        "tolerance": 1e-05,
+        "value": 0.09039717484294338,
+        "absolute_error": 2.3637449707292202e-07,
+        "estimated_error": 1.4121359912837855e-06,
+        "evaluations": 77,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.03,
+        "tolerance": 1e-07,
+        "value": 0.09039741274790235,
+        "absolute_error": 1.5304618961042848e-09,
+        "estimated_error": 3.935096947539311e-08,
+        "evaluations": 221,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.03,
+        "tolerance": 1e-09,
+        "value": 0.09039741121848881,
+        "absolute_error": 1.0483558465779197e-12,
+        "estimated_error": 3.2713138160428886e-10,
+        "evaluations": 737,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.01,
+        "order": 8,
+        "value": 0.013763642191900873,
+        "absolute_error": 0.017223838693659104,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.01,
+        "order": 16,
+        "value": 0.04140256867525618,
+        "absolute_error": 0.0104150877896962,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.01,
+        "order": 32,
+        "value": 0.031942893891273846,
+        "absolute_error": 0.0009554130057138691,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.01,
+        "order": 64,
+        "value": 0.03359848518482119,
+        "absolute_error": 0.002611004299261213,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-gauss",
+        "width": 0.01,
+        "order": 128,
+        "value": 0.031132419532482008,
+        "absolute_error": 0.00014493864692203054,
+        "integral_condition_1": 1.0,
+        "status": "fixed-order measurement; not a tolerance certificate"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.01,
+        "tolerance": 1e-05,
+        "value": 0.030992087759224175,
+        "absolute_error": 4.606873664197292e-06,
+        "estimated_error": 4.564182666831677e-06,
+        "evaluations": 81,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.01,
+        "tolerance": 1e-07,
+        "value": 0.030987488763333224,
+        "absolute_error": 7.877773246234288e-09,
+        "estimated_error": 5.005270322447443e-08,
+        "evaluations": 257,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "narrow-adaptive",
+        "width": 0.01,
+        "tolerance": 1e-09,
+        "value": 0.030987480889054217,
+        "absolute_error": 3.4942396198722747e-12,
+        "estimated_error": 3.332193223930767e-10,
+        "evaluations": 821,
+        "solver_converged": true,
+        "status": "estimated_tolerance",
+        "reference_status": "completed"
+      },
+      {
+        "kind": "endpoint-direct",
+        "tolerance": 1e-05,
+        "value": 0.6666661430013943,
+        "absolute_error": 5.236652723672464e-07,
+        "evaluations": 61,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "endpoint-transformed",
+        "tolerance": 1e-05,
+        "value": 0.6666666666666667,
+        "absolute_error": 1.1102230246251565e-16,
+        "evaluations": 5,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "endpoint-direct",
+        "tolerance": 1e-07,
+        "value": 0.6666666658650885,
+        "absolute_error": 8.01578137199499e-10,
+        "evaluations": 185,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "endpoint-transformed",
+        "tolerance": 1e-07,
+        "value": 0.6666666666666667,
+        "absolute_error": 1.1102230246251565e-16,
+        "evaluations": 5,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "endpoint-direct",
+        "tolerance": 1e-09,
+        "value": 0.6666666666656357,
+        "absolute_error": 1.0309531006669204e-12,
+        "evaluations": 513,
+        "solver_converged": false,
+        "status": "depth_budget"
+      },
+      {
+        "kind": "endpoint-transformed",
+        "tolerance": 1e-09,
+        "value": 0.6666666666666667,
+        "absolute_error": 1.1102230246251565e-16,
+        "evaluations": 5,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "cancellation",
+        "scale": 0.0,
+        "value": 1.0,
+        "absolute_error": 0.0,
+        "condition_infinity": 1.0,
+        "cancellation_condition_1": 1.0,
+        "input_relative_infinity_perturbation": 9.094947017729282e-13,
+        "predicted_integral_change": 9.094947017729282e-13,
+        "observed_integral_change": 9.094947017729282e-13,
+        "roundoff_acceptance_budget": 2.842170943040401e-14,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "cancellation",
+        "scale": 4096.0,
+        "value": 1.0,
+        "absolute_error": 0.0,
+        "condition_infinity": 4097.0,
+        "cancellation_condition_1": 2048.0001220703125,
+        "input_relative_infinity_perturbation": 9.094947017729282e-13,
+        "predicted_integral_change": 3.726199793163687e-09,
+        "observed_integral_change": 3.72583608410082e-09,
+        "roundoff_acceptance_budget": 1.1641532182693481e-10,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "cancellation",
+        "scale": 16777216.0,
+        "value": 1.0,
+        "absolute_error": 0.0,
+        "condition_infinity": 16777217.0,
+        "cancellation_condition_1": 8388608.00000003,
+        "input_relative_infinity_perturbation": 9.094947017729282e-13,
+        "predicted_integral_change": 1.5258789971994702e-05,
+        "observed_integral_change": 1.52587890625e-05,
+        "roundoff_acceptance_budget": 4.76837158203125e-07,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "cancellation",
+        "scale": 68719476736.0,
+        "value": 1.0,
+        "absolute_error": 0.0,
+        "condition_infinity": 68719476737.0,
+        "cancellation_condition_1": 34359738368.0,
+        "input_relative_infinity_perturbation": 9.094947017729282e-13,
+        "predicted_integral_change": 0.0625000000009095,
+        "observed_integral_change": 0.0625,
+        "roundoff_acceptance_budget": 0.001953125,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      },
+      {
+        "kind": "zero-integral",
+        "value": 0.0,
+        "absolute_error": 0.0,
+        "relative_condition": null,
+        "status": "undefined relative condition because the exact integral is zero"
+      },
+      {
+        "kind": "compact-bump-blind",
+        "value": 0.0,
+        "absolute_error": 0.008126984126984127,
+        "estimated_error": 0.0,
+        "evaluations": 5,
+        "solver_converged": true,
+        "status": "expected false reassurance, not an accurate integral"
+      },
+      {
+        "kind": "compact-bump-split",
+        "value": 0.008126984128072568,
+        "absolute_error": 1.0884418366607918e-12,
+        "estimated_error": 4.357520608172457e-10,
+        "evaluations": 161,
+        "solver_converged": true,
+        "status": "estimated_tolerance"
+      }
+    ],
+    "independent_quadpack": [
+      {
+        "kind": "lorentzian",
+        "width": 0.1,
+        "value": 0.2720644940329916,
+        "estimated_error": 3.0205264686120947e-15,
+        "evaluations": 252,
+        "status": "completed",
+        "message": null
+      },
+      {
+        "kind": "lorentzian",
+        "width": 0.03,
+        "value": 0.09039741121744044,
+        "estimated_error": 4.234255319094358e-14,
+        "evaluations": 336,
+        "status": "completed",
+        "message": null
+      },
+      {
+        "kind": "lorentzian",
+        "width": 0.01,
+        "value": 0.03098748088556,
+        "estimated_error": 1.937312769107688e-13,
+        "evaluations": 462,
+        "status": "completed",
+        "message": null
+      },
+      {
+        "kind": "compact-bump-known-breakpoints",
+        "value": 0.008126984126984125,
+        "estimated_error": 9.022764898540952e-17,
+        "evaluations": 84,
+        "status": "completed",
+        "message": null
+      }
+    ]
+  },
+  "problem_id": "quadrature-moments",
+  "editorial_note": {
+    "ja": "適応推定値や計算間の一致は任意の被積分関数の厳密誤差上界ではありません。相殺時の絶対誤差と相対誤差、未検出の局所構造、評価予算を分けて記録します。",
+    "en": "An adaptive estimate or agreement between calculations is not a rigorous error bound for arbitrary integrands. Distinguish absolute and relative error under cancellation, unresolved local structure and evaluation budgets."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#quadrature-conditioning",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#quadrature-conditioning"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/",
+    "archive": {
+      "file": "atlas-foundations-conditioning-2026-11-22.zip",
+      "sha256": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+      "bytes": 431747,
+      "archive_directory": "atlas-foundations-conditioning-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+    ],
+    "passed_tests": 49
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

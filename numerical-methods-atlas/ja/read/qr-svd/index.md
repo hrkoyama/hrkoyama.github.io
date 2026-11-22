@@ -18,15 +18,47 @@ Householder反射で列の下側を消すQRは、通常のGram–Schmidtより�
 
 2ノルムではκ₂(AᵀA)=κ₂(A)²となり、正規方程式は条件を悪化させます。小さい残差でも、悪条件やノイズがあれば係数は不確かです。ランクの閾値はスケール・丸め・観測誤差に応じて定め、単位の違う列のスケーリングも検討します。
 
+残差・後退誤差と、求めた係数・特異値の前進誤差を区別します。条件数が大きければ、入力や右辺の小さな摂動が係数を大きく変えることがあります。数値階数は特異値の閾値と精度に依存する規約で、階数を切り捨てた最小二乗解は元と同じ問題の厳密解とは限りません。
+
+一般の最小二乗問題では、条件数だけでなく右辺と列空間の角度にも感度が依存します。片側Jacobi SVDの高い相対精度に関する文献上の結果にも、停止規準や成分ごとの条件付けという仮定があります。今回の小行列で微小特異値が一致しても、任意の悪条件行列への万能な相対精度を意味しません。
+
 ## 検証するときに見る量
 
 A−QR、QᵀQ−I、A−UΣVᵀの相対ノルム、最小二乗の正規性Aᵀ(Ax−b)を調べます。特異値が既知の行列とランク欠損例で、入力摂動に対する解の変化も比較します。
 
+追加版では既知の特異値を持つ小行列、右辺の固定摂動、階数判定の閾値を用い、条件数に沿って誤差を比較します。QR・SVDの再構成と直交性、最小二乗残差、係数の前進誤差、数値階数を別々に測ります。LAPACK参照に加え、実際の二進浮動小数点入力を高精度演算に移した独立参照を区別します。正規方程式による条件数の二乗化は上の理論説明であり、この追加例で実行した対照とはしません。
+
+## 固定入力の実行例と診断対照
+
+受入条件が示す検証範囲と数学的な一般保証を区別します。旧版の入力・測定・公差は保持します。
+
+### Householder QRと片側Jacobi SVD：直交性・階数・最小二乗
+
+固定標的の計算例
+
+実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。
+
+完全なLAPACK置換、複素行列、横長行列、任意の極端なスケール、最適な相対特異値精度を保証しません。10⁻¹²未満の特異値は入力した数値階数の規約で打ち切るため、数学的な厳密階数と区別します。Demmel–Veselićの精度定理の全条件を実証したとは主張しません。
+
+[入力・結果・受入条件](/numerical-methods-atlas/validation/qr-svd-factorization/?lang=ja) · [手法・一次文献](/numerical-methods-atlas/ja/read/validation-foundations/#qr-svd-factorization) · [コード run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/run.py) · [コード solvers.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/solvers.py) · [テスト test_foundations.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py) · [ZIP](/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip) · [結果](/code/validated-examples/2026-11-22/foundations/results/result.json) · [追試記録](/code/validated-examples/2026-11-22/foundations/verification.json)
+
+### QR/SVD：既定特異値・摂動増幅・数値階数
+
+固定標的の計算例
+
+二進で厳密に表現できる16×4行列の条件数を1から2³⁶まで変え、再構成誤差と解誤差を分けます。実際のbinary64入力に対し別環境で実行した80/120桁参照とLAPACKを比較します。
+
+LAPACKと教材の射影コアには共通の数値基盤が含まれます。mpmath SVDは別実装の二重対角化とQR反復、mpmath最小二乗は同じHouseholder群の別高精度実装です。どの高条件数行列にも微小特異値の相対高精度を保証するものではありません。
+
+[入力・結果・受入条件](/numerical-methods-atlas/validation/qr-svd-conditioning/?lang=ja) · [手法・一次文献](/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#qr-svd-conditioning) · [コード run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/run.py) · [コード experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py) · [コード fixtures.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py) · [コード mpmath_reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py) · [コード solvers.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py) · [テスト test_conditioning.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py) · [ZIP](/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip) · [結果](/code/validated-examples/2026-11-22/foundations-conditioning/results/result.json) · [追試記録](/code/validated-examples/2026-11-22/foundations-conditioning/verification.json)
+
 ## 公開範囲
 
-既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
+旧版の入力・測定値・公差を保持し、条件数・残差・収束の追加検証を別の配布版として案内します。診断対照の合格は、その対照で意図した限界を確認した意味を含み、一般的な成功や原論文全体の再現を意味しません。
 
 ## 文献
 
 - Alston S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix. https://doi.org/10.1145/320941.320947
 - G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. https://doi.org/10.1007/bf02163027
+- J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR. https://doi.org/10.1137/0613074
+- LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems. https://netlib.org/lapack/lug/node83.html

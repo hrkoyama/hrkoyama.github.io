@@ -33,7 +33,7 @@ def scoped_supplement_html(cases,lang):
     if not cases:return ''
     ja=lang=='ja'
     body=heading('scoped-examples','固定入力で確かめる：別々の配布版' if ja else 'Check fixed inputs: separate scoped releases')
-    body+=paragraph('各例の分布・観測量・診断の定義と適用範囲を確認します。検査の合格と、混合や推定の成功は同じ意味ではありません。旧版の入力・測定・公差は保持します。' if ja else 'Check each example’s target, observable, diagnostic definition and scope. Passing an acceptance check differs from successful mixing or estimation. Historical inputs, measurements and criteria are preserved.')
+    body+=paragraph('各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。' if ja else 'Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.')
     for case in cases:
         role=('診断対照：物理問題数へ非加算' if ja else 'Diagnostic control: no additional physical problem') if case['problem_id'] is None else ('固定した標的の計算例' if ja else 'Computation for a fixed target')
         body+='<article class="resource-summary" id="supplement-'+case['id']+'"><h3>'+escape(case['title'][lang])+'</h3>'+paragraph(role)+paragraph(case['summary'][lang])+paragraph(case['limits'][lang])
@@ -48,7 +48,7 @@ def scoped_supplement_markdown(cases,lang):
     if not cases:return ''
     ja=lang=='ja'
     body='## '+('固定入力の実行例と診断対照' if ja else 'Fixed-input examples and diagnostic controls')+'\n\n'
-    body+=('検査の合格と混合・推定の成功は区別します。旧版の入力・測定・公差は保持します。' if ja else 'Distinguish passing a check from successful mixing/estimation; preserve historical inputs, measurements and criteria.')+'\n\n'
+    body+=('受入条件が示す検証範囲と数学的な一般保証を区別します。旧版の入力・測定・公差は保持します。' if ja else 'Distinguish the scope established by acceptance checks from a general mathematical guarantee; preserve historical inputs, measurements and criteria.')+'\n\n'
     for case in cases:
         role=('診断対照・物理問題数へ非加算' if ja else 'Diagnostic control; no physical-problem increment') if case['problem_id'] is None else ('固定標的の計算例' if ja else 'Fixed-target computation')
         body+='### '+case['title'][lang]+'\n\n'+role+'\n\n'+case['summary'][lang]+'\n\n'+case['limits'][lang]+'\n\n'

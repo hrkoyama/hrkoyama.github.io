@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
-      ATLAS_DEPTH_BOOTSTRAP_SHA256: '5473ce3fcbef99bc3f6c544954d47a162e69657dd32ba7a66698142ba7b81cae'
-      ATLAS_DEPTH_REGISTRY_SHA256: 'c875a14446e600df2e7a1f0c164fbc2b66d55f7cdbec09f667fc3de732b78434'
+      ATLAS_DEPTH_BOOTSTRAP_SHA256: 'ee94973d478f806b4c08338236851d2d389cc19f627ec56424959c679d5bad32'
+      ATLAS_DEPTH_REGISTRY_SHA256: 'dc138a922565c8301be550b0ad479eb2357f27bb966eefe3dc6ffc330adf99f7'
       PYTHONNOUSERSITE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
       PIP_DISABLE_PIP_VERSION_CHECK: '1'
@@ -151,7 +151,7 @@ jobs:
               report['error'] = {'message': 'Verifier did not produce a report; inspect bootstrap/pip logs and context'}
           (root/'workflow-status.json').write_text(json.dumps(report, indent=2)+'\n')
           lines = ['## Lightweight public-distribution Linux verification', '',
-                   'Fresh Ubuntu24.04/Python3.12; eight public supplements only; no source checkout or quantum sweeps.', '',
+                   'Fresh Ubuntu24.04/Python3.12; nine public supplements only; no source checkout or quantum sweeps.', '',
                    '- passed: '+str(report.get('passed', False)),
                    '- phase: '+str(report.get('phase', 'unavailable')),
                    '- registry SHA-256: '+str(report.get('registry_sha256', 'unavailable'))]
@@ -166,6 +166,8 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: atlas-depth-public-linux-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/atlas-depth-public-report
+          path: |
+            ${{ runner.temp }}/atlas-depth-public-report
+            !${{ runner.temp }}/atlas-depth-public-report/verification/groups/*/temporary/**
           if-no-files-found: error
           retention-days: 90

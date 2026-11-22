@@ -44,7 +44,7 @@ Degenerate controls such as constant series and policies for nonfinite input are
 
 ## Fixed-input examples and diagnostic controls
 
-Distinguish passing a check from successful mixing/estimation; preserve historical inputs, measurements and criteria.
+Distinguish the scope established by acceptance checks from a general mathematical guarantee; preserve historical inputs, measurements and criteria.
 
 ### Gaussian-target MCMC: distribution, autocorrelation and ESS
 

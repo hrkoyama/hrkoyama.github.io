@@ -1,0 +1,461 @@
+{
+  "id": "quadrature-conditioning",
+  "passed": true,
+  "checks": {
+    "width0.1-reference": true,
+    "n8-independent-rule": true,
+    "n16-independent-rule": true,
+    "n32-independent-rule": true,
+    "n64-independent-rule": true,
+    "n128-independent-rule": true,
+    "width0.1-gauss-refinement": true,
+    "width0.1-tol1e-05": true,
+    "width0.1-tol1e-07": true,
+    "width0.1-tol1e-09": true,
+    "width0.03-reference": true,
+    "width0.03-gauss-refinement": true,
+    "width0.03-tol1e-05": true,
+    "width0.03-tol1e-07": true,
+    "width0.03-tol1e-09": true,
+    "width0.01-reference": true,
+    "width0.01-gauss-refinement": true,
+    "width0.01-tol1e-05": true,
+    "width0.01-tol1e-07": true,
+    "width0.01-tol1e-09": true,
+    "endpoint-tol1e-05": true,
+    "endpoint-tol1e-07": true,
+    "endpoint-tol1e-09": true,
+    "C0-absolute-error": true,
+    "C4096-absolute-error": true,
+    "C1.67772e+07-absolute-error": true,
+    "C6.87195e+10-absolute-error": true,
+    "conditioned-input-perturbation-gain": true,
+    "zero-integral-relative-condition-undefined": true,
+    "heuristic-blind-spot-explicit": true,
+    "known-support-companion-resolves": true
+  },
+  "metrics": {
+    "maximum_cancellation_condition": 68719476737.0,
+    "blind_bump_actual_error": 0.008126984126984127,
+    "blind_bump_reported_error": 0.0,
+    "resolved_bump_actual_error": 1.0884418366607918e-12,
+    "zero_integral_relative_condition": null
+  },
+  "records": [
+    {
+      "kind": "narrow-gauss",
+      "width": 0.1,
+      "order": 8,
+      "value": 0.2783797145174345,
+      "absolute_error": 0.006315220484442885,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.1,
+      "order": 16,
+      "value": 0.2724559697200861,
+      "absolute_error": 0.0003914756870945224,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.1,
+      "order": 32,
+      "value": 0.27206512266110056,
+      "absolute_error": 6.286281089562529e-07,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.1,
+      "order": 64,
+      "value": 0.27206449403292055,
+      "absolute_error": 7.105427357601002e-14,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.1,
+      "order": 128,
+      "value": 0.27206449403299143,
+      "absolute_error": 1.6653345369377348e-16,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.1,
+      "tolerance": 1e-05,
+      "value": 0.2720653200112234,
+      "absolute_error": 8.259782318109643e-07,
+      "estimated_error": 2.8620361601994913e-06,
+      "evaluations": 57,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.1,
+      "tolerance": 1e-07,
+      "value": 0.27206449368306895,
+      "absolute_error": 3.499226464143135e-10,
+      "estimated_error": 3.047131953651944e-08,
+      "evaluations": 173,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.1,
+      "tolerance": 1e-09,
+      "value": 0.27206449403165966,
+      "absolute_error": 1.3319345626428003e-12,
+      "estimated_error": 3.6692922063032614e-10,
+      "evaluations": 521,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.03,
+      "order": 8,
+      "value": 0.0851957486877645,
+      "absolute_error": 0.005201662529675952,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.03,
+      "order": 16,
+      "value": 0.10623114590832058,
+      "absolute_error": 0.015833734690880133,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.03,
+      "order": 32,
+      "value": 0.09148987152116302,
+      "absolute_error": 0.0010924603037225644,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.03,
+      "order": 64,
+      "value": 0.09043348220896173,
+      "absolute_error": 3.6070991521280904e-05,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.03,
+      "order": 128,
+      "value": 0.09039742403738565,
+      "absolute_error": 1.281994520263563e-08,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.03,
+      "tolerance": 1e-05,
+      "value": 0.09039717484294338,
+      "absolute_error": 2.3637449707292202e-07,
+      "estimated_error": 1.4121359912837855e-06,
+      "evaluations": 77,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.03,
+      "tolerance": 1e-07,
+      "value": 0.09039741274790235,
+      "absolute_error": 1.5304618961042848e-09,
+      "estimated_error": 3.935096947539311e-08,
+      "evaluations": 221,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.03,
+      "tolerance": 1e-09,
+      "value": 0.09039741121848881,
+      "absolute_error": 1.0483558465779197e-12,
+      "estimated_error": 3.2713138160428886e-10,
+      "evaluations": 737,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.01,
+      "order": 8,
+      "value": 0.013763642191900873,
+      "absolute_error": 0.017223838693659104,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.01,
+      "order": 16,
+      "value": 0.04140256867525618,
+      "absolute_error": 0.0104150877896962,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.01,
+      "order": 32,
+      "value": 0.031942893891273846,
+      "absolute_error": 0.0009554130057138691,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.01,
+      "order": 64,
+      "value": 0.03359848518482119,
+      "absolute_error": 0.002611004299261213,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-gauss",
+      "width": 0.01,
+      "order": 128,
+      "value": 0.031132419532482008,
+      "absolute_error": 0.00014493864692203054,
+      "integral_condition_1": 1.0,
+      "status": "fixed-order measurement; not a tolerance certificate"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.01,
+      "tolerance": 1e-05,
+      "value": 0.030992087759224175,
+      "absolute_error": 4.606873664197292e-06,
+      "estimated_error": 4.564182666831677e-06,
+      "evaluations": 81,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.01,
+      "tolerance": 1e-07,
+      "value": 0.030987488763333224,
+      "absolute_error": 7.877773246234288e-09,
+      "estimated_error": 5.005270322447443e-08,
+      "evaluations": 257,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "narrow-adaptive",
+      "width": 0.01,
+      "tolerance": 1e-09,
+      "value": 0.030987480889054217,
+      "absolute_error": 3.4942396198722747e-12,
+      "estimated_error": 3.332193223930767e-10,
+      "evaluations": 821,
+      "solver_converged": true,
+      "status": "estimated_tolerance",
+      "reference_status": "completed"
+    },
+    {
+      "kind": "endpoint-direct",
+      "tolerance": 1e-05,
+      "value": 0.6666661430013943,
+      "absolute_error": 5.236652723672464e-07,
+      "evaluations": 61,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "endpoint-transformed",
+      "tolerance": 1e-05,
+      "value": 0.6666666666666667,
+      "absolute_error": 1.1102230246251565e-16,
+      "evaluations": 5,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "endpoint-direct",
+      "tolerance": 1e-07,
+      "value": 0.6666666658650885,
+      "absolute_error": 8.01578137199499e-10,
+      "evaluations": 185,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "endpoint-transformed",
+      "tolerance": 1e-07,
+      "value": 0.6666666666666667,
+      "absolute_error": 1.1102230246251565e-16,
+      "evaluations": 5,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "endpoint-direct",
+      "tolerance": 1e-09,
+      "value": 0.6666666666656357,
+      "absolute_error": 1.0309531006669204e-12,
+      "evaluations": 513,
+      "solver_converged": false,
+      "status": "depth_budget"
+    },
+    {
+      "kind": "endpoint-transformed",
+      "tolerance": 1e-09,
+      "value": 0.6666666666666667,
+      "absolute_error": 1.1102230246251565e-16,
+      "evaluations": 5,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "cancellation",
+      "scale": 0.0,
+      "value": 1.0,
+      "absolute_error": 0.0,
+      "condition_infinity": 1.0,
+      "cancellation_condition_1": 1.0,
+      "input_relative_infinity_perturbation": 9.094947017729282e-13,
+      "predicted_integral_change": 9.094947017729282e-13,
+      "observed_integral_change": 9.094947017729282e-13,
+      "roundoff_acceptance_budget": 2.842170943040401e-14,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "cancellation",
+      "scale": 4096.0,
+      "value": 1.0,
+      "absolute_error": 0.0,
+      "condition_infinity": 4097.0,
+      "cancellation_condition_1": 2048.0001220703125,
+      "input_relative_infinity_perturbation": 9.094947017729282e-13,
+      "predicted_integral_change": 3.726199793163687e-09,
+      "observed_integral_change": 3.72583608410082e-09,
+      "roundoff_acceptance_budget": 1.1641532182693481e-10,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "cancellation",
+      "scale": 16777216.0,
+      "value": 1.0,
+      "absolute_error": 0.0,
+      "condition_infinity": 16777217.0,
+      "cancellation_condition_1": 8388608.00000003,
+      "input_relative_infinity_perturbation": 9.094947017729282e-13,
+      "predicted_integral_change": 1.5258789971994702e-05,
+      "observed_integral_change": 1.52587890625e-05,
+      "roundoff_acceptance_budget": 4.76837158203125e-07,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "cancellation",
+      "scale": 68719476736.0,
+      "value": 1.0,
+      "absolute_error": 0.0,
+      "condition_infinity": 68719476737.0,
+      "cancellation_condition_1": 34359738368.0,
+      "input_relative_infinity_perturbation": 9.094947017729282e-13,
+      "predicted_integral_change": 0.0625000000009095,
+      "observed_integral_change": 0.0625,
+      "roundoff_acceptance_budget": 0.001953125,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    },
+    {
+      "kind": "zero-integral",
+      "value": 0.0,
+      "absolute_error": 0.0,
+      "relative_condition": null,
+      "status": "undefined relative condition because the exact integral is zero"
+    },
+    {
+      "kind": "compact-bump-blind",
+      "value": 0.0,
+      "absolute_error": 0.008126984126984127,
+      "estimated_error": 0.0,
+      "evaluations": 5,
+      "solver_converged": true,
+      "status": "expected false reassurance, not an accurate integral"
+    },
+    {
+      "kind": "compact-bump-split",
+      "value": 0.008126984128072568,
+      "absolute_error": 1.0884418366607918e-12,
+      "estimated_error": 4.357520608172457e-10,
+      "evaluations": 161,
+      "solver_converged": true,
+      "status": "estimated_tolerance"
+    }
+  ],
+  "independent_quadpack": [
+    {
+      "kind": "lorentzian",
+      "width": 0.1,
+      "value": 0.2720644940329916,
+      "estimated_error": 3.0205264686120947e-15,
+      "evaluations": 252,
+      "status": "completed",
+      "message": null
+    },
+    {
+      "kind": "lorentzian",
+      "width": 0.03,
+      "value": 0.09039741121744044,
+      "estimated_error": 4.234255319094358e-14,
+      "evaluations": 336,
+      "status": "completed",
+      "message": null
+    },
+    {
+      "kind": "lorentzian",
+      "width": 0.01,
+      "value": 0.03098748088556,
+      "estimated_error": 1.937312769107688e-13,
+      "evaluations": 462,
+      "status": "completed",
+      "message": null
+    },
+    {
+      "kind": "compact-bump-known-breakpoints",
+      "value": 0.008126984126984125,
+      "estimated_error": 9.022764898540952e-17,
+      "evaluations": 84,
+      "status": "completed",
+      "message": null
+    }
+  ]
+}

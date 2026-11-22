@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "maximum_seconds": 105.0,
+  "amg": {
+    "case_id": "amg-conditioning",
+    "grid_sizes": [
+      7,
+      15,
+      31
+    ],
+    "anisotropies": [
+      1.0,
+      0.1,
+      0.01
+    ],
+    "strength": 0.08,
+    "coarse_size": 10,
+    "relative_tolerance": 1e-10,
+    "max_cycles": 180,
+    "perturbation": 1e-06,
+    "stress_policy": "epsilon=1 must converge; epsilon<1 stress rows may exhaust the fixed budget, must reduce true residual, and retain actual forward error/status. No monotone anisotropy claim.",
+    "acceptance": {
+      "relative_residual": 2e-09,
+      "direct_solution_error": 1e-06,
+      "stress_residual_ratio": 0.5,
+      "operator_complexity": 15.0,
+      "spectrum_relative_error": 2e-12,
+      "condition_gain_relative_error": 0.01,
+      "true_residual_agreement": 2e-13,
+      "forward_bound_roundoff_factor": 200.0
+    }
+  },
+  "decompositions": {
+    "case_id": "qr-svd-conditioning",
+    "rows": 16,
+    "columns": 4,
+    "spectrum_exponents": [
+      0,
+      4,
+      8,
+      12
+    ],
+    "perturbation": 9.094947017729282e-13,
+    "jacobi_tolerance": 1e-13,
+    "max_sweeps": 80,
+    "rank_rtol": 1e-14,
+    "rank_cutoffs": [
+      1e-08,
+      1e-12,
+      1e-14
+    ],
+    "acceptance": {
+      "reconstruction": 1e-11,
+      "orthogonality": 1e-10,
+      "scaled_singular_error": 1e-12,
+      "forward_roundoff_factor": 100.0,
+      "minimum_forward_budget": 1e-10,
+      "condition_gain_absolute_error": 0.01,
+      "normal_residual": 1e-11,
+      "reference_relative_error": 2e-12
+    }
+  },
+  "krylov": {
+    "case_id": "krylov-eigen-conditioning",
+    "n": 48,
+    "dimensions": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "seed": 2026112301,
+    "cluster_gaps": [
+      1.0,
+      0.1,
+      0.01
+    ],
+    "nonnormal_gap": 0.01,
+    "nonnormal_strengths": [
+      10.0,
+      1000.0
+    ],
+    "pseudopair_gap": 0.01,
+    "pseudopair_strengths": [
+      1.0,
+      10.0,
+      1000.0
+    ],
+    "acceptance": {
+      "backward_residual": 1e-10,
+      "orthogonality": 1e-10,
+      "eigenvalue_absolute_floor": 1e-08,
+      "conditioned_error_factor": 100.0,
+      "final_top_subspace_sine": 1e-05,
+      "analytic_eigenvalue_reference": 1e-10,
+      "condition_relative_error": 1e-08,
+      "pseudopair_relative_error": 1e-08,
+      "pseudopair_small_residual": 1e-06,
+      "pseudopair_large_error": 0.004
+    }
+  },
+  "quadrature": {
+    "case_id": "quadrature-conditioning",
+    "gauss_orders": [
+      8,
+      16,
+      32,
+      64,
+      128
+    ],
+    "adaptive_tolerances": [
+      1e-05,
+      1e-07,
+      1e-09
+    ],
+    "lorentz_center": 0.371,
+    "lorentz_widths": [
+      0.1,
+      0.03,
+      0.01
+    ],
+    "max_evaluations": 30001,
+    "max_depth": 30,
+    "cancellation_scales": [
+      0.0,
+      4096.0,
+      16777216.0,
+      68719476736.0
+    ],
+    "perturbation": 9.094947017729282e-13,
+    "bump_center": 0.37,
+    "bump_width": 0.01,
+    "bump_power": 4,
+    "stress_policy": "Direct sqrt may exhaust budget; transformed companion must resolve. The compact bump is an expected false reassurance control. Cancellation uses a roundoff-aware absolute budget, and a zero integral has undefined relative condition.",
+    "acceptance": {
+      "adaptive_tolerance_factor": 5.0,
+      "independent_reference_absolute_error": 2e-12,
+      "gauss_reference_scaled_error": 2e-12,
+      "gauss_narrow_finest_error": 0.01,
+      "roundoff_factor": 128.0,
+      "cancellation_gain_relative_error": 0.05,
+      "missed_bump_minimum_error": 0.001,
+      "resolved_bump_absolute_error": 5e-09,
+      "transformed_endpoint_absolute_error": 2e-14
+    }
+  },
+  "policy": "Four bounded examples. Inputs and criteria saved before the first primary numerical pilot or independent-reference generation. Stress/control passes mean that intended nonconvergence, sensitivity or heuristic blind spots are explicitly detected, not that every solver/integral converged. No quantum computations."
+}

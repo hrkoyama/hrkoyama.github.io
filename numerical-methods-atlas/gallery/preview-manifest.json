@@ -1047,8 +1047,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "50d09c172de1187a6f25b13ac63abf872de840c98219e45f2783ed56b23c0331",
-    "catalog/atlas-depth-expansion.json": "03d5ff7342091f48ed6bf0e7678a76f04d4f8a54d6f3814f3f1f8d7fdc1aa1aa",
+    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
+    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1117,7 +1117,16 @@
     "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
     "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
     "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
-    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824"
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/inputs.json": "142f7fdeb264f130c64d402f417eb34e0a64e269431137eba5b821e85484306f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/amg-conditioning.png": "5f49ba07a6c8041814cb9232a60c60cabd0c606f4045916cad93caf7667716b8",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png": "ebc0a58aaaa831fdce8faa446b1ae8b42823fd5d817a7dd9330058ccf2fd65df",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }
