@@ -11,14 +11,14 @@ from atlas_goal_availability import goal_flags
 r=Path('.')
 m={x['id']:x for x in json.loads((r/'numerical-methods-atlas/methods/index.json').read_text())['methods']}
 g=json.loads((r/'catalog/atlas-goals.json').read_text())['goals']
-print(json.dumps([{'id':x['id'],'states':' '.join(goal_flags(x,m))} for x in g]))`],{cwd:root,encoding:'utf8'}));
+print(json.dumps([{'id':x['id'],'states':' '.join(goal_flags(x,m)),'domains':' '.join(x['domains'])} for x in g]))`],{cwd:root,encoding:'utf8'}));
 function element(){return {hidden:false,value:'',textContent:'',events:{},addEventListener(name,fn){this.events[name]=fn;},fire(name){this.events[name]?.();}};}
 function fixture(lang='ja',rows=records){
- const field=element(),reset=element(),status=element(),empty=element(),controls=element();controls.hidden=true;
- const items=rows.flatMap(row=>[false,true].map(article=>({...element(),id:article?row.id+'-'+lang:'',dataset:{goalId:row.id,goalStates:row.states}})));
- const nodes={'[data-goal-filter]':field,'[data-goal-reset]':reset,'[data-goal-count]':status,'[data-goal-empty]':empty,'[data-goal-controls]':controls};
+ const field=element(),domain=element(),reset=element(),status=element(),empty=element(),controls=element();controls.hidden=true;
+ const items=rows.flatMap(row=>[false,true].map(article=>({...element(),id:article?row.id+'-'+lang:'',dataset:{goalId:row.id,goalStates:row.states,goalDomains:row.domains}})));
+ const nodes={'[data-goal-domain]':domain,'[data-goal-filter]':field,'[data-goal-reset]':reset,'[data-goal-count]':status,'[data-goal-empty]':empty,'[data-goal-controls]':controls};
  const scope={dataset:{goalFilterRoot:'',goalLanguage:lang},querySelector:s=>nodes[s],querySelectorAll:s=>s==='[data-goal-item]'?items:[]};
- return {scope,field,reset,status,empty,controls,items,choose(value){field.value=value;field.fire('change');},visible(){return [...new Set(items.filter(x=>!x.hidden).map(x=>x.dataset.goalId))];}};
+ return {scope,field,domain,reset,status,empty,controls,items,choose(value){field.value=value;field.fire('change');},chooseDomain(value){domain.value=value;domain.fire('change');},visible(){return [...new Set(items.filter(x=>!x.hidden).map(x=>x.dataset.goalId))];}};
 }
 function environment(fn,blocked=false){
  const saved=Object.fromEntries(['sessionStorage','location','history'].map(k=>[k,Object.getOwnPropertyDescriptor(globalThis,k)]));
@@ -41,30 +41,56 @@ test('selection filters both navigation and articles, counts unique goals, persi
  f.choose('reading');assert.deepEqual(f.visible(),['molecular-dft','biological-models']);assert.equal(f.status.textContent,'2 / 10 件の目的');assert.equal(f.empty.hidden,true);
  assert.equal(f.items.filter(x=>!x.hidden).length,4);
  const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.field.value,'reading');assert.equal(en.status.textContent,'2 of 10 goals');
- en.choose('planned');assert.deepEqual(en.visible(),['temperature-control']);
- homeController.sync();assert.equal(f.field.value,'planned');assert.deepEqual(f.visible(),['temperature-control'],'restored pages use the latest session selection');
- en.reset.fire('click');assert.equal(en.visible().length,10);assert.equal(en.field.value,'all');
+ en.chooseDomain('temperature');en.choose('planned');assert.deepEqual(en.visible(),['temperature-control']);
+ homeController.sync();assert.equal(f.field.value,'planned');assert.equal(f.domain.value,'temperature');assert.deepEqual(f.visible(),['temperature-control'],'restored pages use the latest session selection');
+ en.reset.fire('click');assert.equal(en.visible().length,10);assert.equal(en.field.value,'all');assert.equal(en.domain.value,'all');
  assert.equal(wireGoalFilters(en.scope).length,1);
 }));
 test('direct links reveal a hidden target; intentionally changing filters clears an excluded anchor',()=>environment((loc,history)=>{
- const first=fixture();wireGoalFilters(first.scope);first.choose('run');
+ const first=fixture();wireGoalFilters(first.scope);first.choose('run');first.chooseDomain('quantum');
  loc.hash='#biological-models-ja';
- const linked=fixture();wireGoalFilters(linked.scope);assert.equal(linked.field.value,'all');assert.ok(linked.visible().includes('biological-models'));
+ const linked=fixture();wireGoalFilters(linked.scope);assert.equal(linked.field.value,'all');assert.equal(linked.domain.value,'all');assert.ok(linked.visible().includes('biological-models'));
  linked.choose('planned');assert.equal(loc.hash,'');assert.equal(history.last,loc.pathname+loc.search);
 }));
 test('blocked storage, invalid values and zero matches remain usable',()=>environment(()=>{
  const f=fixture('en',records.filter(r=>r.states==='reading'));wireGoalFilters(f.scope);
  f.choose('run');assert.deepEqual(f.visible(),[]);assert.equal(f.empty.hidden,false);assert.equal(f.status.textContent,'0 of 2 goals');
  f.reset.fire('click');assert.equal(f.visible().length,2);assert.equal(f.empty.hidden,true);
- f.choose('invalid');assert.equal(f.field.value,'all');
+ f.choose('invalid');f.chooseDomain('invalid');assert.equal(f.field.value,'all');assert.equal(f.domain.value,'all');
 },true));
 test('generated bilingual home and goal pages provide all filters, matching attributes and progressive enhancement',()=>{
  for(const path of ['numerical-methods-atlas/index.html','numerical-methods-atlas/start/index.html']){
   const html=fs.readFileSync(new URL(path,root),'utf8');
   assert.ok(html.includes('data-goal-controls hidden'),'no dead controls without JavaScript');
   for(const value of ['all','run','code','reading','planned'])assert.ok(html.includes(`value="${value}"`));
-  for(const record of records)assert.ok(html.includes(`data-goal-id="${record.id}" data-goal-states="${record.states}"`));
+  for(const record of records)assert.ok(html.includes(`data-goal-id="${record.id}" data-goal-states="${record.states}" data-goal-domains="${record.domains}"`));
+  for(const domain of JSON.parse(fs.readFileSync(new URL('catalog/atlas-goals.json',root),'utf8')).domains)assert.ok(html.includes(`value="${domain.id}"`));
   assert.ok(html.includes('data-goal-language="ja"')&&html.includes('data-goal-language="en"'));
   assert.ok(html.includes('goal-filters.mjs?v=')&&html.includes('atlas-goal-filters.css?v='));
  }
 });
+
+test('field and availability intersect, overlapping MHD membership does not duplicate goals, and empty combinations reset',()=>environment(()=>{
+ const f=fixture();wireGoalFilters(f.scope);
+ for(const [domain,availability,ids] of [
+  ['quantum','run',['atomic-electrons']],
+  ['quantum','reading',['molecular-dft']],
+  ['biology','code',[]],
+  ['temperature','planned',['temperature-control']],
+  ['fluid','code',['shocks','smooth-vortex','magnetic-divergence']],
+  ['mhd','code',['magnetic-divergence']],
+  ['diffusion','run',['poisson']],
+  ['time','run',['stiff-time']],
+  ['gravity','run',['particle-gravity']]
+ ]){
+  f.chooseDomain(domain);f.choose(availability);assert.deepEqual(f.visible(),ids,domain+' + '+availability);
+  assert.equal(f.status.textContent,`${ids.length} / 10 件の目的`);assert.equal(f.empty.hidden,ids.length!==0);
+ }
+ const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.domain.value,'gravity');assert.equal(en.field.value,'run');
+ f.chooseDomain('biology');assert.equal(f.empty.hidden,false);f.reset.fire('click');assert.equal(f.visible().length,10);assert.equal(f.domain.value,'all');assert.equal(f.field.value,'all');
+}));
+test('changing only the field clears an excluded anchor and direct links reset a conflicting field',()=>environment((loc,history)=>{
+ const f=fixture();const [controller]=wireGoalFilters(f.scope);
+ loc.hash='#magnetic-divergence-ja';f.chooseDomain('quantum');assert.equal(loc.hash,'');assert.equal(history.last,loc.pathname+loc.search);
+ loc.hash='#magnetic-divergence-ja';controller.revealAnchor();assert.equal(f.domain.value,'all');assert.ok(f.visible().includes('magnetic-divergence'));
+}));

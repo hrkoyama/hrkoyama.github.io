@@ -9,7 +9,12 @@ data=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
 methods={x['id']:x for x in json.loads((ROOT/'numerical-methods-atlas/methods/index.json').read_text())['methods']}
 examples={x['id']:x for x in json.loads((ROOT/'catalog/atlas-execution-examples.json').read_text())['examples']}
 assert len({g['id'] for g in data['goals']})==len(data['goals'])
+domain_ids = {row['id'] for row in data['domains']}
+assert len(domain_ids) == len(data['domains'])
+assert 'all' not in domain_ids and all(ident and not any(c.isspace() for c in ident) for ident in domain_ids)
+assert all(row['name'][lang] for row in data['domains'] for lang in ['ja', 'en'])
 for g in data['goals']:
+    assert g['domains'] and len(set(g['domains'])) == len(g['domains']) and set(g['domains']) <= domain_ids, g['id']
     assert all(x in methods for x in g['methods']),g['id']
     assert all(x in examples for x in g['examples']),g['id']
     assert g.get('availability') in [None,'reading-only']
@@ -34,7 +39,7 @@ module+='''export function matchGoals(query){
 (ROOT/'search/goals-data.mjs').write_text(module)
 sections=[]
 for lang in ['ja','en']:
-    ja=lang=='ja'; parts=[f'<section data-site-language="{lang}" lang="{lang}" data-goal-filter-root data-goal-language="{lang}"><h1>'+('目的から計算法を選ぶ' if ja else 'Choose methods by your goal')+'</h1><p>'+(f'モデル・適用条件と公開状況を確認して進みます。{len(data["goals"])}の目的を案内します。' if ja else f'Check model assumptions and publication status. Explore {len(data["goals"])} goals.')+'</p>'+goal_filter_controls(lang,'goal')+'<nav aria-label="'+('目的を選ぶ' if ja else 'Choose a goal')+'">']
+    ja=lang=='ja'; parts=[f'<section data-site-language="{lang}" lang="{lang}" data-goal-filter-root data-goal-language="{lang}"><h1>'+('目的から計算法を選ぶ' if ja else 'Choose methods by your goal')+'</h1><p>'+(f'モデル・適用条件と公開状況を確認して進みます。{len(data["goals"])}の目的を案内します。' if ja else f'Check model assumptions and publication status. Explore {len(data["goals"])} goals.')+'</p>'+goal_filter_controls(lang,'goal',data['domains'])+'<nav aria-label="'+('目的を選ぶ' if ja else 'Choose a goal')+'">']
     parts += [f'<a class="goal-choice"{goal_attributes(g,methods)} href="#{g["id"]}-{lang}">{e(g["title"][lang])}<small>{e(goal_label(g,methods,lang))}</small></a>' for g in data['goals']]
     parts+=['</nav><p class="goal-status-key">'+('公開状況：関連コード・テストあり／解説のみ（専用実装なし）／解説あり・実装予定。コードの公開は、すべての用途での検証完了を意味しません。' if ja else 'Availability: related code and tests / reading only (no dedicated implementation) / reading available, implementation planned. Published code does not validate every application.')+'</p>']
     for g in data['goals']:

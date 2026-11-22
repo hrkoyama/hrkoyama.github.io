@@ -30,14 +30,16 @@ def goal_flags(goal, methods):
 
 
 def goal_attributes(goal, methods):
-    return ' data-goal-item data-goal-id="' + escape(goal['id'], quote=True) + '" data-goal-states="' + ' '.join(goal_flags(goal, methods)) + '"'
+    return ' data-goal-item data-goal-id="' + escape(goal['id'], quote=True) + '" data-goal-states="' + ' '.join(goal_flags(goal, methods)) + '" data-goal-domains="' + escape(' '.join(goal['domains']), quote=True) + '"'
 
 
-def goal_filter_controls(lang, context):
+def goal_filter_controls(lang, context, domains):
     ja = lang == 'ja'
     ident = context + '-availability-' + lang
+    domain_id = context + '-domain-' + lang
     options = [('all', 'すべて', 'All'), ('run', '実行例あり', 'Runnable examples'), ('code', 'コードとテストあり', 'Code and tests'), ('reading', '解説のみ', 'Reading only'), ('planned', '実装予定', 'Implementation planned')]
-    return '<div class="goal-filter-controls" data-goal-controls hidden><label for="' + ident + '">' + ('公開状況' if ja else 'Availability') + '</label><select id="' + ident + '" data-goal-filter aria-describedby="' + ident + '-help">' + ''.join('<option value="' + value + '">' + (jp if ja else en) + '</option>' for value, jp, en in options) + '</select><button type="button" data-goal-reset>' + ('すべて表示' if ja else 'Show all') + '</button><p data-goal-count role="status" aria-live="polite" aria-atomic="true"></p><p class="goal-filter-help" id="' + ident + '-help">' + ('「コードとテストあり」には、実行例ありも含みます。' if ja else 'Code and tests also includes goals with runnable examples.') + '</p></div><p data-goal-empty hidden>' + ('該当する目的がありません。「すべて表示」で戻れます。' if ja else 'No goals match. Choose Show all to reset.') + '</p>'
+    domain_options = '<option value="all">' + ('すべて' if ja else 'All') + '</option>' + ''.join('<option value="' + escape(row['id'], quote=True) + '">' + escape(row['name'][lang]) + '</option>' for row in domains)
+    return '<div class="goal-filter-controls" data-goal-controls hidden><div class="goal-filter-field"><label for="' + domain_id + '">' + ('分野' if ja else 'Field') + '</label><select id="' + domain_id + '" data-goal-domain aria-describedby="' + ident + '-help">' + domain_options + '</select></div><div class="goal-filter-field"><label for="' + ident + '">' + ('公開状況' if ja else 'Availability') + '</label><select id="' + ident + '" data-goal-filter aria-describedby="' + ident + '-help">' + ''.join('<option value="' + value + '">' + (jp if ja else en) + '</option>' for value, jp, en in options) + '</select></div><button type="button" data-goal-reset>' + ('すべて表示' if ja else 'Show all') + '</button><p data-goal-count role="status" aria-live="polite" aria-atomic="true"></p><p class="goal-filter-help" id="' + ident + '-help">' + ('分野と公開状況の両方に一致する目的を表示します。「コードとテストあり」には、実行例ありも含みます。' if ja else 'Goals must match both field and availability. Code and tests also includes goals with runnable examples.') + '</p></div><p data-goal-empty hidden>' + ('該当する目的がありません。「すべて表示」で戻れます。' if ja else 'No goals match. Choose Show all to reset.') + '</p>'
 
 
 def goal_filter_assets(root):

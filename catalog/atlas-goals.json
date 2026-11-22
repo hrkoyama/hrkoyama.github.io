@@ -25,6 +25,9 @@
       "examples": [
         "sod",
         "shu-osher"
+      ],
+      "domains": [
+        "fluid"
       ]
     },
     {
@@ -49,7 +52,10 @@
       "methods": [
         "keep"
       ],
-      "examples": []
+      "examples": [],
+      "domains": [
+        "fluid"
+      ]
     },
     {
       "id": "atomic-electrons",
@@ -85,6 +91,9 @@
       "examples": [
         "hydrogenic-atoms",
         "helium-ground-state"
+      ],
+      "domains": [
+        "quantum"
       ]
     },
     {
@@ -118,7 +127,10 @@
         "xc-functionals"
       ],
       "examples": [],
-      "availability": "reading-only"
+      "availability": "reading-only",
+      "domains": [
+        "quantum"
+      ]
     },
     {
       "id": "temperature-control",
@@ -145,7 +157,10 @@
         "langevin-thermostat",
         "berendsen-thermostat"
       ],
-      "examples": []
+      "examples": [],
+      "domains": [
+        "temperature"
+      ]
     },
     {
       "id": "biological-models",
@@ -270,6 +285,9 @@
           "test_urls": [],
           "execution_examples": []
         }
+      ],
+      "domains": [
+        "biology"
       ]
     },
     {
@@ -299,6 +317,9 @@
       "examples": [
         "poisson-1d-dirichlet",
         "poisson-2d-sine"
+      ],
+      "domains": [
+        "diffusion"
       ]
     },
     {
@@ -326,6 +347,10 @@
       ],
       "examples": [
         "brio-wu"
+      ],
+      "domains": [
+        "fluid",
+        "mhd"
       ]
     },
     {
@@ -352,6 +377,9 @@
       ],
       "examples": [
         "stiff-cosine"
+      ],
+      "domains": [
+        "time"
       ]
     },
     {
@@ -378,21 +406,82 @@
       "examples": [
         "barnes-hut",
         "periodic-particles"
+      ],
+      "domains": [
+        "gravity"
       ]
     }
   ],
   "home": {
     "ja": {
       "title": "何を計算したいですか？",
-      "description": "目的と公開状況を選び、適用条件を確認して、解説や公開済みのコード・テストへ進めます。",
+      "description": "分野と公開状況で目的を絞り、適用条件を確認して、解説や公開済みのコード・テストへ進めます。",
       "all": "全{count}目的と公開状況を見る",
       "label": "目的から探す"
     },
     "en": {
       "title": "What would you like to compute?",
-      "description": "Choose a goal and check its availability and assumptions, then open reading or published code and tests.",
+      "description": "Filter goals by field and availability, check their assumptions, then open reading or published code and tests.",
       "all": "View all {count} goals and availability",
       "label": "Find by goal"
     }
-  }
+  },
+  "domains": [
+    {
+      "id": "fluid",
+      "name": {
+        "ja": "流体",
+        "en": "Fluid dynamics"
+      }
+    },
+    {
+      "id": "mhd",
+      "name": {
+        "ja": "MHD",
+        "en": "MHD"
+      }
+    },
+    {
+      "id": "quantum",
+      "name": {
+        "ja": "量子化学・DFT",
+        "en": "Quantum chemistry & DFT"
+      }
+    },
+    {
+      "id": "temperature",
+      "name": {
+        "ja": "温度制御",
+        "en": "Temperature control"
+      }
+    },
+    {
+      "id": "biology",
+      "name": {
+        "ja": "生物",
+        "en": "Biology"
+      }
+    },
+    {
+      "id": "diffusion",
+      "name": {
+        "ja": "拡散・楕円型",
+        "en": "Diffusion & elliptic problems"
+      }
+    },
+    {
+      "id": "time",
+      "name": {
+        "ja": "時間積分",
+        "en": "Time integration"
+      }
+    },
+    {
+      "id": "gravity",
+      "name": {
+        "ja": "粒子・重力",
+        "en": "Particles & gravity"
+      }
+    }
+  ]
 }
