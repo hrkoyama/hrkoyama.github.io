@@ -60,6 +60,7 @@ def link(url, title):
 
 
 def section(data, language):
+    from atlas_problem_route_cards import render_problem_routes
     ja = language == 'ja'
     title = '厳密解・参照解' if ja else 'Exact and reference solutions'
     intro = (str(data['count']) + '件の保存済み参照解を、名前・式・適用条件から選べます。各カードから既存の表示と解説へ進めます。' if ja else
@@ -85,13 +86,15 @@ def section(data, language):
             body += '<p class="solution-sampling">' + escape(case['sampling_note'][language]) + '</p>'
         body += '<nav class="solution-links" aria-label="' + escape(case['title'][language], quote=True) + '">'
         body += link(case['view'][language], '保存済みの解を表示 →' if ja else 'View the saved profile →')
-        body += link(case['reading'][language], '定義・条件を読む' if ja else 'Read definitions and conditions') + '</nav></article>'
+        body += link(case['reading'][language], '定義・条件を読む' if ja else 'Read definitions and conditions') + '</nav>'
+        body += render_problem_routes(case.get('related_problems', []), language, heading_level=3, limit=3) + '</article>'
     body += '</div><footer class="solutions-footer">' + link('index.json', 'JSON') + link('index.md', 'Markdown')
     body += link('/' + SOURCE, '参照値の元データ' if ja else 'Source reference values') + link('/using/', '引用と利用条件' if ja else 'Citation and reuse') + '</footer></section>'
     return body
 
 
 def markdown(data):
+    from atlas_problem_route_cards import markdown_problem_routes
     result = '# 厳密解・参照解 / Exact and reference solutions\n\n'
     result += 'Source: ' + ORIGIN + data['source'] + '\n\nSHA-256: `' + data['source_sha256'] + '`\n\n'
     for language in ['ja', 'en']:
@@ -104,18 +107,26 @@ def markdown(data):
             if case.get('sampling_note'):
                 result += case['sampling_note'][language] + '\n\n'
             result += '[' + ('保存済みの解を表示' if ja else 'View the saved profile') + '](' + ORIGIN + case['view'][language] + ') · [' + ('定義・条件を読む' if ja else 'Read definitions and conditions') + '](' + ORIGIN + case['reading'][language] + ')\n\n'
+            result += markdown_problem_routes(case.get('related_problems', []), language) + '\n\n'
     return result.rstrip() + '\n'
 
 
-def build(root=ROOT):
+def build(root=ROOT, problem_routes=None):
     root = Path(root)
     data = load(root)
+    if problem_routes is None:
+        from atlas_problem_routes import load_problem_routes
+        problem_routes = load_problem_routes(root)
+    for case in data['cases']:
+        case['related_problems'] = problem_routes['references'][case['id']]
+    data['problem_routes_source_sha256'] = problem_routes['source_sha256']
     css_hash = digest(root / 'styles/atlas-solutions.css')[:12]
+    routes_css_hash = digest(root / 'styles/atlas-problem-routes.css')[:12]
     head = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     head += '<title data-page-title-ja="厳密解・参照解 | 数値計算法アトラス" data-page-title-en="Exact and reference solutions | Numerical Methods Atlas">厳密解・参照解 | 数値計算法アトラス</title>'
     head += '<meta name="description" content="保存済み参照解の名前・式・適用条件を一覧。Analytic, semi-analytic and manufactured references, with formulas and assumptions.">'
-    head += '<link rel="canonical" href="' + ORIGIN + ROUTE + '"><link rel="stylesheet" href="/styles/atlas-solutions.css?v=' + css_hash + '"></head>'
-    document = head + '<body class="profile-page atlas-solutions"><main id="main" class="solutions-index">' + ''.join(section(data, language) for language in ['ja', 'en']) + '</main></body></html>\n'
+    head += '<link rel="canonical" href="' + ORIGIN + ROUTE + '"><link rel="stylesheet" href="/styles/atlas-solutions.css?v=' + css_hash + '"><link rel="stylesheet" href="/styles/atlas-problem-routes.css?v=' + routes_css_hash + '"></head>'
+    document = head + '<body class="profile-page atlas-solutions" data-site-language-anchors="suffix"><main id="main" class="solutions-index">' + ''.join(section(data, language) for language in ['ja', 'en']) + '</main></body></html>\n'
     directory = root / ROUTE.strip('/')
     directory.mkdir(parents=True, exist_ok=True)
     (directory / 'index.html').write_text(document)

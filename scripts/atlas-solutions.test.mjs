@@ -17,21 +17,41 @@ const translations=new Map(Object.values(messages).map(entry=>[entry.en?.replace
 const decode=value=>value.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#x27;',"'").replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>');
 const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map(match=>[match[1],decode(match[2])]));
 const label=html=>decode(html.replace(/<[^>]+>/g,'')).trim();
+function blocks(html,attribute,value){
+  const result=[];
+  for(const opening of html.matchAll(/<([a-z][\w:-]*)\b[^>]*>/gi)){
+    const attributes=attrs(opening[0]);
+    if(new RegExp('\\s'+attribute+'(?=\\s|/?>)').test(opening[0]))attributes[attribute]??='';
+    if(!(attribute in attributes)||(value!==undefined&&attributes[attribute]!==value))continue;
+    const tags=new RegExp('</?'+opening[1]+'\\b[^>]*>','gi');tags.lastIndex=opening.index+opening[0].length;
+    let depth=1,closing;while((closing=tags.exec(html))){depth+=closing[0].startsWith('</')?-1:1;if(!depth)break;}
+    assert.ok(closing);
+    result.push({attributes,start:opening.index,end:tags.lastIndex,body:html.slice(opening.index+opening[0].length,closing.index)});
+  }
+  return result;
+}
+function withoutProblemRoutes(html){
+  for(const block of blocks(html,'data-problem-routes').reverse())html=html.slice(0,block.start)+html.slice(block.end);
+  return html;
+}
 const rendered=JSON.parse(execFileSync('python3',['-B','-c',String.raw`
-import contextlib,hashlib,importlib.util,io,json,pathlib,shutil,tempfile
+import contextlib,hashlib,importlib.util,io,json,pathlib,shutil,sys,tempfile
 site=pathlib.Path.cwd()
+sys.path.insert(0,str(site/'scripts'))
+from atlas_problem_routes import load_problem_routes
+routes=load_problem_routes(site)
 spec=importlib.util.spec_from_file_location('solutions_builder',site/'scripts/build-atlas-solutions.py')
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css']
+inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css']
 before={name:hashlib.sha256((site/name).read_bytes()).hexdigest() for name in inputs}
 with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary:
     root=pathlib.Path(temporary)
     for name in inputs:
         target=root/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(site/name,target)
-    with contextlib.redirect_stdout(io.StringIO()):data=module.build(root)
+    with contextlib.redirect_stdout(io.StringIO()):data=module.build(root,problem_routes=routes)
     output=root/'numerical-methods-atlas/solutions'
     first={path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in output.iterdir()}
-    with contextlib.redirect_stdout(io.StringIO()):module.build(root)
+    with contextlib.redirect_stdout(io.StringIO()):module.build(root,problem_routes=routes)
     second={path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in output.iterdir()}
     after={name:hashlib.sha256((site/name).read_bytes()).hexdigest() for name in inputs}
     print(json.dumps(dict(record=data,html=(output/'index.html').read_text(),markdown=(output/'index.md').read_text(),first=first,second=second,inputs_unchanged=before==after)))
@@ -67,18 +87,18 @@ test('names, formulas, dimensions and analytic/semi-analytic/manufactured distin
 
 test('each edition exposes all names, formulas and assumptions as visible static cards',()=>{
   for(const language of ['ja','en']){
-    const section=rendered.html.match(new RegExp('<section data-site-language="'+language+'"[^>]*>([\\s\\S]*?)</section>'))?.[1];
+    const section=blocks(rendered.html,'data-site-language',language)[0]?.body;
     assert.ok(section);
-    const cards=[...section.matchAll(/<article\b([^>]*data-solution-id="[^"]+"[^>]*)>([\s\S]*?)<\/article>/g)];
-    assert.deepEqual(cards.map(card=>attrs(card[1])['data-solution-id']),cases.map(row=>row.id));
+    const cards=blocks(section,'data-solution-id');
+    assert.deepEqual(cards.map(card=>card.attributes['data-solution-id']),cases.map(row=>row.id));
     for(const [index,card]of cards.entries()){
-      const row=rendered.record.cases[index],body=label(card[2]);
-      assert.equal(attrs(card[1])['data-solution-kind'],row.kind);
+      const row=rendered.record.cases[index],original=withoutProblemRoutes(card.body),body=label(original);
+      assert.equal(card.attributes['data-solution-kind'],row.kind);
       assert.ok(body.includes(row.title[language])&&body.includes(row.formula)&&body.includes(row.assumptions[language]));
-      assert.doesNotMatch(card[0],/<details\b|\shidden(?:\s|=|>)/,'cards do not depend on expanded controls or JavaScript');
+      assert.doesNotMatch(original,/<details\b|\shidden(?:\s|=|>)/,'the original reference name, formula and conditions stay visible before optional related-problem disclosures');
     }
-    const taylor=cards.find(card=>attrs(card[1])['data-solution-id']==='taylor-green');
-    assert.ok(label(taylor[2]).includes(rendered.record.cases.find(row=>row.id==='taylor-green').sampling_note[language]));
+    const taylor=cards.find(card=>card.attributes['data-solution-id']==='taylor-green');
+    assert.ok(label(withoutProblemRoutes(taylor.body)).includes(rendered.record.cases.find(row=>row.id==='taylor-green').sampling_note[language]));
   }
   assert.match(rendered.record.cases.find(row=>row.id==='taylor-green').sampling_note.en,/x-slice at y = π\/4/);
   const ids=[...rendered.html.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);

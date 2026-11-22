@@ -51,7 +51,93 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "advection-sine",
+          "name": {
+            "ja": "周期正弦波の線形移流",
+            "en": "Periodic sine-wave advection"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+            "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+              "en": "Stored CIP, linear-interpolation and exact advection profiles."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "advection-sine",
+              "kind": "common",
+              "name": {
+                "ja": "周期正弦波の線形移流：風上法と解析解",
+                "en": "Periodic sine advection: upwind and analytic transport"
+              },
+              "scope": {
+                "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
+                "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
+              },
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+            "en": "Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+          }
+        },
+        {
+          "id": "advection-square",
+          "name": {
+            "ja": "周期矩形波の線形移流",
+            "en": "Periodic square-wave advection"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-square.png",
+            "sha256": "62bacd52d45e0d6565506a14eda09f70add1c364fdd111584e867184c5907544",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+              "en": "Stored CIP, linear-interpolation and exact advection profiles."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "方程式と周期輸送は共通ですが、参照カードは滑らかな正弦初期値であり、この矩形初期値の参照値ではありません。",
+            "en": "The equation and periodic transport are shared, but the reference uses smooth sine initial data and is not a numerical reference for this square profile."
+          }
+        }
+      ]
     },
     {
       "id": "sine-heat",
@@ -92,7 +178,105 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "heat-periodic",
+          "name": {
+            "ja": "周期Fourierモードの熱拡散",
+            "en": "Periodic Fourier-mode heat decay"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/heat-periodic.png",
+            "sha256": "0b8eb0c0163f02b3ae8d990ecc64545d142ac6f448f0e16571cff4e48ccd2913",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "保存ギャラリーの周期[0,1]、1+0.25sin(2πx)、ν=0.02、最終時刻1が一致します。別周波数のコード検査への一致は意味しません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "The saved gallery matches periodic [0,1], 1+0.25sin(2πx), ν=0.02 and final time one; this does not assert a match to separate-frequency code checks. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        },
+        {
+          "id": "heat-dirichlet",
+          "name": {
+            "ja": "Dirichlet境界の熱拡散",
+            "en": "Heat decay with Dirichlet boundaries"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/diffusion-boundaries.png",
+            "sha256": "d2fa0bbcb07693a80ea9f0c4b2289c0199d11e5101d36fae730718cb64a92c68",
+            "width": 1386,
+            "height": 518,
+            "caption": {
+              "ja": "共有図の左パネル：Dirichlet境界の熱拡散。右パネルは別のPoisson境界問題。",
+              "en": "Shared figure, left: Dirichlet heat decay. Right: separate Poisson boundary problems."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "こちらは零Dirichlet・sin(πx)、参照カードは周期境界・1+0.25sin(2πx)・ν=0.02です。",
+            "en": "This test has zero Dirichlet endpoints and sin(πx); the card has periodic boundaries, 1+0.25sin(2πx) and ν=0.02."
+          }
+        },
+        {
+          "id": "lbm-shear",
+          "name": {
+            "ja": "周期せん断波の粘性減衰",
+            "en": "Viscous decay of a periodic shear wave"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/lbm-shear.png",
+            "sha256": "5421c2ce7f4a7882b35d0c16742c8aa4f1efb0062096bbb597e8be4f24aa8712",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存済みせん断波振幅と粘性減衰の参照値。",
+              "en": "Stored shear amplitudes and viscous-decay reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "周期せん断速度の線形粘性減衰とスカラー熱モードは同型ですが、LBMの格子単位・波数・粘性と参照カードのν=0.02は異なります。",
+            "en": "Linear viscous shear decay and scalar heat modes have the same form, but LBM lattice units, wavenumber and viscosity differ from the card’s ν=0.02."
+          }
+        }
+      ]
     },
     {
       "id": "burgers-shock",
@@ -137,7 +321,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "burgers-shock",
+          "name": {
+            "ja": "Burgers衝撃波",
+            "en": "Burgers shock"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/burgers-shock.png",
+            "sha256": "adb34de4f29f8ac65b237df2e070ffa8b1f5baa6ff4905a770e2ab17c1d5124a",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "左右状態(1,0)、段差位置0.5、端点継続が一致します。点値とセル平均の評価は区別します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "States (1,0), jump position 0.5 and endpoint continuation match; distinguish point and cell-average evaluation. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "burgers-fan",
@@ -182,7 +400,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "burgers-fan",
+          "name": {
+            "ja": "Burgers膨張波",
+            "en": "Burgers rarefaction"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/burgers-fan.png",
+            "sha256": "87d7b66ade78d1e42b150a902e8a337ba1bbe586630dc9a5f43877e682f639cd",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "左右状態(0,1)、段差位置0.5、端点継続が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "States (0,1), jump position 0.5 and endpoint continuation match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "traffic-jam",
@@ -227,7 +479,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "traffic-jam",
+          "name": {
+            "ja": "交通流の渋滞衝撃波",
+            "en": "Traffic jam shock"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/traffic-jam.png",
+            "sha256": "020ddbb55cd33f84bb5bc7e03b8d86b4d4c4833e46fa3869077e1034f9ccb8a0",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "流束ρ(1-ρ)、左右密度(0.3,0.9)、段差位置0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Flux ρ(1-ρ), left/right densities (0.3,0.9) and jump position 0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "traffic-fan",
@@ -272,7 +558,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "traffic-fan",
+          "name": {
+            "ja": "交通流の希薄化波",
+            "en": "Traffic clearing fan"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/traffic-fan.png",
+            "sha256": "a5e659bbf6a64f2c5620ee4b4ad17c9bac54d11327795001882d51f4e6ca9a49",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "流束ρ(1-ρ)、左右密度(0.9,0.1)、段差位置0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Flux ρ(1-ρ), left/right densities (0.9,0.1) and jump position 0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "euler-sod",
@@ -328,7 +648,61 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "sod",
+          "name": {
+            "ja": "Sod衝撃波管",
+            "en": "Sod shock tube"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png",
+            "sha256": "a9d8f817001a737123543672067c9e575e8e835b159c3507c187ce9d85a8141c",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "sod",
+              "kind": "common",
+              "name": {
+                "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+                "en": "Sod shock tube: Godunov-type update and self-similar reference"
+              },
+              "scope": {
+                "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
+                "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
+              },
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "euler-lax",
@@ -384,7 +758,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "lax",
+          "name": {
+            "ja": "Lax衝撃波管",
+            "en": "Lax shock tube"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/lax-entropy.png",
+            "sha256": "468467f127f5d7e5c151e5714a9545360c7dc3eef1548ae9155396d5f19aa8fa",
+            "width": 1385,
+            "height": 517,
+            "caption": {
+              "ja": "共有図の左パネル：Lax衝撃波管。右は別のエントロピー波収束計算。",
+              "en": "Shared figure, left: Lax shock tube. Right: a separate entropy-wave refinement study."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=1.4、左右(0.445,0.698,3.528)/(0.5,0,0.571)、[-5,5]、x0=0、t=1.3が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "γ=1.4, states (0.445,0.698,3.528)/(0.5,0,0.571), [-5,5], x0=0 and t=1.3 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "euler-double-rarefaction",
@@ -440,7 +848,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "double-rarefaction",
+          "name": {
+            "ja": "Euler二重膨張波",
+            "en": "Euler double rarefaction"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/double-rarefaction.png",
+            "sha256": "2a843bf673dc414287780b54bea9f5a5bd48644c98c43630caa00a32b891ee6f",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+              "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+            },
+            "source_kind": "computed-preview"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "euler-vacuum",
@@ -496,7 +938,8 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": []
     },
     {
       "id": "swe-dam-break",
@@ -549,7 +992,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "dam-break",
+          "name": {
+            "ja": "湿潤床ダム崩壊",
+            "en": "Wet-bed dam break"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/dam-break.png",
+            "sha256": "d421be0da4b3519a340c28da2242fc8048fe41a64b6782a7a8820c37ccd54f1d",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "湿潤河床、g=1、左右水深(2,1)・速度0、x0=0.5が一致します。乾燥河床例への対応ではありません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Wet bed, g=1, depths (2,1), zero velocities and x0=0.5 match; this is not a dry-bed correspondence. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "swe-dry-bed",
@@ -602,7 +1079,8 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": []
     },
     {
       "id": "swe-vacuum",
@@ -655,7 +1133,8 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": []
     },
     {
       "id": "isothermal-jump",
@@ -708,7 +1187,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "isothermal-jump",
+          "name": {
+            "ja": "等温流体の密度ジャンプ",
+            "en": "Isothermal density jump"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/isothermal-jump.png",
+            "sha256": "e4b832033480e04e62d75ca73accd6e38d131a391bc9d1214be14c4b98101175",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "p=ρ, sound speed one, densities (1,0.125), zero velocities and x0=0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          }
+        }
+      ]
     },
     {
       "id": "poisson-manufactured",
@@ -749,7 +1262,260 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "poisson-1d-dirichlet",
+          "name": {
+            "ja": "1次元Poisson・Dirichlet製造解",
+            "en": "1D Poisson / smooth Dirichlet manufactured solutions"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-dirichlet.png",
+            "sha256": "981d432e8b2d984d5716570f9ecb747e06d92e9a1d2e68577e3f051846930d89",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存済み1次元Dirichlet製造解の誤差と格子数。",
+              "en": "Stored error versus resolution for the 1D Dirichlet manufactured solution."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "poisson-1d-dirichlet",
+              "kind": "common",
+              "name": {
+                "ja": "1次元Poisson：Dirichlet正弦解と2次収束",
+                "en": "1D Poisson: Dirichlet sine solution and second-order refinement"
+              },
+              "scope": {
+                "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
+                "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
+              },
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "単一sin(πx)の共通固定入力とは一致しますが、保存比較図は複合正弦製造解も含みます。同じ零Dirichletでも全ソースが同一ではありません。",
+            "en": "It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical."
+          }
+        },
+        {
+          "id": "poisson-1d-neumann",
+          "name": {
+            "ja": "1次元Poisson・純Neumann境界",
+            "en": "1D Poisson / pure Neumann boundaries"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-neumann.png",
+            "sha256": "73db24580a4315f62266a70377c4b8027651f05e8b4514eb676426000d2a17c3",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+              "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+            },
+            "source_kind": "computed-preview"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "参照カードはsin(πx)・零Dirichlet、こちらはf=-2・純Neumann・平均ゲージです。",
+            "en": "The card is sin(πx) with zero Dirichlet boundaries; this test uses f=-2, pure Neumann data and a mean gauge."
+          }
+        },
+        {
+          "id": "poisson-1d-mixed",
+          "name": {
+            "ja": "1次元Poisson・Dirichlet/Neumann混合境界",
+            "en": "1D Poisson / mixed Dirichlet-Neumann boundaries"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-mixed.png",
+            "sha256": "58bc225ec345001636ded456cf203fb4c260e032c03e80f5cd7f7b741e2231ba",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+              "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+            },
+            "source_kind": "computed-preview"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-mixed/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-mixed/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-mixed/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-mixed/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "参照カードは零Dirichletの正弦解、こちらは混合境界の1+x²です。",
+            "en": "The card is a zero-Dirichlet sine solution; this test uses mixed boundaries and 1+x²."
+          }
+        },
+        {
+          "id": "poisson-1d-robin",
+          "name": {
+            "ja": "1次元Poisson・Robin境界の製造解",
+            "en": "1D Poisson / Robin manufactured solutions"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-robin.png",
+            "sha256": "68bb9ca30674c292b32e863f3e3d3a9d463b271f4732c600dda23e3256652d8b",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+              "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+            },
+            "source_kind": "computed-preview"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-robin/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-robin/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-robin/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-robin/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "参照カードは零Dirichletの正弦解、こちらはRobin境界のexp(x)です。",
+            "en": "The card is a zero-Dirichlet sine solution; this test uses Robin boundaries and exp(x)."
+          }
+        },
+        {
+          "id": "poisson-2d-broad",
+          "name": {
+            "ja": "2次元Poisson・広帯域の滑らかな製造解",
+            "en": "2D Poisson / broad smooth manufactured forcing"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/poisson-comparison/manufactured-63-fields.png",
+            "sha256": "911131f2907f0eeeab7e1eddab91ac42ed3fd027dda1d129d28e930f83c75cbd",
+            "width": 1375,
+            "height": 562,
+            "caption": {
+              "ja": "保存済みの広帯域ソースと離散Poisson解。",
+              "en": "Stored broad smooth forcing and discrete Poisson solution."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-broad/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-broad/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-broad/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-broad/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "同じPoisson製造解の考え方ですが、カードは1次元単一正弦、こちらは2次元の滑らかな複合ソースです。",
+            "en": "Both use manufactured Poisson solutions, but the card is a 1D single sine while this test uses a smooth composite 2D source."
+          }
+        },
+        {
+          "id": "poisson-2d-sine",
+          "name": {
+            "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+            "en": "2D Poisson / single sine mode, including FEM"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png",
+            "sha256": "5cb31b1cb182fa6509de11f0cafcc2368b9136b46d625bc6183df2a648f9af29",
+            "width": 1575,
+            "height": 690,
+            "caption": {
+              "ja": "同じ正弦製造解を解く、三角形有限要素の保存解と誤差。",
+              "en": "Stored triangular-FEM solution and error for the same sine manufactured problem."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "poisson-2d-sine",
+              "kind": "common",
+              "name": {
+                "ja": "2次元Poisson：CG・多重格子とP1 FEM",
+                "en": "2D Poisson: CG, multigrid and P1 FEM"
+              },
+              "scope": {
+                "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
+                "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
+              },
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "sa-amg",
+              "kind": "supplement",
+              "name": {
+                "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+                "en": "Matrix-based AMG: distinguish residual and solution error"
+              },
+              "scope": {
+                "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
+                "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+              },
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+            "en": "The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+          }
+        }
+      ]
     },
     {
       "id": "couette",
@@ -790,7 +1556,8 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": []
     },
     {
       "id": "poiseuille",
@@ -831,7 +1598,41 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/reference-solutions/",
         "en": "/numerical-methods-atlas/en/read/reference-solutions/"
-      }
+      },
+      "related_problems": [
+        {
+          "id": "channel-poiseuille",
+          "name": {
+            "ja": "平行平板Poiseuille流",
+            "en": "Plane Poiseuille channel flow"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/channel-poiseuille.png",
+            "sha256": "b660e19b000519cd226ae544c25a716a2a943df34a7e3865c6fe5918ab7a6a8b",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存済み半格子壁Poiseuille速度分布と参照値。",
+              "en": "Stored half-way-wall Poiseuille velocity profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en#code-en"
+          },
+          "executions": [],
+          "relation": "related-model",
+          "note": {
+            "ja": "放物線形は共通ですが、計算は格子幅ny・目標最大速度0.01に応じた体積力、カードは単位幅・G=1・ν=0.1です。",
+            "en": "Both have parabolic profiles, but the computation uses lattice height ny and forcing for peak speed 0.01; the card uses unit width, G=1 and ν=0.1."
+          }
+        }
+      ]
     },
     {
       "id": "taylor-green",
@@ -884,7 +1685,118 @@
       "sampling_note": {
         "ja": "Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではなく点値を表示します。",
         "en": "Taylor–Green: x-slice at y = π/4. These are point values, not two-dimensional cell averages."
-      }
+      },
+      "related_problems": [
+        {
+          "id": "taylor-green",
+          "name": {
+            "ja": "周期Taylor–Green渦",
+            "en": "Periodic Taylor–Green vortex"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-taylor-green.png",
+            "sha256": "89d51b4bdc8650fd270de49d92f3109e0d2b0feb27f3e62ae509ea550fe33a19",
+            "width": 1575,
+            "height": 690,
+            "caption": {
+              "ja": "保存済みTaylor–Green渦の速度と圧力。",
+              "en": "Stored Taylor–Green velocity and pressure fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "taylor-green",
+              "kind": "common",
+              "name": {
+                "ja": "周期Taylor–Green渦：速度・散逸・発散",
+                "en": "Periodic Taylor–Green vortex: velocity, decay and divergence"
+              },
+              "scope": {
+                "ja": "既存の2次元MAC投影法・中心対流項・明示SSPRK2を使用。16²/32²/64²で解析的減衰渦と比較し、最細格子はCFL半減でも確認。",
+                "en": "Use existing two-dimensional MAC projection, centered convection and explicit SSPRK2. Compare analytic decaying vortex on 16²/32²/64² grids and halve CFL on the finest grid."
+              },
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/taylor-green.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。",
+            "en": "The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays."
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "problem_routes_source_sha256": {
+    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "catalog/atlas-methods.json": "9f82a08d7e5c40b432bac0e8994fa6fdee62e7e69648c5561b3b3f45236c731b",
+    "catalog/atlas-problem-links.json": "91d171d542da368e69cf8f16a4cd14f60740094e8beefc1e76959e6d2e89a990",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c",
+    "numerical-methods-atlas/test-cases/index.json": "e045b5272262f09cc4bd039faf679ba62d24002fef3c1a588ec1a84f7c0bb1a5"
+  }
 }

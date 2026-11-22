@@ -22,3 +22,7 @@
 @media(max-width:700px){.execution-formula-grid{grid-template-columns:1fr}.execution-formula-card{padding:16px;gap:10px}.execution-formula-card>h3{font-size:20px}.execution-formula-preview{font-size:16px}.execution-equation-shortcuts{padding-top:20px;margin-top:22px}.model-execution-links{padding:12px}}
 
 .execution-equation-shortcuts>p.execution-formula-scroll-note{font-size:14px;line-height:1.8;color:var(--muted,#59665e);margin-top:-10px}
+.execution-formula-card>a.execution-formula-picture{display:flex;align-items:center;gap:14px;padding:10px 0;margin-top:0;min-width:0}
+.execution-formula-picture img{display:block;width:140px;max-width:45%;height:auto;object-fit:contain;background:#fff}
+.execution-formula-picture span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:400px){.execution-formula-card>a.execution-formula-picture{align-items:flex-start;flex-direction:column}.execution-formula-picture img{width:100%;max-width:100%}}

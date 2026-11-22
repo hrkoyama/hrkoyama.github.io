@@ -1,0 +1,30 @@
+/* Shared routes from an equation or reference card to actual problem evidence. */
+.problem-routes{margin-top:20px;padding-top:14px;border-top:1px solid #d1d7ce;min-width:0;overflow-wrap:anywhere}
+.problem-routes,.problem-routes *{box-sizing:border-box}
+.problem-routes .problem-routes-heading{font:600 1rem/1.65 Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;margin:0 0 10px;color:#253c30}
+.problem-routes .problem-route-list{display:grid;gap:12px;list-style:none;padding:0;margin:0}
+.problem-routes .problem-route-card{min-width:0;margin:0;padding:12px;border:1px solid #d5dcd1;background:#fafbf7;border-radius:4px}
+.problem-route-overview{display:grid;grid-template-columns:minmax(0,100px) minmax(0,1fr);gap:12px;align-items:start;min-width:0}
+.problem-routes .problem-route-picture{display:block;min-width:0;width:100%;background:#eff2e9;border:1px solid #e1e6db;padding:3px}
+.problem-routes .problem-route-picture img{display:block;width:100%;max-width:100%;height:auto;margin:0}
+.problem-route-copy{min-width:0}
+.problem-routes .problem-route-name{font-size:.93rem;font-weight:600;line-height:1.6;margin:0 0 4px}
+.problem-routes .problem-route-name a{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
+.problem-routes a{color:#254e3a;text-decoration:underline;text-underline-offset:3px}
+.problem-routes a:hover{color:#8b5230}
+.problem-routes a:focus-visible,.problem-routes summary:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
+.problem-routes .problem-route-relation{display:inline-block;font-size:.76rem;line-height:1.7;margin:3px 0;padding:1px 6px;background:#f2ebdd;color:#70573b;border:1px solid #d9ccb2}
+.problem-routes .problem-route-note{font-size:.82rem;line-height:1.75;color:#4b5e50;margin:5px 0}
+.problem-routes .problem-route-code{font-size:.875rem;line-height:1.65;margin:4px 0 0}
+.problem-routes .problem-route-code a{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
+.problem-routes .problem-route-executions{list-style:none;padding:8px 0 0;margin:8px 0 0;border-top:1px solid #dce2d6}
+.problem-routes .problem-route-executions li{display:flex;flex-direction:column;gap:3px;min-width:0;padding:4px 0;margin:0;font-size:.8rem;line-height:1.7}
+.problem-routes .problem-route-executions a{display:inline-flex;align-items:center;min-height:44px;max-width:100%;font-size:.875rem}
+.problem-route-execution-scope{margin:3px 0 6px;color:#4b5e50}
+.problem-route-execution-scope>summary{min-height:44px;align-content:center;cursor:pointer;font-size:.78rem}
+.problem-route-execution-scope>p{font-size:.8rem;line-height:1.75;margin:5px 0}
+.problem-routes .problem-route-unregistered,.problem-routes .problem-routes-empty{font-size:.82rem;line-height:1.75;color:#586557;margin:10px 0 0}
+.problem-routes-more{margin-top:10px;border-top:1px solid #dce2d6;padding-top:4px}
+.problem-routes-more>summary{min-height:44px;align-content:center;cursor:pointer;font-size:.85rem;line-height:1.65;color:#3f5848}
+.problem-routes-more[open]>.problem-route-list{margin-top:6px}
+@media(max-width:400px){.problem-route-overview{grid-template-columns:minmax(0,1fr)}.problem-routes .problem-route-picture{width:100%}.problem-routes .problem-route-card{padding:10px}}
