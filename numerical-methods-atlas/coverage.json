@@ -11,10 +11,10 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 129,
-    "papers": 241,
-    "references": 297,
-    "journal_articles": 235,
+    "methods": 131,
+    "papers": 242,
+    "references": 298,
+    "journal_articles": 236,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
@@ -23,11 +23,11 @@
     "local_equations": 23,
     "reading_equations": 23,
     "local_methods": 114,
-    "reading_methods": 15,
+    "reading_methods": 17,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 90,
+    "reading_chapters": 91,
     "test_problems": 83,
     "saved_test_problems": 83,
     "code_test_problems": 0
@@ -1658,6 +1658,26 @@
       "group": "Thermostats and molecular dynamics",
       "scope": "Exact CSVR bath: conditional laws, fluctuations and kinetic correlation: Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations. CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes: Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations. Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature: Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.",
       "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "lie-trotter",
+      "label": "Lie–Trotter splitting",
+      "chapter": "operator-splitting",
+      "status": "reading",
+      "group": "Time integration",
+      "scope": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release.",
+      "origin": "curated-operator-splitting-reading"
+    },
+    {
+      "kind": "method",
+      "id": "strang-splitting",
+      "label": "Strang splitting",
+      "chapter": "operator-splitting",
+      "status": "reading",
+      "group": "Time integration",
+      "scope": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release.",
+      "origin": "curated-operator-splitting-reading"
     }
   ],
   "publications": [
@@ -3051,6 +3071,12 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "trotter1959",
+      "type": "article",
+      "identity": "doi:10.1090/s0002-9939-1959-0108732-6",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3281,9 +3307,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "957a1a215fdb230d349e19f72e62b17ee5ed4dabe75880945b7ac8b6e517b183",
+    "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
-    "catalog/atlas-method-primary-references.json": "bdd56f1d36f3045f1a24fbdd4d4d1ed8f06da0eb1bba328a94b57fb7a987b1a4"
+    "catalog/atlas-method-primary-references.json": "7906644264f76ed465a06567243f4c3729d22880226769db95a73f8f7bc1d1b5"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",

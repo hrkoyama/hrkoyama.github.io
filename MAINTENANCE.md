@@ -424,3 +424,9 @@ Krylov固有値解法は部分空間の次元・固有値の間隔・非正規�
 多重反射を含む複素板の解析解を用い、単色係数・帯域重み付きR/T/A・有限窓流束を分ける。吸収を1−R−Tだけから定義せず、sigma|E_mid|²とgamma|J_mid|²/fを直接積算する。場の修正離散エネルギー、振動子の蓄積、直接散逸の恒等式と、中心化した物理エネルギー・Poynting収支は別の基準として検査する。解析内部場の散逸積分、初期裾・外端・有限窓・参照求積、格子と時間の収束も確認する。Meepのsigma_D D規約や陽的ADEの共鳴安定条件を、このsigma E・中点更新へそのまま適用しない。
 
 既存fdtd章へ `interface-loss-dispersion` 節と新版取得先を追加する。旧版の除外記述は当時の範囲と明示し、一般分散・斜め入射・多共鳴・異方性・3次元まで検証したと表示しない。日英解説・図・ソース・テスト・入力・収束データを同じ配布版へ結ぶ。通常refresh・全Node検査・日英と390px幅を確認してhrkoyama/hrkoyama.github.io mainだけへ公開し、公開後に日英ページ、全図、コードZIPを匿名照合して公開ZIPのテストを行う。
+
+## Lie–Trotter／Strangの比較解説（2026-11-22）
+
+`catalog/atlas-detailed-reading.json` の `operator-splitting` が日英本文・式・比較表の正本。`catalog/atlas-methods.json` に `lie-trotter` と `strang-splitting` を時間積分の `reading-only` として登録し、手法147項目（教育用例114・解説のみ17・予定16）とする。従来の件数は各追加時点の履歴として保持する。検索・目次・サイトマップは通常refreshで再生成する。
+
+`python3 scripts/verify-operator-splitting.py --check numerical-methods-atlas/assets/operator-splitting.json` は、固定した無次元2成分振動子のN=8,16,32,64について、解析解との大域誤差・局所欠損、逆順のLie–Trotter、可換な減衰対照を標準ライブラリだけで再計算する。保存値の更新を伴わない。これは解説用の小例で、汎用ソルバー配布版・共通実行例・新しい独立テスト問題として加算しない。既存Strang反応拡散の入力・公差・保存結果・不変配布版は保持する。部分流の適用順序、局所欠損と大域誤差、近似部分ソルバーと時間対称性、境界による次数低下を区別する。

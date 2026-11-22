@@ -39,6 +39,9 @@ for command in [
     [sys.executable, 'scripts/build-atlas-crossovers.py'],
     [sys.executable, 'scripts/build-atlas-reading-index.py'],
     [sys.executable, 'scripts/build-atlas-reading-navigation.py'],
+    # Index the final home/explore counts and roadmap prose. The later purpose
+    # pass also versions the search module's parents after its content changes.
+    [sys.executable, 'scripts/build-atlas-purpose.py'],
     [sys.executable, 'scripts/build-atlas-search.py'],
     [sys.executable, 'scripts/build-atlas-sharing.py'],
     [sys.executable, 'scripts/build-atlas-purpose.py'],

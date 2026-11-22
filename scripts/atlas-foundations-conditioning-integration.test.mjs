@@ -25,8 +25,8 @@ test('four conditioning examples extend their own methods while retaining the or
   for(const [path,hash] of Object.entries(entry.source_sha256))assert.equal(sha(path),hash,path);
   for(const lang of ['ja','en'])assert.ok(entry.assumptions[lang]&&entry.validation[lang]&&entry.limits[lang]);
  }
- assert.equal(methods.length,145);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':114,'reading-only':15,'planned':16});
+ assert.equal(methods.length,147);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':114,'reading-only':17,'planned':16});
 });
 
 test('algebraic AMG controls borrow no Poisson validation and the remaining refinements add no problem families',()=>{

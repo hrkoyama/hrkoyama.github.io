@@ -28,6 +28,17 @@ def link(url,label):return '<a href="'+escape(url,quote=True)+'">'+escape(label)
 def heading(ident,title):return '<h2 id="'+ident+'">'+escape(title)+'</h2>'
 def paragraph(text):return '<p>'+escape(text)+'</p>'
 def url(chapter,lang):return f'/numerical-methods-atlas/{lang}/read/{chapter}/'
+def markdown_table(match):
+    """Retain row/column boundaries in opted-in HTML reading chapters."""
+    table=match[0]
+    clean=lambda text:unescape(re.sub('<[^>]+>','',text)).strip().replace('|',r'\|')
+    caption=re.search(r'<caption>(.*?)</caption>',table,re.S)
+    rows=[[clean(cell) for cell in re.findall(r'<t[hd]\b[^>]*>(.*?)</t[hd]>',row,re.S)]
+          for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>',table,re.S)]
+    assert rows and all(len(row)==len(rows[0]) for row in rows)
+    lines=['| '+' | '.join(row)+' |' for row in rows]
+    lines.insert(1,'| '+' | '.join(['---']*len(rows[0]))+' |')
+    return '\n\n'+(clean(caption[1])+'\n\n' if caption else '')+'\n'.join(lines)+'\n\n'
 def scoped_supplement_html(cases,lang):
     """Keep historical editions, target runs and diagnostic controls distinct."""
     if not cases:return ''
@@ -131,6 +142,9 @@ for chapter in data['chapters']:
                 markdown+=''.join('$$\n'+data['formulas'][f]+'\n$$\n\n' for f in section.get('formulas',[]))
         else:
             plain=chapter['html'][lang]
+            if chapter.get('tables_in_markdown'):
+                plain=re.sub(r'<table\b[^>]*>.*?</table>',markdown_table,plain,flags=re.S)
+                plain=re.sub(r'<pre><code>(.*?)</code></pre>',lambda m:'\n\n```text\n'+unescape(m[1])+'\n```\n\n',plain,flags=re.S)
             plain=re.sub(r'<math-placeholder id="([a-z0-9-]+)"></math-placeholder>',lambda m:'\n$$\n'+data['formulas'][m[1]]+'\n$$\n',plain)
             plain=re.sub(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>',lambda m:'['+re.sub('<[^>]+>','',m[2])+']('+m[1]+')',plain,flags=re.S)
             plain=re.sub(r'</(?:p|h[1-6]|li|ul)>','\n\n',plain)
@@ -141,6 +155,19 @@ for chapter in data['chapters']:
         (directory/'index.md').write_text(markdown)
     assert anchors['ja']==anchors['en'],ident+': bilingual headings differ'
     translations['chapters'][ident]={'status':'draft','source_url':SOURCE,'source_sha256':source_hash,'checked_on':data['updated_on']}
+# Follow-on reading belongs in both the static chapters and the SPA, once only.
+for chapter in data['chapters']:
+    for target in chapter.get('linked_from',[]):
+        marker='<!-- detailed-followup-'+chapter['id']+' -->'
+        end='<!-- /detailed-followup-'+chapter['id']+' -->'
+        for lang in ['ja','en']:
+            note=marker+paragraph(chapter['followup_note'][lang])+'<p>'+link(url(chapter['id'],lang),chapter['title'][lang])+'</p>'+end
+            content=documents[lang][target]
+            content['html']=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['html'],flags=re.S)+note
+            path=ATLAS/lang/'read'/target/'index.html'
+            text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',path.read_text(),flags=re.S)
+            assert '</article>' in text,target
+            path.write_text(text.replace('</article>',note+'</article>',1))
 # Add chapter routes to the actual reading contents and atlas search, idempotently.
 for lang in ['ja','en']:
     path=ATLAS/lang/'read/index.html';text=path.read_text()

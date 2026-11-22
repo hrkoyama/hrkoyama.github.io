@@ -47,8 +47,8 @@ test('same-target OT refinements add no problem while the constructed equilibriu
  assert.equal(problems.filter(p=>p.id==='advected-magnetostatic-equilibrium').length,1);
  const ot=problems.find(p=>p.id==='orszag-tang');
  assert.deepEqual(ot.supplemental_examples.map(x=>x.id).sort(),['ct-glm-independent','ct-glm-ot-convergence']);
- assert.equal(methods.length,145);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':114,'reading-only':15,'planned':16});
+ assert.equal(methods.length,147);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':114,'reading-only':17,'planned':16});
 });
 
 test('seven immutable earlier archives, common examples and pre-pilot controls stay fixed',()=>{

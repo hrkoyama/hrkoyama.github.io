@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-1108388aeb
-Captured (UTC): 2026-11-22T14:28:13+00:00
+Snapshot: 2026-11-22-d3e04b6195
+Captured (UTC): 2026-11-22T14:34:28+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -6753,6 +6753,147 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
+## Operator splitting: Lie–Trotter and Strang — Operator splitting: Lie–Trotter and Strang [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/
+Coverage: reading
+
+Operator splitting advances separate parts of an evolution equation and composes their solution maps. Lie–Trotter uses two full substeps; Strang surrounds one full substep with two half substeps. Even exact subproblem solutions leave a composition error when their order matters.
+
+## Operator splitting: Lie–Trotter and Strang — Split the evolution, define one time step [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#model
+Coverage: reading
+
+\dot u=F(u)+G(u),\qquad \dot v=F(v)\ \Rightarrow\ \varphi_F^h,\qquad \dot w=G(w)\ \Rightarrow\ \varphi_G^h.
+Start with a sufficiently smooth autonomous finite-dimensional initial-value problem. Each φ is the exact flow of its subproblem, and h is one step for the summed equation. Compositions act from right to left. Advancing F for h and then G for h approximates one step of length h for the original equation, not 2h. Using only h/2 for each part would instead halve the leading vector field.
+The approach uses tractable subproblems such as reaction and diffusion, transport and sources, or drift and force in a separable Hamiltonian. Splitting is a separate choice from spatial discretization and physical modeling. Matrix exponentials below apply to the linear specialization F(u)=Au, G(u)=Bu.
+
+## Operator splitting: Lie–Trotter and Strang — Lie–Trotter: two ordered full substeps [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#lie-trotter
+Coverage: reading
+
+u^{n+1}=L_h(u^n)=(\varphi_G^h\circ\varphi_F^h)(u^n),\qquad L_h=e^{hB}e^{hA}\quad(\dot u=(A+B)u).
+Our convention applies F first and G to the updated state. Reversing the order gives another first-order method, generally with a different value. Computing both substeps independently from the old state and adding their increments is a different update.
+e^{hB}e^{hA}-e^{h(A+B)}=\frac{h^2}{2}(BA-AB)+O(h^3),\qquad [A,B]=AB-BA.
+Expand both exponentials through h²: the commutator remains in the difference from the exact summed flow. Its sign here follows the chosen product and reverses with the substep order. The local defect means the one-step difference starting from an exact state: O(h²). Under stability and smoothness, accumulated error at a fixed final time is O(h). The product limit and a finite-step error estimate are separate statements.
+
+## Operator splitting: Lie–Trotter and Strang — Strang: a symmetric second-order composition [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#strang
+Coverage: reading
+
+u^{n+1}=S_h(u^n)=(\varphi_F^{h/2}\circ\varphi_G^h\circ\varphi_F^{h/2})(u^n),\qquad S_h=e^{hA/2}e^{hB}e^{hA/2}.
+Apply a half F step, a full G step and another half F step, each to the current state. G/2→F→G/2 is another valid Strang variant. The two variants generally produce different numerical solutions and error constants.
+S_{-h}=S_h^{-1},\qquad S_h-e^{h(A+B)}=O(h^3),\qquad [A,B]=0\ \Rightarrow\ L_h=S_h=e^{h(A+B)}.
+When inverse flows exist, replacing h by −h reverses the symmetric composition. Expansion through the quadratic term cancels the leading Lie–Trotter defect, leaving local O(h³) and global O(h²) errors; nested commutators enter the next error terms. For commuting finite matrices, both exact-subflow compositions equal the exact summed flow. Extending this statement to unbounded PDE operators requires domain and regularity conditions.
+
+## Operator splitting: Lie–Trotter and Strang — Compare order, symmetry and work [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#comparison
+Coverage: reading
+
+Smooth, stable finite-time problems with exact subflows
+PropertyLie–TrotterStrang
+Application orderF(h), G(h)F(h/2), G(h), F(h/2)
+One-step local defectO(h²)O(h³)
+Global error at fixed final timeO(h)O(h²)
+Time symmetry with exact subflowsGenerally absentYes, for invertible flows
+Subflow calls per standalone step23
+Asymptotic error reduction on halving hAbout 2About 4
+E(h)=\|u_N-u(T)\|_2,\quad h=T/N,\qquad p_{\rm obs}=\log_2\frac{E(h)}{E(h/2)},\qquad E_L(h)=O(h),\ E_S(h)=O(h^2).
+A standalone Strang step calls one additional subflow. Over consecutive constant steps, adjacent half F steps can be merged when the exact flow has the group property (a positive-time semigroup suffices for diffusion). Lie–Trotter uses 2N subflow calls and merged Strang 2N+1. Actual work depends on each subproblem, output and boundary processing, and whether numerical subflows permit merging. Call counts are not measured runtimes.
+
+## Operator splitting: Lie–Trotter and Strang — Small noncommuting example with exact subflows [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#small-example
+Coverage: reading
+
+u=\begin{pmatrix}q\\p\end{pmatrix},\quad A=\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad B=\begin{pmatrix}0&0\\-1&0\end{pmatrix},\quad u(0)=\begin{pmatrix}1\\0\end{pmatrix},\quad u(t)=\begin{pmatrix}\cos t\\-\sin t\end{pmatrix}.
+\varphi_A^h(q,p)=(q+hp,p),\qquad\varphi_B^h(q,p)=(q,p-hq),\qquad [A,B]=\begin{pmatrix}-1&0\\0&1\end{pmatrix}.
+L_hu_0=\begin{pmatrix}1\\-h\end{pmatrix},\quad S_hu_0=\begin{pmatrix}1-h^2/2\\-h\end{pmatrix},\quad u(h)=\begin{pmatrix}1-h^2/2+O(h^4)\\-h+h^3/6+O(h^5)\end{pmatrix}.
+This is a two-component harmonic oscillator with nondimensional q, p and time. Its subflows require only addition and multiplication; the reference is the analytic sine/cosine solution. The first-step formulas already expose the local defect orders. Use the norm of both components to avoid mistaking componentwise cancellation for higher order. This lightweight illustration uses no spatial grid, independent PDE implementation or quantum-chemistry calculation.
+Global error and observed order at t=1 (two-component Euclidean norm)
+NhLie–Trotter E(h)pStrang E(h)p
+80.1255.220647e-02—2.075134e-03—
+160.06252.617930e-020.99585.176511e-042.0032
+320.031251.311628e-020.99711.293422e-042.0008
+640.0156256.565750e-030.99833.233115e-052.0002
+
+## Operator splitting: Lie–Trotter and Strang — Small noncommuting example with exact subflows [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#small-example
+Coverage: reading
+
+These saved values were recomputed for the fixed input u₀=(1,0), T=1 and N=8,16,32,64. The final global observed orders are 0.9983 for Lie–Trotter and 2.0002 for Strang. A separate single-step check from the exact initial state gives local orders near 2 and 3. Controls check that reversed Lie–Trotter remains first order with a different solution, and that commuting A=−I, B=−2I agrees with exp(−3T) to floating-point roundoff.
+
+## Operator splitting: Lie–Trotter and Strang — Conditions: order and stability can be lost [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#conditions
+Coverage: reading
+
+The stated orders assume a smooth solution, sufficiently small steps, a fixed finite interval and suitable stability. Shocks, stiff relaxation and nonsmooth initial data can invalidate those expectations. PDE subproblems and their stages need compatible boundary data. Check order reduction from inhomogeneous or time-dependent boundaries separately from spatial and nonlinear-solver errors.
+A symmetric arrangement alone does not make approximate subflows second order. Standard Strang composition needs subsolvers with at least second-order consistency and sufficiently tight iteration tolerances to retain second order. Exact or symmetric subsolvers are needed to retain time symmetry as well. Direct substitution of forward or backward Euler generally reduces the order to one. Nonautonomous problems require a suitable extended system including time, or consistent subproblem time arguments; freezing everything at the old time is not enough.
+\det L_h=\det S_h=1,\quad\operatorname{tr}L_h=\operatorname{tr}S_h=2-h^2,\quad 0<|h|<2\quad\text{(oscillator)}.
+
+## Operator splitting: Lie–Trotter and Strang — Conditions: order and stability can be lost [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#conditions
+Coverage: reading
+
+For this oscillator both update matrices have determinant 1 and trace 2−h², giving bounded oscillatory modes for 0<|h|<2. Exact subflows do not by themselves guarantee unconditional stability. Composition inherits only properties preserved by its submaps: Hamiltonian symplecticity does not imply positivity for arbitrary reactions or exact conservation of the full energy.
+
+## Operator splitting: Lie–Trotter and Strang — Existing Strang examples and the distinction from IMEX [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#related-examples
+Coverage: reading
+
+The existing reaction–diffusion finite-amplitude Schnakenberg and saturated-pattern examples use exact half steps of centered-difference diffusion and a full implicit-midpoint reaction step in a Strang composition. Their published records give spatial and temporal checks for those fixed conditions. They are separate from this oscillator illustration, and their distributions, tolerances and results are preserved.
+IMEX also separates parts of the right-hand side, but IMEX time integration combines explicit and implicit stage equations, whereas the splitting here composes subproblem flows. These are different updates. For the separable-Hamiltonian connection, see symplectic integration.
+
+## Operator splitting: Lie–Trotter and Strang — Lightweight reproduction and publication scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#reproduce
+Coverage: reading
+
+Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. Both method entries are labeled reading only / no dedicated implementation.
+Illustration reproduction script · Fixed input and saved values / JSON
+python3 verify-operator-splitting.py
+python3 verify-operator-splitting.py --check operator-splitting.json
+
+## Operator splitting: Lie–Trotter and Strang — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#publication-scope
+Coverage: reading
+
+Reading, equations and a reproducible fixed two-component illustration are published. No general splitting-solver release or common execution-registry entry is added. Existing statuses, distributions, tolerances and verification history are preserved.
+Lie–Trotter splitting
+Strang splitting
+Implicit midpoint
+
+## Operator splitting: Lie–Trotter and Strang — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+H. F. Trotter (1959). On the product of semi-groups of operators. Proceedings of the American Mathematical Society
+Research publication: proposal or related formulation · Bibliography checked · Consulted record
+AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.
+G. Strang (1968). On the Construction and Comparison of Difference Schemes. SIAM Journal on Numerical Analysis
+Research publication: proposal or related formulation · Bibliography checked · Consulted record
+Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.
+E. Hairer (2010). Geometric Numerical Integration, Lecture2.
+Official reference documentation · Selected source passages consulted · Consulted record
+
+## Operator splitting: Lie–Trotter and Strang — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#sources
+Coverage: reading
+
+Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.
+
 ## Gradient and quasi-Newton optimization — Gradient and quasi-Newton optimization [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/
@@ -10764,6 +10905,7 @@ mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implem
 LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview. Original source
 P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. 10.1145/1824801.1824804
 Meep developers (2026). Materials — Meep Documentation. Original source
+H. F. Trotter (1959). On the product of semi-groups of operators. 10.1090/S0002-9939-1959-0108732-6
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -12138,8 +12280,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 129 methods and building blocks · 241 journal/conference papers · 297 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 90 reading chapters including this inventory.
+46 equation/model entries · 131 methods and building blocks · 242 journal/conference papers · 298 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 91 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12233,7 +12375,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-114 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+114 entries have scoped local examples; 17 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -12386,7 +12528,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-235 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+236 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -13013,6 +13155,14 @@ see the shared accuracy and stability guide.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/#adaptive-and-split-steps
 Coverage: reading
 
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+Operator splitting: Lie–Trotter and Strang
+
+## Stiff integration: solve the stage, control the time error — Adaptive and split steps# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/#adaptive-and-split-steps
+Coverage: reading
+
 Historical atlas →Computed gallery →
 
 ## Symplectic integration: a canonical map, not an exact energy promise [en]
@@ -13100,6 +13250,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/#c
 Coverage: reading
 
 A fixed step and a force that is the gradient of a consistent position-dependent potential support the splitting argument. A generic approximate Tree force, changing opening decisions, ad hoc mesh interpolation, or state-dependent step selection does not automatically retain that proof. Force approximation and time integration need joint tests. Continue with particle gravity and Poisson solvers and gravity boundary kernels.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+Operator splitting: Lie–Trotter and Strang
 
 ## Symplectic integration: a canonical map, not an exact energy promise — Connecting to particle gravity# [en]
 
@@ -13887,6 +14039,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integrat
 Coverage: reading
 
 The symplectic integration chapter now implements mechanical kick–drift–kick Verlet, a fourth-order Yoshida composition, symplectic Euler, and implicit midpoint on harmonic and quartic Hamiltonians. The map notebook compares them with RK4, separating canonical structure from exact energy conservation.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+Operator splitting: Lie–Trotter and Strang
 
 ## Time integration and leapfrog — Canonical mechanical maps# [en]
 
@@ -25541,6 +25695,129 @@ Coverage: reading
 前向きステップの比較には、同じ240 × 80格子でのminmod・MCの静止画と81状態の動画を加えました。3動画は密度・圧力の色範囲と要求出力時刻を共通にしますが、実際の途中時刻は適応時間刻み1段分ずれる場合があります。公称CFL・格子が同じでも計算費用は等しくありません。同一の物理問題を3再構成で比較しており、従来の1次動画も引き続き閲覧できます。角の処理は同じで、t=4は非定常流れです。
 再現はpython scripts/build_euler_comparison.pyです。比較の設定・診断・ハッシュと最終保存変数配列を取得できます。全軌道はローカルのoutputs/euler-comparisonへ保存します。
 
+## 作用素分割：Lie–Trotter と Strang の比較 — 作用素分割：Lie–Trotter と Strang の比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/
+Coverage: reading
+
+作用素分割（演算子分割）は、足し合わせた右辺を別々の発展問題として解き、その解の写像を合成する時間積分の考え方です。Lie–Trotterは順番に全刻み、Strangは対称な半刻み・全刻み・半刻みに分けます。部分問題を厳密に解いても、順序が交換できなければ合成には誤差が残ります。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 何を分割し、何を1刻みと数えるか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#model
+Coverage: reading
+
+\dot u=F(u)+G(u),\qquad \dot v=F(v)\ \Rightarrow\ \varphi_F^h,\qquad \dot w=G(w)\ \Rightarrow\ \varphi_G^h.
+ここでは自律的で十分滑らかな有限次元の初期値問題を考えます。φは部分方程式を指定時間だけ進める厳密な流、hは元の和の方程式に対する1刻みです。合成は右端から適用します。Fをh進めてからGをh進めても、元の問題の時間はhだけ進めた近似であり、2hではありません。各部分をh/2ずつ進めるだけでは元の右辺を半分にしてしまいます。
+反応と拡散、移流と生成項、分離可能なHamiltonianの運動と力などで、部分問題を簡単に解ける構造を利用できます。分割は空間離散化や物理モデルの変更とは別の選択です。線形の場合だけF(u)=Au、G(u)=Buと置いて行列指数で表します。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — Lie–Trotter splitting：順に全刻み進める [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#lie-trotter
+Coverage: reading
+
+u^{n+1}=L_h(u^n)=(\varphi_G^h\circ\varphi_F^h)(u^n),\qquad L_h=e^{hB}e^{hA}\quad(\dot u=(A+B)u).
+この章の規約は「Fを先に、更新後の状態にGを適用」です。逆順のG→Fも1次法ですが、非可換なら異なる値になります。元のuⁿからFとGをそれぞれ計算して足す更新ではありません。
+e^{hB}e^{hA}-e^{h(A+B)}=\frac{h^2}{2}(BA-AB)+O(h^3),\qquad [A,B]=AB-BA.
+両辺をh²までTaylor展開すると、正確な和の流との違いに交換子が残ります。上式の符号は採用した積の順序に対応し、逆順では先頭の交換子項の符号が反転します。局所欠損は厳密な初期値からの1ステップ差でO(h²)、安定性と滑らかさを仮定して固定終時刻まで積み重ねた誤差はO(h)です。積公式の極限と、有限刻みでの誤差評価を区別してください。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — Strang splitting：対称化して2次にする [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#strang
+Coverage: reading
+
+u^{n+1}=S_h(u^n)=(\varphi_F^{h/2}\circ\varphi_G^h\circ\varphi_F^{h/2})(u^n),\qquad S_h=e^{hA/2}e^{hB}e^{hA/2}.
+Fの半刻み、Gの全刻み、Fの半刻みを、毎回更新された状態に適用します。G/2→F→G/2も別の有効なStrang型です。両者は一般に同じ数値解ではなく、誤差定数も異なります。
+S_{-h}=S_h^{-1},\qquad S_h-e^{h(A+B)}=O(h^3),\qquad [A,B]=0\ \Rightarrow\ L_h=S_h=e^{h(A+B)}.
+逆向きの流が存在すれば、対称合成は刻みhを−hにすると元へ戻ります。2次項までの展開ではLie–Trotterの先頭誤差が打ち消され、局所欠損O(h³)、大域誤差O(h²)になります。次の誤差項には入れ子の交換子が現れます。有限行列のAとBが可換なら、厳密な部分流の両方式は和の厳密流と一致します。非有界PDE作用素へこの結論を移すには定義域・正則性の確認が必要です。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 次数・対称性・計算量を比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#comparison
+Coverage: reading
+
+滑らかで安定な有限区間・厳密な部分流での比較
+比較する量Lie–TrotterStrang
+実際に適用する順序F(h), G(h)F(h/2), G(h), F(h/2)
+1ステップの局所欠損O(h²)O(h³)
+固定終時刻での大域誤差O(h)O(h²)
+厳密な部分流での時間対称性一般にはなしあり（可逆な流の場合）
+1ステップの部分流呼出し数23
+刻み半減時の誤差比の目安約2約4
+E(h)=\|u_N-u(T)\|_2,\quad h=T/N,\qquad p_{\rm obs}=\log_2\frac{E(h)}{E(h/2)},\qquad E_L(h)=O(h),\ E_S(h)=O(h^2).
+同じhならStrangは部分流を1回多く呼びます。ただし一定刻みを連続適用し、Fの厳密流の群性（拡散では正時間の半群性）を使えると、隣接するFの半刻みを全刻みにまとめられます。NステップならLie–Trotterは2N回、Strangは結合後2N+1回の部分流呼出しです。部分流ごとの費用、出力や境界処理、数値流が結合できるかで実費用は変わり、呼出し数を実測速度とみなしません。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 小さな非可換例：同じ厳密流で次数を測る [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#small-example
+Coverage: reading
+
+u=\begin{pmatrix}q\\p\end{pmatrix},\quad A=\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad B=\begin{pmatrix}0&0\\-1&0\end{pmatrix},\quad u(0)=\begin{pmatrix}1\\0\end{pmatrix},\quad u(t)=\begin{pmatrix}\cos t\\-\sin t\end{pmatrix}.
+\varphi_A^h(q,p)=(q+hp,p),\qquad\varphi_B^h(q,p)=(q,p-hq),\qquad [A,B]=\begin{pmatrix}-1&0\\0&1\end{pmatrix}.
+L_hu_0=\begin{pmatrix}1\\-h\end{pmatrix},\quad S_hu_0=\begin{pmatrix}1-h^2/2\\-h\end{pmatrix},\quad u(h)=\begin{pmatrix}1-h^2/2+O(h^4)\\-h+h^3/6+O(h^5)\end{pmatrix}.
+q、p、時間はすべて無次元とした2成分の調和振動子です。部分流は足し算と掛け算だけで厳密に適用でき、参照はcosとsinによる解析解です。初回の式だけでも局所欠損の次数を確認できます。q成分だけでは特別な打消しを見落とすので、2成分のノルムを使います。空間格子・独立PDE実装・量子化学計算を用いない軽量な教材例です。
+t=1での大域誤差と観測次数（2成分のEuclidノルム）
+NhLie–Trotter E(h)pStrang E(h)p
+80.1255.220647e-02—2.075134e-03—
+160.06252.617930e-020.99585.176511e-042.0032
+320.031251.311628e-020.99711.293422e-042.0008
+640.0156256.565750e-030.99833.233115e-052.0002
+固定したu₀=(1,0)、T=1、N=8,16,32,64を実際に再計算した保存値です。最後の刻み半減で大域の観測次数はLie–Trotterが0.9983、Strangが2.0002。別に厳密な初期値から1刻みだけ比較すると局所の次数は約2と3です。逆順のLie–Trotterも大域1次で異なる解となること、可換なA=−I、B=−2Iでは解析解exp(−3T)との差が浮動小数点の丸め程度となることを対照にしています。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 適用条件：2次精度や安定性が崩れる場合 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#conditions
+Coverage: reading
+
+表示した次数は、滑らかな解、十分小さい刻み、固定した有限区間、適切な安定性を仮定します。衝撃波・硬い緩和・非滑らかな初期値では同じ次数を期待できるとは限りません。PDEでは境界値を部分問題と各段階に整合させます。非同次・時間依存境界による次数低下や、空間誤差・非線形反復誤差の支配は別々に点検します。
+部分流を近似する場合、単に対称な並べ方にしただけでは2次は保証されません。通常のStrang構成で2次を保つには、各部分ソルバーにも少なくとも2次の整合性と十分厳しい反復公差が必要です。時間対称性も必要なら、厳密流または対称な部分ソルバーを使います。前進Eulerや後退Eulerをそのまま代入すると一般に1次へ落ちます。非自律問題では時刻も含めた拡大系または整合した部分問題の時刻を設計し、すべてを同じ時刻に凍結しないでください。
+\det L_h=\det S_h=1,\quad\operatorname{tr}L_h=\operatorname{tr}S_h=2-h^2,\quad 0<|h|<2\quad\text{(oscillator)}.
+この振動子では両方式の行列の行列式は1、トレースは2−h²で、安定な振動モードの範囲は0<|h|<2です。部分流を厳密に解くこと自体は無条件安定性を保証しません。また部分流が保つ量だけが合成にも引き継がれるので、Hamiltonian系のシンプレクティック性を、任意の反応系の正値性・全エネルギーの厳密保存へ読み替えません。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 既存のStrang実行例とIMEXとの違い [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#related-examples
+Coverage: reading
+
+既存の反応拡散のSchnakenberg有限振幅過渡と飽和パターンは、中心差分の拡散を厳密に半刻み進め、反応を陰的中点則で全刻み解くStrang合成です。その固定条件での空間・時間収束は既存の公開記録を参照します。本章の振動子による次数確認と区別し、過去の配布物・公差・結果を変更しません。
+IMEXも右辺を複数の部分に分けますが、IMEX時間積分は陽・陰の段階式を組み合わせる方式です。ここでの部分流を順に合成する分割法とは同じ更新式ではありません。分離Hamiltonianでの関係はシンプレクティック積分も参照してください。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 軽量な再計算と公開範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#reproduce
+Coverage: reading
+
+上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。手法一覧の状態は両方とも「解説あり・専用実装なし」とします。
+教材例の再計算スクリプト · 固定入力・保存数値 / JSON
+python3 verify-operator-splitting.py
+python3 verify-operator-splitting.py --check operator-splitting.json
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#publication-scope
+Coverage: reading
+
+解説・数式・固定2成分例の再計算を公開します。汎用分割ソルバーの配布版・共通実行例は追加せず、既存の手法状態・配布版・数値公差・検証履歴を保持します。
+Lie–Trotter分割
+Strang分割
+陰的中点則
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+H. F. Trotter (1959). On the product of semi-groups of operators. Proceedings of the American Mathematical Society
+研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
+AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。
+G. Strang (1968). On the Construction and Comparison of Difference Schemes. SIAM Journal on Numerical Analysis
+研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
+今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。
+E. Hairer (2010). Geometric Numerical Integration, Lecture2.
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。
+
 ## 勾配法・準Newton法 — 勾配法・準Newton法 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/
@@ -29303,6 +29580,7 @@ mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implem
 LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview. Original source
 P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. 10.1145/1824801.1824804
 Meep developers (2026). Materials — Meep Documentation. Original source
+H. F. Trotter (1959). On the product of semi-groups of operators. 10.1090/S0002-9939-1959-0108732-6
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -30272,8 +30550,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文241件・全参考資料297件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め90章です。
+方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文242件・全参考資料298件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め91章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -30368,7 +30646,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は114、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は114、文献解説のみは17です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -30520,7 +30798,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-235件：学術誌論文（総説・翻訳・採録済み論文を含む）
+236件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -31041,6 +31319,8 @@ IMEX Eulerは一方を陽的、他方を陰的に評価します。この最小�
 硬いテストy′=−1000(y−cos t)−sin tは、y(0)=1のとき厳密解cos tを持ちます。計算記録は、実際の積分節点での最大誤差と適応ステップ数を残します。別のテストで、非線形・非自律ODEの次数と、硬い減衰モードの強い減衰を確認します。
 外力付きの硬い問題の粗い刻み列は、一様な2次収束の範囲にはありません。BDF2の開始処理と硬い系の次数低下が、節点全体の最大誤差へ影響します。形式的な時間次数は、非線形・非硬性の次数テストで別に確認します。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割：Lie–Trotter と Strang の比較
 
 ## シンプレクティック積分：正準写像とエネルギーを分ける [ja]
 
@@ -31128,6 +31408,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/#c
 Coverage: reading
 
 固定刻みと、整合した位置依存ポテンシャルの勾配である力が分割合成の議論を支えます。一般の近似ツリー力、変化する開口判定、場当たり的な格子補間、状態依存の刻み選択が、その証明を自動的に保つわけではありません。力近似と時間積分を合同で検査する必要があります。粒子重力とPoisson解法、重力境界核へ進んでください。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割：Lie–Trotter と Strang の比較
 
 ## 教科書案内：次に何を調べるか [ja]
 
@@ -31891,6 +32173,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integrat
 Coverage: reading
 
 シンプレクティック積分の章では、調和・4次Hamilton系に対して、力学的なkick–drift–kick Verlet、吉田の4次合成、シンプレクティックEuler、陰的中点則を実装します。写像ノートではRK4と比較し、正準構造と厳密なエネルギー保存を分けます。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割：Lie–Trotter と Strang の比較
 
 ## 非線形反応拡散・パターン形成の独立検証 — 非線形反応拡散・パターン形成の独立検証 [ja]
 

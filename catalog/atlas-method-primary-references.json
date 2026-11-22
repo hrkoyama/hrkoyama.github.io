@@ -1610,6 +1610,25 @@
         "scope": "Official HTML, selected Material Dispersion, Loss and Gain, and Conductivity and Complex ε sections: Lorentz polarization equation and exp(−iωt) convention. Meep uses a D-conductivity convention; this example instead uses conventional σE. Its explicit-ADE resonance stability bound is not attributed to our implicit midpoint update. No Meep numerical comparison or full documentation audit.",
         "scope_ja": "公式HTMLのMaterial Dispersion、Loss and Gain、Conductivity and Complex ε節を参照。Lorentz分極方程式とexp(−iωt)規約。MeepのD導電率と本例の通常のσEを区別し、陽的ADEの共鳴安定条件を本例の陰的中点更新へ転用しない。Meepによる数値比較や全資料監査は未実施。"
       }
+    },
+    {
+      "id": "trotter1959",
+      "author": "H. F. Trotter",
+      "year": 1959,
+      "title": "On the product of semi-groups of operators",
+      "journal": "Proceedings of the American Mathematical Society",
+      "volume": "10",
+      "number": "4",
+      "pages": "545–551",
+      "doi": "10.1090/S0002-9939-1959-0108732-6",
+      "type": "article",
+      "source": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+      "source_review": {
+        "level": "metadata",
+        "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+        "scope": "AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.",
+        "scope_ja": "AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。"
+      }
     }
   ]
 }

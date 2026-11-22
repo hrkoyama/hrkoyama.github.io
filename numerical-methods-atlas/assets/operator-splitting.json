@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "scope": "Fixed nondimensional harmonic-oscillator illustration; exact subflows and analytic reference. No spatial grid, general solver release or new registered benchmark.",
+  "initial_state": [
+    1.0,
+    0.0
+  ],
+  "final_time": 1.0,
+  "step_counts": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "norm": "Euclidean norm of (q,p) error",
+  "reference_at_final_time": [
+    0.5403023058681398,
+    -0.8414709848078965
+  ],
+  "methods": {
+    "lie-trotter": [
+      {
+        "n": 8,
+        "h": 0.125,
+        "state": [
+          0.5924704058122643,
+          -0.8434722034980666
+        ],
+        "global_error": 0.05220647017397414,
+        "local_defect": 0.0078091097466338605
+      },
+      {
+        "n": 16,
+        "h": 0.0625,
+        "state": [
+          0.5664768481540698,
+          -0.8419701708155336
+        ],
+        "global_error": 0.026179301949214813,
+        "local_defect": 0.001952913081572256,
+        "global_error_order": 0.9958019878695202,
+        "local_defect_order": 1.9995303472295602
+      },
+      {
+        "n": 32,
+        "h": 0.03125,
+        "state": [
+          0.5534179951103785,
+          -0.8415957116065864
+        ],
+        "global_error": 0.013116282288563623,
+        "local_defect": 0.000488268004667071,
+        "global_error_order": 0.9970677725981166,
+        "local_defect_order": 1.9998825915847116
+      },
+      {
+        "n": 64,
+        "h": 0.015625,
+        "state": [
+          0.5468679813613955,
+          -0.84150216215444
+        ],
+        "global_error": 0.00656574951621489,
+        "local_defect": 0.00012206948465998928,
+        "global_error_order": 0.998327239692747,
+        "local_defect_order": 1.9999706481942445
+      }
+    ],
+    "reverse-lie-trotter": [
+      {
+        "n": 8,
+        "h": 0.125,
+        "state": [
+          0.48703638037500596,
+          -0.8434722034980666
+        ],
+        "global_error": 0.053303505465269053,
+        "local_defect": 0.007829426604260581
+      },
+      {
+        "n": 16,
+        "h": 0.0625,
+        "state": [
+          0.513853712478099,
+          -0.8419701708155336
+        ],
+        "global_error": 0.026453303744181565,
+        "local_defect": 0.001954184206056428,
+        "global_error_order": 1.0107825025789703,
+        "local_defect_order": 2.0023401886122647
+      },
+      {
+        "n": 32,
+        "h": 0.03125,
+        "state": [
+          0.5271181291226726,
+          -0.8415957116065864
+        ],
+        "global_error": 0.013184766711247778,
+        "local_defect": 0.0004883474706291115,
+        "global_error_order": 1.0045758666315265,
+        "local_defect_order": 2.000586536107468
+      },
+      {
+        "n": 64,
+        "h": 0.015625,
+        "state": [
+          0.5337195100777323,
+          -0.84150216215444
+        ],
+        "global_error": 0.006582869620852546,
+        "local_defect": 0.00012207445160586803,
+        "global_error_order": 1.0020835152668424,
+        "local_defect_order": 2.0001467273838944
+      }
+    ],
+    "strang": [
+      {
+        "n": 8,
+        "h": 0.125,
+        "state": [
+          0.5397533930936351,
+          -0.8434722034980666
+        ],
+        "global_error": 0.0020751340872099252,
+        "local_defect": 0.0003254254803141036
+      },
+      {
+        "n": 16,
+        "h": 0.0625,
+        "state": [
+          0.540165280316084,
+          -0.8419701708155336
+        ],
+        "global_error": 0.0005176511104371816,
+        "local_defect": 4.068712404702767e-05,
+        "global_error_order": 2.003152586492671,
+        "local_defect_order": 2.9996830034232196
+      },
+      {
+        "n": 32,
+        "h": 0.03125,
+        "state": [
+          0.540268062116525,
+          -0.8415957116065862
+        ],
+        "global_error": 0.00012934221598546883,
+        "local_defect": 5.086169889454292e-06,
+        "global_error_order": 2.000786836272265,
+        "local_defect_order": 2.999920750509966
+      },
+      {
+        "n": 64,
+        "h": 0.015625,
+        "state": [
+          0.5402937457195635,
+          -0.84150216215444
+        ],
+        "global_error": 3.2331147228935436e-05,
+        "local_defect": 6.357799672277417e-07,
+        "global_error_order": 2.0001966273649203,
+        "local_defect_order": 2.9999801876060235
+      }
+    ]
+  },
+  "commuting_control": [
+    {
+      "method": "lie-trotter",
+      "n": 8,
+      "absolute_error": 2.7755575615628914e-17
+    },
+    {
+      "method": "strang",
+      "n": 8,
+      "absolute_error": 1.3877787807814457e-17
+    },
+    {
+      "method": "lie-trotter",
+      "n": 16,
+      "absolute_error": 2.7755575615628914e-17
+    },
+    {
+      "method": "strang",
+      "n": 16,
+      "absolute_error": 9.71445146547012e-17
+    },
+    {
+      "method": "lie-trotter",
+      "n": 32,
+      "absolute_error": 9.71445146547012e-17
+    },
+    {
+      "method": "strang",
+      "n": 32,
+      "absolute_error": 1.942890293094024e-16
+    },
+    {
+      "method": "lie-trotter",
+      "n": 64,
+      "absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "method": "strang",
+      "n": 64,
+      "absolute_error": 1.734723475976807e-16
+    }
+  ]
+}

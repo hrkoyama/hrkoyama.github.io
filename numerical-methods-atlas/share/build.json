@@ -2,16 +2,16 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "957a1a215fdb230d349e19f72e62b17ee5ed4dabe75880945b7ac8b6e517b183",
-    "numerical-methods-atlas/coverage.json": "74e53abb5fe47fabe8d70af40dd7d428dbfae8b96448c8ae698f6b0b35f3350f",
+    "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
+    "numerical-methods-atlas/coverage.json": "37e10d2d72b9f5df65db07e8a640864205d0dcb5cee5816d82119a47b3c21a78",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f"
   },
   "builder_sha256": "87508c43c1d8998576804b775cada4da8f1e8c348af73a58d9755c76c867dad0",
   "renderer": {
     "name": "Pillow",
-    "version": "13.0.0",
-    "freetype": "2.14.3"
+    "version": "11.3.0",
+    "freetype": "2.13.3"
   },
   "font": {
     "filename": "ヒラギノ角ゴシック W6.ttc",
@@ -19,18 +19,18 @@
   },
   "images": {
     "ja": {
-      "svg_sha256": "4fa8a94b5726a46eb0053d5281e4bd2273fe8ab322d26c60c6f657b457bed194",
-      "png_sha256": "846e98ce5159a9f6617d9d572fa5d98e0ee10dea0c6ecfc3c11299dd73a44789",
-      "content_input_sha256": "28a4ad53a8a99e7e74df9b7c4742773653574d6aabdc103f89301f1496cac3a2",
-      "render_input_sha256": "948c69e234caf3b16d8ef8ff5127ecec0fe5de64cfcc6f04bb105e659d3f9b18",
+      "svg_sha256": "32e5706b3423c2e6819b78407abda7a48e1d02cd39e1e59e07c2fc0da8464863",
+      "png_sha256": "953c5bfe034ac1e2b5d021e6bc10ed4283743647e4c5d1c67ad448f3fd68a29b",
+      "content_input_sha256": "ccc41aae23814a223741fedd6daec4ceed64afc38a90115706761f08c204d641",
+      "render_input_sha256": "401d403d292715aef52d9647dc0587f282397fe48aebc7da509ceff54c9ccc8d",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "500bb5656229cd10487b0eb7ad53e45660067450ae4bd6e98881f37adb2f21ac",
-      "png_sha256": "aada88bc3507f50ec4ee9da08815fa59a9d38c81fe74fba1d41fb9d167da49e4",
-      "content_input_sha256": "36d8b4e8c3c98979b7a8ad0633ad7268e885631d09eddbd58cb4e15b6d9c9b38",
-      "render_input_sha256": "ad987129ac5c87e55c4cdbee9d536b82c725651d22f94cbcd9a8415fc26adc84",
+      "svg_sha256": "a3bb71221c63ff3965c29107b47c8889c30fe6dde2b9942f13e3d93e5dafd17d",
+      "png_sha256": "c136f5ea3ae23d4272b2187c7fb39c156c437f1786269cd156a4015d3fd21478",
+      "content_input_sha256": "ceb980752b83c6831981157778125565e00ea102f0e8f26ebd868e8bfd7d9792",
+      "render_input_sha256": "89eecce00bbbfd18c8f07b766f74ee0f2f88a71c6295b9ebe811472ca6212740",
       "width": 1200,
       "height": 630
     }

@@ -11,6 +11,7 @@ Start with error and stability, then follow time integration and equations with 
 - [Time integration and leapfrog](https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/)
 - [Runge–Kutta families: stages, order, stability, and SSP](https://hrkoyama.github.io/numerical-methods-atlas/en/read/runge-kutta/)
 - [Stiff integration: solve the stage, control the time error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/)
+- [Operator splitting: Lie–Trotter and Strang](https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/)
 - [Symplectic integration: a canonical map, not an exact energy promise](https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/)
 - [Differential-algebraic equations / DAE](https://hrkoyama.github.io/numerical-methods-atlas/en/read/dae/)
 

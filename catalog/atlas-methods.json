@@ -13160,6 +13160,149 @@
         "level": "Primary publisher metadata and selected Car–Parrinello equations reviewed; explanatory reading only, no force or trajectory validation.",
         "on": "2026-11-22"
       }
+    },
+    {
+      "id": "lie-trotter",
+      "name": {
+        "ja": "Lie–Trotter分割",
+        "en": "Lie–Trotter splitting"
+      },
+      "group": {
+        "id": "time",
+        "ja": "時間積分",
+        "en": "Time integration"
+      },
+      "summary": {
+        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。",
+        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting."
+      },
+      "status": "reading-only",
+      "origin": "curated-operator-splitting-reading",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/operator-splitting/",
+        "en": "/numerical-methods-atlas/en/read/operator-splitting/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "Reading and a fixed two-component exact-flow illustration; no general solver distribution or common execution-registry mapping. Existing Strang reaction-diffusion runs retain their original method bindings.",
+      "references": [
+        {
+          "url": "https://doi.org/10.1090/S0002-9939-1959-0108732-6",
+          "label": "H. F. Trotter (1959). On the product of semi-groups of operators.",
+          "scope": "AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.",
+          "bibliography_id": "trotter1959"
+        },
+        {
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "label": "E. Hairer (2010). Geometric Numerical Integration, Lecture2.",
+          "scope": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.",
+          "bibliography_id": "hairer2010-geometric-lecture2"
+        }
+      ],
+      "assumptions": [
+        "Autonomous additive initial-value problem with sufficiently smooth subflows on a fixed finite time interval.",
+        "The stated global order requires stability and sufficiently small steps.",
+        "Use exact subflows or subsolvers with sufficient order and compatible boundaries; symmetric subsolvers are needed for time symmetry."
+      ],
+      "assumptions_ja": [
+        "自律的で加法的な初期値問題。固定した有限時間区間で部分流と解に十分な滑らかさがある。",
+        "表示した大域次数には安定性と十分小さい刻みが必要。",
+        "厳密流または必要な次数・境界整合性を持つ部分ソルバーを用いる。時間対称性には対称な部分ソルバーも必要。"
+      ],
+      "units": "h has time units; F and G have units of state/time. For linear systems hA and hB are dimensionless. The oscillator illustration is nondimensional.",
+      "units_ja": "hは時間、FとGは状態/時間の単位。線形系ではhAとhBが無次元。教材の振動子は全変数を無次元化。",
+      "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
+      "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
+      "limitations": {
+        "ja": "滑らかな有限次元の例の次数を、衝撃波・硬いPDE・一般境界へ保証しない。厳密な部分流でも合成の安定性制約は残る。教材例スクリプトは汎用ソルバー配布版ではない。",
+        "en": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release."
+      },
+      "metadata_review": {
+        "level": "method-specific reading and finite-dimensional exact-flow illustration; source access recorded individually",
+        "on": "2026-11-22"
+      },
+      "aliases": [
+        "Lie-Trotter splitting",
+        "Lie Trotter splitting",
+        "Lie splitting",
+        "Trotter splitting",
+        "Lie–Trotter分割法",
+        "リー・トロッター分割",
+        "リートロッター分割",
+        "リー・トロッタ分割",
+        "1次作用素分割"
+      ]
+    },
+    {
+      "id": "strang-splitting",
+      "name": {
+        "ja": "Strang分割",
+        "en": "Strang splitting"
+      },
+      "group": {
+        "id": "time",
+        "ja": "時間積分",
+        "en": "Time integration"
+      },
+      "summary": {
+        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。",
+        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs."
+      },
+      "status": "reading-only",
+      "origin": "curated-operator-splitting-reading",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/operator-splitting/",
+        "en": "/numerical-methods-atlas/en/read/operator-splitting/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "Reading and a fixed two-component exact-flow illustration; no general solver distribution or common execution-registry mapping. Existing Strang reaction-diffusion runs retain their original method bindings.",
+      "references": [
+        {
+          "url": "https://doi.org/10.1137/0705041",
+          "label": "G. Strang (1968). On the Construction and Comparison of Difference Schemes.",
+          "scope": "Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.",
+          "bibliography_id": "strang1968"
+        },
+        {
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "label": "E. Hairer (2010). Geometric Numerical Integration, Lecture2.",
+          "scope": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.",
+          "bibliography_id": "hairer2010-geometric-lecture2"
+        }
+      ],
+      "assumptions": [
+        "Autonomous additive initial-value problem with sufficiently smooth subflows on a fixed finite time interval.",
+        "The stated global order requires stability and sufficiently small steps.",
+        "Use exact subflows or subsolvers with sufficient order and compatible boundaries; symmetric subsolvers are needed for time symmetry."
+      ],
+      "assumptions_ja": [
+        "自律的で加法的な初期値問題。固定した有限時間区間で部分流と解に十分な滑らかさがある。",
+        "表示した大域次数には安定性と十分小さい刻みが必要。",
+        "厳密流または必要な次数・境界整合性を持つ部分ソルバーを用いる。時間対称性には対称な部分ソルバーも必要。"
+      ],
+      "units": "h has time units; F and G have units of state/time. For linear systems hA and hB are dimensionless. The oscillator illustration is nondimensional.",
+      "units_ja": "hは時間、FとGは状態/時間の単位。線形系ではhAとhBが無次元。教材の振動子は全変数を無次元化。",
+      "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
+      "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
+      "limitations": {
+        "ja": "滑らかな有限次元の例の次数を、衝撃波・硬いPDE・一般境界へ保証しない。厳密な部分流でも合成の安定性制約は残る。教材例スクリプトは汎用ソルバー配布版ではない。",
+        "en": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release."
+      },
+      "metadata_review": {
+        "level": "method-specific reading and finite-dimensional exact-flow illustration; source access recorded individually",
+        "on": "2026-11-22"
+      },
+      "aliases": [
+        "Strang splitting",
+        "Strang splitting method",
+        "Strang分割法",
+        "ストラング分割",
+        "ストラング分割法",
+        "symmetric Strang splitting",
+        "Strang–Marchuk splitting",
+        "2次作用素分割"
+      ]
     }
   ],
   "editorial_policy": {

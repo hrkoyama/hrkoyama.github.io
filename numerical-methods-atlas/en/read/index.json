@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "f080e39586e6f7c7c5ebaf8f69b454778464df25016f8c650c654e812c0b64b1",
-  "chapter_count": 90,
+  "source_sha256": "823355034c861daf9904955172a44cae8d562c0e1ccd43c0ce8479377b9d0b6b",
+  "chapter_count": 91,
   "groups": [
     {
       "id": "foundations-time",
@@ -66,6 +66,17 @@
             "en"
           ],
           "search_text": "stiff-integration 硬い方程式の積分：段階を解き、時間誤差を制御する Stiff integration: solve the stage, control the time error 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "operator-splitting",
+          "title": "Operator splitting: Lie–Trotter and Strang",
+          "url": "/numerical-methods-atlas/en/read/operator-splitting/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "operator-splitting 作用素分割：Lie–Trotter と Strang の比較 Operator splitting: Lie–Trotter and Strang 基礎・誤差・時間積分 Foundations, error and time integration"
         },
         {
           "id": "symplectic",

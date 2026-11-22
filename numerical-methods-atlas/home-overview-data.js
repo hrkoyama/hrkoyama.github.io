@@ -801,6 +801,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "operator-splitting": [
+    "ja",
+    "en"
+  ],
   "optimization": [
     "ja",
     "en"

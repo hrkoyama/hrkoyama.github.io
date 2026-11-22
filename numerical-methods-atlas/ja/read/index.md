@@ -11,6 +11,7 @@
 - [時間積分とleapfrog法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/)
 - [Runge–Kutta法：段数、次数、安定性、SSP](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/runge-kutta/)
 - [硬い方程式の積分：段階を解き、時間誤差を制御する](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/)
+- [作用素分割：Lie–Trotter と Strang の比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/)
 - [シンプレクティック積分：正準写像とエネルギーを分ける](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/)
 - [微分代数方程式（DAE）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dae/)
 
