@@ -36,11 +36,18 @@ def build_home_layout(root, copy, sections, metrics, featured, maps, context):
     for lang in ['ja','en']:
         ja = lang == 'ja'
         title = '体系的に読む' if ja else 'Read systematically'
-        description = '分野の地図、読む順番、章の目次から、学びたい内容を選んでください。' if ja else 'Choose a field, follow a reading path, or open the chapter index.'
-        links = [(f'/numerical-methods-atlas/{lang}/read/', '解説章の目次' if ja else 'Chapter index'),
-                 (f'/numerical-methods-atlas/methods/?lang={lang}', '全手法の一覧' if ja else 'All method records'),
-                 (f'/numerical-methods-atlas/connections/?lang={lang}', '分野をつなぐ' if ja else 'Connections across fields')]
-        intro = '<section class="page-width"><p><a href="/numerical-methods-atlas/?lang='+lang+'">'+('アトラストップ' if ja else 'Atlas home')+'</a></p><h1>'+title+'</h1><p class="intro-description">'+description+'</p><nav class="study-shortcuts">'+''.join('<a href="'+u+'">'+label+'</a>' for u,label in links)+'</nav></section>'
+        description = '考え方から学ぶときは解説へ。使う手法やコードを調べるときは対応表へ進んでください。' if ja else 'Read the explanations to learn the ideas. Use the reference to look up a method and its code.'
+        links = [(f'/numerical-methods-atlas/{lang}/read/',
+                  '分野別に解説を読む' if ja else 'Learn by field',
+                  '理論や式の導き方、具体例を、分野ごとの流れに沿って読み進めます。' if ja else 'Learn the theory, derivations and examples in a sequence organized by field.'),
+                 (f'/numerical-methods-atlas/methods/?lang={lang}',
+                  '手法・コードの対応表' if ja else 'Methods and code reference',
+                  '手法名から、適用条件・対応するコードとテスト・公開状況を調べます。' if ja else 'Look up a method to check its conditions, related code and tests, and publication status.'),
+                 (f'/numerical-methods-atlas/connections/?lang={lang}',
+                  '分野をつなぐ' if ja else 'Connections across fields',
+                  '複数の分野で共通する数学と、追加で必要な検証をたどります。' if ja else 'Follow mathematics shared across fields and the additional verification each connection needs.')]
+        shortcuts = '<nav class="study-shortcuts" aria-label="'+('読む目的に合わせて選ぶ' if ja else 'Choose how to read')+'"><ul>'+''.join('<li'+(' class="study-shortcut-primary"' if i==0 else '')+'><a href="'+u+'">'+label+'</a><p>'+note+'</p></li>' for i,(u,label,note) in enumerate(links))+'</ul></nav>'
+        intro = '<section class="page-width"><p><a href="/numerical-methods-atlas/?lang='+lang+'">'+('アトラストップ' if ja else 'Atlas home')+'</a></p><h1>'+title+'</h1><p class="intro-description">'+description+'</p>'+shortcuts+'</section>'
         catalogue = '<details class="page-width explore-catalogue"><summary>'+('数式・図・収録範囲から探す' if ja else 'Browse equations, figures and coverage')+'</summary>'+metrics[lang]+sections[lang]+'</details>'
         tail = '<section class="page-width"><h2>'+('資料と機械可読データ' if ja else 'Resources and machine-readable data')+'</h2><p><a href="/numerical-methods-atlas/methods/index.json">'+('手法台帳 / JSON' if ja else 'Method registry / JSON')+'</a> · <a href="/guide/packs/numerical.md">Markdown</a> · <a href="/llms.txt">AI index</a> · <a href="index.json">'+('この案内 / JSON' if ja else 'This directory / JSON')+'</a></p></section>'
         body = intro+rendered['guides'][lang]+maps[lang]+catalogue+context[lang]+tail

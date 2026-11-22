@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "title": {
+    "ja": "分野別に解説を読む",
+    "en": "Learn by field"
+  },
+  "description": {
+    "ja": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
+    "en": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification."
+  },
+  "groups": [
+    {
+      "id": "foundations-time",
+      "title": {
+        "ja": "基礎・誤差・時間積分",
+        "en": "Foundations, error and time integration"
+      },
+      "description": {
+        "ja": "誤差と安定性から入り、時間積分と拘束を持つ方程式の扱いをたどります。",
+        "en": "Start with error and stability, then follow time integration and equations with constraints."
+      },
+      "chapters": [
+        "stability",
+        "accuracy-stability",
+        "time-integration",
+        "runge-kutta",
+        "stiff-integration",
+        "symplectic",
+        "dae"
+      ]
+    },
+    {
+      "id": "linear-approximation",
+      "title": {
+        "ja": "楕円型問題・線形代数・近似",
+        "en": "Elliptic problems, linear algebra and approximation"
+      },
+      "description": {
+        "ja": "境界値問題と疎行列の解法から、固有値・基底・補間・数値積分へ進みます。",
+        "en": "Go from boundary-value problems and sparse solvers to eigenvalues, basis functions, interpolation and quadrature."
+      },
+      "chapters": [
+        "elliptic",
+        "hyperbolic-diffusion",
+        "sparse-nonlinear",
+        "amg",
+        "qr-svd",
+        "eigensolvers",
+        "basis-functions",
+        "splines",
+        "quadrature",
+        "chebyshev",
+        "wavelets",
+        "validation-foundations"
+      ]
+    },
+    {
+      "id": "differentiation-inverse",
+      "title": {
+        "ja": "自動微分・最適化・逆問題",
+        "en": "Differentiation, optimization and inverse problems"
+      },
+      "description": {
+        "ja": "残差と解の微分を区別し、目的関数・観測・正則化へつなぎます。",
+        "en": "Distinguish derivatives of residuals and solutions, then connect objectives, observations and regularization."
+      },
+      "chapters": [
+        "automatic-differentiation",
+        "adjoint",
+        "optimization",
+        "bratu-inverse",
+        "bratu-multi-inverse",
+        "pinn-operators"
+      ]
+    },
+    {
+      "id": "conservation-shocks",
+      "title": {
+        "ja": "流体・衝撃波・定常解法",
+        "en": "Fluids, shocks and steady solvers"
+      },
+      "description": {
+        "ja": "保存則の再構成、勾配制限、衝撃波の頑健性、低Mach数と定常反復の条件を読みます。",
+        "en": "Read about reconstruction, limiting and shock robustness, followed by low-Mach conditions and steady iterations."
+      },
+      "chapters": [
+        "reconstruction",
+        "limiters",
+        "advanced-limiters",
+        "rotated-hybrid",
+        "shock-expansion",
+        "carbuncle",
+        "double-mach",
+        "keep",
+        "advanced",
+        "low-mach-preconditioning",
+        "steady-runge-kutta",
+        "nasa-2d"
+      ]
+    },
+    {
+      "id": "meshes-coupled",
+      "title": {
+        "ja": "格子・有限要素・連成方程式",
+        "en": "Meshes, finite elements and coupled equations"
+      },
+      "description": {
+        "ja": "空間離散化と座標を整理し、非圧縮流・MHD・相対論系の条件へ進みます。",
+        "en": "Organize spatial discretization and coordinates, then examine incompressible flow, MHD and relativistic systems."
+      },
+      "chapters": [
+        "meshes",
+        "fem",
+        "ale",
+        "coordinates-viscosity",
+        "geophysical-grids",
+        "cip",
+        "incompressible",
+        "mhd",
+        "relativistic-hydrodynamics",
+        "validation-mhd"
+      ]
+    },
+    {
+      "id": "particles-transport",
+      "title": {
+        "ja": "粒子・運動論・輸送",
+        "en": "Particles, kinetic methods and transport"
+      },
+      "description": {
+        "ja": "粒子法、分布関数、長距離力と輸送方程式を読みます。",
+        "en": "Explore particle methods, distribution functions, long-range forces and transport equations."
+      },
+      "chapters": [
+        "particles-sph",
+        "gsph",
+        "lattice-boltzmann",
+        "chapman-enskog",
+        "dsmc",
+        "particle-gravity",
+        "gravity-boundaries",
+        "radiation-transport",
+        "validation-particles"
+      ]
+    },
+    {
+      "id": "fields-electronic",
+      "title": {
+        "ja": "電磁場・静電場・電子状態",
+        "en": "Electromagnetic fields, electrostatics and electronic structure"
+      },
+      "description": {
+        "ja": "周期静電場・電磁場と、原子・分子・周期電子状態の近似をたどります。",
+        "en": "Follow periodic electrostatics and electromagnetic fields, then atomic, molecular and periodic electronic-structure approximations."
+      },
+      "chapters": [
+        "ewald",
+        "pme",
+        "spme",
+        "slab-ewald",
+        "fdtd",
+        "pic",
+        "quantum-chemistry",
+        "quantum-atoms",
+        "h2-hf",
+        "periodic-dft",
+        "periodic-forces"
+      ]
+    },
+    {
+      "id": "stochastic-models",
+      "title": {
+        "ja": "確率計算・生物・温度制御",
+        "en": "Stochastic computation, biology and temperature control"
+      },
+      "description": {
+        "ja": "確率誤差、集団モデル、温度制御を、それぞれの検証量とともに比べます。",
+        "en": "Compare stochastic error, population models and temperature control through their respective verification quantities."
+      },
+      "chapters": [
+        "monte-carlo",
+        "mcmc",
+        "sde",
+        "biological-models",
+        "validation-biology",
+        "thermostats",
+        "validation-models",
+        "validation-thermostats"
+      ]
+    },
+    {
+      "id": "verification-guides",
+      "title": {
+        "ja": "検証問題・実験ガイド",
+        "en": "Verification problems and experiment guides"
+      },
+      "description": {
+        "ja": "計算対象と参照解を選び、展示・保存結果・実行例の役割を確認します。",
+        "en": "Choose equations and references, and distinguish exhibits, saved results and runnable examples."
+      },
+      "chapters": [
+        "equation-gallery",
+        "benchmarks",
+        "reference-solutions",
+        "experiments",
+        "movies"
+      ]
+    },
+    {
+      "id": "history-resources",
+      "title": {
+        "ja": "歴史・文献・整備記録",
+        "en": "History, references and development records"
+      },
+      "description": {
+        "ja": "数値計算法の系譜と出典、教科書、収録範囲・整備記録を確認します。",
+        "en": "Trace numerical methods and their sources, then consult textbooks, coverage and development records."
+      },
+      "chapters": [
+        "history",
+        "references",
+        "textbooks",
+        "roe-memorial",
+        "site-coverage",
+        "roadmap",
+        "release-notes-v0.1.0"
+      ]
+    }
+  ]
+}

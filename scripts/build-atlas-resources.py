@@ -73,7 +73,7 @@ def page(title_ja,title_en,url,sections,structured=None,extra_head=''):
 def write(path,text):
     p=ROOT/path.lstrip('/');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
 def nav(lang):
-    labels=['手法の見取り図','コード・入力・検証','解説章の目次'] if lang=='ja' else ['Method map','Code, inputs and checks','Reading chapters']
+    labels=['手法・コードの対応表','コード・入力・検証','分野別に解説を読む'] if lang=='ja' else ['Methods and code reference','Code, inputs and checks','Learn by field']
     return '<nav class="resource-nav" aria-label="Atlas resources">'+''.join(link(u,l) for u,l in zip(['/numerical-methods-atlas/methods/','/numerical-methods-atlas/code-and-data/',f'/numerical-methods-atlas/{lang}/read/'],labels))+'</nav>'
 AUTODIFF_RELEASES={}
 def autodiff_release_record(x):
@@ -236,12 +236,13 @@ def method_filter_controls(lang):
 sections=[]
 for lang in ['ja','en']:
     ja=lang=='ja'
-    intro=(f'全{len(METHODS)}項目から、状態と日英のキーワードで手法を探せます。教育用例・解説のみ・収録予定を区別して表示します。' if ja else f'Find methods among {len(METHODS)} entries by status and keywords in English or Japanese. Educational examples, reading-only entries and planned coverage remain distinct.')
-    body='<section data-method-map data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS / OPEN RESEARCH RESOURCES</p><h1>'+('手法の見取り図' if ja else 'A map of numerical methods')+'</h1><p class="intro resource-lead">'+intro+'</p>'+nav(lang)
+    intro=(f'手法名ごとに、適用条件、関連コード、検証記録、公開状況を確認する対応表です。全{len(METHODS)}項目を、状態と日英のキーワードで探せます。教育用例・解説のみ・収録予定を区別して表示します。' if ja else f'Look up each named method’s applicable conditions, related code, verification records and publication status. Search {len(METHODS)} entries by status and English or Japanese keywords. Educational examples, reading-only entries and planned coverage remain distinct.')
+    body='<section data-method-map data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS / OPEN RESEARCH RESOURCES</p><h1>'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</h1><p class="intro resource-lead">'+intro+'</p>'
+    body+='<p class="method-reading-entry">'+('理論・導出・読む順番を知りたいときは、' if ja else 'For theory, derivations and reading order: ')+link(f'/numerical-methods-atlas/{lang}/read/','分野別に解説を読む' if ja else 'Learn by field')+('へ。' if ja else '.')+'</p>'+nav(lang)
     body+=method_filter_controls(lang)
     body+='<details class="method-map-about"><summary>'+('一覧の範囲・状態の説明' if ja else 'Scope and status definitions')+'</summary>'
     body+='<p class="resource-summary">'+(f'既存{existing_count}項目のうち教育用例{example_count}・解説のみ{reading_count}、拡張候補{planned_count}。教育用例は完成した汎用ソルバーの数ではありません。公開コード配布版の既存検査は{verification["passed"]}件通過・{verification["skipped"]}件対象外です。' if ja else f'{existing_count} existing entries: {example_count} with scoped educational examples and {reading_count} reading-only. Another {planned_count} are development candidates. These are not counts of complete production solvers. The code edition passes {verification["passed"]} existing checks, with {verification["skipped"]} inapplicable cases skipped.')+'</p>'
-    body+='<p>'+('幅広い数値計算を結ぶ拡張中の地図です。未収録の分野もあり、すべての手法や原論文を網羅するという意味ではありません。' if ja else 'An expanding cross-field map, with gaps still to fill; not a claim to exhaust every method or original paper.')+'</p>'
+    body+='<p>'+('この対応表は関連コードと検証範囲を確認するために拡充しています。未収録の分野もあり、すべての手法や原論文を網羅するものではありません。' if ja else 'This reference is being expanded to connect methods with related code and verification scope. Coverage has gaps and does not exhaust every method or original paper.')+'</p>'
     body+='<p><strong>'+esc(DATA['editorial_policy']['title'][lang])+':</strong> '+esc(DATA['editorial_policy']['statement'][lang])+'</p>'
     body+='<p>'+link('index.json','手法台帳 / JSON' if ja else 'Method registry / JSON')+' · '+link('/catalog/atlas-methods.json','正本データ' if ja else 'Catalog source')+' · '+link('/using/','使い方と引用' if ja else 'Use and citation')+'</p>'
     body+='</details>'
@@ -259,7 +260,7 @@ for lang in ['ja','en']:
         body+='</ul></section>'
     body+='</section>';sections.append(body)
 map_head='<link rel="stylesheet" href="/styles/atlas-methods.css?v='+hashlib.sha256((ROOT/'styles/atlas-methods.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/atlas-methods.mjs?v='+hashlib.sha256((ROOT/'atlas-methods.mjs').read_bytes()).hexdigest()[:12]+'"></script>'
-map_page=page('手法の見取り図','A map of numerical methods','/numerical-methods-atlas/methods/',''.join(sections),extra_head=map_head)
+map_page=page('手法・コードの対応表','Methods and code reference','/numerical-methods-atlas/methods/',''.join(sections),extra_head=map_head)
 map_page=map_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
 write('/numerical-methods-atlas/methods/index.html',map_page)
 published={**DATA,'methods':[public_record(x) for x in METHODS],'code_release':{'download':ORIGIN+CODE+archive,'manifest':ORIGIN+CODE+'source-manifest.json','verification':ORIGIN+CODE+'verification.json','sha256':archive_hash}}
@@ -465,7 +466,7 @@ for p in ATLAS.rglob('*.html'):
     if p==ATLAS/'index.html':
         marker='<!-- public-resource-entry -->'
         new=re.sub(r'<!-- public-resource-entry -->.*?<!-- /public-resource-entry -->','',new,flags=re.S)
-        entry=marker+'<nav aria-label="Public atlas resources" style="display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 5%;border-bottom:1px solid #d2d3c8">'+link('/numerical-methods-atlas/methods/','手法の見取り図 / Method map')+link('/numerical-methods-atlas/code-and-data/','コード・入力・検証 / Code, inputs and checks')+'</nav><!-- /public-resource-entry -->'
+        entry=marker+'<nav aria-label="Public atlas resources" style="display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 5%;border-bottom:1px solid #d2d3c8">'+link('/numerical-methods-atlas/methods/','手法・コードの対応表 / Methods and code reference')+link('/numerical-methods-atlas/code-and-data/','コード・入力・検証 / Code, inputs and checks')+'</nav><!-- /public-resource-entry -->'
         new=new.replace('<main',entry+'<main',1)
     if new!=text:p.write_text(new)
 site_config=ATLAS/'site.json'

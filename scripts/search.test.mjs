@@ -20,8 +20,8 @@ test('the public search page has one search container and no merge markers',()=>
   assert.equal((html.match(/data-search-index=/g)||[]).length,1);
   assert.ok(!/^(?:<{7}|>{7})(?:\s|$)/m.test(html));
 });
-test('the named method map is the first result in Japanese and English',()=>{
-  for(const [query,lang] of [['手法の見取り図','ja'],['手法 見取り図','ja'],['map of numerical methods','en']]){
+test('the named methods and code reference is the first result in Japanese and English',()=>{
+  for(const [query,lang] of [['手法・コードの対応表','ja'],['手法 対応表','ja'],['methods and code reference','en']]){
     assert.equal(search(query,lang)[0]?.url,'/numerical-methods-atlas/methods/',query);
   }
 });

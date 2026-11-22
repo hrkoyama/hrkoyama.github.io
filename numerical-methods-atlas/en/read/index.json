@@ -1,0 +1,1038 @@
+{
+  "schema_version": 1,
+  "language": "en",
+  "title": "Learn by field",
+  "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
+  "source": "/catalog/atlas-reading-index.json",
+  "source_sha256": "688c0dd34df64bf5be95532b60c10323ad1b7f5b358c509e2809406c39006bf1",
+  "chapter_count": 87,
+  "groups": [
+    {
+      "id": "foundations-time",
+      "title": "Foundations, error and time integration",
+      "description": "Start with error and stability, then follow time integration and equations with constraints.",
+      "chapters": [
+        {
+          "id": "stability",
+          "title": "Differences, CFL, von Neumann analysis, and Lax",
+          "url": "/numerical-methods-atlas/en/read/stability/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "stability 差分、CFL条件、von Neumann解析、Laxの定理 Differences, CFL, von Neumann analysis, and Lax 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "accuracy-stability",
+          "title": "A-stability, L-stability and error norms",
+          "url": "/numerical-methods-atlas/en/read/accuracy-stability/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "accuracy-stability A安定性、L安定性、誤差ノルム A-stability, L-stability and error norms 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "time-integration",
+          "title": "Time integration and leapfrog",
+          "url": "/numerical-methods-atlas/en/read/time-integration/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "time-integration 時間積分とleapfrog法 Time integration and leapfrog 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "runge-kutta",
+          "title": "Runge–Kutta families: stages, order, stability, and SSP",
+          "url": "/numerical-methods-atlas/en/read/runge-kutta/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "runge-kutta Runge–Kutta法：段数、次数、安定性、SSP Runge–Kutta families: stages, order, stability, and SSP 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "stiff-integration",
+          "title": "Stiff integration: solve the stage, control the time error",
+          "url": "/numerical-methods-atlas/en/read/stiff-integration/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "stiff-integration 硬い方程式の積分：段階を解き、時間誤差を制御する Stiff integration: solve the stage, control the time error 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "symplectic",
+          "title": "Symplectic integration: a canonical map, not an exact energy promise",
+          "url": "/numerical-methods-atlas/en/read/symplectic/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "symplectic シンプレクティック積分：正準写像とエネルギーを分ける Symplectic integration: a canonical map, not an exact energy promise 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "dae",
+          "title": "Differential-algebraic equations / DAE",
+          "url": "/numerical-methods-atlas/en/read/dae/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "dae 微分代数方程式（DAE） Differential-algebraic equations / DAE 基礎・誤差・時間積分 Foundations, error and time integration"
+        }
+      ]
+    },
+    {
+      "id": "linear-approximation",
+      "title": "Elliptic problems, linear algebra and approximation",
+      "description": "Go from boundary-value problems and sparse solvers to eigenvalues, basis functions, interpolation and quadrature.",
+      "chapters": [
+        {
+          "id": "elliptic",
+          "title": "Diffusion, elliptic equations, boundary conditions, and iteration",
+          "url": "/numerical-methods-atlas/en/read/elliptic/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "elliptic 拡散、楕円型方程式、境界条件、反復法 Diffusion, elliptic equations, boundary conditions, and iteration 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "hyperbolic-diffusion",
+          "title": "Nishikawa's hyperbolic diffusion: iterate a first-order system",
+          "url": "/numerical-methods-atlas/en/read/hyperbolic-diffusion/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "hyperbolic-diffusion 西川の双曲型拡散法：1階系を反復する Nishikawa's hyperbolic diffusion: iterate a first-order system 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "sparse-nonlinear",
+          "title": "Sparse and nonlinear systems: measure the actual residual",
+          "url": "/numerical-methods-atlas/en/read/sparse-nonlinear/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "sparse-nonlinear 疎行列・非線形方程式系：真の残差を測る Sparse and nonlinear systems: measure the actual residual 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "amg",
+          "title": "Algebraic multigrid / AMG",
+          "url": "/numerical-methods-atlas/en/read/amg/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "amg 代数的マルチグリッド（AMG） Algebraic multigrid / AMG 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "qr-svd",
+          "title": "QR, SVD and least squares",
+          "url": "/numerical-methods-atlas/en/read/qr-svd/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "qr-svd QR・SVD・最小二乗 QR, SVD and least squares 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "eigensolvers",
+          "title": "Krylov eigenvalue solvers",
+          "url": "/numerical-methods-atlas/en/read/eigensolvers/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "eigensolvers Krylov固有値解法 Krylov eigenvalue solvers 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "basis-functions",
+          "title": "Orthogonal polynomials and mesh basis functions",
+          "url": "/numerical-methods-atlas/en/read/basis-functions/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "basis-functions 直交多項式と格子上の基底関数 Orthogonal polynomials and mesh basis functions 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "splines",
+          "title": "Spline interpolation",
+          "url": "/numerical-methods-atlas/en/read/splines/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "splines スプライン補間 Spline interpolation 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "quadrature",
+          "title": "Gaussian and adaptive quadrature",
+          "url": "/numerical-methods-atlas/en/read/quadrature/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "quadrature Gauss求積・適応積分 Gaussian and adaptive quadrature 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "chebyshev",
+          "title": "Chebyshev approximation",
+          "url": "/numerical-methods-atlas/en/read/chebyshev/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "chebyshev Chebyshev近似 Chebyshev approximation 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "wavelets",
+          "title": "Wavelets",
+          "url": "/numerical-methods-atlas/en/read/wavelets/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "wavelets ウェーブレット Wavelets 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-foundations",
+          "title": "AMG, factorizations, eigenvalues and quadrature",
+          "url": "/numerical-methods-atlas/en/read/validation-foundations/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-foundations AMG・行列分解・固有値・求積 AMG, factorizations, eigenvalues and quadrature 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        }
+      ]
+    },
+    {
+      "id": "differentiation-inverse",
+      "title": "Differentiation, optimization and inverse problems",
+      "description": "Distinguish derivatives of residuals and solutions, then connect objectives, observations and regularization.",
+      "chapters": [
+        {
+          "id": "automatic-differentiation",
+          "title": "Automatic differentiation: derivatives for numerical solvers",
+          "url": "/numerical-methods-atlas/en/read/automatic-differentiation/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "automatic-differentiation 自動微分：数値ソルバーのための微分計算 Automatic differentiation: derivatives for numerical solvers 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "adjoint",
+          "title": "Implicit differentiation and adjoints: Bratu parameter sensitivity",
+          "url": "/numerical-methods-atlas/en/read/adjoint/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "adjoint 陰関数微分と随伴法：Bratuのパラメータ感度 Implicit differentiation and adjoints: Bratu parameter sensitivity 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "optimization",
+          "title": "Gradient and quasi-Newton optimization",
+          "url": "/numerical-methods-atlas/en/read/optimization/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "optimization 勾配法・準Newton法 Gradient and quasi-Newton optimization 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "bratu-inverse",
+          "title": "Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients",
+          "url": "/numerical-methods-atlas/en/read/bratu-inverse/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "bratu-inverse Bratu逆問題：合成観測からλを随伴勾配で推定する Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "bratu-multi-inverse",
+          "title": "Multi-parameter Bratu inversion: regularization and identifiability",
+          "url": "/numerical-methods-atlas/en/read/bratu-multi-inverse/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "bratu-multi-inverse Bratu逆問題の複数パラメータ化：正則化と識別可能性 Multi-parameter Bratu inversion: regularization and identifiability 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "pinn-operators",
+          "title": "PINNs and neural operators",
+          "url": "/numerical-methods-atlas/en/read/pinn-operators/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "pinn-operators PINN・ニューラル演算子 PINNs and neural operators 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        }
+      ]
+    },
+    {
+      "id": "conservation-shocks",
+      "title": "Fluids, shocks and steady solvers",
+      "description": "Read about reconstruction, limiting and shock robustness, followed by low-Mach conditions and steady iterations.",
+      "chapters": [
+        {
+          "id": "reconstruction",
+          "title": "Euler reconstruction: PPM, characteristics, WENO-Z and AUSM",
+          "url": "/numerical-methods-atlas/en/read/reconstruction/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "reconstruction Euler再構成：PPM・特性変数・WENO-Z・AUSM Euler reconstruction: PPM, characteristics, WENO-Z and AUSM 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "limiters",
+          "title": "Slope limiters: minmod, Superbee, MC, van Leer, and van Albada",
+          "url": "/numerical-methods-atlas/en/read/limiters/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "limiters 勾配制限：minmod、Superbee、MC、van Leer、van Albada Slope limiters: minmod, Superbee, MC, van Leer, and van Albada 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "advanced-limiters",
+          "title": "Advanced limiters: TVB and positivity preservation",
+          "url": "/numerical-methods-atlas/en/read/advanced-limiters/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "advanced-limiters 発展的な勾配制限：TVBと正値性保存 Advanced limiters: TVB and positivity preservation 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "rotated-hybrid",
+          "title": "Rotated-hybrid Riemann solver",
+          "url": "/numerical-methods-atlas/en/read/rotated-hybrid/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "rotated-hybrid 回転ハイブリッド・リーマンソルバー Rotated-hybrid Riemann solver 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "shock-expansion",
+          "title": "Traced PPM, AUSM variants and curved bow shocks",
+          "url": "/numerical-methods-atlas/en/read/shock-expansion/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "shock-expansion 波追跡PPM、AUSM系と曲面前方の衝撃波 Traced PPM, AUSM variants and curved bow shocks 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "carbuncle",
+          "title": "The carbuncle phenomenon",
+          "url": "/numerical-methods-atlas/en/read/carbuncle/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "carbuncle カーバンクル現象 The carbuncle phenomenon 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "double-mach",
+          "title": "Double Mach Reflection",
+          "url": "/numerical-methods-atlas/en/read/double-mach/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "double-mach 二重Mach反射 Double Mach Reflection 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "keep",
+          "title": "KEEP schemes: preserve the smooth-flow balance, test the limits",
+          "url": "/numerical-methods-atlas/en/read/keep/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "keep KEEP法：滑らかな流れの釣合いと限界を検証する KEEP schemes: preserve the smooth-flow balance, test the limits 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "advanced",
+          "title": "Preconditioning, dual time stepping, and residual distribution",
+          "url": "/numerical-methods-atlas/en/read/advanced/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "advanced 前処理、二重時間積分、残差分配法 Preconditioning, dual time stepping, and residual distribution 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "low-mach-preconditioning",
+          "title": "Preconditioning matrices, low Mach numbers, sonic points and entropy fixes",
+          "url": "/numerical-methods-atlas/en/read/low-mach-preconditioning/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "low-mach-preconditioning 前処理行列・低Mach数・音速点とエントロピー修正 Preconditioning matrices, low Mach numbers, sonic points and entropy fixes 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "steady-runge-kutta",
+          "title": "Damping Runge–Kutta iterations for steady solutions",
+          "url": "/numerical-methods-atlas/en/read/steady-runge-kutta/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "steady-runge-kutta 定常解のためのダンピングRunge–Kutta反復 Damping Runge–Kutta iterations for steady solutions 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "nasa-2d",
+          "title": "NASA 2D verification and validation case catalog",
+          "url": "/numerical-methods-atlas/en/read/nasa-2d/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "nasa-2d NASAの2次元検証・妥当性確認問題集 NASA 2D verification and validation case catalog 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        }
+      ]
+    },
+    {
+      "id": "meshes-coupled",
+      "title": "Meshes, finite elements and coupled equations",
+      "description": "Organize spatial discretization and coordinates, then examine incompressible flow, MHD and relativistic systems.",
+      "chapters": [
+        {
+          "id": "meshes",
+          "title": "Structured, unstructured, and triangular meshes",
+          "url": "/numerical-methods-atlas/en/read/meshes/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "meshes 構造格子、非構造格子、三角形格子 Structured, unstructured, and triangular meshes 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "fem",
+          "title": "Continuous finite elements: from weak form to sparse assembly",
+          "url": "/numerical-methods-atlas/en/read/fem/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "fem 連続有限要素法：弱形式から疎行列の組立てへ Continuous finite elements: from weak form to sparse assembly 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "ale",
+          "title": "Arbitrary Lagrangian–Eulerian methods",
+          "url": "/numerical-methods-atlas/en/read/ale/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "ale 任意Lagrange–Euler法 Arbitrary Lagrangian–Eulerian methods 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "coordinates-viscosity",
+          "title": "Polar and cylindrical coordinates: tensors and viscosity",
+          "url": "/numerical-methods-atlas/en/read/coordinates-viscosity/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "coordinates-viscosity 極・円筒座標：テンソルと粘性 Polar and cylindrical coordinates: tensors and viscosity 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "geophysical-grids",
+          "title": "Spherical meshes and Arakawa A, B and C grids",
+          "url": "/numerical-methods-atlas/en/read/geophysical-grids/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "geophysical-grids 球面メッシュとArakawa A・B・C格子 Spherical meshes and Arakawa A, B and C grids 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "cip",
+          "title": "CIP: carry the value and the gradient",
+          "url": "/numerical-methods-atlas/en/read/cip/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "cip CIP：値と勾配を運ぶ CIP: carry the value and the gradient 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "incompressible",
+          "title": "Incompressible flow: project with compatible discrete operators",
+          "url": "/numerical-methods-atlas/en/read/incompressible/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "incompressible 非圧縮流：整合する離散演算子で射影する Incompressible flow: project with compatible discrete operators 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "mhd",
+          "title": "MHD: constrained transport and divergence cleaning",
+          "url": "/numerical-methods-atlas/en/read/mhd/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "mhd MHD：制約輸送法と発散クリーニング MHD: constrained transport and divergence cleaning 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "relativistic-hydrodynamics",
+          "title": "Relativistic hydrodynamics: SRHD, GRHD, and GRMHD",
+          "url": "/numerical-methods-atlas/en/read/relativistic-hydrodynamics/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "relativistic-hydrodynamics 相対論的流体力学：SRHD、GRHD、GRMHD Relativistic hydrodynamics: SRHD, GRHD, and GRMHD 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-mhd",
+          "title": "Independent fluid/MHD comparisons and CT/GLM",
+          "url": "/numerical-methods-atlas/en/read/validation-mhd/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-mhd 流体・MHDの独立照合とCT／GLM Independent fluid/MHD comparisons and CT/GLM 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        }
+      ]
+    },
+    {
+      "id": "particles-transport",
+      "title": "Particles, kinetic methods and transport",
+      "description": "Explore particle methods, distribution functions, long-range forces and transport equations.",
+      "chapters": [
+        {
+          "id": "particles-sph",
+          "title": "Particle methods and smoothed particle hydrodynamics",
+          "url": "/numerical-methods-atlas/en/read/particles-sph/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "particles-sph 粒子法と平滑化粒子流体力学 Particle methods and smoothed particle hydrodynamics 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "gsph",
+          "title": "Godunov smoothed particle hydrodynamics (GSPH)",
+          "url": "/numerical-methods-atlas/en/read/gsph/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "gsph Godunov平滑化粒子流体力学（GSPH） Godunov smoothed particle hydrodynamics (GSPH) 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "lattice-boltzmann",
+          "title": "Lattice Boltzmann: collide, stream, recover fluid motion",
+          "url": "/numerical-methods-atlas/en/read/lattice-boltzmann/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "lattice-boltzmann 格子Boltzmann法：衝突、並進、流体運動の回復 Lattice Boltzmann: collide, stream, recover fluid motion 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "chapman-enskog",
+          "title": "Chapman–Enskog expansion: from populations to transport",
+          "url": "/numerical-methods-atlas/en/read/chapman-enskog/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "chapman-enskog Chapman–Enskog展開：分布から輸送へ Chapman–Enskog expansion: from populations to transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "dsmc",
+          "title": "DSMC and kinetic transport",
+          "url": "/numerical-methods-atlas/en/read/dsmc/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "dsmc DSMC・運動論輸送 DSMC and kinetic transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "particle-gravity",
+          "title": "Particle gravity: PM, P³M, Tree, multipoles, and multigrid",
+          "url": "/numerical-methods-atlas/en/read/particle-gravity/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "particle-gravity 粒子重力：PM、P³M、ツリー、多重極、マルチグリッド Particle gravity: PM, P³M, Tree, multipoles, and multigrid 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "gravity-boundaries",
+          "title": "Gravity kernels: isolated FFTs and a periodic slab",
+          "url": "/numerical-methods-atlas/en/read/gravity-boundaries/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "gravity-boundaries 重力核：孤立FFTと周期スラブ Gravity kernels: isolated FFTs and a periodic slab 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "radiation-transport",
+          "title": "Radiation transport and moment methods",
+          "url": "/numerical-methods-atlas/en/read/radiation-transport/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "radiation-transport 放射輸送・モーメント法 Radiation transport and moment methods 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-particles",
+          "title": "Particles, electrostatics, kinetic and radiative transport",
+          "url": "/numerical-methods-atlas/en/read/validation-particles/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-particles 粒子・静電場・運動論・放射輸送 Particles, electrostatics, kinetic and radiative transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        }
+      ]
+    },
+    {
+      "id": "fields-electronic",
+      "title": "Electromagnetic fields, electrostatics and electronic structure",
+      "description": "Follow periodic electrostatics and electromagnetic fields, then atomic, molecular and periodic electronic-structure approximations.",
+      "chapters": [
+        {
+          "id": "ewald",
+          "title": "Ewald summation",
+          "url": "/numerical-methods-atlas/en/read/ewald/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "ewald Ewald法 Ewald summation 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "pme",
+          "title": "Particle mesh Ewald / PME",
+          "url": "/numerical-methods-atlas/en/read/pme/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "pme Particle Mesh Ewald（PME） Particle mesh Ewald / PME 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "spme",
+          "title": "Smooth particle mesh Ewald / SPME",
+          "url": "/numerical-methods-atlas/en/read/spme/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "spme Smooth PME（SPME） Smooth particle mesh Ewald / SPME 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "slab-ewald",
+          "title": "Slab electrostatics and 2D-periodic Ewald",
+          "url": "/numerical-methods-atlas/en/read/slab-ewald/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "slab-ewald スラブ静電場と2次元周期Ewald Slab electrostatics and 2D-periodic Ewald 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "fdtd",
+          "title": "Yee finite-difference time-domain method",
+          "url": "/numerical-methods-atlas/en/read/fdtd/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "fdtd Yee FDTD Yee finite-difference time-domain method 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "pic",
+          "title": "Particle-in-cell / PIC",
+          "url": "/numerical-methods-atlas/en/read/pic/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "pic Particle-in-Cell（PIC） Particle-in-cell / PIC 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "quantum-chemistry",
+          "title": "Quantum chemistry and DFT: approximations and equations",
+          "url": "/numerical-methods-atlas/en/read/quantum-chemistry/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "quantum-chemistry 量子化学・DFT：何を近似し、何を解くか Quantum chemistry and DFT: approximations and equations 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "quantum-atoms",
+          "title": "Hydrogenic atoms and helium: runnable validation examples",
+          "url": "/numerical-methods-atlas/en/read/quantum-atoms/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "quantum-atoms 水素型原子とHe：実行・検証例 Hydrogenic atoms and helium: runnable validation examples 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "h2-hf",
+          "title": "Closed-shell HF for H₂: independent references, SCF residuals and basis refinement",
+          "url": "/numerical-methods-atlas/en/read/h2-hf/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "h2-hf H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 Closed-shell HF for H₂: independent references, SCF residuals and basis refinement 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "periodic-dft",
+          "title": "Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference",
+          "url": "/numerical-methods-atlas/en/read/periodic-dft/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "periodic-dft 周期DFT：Γ点・k点積分・基底・SCFと独立参照 Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "periodic-forces",
+          "title": "From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface",
+          "url": "/numerical-methods-atlas/en/read/periodic-forces/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "periodic-forces DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        }
+      ]
+    },
+    {
+      "id": "stochastic-models",
+      "title": "Stochastic computation, biology and temperature control",
+      "description": "Compare stochastic error, population models and temperature control through their respective verification quantities.",
+      "chapters": [
+        {
+          "id": "monte-carlo",
+          "title": "Monte Carlo integration",
+          "url": "/numerical-methods-atlas/en/read/monte-carlo/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "monte-carlo Monte Carlo積分 Monte Carlo integration 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "mcmc",
+          "title": "Markov-chain Monte Carlo / MCMC",
+          "url": "/numerical-methods-atlas/en/read/mcmc/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "mcmc Markov連鎖Monte Carlo Markov-chain Monte Carlo / MCMC 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "sde",
+          "title": "Stochastic differential equations",
+          "url": "/numerical-methods-atlas/en/read/sde/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "sde 確率微分方程式 Stochastic differential equations 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "biological-models",
+          "title": "Biological model equations and numerical verification",
+          "url": "/numerical-methods-atlas/en/read/biological-models/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "biological-models 生物モデル方程式と数値検証 Biological model equations and numerical verification 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-biology",
+          "title": "Independent validation of nonlinear reaction–diffusion and pattern formation",
+          "url": "/numerical-methods-atlas/en/read/validation-biology/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-biology 非線形反応拡散・パターン形成の独立検証 Independent validation of nonlinear reaction–diffusion and pattern formation 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "thermostats",
+          "title": "Thermostats: temperature control and distributions",
+          "url": "/numerical-methods-atlas/en/read/thermostats/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "thermostats サーモスタット：温度制御と分布の比較 Thermostats: temperature control and distributions 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-models",
+          "title": "MCMC, temperature control and biological models",
+          "url": "/numerical-methods-atlas/en/read/validation-models/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-models MCMC・温度制御・生物モデル MCMC, temperature control and biological models 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-thermostats",
+          "title": "CSVR and Langevin: distributions, fluctuations and correlations",
+          "url": "/numerical-methods-atlas/en/read/validation-thermostats/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-thermostats CSVRとLangevin：分布・揺らぎ・相関 CSVR and Langevin: distributions, fluctuations and correlations 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        }
+      ]
+    },
+    {
+      "id": "verification-guides",
+      "title": "Verification problems and experiment guides",
+      "description": "Choose equations and references, and distinguish exhibits, saved results and runnable examples.",
+      "chapters": [
+        {
+          "id": "equation-gallery",
+          "title": "Equation gallery: choose the equation before the algorithm",
+          "url": "/numerical-methods-atlas/en/read/equation-gallery/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "equation-gallery 方程式ギャラリー：計算法の前に方程式を選ぶ Equation gallery: choose the equation before the algorithm 検証問題・実験ガイド Verification problems and experiment guides"
+        },
+        {
+          "id": "benchmarks",
+          "title": "Benchmark library",
+          "url": "/numerical-methods-atlas/en/read/benchmarks/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "benchmarks テスト計算ライブラリ Benchmark library 検証問題・実験ガイド Verification problems and experiment guides"
+        },
+        {
+          "id": "reference-solutions",
+          "title": "Exact and reference solutions",
+          "url": "/numerical-methods-atlas/en/read/reference-solutions/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "reference-solutions 厳密解・参照解ライブラリ Exact and reference solutions 検証問題・実験ガイド Verification problems and experiment guides"
+        },
+        {
+          "id": "experiments",
+          "title": "Interactive experiment guide",
+          "url": "/numerical-methods-atlas/en/read/experiments/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "experiments インタラクティブ実験ガイド Interactive experiment guide 検証問題・実験ガイド Verification problems and experiment guides"
+        },
+        {
+          "id": "movies",
+          "title": "Time-dependent tests: movies and saved states",
+          "url": "/numerical-methods-atlas/en/read/movies/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "movies 時間依存テスト：動画と保存状態 Time-dependent tests: movies and saved states 検証問題・実験ガイド Verification problems and experiment guides"
+        }
+      ]
+    },
+    {
+      "id": "history-resources",
+      "title": "History, references and development records",
+      "description": "Trace numerical methods and their sources, then consult textbooks, coverage and development records.",
+      "chapters": [
+        {
+          "id": "history",
+          "title": "Historical atlas",
+          "url": "/numerical-methods-atlas/en/read/history/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "history 数値計算法の歴史アトラス Historical atlas 歴史・文献・整備記録 History, references and development records"
+        },
+        {
+          "id": "references",
+          "title": "References by original publication year",
+          "url": "/numerical-methods-atlas/en/read/references/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "references 原著の出版年順に並べた参考文献 References by original publication year 歴史・文献・整備記録 History, references and development records"
+        },
+        {
+          "id": "textbooks",
+          "title": "Textbooks: where to look next",
+          "url": "/numerical-methods-atlas/en/read/textbooks/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "textbooks 教科書案内：次に何を調べるか Textbooks: where to look next 歴史・文献・整備記録 History, references and development records"
+        },
+        {
+          "id": "roe-memorial",
+          "title": "Remembering Philip L. Roe",
+          "url": "/numerical-methods-atlas/en/read/roe-memorial/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "roe-memorial Philip L. Roeを偲んで Remembering Philip L. Roe 歴史・文献・整備記録 History, references and development records"
+        },
+        {
+          "id": "site-coverage",
+          "title": "Site coverage and counting rules",
+          "url": "/numerical-methods-atlas/en/read/site-coverage/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "site-coverage 収録範囲と数え方 Site coverage and counting rules 歴史・文献・整備記録 History, references and development records"
+        },
+        {
+          "id": "roadmap",
+          "title": "Implementation roadmap",
+          "url": "/numerical-methods-atlas/en/read/roadmap/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "roadmap 実装ロードマップ Implementation roadmap 歴史・文献・整備記録 History, references and development records"
+        },
+        {
+          "id": "release-notes-v0.1.0",
+          "title": "v0.1.0 — First edition",
+          "url": "/numerical-methods-atlas/en/read/release-notes-v0.1.0/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "release-notes-v0.1.0 v0.1.0 初版 v0.1.0 — First edition 歴史・文献・整備記録 History, references and development records"
+        }
+      ]
+    }
+  ]
+}
