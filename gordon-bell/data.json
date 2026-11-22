@@ -4227,6 +4227,93 @@
       "local_reference": "Gordon_Bell資料/歴史一次資料/候補一覧回収_1987_1989_1992_20261122/Crossref_SC92_tree.json",
       "sha256": "a83eae85917c8d6652f4df12b2379e52ede18799c5abb818f19f131c068c46da",
       "size_bytes": 3432
+    },
+    "sc2002-batch-pap146-manuscript": {
+      "label": "Preserved SC02 candidate manuscript: A 29.5 Tflops simulation of planetesimals in Uranus-Neptune region on GRAPE-6",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap146.pdf",
+      "sha256": "b4fd927e8813372cbbfb3f0b7170cdb10fca16b95b53fdf59f18c8c9ae1859a2",
+      "source_sha256": "b4fd927e8813372cbbfb3f0b7170cdb10fca16b95b53fdf59f18c8c9ae1859a2",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/Creator": "TeX",
+        "/Producer": "pdfTeX-0.13d",
+        "/CreationDate": "D:20020815142700"
+      },
+      "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+    },
+    "sc2002-batch-pap277-manuscript": {
+      "label": "Preserved SC02 candidate manuscript: NAMD: Biomolecular Simulation on Thousands of Processors",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap277.pdf",
+      "sha256": "cfd3967a5e1632056b16ab9d771731c9fc5a25a9d90588504f86b101915738b0",
+      "source_sha256": "cfd3967a5e1632056b16ab9d771731c9fc5a25a9d90588504f86b101915738b0",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/Creator": "TeX",
+        "/Producer": "pdfTeX-0.13d",
+        "/CreationDate": "D:20020730091100"
+      },
+      "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+    },
+    "sc2002-batch-pap273-manuscript": {
+      "label": "Preserved SC02 candidate manuscript: 16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap273.pdf",
+      "sha256": "dde2a719b008789642e700567f219d9c66df0e4d04e0f7ddcffa7f55e78d74e3",
+      "source_sha256": "dde2a719b008789642e700567f219d9c66df0e4d04e0f7ddcffa7f55e78d74e3",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20020803024830",
+        "/Producer": "Acrobat Distiller 4.05 for Windows"
+      },
+      "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+    },
+    "sc2002-batch-pap147-manuscript": {
+      "label": "Preserved SC02 candidate manuscript: 14.9 TFLOPS Three-dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap147.pdf",
+      "sha256": "9403e55a5423d62aa6c3cc66a9c429d5199d4c46c97f7058812c00495dfd4ceb",
+      "source_sha256": "9403e55a5423d62aa6c3cc66a9c429d5199d4c46c97f7058812c00495dfd4ceb",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20020803084347+09'00'",
+        "/ModDate": "D:20020803084347+09'00'",
+        "/Producer": "Acrobat Distiller 5.0.5 for Macintosh",
+        "/Author": "“â‘ã’m”u",
+        "/Creator": "Microsoft Word: AdobePS 8.7.2 (104)",
+        "/Title": "Microsoft Word - paper v3"
+      },
+      "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+    },
+    "sc2002-batch-pap331-manuscript": {
+      "label": "Preserved SC02 candidate manuscript: A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap331.pdf",
+      "sha256": "dda885e2c07f7f228a6b0c384a012dfd67b84dcbeadc999d4c45406939e3c52e",
+      "source_sha256": "dda885e2c07f7f228a6b0c384a012dfd67b84dcbeadc999d4c45406939e3c52e",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20020802181236+09'00'",
+        "/ModDate": "D:20020802181236+09'00'",
+        "/Producer": "Acrobat Distiller 5.0.5 (Windows)"
+      },
+      "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
     }
   },
   "papers": [
@@ -10167,6 +10254,345 @@
       ]
     },
     {
+      "year": 2002,
+      "title": "A 29.5 Tflops simulation of planetesimals in Uranus-Neptune region on GRAPE-6",
+      "authors": [
+        "Junichiro Makino",
+        "Eiichiro Kokubo",
+        "Toshiyuki Fukushige",
+        "Hiroshi Daisaka"
+      ],
+      "field": "Planet formation; direct gravitational N-body simulation with block individual timesteps",
+      "summary": "The simulation follows mutual encounters of planetesimals and two protoplanets in the outer Solar System. Direct summation and block individual timesteps resolve widely separated encounter timescales. GRAPE-6 pipelines evaluate gravity and its first time derivative while a Linux host cluster integrates trajectories. The selected throughput uses a conventional interaction-operation count over the entire run, including file operations.",
+      "machines": [
+        "GRAPE-6"
+      ],
+      "machine_configurations": [
+        {
+          "name": "GRAPE-6",
+          "facility": "University of Tokyo GRAPE project; exact run location is not separately stated",
+          "configuration": "2,048 custom chips on 64 boards, six force pipelines per chip at 90 MHz. Sixteen Athlon XP 1800+ Linux hosts with 1 GB DDR each; four boards per host, four hardware-connected clusters and Gigabit Ethernet between clusters. The abstract states 63.4 Tflop/s theoretical peak; this is not the achieved rate.",
+          "location": "PDF pp. 2,8-12, Sections 1 and 5-6"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "GRAPE-6",
+          "value": 29.5,
+          "unit": "Tflop/s",
+          "precision": "Custom GRAPE-6 force/predictor pipeline arithmetic; numeric word lengths are not specified in this manuscript. The 57-operation convention is not a uniform IEEE FP64 hardware-operation count.",
+          "scope": "Whole-run average for the direct N-body planetesimal application, including file operations",
+          "scale": "1,799,998 planetesimals plus two protoplanets; 2,048 chips and 16 hosts; 40,000 dynamical time units",
+          "measurement_method": "Counted work = 3.6267e10 individual particle steps x 1,799,999 interaction partners x 57 conventional operations per interaction (38 for force plus 19 for its first time derivative). The reported 3.7210e18 operations are divided by 35.053 hours for the whole run, explicitly including file operations. Timer API and repeat count are unspecified.",
+          "page": 12,
+          "location": "PDF p. 12, Section 6; interaction convention p. 9; initial conditions pp. 2-3",
+          "note": "The total particle count is 1,800,000, including two protoplanets. Do not add two particles to 1.8 million again, substitute the hardware peak, or label this an FP64-equivalent comparison.",
+          "source_id": "sc2002-batch-pap146-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 29500000000000.0
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2002-batch-pap146-manuscript"
+        ],
+        "authors": [
+          "sc2002-batch-pap146-manuscript"
+        ],
+        "machines": [
+          "sc2002-batch-pap146-manuscript"
+        ],
+        "abstract": [
+          "sc2002-batch-pap146-manuscript"
+        ],
+        "selection": [
+          "roster-2002-sc02-preserved-pap146",
+          "roster-2002-sc02-preserved-pap216",
+          "roster-2002-sc02-preserved-pap277",
+          "roster-2002-sc02-preserved-pap273",
+          "roster-2002-sc02-preserved-pap147",
+          "roster-2002-sc02-preserved-pap331"
+        ],
+        "doi": [
+          "roster-2002-sc02-crossref-pap146"
+        ],
+        "award": []
+      },
+      "notes": [
+        "The first-page byline contains four authors in the stated order; the abstract explicitly describes a 2002 performance-prize entry. Award outcome remains separate from that self-description.",
+        "The physical model uses a 15-35 AU planetesimal ring, softened mutual gravity with 0.008 AU softening, a prescribed external Solar potential, and two massive bodies initially at 20 and 30 AU. Direct forces and power-of-two block individual timesteps address close encounters. The manuscript does not identify a named high-order integration formula or exhaustive arithmetic formats.",
+        "Architectural alternatives discussed in Sections 4-5 are not extra measured machine configurations. Only the complete 16-host configuration is used for the selected observation. The low-text final PDF page contains the last bibliography entry, not a missing-body-page defect.",
+        "The existing read-only-copy receipt authenticates these local bytes. No live PDF source URL or conference-day updated version was authenticated. PDF creation/modified metadata does not establish a scientific revision date. Original PDF, text and figures remain offline."
+      ],
+      "booktitle": "SC02 proceedings",
+      "event_year": 2002,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 14 PDF pages read through references; critical pages [1, 9, 12, 14] rendered and visually checked for ordered byline, tables, units, precision and measurement scope. Selected representative observations, not an independent reproduction or final conference score.",
+      "local_fulltext": {
+        "filename": "pap146.pdf",
+        "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap146.pdf",
+        "source_url": null,
+        "sha256": "b4fd927e8813372cbbfb3f0b7170cdb10fca16b95b53fdf59f18c8c9ae1859a2",
+        "page_count": 14,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          9,
+          12,
+          14
+        ]
+      },
+      "id": "sc2002-pap146",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2002.10022",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2002-sc02-crossref-pap146",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [
+        {
+          "title": "A 29.5 Tflops Simulation of Planetesimals in Uranus-Neptune Region on GRAPE-6",
+          "source_id": "roster-2002-sc02-crossref-pap146"
+        }
+      ],
+      "citation_title": "A 29.5 Tflops Simulation of Planetesimals in Uranus-Neptune Region on GRAPE-6",
+      "citation_authors": [
+        "Junichiro Makino",
+        "Eiichiro Kokubo",
+        "Toshiyuki Fukushige",
+        "Hiroshi Daisaka"
+      ],
+      "citation_year": 2002,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2002,
+      "title": "14.9 TFLOPS Three-dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+      "authors": [
+        "Hitoshi Sakagami",
+        "Hitoshi Murai",
+        "Yoshiki Seo",
+        "Mitsuo Yokokawa"
+      ],
+      "field": "Compressible hydrodynamics for inertial-confinement fusion; TVD finite differences and HPF",
+      "summary": "IMPACT-3D models the Rayleigh-Taylor instability of imploding fusion targets using compressible inviscid Euler flow on a Cartesian grid. HPF/ES distributes the third array dimension, vectorizes the first and optimizes stencil communication. HPF/JA directives further reduce communication-schedule construction. Automatic and manually tuned HPF rates are kept distinct; the paper describes the physical results as preliminary.",
+      "machines": [
+        "Earth Simulator"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Earth Simulator",
+          "facility": "Earth Simulator Center, JAMSTEC",
+          "configuration": "512 nodes and 4,096 arithmetic processors for the selected 2048 x 2048 x 4096 mesh. Each node has eight 500 MHz vector processors and 16 GB memory. HPF abstract processors map flatly to arithmetic processors; HPF/ES and HPF/JA control distributed arrays and halo updates.",
+          "location": "PDF pp. 6-12, Sections 3.2 and 4"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "Earth Simulator",
+          "value": 12.5,
+          "unit": "Tflop/s",
+          "precision": "Arithmetic word length of the timed IMPACT-3D evaluations is not explicitly identified; example declarations and available hardware formats do not establish a uniform FP32 or FP64 run.",
+          "scope": "Sustained IMPACT-3D timed-region throughput with compiler-optimized automatic HPF communications",
+          "scale": "2048 x 2048 x 4096 mesh; 512 nodes / 4,096 processors",
+          "measurement_method": "MPI/ES instrumentation beneath HPF/ES collects hardware FLOP counters. Total work is average per-process FLOP count times the number of processors, divided by elapsed time measured separately with mpi_wtime(). The paper does not fully identify the timed start/end, step count, I/O inclusion, event weighting or repeat protocol. ESOS 1.1; HPF/ES Rev.1.7(585), -O3 -Moverlap=size:0.",
+          "page": 9,
+          "location": "PDF p. 9 Section 4.1; PDF p. 10 Figure 5; methodology p. 9",
+          "note": "39% of the used-node theoretical peak is reported. This is the automatic-communication configuration, not the later manually tuned HPF/JA configuration.",
+          "source_id": "sc2002-batch-pap147-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 12500000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 14.9,
+          "unit": "Tflop/s",
+          "precision": "Arithmetic word length of the timed IMPACT-3D evaluations is not explicitly identified; example declarations and available hardware formats do not establish a uniform FP32 or FP64 run.",
+          "scope": "Sustained IMPACT-3D timed-region throughput with REFLECT/LOCAL HPF/JA communication tuning",
+          "scale": "2048 x 2048 x 4096 mesh; 512 nodes / 4,096 processors",
+          "measurement_method": "MPI/ES instrumentation beneath HPF/ES collects hardware FLOP counters. Total work is average per-process FLOP count times the number of processors, divided by elapsed time measured separately with mpi_wtime(). The paper does not fully identify the timed start/end, step count, I/O inclusion, event weighting or repeat protocol. ESOS 1.1; HPF/ES Rev.1.7(585), -O3 -Moverlap=size:0.",
+          "page": 11,
+          "location": "PDF p. 11 Section 4.2; PDF p. 12 Figure 7; summary p. 13",
+          "note": "The manual directives reduce communication-schedule generation frequency. The separate HPF-versus-MPI table uses a smaller 1024 x 1024 x 2048 mesh; its 7.659-Tflop/s MPI result is not this 14.9-Tflop/s observation.",
+          "source_id": "sc2002-batch-pap147-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 14900000000000.0
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2002-batch-pap147-manuscript"
+        ],
+        "authors": [
+          "sc2002-batch-pap147-manuscript"
+        ],
+        "machines": [
+          "sc2002-batch-pap147-manuscript"
+        ],
+        "abstract": [
+          "sc2002-batch-pap147-manuscript"
+        ],
+        "selection": [
+          "roster-2002-sc02-preserved-pap147",
+          "roster-2002-sc02-preserved-pap146",
+          "roster-2002-sc02-preserved-pap216",
+          "roster-2002-sc02-preserved-pap277",
+          "roster-2002-sc02-preserved-pap273",
+          "roster-2002-sc02-preserved-pap331"
+        ],
+        "doi": [
+          "roster-2002-sc02-crossref-pap147"
+        ],
+        "award": [
+          "roster-2002-sc02-awards-close"
+        ]
+      },
+      "notes": [
+        "The TVD method uses an explicit five-point spatial stencil, fractional-step integration, second-order space/time accuracy, and open/free boundary values extrapolated from the interior. The reviewed paper is a fluid model; no MHD equations or magnetic-field computation are asserted.",
+        "The 101^3 perturbation visualization illustrates the physical problem and is not the mesh for the 14.9-Tflop/s timing. The authors explicitly say that the physical result is preliminary and has not yet yielded new knowledge; planned larger studies are not achieved scientific results.",
+        "For the automatic version, 45 HPF directive lines were inserted into 1,334 non-comment Fortran lines. Twelve additional REFLECT/LOCAL directive lines support the manual optimization. These two program variants are not dated conference-day score revisions.",
+        "The existing read-only-copy receipt authenticates these local bytes. No live PDF source URL or conference-day updated version was authenticated. PDF creation/modified metadata does not establish a scientific revision date. Original PDF, text and figures remain offline."
+      ],
+      "booktitle": "SC02 proceedings",
+      "event_year": 2002,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 14 PDF pages read through references; critical pages [1, 7, 9, 11, 12, 13] rendered and visually checked for ordered byline, tables, units, precision and measurement scope. Selected representative observations, not an independent reproduction or final conference score.",
+      "local_fulltext": {
+        "filename": "pap147.pdf",
+        "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap147.pdf",
+        "source_url": null,
+        "sha256": "9403e55a5423d62aa6c3cc66a9c429d5199d4c46c97f7058812c00495dfd4ceb",
+        "page_count": 14,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          7,
+          9,
+          11,
+          12,
+          13
+        ]
+      },
+      "id": "sc2002-pap147",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2002.10051",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2002-sc02-crossref-pap147",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": {
+        "label": "Award for Language — special category",
+        "category": "Language (special category)",
+        "source_id": "roster-2002-sc02-awards-close"
+      },
+      "award_status": "Official award result checked in existing evidence",
+      "title_aliases": [
+        {
+          "title": "14.9 TFLOPS Three-Dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+          "source_id": "roster-2002-sc02-crossref-pap147"
+        }
+      ],
+      "citation_title": "14.9 TFLOPS Three-Dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+      "citation_authors": [
+        "Hitoshi Sakagami",
+        "Hitoshi Murai",
+        "Yoshiki Seo",
+        "Mitsuo Yokokawa"
+      ],
+      "citation_year": 2002,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
       "doi": "10.1109/sc.2002.10028",
       "title": "Salinas: A Scalable Software for High-Performance Structural and Solid Mechanics Simulations",
       "authors": [
@@ -10336,6 +10762,656 @@
         {
           "evidence_stage": "preserved_conference_submission_preprint",
           "source_revision_date": "2002-08-15"
+        }
+      ]
+    },
+    {
+      "year": 2002,
+      "title": "16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+      "authors": [
+        "Mitsuo Yokokawa",
+        "Ken’ichi Itakura",
+        "Atsuya Uno",
+        "Takashi Ishihara",
+        "Yukio Kaneda"
+      ],
+      "field": "Incompressible turbulence; dealiased Fourier pseudospectral direct numerical simulation",
+      "summary": "The DNS code evolves periodic incompressible turbulence with a Fourier projection, phase-shift dealiasing and Runge-Kutta time integration. Radix-4 FFTs, memory-layout padding, microtasking and MPI remote-memory transposes improve the dominant transforms. The headline 16.4 Tflop/s belongs to a single-precision benchmark with analytically counted work. Hardware-counter and double-precision results are recorded separately.",
+      "machines": [
+        "Earth Simulator"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Earth Simulator",
+          "facility": "Earth Simulator Center, JAMSTEC",
+          "configuration": "Selected benchmarks use 512 of 640 nodes, each with eight 500 MHz vector arithmetic processors and 16 GB shared memory. MPI_Put transfers distributed slabs; manual microtasking uses all eight processors per node. Full-system peak is not the benchmark throughput.",
+          "location": "PDF pp. 2-3,6-9, Sections 2-4.1"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "Earth Simulator",
+          "value": 16.4,
+          "unit": "Tflop/s",
+          "precision": "Single precision (FP32), bracketed benchmark variant in Table 2",
+          "scope": "Timed DNS integration throughput using analytical FFT/application work count",
+          "scale": "2048 x 2048 x 2048 grid; 512 nodes x eight arithmetic processors = 4,096 processors; Code-omega with manual microtasking",
+          "measurement_method": "Time is measured with MPI_wtime over 100 fourth-order Runge-Kutta timesteps; initialization and I/O are explicitly excluded. The four observations keep the two precision variants and the two operation-count methods in Tables 1-2 separate. The numerator is the hand-derived operation expression (8), 459 N^3 log2(N) + (369 + 16 pi) N^3 per step for N=2048, including 72 real 3-D FFTs per RK timestep.",
+          "page": 8,
+          "location": "PDF p. 8 Table 2, N^3=2048^3 and nd=512; method pp. 7-9",
+          "note": "The title’s 16.4 Tflop/s is the single-precision analytical-count result. Double-precision physics runs and the separate mixed-precision 4096^3 run must not inherit that number. These paired values describe benchmark counting/precision variants, not successive conference-day updates.",
+          "source_id": "sc2002-batch-pap273-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 16399999999999.998
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 15.3,
+          "unit": "Tflop/s",
+          "precision": "Single precision (FP32), bracketed benchmark variant in Table 1",
+          "scope": "Timed DNS integration throughput using ES hardware vector-operation counters",
+          "scale": "2048 x 2048 x 2048 grid; 512 nodes x eight arithmetic processors = 4,096 processors; Code-omega with manual microtasking",
+          "measurement_method": "Time is measured with MPI_wtime over 100 fourth-order Runge-Kutta timesteps; initialization and I/O are explicitly excluded. The four observations keep the two precision variants and the two operation-count methods in Tables 1-2 separate. The numerator uses the ES hardware monitor’s vector floating-point operation counts; hardware event conventions and sample/repeat counts are not exhaustively specified.",
+          "page": 8,
+          "location": "PDF p. 8 Table 1, N^3=2048^3 and nd=512; method pp. 7-9",
+          "note": "The title’s 16.4 Tflop/s is the single-precision analytical-count result. Double-precision physics runs and the separate mixed-precision 4096^3 run must not inherit that number. These paired values describe benchmark counting/precision variants, not successive conference-day updates.",
+          "source_id": "sc2002-batch-pap273-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 15300000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 14.6,
+          "unit": "Tflop/s",
+          "precision": "Double precision (FP64), unbracketed benchmark variant in Table 2",
+          "scope": "Timed DNS integration throughput using analytical FFT/application work count",
+          "scale": "2048 x 2048 x 2048 grid; 512 nodes x eight arithmetic processors = 4,096 processors; Code-omega with manual microtasking",
+          "measurement_method": "Time is measured with MPI_wtime over 100 fourth-order Runge-Kutta timesteps; initialization and I/O are explicitly excluded. The four observations keep the two precision variants and the two operation-count methods in Tables 1-2 separate. The numerator is the hand-derived operation expression (8), 459 N^3 log2(N) + (369 + 16 pi) N^3 per step for N=2048, including 72 real 3-D FFTs per RK timestep.",
+          "page": 8,
+          "location": "PDF p. 8 Table 2, N^3=2048^3 and nd=512; method pp. 7-9",
+          "note": "The title’s 16.4 Tflop/s is the single-precision analytical-count result. Double-precision physics runs and the separate mixed-precision 4096^3 run must not inherit that number. These paired values describe benchmark counting/precision variants, not successive conference-day updates.",
+          "source_id": "sc2002-batch-pap273-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 14600000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 13.7,
+          "unit": "Tflop/s",
+          "precision": "Double precision (FP64), unbracketed benchmark variant in Table 1",
+          "scope": "Timed DNS integration throughput using ES hardware vector-operation counters",
+          "scale": "2048 x 2048 x 2048 grid; 512 nodes x eight arithmetic processors = 4,096 processors; Code-omega with manual microtasking",
+          "measurement_method": "Time is measured with MPI_wtime over 100 fourth-order Runge-Kutta timesteps; initialization and I/O are explicitly excluded. The four observations keep the two precision variants and the two operation-count methods in Tables 1-2 separate. The numerator uses the ES hardware monitor’s vector floating-point operation counts; hardware event conventions and sample/repeat counts are not exhaustively specified.",
+          "page": 8,
+          "location": "PDF p. 8 Table 1, N^3=2048^3 and nd=512; method pp. 7-9",
+          "note": "The title’s 16.4 Tflop/s is the single-precision analytical-count result. Double-precision physics runs and the separate mixed-precision 4096^3 run must not inherit that number. These paired values describe benchmark counting/precision variants, not successive conference-day updates.",
+          "source_id": "sc2002-batch-pap273-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 13700000000000.0
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2002-batch-pap273-manuscript"
+        ],
+        "authors": [
+          "sc2002-batch-pap273-manuscript"
+        ],
+        "machines": [
+          "sc2002-batch-pap273-manuscript"
+        ],
+        "abstract": [
+          "sc2002-batch-pap273-manuscript"
+        ],
+        "selection": [
+          "roster-2002-sc02-preserved-pap273",
+          "roster-2002-sc02-preserved-pap146",
+          "roster-2002-sc02-preserved-pap216",
+          "roster-2002-sc02-preserved-pap277",
+          "roster-2002-sc02-preserved-pap147",
+          "roster-2002-sc02-preserved-pap331"
+        ],
+        "doi": [
+          "roster-2002-sc02-crossref-pap273"
+        ],
+        "award": [
+          "roster-2002-sc02-awards-close"
+        ]
+      },
+      "notes": [
+        "The first-page manuscript title includes a hyphen after 16.4 and the article a before Fourier; the annual selection and publisher title variants remain preserved.",
+        "The Navier-Stokes solution uses periodic boundaries, divergence-free forcing, Fourier-space incompressibility projection and phase-shift removal of aliasing. The nonlinear term uses 18 real 3-D FFTs per stage and 72 per four-stage RK timestep.",
+        "The 2048^3 scientific simulation is double precision. To fit 4096^3 into memory, the separate Code-div run uses single precision for spectral time integration and double precision for convolution/3-D FFT work, with Runge-Kutta-Gill integration. The manuscript reports 30.7 s per step, 7.2 TB and about 0.7 turnover times for that different case; none is the scale of the selected 16.4 result.",
+        "The manuscript compares low-order spectra to assess precision effects and presents high-Reynolds-number results, while noting that detailed analysis continues. Neither the measured throughput nor those scientific claims were independently reproduced.",
+        "The existing read-only-copy receipt authenticates these local bytes. No live PDF source URL or conference-day updated version was authenticated. PDF creation/modified metadata does not establish a scientific revision date. Original PDF, text and figures remain offline."
+      ],
+      "booktitle": "SC02 proceedings",
+      "event_year": 2002,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 17 PDF pages read through references; critical pages [1, 2, 6, 7, 8, 9, 10] rendered and visually checked for ordered byline, tables, units, precision and measurement scope. Selected representative observations, not an independent reproduction or final conference score.",
+      "local_fulltext": {
+        "filename": "pap273.pdf",
+        "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap273.pdf",
+        "source_url": null,
+        "sha256": "dde2a719b008789642e700567f219d9c66df0e4d04e0f7ddcffa7f55e78d74e3",
+        "page_count": 17,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "id": "sc2002-pap273",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2002.10052",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2002-sc02-crossref-pap273",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": {
+        "label": "Award recipient — Special accomplishment",
+        "category": "Special accomplishment",
+        "source_id": "roster-2002-sc02-awards-close"
+      },
+      "award_status": "Official award result checked in existing evidence",
+      "title_aliases": [
+        {
+          "title": "16.4 Tflops Direct Numerical Simulation of Turbulence by Fourier Spectral Method on the Earth Simulator",
+          "source_id": "roster-2002-sc02-preserved-pap273"
+        }
+      ],
+      "citation_title": "16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+      "citation_authors": [
+        "Mitsuo Yokokawa",
+        "Ken’ichi Itakura",
+        "Atsuya Uno",
+        "Takashi Ishihara",
+        "Yukio Kaneda"
+      ],
+      "citation_year": 2002,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2002,
+      "title": "NAMD: Biomolecular Simulation on Thousands of Processors",
+      "authors": [
+        "James C. Phillips",
+        "Gengbin Zheng",
+        "Sameer Kumar",
+        "Laxmikant V. Kalé"
+      ],
+      "field": "Biomolecular molecular dynamics; particle-mesh Ewald and message-driven parallel execution",
+      "summary": "NAMD combines spatial patches with migratable force-computation objects and measurement-guided load balancing in Charm++. PME transposes overlap with real-space work, and direct use of the Quadrics Elan interface reduces message overhead on Lemieux. Fixed biological systems test strong scaling. Cutoff, PME-MTS and the longer production-style timing retain their distinct work and timing windows.",
+      "machines": [
+        "PSC Lemieux"
+      ],
+      "machine_configurations": [
+        {
+          "name": "PSC Lemieux",
+          "facility": "Pittsburgh Supercomputing Center",
+          "configuration": "Alpha cluster with 3,000 1 GHz processors, four per node and Quadrics networking. The fastest selected ATPase cases use 2,250 processors, three on each of 750 nodes, with Charm++/Converse over the Elan interface. A separate long ApoA1 run uses 512 processors.",
+          "location": "PDF pp. 7-9,12-14, Sections 4 and 6-7"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "PSC Lemieux",
+          "value": 733,
+          "unit": "Gflop/s",
+          "precision": "Arithmetic formats of the timed NAMD runs are not exhaustively stated. The paper mentions IEEE-float table indexing, which does not establish uniform FP32 or FP64 simulation arithmetic.",
+          "scope": "Fixed-size ATPase molecular-dynamics benchmark with PME every fourth step (MTS), timed after startup",
+          "scale": "327K atoms; 2,250 processors, three per node on 750 nodes; 12-angstrom cutoff; 192 x 144 x 144 PME grid",
+          "measurement_method": "FLOP work per step comes from SGI Origin 2000 perfex hardware counters: subtract one-processor 20-step counts from 40-step counts to remove startup. Table 2 gives 12.29 GFLOP/step for ATPase cutoff and 13.48 for MTS. Those serial marginal counts are divided by parallel time/step; parallel-run FLOPs are not measured directly and parallel overhead is omitted from the work numerator. Time is averaged over the final 2,000 of 2,500 steps, after 500 startup/load-balancing steps. Timing API and filesystem-output policy are not fully specified.",
+          "page": 13,
+          "location": "PDF p. 13 Table 4, 2,250/3 row, MTS column; counting/timing pp. 11-12",
+          "note": "Reported time is 18.4 ms/step and speedup 1,527 relative to the matching one-processor MTS run. This is measured application throughput, not the 6-Tflop/s machine peak or a cutoff-only result.",
+          "source_id": "sc2002-batch-pap277-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 733000000000.0
+        },
+        {
+          "machine": "PSC Lemieux",
+          "value": 789,
+          "unit": "Gflop/s",
+          "precision": "Arithmetic formats of the timed NAMD runs are not exhaustively stated. The paper mentions IEEE-float table indexing, which does not establish uniform FP32 or FP64 simulation arithmetic.",
+          "scope": "Fixed-size ATPase benchmark using cutoff electrostatics without PME, timed after startup",
+          "scale": "327K atoms; 2,250 processors, three per node on 750 nodes; 12-angstrom cutoff",
+          "measurement_method": "FLOP work per step comes from SGI Origin 2000 perfex hardware counters: subtract one-processor 20-step counts from 40-step counts to remove startup. Table 2 gives 12.29 GFLOP/step for ATPase cutoff and 13.48 for MTS. Those serial marginal counts are divided by parallel time/step; parallel-run FLOPs are not measured directly and parallel overhead is omitted from the work numerator. Time is averaged over the final 2,000 of 2,500 steps, after 500 startup/load-balancing steps. Timing API and filesystem-output policy are not fully specified.",
+          "page": 13,
+          "location": "PDF p. 13 Table 4, 2,250/3 row, Cut column; PDF p. 14 Section 7",
+          "note": "15.6 ms/step and speedup 1,599 are for cutoff mode. This mode must not be used as the performance of the PME full-electrostatics simulation.",
+          "source_id": "sc2002-batch-pap277-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 789000000000.0
+        },
+        {
+          "machine": "PSC Lemieux",
+          "value": 23.3,
+          "unit": "ms/step",
+          "precision": "Arithmetic formats of the timed NAMD runs are not exhaustively stated. The paper mentions IEEE-float table indexing, which does not establish uniform FP32 or FP64 simulation arithmetic.",
+          "scope": "Average over all 100,000 steps of the longer ApoA1 PME-MTS run, including initial and periodic load balancing",
+          "scale": "92K atoms; 512 processors; PME every fourth step; 108 x 108 x 80 PME grid",
+          "measurement_method": "Section 6 records a 100-step-interval timing history and reports the average over all 100,000 steps, explicitly including initial load balancing. Do not transfer the excluded-startup timing window used in the scaling tables to this observation. Detailed timer and I/O inclusion are not stated.",
+          "page": 12,
+          "location": "PDF p. 12, Section 6, final paragraph; PDF p. 14 Figure 8",
+          "note": "The same long run gives 26.3 ms/step over its steps 500-2,500. Table 3’s separate 2,500-step run reports 23.9 ms/step. These are different windows/runs; 23.3 is not their correction or an ATPase timing.",
+          "source_id": "sc2002-batch-pap277-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "="
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2002-batch-pap277-manuscript"
+        ],
+        "authors": [
+          "sc2002-batch-pap277-manuscript"
+        ],
+        "machines": [
+          "sc2002-batch-pap277-manuscript"
+        ],
+        "abstract": [
+          "sc2002-batch-pap277-manuscript"
+        ],
+        "selection": [
+          "roster-2002-sc02-preserved-pap277",
+          "roster-2002-sc02-preserved-pap146",
+          "roster-2002-sc02-preserved-pap216",
+          "roster-2002-sc02-preserved-pap273",
+          "roster-2002-sc02-preserved-pap147",
+          "roster-2002-sc02-preserved-pap331"
+        ],
+        "doi": [
+          "roster-2002-sc02-crossref-pap277"
+        ],
+        "award": [
+          "roster-2002-sc02-awards-close"
+        ]
+      },
+      "notes": [
+        "ApoA1 and ATPase contain approximately 92K and 327K atoms respectively. The benchmarks retain fixed biological systems rather than enlarging the system with processor count. Strong scaling is limited partly by message-layer stretching and contention when all four processors per node are used.",
+        "PME uses fourth-order charge interpolation on 4 x 4 x 4 neighborhoods and FFTW components with Charm++ transposes. MTS evaluates PME every four short steps. A 1-fs timestep is described as typical MD practice, not established as the configured timestep for every reported benchmark.",
+        "Figures 3 and 5 compare previous NAMD versions and other machines; they are context, not new selected 2002 observations. Section 5 says the grainsize sample used 2,100 processors, while Figure 6’s caption says 1,536. That internal discrepancy is not imported into the selected Table 4 observations.",
+        "The existing read-only-copy receipt authenticates these local bytes. No live PDF source URL or conference-day updated version was authenticated. PDF creation/modified metadata does not establish a scientific revision date. Original PDF, text and figures remain offline."
+      ],
+      "booktitle": "SC02 proceedings",
+      "event_year": 2002,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 18 PDF pages read through references; critical pages [1, 11, 12, 13, 14] rendered and visually checked for ordered byline, tables, units, precision and measurement scope. Selected representative observations, not an independent reproduction or final conference score.",
+      "local_fulltext": {
+        "filename": "pap277.pdf",
+        "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap277.pdf",
+        "source_url": null,
+        "sha256": "cfd3967a5e1632056b16ab9d771731c9fc5a25a9d90588504f86b101915738b0",
+        "page_count": 18,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      "id": "sc2002-pap277",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2002.10019",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2002-sc02-crossref-pap277",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": {
+        "label": "Award recipient — Special accomplishment",
+        "category": "Special accomplishment",
+        "source_id": "roster-2002-sc02-awards-close"
+      },
+      "award_status": "Official award result checked in existing evidence",
+      "title_aliases": [],
+      "citation_title": "NAMD: Biomolecular Simulation on Thousands of Processors",
+      "citation_authors": [
+        "James C. Phillips",
+        "Gengbin Zheng",
+        "Sameer Kumar",
+        "Laxmikant V. Kalé"
+      ],
+      "citation_year": 2002,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2002,
+      "title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+      "authors": [
+        "Satoru Shingu",
+        "Hiroshi Takahara",
+        "Hiromitsu Fuchigami",
+        "Masayuki Yamada",
+        "Yoshinori Tsuda",
+        "Wataru Ohfuchi",
+        "Yuji Sasaki",
+        "Kazuo Kobayashi",
+        "Takashi Hagiwara",
+        "Shin-ichi Habata",
+        "Mitsuo Yokokawa",
+        "Hiroyuki Itoh",
+        "Kiyoshi Otsuka"
+      ],
+      "field": "Global atmospheric circulation; hydrostatic primitive equations and spectral transforms",
+      "summary": "AFES combines horizontal spectral transforms with vertical finite differences, parameterized atmospheric physics and semi-implicit time integration. MPI decomposition, balanced wavenumber mapping, microtasking and vector-oriented Legendre kernels adapt it to the Earth Simulator. A short integration-loop timing yields 26.58 Tflop/s, while the longer one-day simulation yields 23.93 Tflop/s with initialization and I/O costs represented.",
+      "machines": [
+        "Earth Simulator"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Earth Simulator",
+          "facility": "Earth Simulator Center, JAMSTEC",
+          "configuration": "Full 640 nodes / 5,120 processors, eight vector processors and 16 GB memory per node; one MPI process per node and eight microtasks per process. Selected T1279L96 model uses 3,840 x 1,920 horizontal grid points and 96 vertical layers. Theoretical full-system peak is 40.96 Tflop/s.",
+          "location": "PDF pp. 1-2,5-9,12,16, Sections 2,4 and 6"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "Earth Simulator",
+          "value": 26.58,
+          "unit": "Tflop/s",
+          "precision": "The processor/kernel discussion uses eight-byte array elements (PDF p. 3), consistent with double-precision data. The manuscript does not provide an exhaustive arithmetic-format declaration for the entire AFES run; no uniform-FP64 certification or conversion is inferred.",
+          "scope": "Short main-integration-loop measurement described as a 10-timestep simulation; not an entire simulated-day average",
+          "scale": "T1279L96; 3,840 x 1,920 x 96 grid; full 640 nodes / 5,120 processors",
+          "measurement_method": "FTRACE uses ES hardware performance counters for instrumented routines/segments. Overall FLOPs sum operation counts over all processors and divide by the maximum elapsed time, rather than adding processor MFLOPS values or substituting the fastest MPI rank. Counter event weighting and repeat counts are not fully specified. Section 6.4 describes the first 20-step segment excluding its initial 10 transient steps, and Table 7 calls this a 10-timestep evaluation; its full-system elapsed time is 4.651 s. Exact per-step output/physics scheduling is not completely specified.",
+          "page": 16,
+          "location": "PDF p. 16 Table 7 and Figure 10; interval definition PDF p. 15 Section 6.4; counters p. 10 Section 6.1",
+          "note": "The detailed short-loop interval takes precedence over the broad closing statement that performance figures include file I/O and some initialization. That broad statement is retained as a scope ambiguity; do not relabel 26.58 as the one-day end-to-end result.",
+          "source_id": "sc2002-batch-pap331-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 26580000000000.0
+        },
+        {
+          "machine": "Earth Simulator",
+          "value": 23.93,
+          "unit": "Tflop/s",
+          "precision": "The processor/kernel discussion uses eight-byte array elements (PDF p. 3), consistent with double-precision data. The manuscript does not provide an exhaustive arithmetic-format declaration for the entire AFES run; no uniform-FP64 certification or conversion is inferred.",
+          "scope": "Overall one-day atmospheric simulation, with initialization, input and output represented in its reported process breakdown",
+          "scale": "T1279L96; 2,880 timesteps at 30 seconds of simulated time each; 640 nodes / 5,120 processors",
+          "measurement_method": "FTRACE uses ES hardware performance counters for instrumented routines/segments. Overall FLOPs sum operation counts over all processors and divide by the maximum elapsed time, rather than adding processor MFLOPS values or substituting the fastest MPI rank. Counter event weighting and repeat counts are not fully specified. Table 4 reports maximum elapsed time 1,517.8 s. Table 5 separately gives a process-0 breakdown totaling 1,512.0 s, including Initial, Input and Output. Those different timing scopes are not silently equated.",
+          "page": 12,
+          "location": "PDF p. 12 Table 4 and Section 6.3.1; process-0 breakdown p. 14 Table 5; integration interval p. 10 Section 6.2",
+          "note": "The 58.4% peak ratio belongs to this one-day result, whereas 64.9% belongs to the shorter 26.58-Tflop/s measurement. A sample trace is dated 2 May 2002; it does not date every benchmark.",
+          "source_id": "sc2002-batch-pap331-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 23930000000000.0
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2002-batch-pap331-manuscript"
+        ],
+        "authors": [
+          "sc2002-batch-pap331-manuscript"
+        ],
+        "machines": [
+          "sc2002-batch-pap331-manuscript"
+        ],
+        "abstract": [
+          "sc2002-batch-pap331-manuscript"
+        ],
+        "selection": [
+          "roster-2002-sc02-preserved-pap331",
+          "roster-2002-sc02-preserved-pap146",
+          "roster-2002-sc02-preserved-pap216",
+          "roster-2002-sc02-preserved-pap277",
+          "roster-2002-sc02-preserved-pap273",
+          "roster-2002-sc02-preserved-pap147"
+        ],
+        "doi": [
+          "roster-2002-sc02-crossref-pap331"
+        ],
+        "award": [
+          "roster-2002-sc02-awards-close"
+        ]
+      },
+      "notes": [
+        "The model uses hydrostatic primitive equations on a sphere, Gaussian horizontal grids and sigma vertical coordinates. Spectral transforms use Fourier and Legendre stages; vertical derivatives use finite differences. Physical parameterizations include radiation, clouds, convection, diffusion and surface effects. Kuo convection is used for the performance discussion; future model upgrades are not treated as completed work.",
+        "Zigzag cyclic wavenumber assignment reduces triangular-truncation load imbalance. Vertical-layer microtasking, loop collapsing, packed messages and outer-product/hybrid Legendre code improve vector utilization. MPI_Put with fence synchronization handles transposes.",
+        "Single-processor Legendre-kernel values around 7.85-7.88 Gflop/s are component benchmarks and are not AFES application throughput. They are not added as new full-application observations.",
+        "The one-day and short-loop figures are measurements of different spans. The paper’s predicted capacity for multi-year climate simulation over future months is a projection, not a performed multi-year timed run. Thirteen byline authors were checked on PDF p. 1; initials and title variants in prior publisher metadata remain preserved.",
+        "The existing read-only-copy receipt authenticates these local bytes. No live PDF source URL or conference-day updated version was authenticated. PDF creation/modified metadata does not establish a scientific revision date. Original PDF, text and figures remain offline."
+      ],
+      "booktitle": "SC02 proceedings",
+      "event_year": 2002,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All 19 PDF pages read through references; critical pages [1, 3, 8, 10, 12, 14, 15, 16, 18] rendered and visually checked for ordered byline, tables, units, precision and measurement scope. Selected representative observations, not an independent reproduction or final conference score.",
+      "local_fulltext": {
+        "filename": "pap331.pdf",
+        "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap331.pdf",
+        "source_url": null,
+        "sha256": "dda885e2c07f7f228a6b0c384a012dfd67b84dcbeadc999d4c45406939e3c52e",
+        "page_count": 19,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          3,
+          8,
+          10,
+          12,
+          14,
+          15,
+          16,
+          18
+        ]
+      },
+      "id": "sc2002-pap331",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2002.10053",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2002-sc02-crossref-pap331",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": {
+        "label": "Winner — Peak Performance",
+        "category": "Peak Performance",
+        "source_id": "roster-2002-sc02-awards-close"
+      },
+      "award_status": "Official award result checked in existing evidence",
+      "title_aliases": [],
+      "citation_title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+      "citation_authors": [
+        "Satoru Shingu",
+        "Hiroshi Takahara",
+        "Hiromitsu Fuchigami",
+        "Masayuki Yamada",
+        "Yoshinori Tsuda",
+        "Wataru Ohfuchi",
+        "Yuji Sasaki",
+        "Kazuo Kobayashi",
+        "Takashi Hagiwara",
+        "Shin-ichi Habata",
+        "Mitsuo Yokokawa",
+        "Hiroyuki Itoh",
+        "Kiyoshi Otsuka"
+      ],
+      "citation_year": 2002,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
         }
       ]
     },
@@ -12712,6 +13788,12 @@
       "state": "Partial recovery",
       "title": "1987, 1989 and 1992 entry identities recovered; complete rosters still pending",
       "detail": "Thirteen identified entries added; all three recovered lists remain partial. Membership evidence, recognition, publication metadata and full manuscript audits are separate."
+    },
+    {
+      "id": "year-batch-manuscripts",
+      "state": "2002 indexed cohort checked",
+      "title": "Complete-year manuscript review started with the remaining five SC02 candidates",
+      "detail": "All six indexed SC02 candidates now have a complete preserved version reviewed. Precision, analytical/counter operation counts and short-loop/end-to-end times remain distinct. Existing Salinas and all prior observations are unchanged."
     }
   ],
   "coverage": {
@@ -12795,7 +13877,7 @@
       2025,
       2026
     ],
-    "detailed_paper_count": 44
+    "detailed_paper_count": 49
   },
   "inventory_report": {
     "volume": "SC08_Proceedings",
@@ -14763,7 +15845,7 @@
     {
       "year": 2002,
       "local_candidate_count": 6,
-      "status": "Annual source indexed; 6 DOI matches verified. Manuscript review is tracked separately.",
+      "status": "All six indexed candidate manuscripts have selected fields checked against complete preserved versions; final conference scores remain unestablished.",
       "candidate_count": 6,
       "verified_doi_count": 6,
       "sc_links": {
@@ -14773,7 +15855,7 @@
         "website_url": "https://sc02.supercomputing.org/",
         "year": 2002
       },
-      "detailed_paper_count": 1,
+      "detailed_paper_count": 6,
       "annual_review_year": 2002
     },
     {
@@ -24020,6 +25102,98 @@
           "local_reference": "歴史一次資料/GRAPE_Special_20261122/sc02_awards.html",
           "source_sha256": "3577a7ae260a97dada958bf8d4f57780ec37ad00daaa54f4859a6280bbc42c51",
           "published_on": "2002-11-21"
+        },
+        {
+          "id": "sc2002-batch-pap146-manuscript",
+          "label": "Preserved SC02 candidate manuscript: A 29.5 Tflops simulation of planetesimals in Uranus-Neptune region on GRAPE-6",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap146.pdf",
+          "sha256": "b4fd927e8813372cbbfb3f0b7170cdb10fca16b95b53fdf59f18c8c9ae1859a2",
+          "source_sha256": "b4fd927e8813372cbbfb3f0b7170cdb10fca16b95b53fdf59f18c8c9ae1859a2",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/Creator": "TeX",
+            "/Producer": "pdfTeX-0.13d",
+            "/CreationDate": "D:20020815142700"
+          },
+          "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+        },
+        {
+          "id": "sc2002-batch-pap277-manuscript",
+          "label": "Preserved SC02 candidate manuscript: NAMD: Biomolecular Simulation on Thousands of Processors",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap277.pdf",
+          "sha256": "cfd3967a5e1632056b16ab9d771731c9fc5a25a9d90588504f86b101915738b0",
+          "source_sha256": "cfd3967a5e1632056b16ab9d771731c9fc5a25a9d90588504f86b101915738b0",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/Creator": "TeX",
+            "/Producer": "pdfTeX-0.13d",
+            "/CreationDate": "D:20020730091100"
+          },
+          "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+        },
+        {
+          "id": "sc2002-batch-pap273-manuscript",
+          "label": "Preserved SC02 candidate manuscript: 16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap273.pdf",
+          "sha256": "dde2a719b008789642e700567f219d9c66df0e4d04e0f7ddcffa7f55e78d74e3",
+          "source_sha256": "dde2a719b008789642e700567f219d9c66df0e4d04e0f7ddcffa7f55e78d74e3",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20020803024830",
+            "/Producer": "Acrobat Distiller 4.05 for Windows"
+          },
+          "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+        },
+        {
+          "id": "sc2002-batch-pap147-manuscript",
+          "label": "Preserved SC02 candidate manuscript: 14.9 TFLOPS Three-dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap147.pdf",
+          "sha256": "9403e55a5423d62aa6c3cc66a9c429d5199d4c46c97f7058812c00495dfd4ceb",
+          "source_sha256": "9403e55a5423d62aa6c3cc66a9c429d5199d4c46c97f7058812c00495dfd4ceb",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20020803084347+09'00'",
+            "/ModDate": "D:20020803084347+09'00'",
+            "/Producer": "Acrobat Distiller 5.0.5 for Macintosh",
+            "/Author": "“â‘ã’m”u",
+            "/Creator": "Microsoft Word: AdobePS 8.7.2 (104)",
+            "/Title": "Microsoft Word - paper v3"
+          },
+          "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+        },
+        {
+          "id": "sc2002-batch-pap331-manuscript",
+          "label": "Preserved SC02 candidate manuscript: A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2002/original/paperpdf/pap331.pdf",
+          "sha256": "dda885e2c07f7f228a6b0c384a012dfd67b84dcbeadc999d4c45406939e3c52e",
+          "source_sha256": "dda885e2c07f7f228a6b0c384a012dfd67b84dcbeadc999d4c45406939e3c52e",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20020802181236+09'00'",
+            "/ModDate": "D:20020802181236+09'00'",
+            "/Producer": "Acrobat Distiller 5.0.5 (Windows)"
+          },
+          "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
         }
       ],
       "roster_completeness": {
@@ -24046,12 +25220,12 @@
           "doi_source_id": "sc02-crossref-pap146",
           "publisher_title": "A 29.5 Tflops Simulation of Planetesimals in Uranus-Neptune Region on GRAPE-6",
           "authors": [
-            "J. Makino",
-            "E. Kokubo",
-            "T. Fukushige",
-            "H. Daisaka"
+            "Junichiro Makino",
+            "Eiichiro Kokubo",
+            "Toshiyuki Fukushige",
+            "Hiroshi Daisaka"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592870/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24071,6 +25245,58 @@
             "source_id": "sc02-awards-close",
             "location": "Gordon Bell Awards, all five listed papers",
             "note": "The preserved finalist membership remains; a GRAPE machine or a performance figure does not establish an award."
+          },
+          "detailed_paper_id": "sc2002-pap146",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "A 29.5 Tflops simulation of planetesimals in Uranus-Neptune region on GRAPE-6",
+            "title_kind": null,
+            "title_source_id": "sc02-preserved-pap146",
+            "publisher_title": "A 29.5 Tflops Simulation of Planetesimals in Uranus-Neptune Region on GRAPE-6",
+            "authors": [
+              "J. Makino",
+              "E. Kokubo",
+              "T. Fukushige",
+              "H. Daisaka"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2002-batch-pap146-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc02-crossref-pap146",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "A 29.5 Tflops Simulation of Planetesimals in Uranus-Neptune Region on GRAPE-6",
+              "authors": [
+                "J. Makino",
+                "E. Kokubo",
+                "T. Fukushige",
+                "H. Daisaka"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2002-batch-pap146-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "A 29.5 Tflops simulation of planetesimals in Uranus-Neptune region on GRAPE-6",
+              "authors": [
+                "Junichiro Makino",
+                "Eiichiro Kokubo",
+                "Toshiyuki Fukushige",
+                "Hiroshi Daisaka"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2002-batch-pap146-manuscript"
+            ]
           }
         },
         {
@@ -24136,12 +25362,12 @@
           "doi_source_id": "sc02-crossref-pap277",
           "publisher_title": "NAMD: Biomolecular Simulation on Thousands of Processors",
           "authors": [
-            "J.C. Phillips",
+            "James C. Phillips",
             "Gengbin Zheng",
-            "S. Kumar",
-            "L.V. Kale"
+            "Sameer Kumar",
+            "Laxmikant V. Kalé"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592872/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24172,6 +25398,58 @@
             ],
             "checked_on": "2026-11-22",
             "announcement_date": "2002-11-21"
+          },
+          "detailed_paper_id": "sc2002-pap277",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "NAMD: Biomolecular Simulation on Thousands of Processors",
+            "title_kind": null,
+            "title_source_id": "sc02-preserved-pap277",
+            "publisher_title": "NAMD: Biomolecular Simulation on Thousands of Processors",
+            "authors": [
+              "J.C. Phillips",
+              "Gengbin Zheng",
+              "S. Kumar",
+              "L.V. Kale"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2002-batch-pap277-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc02-crossref-pap277",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "NAMD: Biomolecular Simulation on Thousands of Processors",
+              "authors": [
+                "J.C. Phillips",
+                "Gengbin Zheng",
+                "S. Kumar",
+                "L.V. Kale"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2002-batch-pap277-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "NAMD: Biomolecular Simulation on Thousands of Processors",
+              "authors": [
+                "James C. Phillips",
+                "Gengbin Zheng",
+                "Sameer Kumar",
+                "Laxmikant V. Kalé"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2002-batch-pap277-manuscript"
+            ]
           }
         },
         {
@@ -24183,13 +25461,13 @@
           "doi_source_id": "sc02-crossref-pap273",
           "publisher_title": "16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
           "authors": [
-            "M. Yokokawa",
-            "K. Itakura",
-            "A. Uno",
-            "T. Ishihara",
-            "Y. Kaneda"
+            "Mitsuo Yokokawa",
+            "Ken’ichi Itakura",
+            "Atsuya Uno",
+            "Takashi Ishihara",
+            "Yukio Kaneda"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592886/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24221,6 +25499,61 @@
             ],
             "checked_on": "2026-11-22",
             "announcement_date": "2002-11-21"
+          },
+          "detailed_paper_id": "sc2002-pap273",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "16.4 Tflops Direct Numerical Simulation of Turbulence by Fourier Spectral Method on the Earth Simulator",
+            "title_kind": null,
+            "title_source_id": "sc02-preserved-pap273",
+            "publisher_title": "16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+            "authors": [
+              "M. Yokokawa",
+              "K. Itakura",
+              "A. Uno",
+              "T. Ishihara",
+              "Y. Kaneda"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2002-batch-pap273-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc02-crossref-pap273",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+              "authors": [
+                "M. Yokokawa",
+                "K. Itakura",
+                "A. Uno",
+                "T. Ishihara",
+                "Y. Kaneda"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2002-batch-pap273-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "16.4-Tflops Direct Numerical Simulation of Turbulence by a Fourier Spectral Method on the Earth Simulator",
+              "authors": [
+                "Mitsuo Yokokawa",
+                "Ken’ichi Itakura",
+                "Atsuya Uno",
+                "Takashi Ishihara",
+                "Yukio Kaneda"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2002-batch-pap273-manuscript"
+            ]
           }
         },
         {
@@ -24232,12 +25565,12 @@
           "doi_source_id": "sc02-crossref-pap147",
           "publisher_title": "14.9 TFLOPS Three-Dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
           "authors": [
-            "H. Sakagami",
-            "H. Murai",
+            "Hitoshi Sakagami",
+            "Hitoshi Murai",
             "Yoshiki Seo",
-            "M. Yokokawa"
+            "Mitsuo Yokokawa"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592887/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24269,6 +25602,58 @@
             ],
             "checked_on": "2026-11-22",
             "announcement_date": "2002-11-21"
+          },
+          "detailed_paper_id": "sc2002-pap147",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "14.9 TFLOPS Three-dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+            "title_kind": null,
+            "title_source_id": "sc02-preserved-pap147",
+            "publisher_title": "14.9 TFLOPS Three-Dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+            "authors": [
+              "H. Sakagami",
+              "H. Murai",
+              "Yoshiki Seo",
+              "M. Yokokawa"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2002-batch-pap147-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc02-crossref-pap147",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "14.9 TFLOPS Three-Dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+              "authors": [
+                "H. Sakagami",
+                "H. Murai",
+                "Yoshiki Seo",
+                "M. Yokokawa"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2002-batch-pap147-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "14.9 TFLOPS Three-dimensional Fluid Simulation for Fusion Science with HPF on the Earth Simulator",
+              "authors": [
+                "Hitoshi Sakagami",
+                "Hitoshi Murai",
+                "Yoshiki Seo",
+                "Mitsuo Yokokawa"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2002-batch-pap147-manuscript"
+            ]
           }
         },
         {
@@ -24280,21 +25665,21 @@
           "doi_source_id": "sc02-crossref-pap331",
           "publisher_title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
           "authors": [
-            "S. Shingu",
-            "H. Takahara",
-            "H. Fuchigami",
-            "M. Yamada",
-            "Y. Tsuda",
-            "W. Ohfuchi",
-            "Y. Sasaki",
-            "K. Kobayashi",
-            "T. Hagiwara",
-            "S. Habata",
-            "M. Yokokawa",
-            "H. Itoh",
-            "K. Otsuka"
+            "Satoru Shingu",
+            "Hiroshi Takahara",
+            "Hiromitsu Fuchigami",
+            "Masayuki Yamada",
+            "Yoshinori Tsuda",
+            "Wataru Ohfuchi",
+            "Yuji Sasaki",
+            "Kazuo Kobayashi",
+            "Takashi Hagiwara",
+            "Shin-ichi Habata",
+            "Mitsuo Yokokawa",
+            "Hiroyuki Itoh",
+            "Kiyoshi Otsuka"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592888/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24325,6 +25710,85 @@
             ],
             "checked_on": "2026-11-22",
             "announcement_date": "2002-11-21"
+          },
+          "detailed_paper_id": "sc2002-pap331",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+            "title_kind": null,
+            "title_source_id": "sc02-preserved-pap331",
+            "publisher_title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+            "authors": [
+              "S. Shingu",
+              "H. Takahara",
+              "H. Fuchigami",
+              "M. Yamada",
+              "Y. Tsuda",
+              "W. Ohfuchi",
+              "Y. Sasaki",
+              "K. Kobayashi",
+              "T. Hagiwara",
+              "S. Habata",
+              "M. Yokokawa",
+              "H. Itoh",
+              "K. Otsuka"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2002-batch-pap331-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc02-crossref-pap331",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+              "authors": [
+                "S. Shingu",
+                "H. Takahara",
+                "H. Fuchigami",
+                "M. Yamada",
+                "Y. Tsuda",
+                "W. Ohfuchi",
+                "Y. Sasaki",
+                "K. Kobayashi",
+                "T. Hagiwara",
+                "S. Habata",
+                "M. Yokokawa",
+                "H. Itoh",
+                "K. Otsuka"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2002-batch-pap331-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "A 26.58 Tflops Global Atmospheric Simulation with the Spectral Transform Method on the Earth Simulator",
+              "authors": [
+                "Satoru Shingu",
+                "Hiroshi Takahara",
+                "Hiromitsu Fuchigami",
+                "Masayuki Yamada",
+                "Yoshinori Tsuda",
+                "Wataru Ohfuchi",
+                "Yuji Sasaki",
+                "Kazuo Kobayashi",
+                "Takashi Hagiwara",
+                "Shin-ichi Habata",
+                "Mitsuo Yokokawa",
+                "Hiroyuki Itoh",
+                "Kiyoshi Otsuka"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2002-batch-pap331-manuscript"
+            ]
           }
         }
       ],
@@ -24340,7 +25804,7 @@
         "website_url": "https://sc02.supercomputing.org/",
         "year": 2002
       },
-      "detailed_paper_count": 1,
+      "detailed_paper_count": 6,
       "historical_review": {
         "checked_on": "2026-11-22",
         "reviewed_record_ids": [
@@ -24352,6 +25816,18 @@
           "sc2002-pap146"
         ],
         "note": "Dated award and bibliography review; roster membership and full performance audits remain separate."
+      },
+      "manuscript_batch_review": {
+        "checked_on": "2026-11-22",
+        "added_record_ids": [
+          "sc2002-pap146",
+          "sc2002-pap277",
+          "sc2002-pap273",
+          "sc2002-pap147",
+          "sc2002-pap331"
+        ],
+        "indexed_manuscripts_checked": 6,
+        "note": "All five remaining indexed candidates reviewed as one year batch. Selected representative performance observations from complete preserved versions, with scope/precision/counting differences retained. Existing Salinas manuscript and all prior observations unchanged."
       }
     },
     {
@@ -29814,7 +31290,7 @@
       "measurements": 31
     },
     "note": "Calendar-wide inventory of saved evidence. Roster membership, award recognition, bibliography, manuscript availability and manuscript content are separate checks. Original evidence dates are retained; not every primary source was retrieved again.",
-    "policy": "Read the first accessible manuscript from each untouched year before adding second manuscripts to already covered years. Move past blocked sources with a concrete recovery route. No fixed annual finalist count.",
+    "policy": "Review all available pending candidates in a year batch. Reuse existing sources, keep missing-manuscript recovery separate, and preserve individual methodology/version evidence. First-paper passes below are historical milestones.",
     "additions": [
       {
         "year": 1993,
@@ -29960,8 +31436,8 @@
     "summary": {
       "indexed_years": 39,
       "manuscript_years": 36,
-      "manuscript_papers": 44,
-      "manuscript_observations": 122,
+      "manuscript_papers": 49,
+      "manuscript_observations": 134,
       "awaiting_first_manuscript_years": [
         1987,
         1989,
@@ -30110,7 +31586,8 @@
             "next_primary_path": "Obtain the original committee report 1988 Gordon Bell Prize, DOI 10.1109/52.28127, via legitimate library/author access, identify report references or archived author papers for the finite-element, spectral-fluid and Crystal-compiler entries. Do not attach the report DOI as an entrant-paper DOI.",
             "source_url": "https://www.researchgate.net/publication/3246676_1988_Gordon_Bell_Prize"
           }
-        ]
+        ],
+        "batch_next_action": "Review the remaining 2 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately. Further evidence: Recover the earlier original competition submission for comparison with the 1989 author report, and identify the fourth competition entry. The later report does not establish the original or final prize score."
       },
       {
         "year": 1989,
@@ -30245,7 +31722,8 @@
             "next_primary_path": "Legitimate author/library copy or archived Thinking Machines technical report for the exact elliptic-grid and seismic papers. Confirm original identity before using related 1992 superconductor DOI 10.1007/bf00129776 or 1993 Pascal DOI 10.1109/52.199740 as competition-paper full text.",
             "source_url": "https://www.netlib.org/utk/people/JackDongarra/PAPERS/Gordon-Bell-Prize-Lectures.pdf"
           }
-        ]
+        ],
+        "batch_next_action": "Review the remaining 11 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately. Further evidence: Recover the original 1990 competition submission and compare it with the 1993 journal account of the same F9 computation. Preserve the later publication year and journal DOI."
       },
       {
         "year": 1991,
@@ -30410,7 +31888,8 @@
           "reason": "Committee announcement establishes finalist membership; publisher and OSTI records link the later 50-GFlops title; archived LANL author PostScript supplies the full text, tables and original byline. Figure 6 color images are placeholders in that author file.",
           "next_primary_path": "Compare with legitimately accessible proceedings final (ACM 10.1145/169627.169794 / IEEE 10.1109/SUPERC.1993.1263501) and a contemporary presentation/award source; then audit Long/Myczkowski Boltzmann DOI 10.1145/169627.169795.",
           "source_url": "https://web.archive.org/web/19970228010629id_/http://bifrost.lanl.gov:80/~pxl/papers/gb.ps"
-        }
+        },
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 1994,
@@ -30521,7 +32000,8 @@
             "early_recovery_1994_cornell_ctc94tr183_author_pdf",
             "early_recovery_1994_cornell_ctc94tr183_vision_ocr"
           ]
-        }
+        },
+        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately. Further evidence: Compare the five-page CTC94TR183 author report with the three-page SC94 publication. Recover complete versions for the remaining candidates; the boundary-elements scan still lacks its opening body page."
       },
       {
         "year": 1995,
@@ -30567,7 +32047,8 @@
           "roster-1995-csdl95-toc"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 2 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 1996,
@@ -30613,7 +32094,8 @@
           "roster-1996-judges96"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 2 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 1997,
@@ -30661,7 +32143,8 @@
           "roster-1997-sc97-preserved-WARREN"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 1998,
@@ -30854,7 +32337,8 @@
               }
             ]
           }
-        ]
+        ],
+        "batch_next_action": "Review the remaining 1 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately. Further evidence: Recover the exact proceedings registration/DOI and compare with this nineteen-author conference paper. Check the separate three-author updated submission independently, and identify the other two candidates."
       },
       {
         "year": 1999,
@@ -30901,7 +32385,8 @@
           "roster-1999-csdl99-finalists"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2000,
@@ -30949,7 +32434,8 @@
           "roster-2000-csdl00-toc"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2001,
@@ -30997,17 +32483,23 @@
           "roster-2001-makino01-award-certificate"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2002,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 1,
+        "manuscript_audits": 6,
         "manuscript_ids": [
-          "sc2002-pap216"
+          "sc2002-pap216",
+          "sc2002-pap146",
+          "sc2002-pap277",
+          "sc2002-pap273",
+          "sc2002-pap147",
+          "sc2002-pap331"
         ],
-        "performance_observations": 2,
+        "performance_observations": 14,
         "offline_candidate_bodies": 6,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -31024,10 +32516,11 @@
         "verified_dois": 6,
         "unresolved_dois": 0,
         "byline_status_counts": {
-          "registry_order_not_pdf_audited": 6
+          "ordered_byline_checked_complete_preserved_manuscript": 5,
+          "registry_order_not_pdf_audited": 1
         },
         "publication_byline_gaps": 0,
-        "manuscript_byline_checked_entries": 1,
+        "manuscript_byline_checked_entries": 6,
         "participants_only_entries": 0,
         "first_page_only_checks": 0,
         "award_supported_entries": 5,
@@ -31044,10 +32537,65 @@
           "roster-2002-sc02-preserved-pap277",
           "roster-2002-sc02-preserved-pap273",
           "roster-2002-sc02-preserved-pap147",
-          "roster-2002-sc02-preserved-pap331"
+          "roster-2002-sc02-preserved-pap331",
+          "sc2002-batch-pap146-manuscript",
+          "sc2002-batch-pap277-manuscript",
+          "sc2002-batch-pap273-manuscript",
+          "sc2002-batch-pap147-manuscript",
+          "sc2002-batch-pap331-manuscript"
         ],
-        "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "queue_status": "indexed_year_manuscript_batch_checked",
+        "next_action": "2002 has a complete first manuscript review for all six indexed candidates. Compare exact published/submitted versions and separately authenticated presentation-day updates when available; proceed to the remaining three 2004 candidates as the next year batch.",
+        "before_year_batch": {
+          "year": 2002,
+          "inventory_reviewed_on": "2026-11-22",
+          "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
+          "manuscript_audits": 1,
+          "manuscript_ids": [
+            "sc2002-pap216"
+          ],
+          "performance_observations": 2,
+          "offline_candidate_bodies": 6,
+          "conference_final_score_status": "Not established",
+          "sc_links": {
+            "history_pdf_url": "https://supercomputing.org/app/uploads/2023/10/SC2002.pdf",
+            "label": "SC02",
+            "proceedings_url": "https://dl.acm.org/doi/proceedings/10.5555/762761",
+            "website_url": "https://sc02.supercomputing.org/",
+            "year": 2002
+          },
+          "roster_status": "complete_against_preserved_official_index",
+          "indexed_entries": 6,
+          "expected_entries": 6,
+          "membership_label": "candidates",
+          "verified_dois": 6,
+          "unresolved_dois": 0,
+          "byline_status_counts": {
+            "registry_order_not_pdf_audited": 6
+          },
+          "publication_byline_gaps": 0,
+          "manuscript_byline_checked_entries": 1,
+          "participants_only_entries": 0,
+          "first_page_only_checks": 0,
+          "award_supported_entries": 5,
+          "award_conflicts": 0,
+          "other_entrant_entries": 0,
+          "award_unestablished_entries": 1,
+          "evidence_checked_on": [
+            "2026-11-12",
+            "2026-11-22"
+          ],
+          "source_ids": [
+            "roster-2002-sc02-preserved-pap146",
+            "roster-2002-sc02-preserved-pap216",
+            "roster-2002-sc02-preserved-pap277",
+            "roster-2002-sc02-preserved-pap273",
+            "roster-2002-sc02-preserved-pap147",
+            "roster-2002-sc02-preserved-pap331"
+          ],
+          "queue_status": "first_manuscript_checked",
+          "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        }
       },
       {
         "year": 2003,
@@ -31095,7 +32643,8 @@
           "roster-2003-sc03_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2004,
@@ -31143,7 +32692,8 @@
           "roster-2004-sc04-preserved-pap231"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2005,
@@ -31194,7 +32744,8 @@
           "roster-2005-sc05-preserved-pap307"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2006,
@@ -31240,7 +32791,8 @@
           "roster-2006-sc06_preserved_finalist_announcement"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2007,
@@ -31285,7 +32837,8 @@
           "roster-2007-sc07_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2008,
@@ -31334,7 +32887,8 @@
           "roster-2008-sc08_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "All currently indexed manuscripts have a first audit. Source-version comparisons and authenticated conference-day updates remain separate work."
       },
       {
         "year": 2009,
@@ -31379,7 +32933,8 @@
           "roster-2009-sc09_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 8 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2010,
@@ -31424,7 +32979,8 @@
           "roster-2010-sc10_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2011,
@@ -31469,7 +33025,8 @@
           "roster-2011-sc11_preserved_finalist_index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2012,
@@ -31514,7 +33071,8 @@
           "roster-2012-sc12-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2013,
@@ -31559,7 +33117,8 @@
           "roster-2013-sc13-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2014,
@@ -31604,7 +33163,8 @@
           "roster-2014-sc14-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2015,
@@ -31649,7 +33209,8 @@
           "roster-2015-sc15-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2016,
@@ -31694,7 +33255,8 @@
           "roster-2016-sc16-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2017,
@@ -31739,7 +33301,8 @@
           "roster-2017-sc17-preserved-finalist-index"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 2 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2018,
@@ -31786,7 +33349,8 @@
           "roster-2018-sc18_count"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2019,
@@ -31832,7 +33396,8 @@
           "roster-2019-sc19_final_program_pdf"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 1 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2020,
@@ -31877,7 +33442,8 @@
           "roster-2020-sc20_awards"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2021,
@@ -31924,7 +33490,8 @@
           "roster-2021-sc21_awards"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2022,
@@ -31970,7 +33537,8 @@
           "roster-2022-sc22_s2"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2023,
@@ -32016,7 +33584,8 @@
           "roster-2023-sc23_program"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2024,
@@ -32062,7 +33631,8 @@
           "roster-2024-sc24-program"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2025,
@@ -32118,7 +33688,8 @@
           "roster-2025-sc25_session_590"
         ],
         "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
+        "batch_next_action": "Review the remaining 4 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       },
       {
         "year": 2026,
@@ -32175,7 +33746,8 @@
         "queue_status": "first_manuscript_checked",
         "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
         "doi_resolution_note": "Six publisher-assigned DOIs returned HTTP 404 in the separate 22 November postconference check; identifier matching and resolver availability are distinct.",
-        "performance_history_note": "The earlier ElMerFold first-page baseline and institutional event remain separate evidence. A complete manuscript version now has its own detailed audit; none of these establishes a final conference score."
+        "performance_history_note": "The earlier ElMerFold first-page baseline and institutional event remain separate evidence. A complete manuscript version now has its own detailed audit; none of these establishes a final conference score.",
+        "batch_next_action": "Review the remaining 5 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
       }
     ],
     "continuation": {
@@ -32420,6 +33992,28 @@
         }
       ],
       "note": "Thirteen identified entries added; all three recovered lists remain partial. Membership evidence, recognition, publication metadata and full manuscript audits are separate."
+    },
+    "year_batches": {
+      "completed": [
+        {
+          "year": 2002,
+          "checked_on": "2026-11-22",
+          "added_record_ids": [
+            "sc2002-pap146",
+            "sc2002-pap277",
+            "sc2002-pap273",
+            "sc2002-pap147",
+            "sc2002-pap331"
+          ],
+          "new_manuscripts": 5,
+          "indexed_manuscripts_checked": 6,
+          "new_observations": 12,
+          "new_manuscript_pages": 82,
+          "next_action": "2002 has a complete first manuscript review for all six indexed candidates. Compare exact published/submitted versions and separately authenticated presentation-day updates when available; proceed to the remaining three 2004 candidates as the next year batch.",
+          "evidence_file": "batch_2002_manuscripts_20261122.json"
+        }
+      ],
+      "note": "Pending candidates are grouped by year for shared acquisition, extraction and publication; scientific scope and version evidence remain individual records."
     }
   }
 }
