@@ -2,16 +2,16 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "05842c0f96f62c1311fb57914cf67ba7bf92636271be1bbd50acff40c81e7095",
-    "numerical-methods-atlas/coverage.json": "e26903a184aaef41da6f8107de84e9c3cbf08ea24bc8b5ef66a5e4ab7976125d",
-    "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
-    "catalog/atlas-execution-discovery.json": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1"
+    "catalog/atlas-methods.json": "51ff60418d0a8fef64079f309c38c3d334375865aa1c8c39d03d33f8d4a7ec77",
+    "numerical-methods-atlas/coverage.json": "47af76952fd430632eae2ec458509fb19e634b980f7f5db3e1610366cc84cfe8",
+    "catalog/atlas-execution-examples.json": "6072b8b1c04a471a8d2c51cb455094cb22018e92f2788c59108682ec6af62cd3",
+    "catalog/atlas-execution-discovery.json": "1a1713b0a88feb5c1576f12f31a37d4a52e209b61f0028c084727532fc780c81"
   },
   "builder_sha256": "87508c43c1d8998576804b775cada4da8f1e8c348af73a58d9755c76c867dad0",
   "renderer": {
     "name": "Pillow",
-    "version": "13.0.0",
-    "freetype": "2.14.3"
+    "version": "11.3.0",
+    "freetype": "2.13.3"
   },
   "font": {
     "filename": "ヒラギノ角ゴシック W6.ttc",
@@ -19,18 +19,18 @@
   },
   "images": {
     "ja": {
-      "svg_sha256": "8055a12a65a8efc862d98ecab6dbeeebd5b59977408b3f3d14036d81abf15bd4",
-      "png_sha256": "dbb62db867d772d5347be2f7ebfc0a56618d516900361e6fe015e1560f6b2d87",
-      "content_input_sha256": "c28ea98b9e3151cc542a97f56b5704d88755ae80172720dd8338659a809ebfa6",
-      "render_input_sha256": "f2df4cd636601ae38f6d0edc0c3688576c141955056bc7bb8dfe89fc892c62bc",
+      "svg_sha256": "05988dae79792b36daed40e19e0dfccf99f92b2ea80a9703ea2b01cefa7bb64f",
+      "png_sha256": "e04e9d9c846fab62606e10edb2fd1c4476f1c73499e560f463551077d4c5cee8",
+      "content_input_sha256": "c4be9e18f167ef77e66a5f10935ef804124e12b813bd7dc4c8a363f781b0eac5",
+      "render_input_sha256": "0ddcc295204154e96f242ab429ca62a689f0b9d5a7d52b74fb57ff54e02f8f62",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "9efe01da0861edb9c3438f70f17d2b9f8f4bbe470cd5cfd15e48be9bf6ae158a",
-      "png_sha256": "461ff19cd200e76d28382c47d333ae8cff4bb9e2268d27c6b65b11cbb76f528d",
-      "content_input_sha256": "e1e8c91b66325143edf81c0401410a05f303bc8fc40590152ec6aaeff02bf995",
-      "render_input_sha256": "1e5d527b8e852919715cc5a98c7c5ac6cecba2f54963d80b649795530174ac3e",
+      "svg_sha256": "89c93f8f362daa3b97e8e7435c460950d8d492549a444be33b62820b822adc81",
+      "png_sha256": "a0e16e9b6187446436f940378d987576edb6ae32a2965061778c4efb3b932a97",
+      "content_input_sha256": "3c0b84891ecdecf9f936f29e7609744e8c72aa11bb4c57b9577c6650c433a3cb",
+      "render_input_sha256": "37c405b248e87ccf186797a692ae93ae08a8acc70a20e8f8c21d79ca5c167d4c",
       "width": 1200,
       "height": 630
     }

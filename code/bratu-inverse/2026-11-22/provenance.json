@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "unchanged_source_release": "https://hrkoyama.github.io/code/bratu-sensitivity/2026-11-22/",
+  "unchanged_source_sha256": {
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "numart/bratu_sensitivity.py": "31f694599475892c75bcff9b4e9bd08921716bb48d6a78d48d12f1484a023609"
+  },
+  "adaptations": [
+    "Original AD, Armijo-Newton and implicit/adjoint modules retained byte-for-byte.",
+    "New fixed-node observation operator, weighted least-squares objective and bounded adjoint-gradient optimizer.",
+    "New fixed synthetic inputs, independent continuous-data refinement, objective-only reference, tests and evidence builder.",
+    "Minimal initializer avoids unrelated solver imports."
+  ]
+}

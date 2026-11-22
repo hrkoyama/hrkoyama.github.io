@@ -51,12 +51,12 @@
   "units": "Dimensionless Bratu variables and parameter; objective quadrature h=1/(n+1) is explicit.",
   "boundary_conditions": "u(0)=u(1)=0 on [0,1], fixed independently of lambda; corresponding boundary sensitivity is zero.",
   "next_deliverable": {
-    "ja": "時間依存の随伴、複数観測の逆問題最適化、非滑らかな問題への独立した検証。",
-    "en": "Separate verification for time-dependent adjoints, inverse optimization with multiple observations and nonsmooth problems."
+    "ja": "時間依存の随伴、多パラメータの逆問題最適化、非滑らかな問題への独立した検証。1パラメータの合成観測逆問題は別章で公開。",
+    "en": "Separate validation for time-dependent adjoints, multi-parameter inverse optimization and nonsmooth problems. A separate chapter provides the one-parameter synthetic-observation inverse case."
   },
   "limitations": {
-    "ja": "滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴はEuclid内積で定義し、目的関数の積分重みを明記する。逆問題の最適化や時間依存随伴、衝撃波感度は実装しない。",
-    "en": "Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented."
+    "ja": "感度配布版は滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴はEuclid内積で定義し、目的関数の積分重みを明記する。1パラメータの合成観測逆問題は別章・別配布版で扱う。時間依存随伴、衝撃波感度は未実装。",
+    "en": "The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented."
   },
   "metadata_review": {
     "level": "implicit and discrete-adjoint implementation; analytic, re-solved finite-difference and spatial-refinement checks",

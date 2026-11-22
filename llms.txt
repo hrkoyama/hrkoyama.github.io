@@ -80,7 +80,7 @@ This file is a discovery guide, not a complete mirror of the site or evidence th
 
 ## Method records and executable code
 
-- [Method map](https://hrkoyama.github.io/numerical-methods-atlas/methods/): 114 existing method/building-block entries and 31 separately labeled development candidates. Planned entries have no dedicated solver or verification result.
+- [Method map](https://hrkoyama.github.io/numerical-methods-atlas/methods/): 115 existing method/building-block entries and 30 separately labeled development candidates. Planned entries have no dedicated solver or verification result.
 - [Method registry / JSON](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json): Names, status, reading routes, chapter-related Python modules, tests, reference links and explicit metadata gaps. Each entry has a stable HTML URL, index.json and index.md. Null assumptions or boundaries mean not yet curated, not unrestricted applicability.
 - [Reviewed priority methods / JSON](https://hrkoyama.github.io/numerical-methods-atlas/methods/reviewed.json): 24 method-specific records with problems, adopted variants, use/avoid conditions, units, boundary conventions, explicit specified/not-applicable/unknown states, source roles and actual source-check depth. Metadata review is not a new numerical verification run; planned methods retain their status.
 - Editorial scope: The focus is mathematical methods, formulations, applicability and verification. AMR (adaptive mesh refinement), parallelization and mixed-precision techniques for computational efficiency are outside the scope of dedicated coverage and development. Ordinary roundoff and numerical stability remain foundational topics.

@@ -11,10 +11,10 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 114,
-    "papers": 224,
-    "references": 265,
-    "journal_articles": 218,
+    "methods": 115,
+    "papers": 221,
+    "references": 262,
+    "journal_articles": 215,
     "conference_papers": 6,
     "books": 24,
     "chapters": 3,
@@ -22,14 +22,14 @@
     "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 98,
+    "local_methods": 99,
     "reading_methods": 16,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
     "reading_chapters": 79,
-    "test_problems": 67,
-    "saved_test_problems": 67,
+    "test_problems": 66,
+    "saved_test_problems": 66,
     "code_test_problems": 0
   },
   "items": [
@@ -1498,8 +1498,18 @@
       "chapter": "adjoint",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
-      "scope": "Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented.",
+      "scope": "The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented.",
       "origin": "curated-sensitivity-example"
+    },
+    {
+      "kind": "method",
+      "id": "optimization",
+      "label": "Gradient and quasi-Newton optimization",
+      "chapter": "bratu-inverse",
+      "status": "local-example",
+      "group": "Optimization & stochastic methods",
+      "scope": "An educational one-parameter inverse problem on the smooth lower branch with fixed synthetic observations, bounded projected gradients and Armijo search. Same-discrete-model recovery, grid bias against continuous analytic observations and shifts under fixed noise are distinguished. Quasi-Newton methods, real data, branch identification and statistical confidence intervals are outside the verified scope.",
+      "origin": "curated-inverse-example"
     }
   ],
   "publications": [
@@ -2683,24 +2693,6 @@
       "origin": "curated-method-metadata"
     },
     {
-      "id": "feynman1939",
-      "type": "article",
-      "identity": "doi:10.1103/physrev.56.340",
-      "origin": "curated-method-metadata"
-    },
-    {
-      "id": "pulay1969",
-      "type": "article",
-      "identity": "doi:10.1080/00268976900100941",
-      "origin": "curated-method-metadata"
-    },
-    {
-      "id": "herbert-head-gordon2005",
-      "type": "article",
-      "identity": "doi:10.1039/b509494a",
-      "origin": "curated-method-metadata"
-    },
-    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -2930,9 +2922,9 @@
     "reviewed_on": "2026-11-22"
   },
   "public_extension_sha256": {
-    "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "05842c0f96f62c1311fb57914cf67ba7bf92636271be1bbd50acff40c81e7095",
+    "catalog/atlas-quantum.json": "22ba356f826fcbf95ba84ba169ae75e29134c9adb6313da6591b801ba4940ba4",
+    "catalog/atlas-methods.json": "51ff60418d0a8fef64079f309c38c3d334375865aa1c8c39d03d33f8d4a7ec77",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "9b4a042d5c6d48637f51c9667083cb4bdc9531ea737deebe2fdce44070e83380"
+    "catalog/atlas-method-primary-references.json": "e388cfbb852195fc7683b3d1688557e7b00dd5d443b2c0c1d0ce199b0be79f94"
   }
 }

@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-0520cadbe8
-Captured (UTC): 2026-11-22T07:21:57+00:00
+Snapshot: 2026-11-22-5165fd2ee0
+Captured (UTC): 2026-11-22T07:16:37+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -314,6 +314,7 @@ Inspect the sensitivity/adjoint source, figure and evidence builder, test source
 The existing AD foundation chapter explains how residual derivatives are obtained. Blondel et al. (2022), Section 2.1, and the official JAXopt references provide further discussion of root derivatives and their JVP/VJP constructions. This independent example uses NumPy and adds neither a JAX/JAXopt dependency nor a performance comparison with those libraries.
 Automatic differentiation foundation · Newton and conditioning
 The nine dedicated tests are rerun from an independently extracted copy of the release. The verification receipt also records checks of numerical evidence, the rebuilt figure and file hashes.
+The fixed sensitivity release in this chapter does not fit observations. A separate follow-up uses its adjoint construction to estimate λ from synthetic observations. Bratu inverse problem: fit a parameter to synthetic observations
 
 ## Implicit differentiation and adjoints: Bratu parameter sensitivity — Publication scope and related entries [en]
 
@@ -1718,6 +1719,167 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-mo
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/
+Coverage: reading
+
+A forward problem computes a state from a coefficient; an inverse problem estimates that coefficient from observations of the state. Fit one Bratu parameter λ to five observations and use the previous chapter’s discrete adjoint gradient in the actual optimization updates. The model, boundary conditions and observation positions are known in this small synthetic problem.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Specify the known inputs and the unknown parameter [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-data
+Coverage: reading
+
+State u, coordinate x and coefficient λ are dimensionless in this educational model. The grid, interval [0,1], zero Dirichlet boundary conditions, observation operator H and weights W are fixed. Only λ is unknown; model form and boundary values are not inferred simultaneously. Use centered differences with n interior unknowns and re-solve the nonlinear equation at each trial parameter.
+-u^{\prime\prime}-\lambda e^u=0,\quad u(0)=u(1)=0,\qquad F_h(u,\lambda)=D_hu-\lambda e^u=0,\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1),\quad h=(n+1)^{-1}.u_\alpha(x)=-2\log\!\frac{\cosh(\alpha(x-1/2))}{\cosh(\alpha/2)},\quad\lambda(\alpha)=\frac{2\alpha^2}{\cosh^2(\alpha/2)},\qquad\alpha_*=1.5,\quad\lambda_*\approx2.684636137266.
+The generating values are α*=1.5 and λ*≈2.684636137266. Restrict λ to [0.2,3.4] and start every state solve at zero to target the smaller-solution branch. Numerical branch selection is part of the problem specification. Fitting on the upper branch or continuing through a fold is not verified.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Observation operators and weighted least squares [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#least-squares
+Coverage: reading
+
+x_{\rm obs}=(1/8,1/4,1/2,3/4,7/8),\qquad r_h(\lambda)=H_hu_h(\lambda)-d,\quad W=\operatorname{diag}(w_j),\quad w_j=1/5.
+Five sensors lie at x=0.125, 0.25, 0.5, 0.75, 0.875. They coincide with grid nodes for n=15,31,63,127, so H selects interior state entries; no interpolation error is introduced. A row observing a fixed zero endpoint is zero. Save the observations d before optimization and keep them fixed rather than regenerating them for each trial λ.
+\Phi_h(\lambda)=\frac12 r_h(\lambda)^TWr_h(\lambda)+\frac\gamma2(\lambda-\lambda_{\rm prior})^2,\qquad\gamma\ge0,\quad\ell=0.2\le\lambda\le b=3.4.
+All published experiments use γ=0 and wⱼ=1/5, making the objective half the mean squared observation residual. The implementation also accepts positive nonuniform weights and γ≥0, with separate tests for the weights and explicit prior term. Interpreting W as an inverse error covariance would require a specified probability model; none is assumed here.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Build an adjoint gradient from observation residuals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#adjoint-gradient
+Coverage: reading
+
+J=F_u=D_h-\lambda\operatorname{diag}(e^u),\quad F_\lambda=-e^u,\quad q=H_h^TWr_h,\qquad J^Tp=q.\frac{d\Phi_h}{d\lambda}=\underbrace{\gamma(\lambda-\lambda_{\rm prior})}_{\text{explicit parameter term}}-p^TF_\lambda=\gamma(\lambda-\lambda_{\rm prior})+p^Te^u.
+The state partial derivative q includes both the transpose of H and the observation weights. With the Lagrangian convention Φ−pᵀF, subtract pᵀF_λ from the explicit parameter derivative. Since F_λ=−exp(u), the Bratu state-mediated term has a plus sign. Setting γ=0 removes the explicit term, not the state-mediated term.
+Assemble J at the converged primal state and solve Jᵀp=q using the existing implicit-differentiation linear algebra. Do not differentiate an unrolled Newton iteration sequence. This Bratu J is symmetric: an independent nonsymmetric manufactured problem tests transposition in the previous release, while the new dedicated tests check the observation operator, nonuniform weights and regularization.
+There is one parameter and one objective, so a direct sensitivity solve Js=exp(u) also has one right-hand side. This example demonstrates no adjoint speed advantage. It checks a construction that can extend to many parameters on a small inverse problem.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Run a gradient method with box constraints [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#bounded-optimization
+Coverage: reading
+
+\Pi_{[\ell,b]}(z)=\min(b,\max(\ell,z)),\qquad\lambda_{\rm trial}=\Pi_{[\ell,b]}(\lambda_k-a g_k),\quad\Delta\lambda=\lambda_{\rm trial}-\lambda_k.\Phi_h(\lambda_{\rm trial})\le\Phi_h(\lambda_k)+c g_k\Delta\lambda,\qquad c=10^{-4},\quad a=10\,2^{-j},\quad j=0,1,\ldots .
+Update λ using its current adjoint gradient g and project into the interval. Restart the step length at a=10 on each iteration and halve it until the sufficient-decrease inequality holds. Use the actual displacement after projection in gΔλ. Accepted and rejected trial evaluations use the same primal controls. A failed state solve stops the calculation rather than supplying a valid objective value.
+G(\lambda)=\lambda-\Pi_{[\ell,b]}(\lambda-g(\lambda)),\qquad |G(\lambda)|\le10^{-10}.
+The stopping measure is the absolute projected-gradient mapping with a unit step. It equals the ordinary gradient at an interior solution where projection is inactive; at an active bound a nonzero g can satisfy constrained stationarity. Save every accepted point, step length, backtrack count, primal/adjoint residual and termination reason, with at most 300 updates and 50 line-search trials. A small objective change alone is not the convergence test.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Run a gradient method with box constraints [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#bounded-optimization
+Coverage: reading
+
+Armijo (1966) provides the sufficient-decrease and variable-step idea; this implementation applies it to the projected displacement. The original unconstrained convergence theorem is not cited as a global-convergence guarantee for this nonlinear inverse problem. This is also not an implementation of BFGS or a general constrained-optimization library.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Keep three synthetic data regimes distinct [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#synthetic-data
+Coverage: reading
+
+d^{\rm disc}=H_hu_h(\lambda_*),\qquad d^{\rm cont}_j=u_{\alpha_*}(x_j),\qquad d^{\rm noisy}=d^{\rm cont}+10^{-3}(1,-0.6,0.4,-1,0.3)^T.
+Noiseless data from the same discretization. Generate d with the n=31 forward solver and invert with that same discretization. Recovering λ* is an inverse crime: it checks consistency among data generation, observations, gradient and optimizer, not accuracy for the continuous problem or real measurements.
+Noiseless data from the independent continuous family. Fix the closed-form u_α values at the observation points. Refine the inverse grid through n=15,31,63,127 to examine discretization bias in the difference from the generating parameter.
+Data with a fixed perturbation. Add the displayed deterministic vector once to the same continuous observations. No random draw or known noise distribution is assumed, and no resampling occurs. The published perturbed-data fit uses n=63. A best fit displaced from λ* need not indicate optimizer failure.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Verification: gradients, optimization, grids and observations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+The saved measurements and input data record figure values, controls, residuals and termination reasons.
+g_{\rm FD}(\varepsilon)=\frac{\Phi_h(\lambda+\varepsilon)-\Phi_h(\lambda-\varepsilon)}{2\varepsilon},\qquad F_h(u_h(\lambda\pm\varepsilon),\lambda\pm\varepsilon)=0.
+Check gradients away from stationary points. Re-solve the state at λ±ε for several λ and compare objective-only central differences with adjoint gradients. Do not rely only on both gradients being nearly zero at an optimum.
+Use an independent scalar reference. Compare the adjoint-gradient fit with objective-only golden-section search. Golden section assumes a unimodal objective; sampled objective landscapes are also saved. Agreement is not a proof of global optimality across all branches.
+Use three starting values. Compare accepted updates, objective decrease, projected gradients and termination reasons from 0.5,1.5,3.2.
+Vary the data generation and grid separately. Record same-discretization consistency, mesh error for continuous data and the shift in best fit under the fixed perturbation.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Verification: gradients, optimization, grids and observations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+Saved measurements 1: gradient checks. At n=31 and λ=0.8,1.8,3.0, central differences with ε=10⁻⁵ differ from adjoint gradients by approximately 1.31×10⁻¹², 2.81×10⁻¹² and 1.79×10⁻¹². The maximum absolute direct-sensitivity/adjoint gradient difference is below 1.4×10⁻¹⁷. The JSON also saves a perturbation sweep. These check derivatives of the implemented discrete objective.
+Measurements 2: same-discretization recovery. For n=31, starts λ=0.5,1.5,3.2 take 33,30,25 accepted updates. Absolute errors from λ* are approximately 1.48×10⁻⁹, 1.10×10⁻⁹ and 1.65×10⁻⁹. All three projected gradients are at most 10⁻¹⁰ and data RMS residuals below 3.9×10⁻¹⁰. Read this close agreement as a same-discretization consistency check.
+Measurements 3: mesh dependence for continuous data. For n=15,31,63,127, fitted λ values are approximately 2.6816989071, 2.6839024768, 2.6844527616, 2.6845902950. Absolute errors from λ* are approximately 2.9372×10⁻³, 7.3366×10⁻⁴, 1.8338×10⁻⁴, 4.5842×10⁻⁵, decreasing by about four as h halves. Observed orders are 2.0013, 2.0003, 2.0001. The optimizer converges while finite-mesh bias remains.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Verification: gradients, optimization, grids and observations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+Measurements 4: a fixed perturbation shifts the best fit. At n=63 the fitted λ≈2.6841620622 shifts by about −2.9070×10⁻⁴ from the unperturbed optimum on the same grid. Absolute error from λ* is about 4.7408×10⁻⁴, data RMS residual about 7.1942×10⁻⁴ and objective about 2.5878×10⁻⁷. The projected gradient is about 6.39×10⁻¹¹, so the departure from truth is not explained simply by unfinished optimization.
+The four continuous-data fits and the fixed-perturbation fit agree with the objective-only golden-section reference to within 2.1×10⁻⁹ in λ. The reference’s final interval width is below about 8.65×10⁻⁹; it is not a certificate of an exact optimum. Primal residuals at the eight final fits above are at most 1.4×10⁻¹¹. Judge derivative agreement, optimizer stopping and closeness to the generating parameter separately.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Observations that can and cannot identify λ [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#identifiability
+Coverage: reading
+
+J s=e^u,\qquad \frac{d(H_hu_h)}{d\lambda}=H_hs,\qquad \|W^{1/2}H_hs\|_2>0\ \text{is a local sensitivity diagnostic}.
+A response of the interior observations to λ is a useful local sensitivity diagnostic in this scalar problem. A weak response can amplify small data changes into large parameter changes. Local sensitivity alone does not prove global uniqueness. Changing the branch, sensor positions or admissible interval changes the inverse problem.
+For a counterexample, observe only x=0,1. Their fixed Dirichlet values vanish independently of λ, so H=0 and Hs=0. With γ=0, the objective is independent of λ and the data cannot identify it. Dedicated tests check this property, and the fitting function rejects this setting as uninformative. A regularization term could select a parameter but would not make the boundary observations informative.
+The fixed-perturbation experiment supplies no statistical confidence intervals. Real observations, unknown model discrepancy, optimal sensor placement and identifiability of many parameters are outside the verified scope.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Separate parameter error from optimization error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#error-scope
+Coverage: reading
+
+e_\lambda=|\widehat\lambda_h-\lambda_*|,\qquad r_{\rm data}=\sqrt{\frac15\sum_{j=1}^5(H_hu_h-d)_j^2},\qquad r_F=\|F_h(u_h,\lambda)\|_2,\quad r_p=\|J^Tp-q\|_2.
+Error from the generating λ*, observation residual, primal residual, adjoint residual and projected gradient are different quantities. A small projected gradient checks stationarity for the chosen grid, observations and constraints; it does not guarantee truth recovery or a zero observation residual. Conversely, continuous/discrete mismatch or fixed observation perturbations can move a well-converged optimum away from λ*.
+Primal solves use an unscaled Euclidean residual tolerance of 10⁻¹⁰ and at most 40 updates. Adjoint systems use small dense matrices. Finite-difference gradient checks balance perturbation truncation, roundoff and inner-solve error. Mesh refinement, tighter optimizer stopping and improvement of a physical model address different errors.
+This release is an educational scalar, box-constrained fit on a specified Bratu branch. It is not a general inverse-problem library, quasi-Newton implementation, transient adjoint, singular-point continuation method, model-selection procedure or validation of a physical model with experimental data.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Run the fixed release and inspect its inputs [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#reproduce
+Coverage: reading
+
+Extract the dated release ZIP and follow the README. The earlier AD and sensitivity supplements remain separate, fixed releases; this synthetic inverse example has its own package.
+python -m pip install -r requirements.txt
+python scripts/build_bratu_inverse.py
+python -m pytest tests/test_bratu_inverse.py
+Inspect the objective, adjoint and optimizer source, figure and evidence builder, dedicated tests, independent-extraction verification record and file inventory and SHA-256 hashes. JSON inputs include positions, generating parameter, fixed perturbation, weights, starts and stopping controls.
+Blondel et al. (2022), Section 2.1, and the official JAXopt documentation discuss root derivatives built from residual derivatives and linear solves; Jameson (1988) gives historical context for adjoints in design. This NumPy educational implementation does not claim to reproduce their paper experiments or JAXopt’s implementation or performance.
+Implicit differentiation and Bratu sensitivity · Automatic differentiation foundation · General gradient and quasi-Newton reading
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#publication-scope
+Coverage: reading
+
+An educational box-constrained adjoint-gradient implementation estimates one Bratu coefficient λ from synthetic observations. Measured checks cover same-discretization consistency, mesh dependence for independent continuous-family data, fixed observation perturbations, gradient differences and an objective-only reference search. Scope is a specified smaller-solution branch, fixed observations and small dense matrices. It does not validate BFGS or optimization methods generally, all-branch uniqueness, real data, statistical uncertainty or unknown model discrepancy.
+Gradient and quasi-Newton optimization
+Implicit differentiation and adjoint methods
+Automatic differentiation
+Armijo-damped Newton
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. Pacific Journal of Mathematics
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted pages 1–2: hypotheses, sufficient decrease and the modified steepest-descent step-halving rule in Corollary 2. No full-paper audit, reproduction or direct transfer of its unconstrained convergence theorem to the projected nonlinear inverse problem is claimed.
+Antony Jameson (1988). Aerodynamic design via control theory. Journal of Scientific Computing
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian here is a generic discrete derivation.
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#sources
+Coverage: reading
+
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted Section 2.1, pages 3–4: differentiating a root under local nonsingularity, and forming JVPs/VJPs through linear systems. Full-paper audit and reproduction of the paper experiments are not claimed.
+The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
+Official reference documentation · Selected source passages consulted · Consulted record
+Consulted the distinction between implicit and unrolled differentiation, custom_root support and the root_jvp/root_vjp API invariant optimality_fun(sol,*args)==0 with a supplied linear solver. No library benchmarking or reproduction of all examples is claimed.
 
 ## The carbuncle phenomenon [en]
 
@@ -5629,13 +5791,14 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/
 Coverage: reading
 
 Vary conditioning on positive-definite quadratics with known minima and check gradients by directional differences. On curved valleys vary initialization, scaling and line searches. Decreasing an objective does not validate physical assumptions or constraints.
+Verified implementation example: adjoint-gradient fitting of the Bratu synthetic inverse problem
 
 ## Gradient and quasi-Newton optimization — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+This page gives general gradient/quasi-Newton reading. Implemented scope is the separate Bratu synthetic inverse example: a scalar box-constrained projected-gradient method with Armijo backtracking. BFGS, general quasi-Newton methods and the broader checks proposed on this page are not implemented or verified by that example.
 Gradient and quasi-Newton optimization
 
 ## Gradient and quasi-Newton optimization — Primary publications, supporting sources and review scope [en]
@@ -5830,7 +5993,6 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/
 Coverage: reading
 
 A small periodic cell containing one He atom connects Bloch’s theorem, k-point integration, periodic Gaussian bases, auxiliary FFT grids and SCF iteration. A PySCF-backed example is compared with an independent plane-wave DFTK reference, exposing the conventions needed to solve the same model with different discretizations.
-Read next: multiatom DFT forces and the BOMD interface
 
 ## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — Measurements: what was checked, and to what tolerance [en]
 
@@ -6050,7 +6212,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/
 Coverage: reading
 
 CPMD orbital propagation does not represent real electronic excitations as in TDDFT. Electronic fictitious motion must remain separated in timescale from nuclear motion, keeping orbitals near the BO surface. Vary μ, timestep and orthogonality tolerance while monitoring fictitious kinetic energy and energy transfer to nuclei. Distinguish the ideal unthermostatted extended-system conserved energy E_ext from nuclear kinetic plus BO energy. These statements do not establish applicability to narrow-gap systems or metals.
-This section is reading only. This chapter’s fixed one-atom He example validates static total energies and k-point, basis, auxiliary-grid and SCF convergence. Multiatom He forces, energy finite differences, an independent reference and the BOMD force interface are covered in the separate From DFT to atomic forces chapter and release. Long BOMD/CPMD trajectories, timestep/SCF/fictitious-mass sensitivity and thermostats require separate validation.
+This section is reading only. The fixed-He example validates static total energies and quadrature, basis, auxiliary-grid and SCF convergence. It does not execute or validate atomic forces, BOMD/CPMD trajectories, time integration or thermostatting. A future implementation should first compare multiatom forces with independent references, then test MD conservation and sensitivity to timestep, SCF tolerances and μ.
 
 ## Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference — First-principles MD: Born–Oppenheimer and Car–Parrinello methods [en]
 
@@ -6125,379 +6287,6 @@ R. Car and M. Parrinello (1985). Unified Approach for Molecular Dynamics and Den
 Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced.
 Quantum ESPRESSO developers (2026). cp.x input description: electron dynamics, emass and orthogonalization. Official Quantum ESPRESSO documentation, version 7.5
 Selected input entries on fictitious mass, electronic/ionic dynamics, timestep, orthogonalization and adiabaticity consulted. No execution of the software is claimed.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/
-Coverage: reading
-
-Atomic forces are obtained as position derivatives of the total energy in a multiatom periodic He cell. Analytic gradients, finite differences of energies and an independent plane-wave calculation are compared, separating orbital-basis, k-point, auxiliary-grid and SCF effects on forces. The requirements for a BOMD force interface are distinguished from the additional validation of trajectories.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Stored measurements: finite differences, independent references and force convergence [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#measured-results
-Coverage: reading
-
-These stored results come from the release’s fixed input. Force comparisons use the maximum absolute difference over Cartesian components in hartree/bohr unless stated otherwise. Sweeps reuse common settings; setting counts are not distinct physical problems. Acceptance uses unrounded values. Wide numeric tables scroll horizontally within their own region.
-Comparison / hartree per bohrMeasured valueInput acceptance width
-Maximum finite-difference error over all six components2.32234127207e-082e-06
-Maximum error across the displacement scan1.8023756336e-071e-05
-Maximum DFTK force difference at Γ and 2³7.53824989575e-050.0002
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — All force components for each setting [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#force-components
-Coverage: reading
-
-Atom indices start at zero. The basis, grid and k mesh for finite-difference checks are specified by case_id in the input; these are distinct from the larger Gaussian bases used for independent DFTK comparisons.
-Casek meshBasisFFTE / hartreeF₀xF₀yF₀zF₁xF₁yF₁z||R(SCF)||IterationsTermination
-k-11 × 1 × 1gth-dzvp39 × 39 × 39-5.70768215071-0.0399865180743-0.0413736676148-0.04192614893530.03998823499350.04137623123060.04192718472982.24815240978e-106converged
-k-22 × 2 × 2gth-dzvp39 × 39 × 39-5.65460237047-0.0187663401033-0.0183991163312-0.01793506657070.01876805996720.01840168438590.01793610419059.45399307155e-106converged
-k-33 × 3 × 3gth-dzvp39 × 39 × 39-5.65438144479-0.0197859038656-0.0194170832984-0.01892361539940.01978762507820.01941965336320.01892465382882.67065724062e-127converged
-k-44 × 4 × 4gth-dzvp39 × 39 × 39-5.6544055885-0.0197574707047-0.0193936477762-0.01890421601820.01975919158230.01939621734110.01890525424582.82849901157e-127converged
-basis-gth-dzv1 × 1 × 1gth-dzv39 × 39 × 39-5.70703558107-0.0409289872197-0.0422406708291-0.04272484805240.04093070322610.04224323305160.0427258832655.46345331034e-1110converged
-basis-gth-tzv2p1 × 1 × 1gth-tzv2p39 × 39 × 39-5.70815605003-0.0398049478809-0.0412175461873-0.04179211419880.03980810454990.04122225928790.04179401828431.03658298966e-107converged
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — All force components for each setting [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#force-components
-Coverage: reading
-
-basis-gth-qzv3p1 × 1 × 1gth-qzv3p39 × 39 × 39-5.70828639286-0.0398052680635-0.0412155465361-0.04178946180590.03980988519160.04122244092630.04179224741671.68961469277e-107converged
-basis-k2-gth-tzv2p2 × 2 × 2gth-tzv2p39 × 39 × 39-5.65527584286-0.0185318883856-0.0181726120174-0.01771907720030.01853506039210.01817734792740.01772099039557.04867235399e-117converged
-basis-k2-gth-qzv3p2 × 2 × 2gth-qzv3p39 × 39 × 39-5.65543393064-0.0185062801195-0.0181391986902-0.01768355920560.01851090862530.01814611171170.01768635397717.12000432119e-117converged
-fft-311 × 1 × 1gth-dzvp31 × 31 × 31-5.70769888331-0.040254695194-0.0411018185894-0.04214640895890.03971913810730.04124969305140.04202464455578.94907038019e-107converged
-fft-471 × 1 × 1gth-dzvp47 × 47 × 47-5.70768217735-0.0399873760784-0.0413749709009-0.04192593384530.03998737558230.041374971160.04192593703252.1523627324e-106converged
-scf-loose1 × 1 × 1gth-dzvp39 × 39 × 39-5.70768215071-0.0399866781447-0.0413738335102-0.04192631734650.03998839506190.04137639712310.04192735313992.94441763031e-064converged
-scf-medium1 × 1 × 1gth-dzvp39 × 39 × 39-5.70768215071-0.0399865185982-0.0413736681641-0.04192614950020.03998823551740.04137623177990.04192718529482.08490928004e-085converged
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — PySCF internal check: central energy differences for all six components [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#finite-difference-results
-Coverage: reading
-
-Baseline case: k-1; displacement h / bohr: 0.002
-AtomAxisE(−h) / hartreeE(+h) / hartreeAnalytic forceFinite-difference force|Difference|
-0x-5.70776201846-5.70760207242-0.0399865180743-0.03998650958798.48636927397e-09
-0y-5.7077648067-5.70759931209-0.0413736676148-0.04137365350631.41084863237e-08
-0z-5.70776592335-5.70759821884-0.0419261489353-0.04192612735452.15807224729e-08
-1x-5.70760206918-5.707762022080.03998823499350.03998822376031.12331973029e-08
-1y-5.70759930701-5.707764811870.04137623123060.04137621304761.81830443202e-08
-1z-5.70759821661-5.707765925260.04192718472980.04192716150642.32234127207e-08
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Displacement-step scan [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#finite-difference-steps
-Coverage: reading
-
-h / bohrAnalytic forceFinite-difference force|Difference| / hartree per bohr
-0.0080.03998823499350.03998805475591.8023756336e-07
-0.0040.03998823499350.03998818993054.50630251309e-08
-0.0020.03998823499350.03998822376031.12331973029e-08
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Five force-convergence sequences [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#convergence-targets
-Coverage: reading
-
-Changed quantityFinal ||ΔF||∞Input targetTarget met
-k-point mesh2.84334958952e-050.001true
-Gaussian orbital basis at Γ2.65239291374e-060.0001true
-Gaussian orbital basis on the 2³ mesh3.55179947748e-050.0001true
-auxiliary FFT grid1.30328608255e-061e-05true
-SCF tolerances5.64949656501e-101e-06true
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — k-point mesh sequence [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#results-kpoint
-Coverage: reading
-
-CasekBasisFFTEnergy toleranceOrbital-gradient tolerance||ΔF||∞ from previous
-k-11gth-dzvp39 × 39 × 391e-111e-08—
-k-22gth-dzvp39 × 39 × 391e-111e-080.0239910823646
-k-33gth-dzvp39 × 39 × 391e-111e-080.00101956511103
-k-44gth-dzvp39 × 39 × 391e-111e-082.84334958952e-05
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Gaussian orbital basis at Γ sequence [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#results-basis
-Coverage: reading
-
-CasekBasisFFTEnergy toleranceOrbital-gradient tolerance||ΔF||∞ from previous
-basis-gth-dzv1gth-dzv39 × 39 × 391e-111e-08—
-k-11gth-dzvp39 × 39 × 391e-111e-080.000942469145363
-basis-gth-tzv2p1gth-tzv2p39 × 39 × 391e-111e-080.000181570193341
-basis-gth-qzv3p1gth-qzv3p39 × 39 × 391e-111e-082.65239291374e-06
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Gaussian orbital basis on the 2³ mesh sequence [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#results-basis-k2
-Coverage: reading
-
-CasekBasisFFTEnergy toleranceOrbital-gradient tolerance||ΔF||∞ from previous
-k-22gth-dzvp39 × 39 × 391e-111e-08—
-basis-k2-gth-tzv2p2gth-tzv2p39 × 39 × 391e-111e-080.000234451717677
-basis-k2-gth-qzv3p2gth-qzv3p39 × 39 × 391e-111e-083.55179947748e-05
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — auxiliary FFT grid sequence [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#results-auxiliary
-Coverage: reading
-
-CasekBasisFFTEnergy toleranceOrbital-gradient tolerance||ΔF||∞ from previous
-fft-311gth-dzvp31 × 31 × 311e-111e-08—
-k-11gth-dzvp39 × 39 × 391e-111e-080.000271849025353
-fft-471gth-dzvp47 × 47 × 471e-111e-081.30328608255e-06
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — SCF tolerances sequence [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#results-scf
-Coverage: reading
-
-CasekBasisFFTEnergy toleranceOrbital-gradient tolerance||ΔF||∞ from previous
-scf-loose1gth-dzvp39 × 39 × 391e-050.001—
-scf-medium1gth-dzvp39 × 39 × 391e-081e-051.67846322036e-07
-k-11gth-dzvp39 × 39 × 391e-111e-085.64949656501e-10
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — All-component comparison with independent DFTK [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#reference-results
-Coverage: reading
-
-Both engines share Libxc for XC evaluation, while Hamiltonians, SCF, orbital discretizations and force implementations differ. Differences between finite spaces are not rounding errors of an identical matrix or proof of the complete-basis limit.
-k meshPySCF casemax|ΔF| / hartree per bohr|ΔE| / hartreeForce acceptance widthPassed
-1 × 1 × 1basis-gth-qzv3p7.28156560619e-057.39562937522e-050.0002true
-2 × 2 × 2basis-k2-gth-qzv3p7.53824989575e-050.0001716841681070.0002true
-k meshAtomAxisPySCFDFTK|Difference|
-1 × 1 × 10x-0.0398052680635-0.03974088227836.43857851663e-05
-1 × 1 × 10y-0.0412155465361-0.04115049946356.50470726287e-05
-1 × 1 × 10z-0.0417894618059-0.04171943176357.00300423683e-05
-1 × 1 × 11x0.03980988519160.03974088227926.90029123726e-05
-1 × 1 × 11y0.04122244092630.04115049947087.19414554756e-05
-1 × 1 × 11z0.04179224741670.04171943176067.28156560619e-05
-2 × 2 × 20x-0.0185062801195-0.01844417456236.21055572319e-05
-2 × 2 × 20y-0.0181391986902-0.01807349989766.56987925777e-05
-2 × 2 × 20z-0.0176835592056-0.01761097149117.25877144895e-05
-2 × 2 × 21x0.01851090862530.01844417454086.67340845119e-05
-2 × 2 × 21y0.01814611171170.01807349987797.26118337627e-05
-2 × 2 × 21z0.01768635397710.01761097147817.53824989575e-05
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Plane-wave cutoff convergence of the reference [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#reference-cutoff-results
-Coverage: reading
-
-k meshCutoff / hartreeE / hartreeF₀xF₀yF₀zDensity residualSCF converged
-1 × 1 × 190-5.70469899265-0.0398769535381-0.0411568919154-0.04169525356311.79312606299e-11true
-1 × 1 × 1120-5.70763610706-0.0397459522334-0.0411620517635-0.04175032286783.63551158623e-11true
-1 × 1 × 1180-5.70832561727-0.0397416978174-0.0411521946852-0.04172025831294.5115468763e-11true
-1 × 1 × 1240-5.70836034916-0.0397408822783-0.0411504994635-0.04171943176357.38227720491e-11true
-2 × 2 × 290-5.65201462751-0.0184654863602-0.018082213442-0.0176196756244.1940247556e-11true
-2 × 2 × 2120-5.65488723806-0.0184462756738-0.0180769900647-0.01761553361644.38625485298e-11true
-2 × 2 × 2180-5.65557141515-0.0184444819384-0.0180739885367-0.01761143705364.33654981936e-11true
-2 × 2 × 2240-5.65560561481-0.0184441745623-0.0180734998976-0.01761097149115.36462814693e-11true
-k meshFinal cutoffFinal ||ΔF||∞Force targetFinal |ΔE|Energy targetTarget met
-1 × 1 × 12401.69522172031e-061e-053.47318874843e-050.0001true
-2 × 2 × 22404.88657926834e-071e-053.41996548503e-050.0001true
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — DFTK-side analytic-force and energy-difference checks [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#reference-finite-difference-results
-Coverage: reading
-
-AtomAxish / bohrAnalytic forceFinite-difference force|Difference|
-0x0.01-0.0397408822783-0.03974063906112.43217217838e-07
-0x0.005-0.0397408822783-0.03974082148656.07918097251e-08
-0x0.001-0.0397408822783-0.03974087984342.43493483709e-09
-0y0.001-0.0411504994635-0.04115049541524.04828268824e-09
-0z0.001-0.0417194317635-0.04171942645615.30734374504e-09
-1x0.0010.03974088227920.03974087985182.4274335042e-09
-1y0.0010.04115049947080.04115049541484.05603271109e-09
-1z0.0010.04171943176060.04171942646955.29114094899e-09
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Short execution check of the BOMD interface [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#bomd-interface-results
-Coverage: reading
-
-The same short interval is advanced with one velocity-Verlet step and two half steps, reconverging electrons at each configuration. Position/velocity differences and energy changes below are local interface checks, not proof of long-time NVE conservation or an observed timestep-convergence order. Masses, initial velocities and duration are fixed; no thermostat is used.
-QuantityMeasured valueUnit
-Total interval8atomic time
-Maximum position-component difference9.60193803634e-07bohr
-Maximum velocity-component difference6.19583876078e-09bohr / atomic time
-|ΔE| of total energy: one step3.78557850844e-07hartree
-|ΔE| of total energy: two half steps9.46016402992e-08hartree
-A visualization of stored results; acceptance uses the original input/result JSON.
-Full results / JSON · Settings and forces / CSV · Independent reference and convergence / JSON
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Forces are negative gradients of the total energy [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#force-definition
-Coverage: reading
-
-For a fixed lattice, electron count, functional and pseudopotential, the electronic ground state is solved at each atomic configuration. The Born–Oppenheimer energy is the total cell energy, including electronic and periodic ion–ion terms. The force on Cartesian component α of atom I is minus the total derivative with respect to that coordinate. Gradient and force signs must be distinguished: coordinates in bohr and energies in hartree give forces in hartree/bohr.
-The input is a cubic cell of side 5 bohr with He positions (0.37, 0.61, 0.83) and (2.13, 2.27, 2.41) bohr: four valence electrons in a closed-shell fixed configuration. It avoids a check in which symmetry makes every force zero. Directions and all x, y and z components are compared, as well as magnitudes. Numerical agreement for this artificial arrangement does not predict an equilibrium helium crystal or establish chemical accuracy. Stress and pressure require cell derivatives, separate from atomic-position derivatives at fixed cell.
-E_{\mathrm{BO}}(\mathbf R;A)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R,A]F_{I\alpha}=-\left.\frac{d E_{\mathrm{BO}}}{dR_{I\alpha}}\right|_{A,N_e},\qquad [F_{I\alpha}]=E_h/a_0
-Sources: M. Born and R. Oppenheimer (1927), R. P. Feynman (1939)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — The Hellmann–Feynman theorem and Pulay terms from moving bases [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#hellmann-feynman-and-pulay
-Coverage: reading
-
-For a normalized exact eigenstate, the energy derivative with respect to a parameter equals the expectation of the Hamiltonian derivative. This is the Hellmann–Feynman relation. Feynman’s 1939 paper is a historical primary source for evaluating molecular forces directly. The theorem alone does not make every force correct for an electronic state represented in a finite atom-centered basis. The H and Ψ below express the general theorem; they do not replace the Kohn–Sham total energy by a sum of orbital eigenvalues.
-A Gaussian basis moving with the atoms changes its functions and overlap matrix when nuclei move. Even with variationally optimized orbital coefficients, derivatives of this basis dependence must be included when differentiating the discrete energy. These are Pulay terms. The overlap derivative contracted with an energy-weighted density in the generalized eigenproblem is one contribution. The driver uses PySCF analytic nuclear gradients; it does not substitute a bare electron–ion Coulomb force.
-At fixed cell and cutoff, plane waves do not move with atomic positions. Finite-cutoff force errors nevertheless remain, and SCF and density-grid errors must still be controlled. The absence of moving-atom basis terms does not make plane-wave forces exact. Basis changes under cell deformation and Pulay stress are distinct from this fixed-cell test.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — The Hellmann–Feynman theorem and Pulay terms from moving bases [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#hellmann-feynman-and-pulay
-Coverage: reading
-
-H(\lambda)\Psi=E(\lambda)\Psi,\quad\langle\Psi|\Psi\rangle=1\quad\Longrightarrow\quad\frac{dE}{d\lambda}=\left\langle\Psi\left|\frac{\partial H}{\partial\lambda}\right|\Psi\right\rangleF_{\mathbf k}C_{\mathbf k}=S_{\mathbf k}C_{\mathbf k}\varepsilon_{\mathbf k},\quad W_{\mathbf k}=C_{\mathbf k}f_{\mathbf k}\varepsilon_{\mathbf k}C_{\mathbf k}^{\dagger},\quad \left.\frac{dE}{dR_{I\alpha}}\right|_{\text{overlap term}}=-\sum_qw_q\operatorname{Tr}\!\left(W_{\mathbf k_q}\frac{\partial S_{\mathbf k_q}}{\partial R_{I\alpha}}\right)
-Sources: R. P. Feynman (1939), P. Pulay (1969), PySCF developers (2026), DFTK developers (2026)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Finite-difference checks: smaller displacements are not always better [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#energy-finite-differences
-Coverage: reading
-
-One Cartesian component of one atom is displaced by ±h from the baseline configuration. At each displaced geometry the SCF is converged independently, and the resulting total energies give a central-difference force. The lattice, k points and weights, basis name, FFT grid, functional, pseudopotential and electron count are aligned. The atom-centered basis moves too, so this probes derivatives of the same discrete energy including basis-position dependence.
-For a smooth energy surface, central-difference truncation is O(h²). SCF solution and roundoff errors in energies are divided by 2h, so very small displacements can increase errors. Several h values are retained to locate a stable agreement range with analytic forces. A clean U-shaped measured curve is not assumed. An input SCF energy tolerance is not interpreted as a rigorous bound on the error of each energy.
-Agreement with finite differences from the same engine checks internal consistency, including signs, components and basis derivatives. Both use shared functional and pseudopotential implementations, so this alone is not an independent physical reference. A separate plane-wave DFTK implementation provides the independent comparison here.
-F^{\mathrm{FD}}_{I\alpha}(h)=-\frac{E(\mathbf R+h\mathbf e_{I\alpha})-E(\mathbf R-h\mathbf e_{I\alpha})}{2h}F^{\mathrm{FD}}(h)-F=\mathcal O(h^2)+\mathcal O(\delta E/h)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Finite-difference checks: smaller displacements are not always better [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#energy-finite-differences
-Coverage: reading
-
-Sources: P. Pulay (1969), PySCF developers (2026)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Converge basis, k points, auxiliary grids and SCF for forces separately [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#separate-force-convergence
-Coverage: reading
-
-A small energy change alone does not establish converged forces. The Gaussian orbital basis, Brillouin-zone mesh, auxiliary FFT grid and SCF stopping conditions are varied one at a time, comparing forces on the same atoms and Cartesian components. Atom ordering and axes are fixed. Summaries use an L∞-type maximum absolute component norm, distinct from a per-atom vector magnitude or a component average.
-Increasing a basis’s zeta label does not necessarily produce nested spaces or monotonic force changes. Nor are all k meshes nested. The final pair of settings is compared with a published target, without presenting the increment as a rigorous complete-basis or infinite-k-point error bound. The auxiliary FFT representation of density and local potentials is a separate convergence axis from the Gaussian orbital space.
-Incomplete SCF convergence also affects forces. Alongside termination flags and iteration counts, inspect stored electron-count, orbital and SCF residual diagnostics. Force sensitivity to tighter stopping conditions is measured directly, and an unconverged electronic state must not be returned to BOMD as an accepted force.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Converge basis, k points, auxiliary grids and SCF for forces separately [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#separate-force-convergence
-Coverage: reading
-
-Each sweep varies one control while holding the other controls at the finite settings specified in the public input. Basis sequences are checked separately at Γ and 2³, but no joint calculation combines 4³ sampling, the largest Gaussian basis and the finest FFT grid. Independent-reference agreement applies only to the designated Γ and 2³ cases.
-\|\Delta\mathbf F\|_{\infty}=\max_{I,\alpha\in\{x,y,z\}}|F^{(a)}_{I\alpha}-F^{(b)}_{I\alpha}|\Delta_{\mathrm{basis}}\mathbf F,\quad\Delta_{\mathbf k}\mathbf F,\quad\Delta_{\mathrm{FFT}}\mathbf F,\quad\mathbf F_{\tau}-\mathbf F_{\mathrm{tight}}
-Sources: PySCF developers (2026), DFTK developers (2026), J. M. Herbert and M. Head-Gordon (2005)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Independent reference: the same model in a different discretization [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#independent-reference
-Coverage: reading
-
-PySCF uses a periodic Gaussian basis and FFTDF; the reference uses DFTK’s plane-wave Hamiltonian, SCF, periodic ion interactions and analytic forces. Lattice and all atomic positions, valence count, spin restriction and integer occupations, every local-GTH coefficient, Libxc LDA_X plus LDA_C_VWN (VWN5), fractional k points and weights are matched. No fitted energy offset or force correction is applied.
-The DFTK plane-wave cutoff is increased separately and its final force increment is measured. This is not a rounding-error comparison of identical finite matrices. Different finite Gaussian and plane-wave spaces are assessed using the published acceptance width and convergence diagnostics on both sides. Both engines share Libxc, which limits the extent of implementation independence.
-DFTK compute_forces returns a representation associated with fractional coordinates; the Cartesian API is compute_forces_cart. Coordinate and force transformations are different. Comparisons here use Cartesian components in hartree/bohr throughout. The generation script, pinned Julia environment, pseudopotential, input and result hashes are retained. Comparing against the saved reference in Python and regenerating the reference in Julia are distinct operations.
-\mathbf R=A\boldsymbol\xi,\qquad \mathbf F_{\mathrm{cart}}=-A^{-\mathsf T}\nabla_{\boldsymbol\xi}E
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Independent reference: the same model in a different discretization [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#independent-reference
-Coverage: reading
-
-Sources: S. Goedecker, M. Teter and J. Hutter (1996), S. H. Vosko, L. Wilk and M. Nusair (1980), Qiming Sun et al. (2020), M. F. Herbst, A. Levitt and E. Cancès (2021), DFTK developers (2026)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Check components, translation and nonzero forces [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#translation-and-component-checks
-Coverage: reading
-
-A configuration with nearly zero forces can pass even with a sign error. A multiatom configuration carrying nonzero forces is used, with componentwise comparisons of analytic forces, finite differences and the independent reference. A single force norm should not hide component permutations, atom-order mistakes or incorrect units.
-In an ideal periodic system without external fields, uniform translation leaves the total energy unchanged and the sum of atomic forces vanishes. Finite real-space grids can numerically break this property; the remaining total force is a useful grid and differentiation diagnostic. Translation checks alone do not establish accurate relative forces, so energy differences and an independent reference are used alongside them.
-E(\{\mathbf R_I+\mathbf t\})=E(\{\mathbf R_I\})\quad\Longrightarrow\quad\sum_I\mathbf F_I=\mathbf 0
-Sources: DFTK developers (2026), PySCF developers (2026)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — The BOMD interface and additional trajectory validation [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#bomd-interface
-Coverage: reading
-
-The BOMD force provider energy_and_forces accepts positions_bohr and returns energy_per_cell and forces_cartesian from the same energy surface, together with SCF convergence and residual diagnostics. An unconverged electronic state is treated as a failure. Masses belong to nuclear time integration, not as factors multiplying the DFT potential energy or forces. Wrapped positions inside a periodic cell must be distinguished from a continuous trajectory record.
-Velocity Verlet advances velocities by half a step, updates positions, solves the electronic problem again for the new forces, then completes the velocity update. Carrying an electronic guess from a previous step accelerates the calculation but does not replace SCF convergence. This verification focuses on atomic forces and the BOMD handoff; a single force evaluation or short interface smoke test is not counted as validation of long trajectories.
-Accepting a practical trajectory additionally requires timestep refinement, tighter-SCF comparisons, total-energy and momentum checks in unthermostatted NVE, and time-reversal checks where appropriate. Thermostats can hide force or integration errors by absorbing energy changes, so unthermostatted checks come first. Small short-time drift does not guarantee long-time stability or a correct statistical distribution.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — The BOMD interface and additional trajectory validation [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#bomd-interface
-Coverage: reading
-
-Car–Parrinello dynamics is a distinct formulation propagating fictitious electronic degrees of freedom alongside nuclei. A force provider on the Born–Oppenheimer surface is not a CPMD implementation. The cross-field navigation separately shows the executed scope of DFT, force evaluation, nuclear integration and temperature control.
-\mathbf v_{n+1/2}=\mathbf v_n+\frac{\Delta t}{2M}\mathbf F(\mathbf R_n),\quad\mathbf R_{n+1}=\mathbf R_n+\Delta t\,\mathbf v_{n+1/2},\quad\mathbf v_{n+1}=\mathbf v_{n+1/2}+\frac{\Delta t}{2M}\mathbf F(\mathbf R_{n+1})\mathcal E_n=E_{\mathrm{BO}}(\mathbf R_n)+\sum_I\frac{M_I}{2}|\mathbf v_{I,n}|^2,\qquad \Delta\mathcal E_n=\mathcal E_n-\mathcal E_0
-Sources: M. Born and R. Oppenheimer (1927), J. M. Herbert and M. Head-Gordon (2005), R. Car and M. Parrinello (1985)
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Download and verify the results [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#run-and-check
-Coverage: reading
-
-Install dependencies in the extracted edition directory and use its fixed input. Choose a new or empty output directory. The ordinary runner compares with the saved DFTK reference. Regenerating that reference in Julia is a separate operation with its own packaged environment and instructions.
-python -m pip install -r requirements.txt
-python -m pytest -q
-python run.py --input inputs.json --output output
-Fixed input / JSON · Runner · Atomic-force API · BOMD interface · Independent DFTK reference / JSON · Edition, acceptance criteria and citation
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Primary publications, supporting sources and review scope [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#sources
-Coverage: reading
-
-Bibliographic, abstract, selected full-text and official API checks are distinguished below. They do not claim reproduction or audit of an entire paper. Full papers and third-party source code are not reprinted in this tutorial.
-S. Goedecker, M. Teter and J. Hutter (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B 54, 1703–1710
-Publisher bibliography and abstract consulted. Actual He coefficients are aligned through the packaged data and libraries, not presented as a full-precision transcription from the paper’s tables.
-S. H. Vosko, L. Wilk and M. Nusair (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics 58, 1200–1211
-Original DOI and bibliography checked through official Libxc documentation identifying LDA_C_VWN as VWN5. Publisher text was inaccessible; no full-text or table audit was performed.
-Qiming Sun et al. (2020). Recent developments in the PySCF program package. The Journal of Chemical Physics 153, 024109
-Publisher bibliography/abstract and the existing Atlas entry consulted. The periodic APIs used here are additionally checked against official documentation and pinned code.
-M. F. Herbst, A. Levitt and E. Cancès (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences 3(26), 69
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Primary publications, supporting sources and review scope [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#sources
-Coverage: reading
-
-Publisher bibliography and the introduction of the open paper consulted. The reference calculation is a separate numerical check, not a reproduction of all paper examples.
-DFTK developers (2026). DFTK API and pseudopotentials. Official DFTK documentation
-Selected API descriptions of compute_forces, compute_forces_cart, coordinates, units and derivatives of discrete energies consulted. Reference generation uses the packaged pinned DFTK environment, whose source is also checked.
-M. Born and R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484
-Publisher bibliography and DOI checked. Cited for the historical basis of Born–Oppenheimer separation, without claiming a full-text audit or reproduction of a modern MD implementation.
-R. Car and M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474
-Publisher bibliography/abstract and original equations (3)–(5) and discussion of fictitious electronic motion near the BO surface consulted. The paper’s silicon dynamics have not been numerically reproduced.
-R. P. Feynman (1939). Forces in Molecules. Physical Review 56, 340–343
-Publisher bibliography and abstract consulted. Cited as a historical primary source for the Hellmann–Feynman force relation, not as sole validation of finite-basis or pseudopotential gradient implementations.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Primary publications, supporting sources and review scope [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#sources
-Coverage: reading
-
-P. Pulay (1969). Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory. Molecular Physics 17(2), 197–204
-Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Cited for finite position-dependent basis derivatives, distinct from Pulay (1980) on DIIS. No full-text audit is claimed.
-PySCF developers (2026). pyscf.pbc.grad.krks: analytic nuclear gradients with k-point sampling. Official PySCF source documentation
-Official source documentation consulted for periodic KRKS analytic nuclear gradients, LDA XC derivatives and unsupported settings; executed calls are also checked in pinned PySCF 2.11.0.
-PySCF developers (2026). pyscf.pbc.grad.krhf: electronic, overlap, pseudopotential and nuclear gradient terms. Official PySCF source documentation
-Relevant source sections for grad_elec, density and energy-weighted density, overlap derivatives, pseudopotential derivatives and periodic ionic terms consulted. Third-party source is not copied into the tutorial.
-PySCF developers (2026). Guidelines for PBC DFT Parameter Settings. Official PySCF documentation
-Selected discussion of FFTDF auxiliary plane waves, real-space grids and nuclear gradients consulted as implementation guidance distinguishing orbital-basis and auxiliary-grid convergence.
-
-## From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface — Primary publications, supporting sources and review scope [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#sources
-Coverage: reading
-
-J. M. Herbert and M. Head-Gordon (2005). Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation. Physical Chemistry Chemical Physics 7, 3269–3275
-Publisher-page bibliography and abstract returned by the search tool consulted; opening the page returned HTTP 403. Used to distinguish SCF solution error, electronic guesses, forces and NVE drift; the paper’s extrapolation method and trajectories are not claimed as implemented or reproduced.
 
 ## Particle-in-cell / PIC — Particle-in-cell / PIC [en]
 
@@ -7005,7 +6794,6 @@ Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflo
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#kohn-sham-dft
 Coverage: reading
 
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated. Atomic forces, finite differences, independent reference and BOMD interface
 E[n]=T_s[n]+\int v_{\rm ext}n\,d\mathbf r+E_H[n]+E_{\rm xc}[n]+E_{NN}[-\tfrac12\nabla^2+v_{\rm ext}+v_H+v_{\rm xc}]\phi_i=\varepsilon_i\phi_in(\mathbf r)=\sum_i f_i|\phi_i(\mathbf r)|^2,\quad \int n\,d\mathbf r=N,\quad v_{\rm xc}=\frac{\delta E_{\rm xc}}{\delta n}
 Long equations scroll horizontally.
 Distinguish exact-functional theory from calculations with approximate functionals. KS eigenvalues are not generally excitation energies; ground-state DFT alone does not guarantee excited-state accuracy.
@@ -7022,14 +6810,13 @@ The same HF or DFT model can use Gaussian or Slater atomic orbitals, plane waves
 Vary basis size, polarization and diffuse functions for atomic orbitals; cutoff and cell size for plane waves; spacing and domain for real-space grids. Boys provides an original entry point for Gaussian integral methods.
 New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation. H₂ inputs, code, independent references and refinement
 Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
+\phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
 
 ## Quantum chemistry and DFT: approximations and equations — Electronic-structure basis sets [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#electronic-bases
 Coverage: reading
 
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated. Atomic forces, finite differences, independent reference and BOMD interface
-\phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
 Changing the basis is different from changing electron correlation or the functional. Check near-linear dependence, basis-set superposition error and pseudopotential compatibility.
 Assumptions, implementation status and JSON
 Boys, S. F. (1950)
@@ -7052,7 +6839,6 @@ Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflo
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#scf
 Coverage: reading
 
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated. Atomic forces, finite differences, independent reference and BOMD interface
 n_{k+1}=(1-\alpha)n_k+\alpha\mathcal M[n_k],\qquad 0<\alpha\le1\mathrm{Tr}(\mathbf P\mathbf S)=N,\qquad \mathbf R=\mathbf F\mathbf P\mathbf S-\mathbf S\mathbf P\mathbf F
 Long equations scroll horizontally.
 A small energy change alone is insufficient. Convergence also does not establish the lowest-energy stable electronic solution.
@@ -7096,15 +6882,14 @@ LDA depends on local density, GGA on density and its gradient, and meta-GGA on q
 The formula below is spin-unpolarized Dirac exchange only. Distinguish it from LDA including correlation. State functional components, parameters, library/version and the density integration grid.
 Only spin-unpolarized Dirac exchange energy and its functional derivative are verified; LDA correlation, GGA, meta-GGA and hybrids remain reading-only. Fixed inputs, code and measured checks
 Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
+E_x^{\rm LDA}[n]=-\frac34\left(\frac3\pi\right)^{1/3}\int n^{4/3}\,d\mathbf rv_x^{\rm LDA}=-\left(\frac{3n}{\pi}\right)^{1/3}
+Basis, grid and SCF convergence do not remove functional error. Assess self-interaction, charge transfer, strong correlation and dispersion for the chosen system and approximation.
 
 ## Quantum chemistry and DFT: approximations and equations — LDA, GGA and hybrid functionals [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#xc-functionals
 Coverage: reading
 
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated. Atomic forces, finite differences, independent reference and BOMD interface
-E_x^{\rm LDA}[n]=-\frac34\left(\frac3\pi\right)^{1/3}\int n^{4/3}\,d\mathbf rv_x^{\rm LDA}=-\left(\frac{3n}{\pi}\right)^{1/3}
-Basis, grid and SCF convergence do not remove functional error. Assess self-interaction, charge transfer, strong correlation and dispersion for the chosen system and approximation.
 Assumptions, implementation status and JSON
 Dirac, P. A. M. (1930)
 Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996)
@@ -7121,13 +6906,6 @@ Coverage: reading
 Pseudopotentials represent core effects effectively while focusing on valence electrons. Distinguish norm-conserving, ultrasoft and PAW approaches. PAW uses a transformation and reconstruction; describing it as only a smooth local replacement is inadequate.
 Save the element, valence configuration, generating functional, relativistic treatment, dataset version and cutoff guidance. Compare against all-electron calculations under matched physical conditions and observables.
 Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated. Atomic forces, finite differences, independent reference and BOMD interface
-
-## Quantum chemistry and DFT: approximations and equations — Pseudopotentials and PAW [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#pseudopotentials
-Coverage: reading
-
 Do not compare absolute energy zeroes across different pseudopotentials without alignment. Cutoff convergence alone does not establish transferability.
 Assumptions, implementation status and JSON
 Hamann, D. R.; Schlüter, M.; Chiang, C. (1979)
@@ -7143,13 +6921,6 @@ Coverage: reading
 For a periodic potential, Bloch orbitals reduce Brillouin-zone integrals to weighted k-point sums. u_nk is lattice periodic. Monkhorst–Pack supplies an original entry point for special-point integration.
 Save k-mesh density and shift, symmetry, occupations/smearing, cell and basis cutoff. A molecule in a large periodic cell must also be distinguished from an isolated-boundary calculation.
 Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals. Periodic DFT conditions, code, convergence and independent reference
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated. Atomic forces, finite differences, independent reference and BOMD interface
-
-## Quantum chemistry and DFT: approximations and equations — Periodic electronic structure and k-point sampling [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#k-point
-Coverage: reading
-
 \psi_{n\mathbf k}(\mathbf r)=e^{i\mathbf k\cdot\mathbf r}u_{n\mathbf k}(\mathbf r),\qquad \int_{\rm BZ}g(\mathbf k)\,d\mathbf k\approx\sum_\nu w_\nu g(\mathbf k_\nu)
 Long equations scroll horizontally.
 Distinguish metallic occupation/smearing dependence, finite-temperature free energy and zero-temperature energy. Whether Γ-only sampling is adequate depends on the system and cell.
@@ -7308,10 +7079,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemi
 Coverage: reading
 
 BOMD minimizes electronic energy at each nuclear configuration and integrates nuclear motion with the gradient of the Born–Oppenheimer surface. Energy tolerances and force accuracy are separate criteria; a moving finite basis also contributes position derivatives.
-Static DFT convergence does not establish a correct MD trajectory. The separate From DFT to atomic forces chapter independently checks asymmetric-He₂ forces and a BOMD force interface with a short local step comparison. Long NVE drift and systematic trajectory convergence versus timestep and SCF tolerance remain future validation tasks. The periodic-DFT chapter contrasts BOMD with CPMD.
+Static DFT convergence does not establish a correct MD trajectory. Independent force comparisons, timestep/SCF sensitivity and NVE energy drift remain future validation tasks. The periodic-DFT chapter contrasts BOMD with CPMD.
 E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)
 Long equations scroll horizontally.
-The overall BOMD method record remains reading only. The force release’s short interface check does not validate long MD trajectories or thermostats.
+Reading only. Fixed-He energy comparisons do not validate interatomic forces, MD trajectories or thermostats.
 Assumptions, implementation status and JSON
 M. Born; R. Oppenheimer (1927)
 R. Car; M. Parrinello (1985)
@@ -7334,7 +7105,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 67-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 66-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -7367,14 +7138,6 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemi
 Coverage: reading
 
 Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals.
-Results and reproduction
-
-## Quantum chemistry and DFT: approximations and equations — Multiatom periodic cell: independent forces and a local BOMD interface [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/
-Coverage: reading
-
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated.
 Results and reproduction
 
 ## Quantum chemistry and DFT: approximations and equations — Further topics to develop [en]
@@ -9470,9 +9233,6 @@ Jonathan M. Weiss and Wayne A. Smith (1995). Preconditioning applied to variable
 David L. Darmofal and Pierre Moinier and Michael B. Giles (2000). Eigenmode Analysis of Boundary Conditions for the One-Dimensional Preconditioned Euler Equations. 10.1006/jcph.2000.6472
 Ami Harten (1983). High resolution schemes for hyperbolic conservation laws. 10.1016/0021-9991(83)90136-5
 A. JAMESON and WOLFGANG SCHMIDT and ELI TURKEL (1981). Numerical solution of the Euler equations by finite volume methods using Runge Kutta time stepping schemes. 10.2514/6.1981-1259
-R. P. Feynman (1939). Forces in Molecules. 10.1103/PhysRev.56.340
-P. Pulay (1969). Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory. 10.1080/00268976900100941
-J. M. Herbert and M. Head-Gordon (2005). Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation. 10.1039/B509494A
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -9865,7 +9625,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 In progress / publication check pending
-Following two biology/two stochastic examples, H₂ RHF and fixed-He periodic LDA, add asymmetric-He₂ forces for 22 execution paths. Compare forces with all-six-coordinate finite differences and independent DFTK, separately checking basis/k/SCF/FFT refinement. BOMD coverage is a local force-interface check. Long NVE, other materials, reaction–diffusion, MCMC and thermostat distributions/correlations remain future validation.
+Following two biology/two stochastic examples and H₂ RHF, add fixed-He periodic LDA, bringing the current execution paths to 21. Periodic He checks k sampling, orbital basis, FFT and SCF refinement against independent DFTK total energies. Other insulators, reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations remain unimplemented candidates.
 Field evidence and unimplemented scope
 
 ## Implementation roadmap — Implement and validate fixed-He periodic DFT and k-point refinement [en]
@@ -9876,15 +9636,6 @@ Coverage: reading
 Scoped verified example published
 Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals.
 Fixed-He periodic-DFT numerical checks
-
-## Implementation roadmap — Implement and validate multiatom periodic DFT forces [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
-Coverage: reading
-
-Scoped verified example published
-Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated.
-Validate DFT atomic forces and pass them to BOMD
 
 ## Implementation roadmap — Separate the current plan from development history [en]
 
@@ -10850,7 +10601,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 114 methods and building blocks · 224 journal/conference papers · 265 total sources.
+46 equation/model entries · 115 methods and building blocks · 221 journal/conference papers · 262 total sources.
 There are 9 saved-profile equation-gallery cases across 7 equation families, and 79 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
@@ -10945,7 +10696,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-98 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+99 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -11098,7 +10849,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-218 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+215 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -12782,6 +12533,7 @@ python -m pytest tests/test_bratu_sensitivity.py
 自動微分との役割分担は既存の共通基盤章へ戻って確認できます。Blondelほか（2022）の根の微分とJVP・VJPの構成、およびJAXopt公式資料は、残差の微分と線形求解を組み合わせる見方への参照先です。今回の実装はNumPyを用い、JAX・JAXoptへの依存や、それらのライブラリの性能比較は追加していません。
 自動微分の共通基盤 · Newton法と条件数
 配布版の専用テスト9件を、独立したフォルダに展開した内容で再実行しています。数値結果・生成図・ファイルのハッシュを照合する手順も検証記録に残します。
+この章の固定した感度配布版は、観測への当てはめを含みません。次の独立した章では、その随伴計算を使って合成観測からλを推定します。 Bratu逆問題：合成観測からのパラメータ推定
 
 ## 陰関数微分と随伴法：Bratuのパラメータ感度 — 公開範囲と関連項目 [ja]
 
@@ -13745,6 +13497,149 @@ Coverage: reading
 Murrayの第3版入門書（2002）は、これらの分野を横断する読書経路になります。PhysiomeのHodgkin–HuxleyワークスペースとAliev–Panfilovの符号化は、実装パラメータを選ぶ前に確認すべきモデルの版の参照先です。独立した検証データではありません。
 今後の独立した調査対象には、神経集団場、空間確率反応拡散、細胞内極性と質量保存反応網、細胞周期のサイズ構造、頂点・位相場による細胞力学、腫瘍と栄養の自由境界、遺伝的浮動を含む集団遺伝学などがあります。現在の22項目が生物モデルの全範囲を尽くすという主張ではありません。指定した方程式に対する数値検証と、生物個体や実験データに対する妥当性検証も異なります。
 方程式ギャラリー、歴史アトラス、全参考文献へ戻れます。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — Bratu逆問題：合成観測からλを随伴勾配で推定する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/
+Coverage: reading
+
+順問題を「係数から状態を求める」計算とすれば、逆問題は「観測された状態から係数を推定する」計算です。ここではBratu方程式の5つの観測値から1つのパラメータλを推定し、前章で導いた離散随伴勾配を実際の最適化の更新に使います。対象は、既知の方程式・境界条件・観測位置を持つ小規模な合成問題です。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 何を既知とし、何を推定するか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#inverse-data
+Coverage: reading
+
+状態u、座標x、係数λは、この教育用モデルでは無次元です。格子、区間[0,1]、ゼロDirichlet境界条件、観測演算子Hと重みWは固定します。未知量はλだけで、モデルの形や境界値を同時に推定する例ではありません。内部未知数nに対する中心差分を使い、各試行λで非線形方程式を解き直します。
+-u^{\prime\prime}-\lambda e^u=0,\quad u(0)=u(1)=0,\qquad F_h(u,\lambda)=D_hu-\lambda e^u=0,\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1),\quad h=(n+1)^{-1}.u_\alpha(x)=-2\log\!\frac{\cosh(\alpha(x-1/2))}{\cosh(\alpha/2)},\quad\lambda(\alpha)=\frac{2\alpha^2}{\cosh^2(\alpha/2)},\qquad\alpha_*=1.5,\quad\lambda_*\approx2.684636137266.
+合成データの生成値はα*=1.5、λ*≈2.684636137266です。λ∈[0.2,3.4]に制限し、状態の初期値を毎回ゼロとして、小さい解の枝を対象にします。数値的な枝の選択を問題設定に含めます。折り返し点を越える追跡や高い方の解の枝での推定は検証していません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 観測演算子と重み付き最小二乗 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#least-squares
+Coverage: reading
+
+x_{\rm obs}=(1/8,1/4,1/2,3/4,7/8),\qquad r_h(\lambda)=H_hu_h(\lambda)-d,\quad W=\operatorname{diag}(w_j),\quad w_j=1/5.
+5つのセンサーをx=0.125, 0.25, 0.5, 0.75, 0.875に置きます。n=15,31,63,127のいずれでも格子点に一致するため、Hは対応する内部状態を取り出す行列です。この例に補間誤差は入りません。固定されたゼロ端点を観測する行はゼロになります。観測値dは最適化開始前に保存し、各試行λに合わせて生成し直しません。
+\Phi_h(\lambda)=\frac12 r_h(\lambda)^TWr_h(\lambda)+\frac\gamma2(\lambda-\lambda_{\rm prior})^2,\qquad\gamma\ge0,\quad\ell=0.2\le\lambda\le b=3.4.
+公開実験はすべてγ=0、wⱼ=1/5です。そのため目的関数は観測残差の平均二乗の半分です。実装は正の非一様重みと任意のγ≥0も受け取り、別テストで重み・事前値への陽な依存を検査します。Wを観測誤差の逆共分散と解釈するには、別途その確率モデルが必要です。ここではその仮定を置きません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 観測残差から随伴勾配を組み立てる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#adjoint-gradient
+Coverage: reading
+
+J=F_u=D_h-\lambda\operatorname{diag}(e^u),\quad F_\lambda=-e^u,\quad q=H_h^TWr_h,\qquad J^Tp=q.\frac{d\Phi_h}{d\lambda}=\underbrace{\gamma(\lambda-\lambda_{\rm prior})}_{\text{explicit parameter term}}-p^TF_\lambda=\gamma(\lambda-\lambda_{\rm prior})+p^Te^u.
+状態の偏微分qに、Hの転置と観測重みを両方含めます。LagrangianをΦ−pᵀFとする規約では、総微分は陽な項からpᵀF_λを引きます。F_λ=−exp(u)なので、Bratuの状態を通した項はプラスになります。γ=0では陽な項だけがゼロであり、状態を通した項までゼロになるわけではありません。
+順問題を収束させた状態でJを組み立て、Jᵀp=qを解きます。既存の陰関数微分の線形求解を使い、Newton反復列を展開して微分しません。このBratuのJは対称です。転置を検査する独立の非対称製造問題は前章の配布版に、観測演算子・非一様重み・正則化の検査は今回の専用テストにあります。
+λが1つ、目的関数も1つなので、直接感度Js=exp(u)を解く方法でも右辺は1本です。随伴の計算時間の優位性を示す例ではありません。多数のパラメータへ拡張する際の構成を、小さな逆問題で確認する例です。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 箱制約つき勾配法を実際に動かす [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#bounded-optimization
+Coverage: reading
+
+\Pi_{[\ell,b]}(z)=\min(b,\max(\ell,z)),\qquad\lambda_{\rm trial}=\Pi_{[\ell,b]}(\lambda_k-a g_k),\quad\Delta\lambda=\lambda_{\rm trial}-\lambda_k.\Phi_h(\lambda_{\rm trial})\le\Phi_h(\lambda_k)+c g_k\Delta\lambda,\qquad c=10^{-4},\quad a=10\,2^{-j},\quad j=0,1,\ldots .
+現在点の随伴勾配gを使ってλを更新し、区間へ射影します。ステップの候補は毎反復a=10から始め、上の十分減少条件を満たすまで半分にします。右辺のgΔλには、射影後の実際の変位を使います。受理・棄却された候補を含め、各評価で同じ非線形求解の制御を使います。順問題が失敗すれば、目的関数の有効な評価として扱わず停止します。
+G(\lambda)=\lambda-\Pi_{[\ell,b]}(\lambda-g(\lambda)),\qquad |G(\lambda)|\le10^{-10}.
+停止判定は単位ステップで定義した射影勾配写像の絶対値です。内部最適点では通常の勾配と一致しますが、制約端点ではgがゼロでなくても制約付き停留点となり得ます。最大300更新、線探索は最大50試行で、終了理由・全受理点・ステップ長・後退回数・順問題残差・随伴残差を保存します。目的関数が少し変化しただけでは収束としません。
+Armijo（1966）の原論文の十分減少・可変ステップの考え方を参照し、この教材では射影後の変位に適用します。原論文の無制約問題の収束定理を、この非線形逆問題全体の大域収束保証として引用しません。BFGSや汎用の制約付き最適化実装を追加したわけでもありません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 3種類の合成データを混同しない [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#synthetic-data
+Coverage: reading
+
+d^{\rm disc}=H_hu_h(\lambda_*),\qquad d^{\rm cont}_j=u_{\alpha_*}(x_j),\qquad d^{\rm noisy}=d^{\rm cont}+10^{-3}(1,-0.6,0.4,-1,0.3)^T.
+同じ離散化から生成した無雑音データ。 n=31の順問題でdを作り、その同じ離散化を逆問題にも使います。λ*の再現は、データ生成・観測・勾配・最適化が整合することを確かめるinverse crimeです。連続問題や実測データに対する精度の証拠にはしません。
+独立した連続解族から生成した無雑音データ。 解析式u_αを観測点で評価して固定します。逆問題の有限差分格子をn=15,31,63,127と細分化すると、生成値との差に含まれる空間離散化の偏りを調べられます。
+固定摂動を加えたデータ。 同じ連続解の5成分に、上式の決定論的な摂動を一度だけ加えます。乱数や既知のノイズ分布を仮定せず、摂動の再標本化はしません。固定摂動の公開適合はn=63です。最良適合値が生成λ*からずれても、最適化の失敗とは限りません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 検証：勾配・最適化・格子・観測を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+保存した全測定値と入力データから、図・設定・残差・終了理由を確認できます。
+g_{\rm FD}(\varepsilon)=\frac{\Phi_h(\lambda+\varepsilon)-\Phi_h(\lambda-\varepsilon)}{2\varepsilon},\qquad F_h(u_h(\lambda\pm\varepsilon),\lambda\pm\varepsilon)=0.
+停留点以外で勾配を照合。 複数のλでλ±εの状態をそれぞれ解き直し、目的関数だけの中心差分と随伴勾配を比較します。最適点付近の両者が単にゼロに近いことだけを検査しません。
+独立した1次元参照。 勾配を使わない黄金分割探索と随伴勾配による適合結果を比較します。黄金分割は単峰性を前提とし、標本化した目的関数曲線も保存します。この一致を全分枝での大域最適性の証明にはしません。
+3つの初期値。 0.5,1.5,3.2からの更新・目的関数の減少・射影勾配・終了理由を照合します。
+生成方法と格子の違い。 同じ離散化での再現性、連続データへの格子誤差、固定摂動による最良適合値の移動を別々に記録します。
+保存した実測値①：勾配の照合。 n=31、λ=0.8,1.8,3.0でε=10⁻⁵とした中心差分との差は、順に約1.31×10⁻¹²、2.81×10⁻¹²、1.79×10⁻¹²です。状態感度から作る直接勾配との絶対差は、最大1.4×10⁻¹⁷未満でした。JSONには摂動幅の走査も保存しています。これは実装された離散目的関数の微分の検査です。
+実測値②：同じ離散化での回復。 n=31で初期λ=0.5,1.5,3.2から始めると、受理した更新は33,30,25回、生成λ*との絶対差は約1.48×10⁻⁹、1.10×10⁻⁹、1.65×10⁻⁹でした。3例とも射影勾配は10⁻¹⁰以下、観測残差RMSは3.9×10⁻¹⁰未満です。この高い一致は同じ離散化による整合性検査として読みます。
+実測値③：連続データへの格子依存。 n=15,31,63,127で推定λは約2.6816989071、2.6839024768、2.6844527616、2.6845902950です。λ*との差の絶対値は約2.9372×10⁻³、7.3366×10⁻⁴、1.8338×10⁻⁴、4.5842×10⁻⁵で、hを半分にするごとにおおむね4分の1になります。観測された次数は2.0013、2.0003、2.0001です。最適化が収束しても、有限格子では生成λ*との差が残ります。
+実測値④：固定摂動で最良適合値が移る。 n=63で推定λ≈2.6841620622となり、同じ格子の無摂動データの最適値から約−2.9070×10⁻⁴ずれます。生成λ*との絶対差は約4.7408×10⁻⁴、観測残差RMSは約7.1942×10⁻⁴、目的関数は約2.5878×10⁻⁷です。射影勾配は約6.39×10⁻¹¹なので、真値との差を未収束だけで説明しません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 検証：勾配・最適化・格子・観測を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+連続データの4格子と固定摂動の適合は、目的関数だけの黄金分割参照とλで2.1×10⁻⁹以内に一致します。参照探索の最終区間幅は約8.65×10⁻⁹以下で、厳密な最適値の証明ではありません。上記8つの最終適合の順問題残差は1.4×10⁻¹¹以下でした。勾配の照合、最適化の停止、生成値への近さを別々に判定します。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 識別できる観測と、できない観測 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#identifiability
+Coverage: reading
+
+J s=e^u,\qquad \frac{d(H_hu_h)}{d\lambda}=H_hs,\qquad \|W^{1/2}H_hs\|_2>0\ \text{is a local sensitivity diagnostic}.
+内部観測がλに反応することは、この1パラメータ問題で局所的な識別を考える手がかりになります。ただし、感度が小さければデータの小さな変化が大きな推定値の変化を生み得ます。局所感度だけで大域的な一意性は示せません。枝・観測位置・許容区間を変えると別の推定問題になります。
+反例として端点x=0,1だけを観測すると、Dirichlet値はλによらずゼロなのでH=0、H s=0です。γ=0なら目的関数はλに依存せず、データからλを識別できません。専用テストでこの性質を確認し、最適化関数はこの設定を情報不足として拒否します。正則化で特定の値を選んでも、境界観測が情報を与えたことにはなりません。
+固定摂動の実験から統計的な信頼区間は作りません。実データ、未知のモデル誤差、センサー配置の最適化、多数パラメータの識別可能性は、今回の検証対象に含めていません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 推定値の誤差と最適化の誤差を区別する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#error-scope
+Coverage: reading
+
+e_\lambda=|\widehat\lambda_h-\lambda_*|,\qquad r_{\rm data}=\sqrt{\frac15\sum_{j=1}^5(H_hu_h-d)_j^2},\qquad r_F=\|F_h(u_h,\lambda)\|_2,\quad r_p=\|J^Tp-q\|_2.
+生成λ*との差、観測残差、順問題残差、随伴方程式残差、射影勾配は別の量です。小さい射影勾配は、選んだ格子・観測・制約での停留性を検査します。λ*の回復や、観測残差がゼロになることを保証しません。逆に、固定摂動や連続・離散のずれがあれば、十分収束した最適点でもλ*とは異なり得ます。
+順問題の許容値は非スケーリングのEuclid残差ノルム10⁻¹⁰、最大40更新です。随伴線形系は小規模密行列を用います。勾配差分ではεの打切り誤差・丸め誤差・内側求解誤差が競合します。格子を細かくすること、最適化を厳しく止めること、モデルを正しくすることは、別々の改善です。
+この配布版は、指定したBratuの枝で、観測からλを推定する1次元・箱制約つきの教育用例です。汎用逆問題ライブラリ、準Newton法、時間発展随伴、分岐点の通過、モデル選択、実験データによる物理モデルの妥当性検証を提供しません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 実行・入力データ・固定した配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#reproduce
+Coverage: reading
+
+日付を固定した配布ZIPを展開し、READMEに従って実行します。以前の自動微分・感度配布版はそのまま参照でき、今回の合成逆問題は別の配布物です。
+python -m pip install -r requirements.txt
+python scripts/build_bratu_inverse.py
+python -m pytest tests/test_bratu_inverse.py
+目的関数・随伴勾配・最適化のソース、図と測定記録の生成、専用テスト、独立展開後の検証記録、ファイル一覧とSHA-256を公開します。観測位置・生成値・固定摂動・重み・初期値・停止条件もJSONに保存します。
+残差の微分から根の微分へ進む考え方はBlondelほか（2022）第2.1節とJAXopt公式資料、設計目的への随伴の歴史的文脈はJameson（1988）を参照します。NumPyによる教材であり、それらの原論文の実験やJAXoptの実装・性能を再現する主張はしません。
+陰関数微分とBratuの感度 · 自動微分の共通基盤 · 勾配法・準Newton法の一般的な解説
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#publication-scope
+Coverage: reading
+
+合成観測から1つのBratu係数λを推定する、箱制約つき随伴勾配法の教育用実装です。同じ離散化での再現性、独立した連続解データへの格子依存、固定観測摂動、差分勾配と目的関数のみの参照探索を実行検証します。指定した小さい解の枝・固定観測・小規模密行列に限定します。BFGSなどの最適化手法全般、全分枝の一意性、実データ、確率的な不確かさ推定、未知のモデル誤差は検証しません。
+勾配法・準Newton法
+陰関数微分・随伴法
+自動微分
+Armijo減衰Newton法
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. Pacific Journal of Mathematics
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+原論文1〜2頁の仮定・十分減少・系2の可変ステップ（半減探索）を参照。全文監査・数値再現・無制約問題の収束定理を射影つき非線形逆問題へそのまま適用する主張はしません。
+Antony Jameson (1988). Aerodynamic design via control theory. Journal of Scientific Computing
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+出版社の概要・結論を空力設計の随伴法の文脈で参照。ここでの離散残差のLagrangianは一般形で説明しています。
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+第2.1節・3〜4頁の、局所的な正則性を仮定した根の微分、線形方程式によるJVP・VJPの構成を参照。論文全体の監査や掲載実験の再現は主張しません。
+The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+陰関数微分と反復展開の区別、custom_root、線形求解器を受け取るroot_jvp・root_vjpと収束した根を前提とする説明を参照。ライブラリの性能比較や全例の再現は未実施です。
 
 ## カーバンクル現象 [ja]
 
@@ -16479,13 +16374,14 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/
 Coverage: reading
 
 既知解の正定値二次関数で条件数を変え、勾配を方向差分でも照合します。Rosenbrock型の谷では初期値・スケール・線探索を変えます。目的関数が減ったことだけで制約や物理モデルの妥当性は証明できません。
+検証済みの実装例：Bratu合成逆問題の随伴勾配による推定
 
 ## 勾配法・準Newton法 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+このページは勾配法・準Newton法の一般的な解説です。実装済みの範囲は、別章のBratu合成逆問題における1次元の箱制約つき射影勾配法とArmijo後退探索です。BFGS・汎用準Newton法や、このページで挙げた一般的な検証案を実装検証した意味ではありません。
 勾配法・準Newton法
 
 ## 勾配法・準Newton法 — 一次文献・関連資料と確認範囲 [ja]
@@ -16664,7 +16560,6 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/
 Coverage: reading
 
 Heを1個含む小さな周期セルを例に、Blochの定理からk点積分、周期Gaussian基底、補助FFT格子、SCF反復までをつなぎます。PySCFを用いる実行例と独立した平面波DFTKの参照を比較し、同じモデルを異なる離散化で解くときに必要な整合条件を確かめます。
-次に読む：多原子DFTの原子間力とBOMDへの接続
 
 ## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 実測結果：何を、どの幅で確かめたか [ja]
 
@@ -16848,7 +16743,7 @@ Coverage: reading
 BOMDではSCFの許容誤差をエネルギーだけでなく力と軌道の再現性でも決めます。原子に追随する有限Gaussian基底を使う場合は、基底の位置依存に由来する力の項（Pulay項）も必要です。力の有限差分照合、時間刻みの細分化、無温度制御のNVEでのエネルギードリフトを別々に検査します。予測した電子状態を次の初期値に使っても、各配置で必要な精度まで最適化するというBOMDの要件は変わりません。
 カー–パリネロ分子動力学（CPMD）は、核の座標と電子軌道を拡張ラグランジアンで同時に進めます。μは電子軌道に与える数値的な仮想質量で、実在の電子の質量そのものではありません。直交制約はLagrange乗数Λで課します。表示式は固定セル・固定占有を想定し、軌道の速度項をμ/2と定義する規約です。周期k点を使う一般化では電子項に重みと占有を一貫して含めます。
 CPMDで電子軌道を時間発展させることは、TDDFTで実在の電子励起を追うことではありません。電子の仮想運動と核運動の時間尺度を分離し、軌道をBO面の近傍に保つ必要があります。μ・時間刻み・直交性許容誤差を変えて、仮想運動エネルギーと核運動へのエネルギー移動を監視します。温度制御を加えない理想的な拡張系の保存量E_extと、核の運動エネルギー＋BOエネルギーを区別します。狭いギャップや金属への適用をこの説明だけで保証しません。
-この節は解説のみです。本章の1原子固定He例が検証するのは静的な全エネルギーとk点・基底・補助格子・SCFの収束です。多原子Heセルの原子間力、エネルギー有限差分と独立参照、BOMDへの力供給は、別章「DFTから原子間力へ」と専用配布版で扱います。BOMD/CPMDの長時間軌道、時間刻み・SCF公差・仮想質量μへの感度、温度制御は段階を分けて検証します。
+この節は解説のみです。今回の固定Heセルで検証したのは静的な全エネルギー、積分・基底・補助格子・SCFの収束です。原子間力、BOMD/CPMD軌道、時間積分、温度制御の実行・検証は含みません。実装を追加する場合は、多原子系で力と独立参照をまず照合し、その後にMDの保存量と刻み幅・SCF公差・μへの感度を確かめます。
 
 ## 周期DFT：Γ点・k点積分・基底・SCFと独立参照 — 第一原理MD：Born–Oppenheimer法とカー–パリネロ法 [ja]
 
@@ -16917,343 +16812,6 @@ Coverage: reading
 
 Quantum ESPRESSO developers (2026). cp.x input description: electron dynamics, emass and orthogonalization. Official Quantum ESPRESSO documentation, version 7.5
 仮想質量、電子と核の運動、時間刻み、直交化と断熱性に関する入力項目を参照。ソフトウェアの実行検証は行っていません。
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/
-Coverage: reading
-
-多原子の周期Heセルで、全エネルギーの位置微分から原子間力を求めます。解析勾配、エネルギーの有限差分、独立した平面波計算を比較し、基底・k点・補助格子・SCFが力に与える影響を分けて確かめます。BOMDへ渡す力の条件と、軌道の検証で追加すべき条件もつなぎます。
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 保存した実測値：有限差分・独立参照・力の収束 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#measured-results
-Coverage: reading
-
-下の数値は公開版の固定入力から得た保存結果です。力の比較は特記しない限り全Cartesian成分の最大絶対差（hartree/bohr）です。異なる収束系列は同じ設定を再利用し、設定数を別々の物理問題の数とは数えません。判定には表示の丸め前の数値を用います。横長の数値表は表の中を横にスクロールして読めます。
-比較 / hartree・bohr⁻¹実測値入力の受入幅
-全6成分の有限差分との最大差2.32234127207e-082e-06
-変位幅走査の最大差1.8023756336e-071e-05
-Γ・2³でのDFTKとの最大差7.53824989575e-050.0002
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 各設定の力の全成分 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#force-components
-Coverage: reading
-
-原子番号は0から始めます。FD照合の基底・格子・k点は入力で指定したcase_idに対応し、DFTKとの独立比較に使う大きなGaussian基底とは区別します。
-ケースkメッシュ基底FFTE / hartreeF₀xF₀yF₀zF₁xF₁yF₁z||R(SCF)||反復終了
-k-11 × 1 × 1gth-dzvp39 × 39 × 39-5.70768215071-0.0399865180743-0.0413736676148-0.04192614893530.03998823499350.04137623123060.04192718472982.24815240978e-106converged
-k-22 × 2 × 2gth-dzvp39 × 39 × 39-5.65460237047-0.0187663401033-0.0183991163312-0.01793506657070.01876805996720.01840168438590.01793610419059.45399307155e-106converged
-k-33 × 3 × 3gth-dzvp39 × 39 × 39-5.65438144479-0.0197859038656-0.0194170832984-0.01892361539940.01978762507820.01941965336320.01892465382882.67065724062e-127converged
-k-44 × 4 × 4gth-dzvp39 × 39 × 39-5.6544055885-0.0197574707047-0.0193936477762-0.01890421601820.01975919158230.01939621734110.01890525424582.82849901157e-127converged
-basis-gth-dzv1 × 1 × 1gth-dzv39 × 39 × 39-5.70703558107-0.0409289872197-0.0422406708291-0.04272484805240.04093070322610.04224323305160.0427258832655.46345331034e-1110converged
-basis-gth-tzv2p1 × 1 × 1gth-tzv2p39 × 39 × 39-5.70815605003-0.0398049478809-0.0412175461873-0.04179211419880.03980810454990.04122225928790.04179401828431.03658298966e-107converged
-basis-gth-qzv3p1 × 1 × 1gth-qzv3p39 × 39 × 39-5.70828639286-0.0398052680635-0.0412155465361-0.04178946180590.03980988519160.04122244092630.04179224741671.68961469277e-107converged
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 各設定の力の全成分 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#force-components
-Coverage: reading
-
-basis-k2-gth-tzv2p2 × 2 × 2gth-tzv2p39 × 39 × 39-5.65527584286-0.0185318883856-0.0181726120174-0.01771907720030.01853506039210.01817734792740.01772099039557.04867235399e-117converged
-basis-k2-gth-qzv3p2 × 2 × 2gth-qzv3p39 × 39 × 39-5.65543393064-0.0185062801195-0.0181391986902-0.01768355920560.01851090862530.01814611171170.01768635397717.12000432119e-117converged
-fft-311 × 1 × 1gth-dzvp31 × 31 × 31-5.70769888331-0.040254695194-0.0411018185894-0.04214640895890.03971913810730.04124969305140.04202464455578.94907038019e-107converged
-fft-471 × 1 × 1gth-dzvp47 × 47 × 47-5.70768217735-0.0399873760784-0.0413749709009-0.04192593384530.03998737558230.041374971160.04192593703252.1523627324e-106converged
-scf-loose1 × 1 × 1gth-dzvp39 × 39 × 39-5.70768215071-0.0399866781447-0.0413738335102-0.04192631734650.03998839506190.04137639712310.04192735313992.94441763031e-064converged
-scf-medium1 × 1 × 1gth-dzvp39 × 39 × 39-5.70768215071-0.0399865185982-0.0413736681641-0.04192614950020.03998823551740.04137623177990.04192718529482.08490928004e-085converged
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — PySCF内の照合：全6成分のエネルギー中心差分 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#finite-difference-results
-Coverage: reading
-
-基準ケース：k-1、変位幅h / bohr：0.002
-原子軸E(−h) / hartreeE(+h) / hartree解析力有限差分力|差|
-0x-5.70776201846-5.70760207242-0.0399865180743-0.03998650958798.48636927397e-09
-0y-5.7077648067-5.70759931209-0.0413736676148-0.04137365350631.41084863237e-08
-0z-5.70776592335-5.70759821884-0.0419261489353-0.04192612735452.15807224729e-08
-1x-5.70760206918-5.707762022080.03998823499350.03998822376031.12331973029e-08
-1y-5.70759930701-5.707764811870.04137623123060.04137621304761.81830443202e-08
-1z-5.70759821661-5.707765925260.04192718472980.04192716150642.32234127207e-08
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 変位幅hの走査 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#finite-difference-steps
-Coverage: reading
-
-h / bohr解析力有限差分力|差| / hartree・bohr⁻¹
-0.0080.03998823499350.03998805475591.8023756336e-07
-0.0040.03998823499350.03998818993054.50630251309e-08
-0.0020.03998823499350.03998822376031.12331973029e-08
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 力の5つの収束系列 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#convergence-targets
-Coverage: reading
-
-変更した量最後の||ΔF||∞入力の目標目標達成
-k点メッシュ2.84334958952e-050.001true
-ΓのGaussian軌道基底2.65239291374e-060.0001true
-2³メッシュのGaussian軌道基底3.55179947748e-050.0001true
-補助FFT格子1.30328608255e-061e-05true
-SCF許容誤差5.64949656501e-101e-06true
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — k点メッシュの系列 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#results-kpoint
-Coverage: reading
-
-ケースk基底FFTΔE公差軌道勾配公差前の設定からの||ΔF||∞
-k-11gth-dzvp39 × 39 × 391e-111e-08—
-k-22gth-dzvp39 × 39 × 391e-111e-080.0239910823646
-k-33gth-dzvp39 × 39 × 391e-111e-080.00101956511103
-k-44gth-dzvp39 × 39 × 391e-111e-082.84334958952e-05
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — ΓのGaussian軌道基底の系列 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#results-basis
-Coverage: reading
-
-ケースk基底FFTΔE公差軌道勾配公差前の設定からの||ΔF||∞
-basis-gth-dzv1gth-dzv39 × 39 × 391e-111e-08—
-k-11gth-dzvp39 × 39 × 391e-111e-080.000942469145363
-basis-gth-tzv2p1gth-tzv2p39 × 39 × 391e-111e-080.000181570193341
-basis-gth-qzv3p1gth-qzv3p39 × 39 × 391e-111e-082.65239291374e-06
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 2³メッシュのGaussian軌道基底の系列 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#results-basis-k2
-Coverage: reading
-
-ケースk基底FFTΔE公差軌道勾配公差前の設定からの||ΔF||∞
-k-22gth-dzvp39 × 39 × 391e-111e-08—
-basis-k2-gth-tzv2p2gth-tzv2p39 × 39 × 391e-111e-080.000234451717677
-basis-k2-gth-qzv3p2gth-qzv3p39 × 39 × 391e-111e-083.55179947748e-05
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 補助FFT格子の系列 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#results-auxiliary
-Coverage: reading
-
-ケースk基底FFTΔE公差軌道勾配公差前の設定からの||ΔF||∞
-fft-311gth-dzvp31 × 31 × 311e-111e-08—
-k-11gth-dzvp39 × 39 × 391e-111e-080.000271849025353
-fft-471gth-dzvp47 × 47 × 471e-111e-081.30328608255e-06
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — SCF許容誤差の系列 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#results-scf
-Coverage: reading
-
-ケースk基底FFTΔE公差軌道勾配公差前の設定からの||ΔF||∞
-scf-loose1gth-dzvp39 × 39 × 391e-050.001—
-scf-medium1gth-dzvp39 × 39 × 391e-081e-051.67846322036e-07
-k-11gth-dzvp39 × 39 × 391e-111e-085.64949656501e-10
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 独立DFTKとの全成分比較 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#reference-results
-Coverage: reading
-
-両エンジンは同じXC評価のLibxcを共用しますが、Hamiltonian・SCF・軌道離散化・力の実装は別です。有限空間の違いを含む比較を、同一行列の丸め誤差や完全基底極限の証明と呼びません。
-kメッシュPySCFケースmax|ΔF| / hartree・bohr⁻¹|ΔE| / hartree力の受入幅合格
-1 × 1 × 1basis-gth-qzv3p7.28156560619e-057.39562937522e-050.0002true
-2 × 2 × 2basis-k2-gth-qzv3p7.53824989575e-050.0001716841681070.0002true
-kメッシュ原子軸PySCFDFTK|差|
-1 × 1 × 10x-0.0398052680635-0.03974088227836.43857851663e-05
-1 × 1 × 10y-0.0412155465361-0.04115049946356.50470726287e-05
-1 × 1 × 10z-0.0417894618059-0.04171943176357.00300423683e-05
-1 × 1 × 11x0.03980988519160.03974088227926.90029123726e-05
-1 × 1 × 11y0.04122244092630.04115049947087.19414554756e-05
-1 × 1 × 11z0.04179224741670.04171943176067.28156560619e-05
-2 × 2 × 20x-0.0185062801195-0.01844417456236.21055572319e-05
-2 × 2 × 20y-0.0181391986902-0.01807349989766.56987925777e-05
-2 × 2 × 20z-0.0176835592056-0.01761097149117.25877144895e-05
-2 × 2 × 21x0.01851090862530.01844417454086.67340845119e-05
-2 × 2 × 21y0.01814611171170.01807349987797.26118337627e-05
-2 × 2 × 21z0.01768635397710.01761097147817.53824989575e-05
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 参照側の平面波カットオフ収束 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#reference-cutoff-results
-Coverage: reading
-
-kメッシュカットオフ / hartreeE / hartreeF₀xF₀yF₀z密度残差SCF収束
-1 × 1 × 190-5.70469899265-0.0398769535381-0.0411568919154-0.04169525356311.79312606299e-11true
-1 × 1 × 1120-5.70763610706-0.0397459522334-0.0411620517635-0.04175032286783.63551158623e-11true
-1 × 1 × 1180-5.70832561727-0.0397416978174-0.0411521946852-0.04172025831294.5115468763e-11true
-1 × 1 × 1240-5.70836034916-0.0397408822783-0.0411504994635-0.04171943176357.38227720491e-11true
-2 × 2 × 290-5.65201462751-0.0184654863602-0.018082213442-0.0176196756244.1940247556e-11true
-2 × 2 × 2120-5.65488723806-0.0184462756738-0.0180769900647-0.01761553361644.38625485298e-11true
-2 × 2 × 2180-5.65557141515-0.0184444819384-0.0180739885367-0.01761143705364.33654981936e-11true
-2 × 2 × 2240-5.65560561481-0.0184441745623-0.0180734998976-0.01761097149115.36462814693e-11true
-kメッシュ最後のカットオフ最後の||ΔF||∞力の目標最後の|ΔE|エネルギー目標目標達成
-1 × 1 × 12401.69522172031e-061e-053.47318874843e-050.0001true
-2 × 2 × 22404.88657926834e-071e-053.41996548503e-050.0001true
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — DFTK側でも解析力とエネルギー差分を照合 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#reference-finite-difference-results
-Coverage: reading
-
-原子軸h / bohr解析力有限差分力|差|
-0x0.01-0.0397408822783-0.03974063906112.43217217838e-07
-0x0.005-0.0397408822783-0.03974082148656.07918097251e-08
-0x0.001-0.0397408822783-0.03974087984342.43493483709e-09
-0y0.001-0.0411504994635-0.04115049541524.04828268824e-09
-0z0.001-0.0417194317635-0.04171942645615.30734374504e-09
-1x0.0010.03974088227920.03974087985182.4274335042e-09
-1y0.0010.04115049947080.04115049541484.05603271109e-09
-1z0.0010.04171943176060.04171942646955.29114094899e-09
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — BOMD接続の短い実行試験 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#bomd-interface-results
-Coverage: reading
-
-同じ短い時間を、速度Verletの1刻みと2つの半刻みで進め、各配置で電子状態を再収束させます。下の位置・速度差とエネルギー変化は接続の局所的な検査であり、長時間NVEの保存性や刻み幅収束の次数の証明ではありません。入力の質量・初速度・時間を固定し、温度制御は使いません。
-量実測値単位
-合計時間8atomic time
-位置の最大成分差9.60193803634e-07bohr
-速度の最大成分差6.19583876078e-09bohr / atomic time
-1刻みの|ΔE|（全エネルギー）3.78557850844e-07hartree
-2つの半刻みの|ΔE|（全エネルギー）9.46016402992e-08hartree
-保存結果の可視化です。合否は元の入力・結果JSONで判定します。
-全結果 / JSON · 設定と力 / CSV · 独立参照と収束 / JSON
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 全エネルギーの負の勾配を力にする [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#force-definition
-Coverage: reading
-
-固定した格子、電子数、汎関数、擬ポテンシャルのもとで、各原子配置における電子基底状態を求めます。Born–Oppenheimerエネルギーは電子項と周期イオン間項を含むセル全体のエネルギーです。原子IのCartesian成分αに働く力は、その座標についての全微分に負号を付けた値です。勾配と力の符号を区別し、座標をbohr、エネルギーをhartreeで扱うと力の単位はhartree/bohrになります。
-入力は一辺5 bohrの立方セルで、Heの位置は(0.37, 0.61, 0.83)と(2.13, 2.27, 2.41) bohrです。価電子4・閉殻の固定配置で、対称性だけですべての力がゼロになる検査を避けます。力の大きさだけでなく、各原子のx・y・z成分と方向を照合します。この人工配置の数値的一致を、実在するヘリウム結晶の平衡構造や化学精度の予測と読み替えません。セルを変形する応力・圧力の微分は、固定セルでの原子位置微分とは別の検証です。
-E_{\mathrm{BO}}(\mathbf R;A)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R,A]F_{I\alpha}=-\left.\frac{d E_{\mathrm{BO}}}{dR_{I\alpha}}\right|_{A,N_e},\qquad [F_{I\alpha}]=E_h/a_0
-関連出典：M. Born and R. Oppenheimer (1927), R. P. Feynman (1939)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — Hellmann–Feynmanの定理と、移動する基底のPulay項 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#hellmann-feynman-and-pulay
-Coverage: reading
-
-規格化された厳密な固有状態では、エネルギーのパラメータ微分をHamiltonianの微分の期待値として表せます。これがHellmann–Feynmanの関係です。Feynmanの1939年論文は分子の力を直接評価する歴史的な一次文献です。この定理だけで、有限の原子中心基底で求めた電子状態のすべての力が正しく得られるわけではありません。下のHとΨは定理の一般形を表し、Kohn–Shamの全エネルギーを軌道固有値の和だけに置き換える式ではありません。
-原子に追随するGaussian基底では、核を動かすと基底関数と重なり行列も変わります。変分計算で軌道係数を十分に最適化していても、この基底の位置依存に由来する項を含めて、離散化したエネルギーを微分する必要があります。これらをPulay項と呼びます。一般化固有値問題に現れるエネルギー重み付き密度と重なり微分の項はその一部です。今回のドライバーはPySCFの解析核勾配を利用し、単純な裸のイオン–電子Coulomb力へ置き換えません。
-固定セルと固定カットオフで用いる平面波は原子位置に追随する基底ではありません。それでも有限カットオフによる力の誤差は残り、SCFや密度格子も収束させる必要があります。「Pulay項が不要」という理由だけで平面波の力が厳密になるわけではありません。セル変形に伴う基底変化とPulay応力の議論も、この固定セル検査の対象から分けます。
-H(\lambda)\Psi=E(\lambda)\Psi,\quad\langle\Psi|\Psi\rangle=1\quad\Longrightarrow\quad\frac{dE}{d\lambda}=\left\langle\Psi\left|\frac{\partial H}{\partial\lambda}\right|\Psi\right\rangleF_{\mathbf k}C_{\mathbf k}=S_{\mathbf k}C_{\mathbf k}\varepsilon_{\mathbf k},\quad W_{\mathbf k}=C_{\mathbf k}f_{\mathbf k}\varepsilon_{\mathbf k}C_{\mathbf k}^{\dagger},\quad \left.\frac{dE}{dR_{I\alpha}}\right|_{\text{overlap term}}=-\sum_qw_q\operatorname{Tr}\!\left(W_{\mathbf k_q}\frac{\partial S_{\mathbf k_q}}{\partial R_{I\alpha}}\right)
-関連出典：R. P. Feynman (1939), P. Pulay (1969), PySCF developers (2026), DFTK developers (2026)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 有限差分照合：変位幅を小さくするだけでは足りない [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#energy-finite-differences
-Coverage: reading
-
-基準配置から1つの原子の1成分だけを±h動かし、それぞれの配置でSCFを独立に収束させた全エネルギーを用いて中心差分の力を求めます。格子、k点と重み、基底名、FFT格子、汎関数、擬ポテンシャル、電子数をそろえます。原子中心基底も移動させるため、差分は基底の位置依存を含む同じ離散化エネルギーの微分を検査します。
-滑らかなエネルギー面では中心差分の切断誤差はO(h²)です。一方で、エネルギーにSCFの解き残しや丸め誤差があれば、その差を2hで割るため小さすぎる変位で誤差が増えることがあります。複数のhを記録し、解析力との差が安定する範囲を確認します。実測の系列が必ずきれいなU字を描くとは仮定しません。入力したSCFのエネルギー公差そのものを、各エネルギーの厳密な誤差上界とは扱いません。
-解析力と同一エンジンの有限差分の一致は、符号・成分・基底微分を含む内部整合性の検査です。両者が共通の汎関数や擬ポテンシャルの実装を使うため、これだけを独立した物理参照との一致とは呼びません。今回の独立照合には別実装の平面波DFTKも用います。
-F^{\mathrm{FD}}_{I\alpha}(h)=-\frac{E(\mathbf R+h\mathbf e_{I\alpha})-E(\mathbf R-h\mathbf e_{I\alpha})}{2h}F^{\mathrm{FD}}(h)-F=\mathcal O(h^2)+\mathcal O(\delta E/h)
-関連出典：P. Pulay (1969), PySCF developers (2026)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 力について基底・k点・補助格子・SCFを別々に収束させる [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#separate-force-convergence
-Coverage: reading
-
-エネルギー差が小さくなったという理由だけで、力も十分に収束したと判断しません。Gaussian軌道基底、Brillouinゾーンのk点メッシュ、FFTの補助格子、SCF停止条件を1つずつ変え、同じ原子・成分の力の差を測ります。基準と比べるときは原子の順序とCartesian軸を固定します。今回の要約は全成分の絶対値最大を用いるL∞型のノルムで、原子ごとのベクトル長や成分平均とは区別します。
-基底名のzeta数を増やす系列は、必ずしも入れ子の空間や単調な力の変化を与えません。k点メッシュもすべてが入れ子ではありません。最後の2設定の力の差を公開した目安と比較しますが、それを完全基底や無限k点での厳密な誤差上界とは呼びません。密度や局所ポテンシャルを載せる補助FFT格子は、Gaussianの軌道空間と独立の収束軸です。
-SCFの未収束は力にも現れます。終了フラグと反復回数だけでなく、電子数、軌道・SCF残差など、保存した状態の診断量を併せて読みます。厳しい停止条件に対して力が変わらないことを直接測り、未収束の電子状態をBOMDへ正常な力として返さないようにします。
-各走査は1つの制御値だけを変え、その他の制御値は公開入力で指定した有限の設定に固定します。Γ点と2³では基底系列もそれぞれ確認しますが、4³・最大Gaussian基底・最細FFTを同時に組み合わせた完全な収束計算は行っていません。独立参照との一致もΓ点と2³の指定ケースに限られます。
-\|\Delta\mathbf F\|_{\infty}=\max_{I,\alpha\in\{x,y,z\}}|F^{(a)}_{I\alpha}-F^{(b)}_{I\alpha}|\Delta_{\mathrm{basis}}\mathbf F,\quad\Delta_{\mathbf k}\mathbf F,\quad\Delta_{\mathrm{FFT}}\mathbf F,\quad\mathbf F_{\tau}-\mathbf F_{\mathrm{tight}}
-関連出典：PySCF developers (2026), DFTK developers (2026), J. M. Herbert and M. Head-Gordon (2005)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 独立参照：同じモデルを異なる離散化で比較する [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#independent-reference
-Coverage: reading
-
-PySCF側は周期Gaussian基底とFFTDFを用い、参照側はDFTKの平面波Hamiltonian、SCF、周期イオン間計算と解析力を用います。両側で格子と全原子位置、価電子数、非偏極・整数占有、局所GTHの全係数、LibxcのLDA_XとLDA_C_VWN（VWN5）、分率k点と重みを一致させます。エネルギーの原点を後から合わせる定数や、力を合わせる補正は加えません。
-DFTK側でも平面波の打切りを上げ、力の末尾の差を確かめます。比較は同じ有限行列の丸め誤差を測るものではありません。有限のGaussian空間と平面波空間の差を含むため、公開した受入幅と両側の収束診断を併せて評価します。両エンジンがLibxcを共有することも独立性の限界として明示します。
-DFTKのcompute_forcesは分率座標に対応する表現を返し、Cartesian力を得るAPIはcompute_forces_cartです。座標と力の変換は同じではありません。今回の照合はCartesian成分・hartree/bohrで統一します。参照の生成スクリプト、Juliaの固定環境、擬ポテンシャル、入力と結果のハッシュを保存し、通常のPython実行による保存参照との比較と、Juliaで参照そのものを再生成する操作を区別します。
-\mathbf R=A\boldsymbol\xi,\qquad \mathbf F_{\mathrm{cart}}=-A^{-\mathsf T}\nabla_{\boldsymbol\xi}E
-関連出典：S. Goedecker, M. Teter and J. Hutter (1996), S. H. Vosko, L. Wilk and M. Nusair (1980), Qiming Sun et al. (2020), M. F. Herbst, A. Levitt and E. Cancès (2021), DFTK developers (2026)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 成分・並進・非零の力を確認する [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#translation-and-component-checks
-Coverage: reading
-
-力がすべてほぼゼロの配置では、符号が逆でも検査が通ってしまうことがあります。非零の力を持つ多原子配置を用い、成分ごとの解析力、有限差分力、独立参照を比較します。成分の並べ替え、原子番号の取り違え、単位の誤りを、力のノルム1つだけで検査しないようにします。
-外場がない理想的な周期系では、全原子の一様並進に対して全エネルギーが不変で、全力の和はゼロです。有限の実空間格子などはこの性質を数値的に破ることがあり、残った全力を記録すると格子や微分の診断になります。並進に関する検査だけでは相対配置に働く力の精度は保証できないため、エネルギー差分と独立参照を併用します。
-E(\{\mathbf R_I+\mathbf t\})=E(\{\mathbf R_I\})\quad\Longrightarrow\quad\sum_I\mathbf F_I=\mathbf 0
-関連出典：DFTK developers (2026), PySCF developers (2026)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — BOMDへ渡すものと、軌道で追加検証するもの [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#bomd-interface
-Coverage: reading
-
-BOMDの力供給部energy_and_forcesは、原子位置（positions_bohr）を受け取り、同じエネルギー面の全エネルギー（energy_per_cell）と力（forces_cartesian）、SCFの収束状態・残差を返します。電子状態が未収束なら計算を失敗として扱います。質量は核運動の時間積分で使い、DFTから求めるポテンシャルエネルギーや力へ掛けません。周期セル内での位置の折り返しは表示と連続した軌道の記録を区別します。
-速度Verletなら、力で速度を半刻み進め、位置を更新し、新しい配置で電子状態を再び解いて力を得た後、残り半刻みの速度更新を行います。電子の初期推定を前のステップから引き継ぐことは高速化ですが、SCF収束の要件を置き換えるものではありません。今回の検証は原子間力とBOMDへ渡す接続を中心にし、単発の力評価や短い接続試験を長時間のMD検証として数えません。
-実用的な軌道の受入には、時間刻みを細分化した比較、SCF公差を厳しくした比較、温度制御を使わないNVEでの全エネルギーと運動量、必要なら時間反転の検査を追加します。温度制御でエネルギーのずれを吸収させると力や積分器の誤差が見えにくくなるため、まず無温度制御で検査します。短時間のドリフトが小さいことを、長時間の安定性や正しい統計分布の保証とはしません。
-Car–Parrinello法は仮想電子自由度を核と同時に進める別の定式化です。ここで用意するBorn–Oppenheimer面の力供給をCPMDの実装として扱いません。DFTから力、核の時間積分、温度制御のどこまでが実行済みかは、分野間をつなぐ入口でも段階ごとに示します。
-\mathbf v_{n+1/2}=\mathbf v_n+\frac{\Delta t}{2M}\mathbf F(\mathbf R_n),\quad\mathbf R_{n+1}=\mathbf R_n+\Delta t\,\mathbf v_{n+1/2},\quad\mathbf v_{n+1}=\mathbf v_{n+1/2}+\frac{\Delta t}{2M}\mathbf F(\mathbf R_{n+1})\mathcal E_n=E_{\mathrm{BO}}(\mathbf R_n)+\sum_I\frac{M_I}{2}|\mathbf v_{I,n}|^2,\qquad \Delta\mathcal E_n=\mathcal E_n-\mathcal E_0
-関連出典：M. Born and R. Oppenheimer (1927), J. M. Herbert and M. Head-Gordon (2005), R. Car and M. Parrinello (1985)
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 取得して結果を確かめる [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#run-and-check
-Coverage: reading
-
-ZIP内の配布版フォルダで依存関係を導入し、同梱の固定入力を使います。出力先は新規または空のディレクトリにします。通常のrunnerは保存済みDFTK参照を照合します。Juliaによる参照の再生成は別工程で、参照用環境と手順を同梱しています。
-python -m pip install -r requirements.txt
-python -m pytest -q
-python run.py --input inputs.json --output output
-固定入力 / JSON · Runner · 原子間力のAPI · BOMDの接続 · DFTK独立参照 / JSON · 版・受入条件・引用の共通手順
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 一次文献・関連資料と確認範囲 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#sources
-Coverage: reading
-
-書誌、抄録、原文の一部、公式APIの確認を区別して示します。原論文全体の再現や全文監査を行ったという意味ではありません。論文の全文や第三者のソースコードはこの教材に転載しません。
-S. Goedecker, M. Teter and J. Hutter (1996). Separable dual-space Gaussian pseudopotentials. Physical Review B 54, 1703–1710
-出版社の書誌・抄録を確認。実際のHe係数は同梱データと両ライブラリで照合し、原論文の表からの全桁の直接転記とは扱いません。
-S. H. Vosko, L. Wilk and M. Nusair (1980). Accurate spin-dependent electron liquid correlation energies for local spin density calculations: a critical analysis. Canadian Journal of Physics 58, 1200–1211
-公式Libxc資料のLDA_C_VWN（VWN5）の原著DOIと書誌を確認。出版社本文へはアクセスできず、全文や表の監査は行っていません。
-Qiming Sun et al. (2020). Recent developments in the PySCF program package. The Journal of Chemical Physics 153, 024109
-出版社の書誌・抄録と既存アトラスの登録を確認。今回使用する周期APIは下記の公式資料と固定版コードでも確認します。
-M. F. Herbst, A. Levitt and E. Cancès (2021). DFTK: A Julian approach for simulating electrons in solids. Proceedings of the JuliaCon Conferences 3(26), 69
-出版社の書誌と公開論文の導入部を確認。今回の参照計算は独立した数値検査であり、論文中の全例の再現ではありません。
-DFTK developers (2026). DFTK API and pseudopotentials. Official DFTK documentation
-compute_forcesとcompute_forces_cartの座標・単位・離散化エネルギー微分の説明を参照。実際の参照生成は配布物のDFTK固定版で実行し、その版のソースも確認します。
-M. Born and R. Oppenheimer (1927). Zur Quantentheorie der Molekeln. Annalen der Physik 389(20), 457–484
-出版社の書誌・DOIを確認。Born–Oppenheimer分離の歴史的基礎として引用し、原文全文の監査や現代のMD実装の再現は主張しません。
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 一次文献・関連資料と確認範囲 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#sources
-Coverage: reading
-
-R. Car and M. Parrinello (1985). Unified Approach for Molecular Dynamics and Density-Functional Theory. Physical Review Letters 55, 2471–2474
-出版社の書誌・抄録と公開原文の式(3)–(5)、BO面近傍の仮想電子運動の議論を参照。論文のSi動力学の数値再現は行っていません。
-R. P. Feynman (1939). Forces in Molecules. Physical Review 56, 340–343
-出版社の書誌と抄録を確認。Hellmann–Feynmanの力の関係の歴史的な一次文献として引用し、有限基底や擬ポテンシャルの勾配実装をこの原著だけで検証したとは主張しません。
-P. Pulay (1969). Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory. Molecular Physics 17(2), 197–204
-検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。原子位置に依存する有限基底でのエネルギー微分を論じる力の原著として引用し、SCF加速DIISのPulay(1980)とは区別します。原著全文の監査は行っていません。
-PySCF developers (2026). pyscf.pbc.grad.krks: analytic nuclear gradients with k-point sampling. Official PySCF source documentation
-周期KRKSの解析核勾配、LDAの交換相関微分、対応していない設定を公式ソースで確認。配布版のPySCF 2.11.0でも使用箇所を照合します。
-PySCF developers (2026). pyscf.pbc.grad.krhf: electronic, overlap, pseudopotential and nuclear gradient terms. Official PySCF source documentation
-grad_elecの密度・エネルギー重み付き密度と重なり微分、擬ポテンシャルの微分、周期イオン項の該当箇所を確認。第三者ソースコードを教材へ複製しません。
-PySCF developers (2026). Guidelines for PBC DFT Parameter Settings. Official PySCF documentation
-FFTDFの補助平面波と実空間格子、核勾配への適用範囲の説明を参照。Gaussian軌道基底とFFT格子の収束を分けるための実装資料です。
-
-## DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 — 一次文献・関連資料と確認範囲 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#sources
-Coverage: reading
-
-J. M. Herbert and M. Head-Gordon (2005). Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation. Physical Chemistry Chemical Physics 7, 3269–3275
-検索ツールが返した出版社ページの書誌と抄録を確認。通常のページ取得は403でした。SCFの解き残し・初期推定と力・NVEドリフトを区別する根拠として参照し、論文の外挿法や分子軌道を今回実装・再現したとは主張しません。
 
 ## Particle-in-Cell（PIC） — Particle-in-Cell（PIC） [ja]
 
@@ -17742,7 +17300,6 @@ T_sは補助系の運動エネルギー、E_Hは古典的Coulombエネルギー�
 下式は密度のみに依存する微分可能な汎関数に対する局所KSの代表形です。hybridの非局所交換や軌道依存meta-GGA等では一般化KSの扱いを区別します。
 球対称Heのスピン非偏極・交換のみDirac LDA。相関・GGA・hybrid・分子・周期系・励起は未実装。 固定入力・コード・検証結果
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。 原子間力・有限差分・独立参照・BOMD接続
 E[n]=T_s[n]+\int v_{\rm ext}n\,d\mathbf r+E_H[n]+E_{\rm xc}[n]+E_{NN}[-\tfrac12\nabla^2+v_{\rm ext}+v_H+v_{\rm xc}]\phi_i=\varepsilon_i\phi_in(\mathbf r)=\sum_i f_i|\phi_i(\mathbf r)|^2,\quad \int n\,d\mathbf r=N,\quad v_{\rm xc}=\frac{\delta E_{\rm xc}}{\delta n}
 長い式は横にスクロールできます。
 正確な汎関数の理論と、近似汎関数による実計算を分けます。KS固有値を一般に励起エネルギーと同一視せず、基底状態DFTだけで励起状態まで保証しません。
@@ -17759,7 +17316,6 @@ Coverage: reading
 原子軌道では基底の大きさ・分極・diffuse関数、平面波ではカットオフとセル、実空間では格子幅と領域を別々に変えます。Gaussian基底の積分評価はBoysの一次文献への入口を付けています。
 新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。 原子間力・有限差分・独立参照・BOMD接続
 \phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
 基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。
 条件・実装状況・JSON
@@ -17777,7 +17333,6 @@ SCFは物理モデル名ではなく、HFやKSで現れる自己無撞着条件�
 Heの線形密度混合、密度・エネルギー・軌道残差、初期値・混合率の比較と未収束を検証。DIISは含みません。 別配布版にH₂の有限s型Gaussian基底RHFの例を追加。 固定入力・コード・検証結果
 新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。 原子間力・有限差分・独立参照・BOMD接続
 n_{k+1}=(1-\alpha)n_k+\alpha\mathcal M[n_k],\qquad 0<\alpha\le1\mathrm{Tr}(\mathbf P\mathbf S)=N,\qquad \mathbf R=\mathbf F\mathbf P\mathbf S-\mathbf S\mathbf P\mathbf F
 長い式は横にスクロールできます。
 小さいエネルギー変化だけで収束を宣言しません。収束した解が最低エネルギーの安定な電子状態である保証も別に検査します。
@@ -17821,7 +17376,6 @@ LDAは局所密度、GGAは密度と勾配、meta-GGAは軌道の運動エネル
 下式はスピン非偏極のDirac交換のみです。相関項を含むLDAと区別し、汎関数名、成分、パラメータ、ライブラリと版を明示します。電子密度の求積格子も結果を変え得ます。
 スピン非偏極Dirac交換のエネルギーと汎関数微分のみを検証。LDA相関、GGA、meta-GGA、hybridは解説のみ。 固定入力・コード・検証結果
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。 原子間力・有限差分・独立参照・BOMD接続
 E_x^{\rm LDA}[n]=-\frac34\left(\frac3\pi\right)^{1/3}\int n^{4/3}\,d\mathbf rv_x^{\rm LDA}=-\left(\frac{3n}{\pi}\right)^{1/3}
 基底・格子・SCFが収束しても汎関数の近似誤差は消えません。自己相互作用、電荷移動、強相関、分散の扱いは対象と近似に応じて評価します。
 条件・実装状況・JSON
@@ -17840,7 +17394,6 @@ Coverage: reading
 擬ポテンシャルは内殻の効果を有効的に扱い、価電子を主に解く表現です。norm-conserving、ultrasoft、PAWを区別します。PAWは変換と再構成を使う方法で、単に滑らかな局所ポテンシャルに置き換える説明では不十分です。
 元素、価電子配置、生成した汎関数、相対論の扱い、データセットの版と推奨カットオフを保存します。全電子計算との比較は同じ物理条件・観測量で行います。
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。 原子間力・有限差分・独立参照・BOMD接続
 異なる擬ポテンシャルの全エネルギーの零点を無条件に比較しません。平面波カットオフの収束だけで移植性が証明されるわけではありません。
 条件・実装状況・JSON
 Hamann, D. R.; Schlüter, M.; Chiang, C. (1979)
@@ -17856,7 +17409,6 @@ Coverage: reading
 周期ポテンシャルではBloch軌道を用い、Brillouin領域の積分を重み付きk点和で近似します。u_nkは格子周期関数です。Monkhorst–Pack法は特殊点による積分の一次文献への入口です。
 k点密度とシフト、対称性、占有・smearing、セル、基底カットオフを保存します。孤立分子を大きな周期セルに置くことと、孤立境界で解くことも区別します。
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。 周期DFTの条件・コード・収束・独立参照
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。 原子間力・有限差分・独立参照・BOMD接続
 \psi_{n\mathbf k}(\mathbf r)=e^{i\mathbf k\cdot\mathbf r}u_{n\mathbf k}(\mathbf r),\qquad \int_{\rm BZ}g(\mathbf k)\,d\mathbf k\approx\sum_\nu w_\nu g(\mathbf k_\nu)
 長い式は横にスクロールできます。
 金属の占有とsmearing幅の依存、有限温度の自由エネルギーと零温度エネルギーを区別します。Γ点だけで十分かは系とセルに依存します。
@@ -18015,10 +17567,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemi
 Coverage: reading
 
 BOMDは各核配置で電子エネルギーを最小化し、Born–Oppenheimer面の勾配を力として核運動を積分します。エネルギーの公差と力の精度は同じ判定ではなく、有限の移動基底では基底の位置依存も考慮します。
-静的DFTの収束からMD軌道の正しさは結論できません。別章「DFTから原子間力へ」では非対称He₂の力を独立照合し、BOMDの力供給と短い局所刻み比較までを確認しています。長時間NVEドリフトと刻み幅・SCF公差の系統的な軌道収束は今後の対象です。周期DFT章の第一原理MD節でCPMDとの違いを説明します。
+静的DFTの収束からMD軌道の正しさは結論できません。力の独立照合、刻み幅とSCF公差の感度、NVEのエネルギードリフトを今後の検証対象とします。周期DFT章の第一原理MD節でCPMDとの違いを説明します。
 E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)
 長い式は横にスクロールできます。
-BOMD全体の手法状態は解説のみ。力の専用配布版にある短い接続確認を、長時間MD軌道・温度制御の検証として数えません。
+解説のみ。今回の固定Heセルのエネルギー比較は、原子間力・MD軌道・温度制御の検証を含みません。
 条件・実装状況・JSON
 M. Born; R. Oppenheimer (1927)
 R. Car; M. Parrinello (1985)
@@ -18041,7 +17593,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全67問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全66問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -18074,14 +17626,6 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemi
 Coverage: reading
 
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。
-結果・実行手順
-
-## 量子化学・DFT：何を近似し、何を解くか — 多原子周期系：力の独立照合とBOMDの局所接続 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
-Coverage: reading
-
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。
 結果・実行手順
 
 ## 量子化学・DFT：何を近似し、何を解くか — 今後広げる項目 [ja]
@@ -20083,9 +19627,6 @@ Jonathan M. Weiss and Wayne A. Smith (1995). Preconditioning applied to variable
 David L. Darmofal and Pierre Moinier and Michael B. Giles (2000). Eigenmode Analysis of Boundary Conditions for the One-Dimensional Preconditioned Euler Equations. 10.1006/jcph.2000.6472
 Ami Harten (1983). High resolution schemes for hyperbolic conservation laws. 10.1016/0021-9991(83)90136-5
 A. JAMESON and WOLFGANG SCHMIDT and ELI TURKEL (1981). Numerical solution of the Euler equations by finite volume methods using Runge Kutta time stepping schemes. 10.2514/6.1981-1259
-R. P. Feynman (1939). Forces in Molecules. 10.1103/PhysRev.56.340
-P. Pulay (1969). Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory. 10.1080/00268976900100941
-J. M. Herbert and M. Head-Gordon (2005). Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation. 10.1039/B509494A
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -20345,7 +19886,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 実装中・公開確認待ち
-生物2例・確率2例・H₂ RHF・固定Heの周期LDAに続き、非対称He₂の原子間力を追加し、現行22例の実行経路を整備。力を全6座標の有限差分と独立DFTK参照で照合し、基底/k点/SCF/FFTを分離検査。BOMDの力供給は局所確認まで。長時間NVE、他物質、反応拡散、MCMC、温度制御の分布・相関は次の検証候補。
+生物2例・確率2例・H₂ RHFに続き、固定Heセルの周期LDAを追加。現行21例の実行経路を整備。周期Heはk点・軌道基底・FFT・SCF収束と独立DFTK全エネルギーを確認。次候補は他の絶縁体、反応拡散、既知分布MCMC、温度制御の分布・相関で、これらは未実装。
 分野ごとの根拠と未実装範囲
 
 ## 実装ロードマップ — 固定Heセルの周期DFT・k点収束を実装・検証 [ja]
@@ -20356,15 +19897,6 @@ Coverage: reading
 検証した限定例を公開済み
 固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。
 固定He周期DFTの数値検証
-
-## 実装ロードマップ — 多原子周期DFTの原子間力を実装・検証 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
-Coverage: reading
-
-検証した限定例を公開済み
-非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。
-DFTの原子間力を確かめ、BOMDへ渡したい
 
 ## 実装ロードマップ — 現行計画と履歴を分ける [ja]
 
@@ -21049,7 +20581,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素114項目・学術誌／会議論文224件・全参考資料265件。
+方程式・モデル46項目・計算法と構成要素115項目・学術誌／会議論文221件・全参考資料262件。
 保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め79章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
@@ -21145,7 +20677,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は98、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は99、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -21297,7 +20829,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-218件：学術誌論文（総説・翻訳・採録済み論文を含む）
+215件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
