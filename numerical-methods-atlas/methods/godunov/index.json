@@ -264,5 +264,553 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sod-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "godunov",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "burgers",
+        "name": {
+          "ja": "非粘性Burgers方程式",
+          "en": "Inviscid Burgers equation"
+        },
+        "problem_ids": [
+          "burgers-shock",
+          "burgers-fan"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#burgers-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#burgers-en"
+        }
+      },
+      {
+        "id": "traffic",
+        "name": {
+          "ja": "LWR交通流モデル",
+          "en": "LWR traffic model"
+        },
+        "problem_ids": [
+          "traffic-jam",
+          "traffic-fan"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#traffic-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#traffic-en"
+        }
+      },
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "sod",
+          "double-rarefaction",
+          "double-mach"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "burgers-shock",
+        "name": {
+          "ja": "Burgers衝撃波",
+          "en": "Burgers shock"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/burgers-shock.png",
+          "sha256": "adb34de4f29f8ac65b237df2e070ffa8b1f5baa6ff4905a770e2ab17c1d5124a",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存した最終時刻の数値波形と参照解。",
+            "en": "Stored final-time numerical profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "burgers-fan",
+        "name": {
+          "ja": "Burgers膨張波",
+          "en": "Burgers rarefaction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/burgers-fan.png",
+          "sha256": "87d7b66ade78d1e42b150a902e8a337ba1bbe586630dc9a5f43877e682f639cd",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存した最終時刻の数値波形と参照解。",
+            "en": "Stored final-time numerical profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "traffic-jam",
+        "name": {
+          "ja": "交通流の渋滞衝撃波",
+          "en": "Traffic jam shock"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/traffic-jam.png",
+          "sha256": "020ddbb55cd33f84bb5bc7e03b8d86b4d4c4833e46fa3869077e1034f9ccb8a0",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存した最終時刻の数値波形と参照解。",
+            "en": "Stored final-time numerical profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "traffic-fan",
+        "name": {
+          "ja": "交通流の希薄化波",
+          "en": "Traffic clearing fan"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/traffic-fan.png",
+          "sha256": "a5e659bbf6a64f2c5620ee4b4ad17c9bac54d11327795001882d51f4e6ca9a49",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存した最終時刻の数値波形と参照解。",
+            "en": "Stored final-time numerical profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "sod",
+        "name": {
+          "ja": "Sod衝撃波管",
+          "en": "Sod shock tube"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png",
+          "sha256": "a9d8f817001a737123543672067c9e575e8e835b159c3507c187ce9d85a8141c",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存した最終時刻の数値波形と参照解。",
+            "en": "Stored final-time numerical profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "sod",
+            "kind": "common",
+            "name": {
+              "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+              "en": "Sod shock tube: Godunov-type update and self-similar reference"
+            },
+            "scope": {
+              "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
+              "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
+            },
+            "method_ids": [
+              "godunov",
+              "hllc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "double-rarefaction",
+        "name": {
+          "ja": "Euler二重膨張波",
+          "en": "Euler double rarefaction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/double-rarefaction.png",
+          "sha256": "2a843bf673dc414287780b54bea9f5a5bd48644c98c43630caa00a32b891ee6f",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "double-mach",
+        "name": {
+          "ja": "二重Mach反射",
+          "en": "Double Mach reflection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/double-mach/frame-080.webp",
+          "sha256": "c25e7e545607ec4e2f8d56186d6d963956c28d7e9e28b2a45b504f60c42e8eec",
+          "width": 960,
+          "height": 640,
+          "caption": {
+            "ja": "保存済み2次元Double Mach反射の最終フレーム。",
+            "en": "Stored final frame of 2D Double Mach reflection."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "burgers-shock",
+        "problem_name": {
+          "ja": "Burgers衝撃波",
+          "en": "Burgers shock"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "burgers-shock",
+            "title": {
+              "ja": "Burgers／衝撃波",
+              "en": "Burgers / shock"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "左右状態(1,0)、段差位置0.5、端点継続が一致します。点値とセル平均の評価は区別します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "States (1,0), jump position 0.5 and endpoint continuation match; distinguish point and cell-average evaluation. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-burgers-shock-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-burgers-shock-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=burgers-shock",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=burgers-shock"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "burgers-fan",
+        "problem_name": {
+          "ja": "Burgers膨張波",
+          "en": "Burgers rarefaction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "burgers-fan",
+            "title": {
+              "ja": "Burgers／膨張波",
+              "en": "Burgers / rarefaction"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "左右状態(0,1)、段差位置0.5、端点継続が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "States (0,1), jump position 0.5 and endpoint continuation match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-burgers-fan-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-burgers-fan-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=burgers-fan",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=burgers-fan"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "traffic-jam",
+        "problem_name": {
+          "ja": "交通流の渋滞衝撃波",
+          "en": "Traffic jam shock"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "traffic-jam",
+            "title": {
+              "ja": "交通流／上流へ進む衝撃波",
+              "en": "Traffic / upstream shock"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "流束ρ(1-ρ)、左右密度(0.3,0.9)、段差位置0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "Flux ρ(1-ρ), left/right densities (0.3,0.9) and jump position 0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-traffic-jam-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-traffic-jam-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=traffic-jam",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=traffic-jam"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "traffic-fan",
+        "problem_name": {
+          "ja": "交通流の希薄化波",
+          "en": "Traffic clearing fan"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "traffic-fan",
+            "title": {
+              "ja": "交通流／渋滞解消の膨張波",
+              "en": "Traffic / clearing fan"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "流束ρ(1-ρ)、左右密度(0.9,0.1)、段差位置0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "Flux ρ(1-ρ), left/right densities (0.9,0.1) and jump position 0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-traffic-fan-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-traffic-fan-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=traffic-fan",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=traffic-fan"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "sod",
+        "problem_name": {
+          "ja": "Sod衝撃波管",
+          "en": "Sod shock tube"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "euler-sod",
+            "title": {
+              "ja": "Euler／Sod問題",
+              "en": "Euler / Sod"
+            },
+            "kind": "semi-analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-sod-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-sod-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-sod",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-sod"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "double-rarefaction",
+        "problem_name": {
+          "ja": "Euler二重膨張波",
+          "en": "Euler double rarefaction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "euler-double-rarefaction",
+            "title": {
+              "ja": "Euler／二重膨張波",
+              "en": "Euler / double rarefaction"
+            },
+            "kind": "semi-analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-double-rarefaction-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-double-rarefaction-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-double-rarefaction",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-double-rarefaction"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "double-mach",
+        "problem_name": {
+          "ja": "二重Mach反射",
+          "en": "Double Mach reflection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

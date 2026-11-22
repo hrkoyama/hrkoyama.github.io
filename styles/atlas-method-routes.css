@@ -1,0 +1,50 @@
+/* Method-specific routes keep registered executions distinct from related code. */
+.method-route-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:16px 0;min-width:0}
+.method-route-links a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:7px 10px;border:1px solid #c7d0c2;background:#f4f7ee;font-size:.875rem;line-height:1.6;text-align:center;text-decoration:underline;text-underline-offset:3px;color:#254b36;overflow-wrap:anywhere}
+.method-route-navigation{min-width:0;overflow-wrap:anywhere}
+.method-route-navigation *{box-sizing:border-box}
+.method-route-navigation .method-route-section{min-width:0;margin:28px 0;padding-top:18px;border-top:1px solid #bdcabc;scroll-margin-top:24px}
+.method-route-navigation .method-route-section>h2{font-size:1.25rem;line-height:1.55;margin:0 0 12px}
+.method-route-navigation h3{font-size:1rem;line-height:1.65;margin:14px 0 8px}
+.method-route-navigation h4{font-size:.9rem;line-height:1.65;margin:16px 0 8px}
+.method-route-navigation a{color:#254b36;text-decoration:underline;text-underline-offset:3px}
+.method-route-navigation a:hover,.method-route-links a:hover{color:#8b5230}
+.method-route-navigation a:focus-visible,.method-route-navigation summary:focus-visible,.method-route-links a:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
+.method-route-navigation .method-route-intro{font-size:.9rem;line-height:1.8;margin:0 0 14px;color:#4f6151;max-width:90ch}
+.method-route-navigation .method-route-note,.method-route-navigation .method-route-reference-note{font-size:.84rem;line-height:1.8;margin:7px 0;color:#4c5d50}
+.method-route-navigation .method-route-reference-note{padding-left:10px;border-left:3px solid #c1a984}
+.method-route-navigation .method-route-empty{font-size:.875rem;line-height:1.8;margin:12px 0;color:#596657}
+.method-route-navigation .method-route-meta{font-size:.78rem;line-height:1.7;color:#61705d}
+.method-route-navigation .method-route-equation-list,.method-route-navigation .method-route-problem-list,.method-route-navigation .method-route-reference-list,.method-route-navigation .method-route-execution-list,.method-route-navigation .method-route-source-list,.method-route-navigation .method-route-legacy-examples{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.method-route-navigation .method-route-equation-list>li{display:flex;flex-wrap:wrap;align-items:center;gap:2px 16px;padding:7px 12px;border:1px solid #d4dccd;min-width:0}
+.method-route-navigation .method-route-equation-list a{display:inline-flex;align-items:center;min-height:44px;font-size:.9rem}
+.method-route-navigation .method-route-problem,.method-route-navigation .method-route-reference-context,.method-route-navigation .method-route-execution-list>li{min-width:0;padding:14px;border:1px solid #d4dccd;background:#fafbf6;margin:0}
+.method-route-problem-overview{display:grid;grid-template-columns:minmax(0,100px) minmax(0,1fr);gap:14px;align-items:start;min-width:0}
+.method-route-navigation .method-route-picture{display:block;width:100%;min-width:0;padding:3px;border:1px solid #e0e6d8;background:#f0f3e9}
+.method-route-navigation .method-route-picture img{display:block;width:100%;max-width:100%;height:auto;margin:0}
+.method-route-problem-copy{min-width:0}
+.method-route-navigation .method-route-name{font-size:.95rem;font-weight:600;line-height:1.65;margin:0 0 5px}
+.method-route-navigation .method-route-name a,.method-route-navigation .method-route-reference-context h3 a{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
+.method-route-navigation .method-route-badge{display:inline-block;font-size:.76rem;line-height:1.75;padding:1px 6px;margin:4px 0;background:#eeeadd;border:1px solid #d5cbb4;color:#6b573d}
+.method-route-navigation .method-route-actions{display:flex;flex-wrap:wrap;gap:2px 18px;margin:6px 0 0}
+.method-route-navigation .method-route-actions a,.method-route-navigation .method-route-execution-actions a,.method-route-navigation .method-route-matched-runs a,.method-route-navigation .method-route-legacy-examples a{display:inline-flex;align-items:center;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.7}
+.method-route-navigation .method-route-matched-runs{list-style:none;margin:12px 0 0;padding:8px 0 0;border-top:1px solid #dce3d3;display:grid;gap:10px}
+.method-route-navigation .method-route-matched-runs>li,.method-route-execution-actions{display:flex;flex-direction:column;min-width:0;gap:2px}
+.method-route-navigation .method-route-reference-cases{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:14px}
+.method-route-navigation .method-route-reference-cases>li{padding-top:10px;border-top:1px solid #dce3d3;min-width:0}
+.method-route-navigation .method-route-reference-resources{margin-top:22px;padding-top:12px;border-top:1px solid #c7d0bf}
+.method-route-navigation .method-route-reference-resource-list{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.method-route-navigation .method-route-reference-resource-list>li{display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px;min-width:0}
+.method-route-navigation .method-route-reference-resource-list a{display:inline-flex;align-items:center;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.7}
+.method-route-resource-role{font-size:.76rem;line-height:1.75;color:#5b6d58}
+.method-route-navigation .method-route-more{margin-top:10px;border-top:1px solid #dce3d3;padding-top:4px}
+.method-route-navigation .method-route-more>summary,.method-route-navigation .method-route-scope>summary{min-height:44px;align-content:center;cursor:pointer;font-size:.84rem;line-height:1.7;color:#425b45}
+.method-route-navigation .method-route-more[open]>ul{margin-top:8px}
+.method-route-navigation .method-route-scope{margin:5px 0}
+.method-route-navigation .method-route-scope p{font-size:.84rem;line-height:1.8;margin:6px 0}
+.method-route-navigation .method-route-package{margin-top:20px;padding-top:12px;border-top:1px solid #c7d0bf}
+.method-route-navigation .method-route-source-list{gap:4px}
+.method-route-navigation .method-route-source-list a{display:inline-flex;align-items:center;min-height:44px;max-width:100%;font-size:.82rem;line-height:1.7}
+.method-route-navigation pre{max-width:100%;overflow-x:auto;padding:12px 14px;background:#edf1e4;font-size:.8rem;line-height:1.8;white-space:pre}
+@media(max-width:650px){.method-route-links{grid-template-columns:repeat(2,minmax(0,1fr))}.method-route-navigation .method-route-section>h2{font-size:1.15rem}.method-route-problem-overview{gap:10px}.method-route-navigation .method-route-problem,.method-route-navigation .method-route-reference-context,.method-route-navigation .method-route-execution-list>li{padding:11px}}
+@media(max-width:400px){.method-route-problem-overview{grid-template-columns:minmax(0,1fr)}.method-route-navigation .method-route-picture{width:100%}}

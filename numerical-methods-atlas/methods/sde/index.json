@@ -88,5 +88,85 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#gbm-sde-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "sde",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "gbm-sde",
+        "name": {
+          "ja": "Itô SDE：共有Brown運動による強収束",
+          "en": "Itô SDE: strong convergence with coupled Brownian paths"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+          "sha256": "461bf8078b5c177d33dd8242126da6ede72e71f9a190478c636b61aff3308c05",
+          "width": 960,
+          "height": 570,
+          "caption": {
+            "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+            "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "gbm-sde",
+            "kind": "common",
+            "name": {
+              "ja": "Itô SDE：共有Brown運動による強収束",
+              "en": "Itô SDE: strong convergence with coupled Brownian paths"
+            },
+            "scope": {
+              "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+              "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+            },
+            "method_ids": [
+              "sde"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/gbm-sde.json",
+            "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "gbm-sde",
+        "problem_name": {
+          "ja": "Itô SDE：共有Brown運動による強収束",
+          "en": "Itô SDE: strong convergence with coupled Brownian paths"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

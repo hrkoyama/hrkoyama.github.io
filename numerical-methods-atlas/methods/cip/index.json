@@ -81,5 +81,99 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "cip",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "linear-advection",
+        "name": {
+          "ja": "線形移流",
+          "en": "Linear advection"
+        },
+        "problem_ids": [
+          "advection-square"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "advection-square",
+        "name": {
+          "ja": "周期矩形波の線形移流",
+          "en": "Periodic square-wave advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-square.png",
+          "sha256": "62bacd52d45e0d6565506a14eda09f70add1c364fdd111584e867184c5907544",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+            "en": "Stored CIP, linear-interpolation and exact advection profiles."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存済みCIPおよびリミター比較の矩形波ケースで使われる手法です。",
+          "en": "Methods used by the stored square-wave CIP and limiter comparisons."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "advection-square",
+        "problem_name": {
+          "ja": "周期矩形波の線形移流",
+          "en": "Periodic square-wave advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-advection",
+            "title": {
+              "ja": "移流／正弦波の平行移動",
+              "en": "Advection / sine translation"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "方程式と周期輸送は共通ですが、参照カードは滑らかな正弦初期値であり、この矩形初期値の参照値ではありません。",
+              "en": "The equation and periodic transport are shared, but the reference uses smooth sine initial data and is not a numerical reference for this square profile."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -117,3 +117,158 @@ Common execution records: [{"id": "poisson-2d-sine", "registry_url": "https://hr
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
+
+## 手法に関連する方程式・図・参照・コード / Method equations, figures, references and code
+
+### 日本語
+
+#### 方程式 (`method-equations-ja`)
+
+問題から導かれた対応です。検証範囲は各問題の入力・境界条件に従います。
+
+- [Poisson・Laplace方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja) (`poisson-laplace`; poisson-2d-sine)
+
+#### 問題の図 (`method-problems-ja`)
+
+##### [2次元Poisson・正弦単一モード（FEMを含む）](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja) (`poisson-2d-sine`)
+
+![同じ正弦製造解を解く、三角形有限要素の保存解と誤差。](https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png)
+
+この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#code-ja)
+
+- [2次元Poisson：CG・多重格子とP1 FEM](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja) (`poisson-2d-sine`) · [コードZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。
+
+
+#### 厳密解・参照解 (`method-references-ja`)
+
+##### [2次元Poisson・正弦単一モード（FEMを含む）](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja) (`poisson-2d-sine`)
+
+- [Poisson／正弦波の製造解](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja) (`poisson-manufactured`; 関連モデルの参照; 製造解)
+
+カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
+
+[既存の参照図](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured)
+
+##### 手法の解説・独立参照・保存結果
+
+資料ごとの役割と適用条件・照合方法を確認してください。
+
+- 解説: [手法の解説・条件](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fem/)
+
+
+#### コード・検証 (`method-execution-ja`)
+
+問題図に対応する実行例と、既存配布版・関連ソースを区別します。
+
+##### 2次元Poisson：CG・多重格子とP1 FEM (`poisson-2d-sine`)
+
+[2次元Poisson・正弦単一モード（FEMを含む）](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+[固定入力](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json)
+
+[検証記録](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+
+単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。
+
+##### 既存の配布版・関連ソースと検査
+
+共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
+
+Related chapter modules and test files; not a claim that each test covers every named method.
+
+[対応する配布版 / ZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip)
+
+###### 関連ソース
+
+- [/code/numerical-methods-atlas/2026-11-21/numart/fem.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/fem.py)
+
+###### 配布版のテスト
+
+- [/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py)
+
+配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
+
+```sh
+python -m pytest -q tests/test_sparse_fem.py
+```
+
+
+### English
+
+#### Equations (`method-equations-en`)
+
+These links are derived through associated problems; checked scope follows their inputs and boundaries.
+
+- [Poisson / Laplace equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en) (`poisson-laplace`; poisson-2d-sine)
+
+#### Problem figures (`method-problems-en`)
+
+##### [2D Poisson / single sine mode, including FEM](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en) (`poisson-2d-sine`)
+
+![Stored triangular-FEM solution and error for the same sine manufactured problem.](https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png)
+
+Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#code-en)
+
+- [2D Poisson: CG, multigrid and P1 FEM](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en) (`poisson-2d-sine`) · [Code ZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors.
+
+
+#### Exact / reference solutions (`method-references-en`)
+
+##### [2D Poisson / single sine mode, including FEM](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en) (`poisson-2d-sine`)
+
+- [Poisson / manufactured sine](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en) (`poisson-manufactured`; Related-model reference; Manufactured solution)
+
+The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
+
+[Existing reference profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured)
+
+##### Method explanations, independent references and saved results
+
+Check each resource’s role, applicable conditions and comparison procedure.
+
+- Explanation: [Method explanation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/fem/)
+
+
+#### Code and validation (`method-execution-en`)
+
+Matched problem executions are separate from existing editions and related source.
+
+##### 2D Poisson: CG, multigrid and P1 FEM (`poisson-2d-sine`)
+
+[2D Poisson / single sine mode, including FEM](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json)
+
+[Verification receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
+
+Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors.
+
+##### Existing editions, related source and tests
+
+Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
+
+Related chapter modules and test files; not a claim that each test covers every named method.
+
+[Related code edition / ZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip)
+
+###### Related source
+
+- [/code/numerical-methods-atlas/2026-11-21/numart/fem.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/fem.py)
+
+###### Package tests
+
+- [/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py)
+
+Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
+
+```sh
+python -m pytest -q tests/test_sparse_fem.py
+```

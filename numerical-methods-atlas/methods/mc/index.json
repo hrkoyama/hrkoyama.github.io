@@ -69,5 +69,259 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "mc",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "linear-advection",
+        "name": {
+          "ja": "線形移流",
+          "en": "Linear advection"
+        },
+        "problem_ids": [
+          "advection-square"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+        }
+      },
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "nasa-wedge",
+          "forward-step",
+          "entropy-2d"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "advection-square",
+        "name": {
+          "ja": "周期矩形波の線形移流",
+          "en": "Periodic square-wave advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-square.png",
+          "sha256": "62bacd52d45e0d6565506a14eda09f70add1c364fdd111584e867184c5907544",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+            "en": "Stored CIP, linear-interpolation and exact advection profiles."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存済みCIPおよびリミター比較の矩形波ケースで使われる手法です。",
+          "en": "Methods used by the stored square-wave CIP and limiter comparisons."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "nasa-wedge",
+        "name": {
+          "ja": "15度楔の斜め衝撃波（Mach数の違いを統合）",
+          "en": "15-degree wedge shock (Mach variants merged)"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/wedge-m2-mc.png",
+          "sha256": "05289a877f8a6798fb091f7bfef9baeaf0e6e0825c9bb3c51081929de0d032da",
+          "width": 1430,
+          "height": 624,
+          "caption": {
+            "ja": "同一問題に統合したMach数違いのうち、Mach 2の保存図を代表表示。",
+            "en": "Stored Mach-2 example from the merged wedge Mach variants."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "forward-step",
+        "name": {
+          "ja": "Mach 3前向きステップ",
+          "en": "Mach-3 forward-facing step"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/step-m3-mc.png",
+          "sha256": "3002eb94449b6fe7835da19cc825840ddf6c25818c19a0b5840606ef72a6889b",
+          "width": 1300,
+          "height": 910,
+          "caption": {
+            "ja": "保存済みMach 3前向きステップの計算場。",
+            "en": "Stored computed field for the Mach-3 forward-facing step."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "entropy-2d",
+        "name": {
+          "ja": "2次元の滑らかなEulerエントロピー波",
+          "en": "Smooth two-dimensional Euler entropy wave"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/smooth-refinement.png",
+          "sha256": "b897c263ed234fcbffa37bcfbe86c52a2b3d3cfc3f690f8216707b38539f1543",
+          "width": 1050,
+          "height": 630,
+          "caption": {
+            "ja": "保存済み2次元エントロピー波の格子収束。",
+            "en": "Stored refinement study for the 2D entropy wave."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "advection-square",
+        "problem_name": {
+          "ja": "周期矩形波の線形移流",
+          "en": "Periodic square-wave advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-advection",
+            "title": {
+              "ja": "移流／正弦波の平行移動",
+              "en": "Advection / sine translation"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "方程式と周期輸送は共通ですが、参照カードは滑らかな正弦初期値であり、この矩形初期値の参照値ではありません。",
+              "en": "The equation and periodic transport are shared, but the reference uses smooth sine initial data and is not a numerical reference for this square profile."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "nasa-wedge",
+        "problem_name": {
+          "ja": "15度楔の斜め衝撃波（Mach数の違いを統合）",
+          "en": "15-degree wedge shock (Mach variants merged)"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "forward-step",
+        "problem_name": {
+          "ja": "Mach 3前向きステップ",
+          "en": "Mach-3 forward-facing step"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "entropy-2d",
+        "problem_name": {
+          "ja": "2次元の滑らかなEulerエントロピー波",
+          "en": "Smooth two-dimensional Euler entropy wave"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

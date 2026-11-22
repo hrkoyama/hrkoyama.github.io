@@ -193,5 +193,124 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-2d-sine-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "p1-fem",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "poisson-2d-sine"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "poisson-2d-sine",
+        "name": {
+          "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+          "en": "2D Poisson / single sine mode, including FEM"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png",
+          "sha256": "5cb31b1cb182fa6509de11f0cafcc2368b9136b46d625bc6183df2a648f9af29",
+          "width": 1575,
+          "height": 690,
+          "caption": {
+            "ja": "同じ正弦製造解を解く、三角形有限要素の保存解と誤差。",
+            "en": "Stored triangular-FEM solution and error for the same sine manufactured problem."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "poisson-2d-sine",
+            "kind": "common",
+            "name": {
+              "ja": "2次元Poisson：CG・多重格子とP1 FEM",
+              "en": "2D Poisson: CG, multigrid and P1 FEM"
+            },
+            "scope": {
+              "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
+              "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
+            },
+            "method_ids": [
+              "cg",
+              "multigrid",
+              "p1-fem"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "poisson-2d-sine",
+        "problem_name": {
+          "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+          "en": "2D Poisson / single sine mode, including FEM"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "poisson-manufactured",
+            "title": {
+              "ja": "Poisson／正弦波の製造解",
+              "en": "Poisson / manufactured sine"
+            },
+            "kind": "manufactured",
+            "relation": "related-model",
+            "note": {
+              "ja": "カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+              "en": "The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

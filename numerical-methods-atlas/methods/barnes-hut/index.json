@@ -213,5 +213,100 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#barnes-hut-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "barnes-hut",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "particle-gravity",
+        "name": {
+          "ja": "重力粒子モデル",
+          "en": "Gravitational particle model"
+        },
+        "problem_ids": [
+          "isolated-particles"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "isolated-particles",
+        "name": {
+          "ja": "孤立粒子群の軟化重力（ツリー・直接和）",
+          "en": "Isolated softened particle gravity: tree versus direct sum"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/isolated-particles.png",
+          "sha256": "2ed17564aa4a2ceb5570b27b3374d39fc1fec762a9419c939f0f1d329d232722",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みツリー力と直接和の相対誤差。開き角・展開次数を比較。",
+            "en": "Stored relative tree/direct-sum force errors versus opening angle and expansion order."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "barnes-hut",
+            "kind": "common",
+            "name": {
+              "ja": "Barnes–Hut：192粒子と直接和の比較",
+              "en": "Barnes–Hut: 192 particles against direct summation"
+            },
+            "scope": {
+              "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
+              "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
+            },
+            "method_ids": [
+              "barnes-hut"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/input.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "isolated-particles",
+        "problem_name": {
+          "ja": "孤立粒子群の軟化重力（ツリー・直接和）",
+          "en": "Isolated softened particle gravity: tree versus direct sum"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

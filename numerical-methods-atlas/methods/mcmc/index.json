@@ -23138,5 +23138,156 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
   "code_archive_sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "mcmc",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "gaussian-mcmc",
+        "name": {
+          "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+          "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png",
+          "sha256": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+          "width": 1680,
+          "height": 504,
+          "caption": {
+            "ja": "標準正規標的・固定seedの32連鎖。保存したCDF検査点、標本予算ごとの連鎖平均RMSE・平均観測量のESSを表示。全seedの保証ではない。",
+            "en": "Standard-normal target and 32 fixed-seed chains: stored CDF checkpoints, chain-mean RMSE and mean-observable ESS by sample budget. Not an every-seed guarantee."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "gaussian-mcmc",
+            "kind": "supplement",
+            "name": {
+              "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+              "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+            },
+            "scope": {
+              "ja": "32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。",
+              "en": "Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence."
+            },
+            "method_ids": [
+              "mcmc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gaussian-mcmc/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "mcmc-bimodal-mixture",
+        "name": {
+          "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+          "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png",
+          "sha256": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+          "width": 2240,
+          "height": 1260,
+          "caption": {
+            "ja": "同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。",
+            "en": "Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "mcmc-multimodal-mixing",
+            "kind": "supplement",
+            "name": {
+              "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+              "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+            },
+            "scope": {
+              "ja": "同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。",
+              "en": "Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration."
+            },
+            "method_ids": [
+              "mcmc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/mcmc-multimodal-mixing/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/mcmc-multimodal-mixing/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mcmc/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "gaussian-mcmc",
+        "problem_name": {
+          "ja": "Gaussian標的のMCMC：分布・自己相関・ESS",
+          "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gaussian-mcmc/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "mcmc-bimodal-mixture",
+        "problem_name": {
+          "ja": "多峰性MCMC：峰への閉じ込め・偽の安心・大域提案",
+          "en": "Multimodal MCMC: trapping, false reassurance and a global proposal"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/mcmc-bimodal-mixture/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

@@ -189,5 +189,165 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-particles-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "pm",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "poisson-3d-periodic",
+          "periodic-particles"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      },
+      {
+        "id": "particle-gravity",
+        "name": {
+          "ja": "重力粒子モデル",
+          "en": "Gravitational particle model"
+        },
+        "problem_ids": [
+          "poisson-3d-periodic",
+          "periodic-particles"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "poisson-3d-periodic",
+        "name": {
+          "ja": "3次元周期Poisson・Fourier製造解",
+          "en": "3D periodic Poisson / Fourier manufactured solution"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-poisson-3d.png",
+          "sha256": "8988cdb2747b9da6cc88bc7374275a4238557d7fa24d56ad0756f9435b322bb7",
+          "width": 1800,
+          "height": 690,
+          "caption": {
+            "ja": "保存済み3次元周期Poisson解の3断面。3次元流体計算ではありません。",
+            "en": "Three stored slices of a 3D periodic Poisson solution, not 3D fluid evolution."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "periodic-particles",
+        "name": {
+          "ja": "周期PM粒子群の質量・内力",
+          "en": "Periodic PM particle mass and internal force"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/particle-gravity.png",
+          "sha256": "1f3660258f393a6cc54438864c79ce8c48a099b7fd2175047e2387bf4f5612f3",
+          "width": 1669,
+          "height": 969,
+          "caption": {
+            "ja": "共有図の周期PM部分。孤立ツリーの比較は別問題です。",
+            "en": "Periodic-PM part of a shared figure; isolated-tree comparisons are a separate problem."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "periodic-particles",
+            "kind": "common",
+            "name": {
+              "ja": "周期PM粒子群：質量・内力・格子場",
+              "en": "Periodic PM particles: mass, internal force and mesh field"
+            },
+            "scope": {
+              "ja": "入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。",
+              "en": "Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields."
+            },
+            "method_ids": [
+              "cic",
+              "pm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/periodic-particles.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "poisson-3d-periodic",
+        "problem_name": {
+          "ja": "3次元周期Poisson・Fourier製造解",
+          "en": "3D periodic Poisson / Fourier manufactured solution"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-3d-periodic/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "periodic-particles",
+        "problem_name": {
+          "ja": "周期PM粒子群の質量・内力",
+          "en": "Periodic PM particle mass and internal force"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

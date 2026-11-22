@@ -174,5 +174,182 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "k-point",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "kohn-sham-model",
+        "name": {
+          "ja": "局所Kohn–Sham DFT",
+          "en": "Local Kohn–Sham DFT"
+        },
+        "problem_ids": [
+          "periodic-he-dft",
+          "periodic-he-forces"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kohn-sham-model-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "periodic-he-dft",
+        "name": {
+          "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+          "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/preview.png",
+          "sha256": "cfc54c4f1adb395de91152204cadbf44f6653864032d1fe7307fb6c44ecc3168",
+          "width": 1950,
+          "height": 1125,
+          "caption": {
+            "ja": "固定Heセルの周期LDA：Γ点とkメッシュ、Gaussian軌道基底・FFT格子・SCFを分離。DFTK平面波参照の打切り収束と差も表示。",
+            "en": "Periodic LDA for fixed He: separate Gamma/k sampling, Gaussian orbital basis, FFT grid and SCF. Includes independently converged DFTK plane-wave reference differences."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "periodic-he-dft",
+            "kind": "common",
+            "name": {
+              "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+              "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+            },
+            "scope": {
+              "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
+              "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
+            },
+            "method_ids": [
+              "kohn-sham-dft",
+              "electronic-bases",
+              "scf",
+              "xc-functionals",
+              "pseudopotentials",
+              "k-point"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/inputs.json",
+            "download": "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "periodic-he-forces",
+        "name": {
+          "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+          "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/preview.png",
+          "sha256": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
+          "width": 1680,
+          "height": 518,
+          "caption": {
+            "ja": "非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。",
+            "en": "Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "periodic-he-forces",
+            "kind": "common",
+            "name": {
+              "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+              "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+            },
+            "scope": {
+              "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
+              "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+            },
+            "method_ids": [
+              "kohn-sham-dft",
+              "electronic-bases",
+              "scf",
+              "xc-functionals",
+              "pseudopotentials",
+              "k-point"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/inputs.json",
+            "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "periodic-he-dft",
+        "problem_name": {
+          "ja": "周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF",
+          "en": "Periodic-He KS-LDA: Gamma, k meshes, basis and SCF"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "periodic-he-forces",
+        "problem_name": {
+          "ja": "周期He₂の原子間力：解析力・有限差分・BOMD接続",
+          "en": "Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

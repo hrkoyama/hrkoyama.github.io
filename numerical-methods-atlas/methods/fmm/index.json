@@ -228,5 +228,100 @@
   "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/source-manifest.json",
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
   "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
-  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json"
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
+  "problem_navigation": {
+    "method_id": "fmm",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "logarithmic-particles"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "logarithmic-particles",
+        "name": {
+          "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+          "en": "2D logarithmic FMM with M2M, M2L and L2L"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/fmm.png",
+          "sha256": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+          "width": 1500,
+          "height": 510,
+          "caption": {
+            "ja": "固定seedの128粒子、2次元自由空間の対数核。FMMの展開次数2/4/8/12を独立した全対直接和と比べたポテンシャル・電場誤差の保存図。",
+            "en": "Stored potential/field errors for 128 fixed-seed particles with a 2D free-space log kernel: FMM orders 2/4/8/12 versus a separate all-pairs sum."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fmm",
+            "kind": "supplement",
+            "name": {
+              "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+              "en": "2D logarithmic FMM with M2M, M2L and L2L"
+            },
+            "scope": {
+              "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+              "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+            },
+            "method_ids": [
+              "fmm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "logarithmic-particles",
+        "problem_name": {
+          "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+          "en": "2D logarithmic FMM with M2M, M2L and L2L"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

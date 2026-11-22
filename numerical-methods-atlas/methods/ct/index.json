@@ -1916,5 +1916,246 @@
       },
       "kind": "dedicated-supplement"
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "ct",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "mhd",
+        "name": {
+          "ja": "理想MHD",
+          "en": "Ideal magnetohydrodynamics"
+        },
+        "problem_ids": [
+          "orszag-tang",
+          "magnetic-loop",
+          "advected-magnetostatic-equilibrium"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#mhd-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#mhd-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "orszag-tang",
+        "name": {
+          "ja": "Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）",
+          "en": "Orszag–Tang vortex (CT/GLM/error variants merged)"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/orszag-tang-ct/frame-080.webp",
+          "sha256": "38c260ae5d3a5031e733b365eb00c6ea04c9182a059a317bd1735e0c3dc0e6af",
+          "width": 960,
+          "height": 640,
+          "caption": {
+            "ja": "CT・GLMを統合した1問題のうち、CTの保存フレームを代表表示。",
+            "en": "Stored CT frame representing the merged CT/GLM problem."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "ct-glm-independent",
+            "kind": "supplement",
+            "name": {
+              "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+              "en": "Orszag–Tang: CT, GLM and independent Athena++"
+            },
+            "scope": {
+              "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
+              "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
+            },
+            "method_ids": [
+              "ct",
+              "glm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json"
+          },
+          {
+            "id": "ct-glm-ot-convergence",
+            "kind": "supplement",
+            "name": {
+              "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+              "en": "Orszag–Tang: matched CT/GLM and converged independent references"
+            },
+            "scope": {
+              "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
+              "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
+            },
+            "method_ids": [
+              "ct",
+              "glm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "magnetic-loop",
+        "name": {
+          "ja": "磁場ループの移流",
+          "en": "Magnetic field-loop advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/field-loop.png",
+          "sha256": "ae99ce992228c257747d74ebbcbea8c1ecf61acf64185bb7fc1718e2857c9655",
+          "width": 1540,
+          "height": 896,
+          "caption": {
+            "ja": "保存済み磁場ループ移流の計算場。",
+            "en": "Stored computed fields for magnetic-loop advection."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "advected-magnetostatic-equilibrium",
+        "name": {
+          "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+          "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png",
+          "sha256": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+          "width": 2015,
+          "height": 1147,
+          "caption": {
+            "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
+            "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "ct-glm-smooth-convergence",
+            "kind": "supplement",
+            "name": {
+              "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+              "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+            },
+            "scope": {
+              "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
+              "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
+            },
+            "method_ids": [
+              "ct",
+              "glm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に対応するct-glm-smooth-convergence配布例のCTとGLMです。同じLLF係数と時間刻みを使っても、磁場配置・角電場平均・法線場の扱いが異なる離散系全体の比較です。この発散ゼロの物理例を、別の非物理制約対照で測った能動的なcleaning性能と同一視しません。",
+          "en": "CT and GLM are explicitly bound by the ct-glm-smooth-convergence release example. Matching LLF coefficients and time steps still compares whole discretizations with different magnetic placement, corner EMF averaging and normal-field handling. This solenoidal physical example is distinct from active-cleaning measurements in the separate nonphysical constraint control."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "orszag-tang",
+        "problem_name": {
+          "ja": "Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）",
+          "en": "Orszag–Tang vortex (CT/GLM/error variants merged)"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "magnetic-loop",
+        "problem_name": {
+          "ja": "磁場ループの移流",
+          "en": "Magnetic field-loop advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "advected-magnetostatic-equilibrium",
+        "problem_name": {
+          "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
+          "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advected-magnetostatic-equilibrium/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

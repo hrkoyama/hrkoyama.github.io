@@ -191,5 +191,134 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#smooth-function-projection-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "nodal-basis",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "smooth-function-projection",
+        "name": {
+          "ja": "滑らかな関数の多項式補間・射影",
+          "en": "Polynomial interpolation and projection of a smooth function"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/smooth-function-projection.png",
+          "sha256": "a707ea243ee02d799b972da136505ec673514e89db5f33f948ee405a261648d4",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済み8次多項式の射影・補間と元の関数。",
+            "en": "Stored degree-8 projection/interpolation and the original function."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "smooth-function-projection",
+            "kind": "common",
+            "name": {
+              "ja": "滑らかな関数：Legendre射影とGLL補間",
+              "en": "Smooth function: Legendre projection and GLL interpolation"
+            },
+            "scope": {
+              "ja": "exp(x)を次数2/4/6/8でL2射影し、同じ次数のGLL節点補間と比較する。実装の32点Gaussとは別の64/96点求積と独立Legendre再帰式で係数・直交性・誤差を確認する。",
+              "en": "L2-project exp(x) at degrees 2/4/6/8 and compare GLL interpolation at the same degrees. Check coefficients, orthogonality and errors using separate 64/96-point rules and an independent Legendre recurrence, versus 32-point projection quadrature."
+            },
+            "method_ids": [
+              "legendre-basis",
+              "nodal-basis"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/smooth-function-projection.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "jump-function-projection",
+        "name": {
+          "ja": "不連続関数の多項式補間・射影",
+          "en": "Polynomial interpolation and projection of a jump function"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/jump-function-projection.png",
+          "sha256": "9b57db39b86fc73cdff20599b67cd29c7c4f0acd05b0f7d407dc6f699b6f88be",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済み8次多項式の射影・補間と元の関数。",
+            "en": "Stored degree-8 projection/interpolation and the original function."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "smooth-function-projection",
+        "problem_name": {
+          "ja": "滑らかな関数の多項式補間・射影",
+          "en": "Polynomial interpolation and projection of a smooth function"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "jump-function-projection",
+        "problem_name": {
+          "ja": "不連続関数の多項式補間・射影",
+          "en": "Polynomial interpolation and projection of a jump function"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jump-function-projection/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

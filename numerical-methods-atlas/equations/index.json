@@ -102,6 +102,9 @@
                 "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
                 "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
               },
+              "method_ids": [
+                "upwind"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
@@ -321,6 +324,10 @@
                 "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
                 "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
               },
+              "method_ids": [
+                "centered-difference",
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"
@@ -436,6 +443,9 @@
                 "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
                 "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
               },
+              "method_ids": [
+                "thomas"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en"
@@ -618,6 +628,11 @@
                 "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
                 "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
               },
+              "method_ids": [
+                "cg",
+                "multigrid",
+                "p1-fem"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en"
@@ -637,6 +652,9 @@
                 "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
                 "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
               },
+              "method_ids": [
+                "amg"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
@@ -792,6 +810,10 @@
                 "ja": "入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。",
                 "en": "Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields."
               },
+              "method_ids": [
+                "cic",
+                "pm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
@@ -932,6 +954,9 @@
                 "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
                 "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
               },
+              "method_ids": [
+                "ewald"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en"
@@ -951,6 +976,10 @@
                 "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
                 "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
               },
+              "method_ids": [
+                "pme",
+                "spme"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"
@@ -1002,6 +1031,9 @@
                 "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
                 "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
               },
+              "method_ids": [
+                "fmm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"
@@ -1053,6 +1085,9 @@
                 "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
                 "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
               },
+              "method_ids": [
+                "pic"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en"
@@ -1315,6 +1350,10 @@
                 "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
                 "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
               },
+              "method_ids": [
+                "godunov",
+                "hllc"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en"
@@ -1389,6 +1428,9 @@
                 "ja": "[-5,5]で衝撃波と密度正弦波の干渉をt=1.8まで計算。100/200点の特性FD WENO-Zを800点の同じ実装と比較し、参照との差と近似境界収支を別々に記録する。",
                 "en": "Evolve shock/entropy-wave interaction on [-5,5] to t=1.8. Compare characteristic FD WENO-Z at 100/200 points with the same implementation at 800 points, separately recording reference disagreement and approximate boundary balance."
               },
+              "method_ids": [
+                "weno-z"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en"
@@ -1408,6 +1450,9 @@
                 "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
                 "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
               },
+              "method_ids": [
+                "muscl"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
@@ -1906,6 +1951,10 @@
                 "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
                 "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
               },
+              "method_ids": [
+                "ct",
+                "glm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"
@@ -1925,6 +1974,10 @@
                 "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
                 "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
               },
+              "method_ids": [
+                "ct",
+                "glm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en"
@@ -1972,6 +2025,10 @@
                 "ja": "γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。",
                 "en": "Evolve the one-dimensional γ=2 ideal-MHD shock tube with Bx=0.75 to t=0.1. Compare 64/128-cell HLLD/MC/SSPRK2 with a 512-cell numerical reference, recording density, pressure, longitudinal field, balances and fallback counts."
               },
+              "method_ids": [
+                "hlld",
+                "muscl"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en"
@@ -1991,6 +2048,9 @@
                 "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。",
                 "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit."
               },
+              "method_ids": [
+                "hlld"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=en"
@@ -2092,6 +2152,10 @@
                 "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
                 "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
               },
+              "method_ids": [
+                "ct",
+                "glm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-smooth-convergence/?lang=en"
@@ -2182,6 +2246,9 @@
                 "ja": "既存の2次元MAC投影法・中心対流項・明示SSPRK2を使用。16²/32²/64²で解析的減衰渦と比較し、最細格子はCFL半減でも確認。",
                 "en": "Use existing two-dimensional MAC projection, centered convection and explicit SSPRK2. Compare analytic decaying vortex on 16²/32²/64² grids and halve CFL on the finest grid."
               },
+              "method_ids": [
+                "projection"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en"
@@ -2418,6 +2485,9 @@
                 "ja": "既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。",
                 "en": "Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal."
               },
+              "method_ids": [
+                "verlet"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en"
@@ -2492,6 +2562,9 @@
                 "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
                 "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
               },
+              "method_ids": [
+                "langevin-thermostat"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en"
@@ -2511,6 +2584,10 @@
                 "ja": "異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。",
                 "en": "Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations."
               },
+              "method_ids": [
+                "stochastic-velocity-rescaling",
+                "langevin-thermostat"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en"
@@ -2562,6 +2639,10 @@
                 "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
                 "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
               },
+              "method_ids": [
+                "stochastic-velocity-rescaling",
+                "langevin-thermostat"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en"
@@ -2690,6 +2771,9 @@
                 "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
                 "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
               },
+              "method_ids": [
+                "barnes-hut"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=en"
@@ -2737,6 +2821,10 @@
                 "ja": "入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。",
                 "en": "Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields."
               },
+              "method_ids": [
+                "cic",
+                "pm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
@@ -2823,6 +2911,9 @@
                 "ja": "−u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。",
                 "en": "Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes."
               },
+              "method_ids": [
+                "newton"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en"
@@ -3107,6 +3198,9 @@
                 "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
                 "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
               },
+              "method_ids": [
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
@@ -3297,6 +3391,9 @@
                 "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
                 "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
               },
+              "method_ids": [
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
@@ -3540,6 +3637,10 @@
                 "ja": "Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
                 "en": "Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
               },
+              "method_ids": [
+                "centered-difference",
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
@@ -3559,6 +3660,10 @@
                 "ja": "t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。",
                 "en": "Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics."
               },
+              "method_ids": [
+                "centered-difference",
+                "implicit-midpoint"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en"
@@ -3578,6 +3683,10 @@
                 "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
                 "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
               },
+              "method_ids": [
+                "centered-difference",
+                "implicit-midpoint"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=en"
@@ -3685,6 +3794,9 @@
                 "ja": "2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
                 "en": "Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
               },
+              "method_ids": [
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"
@@ -4024,6 +4136,10 @@
                 "ja": "Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
                 "en": "Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
               },
+              "method_ids": [
+                "centered-difference",
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
@@ -4043,6 +4159,10 @@
                 "ja": "t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。",
                 "en": "Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics."
               },
+              "method_ids": [
+                "centered-difference",
+                "implicit-midpoint"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en"
@@ -4062,6 +4182,10 @@
                 "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
                 "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
               },
+              "method_ids": [
+                "centered-difference",
+                "implicit-midpoint"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=en"
@@ -4306,6 +4430,9 @@
                 "ja": "孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。",
                 "en": "Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver."
               },
+              "method_ids": [
+                "schrodinger"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en"
@@ -4353,6 +4480,11 @@
                 "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
                 "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
               },
+              "method_ids": [
+                "hartree-fock",
+                "electronic-bases",
+                "scf"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
@@ -4453,6 +4585,13 @@
                 "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
                 "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
               },
+              "method_ids": [
+                "hartree-fock",
+                "kohn-sham-dft",
+                "scf",
+                "hartree-poisson",
+                "xc-functionals"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=en"
@@ -4500,6 +4639,11 @@
                 "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
                 "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
               },
+              "method_ids": [
+                "hartree-fock",
+                "electronic-bases",
+                "scf"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
@@ -4612,6 +4756,13 @@
                 "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
                 "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
               },
+              "method_ids": [
+                "hartree-fock",
+                "kohn-sham-dft",
+                "scf",
+                "hartree-poisson",
+                "xc-functionals"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=en"
@@ -4659,6 +4810,14 @@
                 "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
                 "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
               },
+              "method_ids": [
+                "kohn-sham-dft",
+                "electronic-bases",
+                "scf",
+                "xc-functionals",
+                "pseudopotentials",
+                "k-point"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en"
@@ -4706,6 +4865,14 @@
                 "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
                 "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
               },
+              "method_ids": [
+                "kohn-sham-dft",
+                "electronic-bases",
+                "scf",
+                "xc-functionals",
+                "pseudopotentials",
+                "k-point"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"
@@ -4767,6 +4934,7 @@
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
     "catalog/atlas-problem-links.json": "91d171d542da368e69cf8f16a4cd14f60740094e8beefc1e76959e6d2e89a990",
+    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -4815,8 +4983,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c",
-    "numerical-methods-atlas/test-cases/index.json": "e045b5272262f09cc4bd039faf679ba62d24002fef3c1a588ec1a84f7c0bb1a5"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c"
   },
   "supplemental_case_ids": [
     "fitzhugh-nagumo",
@@ -4939,6 +5106,9 @@
                 "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
                 "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
               },
+              "method_ids": [
+                "upwind"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
@@ -5041,6 +5211,10 @@
                 "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
                 "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
               },
+              "method_ids": [
+                "godunov",
+                "hllc"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en"
@@ -5141,6 +5315,9 @@
                 "ja": "[-5,5]で衝撃波と密度正弦波の干渉をt=1.8まで計算。100/200点の特性FD WENO-Zを800点の同じ実装と比較し、参照との差と近似境界収支を別々に記録する。",
                 "en": "Evolve shock/entropy-wave interaction on [-5,5] to t=1.8. Compare characteristic FD WENO-Z at 100/200 points with the same implementation at 800 points, separately recording reference disagreement and approximate boundary balance."
               },
+              "method_ids": [
+                "weno-z"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en"
@@ -5160,6 +5337,9 @@
                 "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
                 "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
               },
+              "method_ids": [
+                "muscl"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
@@ -5261,6 +5441,9 @@
                 "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
                 "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
               },
+              "method_ids": [
+                "thomas"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en"
@@ -5367,6 +5550,11 @@
                 "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
                 "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
               },
+              "method_ids": [
+                "cg",
+                "multigrid",
+                "p1-fem"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en"
@@ -5386,6 +5574,9 @@
                 "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
                 "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
               },
+              "method_ids": [
+                "amg"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
@@ -5485,6 +5676,9 @@
                 "ja": "−u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。",
                 "en": "Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes."
               },
+              "method_ids": [
+                "newton"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en"
@@ -5587,6 +5781,9 @@
                 "ja": "既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。",
                 "en": "Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal."
               },
+              "method_ids": [
+                "verlet"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en"
@@ -5685,6 +5882,9 @@
                 "ja": "既存のL安定2段SDIRK2でy′=−1000(y−cos t)−sin t、y(0)=1をt=1まで解く。解析解、固定刻み細分化、別の強減衰1段問題を検査。",
                 "en": "Use the existing two-stage L-stable SDIRK2 for y'=-1000(y-cos(t))-sin(t), y(0)=1 up to t=1. Check its analytic solution, fixed-step refinement and a separate very stiff one-step decay."
               },
+              "method_ids": [
+                "sdirk2"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=en"
@@ -5791,6 +5991,10 @@
                 "ja": "exp(x)を次数2/4/6/8でL2射影し、同じ次数のGLL節点補間と比較する。実装の32点Gaussとは別の64/96点求積と独立Legendre再帰式で係数・直交性・誤差を確認する。",
                 "en": "L2-project exp(x) at degrees 2/4/6/8 and compare GLL interpolation at the same degrees. Check coefficients, orthogonality and errors using separate 64/96-point rules and an independent Legendre recurrence, versus 32-point projection quadrature."
               },
+              "method_ids": [
+                "legendre-basis",
+                "nodal-basis"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=en"
@@ -5901,6 +6105,9 @@
                 "ja": "孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。",
                 "en": "Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark."
               },
+              "method_ids": [
+                "barnes-hut"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=en"
@@ -6010,6 +6217,10 @@
                 "ja": "入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。",
                 "en": "Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields."
               },
+              "method_ids": [
+                "cic",
+                "pm"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en"
@@ -6112,6 +6323,9 @@
                 "ja": "既存の2次元MAC投影法・中心対流項・明示SSPRK2を使用。16²/32²/64²で解析的減衰渦と比較し、最細格子はCFL半減でも確認。",
                 "en": "Use existing two-dimensional MAC projection, centered convection and explicit SSPRK2. Compare analytic decaying vortex on 16²/32²/64² grids and halve CFL on the finest grid."
               },
+              "method_ids": [
+                "projection"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en"
@@ -6218,6 +6432,10 @@
                 "ja": "γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。",
                 "en": "Evolve the one-dimensional γ=2 ideal-MHD shock tube with Bx=0.75 to t=0.1. Compare 64/128-cell HLLD/MC/SSPRK2 with a 512-cell numerical reference, recording density, pressure, longitudinal field, balances and fallback counts."
               },
+              "method_ids": [
+                "hlld",
+                "muscl"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en"
@@ -6237,6 +6455,9 @@
                 "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。",
                 "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit."
               },
+              "method_ids": [
+                "hlld"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=en"
@@ -6339,6 +6560,9 @@
                 "ja": "孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。",
                 "en": "Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver."
               },
+              "method_ids": [
+                "schrodinger"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en"
@@ -6457,6 +6681,13 @@
                 "ja": "Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。",
                 "en": "Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems."
               },
+              "method_ids": [
+                "hartree-fock",
+                "kohn-sham-dft",
+                "scf",
+                "hartree-poisson",
+                "xc-functionals"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=en"
@@ -6551,6 +6782,9 @@
                 "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
                 "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
               },
+              "method_ids": [
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
@@ -6644,6 +6878,9 @@
                 "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
                 "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
               },
+              "method_ids": [
+                "rk4"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
@@ -6735,6 +6972,9 @@
                 "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
                 "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
               },
+              "method_ids": [
+                "monte-carlo"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/mc-integral/?lang=en"
@@ -6827,6 +7067,9 @@
                 "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
                 "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
               },
+              "method_ids": [
+                "sde"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=en"
@@ -6930,6 +7173,11 @@
                 "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
                 "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
               },
+              "method_ids": [
+                "hartree-fock",
+                "electronic-bases",
+                "scf"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
@@ -7039,6 +7287,14 @@
                 "ja": "固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。",
                 "en": "Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated."
               },
+              "method_ids": [
+                "kohn-sham-dft",
+                "electronic-bases",
+                "scf",
+                "xc-functionals",
+                "pseudopotentials",
+                "k-point"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en"
@@ -7143,6 +7399,14 @@
                 "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
                 "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
               },
+              "method_ids": [
+                "kohn-sham-dft",
+                "electronic-bases",
+                "scf",
+                "xc-functionals",
+                "pseudopotentials",
+                "k-point"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en"

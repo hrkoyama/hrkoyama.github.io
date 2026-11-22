@@ -76,5 +76,126 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "slab",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "uniform-slab",
+          "sinusoidal-sheet"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "uniform-slab",
+        "name": {
+          "ja": "一様平面スラブの重力",
+          "en": "Uniform plane-slab gravity"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/gravity-boundaries.png",
+          "sha256": "d660c26c162d156dba24026b81efa2b78a4b02924f72d16594aa63c19038103c",
+          "width": 1670,
+          "height": 969,
+          "caption": {
+            "ja": "境界核の共有図。このカードは「一様平面スラブ」の問題を案内します。",
+            "en": "Shared boundary-kernel figure; this card links specifically to uniform-slab."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "sinusoidal-sheet",
+        "name": {
+          "ja": "正弦波状薄層の重力",
+          "en": "Sinusoidal sheet gravity"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/gravity-boundaries.png",
+          "sha256": "d660c26c162d156dba24026b81efa2b78a4b02924f72d16594aa63c19038103c",
+          "width": 1670,
+          "height": 969,
+          "caption": {
+            "ja": "境界核の共有図。このカードは「正弦薄層」の問題を案内します。",
+            "en": "Shared boundary-kernel figure; this card links specifically to sinusoidal-sheet."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "uniform-slab",
+        "problem_name": {
+          "ja": "一様平面スラブの重力",
+          "en": "Uniform plane-slab gravity"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "sinusoidal-sheet",
+        "problem_name": {
+          "ja": "正弦波状薄層の重力",
+          "en": "Sinusoidal sheet gravity"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sinusoidal-sheet/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

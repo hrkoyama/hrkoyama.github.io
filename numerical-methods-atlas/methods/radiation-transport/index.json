@@ -343,5 +343,85 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
   "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "radiation-transport",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "absorbing-slab",
+        "name": {
+          "ja": "純吸収平板の離散座標放射輸送",
+          "en": "Discrete-ordinate radiation transport through an absorbing slab"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png",
+          "sha256": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+          "width": 1500,
+          "height": 510,
+          "caption": {
+            "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
+            "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "radiation-transport",
+            "kind": "supplement",
+            "name": {
+              "ja": "純吸収平板の離散座標放射輸送",
+              "en": "Discrete-ordinate radiation transport through an absorbing slab"
+            },
+            "scope": {
+              "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
+              "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
+            },
+            "method_ids": [
+              "radiation-transport"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "absorbing-slab",
+        "problem_name": {
+          "ja": "純吸収平板の離散座標放射輸送",
+          "en": "Discrete-ordinate radiation transport through an absorbing slab"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

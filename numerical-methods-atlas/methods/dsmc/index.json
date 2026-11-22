@@ -376,5 +376,85 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
   "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "dsmc",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "maxwell-collisions",
+        "name": {
+          "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+          "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/dsmc.png",
+          "sha256": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+          "width": 1500,
+          "height": 510,
+          "caption": {
+            "ja": "等質なMaxwell分子の衝突成分。512/2048/8192粒子・16seedの保存モーメント誤差・標本不確かさと、物理時刻ではない衝突roundごとの異方性緩和。",
+            "en": "Homogeneous Maxwell-molecule collision component: stored moment errors/seed uncertainty for 512/2048/8192 particles over 16 seeds, and anisotropy per collision round, not physical time."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "dsmc",
+            "kind": "supplement",
+            "name": {
+              "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+              "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+            },
+            "scope": {
+              "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
+              "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+            },
+            "method_ids": [
+              "dsmc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "maxwell-collisions",
+        "problem_name": {
+          "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+          "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

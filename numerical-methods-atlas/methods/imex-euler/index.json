@@ -69,5 +69,62 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "imex-euler",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "nonlinear-rational-ode",
+        "name": {
+          "ja": "有理関数を厳密解に持つ非線形・非自律ODE",
+          "en": "Nonlinear nonautonomous ODE with rational exact solution"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/nonlinear-rational-ode.png",
+          "sha256": "e9b4394c6ee0a2d6bc7f97d2a095129e50a98dcdd1ac1928b2ad2833e4713e6c",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "公開検査に後退Euler・BDF2・SDIRK2・IMEX Eulerがあり、保存プレビューはSDIRK2です。",
+          "en": "Public checks include backward Euler, BDF2, SDIRK2 and IMEX Euler; the saved preview uses SDIRK2."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "nonlinear-rational-ode",
+        "problem_name": {
+          "ja": "有理関数を厳密解に持つ非線形・非自律ODE",
+          "en": "Nonlinear nonautonomous ODE with rational exact solution"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

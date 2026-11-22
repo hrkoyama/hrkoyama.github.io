@@ -11,6 +11,9 @@ from atlas_inverse_release import inverse_release_record
 from atlas_fdtd_release import fdtd_release_record
 from atlas_multinverse_release import multinverse_release_record
 from atlas_depth_release import depth_release_records
+from atlas_method_routes import load_method_routes
+from atlas_method_route_cards import (render_method_route_links, render_method_routes,
+                                      markdown_method_routes)
 from atlas_method_review import (validate_method_reviews, review_intro, field_note,
                                  verification_html, references_html, review_markdown)
 
@@ -19,6 +22,7 @@ ATLAS=ROOT/'numerical-methods-atlas'
 ORIGIN='https://hrkoyama.github.io'
 DATA=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
 METHODS=DATA['methods']
+METHOD_ROUTES=load_method_routes(ROOT)
 REVIEWED=validate_method_reviews(DATA)
 EXECUTION_RECORDS=json.loads((ROOT/'catalog/atlas-execution-examples.json').read_text())['examples']
 EXECUTION_REGISTRY=ORIGIN+'/numerical-methods-atlas/code-and-data/examples.json'
@@ -204,7 +208,17 @@ def public_record(x):
             record['execution_examples'] += [{'id':e['id'],'registry_url':ORIGIN+'/numerical-methods-atlas/validation/releases.json',
                 'guide':{lang:e['entry']+'?lang='+lang for lang in ['ja','en']},'kind':'dedicated-supplement'} for e in supplement['examples']]
         record['code_mapping_scope']='Scoped fixed-input examples; original method variants and earlier releases remain distinct.'
+    record['problem_navigation']=METHOD_ROUTES['methods'][x['id']]
     return record
+
+
+def method_route_view_record(record):
+    """Keep a legacy-edition download fallback out of scientific record metadata."""
+    result=dict(record)
+    legacy_code=bool(record.get('code_modules')) or any(url.startswith(ORIGIN+CODE+'numart/') for url in record.get('code_urls', []))
+    if legacy_code and not record.get('code_download'):
+        result['fallback_download']=ORIGIN+CODE+archive
+    return result
 
 
 def method_search_text(x):
@@ -256,15 +270,19 @@ for lang in ['ja','en']:
         body+='<section data-method-group="'+group['id']+'" id="'+group['id']+'-'+lang+'"><h2>'+esc(group[lang])+' — <span data-method-group-count>'+str(len(rows))+'</span></h2><ul class="method-list">'
         for x in rows:
             badge=('<span class="method-curated">'+('条件・文献を個別整理' if ja else 'Conditions and sources curated')+'</span>') if x.get('method_review') else ''
-            body+='<li data-method-id="'+x['id']+'" data-status="'+x['status']+'" data-search="'+esc(method_search_text(x),quote=True)+'">'+link(x['id']+'/',x['name'][lang])+'<br><span class="resource-status">'+status(x,lang)+'</span>'+badge+'<p>'+esc(x['summary'][lang])+'</p></li>'
+            body+='<li data-method-id="'+x['id']+'" data-status="'+x['status']+'" data-search="'+esc(method_search_text(x),quote=True)+'">'+link(x['id']+'/',x['name'][lang])+'<br><span class="resource-status">'+status(x,lang)+'</span>'+badge+'<p>'+esc(x['summary'][lang])+'</p>'
+            body+=render_method_route_links(METHOD_ROUTES['methods'][x['id']],lang,base=ORIGIN+'/numerical-methods-atlas/methods/'+x['id']+'/?lang='+lang)+'</li>'
         body+='</ul></section>'
+    body+='<p class="method-navigation-downloads">'+link('index.json','手法台帳 / JSON' if ja else 'Method registry / JSON')+' · '+link('navigation.json','問題・式・参照の対応 / JSON' if ja else 'Problem/evidence navigation / JSON')+'</p>'
     body+='</section>';sections.append(body)
-map_head='<link rel="stylesheet" href="/styles/atlas-methods.css?v='+hashlib.sha256((ROOT/'styles/atlas-methods.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/atlas-methods.mjs?v='+hashlib.sha256((ROOT/'atlas-methods.mjs').read_bytes()).hexdigest()[:12]+'"></script>'
+method_routes_head='<link rel="stylesheet" href="/styles/atlas-method-routes.css?v='+hashlib.sha256((ROOT/'styles/atlas-method-routes.css').read_bytes()).hexdigest()[:12]+'">'
+map_head='<link rel="stylesheet" href="/styles/atlas-methods.css?v='+hashlib.sha256((ROOT/'styles/atlas-methods.css').read_bytes()).hexdigest()[:12]+'"><script type="module" src="/atlas-methods.mjs?v='+hashlib.sha256((ROOT/'atlas-methods.mjs').read_bytes()).hexdigest()[:12]+'"></script>'+method_routes_head
 map_page=page('手法・コードの対応表','Methods and code reference','/numerical-methods-atlas/methods/',''.join(sections),extra_head=map_head)
 map_page=map_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
 write('/numerical-methods-atlas/methods/index.html',map_page)
-published={**DATA,'methods':[public_record(x) for x in METHODS],'code_release':{'download':ORIGIN+CODE+archive,'manifest':ORIGIN+CODE+'source-manifest.json','verification':ORIGIN+CODE+'verification.json','sha256':archive_hash}}
+published={**DATA,'methods':[public_record(x) for x in METHODS],'problem_navigation_source_sha256':METHOD_ROUTES['source_sha256'],'code_release':{'download':ORIGIN+CODE+archive,'manifest':ORIGIN+CODE+'source-manifest.json','verification':ORIGIN+CODE+'verification.json','sha256':archive_hash}}
 write('/numerical-methods-atlas/methods/index.json',json.dumps(published,ensure_ascii=False,indent=2)+'\n')
+write('/numerical-methods-atlas/methods/navigation.json',json.dumps(METHOD_ROUTES,ensure_ascii=False,indent=2)+'\n')
 if REVIEWED:
     reviewed={'schema_version':1,'reviewed_on':DATA['priority_review']['on'],
               'scope':DATA['priority_review']['scope'],'method_count':len(REVIEWED),
@@ -280,6 +298,8 @@ for x in METHODS:
     for lang in ['ja','en']:
         ja=lang=='ja';body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">'+esc(x['group'][lang])+'</p><h1>'+esc(x['name'][lang])+'</h1><p class="resource-status">'+status(x,lang)+'</p><p class="intro">'+esc(x['summary'][lang])+'</p>'+nav(lang)
         if x.get('aliases'):body+='<p>'+('別名・表記：' if ja else 'Other names: ')+esc(' / '.join(x['aliases']))+'</p>'
+        body+=render_method_route_links(record['problem_navigation'],lang)
+        body+=render_method_routes(record['problem_navigation'],lang,method_route_view_record(record))
         if x.get('method_review'):body+=review_intro(x,lang)
         if x['status']=='planned':
             body+='<h2>'+('次の成果物' if ja else 'Next deliverable')+'</h2><p>'+esc(x['next_deliverable'][lang])+'</p>'
@@ -393,7 +413,9 @@ for x in METHODS:
         body+='<p>'+link('index.json','この項目 / JSON' if ja else 'This record / JSON')+' · '+link('index.md','この項目 / Markdown' if ja else 'This record / Markdown')+' · '+link('/using/','引用と利用条件' if ja else 'Citation and reuse')+'</p></section>'
         sections.append(body)
     structured={'@context':'https://schema.org','@type':'LearningResource','name':x['name']['en'],'url':ORIGIN+url,'author':{'@type':'Person','name':'Hiroshi Koyama'},'isPartOf':{'@type':'WebSite','name':'An Atlas of Numerical Methods','url':ORIGIN+'/numerical-methods-atlas/'},'description':x['summary']['en'],'inLanguage':['ja','en']}
-    write(url+'index.html',page(x['name']['ja'],x['name']['en'],url,''.join(sections),structured))
+    method_page=page(x['name']['ja'],x['name']['en'],url,''.join(sections),structured,extra_head=method_routes_head)
+    method_page=method_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
+    write(url+'index.html',method_page)
     record=public_record(x)
     write(url+'index.json',json.dumps(record,ensure_ascii=False,indent=2)+'\n')
     md='# '+x['name']['en']+' / '+x['name']['ja']+'\n\nStatus: '+x['status']+'\n\n'+x['summary']['en']+'\n\n'+x['summary']['ja']+'\n\n'+x['limitations']['en']+'\n\n'
@@ -438,7 +460,8 @@ for x in METHODS:
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'
     if x.get('example'):md+='Runnable example:\n\n'+json.dumps(x['example'],ensure_ascii=False,indent=2)+'\n\n'
     md+='Source: '+ORIGIN+url+'\nEdition and terms: '+ORIGIN+'/numerical-methods-atlas/code-and-data/\n'
-    write(url+'index.md',md)
+    md+='\n'+markdown_method_routes(record['problem_navigation'],method_route_view_record(record))+'\n'
+    write(url+'index.md',md.rstrip()+'\n')
 
 sections=[]
 for lang in ['ja','en']:
@@ -490,6 +513,7 @@ block=f'''\n## Method records and executable code
 
 - [Method map]({ORIGIN}/numerical-methods-atlas/methods/): {existing_count} existing method/building-block entries and {planned_count} separately labeled development candidates. Planned entries have no dedicated solver or verification result.
 - [Method registry / JSON]({ORIGIN}/numerical-methods-atlas/methods/index.json): Names, status, reading routes, chapter-related Python modules, tests, reference links and explicit metadata gaps. Each entry has a stable HTML URL, index.json and index.md. Null assumptions or boundaries mean not yet curated, not unrestricted applicability.
+- [Method problem/evidence navigation / JSON]({ORIGIN}/numerical-methods-atlas/methods/navigation.json): Reviewed method-to-problem, equation and reference contexts. Problem execution links include only runs whose actual method_ids contain that method; dedicated method source and release paths remain separate from these problem bindings.
 - [Reviewed priority methods / JSON]({ORIGIN}/numerical-methods-atlas/methods/reviewed.json): {len(REVIEWED)} method-specific records with problems, adopted variants, use/avoid conditions, units, boundary conventions, explicit specified/not-applicable/unknown states, source roles and actual source-check depth. Metadata review is not a new numerical verification run; planned methods retain their status.
 - Editorial scope: {DATA['editorial_policy']['statement']['en']}
 - [Code, inputs and verification]({ORIGIN}/numerical-methods-atlas/code-and-data/): Public ZIP, file hashes, dependencies and standalone verification. Original implementation code is MIT within its scope; datasets and content retain separate terms.

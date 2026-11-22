@@ -74,5 +74,147 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "backward-euler",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "heat",
+        "name": {
+          "ja": "熱・拡散方程式",
+          "en": "Heat / diffusion equation"
+        },
+        "problem_ids": [
+          "heat-dirichlet"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "heat-dirichlet",
+        "name": {
+          "ja": "Dirichlet境界の熱拡散",
+          "en": "Heat decay with Dirichlet boundaries"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/diffusion-boundaries.png",
+          "sha256": "d2fa0bbcb07693a80ea9f0c4b2289c0199d11e5101d36fae730718cb64a92c68",
+          "width": 1386,
+          "height": 518,
+          "caption": {
+            "ja": "共有図の左パネル：Dirichlet境界の熱拡散。右パネルは別のPoisson境界問題。",
+            "en": "Shared figure, left: Dirichlet heat decay. Right: separate Poisson boundary problems."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "nonlinear-rational-ode",
+        "name": {
+          "ja": "有理関数を厳密解に持つ非線形・非自律ODE",
+          "en": "Nonlinear nonautonomous ODE with rational exact solution"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/nonlinear-rational-ode.png",
+          "sha256": "e9b4394c6ee0a2d6bc7f97d2a095129e50a98dcdd1ac1928b2ad2833e4713e6c",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "公開検査に後退Euler・BDF2・SDIRK2・IMEX Eulerがあり、保存プレビューはSDIRK2です。",
+          "en": "Public checks include backward Euler, BDF2, SDIRK2 and IMEX Euler; the saved preview uses SDIRK2."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "heat-dirichlet",
+        "problem_name": {
+          "ja": "Dirichlet境界の熱拡散",
+          "en": "Heat decay with Dirichlet boundaries"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-heat",
+            "title": {
+              "ja": "熱拡散／Fourierモードの減衰",
+              "en": "Heat / Fourier-mode decay"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "こちらは零Dirichlet・sin(πx)、参照カードは周期境界・1+0.25sin(2πx)・ν=0.02です。",
+              "en": "This test has zero Dirichlet endpoints and sin(πx); the card has periodic boundaries, 1+0.25sin(2πx) and ν=0.02."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-heat-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-heat-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "nonlinear-rational-ode",
+        "problem_name": {
+          "ja": "有理関数を厳密解に持つ非線形・非自律ODE",
+          "en": "Nonlinear nonautonomous ODE with rational exact solution"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

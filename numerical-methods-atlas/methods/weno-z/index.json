@@ -229,5 +229,149 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#shu-osher-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "weno-z",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "shu-osher",
+          "moving-contact"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "shu-osher",
+        "name": {
+          "ja": "Shu–Osher衝撃波・エントロピー波干渉",
+          "en": "Shu–Osher shock/entropy interaction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/shu-osher.png",
+          "sha256": "0c7f01545cc9c22517f3ec3b332612d8b2e7d4943b145ae646ca377ac40e81f5",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存したEuler密度波形（1つの手法を代表表示）。",
+            "en": "Stored Euler density profile, showing one representative method."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "shu-osher",
+            "kind": "common",
+            "name": {
+              "ja": "Shu–Osher：特性WENO-Zと高解像度参照",
+              "en": "Shu–Osher: characteristic WENO-Z and a numerical reference"
+            },
+            "scope": {
+              "ja": "[-5,5]で衝撃波と密度正弦波の干渉をt=1.8まで計算。100/200点の特性FD WENO-Zを800点の同じ実装と比較し、参照との差と近似境界収支を別々に記録する。",
+              "en": "Evolve shock/entropy-wave interaction on [-5,5] to t=1.8. Compare characteristic FD WENO-Z at 100/200 points with the same implementation at 800 points, separately recording reference disagreement and approximate boundary balance."
+            },
+            "method_ids": [
+              "weno-z"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/shu-osher.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "moving-contact",
+        "name": {
+          "ja": "移動接触不連続",
+          "en": "Moving contact discontinuity"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/moving-contact.png",
+          "sha256": "c31fb044c4f7a47d620191620424aabc95f41116e29ae35eff65d1a344cdac71",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存したEuler密度波形（1つの手法を代表表示）。",
+            "en": "Stored Euler density profile, showing one representative method."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "shu-osher",
+        "problem_name": {
+          "ja": "Shu–Osher衝撃波・エントロピー波干渉",
+          "en": "Shu–Osher shock/entropy interaction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "moving-contact",
+        "problem_name": {
+          "ja": "移動接触不連続",
+          "en": "Moving contact discontinuity"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

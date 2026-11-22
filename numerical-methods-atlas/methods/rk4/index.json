@@ -7479,5 +7479,676 @@
       },
       "kind": "dedicated-supplement"
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "rk4",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "isentropic-vortex"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      },
+      {
+        "id": "hamiltonian",
+        "name": {
+          "ja": "Hamilton系・振動子",
+          "en": "Hamiltonian systems and oscillators"
+        },
+        "problem_ids": [
+          "quartic-oscillator"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+        }
+      },
+      {
+        "id": "bio-logistic",
+        "name": {
+          "ja": "ロジスティック個体群増殖",
+          "en": "Logistic population growth"
+        },
+        "problem_ids": [
+          "logistic-growth"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-logistic-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-logistic-en"
+        }
+      },
+      {
+        "id": "bio-sir",
+        "name": {
+          "ja": "SIR・SEIR区画モデル",
+          "en": "SIR and SEIR compartment models"
+        },
+        "problem_ids": [
+          "sir-epidemic"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-sir-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-sir-en"
+        }
+      },
+      {
+        "id": "heat",
+        "name": {
+          "ja": "熱・拡散方程式",
+          "en": "Heat / diffusion equation"
+        },
+        "problem_ids": [
+          "reaction-diffusion-fourier"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+        }
+      },
+      {
+        "id": "bio-schnakenberg",
+        "name": {
+          "ja": "Schnakenberg反応拡散",
+          "en": "Schnakenberg reaction–diffusion"
+        },
+        "problem_ids": [
+          "turing-schnakenberg"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-schnakenberg-en"
+        }
+      },
+      {
+        "id": "bio-turing",
+        "name": {
+          "ja": "Turing反応拡散の枠組み",
+          "en": "Turing reaction–diffusion framework"
+        },
+        "problem_ids": [
+          "turing-schnakenberg"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-turing-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-turing-en"
+        }
+      },
+      {
+        "id": "bio-fitzhugh-nagumo",
+        "name": {
+          "ja": "FitzHugh–Nagumoの興奮と回復",
+          "en": "FitzHugh–Nagumo excitation and recovery"
+        },
+        "problem_ids": [
+          "fitzhugh-nagumo"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fitzhugh-nagumo-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fitzhugh-nagumo-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "isentropic-vortex",
+        "name": {
+          "ja": "周期移動等エントロピー渦",
+          "en": "Periodic moving isentropic vortex"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/keep-vortex/frame-080.webp",
+          "sha256": "0571dd99590171b88cab7b70ee4a152eec5870a6129fa8dca0769e1c001eaf5e",
+          "width": 960,
+          "height": 640,
+          "caption": {
+            "ja": "保存したKEEP移動渦の最終フレーム。",
+            "en": "Stored final frame of the KEEP moving vortex."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "quartic-oscillator",
+        "name": {
+          "ja": "4次ポテンシャルの非線形振動子",
+          "en": "Nonlinear quartic-potential oscillator"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/quartic-oscillator.png",
+          "sha256": "1655466d9e547f243929a188e3b84ae30c9f9c7b9f9496e9bf0df2cac19ffbd1",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのt≤10の正準位相軌道。手法違いは同一問題の比較。",
+            "en": "Stored canonical phase orbits for t≤10; methods remain variants of one problem."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "nonlinear-exp-ode",
+        "name": {
+          "ja": "指数関数を厳密解に持つ非線形・非自律ODE",
+          "en": "Nonlinear nonautonomous ODE with exponential exact solution"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/nonlinear-exp-ode.png",
+          "sha256": "f89732699d3bcecfd4698344401428d1d77b045628ed224e0a13da7eea09ebc8",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "公開の全陽的RK tableauに対する非自律・非線形製造解の検査です。保存プレビューはRK4を使います。",
+          "en": "Public nonautonomous/nonlinear manufactured-solution checks exercise every explicit RK tableau; the saved preview uses RK4."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "nonlinear-rational-decay",
+        "name": {
+          "ja": "有理減衰ODE（y′ = −y²）",
+          "en": "Rational-decay ODE (y′ = −y²)"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/nonlinear-rational-decay.png",
+          "sha256": "56f8efda8e60babc21a818fa91bce6ff95b6d5f3baf3450caa09cf58178421bf",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済み有理減衰ODEの時間刻み収束（代表3手法）。",
+            "en": "Stored time-refinement errors for rational decay, showing three methods."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "logistic-growth",
+        "name": {
+          "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+          "en": "Logistic growth: analytic solution and time refinement"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/logistic-growth/preview.png",
+          "sha256": "9c758ad2a09ed78fb7c1624ce1e30f56d02e35deb25c0956e884ae1982819080",
+          "width": 960,
+          "height": 570,
+          "caption": {
+            "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+            "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "logistic-growth",
+            "kind": "common",
+            "name": {
+              "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+              "en": "Logistic growth: analytic solution and time refinement"
+            },
+            "scope": {
+              "ja": "無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。",
+              "en": "One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models."
+            },
+            "method_ids": [
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/logistic-growth.json",
+            "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "sir-epidemic",
+        "name": {
+          "ja": "SIR：独立DOP853参照・人口保存・収束",
+          "en": "SIR: independent DOP853 reference, conservation and convergence"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/sir-epidemic/preview.png",
+          "sha256": "4ff50b55a65540eea559f089a1585c9fd894a15f2d1be47d03bfecbfab099c41",
+          "width": 960,
+          "height": 570,
+          "caption": {
+            "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+            "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "sir-epidemic",
+            "kind": "common",
+            "name": {
+              "ja": "SIR：独立DOP853参照・人口保存・収束",
+              "en": "SIR: independent DOP853 reference, conservation and convergence"
+            },
+            "scope": {
+              "ja": "閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。",
+              "en": "Closed homogeneous population-fraction SIR. Compare RK4 with independently implemented SciPy DOP853; check conservation, nonnegativity and time convergence. Excludes SEIR, spatial spread and calibration to observations."
+            },
+            "method_ids": [
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sir-epidemic/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/sir-epidemic.json",
+            "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "reaction-diffusion-fourier",
+        "name": {
+          "ja": "反応拡散：空間2次と時間4次を分けて測る",
+          "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png",
+          "sha256": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+          "width": 1680,
+          "height": 504,
+          "caption": {
+            "ja": "周期Fourierモードの線形反応拡散。16/32/64格子の連続解誤差と、固定格子での半離散厳密解に対する時間誤差を分けた保存収束図。",
+            "en": "Stored linear periodic Fourier reaction–diffusion refinement separates continuum errors on 16/32/64 grids from temporal errors against a fixed-grid semidiscrete exact solution."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "reaction-diffusion-fourier",
+            "kind": "supplement",
+            "name": {
+              "ja": "反応拡散：空間2次と時間4次を分けて測る",
+              "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+            },
+            "scope": {
+              "ja": "線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。",
+              "en": "Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions."
+            },
+            "method_ids": [
+              "centered-difference",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "turing-schnakenberg",
+        "name": {
+          "ja": "Turing不安定性：線形成長率と小振幅パターン",
+          "en": "Turing instability: linear growth and small-amplitude patterns"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+          "sha256": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+          "width": 1680,
+          "height": 504,
+          "caption": {
+            "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+            "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "turing-schnakenberg",
+            "kind": "supplement",
+            "name": {
+              "ja": "Turing不安定性：線形成長率と小振幅パターン",
+              "en": "Turing instability: linear growth and small-amplitude patterns"
+            },
+            "scope": {
+              "ja": "Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。",
+              "en": "Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode."
+            },
+            "method_ids": [
+              "centered-difference",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "fitzhugh-nagumo",
+        "name": {
+          "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+          "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png",
+          "sha256": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+          "width": 1680,
+          "height": 504,
+          "caption": {
+            "ja": "無次元の2変数FHN型ODEにt=10〜20の電流パルス。DOP853参照とRK4の興奮・回復、刻み0.1/0.05/0.025の収束と全出力点の差を保存結果から表示。",
+            "en": "A dimensionless two-variable FHN-type ODE with a t=10..20 current pulse: stored RK4/DOP853 excitation and recovery, steps 0.1/0.05/0.025 and all-output-time differences."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fitzhugh-nagumo",
+            "kind": "supplement",
+            "name": {
+              "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+              "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+            },
+            "scope": {
+              "ja": "2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。",
+              "en": "Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853."
+            },
+            "method_ids": [
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "isentropic-vortex",
+        "problem_name": {
+          "ja": "周期移動等エントロピー渦",
+          "en": "Periodic moving isentropic vortex"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "quartic-oscillator",
+        "problem_name": {
+          "ja": "4次ポテンシャルの非線形振動子",
+          "en": "Nonlinear quartic-potential oscillator"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "nonlinear-exp-ode",
+        "problem_name": {
+          "ja": "指数関数を厳密解に持つ非線形・非自律ODE",
+          "en": "Nonlinear nonautonomous ODE with exponential exact solution"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "nonlinear-rational-decay",
+        "problem_name": {
+          "ja": "有理減衰ODE（y′ = −y²）",
+          "en": "Rational-decay ODE (y′ = −y²)"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "logistic-growth",
+        "problem_name": {
+          "ja": "ロジスティック増殖：解析解と刻み幅の収束",
+          "en": "Logistic growth: analytic solution and time refinement"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logistic-growth/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "sir-epidemic",
+        "problem_name": {
+          "ja": "SIR：独立DOP853参照・人口保存・収束",
+          "en": "SIR: independent DOP853 reference, conservation and convergence"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sir-epidemic/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "reaction-diffusion-fourier",
+        "problem_name": {
+          "ja": "反応拡散：空間2次と時間4次を分けて測る",
+          "en": "Reaction-diffusion: separate second-order space and fourth-order time"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "turing-schnakenberg",
+        "problem_name": {
+          "ja": "Turing不安定性：線形成長率と小振幅パターン",
+          "en": "Turing instability: linear growth and small-amplitude patterns"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "fitzhugh-nagumo",
+        "problem_name": {
+          "ja": "FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照",
+          "en": "FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

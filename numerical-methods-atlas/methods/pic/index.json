@@ -1147,5 +1147,100 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
   "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "pic",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "cold-plasma-pic"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "cold-plasma-pic",
+        "name": {
+          "ja": "CIC静電PICの冷たいプラズマ振動",
+          "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/pic.png",
+          "sha256": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+          "width": 2250,
+          "height": 510,
+          "caption": {
+            "ja": "1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。",
+            "en": "One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "pic",
+            "kind": "supplement",
+            "name": {
+              "ja": "CIC静電PICの冷たいプラズマ振動",
+              "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+            },
+            "scope": {
+              "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
+              "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+            },
+            "method_ids": [
+              "pic"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "cold-plasma-pic",
+        "problem_name": {
+          "ja": "CIC静電PICの冷たいプラズマ振動",
+          "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

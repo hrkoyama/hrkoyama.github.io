@@ -90,5 +90,357 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "hlle",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "strong-shock",
+          "double-rarefaction",
+          "cylinder-forebody",
+          "odd-even"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      },
+      {
+        "id": "mhd",
+        "name": {
+          "ja": "理想MHD",
+          "en": "Ideal magnetohydrodynamics"
+        },
+        "problem_ids": [
+          "circular-alfven",
+          "magnetic-loop"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#mhd-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#mhd-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "strong-shock",
+        "name": {
+          "ja": "1次元の強い圧力ジャンプ",
+          "en": "One-dimensional strong pressure jump"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/strong-shock.png",
+          "sha256": "50ec1a3a9f99ff8a6c3d0a45f77b89f15237ac3ed8eb3b083bcd8df1686becd8",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "完了したPPM計算の保存密度。停止した他の変種とは区別しています。",
+            "en": "Stored density from a completed PPM run, distinct from variants that stopped."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "double-rarefaction",
+        "name": {
+          "ja": "Euler二重膨張波",
+          "en": "Euler double rarefaction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/double-rarefaction.png",
+          "sha256": "2a843bf673dc414287780b54bea9f5a5bd48644c98c43630caa00a32b891ee6f",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "cylinder-forebody",
+        "name": {
+          "ja": "円柱前面の弓形衝撃波",
+          "en": "Cylinder-forebody bow shock"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/shock-expansion/forebody-48-0-density.png",
+          "sha256": "a5889e8683e3bbb451234074da81773e32210d7d349523d2611fac2c90414595",
+          "width": 1755,
+          "height": 1215,
+          "caption": {
+            "ja": "保存済み円柱前面の密度比較。有限時刻の結果で、定常収束の認定ではありません。",
+            "en": "Stored finite-time forebody density comparison; not steady-state certification."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存された曲面前方衝撃波の流束比較です。Rotated項目は方向別HLLE/Roeの教育用実験で、最適化Rotated-RHLLの完成検証ではありません。",
+          "en": "Flux comparisons stored for the body-fitted bow shock. The rotated entry is the educational directional HLLE/Roe experiment, not completed validation of optimized Rotated-RHLL."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "odd-even",
+        "name": {
+          "ja": "定常平面衝撃波のodd–even診断",
+          "en": "Stationary-shock odd–even diagnostic"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/shock-methods/planar-128-0.png",
+          "sha256": "bd795bce6943a209b564e085844c53b372d77e33c597d213a39fa9f9f3c3cfcf",
+          "width": 1820,
+          "height": 1040,
+          "caption": {
+            "ja": "保存済み定常平面衝撃波のodd–even診断。",
+            "en": "Stored odd–even diagnostic for a stationary planar shock."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存された垂直衝撃波診断の流束とRoe音響エントロピー平滑化です。圧力センサー混合法をRotated-RHLLと同一視しません。",
+          "en": "Fluxes and Roe acoustic entropy smoothing used in the stored normal-shock diagnostic. The pressure-sensor blend is not identified as Rotated-RHLL."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "circular-alfven",
+        "name": {
+          "ja": "円偏波Alfvén波",
+          "en": "Circularly polarized Alfvén wave"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/alfven.png",
+          "sha256": "59a8cd9131e3b5ea278b3bda97b9995f7324315c11c9a6606eb411cca3917e9e",
+          "width": 1400,
+          "height": 630,
+          "caption": {
+            "ja": "保存済み円偏波Alfvén波の誤差・収束比較。",
+            "en": "Stored circularly polarized Alfvén-wave comparison."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "magnetic-loop",
+        "name": {
+          "ja": "磁場ループの移流",
+          "en": "Magnetic field-loop advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/field-loop.png",
+          "sha256": "ae99ce992228c257747d74ebbcbea8c1ecf61acf64185bb7fc1718e2857c9655",
+          "width": 1540,
+          "height": 896,
+          "caption": {
+            "ja": "保存済み磁場ループ移流の計算場。",
+            "en": "Stored computed fields for magnetic-loop advection."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "strong-shock",
+        "problem_name": {
+          "ja": "1次元の強い圧力ジャンプ",
+          "en": "One-dimensional strong pressure jump"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "double-rarefaction",
+        "problem_name": {
+          "ja": "Euler二重膨張波",
+          "en": "Euler double rarefaction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "euler-double-rarefaction",
+            "title": {
+              "ja": "Euler／二重膨張波",
+              "en": "Euler / double rarefaction"
+            },
+            "kind": "semi-analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-double-rarefaction-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-double-rarefaction-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-double-rarefaction",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-double-rarefaction"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "cylinder-forebody",
+        "problem_name": {
+          "ja": "円柱前面の弓形衝撃波",
+          "en": "Cylinder-forebody bow shock"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "odd-even",
+        "problem_name": {
+          "ja": "定常平面衝撃波のodd–even診断",
+          "en": "Stationary-shock odd–even diagnostic"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "circular-alfven",
+        "problem_name": {
+          "ja": "円偏波Alfvén波",
+          "en": "Circularly polarized Alfvén wave"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "magnetic-loop",
+        "problem_name": {
+          "ja": "磁場ループの移流",
+          "en": "Magnetic field-loop advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

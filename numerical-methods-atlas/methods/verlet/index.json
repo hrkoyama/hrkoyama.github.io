@@ -208,5 +208,149 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#harmonic-oscillator-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "verlet",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "hamiltonian",
+        "name": {
+          "ja": "Hamilton系・振動子",
+          "en": "Hamiltonian systems and oscillators"
+        },
+        "problem_ids": [
+          "harmonic-oscillator",
+          "quartic-oscillator"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "harmonic-oscillator",
+        "name": {
+          "ja": "調和振動子（複素ODE表示も統合）",
+          "en": "Harmonic oscillator, including complex-ODE form"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/harmonic-oscillator.png",
+          "sha256": "7b2eedfce8ba315a2062cfa67b1c1645bd97ac12f9c07d2d190f65f81aa8089a",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのt≤10の正準位相軌道。手法違いは同一問題の比較。",
+            "en": "Stored canonical phase orbits for t≤10; methods remain variants of one problem."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "harmonic-oscillator",
+            "kind": "common",
+            "name": {
+              "ja": "調和振動子：Verletの位相誤差とエネルギー",
+              "en": "Harmonic oscillator: Verlet phase error and energy"
+            },
+            "scope": {
+              "ja": "既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。",
+              "en": "Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal."
+            },
+            "method_ids": [
+              "verlet"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/harmonic-oscillator.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "quartic-oscillator",
+        "name": {
+          "ja": "4次ポテンシャルの非線形振動子",
+          "en": "Nonlinear quartic-potential oscillator"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/quartic-oscillator.png",
+          "sha256": "1655466d9e547f243929a188e3b84ae30c9f9c7b9f9496e9bf0df2cac19ffbd1",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのt≤10の正準位相軌道。手法違いは同一問題の比較。",
+            "en": "Stored canonical phase orbits for t≤10; methods remain variants of one problem."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "harmonic-oscillator",
+        "problem_name": {
+          "ja": "調和振動子（複素ODE表示も統合）",
+          "en": "Harmonic oscillator, including complex-ODE form"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "quartic-oscillator",
+        "problem_name": {
+          "ja": "4次ポテンシャルの非線形振動子",
+          "en": "Nonlinear quartic-potential oscillator"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

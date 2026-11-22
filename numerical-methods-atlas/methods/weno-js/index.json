@@ -91,5 +91,126 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "weno-js",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "entropy-1d",
+          "moving-contact"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "entropy-1d",
+        "name": {
+          "ja": "1次元Eulerエントロピー波",
+          "en": "One-dimensional Euler entropy wave"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/entropy-1d.png",
+          "sha256": "3692f625a80465194b490f915bde2ab5f33f28d9ef868da9df9a59fcc2bdb06f",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みの1次元エントロピー波の密度誤差・格子収束。",
+            "en": "Stored density-error refinement for a 1D entropy wave."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "moving-contact",
+        "name": {
+          "ja": "移動接触不連続",
+          "en": "Moving contact discontinuity"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/moving-contact.png",
+          "sha256": "c31fb044c4f7a47d620191620424aabc95f41116e29ae35eff65d1a344cdac71",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存したEuler密度波形（1つの手法を代表表示）。",
+            "en": "Stored Euler density profile, showing one representative method."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "entropy-1d",
+        "problem_name": {
+          "ja": "1次元Eulerエントロピー波",
+          "en": "One-dimensional Euler entropy wave"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "moving-contact",
+        "problem_name": {
+          "ja": "移動接触不連続",
+          "en": "Moving contact discontinuity"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/moving-contact/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

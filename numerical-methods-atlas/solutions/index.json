@@ -90,6 +90,9 @@
                 "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
                 "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
               },
+              "method_ids": [
+                "upwind"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
@@ -687,6 +690,10 @@
                 "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
                 "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
               },
+              "method_ids": [
+                "godunov",
+                "hllc"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en"
@@ -1301,6 +1308,9 @@
                 "ja": "既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。",
                 "en": "Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement."
               },
+              "method_ids": [
+                "thomas"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en"
@@ -1481,6 +1491,11 @@
                 "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
                 "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
               },
+              "method_ids": [
+                "cg",
+                "multigrid",
+                "p1-fem"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en"
@@ -1500,6 +1515,9 @@
                 "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
                 "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
               },
+              "method_ids": [
+                "amg"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
@@ -1724,6 +1742,9 @@
                 "ja": "既存の2次元MAC投影法・中心対流項・明示SSPRK2を使用。16²/32²/64²で解析的減衰渦と比較し、最細格子はCFL半減でも確認。",
                 "en": "Use existing two-dimensional MAC projection, centered convection and explicit SSPRK2. Compare analytic decaying vortex on 16²/32²/64² grids and halve CFL on the finest grid."
               },
+              "method_ids": [
+                "projection"
+              ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en"
@@ -1748,6 +1769,7 @@
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
     "catalog/atlas-problem-links.json": "91d171d542da368e69cf8f16a4cd14f60740094e8beefc1e76959e6d2e89a990",
+    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -1796,7 +1818,6 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c",
-    "numerical-methods-atlas/test-cases/index.json": "e045b5272262f09cc4bd039faf679ba62d24002fef3c1a588ec1a84f7c0bb1a5"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c"
   }
 }

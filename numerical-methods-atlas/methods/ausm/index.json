@@ -92,5 +92,175 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "ausm",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "problem_ids": [
+          "strong-shock",
+          "cylinder-forebody",
+          "odd-even"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "strong-shock",
+        "name": {
+          "ja": "1次元の強い圧力ジャンプ",
+          "en": "One-dimensional strong pressure jump"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/strong-shock.png",
+          "sha256": "50ec1a3a9f99ff8a6c3d0a45f77b89f15237ac3ed8eb3b083bcd8df1686becd8",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "完了したPPM計算の保存密度。停止した他の変種とは区別しています。",
+            "en": "Stored density from a completed PPM run, distinct from variants that stopped."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "cylinder-forebody",
+        "name": {
+          "ja": "円柱前面の弓形衝撃波",
+          "en": "Cylinder-forebody bow shock"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/shock-expansion/forebody-48-0-density.png",
+          "sha256": "a5889e8683e3bbb451234074da81773e32210d7d349523d2611fac2c90414595",
+          "width": 1755,
+          "height": 1215,
+          "caption": {
+            "ja": "保存済み円柱前面の密度比較。有限時刻の結果で、定常収束の認定ではありません。",
+            "en": "Stored finite-time forebody density comparison; not steady-state certification."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存された曲面前方衝撃波の流束比較です。Rotated項目は方向別HLLE/Roeの教育用実験で、最適化Rotated-RHLLの完成検証ではありません。",
+          "en": "Flux comparisons stored for the body-fitted bow shock. The rotated entry is the educational directional HLLE/Roe experiment, not completed validation of optimized Rotated-RHLL."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "odd-even",
+        "name": {
+          "ja": "定常平面衝撃波のodd–even診断",
+          "en": "Stationary-shock odd–even diagnostic"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/shock-methods/planar-128-0.png",
+          "sha256": "bd795bce6943a209b564e085844c53b372d77e33c597d213a39fa9f9f3c3cfcf",
+          "width": 1820,
+          "height": 1040,
+          "caption": {
+            "ja": "保存済み定常平面衝撃波のodd–even診断。",
+            "en": "Stored odd–even diagnostic for a stationary planar shock."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存された垂直衝撃波診断の流束とRoe音響エントロピー平滑化です。圧力センサー混合法をRotated-RHLLと同一視しません。",
+          "en": "Fluxes and Roe acoustic entropy smoothing used in the stored normal-shock diagnostic. The pressure-sensor blend is not identified as Rotated-RHLL."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "strong-shock",
+        "problem_name": {
+          "ja": "1次元の強い圧力ジャンプ",
+          "en": "One-dimensional strong pressure jump"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "cylinder-forebody",
+        "problem_name": {
+          "ja": "円柱前面の弓形衝撃波",
+          "en": "Cylinder-forebody bow shock"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-forebody/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "odd-even",
+        "problem_name": {
+          "ja": "定常平面衝撃波のodd–even診断",
+          "en": "Stationary-shock odd–even diagnostic"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

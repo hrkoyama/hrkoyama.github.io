@@ -209,5 +209,148 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#bratu-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "newton",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "bratu",
+        "name": {
+          "ja": "Bratu非線形境界値問題",
+          "en": "Bratu nonlinear boundary-value problem"
+        },
+        "problem_ids": [
+          "bratu"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "bratu",
+        "name": {
+          "ja": "1次元Bratu非線形境界値問題",
+          "en": "One-dimensional Bratu boundary-value problem"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/bratu.png",
+          "sha256": "e34f1dd633d24164a9f9b10d8c691aa4d8abbe13699ceefbf9ce4262d2a544e1",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "bratu",
+            "kind": "common",
+            "name": {
+              "ja": "1次元Bratu：小さい枝のNewton–GMRES",
+              "en": "1D Bratu: Newton–GMRES on the lower branch"
+            },
+            "scope": {
+              "ja": "−u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。",
+              "en": "Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes."
+            },
+            "method_ids": [
+              "newton"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/bratu.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "共通実行例では減衰Newton法で前進の境界値問題を解きます。関連する自動微分・感度・随伴・係数推定の検証は各手法の別配布版へ進めます。感度・逆問題（1個または2個の係数）の入力と判定は別であり、共通の前進実行例に合算しません。",
+          "en": "The common example solves the forward boundary-value problem with damped Newton. Related method pages lead to separate editions for automatic differentiation, sensitivities, adjoints and coefficient fitting. Sensitivity and inverse problems with one or two coefficients have separate inputs and acceptance checks; they are not added to the common forward execution entry."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "cubic-root",
+        "name": {
+          "ja": "減衰Newton法による3次方程式の求根",
+          "en": "Damped Newton root of a cubic equation"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/cubic-root.png",
+          "sha256": "82d33eafdf02384a4b338cb034eaa590d2f736c018948bbbbb20d1fe97ea2efb",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+            "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+          },
+          "source_kind": "computed-preview"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "bratu",
+        "problem_name": {
+          "ja": "1次元Bratu非線形境界値問題",
+          "en": "One-dimensional Bratu boundary-value problem"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "cubic-root",
+        "problem_name": {
+          "ja": "減衰Newton法による3次方程式の求根",
+          "en": "Damped Newton root of a cubic equation"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

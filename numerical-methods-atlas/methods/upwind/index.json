@@ -192,5 +192,193 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#advection-sine-en"
       }
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "upwind",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "linear-advection",
+        "name": {
+          "ja": "線形移流",
+          "en": "Linear advection"
+        },
+        "problem_ids": [
+          "advection-sine",
+          "advection-square"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "advection-sine",
+        "name": {
+          "ja": "周期正弦波の線形移流",
+          "en": "Periodic sine-wave advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+          "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+            "en": "Stored CIP, linear-interpolation and exact advection profiles."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "advection-sine",
+            "kind": "common",
+            "name": {
+              "ja": "周期正弦波の線形移流：風上法と解析解",
+              "en": "Periodic sine advection: upwind and analytic transport"
+            },
+            "scope": {
+              "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
+              "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
+            },
+            "method_ids": [
+              "upwind"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
+            "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "advection-square",
+        "name": {
+          "ja": "周期矩形波の線形移流",
+          "en": "Periodic square-wave advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-square.png",
+          "sha256": "62bacd52d45e0d6565506a14eda09f70add1c364fdd111584e867184c5907544",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+            "en": "Stored CIP, linear-interpolation and exact advection profiles."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "保存済みCIPおよびリミター比較の矩形波ケースで使われる手法です。",
+          "en": "Methods used by the stored square-wave CIP and limiter comparisons."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "advection-sine",
+        "problem_name": {
+          "ja": "周期正弦波の線形移流",
+          "en": "Periodic sine-wave advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-advection",
+            "title": {
+              "ja": "移流／正弦波の平行移動",
+              "en": "Advection / sine translation"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+              "en": "Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "advection-square",
+        "problem_name": {
+          "ja": "周期矩形波の線形移流",
+          "en": "Periodic square-wave advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-advection",
+            "title": {
+              "ja": "移流／正弦波の平行移動",
+              "en": "Advection / sine translation"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "方程式と周期輸送は共通ですが、参照カードは滑らかな正弦初期値であり、この矩形初期値の参照値ではありません。",
+              "en": "The equation and periodic transport are shared, but the reference uses smooth sine initial data and is not a numerical reference for this square profile."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

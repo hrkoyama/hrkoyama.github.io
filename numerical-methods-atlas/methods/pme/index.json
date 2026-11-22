@@ -385,5 +385,101 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json",
   "code_archive_sha256": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "pme",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "neutral-periodic-charges"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "neutral-periodic-charges",
+        "name": {
+          "ja": "中性周期点電荷：Ewald・smooth PME",
+          "en": "Neutral periodic charges: Ewald and smooth PME"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/ewald.png",
+          "sha256": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+          "width": 1500,
+          "height": 510,
+          "caption": {
+            "ja": "中性立方セルの非対称8点電荷。Ewaldの実空間・逆空間打切りに対する力の差を保存値から表示。smooth PMEの格子・Bスプライン次数比較は同じ問題の補助例へ接続。",
+            "en": "Asymmetric eight-charge neutral cubic cell: saved force differences over Ewald real/reciprocal cutoffs. The same problem links to a smooth-PME mesh/B-spline-order supplement."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "spme",
+            "kind": "supplement",
+            "name": {
+              "ja": "Bスプラインsmooth PMEの格子・次数収束",
+              "en": "Mesh/order convergence of B-spline smooth PME"
+            },
+            "scope": {
+              "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
+              "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+            },
+            "method_ids": [
+              "pme",
+              "spme"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "neutral-periodic-charges",
+        "problem_name": {
+          "ja": "中性周期点電荷：Ewald・smooth PME",
+          "en": "Neutral periodic charges: Ewald and smooth PME"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

@@ -3,6 +3,7 @@ from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
+import re
 from urllib.parse import urlsplit
 
 from atlas_execution_discovery import entry_url, load_discovery
@@ -57,7 +58,7 @@ def load_problem_routes(root=ROOT):
         return validate_public_url(url, root)
 
     catalog = read('catalog/atlas-problem-links.json')
-    inventory = read('numerical-methods-atlas/test-cases/index.json')
+    inventory = read('catalog/atlas-test-problems.json')
     previews = read('numerical-methods-atlas/gallery/preview-manifest.json')
     equation_ids = [row['id'] for row in read('catalog/atlas-equations.json')['equations']]
     reference_ids = [row['id'] for row in read('numerical-methods-atlas/assets/reference-solutions.json')['cases']]
@@ -83,7 +84,10 @@ def load_problem_routes(root=ROOT):
         record = example['execution']
         common[example['problem_id']].append({
             'id': record['id'], 'kind': 'common', 'name': record['name'], 'scope': record['scope'],
-            'guide': {lang: public(entry_url(record['id'], lang)) for lang in LANGUAGES},
+            'method_ids': record['method_ids'],
+            # Entry builders run later; identity validation and the final site
+            # check protect these generated destinations without stale inputs.
+            'guide': {lang: entry_url(record['id'], lang) for lang in LANGUAGES},
             'input': public(record['inputs']['url']), 'download': public(record['release']['download']),
             'verification': receipt_url})
     expansion = read('catalog/atlas-depth-expansion.json')
@@ -106,10 +110,13 @@ def load_problem_routes(root=ROOT):
             case = supplements[extra['id']]
             if expansion['case_problem_ids'].get(case['id']) != ident or case['url'] != extra['url'] or case['title'] != extra['name']:
                 raise ValueError('Unrelated reverse supplemental execution: '+case['id'])
+            if not re.fullmatch(r'[a-z0-9][a-z0-9-]*', case['id']) or case['url'] != '/numerical-methods-atlas/validation/'+case['id']+'/':
+                raise ValueError('Invalid supplemental guide identity: '+case['id'])
             base = case['download'].rsplit('/', 1)[0]+'/'
             executions.append({
                 'id': case['id'], 'kind': 'supplement', 'name': case['title'], 'scope': case['summary'],
-                'guide': {lang: public(case['url']+'?lang='+lang) for lang in LANGUAGES},
+                'method_ids': case['method_ids'],
+                'guide': {lang: 'https://hrkoyama.github.io'+case['url']+'?lang='+lang for lang in LANGUAGES},
                 'input': public(base+'inputs.json'), 'download': public(case['download']),
                 'verification': public(case['verification'])})
         cards[ident] = {

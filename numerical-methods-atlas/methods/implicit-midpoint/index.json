@@ -17123,5 +17123,200 @@
       },
       "kind": "dedicated-supplement"
     }
-  ]
+  ],
+  "problem_navigation": {
+    "method_id": "implicit-midpoint",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "hamiltonian",
+        "name": {
+          "ja": "Hamilton系・振動子",
+          "en": "Hamiltonian systems and oscillators"
+        },
+        "problem_ids": [
+          "quartic-oscillator"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+        }
+      },
+      {
+        "id": "bio-schnakenberg",
+        "name": {
+          "ja": "Schnakenberg反応拡散",
+          "en": "Schnakenberg reaction–diffusion"
+        },
+        "problem_ids": [
+          "turing-schnakenberg"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-schnakenberg-en"
+        }
+      },
+      {
+        "id": "bio-turing",
+        "name": {
+          "ja": "Turing反応拡散の枠組み",
+          "en": "Turing reaction–diffusion framework"
+        },
+        "problem_ids": [
+          "turing-schnakenberg"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-turing-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-turing-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "quartic-oscillator",
+        "name": {
+          "ja": "4次ポテンシャルの非線形振動子",
+          "en": "Nonlinear quartic-potential oscillator"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/quartic-oscillator.png",
+          "sha256": "1655466d9e547f243929a188e3b84ae30c9f9c7b9f9496e9bf0df2cac19ffbd1",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのt≤10の正準位相軌道。手法違いは同一問題の比較。",
+            "en": "Stored canonical phase orbits for t≤10; methods remain variants of one problem."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "turing-schnakenberg",
+        "name": {
+          "ja": "Turing不安定性：線形成長率と小振幅パターン",
+          "en": "Turing instability: linear growth and small-amplitude patterns"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png",
+          "sha256": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+          "width": 1680,
+          "height": 504,
+          "caption": {
+            "ja": "a=0.1,b=0.9、拡散係数0.01/1のSchnakenberg型。行列指数に対する線形誤差・成長率と、t=4の小振幅非線形初期パターンを保存値から表示。",
+            "en": "Schnakenberg-type a=0.1,b=0.9 and diffusivities 0.01/1: stored linear errors/growth against a matrix exponential and a small nonlinear onset pattern at t=4."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "schnakenberg-nonlinear",
+            "kind": "supplement",
+            "name": {
+              "ja": "Schnakenberg有限振幅過渡：非線形性と独立参照",
+              "en": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference"
+            },
+            "scope": {
+              "ja": "t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。",
+              "en": "Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics."
+            },
+            "method_ids": [
+              "centered-difference",
+              "implicit-midpoint"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json"
+          },
+          {
+            "id": "schnakenberg-pattern",
+            "kind": "supplement",
+            "name": {
+              "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
+              "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
+            },
+            "scope": {
+              "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
+              "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
+            },
+            "method_ids": [
+              "centered-difference",
+              "implicit-midpoint"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-pattern/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "quartic-oscillator",
+        "problem_name": {
+          "ja": "4次ポテンシャルの非線形振動子",
+          "en": "Nonlinear quartic-potential oscillator"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "turing-schnakenberg",
+        "problem_name": {
+          "ja": "Turing不安定性：線形成長率と小振幅パターン",
+          "en": "Turing instability: linear growth and small-amplitude patterns"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

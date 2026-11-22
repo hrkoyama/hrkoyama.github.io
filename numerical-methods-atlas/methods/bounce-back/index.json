@@ -77,5 +77,113 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": []
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "bounce-back",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "bgk",
+        "name": {
+          "ja": "等温格子BGK",
+          "en": "Isothermal lattice BGK"
+        },
+        "problem_ids": [
+          "channel-poiseuille"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en"
+        }
+      },
+      {
+        "id": "navier-stokes",
+        "name": {
+          "ja": "非圧縮Navier–Stokes",
+          "en": "Incompressible Navier–Stokes"
+        },
+        "problem_ids": [
+          "channel-poiseuille"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#navier-stokes-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "channel-poiseuille",
+        "name": {
+          "ja": "平行平板Poiseuille流",
+          "en": "Plane Poiseuille channel flow"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/channel-poiseuille.png",
+          "sha256": "b660e19b000519cd226ae544c25a716a2a943df34a7e3865c6fe5918ab7a6a8b",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済み半格子壁Poiseuille速度分布と参照値。",
+            "en": "Stored half-way-wall Poiseuille velocity profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en#code-en"
+        },
+        "executions": [],
+        "role": "related",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "channel-poiseuille",
+        "problem_name": {
+          "ja": "平行平板Poiseuille流",
+          "en": "Plane Poiseuille channel flow"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "poiseuille",
+            "title": {
+              "ja": "粘性チャネル／Poiseuille流",
+              "en": "Viscous channel / Poiseuille"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "放物線形は共通ですが、計算は格子幅ny・目標最大速度0.01に応じた体積力、カードは単位幅・G=1・ν=0.1です。",
+              "en": "Both have parabolic profiles, but the computation uses lattice height ny and forcing for peak speed 0.01; the card uses unit width, G=1 and ν=0.1."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poiseuille-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poiseuille-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poiseuille",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poiseuille"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

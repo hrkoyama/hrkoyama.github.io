@@ -853,5 +853,107 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
   "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "eigensolvers",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "krylov-spectrum",
+        "name": {
+          "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+          "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png",
+          "sha256": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+          "width": 1760,
+          "height": 560,
+          "caption": {
+            "ja": "再直交化Lanczos・ArnoldiのKrylov次元を変え、固有対残差と独立した密行列固有値との差を保存結果から比較。",
+            "en": "Stored eigenpair residuals and differences from independent dense eigenvalues as reorthogonalized Lanczos/Arnoldi Krylov dimensions increase."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "krylov-eigenvalues",
+            "kind": "supplement",
+            "name": {
+              "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+              "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+            },
+            "scope": {
+              "ja": "32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。",
+              "en": "Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references."
+            },
+            "method_ids": [
+              "eigensolvers"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigenvalues/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+          },
+          {
+            "id": "krylov-eigen-conditioning",
+            "kind": "supplement",
+            "name": {
+              "ja": "Krylov固有値：クラスター部分空間と非正規感度",
+              "en": "Krylov eigenvalues: cluster subspaces and nonnormal sensitivity"
+            },
+            "scope": {
+              "ja": "48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
+              "en": "Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
+            },
+            "method_ids": [
+              "eigensolvers"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "krylov-spectrum",
+        "problem_name": {
+          "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束",
+          "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

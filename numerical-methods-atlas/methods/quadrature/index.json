@@ -908,5 +908,107 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json",
   "code_archive_sha256": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "quadrature",
+    "status": "educational-example",
+    "equations": [],
+    "problems": [
+      {
+        "id": "quadrature-moments",
+        "name": {
+          "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+          "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png",
+          "sha256": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+          "width": 1760,
+          "height": 560,
+          "caption": {
+            "ja": "Gauss–Legendreの次数と適応Simpsonの要求公差を走査した保存誤差。指数・Lorentz型積分の解析値を参照し、推定誤差を厳密上界とは扱わない。",
+            "en": "Saved Gauss–Legendre order and adaptive-Simpson tolerance sweeps against analytic exponential/Lorentzian integrals; estimated errors are not rigorous bounds."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "gauss-adaptive-quadrature",
+            "kind": "supplement",
+            "name": {
+              "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+              "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+            },
+            "scope": {
+              "ja": "Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。",
+              "en": "Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK."
+            },
+            "method_ids": [
+              "quadrature"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gauss-adaptive-quadrature/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+          },
+          {
+            "id": "quadrature-conditioning",
+            "kind": "supplement",
+            "name": {
+              "ja": "求積：狭いピーク・相殺・端点・誤差推定の盲点",
+              "en": "Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots"
+            },
+            "scope": {
+              "ja": "Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。",
+              "en": "Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK."
+            },
+            "method_ids": [
+              "quadrature"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadrature-conditioning/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "quadrature-moments",
+        "problem_name": {
+          "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ",
+          "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadrature-moments/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }

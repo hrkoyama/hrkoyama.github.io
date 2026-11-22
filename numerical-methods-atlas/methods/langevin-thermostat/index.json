@@ -5105,5 +5105,196 @@
   "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json",
   "code_archive_sha256": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
   "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/result.json",
-  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "problem_navigation": {
+    "method_id": "langevin-thermostat",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "hamiltonian",
+        "name": {
+          "ja": "Hamilton系・振動子",
+          "en": "Hamiltonian systems and oscillators"
+        },
+        "problem_ids": [
+          "langevin-harmonic",
+          "thermostatted-quartic"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "langevin-harmonic",
+        "name": {
+          "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+          "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+          "sha256": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+          "width": 1680,
+          "height": 504,
+          "caption": {
+            "ja": "調和振動子BAOABの刻み0.4/0.2/0.1。離散定常共分散の偏り、有限標本誤差、正準CDF誤差とlag2の位置相関を保存値から分離表示。",
+            "en": "Stored harmonic-BAOAB steps 0.4/0.2/0.1 separate discrete stationary-covariance bias, sampling error, canonical-CDF errors and position correlation at lag 2."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "langevin-harmonic",
+            "kind": "supplement",
+            "name": {
+              "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+              "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+            },
+            "scope": {
+              "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
+              "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
+            },
+            "method_ids": [
+              "langevin-thermostat"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+          },
+          {
+            "id": "csvr-langevin-harmonic",
+            "kind": "supplement",
+            "name": {
+              "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+              "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+            },
+            "scope": {
+              "ja": "異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。",
+              "en": "Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations."
+            },
+            "method_ids": [
+              "stochastic-velocity-rescaling",
+              "langevin-thermostat"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "thermostatted-quartic",
+        "name": {
+          "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+          "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+          "sha256": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+          "width": 1690,
+          "height": 936,
+          "caption": {
+            "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+            "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "csvr-langevin-quartic",
+            "kind": "supplement",
+            "name": {
+              "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+              "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+            },
+            "scope": {
+              "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
+              "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+            },
+            "method_ids": [
+              "stochastic-velocity-rescaling",
+              "langevin-thermostat"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "langevin-harmonic",
+        "problem_name": {
+          "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+          "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#references-en"
+        },
+        "cases": []
+      },
+      {
+        "problem_id": "thermostatted-quartic",
+        "problem_name": {
+          "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
+          "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en#references-en"
+        },
+        "cases": []
+      }
+    ]
+  }
 }
