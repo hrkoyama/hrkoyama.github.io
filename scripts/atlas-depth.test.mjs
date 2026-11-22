@@ -20,7 +20,7 @@ test('field depth binds to the current successful public-registry rerun and its 
  }
 });
 test('molecular DFT and thermostats cannot borrow atomic or oscillator executions; unimplemented biological and MCMC scope stays explicit',()=>{
- for(const id of ['quantum-molecular','temperature'])assert.deepEqual(depth.fields.find(f=>f.id===id).examples,[]);
+ for(const id of ['temperature'])assert.deepEqual(depth.fields.find(f=>f.id===id).examples,[]);
  assert.deepEqual(depth.fields.find(f=>f.id==='biology').examples,['logistic-growth','sir-epidemic']);
  for(const id of ['mcmc','nose-hoover','ewald','pme','spme']){
   const method=methods.find(m=>m.id===id);assert.ok(method,id);assert.equal(method.status,'planned');assert.deepEqual(method.code_urls,[]);assert.deepEqual(method.execution_examples,[]);

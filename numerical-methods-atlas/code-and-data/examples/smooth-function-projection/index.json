@@ -255,7 +255,7 @@
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=en"
   },
   "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
+  "registry_sha256": "0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c",
   "discovery": {
     "id": "smooth-function-projection",
     "problem_id": "smooth-function-projection",
@@ -301,7 +301,7 @@
   },
   "public_rerun": {
     "passed": true,
-    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-domains-public.json",
+    "receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-h2.json",
     "execution_group": "smooth-function-projection"
   }
 }

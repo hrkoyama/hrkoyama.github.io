@@ -419,6 +419,11 @@ export const homeAreas = [
           "name": "home-map.execution.helium-ground-state",
           "route": "/numerical-methods-atlas/code-and-data/examples/helium-ground-state/",
           "kind": "execution"
+        },
+        {
+          "name": "home-map.execution.h2-rhf",
+          "route": "/numerical-methods-atlas/code-and-data/examples/h2-rhf/",
+          "kind": "execution"
         }
       ]
     ]

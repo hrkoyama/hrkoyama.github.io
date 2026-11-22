@@ -3,7 +3,7 @@
     "title": "このアトラスでできること",
     "paragraphs": [
       "大学院生・研究者と、調査や実装を支援するAIのための数値計算資料集です。分野地図から手法を選び、適用条件・数式・一次文献を読み、公開コードとデータまでたどれます。",
-      "代表19問題には、固定入力・実行手順・JSON/CSV出力・結果の判定基準があります。Poisson方程式、Barnes–Hut、水素型原子・Heなどを手元で実行し、解析解・数値参照・残差などと照合できます。",
+      "代表20問題には、固定入力・実行手順・JSON/CSV出力・結果の判定基準があります。Poisson方程式、Barnes–Hut、水素型原子・Heなどを手元で実行し、解析解・数値参照・残差などと照合できます。",
       "AIからは、静的本文とJSON/Markdown、版を固定したコード・入力・検証記録を参照できます。人もAIも、使える条件と確認範囲を読み、出典を残して利用するための入口です。"
     ],
     "map": "手法の見取り図",
@@ -48,16 +48,16 @@
         "note": "全分野の独立問題・重複を除く"
       }
     },
-    "status_note": "教育用例・関連コードあり、解説のみ、実装予定を区別しています。19例は全64問題から選んだ実行経路です。分野ごとの実装・検証範囲で、参照・収束確認と未実装の差を確認できます。汎用の分子・周期DFTソルバーではありません。",
+    "status_note": "教育用例・関連コードあり、解説のみ、実装予定を区別しています。20例は全65問題から選んだ実行経路です。分野ごとの実装・検証範囲で、参照・収束確認と未実装の差を確認できます。汎用の分子・周期DFTソルバーではありません。",
     "scope_toggle": "収録範囲と利用条件",
     "share": "紹介文・共有用画像",
-    "meta_description": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表19問題の固定入力・実行・結果照合を日英で案内します。"
+    "meta_description": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表20問題の固定入力・実行・結果照合を日英で案内します。"
   },
   "en": {
     "title": "What you can do with this atlas",
     "paragraphs": [
       "A numerical-computation resource for graduate students, researchers and the AI assistants supporting their work. Use the field map to choose a method, read its assumptions, equations and original papers, then follow the links to public code and data.",
-      "Fifteen representative problems include fixed inputs, execution steps, JSON/CSV outputs and acceptance criteria. Run examples such as Poisson, Barnes–Hut and hydrogenic/He atoms locally, and compare results with analytic solutions, numerical references or residual checks.",
+      "Twenty representative problems include fixed inputs, execution steps, JSON/CSV outputs and acceptance criteria. Run examples such as Poisson, Barnes–Hut and hydrogenic/He atoms locally, and compare results with analytic solutions, numerical references or residual checks.",
       "AI agents can consult static text and JSON/Markdown, and retrieve versioned code, inputs and verification records. Both people and AI can inspect the conditions and scope of each check and retain the sources when reusing the material."
     ],
     "map": "Method map",
@@ -102,9 +102,9 @@
         "note": "Independent problems; variants merged"
       }
     },
-    "status_note": "Educational code, reading only and planned implementations are distinct. The 19 recipes select paths through 64 problems. The field-evidence page separates references, refinement checks and unimplemented scope. This is not a general molecular/periodic DFT solver.",
+    "status_note": "Educational code, reading only and planned implementations are distinct. The 20 recipes select paths through 65 problems. The field-evidence page separates references, refinement checks and unimplemented scope. This is not a general molecular/periodic DFT solver.",
     "scope_toggle": "Coverage and use",
     "share": "Introduction and sharing materials",
-    "meta_description": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore fifteen fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."
+    "meta_description": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."
   }
 }

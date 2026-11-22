@@ -27,7 +27,7 @@ assert {x['id'] for x in data['sections']}==set(methods)
 examples=load(ROOT/'catalog/atlas-quantum-examples.json')
 case_ids={x['id'] for x in examples['cases']}
 assert all(x['status'] in ['reading-only','educational-example'] and not x['code_modules'] and not x['test_files'] for x in methods.values())
-assert all(set(x.get('quantum_examples',[]))<=case_ids and (x['status']!='educational-example' or x.get('quantum_examples')) for x in methods.values())
+assert all(set(x.get('quantum_examples',[]))<=case_ids and (x['status']!='educational-example' or x.get('quantum_examples') or x.get('molecular_examples')) for x in methods.values())
 total_problems=len(load(ROOT/'catalog/atlas-test-problems.json')['problems'])
 refs={x['id']:x for x in data['references']}
 assert len(refs)==len(data['references'])
@@ -42,7 +42,7 @@ bodies={}
 for lang in ['ja','en']:
     ja=lang=='ja';route=f'/numerical-methods-atlas/{lang}/read/quantum-chemistry/'
     body='<p class="eyebrow">ELECTRONIC STRUCTURE · QUANTUM CHEMISTRY · DFT</p><h1>'+esc(data['title'][lang])+'</h1><p class="intro">'+esc(data['description'][lang])+'</p>'
-    body+='<p class="resource-summary">'+(f'{len(methods)}項目の日英解説と{len(refs)}件の一次文献を公開。水素型原子・Heの2問題群に実行コード・数値検証例があります。小分子・周期系などはUnder constructionです。' if ja else f'Bilingual reading for {len(methods)} entries and {len(refs)} primary publications. Runnable code and numerical validation cover two hydrogenic/He problem families. Molecular and periodic examples remain under construction.')+'</p>'
+    body+='<p class="resource-summary">'+(f'{len(methods)}項目の日英解説と{len(refs)}件の一次文献を公開。水素型原子・Heの2問題群と、H₂の限定した有限基底RHFに実行・検証例があります。分子DFT・周期系は未実装です。' if ja else f'Bilingual reading for {len(methods)} entries and {len(refs)} primary publications. Runnable validation covers two hydrogenic/He families and scoped finite-basis H₂ RHF. Molecular DFT and periodic systems remain unimplemented.')+'</p>'
     body+='<nav class="resource-nav">'+''.join(link(u,t) for u,t in [('/numerical-methods-atlas/?lang='+lang,'アトラス冒頭' if ja else 'Atlas home'),('/numerical-methods-atlas/methods/?lang='+lang+'#quantum-'+lang,'手法の見取り図' if ja else 'Method map'),('/numerical-methods-atlas/equations/?lang='+lang+'#quantum-'+lang,'数式から探す' if ja else 'Browse by equation'),(f'/numerical-methods-atlas/{lang}/read/quantum-atoms/','水素型原子・Heを実行する' if ja else 'Run hydrogenic / He examples'),('#verification','実行・検証と次の計画' if ja else 'Runnable examples and next plans'),('#sources','一次文献と公式資料' if ja else 'Primary sources and documentation')])+'</nav>'
     body+='<h2 id="how-to-read">'+('最初に分けて考える3つのこと' if ja else 'Three choices to keep separate')+'</h2><div class="quantum-terms">'
     choices=[('物理モデル・近似','Physical model and approximation','HF、KS-DFT、MP2、CI、CC等。どの多電子状態やエネルギーを近似するか。','HF, KS-DFT, MP2, CI or CC: which many-electron states and energies are approximated?'),('表現・離散化','Representation and discretization','基底、格子、擬ポテンシャル、k点。モデルを有限の計算問題にする方法。','Basis, grid, pseudopotential and k sampling: how is the model made finite?'),('方程式の解き方','Equation solver','固有値計算、SCF、混合、DIIS。選んだ離散問題をどこまで解いたか。','Eigensolvers, SCF, mixing and DIIS: how accurately is the chosen discrete problem solved?')]
@@ -57,6 +57,8 @@ for lang in ['ja','en']:
         body+=''.join(paragraph(p) for p in x['paragraphs'][lang])
         if methods[x['id']].get('quantum_examples'):
             body+='<p class="resource-summary">'+esc(methods[x['id']]['example_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/quantum-atoms/','固定入力・コード・検証結果' if ja else 'Fixed inputs, code and measured checks')+'</p>'
+        if methods[x['id']].get('molecular_examples'):
+            body+='<p class="resource-summary">'+esc(methods[x['id']]['molecular_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/h2-hf/','H₂の入力・コード・独立参照・収束' if ja else 'H₂ inputs, code, independent references and refinement')+'</p>'
         if math[x['id']]:
             body+='<div class="quantum-math">'+''.join(math[x['id']])+'</div>'
             if any(len(f)>90 for f in x['formula']):body+='<p class="quantum-scroll-note">'+('長い式は横にスクロールできます。' if ja else 'Long equations scroll horizontally.')+'</p>'
@@ -66,7 +68,7 @@ for lang in ['ja','en']:
             body+='</section>'
         body+='<p class="quantum-caution">'+esc(x['caution'][lang])+'</p><p>'+link('/numerical-methods-atlas/methods/'+x['id']+'/?lang='+lang,'条件・実装状況・JSON' if ja else 'Assumptions, implementation status and JSON')+'</p><ul>'
         body+=''.join('<li>'+link('#ref-'+r,refs[r]['author'].replace(' and ','; ')+f' ({refs[r]["year"]})')+'</li>' for r in x['references'])+'</ul></section>'
-    body+='<section><h2 id="verification">'+('実行・検証例と次の計画' if ja else 'Runnable validation examples and next plans')+'</h2>'+paragraph(f'水素型原子・Heの2問題群を実行し、独立参照と比較して全{total_problems}問題の台帳へ加えました。小分子H₂・周期系は計画で、件数には加えていません。' if ja else f'Two hydrogenic/He problem families were executed, independently compared and added to the {total_problems}-problem inventory. H₂ and periodic examples remain plans and are not counted.')
+    body+='<section><h2 id="verification">'+('実行・検証例と次の計画' if ja else 'Runnable validation examples and next plans')+'</h2>'+paragraph(f'水素型原子・Heの2問題群を実行し、独立参照と比較して全{total_problems}問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。分子DFT・FCI・周期系は未実装で、件数に加えません。' if ja else f'Two hydrogenic/He problem families were executed, independently compared and added to the {total_problems}-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. Molecular DFT, FCI and periodic systems remain unimplemented and are not counted.')
     for x in data['verification_plan']:
         state=('実行・検証例あり' if ja else 'Runnable and checked') if x['state']=='verified-educational-example' else 'Under construction'
         body+='<article class="quantum-plan"><p class="resource-status">'+state+'</p><h3>'+esc(x['title'][lang])+'</h3>'+paragraph(x['check'][lang])
@@ -109,7 +111,7 @@ equations=[x for x in load(ROOT/'catalog/atlas-equations.json')['equations'] if 
 for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
     coverage=load(path)
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-quantum-reading']
-    for x in methods.values():coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':'quantum-chemistry','status':'local-example' if x.get('quantum_examples') else 'reading','group':'Electronic structure & quantum chemistry','scope':x['example_scope']['en'] if x.get('quantum_examples') else 'Introductory formulation only; no dedicated solver or numerical validation.','origin':'curated-quantum-reading'})
+    for x in methods.values():coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':'quantum-chemistry','status':'local-example' if x.get('quantum_examples') or x.get('molecular_examples') else 'reading','group':'Electronic structure & quantum chemistry','scope':' '.join(s['en'] for s in [x.get('example_scope',{}),x.get('molecular_scope',{})] if s.get('en')) if x.get('quantum_examples') or x.get('molecular_examples') else 'Introductory formulation only; no dedicated solver or numerical validation.','origin':'curated-quantum-reading'})
     for x in equations:coverage['items'].append({'kind':'equation','id':x['id'],'label':x['name']['en'],'chapter':x['chapter'],'status':x['status'],'group':'Electronic structure & quantum chemistry','scope':x['note']['en'],'origin':'curated-quantum-reading'})
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-model-example']
     for x in load(ROOT/'catalog/atlas-methods.json')['methods']:
@@ -226,7 +228,7 @@ for lang in ['ja','en']:
             text=re.sub(re.escape(start)+r'.*?'+re.escape(end),'',text,flags=re.S)
             if name=='roadmap':
                 heading=roadmap_history_titles(lang)['planned-quantum-chemistry-and-dft']
-                current='<h2 id="planned-quantum-chemistry-and-dft">'+heading+'</h2>'+paragraph(f'{len(methods)}項目の導入解説・代表式・一次文献を公開しました。水素型原子・Heには固定入力、コード、独立参照との比較があります。H₂の追加は条件付きの候補で、周期系の実行検証は別課題です。' if ja else f'Introductions, representative formulas and primary references are available for {len(methods)} entries. Hydrogenic/He examples supply fixed inputs, code and independent reference comparisons. H₂ is a conditional addition; periodic numerical validation is a separate task.')
+                current='<h2 id="planned-quantum-chemistry-and-dft">'+heading+'</h2>'+paragraph(f'{len(methods)}項目の導入解説・代表式・一次文献を公開しました。水素型原子・Heには固定入力、コード、独立参照との比較があります。H₂の有限基底RHFを追加しました。分子DFT・周期系の実行検証は別課題です。' if ja else f'Introductions, representative formulas and primary references are available for {len(methods)} entries. Hydrogenic/He examples supply fixed inputs, code and independent reference comparisons. Scoped finite-basis H₂ RHF is now included; molecular DFT and periodic validation remain separate tasks.')
                 current+='<p>'+link(f'/numerical-methods-atlas/{lang}/read/quantum-chemistry/','日英の解説・計算例と今後の計画' if ja else 'Bilingual overview, runnable examples and next plans')+'</p>'
                 text=re.sub(r'<h2 id="planned-quantum-chemistry-and-dft"[^>]*>.*?(?=<h2|\Z)',lambda m:current,text,flags=re.S)
                 text,updated_headings=adapt_roadmap_history(text,doc[name]['headings'] if doc is not None else None,lang,roadmap_headings)

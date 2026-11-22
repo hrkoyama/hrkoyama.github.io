@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-b89b6c2030
-Captured (UTC): 2026-11-22T03:54:04+00:00
+Snapshot: 2026-11-22-8c31ceeb01
+Captured (UTC): 2026-11-22T04:12:49+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -3388,6 +3388,200 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Closed-shell HF for H₂: independent references, SCF residuals and basis refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/
+Coverage: reading
+
+Solve two-electron H₂ at fixed proton positions using original s-Gaussian integrals and restricted closed-shell Hartree–Fock (RHF). Energy stabilization, satisfaction of the discrete SCF equations, changes under basis expansion and physical accuracy are separate questions.
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — The model being solved [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#model-and-scope
+Coverage: reading
+
+This is a Born–Oppenheimer electronic problem with the internuclear distance R fixed by the input. Atomic units are used: distances in bohr and energies in hartree. Relativistic effects, nuclear motion, vibration/rotation, solvent and periodic boundaries are excluded. Total energy including nuclear repulsion 1/R is recorded separately from electronic energy.
+The two electrons occupy the same spatial orbital with opposite spins in closed-shell RHF. The same restriction is retained at stretched geometries. SCF convergence and agreement with another implementation do not establish the correct dissociation limit or recover electron correlation. This is not a switch to UHF, configuration interaction or DFT.
+\hat H_{\mathrm{el}}=\sum_{i=1}^{2}\left[-\tfrac12\nabla_i^2-\sum_{A=1}^{2}\frac{1}{|\mathbf r_i-\mathbf R_A|}\right]+\frac{1}{r_{12}},\qquad E_{\mathrm{tot}}=E_{\mathrm{el}}+\frac1R
+Sources: Roothaan, C. C. J. (1951), C. A. Coulson and I. Fischer (1949)
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Gaussian basis functions and original integrals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#gaussians-and-integrals
+Coverage: reading
+
+Normalized s-type Gaussians centered on the two nuclei form the basis. A contracted function combines several exponents and coefficients, with normalization also applied to the contraction. Three primitives in STO-3G describe one contracted s function, not three independent basis functions. Inputs and results retain exponents, coefficients and contractions. The STO-3G numerical convention is checked against Basis Set Exchange version 1, rather than presented as a direct transcription of the original paper’s printed digits.
+The educational code computes overlap S, kinetic T, nuclear attraction V and electron-repulsion integrals, defining the one-electron matrix as h=T+V. The s-type Coulomb integrals involve the Boys function F₀, which tends to 1 as t approaches zero. Direct evaluation of erf(√t)/√t at zero would produce 0/0, so the limiting region needs a stable treatment. The chemists’ integral index convention and spin-summed density P determine the factor 1/2 in exchange.
+g_{\alpha A}(\mathbf r)=\left(\frac{2\alpha}{\pi}\right)^{3/4}e^{-\alpha|\mathbf r-\mathbf R_A|^2},\quad \chi_\mu=\sum_p d_{\mu p}g_{\alpha_{\mu p}A_\mu},\quad F_0(t)=\int_0^1e^{-tu^2}\,duP_{\mu\nu}=2\sum_{i\in\mathrm{occ}} C_{\mu i}C_{\nu i},\quad F_{\mu\nu}=h_{\mu\nu}+\sum_{\lambda\sigma}P_{\lambda\sigma}\left[(\mu\nu|\lambda\sigma)-\tfrac12(\mu\lambda|\nu\sigma)\right]
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Gaussian basis functions and original integrals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#gaussians-and-integrals
+Coverage: reading
+
+Sources: Boys, S. F. (1950), Roothaan, C. C. J. (1951), W. J. Hehre, R. F. Stewart and J. A. Pople (1969), Basis Set Exchange (2018)
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — How SCF convergence is judged [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#scf-and-residuals
+Coverage: reading
+
+Symmetric orthogonalization converts the Roothaan equation to an ordinary eigenproblem. Occupied orbitals define a new density, which rebuilds the Fock matrix for the next iteration. Density mixing can stabilize iterations, but an intermediate mixed density need not satisfy the idempotency condition of a pure determinant. Final density, orbitals and Fock matrix are therefore checked in a consistent state.
+A small energy change alone is insufficient. Energy change, the Frobenius norm of the AO-density change and the Frobenius norm of the orthonormal-coordinate commutator residual are compared with input thresholds. Orbital orthogonality, electron count Tr(PS)=2 and closed-shell idempotency PSP=2P are also measured. The matrix-trace energy with F[P] rebuilt from the final density is compared with a separate occupied-orbital/electron-repulsion-integral reconstruction.
+The minimum overlap eigenvalue and condition number are recorded. Near-linear dependence makes S⁻¹ᐟ² amplify errors. Termination reasons and iteration limits are explicit; reaching the limit is not reported as convergence. A stationary solution also need not be a stable minimum, so residual checks do not replace a full RHF/UHF stability analysis.
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — How SCF convergence is judged [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#scf-and-residuals
+Coverage: reading
+
+FC=SC\varepsilon,\qquad C^{\mathsf T}SC=I,\qquad X=S^{-1/2},\qquad XFX\widetilde C=\widetilde C\varepsilon,\quad C=X\widetilde CE_{\mathrm{tot}}[P]=\frac12\sum_{\mu\nu}P_{\mu\nu}\bigl(h_{\mu\nu}+F_{\mu\nu}[P]\bigr)+\frac1R\mathcal R=X(FPS-SPF)X,\qquad \operatorname{Tr}(PS)=2,\qquad PSP=2P
+Sources: Roothaan, C. C. J. (1951), PySCF developers (2026)
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Basis refinement and its limits [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#basis-convergence
+Coverage: reading
+
+SCF tolerance controls the remaining solution error within one fixed basis. A basis change changes the discrete problem itself. Basis comparisons retain tight SCF settings, geometry, nuclear repulsion and the RHF constraint. True RHF minima in nested variational spaces cannot increase in energy under expansion. Switching to a different local stationary branch would invalidate that simple comparison.
+Refinement here is limited to the finite s-only sequence defined by the public input. Adjacent-basis energy changes are measured, but the absence of p and higher angular functions means this does not prove convergence to the complete-basis-set (CBS) limit or chemical accuracy. Unrelated basis sets and different contractions are not all treated as a nested sequence. For each separation, the final two additions are checked against the stated energy-change target. This is a stopping diagnostic for the published sequence, not an upper bound on true basis error.
+The tolerance sweep changes only SCF thresholds and compares with a tighter solution. The basis sweep keeps SCF settings aligned. These differences and independent-implementation differences are separate outputs. A small final basis increment does not eliminate physical approximation error.
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Basis refinement and its limits [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#basis-convergence
+Coverage: reading
+
+V_n\subseteq V_{n+1}\ \Longrightarrow\ E_{n+1}^{\mathrm{RHF,min}}\le E_n^{\mathrm{RHF,min}},\qquad \Delta E_n=|E_{n+1}-E_n|\underbrace{E_{n,\tau}-E_{n,\mathrm{tight}}}_{\text{SCF tolerance effect}},\qquad\underbrace{E_{n+1,\mathrm{tight}}-E_{n,\mathrm{tight}}}_{\text{basis-space change}},\qquad\underbrace{E_{n,\mathrm{tight}}-E_{n,\mathrm{PySCF}}}_{\text{independent-implementation difference}}
+Sources: Boys, S. F. (1950), Roothaan, C. C. J. (1951)
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Independent reference and reproduction [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#independent-reference
+Coverage: reading
+
+The reference script supplies the same geometry, charge, spin and explicit Gaussian basis to PySCF, using its independent integral library and SCF procedure for RHF energies. It does not call the educational integral, Fock or SCF functions. Both calculations solve the same physical model in the same finite basis; the comparison is not against an exact correlated energy.
+The release records input/reference hashes, dependency versions, total energies, reference differences, iteration histories and termination reasons. Extract the ZIP into another directory and run the same fixed input, checking residual/error values against criteria as well as the JSON pass flag. Regenerating the independent reference is separate from ordinary reruns using the saved reference.
+Sources: Qiming Sun et al. (2020), PySCF developers (2026)
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Reading the stored measurements [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#measured-results
+Coverage: reading
+
+These values come from the release’s fixed inputs. Inputs and JSON retain thresholds, stopping rules and complete iteration histories. SCF iterations, basis changes and independent-implementation differences are shown separately. Numerical acceptance uses the original JSON values, not rounded display values.
+Measured quantityValue
+Maximum total-energy difference from independent reference / hartree2.53130849615e-14
+Maximum final SCF commutator norm9.13387953717e-11
+Maximum orbital orthogonality error3.697042672e-14
+Maximum electron-count error3.10862446895e-15
+Maximum trace/occupied-orbital energy difference / hartree2.22044604925e-15
+Maximum final-density idempotency residual1.77828610609e-15
+Maximum energy increase in the nested basis sequence / hartree0
+Maximum last-basis energy change / hartree0.000355298306571
+Maximum energy change over the final two basis additions / hartree0.000355298306571
+Maximum tolerance-sweep difference from the tight solution / hartree2.1869092981e-07
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Comparisons by bond length and basis [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#geometry-and-basis-results
+Coverage: reading
+
+R is in bohr; E is total energy including nuclear repulsion, in hartree. Basis IDs refer to definitions in the packaged input. The minimum overlap eigenvalue and condition number expose conditioning changes during expansion.
+R / bohrBasisFunctionsE / hartree|E−E(PySCF)|||R(SCF)||λmin(S)κ₂(S)Iterations
+0.8sto-3g2-0.9473079299911.59872115546e-147.38781502883e-110.13964143344213.322396660537
+0.8nested-s-24-0.8186863284532.53130849615e-143.81648819084e-110.0278160767862117.51796158750
+0.8nested-s-36-0.9544637060421.11022302463e-144.36833080506e-110.0231374389164171.43739061849
+0.8nested-s-48-0.9546797620351.06581410364e-145.1261758478e-110.0059955942618784.33652984349
+0.8nested-s-510-0.9731655883289.7699626167e-155.10005732554e-110.00590754844041826.23367616249
+0.8nested-s-612-0.9760995554761.02140518266e-145.06840779816e-110.00588636407299839.64490947449
+0.8nested-s-714-0.976141751391.15463194561e-143.29226918341e-110.001522798798133525.7953231950
+0.8nested-s-816-0.9764970496961.11022302463e-143.29257507308e-110.001522607707873534.7303086850
+1.4sto-3g2-1.116714325181.82076576039e-145.95419079641e-110.3406817941954.8705808002635
+1.4nested-s-24-1.055655109175.3290705182e-155.51452192566e-110.075728690526839.611075223548
+1.4nested-s-36-1.115145665158.43769498715e-156.64934113704e-110.056060531440262.40484616447
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Comparisons by bond length and basis [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#geometry-and-basis-results
+Coverage: reading
+
+1.4nested-s-48-1.115152273129.32587340685e-154.30945441841e-110.0169344016225257.21897924449
+1.4nested-s-510-1.126205363496.66133814775e-154.28982555429e-110.0165424658553270.10955834749
+1.4nested-s-612-1.127792533388.881784197e-154.26114122126e-110.0164014000272275.02784652149
+1.4nested-s-714-1.127799091139.32587340685e-154.35368156315e-110.004552420426861109.9454612849
+1.4nested-s-816-1.128009936327.54951656745e-154.35316939313e-110.004551395844691112.0375420949
+3sto-3g2-0.8852750008988.43769498715e-153.1254781346e-110.7738103555251.5846126065922
+3nested-s-24-0.9413083544476.66133814775e-159.13387953717e-110.19015746204411.94725126441
+3nested-s-36-0.9762534942849.32587340685e-156.28229847737e-110.11146515256123.738738635641
+3nested-s-48-0.9775887069867.9936057773e-154.9746950084e-110.052051611163169.535012130248
+3nested-s-510-0.9837637145276.88338275268e-154.7844377176e-110.047149476934278.624675211748
+3nested-s-612-0.9845935489795.99520433298e-154.78425761292e-110.044168253056884.912198059548
+3nested-s-714-0.9845942327.54951656745e-154.84271739792e-110.0183635137226243.21994702248
+3nested-s-816-0.9847130580146.2172489379e-154.83994296375e-110.0183388675583243.92195733448
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Stopping diagnostic for the nested basis sequence [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#nested-basis-target
+Coverage: reading
+
+For each separation, inspect the final two additions in the nested sequence. The maximum energy increment is compared with the input target. Meeting this target does not assess missing angular functions or establish a complete-basis error.
+R / bohrFinal basisMax |ΔE|, final two additions / hartreeInput target / hartreeTarget met
+0.8nested-s-80.0003552983065710.001true
+1.4nested-s-80.0002108451914360.001true
+3nested-s-80.0001188260137760.001true
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Changing only SCF tolerances [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#scf-tolerance-results
+Coverage: reading
+
+Tolerance sweeps keep geometry and basis fixed. Inspect termination, commutator residual and energy difference from the tight setting. This sweep does not measure basis error or physical-model error.
+R / bohrBasisSettingIterationsE / hartree|E−E(tight)|||R(SCF)||Termination
+1.4nested-s-8loose11-1.128009717632.1869092981e-070.000759109238126converged
+1.4nested-s-8medium28-1.128009936326.48370246381e-144.01077518965e-07converged
+1.4nested-s-8tight49-1.1280099363204.35316939313e-11converged
+The figure visualizes stored calculations. Acceptance uses the criteria and values in the input/result JSON.
+Full results / JSON · Basis/geometry CSV · SCF histories / CSV
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Download and verify the result [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#run-and-check
+Coverage: reading
+
+Install dependencies in the extracted edition directory, then use its fixed input. Choose a new or empty output directory. Regenerating the independent reference with PySCF is a separate operation; the ordinary runner compares against the saved reference.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Fixed input / JSON · Runner · Independent PySCF reference / JSON · Edition, acceptance criteria and citation
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#sources
+Coverage: reading
+
+Bibliographic, abstract and relevant-documentation checks are distinguished below. Full papers and third-party source code are not redistributed. Sources identify method provenance and the independent reference, not full-paper reproductions by this tutorial.
+Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A
+Original bibliographic identity and DOI checked against the existing Atlas. This implementation does not claim a full-paper reproduction or audit.
+Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics
+Original bibliographic identity and DOI checked against the existing Atlas. This implementation does not claim a full-paper reproduction or audit.
+C. A. Coulson and I. Fischer (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, Series 7, 40(303), 386–393
+Bibliographic identity and DOI checked as a historical source on molecular-orbital treatment and dissociation constraints; no full-text audit claimed.
+Qiming Sun et al. (2020). Recent developments in the PySCF program package. The Journal of Chemical Physics 153, 024109
+
+## Closed-shell HF for H₂: independent references, SCF residuals and basis refinement — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#sources
+Coverage: reading
+
+Publisher bibliography/abstract and author-institution record consulted. Executing the reference code is a separate numerical check.
+PySCF developers (2026). Self-consistent field (SCF) methods. Official PySCF user documentation
+Relevant official documentation sections on SCF equations, convergence, stability and linear dependence consulted; distinct from an original-method paper.
+W. J. Hehre, R. F. Stewart and J. A. Pople (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics 51(6), 2657–2664
+Publisher-deposited bibliographic metadata and DOI checked. Cited as the STO-nG source, not as a claim that every coefficient digit was transcribed from this paper. No full-text audit performed.
+Basis Set Exchange (2018). STO-3G version 1: hydrogen basis data. Official Basis Set Exchange dataset and family notes
+Hydrogen exponents and coefficients in official API version 1 checked against the input. The numerical convention is BSE v1 with Gaussian-derived precision, not a reproduction of the printed digits in the 1969 paper.
+
 ## Historical atlas [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/history/
@@ -5727,7 +5921,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemi
 Coverage: reading
 
 From Schrödinger, HF and DFT to bases, SCF and correlation, including space groups, little-group irreps, SOC and time reversal in band calculations.
-Bilingual reading for 18 entries and 28 primary publications. Runnable code and numerical validation cover two hydrogenic/He problem families. Molecular and periodic examples remain under construction.
+Bilingual reading for 18 entries and 30 primary publications. Runnable validation covers two hydrogenic/He families and scoped finite-basis H₂ RHF. Molecular DFT and periodic systems remain unimplemented.
 
 ## Quantum chemistry and DFT: approximations and equations — Physical model and approximation [en]
 
@@ -5773,12 +5967,20 @@ Coverage: reading
 
 HF makes the energy stationary within single antisymmetric Slater determinants. Exchange follows from the determinant; electron correlation relative to the HF reference is absent. Closed-shell RHF builds its Fock operator from doubly occupied spatial orbitals.
 J_j is a Coulomb operator and K_j is generally nonlocal exchange. Open-shell choices include UHF and ROHF, with spin contamination and symmetry breaking requiring explicit diagnostics.
-Only spherical helium with one doubly occupied 1s spatial orbital; the local HF exchange reduction is specific to this two-electron problem. Fixed inputs, code and measured checks
+Only spherical helium with one doubly occupied 1s spatial orbital; the local HF exchange reduction is specific to this two-electron problem. A separate edition adds H₂ RHF in finite s-Gaussian bases. Fixed inputs, code and measured checks
+New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation. H₂ inputs, code, independent references and refinement
 \hat F=\hat h+\sum_{j\in\mathrm{occ}}(2\hat J_j-\hat K_j),\qquad \hat F\phi_i=\varepsilon_i\phi_i\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon,\qquad \mathbf C^\dagger\mathbf S\mathbf C=\mathbf I
 Long equations scroll horizontally.
+
+## Quantum chemistry and DFT: approximations and equations — Hartree–Fock [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#hartree-fock
+Coverage: reading
+
 HF solutions need not be unique. SCF termination does not prove basis convergence, orbital stability or the desired electronic state. Bond dissociation can expose single-reference limitations.
 Assumptions, implementation status and JSON
 Roothaan, C. C. J. (1951)
+Coulson, C. A.; Fischer, I. (1949)
 
 ## Quantum chemistry and DFT: approximations and equations — Kohn–Sham density functional theory / DFT [en]
 
@@ -5809,11 +6011,13 @@ Coverage: reading
 
 The same HF or DFT model can use Gaussian or Slater atomic orbitals, plane waves, or a real-space grid. Nonorthogonal bases retain an overlap matrix S and require a generalized eigenproblem.
 Vary basis size, polarization and diffuse functions for atomic orbitals; cutoff and cell size for plane waves; spacing and domain for real-space grids. Boys provides an original entry point for Gaussian integral methods.
+New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation. H₂ inputs, code, independent references and refinement
 \phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
 Changing the basis is different from changing electron correlation or the functional. Check near-linear dependence, basis-set superposition error and pseudopotential compatibility.
 Assumptions, implementation status and JSON
 Boys, S. F. (1950)
 Roothaan, C. C. J. (1951)
+Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969)
 
 ## Quantum chemistry and DFT: approximations and equations — Self-consistent field iteration / SCF [en]
 
@@ -5822,7 +6026,8 @@ Coverage: reading
 
 SCF is an iteration for self-consistency in HF or KS, rather than a physical model. The map M builds a potential from the input density, solves for orbitals and constructs an output density.
 Save density differences, electron number and eigenpair or orbital-gradient residuals as well as energy changes. Record mixing, initial density, occupations, iteration limits and an explicit nonconvergence termination reason.
-Helium linear density mixing with density/energy/orbital-residual checks, alternative starts/mixing and explicit failure; no DIIS. Fixed inputs, code and measured checks
+Helium linear density mixing with density/energy/orbital-residual checks, alternative starts/mixing and explicit failure; no DIIS. A separate edition adds H₂ RHF in finite s-Gaussian bases. Fixed inputs, code and measured checks
+New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation. H₂ inputs, code, independent references and refinement
 n_{k+1}=(1-\alpha)n_k+\alpha\mathcal M[n_k],\qquad 0<\alpha\le1\mathrm{Tr}(\mathbf P\mathbf S)=N,\qquad \mathbf R=\mathbf F\mathbf P\mathbf S-\mathbf S\mathbf P\mathbf F
 Long equations scroll horizontally.
 A small energy change alone is insufficient. Convergence also does not establish the lowest-energy stable electronic solution.
@@ -6050,7 +6255,7 @@ White, S. R.; Martin, R. L. (1999)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 64-problem inventory. H₂ and periodic examples remain plans and are not counted.
+Two hydrogenic/He problem families were executed, independently compared and added to the 65-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. Molecular DFT, FCI and periodic systems remain unimplemented and are not counted.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -6069,12 +6274,13 @@ Coverage: reading
 Specify atomic units, a closed shell and exchange-only LDA. Save Hartree fields, electron count, density/energy SCF histories, grid convergence and an independent comparison; distinguish LDA with correlation.
 Results and reproduction
 
-## Quantum chemistry and DFT: approximations and equations — Molecule: H₂ with HF, DFT and finite-basis FCI [en]
+## Quantum chemistry and DFT: approximations and equations — Molecule: scoped H₂ RHF (DFT/FCI unimplemented) [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/
 Coverage: reading
 
-Fix geometry, basis, spin, functional, quadrature grid and SCF thresholds. Use dissociation curves to separate numerical error from single-reference and functional limitations.
+Compare with independent PySCF at identical geometries/s-type bases. Check joint SCF residuals, stopping, nested-basis energy changes and stated tolerance. Correct RHF dissociation and angular/complete-basis convergence remain separate.
+Results and reproduction
 
 ## Quantum chemistry and DFT: approximations and equations — Periodic systems: basis, k-mesh and cell convergence [en]
 
@@ -6106,16 +6312,18 @@ Schrödinger, E. (1926). Quantisierung als Eigenwertproblem. Annalen der Physik.
 Hartree, D. R. (1928). The Wave Mechanics of an Atom with a Non-Coulomb Central Field. Part I. Theory and Methods. Mathematical Proceedings of the Cambridge Philosophical Society.
 Dirac, P. A. M. (1930). Note on Exchange Phenomena in the Thomas Atom. Mathematical Proceedings of the Cambridge Philosophical Society.
 Møller, C.; Plesset, M. S. (1934). Note on an Approximation Treatment for Many-Electron Systems. Physical Review.
+Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
 Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A.
 Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics.
-Hohenberg, P.; Kohn, W. (1964). Inhomogeneous Electron Gas. Physical Review.
-Kohn, W.; Sham, L. J. (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review.
 
 ## Quantum chemistry and DFT: approximations and equations — Primary publications and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#sources
 Coverage: reading
 
+Hohenberg, P.; Kohn, W. (1964). Inhomogeneous Electron Gas. Physical Review.
+Kohn, W.; Sham, L. J. (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review.
+Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
 Monkhorst, H. J.; Pack, J. D. (1976). Special points for Brillouin-zone integrations. Physical Review B.
 Hamann, D. R.; Schlüter, M.; Chiang, C. (1979). Norm-Conserving Pseudopotentials. Physical Review Letters.
 Ceperley, D. M.; Alder, B. J. (1980). Ground State of the Electron Gas by a Stochastic Method. Physical Review Letters.
@@ -6123,22 +6331,28 @@ Pulay, P. (1980). Convergence acceleration of iterative sequences. The case of S
 Roos, B. O.; Taylor, P. R.; Siegbahn, P. E. M. (1980). A complete active space SCF method (CASSCF) using a density matrix formulated super-CI approach. Chemical Physics.
 Knowles, P. J.; Handy, N. C. (1984). A new determinant-based full configuration interaction method. Chemical Physics Letters.
 Runge, E.; Gross, E. K. U. (1984). Density-Functional Theory for Time-Dependent Systems. Physical Review Letters.
-Raghavachari, K.; Trucks, G. W.; Pople, J. A.; Head-Gordon, M. (1989). A fifth-order perturbation comparison of electron correlation theories. Chemical Physics Letters.
-Vanderbilt, D. (1990). Soft self-consistent pseudopotentials in a generalized eigenvalue formalism. Physical Review B.
-White, S. R. (1992). Density matrix formulation for quantum renormalization groups. Physical Review Letters.
-Becke, A. D. (1993). Density-functional thermochemistry. III. The role of exact exchange. The Journal of Chemical Physics.
 
 ## Quantum chemistry and DFT: approximations and equations — Primary publications and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#sources
 Coverage: reading
 
+Raghavachari, K.; Trucks, G. W.; Pople, J. A.; Head-Gordon, M. (1989). A fifth-order perturbation comparison of electron correlation theories. Chemical Physics Letters.
+Vanderbilt, D. (1990). Soft self-consistent pseudopotentials in a generalized eigenvalue formalism. Physical Review B.
+White, S. R. (1992). Density matrix formulation for quantum renormalization groups. Physical Review Letters.
+Becke, A. D. (1993). Density-functional thermochemistry. III. The role of exact exchange. The Journal of Chemical Physics.
 Blöchl, P. E. (1994). Projector augmented-wave method. Physical Review B.
 Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996). Generalized Gradient Approximation Made Simple. Physical Review Letters.
 Adamo, C.; Barone, V. (1999). Toward reliable density functional methods without adjustable parameters: The PBE0 model. The Journal of Chemical Physics.
 White, S. R.; Martin, R. L. (1999). Ab initio quantum chemistry using the density matrix renormalization group. The Journal of Chemical Physics.
 Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006). Bilbao Crystallographic Server. II. Representations of crystallographic point groups and space groups. Acta Crystallographica Section A.
 Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
+
+## Quantum chemistry and DFT: approximations and equations — Primary publications and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#sources
+Coverage: reading
+
 Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015). Strongly Constrained and Appropriately Normed Semilocal Density Functional. Physical Review Letters.
 Elcoro, L.; Bradlyn, B.; Wang, Z.; Vergniory, M. G.; Cano, J.; Felser, C.; Bernevig, B. A.; Orobengoa, D.; de la Flor, G.; Aroyo, M. I. (2017). Double crystallographic groups and their representations on the Bilbao Crystallographic Server. Journal of Applied Crystallography.
 Hinuma, Y.; Pizzi, G.; Kumagai, Y.; Oba, F.; Tanaka, I. (2017). Band structure diagram paths based on crystallography. Computational Materials Science.
@@ -8207,6 +8421,8 @@ Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006
 Hinuma, Y.; Pizzi, G.; Kumagai, Y.; Oba, F.; Tanaka, I. (2017). Band structure diagram paths based on crystallography. Computational Materials Science.
 Elcoro, L.; Bradlyn, B.; Wang, Z.; Vergniory, M. G.; Cano, J.; Felser, C.; Bernevig, B. A.; Orobengoa, D.; de la Flor, G.; Aroyo, M. I. (2017). Double crystallographic groups and their representations on the Bilbao Crystallographic Server. Journal of Applied Crystallography.
 Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
+Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
+Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
 
 ## Relativistic hydrodynamics: SRHD, GRHD, and GRMHD [en]
 
@@ -8539,8 +8755,17 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 In progress / publication check pending
-First batch: two biology and two stochastic examples executed at fixed inputs, with all 19 common examples rerun from public ZIPs. Next: finite-basis H₂ HF, reaction–diffusion growth rates/spatial convergence, known-distribution MCMC, and thermostat distributions/correlations. These follow-ups are unimplemented, with no promised completion date.
+Following the two biology/two stochastic first-batch examples, add H₂ RHF in finite s-Gaussian spaces. All 20 current examples were rerun from the public registry/ZIPs. Periodic DFT is the next quantum priority; other candidates are reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations. Follow-ups remain unimplemented, without promised completion dates.
 Field evidence and unimplemented scope
+
+## Implementation roadmap — Prioritize periodic DFT and k-point convergence next [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+Planned
+After completing H₂ publication/validation, develop periodic KS-DFT for a small neutral insulating cell. Connect Bloch conditions, reciprocal lattices, the first Brillouin zone and Monkhorst–Pack sampling to Gamma versus k-mesh checks, SCF/basis/auxiliary-grid convergence and independent references. Fix pseudopotentials, XC and units; metallic occupations/smearing follow later. Periodic DFT is not currently implemented.
+Existing k-point reading
 
 ## Implementation roadmap — Separate the current plan from development history [en]
 
@@ -8613,6 +8838,15 @@ Coverage: reading
 Planned
 Reconcile reproduction, bilingual guidance, indexes, downloads, editions and terms. Check ordinary Git/Python/Node maintenance and restoration in a separate directory, and carry remaining gaps into the next work queue.
 
+## Implementation roadmap — H₂ RHF in finite s-Gaussian bases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+Scoped verified example published
+New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation.
+H₂ independent reference, SCF and basis checks
+
 ## Implementation roadmap — A small Ewald validation example and PME/SPME reading [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
@@ -8620,14 +8854,6 @@ Coverage: reading
 
 Conditional candidate
 A conditional addition after the shared registry and representative examples. Fix self and zero-mode terms, boundaries and units for a neutral 3D periodic system, then compare energies, forces and convergence with an independent reference. Provide at least original sources, formulations and validation specifications for PME/SPME. Keep entries as reading or planned if the comparison is not established.
-
-## Implementation roadmap — An H₂ example using external electronic-structure software [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
-Coverage: reading
-
-Conditional candidate
-A candidate using existing public software with fixed geometry, basis, spin, functional, quadrature and SCF settings to compare RHF, specified DFT and finite-basis FCI. Do not call reruns in the same software independent-implementation validation or describe the example as an atlas-built general molecular solver. Periodic band calculations are a separate task.
 
 ## Implementation roadmap — Barnes–Hut fixed inputs and direct-sum comparison [en]
 
@@ -8652,7 +8878,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
 Scoped verified examples published
-Published fixed inputs, code, results and independent references for executed hydrogenic atoms and spherical-helium closed-shell HF / exchange-only LDA. This does not verify general molecular, periodic or correlation-inclusive DFT. An H₂ addition is conditional; periodic numerical validation is a separate task.
+Published hydrogenic/He closed-shell HF and exchange-only LDA inputs, code, results and independent references. A separate edition now adds H₂ RHF in finite s-Gaussian spaces. Molecular DFT, periodic systems and correlated energies remain future validation tasks.
 Runnable hydrogenic / helium checks
 
 ## Implementation roadmap — Atlas-based specialist AI and model research [en]
@@ -8947,7 +9173,7 @@ extracting symbolic models from deep learning.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#planned-quantum-chemistry-and-dft
 Coverage: reading
 
-Introductions, representative formulas and primary references are available for 18 entries. Hydrogenic/He examples supply fixed inputs, code and independent reference comparisons. H₂ is a conditional addition; periodic numerical validation is a separate task.
+Introductions, representative formulas and primary references are available for 18 entries. Hydrogenic/He examples supply fixed inputs, code and independent reference comparisons. Scoped finite-basis H₂ RHF is now included; molecular DFT and periodic validation remain separate tasks.
 Bilingual overview, runnable examples and next plans
 
 ## Implementation roadmap — Verified Euler and MHD comparisons# [en]
@@ -9505,8 +9731,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 110 methods and building blocks · 213 journal/conference papers · 254 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 76 reading chapters including this inventory.
+46 equation/model entries · 110 methods and building blocks · 215 journal/conference papers · 256 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 77 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -9600,7 +9826,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-93 entries have scoped local examples; 17 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+94 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -9753,7 +9979,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-207 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+209 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -13584,6 +13810,182 @@ Coverage: reading
 
 Kitajima・Inutsuka・Seno（2026）は、相対論的リーマンソルバー、不等な粒子バリオン数、可変平滑化長を使うSRGSPHを開発しています。プレプリントは2025年、掲載号は2026年です。特殊相対論であり、一般相対論的流体ソルバーではありません。SRHD／GRHD発展の調査へ進んでください。
 
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/
+Coverage: reading
+
+固定した2つの陽子と2電子からなるH₂を、自作のs型Gaussian積分と閉殻Hartree–Fock（RHF）で解きます。エネルギーが変わらなくなること、離散SCF方程式を満たすこと、基底を広げたときの変化、物理近似の妥当性を別々に確かめます。
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 何を計算するか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#model-and-scope
+Coverage: reading
+
+核間距離Rを入力で固定するBorn–Oppenheimer電子問題です。原子単位系を用い、距離はbohr、エネルギーはhartreeで記録します。電子の相対論効果、核運動、振動・回転、溶媒、周期境界は含めません。核間反発1/Rを含む全エネルギーと、電子エネルギーを混同しないように出力を分けます。
+2電子は同じ空間軌道を逆向きスピンで占有する閉殻RHFに制限します。結合を伸ばした点でも同じ制約を保った解を比較します。SCFが収束して別実装と一致しても、正しい解離極限や電子相関まで再現したことにはなりません。UHF、配置間相互作用、DFTへ切り替えた計算でもありません。
+\hat H_{\mathrm{el}}=\sum_{i=1}^{2}\left[-\tfrac12\nabla_i^2-\sum_{A=1}^{2}\frac{1}{|\mathbf r_i-\mathbf R_A|}\right]+\frac{1}{r_{12}},\qquad E_{\mathrm{tot}}=E_{\mathrm{el}}+\frac1R
+関連出典：Roothaan, C. C. J. (1951), C. A. Coulson and I. Fischer (1949)
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — Gaussian基底と自作の積分 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#gaussians-and-integrals
+Coverage: reading
+
+各核を中心とする規格化されたs型Gaussianを基底にします。縮約関数では複数の指数と係数をまとめ、縮約後の規格化もそろえます。STO-3Gを使う場合の3つのprimitiveは、独立した3基底関数ではなく1つの縮約s関数を表すことに注意します。指数・係数・縮約の定義は入力と結果に残します。STO-3Gの数値はBasis Set Exchangeのversion 1と照合した規約を採用し、原論文の印刷値から直接転記したものとして扱いません。
+重なりS、運動エネルギーT、電子–核引力V、電子間反発積分を教育用コードで計算し、1電子行列をh=T+Vと定義します。s型のCoulomb積分に現れるBoys関数F₀はt→0で1に近づきます。この付近を安定に扱わずerf(√t)/√tを直接評価すると0/0が生じます。JとKは化学者の積分添字規約とスピン和密度Pに対応させ、交換項の1/2をそろえます。
+g_{\alpha A}(\mathbf r)=\left(\frac{2\alpha}{\pi}\right)^{3/4}e^{-\alpha|\mathbf r-\mathbf R_A|^2},\quad \chi_\mu=\sum_p d_{\mu p}g_{\alpha_{\mu p}A_\mu},\quad F_0(t)=\int_0^1e^{-tu^2}\,duP_{\mu\nu}=2\sum_{i\in\mathrm{occ}} C_{\mu i}C_{\nu i},\quad F_{\mu\nu}=h_{\mu\nu}+\sum_{\lambda\sigma}P_{\lambda\sigma}\left[(\mu\nu|\lambda\sigma)-\tfrac12(\mu\lambda|\nu\sigma)\right]
+関連出典：Boys, S. F. (1950), Roothaan, C. C. J. (1951), W. J. Hehre, R. F. Stewart and J. A. Pople (1969), Basis Set Exchange (2018)
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — SCFの収束をどう判定するか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#scf-and-residuals
+Coverage: reading
+
+重なり行列を対称直交化してRoothaan方程式を解き、占有軌道から密度を作り、Fock行列を再構築して反復します。密度混合で反復を安定化できますが、混合途中の密度は一般に純粋な単一行列式の冪等条件を満たしません。最終的な密度・軌道・Fockを同じ状態で再評価して検査します。
+小さなエネルギー差だけでは停止を正当化できません。エネルギー変化、AO密度差のFrobeniusノルム、直交座標系の交換子残差のFrobeniusノルムを入力のしきい値と比較し、軌道の直交性、電子数Tr(PS)=2、閉殻の冪等条件PSP=2Pも測定します。最終密度からF[P]を作り直して求める行列トレースのエネルギーと、占有軌道と電子反発積分から別の式で再構成したエネルギーを照合します。
+最小重なり固有値と条件数も出力します。基底がほぼ線形従属になるとS⁻¹ᐟ²が誤差を増幅します。停止理由と反復上限を残し、上限到達を収束と表示しません。また、停留解は安定なエネルギー極小とは限らず、これらの残差検査は完全なRHF/UHF安定性解析の代用ではありません。
+FC=SC\varepsilon,\qquad C^{\mathsf T}SC=I,\qquad X=S^{-1/2},\qquad XFX\widetilde C=\widetilde C\varepsilon,\quad C=X\widetilde CE_{\mathrm{tot}}[P]=\frac12\sum_{\mu\nu}P_{\mu\nu}\bigl(h_{\mu\nu}+F_{\mu\nu}[P]\bigr)+\frac1R\mathcal R=X(FPS-SPF)X,\qquad \operatorname{Tr}(PS)=2,\qquad PSP=2P
+関連出典：Roothaan, C. C. J. (1951), PySCF developers (2026)
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 基底を広げる検査と、その限界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#basis-convergence
+Coverage: reading
+
+SCFの許容誤差は固定した基底内での解き残しです。基底の変更は離散問題自体の変更です。SCFの厳しい設定をそろえ、同じ幾何・核間反発・RHF制約で基底系列を比較します。入れ子の変分空間で真のRHF最小値を得ていれば、基底を広げても最小エネルギーは上がりません。ただし異なる局所停留枝へ移れば、この単純な比較は成立しません。
+ここでの細分化は公開入力で定義した有限のs型基底系列に限定します。連続する基底のエネルギー差を測ることはできますが、p型以上の角運動量成分がなく、完全基底極限（CBS）への収束や化学精度を証明しません。異なる縮約や無関係な基底集合の全てを、入れ子の系列として扱うこともしません。末尾の2回の追加について、指定したエネルギー変化の公差を両方満たしたかを核間距離ごとに記録します。これは公開系列の停止目安であり、真の基底誤差の上限ではありません。
+許容誤差走査ではSCFのしきい値だけを変更した結果を厳しい設定と比較します。基底走査ではSCF設定をそろえた結果を比較します。独立実装との差とこれらの差を別の量として出力し、最後の基底差が小さいという理由だけで物理近似の誤差をゼロにしません。
+V_n\subseteq V_{n+1}\ \Longrightarrow\ E_{n+1}^{\mathrm{RHF,min}}\le E_n^{\mathrm{RHF,min}},\qquad \Delta E_n=|E_{n+1}-E_n|\underbrace{E_{n,\tau}-E_{n,\mathrm{tight}}}_{\text{SCF tolerance effect}},\qquad\underbrace{E_{n+1,\mathrm{tight}}-E_{n,\mathrm{tight}}}_{\text{basis-space change}},\qquad\underbrace{E_{n,\mathrm{tight}}-E_{n,\mathrm{PySCF}}}_{\text{independent-implementation difference}}
+関連出典：Boys, S. F. (1950), Roothaan, C. C. J. (1951)
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 独立参照と再現手順 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#independent-reference
+Coverage: reading
+
+参照スクリプトは同じ核配置・電荷・スピン・明示的なGaussian基底をPySCFへ渡し、独立した積分ライブラリとSCFでRHFエネルギーを求めます。教育用の積分・Fock・SCF関数を参照側から呼び出しません。両者が同じ物理モデルと有限基底を解く比較であり、厳密な相関電子エネルギーを参照する比較ではありません。
+公開版は入力ハッシュ、参照ハッシュ、依存関係の版、全エネルギー、参照との差、反復履歴、終了理由を保存します。ZIPを別フォルダへ展開して同じ固定入力を実行し、JSONの合否だけでなく残差・誤差の値と許容条件を照合します。参照の再生成と、保存済み参照を使った通常の追試は別の操作です。
+関連出典：Qiming Sun et al. (2020), PySCF developers (2026)
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 保存した実測結果を読む [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#measured-results
+Coverage: reading
+
+次の値は公開版の固定入力から得た結果です。しきい値・停止条件・全反復履歴は入力とJSONに保存し、SCF反復、基底の変更、独立実装との差を別々に示します。表示の丸め値で再判定せず、機械判定は元のJSONの値で行います。
+確認した量実測値
+独立参照との全エネルギー最大差 / hartree2.53130849615e-14
+最終SCF交換子ノルムの最大値9.13387953717e-11
+軌道直交性の最大誤差3.697042672e-14
+電子数の最大誤差3.10862446895e-15
+行列トレースと占有軌道の別式による最大エネルギー差 / hartree2.22044604925e-15
+最終密度の冪等条件の最大残差1.77828610609e-15
+入れ子基底系列での最大エネルギー上昇 / hartree0
+系列末尾の基底差の最大値 / hartree0.000355298306571
+系列末尾2回の基底差の最大値 / hartree0.000355298306571
+SCF許容誤差走査と厳しい設定の最大差 / hartree2.1869092981e-07
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 核間距離・基底ごとの比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#geometry-and-basis-results
+Coverage: reading
+
+Rの単位はbohr、Eは核間反発を含む全エネルギー（hartree）です。基底IDは同梱入力の定義と対応します。重なり行列の最小固有値と条件数を併記し、基底を増やすことによる悪条件化も確認できます。
+R / bohr基底関数数E / hartree|E−E(PySCF)|||R(SCF)||λmin(S)κ₂(S)反復
+0.8sto-3g2-0.9473079299911.59872115546e-147.38781502883e-110.13964143344213.322396660537
+0.8nested-s-24-0.8186863284532.53130849615e-143.81648819084e-110.0278160767862117.51796158750
+0.8nested-s-36-0.9544637060421.11022302463e-144.36833080506e-110.0231374389164171.43739061849
+0.8nested-s-48-0.9546797620351.06581410364e-145.1261758478e-110.0059955942618784.33652984349
+0.8nested-s-510-0.9731655883289.7699626167e-155.10005732554e-110.00590754844041826.23367616249
+0.8nested-s-612-0.9760995554761.02140518266e-145.06840779816e-110.00588636407299839.64490947449
+0.8nested-s-714-0.976141751391.15463194561e-143.29226918341e-110.001522798798133525.7953231950
+0.8nested-s-816-0.9764970496961.11022302463e-143.29257507308e-110.001522607707873534.7303086850
+1.4sto-3g2-1.116714325181.82076576039e-145.95419079641e-110.3406817941954.8705808002635
+1.4nested-s-24-1.055655109175.3290705182e-155.51452192566e-110.075728690526839.611075223548
+1.4nested-s-36-1.115145665158.43769498715e-156.64934113704e-110.056060531440262.40484616447
+1.4nested-s-48-1.115152273129.32587340685e-154.30945441841e-110.0169344016225257.21897924449
+1.4nested-s-510-1.126205363496.66133814775e-154.28982555429e-110.0165424658553270.10955834749
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 核間距離・基底ごとの比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#geometry-and-basis-results
+Coverage: reading
+
+1.4nested-s-612-1.127792533388.881784197e-154.26114122126e-110.0164014000272275.02784652149
+1.4nested-s-714-1.127799091139.32587340685e-154.35368156315e-110.004552420426861109.9454612849
+1.4nested-s-816-1.128009936327.54951656745e-154.35316939313e-110.004551395844691112.0375420949
+3sto-3g2-0.8852750008988.43769498715e-153.1254781346e-110.7738103555251.5846126065922
+3nested-s-24-0.9413083544476.66133814775e-159.13387953717e-110.19015746204411.94725126441
+3nested-s-36-0.9762534942849.32587340685e-156.28229847737e-110.11146515256123.738738635641
+3nested-s-48-0.9775887069867.9936057773e-154.9746950084e-110.052051611163169.535012130248
+3nested-s-510-0.9837637145276.88338275268e-154.7844377176e-110.047149476934278.624675211748
+3nested-s-612-0.9845935489795.99520433298e-154.78425761292e-110.044168253056884.912198059548
+3nested-s-714-0.9845942327.54951656745e-154.84271739792e-110.0183635137226243.21994702248
+3nested-s-816-0.9847130580146.2172489379e-154.83994296375e-110.0183388675583243.92195733448
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 入れ子基底系列の停止目安 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#nested-basis-target
+Coverage: reading
+
+各核間距離について、系列末尾の2回の基底追加を調べます。最大エネルギー変化と入力の目標値を並べています。目標を満たしても、s型以外の関数や完全基底極限による誤差を評価したことにはなりません。
+R / bohr最終基底末尾2回の最大|ΔE| / hartree入力の目標 / hartree目標を満たす
+0.8nested-s-80.0003552983065710.001true
+1.4nested-s-80.0002108451914360.001true
+3nested-s-80.0001188260137760.001true
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — SCFの許容誤差だけを変える [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#scf-tolerance-results
+Coverage: reading
+
+同じ幾何と基底で許容誤差を走査します。各点の終了理由、交換子残差、厳しいSCF設定とのエネルギー差を読みます。この走査を基底誤差や物理モデルの誤差と呼びません。
+R / bohr基底設定反復E / hartree|E−E(tight)|||R(SCF)||終了理由
+1.4nested-s-8loose11-1.128009717632.1869092981e-070.000759109238126converged
+1.4nested-s-8medium28-1.128009936326.48370246381e-144.01077518965e-07converged
+1.4nested-s-8tight49-1.1280099363204.35316939313e-11converged
+図は保存済み計算の可視化です。判定には入力と結果JSONの条件・数値を使います。
+全結果 / JSON · 基底・幾何のCSV · SCF履歴 / CSV
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 取得して結果を確かめる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#run-and-check
+Coverage: reading
+
+ZIP内の配布版フォルダで依存関係を導入し、同梱の固定入力を使います。結果の出力先は新規または空のディレクトリを指定します。独立参照の再生成はPySCFを用いる別工程で、通常のrunnerは保存済み参照を照合します。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+固定入力 / JSON · Runner · PySCF独立参照 / JSON · 版・受入条件・引用の共通手順
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#sources
+Coverage: reading
+
+書誌確認、抄録の参照、公式資料の該当箇所の確認を区別します。論文の全文や第三者のソースコードは配布していません。下の出典は方法の系譜と独立参照を示し、この教材による論文全体の再現を意味しません。
+Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A
+既存アトラスの原著書誌とDOIを確認。今回の実装により原論文全体を再現・監査したという意味ではありません。
+Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics
+既存アトラスの原著書誌とDOIを確認。今回の実装により原論文全体を再現・監査したという意味ではありません。
+C. A. Coulson and I. Fischer (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, Series 7, 40(303), 386–393
+RHFの解離と制約を考える歴史的出典として書誌・DOIを確認。原文全文の監査ではありません。
+Qiming Sun et al. (2020). Recent developments in the PySCF program package. The Journal of Chemical Physics 153, 024109
+出版社の書誌・抄録と著者機関の登録を確認。参照コードの実行は別の数値検査です。
+PySCF developers (2026). Self-consistent field (SCF) methods. Official PySCF user documentation
+公式資料のSCF方程式・収束・安定性・線形従属の節を参照。原法の論文とは区別。
+W. J. Hehre, R. F. Stewart and J. A. Pople (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics 51(6), 2657–2664
+出版社由来の書誌・DOIを確認。STO-nGの原著として引用し、今回使う係数の全桁をこの原論文から転記したという意味ではありません。原文の全文監査は未実施。
+
+## H₂分子の閉殻HF：独立参照・SCF残差・基底の収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#sources
+Coverage: reading
+
+Basis Set Exchange (2018). STO-3G version 1: hydrogen basis data. Official Basis Set Exchange dataset and family notes
+公式APIのversion 1にあるHの指数・係数を入力と照合。数値の採用規約はBSE v1（Gaussian由来の桁数）であり、1969年論文の印刷桁の再現ではありません。
+
 ## 数値計算法の歴史アトラス [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/history/
@@ -15365,7 +15767,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemi
 Coverage: reading
 
 Schrödinger、HF・DFTから基底・SCF・電子相関へ。周期系の空間群、小群、既約表現、SOCと時間反転もたどる。
-18項目の日英解説と28件の一次文献を公開。水素型原子・Heの2問題群に実行コード・数値検証例があります。小分子・周期系などはUnder constructionです。
+18項目の日英解説と30件の一次文献を公開。水素型原子・Heの2問題群と、H₂の限定した有限基底RHFに実行・検証例があります。分子DFT・周期系は未実装です。
 
 ## 量子化学・DFT：何を近似し、何を解くか — 物理モデル・近似 [ja]
 
@@ -15411,12 +15813,14 @@ Coverage: reading
 
 HFは反対称な単一Slater行列式の範囲でエネルギーを停留させる方法です。交換は行列式から入り、そのHF参照から見た電子相関は含みません。閉殻RHFでは、二重占有された空間軌道を用いてFock演算子を作ります。
 J_jは軌道jのCoulomb場、K_jは一般に非局所な交換演算子です。開殻ではUHF・ROHF等の選択があり、UHFのスピン汚染や対称性の破れを記録する必要があります。
-Heの球対称・単一1s空間軌道を二重占有する閉殻HFのみ。交換演算子の局所還元はこの2電子問題に限ります。 固定入力・コード・検証結果
+Heの球対称・単一1s空間軌道を二重占有する閉殻HFのみ。交換演算子の局所還元はこの2電子問題に限ります。 別配布版にH₂の有限s型Gaussian基底RHFの例を追加。 固定入力・コード・検証結果
+新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
 \hat F=\hat h+\sum_{j\in\mathrm{occ}}(2\hat J_j-\hat K_j),\qquad \hat F\phi_i=\varepsilon_i\phi_i\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon,\qquad \mathbf C^\dagger\mathbf S\mathbf C=\mathbf I
 長い式は横にスクロールできます。
 HFの解は一般に一意とは限りません。SCFが停止しても基底収束・軌道安定性・正しい電子状態の確認が必要です。分子解離では単一参照の限界が現れます。
 条件・実装状況・JSON
 Roothaan, C. C. J. (1951)
+Coulson, C. A.; Fischer, I. (1949)
 
 ## 量子化学・DFT：何を近似し、何を解くか — Kohn–Sham密度汎関数法 [ja]
 
@@ -15441,11 +15845,13 @@ Coverage: reading
 
 同じHF・DFTでも、Gaussian型・Slater型の原子軌道、平面波、実空間格子などで離散問題が変わります。非直交基底の重なり行列Sを残し、一般化固有値問題を解く必要があります。
 原子軌道では基底の大きさ・分極・diffuse関数、平面波ではカットオフとセル、実空間では格子幅と領域を別々に変えます。Gaussian基底の積分評価はBoysの一次文献への入口を付けています。
+新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
 \phi_i=\sum_\mu C_{\mu i}\chi_\mu,\qquad S_{\mu\nu}=\langle\chi_\mu|\chi_\nu\rangle\mathbf F\mathbf C=\mathbf S\mathbf C\boldsymbol\varepsilon
 基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。
 条件・実装状況・JSON
 Boys, S. F. (1950)
 Roothaan, C. C. J. (1951)
+Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969)
 
 ## 量子化学・DFT：何を近似し、何を解くか — 自己無撞着場反復（SCF） [ja]
 
@@ -15454,7 +15860,8 @@ Coverage: reading
 
 SCFは物理モデル名ではなく、HFやKSで現れる自己無撞着条件を解く反復です。下式のMは、入力密度からポテンシャルを作り、軌道を解いて出力密度を作る写像です。
 エネルギー変化だけでなく、密度差、電子数、固有値または軌道勾配の残差を保存します。混合率、初期密度、占有の扱い、最大反復数、未収束という終了理由も出力に残します。
-Heの線形密度混合、密度・エネルギー・軌道残差、初期値・混合率の比較と未収束を検証。DIISは含みません。 固定入力・コード・検証結果
+Heの線形密度混合、密度・エネルギー・軌道残差、初期値・混合率の比較と未収束を検証。DIISは含みません。 別配布版にH₂の有限s型Gaussian基底RHFの例を追加。 固定入力・コード・検証結果
+新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。 H₂の入力・コード・独立参照・収束
 n_{k+1}=(1-\alpha)n_k+\alpha\mathcal M[n_k],\qquad 0<\alpha\le1\mathrm{Tr}(\mathbf P\mathbf S)=N,\qquad \mathbf R=\mathbf F\mathbf P\mathbf S-\mathbf S\mathbf P\mathbf F
 長い式は横にスクロールできます。
 小さいエネルギー変化だけで収束を宣言しません。収束した解が最低エネルギーの安定な電子状態である保証も別に検査します。
@@ -15682,7 +16089,7 @@ White, S. R.; Martin, R. L. (1999)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全64問題の台帳へ加えました。小分子H₂・周期系は計画で、件数には加えていません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全65問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。分子DFT・FCI・周期系は未実装で、件数に加えません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -15701,12 +16108,13 @@ Coverage: reading
 原子単位系・閉殻・交換のみLDAを明示。Hartree場、電子数、密度とエネルギーのSCF履歴、格子収束、独立実装との比較を保存。相関を含むLDAとは区別。
 結果・実行手順
 
-## 量子化学・DFT：何を近似し、何を解くか — 分子：H₂のHF・DFTと有限基底FCI [ja]
+## 量子化学・DFT：何を近似し、何を解くか — 分子：限定したH₂のRHF（DFT・FCIは未実装） [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
 Coverage: reading
 
-核間距離・基底・スピン・汎関数・求積格子・SCF閾値を固定。解離曲線で数値誤差と単一参照・汎関数の限界を分ける。
+同じ核間距離・同じs型基底で独立PySCFと照合。SCFの複数残差・停止条件、入れ子基底のエネルギー差と指定公差を確認。RHFの解離限界と角運動量を含む完全基底収束は別。
+結果・実行手順
 
 ## 量子化学・DFT：何を近似し、何を解くか — 周期系：基底・k点・セルの収束 [ja]
 
@@ -15738,18 +16146,20 @@ Schrödinger, E. (1926). Quantisierung als Eigenwertproblem. Annalen der Physik.
 Hartree, D. R. (1928). The Wave Mechanics of an Atom with a Non-Coulomb Central Field. Part I. Theory and Methods. Mathematical Proceedings of the Cambridge Philosophical Society.
 Dirac, P. A. M. (1930). Note on Exchange Phenomena in the Thomas Atom. Mathematical Proceedings of the Cambridge Philosophical Society.
 Møller, C.; Plesset, M. S. (1934). Note on an Approximation Treatment for Many-Electron Systems. Physical Review.
+Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
 Boys, S. F. (1950). Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system. Proceedings of the Royal Society A.
 Roothaan, C. C. J. (1951). New Developments in Molecular Orbital Theory. Reviews of Modern Physics.
 Hohenberg, P.; Kohn, W. (1964). Inhomogeneous Electron Gas. Physical Review.
 Kohn, W.; Sham, L. J. (1965). Self-Consistent Equations Including Exchange and Correlation Effects. Physical Review.
-Monkhorst, H. J.; Pack, J. D. (1976). Special points for Brillouin-zone integrations. Physical Review B.
-Hamann, D. R.; Schlüter, M.; Chiang, C. (1979). Norm-Conserving Pseudopotentials. Physical Review Letters.
 
 ## 量子化学・DFT：何を近似し、何を解くか — 一次文献と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#sources
 Coverage: reading
 
+Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
+Monkhorst, H. J.; Pack, J. D. (1976). Special points for Brillouin-zone integrations. Physical Review B.
+Hamann, D. R.; Schlüter, M.; Chiang, C. (1979). Norm-Conserving Pseudopotentials. Physical Review Letters.
 Ceperley, D. M.; Alder, B. J. (1980). Ground State of the Electron Gas by a Stochastic Method. Physical Review Letters.
 Pulay, P. (1980). Convergence acceleration of iterative sequences. The case of SCF iteration. Chemical Physics Letters.
 Roos, B. O.; Taylor, P. R.; Siegbahn, P. E. M. (1980). A complete active space SCF method (CASSCF) using a density matrix formulated super-CI approach. Chemical Physics.
@@ -15757,21 +16167,27 @@ Knowles, P. J.; Handy, N. C. (1984). A new determinant-based full configuration 
 Runge, E.; Gross, E. K. U. (1984). Density-Functional Theory for Time-Dependent Systems. Physical Review Letters.
 Raghavachari, K.; Trucks, G. W.; Pople, J. A.; Head-Gordon, M. (1989). A fifth-order perturbation comparison of electron correlation theories. Chemical Physics Letters.
 Vanderbilt, D. (1990). Soft self-consistent pseudopotentials in a generalized eigenvalue formalism. Physical Review B.
-White, S. R. (1992). Density matrix formulation for quantum renormalization groups. Physical Review Letters.
-Becke, A. D. (1993). Density-functional thermochemistry. III. The role of exact exchange. The Journal of Chemical Physics.
-Blöchl, P. E. (1994). Projector augmented-wave method. Physical Review B.
-Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996). Generalized Gradient Approximation Made Simple. Physical Review Letters.
 
 ## 量子化学・DFT：何を近似し、何を解くか — 一次文献と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#sources
 Coverage: reading
 
+White, S. R. (1992). Density matrix formulation for quantum renormalization groups. Physical Review Letters.
+Becke, A. D. (1993). Density-functional thermochemistry. III. The role of exact exchange. The Journal of Chemical Physics.
+Blöchl, P. E. (1994). Projector augmented-wave method. Physical Review B.
+Perdew, J. P.; Burke, K.; Ernzerhof, M. (1996). Generalized Gradient Approximation Made Simple. Physical Review Letters.
 Adamo, C.; Barone, V. (1999). Toward reliable density functional methods without adjustable parameters: The PBE0 model. The Journal of Chemical Physics.
 White, S. R.; Martin, R. L. (1999). Ab initio quantum chemistry using the density matrix renormalization group. The Journal of Chemical Physics.
 Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006). Bilbao Crystallographic Server. II. Representations of crystallographic point groups and space groups. Acta Crystallographica Section A.
 Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
 Sun, J.; Ruzsinszky, A.; Perdew, J. P. (2015). Strongly Constrained and Appropriately Normed Semilocal Density Functional. Physical Review Letters.
+
+## 量子化学・DFT：何を近似し、何を解くか — 一次文献と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#sources
+Coverage: reading
+
 Elcoro, L.; Bradlyn, B.; Wang, Z.; Vergniory, M. G.; Cano, J.; Felser, C.; Bernevig, B. A.; Orobengoa, D.; de la Flor, G.; Aroyo, M. I. (2017). Double crystallographic groups and their representations on the Bilbao Crystallographic Server. Journal of Applied Crystallography.
 Hinuma, Y.; Pizzi, G.; Kumagai, Y.; Oba, F.; Tanaka, I. (2017). Band structure diagram paths based on crystallography. Computational Materials Science.
 
@@ -17745,6 +18161,8 @@ Aroyo, M. I.; Kirov, A.; Capillas, C.; Perez-Mato, J. M.; Wondratschek, H. (2006
 Hinuma, Y.; Pizzi, G.; Kumagai, Y.; Oba, F.; Tanaka, I. (2017). Band structure diagram paths based on crystallography. Computational Materials Science.
 Elcoro, L.; Bradlyn, B.; Wang, Z.; Vergniory, M. G.; Cano, J.; Felser, C.; Bernevig, B. A.; Orobengoa, D.; de la Flor, G.; Aroyo, M. I. (2017). Double crystallographic groups and their representations on the Bilbao Crystallographic Server. Journal of Applied Crystallography.
 Fu, L.; Kane, C. L. (2007). Topological Insulators with Inversion Symmetry. Physical Review B.
+Coulson, C. A.; Fischer, I. (1949). XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science.
+Hehre, W. J.; Stewart, R. F.; Pople, J. A. (1969). Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals. The Journal of Chemical Physics.
 
 ## 相対論的流体力学：SRHD、GRHD、GRMHD [ja]
 
@@ -17944,8 +18362,17 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 実装中・公開確認待ち
-第1弾：生物2例・確率2例を固定入力で実行し、公開ZIPから共通19例を追試。次はH₂の有限基底HF、反応拡散の線形成長率・空間収束、既知分布MCMC、温度制御の分布・相関。これら後続例は未実装であり、完了日を約束しない。
+第1弾の生物2例・確率2例に続き、H₂の有限s型基底RHFを追加。現行20実行例を公開台帳・ZIPから追試。量子では周期DFTを次の優先課題とし、生物・確率の後続候補は反応拡散、既知分布MCMC、温度制御の分布・相関。後続は未実装で、完了日は未定。
 分野ごとの根拠と未実装範囲
+
+## 実装ロードマップ — 周期DFTとk点収束を次の量子計算の優先課題にする [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
+Coverage: reading
+
+予定
+H₂の公開・検証を完了した後、絶縁体の小さな中性セルで周期KS-DFTを整備。Bloch条件・逆格子・第一Brillouin域・Monkhorst–Packの解説から、Γ点と複数kメッシュ、SCF・基底／補助格子の収束、独立参照へつなぐ。擬ポテンシャル・XC・単位を固定し、金属の占有数・smearingは後続。現時点で周期DFT実装済みとは表示しない。
+k点の既存解説
 
 ## 実装ロードマップ — 現行計画と履歴を分ける [ja]
 
@@ -18018,6 +18445,15 @@ Coverage: reading
 予定
 代表例の再現、日英案内、索引、取得先、版・利用条件を照合する。通常のGit・Python・Nodeによる更新と別フォルダへの復元を確認し、残る不足は次の台帳へ残す。
 
+## 実装ロードマップ — H₂の有限s型Gaussian基底RHF [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
+Coverage: reading
+
+検証した限定例を公開済み
+新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。
+H₂の独立参照・SCF・基底試験
+
 ## 実装ロードマップ — Ewaldの小規模検証とPME/SPMEの解説 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
@@ -18025,14 +18461,6 @@ Coverage: reading
 
 条件付きの候補
 共通台帳・代表例の整備を優先したうえで追加する候補。中性の3次元周期系で自己項・ゼロモード・境界・単位を固定し、エネルギー・力・収束を独立した参照と照合する。PME/SPMEは少なくとも原典・定式化・検証仕様を揃える。照合できなければ解説・予定の状態を維持する。
-
-## 実装ロードマップ — H₂の外部ソフトによる実行例 [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
-Coverage: reading
-
-条件付きの候補
-既存の公開ソフトで幾何・基底・スピン・汎関数・求積・SCF条件を固定し、RHF・指定DFT・有限基底FCIを比較する候補。同じソフト内の再実行を独立実装の検証と呼ばず、アトラス独自の汎用分子ソルバーとも区別する。周期バンド計算は別課題とする。
 
 ## 実装ロードマップ — Barnes–Hutの固定入力・直接和比較 [ja]
 
@@ -18057,7 +18485,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
 検証した限定例を公開済み
-水素型原子と球対称Heの閉殻HF・交換のみLDAを実行・検証し、固定入力、コード、結果、独立参照を公開済み。一般の分子・周期・相関を含むDFTまで検証したという意味ではない。H₂の追加は条件付き、周期系の実行検証は別課題とする。
+水素型原子・球対称Heの閉殻HF・交換のみLDAの固定入力、コード、結果、独立参照を公開済み。別配布版でH₂の有限s型Gaussian基底RHFを追加。分子DFT・周期系・相関エネルギーの検証は今後の課題。
 水素型原子・Heの実行検証例
 
 ## 実装ロードマップ — アトラスを核とする専門AI・モデル研究 [ja]
@@ -18220,7 +18648,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/#planned-quantum-chemistry-and-dft
 Coverage: reading
 
-18項目の導入解説・代表式・一次文献を公開しました。水素型原子・Heには固定入力、コード、独立参照との比較があります。H₂の追加は条件付きの候補で、周期系の実行検証は別課題です。
+18項目の導入解説・代表式・一次文献を公開しました。水素型原子・Heには固定入力、コード、独立参照との比較があります。H₂の有限基底RHFを追加しました。分子DFT・周期系の実行検証は別課題です。
 日英の解説・計算例と今後の計画
 
 ## 実装ロードマップ — 検証付きEuler・MHD比較# [ja]
@@ -18629,8 +19057,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素110項目・学術誌／会議論文213件・全参考資料254件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め76章です。
+方程式・モデル46項目・計算法と構成要素110項目・学術誌／会議論文215件・全参考資料256件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め77章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -18725,7 +19153,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は93、文献解説のみは17です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は94、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -18877,7 +19305,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-207件：学術誌論文（総説・翻訳・採録済み論文を含む）
+209件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章

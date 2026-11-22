@@ -90,6 +90,19 @@ def public_record(x):
                       code_base=base,code_edition=cases[0]['release']['version'],code_download=cases[0]['release']['download'],
                       code_verification=cases[0]['release']['verification'],run_commands=[e['commands']['run'] for e in cases],
                       run_from='Extracted model-benchmarks edition directory')
+    if x.get('molecular_examples'):
+        cases=[e for e in EXECUTION_RECORDS if e['id'] in x['molecular_examples']]
+        assert {e['id'] for e in cases}==set(x['molecular_examples']) and x['status']=='educational-example'
+        assert all(e['release']['family']=='molecular-hf' and x['id'] in e['method_ids'] for e in cases)
+        molecular_base=cases[0]['release']['manifest'].rsplit('/',1)[0]+'/'
+        record['code_urls'] += [molecular_base+'molecular_hf.py',molecular_base+'run.py']
+        record['test_urls'] += [molecular_base+'test_molecular_hf.py']
+        record['molecular_release']={'release':cases[0]['release'],'code_base':molecular_base,
+            'examples':x['molecular_examples'],'run_commands':[e['commands']['run'] for e in cases],
+            'scope':x['molecular_scope']}
+        if not x.get('quantum_examples'):
+            record.update(code_base=molecular_base,code_edition=cases[0]['release']['version'],
+                          run_commands=[e['commands']['run'] for e in cases],run_from='Extracted molecular-hf edition directory')
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -195,6 +208,9 @@ for x in METHODS:
             body+='</ul><p>'+link(ACODE+ATOMS['archive'],'コード・入力・結果 ZIP' if ja else 'Code, inputs and results ZIP')+' · '+link(ACODE+'verification.json','独立展開の検証記録' if ja else 'Independent-extraction verification')+'</p><p>'+link(ACODE+'atomic_radial.py','Python solver')+' · '+link(ACODE+'test_atomic_radial.py','Tests')+' · '+link(ACODE+'inputs.json','Inputs JSON')+' · '+link(ACODE+'results/results.json','Results JSON')+' · '+link(ACODE+'reference-pyscf.json','Independent reference JSON')+'</p><pre><code>'+esc(ATOMS['test_command']+'\n'+ATOMS['run_command'])+'</code></pre>'
         if x.get('model_examples'):
             body+='<h2>'+('固定入力の専用実装と検証' if ja else 'Dedicated fixed-input implementation and checks')+'</h2><p>'+esc(x['example_scope'][lang])+'</p><p>'+link(record['code_urls'][0],'Python solver')+' · '+link(record['test_urls'][0],'Tests')+' · '+link(record['code_download'],'ZIP')+' · '+link(record['code_verification'],'Verification JSON')+'</p>'
+        if x.get('molecular_examples'):
+            molecular=record['molecular_release'];molecular_base=molecular['code_base']
+            body+='<h2>'+('H₂の有限Gaussian基底RHF' if ja else 'H₂ RHF in finite Gaussian bases')+'</h2><p>'+esc(x['molecular_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/h2-hf/','独立参照・SCF・基底の収束' if ja else 'Independent reference, SCF and basis refinement')+' · '+link(molecular_base+'molecular_hf.py','Python solver')+' · '+link(molecular_base+'test_molecular_hf.py','Tests')+' · '+link(molecular['release']['download'],'ZIP')+'</p>'
         for common in execution_links(x['id']):
             body+='<p class="resource-summary">'+link(common['guide'][lang],'入力・実行・結果判定・引用の共通手順' if ja else 'Shared input, execution, validation and citation steps')+'</p>'
         if x.get('example'):
@@ -225,6 +241,7 @@ for x in METHODS:
     md+='\n'.join('- Reference: '+r['url']+' — '+r['scope'] for r in x['references'])+'\n\n'
     if x.get('model_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\nCode: '+record['code_urls'][0]+'\nTests: '+record['test_urls'][0]+'\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\n\n'
     if x.get('quantum_examples'):md+='Scoped example: '+x['example_scope']['en']+'\n\n'+json.dumps(record['code_examples'],ensure_ascii=False,indent=2)+'\n\nDownload: '+record['code_download']+'\nVerification: '+record['code_verification']+'\nSource: '+record['code_urls'][0]+'\nResults: '+record['results']+'\nCommands (from extracted atomic edition):\n\n'+ '\n'.join(record['run_commands'])+'\n\n'
+    if x.get('molecular_examples'):md+='Molecular scope: '+x['molecular_scope']['en']+'\n\n'+json.dumps(record['molecular_release'],ensure_ascii=False,indent=2)+'\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'
     if x.get('example'):md+='Runnable example:\n\n'+json.dumps(x['example'],ensure_ascii=False,indent=2)+'\n\n'

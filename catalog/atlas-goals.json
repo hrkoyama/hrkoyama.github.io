@@ -474,6 +474,76 @@
         "probability",
         "time"
       ]
+    },
+    {
+      "id": "molecular-hf",
+      "title": {
+        "ja": "H₂分子のHFと収束を確かめたい",
+        "en": "Check H₂ molecular HF and convergence"
+      },
+      "terms": [
+        "H₂",
+        "h₂",
+        "H2の",
+        "h2 molecule",
+        "h2 rhf",
+        "molecular hf",
+        "分子hf",
+        "分子のhf",
+        "分子のHF",
+        "水素分子",
+        "hydrogen molecule",
+        "分子のHartree"
+      ],
+      "scope": {
+        "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+        "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+      },
+      "methods": [],
+      "examples": [
+        "h2-rhf"
+      ],
+      "resources": [
+        {
+          "id": "h2-rhf-resource",
+          "name": {
+            "ja": "H₂の有限s型Gaussian基底RHF",
+            "en": "H₂ RHF in finite s-Gaussian bases"
+          },
+          "group": {
+            "ja": "分子HFの限定例",
+            "en": "Scoped molecular HF"
+          },
+          "summary": {
+            "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+            "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+          },
+          "status": "educational-example",
+          "resource_type": "scoped-example",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular_hf.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py"
+          ],
+          "execution_examples": [
+            {
+              "id": "h2-rhf",
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
+              }
+            }
+          ]
+        }
+      ],
+      "domains": [
+        "quantum"
+      ]
     }
   ],
   "home": {

@@ -25,8 +25,8 @@
         "en": "Close validation gaps between fields"
       },
       "scope": {
-        "ja": "第1弾：生物2例・確率2例を固定入力で実行し、公開ZIPから共通19例を追試。次はH₂の有限基底HF、反応拡散の線形成長率・空間収束、既知分布MCMC、温度制御の分布・相関。これら後続例は未実装であり、完了日を約束しない。",
-        "en": "First batch: two biology and two stochastic examples executed at fixed inputs, with all 19 common examples rerun from public ZIPs. Next: finite-basis H₂ HF, reaction–diffusion growth rates/spatial convergence, known-distribution MCMC, and thermostat distributions/correlations. These follow-ups are unimplemented, with no promised completion date."
+        "ja": "第1弾の生物2例・確率2例に続き、H₂の有限s型基底RHFを追加。現行20実行例を公開台帳・ZIPから追試。量子では周期DFTを次の優先課題とし、生物・確率の後続候補は反応拡散、既知分布MCMC、温度制御の分布・相関。後続は未実装で、完了日は未定。",
+        "en": "Following the two biology/two stochastic first-batch examples, add H₂ RHF in finite s-Gaussian spaces. All 20 current examples were rerun from the public registry/ZIPs. Periodic DFT is the next quantum priority; other candidates are reaction–diffusion, known-distribution MCMC and thermostat distributions/correlations. Follow-ups remain unimplemented, without promised completion dates."
       },
       "links": [
         {
@@ -34,6 +34,30 @@
           "label": {
             "ja": "分野ごとの根拠と未実装範囲",
             "en": "Field evidence and unimplemented scope"
+          }
+        }
+      ]
+    },
+    {
+      "id": "periodic-dft-validation",
+      "target_year": 2026,
+      "state": "planned",
+      "track": "current",
+      "priority": "P0",
+      "title": {
+        "ja": "周期DFTとk点収束を次の量子計算の優先課題にする",
+        "en": "Prioritize periodic DFT and k-point convergence next"
+      },
+      "scope": {
+        "ja": "H₂の公開・検証を完了した後、絶縁体の小さな中性セルで周期KS-DFTを整備。Bloch条件・逆格子・第一Brillouin域・Monkhorst–Packの解説から、Γ点と複数kメッシュ、SCF・基底／補助格子の収束、独立参照へつなぐ。擬ポテンシャル・XC・単位を固定し、金属の占有数・smearingは後続。現時点で周期DFT実装済みとは表示しない。",
+        "en": "After completing H₂ publication/validation, develop periodic KS-DFT for a small neutral insulating cell. Connect Bloch conditions, reciprocal lattices, the first Brillouin zone and Monkhorst–Pack sampling to Gamma versus k-mesh checks, SCF/basis/auxiliary-grid convergence and independent references. Fix pseudopotentials, XC and units; metallic occupations/smearing follow later. Periodic DFT is not currently implemented."
+      },
+      "links": [
+        {
+          "url": "/numerical-methods-atlas/ja/read/quantum-chemistry/#k-point",
+          "label": {
+            "ja": "k点の既存解説",
+            "en": "Existing k-point reading"
           }
         }
       ]
@@ -350,17 +374,26 @@
     {
       "id": "molecular-quantum-example",
       "target_year": 2026,
-      "state": "conditional-planned",
-      "track": "conditional",
+      "state": "published-verified-example",
+      "track": "current",
       "title": {
-        "ja": "H₂の外部ソフトによる実行例",
-        "en": "An H₂ example using external electronic-structure software"
+        "ja": "H₂の有限s型Gaussian基底RHF",
+        "en": "H₂ RHF in finite s-Gaussian bases"
       },
       "scope": {
-        "ja": "既存の公開ソフトで幾何・基底・スピン・汎関数・求積・SCF条件を固定し、RHF・指定DFT・有限基底FCIを比較する候補。同じソフト内の再実行を独立実装の検証と呼ばず、アトラス独自の汎用分子ソルバーとも区別する。周期バンド計算は別課題とする。",
-        "en": "A candidate using existing public software with fixed geometry, basis, spin, functional, quadrature and SCF settings to compare RHF, specified DFT and finite-basis FCI. Do not call reruns in the same software independent-implementation validation or describe the example as an atlas-built general molecular solver. Periodic band calculations are a separate task."
+        "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+        "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
       },
-      "priority": "P1"
+      "priority": "P1",
+      "links": [
+        {
+          "url": "/numerical-methods-atlas/ja/read/h2-hf/",
+          "label": {
+            "ja": "H₂の独立参照・SCF・基底試験",
+            "en": "H₂ independent reference, SCF and basis checks"
+          }
+        }
+      ]
     },
     {
       "id": "barnes-hut-example",
@@ -408,8 +441,8 @@
         "en": "Representative runnable quantum-chemistry and DFT checks"
       },
       "scope": {
-        "ja": "水素型原子と球対称Heの閉殻HF・交換のみLDAを実行・検証し、固定入力、コード、結果、独立参照を公開済み。一般の分子・周期・相関を含むDFTまで検証したという意味ではない。H₂の追加は条件付き、周期系の実行検証は別課題とする。",
-        "en": "Published fixed inputs, code, results and independent references for executed hydrogenic atoms and spherical-helium closed-shell HF / exchange-only LDA. This does not verify general molecular, periodic or correlation-inclusive DFT. An H₂ addition is conditional; periodic numerical validation is a separate task."
+        "ja": "水素型原子・球対称Heの閉殻HF・交換のみLDAの固定入力、コード、結果、独立参照を公開済み。別配布版でH₂の有限s型Gaussian基底RHFを追加。分子DFT・周期系・相関エネルギーの検証は今後の課題。",
+        "en": "Published hydrogenic/He closed-shell HF and exchange-only LDA inputs, code, results and independent references. A separate edition now adds H₂ RHF in finite s-Gaussian spaces. Molecular DFT, periodic systems and correlated energies remain future validation tasks."
       },
       "track": "published",
       "links": [

@@ -22,7 +22,7 @@ function locale(html,lang){
 }
 
 test('19 stable entry pages preserve the authoritative execution records and their public receipt binding',()=>{
-  assert.equal(publicDiscovery.examples.length,19);
+  assert.equal(publicDiscovery.examples.length,20);
   assert.equal(publicDiscovery.registry_sha256,sha('numerical-methods-atlas/code-and-data/examples.json'));
   const receipt=json(new URL(execution.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_sha256,publicDiscovery.registry_sha256);
@@ -97,7 +97,7 @@ test('every verified example is reachable from words, formulas and its image wit
     }
   }
   assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,46);
-  assert.equal(gallery.items.length,64);
+  assert.equal(gallery.items.length,65);
 });
 
 test('the static and live homepage give three bounded starting calculations and all fifteen entry pages',()=>{

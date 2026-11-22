@@ -161,7 +161,7 @@ def snapshot_html(record,config,lang):
     label=('保存された成功記録・現行台帳と一致' if matched else '過去の台帳に対する成功記録') if ja else ('Saved success · matches current registry' if matched else 'Historical success · earlier registry')
     body='<article class="ci-snapshot"><h3>'+label+'</h3>'
     body+=paragraph((record['verified_jst']+' / '+record['verified_utc']) if ja else record['verified_utc'])
-    if not matched:body+=paragraph('この成功記録の台帳ハッシュは現在の台帳とは異なります。現在の19例がこの実行で確認されたとは表示しません。' if ja else 'This receipt has a different registry hash; it is not shown as verification of the current examples.','ci-note')
+    if not matched:body+=paragraph('この成功記録の台帳ハッシュは現在の台帳とは異なります。現在の20例がこの実行で確認されたとは表示しません。' if ja else 'This receipt has a different registry hash; it is not shown as verification of the current examples.','ci-note')
     body+=paragraph((f'{record["example_count"]}問題の数値条件が合格。共有を除いた実行は{record["runner_count"]}回。' if ja else f'Numerical conditions passed for {record["example_count"]} problems in {record["runner_count"]} distinct executions.'))
     body+='<nav class="ci-links">'+link(record['url'],'保存済み成功記録 / JSON' if ja else 'Saved successful receipt / JSON')+link(record['run_url'],'この実行のログ' if ja else 'Logs for this run')+link(record['artifact_url'],'この実行のartifact' if ja else 'Artifacts for this run')+'</nav>'
     body+='<details><summary>'+('環境・版・ハッシュ' if ja else 'Environment, editions and hashes')+'</summary><dl>'
@@ -213,7 +213,7 @@ def build(root=ROOT):
     css=digest((root/'styles/atlas-ci.css').read_bytes())[:12]
     document='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     document+='<title data-page-title-ja="公開配布物のLinux再実行 | 数値計算法アトラス" data-page-title-en="Public Linux verification | Numerical Methods Atlas">公開配布物のLinux再実行 | 数値計算法アトラス</title>'
-    document+='<meta name="description" content="公開配布物19問題のfresh Linux CI。最新のActions状態と保存された成功記録を分け、取得・導入・実行・数値判定を確認。" data-description-ja="公開配布物19問題のfresh Linux CI。最新状態と保存された成功記録を分けて確認。" data-description-en="Fresh Linux checks for 15 public-distribution examples, separating current Actions status from saved successful receipts."><link rel="canonical" href="'+ORIGIN+ROUTE+'">'
+    document+='<meta name="description" content="公開配布物20問題のfresh Linux CI。最新のActions状態と保存された成功記録を分け、取得・導入・実行・数値判定を確認。" data-description-ja="公開配布物20問題のfresh Linux CI。最新状態と保存された成功記録を分けて確認。" data-description-en="Fresh Linux checks for 15 public-distribution examples, separating current Actions status from saved successful receipts."><link rel="canonical" href="'+ORIGIN+ROUTE+'">'
     document+='<!-- site-head --><link rel="stylesheet" href="/site.css"><script src="/site.js" defer></script><!-- /site-head -->'
     document+='<link rel="stylesheet" href="/styles/atlas-ci.css?v='+css+'"></head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-ci-main">'
     document+=''.join(render(config,current,snapshots,lang) for lang in ['ja','en'])+'</main></body></html>\n'

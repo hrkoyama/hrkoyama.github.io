@@ -2,12 +2,12 @@
   "schema_version": 1,
   "reviewed_on": "2026-11-22",
   "scope": {
-    "ja": "公開済み19問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
-    "en": "Discovery metadata for the fifteen published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
+    "ja": "公開済み20問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
+    "en": "Discovery metadata for the twenty published execution examples: words, formulas and saved illustrations. The execution registry retains the authoritative inputs, releases and acceptance conditions; discovery assets add no new numerical verification."
   },
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-  "registry_sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
-  "source_sha256": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be",
+  "registry_sha256": "0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c",
+  "source_sha256": "c659286a515f68c8a21128b385c6758f5fed1d066e35b775f4dadde20288f128",
   "examples": [
     {
       "id": "advection-sine",
@@ -1041,6 +1041,62 @@
       "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/gbm-sde.json",
       "method_ids": [
         "sde"
+      ],
+      "reference_type": null
+    },
+    {
+      "id": "h2-rhf",
+      "problem_id": "h2-rhf",
+      "equation_ids": [
+        "hartree-fock-model"
+      ],
+      "keywords": [
+        "H2",
+        "H₂",
+        "水素分子",
+        "分子HF",
+        "H2 RHF",
+        "hydrogen molecule",
+        "molecular HF",
+        "STO-3G",
+        "Gaussian basis",
+        "ガウシアン基底",
+        "SCF convergence",
+        "自己無撞着場",
+        "基底収束",
+        "PySCF"
+      ],
+      "outcome": {
+        "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
+        "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
+      },
+      "formula": {
+        "role": "approximation",
+        "latex": [
+          "F(P)C=SC\\varepsilon,\\quad P=2C_oC_o^T",
+          "E_{\\rm RHF}=\\tfrac12\\operatorname{Tr}[P(h+F)]+1/R"
+        ],
+        "note": {
+          "ja": "孤立2電子RHF・有限s型Gaussian基底。数値収束とRHF近似の誤差は別。",
+          "en": "Isolated two-electron RHF in finite s-Gaussian bases. Numerical convergence differs from RHF model error."
+        }
+      },
+      "featured": false,
+      "name": {
+        "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+        "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/",
+      "entry": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
+      },
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "input": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/inputs.json",
+      "method_ids": [
+        "hartree-fock",
+        "electronic-bases",
+        "scf"
       ],
       "reference_type": null
     }

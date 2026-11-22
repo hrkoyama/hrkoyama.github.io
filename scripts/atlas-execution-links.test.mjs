@@ -12,8 +12,8 @@ test('method and problem records lead to the same stable execution examples in b
   const methods=json('numerical-methods-atlas/methods/index.json').methods;
   const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
   const page=read('numerical-methods-atlas/code-and-data/index.html');
-  assert.equal(examples.length,19);
-  assert.equal(problems.length,64);
+  assert.equal(examples.length,20);
+  assert.equal(problems.length,65);
   for(const e of examples){
     const records=[problems.find(p=>p.id===e.problem_id),...e.method_ids.map(id=>methods.find(m=>m.id===id))];
     for(const record of records){

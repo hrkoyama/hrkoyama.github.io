@@ -153,3 +153,13 @@ AIの外部検索・公開情報の取得・実行・引用の実地観測は `n
 生物・確率の4例は別系列 `code/model-benchmarks/2026-11-22/`。編集用の正本は `scripts/domain-benchmarks/`。`package-domain-benchmarks.py --edition YYYY-MM-DD[-rN]` を固定依存を導入したPythonで実行すると、新版を作り、SIRの独立DOP853参照・全入力・結果図を生成し、ZIPを独立展開して11検査と全入力を再実行する。既存版は上書きしない。Monte Carloは固定した256 seedの標本誤差・区間被覆、SDEは同じBrown経路を共有した強誤差と4段階の刻みを測る。統計的な許容条件は入力で事前固定し、全seedでの保証や弱収束次数の実測を主張しない。
 
 共通台帳に4例を統合し、`2026-11-22-domains.json` はローカル台帳＋公開ZIP、`2026-11-22-domains-public.json` は公開レジストリから19例／18 runnerを実行した別記録。旧記録は保持する。Linux CIも4配布版・19例／18 runnerへ更新するが、旧15例の保存済みLinux成功を現行条件の成功と表示しない。`model_examples` は専用配布版からコード・テストを解決し、旧Numartへ架空のモジュールを割り当てない。
+
+## H₂分子RHF（2026-11-22）
+
+H₂の編集用コードは `scripts/h2-hf/`、不変配布版は `code/molecular-hf/2026-11-22/`。`scripts/package-molecular-hf.py --edition YYYY-MM-DD[-rN]` は独立PySCF参照の生成・全入力・図を作り、ZIPを独立展開して20検査と全入力を再実行する。公開版は上書きしない。PySCFは参照側だけで使い、教育用の積分・SCFをPySCFへ委譲しない。固定条件は核間距離0.8/1.4/3 bohr、STO-3Gと2〜8個/Hの入れ子s型Gaussian。24点とSCF公差3点を、独立した問題数24/27として加算しない。H₂は1問題・1実行例であり手法143レコードは増やさない。
+
+日英本文の正本は `catalog/atlas-h2-reading.json`、生成は `scripts/build-atlas-h2.py`。独立参照差、直交化した交換子のFrobeniusノルム、SCF反復履歴、公差走査と基底の隣接エネルギー差を実測JSONから表示する。末尾2回のdiffuse/tight追加がともに1 mEh以下という有限s型部分空間の条件を示す。単調低下だけを収束とせず、完全基底極限・角運動量収束・正しい解離極限・相関の検証を主張しない。STO-3G係数はBSE v1の数値規約を出典とし、1969年論文の印刷値の転記と呼ばない。
+
+`molecular_examples` をHF・SCF・電子基底に付け、原子の `quantum_examples` と既存のコード・入力・参照を保持する。分子RHFの専用目的を追加しても、分子DFT・周期DFTのreading-only状態へコードを貸さない。実行台帳は20例、全問題65、量子3問題群、手法状態94教育用例・16解説のみ・33予定。旧19例の検証記録はそのまま保持する。`2026-11-22-h2.json` は公開レジストリ由来の20例/19runnerの記録。専用入口ビルダーは-public版があれば優先し、なければ指定記録を使うが、どちらもpublic-registryかつ成功という条件を必須にする。
+
+H₂の次の量子計算の優先は周期KS-DFT。小さな中性絶縁体セルから、Bloch条件・逆格子・k点和とメッシュ、基底/補助格子、SCFを別に収束させる。擬ポテンシャル・XC・単位と独立参照をそろえる。金属・smearingは後続とし、周期DFTを実装前に実行例ありへ変更しない。

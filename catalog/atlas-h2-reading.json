@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-11-22",
+  "id": "h2-hf",
+  "example_id": "h2-rhf",
+  "title": {
+    "ja": "H₂分子の閉殻HF：独立参照・SCF残差・基底の収束",
+    "en": "Closed-shell HF for H₂: independent references, SCF residuals and basis refinement"
+  },
+  "intro": {
+    "ja": "固定した2つの陽子と2電子からなるH₂を、自作のs型Gaussian積分と閉殻Hartree–Fock（RHF）で解きます。エネルギーが変わらなくなること、離散SCF方程式を満たすこと、基底を広げたときの変化、物理近似の妥当性を別々に確かめます。",
+    "en": "Solve two-electron H₂ at fixed proton positions using original s-Gaussian integrals and restricted closed-shell Hartree–Fock (RHF). Energy stabilization, satisfaction of the discrete SCF equations, changes under basis expansion and physical accuracy are separate questions."
+  },
+  "methods": [
+    "hartree-fock",
+    "electronic-bases",
+    "scf"
+  ],
+  "package": {
+    "base": "/code/molecular-hf/2026-11-22/",
+    "results": "results/result.json",
+    "preview": "results/preview.png",
+    "input": "inputs.json",
+    "reference": "reference-pyscf.json"
+  },
+  "keywords": [
+    "H2",
+    "H₂",
+    "水素分子",
+    "分子HF",
+    "RHF",
+    "Roothaan",
+    "Gaussian basis",
+    "SCF convergence",
+    "basis convergence",
+    "独立参照",
+    "Hartree Fock molecule"
+  ],
+  "sections": [
+    {
+      "id": "model-and-scope",
+      "title": {
+        "ja": "何を計算するか",
+        "en": "The model being solved"
+      },
+      "paragraphs": {
+        "ja": [
+          "核間距離Rを入力で固定するBorn–Oppenheimer電子問題です。原子単位系を用い、距離はbohr、エネルギーはhartreeで記録します。電子の相対論効果、核運動、振動・回転、溶媒、周期境界は含めません。核間反発1/Rを含む全エネルギーと、電子エネルギーを混同しないように出力を分けます。",
+          "2電子は同じ空間軌道を逆向きスピンで占有する閉殻RHFに制限します。結合を伸ばした点でも同じ制約を保った解を比較します。SCFが収束して別実装と一致しても、正しい解離極限や電子相関まで再現したことにはなりません。UHF、配置間相互作用、DFTへ切り替えた計算でもありません。"
+        ],
+        "en": [
+          "This is a Born–Oppenheimer electronic problem with the internuclear distance R fixed by the input. Atomic units are used: distances in bohr and energies in hartree. Relativistic effects, nuclear motion, vibration/rotation, solvent and periodic boundaries are excluded. Total energy including nuclear repulsion 1/R is recorded separately from electronic energy.",
+          "The two electrons occupy the same spatial orbital with opposite spins in closed-shell RHF. The same restriction is retained at stretched geometries. SCF convergence and agreement with another implementation do not establish the correct dissociation limit or recover electron correlation. This is not a switch to UHF, configuration interaction or DFT."
+        ]
+      },
+      "formulas": [
+        "h2-hamiltonian"
+      ],
+      "references": [
+        "roothaan1951",
+        "coulson-fischer1949"
+      ]
+    },
+    {
+      "id": "gaussians-and-integrals",
+      "title": {
+        "ja": "Gaussian基底と自作の積分",
+        "en": "Gaussian basis functions and original integrals"
+      },
+      "paragraphs": {
+        "ja": [
+          "各核を中心とする規格化されたs型Gaussianを基底にします。縮約関数では複数の指数と係数をまとめ、縮約後の規格化もそろえます。STO-3Gを使う場合の3つのprimitiveは、独立した3基底関数ではなく1つの縮約s関数を表すことに注意します。指数・係数・縮約の定義は入力と結果に残します。STO-3Gの数値はBasis Set Exchangeのversion 1と照合した規約を採用し、原論文の印刷値から直接転記したものとして扱いません。",
+          "重なりS、運動エネルギーT、電子–核引力V、電子間反発積分を教育用コードで計算し、1電子行列をh=T+Vと定義します。s型のCoulomb積分に現れるBoys関数F₀はt→0で1に近づきます。この付近を安定に扱わずerf(√t)/√tを直接評価すると0/0が生じます。JとKは化学者の積分添字規約とスピン和密度Pに対応させ、交換項の1/2をそろえます。"
+        ],
+        "en": [
+          "Normalized s-type Gaussians centered on the two nuclei form the basis. A contracted function combines several exponents and coefficients, with normalization also applied to the contraction. Three primitives in STO-3G describe one contracted s function, not three independent basis functions. Inputs and results retain exponents, coefficients and contractions. The STO-3G numerical convention is checked against Basis Set Exchange version 1, rather than presented as a direct transcription of the original paper’s printed digits.",
+          "The educational code computes overlap S, kinetic T, nuclear attraction V and electron-repulsion integrals, defining the one-electron matrix as h=T+V. The s-type Coulomb integrals involve the Boys function F₀, which tends to 1 as t approaches zero. Direct evaluation of erf(√t)/√t at zero would produce 0/0, so the limiting region needs a stable treatment. The chemists’ integral index convention and spin-summed density P determine the factor 1/2 in exchange."
+        ]
+      },
+      "formulas": [
+        "h2-gaussian",
+        "h2-fock"
+      ],
+      "references": [
+        "boys1950",
+        "roothaan1951",
+        "hehre1969",
+        "bse-sto3g-v1"
+      ]
+    },
+    {
+      "id": "scf-and-residuals",
+      "title": {
+        "ja": "SCFの収束をどう判定するか",
+        "en": "How SCF convergence is judged"
+      },
+      "paragraphs": {
+        "ja": [
+          "重なり行列を対称直交化してRoothaan方程式を解き、占有軌道から密度を作り、Fock行列を再構築して反復します。密度混合で反復を安定化できますが、混合途中の密度は一般に純粋な単一行列式の冪等条件を満たしません。最終的な密度・軌道・Fockを同じ状態で再評価して検査します。",
+          "小さなエネルギー差だけでは停止を正当化できません。エネルギー変化、AO密度差のFrobeniusノルム、直交座標系の交換子残差のFrobeniusノルムを入力のしきい値と比較し、軌道の直交性、電子数Tr(PS)=2、閉殻の冪等条件PSP=2Pも測定します。最終密度からF[P]を作り直して求める行列トレースのエネルギーと、占有軌道と電子反発積分から別の式で再構成したエネルギーを照合します。",
+          "最小重なり固有値と条件数も出力します。基底がほぼ線形従属になるとS⁻¹ᐟ²が誤差を増幅します。停止理由と反復上限を残し、上限到達を収束と表示しません。また、停留解は安定なエネルギー極小とは限らず、これらの残差検査は完全なRHF/UHF安定性解析の代用ではありません。"
+        ],
+        "en": [
+          "Symmetric orthogonalization converts the Roothaan equation to an ordinary eigenproblem. Occupied orbitals define a new density, which rebuilds the Fock matrix for the next iteration. Density mixing can stabilize iterations, but an intermediate mixed density need not satisfy the idempotency condition of a pure determinant. Final density, orbitals and Fock matrix are therefore checked in a consistent state.",
+          "A small energy change alone is insufficient. Energy change, the Frobenius norm of the AO-density change and the Frobenius norm of the orthonormal-coordinate commutator residual are compared with input thresholds. Orbital orthogonality, electron count Tr(PS)=2 and closed-shell idempotency PSP=2P are also measured. The matrix-trace energy with F[P] rebuilt from the final density is compared with a separate occupied-orbital/electron-repulsion-integral reconstruction.",
+          "The minimum overlap eigenvalue and condition number are recorded. Near-linear dependence makes S⁻¹ᐟ² amplify errors. Termination reasons and iteration limits are explicit; reaching the limit is not reported as convergence. A stationary solution also need not be a stable minimum, so residual checks do not replace a full RHF/UHF stability analysis."
+        ]
+      },
+      "formulas": [
+        "h2-roothaan",
+        "h2-energy",
+        "h2-residual"
+      ],
+      "references": [
+        "roothaan1951",
+        "pyscf-scf-docs"
+      ]
+    },
+    {
+      "id": "basis-convergence",
+      "title": {
+        "ja": "基底を広げる検査と、その限界",
+        "en": "Basis refinement and its limits"
+      },
+      "paragraphs": {
+        "ja": [
+          "SCFの許容誤差は固定した基底内での解き残しです。基底の変更は離散問題自体の変更です。SCFの厳しい設定をそろえ、同じ幾何・核間反発・RHF制約で基底系列を比較します。入れ子の変分空間で真のRHF最小値を得ていれば、基底を広げても最小エネルギーは上がりません。ただし異なる局所停留枝へ移れば、この単純な比較は成立しません。",
+          "ここでの細分化は公開入力で定義した有限のs型基底系列に限定します。連続する基底のエネルギー差を測ることはできますが、p型以上の角運動量成分がなく、完全基底極限（CBS）への収束や化学精度を証明しません。異なる縮約や無関係な基底集合の全てを、入れ子の系列として扱うこともしません。末尾の2回の追加について、指定したエネルギー変化の公差を両方満たしたかを核間距離ごとに記録します。これは公開系列の停止目安であり、真の基底誤差の上限ではありません。",
+          "許容誤差走査ではSCFのしきい値だけを変更した結果を厳しい設定と比較します。基底走査ではSCF設定をそろえた結果を比較します。独立実装との差とこれらの差を別の量として出力し、最後の基底差が小さいという理由だけで物理近似の誤差をゼロにしません。"
+        ],
+        "en": [
+          "SCF tolerance controls the remaining solution error within one fixed basis. A basis change changes the discrete problem itself. Basis comparisons retain tight SCF settings, geometry, nuclear repulsion and the RHF constraint. True RHF minima in nested variational spaces cannot increase in energy under expansion. Switching to a different local stationary branch would invalidate that simple comparison.",
+          "Refinement here is limited to the finite s-only sequence defined by the public input. Adjacent-basis energy changes are measured, but the absence of p and higher angular functions means this does not prove convergence to the complete-basis-set (CBS) limit or chemical accuracy. Unrelated basis sets and different contractions are not all treated as a nested sequence. For each separation, the final two additions are checked against the stated energy-change target. This is a stopping diagnostic for the published sequence, not an upper bound on true basis error.",
+          "The tolerance sweep changes only SCF thresholds and compares with a tighter solution. The basis sweep keeps SCF settings aligned. These differences and independent-implementation differences are separate outputs. A small final basis increment does not eliminate physical approximation error."
+        ]
+      },
+      "formulas": [
+        "h2-nesting",
+        "h2-error-budget"
+      ],
+      "references": [
+        "boys1950",
+        "roothaan1951"
+      ]
+    },
+    {
+      "id": "independent-reference",
+      "title": {
+        "ja": "独立参照と再現手順",
+        "en": "Independent reference and reproduction"
+      },
+      "paragraphs": {
+        "ja": [
+          "参照スクリプトは同じ核配置・電荷・スピン・明示的なGaussian基底をPySCFへ渡し、独立した積分ライブラリとSCFでRHFエネルギーを求めます。教育用の積分・Fock・SCF関数を参照側から呼び出しません。両者が同じ物理モデルと有限基底を解く比較であり、厳密な相関電子エネルギーを参照する比較ではありません。",
+          "公開版は入力ハッシュ、参照ハッシュ、依存関係の版、全エネルギー、参照との差、反復履歴、終了理由を保存します。ZIPを別フォルダへ展開して同じ固定入力を実行し、JSONの合否だけでなく残差・誤差の値と許容条件を照合します。参照の再生成と、保存済み参照を使った通常の追試は別の操作です。"
+        ],
+        "en": [
+          "The reference script supplies the same geometry, charge, spin and explicit Gaussian basis to PySCF, using its independent integral library and SCF procedure for RHF energies. It does not call the educational integral, Fock or SCF functions. Both calculations solve the same physical model in the same finite basis; the comparison is not against an exact correlated energy.",
+          "The release records input/reference hashes, dependency versions, total energies, reference differences, iteration histories and termination reasons. Extract the ZIP into another directory and run the same fixed input, checking residual/error values against criteria as well as the JSON pass flag. Regenerating the independent reference is separate from ordinary reruns using the saved reference."
+        ]
+      },
+      "formulas": [],
+      "references": [
+        "sun2020pyscf",
+        "pyscf-scf-docs"
+      ]
+    }
+  ],
+  "formulas": {
+    "h2-hamiltonian": "\\hat H_{\\mathrm{el}}=\\sum_{i=1}^{2}\\left[-\\tfrac12\\nabla_i^2-\\sum_{A=1}^{2}\\frac{1}{|\\mathbf r_i-\\mathbf R_A|}\\right]+\\frac{1}{r_{12}},\\qquad E_{\\mathrm{tot}}=E_{\\mathrm{el}}+\\frac1R",
+    "h2-gaussian": "g_{\\alpha A}(\\mathbf r)=\\left(\\frac{2\\alpha}{\\pi}\\right)^{3/4}e^{-\\alpha|\\mathbf r-\\mathbf R_A|^2},\\quad \\chi_\\mu=\\sum_p d_{\\mu p}g_{\\alpha_{\\mu p}A_\\mu},\\quad F_0(t)=\\int_0^1e^{-tu^2}\\,du",
+    "h2-fock": "P_{\\mu\\nu}=2\\sum_{i\\in\\mathrm{occ}} C_{\\mu i}C_{\\nu i},\\quad F_{\\mu\\nu}=h_{\\mu\\nu}+\\sum_{\\lambda\\sigma}P_{\\lambda\\sigma}\\left[(\\mu\\nu|\\lambda\\sigma)-\\tfrac12(\\mu\\lambda|\\nu\\sigma)\\right]",
+    "h2-roothaan": "FC=SC\\varepsilon,\\qquad C^{\\mathsf T}SC=I,\\qquad X=S^{-1/2},\\qquad XFX\\widetilde C=\\widetilde C\\varepsilon,\\quad C=X\\widetilde C",
+    "h2-energy": "E_{\\mathrm{tot}}[P]=\\frac12\\sum_{\\mu\\nu}P_{\\mu\\nu}\\bigl(h_{\\mu\\nu}+F_{\\mu\\nu}[P]\\bigr)+\\frac1R",
+    "h2-residual": "\\mathcal R=X(FPS-SPF)X,\\qquad \\operatorname{Tr}(PS)=2,\\qquad PSP=2P",
+    "h2-nesting": "V_n\\subseteq V_{n+1}\\ \\Longrightarrow\\ E_{n+1}^{\\mathrm{RHF,min}}\\le E_n^{\\mathrm{RHF,min}},\\qquad \\Delta E_n=|E_{n+1}-E_n|",
+    "h2-error-budget": "\\underbrace{E_{n,\\tau}-E_{n,\\mathrm{tight}}}_{\\text{SCF tolerance effect}},\\qquad\\underbrace{E_{n+1,\\mathrm{tight}}-E_{n,\\mathrm{tight}}}_{\\text{basis-space change}},\\qquad\\underbrace{E_{n,\\mathrm{tight}}-E_{n,\\mathrm{PySCF}}}_{\\text{independent-implementation difference}}"
+  },
+  "references": [
+    {
+      "id": "boys1950",
+      "year": 1950,
+      "author": "Boys, S. F.",
+      "title": "Electronic wave functions - I. A general method of calculation for the stationary states of any molecular system",
+      "journal": "Proceedings of the Royal Society A",
+      "doi": "10.1098/rspa.1950.0036",
+      "type": "article",
+      "source": "https://doi.org/10.1098/rspa.1950.0036",
+      "origin": "curated-quantum-reading",
+      "note": "Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.",
+      "review": {
+        "ja": "既存アトラスの原著書誌とDOIを確認。今回の実装により原論文全体を再現・監査したという意味ではありません。",
+        "en": "Original bibliographic identity and DOI checked against the existing Atlas. This implementation does not claim a full-paper reproduction or audit."
+      },
+      "review_level": "metadata"
+    },
+    {
+      "id": "roothaan1951",
+      "year": 1951,
+      "author": "Roothaan, C. C. J.",
+      "title": "New Developments in Molecular Orbital Theory",
+      "journal": "Reviews of Modern Physics",
+      "doi": "10.1103/RevModPhys.23.69",
+      "type": "article",
+      "source": "https://doi.org/10.1103/RevModPhys.23.69",
+      "origin": "curated-quantum-reading",
+      "note": "Primary publication entry point for the quantum-chemistry overview. Bibliographic/introductory review only; full-paper equations and numerical results have not been reproduced.",
+      "review": {
+        "ja": "既存アトラスの原著書誌とDOIを確認。今回の実装により原論文全体を再現・監査したという意味ではありません。",
+        "en": "Original bibliographic identity and DOI checked against the existing Atlas. This implementation does not claim a full-paper reproduction or audit."
+      },
+      "review_level": "metadata"
+    },
+    {
+      "id": "coulson-fischer1949",
+      "author": "C. A. Coulson and I. Fischer",
+      "year": 1949,
+      "title": "XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule",
+      "journal": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, Series 7, 40(303), 386–393",
+      "doi": "10.1080/14786444908521726",
+      "source": "https://doi.org/10.1080/14786444908521726",
+      "review_level": "metadata",
+      "review": {
+        "ja": "RHFの解離と制約を考える歴史的出典として書誌・DOIを確認。原文全文の監査ではありません。",
+        "en": "Bibliographic identity and DOI checked as a historical source on molecular-orbital treatment and dissociation constraints; no full-text audit claimed."
+      }
+    },
+    {
+      "id": "sun2020pyscf",
+      "author": "Qiming Sun et al.",
+      "year": 2020,
+      "title": "Recent developments in the PySCF program package",
+      "journal": "The Journal of Chemical Physics 153, 024109",
+      "doi": "10.1063/5.0006074",
+      "source": "https://doi.org/10.1063/5.0006074",
+      "review_level": "abstract-and-metadata",
+      "review": {
+        "ja": "出版社の書誌・抄録と著者機関の登録を確認。参照コードの実行は別の数値検査です。",
+        "en": "Publisher bibliography/abstract and author-institution record consulted. Executing the reference code is a separate numerical check."
+      }
+    },
+    {
+      "id": "pyscf-scf-docs",
+      "author": "PySCF developers",
+      "year": 2026,
+      "title": "Self-consistent field (SCF) methods",
+      "journal": "Official PySCF user documentation",
+      "source": "https://pyscf.org/user/scf.html",
+      "review_level": "selected-documentation",
+      "review": {
+        "ja": "公式資料のSCF方程式・収束・安定性・線形従属の節を参照。原法の論文とは区別。",
+        "en": "Relevant official documentation sections on SCF equations, convergence, stability and linear dependence consulted; distinct from an original-method paper."
+      }
+    },
+    {
+      "id": "hehre1969",
+      "author": "W. J. Hehre, R. F. Stewart and J. A. Pople",
+      "year": 1969,
+      "title": "Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals",
+      "journal": "The Journal of Chemical Physics 51(6), 2657–2664",
+      "doi": "10.1063/1.1672392",
+      "source": "https://doi.org/10.1063/1.1672392",
+      "review_level": "metadata",
+      "review": {
+        "ja": "出版社由来の書誌・DOIを確認。STO-nGの原著として引用し、今回使う係数の全桁をこの原論文から転記したという意味ではありません。原文の全文監査は未実施。",
+        "en": "Publisher-deposited bibliographic metadata and DOI checked. Cited as the STO-nG source, not as a claim that every coefficient digit was transcribed from this paper. No full-text audit performed."
+      }
+    },
+    {
+      "id": "bse-sto3g-v1",
+      "author": "Basis Set Exchange",
+      "year": 2018,
+      "title": "STO-3G version 1: hydrogen basis data",
+      "journal": "Official Basis Set Exchange dataset and family notes",
+      "source": "https://www.basissetexchange.org/basis/sto-3g/format/json/?elements=1%2C2&version=1",
+      "review_level": "dataset",
+      "review": {
+        "ja": "公式APIのversion 1にあるHの指数・係数を入力と照合。数値の採用規約はBSE v1（Gaussian由来の桁数）であり、1969年論文の印刷桁の再現ではありません。",
+        "en": "Hydrogen exponents and coefficients in official API version 1 checked against the input. The numerical convention is BSE v1 with Gaussian-derived precision, not a reproduction of the printed digits in the 1969 paper."
+      }
+    }
+  ]
+}

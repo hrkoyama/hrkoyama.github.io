@@ -49,7 +49,8 @@ test('current work, conditional additions and published examples remain separate
     assert.ok(['in-progress','published'].includes(x.state));
     assert.equal(x.priority,'P0');assert.equal(x.track,'current');
   }
-  for(const id of ['ewald-pme-spme','molecular-quantum-example']){
+  const h2=queue.items.find(x=>x.id==='molecular-quantum-example');assert.equal(h2.state,'published-verified-example');assert.equal(h2.track,'current');
+  for(const id of ['ewald-pme-spme']){
     const x=queue.items.find(x=>x.id===id);
     assert.equal(x.state,'conditional-planned');assert.equal(x.track,'conditional');
   }

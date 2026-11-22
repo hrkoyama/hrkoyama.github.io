@@ -259,7 +259,7 @@ def render_language(data, releases, receipt, results, lang):
         if family == 'numerical-methods-atlas':
             base = release['manifest'].rsplit('/', 1)[0] + '/'
             body += '<p>' + link(base + 'LICENSE', 'MIT License') + ' · ' + link(base + 'LICENSING.md', '適用範囲 / Licensing scope') + '</p>'
-    body += paragraph(f'上記は各配布版の自動検査数です。{len(examples)}の代表問題やアトラス全体の64問題とは別に数え、版をまたぐ検査数は合算しません。原子版の23検査と従来版の411検査も、それぞれの保存記録です。Ewald・PME・SPMEは未実装で、原子例も一般の分子・周期系DFT計算ではありません。' if ja else f'These are automated test counts for each edition, distinct from the {len(examples)} representative problems and the atlas-wide 64 problems. Do not add repeated tests across editions. The atomic 23 and original 411 checks retain their separate records. Ewald/PME/SPME remain unimplemented; the atomic examples are not general molecular or periodic DFT calculations.') + '</section>'
+    body += paragraph(f'上記は各配布版の自動検査数です。{len(examples)}の代表問題やアトラス全体の65問題とは別に数え、版をまたぐ検査数は合算しません。原子版の23検査と従来版の411検査も、それぞれの保存記録です。Ewald・PME・SPMEは未実装で、原子例も一般の分子・周期系DFT計算ではありません。' if ja else f'These are automated test counts for each edition, distinct from the {len(examples)} representative problems and the atlas-wide 65 problems. Do not add repeated tests across editions. The atomic 23 and original 411 checks retain their separate records. Ewald/PME/SPME remain unimplemented; the atomic examples are not general molecular or periodic DFT calculations.') + '</section>'
     body += render_receipt(data['verification_receipt'], receipt, examples, lang)
     body += '<section><h2>' + ('公開資料だけで再現し、出典に戻る' if ja else 'Reproduce from public material and return to the source') + '</h2>'
     body += paragraph('自作の実装コードのMITと、本文・図・データ・第三者資料の条件は別です。この案内は新しい再配布・改変公開の権限を追加するものではありません。' if ja else 'MIT for original implementation code is separate from the terms for prose, figures, data and third-party material. This guide does not add redistribution or public-adaptation permissions.')
@@ -272,7 +272,7 @@ def build(root=ROOT):
     examples = data['examples']
     assert len(examples) == len({x['id'] for x in examples}) and examples
     releases = release_information(examples, root)
-    assert {family for family, version in releases} == {'numerical-methods-atlas', 'quantum-atoms', 'model-benchmarks'}
+    assert {family for family, version in releases} == {'numerical-methods-atlas', 'quantum-atoms', 'model-benchmarks', 'molecular-hf'}
     receipt_url = data['verification_receipt']
     receipt_path = root / urlparse(receipt_url).path.lstrip('/')
     public_receipt = receipt_path.with_name(receipt_path.stem+'-public.json')
@@ -290,7 +290,7 @@ def build(root=ROOT):
     sections = ''.join(render_language(data, releases, receipt, results, lang) for lang in ['ja', 'en'])
     document = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     document += '<title data-page-title-ja="コード・入力・検証 | 数値計算法アトラス" data-page-title-en="Code, inputs and validation | Numerical Methods Atlas">コード・入力・検証 | 数値計算法アトラス</title>'
-    document += '<meta name="description" content="代表19問題の公開コード、固定入力、実行手順、JSON/CSV出力、参照値と許容誤差。Public code, fixed inputs, reproduction commands and numerical acceptance checks for 19 representative problems."><link rel="canonical" href="' + ORIGIN + ROUTE + '">'
+    document += '<meta name="description" content="代表20問題の公開コード、固定入力、実行手順、JSON/CSV出力、参照値と許容誤差。Public code, fixed inputs, reproduction commands and numerical acceptance checks for 20 representative problems."><link rel="canonical" href="' + ORIGIN + ROUTE + '">'
     for name in ['atlas-resources', 'atlas-execution']:
         digest = hashlib.sha256((root / 'styles' / (name + '.css')).read_bytes()).hexdigest()[:12]
         document += '<link rel="stylesheet" href="/styles/' + name + '.css?v=' + digest + '">'

@@ -595,6 +595,15 @@
         "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
         "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
       }
+    },
+    {
+      "id": "h2-rhf",
+      "kind": "image",
+      "source": "/code/molecular-hf/2026-11-22/results/preview.png",
+      "caption": {
+        "ja": "固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。",
+        "en": "Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits."
+      }
     }
   ]
 }

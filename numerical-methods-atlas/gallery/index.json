@@ -4,8 +4,8 @@
   "reviewed_on": "2026-11-21",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 64,
-    "runnable_problems": 19,
+    "test_problems": 65,
+    "runnable_problems": 20,
     "groups": {
       "transport": 8,
       "fluid": 16,
@@ -15,13 +15,13 @@
       "gravity": 5,
       "time": 6,
       "approximation": 3,
-      "quantum": 2,
+      "quantum": 3,
       "biology": 2,
       "probability": 2
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 28,
+      "existing-figure": 29,
       "computed-preview": 9
     }
   },
@@ -3662,10 +3662,88 @@
           "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
         }
       }
+    },
+    {
+      "id": "h2-rhf",
+      "group": "quantum",
+      "name": {
+        "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+        "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+      },
+      "chapter": "h2-hf",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/molecular-hf/2026-11-22/",
+      "verification": "/code/molecular-hf/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_molecular_hf.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/molecular-hf/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/molecular-hf/2026-11-22/test_molecular_hf.py",
+          "python_symbol": "test_fixed_input_validation"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#measured-results",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#measured-results"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "h2-rhf",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#h2-rhf-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#h2-rhf-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#h2-rhf",
+      "run_commands": [
+        "python -m pytest -q test_molecular_hf.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/molecular-hf/2026-11-22/results/preview.png",
+      "image_sha256": "ba6a00cf70bfffc53f66b874a12c783388858aa5277a44e7d5e323132b4bb31d",
+      "width": 1120,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。",
+        "en": "Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits."
+      },
+      "visual_input": {
+        "id": "h2-rhf",
+        "kind": "image",
+        "source": "/code/molecular-hf/2026-11-22/results/preview.png",
+        "caption": {
+          "ja": "固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。",
+          "en": "Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#h2-rhf-ja",
+      "runnable": true,
+      "execution_entry": {
+        "id": "h2-rhf",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en"
+        },
+        "outcome": {
+          "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
+          "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
+        }
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "1deeeaaa4ed536d246f563233642209b92eaa964ddb592e83a466580e525fb1a",
+    "catalog/atlas-gallery.json": "9dc6f8aad6b477cfd410bfd11e0c76f9970f1d0357cd7b472cd51327ef8b008e",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -3708,16 +3786,17 @@
     "numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png": "2f1ea60a391f26c8fd086999e56155ed1bf3bc5c5b80c6d9f2c44ee2c5dca1cf",
     "numerical-methods-atlas/assets/quantum-atoms/helium.png": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6",
     "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f",
+    "code/molecular-hf/2026-11-22/verification.json": "c4692d6ad455d110fa3356303660bda8b968c01555eba535e83892b1e56c785b",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "f69eda0957450387012fa1bb3af8b37dce5d842b0fd1cd8ca3b73f45f7f931d8",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "1e9a15c97625010121d29b794fe6b51a47f9383d14ade21957d456755c0b49f0",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "a7b619558e449dafe5c8b1a40170f7c8c60aa993151dc649eebc903ad9371501",
-    "catalog/atlas-execution-discovery.json": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be",
+    "numerical-methods-atlas/test-cases/index.json": "de40c139d2acf32138bbd99b651d63f372e446d40185f5f9fe1f0d6c9677055e",
+    "catalog/atlas-execution-discovery.json": "c659286a515f68c8a21128b385c6758f5fed1d066e35b775f4dadde20288f128",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be"
   }
 }

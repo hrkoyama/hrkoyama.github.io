@@ -7297,8 +7297,8 @@
     "ja": "電子の何を近似し、何で確かめる？"
   },
   "home-map.areas.6.description": {
-    "en": "Read the distinctions between wavefunctions, density and approximations, then the SCF, boundary and unit conventions. Runnable examples cover one-electron hydrogenic atoms and spherical He 1s² closed-shell HF / exchange-only LDA. General molecular and periodic DFT examples are not implemented.",
-    "ja": "波動関数・電子密度と近似の違いを読み、SCFと境界・単位の条件へ進みます。実行例は水素型1電子原子と球対称He 1s²の閉殻HF・交換のみLDAです。一般分子・周期DFTの実行例は未実装です。"
+    "en": "Read the distinctions between wavefunctions, density and approximations, then the SCF, boundary and unit conventions. Runnable examples cover one-electron hydrogenic atoms and spherical He 1s² closed-shell HF / exchange-only LDA. General molecular and periodic DFT examples are not implemented. A separate H₂ closed-shell RHF edition checks an independent reference, SCF and finite s-basis refinement.",
+    "ja": "波動関数・電子密度と近似の違いを読み、SCFと境界・単位の条件へ進みます。実行例は水素型1電子原子と球対称He 1s²の閉殻HF・交換のみLDAです。一般分子・周期DFTの実行例は未実装です。 別配布のH₂閉殻RHFでは、独立参照・SCF・有限s型基底の拡大を確認できます。"
   },
   "home-map.areas.6.groups.0.0.name": {
     "en": "Read electronic-state models and approximations",
@@ -7419,5 +7419,9 @@
   "home-map.planned.spme": {
     "en": "SPME",
     "ja": "SPME"
+  },
+  "home-map.execution.h2-rhf": {
+    "ja": "H₂分子HF：独立参照・SCF・基底拡大",
+    "en": "H₂ molecular HF: independent reference, SCF and basis refinement"
   }
 }

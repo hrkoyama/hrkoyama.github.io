@@ -77,7 +77,8 @@
         "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
       ],
       "references": [
-        "roothaan1951"
+        "roothaan1951",
+        "coulson-fischer1949"
       ],
       "caution": {
         "ja": "HFの解は一般に一意とは限りません。SCFが停止しても基底収束・軌道安定性・正しい電子状態の確認が必要です。分子解離では単一参照の限界が現れます。",
@@ -132,7 +133,8 @@
       ],
       "references": [
         "boys1950",
-        "roothaan1951"
+        "roothaan1951",
+        "hehre1969"
       ],
       "caution": {
         "ja": "基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。",
@@ -909,6 +911,30 @@
       "source": "https://doi.org/10.1103/PhysRevB.76.045302",
       "origin": "curated-quantum-reading",
       "note": "Primary source for band-symmetry concepts and conventions. Introductory review; no atlas band-structure calculation or irrep assignment has been numerically reproduced."
+    },
+    {
+      "id": "coulson-fischer1949",
+      "year": 1949,
+      "author": "Coulson, C. A. and Fischer, I.",
+      "title": "XXXIV. Notes on the molecular orbital treatment of the hydrogen molecule",
+      "journal": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science",
+      "doi": "10.1080/14786444908521726",
+      "type": "article",
+      "source": "https://doi.org/10.1080/14786444908521726",
+      "origin": "curated-quantum-reading",
+      "note": "Publisher bibliographic metadata/first-page entry verified. Context for H2 single-determinant limitations; no full-paper audit or orbital-stability calculation claimed."
+    },
+    {
+      "id": "hehre1969",
+      "year": 1969,
+      "author": "Hehre, W. J. and Stewart, R. F. and Pople, J. A.",
+      "title": "Self-Consistent Molecular-Orbital Methods. I. Use of Gaussian Expansions of Slater-Type Atomic Orbitals",
+      "journal": "The Journal of Chemical Physics",
+      "doi": "10.1063/1.1672392",
+      "type": "article",
+      "source": "https://doi.org/10.1063/1.1672392",
+      "origin": "curated-quantum-reading",
+      "note": "Publisher-deposited DOI metadata verified, not the full paper. STO-3G coefficients are checked against Basis Set Exchange version 1, which supplies more digits than the original publication."
     }
   ],
   "verification_plan": [
@@ -946,14 +972,18 @@
     },
     {
       "id": "h2-hf-dft",
-      "state": "planned",
+      "state": "verified-educational-example",
       "title": {
-        "ja": "分子：H₂のHF・DFTと有限基底FCI",
-        "en": "Molecule: H₂ with HF, DFT and finite-basis FCI"
+        "ja": "分子：限定したH₂のRHF（DFT・FCIは未実装）",
+        "en": "Molecule: scoped H₂ RHF (DFT/FCI unimplemented)"
       },
       "check": {
-        "ja": "核間距離・基底・スピン・汎関数・求積格子・SCF閾値を固定。解離曲線で数値誤差と単一参照・汎関数の限界を分ける。",
-        "en": "Fix geometry, basis, spin, functional, quadrature grid and SCF thresholds. Use dissociation curves to separate numerical error from single-reference and functional limitations."
+        "ja": "同じ核間距離・同じs型基底で独立PySCFと照合。SCFの複数残差・停止条件、入れ子基底のエネルギー差と指定公差を確認。RHFの解離限界と角運動量を含む完全基底収束は別。",
+        "en": "Compare with independent PySCF at identical geometries/s-type bases. Check joint SCF residuals, stopping, nested-basis energy changes and stated tolerance. Correct RHF dissociation and angular/complete-basis convergence remain separate."
+      },
+      "url": {
+        "ja": "/numerical-methods-atlas/ja/read/h2-hf/",
+        "en": "/numerical-methods-atlas/en/read/h2-hf/"
       }
     },
     {

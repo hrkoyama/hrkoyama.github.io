@@ -5,7 +5,7 @@ Registry: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examp
 Source record: shu-osher
 
 Public-file rerun: passed
-Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-domains-public.json
+Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-h2.json
 
 ## ja
 

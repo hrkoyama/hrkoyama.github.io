@@ -2,10 +2,10 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "9bf5ef500e5b569265c45ab3f564e3fe551a36c048169afd5f6b2b226daba0a1",
-    "numerical-methods-atlas/coverage.json": "ef0f0980f1908ddc0cc6616fce5eeca3c71dc23590cddb9a4270dffb6fdb59e4",
-    "catalog/atlas-execution-examples.json": "8e547548e24d00bfe3d00a947d8422c268cbe06c493e83d2861e672a09232aba",
-    "catalog/atlas-execution-discovery.json": "82b93fca4a2220712dcfacd271bbee22e6f5d9a22900d6d8acfe48961cee81be"
+    "catalog/atlas-methods.json": "edf50d39137c806f10211e9eff0491fae8f864d07c4002e7a9a810436a6c5cf6",
+    "numerical-methods-atlas/coverage.json": "b61dc0beff5afc9dd09a9a6d29d9a144fd1462b4cc0760de05c18c2d00e8f882",
+    "catalog/atlas-execution-examples.json": "effcca46134ef46fc23cacab52c3c1e69359ad04e7cddfa716ca06f06467170d",
+    "catalog/atlas-execution-discovery.json": "c659286a515f68c8a21128b385c6758f5fed1d066e35b775f4dadde20288f128"
   },
   "builder_sha256": "87508c43c1d8998576804b775cada4da8f1e8c348af73a58d9755c76c867dad0",
   "renderer": {
@@ -19,18 +19,18 @@
   },
   "images": {
     "ja": {
-      "svg_sha256": "38f79cf0047c2bfda6c711eaf252370ea380ca17d3f4b701e484a93f0c78d928",
-      "png_sha256": "5ddbe7c192c86e9e3fbf9eeb59fc594058a6f6405d49343b1c2ea2ab204a589c",
-      "content_input_sha256": "d4ddc9a682d1641f37a922e8ec412929d853505fb2113c7f0225df7556e45fea",
-      "render_input_sha256": "0a3262eaabe6070a5eb547051e3e2ceee9b2fb4fb64b55f83a8fbbe17b28e043",
+      "svg_sha256": "dc1e478b9dd5a3bc44c42125fa450cf5c88b540f268501aba3b9dc003e7b4777",
+      "png_sha256": "99b59c97c7cb20f9a373a236a72316d6c0232d166e0e755da3d3ef01566ad244",
+      "content_input_sha256": "245811f65f69edfbc0b182e1a5e490ea5001d6a890abb5c53937a6c9c8d939f4",
+      "render_input_sha256": "4b3f9f9995661b55017733f38806d76430c5c123798ac482ce47a68ceb74c7ad",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "9421db7da949bf1d6ea23e3038871cf9f0942dcb8d555acbe7c2d8d546b406a5",
-      "png_sha256": "f88de7c46493511e0c96ed49f972f561ae4a917556deafe2c69e34c6fc7c3ce8",
-      "content_input_sha256": "cf93162d786eeb95c906b28a098351dd47951e76c793834354ac9ee510d26d76",
-      "render_input_sha256": "f94143d5b6caba24a0d579366280db68c56950298063ced70437882d4e6bb3dc",
+      "svg_sha256": "17c76ec9b6d9904f397b83589c66211fb501e72d40ed4953a04e2dc9e44edf3c",
+      "png_sha256": "6c1a6020eb1e46b6a1f157dc8193eefdea43d6f38f93d1ea265114cef9383f8f",
+      "content_input_sha256": "a638f0fbb5dd5002e3cfd5e701e66df3bf82ca796be28f15a0349a207d99cd32",
+      "render_input_sha256": "ff6e62794bbf3d286bc7c58f54a436acb56bbbba05337eb97f9a36268fc171a5",
       "width": 1200,
       "height": 630
     }

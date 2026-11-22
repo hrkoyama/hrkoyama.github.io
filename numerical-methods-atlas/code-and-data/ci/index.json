@@ -41,8 +41,8 @@
     "artifact_retention_days": 90
   },
   "scope": {
-    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表19問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
-    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 19 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
+    "ja": "新しいLinuxジョブとPython仮想環境で、公開配布物の取得・依存関係の導入から、代表20問題の実行と数値条件の照合までを確認します。計算コード・入力・参照データは公開サイトの配布物を使います。",
+    "en": "A fresh Linux job and Python virtual environment check public distributions from download and dependency installation through execution and numerical acceptance for 20 representative problems. Scientific code, inputs and reference data come from the public-site distributions."
   },
   "definitions": {
     "latest": {
@@ -138,14 +138,14 @@
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "6c5ef064dc33aac4710d2eb35cc8b13d465555d300d8f5c450043e9e0641ee33"
+    "sha256": "9113ebb6d024634c1e46a1587255499b76f45f2ae96957969d313a90c975505a"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
-    "sha256": "89c21727c56745373ec036c05d4e5e9365ed894b48b65cd9d8f1506d70a12c02",
-    "example_count": 19,
-    "runner_count": 18,
-    "release_count": 4
+    "sha256": "0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c",
+    "example_count": 20,
+    "runner_count": 19,
+    "release_count": 5
   },
   "latest_status": {
     "source": "external-github-actions-badge",

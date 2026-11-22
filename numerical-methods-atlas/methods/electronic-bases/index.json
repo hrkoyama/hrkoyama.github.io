@@ -13,7 +13,7 @@
     "ja": "原子軌道・Gaussian・Slater・平面波・実空間格子をつなぐ。",
     "en": "Connect atomic, Gaussian, Slater, plane-wave and real-space representations."
   },
-  "status": "reading-only",
+  "status": "educational-example",
   "origin": "curated-quantum-reading",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#electronic-bases",
@@ -38,22 +38,27 @@
     }
   ],
   "assumptions": [
-    "Introductory formulation and comparison, not a verified executable solver.",
-    "Representative electronic-structure formulas use nonrelativistic Born–Oppenheimer theory unless the section explicitly states otherwise."
+    "Born–Oppenheimer, nonrelativistic isolated H2 closed-shell RHF, two electrons.",
+    "STO-3G comparison and nested atom-centered s-type Gaussian spaces; angular polarization is not included.",
+    "Overlap eigenvalues and condition numbers are checked; nearly dependent inputs fail instead of silently deleting functions."
   ],
   "units": "Atomic units in the displayed electronic equations (hbar = m_e = e = 4 pi epsilon_0 = 1); dimensionless conventions are stated where needed.",
-  "boundary_conditions": "Isolated or periodic conditions must be selected for each physical system; no numerical boundary-value example is published here yet.",
+  "boundary_conditions": "Isolated finite molecule; analytic whole-space Gaussian integrals with no finite spatial box.",
   "next_deliverable": {
     "ja": "重なり行列と一般化固有値問題を含む比較解説。",
     "en": "A comparison including overlap matrices and generalized eigenproblems."
   },
   "limitations": {
-    "ja": "日英の導入・代表式・一次文献を公開。専用の実装・数値検証はUnder construction。基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。",
-    "en": "Introductory bilingual reading, representative equations and primary references are available. No dedicated implementation or numerical verification result is provided yet. Changing the basis is different from changing electron correlation or the functional. Check near-linear dependence, basis-set superposition error and pseudopotential compatibility."
+    "ja": "H₂のs型Gaussian部分空間での基底拡大試験です。エネルギーの単調低下だけでは収束とせず、最終差と指定公差を示します。完全基底極限、角運動量収束、BSSEの系統評価は未検証。",
+    "en": "Basis refinement in an H₂ s-Gaussian subspace. Monotone energy lowering alone is not convergence: report the last change and stated tolerance. No complete-basis, angular-momentum or systematic BSSE validation."
   },
   "metadata_review": {
-    "level": "curated introductory formulation with primary publication and official-documentation entry points; full derivation audit and numerical examples pending",
-    "on": "2026-11-21"
+    "level": "scoped H2 implementation with independent-reference and finite-s-subspace convergence evidence; full angular/complete-basis convergence untested",
+    "on": "2026-11-22",
+    "molecular_scope_note": {
+      "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+      "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+    }
   },
   "aliases": [
     "Gaussian",
@@ -63,23 +68,74 @@
     "basis set"
   ],
   "assumptions_ja": [
-    "定式化と比較の導入解説であり、実行・検証済みソルバーではありません。",
-    "代表式は、各節に別記する場合を除き非相対論・Born–Oppenheimerの電子状態問題を想定します。"
+    "Born–Oppenheimer・非相対論・孤立H₂、2電子の閉殻RHF。",
+    "STO-3Gと入れ子の原子中心s型Gaussian基底を比較。角運動量を増やす分極関数は含まない。",
+    "重なり行列の固有値・条件数を確認。線形従属に近い入力は基底を黙って削らず失敗させる。"
   ],
-  "units_ja": "表示する電子状態の式は原子単位系（ℏ = m_e = e = 4πε₀ = 1）。無次元量や占有の規約は各節に明記。",
-  "boundary_conditions_ja": "孤立・周期を対象系ごとに選ぶ必要があります。この導入には実行済みの境界値計算例はまだありません。",
+  "units_ja": "原子単位系：距離bohr、エネルギーhartree。Gaussian基底は空間全域で規格化。",
+  "boundary_conditions_ja": "孤立した有限分子。空間全域の解析Gaussian積分で、有限箱の境界は設けない。",
   "caution": {
     "ja": "基底を変える操作と電子相関・汎関数を変える操作は別です。線形従属、基底重なり誤差、擬ポテンシャルとの整合性も確認します。",
     "en": "Changing the basis is different from changing electron correlation or the functional. Check near-linear dependence, basis-set superposition error and pseudopotential compatibility."
   },
+  "molecular_examples": [
+    "h2-rhf"
+  ],
+  "molecular_scope": {
+    "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+    "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+  },
+  "example_scope": {
+    "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+    "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": []
+  "code_urls": [
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular_hf.py",
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/run.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py"
+  ],
+  "run_commands": [
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "Extracted molecular-hf edition directory",
+  "code_base": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/",
+  "code_edition": "2026-11-22",
+  "molecular_release": {
+    "release": {
+      "family": "molecular-hf",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip",
+      "sha256": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
+      "manifest": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/source-manifest.json",
+      "manifest_sha256": "ca34057ae326169d84f70974b8f324555482fdd4afe57a69b56efef5c3008df2",
+      "verification": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/verification.json",
+      "archive_directory": "molecular-hf-2026-11-22"
+    },
+    "code_base": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/",
+    "examples": [
+      "h2-rhf"
+    ],
+    "run_commands": [
+      "python run.py --input inputs.json --output output"
+    ],
+    "scope": {
+      "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+      "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+    }
+  },
+  "execution_examples": [
+    {
+      "id": "h2-rhf",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#h2-rhf-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#h2-rhf-en"
+      }
+    }
+  ]
 }

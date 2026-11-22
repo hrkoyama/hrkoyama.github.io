@@ -133,36 +133,38 @@
         "en": "Stored radial-grid convergence, SCF residuals and termination; not an exact correlated-energy calculation."
       },
       "next": {
-        "ja": "原子の検証を維持してから、分子の有限基底問題へ進む。",
-        "en": "Preserve atomic validation before extending to finite-basis molecules."
+        "ja": "原子の検証を保持し、別配布のH₂分子RHFとの数値表現の違いを比較する。",
+        "en": "Preserve atomic validation and compare its numerical representation with the separately packaged H₂ RHF example."
       }
     },
     {
       "id": "quantum-molecular",
       "name": {
-        "ja": "量子：分子・周期DFT",
-        "en": "Quantum: molecular / periodic DFT"
+        "ja": "量子：H₂分子HF・分子／周期DFT",
+        "en": "Quantum: H₂ HF / molecular and periodic DFT"
       },
       "scope": {
-        "ja": "解説はあります。一般の分子・周期系ソルバーと固定入力の検証例は未実装です。",
-        "en": "Reading exists. General molecular/periodic solvers and fixed-input validation are unimplemented."
+        "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
+        "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
       },
-      "examples": [],
+      "examples": [
+        "h2-rhf"
+      ],
       "reading": {
-        "ja": "/numerical-methods-atlas/ja/read/quantum-chemistry/",
-        "en": "/numerical-methods-atlas/en/read/quantum-chemistry/"
+        "ja": "/numerical-methods-atlas/ja/read/h2-hf/",
+        "en": "/numerical-methods-atlas/en/read/h2-hf/"
       },
       "reference": {
-        "ja": "未実施。原子のPySCF照合を分子・周期系の検証へ転用しません。",
-        "en": "Not performed. Atomic PySCF checks do not validate molecules or periodic systems."
+        "ja": "H₂の同一有限基底・同一核間距離で独立PySCFと比較。自作コードの積分はPySCFから取得しない。",
+        "en": "Independent PySCF at identical finite bases and separations. Educational integrals are not obtained from PySCF."
       },
       "refinement": {
-        "ja": "未実施。基底収束・SCF収束・物理近似の誤差を分ける必要があります。",
-        "en": "Not performed. Basis convergence, SCF convergence and physical approximation errors need separate checks."
+        "ja": "SCFの密度・エネルギー・交換子残差と、入れ子s型基底の隣接エネルギー差を別に評価。最終差と指定公差の成否を示す。角運動量・完全基底極限は未確認。",
+        "en": "Separate SCF density/energy/commutator checks from adjacent nested-s-basis energy changes. Report the final change and tolerance outcome. Angular/complete-basis convergence is not established."
       },
       "next": {
-        "ja": "H₂の限定した有限基底HFを独立参照・SCF残差と照合してから、対象を広げる。",
-        "en": "Validate a scoped finite-basis H₂ HF calculation against an independent reference and SCF residual before expanding."
+        "ja": "分極関数を含む基底比較、分子DFT・FCI・周期系の独立検証は今後の課題。",
+        "en": "Polarized-basis comparisons, molecular DFT, FCI and periodic independent validation remain future work."
       }
     },
     {

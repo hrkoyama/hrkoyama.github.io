@@ -1,0 +1,3836 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-11-22T04:08:52.996951+00:00",
+  "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+  "registry_sha256": "0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c",
+  "registry_source_mode": "public-registry",
+  "expected_registry_sha256": "0e78956eac08f3a9aba61c620fb46e3392c0114a68782e33ef5d03ea43a1361c",
+  "verification_tool": {
+    "verifier_url": "https://hrkoyama.github.io/scripts/verify-atlas-execution-examples.py",
+    "verifier_sha256": "fca9955b89f2f53453ff879e5c118d723def5047ac005497269c34952a3e7a05",
+    "registry_builder_url": "https://hrkoyama.github.io/scripts/build-atlas-execution-examples.py",
+    "registry_builder_sha256": "2163cbb852bd5f70dd76aaca13c1e7c6362e06f7666fcd46a988c9ee962dccaa"
+  },
+  "environment": {
+    "operating_system": "Darwin",
+    "machine": "arm64",
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": 1,
+      "OMP_NUM_THREADS": 1,
+      "MKL_NUM_THREADS": 1
+    },
+    "python": "3.12.14",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "matplotlib": "3.9.4"
+  },
+  "scope": "Only the 20 curated public execution examples. Atomic cases share one runner. Separate from packaged pytest checks, PySCF reference regeneration, the full atlas problem inventory and general solver certification.",
+  "releases": [
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-21",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+      "sha256": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
+      "archive_bytes": 1595003,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/source-manifest.json",
+      "manifest_sha256": "af57327b5aaec0a62c76fde23e1b8da750abd6d07abe5d4593a3f7ad45907c63",
+      "archived_files_verified": 89,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/input.json",
+          "sha256": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+          "bytes": 23095
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/result.json",
+          "sha256": "336b48a0bbfc8b6ae9abd4be86c366917885875fbd85f1033864dadeeff257ab",
+          "bytes": 904
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/examples/barnes-hut/reference/forces.csv",
+          "sha256": "f7d88b05718203b27b961d2c6247c7aef121ffbdaee1222ba9c2c33b93a2d2a2",
+          "bytes": 37879
+        }
+      ],
+      "execution": {
+        "group": "barnes-hut",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.661822,
+        "shared_runner_cases": [
+          "barnes-hut"
+        ],
+        "command": "python examples/barnes-hut/run.py --input examples/barnes-hut/input.json --output output",
+        "artifacts": {
+          "stdout": "groups/barnes-hut/stdout.log",
+          "stderr": "groups/barnes-hut/stderr.log",
+          "output": "groups/barnes-hut/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "quantum-atoms",
+      "version": "2026-11-21",
+      "download": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip",
+      "sha256": "f81c61b854e68b9750d960a17a133ee9a00ae7bd0c3ee268263caee626cf44c9",
+      "archive_bytes": 2475875,
+      "manifest": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/source-manifest.json",
+      "manifest_sha256": "c6d22b507028150eb09699fc0103d958e04764d1af9f98692f18ae111357d546",
+      "archived_files_verified": 26,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/inputs.json",
+          "sha256": "8680ad9e5b04b5689b52849c71d849ddb98f9ecc9bea851a0f09d2ee2fcc6237",
+          "bytes": 1451
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/results.json",
+          "sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+          "bytes": 64495
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n1-l0.csv",
+          "sha256": "b00c67ed623bbd98d3ea29feed6ac89446f54d17cfd6a2ef97d9be46eb2d4cff",
+          "bytes": 448266
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l0.csv",
+          "sha256": "ca41c51afb53299779ac47de455ce12238e57e59bb77a885776960a6b3f7429f",
+          "bytes": 451918
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n2-l1.csv",
+          "sha256": "506ce166c04e8b752b39a4d213a5ba27225c611e632056c37b98e214ff13b4ef",
+          "bytes": 441135
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z1-n3-l2.csv",
+          "sha256": "834d641826f32f21dde2b7cee1985845c29489a5cee1c80d8f925fbabe8a9d77",
+          "bytes": 432863
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n1-l0.csv",
+          "sha256": "7237ffefc37504bab5050a6c35f84b9b1284b2e1ecde9001e684319148a1e82c",
+          "bytes": 451703
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l0.csv",
+          "sha256": "325acf636fee554d4dca765d8d824f46df5291c016261efccd28f328b19734ce",
+          "bytes": 458165
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n2-l1.csv",
+          "sha256": "c15d122c7dd9363296a77e61a987db71e823910705825ae7748ac325d1c4f066",
+          "bytes": 446809
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/hydrogenic-z2-n3-l2.csv",
+          "sha256": "0b3c44b4035123ba7c385a8137b98bffba50e45e62f8b646e393c027a80d0ab6",
+          "bytes": 442445
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-hf.csv",
+          "sha256": "d06863e6b740b53cce7cd85ff05f915f68a2e8e42838e59538c5d63d3382d176",
+          "bytes": 730040
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/results/profiles/helium-lda_x.csv",
+          "sha256": "4d48d7640e370ef764d6bbf6548e49c17a476d1a41397e7991f2903077f4f4eb",
+          "bytes": 739498
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/reference-pyscf.json",
+          "sha256": "0fcf5800a54f5429e258e304d58c43214d20f22703625e76d703639ea79c36d9",
+          "bytes": 628299
+        }
+      ],
+      "execution": {
+        "group": "quantum-atoms",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 10.833516,
+        "shared_runner_cases": [
+          "hydrogenic-atoms",
+          "helium-ground-state"
+        ],
+        "command": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "artifacts": {
+          "stdout": "groups/quantum-atoms/stdout.log",
+          "stderr": "groups/quantum-atoms/stderr.log",
+          "output": "groups/quantum-atoms/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
+          "sha256": "c2f31548c6df3db8cb6a5e3eb14e0b1130738e8144d6757a2a44c9cdaa356ccc",
+          "bytes": 2100
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/advection-sine/result.json",
+          "sha256": "434e3c08ad585322cdda9d288bbbb4c76ae0f1eeb2a1551e2b31617f3d80bd7c",
+          "bytes": 3532
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/advection-sine/solution.csv",
+          "sha256": "e004acdd5b45128b653c78077bc19d7255a7a4dbc6aeab8bb29350ec392b71d7",
+          "bytes": 11520
+        }
+      ],
+      "execution": {
+        "group": "advection-sine",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.105132,
+        "shared_runner_cases": [
+          "advection-sine"
+        ],
+        "command": "python run_recipe.py --input recipes/advection-sine.json --output output-advection-sine",
+        "artifacts": {
+          "stdout": "groups/advection-sine/stdout.log",
+          "stderr": "groups/advection-sine/stderr.log",
+          "output": "groups/advection-sine/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/sod.json",
+          "sha256": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+          "bytes": 2449
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/result.json",
+          "sha256": "0ceb383f60bf2576964ff2df8be834ea46221a01d0e8f1472b4d6e0bc5ffa489",
+          "bytes": 4599
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/sod/solution.csv",
+          "sha256": "2e8611df4ae935d37dba0d83fb9dd163a384d3b6b6c38b20ace3ac58ff9e648f",
+          "bytes": 20687
+        }
+      ],
+      "execution": {
+        "group": "sod",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.238581,
+        "shared_runner_cases": [
+          "sod"
+        ],
+        "command": "python run_recipe.py --input recipes/sod.json --output output-sod",
+        "artifacts": {
+          "stdout": "groups/sod/stdout.log",
+          "stderr": "groups/sod/stderr.log",
+          "output": "groups/sod/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/shu-osher.json",
+          "sha256": "302a761bb5cd20d049999da230eda0b873daaed9cafefafc7779374b6210accf",
+          "bytes": 2833
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/shu-osher/result.json",
+          "sha256": "5a0d4a23afa01a8a3816aa79782e3af843abcfd7d766704b891e6cfff9d76b96",
+          "bytes": 5089
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/shu-osher/solution.csv",
+          "sha256": "378c2ac3cd5e75a4c9be8f59f85effa8a78232ea4cc3c9ec7ec8d4270917f21c",
+          "bytes": 29515
+        }
+      ],
+      "execution": {
+        "group": "shu-osher",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 7.913533,
+        "shared_runner_cases": [
+          "shu-osher"
+        ],
+        "command": "python run_recipe.py --input recipes/shu-osher.json --output output-shu-osher",
+        "artifacts": {
+          "stdout": "groups/shu-osher/stdout.log",
+          "stderr": "groups/shu-osher/stderr.log",
+          "output": "groups/shu-osher/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
+          "sha256": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+          "bytes": 1789
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/result.json",
+          "sha256": "89cd06021224fd9a4e118db5b0c0bd7a1902f49b97af9853fc57863fe86baf00",
+          "bytes": 3510
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-1d-dirichlet/solution.csv",
+          "sha256": "4d09e05092c6536f5511cfc410f0c4610837ca6e71651767e739ae4538d358bd",
+          "bytes": 4488
+        }
+      ],
+      "execution": {
+        "group": "poisson-1d-dirichlet",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.113749,
+        "shared_runner_cases": [
+          "poisson-1d-dirichlet"
+        ],
+        "command": "python run_recipe.py --input recipes/poisson-1d-dirichlet.json --output output-poisson-1d-dirichlet",
+        "artifacts": {
+          "stdout": "groups/poisson-1d-dirichlet/stdout.log",
+          "stderr": "groups/poisson-1d-dirichlet/stderr.log",
+          "output": "groups/poisson-1d-dirichlet/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json",
+          "sha256": "e4928dda7da5eb43bbb33c8739be6d8cc28e0bd6bed9ba6635899daad4c1c244",
+          "bytes": 4778
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-2d-sine/result.json",
+          "sha256": "39179b7788166fd3835efd060b0fd899e321744fb43ba302c8899db5e40ed010",
+          "bytes": 9637
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/poisson-2d-sine/solution.csv",
+          "sha256": "04802e821c7504ac6c9978eafeb8465b393c79301a327462a4847f308f23df15",
+          "bytes": 742402
+        }
+      ],
+      "execution": {
+        "group": "poisson-2d-sine",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.271855,
+        "shared_runner_cases": [
+          "poisson-2d-sine"
+        ],
+        "command": "python run_recipe.py --input recipes/poisson-2d-sine.json --output output-poisson-2d-sine",
+        "artifacts": {
+          "stdout": "groups/poisson-2d-sine/stdout.log",
+          "stderr": "groups/poisson-2d-sine/stderr.log",
+          "output": "groups/poisson-2d-sine/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/bratu.json",
+          "sha256": "dc20c276f82f6dee68843ccc1cd7e225719bfea103cf2b8715a0a4091955eea9",
+          "bytes": 2233
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json",
+          "sha256": "ef66330cbc22cedbb9978d5a881cd40f4b8562396da67a2da44fb0dffe54745d",
+          "bytes": 4476
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/solution.csv",
+          "sha256": "bb499ef3d2ad1a7f422214432905510401bd4f514932156d0fb0c2e969228935",
+          "bytes": 9246
+        }
+      ],
+      "execution": {
+        "group": "bratu",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.089415,
+        "shared_runner_cases": [
+          "bratu"
+        ],
+        "command": "python run_recipe.py --input recipes/bratu.json --output output-bratu",
+        "artifacts": {
+          "stdout": "groups/bratu/stdout.log",
+          "stderr": "groups/bratu/stderr.log",
+          "output": "groups/bratu/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/harmonic-oscillator.json",
+          "sha256": "b498106a876b71e8d6d3444c57b4e6cea0fd2a000d786a5ab3b91ec64804f4b4",
+          "bytes": 1910
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/result.json",
+          "sha256": "064e70e60fcd7c8a27408fb342c5e5c10431d53d20c3d162f957ee79f6a3682d",
+          "bytes": 3895
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/solution.csv",
+          "sha256": "fbb58428874975e34e32ddbe0b54decf7233385a3e0a0ba4db3abaf896224c3a",
+          "bytes": 108747
+        }
+      ],
+      "execution": {
+        "group": "harmonic-oscillator",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.085586,
+        "shared_runner_cases": [
+          "harmonic-oscillator"
+        ],
+        "command": "python run_recipe.py --input recipes/harmonic-oscillator.json --output output-harmonic-oscillator",
+        "artifacts": {
+          "stdout": "groups/harmonic-oscillator/stdout.log",
+          "stderr": "groups/harmonic-oscillator/stderr.log",
+          "output": "groups/harmonic-oscillator/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/stiff-cosine.json",
+          "sha256": "53efd235fef8241ed7774f37696b97ef466217ae3244afa1430389c6fa23cd30",
+          "bytes": 1978
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/result.json",
+          "sha256": "e56d47528bab6fe68f64b32c9fe5ec90bb6d560bc60dfc29d60d575c82f66997",
+          "bytes": 3997
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/solution.csv",
+          "sha256": "719868e7a5d488988bf069e43e5c4b18ff5d3b70860f374f8f6dcef59f92d440",
+          "bytes": 281964
+        }
+      ],
+      "execution": {
+        "group": "stiff-cosine",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.350501,
+        "shared_runner_cases": [
+          "stiff-cosine"
+        ],
+        "command": "python run_recipe.py --input recipes/stiff-cosine.json --output output-stiff-cosine",
+        "artifacts": {
+          "stdout": "groups/stiff-cosine/stdout.log",
+          "stderr": "groups/stiff-cosine/stderr.log",
+          "output": "groups/stiff-cosine/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/smooth-function-projection.json",
+          "sha256": "97e6d8f9819e62d2c16e99a7364e05526cbed382d0615f63d73596f512c2b7ea",
+          "bytes": 3329
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/smooth-function-projection/result.json",
+          "sha256": "01bb01058f8560c7faed4f894a4dad0502063030f8d3dfcdfcfbdccd03b83b88",
+          "bytes": 6597
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/smooth-function-projection/solution.csv",
+          "sha256": "daaafe581284177c87cfa7da6449f2aa697fdeb74c4aae28744a0e2e74305a08",
+          "bytes": 95072
+        }
+      ],
+      "execution": {
+        "group": "smooth-function-projection",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.081404,
+        "shared_runner_cases": [
+          "smooth-function-projection"
+        ],
+        "command": "python run_recipe.py --input recipes/smooth-function-projection.json --output output-smooth-function-projection",
+        "artifacts": {
+          "stdout": "groups/smooth-function-projection/stdout.log",
+          "stderr": "groups/smooth-function-projection/stderr.log",
+          "output": "groups/smooth-function-projection/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/periodic-particles.json",
+          "sha256": "9b44288285eb833f8132411dc681ebee4272ff1f6ee041c2a5a35004645c8b9b",
+          "bytes": 5616
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/result.json",
+          "sha256": "e15a8f7febd524587d0904449f91f5b573c0fe3d59a027728ed3bcfac943a4d9",
+          "bytes": 8011
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/periodic-particles/solution.csv",
+          "sha256": "ebb449ec0854f8227004b5c8bf3d2ebcdcbb21b86eb8a833312b35f3226d13a1",
+          "bytes": 3928
+        }
+      ],
+      "execution": {
+        "group": "periodic-particles",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.073482,
+        "shared_runner_cases": [
+          "periodic-particles"
+        ],
+        "command": "python run_recipe.py --input recipes/periodic-particles.json --output output-periodic-particles",
+        "artifacts": {
+          "stdout": "groups/periodic-particles/stdout.log",
+          "stderr": "groups/periodic-particles/stderr.log",
+          "output": "groups/periodic-particles/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/taylor-green.json",
+          "sha256": "b7c4a6d25801bce445bf047d0df4e8f3083b71b15bcf32f7ba171f5e364e764d",
+          "bytes": 2876
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/taylor-green/result.json",
+          "sha256": "9480f772212302abfa201d9e2bb08e6c6c912b3d7ed87504b9a8659f84177803",
+          "bytes": 14706
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/taylor-green/solution.csv",
+          "sha256": "0e93c73f16ba65b4319a6e50bfe25a1d64d5c903519903a6ddedb15cf71038dc",
+          "bytes": 988988
+        }
+      ],
+      "execution": {
+        "group": "taylor-green",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.340337,
+        "shared_runner_cases": [
+          "taylor-green"
+        ],
+        "command": "python run_recipe.py --input recipes/taylor-green.json --output output-taylor-green",
+        "artifacts": {
+          "stdout": "groups/taylor-green/stdout.log",
+          "stderr": "groups/taylor-green/stderr.log",
+          "output": "groups/taylor-green/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "numerical-methods-atlas",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+      "sha256": "15c8c9c26cebc37b1e0c2923f91db456f8c9d157a48618f154f4b9bb39010fd7",
+      "archive_bytes": 2238726,
+      "manifest": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/source-manifest.json",
+      "manifest_sha256": "386b12c0b88cfd27ac9921d7b00d34e72bee3c0ae43b11eb174b01528a6195f8",
+      "archived_files_verified": 131,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/brio-wu.json",
+          "sha256": "faf47e55ad28b23f154021809d351ac853c4145790b6f54692031c081c9c7f4b",
+          "bytes": 3416
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/brio-wu/result.json",
+          "sha256": "da9e413ed5bb80d31fa54a9078d4e780ca1cdeb36c3aace0707ecca6591202b2",
+          "bytes": 6117
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/brio-wu/solution.csv",
+          "sha256": "6434dfae27f011359b8f3df46079f00d6f39e4f0f91faa48f17336b483297a49",
+          "bytes": 22829
+        }
+      ],
+      "execution": {
+        "group": "brio-wu",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.842032,
+        "shared_runner_cases": [
+          "brio-wu"
+        ],
+        "command": "python run_recipe.py --input recipes/brio-wu.json --output output-brio-wu",
+        "artifacts": {
+          "stdout": "groups/brio-wu/stdout.log",
+          "stderr": "groups/brio-wu/stderr.log",
+          "output": "groups/brio-wu/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "model-benchmarks",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+      "sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+      "archive_bytes": 564955,
+      "manifest": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/source-manifest.json",
+      "manifest_sha256": "34e5f7a2af86103ff8b3333aaf912eae7e2f6e67a8e25753a84e9587a30989a2",
+      "archived_files_verified": 24,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/logistic-growth.json",
+          "sha256": "17fba8b04671f6d5e28e5d296c221ce90377a0947c0c96a80d5d4c3a81fa07cb",
+          "bytes": 208
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/logistic-growth/result.json",
+          "sha256": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
+          "bytes": 649
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/logistic-growth/solution.csv",
+          "sha256": "bff920222491f9c2622b527b9495ef25c497df1c14a6009656fa581be08e2104",
+          "bytes": 3334
+        }
+      ],
+      "execution": {
+        "group": "logistic-growth",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.054568,
+        "shared_runner_cases": [
+          "logistic-growth"
+        ],
+        "command": "python run.py --input inputs/logistic-growth.json --output output",
+        "artifacts": {
+          "stdout": "groups/logistic-growth/stdout.log",
+          "stderr": "groups/logistic-growth/stderr.log",
+          "output": "groups/logistic-growth/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "model-benchmarks",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+      "sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+      "archive_bytes": 564955,
+      "manifest": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/source-manifest.json",
+      "manifest_sha256": "34e5f7a2af86103ff8b3333aaf912eae7e2f6e67a8e25753a84e9587a30989a2",
+      "archived_files_verified": 24,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/sir-epidemic.json",
+          "sha256": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327",
+          "bytes": 262
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json",
+          "sha256": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
+          "bytes": 807
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/sir-epidemic/solution.csv",
+          "sha256": "a237ae9303fa39749ea9cb59c1c4a47b2a369afe0aac14b0324949ab3c592b25",
+          "bytes": 35869
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/references/sir.json",
+          "sha256": "9f36f31aac2e4c3c37923c26fb355430e4eacba42bfe55bc597846dbc8c028d5",
+          "bytes": 29155
+        }
+      ],
+      "execution": {
+        "group": "sir-epidemic",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.058313,
+        "shared_runner_cases": [
+          "sir-epidemic"
+        ],
+        "command": "python run.py --input inputs/sir-epidemic.json --output output",
+        "artifacts": {
+          "stdout": "groups/sir-epidemic/stdout.log",
+          "stderr": "groups/sir-epidemic/stderr.log",
+          "output": "groups/sir-epidemic/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "model-benchmarks",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+      "sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+      "archive_bytes": 564955,
+      "manifest": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/source-manifest.json",
+      "manifest_sha256": "34e5f7a2af86103ff8b3333aaf912eae7e2f6e67a8e25753a84e9587a30989a2",
+      "archived_files_verified": 24,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/mc-integral.json",
+          "sha256": "a4a88a51f4b89bc972cd6f9fb81662333ab992647b6355c5e705c966d4c3042f",
+          "bytes": 2839
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/mc-integral/result.json",
+          "sha256": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",
+          "bytes": 761
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/mc-integral/solution.csv",
+          "sha256": "97031d8a979afc163e107629caaff2e412e70fe6647e1016ef503b0cfa8478e7",
+          "bytes": 54420
+        }
+      ],
+      "execution": {
+        "group": "mc-integral",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.11055,
+        "shared_runner_cases": [
+          "mc-integral"
+        ],
+        "command": "python run.py --input inputs/mc-integral.json --output output",
+        "artifacts": {
+          "stdout": "groups/mc-integral/stdout.log",
+          "stderr": "groups/mc-integral/stderr.log",
+          "output": "groups/mc-integral/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "model-benchmarks",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+      "sha256": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
+      "archive_bytes": 564955,
+      "manifest": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/source-manifest.json",
+      "manifest_sha256": "34e5f7a2af86103ff8b3333aaf912eae7e2f6e67a8e25753a84e9587a30989a2",
+      "archived_files_verified": 24,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/gbm-sde.json",
+          "sha256": "5ecd024be23c56e943bae1d33a0b9ea335b27de994fad86bb03df8caff0152bc",
+          "bytes": 286
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/gbm-sde/result.json",
+          "sha256": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126",
+          "bytes": 758
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/gbm-sde/solution.csv",
+          "sha256": "5d551dec0e9ad699110e23c8ecc4aff157b917bef2df95877024671f0b8636f3",
+          "bytes": 763789
+        }
+      ],
+      "execution": {
+        "group": "gbm-sde",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.084841,
+        "shared_runner_cases": [
+          "gbm-sde"
+        ],
+        "command": "python run.py --input inputs/gbm-sde.json --output output",
+        "artifacts": {
+          "stdout": "groups/gbm-sde/stdout.log",
+          "stderr": "groups/gbm-sde/stderr.log",
+          "output": "groups/gbm-sde/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    },
+    {
+      "family": "molecular-hf",
+      "version": "2026-11-22",
+      "download": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip",
+      "sha256": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
+      "archive_bytes": 325409,
+      "manifest": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/source-manifest.json",
+      "manifest_sha256": "ca34057ae326169d84f70974b8f324555482fdd4afe57a69b56efef5c3008df2",
+      "archived_files_verified": 18,
+      "downloaded_artifacts": [
+        {
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/inputs.json",
+          "sha256": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf",
+          "bytes": 7939
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/result.json",
+          "sha256": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
+          "bytes": 547756
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/solution.csv",
+          "sha256": "cdcfd8c95548cbf7f881acda5a27f3d525c4ff6903a01a615bc9a0ba513399fa",
+          "bytes": 2863
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/scf.csv",
+          "sha256": "944b33e9de0791131c1f97b8d2cd406742e04e2ad5a2a3148f840b4cd4990c43",
+          "bytes": 103705
+        },
+        {
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/reference-pyscf.json",
+          "sha256": "3649493f9aeca86bcfeb058501f724400e97ad8bf4315c163d3230c70a314e72",
+          "bytes": 21496
+        }
+      ],
+      "execution": {
+        "group": "h2-rhf",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 1.112777,
+        "shared_runner_cases": [
+          "h2-rhf"
+        ],
+        "command": "python run.py --input inputs.json --output output",
+        "artifacts": {
+          "stdout": "groups/h2-rhf/stdout.log",
+          "stderr": "groups/h2-rhf/stderr.log",
+          "output": "groups/h2-rhf/output"
+        }
+      },
+      "setup": {
+        "passed": true,
+        "phase": "complete"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "id": "barnes-hut",
+      "problem_id": "isolated-particles",
+      "execution": {
+        "group": "barnes-hut",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.661822,
+        "shared_runner_cases": [
+          "barnes-hut"
+        ],
+        "command": "python examples/barnes-hut/run.py --input examples/barnes-hut/input.json --output output",
+        "artifacts": {
+          "stdout": "groups/barnes-hut/stdout.log",
+          "stderr": "groups/barnes-hut/stderr.log",
+          "output": "groups/barnes-hut/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "particle-count",
+            "pointer": "/particles",
+            "comparison": "equals",
+            "expected": 192,
+            "observed": 192,
+            "passed": true
+          },
+          {
+            "id": "relative-force-error",
+            "pointer": "/relative_rms_force_error",
+            "comparison": "maximum",
+            "tolerance": 0.05,
+            "observed": 0.0028910490118654836,
+            "maximum_residual": 0.0028910490118654836,
+            "passed": true
+          },
+          {
+            "id": "fully-opened-error",
+            "pointer": "/fully_opened_max_absolute_error",
+            "comparison": "maximum",
+            "tolerance": 2e-13,
+            "observed": 3.552713678800501e-15,
+            "maximum_residual": 3.552713678800501e-15,
+            "passed": true
+          },
+          {
+            "id": "reported-checks",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "fixed_case_relative_force_error": true,
+              "fully_opened_tree_matches_direct_sum": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+            "observed": "28c1943856caba029f30fd344c5f790da8054b9028021ceddf935ed68c9e03f6",
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "336b48a0bbfc8b6ae9abd4be86c366917885875fbd85f1033864dadeeff257ab",
+            "bytes": 904
+          },
+          {
+            "id": "output-forces",
+            "passed": true,
+            "generated_path": "forces.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "f7d88b05718203b27b961d2c6247c7aef121ffbdaee1222ba9c2c33b93a2d2a2",
+            "bytes": 37879
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "relative-force-error": 0.0028910490118654836,
+        "fully-opened-error": 3.552713678800501e-15
+      },
+      "passed": true
+    },
+    {
+      "id": "hydrogenic-atoms",
+      "problem_id": "hydrogenic-atoms",
+      "execution": {
+        "group": "quantum-atoms",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 10.833516,
+        "shared_runner_cases": [
+          "hydrogenic-atoms",
+          "helium-ground-state"
+        ],
+        "command": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "artifacts": {
+          "stdout": "groups/quantum-atoms/stdout.log",
+          "stderr": "groups/quantum-atoms/stderr.log",
+          "output": "groups/quantum-atoms/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "normalization",
+            "pointer": "/hydrogenic/refinement",
+            "comparison": "abs_difference",
+            "field": "norm",
+            "expected": 1,
+            "tolerance": 1e-12,
+            "observed": [
+              0.9999999999999998,
+              1.0,
+              0.9999999999999996,
+              1.0000000000000002,
+              1.0000000000000002,
+              1.0000000000000007,
+              1.0000000000000007,
+              1.0000000000000004,
+              0.9999999999999998,
+              0.9999999999999998,
+              1.0,
+              0.9999999999999996,
+              1.0000000000000002,
+              1.0000000000000002,
+              1.0000000000000002,
+              1.0000000000000007,
+              1.0000000000000002,
+              1.0000000000000007,
+              1.0000000000000004,
+              1.0000000000000004,
+              0.9999999999999996,
+              1.0000000000000002,
+              0.9999999999999999,
+              1.0000000000000018
+            ],
+            "maximum_residual": 1.7763568394002505e-15,
+            "passed": true
+          },
+          {
+            "id": "eigen-residual",
+            "pointer": "/hydrogenic/refinement",
+            "comparison": "maximum",
+            "field": "eigen_residual",
+            "tolerance": 1e-07,
+            "units": "hartree",
+            "observed": [
+              1.0570707547073232e-13,
+              3.9806651155800925e-13,
+              2.1195230425015774e-12,
+              1.1036779698394472e-13,
+              4.662331035286052e-13,
+              1.2462227066855107e-12,
+              1.0675701833957839e-13,
+              3.359062911290406e-13,
+              1.3870807586420553e-12,
+              1.4150878293828522e-13,
+              3.993268036939531e-13,
+              2.1735873252979166e-12,
+              9.578598462256446e-14,
+              3.4890717976743023e-13,
+              1.5824961512569615e-12,
+              1.15386623356884e-13,
+              4.476261512092323e-13,
+              1.3126538175385397e-12,
+              9.201426801495605e-14,
+              4.805127544225791e-13,
+              1.3762158288763509e-12,
+              1.198210157460636e-13,
+              5.473742429450054e-13,
+              1.4502003553359513e-12
+            ],
+            "maximum_residual": 2.1735873252979166e-12,
+            "passed": true
+          },
+          {
+            "id": "analytic-energy-fine-grid",
+            "pointer": "/hydrogenic/refinement",
+            "comparison": "maximum",
+            "field": "energy_error",
+            "where": {
+              "dr": 0.01
+            },
+            "tolerance": 0.00021,
+            "units": "hartree",
+            "observed": [
+              1.2499376568997356e-05,
+              7.812400994733348e-07,
+              2.604209303758154e-07,
+              1.0284986737274515e-08,
+              0.0001999600109197086,
+              1.2499374537455754e-05,
+              4.166921105053234e-06,
+              1.6460908686122266e-07
+            ],
+            "maximum_residual": 0.0001999600109197086,
+            "passed": true
+          },
+          {
+            "id": "energy-refinement",
+            "pointer": "/checks/hydrogenic_exact_energy_errors_reduce",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "results.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+            "bytes": 64495
+          },
+          {
+            "id": "output-hydrogenic-z1-n1-l0",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z1-n1-l0.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "b00c67ed623bbd98d3ea29feed6ac89446f54d17cfd6a2ef97d9be46eb2d4cff",
+            "bytes": 448266
+          },
+          {
+            "id": "output-hydrogenic-z1-n2-l0",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z1-n2-l0.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "ca41c51afb53299779ac47de455ce12238e57e59bb77a885776960a6b3f7429f",
+            "bytes": 451918
+          },
+          {
+            "id": "output-hydrogenic-z1-n2-l1",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z1-n2-l1.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "506ce166c04e8b752b39a4d213a5ba27225c611e632056c37b98e214ff13b4ef",
+            "bytes": 441135
+          },
+          {
+            "id": "output-hydrogenic-z1-n3-l2",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z1-n3-l2.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "834d641826f32f21dde2b7cee1985845c29489a5cee1c80d8f925fbabe8a9d77",
+            "bytes": 432863
+          },
+          {
+            "id": "output-hydrogenic-z2-n1-l0",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z2-n1-l0.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "7237ffefc37504bab5050a6c35f84b9b1284b2e1ecde9001e684319148a1e82c",
+            "bytes": 451703
+          },
+          {
+            "id": "output-hydrogenic-z2-n2-l0",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z2-n2-l0.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "325acf636fee554d4dca765d8d824f46df5291c016261efccd28f328b19734ce",
+            "bytes": 458165
+          },
+          {
+            "id": "output-hydrogenic-z2-n2-l1",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z2-n2-l1.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "c15d122c7dd9363296a77e61a987db71e823910705825ae7748ac325d1c4f066",
+            "bytes": 446809
+          },
+          {
+            "id": "output-hydrogenic-z2-n3-l2",
+            "passed": true,
+            "generated_path": "profiles/hydrogenic-z2-n3-l2.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "0b3c44b4035123ba7c385a8137b98bffba50e45e62f8b646e393c027a80d0ab6",
+            "bytes": 442445
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "normalization": 1.7763568394002505e-15,
+        "eigen-residual": 2.1735873252979166e-12,
+        "analytic-energy-fine-grid": 0.0001999600109197086
+      },
+      "passed": true
+    },
+    {
+      "id": "helium-ground-state",
+      "problem_id": "helium-ground-state",
+      "execution": {
+        "group": "quantum-atoms",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 10.833516,
+        "shared_runner_cases": [
+          "hydrogenic-atoms",
+          "helium-ground-state"
+        ],
+        "command": "python run.py --input inputs.json --reference reference-pyscf.json --output output --figures",
+        "artifacts": {
+          "stdout": "groups/quantum-atoms/stdout.log",
+          "stderr": "groups/quantum-atoms/stderr.log",
+          "output": "groups/quantum-atoms/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "scf-convergence",
+            "pointer": "/helium/refinement",
+            "comparison": "equals",
+            "field": "converged",
+            "expected": true,
+            "observed": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "id": "electron-count",
+            "pointer": "/helium/refinement",
+            "comparison": "abs_difference",
+            "field": "electron_count",
+            "expected": 2,
+            "tolerance": 1e-12,
+            "observed": [
+              2.000000000000001,
+              2.0000000000000013,
+              2.0000000000000004,
+              2.0000000000000004,
+              1.9999999999999987,
+              1.9999999999999971,
+              1.9999999999999978,
+              1.9999999999999991
+            ],
+            "maximum_residual": 2.886579864025407e-15,
+            "passed": true
+          },
+          {
+            "id": "density-residual",
+            "pointer": "/helium/refinement",
+            "comparison": "maximum",
+            "field": "density_residual",
+            "tolerance": 1e-09,
+            "observed": [
+              7.298249888167601e-10,
+              7.316610815340308e-10,
+              7.316707064930232e-10,
+              7.323110498990301e-10,
+              6.952509607840008e-10,
+              6.967106753784264e-10,
+              6.974721705773261e-10,
+              6.978373585460334e-10
+            ],
+            "maximum_residual": 7.323110498990301e-10,
+            "passed": true
+          },
+          {
+            "id": "orbital-residual",
+            "pointer": "/helium/refinement",
+            "comparison": "maximum",
+            "field": "orbital_residual",
+            "tolerance": 1e-07,
+            "units": "hartree",
+            "observed": [
+              4.695098870537009e-11,
+              4.7038039700900065e-11,
+              4.7182351733513516e-11,
+              5.1491767770429186e-11,
+              1.0149884055190545e-11,
+              1.025495451273947e-11,
+              1.1489290296974026e-11,
+              2.4583100641605903e-11
+            ],
+            "maximum_residual": 5.1491767770429186e-11,
+            "passed": true
+          },
+          {
+            "id": "energy-identity",
+            "pointer": "/helium/refinement",
+            "comparison": "maximum",
+            "field": "energy_identity_error",
+            "tolerance": 1e-10,
+            "units": "hartree",
+            "observed": [
+              0.0,
+              4.440892098500626e-16,
+              0.0,
+              4.440892098500626e-16,
+              1.7763568394002505e-15,
+              4.440892098500626e-16,
+              8.881784197001252e-16,
+              4.440892098500626e-16
+            ],
+            "maximum_residual": 1.7763568394002505e-15,
+            "passed": true
+          },
+          {
+            "id": "independent-energy",
+            "pointer": "/helium/independent_comparison",
+            "comparison": "absolute_maximum",
+            "field": "extrapolated_reference_difference",
+            "tolerance": 1e-08,
+            "units": "hartree",
+            "observed": [
+              5.990838936043019e-10,
+              9.792922028850626e-11
+            ],
+            "maximum_residual": 5.990838936043019e-10,
+            "passed": true
+          },
+          {
+            "id": "independent-density",
+            "pointer": "/helium/independent_comparison",
+            "comparison": "maximum",
+            "field": "radial_density_l1_difference",
+            "tolerance": 5e-05,
+            "observed": [
+              1.530884883674325e-05,
+              1.6870027832909943e-05
+            ],
+            "maximum_residual": 1.6870027832909943e-05,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "results.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "953896b55df923dcbf13ced8fdb60b699918597cded8e986807b241f1192e739",
+            "bytes": 64495
+          },
+          {
+            "id": "output-helium-hf",
+            "passed": true,
+            "generated_path": "profiles/helium-hf.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "d06863e6b740b53cce7cd85ff05f915f68a2e8e42838e59538c5d63d3382d176",
+            "bytes": 730040
+          },
+          {
+            "id": "output-helium-lda_x",
+            "passed": true,
+            "generated_path": "profiles/helium-lda_x.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "4d48d7640e370ef764d6bbf6548e49c17a476d1a41397e7991f2903077f4f4eb",
+            "bytes": 739498
+          }
+        ],
+        "expected_failures": [
+          {
+            "id": "iteration-limit-is-failure",
+            "pointer": "/helium/expected_nonconvergence",
+            "comparison": "equals",
+            "field": "converged",
+            "expected": false,
+            "observed": [
+              false,
+              false
+            ],
+            "passed": true
+          },
+          {
+            "id": "failure-reason",
+            "pointer": "/helium/expected_nonconvergence",
+            "comparison": "equals",
+            "field": "reason",
+            "expected": "max_iterations",
+            "observed": [
+              "max_iterations",
+              "max_iterations"
+            ],
+            "passed": true
+          }
+        ]
+      },
+      "residuals": {
+        "electron-count": 2.886579864025407e-15,
+        "density-residual": 7.323110498990301e-10,
+        "orbital-residual": 5.1491767770429186e-11,
+        "energy-identity": 1.7763568394002505e-15,
+        "independent-energy": 5.990838936043019e-10,
+        "independent-density": 1.6870027832909943e-05
+      },
+      "passed": true
+    },
+    {
+      "id": "advection-sine",
+      "problem_id": "advection-sine",
+      "execution": {
+        "group": "advection-sine",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.105132,
+        "shared_runner_cases": [
+          "advection-sine"
+        ],
+        "command": "python run_recipe.py --input recipes/advection-sine.json --output output-advection-sine",
+        "artifacts": {
+          "stdout": "groups/advection-sine/stdout.log",
+          "stderr": "groups/advection-sine/stderr.log",
+          "output": "groups/advection-sine/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "analytic-error",
+            "comparison": "maximum",
+            "tolerance": 0.02,
+            "pointer": "/metrics/density_l1_error_fine",
+            "observed": 0.009450387328989247,
+            "maximum_residual": 0.009450387328989247,
+            "passed": true
+          },
+          {
+            "id": "refinement",
+            "comparison": "maximum",
+            "tolerance": 0.65,
+            "pointer": "/metrics/fine_to_coarse_error_ratio",
+            "observed": 0.5189678993920087,
+            "maximum_residual": 0.5189678993920087,
+            "passed": true
+          },
+          {
+            "id": "periodic-conservation",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/mean_conservation_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "maximum-principle",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/maximum_principle_excess",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "stable-courant",
+            "comparison": "maximum",
+            "tolerance": 1,
+            "pointer": "/metrics/courant_abs",
+            "observed": 0.5,
+            "maximum_residual": 0.5,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "analytic-error": true,
+              "refinement": true,
+              "periodic-conservation": true,
+              "maximum-principle": true,
+              "stable-courant": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "c2f31548c6df3db8cb6a5e3eb14e0b1130738e8144d6757a2a44c9cdaa356ccc",
+            "observed": "c2f31548c6df3db8cb6a5e3eb14e0b1130738e8144d6757a2a44c9cdaa356ccc",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "434e3c08ad585322cdda9d288bbbb4c76ae0f1eeb2a1551e2b31617f3d80bd7c",
+            "bytes": 3532
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "e004acdd5b45128b653c78077bc19d7255a7a4dbc6aeab8bb29350ec392b71d7",
+            "bytes": 11520
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "analytic-error": 0.009450387328989247,
+        "refinement": 0.5189678993920087,
+        "periodic-conservation": 0.0,
+        "maximum-principle": 0.0,
+        "stable-courant": 0.5
+      },
+      "passed": true
+    },
+    {
+      "id": "sod",
+      "problem_id": "sod",
+      "execution": {
+        "group": "sod",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.238581,
+        "shared_runner_cases": [
+          "sod"
+        ],
+        "command": "python run_recipe.py --input recipes/sod.json --output output-sod",
+        "artifacts": {
+          "stdout": "groups/sod/stdout.log",
+          "stderr": "groups/sod/stderr.log",
+          "output": "groups/sod/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "riemann-error",
+            "comparison": "maximum",
+            "tolerance": 0.035,
+            "pointer": "/metrics/density_l1_error_fine",
+            "observed": 0.015469740521059604,
+            "maximum_residual": 0.015469740521059604,
+            "passed": true
+          },
+          {
+            "id": "refinement",
+            "comparison": "maximum",
+            "tolerance": 0.85,
+            "pointer": "/metrics/fine_to_coarse_error_ratio",
+            "observed": 0.6504478779523587,
+            "maximum_residual": 0.6504478779523587,
+            "passed": true
+          },
+          {
+            "id": "positive-density",
+            "comparison": "minimum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/minimum_density",
+            "observed": 0.1250000001362996,
+            "minimum_observed": 0.1250000001362996,
+            "passed": true
+          },
+          {
+            "id": "positive-pressure",
+            "comparison": "minimum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/minimum_pressure",
+            "observed": 0.1000000001526556,
+            "minimum_observed": 0.1000000001526556,
+            "passed": true
+          },
+          {
+            "id": "boundary-balance",
+            "comparison": "maximum",
+            "tolerance": 1e-10,
+            "pointer": "/metrics/physical_boundary_balance_relative_defect",
+            "observed": 4.0513854896993565e-12,
+            "maximum_residual": 4.0513854896993565e-12,
+            "passed": true
+          },
+          {
+            "id": "reached-time",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/final_time_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "riemann-error": true,
+              "refinement": true,
+              "positive-density": true,
+              "positive-pressure": true,
+              "boundary-balance": true,
+              "reached-time": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+            "observed": "45fe724864902d9314398b9a41c7300651a624570390dcbb505295c4cb46141f",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "0ceb383f60bf2576964ff2df8be834ea46221a01d0e8f1472b4d6e0bc5ffa489",
+            "bytes": 4599
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "2e8611df4ae935d37dba0d83fb9dd163a384d3b6b6c38b20ace3ac58ff9e648f",
+            "bytes": 20687
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "riemann-error": 0.015469740521059604,
+        "refinement": 0.6504478779523587,
+        "boundary-balance": 4.0513854896993565e-12,
+        "reached-time": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "shu-osher",
+      "problem_id": "shu-osher",
+      "execution": {
+        "group": "shu-osher",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 7.913533,
+        "shared_runner_cases": [
+          "shu-osher"
+        ],
+        "command": "python run_recipe.py --input recipes/shu-osher.json --output output-shu-osher",
+        "artifacts": {
+          "stdout": "groups/shu-osher/stdout.log",
+          "stderr": "groups/shu-osher/stderr.log",
+          "output": "groups/shu-osher/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "numerical-reference-error",
+            "comparison": "maximum",
+            "tolerance": 0.15,
+            "pointer": "/metrics/density_l1_error_fine",
+            "observed": 0.06034109484095713,
+            "maximum_residual": 0.06034109484095713,
+            "passed": true
+          },
+          {
+            "id": "empirical-refinement",
+            "comparison": "maximum",
+            "tolerance": 0.95,
+            "pointer": "/metrics/fine_to_coarse_error_ratio",
+            "observed": 0.6633187239614994,
+            "maximum_residual": 0.6633187239614994,
+            "passed": true
+          },
+          {
+            "id": "positive-density",
+            "comparison": "minimum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/minimum_density",
+            "observed": 0.7971533365437261,
+            "minimum_observed": 0.7971533365437261,
+            "passed": true
+          },
+          {
+            "id": "positive-pressure",
+            "comparison": "minimum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/minimum_pressure",
+            "observed": 0.9999989784392186,
+            "minimum_observed": 0.9999989784392186,
+            "passed": true
+          },
+          {
+            "id": "boundary-balance",
+            "comparison": "maximum",
+            "tolerance": 0.002,
+            "pointer": "/metrics/physical_boundary_balance_relative_defect",
+            "observed": 0.00024561754605276995,
+            "maximum_residual": 0.00024561754605276995,
+            "passed": true
+          },
+          {
+            "id": "reached-time",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/final_time_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "numerical-reference-error": true,
+              "empirical-refinement": true,
+              "positive-density": true,
+              "positive-pressure": true,
+              "boundary-balance": true,
+              "reached-time": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "302a761bb5cd20d049999da230eda0b873daaed9cafefafc7779374b6210accf",
+            "observed": "302a761bb5cd20d049999da230eda0b873daaed9cafefafc7779374b6210accf",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "5a0d4a23afa01a8a3816aa79782e3af843abcfd7d766704b891e6cfff9d76b96",
+            "bytes": 5089
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "378c2ac3cd5e75a4c9be8f59f85effa8a78232ea4cc3c9ec7ec8d4270917f21c",
+            "bytes": 29515
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "numerical-reference-error": 0.06034109484095713,
+        "empirical-refinement": 0.6633187239614994,
+        "boundary-balance": 0.00024561754605276995,
+        "reached-time": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "poisson-1d-dirichlet",
+      "problem_id": "poisson-1d-dirichlet",
+      "execution": {
+        "group": "poisson-1d-dirichlet",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.113749,
+        "shared_runner_cases": [
+          "poisson-1d-dirichlet"
+        ],
+        "command": "python run_recipe.py --input recipes/poisson-1d-dirichlet.json --output output-poisson-1d-dirichlet",
+        "artifacts": {
+          "stdout": "groups/poisson-1d-dirichlet/stdout.log",
+          "stderr": "groups/poisson-1d-dirichlet/stderr.log",
+          "output": "groups/poisson-1d-dirichlet/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "continuous-error",
+            "comparison": "maximum",
+            "tolerance": 0.0003,
+            "pointer": "/metrics/finest_linf_error",
+            "observed": 0.00020082180969560604,
+            "maximum_residual": 0.00020082180969560604,
+            "passed": true
+          },
+          {
+            "id": "second-order-refinement",
+            "comparison": "minimum",
+            "tolerance": 1.9,
+            "pointer": "/metrics/minimum_observed_order",
+            "observed": 2.0005215338201543,
+            "minimum_observed": 2.0005215338201543,
+            "passed": true
+          },
+          {
+            "id": "discrete-residual",
+            "comparison": "maximum",
+            "tolerance": 1e-10,
+            "pointer": "/metrics/maximum_true_relative_residual",
+            "observed": 5.26166319191689e-14,
+            "maximum_residual": 5.26166319191689e-14,
+            "passed": true
+          },
+          {
+            "id": "dirichlet-boundary",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/boundary_maximum_absolute_value",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "continuous-error": true,
+              "second-order-refinement": true,
+              "discrete-residual": true,
+              "dirichlet-boundary": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+            "observed": "07ae06758f60f77ac198fdad6d056cc0026b32005e76ad7d0f2cc3727be24f51",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "89cd06021224fd9a4e118db5b0c0bd7a1902f49b97af9853fc57863fe86baf00",
+            "bytes": 3510
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "4d09e05092c6536f5511cfc410f0c4610837ca6e71651767e739ae4538d358bd",
+            "bytes": 4488
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "continuous-error": 0.00020082180969560604,
+        "discrete-residual": 5.26166319191689e-14,
+        "dirichlet-boundary": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "poisson-2d-sine",
+      "problem_id": "poisson-2d-sine",
+      "execution": {
+        "group": "poisson-2d-sine",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.271855,
+        "shared_runner_cases": [
+          "poisson-2d-sine"
+        ],
+        "command": "python run_recipe.py --input recipes/poisson-2d-sine.json --output output-poisson-2d-sine",
+        "artifacts": {
+          "stdout": "groups/poisson-2d-sine/stdout.log",
+          "stderr": "groups/poisson-2d-sine/stderr.log",
+          "output": "groups/poisson-2d-sine/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "cg-continuous-error",
+            "comparison": "maximum",
+            "tolerance": 0.0003,
+            "pointer": "/metrics/fd_finest_cg_linf_error",
+            "observed": 0.0002008218097049319,
+            "maximum_residual": 0.0002008218097049319,
+            "passed": true
+          },
+          {
+            "id": "mg-continuous-error",
+            "comparison": "maximum",
+            "tolerance": 0.0003,
+            "pointer": "/metrics/fd_finest_multigrid_linf_error",
+            "observed": 0.0002008218092508507,
+            "maximum_residual": 0.0002008218092508507,
+            "passed": true
+          },
+          {
+            "id": "fd-second-order",
+            "comparison": "minimum",
+            "tolerance": 1.9,
+            "pointer": "/metrics/fd_minimum_observed_order",
+            "observed": 2.0005215337575426,
+            "minimum_observed": 2.0005215337575426,
+            "passed": true
+          },
+          {
+            "id": "fd-discrete-residual",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "pointer": "/metrics/fd_maximum_true_relative_residual",
+            "observed": 8.225869530859639e-12,
+            "maximum_residual": 8.225869530859639e-12,
+            "passed": true
+          },
+          {
+            "id": "matched-fd-solutions",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "pointer": "/metrics/fd_maximum_cg_multigrid_difference",
+            "observed": 5.892175636290631e-12,
+            "maximum_residual": 5.892175636290631e-12,
+            "passed": true
+          },
+          {
+            "id": "fem-l2-error",
+            "comparison": "maximum",
+            "tolerance": 0.01,
+            "pointer": "/metrics/fem_finest_l2_error",
+            "observed": 0.0053774350099373034,
+            "maximum_residual": 0.0053774350099373034,
+            "passed": true
+          },
+          {
+            "id": "fem-h1-seminorm-error",
+            "comparison": "maximum",
+            "tolerance": 0.3,
+            "pointer": "/metrics/fem_finest_h1_seminorm_error",
+            "observed": 0.21753633635952838,
+            "maximum_residual": 0.21753633635952838,
+            "passed": true
+          },
+          {
+            "id": "fem-second-order-l2",
+            "comparison": "minimum",
+            "tolerance": 1.8,
+            "pointer": "/metrics/fem_minimum_l2_order",
+            "observed": 1.9037478085949007,
+            "minimum_observed": 1.9037478085949007,
+            "passed": true
+          },
+          {
+            "id": "fem-first-order-h1",
+            "comparison": "minimum",
+            "tolerance": 0.9,
+            "pointer": "/metrics/fem_minimum_h1_seminorm_order",
+            "observed": 0.9575364541653995,
+            "minimum_observed": 0.9575364541653995,
+            "passed": true
+          },
+          {
+            "id": "fem-assembled-residual",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "pointer": "/metrics/fem_maximum_interior_true_relative_residual",
+            "observed": 3.1814633402790833e-12,
+            "maximum_residual": 3.1814633402790833e-12,
+            "passed": true
+          },
+          {
+            "id": "fem-dirichlet-boundary",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/fem_boundary_maximum_absolute_value",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "cg-continuous-error": true,
+              "mg-continuous-error": true,
+              "fd-second-order": true,
+              "fd-discrete-residual": true,
+              "matched-fd-solutions": true,
+              "fem-l2-error": true,
+              "fem-h1-seminorm-error": true,
+              "fem-second-order-l2": true,
+              "fem-first-order-h1": true,
+              "fem-assembled-residual": true,
+              "fem-dirichlet-boundary": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "e4928dda7da5eb43bbb33c8739be6d8cc28e0bd6bed9ba6635899daad4c1c244",
+            "observed": "e4928dda7da5eb43bbb33c8739be6d8cc28e0bd6bed9ba6635899daad4c1c244",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "39179b7788166fd3835efd060b0fd899e321744fb43ba302c8899db5e40ed010",
+            "bytes": 9637
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "04802e821c7504ac6c9978eafeb8465b393c79301a327462a4847f308f23df15",
+            "bytes": 742402
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "cg-continuous-error": 0.0002008218097049319,
+        "mg-continuous-error": 0.0002008218092508507,
+        "fd-discrete-residual": 8.225869530859639e-12,
+        "matched-fd-solutions": 5.892175636290631e-12,
+        "fem-l2-error": 0.0053774350099373034,
+        "fem-h1-seminorm-error": 0.21753633635952838,
+        "fem-assembled-residual": 3.1814633402790833e-12,
+        "fem-dirichlet-boundary": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "bratu",
+      "problem_id": "bratu",
+      "execution": {
+        "group": "bratu",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.089415,
+        "shared_runner_cases": [
+          "bratu"
+        ],
+        "command": "python run_recipe.py --input recipes/bratu.json --output output-bratu",
+        "artifacts": {
+          "stdout": "groups/bratu/stdout.log",
+          "stderr": "groups/bratu/stderr.log",
+          "output": "groups/bratu/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "nonlinear-convergence",
+            "comparison": "equals",
+            "tolerance": 0,
+            "expected": true,
+            "pointer": "/metrics/all_converged",
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "lower-branch-continuous-error",
+            "comparison": "maximum",
+            "tolerance": 1e-05,
+            "pointer": "/metrics/finest_linf_error",
+            "observed": 2.709430092034948e-06,
+            "maximum_residual": 2.709430092034948e-06,
+            "passed": true
+          },
+          {
+            "id": "second-order-refinement",
+            "comparison": "minimum",
+            "tolerance": 1.8,
+            "pointer": "/metrics/minimum_observed_order",
+            "observed": 2.000144542430704,
+            "minimum_observed": 2.000144542430704,
+            "passed": true
+          },
+          {
+            "id": "independent-nonlinear-residual",
+            "comparison": "maximum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/maximum_independent_residual_l2",
+            "observed": 5.557303337224856e-11,
+            "maximum_residual": 5.557303337224856e-11,
+            "passed": true
+          },
+          {
+            "id": "dirichlet-boundary",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/boundary_maximum_absolute_value",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "nonlinear-convergence": true,
+              "lower-branch-continuous-error": true,
+              "second-order-refinement": true,
+              "independent-nonlinear-residual": true,
+              "dirichlet-boundary": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "dc20c276f82f6dee68843ccc1cd7e225719bfea103cf2b8715a0a4091955eea9",
+            "observed": "dc20c276f82f6dee68843ccc1cd7e225719bfea103cf2b8715a0a4091955eea9",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "ef66330cbc22cedbb9978d5a881cd40f4b8562396da67a2da44fb0dffe54745d",
+            "bytes": 4476
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "bb499ef3d2ad1a7f422214432905510401bd4f514932156d0fb0c2e969228935",
+            "bytes": 9246
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "lower-branch-continuous-error": 2.709430092034948e-06,
+        "independent-nonlinear-residual": 5.557303337224856e-11,
+        "dirichlet-boundary": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "harmonic-oscillator",
+      "problem_id": "harmonic-oscillator",
+      "execution": {
+        "group": "harmonic-oscillator",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.085586,
+        "shared_runner_cases": [
+          "harmonic-oscillator"
+        ],
+        "command": "python run_recipe.py --input recipes/harmonic-oscillator.json --output output-harmonic-oscillator",
+        "artifacts": {
+          "stdout": "groups/harmonic-oscillator/stdout.log",
+          "stderr": "groups/harmonic-oscillator/stderr.log",
+          "output": "groups/harmonic-oscillator/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "analytic-state",
+            "comparison": "maximum",
+            "tolerance": 0.001,
+            "pointer": "/metrics/max_state_error",
+            "observed": 0.0005123241259968384,
+            "maximum_residual": 0.0005123241259968384,
+            "passed": true
+          },
+          {
+            "id": "refinement",
+            "comparison": "minimum",
+            "tolerance": 1.9,
+            "pointer": "/metrics/minimum_observed_order",
+            "observed": 2.000338953225959,
+            "minimum_observed": 2.000338953225959,
+            "passed": true
+          },
+          {
+            "id": "energy-envelope",
+            "comparison": "maximum",
+            "tolerance": 0.0002,
+            "pointer": "/metrics/max_relative_energy_deviation",
+            "observed": 0.0001502403047225316,
+            "maximum_residual": 0.0001502403047225316,
+            "passed": true
+          },
+          {
+            "id": "time-reversal",
+            "comparison": "maximum",
+            "tolerance": 1e-11,
+            "pointer": "/metrics/reversal_error",
+            "observed": 5.978733960281817e-16,
+            "maximum_residual": 5.978733960281817e-16,
+            "passed": true
+          },
+          {
+            "id": "final-time",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/final_time_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "analytic-state": true,
+              "refinement": true,
+              "energy-envelope": true,
+              "time-reversal": true,
+              "final-time": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "b498106a876b71e8d6d3444c57b4e6cea0fd2a000d786a5ab3b91ec64804f4b4",
+            "observed": "b498106a876b71e8d6d3444c57b4e6cea0fd2a000d786a5ab3b91ec64804f4b4",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "064e70e60fcd7c8a27408fb342c5e5c10431d53d20c3d162f957ee79f6a3682d",
+            "bytes": 3895
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "fbb58428874975e34e32ddbe0b54decf7233385a3e0a0ba4db3abaf896224c3a",
+            "bytes": 108747
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "analytic-state": 0.0005123241259968384,
+        "energy-envelope": 0.0001502403047225316,
+        "time-reversal": 5.978733960281817e-16,
+        "final-time": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "stiff-cosine",
+      "problem_id": "stiff-cosine",
+      "execution": {
+        "group": "stiff-cosine",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.350501,
+        "shared_runner_cases": [
+          "stiff-cosine"
+        ],
+        "command": "python run_recipe.py --input recipes/stiff-cosine.json --output output-stiff-cosine",
+        "artifacts": {
+          "stdout": "groups/stiff-cosine/stdout.log",
+          "stderr": "groups/stiff-cosine/stderr.log",
+          "output": "groups/stiff-cosine/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "analytic-error",
+            "comparison": "maximum",
+            "tolerance": 1e-06,
+            "pointer": "/metrics/maximum_error",
+            "observed": 1.8557163583565739e-09,
+            "maximum_residual": 1.8557163583565739e-09,
+            "passed": true
+          },
+          {
+            "id": "resolved-refinement",
+            "comparison": "minimum",
+            "tolerance": 1.7,
+            "pointer": "/metrics/minimum_observed_order",
+            "observed": 1.9418603474701042,
+            "minimum_observed": 1.9418603474701042,
+            "passed": true
+          },
+          {
+            "id": "bounded-state",
+            "comparison": "maximum",
+            "tolerance": 1.01,
+            "pointer": "/metrics/maximum_state_magnitude",
+            "observed": 1.0,
+            "maximum_residual": 1.0,
+            "passed": true
+          },
+          {
+            "id": "stiff-decay",
+            "comparison": "maximum",
+            "tolerance": 1e-06,
+            "pointer": "/metrics/stiff_decay_error",
+            "observed": 4.828426678472041e-08,
+            "maximum_residual": 4.828426678472041e-08,
+            "passed": true
+          },
+          {
+            "id": "final-time",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/final_time_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "analytic-error": true,
+              "resolved-refinement": true,
+              "bounded-state": true,
+              "stiff-decay": true,
+              "final-time": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "53efd235fef8241ed7774f37696b97ef466217ae3244afa1430389c6fa23cd30",
+            "observed": "53efd235fef8241ed7774f37696b97ef466217ae3244afa1430389c6fa23cd30",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "e56d47528bab6fe68f64b32c9fe5ec90bb6d560bc60dfc29d60d575c82f66997",
+            "bytes": 3997
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "719868e7a5d488988bf069e43e5c4b18ff5d3b70860f374f8f6dcef59f92d440",
+            "bytes": 281964
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "analytic-error": 1.8557163583565739e-09,
+        "bounded-state": 1.0,
+        "stiff-decay": 4.828426678472041e-08,
+        "final-time": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "smooth-function-projection",
+      "problem_id": "smooth-function-projection",
+      "execution": {
+        "group": "smooth-function-projection",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.081404,
+        "shared_runner_cases": [
+          "smooth-function-projection"
+        ],
+        "command": "python run_recipe.py --input recipes/smooth-function-projection.json --output output-smooth-function-projection",
+        "artifacts": {
+          "stdout": "groups/smooth-function-projection/stdout.log",
+          "stderr": "groups/smooth-function-projection/stderr.log",
+          "output": "groups/smooth-function-projection/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "projection-l2-error",
+            "comparison": "maximum",
+            "tolerance": 2e-08,
+            "pointer": "/metrics/finest_projection_l2_error",
+            "observed": 9.653888233607264e-09,
+            "maximum_residual": 9.653888233607264e-09,
+            "passed": true
+          },
+          {
+            "id": "interpolation-l2-error",
+            "comparison": "maximum",
+            "tolerance": 5e-08,
+            "pointer": "/metrics/finest_gll_interpolation_l2_error",
+            "observed": 1.4538963000012312e-08,
+            "maximum_residual": 1.4538963000012312e-08,
+            "passed": true
+          },
+          {
+            "id": "projection-degree-refinement",
+            "comparison": "minimum",
+            "tolerance": 10,
+            "pointer": "/metrics/minimum_projection_error_reduction",
+            "observed": 80.6704064404387,
+            "minimum_observed": 80.6704064404387,
+            "passed": true
+          },
+          {
+            "id": "interpolation-degree-refinement",
+            "comparison": "minimum",
+            "tolerance": 10,
+            "pointer": "/metrics/minimum_interpolation_error_reduction",
+            "observed": 92.88522241446563,
+            "minimum_observed": 92.88522241446563,
+            "passed": true
+          },
+          {
+            "id": "independent-modal-coefficients",
+            "comparison": "maximum",
+            "tolerance": 1e-11,
+            "pointer": "/metrics/maximum_independent_coefficient_difference",
+            "observed": 1.001968319732082e-13,
+            "maximum_residual": 1.001968319732082e-13,
+            "passed": true
+          },
+          {
+            "id": "projection-orthogonality",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/maximum_projection_orthogonality_defect",
+            "observed": 2.54438729580561e-15,
+            "maximum_residual": 2.54438729580561e-15,
+            "passed": true
+          },
+          {
+            "id": "quadrature-reference-agreement",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/maximum_reference_quadrature_disagreement",
+            "observed": 5.605325231750058e-17,
+            "maximum_residual": 5.605325231750058e-17,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "projection-l2-error": true,
+              "interpolation-l2-error": true,
+              "projection-degree-refinement": true,
+              "interpolation-degree-refinement": true,
+              "independent-modal-coefficients": true,
+              "projection-orthogonality": true,
+              "quadrature-reference-agreement": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "97e6d8f9819e62d2c16e99a7364e05526cbed382d0615f63d73596f512c2b7ea",
+            "observed": "97e6d8f9819e62d2c16e99a7364e05526cbed382d0615f63d73596f512c2b7ea",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "01bb01058f8560c7faed4f894a4dad0502063030f8d3dfcdfcfbdccd03b83b88",
+            "bytes": 6597
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "daaafe581284177c87cfa7da6449f2aa697fdeb74c4aae28744a0e2e74305a08",
+            "bytes": 95072
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "projection-l2-error": 9.653888233607264e-09,
+        "interpolation-l2-error": 1.4538963000012312e-08,
+        "independent-modal-coefficients": 1.001968319732082e-13,
+        "projection-orthogonality": 2.54438729580561e-15,
+        "quadrature-reference-agreement": 5.605325231750058e-17
+      },
+      "passed": true
+    },
+    {
+      "id": "periodic-particles",
+      "problem_id": "periodic-particles",
+      "execution": {
+        "group": "periodic-particles",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.073482,
+        "shared_runner_cases": [
+          "periodic-particles"
+        ],
+        "command": "python run_recipe.py --input recipes/periodic-particles.json --output output-periodic-particles",
+        "artifacts": {
+          "stdout": "groups/periodic-particles/stdout.log",
+          "stderr": "groups/periodic-particles/stderr.log",
+          "output": "groups/periodic-particles/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "mass",
+            "comparison": "maximum",
+            "tolerance": 1e-13,
+            "pointer": "/metrics/mass_relative_error",
+            "observed": 1.1102230246251565e-16,
+            "maximum_residual": 1.1102230246251565e-16,
+            "passed": true
+          },
+          {
+            "id": "internal-force",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/internal_net_force_relative",
+            "observed": 1.7003756582900711e-16,
+            "maximum_residual": 1.7003756582900711e-16,
+            "passed": true
+          },
+          {
+            "id": "self-force",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/single_particle_self_acceleration",
+            "observed": 3.9968028886505635e-15,
+            "maximum_residual": 3.9968028886505635e-15,
+            "passed": true
+          },
+          {
+            "id": "periodic-wrap-force",
+            "comparison": "maximum",
+            "tolerance": 1e-11,
+            "pointer": "/metrics/periodic_shift_acceleration_max_error",
+            "observed": 4.618527782440651e-14,
+            "maximum_residual": 4.618527782440651e-14,
+            "passed": true
+          },
+          {
+            "id": "periodic-wrap-density",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/periodic_shift_density_relative_error",
+            "observed": 7.730522888740457e-15,
+            "maximum_residual": 7.730522888740457e-15,
+            "passed": true
+          },
+          {
+            "id": "gauge",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/potential_mean_absolute",
+            "observed": 8.22387425648264e-18,
+            "maximum_residual": 8.22387425648264e-18,
+            "passed": true
+          },
+          {
+            "id": "analytic-mesh-potential",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/manufactured_potential_max_error",
+            "observed": 3.469446951953614e-17,
+            "maximum_residual": 3.469446951953614e-17,
+            "passed": true
+          },
+          {
+            "id": "analytic-mesh-force",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/manufactured_acceleration_max_error",
+            "observed": 2.7755575615628914e-16,
+            "maximum_residual": 2.7755575615628914e-16,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "mass": true,
+              "internal-force": true,
+              "self-force": true,
+              "periodic-wrap-force": true,
+              "periodic-wrap-density": true,
+              "gauge": true,
+              "analytic-mesh-potential": true,
+              "analytic-mesh-force": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "9b44288285eb833f8132411dc681ebee4272ff1f6ee041c2a5a35004645c8b9b",
+            "observed": "9b44288285eb833f8132411dc681ebee4272ff1f6ee041c2a5a35004645c8b9b",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "e15a8f7febd524587d0904449f91f5b573c0fe3d59a027728ed3bcfac943a4d9",
+            "bytes": 8011
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "ebb449ec0854f8227004b5c8bf3d2ebcdcbb21b86eb8a833312b35f3226d13a1",
+            "bytes": 3928
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "mass": 1.1102230246251565e-16,
+        "internal-force": 1.7003756582900711e-16,
+        "self-force": 3.9968028886505635e-15,
+        "periodic-wrap-force": 4.618527782440651e-14,
+        "periodic-wrap-density": 7.730522888740457e-15,
+        "gauge": 8.22387425648264e-18,
+        "analytic-mesh-potential": 3.469446951953614e-17,
+        "analytic-mesh-force": 2.7755575615628914e-16
+      },
+      "passed": true
+    },
+    {
+      "id": "taylor-green",
+      "problem_id": "taylor-green",
+      "execution": {
+        "group": "taylor-green",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.340337,
+        "shared_runner_cases": [
+          "taylor-green"
+        ],
+        "command": "python run_recipe.py --input recipes/taylor-green.json --output output-taylor-green",
+        "artifacts": {
+          "stdout": "groups/taylor-green/stdout.log",
+          "stderr": "groups/taylor-green/stderr.log",
+          "output": "groups/taylor-green/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "analytic-velocity",
+            "comparison": "maximum",
+            "tolerance": 0.0001,
+            "pointer": "/metrics/velocity_rms_error",
+            "observed": 5.137961209377578e-05,
+            "maximum_residual": 5.137961209377578e-05,
+            "passed": true
+          },
+          {
+            "id": "combined-refinement",
+            "comparison": "minimum",
+            "tolerance": 1.9,
+            "pointer": "/metrics/minimum_observed_order",
+            "observed": 1.9953602012580707,
+            "minimum_observed": 1.9953602012580707,
+            "passed": true
+          },
+          {
+            "id": "divergence",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/maximum_divergence",
+            "observed": 9.04691109394067e-15,
+            "maximum_residual": 9.04691109394067e-15,
+            "passed": true
+          },
+          {
+            "id": "pressure-gauge",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/pressure_mean_absolute",
+            "observed": 3.469446951953614e-18,
+            "maximum_residual": 3.469446951953614e-18,
+            "passed": true
+          },
+          {
+            "id": "energy",
+            "comparison": "maximum",
+            "tolerance": 0.001,
+            "pointer": "/metrics/relative_final_energy_error",
+            "observed": 0.00016061374188467524,
+            "maximum_residual": 0.00016061374188467524,
+            "passed": true
+          },
+          {
+            "id": "energy-monotonicity",
+            "comparison": "maximum",
+            "tolerance": 1e-13,
+            "pointer": "/metrics/maximum_energy_increase",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "time-sensitivity",
+            "comparison": "maximum",
+            "tolerance": 0.1,
+            "pointer": "/metrics/time_change_to_combined_error_ratio",
+            "observed": 6.70291605149784e-05,
+            "maximum_residual": 6.70291605149784e-05,
+            "passed": true
+          },
+          {
+            "id": "final-time",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/final_time_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "analytic-velocity": true,
+              "combined-refinement": true,
+              "divergence": true,
+              "pressure-gauge": true,
+              "energy": true,
+              "energy-monotonicity": true,
+              "time-sensitivity": true,
+              "final-time": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "b7c4a6d25801bce445bf047d0df4e8f3083b71b15bcf32f7ba171f5e364e764d",
+            "observed": "b7c4a6d25801bce445bf047d0df4e8f3083b71b15bcf32f7ba171f5e364e764d",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "9480f772212302abfa201d9e2bb08e6c6c912b3d7ed87504b9a8659f84177803",
+            "bytes": 14706
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "0e93c73f16ba65b4319a6e50bfe25a1d64d5c903519903a6ddedb15cf71038dc",
+            "bytes": 988988
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "analytic-velocity": 5.137961209377578e-05,
+        "divergence": 9.04691109394067e-15,
+        "pressure-gauge": 3.469446951953614e-18,
+        "energy": 0.00016061374188467524,
+        "energy-monotonicity": 0.0,
+        "time-sensitivity": 6.70291605149784e-05,
+        "final-time": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "brio-wu",
+      "problem_id": "brio-wu",
+      "execution": {
+        "group": "brio-wu",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.842032,
+        "shared_runner_cases": [
+          "brio-wu"
+        ],
+        "command": "python run_recipe.py --input recipes/brio-wu.json --output output-brio-wu",
+        "artifacts": {
+          "stdout": "groups/brio-wu/stdout.log",
+          "stderr": "groups/brio-wu/stderr.log",
+          "output": "groups/brio-wu/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "numerical-reference-error",
+            "comparison": "maximum",
+            "tolerance": 0.03,
+            "pointer": "/metrics/density_l1_error_fine",
+            "observed": 0.005437423717860979,
+            "maximum_residual": 0.005437423717860979,
+            "passed": true
+          },
+          {
+            "id": "empirical-refinement",
+            "comparison": "maximum",
+            "tolerance": 0.95,
+            "pointer": "/metrics/fine_to_coarse_error_ratio",
+            "observed": 0.4993541519134797,
+            "maximum_residual": 0.4993541519134797,
+            "passed": true
+          },
+          {
+            "id": "longitudinal-field",
+            "comparison": "maximum",
+            "tolerance": 1e-12,
+            "pointer": "/metrics/longitudinal_field_max_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "no-positivity-retry",
+            "comparison": "maximum",
+            "tolerance": 0,
+            "pointer": "/metrics/retried_steps",
+            "observed": 0,
+            "maximum_residual": 0,
+            "passed": true
+          },
+          {
+            "id": "positive-density",
+            "comparison": "minimum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/minimum_density",
+            "observed": 0.11689998292121226,
+            "minimum_observed": 0.11689998292121226,
+            "passed": true
+          },
+          {
+            "id": "positive-pressure",
+            "comparison": "minimum",
+            "tolerance": 1e-08,
+            "pointer": "/metrics/minimum_pressure",
+            "observed": 0.08748649270528241,
+            "minimum_observed": 0.08748649270528241,
+            "passed": true
+          },
+          {
+            "id": "boundary-balance",
+            "comparison": "maximum",
+            "tolerance": 1e-10,
+            "pointer": "/metrics/physical_boundary_balance_relative_defect",
+            "observed": 1.167558485990776e-15,
+            "maximum_residual": 1.167558485990776e-15,
+            "passed": true
+          },
+          {
+            "id": "reached-time",
+            "comparison": "maximum",
+            "tolerance": 1e-14,
+            "pointer": "/metrics/final_time_error",
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "all-criteria",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "numerical-reference-error": true,
+              "empirical-refinement": true,
+              "longitudinal-field": true,
+              "no-positivity-retry": true,
+              "positive-density": true,
+              "positive-pressure": true,
+              "boundary-balance": true,
+              "reached-time": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "faf47e55ad28b23f154021809d351ac853c4145790b6f54692031c081c9c7f4b",
+            "observed": "faf47e55ad28b23f154021809d351ac853c4145790b6f54692031c081c9c7f4b",
+            "passed": true
+          },
+          {
+            "id": "case-passed",
+            "pointer": "/passed",
+            "comparison": "equals",
+            "expected": true,
+            "observed": true,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "da9e413ed5bb80d31fa54a9078d4e780ca1cdeb36c3aace0707ecca6591202b2",
+            "bytes": 6117
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "6434dfae27f011359b8f3df46079f00d6f39e4f0f91faa48f17336b483297a49",
+            "bytes": 22829
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "numerical-reference-error": 0.005437423717860979,
+        "empirical-refinement": 0.4993541519134797,
+        "longitudinal-field": 0.0,
+        "no-positivity-retry": 0,
+        "boundary-balance": 1.167558485990776e-15,
+        "reached-time": 0.0
+      },
+      "passed": true
+    },
+    {
+      "id": "logistic-growth",
+      "problem_id": "logistic-growth",
+      "execution": {
+        "group": "logistic-growth",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.054568,
+        "shared_runner_cases": [
+          "logistic-growth"
+        ],
+        "command": "python run.py --input inputs/logistic-growth.json --output output",
+        "artifacts": {
+          "stdout": "groups/logistic-growth/stdout.log",
+          "stderr": "groups/logistic-growth/stderr.log",
+          "output": "groups/logistic-growth/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "all-numerical-checks",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "accuracy": true,
+              "refinement": true,
+              "nonnegative": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "17fba8b04671f6d5e28e5d296c221ce90377a0947c0c96a80d5d4c3a81fa07cb",
+            "observed": "17fba8b04671f6d5e28e5d296c221ce90377a0947c0c96a80d5d4c3a81fa07cb",
+            "passed": true
+          },
+          {
+            "id": "termination",
+            "pointer": "/termination",
+            "comparison": "equals",
+            "expected": "fixed_budget_completed",
+            "observed": "fixed_budget_completed",
+            "passed": true
+          },
+          {
+            "id": "finest_max_error-maximum",
+            "pointer": "/metrics/finest_max_error",
+            "comparison": "maximum",
+            "tolerance": 2e-06,
+            "observed": 1.0857086456539378e-06,
+            "maximum_residual": 1.0857086456539378e-06,
+            "passed": true
+          },
+          {
+            "id": "observed_orders-minimum",
+            "pointer": "/metrics/observed_orders",
+            "comparison": "minimum",
+            "tolerance": 3.7,
+            "observed": [
+              3.7799329522806246,
+              3.8959092549266208
+            ],
+            "minimum_observed": 3.7799329522806246,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
+            "bytes": 649
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "bff920222491f9c2622b527b9495ef25c497df1c14a6009656fa581be08e2104",
+            "bytes": 3334
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "finest_max_error-maximum": 1.0857086456539378e-06
+      },
+      "passed": true
+    },
+    {
+      "id": "sir-epidemic",
+      "problem_id": "sir-epidemic",
+      "execution": {
+        "group": "sir-epidemic",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.058313,
+        "shared_runner_cases": [
+          "sir-epidemic"
+        ],
+        "command": "python run.py --input inputs/sir-epidemic.json --output output",
+        "artifacts": {
+          "stdout": "groups/sir-epidemic/stdout.log",
+          "stderr": "groups/sir-epidemic/stderr.log",
+          "output": "groups/sir-epidemic/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "all-numerical-checks",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "accuracy": true,
+              "refinement": true,
+              "nonnegative": true,
+              "mass_balance": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327",
+            "observed": "bff023a3ec9c4cfc6788a6a78279ee68e851cca0b6080d35d92d3208f6c52327",
+            "passed": true
+          },
+          {
+            "id": "termination",
+            "pointer": "/termination",
+            "comparison": "equals",
+            "expected": "fixed_budget_completed",
+            "observed": "fixed_budget_completed",
+            "passed": true
+          },
+          {
+            "id": "finest_max_error-maximum",
+            "pointer": "/metrics/finest_max_error",
+            "comparison": "maximum",
+            "tolerance": 2e-06,
+            "observed": 2.795866945737302e-07,
+            "maximum_residual": 2.795866945737302e-07,
+            "passed": true
+          },
+          {
+            "id": "observed_orders-minimum",
+            "pointer": "/metrics/observed_orders",
+            "comparison": "minimum",
+            "tolerance": 3.7,
+            "observed": [
+              3.8008390134534316,
+              3.899759231709047
+            ],
+            "minimum_observed": 3.8008390134534316,
+            "passed": true
+          },
+          {
+            "id": "mass_balance_max-maximum",
+            "pointer": "/metrics/mass_balance_max",
+            "comparison": "maximum",
+            "tolerance": 2e-13,
+            "observed": 8.881784197001252e-16,
+            "maximum_residual": 8.881784197001252e-16,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
+            "bytes": 807
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "a237ae9303fa39749ea9cb59c1c4a47b2a369afe0aac14b0324949ab3c592b25",
+            "bytes": 35869
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "finest_max_error-maximum": 2.795866945737302e-07,
+        "mass_balance_max-maximum": 8.881784197001252e-16
+      },
+      "passed": true
+    },
+    {
+      "id": "mc-integral",
+      "problem_id": "mc-integral",
+      "execution": {
+        "group": "mc-integral",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.11055,
+        "shared_runner_cases": [
+          "mc-integral"
+        ],
+        "command": "python run.py --input inputs/mc-integral.json --output output",
+        "artifacts": {
+          "stdout": "groups/mc-integral/stdout.log",
+          "stderr": "groups/mc-integral/stderr.log",
+          "output": "groups/mc-integral/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "all-numerical-checks",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "rms_scale": true,
+              "statistical_refinement": true,
+              "interval_calibration": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "a4a88a51f4b89bc972cd6f9fb81662333ab992647b6355c5e705c966d4c3042f",
+            "observed": "a4a88a51f4b89bc972cd6f9fb81662333ab992647b6355c5e705c966d4c3042f",
+            "passed": true
+          },
+          {
+            "id": "termination",
+            "pointer": "/termination",
+            "comparison": "equals",
+            "expected": "fixed_budget_completed",
+            "observed": "fixed_budget_completed",
+            "passed": true
+          },
+          {
+            "id": "rms_over_theory-minimum",
+            "pointer": "/metrics/rms_over_theory",
+            "comparison": "minimum",
+            "tolerance": 0.75,
+            "observed": [
+              1.0856552521470262,
+              0.9832698007083858,
+              0.994558746253086
+            ],
+            "minimum_observed": 0.9832698007083858,
+            "passed": true
+          },
+          {
+            "id": "rms_over_theory-maximum",
+            "pointer": "/metrics/rms_over_theory",
+            "comparison": "maximum",
+            "tolerance": 1.3,
+            "observed": [
+              1.0856552521470262,
+              0.9832698007083858,
+              0.994558746253086
+            ],
+            "maximum_residual": 1.0856552521470262,
+            "passed": true
+          },
+          {
+            "id": "coverage_95-minimum",
+            "pointer": "/metrics/coverage_95",
+            "comparison": "minimum",
+            "tolerance": 0.89,
+            "observed": [
+              0.921875,
+              0.96484375,
+              0.9375
+            ],
+            "minimum_observed": 0.921875,
+            "passed": true
+          },
+          {
+            "id": "coverage_95-maximum",
+            "pointer": "/metrics/coverage_95",
+            "comparison": "maximum",
+            "tolerance": 0.995,
+            "observed": [
+              0.921875,
+              0.96484375,
+              0.9375
+            ],
+            "maximum_residual": 0.96484375,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",
+            "bytes": 761
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "97031d8a979afc163e107629caaff2e412e70fe6647e1016ef503b0cfa8478e7",
+            "bytes": 54420
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "rms_over_theory-maximum": 1.0856552521470262,
+        "coverage_95-maximum": 0.96484375
+      },
+      "passed": true
+    },
+    {
+      "id": "gbm-sde",
+      "problem_id": "gbm-sde",
+      "execution": {
+        "group": "gbm-sde",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 0.084841,
+        "shared_runner_cases": [
+          "gbm-sde"
+        ],
+        "command": "python run.py --input inputs/gbm-sde.json --output output",
+        "artifacts": {
+          "stdout": "groups/gbm-sde/stdout.log",
+          "stderr": "groups/gbm-sde/stderr.log",
+          "output": "groups/gbm-sde/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "all-numerical-checks",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "strong_accuracy": true,
+              "strong_refinement": true,
+              "brownian_sample_mean": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "5ecd024be23c56e943bae1d33a0b9ea335b27de994fad86bb03df8caff0152bc",
+            "observed": "5ecd024be23c56e943bae1d33a0b9ea335b27de994fad86bb03df8caff0152bc",
+            "passed": true
+          },
+          {
+            "id": "termination",
+            "pointer": "/termination",
+            "comparison": "equals",
+            "expected": "fixed_budget_completed",
+            "observed": "fixed_budget_completed",
+            "passed": true
+          },
+          {
+            "id": "finest_rms_error-maximum",
+            "pointer": "/metrics/finest_rms_error",
+            "comparison": "maximum",
+            "tolerance": 0.02,
+            "observed": 0.012726854699098065,
+            "maximum_residual": 0.012726854699098065,
+            "passed": true
+          },
+          {
+            "id": "observed_orders-minimum",
+            "pointer": "/metrics/observed_orders",
+            "comparison": "minimum",
+            "tolerance": 0.35,
+            "observed": [
+              0.5314620496946866,
+              0.5152678930595793,
+              0.494791507322397
+            ],
+            "minimum_observed": 0.494791507322397,
+            "passed": true
+          },
+          {
+            "id": "observed_orders-maximum",
+            "pointer": "/metrics/observed_orders",
+            "comparison": "maximum",
+            "tolerance": 0.7,
+            "observed": [
+              0.5314620496946866,
+              0.5152678930595793,
+              0.494791507322397
+            ],
+            "maximum_residual": 0.5314620496946866,
+            "passed": true
+          },
+          {
+            "id": "exact_sample_mean_z-maximum",
+            "pointer": "/metrics/exact_sample_mean_z",
+            "comparison": "maximum",
+            "tolerance": 4.0,
+            "observed": 1.446270507928748,
+            "maximum_residual": 1.446270507928748,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126",
+            "bytes": 758
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "5d551dec0e9ad699110e23c8ecc4aff157b917bef2df95877024671f0b8636f3",
+            "bytes": 763789
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "finest_rms_error-maximum": 0.012726854699098065,
+        "observed_orders-maximum": 0.5314620496946866,
+        "exact_sample_mean_z-maximum": 1.446270507928748
+      },
+      "passed": true
+    },
+    {
+      "id": "h2-rhf",
+      "problem_id": "h2-rhf",
+      "execution": {
+        "group": "h2-rhf",
+        "started": true,
+        "completed": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 1.112777,
+        "shared_runner_cases": [
+          "h2-rhf"
+        ],
+        "command": "python run.py --input inputs.json --output output",
+        "artifacts": {
+          "stdout": "groups/h2-rhf/stdout.log",
+          "stderr": "groups/h2-rhf/stderr.log",
+          "output": "groups/h2-rhf/output"
+        }
+      },
+      "validation": {
+        "passed": true,
+        "checks": [
+          {
+            "id": "numerical-flags",
+            "pointer": "/checks",
+            "comparison": "all_true",
+            "observed": {
+              "max_reference_energy_error": true,
+              "max_scf_commutator": true,
+              "max_orbital_residual": true,
+              "max_orthogonality_error": true,
+              "max_electron_count_error": true,
+              "max_energy_consistency_error": true,
+              "max_idempotency_error": true,
+              "basis_monotone": true,
+              "last_basis_change": true,
+              "scf_tolerance_accuracy": true,
+              "all_scf_converged": true,
+              "basis_target_reached": true,
+              "scf_tolerance_refinement": true
+            },
+            "passed": true
+          },
+          {
+            "id": "input-provenance",
+            "pointer": "/input_sha256",
+            "comparison": "equals",
+            "expected": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf",
+            "observed": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf",
+            "passed": true
+          },
+          {
+            "id": "max_reference_energy_error",
+            "pointer": "/metrics/max_reference_energy_error",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "observed": 2.531308496145357e-14,
+            "maximum_residual": 2.531308496145357e-14,
+            "passed": true
+          },
+          {
+            "id": "max_scf_commutator",
+            "pointer": "/metrics/max_scf_commutator",
+            "comparison": "maximum",
+            "tolerance": 1e-08,
+            "observed": 9.133879537172292e-11,
+            "maximum_residual": 9.133879537172292e-11,
+            "passed": true
+          },
+          {
+            "id": "max_orthogonality_error",
+            "pointer": "/metrics/max_orthogonality_error",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "observed": 3.697042672001771e-14,
+            "maximum_residual": 3.697042672001771e-14,
+            "passed": true
+          },
+          {
+            "id": "max_electron_count_error",
+            "pointer": "/metrics/max_electron_count_error",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "observed": 3.1086244689504383e-15,
+            "maximum_residual": 3.1086244689504383e-15,
+            "passed": true
+          },
+          {
+            "id": "max_energy_consistency_error",
+            "pointer": "/metrics/max_energy_consistency_error",
+            "comparison": "maximum",
+            "tolerance": 1e-09,
+            "observed": 2.220446049250313e-15,
+            "maximum_residual": 2.220446049250313e-15,
+            "passed": true
+          },
+          {
+            "id": "max_idempotency_error",
+            "pointer": "/metrics/max_idempotency_error",
+            "comparison": "maximum",
+            "tolerance": 1e-08,
+            "observed": 1.778286106086941e-15,
+            "maximum_residual": 1.778286106086941e-15,
+            "passed": true
+          },
+          {
+            "id": "basis_energy_increase_max",
+            "pointer": "/metrics/basis_energy_increase_max",
+            "comparison": "maximum",
+            "tolerance": 1e-08,
+            "observed": 0.0,
+            "maximum_residual": 0.0,
+            "passed": true
+          },
+          {
+            "id": "last_basis_energy_change_max",
+            "pointer": "/metrics/last_basis_energy_change_max",
+            "comparison": "maximum",
+            "tolerance": 0.001,
+            "observed": 0.00035529830657132777,
+            "maximum_residual": 0.00035529830657132777,
+            "passed": true
+          },
+          {
+            "id": "last_two_basis_changes_max",
+            "pointer": "/metrics/last_two_basis_changes_max",
+            "comparison": "maximum",
+            "tolerance": 0.001,
+            "observed": 0.00035529830657132777,
+            "maximum_residual": 0.00035529830657132777,
+            "passed": true
+          },
+          {
+            "id": "scf_tolerance_energy_error_max",
+            "pointer": "/metrics/scf_tolerance_energy_error_max",
+            "comparison": "maximum",
+            "tolerance": 1e-06,
+            "observed": 2.1869092980963956e-07,
+            "maximum_residual": 2.1869092980963956e-07,
+            "passed": true
+          },
+          {
+            "id": "output-results",
+            "passed": true,
+            "generated_path": "result.json",
+            "comparison": "nonempty_artifact",
+            "sha256": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
+            "bytes": 547756
+          },
+          {
+            "id": "output-solution",
+            "passed": true,
+            "generated_path": "solution.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "cdcfd8c95548cbf7f881acda5a27f3d525c4ff6903a01a615bc9a0ba513399fa",
+            "bytes": 2863
+          },
+          {
+            "id": "output-scf",
+            "passed": true,
+            "generated_path": "scf.csv",
+            "comparison": "nonempty_artifact",
+            "sha256": "944b33e9de0791131c1f97b8d2cd406742e04e2ad5a2a3148f840b4cd4990c43",
+            "bytes": 103705
+          }
+        ],
+        "expected_failures": []
+      },
+      "residuals": {
+        "max_reference_energy_error": 2.531308496145357e-14,
+        "max_scf_commutator": 9.133879537172292e-11,
+        "max_orthogonality_error": 3.697042672001771e-14,
+        "max_electron_count_error": 3.1086244689504383e-15,
+        "max_energy_consistency_error": 2.220446049250313e-15,
+        "max_idempotency_error": 1.778286106086941e-15,
+        "basis_energy_increase_max": 0.0,
+        "last_basis_energy_change_max": 0.00035529830657132777,
+        "last_two_basis_changes_max": 0.00035529830657132777,
+        "scf_tolerance_energy_error_max": 2.1869092980963956e-07
+      },
+      "passed": true
+    }
+  ],
+  "unique_runner_executions": 19,
+  "passed": true,
+  "status": "complete"
+}

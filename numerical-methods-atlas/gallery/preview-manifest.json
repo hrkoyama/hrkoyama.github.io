@@ -769,10 +769,22 @@
         "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
         "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
       }
+    },
+    {
+      "id": "h2-rhf",
+      "image": "/code/molecular-hf/2026-11-22/results/preview.png",
+      "image_sha256": "ba6a00cf70bfffc53f66b874a12c783388858aa5277a44e7d5e323132b4bb31d",
+      "width": 1120,
+      "height": 570,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。",
+        "en": "Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "1deeeaaa4ed536d246f563233642209b92eaa964ddb592e83a466580e525fb1a",
+    "catalog/atlas-gallery.json": "9dc6f8aad6b477cfd410bfd11e0c76f9970f1d0357cd7b472cd51327ef8b008e",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -814,7 +826,8 @@
     "numerical-methods-atlas/runge-kutta.json": "e2f5f1484a8d3edf1bb5511d4f237de20615ddad4103d1277f34f7357ae9d501",
     "numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png": "2f1ea60a391f26c8fd086999e56155ed1bf3bc5c5b80c6d9f2c44ee2c5dca1cf",
     "numerical-methods-atlas/assets/quantum-atoms/helium.png": "8ff2541771b6db954c2d5dd8fc1c57edb7f720b90405ad6084d20394cda211e6",
-    "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f"
+    "code/model-benchmarks/2026-11-22/verification.json": "d1892bf46d4c310bc3dd54dfb868f28d67e53010ad50941655106a51db0f793f",
+    "code/molecular-hf/2026-11-22/verification.json": "c4692d6ad455d110fa3356303660bda8b968c01555eba535e83892b1e56c785b"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

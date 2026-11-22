@@ -2148,6 +2148,53 @@
         "python -m pytest -q test_models.py",
         "python run.py --input inputs/gbm-sde.json --output output"
       ]
+    },
+    {
+      "id": "h2-rhf",
+      "group": "quantum",
+      "name": {
+        "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+        "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+      },
+      "chapter": "h2-hf",
+      "reading_section": "measured-results",
+      "availability": "saved-output",
+      "code_base": "/code/molecular-hf/2026-11-22/",
+      "verification": "/code/molecular-hf/2026-11-22/verification.json",
+      "commands": [
+        "python -m pytest -q test_molecular_hf.py",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/molecular-hf/2026-11-22/results/result.json",
+          "json_pointer": "/metrics"
+        },
+        {
+          "path": "code/molecular-hf/2026-11-22/test_molecular_hf.py",
+          "python_symbol": "test_fixed_input_validation"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#measured-results",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#measured-results"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/verification.json",
+      "execution_examples": [
+        {
+          "id": "h2-rhf",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#h2-rhf-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#h2-rhf-en"
+          }
+        }
+      ],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#h2-rhf",
+      "run_commands": [
+        "python -m pytest -q test_molecular_hf.py",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -2168,8 +2215,8 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 64,
-    "saved_test_problems": 64,
+    "test_problems": 65,
+    "saved_test_problems": 65,
     "code_test_problems": 0,
     "groups": {
       "transport": 8,
@@ -2180,13 +2227,13 @@
       "gravity": 5,
       "time": 6,
       "approximation": 3,
-      "quantum": 2,
+      "quantum": 3,
       "biology": 2,
       "probability": 2
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "89aa9de721d1f9058593de4d8ab811801afba126f1c024c5c79d71a4267b92e4",
+    "catalog/atlas-test-problems.json": "9112474d3ee4afba968162511d882d71b93265c93ffa9985a44146b0cb9e908a",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -2230,7 +2277,9 @@
     "code/model-benchmarks/2026-11-22/test_models.py": "917d70041b12e62512d5430c4d5b1040bc9010999f7c883d05eafe1a51b373fc",
     "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
     "code/model-benchmarks/2026-11-22/results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",
-    "code/model-benchmarks/2026-11-22/results/gbm-sde/result.json": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126"
+    "code/model-benchmarks/2026-11-22/results/gbm-sde/result.json": "cdbdb03a03861c2fbabf5aa736eebadd61fec49a103b7b27ea1d59917a771126",
+    "code/molecular-hf/2026-11-22/results/result.json": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
+    "code/molecular-hf/2026-11-22/test_molecular_hf.py": "294a1dbd836929e3be2bec265c2e323bda189f3dd1ce40e064bd2bd49489c5e0"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"
