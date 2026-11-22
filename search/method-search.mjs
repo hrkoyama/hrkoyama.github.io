@@ -17,7 +17,9 @@ export function findMethods(methods, query, language='ja') {
   const goals=matchGoals(query);
   if(goals.length){
     const ids=[...new Set(goals.flatMap(goal=>goal.methods))];
-    return ids.flatMap(id=>{const method=methods.find(m=>m.id===id);if(!method)return [];
+    const exampleIds=new Set(goals.flatMap(goal=>goal.examples));
+    return ids.flatMap(id=>{const original=methods.find(m=>m.id===id);if(!original)return [];
+      const method={...original,execution_examples:(original.execution_examples || []).filter(example=>exampleIds.has(example.id))};
       return [{id,kind:'method',title:method.name[language] || method.name.en,locale:language,method,exactMethod:false,score:9000,purposeScope:goals.filter(g=>g.methods.includes(id)).map(g=>g.scope[language]).join(' ')}];});
   }
   const phrase = normalizeMethodQuery(String(query).slice(0,200));

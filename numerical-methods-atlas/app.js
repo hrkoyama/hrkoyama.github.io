@@ -1,5 +1,5 @@
 const atlasIntroDescriptions = {"ja": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表15問題の固定入力・実行・結果照合を日英で案内します。", "en": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore fifteen fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=6acaf04b0330';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=9249783ecf83';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';

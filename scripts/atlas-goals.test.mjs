@@ -19,6 +19,9 @@ test('natural goal phrases reach conditional candidate methods through both sear
  }
 });
 test('explicit scopes distinguish Euler shocks, smooth KEEP, magnetic operators and executable examples',()=>{
+ for(const row of findMethods(methods,'衝撃波を計算したい','ja')){
+  assert.ok((row.method.execution_examples || []).every(e=>['sod','shu-osher'].includes(e.id)),'Euler goal must not borrow MHD execution examples');
+ }
  assert.ok(!matchGoals('相対論の衝撃波を計算したい').some(g=>g.id==='shocks'));
  assert.ok(!matchGoals('MHD shock waves').some(g=>g.id==='shocks'));
  assert.ok(!matchGoals('without shock waves').some(g=>g.id==='shocks'));

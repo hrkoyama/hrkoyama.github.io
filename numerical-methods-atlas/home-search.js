@@ -1,6 +1,6 @@
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=5c78631f2e4d';
+import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=f24e8d2412c6';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
