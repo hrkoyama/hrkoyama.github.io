@@ -42,7 +42,7 @@ def main():
     site = args.site_dir.resolve()
     links = json.loads((site / 'material-links.json').read_text())
     assert set(links) == {'schema_version', 'updated_on', 'scope', 'relation_labels', 'links'}
-    assert set(links['relation_labels']) == {'exercise_solution', 'course_material', 'same_source', 'reference_article', 'reference_book'}
+    assert set(links['relation_labels']) == {'exercise_solution', 'course_material', 'same_source', 'reference_article', 'reference_book', 'content_correspondence'}
     catalog = read_catalog((site / 'catalog.js').read_text())
     books = {n['id']: n for n in catalog['notebooks']}
     bibliography = json.loads((site / 'bibliography.json').read_text())
@@ -89,7 +89,12 @@ def main():
     # Preserve owner-confirmed names when the private packet has a different instructor.
     assert books['n094']['lecturer'] == '杉本大一郎'
     assert books['n070']['lecturer'] == '佐藤文隆'
-    assert not ({('n094', 'b092'), ('n070', 'b071')} & pairs)
+    assert ('n070', 'b071') not in pairs
+    # Textual alignment is confirmed independently of the unresolved course identity.
+    assert {(l['material_id'], l['relation']) for l in links['links'] if l['notebook_id'] == 'n094'} == {('b092', 'content_correspondence')}
+    assert '同一講義は未確認' in links['relation_labels']['content_correspondence']
+    assert materials['b092']['creator'] == '中村卓史'
+    assert '杉本大一郎' in materials['b092']['note'] and '同一講義かは未確認' in materials['b092']['note']
     assert materials['b099']['creator'] is None, 'A matching course does not establish material authorship'
     assert materials['b076']['kind'] == '記事'
     assert books['n090']['lecture_year_status'] == 'provisional'
@@ -101,6 +106,7 @@ def main():
     assert next(l for l in links['links'] if l['id'] == 'n060-b009')['relation'] == 'reference_book'
     assert books['n060']['lecturer'] is None, 'A named reference-book author is not the course instructor'
     assert all(books[n].get('lecture_year') is None for n in ['n062', 'n066', 'n094', 'n104', 'n105']), 'Date/career constraints do not establish a lecture year'
+    assert '東京大学大学院で受講' in books['n104']['notes']
     if args.baseline_ref:
         repo = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], cwd=site, text=True).strip())
         rel = (site / 'catalog.js').relative_to(repo).as_posix()

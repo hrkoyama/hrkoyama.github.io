@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "updated_on": "2026-11-22",
-  "scope": "資料の存在・書誌情報と、確認済みの自筆ノートとの対応のみ。資料本文・画像・PDF・OCR・私的な根拠は含まない。",
+  "scope": "Confirmed relationships at the stated level only. Content correspondence does not establish the same lecture, attendance year, or instructor. Material bodies, images, PDFs, OCR and detailed evidence remain private.",
   "relation_labels": {
     "exercise_solution": "課題と自筆解答の対応確認",
     "course_material": "講義資料との対応確認",
     "same_source": "同じ原本に添付された資料",
     "reference_article": "同じ講師・著者の参考記事",
-    "reference_book": "ノートに参考書として記載"
+    "reference_book": "ノートに参考書として記載",
+    "content_correspondence": "記述の対応を確認（同一講義は未確認）"
   },
   "links": [
     {
@@ -295,6 +296,14 @@
       "notebook_id": "n060",
       "material_id": "b009",
       "relation": "reference_book",
+      "status": "confirmed",
+      "confirmed_on": "2026-11-22"
+    },
+    {
+      "id": "n094-b092",
+      "notebook_id": "n094",
+      "material_id": "b092",
+      "relation": "content_correspondence",
       "status": "confirmed",
       "confirmed_on": "2026-11-22"
     }

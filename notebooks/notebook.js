@@ -30,7 +30,7 @@
  $('lecture-period').textContent=book.lecture_period||'—';$('lecture-notes').textContent=book.notes||'—';
  $('metadata-explanation').textContent=(book.metadata_sources||[]).some(s=>s.source==='user')?'ノート作成者が確認した情報を反映しています。年を原本や対応資料から仮入力した場合は、その旨を併記しています。':(book.metadata_sources||[]).some(s=>s.source==='related_handout')?'原本と対応する配布資料から情報を確認しています。姓のみの記載や、年の仮入力はその旨を併記しています。':book.metadata_status==='from_original'?'原本の見出し・氏名・日付をもとに整理しています。推定の年は区別して表示しています。':'講義名・講師名・年は、確認できたものから追記します。';
  if(book.lecture_year_basis)$('metadata-explanation').textContent+=' '+book.lecture_year_basis;
- const fieldNames={lecture_title:'講義名',lecturer:'講師名',lecture_year:'年'};
+ const fieldNames={lecture_title:'講義名',lecturer:'講師名',lecture_year:'年',notes:'追記'};
  for(const s of book.metadata_sources||[]){const li=document.createElement('li');if(s.source==='user'){li.textContent=`${fieldNames[s.field]||s.field}：作成者の確認「${s.value}」`;}else if(s.source==='related_handout'){li.textContent=`${fieldNames[s.field]||s.field}：配布プリント「${s.source_label}」p.${s.source_pages.join('・')}の記載「${s.excerpt}」から確認${s.field==='lecturer'&&(s.name_scope==='surname'||s.status?.includes('姓のみ'))?'（姓のみ）':''}${s.status?.includes('仮入力')?'（仮入力）':''}`;}else{li.textContent=`${fieldNames[s.field]||s.field}：原本 p.${s.source_pages.join('・')}「${s.excerpt}」`;if(s.source_pages.some(p=>!frames.some(f=>f.source_page===p)))li.textContent+='（該当ページは閲覧版未収録）';}$('metadata-sources').append(li);}
 
  // Only curated, public-safe bibliographic metadata is available here.

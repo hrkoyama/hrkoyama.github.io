@@ -967,10 +967,15 @@
       "title": "星の進化",
       "creator": "中村卓史",
       "kind": "講義資料",
-      "note": "同じ講義予定を持つ２資料をまとめて記載。",
+      "note": "同じ講義予定を持つ２資料をまとめて記載。資料の表記は中村卓史・1995年。N094との章立て・記述の対応を確認。同一講義かは未確認で、N094の講師は作成者確認の杉本大一郎を維持。",
       "title_status": "identified",
       "reference_url": null,
-      "related_notebooks": []
+      "related_notebooks": [
+        {
+          "notebook_id": "n094",
+          "relation": "content_correspondence"
+        }
+      ]
     },
     {
       "id": "b095",
