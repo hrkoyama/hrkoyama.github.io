@@ -2898,6 +2898,14 @@
             "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
             "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
           }
+        },
+        {
+          "id": "reaction-diffusion-splitting",
+          "url": "/numerical-methods-atlas/validation/reaction-diffusion-splitting/",
+          "name": {
+            "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+            "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+          }
         }
       ],
       "reading": {
@@ -3484,7 +3492,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
+    "catalog/atlas-test-problems.json": "07d61fee6d940a3f59d861a7de0754d3a613665e1d1e8b515aa7553671237104",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",

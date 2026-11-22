@@ -1047,8 +1047,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
-    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "catalog/atlas-test-problems.json": "07d61fee6d940a3f59d861a7de0754d3a613665e1d1e8b515aa7553671237104",
+    "catalog/atlas-depth-expansion.json": "f3a002ef485560ab864de3df88ca6ffbc7ae481cb2305a1be7d2604b55456ed9",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1128,5 +1128,21 @@
     "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
     "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3"
   },
-  "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
+  "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
+  "metadata_updates": [
+    {
+      "reviewed_on": "2026-11-22",
+      "scope": "Supplemental reaction-diffusion execution links only. Existing problem IDs, visual inputs, image bytes, calculations and scientific verification are unchanged; no preview solve or scientific test was rerun for this metadata refresh.",
+      "sources": {
+        "catalog/atlas-test-problems.json": {
+          "previous_sha256": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
+          "current_sha256": "07d61fee6d940a3f59d861a7de0754d3a613665e1d1e8b515aa7553671237104"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "previous_sha256": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+          "current_sha256": "f3a002ef485560ab864de3df88ca6ffbc7ae481cb2305a1be7d2604b55456ed9"
+        }
+      }
+    }
+  ]
 }

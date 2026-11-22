@@ -58,18 +58,18 @@ function shellBlocks() {
 }
 const pythonBlocks = shellBlocks().flatMap(block => [...block.matchAll(/python(?:3)? - <<'PY'\n([\s\S]*?)\nPY/g)].map(match => match[1]));
 
-test('registry and two workflow pins describe exactly the frozen nine releases and thirty-three cases', () => {
+test('registry and two workflow pins describe exactly the frozen ten releases and thirty-four cases', () => {
   const registry = json(registryPath);
-  assert.equal(registry.case_count, 33);
-  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning']);
+  assert.equal(registry.case_count, 34);
+  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'splitting']);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);
   assert.equal(registry.releases[5].tests,28);
   assert.equal(registry.releases[6].tests,39);
   assert.equal(registry.releases[7].tests,46);
   assert.equal(registry.releases[8].tests,49);
-  assert.deepEqual(registry.releases.map(x => x.case_ids.length), [4, 5, 6, 4, 3, 2, 2, 3, 4]);
-  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 33);
+  assert.deepEqual(registry.releases.map(x => x.case_ids.length), [4, 5, 6, 4, 3, 2, 2, 3, 4, 1]);
+  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 34);
   for (const release of registry.releases) {
     const base = `code/validated-examples/${registry.edition}/${release.group}/`;
     assert.equal(release.base, 'https://hrkoyama.github.io/' + base);
@@ -309,13 +309,13 @@ os.environ['GITHUB_TOKEN'] = 'do-not-inherit'
 os.environ['AWS_SECRET_ACCESS_KEY'] = 'do-not-inherit'
 `;
 
-test('full verifier state machine accepts thirty-three saved fixture cases without scientific execution', () => {
+test('full verifier state machine accepts thirty-four saved fixture cases without scientific execution', () => {
   python(mockedPipeline + String.raw`
 with tempfile.TemporaryDirectory() as temporary:
     report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'run')
     assert report['passed'] is True, report
-    assert report['phase']=='complete' and report['case_count']==33 and report['tests']==sum(g['tests'] for g in registry['releases'])
-    assert len(report['acquisitions'])==37 and all(r['passed'] for r in report['acquisitions'])
+    assert report['phase']=='complete' and report['case_count']==34 and report['tests']==sum(g['tests'] for g in registry['releases'])
+    assert len(report['acquisitions'])==41 and all(r['passed'] for r in report['acquisitions'])
     assert all(g['pytest']['skipped']==0 and g['passed'] and g['generated_csv'] for g in report['groups'])
     assert v.strict_json((Path(temporary)/'run/report.json').read_bytes())['passed'] is True
     for group in v.GROUPS:

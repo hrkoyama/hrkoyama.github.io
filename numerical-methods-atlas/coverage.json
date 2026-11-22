@@ -22,12 +22,12 @@
     "other_sources": 25,
     "local_equations": 23,
     "reading_equations": 23,
-    "local_methods": 114,
-    "reading_methods": 17,
+    "local_methods": 116,
+    "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 91,
+    "reading_chapters": 92,
     "test_problems": 83,
     "saved_test_problems": 83,
     "code_test_problems": 0
@@ -1663,21 +1663,21 @@
       "kind": "method",
       "id": "lie-trotter",
       "label": "Lie–Trotter splitting",
-      "chapter": "operator-splitting",
-      "status": "reading",
+      "chapter": "validation-splitting",
+      "status": "local-example",
       "group": "Time integration",
-      "scope": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release.",
-      "origin": "curated-operator-splitting-reading"
+      "scope": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.",
+      "origin": "curated-depth-example"
     },
     {
       "kind": "method",
       "id": "strang-splitting",
       "label": "Strang splitting",
-      "chapter": "operator-splitting",
-      "status": "reading",
+      "chapter": "validation-splitting",
+      "status": "local-example",
       "group": "Time integration",
-      "scope": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release.",
-      "origin": "curated-operator-splitting-reading"
+      "scope": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.",
+      "origin": "curated-depth-example"
     }
   ],
   "publications": [
@@ -3307,7 +3307,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
+    "catalog/atlas-methods.json": "5518237b9070ec287d4438638fcf9ba1cb2bf7e00c97745a1103a85245a3e89d",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-method-primary-references.json": "7906644264f76ed465a06567243f4c3729d22880226769db95a73f8f7bc1d1b5"
   },

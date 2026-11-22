@@ -13,10 +13,10 @@ test('the two new nonlinear cases deepen the existing biological scope without p
  const biology=json('catalog/atlas-depth.json').fields.find(x=>x.id==='biology');
  const goal=json('catalog/atlas-goals.json').goals.find(x=>x.id==='biological-models');
  assert.deepEqual(biology.examples,['logistic-growth','sir-epidemic']);
- assert.deepEqual(biology.supplemental_examples,['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo',...cases]);
+ assert.deepEqual(biology.supplemental_examples,['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo',...cases,'reaction-diffusion-splitting']);
  assert.deepEqual(goal.supplemental_examples,biology.supplemental_examples);
  assert.deepEqual(goal.scope,biology.scope);
- assert.deepEqual(goal.resources.find(x=>x.id==='bio-patterns').supplemental_examples,shared);
+ assert.deepEqual(goal.resources.find(x=>x.id==='bio-patterns').supplemental_examples,[...shared,'reaction-diffusion-splitting']);
  assert.equal(goal.resources.find(x=>x.id==='bio-excitation').status,'reading-only');
  const survey=json('numerical-methods-atlas/assets/biological-models.json').models;
  assert.equal(survey.length,22);

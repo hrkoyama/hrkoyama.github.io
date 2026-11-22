@@ -981,6 +981,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-splitting": [
+    "ja",
+    "en"
+  ],
   "validation-thermostats": [
     "ja",
     "en"

@@ -11787,6 +11787,25 @@
             "ja": "t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。",
             "en": "Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual."
           }
+        },
+        {
+          "id": "supplement-reaction-diffusion-splitting",
+          "name": {
+            "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+            "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "u_t=0.01u_{xx}+0.1-u+u^2v,\\qquad v_t=v_{xx}+0.9-u^2v",
+            "\\lambda_{h,k}=-\\frac{4}{\\Delta x^2}\\sin^2\\!\\left(\\frac{\\pi k}{N}\\right),\\quad L_h=\\Psi_R^h\\circ e^{hD L_{\\rm FD}},\\quad S_h=e^{hD L_{\\rm FD}/2}\\circ\\Psi_R^h\\circ e^{hD L_{\\rm FD}/2}",
+            "\\Psi_R^h(y)=y+hR\\!\\left(\\frac{y+\\Psi_R^h(y)}2\\right),\\quad \\langle u+v\\rangle_{n+1}-\\langle u+v\\rangle_n=h(0.1+0.9-\\langle u_{\\rm mid}\\rangle)",
+            "E_2(h)=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{s\\in\\{u,v\\}}\\sqrt{\\frac1N\\sum_j(e_{s,j}(t))^2},\\quad p_{\\rm obs}=\\log_2\\frac{E_2(h)}{E_2(h/2)}"
+          ],
+          "note": {
+            "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+            "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+          }
         }
       ],
       "references": [],
@@ -11832,6 +11851,32 @@
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=en"
+          }
+        },
+        {
+          "id": "lie-trotter",
+          "name": {
+            "ja": "Lie–Trotter分割",
+            "en": "Lie–Trotter splitting"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=en"
+          }
+        },
+        {
+          "id": "strang-splitting",
+          "name": {
+            "ja": "Strang分割",
+            "en": "Strang splitting"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/?lang=en"
           }
         }
       ],
@@ -11995,6 +12040,60 @@
           ],
           "test_urls": [
             "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+          ],
+          "source_scope": "package"
+        },
+        {
+          "id": "reaction-diffusion-splitting",
+          "kind": "supplement",
+          "name": {
+            "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+            "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+          },
+          "method_ids": [
+            "lie-trotter",
+            "strang-splitting"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+          },
+          "scope": {
+            "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+            "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+          },
+          "assumptions": {
+            "ja": "無次元の1D周期区間[0,2π)、N=32、a=.1,b=.9、D=(.01,1)。u₀=1+.08cos2x+.01cos4x、v₀=.9−.03cos2x−.002cos4xは既存の有限振幅例と同じ初期場です。今回の終時刻はT=1、ステップ数16/32/64/128、共通出力時刻0/.25/.5/.75/1。反射対称・π周期の限定入力です。",
+            "en": "Nondimensional 1D periodic [0,2pi), N=32, a=.1, b=.9, D=(.01,1). The initial fields u₀=1+.08cos2x+.01cos4x and v₀=.9−.03cos2x−.002cos4x match the earlier finite-amplitude example. This new run ends at T=1, uses 16/32/64/128 steps and common output times 0/.25/.5/.75/1. The fixed input is reflection-even and pi-periodic."
+          },
+          "limits": {
+            "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+            "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。",
+            "en": "The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
           ],
           "source_scope": "package"
         }
@@ -13465,7 +13564,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "catalog/atlas-depth-expansion.json": "f3a002ef485560ab864de3df88ca6ffbc7ae481cb2305a1be7d2604b55456ed9",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-problem-links.json": "91d171d542da368e69cf8f16a4cd14f60740094e8beefc1e76959e6d2e89a990",
@@ -13515,6 +13614,11 @@
     "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
     "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
@@ -13523,9 +13627,9 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/index.json": "59d13c3dcad2b54294135a8be76acef0240518ad70460d8c0618933a260caa7e",
-    "numerical-methods-atlas/methods/index.json": "20cae23264697d109cc979280403358d1173e6e019eb1a38e225e8956cc4748f",
-    "numerical-methods-atlas/solutions/index.json": "9fa0d01e234c0743c7c50c94411634a4c26a164e5bb8b6cb62af9c6c13624c12",
-    "numerical-methods-atlas/test-cases/index.json": "e045b5272262f09cc4bd039faf679ba62d24002fef3c1a588ec1a84f7c0bb1a5"
+    "numerical-methods-atlas/gallery/index.json": "c653b38b8f5fb9d37f9678a02f26ad3be1235f1dc1da5abc734d9463647c7140",
+    "numerical-methods-atlas/methods/index.json": "e0ee3d2b6e7fd61c6b6ab68d43da972625073de721c50c842696235e28585bfe",
+    "numerical-methods-atlas/solutions/index.json": "f56f5be1369c11ec61cd6cc02bbbc1e3fb2c65cd776eac5ed9fdc68d310bea16",
+    "numerical-methods-atlas/test-cases/index.json": "3782b13213132e70df7695956c2d45aba8435f72d3d76074cb821107e4a2a7ef"
   }
 }

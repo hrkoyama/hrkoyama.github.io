@@ -15,10 +15,11 @@ const catalog = json('catalog/atlas-methods.json').methods;
 const published = json('numerical-methods-atlas/methods/index.json').methods;
 const chapter = json('catalog/atlas-detailed-reading.json').chapters.find(c => c.id === 'operator-splitting');
 
-test('search indexes the final published home counts and roadmap in the same build', () => {
+test('search indexes the final published home, sharing counts and roadmap in the same build', () => {
   const refresh = text('scripts/refresh-site.py');
   const purpose = "'scripts/build-atlas-purpose.py'", search = "'scripts/build-atlas-search.py'";
   assert.ok(refresh.indexOf(purpose) < refresh.indexOf(search));
+  assert.ok(refresh.indexOf("'scripts/build-atlas-sharing.py'") < refresh.indexOf(search));
   assert.ok(refresh.lastIndexOf(purpose) > refresh.indexOf(search), 'finalize parent asset hashes after search');
   execFileSync('python3', ['-B', '-c', `
 import importlib.util,json,pathlib,sys
@@ -28,7 +29,7 @@ spec=importlib.util.spec_from_file_location('atlas_search',root/'scripts/build-a
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 entries={e['id']:e for e in json.loads((root/'numerical-methods-atlas/home-search-index.json').read_text())['entries']}
 for lang in ['ja','en']:
- for ident,path in [('roadmap',f'numerical-methods-atlas/{lang}/read/roadmap/index.html'),('public-resource-explore','numerical-methods-atlas/explore/index.html')]:
+ for ident,path in [('roadmap',f'numerical-methods-atlas/{lang}/read/roadmap/index.html'),('public-resource-explore','numerical-methods-atlas/explore/index.html'),('public-resource-share','numerical-methods-atlas/share/index.html')]:
   expected=module.published_page(root/path,lang)
   assert entries[ident]['text'][lang]==expected['text'],(ident,lang,'stale published prose/counts')
 `], {cwd:fileURLToPath(root)});
@@ -73,11 +74,11 @@ test('both methods and their Japanese/Unicode aliases are canonical hits in both
     ['strang-splitting', ['Strang splitting','Strang分割法','ストラング分割','Strang–Marchuk splitting']],
   ]) {
     const original = catalog.find(m => m.id === id), method = published.find(m => m.id === id);
-    assert.equal(original.status, 'reading-only');
+    assert.equal(original.status, 'educational-example');
     assert.equal(original.group.id, 'time');
-    assert.deepEqual(method.code_urls, []);
-    assert.deepEqual(method.test_urls, []);
-    assert.deepEqual(method.execution_examples, []);
+    assert.ok(method.code_urls.some(url=>url.endsWith('/splitting/splitting.py')));
+    assert.ok(method.test_urls.some(url=>url.endsWith('/splitting/test_splitting.py')));
+    assert.deepEqual(method.execution_examples.map(x=>x.id), ['reaction-diffusion-splitting']);
     for (const lang of ['ja','en']) {
       assert.equal(method.reading[lang], `https://hrkoyama.github.io/numerical-methods-atlas/${lang}/read/operator-splitting/`);
       for (const query of queries) {
@@ -90,7 +91,7 @@ test('both methods and their Japanese/Unicode aliases are canonical hits in both
 });
 
 test('the bilingual reading retains formulas, comparison data, source access notes and working reproduction routes', () => {
-  const expected = ['model','lie-trotter','strang','comparison','small-example','conditions','related-examples','reproduce','publication-scope','sources'];
+  const expected = ['model','lie-trotter','strang','comparison','small-example','conditions','related-examples','reproduce','scoped-examples','publication-scope','sources'];
   const formulas = Object.keys(json('catalog/atlas-detailed-reading.json').formulas).filter(id => id.startsWith('splitting-'));
   assert.equal(formulas.length,10);
   for (const lang of ['ja','en']) {
@@ -98,8 +99,10 @@ test('the bilingual reading retains formulas, comparison data, source access not
     const doc = json(prefix+'index.json'), html = text(prefix+'index.html'), md = text(prefix+'index.md');
     assert.deepEqual(doc.headings.map(h => h.id), expected);
     assert.ok(!html.includes('math-placeholder') && !html.includes('__COMPARISON'));
+    assert.equal((chapter.html[lang].match(/<table\b/g)||[]).length, 2);
     assert.equal((doc.html.match(/<table\b/g)||[]).length, 2);
-    for (const method of ['lie-trotter','strang-splitting']) assert.equal(doc.implementation_status[method], 'reading-only');
+    assert.ok(doc.html.includes('id="supplement-reaction-diffusion-splitting"'));
+    for (const method of ['lie-trotter','strang-splitting']) assert.equal(doc.implementation_status[method], 'educational-example');
     for (const rows of [saved.methods['lie-trotter'], saved.methods.strang]) {
       for (const row of rows) {
         const value = row.global_error.toExponential(6).replace(/e(-?)(\d)$/, 'e$10$2');

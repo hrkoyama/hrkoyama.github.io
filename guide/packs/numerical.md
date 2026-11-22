@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-d3e04b6195
-Captured (UTC): 2026-11-22T14:34:28+00:00
+Snapshot: 2026-11-22-8c5d22d32a
+Captured (UTC): 2026-11-22T15:00:31+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -6857,17 +6857,34 @@ IMEX also separates parts of the right-hand side, but IMEX time integration comb
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#reproduce
 Coverage: reading
 
-Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. Both method entries are labeled reading only / no dedicated implementation.
+Python 3 standard libraries suffice to recompute the table, local defects, reversed ordering and commuting control. The script prints JSON; --check compares saved values. This fixed two-component reading illustration is not a general splitting-solver distribution or a new common execution-registry entry. The oscillator script remains a reading illustration. A separate dedicated lightweight reaction–diffusion release now executes both methods; their educational-code status is limited to that fixed input.
 Illustration reproduction script · Fixed input and saved values / JSON
 python3 verify-operator-splitting.py
 python3 verify-operator-splitting.py --check operator-splitting.json
+
+## Operator splitting: Lie–Trotter and Strang — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Operator splitting: Lie–Trotter and Strang — Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/
+Coverage: reading
+
+Computation for a fixed target
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: splitting.py · Code: reference.py · Tests: test_splitting.py · Release ZIP · Saved results · Independent-extraction rerun receipt
 
 ## Operator splitting: Lie–Trotter and Strang — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/#publication-scope
 Coverage: reading
 
-Reading, equations and a reproducible fixed two-component illustration are published. No general splitting-solver release or common execution-registry entry is added. Existing statuses, distributions, tolerances and verification history are preserved.
+The two-component oscillator illustration is retained, with a new dedicated lightweight release comparing both methods on the same Schnakenberg reaction–diffusion input. The educational implementation is checked only for the 32-point, T=1 fixed case. Existing physical-problem counts, the common 22 examples, old releases, criteria and history are retained.
 Lie–Trotter splitting
 Strang splitting
 Implicit midpoint
@@ -12281,7 +12298,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 242 journal/conference papers · 298 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 91 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 92 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12375,7 +12392,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-114 entries have scoped local examples; 17 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+116 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -13155,7 +13172,7 @@ see the shared accuracy and stability guide.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/#adaptive-and-split-steps
 Coverage: reading
 
-An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package. A lightweight fixed-input example now runs both on the same reaction–diffusion problem.
 Operator splitting: Lie–Trotter and Strang
 
 ## Stiff integration: solve the stage, control the time error — Adaptive and split steps# [en]
@@ -13250,7 +13267,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/#c
 Coverage: reading
 
 A fixed step and a force that is the gradient of a consistent position-dependent potential support the splitting argument. A generic approximate Tree force, changing opening decisions, ad hoc mesh interpolation, or state-dependent step selection does not automatically retain that proof. Force approximation and time integration need joint tests. Continue with particle gravity and Poisson solvers and gravity boundary kernels.
-An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package. A lightweight fixed-input example now runs both on the same reaction–diffusion problem.
 Operator splitting: Lie–Trotter and Strang
 
 ## Symplectic integration: a canonical map, not an exact energy promise — Connecting to particle gravity# [en]
@@ -14039,7 +14056,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integrat
 Coverage: reading
 
 The symplectic integration chapter now implements mechanical kick–drift–kick Verlet, a fourth-order Yoshida composition, symplectic Euler, and implicit midpoint on harmonic and quartic Hamiltonians. The map notebook compares them with RK4, separating canonical structure from exact energy conservation.
-An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package.
+An operator-splitting reading now compares first-order Lie–Trotter and second-order Strang with a small exact-flow illustration. It does not add a general splitting implementation to this chapter’s existing solver package. A lightweight fixed-input example now runs both on the same reaction–diffusion problem.
 Operator splitting: Lie–Trotter and Strang
 
 ## Time integration and leapfrog — Canonical mechanical maps# [en]
@@ -20043,6 +20060,148 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 Review scope / review_level: official-documentation
 Official integral representation of the generalized exponential integral checked; year denotes access year.
 
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
+Coverage: reading
+
+Compare short-time nonlinear Schnakenberg reaction–diffusion with the same initial field, grid, subsolvers and observation times. This lightweight addition checks temporal convergence and numerical-reference sensitivity while retaining existing spatial and long-time pattern records.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#run-all
+Coverage: reading
+
+Run inside atlas-splitting-2026-11-22 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
+Coverage: reading
+
+Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+Input and validation protocol history · Initial input
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-assumptions
+Coverage: reading
+
+Nondimensional 1D periodic [0,2pi), N=32, a=.1, b=.9, D=(.01,1). The initial fields u₀=1+.08cos2x+.01cos4x and v₀=.9−.03cos2x−.002cos4x match the earlier finite-amplitude example. This new run ends at T=1, uses 16/32/64/128 steps and common output times 0/.25/.5/.75/1. The fixed input is reflection-even and pi-periodic.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-algorithm
+Coverage: reading
+
+Lie–Trotter uses diffusion(h) then reaction(h); Strang uses diffusion(h/2), reaction(h), diffusion(h/2), always passing the updated state. Both apply the exact exponential of the centered-FD diffusion matrix by FFT and the same implicit-midpoint reaction/Newton tolerance 2e−13 with at most 12 residual evaluations. The reaction flow is a second-order approximation, not exact. No clipping, adaptive steps or fallback; nonconvergence is failure.
+u_t=0.01u_{xx}+0.1-u+u^2v,\qquad v_t=v_{xx}+0.9-u^2v\lambda_{h,k}=-\frac{4}{\Delta x^2}\sin^2\!\left(\frac{\pi k}{N}\right),\quad L_h=\Psi_R^h\circ e^{hD L_{\rm FD}},\quad S_h=e^{hD L_{\rm FD}/2}\circ\Psi_R^h\circ e^{hD L_{\rm FD}/2}\Psi_R^h(y)=y+hR\!\left(\frac{y+\Psi_R^h(y)}2\right),\quad \langle u+v\rangle_{n+1}-\langle u+v\rangle_n=h(0.1+0.9-\langle u_{\rm mid}\rangle)E_2(h)=\max_{t\in\{.25,.5,.75,1\}}\max_{s\in\{u,v\}}\sqrt{\frac1N\sum_j(e_{s,j}(t))^2},\quad p_{\rm obs}=\log_2\frac{E_2(h)}{E_2(h/2)}
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-validation
+Coverage: reading
+
+The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-limits
+Coverage: reading
+
+This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope.
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+grid32
+final_time1
+lie_finest_l20.000480486140193
+strang_finest_l23.5542311917e-06
+lie_last_observed_order1.00293657409
+strang_last_observed_order1.99910381738
+reference_tolerance_linf1.98463467882e-12
+reference_algorithm_linf2.20547136109e-10
+reference_to_strang_error_ratio6.20519949924e-05
+newton_sensitivity_linf0
+reverse_order_l2_difference0.00763741906895
+minimum_concentration0.849085383982
+maximum_reaction_balance_error1.59421087442e-15
+判定 / checkPassed
+lie_error_decreasestrue
+strang_error_decreasestrue
+lie_first_ordertrue
+strang_second_ordertrue
+lie_finest_errortrue
+strang_finest_errortrue
+strang_improves_this_inputtrue
+reference_tolerancetrue
+reference_independent_time_algorithmtrue
+reference_error_separatedtrue
+newton_error_separatedtrue
+reaction_convergedtrue
+reaction_source_balancetrue
+positive_on_tested_substepstrue
+noncommuting_order_controltrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+methodstepsdtmax_l1max_l2max_linfminimum_concentrationmaximum_midpoint_residualmaximum_reaction_balance_errorreaction_callsdiffusion_callsnewton_updatesobserved_order_l2
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+lie-trotter160.06250.003499916184510.003887558932360.006619682504970.8490853839827.9283801746e-143.05311331772e-16161632—
+lie-trotter320.031250.001739157044540.001932908057110.003283460267040.852421606226.52256026967e-165.82867087928e-163232641.00809153122
+lie-trotter640.0156250.0008661931904510.000962930310460.001632604082330.8540724624041.17961196366e-168.91647866652e-1664641281.0052697186
+lie-trotter1280.00781250.0004321646688920.0004804861401930.0008137250920060.8548913413951.11022302463e-161.59421087442e-151281282561.00293657409
+strang160.06250.0001852288264590.0002246047728650.0004947001675460.8495010294667.65221219723e-147.35522753814e-16163232—
+strang320.031254.67137793687e-055.66923836796e-050.0001253503407080.8526281296666.48786580015e-167.70217223334e-163264641.98616175053
+strang640.0156251.17044319182e-051.42080961481e-053.14480167942e-050.8541751345951.14491749414e-161.09634523682e-15641281281.99644168003
+strang1280.00781252.92774102212e-063.5542311917e-067.86900806959e-060.8549424999871.11022302463e-161.1483869411e-151282562561.99910381738
+Read independent-reference records
+methodrtolatolnfevnjevnluterminationdifference_from_primary_linf
+Radau2e-112e-13876226reached_fixed_final_time0
+Radau2e-132e-152724228reached_fixed_final_time1.98463467882e-12
+DOP8532e-122e-1428100reached_fixed_final_time2.20547136109e-10
+Measurements and complete records / JSON
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+H. F. Trotter (1959). On the product of semi-groups of operators · DOI: 10.1090/S0002-9939-1959-0108732-6
+Review scope / review_level: metadata
+AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+Review scope / review_level: metadata
+Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+Review scope / review_level: full-text
+Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#reaction-diffusion-splitting-references
+Coverage: reading
+
+Review scope / review_level: official-bibliography-and-publisher-indexed-abstract
+Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments.
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference
+Review scope / review_level: official-versioned-documentation-selected-methods-and-tolerances
+Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions.
+
 ## CSVR and Langevin: distributions, fluctuations and correlations — CSVR and Langevin: distributions, fluctuations and correlations [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
@@ -25787,17 +25946,34 @@ IMEXも右辺を複数の部分に分けますが、IMEX時間積分は陽・陰
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#reproduce
 Coverage: reading
 
-上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。手法一覧の状態は両方とも「解説あり・専用実装なし」とします。
+上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。この振動子のスクリプトは解説例として保持します。別の軽量な反応拡散の専用配布版で両手法を実行でき、その固定入力の範囲で「教育用例・関連コードあり」と表示します。
 教材例の再計算スクリプト · 固定入力・保存数値 / JSON
 python3 verify-operator-splitting.py
 python3 verify-operator-splitting.py --check operator-splitting.json
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## 作用素分割：Lie–Trotter と Strang の比較 — 同じ非線形反応拡散でLie–TrotterとStrangを比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/
+Coverage: reading
+
+固定した標的の計算例
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：splitting.py · コード：reference.py · テスト：test_splitting.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
 
 ## 作用素分割：Lie–Trotter と Strang の比較 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/#publication-scope
 Coverage: reading
 
-解説・数式・固定2成分例の再計算を公開します。汎用分割ソルバーの配布版・共通実行例は追加せず、既存の手法状態・配布版・数値公差・検証履歴を保持します。
+2成分振動子の解説例を保持し、同じSchnakenberg反応拡散で両手法を比較する専用の軽量配布版を追加しました。教育用実装の確認範囲は32格子・T=1の固定入力です。既存の物理問題数・共通22例・旧配布版・公差・検証履歴を保持します。
 Lie–Trotter分割
 Strang分割
 陰的中点則
@@ -30551,7 +30727,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文242件・全参考資料298件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め91章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め92章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -30646,7 +30822,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は114、文献解説のみは17です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は116、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -31319,7 +31495,7 @@ IMEX Eulerは一方を陽的、他方を陰的に評価します。この最小�
 硬いテストy′=−1000(y−cos t)−sin tは、y(0)=1のとき厳密解cos tを持ちます。計算記録は、実際の積分節点での最大誤差と適応ステップ数を残します。別のテストで、非線形・非自律ODEの次数と、硬い減衰モードの強い減衰を確認します。
 外力付きの硬い問題の粗い刻み列は、一様な2次収束の範囲にはありません。BDF2の開始処理と硬い系の次数低下が、節点全体の最大誤差へ影響します。形式的な時間次数は、非線形・非硬性の次数テストで別に確認します。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
-作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
 ## シンプレクティック積分：正準写像とエネルギーを分ける [ja]
@@ -31408,7 +31584,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/#c
 Coverage: reading
 
 固定刻みと、整合した位置依存ポテンシャルの勾配である力が分割合成の議論を支えます。一般の近似ツリー力、変化する開口判定、場当たり的な格子補間、状態依存の刻み選択が、その証明を自動的に保つわけではありません。力近似と時間積分を合同で検査する必要があります。粒子重力とPoisson解法、重力境界核へ進んでください。
-作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
 ## 教科書案内：次に何を調べるか [ja]
@@ -32173,7 +32349,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integrat
 Coverage: reading
 
 シンプレクティック積分の章では、調和・4次Hamilton系に対して、力学的なkick–drift–kick Verlet、吉田の4次合成、シンプレクティックEuler、陰的中点則を実装します。写像ノートではRK4と比較し、正準構造と厳密なエネルギー保存を分けます。
-作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。
+作用素分割の解説を追加しました。Lie–Trotterの1次合成とStrangの2次合成を、小さな厳密流の例で比較します。この章の既存ソルバーへ汎用分割実装を追加したという意味ではありません。 同じ反応拡散で両者を実行する軽量な固定入力例も追加しました。
 作用素分割：Lie–Trotter と Strang の比較
 
 ## 非線形反応拡散・パターン形成の独立検証 — 非線形反応拡散・パターン形成の独立検証 [ja]
@@ -38121,6 +38297,142 @@ K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable 
 NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
 確認範囲 / review_level: official-documentation
 一般化指数積分の積分表示を公式資料で確認。年は確認年。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/
+Coverage: reading
+
+短い時間区間の非線形Schnakenberg反応拡散を、同じ初期場・格子・部分ソルバー・出力時刻で比較します。時間の収束と数値参照の感度を調べる軽量な追加例です。既存の空間収束・長時間パターンの記録は保持します。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#run-all
+Coverage: reading
+
+ZIPの atlas-splitting-2026-11-22 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 同じ非線形反応拡散でLie–TrotterとStrangを比較する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/
+Coverage: reading
+
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+入力・検証手順の履歴 · 初回の入力
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-assumptions
+Coverage: reading
+
+無次元の1D周期区間[0,2π)、N=32、a=.1,b=.9、D=(.01,1)。u₀=1+.08cos2x+.01cos4x、v₀=.9−.03cos2x−.002cos4xは既存の有限振幅例と同じ初期場です。今回の終時刻はT=1、ステップ数16/32/64/128、共通出力時刻0/.25/.5/.75/1。反射対称・π周期の限定入力です。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-algorithm
+Coverage: reading
+
+Lie–Trotterは拡散h→反応h、Strangは拡散h/2→反応h→拡散h/2。どちらも更新後の状態を次へ渡します。拡散は2次中心FD行列の指数をFFTで厳密適用、反応は同じ陰的中点則・Newton公差2e−13・上限12評価を使用。反応流は厳密解ではなく2次近似です。クリッピング・自動刻み変更・代替解法への切替を行わず、未収束は失敗にします。
+u_t=0.01u_{xx}+0.1-u+u^2v,\qquad v_t=v_{xx}+0.9-u^2v\lambda_{h,k}=-\frac{4}{\Delta x^2}\sin^2\!\left(\frac{\pi k}{N}\right),\quad L_h=\Psi_R^h\circ e^{hD L_{\rm FD}},\quad S_h=e^{hD L_{\rm FD}/2}\circ\Psi_R^h\circ e^{hD L_{\rm FD}/2}\Psi_R^h(y)=y+hR\!\left(\frac{y+\Psi_R^h(y)}2\right),\quad \langle u+v\rangle_{n+1}-\langle u+v\rangle_n=h(0.1+0.9-\langle u_{\rm mid}\rangle)E_2(h)=\max_{t\in\{.25,.5,.75,1\}}\max_{s\in\{u,v\}}\sqrt{\frac1N\sum_j(e_{s,j}(t))^2},\quad p_{\rm obs}=\log_2\frac{E_2(h)}{E_2(h/2)}
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-validation
+Coverage: reading
+
+参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-limits
+Coverage: reading
+
+固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+grid32
+final_time1
+lie_finest_l20.000480486140193
+strang_finest_l23.5542311917e-06
+lie_last_observed_order1.00293657409
+strang_last_observed_order1.99910381738
+reference_tolerance_linf1.98463467882e-12
+reference_algorithm_linf2.20547136109e-10
+reference_to_strang_error_ratio6.20519949924e-05
+newton_sensitivity_linf0
+reverse_order_l2_difference0.00763741906895
+minimum_concentration0.849085383982
+maximum_reaction_balance_error1.59421087442e-15
+判定 / check合格
+lie_error_decreasestrue
+strang_error_decreasestrue
+lie_first_ordertrue
+strang_second_ordertrue
+lie_finest_errortrue
+strang_finest_errortrue
+strang_improves_this_inputtrue
+reference_tolerancetrue
+reference_independent_time_algorithmtrue
+reference_error_separatedtrue
+newton_error_separatedtrue
+reaction_convergedtrue
+reaction_source_balancetrue
+positive_on_tested_substepstrue
+noncommuting_order_controltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+methodstepsdtmax_l1max_l2max_linfminimum_concentrationmaximum_midpoint_residualmaximum_reaction_balance_errorreaction_callsdiffusion_callsnewton_updatesobserved_order_l2
+lie-trotter160.06250.003499916184510.003887558932360.006619682504970.8490853839827.9283801746e-143.05311331772e-16161632—
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-measurements
+Coverage: reading
+
+lie-trotter320.031250.001739157044540.001932908057110.003283460267040.852421606226.52256026967e-165.82867087928e-163232641.00809153122
+lie-trotter640.0156250.0008661931904510.000962930310460.001632604082330.8540724624041.17961196366e-168.91647866652e-1664641281.0052697186
+lie-trotter1280.00781250.0004321646688920.0004804861401930.0008137250920060.8548913413951.11022302463e-161.59421087442e-151281282561.00293657409
+strang160.06250.0001852288264590.0002246047728650.0004947001675460.8495010294667.65221219723e-147.35522753814e-16163232—
+strang320.031254.67137793687e-055.66923836796e-050.0001253503407080.8526281296666.48786580015e-167.70217223334e-163264641.98616175053
+strang640.0156251.17044319182e-051.42080961481e-053.14480167942e-050.8541751345951.14491749414e-161.09634523682e-15641281281.99644168003
+strang1280.00781252.92774102212e-063.5542311917e-067.86900806959e-060.8549424999871.11022302463e-161.1483869411e-151282562561.99910381738
+独立参照の記録を表で読む
+methodrtolatolnfevnjevnluterminationdifference_from_primary_linf
+Radau2e-112e-13876226reached_fixed_final_time0
+Radau2e-132e-152724228reached_fixed_final_time1.98463467882e-12
+DOP8532e-122e-1428100reached_fixed_final_time2.20547136109e-10
+この例の実測値・全記録 / JSON
+
+## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+H. F. Trotter (1959). On the product of semi-groups of operators · DOI: 10.1090/S0002-9939-1959-0108732-6
+確認範囲 / review_level: metadata
+AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。
+G. Strang (1968). On the Construction and Comparison of Difference Schemes · DOI: 10.1137/0705041
+確認範囲 / review_level: metadata
+今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。
+E. Hairer (2010). Geometric Numerical Integration, Lecture2
+確認範囲 / review_level: full-text
+著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。
+J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour · DOI: 10.1016/0022-5193(79)90042-0
+確認範囲 / review_level: official-bibliography-and-publisher-indexed-abstract
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+The SciPy community (2024). SciPy1.14.1 solve_ivp reference
+確認範囲 / review_level: official-versioned-documentation-selected-methods-and-tolerances
+SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。
 
 ## CSVRとLangevin：分布・揺らぎ・相関 — CSVRとLangevin：分布・揺らぎ・相関 [ja]
 

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "input_sha256_before_first_execution": "1f2d12ee53630e447c80a225fa8970c2f6f4c3e1d3f12f4658be21bea6857531",
+  "initial_input_file": "inputs-initial.json",
+  "first_fixed_protocol_passed": true,
+  "first_metrics": {
+    "grid": 32,
+    "final_time": 1.0,
+    "lie_finest_l2": 0.00048048614019260814,
+    "strang_finest_l2": 3.554231191703374e-06,
+    "lie_last_observed_order": 1.002936574094834,
+    "strang_last_observed_order": 1.9991038173822453,
+    "reference_tolerance_linf": 1.98463467881993e-12,
+    "reference_algorithm_linf": 2.205471361094169e-10,
+    "reference_to_strang_error_ratio": 6.205199499240203e-05,
+    "newton_sensitivity_linf": 0.0,
+    "reverse_order_l2_difference": 0.007637419068950036,
+    "minimum_concentration": 0.8490853839816418,
+    "maximum_reaction_balance_error": 1.5942108744226857e-15
+  },
+  "acceptance_modified_after_first_execution": false,
+  "scope": "Fixed short-time temporal comparison only; previous releases and their criteria are retained."
+}

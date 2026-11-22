@@ -13173,10 +13173,10 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。",
-        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting."
+        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
+        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
       },
-      "status": "reading-only",
+      "status": "educational-example",
       "origin": "curated-operator-splitting-reading",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/operator-splitting/",
@@ -13214,12 +13214,12 @@
       "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
       "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
       "limitations": {
-        "ja": "滑らかな有限次元の例の次数を、衝撃波・硬いPDE・一般境界へ保証しない。厳密な部分流でも合成の安定性制約は残る。教材例スクリプトは汎用ソルバー配布版ではない。",
-        "en": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release."
+        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
       },
       "metadata_review": {
-        "level": "method-specific reading and finite-dimensional exact-flow illustration; source access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
       },
       "aliases": [
         "Lie-Trotter splitting",
@@ -13231,7 +13231,19 @@
         "リートロッター分割",
         "リー・トロッタ分割",
         "1次作用素分割"
-      ]
+      ],
+      "depth_previous_status": "reading-only",
+      "depth_release": {
+        "group": "splitting",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "reaction-diffusion-splitting"
+        ]
+      },
+      "depth_scope": {
+        "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+        "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+      }
     },
     {
       "id": "strang-splitting",
@@ -13245,10 +13257,10 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。",
-        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs."
+        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
+        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
       },
-      "status": "reading-only",
+      "status": "educational-example",
       "origin": "curated-operator-splitting-reading",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/operator-splitting/",
@@ -13286,12 +13298,12 @@
       "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
       "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
       "limitations": {
-        "ja": "滑らかな有限次元の例の次数を、衝撃波・硬いPDE・一般境界へ保証しない。厳密な部分流でも合成の安定性制約は残る。教材例スクリプトは汎用ソルバー配布版ではない。",
-        "en": "The smooth finite-dimensional illustration does not validate shocks, stiff PDEs or general boundaries. Exact subflows do not remove composition stability restrictions. The illustration script is not a general solver release."
+        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
+        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
       },
       "metadata_review": {
-        "level": "method-specific reading and finite-dimensional exact-flow illustration; source access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
       },
       "aliases": [
         "Strang splitting",
@@ -13302,7 +13314,19 @@
         "symmetric Strang splitting",
         "Strang–Marchuk splitting",
         "2次作用素分割"
-      ]
+      ],
+      "depth_previous_status": "reading-only",
+      "depth_release": {
+        "group": "splitting",
+        "edition": "2026-11-22",
+        "case_ids": [
+          "reaction-diffusion-splitting"
+        ]
+      },
+      "depth_scope": {
+        "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
+        "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
+      }
     }
   ],
   "editorial_policy": {

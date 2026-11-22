@@ -8,8 +8,8 @@
     "runnable_problems": 39,
     "common_runnable_problems": 22,
     "supplemental_runnable_problems": 20,
-    "supplemental_case_count": 28,
-    "supplemental_release_case_count": 33,
+    "supplemental_case_count": 29,
+    "supplemental_release_case_count": 34,
     "groups": {
       "transport": 9,
       "fluid": 16,
@@ -5373,6 +5373,14 @@
             "ja": "Schnakenberg飽和パターン：近定常性と格子・時間収束",
             "en": "Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence"
           }
+        },
+        {
+          "id": "reaction-diffusion-splitting",
+          "url": "/numerical-methods-atlas/validation/reaction-diffusion-splitting/",
+          "name": {
+            "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+            "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+          }
         }
       ],
       "reading": {
@@ -5477,6 +5485,29 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/verification.json"
+        },
+        {
+          "id": "reaction-diffusion-splitting",
+          "title": {
+            "ja": "同じ非線形反応拡散でLie–TrotterとStrangを比較する",
+            "en": "Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input"
+          },
+          "group": "splitting",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/verification.json"
         }
       ]
     },
@@ -6564,8 +6595,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
-    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "catalog/atlas-test-problems.json": "07d61fee6d940a3f59d861a7de0754d3a613665e1d1e8b515aa7553671237104",
+    "catalog/atlas-depth-expansion.json": "f3a002ef485560ab864de3df88ca6ffbc7ae481cb2305a1be7d2604b55456ed9",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -6649,13 +6680,13 @@
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "bf293504294504701822370af89e6215594c1ae2ffd20163c4e75637e8a46527",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "e045b5272262f09cc4bd039faf679ba62d24002fef3c1a588ec1a84f7c0bb1a5",
+    "numerical-methods-atlas/test-cases/index.json": "3782b13213132e70df7695956c2d45aba8435f72d3d76074cb821107e4a2a7ef",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "2b7d2e92b384400be6ea730c7584a7dd21ea333d8dbaf1cd6cb917cdcdcc4bf0",
+    "scripts/atlas_depth_release.py": "d1cb3e10f598cac73c6a2e230b4d349b804fad3aeff8a60d4fc4cda978f30716",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -6665,6 +6696,11 @@
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
     "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
-    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d"
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404"
   }
 }

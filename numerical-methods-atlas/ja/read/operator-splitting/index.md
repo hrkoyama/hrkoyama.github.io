@@ -6,6 +6,10 @@
 作用素分割（演算子分割）は、足し合わせた右辺を別々の発展問題として解き、その解の写像を合成する時間積分の考え方です。Lie–Trotterは順番に全刻み、Strangは対称な半刻み・全刻み・半刻みに分けます。部分問題を厳密に解いても、順序が交換できなければ合成には誤差が残ります。
 
 
+同じ反応拡散で実行して比べる：32格子・T=1のSchnakenberg系で、初期場・部分ソルバー・出力時刻をそろえ、4つの時間刻みでLie–Trotterの1次とStrangの2次を測ります。参照は同じFD半離散系の非分割Radau／DOP853で、空間収束や連続PDEの厳密解とは区別します。
+
+[固定入力・結果・コード・16検査の追試記録](/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja)
+
 何を分割し、何を1刻みと数えるか
 
 
@@ -141,7 +145,7 @@ IMEXも右辺を複数の部分に分けますが、[IMEX時間積分](/numerica
 軽量な再計算と公開範囲
 
 
-上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。手法一覧の状態は両方とも「解説あり・専用実装なし」とします。
+上の表・局所欠損・逆順・可換対照はPython 3の標準ライブラリだけで再計算できます。スクリプトは結果をJSONで標準出力に書き、--checkでは保存値と照合します。これは解説用の固定2成分例で、汎用分割ソルバーの配布版や共通実行例台帳への新規登録ではありません。この振動子のスクリプトは解説例として保持します。別の軽量な反応拡散の専用配布版で両手法を実行でき、その固定入力の範囲で「教育用例・関連コードあり」と表示します。
 
 
 [教材例の再計算スクリプト](/scripts/verify-operator-splitting.py) · [固定入力・保存数値 / JSON](/numerical-methods-atlas/assets/operator-splitting.json)
@@ -154,9 +158,23 @@ python3 verify-operator-splitting.py
 python3 verify-operator-splitting.py --check operator-splitting.json
 ```
 
+## 固定入力の実行例と診断対照
+
+受入条件が示す検証範囲と数学的な一般保証を区別します。旧版の入力・測定・公差は保持します。
+
+### 同じ非線形反応拡散でLie–TrotterとStrangを比較する
+
+固定標的の計算例
+
+32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+
+固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。
+
+[入力・結果・受入条件](/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja) · [手法・一次文献](/numerical-methods-atlas/ja/read/validation-splitting/#reaction-diffusion-splitting) · [コード run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py) · [コード splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py) · [コード reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py) · [テスト test_splitting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py) · [ZIP](/code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip) · [結果](/code/validated-examples/2026-11-22/splitting/results/result.json) · [追試記録](/code/validated-examples/2026-11-22/splitting/verification.json)
+
 ## 公開範囲
 
-解説・数式・固定2成分例の再計算を公開します。汎用分割ソルバーの配布版・共通実行例は追加せず、既存の手法状態・配布版・数値公差・検証履歴を保持します。
+2成分振動子の解説例を保持し、同じSchnakenberg反応拡散で両手法を比較する専用の軽量配布版を追加しました。教育用実装の確認範囲は32格子・T=1の固定入力です。既存の物理問題数・共通22例・旧配布版・公差・検証履歴を保持します。
 
 ## 文献
 

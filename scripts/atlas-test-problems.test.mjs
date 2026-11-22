@@ -104,7 +104,7 @@ test('nonlinear Schnakenberg refinements reuse one physical problem and preserve
   assert.equal(inventory.counts.groups.biology,5);
   assert.equal(problem.chapter,'validation-models');
   assert.equal(problem.code_base,'/code/validated-examples/2026-11-22/models/');
-  assert.deepEqual(problem.supplemental_examples.map(x=>x.id),['turing-schnakenberg',...identifiers]);
+  assert.deepEqual(problem.supplemental_examples.map(x=>x.id),['turing-schnakenberg',...identifiers,'reaction-diffusion-splitting']);
   for(const id of identifiers){
     assert.equal(mapping[id],problem.id);
     assert.ok(!catalog.problems.some(x=>x.id===id));

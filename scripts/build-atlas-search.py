@@ -234,6 +234,7 @@ def main(root=ROOT):
     expansion=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())
     supplements=load_supplemental_examples(ROOT,list(expansion['case_problem_ids']))
     case_aliases={
+        'reaction-diffusion-splitting':['Lie Trotter','Lie-Trotter','Lie–Trotter','Strang','作用素分割','反応拡散','Schnakenberg','ストラング','リー・トロッター'],
         'gaussian-mcmc':['Metropolis Hastings','マルコフ連鎖','有効標本数','ESS','自己相関'],
         'langevin-harmonic':['BAOAB','NVT','正準分布','温度制御'],
         'reaction-diffusion-fourier':['反応拡散','diffusion reaction'],

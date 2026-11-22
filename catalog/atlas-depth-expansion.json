@@ -121,6 +121,20 @@
         "ja": "AMG、QR／SVD、Krylov固有値解法、求積を固定した条件系列で比較します。残差と前進誤差、行列と積分の条件の違いを測り、独立参照との一致だけでなく、収束の限界や診断の見落としも確かめます。",
         "en": "Compare AMG, QR/SVD, Krylov eigenvalue methods and quadrature across fixed conditioning families. Separate residuals from forward error and matrix from integral conditioning; check independent references alongside convergence limits and diagnostic blind spots."
       }
+    },
+    {
+      "id": "splitting",
+      "title": {
+        "ja": "作用素分割：同じ反応拡散でLie–TrotterとStrangを比較",
+        "en": "Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem"
+      },
+      "fields": [
+        "biology"
+      ],
+      "intro": {
+        "ja": "短い時間区間の非線形Schnakenberg反応拡散を、同じ初期場・格子・部分ソルバー・出力時刻で比較します。時間の収束と数値参照の感度を調べる軽量な追加例です。既存の空間収束・長時間パターンの記録は保持します。",
+        "en": "Compare short-time nonlinear Schnakenberg reaction–diffusion with the same initial field, grid, subsolvers and observation times. This lightweight addition checks temporal convergence and numerical-reference sensitivity while retaining existing spatial and long-time pattern records."
+      }
     }
   ],
   "case_problem_ids": {
@@ -156,11 +170,12 @@
     "amg-conditioning": null,
     "qr-svd-conditioning": "matrix-factorization",
     "krylov-eigen-conditioning": "krylov-spectrum",
-    "quadrature-conditioning": "quadrature-moments"
+    "quadrature-conditioning": "quadrature-moments",
+    "reaction-diffusion-splitting": "turing-schnakenberg"
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する9グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs nine NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する10グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs ten NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {

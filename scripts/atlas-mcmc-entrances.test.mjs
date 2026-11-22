@@ -31,7 +31,7 @@ test('MCMC preserves its four historical sections and distinguishes poor mixing 
  assert.equal(json('catalog/atlas-equations.json').equations.length,46);
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(methods.length,147);
- assert.equal(methods.filter(x=>x.status==='educational-example').length,114);
+ assert.equal(methods.filter(x=>x.status==='educational-example').length,116);
  assert.equal(methods.filter(x=>x.status==='planned').length,16);
 });
 
