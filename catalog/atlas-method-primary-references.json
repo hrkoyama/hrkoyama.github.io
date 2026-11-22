@@ -1140,6 +1140,22 @@
       },
       "doi": "10.1039/B509494A",
       "type": "article"
+    },
+    {
+      "id": "bekmambetova2017fdtd",
+      "author": "Fadime Bekmambetova and Xinyue Zhang and Piero Triverio",
+      "title": "A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding",
+      "year": 2017,
+      "type": "misc",
+      "source_role": "research-preprint",
+      "source": "https://arxiv.org/abs/1705.02274v2",
+      "note": "Research preprint arXiv:1705.02274v2, revised 22 July 2017. Related journal DOI 10.1109/TAP.2018.2869617; journal full text not inspected.",
+      "source_review": {
+        "level": "full-text",
+        "url": "https://arxiv.org/html/1705.02274v2",
+        "scope": "Research preprint v2, selected full-text sections III A–B, energy equation (26), strict CFL equation (35), and PEC boundary discussion. Applied here to the source-free 2D TMz reduction; no subgridding implementation.",
+        "scope_ja": "研究プレプリントv2のIII A–B節、修正エネルギー式26、厳密CFL不等式35とPECの議論を参照。ここでは源なし2次元TMzへの縮約に使用し、サブグリッド法は実装しない。"
+      }
     }
   ]
 }

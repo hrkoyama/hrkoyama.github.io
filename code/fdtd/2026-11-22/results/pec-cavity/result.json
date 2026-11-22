@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "case": "pec-cavity",
+  "input_sha256": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41",
+  "environment": {
+    "python": "3.12.16",
+    "numpy": "2.0.2"
+  },
+  "normalization": "dimensionless epsilon=mu=c=1; unit E amplitude; rectangular domain",
+  "field_error_norm": "combined quadrature L2 at staggered E(t),H(t-dt/2), normalized by constant continuum total modal norm (area periodic, area/4 PEC)",
+  "termination": "fixed_budget_completed",
+  "metrics": {
+    "meshes": [
+      {
+        "nx": 16,
+        "ny": 24,
+        "steps": 60,
+        "energy_steps": 655,
+        "dt": 0.0305085107923876,
+        "actual_courant": 0.6903287956864078,
+        "electric_relative_l2": 0.0031816292088150118,
+        "magnetic_relative_l2": 0.004548805728580697,
+        "field_relative_l2": 0.00555107178648893,
+        "analytic_frequency": 3.775724466379659,
+        "discrete_frequency": 3.7727808321690706,
+        "measured_frequency": 3.7727808321690968,
+        "relative_frequency_error": 0.0007796210334661824,
+        "dispersion_identity_relative_error": 6.8833827526759706e-15,
+        "modified_energy_max_relative_drift": 4.440892098500626e-16,
+        "synchronized_energy_relative_span": 0.0033084581722368314,
+        "synchronized_energy_max_relative_error": 0.0033084556001877763,
+        "boundary_e_max": 0.0,
+        "magnetic_divergence_drift_max": 3.697649825218363e-14,
+        "initial_magnetic_divergence_max": 8.883945851327624e-05,
+        "modified_energy_initial": 0.1868796645724171
+      },
+      {
+        "nx": 32,
+        "ny": 48,
+        "steps": 119,
+        "energy_steps": 1299,
+        "dt": 0.015382442416329882,
+        "actual_courant": 0.6961298780031002,
+        "electric_relative_l2": 0.0007843418243213263,
+        "magnetic_relative_l2": 0.001100464271988686,
+        "field_relative_l2": 0.0013513747486553441,
+        "analytic_frequency": 3.775724466379659,
+        "discrete_frequency": 3.774997870331907,
+        "measured_frequency": 3.7749978703319536,
+        "relative_frequency_error": 0.00019243884297581726,
+        "dispersion_identity_relative_error": 1.2434497875801753e-14,
+        "modified_energy_max_relative_drift": 4.440892098500626e-16,
+        "synchronized_energy_relative_span": 0.0008427546019897925,
+        "synchronized_energy_max_relative_error": 0.0008427545618450161,
+        "boundary_e_max": 0.0,
+        "magnetic_divergence_drift_max": 1.106822966612242e-13,
+        "initial_magnetic_divergence_max": 1.126748988684867e-05,
+        "modified_energy_initial": 0.18734198320868625
+      },
+      {
+        "nx": 64,
+        "ny": 96,
+        "steps": 237,
+        "energy_steps": 2586,
+        "dt": 0.007723673618325975,
+        "actual_courant": 0.6990671348723118,
+        "electric_relative_l2": 0.00019456848782733053,
+        "magnetic_relative_l2": 0.0002705595415098667,
+        "field_relative_l2": 0.00033325570056256105,
+        "analytic_frequency": 3.775724466379659,
+        "discrete_frequency": 3.775543971339251,
+        "measured_frequency": 3.7755439713401007,
+        "relative_frequency_error": 4.780408135329761e-05,
+        "dispersion_identity_relative_error": 2.2493118478905672e-13,
+        "modified_energy_max_relative_drift": 2.220446049250313e-16,
+        "synchronized_energy_relative_span": 0.0002125769185830073,
+        "synchronized_energy_max_relative_error": 0.00021257691795628642,
+        "boundary_e_max": 0.0,
+        "magnetic_divergence_drift_max": 4.1401257422357673e-13,
+        "initial_magnetic_divergence_max": 1.4165607692198656e-06,
+        "modified_energy_initial": 0.18746014182631351
+      }
+    ],
+    "observed_orders": [
+      2.0383385474012092,
+      2.019726343853126
+    ],
+    "frequency_orders": [
+      2.018372983257922,
+      2.009194329386588
+    ],
+    "energy_span_orders": [
+      1.9729745347451924,
+      1.9871276414873786
+    ],
+    "physical_energy_error_orders": [
+      1.9729734818932827,
+      1.9871275770176877
+    ],
+    "finest_field_error": 0.00033325570056256105,
+    "max_modified_energy_drift": 4.440892098500626e-16,
+    "max_dispersion_identity_error": 2.2493118478905672e-13,
+    "finest_frequency_relative_error": 4.780408135329761e-05,
+    "finest_synchronized_energy_error": 0.00021257691795628642,
+    "max_boundary_e": 0.0,
+    "max_magnetic_divergence_drift": 4.1401257422357673e-13
+  },
+  "checks": {
+    "field_accuracy": true,
+    "field_refinement": true,
+    "frequency_accuracy": true,
+    "frequency_refinement": true,
+    "dispersion_identity": true,
+    "modified_energy": true,
+    "synchronized_energy_accuracy": true,
+    "synchronized_energy_refinement": true,
+    "pec_boundary": true,
+    "magnetic_divergence_preserved": true
+  },
+  "passed": true
+}

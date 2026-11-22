@@ -8,6 +8,7 @@ import re
 import xml.etree.ElementTree as ET
 from atlas_sensitivity_release import sensitivity_release_record
 from atlas_inverse_release import inverse_release_record
+from atlas_fdtd_release import fdtd_release_record
 from atlas_method_review import (validate_method_reviews, review_intro, field_note,
                                  verification_html, references_html, review_markdown)
 
@@ -182,6 +183,7 @@ def public_record(x):
             'implementation':'Original PySCF force-validation workflow with independent DFTK reference; BOMD adapter is locally checked, not a validated production trajectory.'}
     if x.get('sensitivity_release'):record.update(sensitivity_release_record(ROOT,x))
     if x.get('inverse_release'):record.update(inverse_release_record(ROOT,x))
+    if x.get('fdtd_release'):record.update(fdtd_release_record(ROOT,x))
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -314,6 +316,15 @@ for x in METHODS:
             body+='<p>'+link(record['results'],'随伴勾配・推定履歴・格子バイアス・固定ノイズの記録 / JSON' if ja else 'Adjoint gradients, fit histories, grid bias and fixed-noise records / JSON')+'</p>'
             body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
+        if x.get('fdtd_release'):
+            base=record['code_base']
+            body+='<h2>'+('2次元TMzのYee FDTD：周期波・完全導体空洞' if ja else '2D TMz Yee FDTD: periodic wave and PEC cavity')+'</h2>'
+            body+='<p>'+esc(x['limitations'][lang])+'</p>'
+            body+='<p>'+link(base+'README.md','取得・実行手順 / README')+' · '+link(record['code_download'],'コード・固定入力・結果 ZIP' if ja else 'Code, fixed inputs and results ZIP')+' · '+link(record['code_manifest'],'ファイル目録・SHA-256' if ja else 'File manifest / SHA-256')+' · '+link(record['code_verification'],str(record['passed_tests'])+('件成功・独立展開の検証記録' if ja else ' tests passed / independent-extraction verification'))+'</p>'
+            body+='<ul>'+''.join('<li>'+link(url,url.removeprefix(base))+'</li>' for url in record['code_urls']+record['test_urls'])+'</ul>'
+            body+='<p>'+link(record['result_urls']['periodic-wave'],'周期平面波 / Periodic-wave JSON')+' · '+link(record['result_urls']['pec-cavity'],'完全導体空洞 / PEC-cavity JSON')+'</p>'
+            body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
+            body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link('/rights/','本文・図・データの利用条件' if ja else 'Terms for prose, figures and data')+'</p>'
         if x.get('molecular_examples'):
             molecular=record['molecular_release'];molecular_base=molecular['code_base']
             body+='<h2>'+('H₂の有限Gaussian基底RHF' if ja else 'H₂ RHF in finite Gaussian bases')+'</h2><p>'+esc(x['molecular_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/h2-hf/','独立参照・SCF・基底の収束' if ja else 'Independent reference, SCF and basis refinement')+' · '+link(molecular_base+'molecular_hf.py','Python solver')+' · '+link(molecular_base+'test_molecular_hf.py','Tests')+' · '+link(molecular['release']['download'],'ZIP')+'</p>'
@@ -368,6 +379,10 @@ for x in METHODS:
         md+='Bratu inverse supplement: bounded projected adjoint-gradient fitting of one scalar parameter from fixed synthetic observations. Same-model consistency, continuous-observation grid bias and fixed-noise shifts are separate checks.\n\n'
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
+    if x.get('fdtd_release'):
+        md+='2D TMz Yee FDTD supplement: source-free dimensionless vacuum, periodic oblique plane wave and rectangular PEC cavity. Analytic fields, grid refinement, dispersion and modified discrete energy are checked separately.\n\n'
+        md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
+        md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\n\n'+'\n'.join('- '+case+': '+u for case,u in record['result_urls'].items())+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'
     if x.get('next_deliverable'):md+='Next: '+x['next_deliverable']['en']+'\n\n'
     if x.get('example'):md+='Runnable example:\n\n'+json.dumps(x['example'],ensure_ascii=False,indent=2)+'\n\n'

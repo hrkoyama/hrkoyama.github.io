@@ -8,12 +8,16 @@ const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
  assert.equal(source.chapters.length,28);
- assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,30);assert.equal(methods.filter(m=>m.status==='educational-example').length,99);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
+ assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,29);assert.equal(methods.filter(m=>m.status==='educational-example').length,100);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
  for(const id of originalPlanned){
-  const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation','adjoint','optimization'].includes(id)?'educational-example':'planned');
+  const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation','adjoint','optimization','fdtd'].includes(id)?'educational-example':'planned');
   if(!['automatic-differentiation','adjoint','optimization'].includes(id)){assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);}
   for(const lang of ['ja','en']){
    if(['automatic-differentiation','adjoint'].includes(id))assert.ok(chapter.html[lang].length>6000);
+   else if(id==='fdtd'){
+    assert.deepEqual([...chapter.html[lang].matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]),['model','algorithm','periodic-mode','cavity-mode','conditions','energy','verification','reproduce']);
+    assert.equal([...chapter.html[lang].matchAll(/<math-placeholder id="fdtd-[^"]+"><\/math-placeholder>/g)].length,7);
+   }
    else{assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);}
    assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id==='optimization'?'bratu-inverse':id}/`);
   }

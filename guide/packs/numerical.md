@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-ab665b22a5
-Captured (UTC): 2026-11-22T07:25:39+00:00
+Snapshot: 2026-11-22-f7655fc5ab
+Captured (UTC): 2026-11-22T07:34:37+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -3300,59 +3300,131 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
-## Yee finite-difference time-domain method — Yee finite-difference time-domain method [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Yee FDTD: implemented periodic plane-wave and PEC-cavity checks [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
 
-Yee FDTD advances Maxwell curl equations on a lattice staggered in both space and time. It is a specific arrangement, not simply centered differences with electric and magnetic fields collocated.
+This original educational implementation evolves 2D TMz fields (Ez, Hx, Hy) in dimensionless homogeneous vacuum without current or charge sources. Periodic plane waves and a rectangular perfect-electric-conductor (PEC) cavity are compared with continuum analytic solutions. Grid refinement, numerical dispersion, a discrete invariant and an approximation to physical energy are measured separately.
 
-## Yee finite-difference time-domain method — Problem and representative equations [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Model, units and scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#model
 Coverage: reading
 
-In a linear isotropic nondispersive medium with constant ε and μ, c=1/√(εμ). Store E at integer times and B at half times, with H=B/μ. curlₕ denotes the discrete curl compatible with the chosen spatial placement; J is electric current density.
-\begin{aligned}\mathbf B^{n+1/2}&=\mathbf B^{n-1/2}-\Delta t\,\operatorname{curl}_h\mathbf E^n,\\\mathbf E^{n+1}&=\mathbf E^n+\frac{\Delta t}{\epsilon}\left(\operatorname{curl}_h\mathbf H^{n+1/2}-\mathbf J^{n+1/2}\right).\end{aligned}
+\partial_t E_z=\partial_xH_y-\partial_yH_x,\qquad \partial_tH_x=-\partial_yE_z,\qquad \partial_tH_y=\partial_xE_z,\quad \epsilon=\mu=c=1.
+Length, time and fields are normalized so ε=μ=c=1. The rectangle has Lx=1 and Ly=1.5, with mode indices (m,l)=(1,1). An oblique periodic mode on a rectangular domain exercises both spatial derivatives and magnetic-field signs. Dispersive media, losses, dielectric interfaces and driven sources are outside this edition.
 
-## Yee finite-difference time-domain method — Algorithm [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Yee placement and staggered time update [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#algorithm
 Coverage: reading
 
-Update magnetic flux from electric circulation, then advance E from magnetic circulation and current. Initialize fields and boundaries at their staggered times. The compatible divₕ curlₕ identity helps preserve a magnetic constraint; electric charge conservation also requires a compatible current update.
+\begin{aligned}H_{x,i,j+1/2}^{n+1/2}&=H_{x,i,j+1/2}^{n-1/2}-\frac{\Delta t}{\Delta y}(E_{i,j+1}^{n}-E_{i,j}^{n}),\\H_{y,i+1/2,j}^{n+1/2}&=H_{y,i+1/2,j}^{n-1/2}+\frac{\Delta t}{\Delta x}(E_{i+1,j}^{n}-E_{i,j}^{n}),\\E_{i,j}^{n+1}&=E_{i,j}^{n}+\Delta t\left(\frac{H_{y,i+1/2,j}^{n+1/2}-H_{y,i-1/2,j}^{n+1/2}}{\Delta x}-\frac{H_{x,i,j+1/2}^{n+1/2}-H_{x,i,j-1/2}^{n+1/2}}{\Delta y}\right).\end{aligned}
+Ez lives at nodes and integer times; Hx is displaced by half a y cell and Hy by half an x cell, both at half-integer times. Each step advances H first and then E. Initial E at time zero and H at −Δt/2 are sampled from analytic fields; assigning both fields time zero would introduce a first-order initialization error.
+Periodic arrays omit duplicate endpoints and wrap differences. PEC walls fix tangential Ez=0 and update only interior electric nodes. Half weights for boundary magnetic samples make the weighted inner products compatible with discrete summation by parts and the energy identity.
 
-## Yee finite-difference time-domain method — Conditions and pitfalls [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Continuum periodic plane wave [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#periodic-mode
+Coverage: reading
+
+\begin{gathered}k_x=2\pi m/L_x,\quad k_y=2\pi l/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\quad\phi=k_xx+k_yy-\omega t,\\ E_z=\cos\phi,\quad H_x=(k_y/\omega)\cos\phi,\quad H_y=-(k_x/\omega)\cos\phi.\end{gathered}
+Evaluate the electric and both magnetic fields at their own spatial locations and times. Frequency supplies a phase-speed error separate from field error. A sampled continuum magnetic field need not have exactly zero discrete divergence, so the continuum-initialized run checks preservation of its initial divergence.
+
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Continuum PEC cavity eigenmode [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#cavity-mode
+Coverage: reading
+
+\begin{gathered}k_x=m\pi/L_x,\quad k_y=l\pi/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\\E_z=\sin(k_xx)\sin(k_yy)\cos(\omega t),\\H_x=-\frac{k_y}{\omega}\sin(k_xx)\cos(k_yy)\sin(\omega t),\quad H_y=\frac{k_x}{\omega}\cos(k_xx)\sin(k_yy)\sin(\omega t).\end{gathered}
+This standing wave has Ez=0 on all four walls. It uses a different boundary implementation from the periodic wave, with checks of maximum wall electric field, eigenfrequency and field error. The cavity here is a z-invariant two-dimensional section; it does not cover the full three-dimensional cavity spectrum.
+
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — CFL condition and discrete dispersion [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#conditions
 Coverage: reading
 
-For the standard uniform Cartesian constant-medium scheme, cΔt√(Δx⁻²+Δy⁻²+Δz⁻²)≤1. Dispersive materials, absorption layers and conduction terms need their own analysis. Stability does not eliminate phase error or staircase geometry error, and a PML setting does not imply zero reflection.
+\frac{\sin^2(\omega_h\Delta t/2)}{\Delta t^2}=\frac{\sin^2(k_x\Delta x/2)}{\Delta x^2}+\frac{\sin^2(k_y\Delta y/2)}{\Delta y^2},\qquad S=\Delta t\sqrt{\Delta x^{-2}+\Delta y^{-2}}<1.
+The fixed input sets a Courant-number ceiling of 0.7; S≥1 is rejected. Rounding the required step count upward and choosing Δt from that count reaches the prescribed 1.1-period comparison time exactly, with actual S at or slightly below 0.7. Refining the grid also refines the time step, so measured orders describe coupled spatial and temporal refinement. They are not separate experimental estimates of spatial order and temporal order.
+A three-time-level recurrence for evolved modal projection coefficients measures frequency. Its convergence toward continuum ω is separate from agreement with discrete ωh. Additional tests initialize magnetic amplitudes with the discrete wave numbers and check the exact discrete eigenmode to roundoff accuracy.
 
-## Yee finite-difference time-domain method — What to check [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Discrete invariant versus physical energy [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#energy
+Coverage: reading
+
+\begin{aligned}U_*^n&=\frac12\lVert E^n\rVert_h^2+\frac12\langle H^{n-1/2},H^{n+1/2}\rangle_h=\mathrm{constant},\\\bar H^n&=(H^{n-1/2}+H^{n+1/2})/2,\\ U_{\rm sync}^n&=\tfrac12(\lVert E^n\rVert_h^2+\lVert\bar H^n\rVert_h^2),\\ U_*^n&=U_{\rm sync}^n-\frac{\Delta t^2}{8}\lVert\operatorname{curl}_h E^n\rVert_h^2.\end{aligned}
+Inner products include cell area and the appropriate PEC boundary weights. U*, containing magnetic fields from two different half times, is conserved up to roundoff in the closed periodic/PEC systems. The strict CFL inequality also ensures positivity of this modified energy. Usync, using magnetic fields averaged to an integer time, is a second-order approximation to physical energy but is not exactly invariant.
+For unit-amplitude continuum fields the total energies are LxLy/2 for the traveling periodic wave and LxLy/8 for the cavity standing wave. Twelve periods are used to track relative U* drift and the variation of Usync; the error against the analytic physical energy must decrease at approximately second order under grid/time refinement. Tests also check U* conservation with compatible random fields, beyond single eigenmodes.
+
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Fixed inputs and measured results [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#verification
 Coverage: reading
 
-Compare periodic-wave phase speed and grid convergence, conducting-cavity frequencies and interface reflection/transmission with analytic results. Track energy balance, magnetic divergence and Gauss-law residuals separately. Similarities with MHD constrained transport do not make their equations identical.
+e_h=\left(\frac{\lVert E_h-E\rVert_h^2+\lVert H_h-H\rVert_h^2}{\mathcal N^2}\right)^{1/2},\qquad p=\frac{\log(e_h/e_{h/2})}{\log 2}.
+Grids are 16×24, 32×48 and 64×96. Continuum field errors are evaluated exactly at the prescribed 1.1-period target, reached by adjusting the time step to an integer step count. H is compared at its actual half step before E. The combined-field denominator 𝒩² is the constant continuum modal norm (LxLy for the periodic wave, LxLy/4 for the cavity). Separate electric and magnetic errors are retained in JSON.
+Fixed-input measurements. Field and frequency errors use continuum analytic solutions.
+CaseGrid Nx × NyRelative field L² errorObserved orderRelative frequency errorMaximum relative modified-energy drift
+Periodic wave16 × 240.021645—0.00312712.22e-16
+Periodic wave32 × 480.00539262.00490.000779622.22e-16
+Periodic wave64 × 960.00133092.01860.000192442.22e-16
+PEC cavity16 × 240.0055511—0.000779624.441e-16
+PEC cavity32 × 480.00135142.03830.000192444.441e-16
+PEC cavity64 × 960.000333262.01974.7804e-052.22e-16
+Periodic plane wave · JSON · convergence.csv · energy.csvPEC cavity · JSON · convergence.csv · energy.csv
 
-## Yee finite-difference time-domain method — Publication scope and related entries [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Fixed inputs and measured results [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#verification
+Coverage: reading
+
+Acceptance tolerances are saved in each fixed input. Separate checks require field error ≤0.01, observed orders ≥1.8, relative frequency error ≤0.002, discrete-dispersion identity error ≤10⁻⁹ and relative U* drift ≤2×10⁻¹¹. Separate checks require zero wall electric field, preservation of initial magnetic divergence, maximum Usync error against the analytic total energy ≤0.003, and approximately second-order refinement of that error. The Usync variation span is retained as a diagnostic.
+
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Code, fixed inputs and reproduction [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#reproduce
+Coverage: reading
+
+The immutable ZIP was extracted into an independent directory. All tests and both inputs were rerun without network access or the source checkout, reproducing saved numerical metrics and CSVs. This is a dedicated supplement, separate from the existing 22-example common execution registry and its historical receipts.
+Code, inputs and results ZIP
+Bilingual setup and execution
+solver.py
+run.py
+test_fdtd.py
+File manifest / SHA-256
+24 tests passed / independent-extraction receipt
+Fixed input: periodic-wave
+inputs/periodic-wave.json · Numerical acceptance and results JSON · Field CSV
+Fixed input: pec-cavity
+inputs/pec-cavity.json · Numerical acceptance and results JSON · Field CSV
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py
+python run.py --input inputs/periodic-wave.json --output output-periodic
+python run.py --input inputs/pec-cavity.json --output output-cavity
+Nonempty output directories are refused. Exit codes are 0 for accepted numerical checks, 1 for failed numerical checks and 2 for input/runtime errors. JSON records the input SHA-256, environment, error/refinement/invariant metrics, individual checks and termination reason. Original code uses the bundled MIT License; prose, figures and data follow the site’s item-specific terms.
+
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Educational fixed-input validation of 2D TMz homogeneous-vacuum periodic waves and a rectangular PEC cavity. References are continuum analytic solutions and separately derived discrete modes/invariants; no independent external FDTD-library comparison is claimed. PML, reflection/transmission, scatterers, charges/currents, dispersive media and general three-dimensional geometries remain unimplemented and unvalidated.
 Yee finite-difference time-domain method
 
-## Yee finite-difference time-domain method — Primary publications, supporting sources and review scope [en]
+## Yee FDTD: implemented periodic plane-wave and PEC-cavity checks — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#sources
 Coverage: reading
 
 Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
 Kane Yee (1966). Numerical solution of initial boundary value problems involving maxwell's equations in isotropic media. IEEE Transactions on Antennas and Propagation
-Research publication: proposal or related formulation · Bibliography checked · Consulted record
-Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted original paper pages 302–304 reproduced in Appendix A, PDF pages 73–75: TM update equations (14a–c), staggered placement and PEC tangential electric boundary. Modern strict CFL and energy claims use Bekmambetova et al. instead of the historical Yee stability statement.
+Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding.
+Research preprint, distinct from the journal edition · Selected source passages consulted · Consulted record
+Research preprint v2, selected full-text sections III A–B, energy equation (26), strict CFL equation (35), and PEC boundary discussion. Applied here to the source-free 2D TMz reduction; no subgridding implementation.
 
 ## Continuous finite elements: from weak form to sparse assembly [en]
 
@@ -9637,6 +9709,13 @@ R. P. Feynman (1939). Forces in Molecules. 10.1103/PhysRev.56.340
 P. Pulay (1969). Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory. 10.1080/00268976900100941
 J. M. Herbert and M. Head-Gordon (2005). Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation. 10.1039/B509494A
 
+## References by original publication year — Sources added by priority-method curation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
+Coverage: reading
+
+Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding. Original source
+
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
@@ -10341,10 +10420,7 @@ Completed web stage: HLLD with Brio–Wu, Alfvén-wave refinement and weak field
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#authorized-next-work
 Coverage: reading
 
-Planned — electromagnetic FDTD (finite-difference time-domain): Yee-grid
-placement, leapfrog Maxwell updates, CFL limits and numerical dispersion;
-start with vacuum-wave and conducting-cavity tests, then absorbing boundaries
-and PML reflection checks. Implementation and dedicated verification are pending.
+Scoped implementation and validation — Yee FDTD: 2D TMz vacuum periodic plane waves and a rectangular PEC cavity now have original code, fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. Reading, code and results. Interface reflection/transmission and absorbing boundaries/PML remain future work.
 Planned — plasma PIC (Particle-in-Cell): start with electrostatic
 particle–Poisson coupling, then electromagnetic particle–Maxwell coupling.
 Cover particle shapes, deposition/gather, Boris pushing, charge-conserving
@@ -11013,7 +11089,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 115 methods and building blocks · 224 journal/conference papers · 265 total sources.
+46 equation/model entries · 116 methods and building blocks · 224 journal/conference papers · 266 total sources.
 There are 9 saved-profile equation-gallery cases across 7 equation families, and 80 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
@@ -11108,7 +11184,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-99 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+100 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -15044,59 +15120,125 @@ Coverage: reading
 CIPノートは、一様周期格子のスカラー移流で、原型の3次Hermite CIPと線形の点補間を比較します。独立に輸送する勾配、初期勾配の選択、滑らかな解の収束、矩形パルスのオーバーシュート、解析的な保存性の反例を示します。定義を参照してください。点値と有限体積平均は交換できません。同期前にpython scripts/build_cip.pyで再生成します。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
 
-## Yee FDTD — Yee FDTD [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — Yee FDTD：周期平面波と完全導体空洞の実装・検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
 
-Yee FDTDはMaxwellの回転方程式を空間・時間にずらした格子で更新します。電場と磁場を同じ位置・時刻に置く単純な中心差分とは異なる構成です。
+2次元TMz（Ez、Hx、Hy）の自作教育用コードです。無次元の一様真空、電流・電荷源なしに限定し、周期平面波と完全導体（PEC）長方形空洞を連続解析解と比較しました。格子収束、数値分散、離散保存量、物理エネルギーの近似を別々に確認します。
 
-## Yee FDTD — 対象と代表式 [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — モデル・単位・適用範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#model
 Coverage: reading
 
-線形・等方・非分散で、一定の誘電率εと透磁率μを持つ領域では波速c=1/√(εμ)です。電場Eは整数時刻、磁束密度Bは半整数時刻で表し、H=B/μとします。下式のcurlₕは、変数配置と整合する離散回転演算子です。
-\begin{aligned}\mathbf B^{n+1/2}&=\mathbf B^{n-1/2}-\Delta t\,\operatorname{curl}_h\mathbf E^n,\\\mathbf E^{n+1}&=\mathbf E^n+\frac{\Delta t}{\epsilon}\left(\operatorname{curl}_h\mathbf H^{n+1/2}-\mathbf J^{n+1/2}\right).\end{aligned}
+\partial_t E_z=\partial_xH_y-\partial_yH_x,\qquad \partial_tH_x=-\partial_yE_z,\qquad \partial_tH_y=\partial_xE_z,\quad \epsilon=\mu=c=1.
+長さ・時間・場を規格化し、ε=μ=c=1とします。計算領域はLx=1、Ly=1.5、モード番号(m,l)=(1,1)。矩形・斜めの周期モードを使い、軸の入れ替えや磁場の符号を見逃さない構成です。分散媒質、損失、誘電体界面、外部励起は含みません。
 
-## Yee FDTD — 計算の流れ [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — Yee格子と時間をずらした更新 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#algorithm
 Coverage: reading
 
-面を囲む電場の循環から磁場を半ステップずらして更新し、磁場の循環と電流から次の電場を求めます。初期場と境界条件もこの時刻配置で与えます。構造的なdivₕ curlₕ=0は離散磁束制約に有用ですが、電荷保存には電流との整合も必要です。
+\begin{aligned}H_{x,i,j+1/2}^{n+1/2}&=H_{x,i,j+1/2}^{n-1/2}-\frac{\Delta t}{\Delta y}(E_{i,j+1}^{n}-E_{i,j}^{n}),\\H_{y,i+1/2,j}^{n+1/2}&=H_{y,i+1/2,j}^{n-1/2}+\frac{\Delta t}{\Delta x}(E_{i+1,j}^{n}-E_{i,j}^{n}),\\E_{i,j}^{n+1}&=E_{i,j}^{n}+\Delta t\left(\frac{H_{y,i+1/2,j}^{n+1/2}-H_{y,i-1/2,j}^{n+1/2}}{\Delta x}-\frac{H_{x,i,j+1/2}^{n+1/2}-H_{x,i,j-1/2}^{n+1/2}}{\Delta y}\right).\end{aligned}
+Ezを格子点・整数時刻、Hxをy方向の半格子・半整数時刻、Hyをx方向の半格子・半整数時刻に置きます。各ステップは磁場を先に更新し、その磁場で電場を更新します。時刻0の電場と−Δt/2の磁場を解析式から初期化し、初期時刻のずれによる1次誤差を避けます。
+周期境界では重複端点を持たず、差分が周期的につながります。PECでは壁上の接線電場Ez=0を固定し、電場の内部点のみを更新します。壁上に置かれた磁場成分の内積には半分の端点重みを与え、離散部分積分とエネルギー式を整合させます。
 
-## Yee FDTD — 適用条件と落とし穴 [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — 周期平面波の連続解析解 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#periodic-mode
+Coverage: reading
+
+\begin{gathered}k_x=2\pi m/L_x,\quad k_y=2\pi l/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\quad\phi=k_xx+k_yy-\omega t,\\ E_z=\cos\phi,\quad H_x=(k_y/\omega)\cos\phi,\quad H_y=-(k_x/\omega)\cos\phi.\end{gathered}
+電場と2成分の磁場を、それぞれの格子位置・時刻で評価します。位相速度の誤差は周波数から測り、場の誤差とは別に保存します。空間にサンプルした連続磁場は離散発散が厳密に0とは限らないため、磁場発散は初期値からの変化を調べます。
+
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — 完全導体空洞の連続固有モード [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#cavity-mode
+Coverage: reading
+
+\begin{gathered}k_x=m\pi/L_x,\quad k_y=l\pi/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\\E_z=\sin(k_xx)\sin(k_yy)\cos(\omega t),\\H_x=-\frac{k_y}{\omega}\sin(k_xx)\cos(k_yy)\sin(\omega t),\quad H_y=\frac{k_x}{\omega}\cos(k_xx)\sin(k_yy)\sin(\omega t).\end{gathered}
+4辺の壁でEz=0となる定在波です。周期波とは異なる境界実装を使い、壁上の最大電場、固有角周波数、場の誤差を確認します。ここでの「空洞」はz方向に変化のない2次元断面であり、3次元の全固有モードを扱うものではありません。
+
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — CFL条件と離散分散関係 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#conditions
 Coverage: reading
 
-一様直交格子・一定媒質の標準方式では cΔt√(Δx⁻²+Δy⁻²+Δz⁻²)≤1 が安定条件です。分散媒質、吸収境界、導電項を加えると個別に検討します。安定でも数値分散・階段状境界誤差は残り、PMLの設定だけで反射がゼロになるとは限りません。
+\frac{\sin^2(\omega_h\Delta t/2)}{\Delta t^2}=\frac{\sin^2(k_x\Delta x/2)}{\Delta x^2}+\frac{\sin^2(k_y\Delta y/2)}{\Delta y^2},\qquad S=\Delta t\sqrt{\Delta x^{-2}+\Delta y^{-2}}<1.
+入力ではCourant数の上限を0.7とし、S≥1は拒否します。解析解との比較時刻を厳密に1.1周期に合わせるため、必要な整数ステップ数を切り上げ、実際の時間刻みとSをわずかに小さくします。格子とともに時間刻みも細分化するため、示す次数は空間・時間を同時に細分化した収束です。空間次数と時間次数を個別に実測したという意味ではありません。
+時間発展したモードの投影係数から3時刻の漸化式で周波数を測定し、連続ωへの近づき方と離散ωhとの一致を分けます。別テストでは離散波数に整合する磁場振幅で初期化し、離散固有モードが丸め誤差程度で再現されることを調べます。
 
-## Yee FDTD — 検証するときに見る量 [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — 離散保存量と物理エネルギーを分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#energy
+Coverage: reading
+
+\begin{aligned}U_*^n&=\frac12\lVert E^n\rVert_h^2+\frac12\langle H^{n-1/2},H^{n+1/2}\rangle_h=\mathrm{constant},\\\bar H^n&=(H^{n-1/2}+H^{n+1/2})/2,\\ U_{\rm sync}^n&=\tfrac12(\lVert E^n\rVert_h^2+\lVert\bar H^n\rVert_h^2),\\ U_*^n&=U_{\rm sync}^n-\frac{\Delta t^2}{8}\lVert\operatorname{curl}_h E^n\rVert_h^2.\end{aligned}
+内積には格子面積とPECの境界重みを含めます。異なる半時刻の磁場の積を使うU*は、閉じた周期／PEC系で丸め誤差を除き保存されます。厳密なCFL不等式はこの修正エネルギーの正定値性にも関係します。整数時刻へ平均した磁場によるUsyncは物理エネルギーの2次近似ですが、厳密な保存量ではありません。
+単位振幅の連続場では、周期進行波の全エネルギーはLxLy/2、空洞定在波ではLxLy/8です。12周期にわたってU*の相対変動とUsyncの変動幅を記録し、後者と解析的な全エネルギーとの差が格子・刻みの細分化で約2次に減ることを確認します。固有モードだけでなく、乱数で作った適合する場でもU*の保存をテストします。
+
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — 固定入力と実測結果 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#verification
 Coverage: reading
 
-周期平面波の位相速度と格子収束、完全導体箱の固有周波数、媒質界面の反射・透過を解析解と比較します。エネルギーの収支、磁場発散、Gauss則の残差は別々に測ります。MHDのCT法との類似はありますが、同じ方程式ではありません。
+e_h=\left(\frac{\lVert E_h-E\rVert_h^2+\lVert H_h-H\rVert_h^2}{\mathcal N^2}\right)^{1/2},\qquad p=\frac{\log(e_h/e_{h/2})}{\log 2}.
+格子16×24、32×48、64×96を使用。連続解析解との場の誤差は、時間刻みを調整して厳密に到達する1.1周期の時刻で照合します。Hの誤差はEより半刻み前の実時刻で比較します。全場誤差の分母𝒩²は連続場の一定ノルム（周期波LxLy、空洞LxLy/4）です。電場・磁場の個別誤差もJSONに保存します。
+固定入力の実測値。誤差と周波数は連続解析解に対して評価。
+問題格子 Nx × Ny全場の相対L²誤差観測次数相対周波数誤差離散エネルギー最大相対変動
+周期波16 × 240.021645—0.00312712.22e-16
+周期波32 × 480.00539262.00490.000779622.22e-16
+周期波64 × 960.00133092.01860.000192442.22e-16
+導体空洞16 × 240.0055511—0.000779624.441e-16
+導体空洞32 × 480.00135142.03830.000192444.441e-16
+導体空洞64 × 960.000333262.01974.7804e-052.22e-16
+周期平面波 · JSON · convergence.csv · energy.csv完全導体空洞 · JSON · convergence.csv · energy.csv
+許容値は固定入力のacceptanceに保存しています。全場誤差0.01以下、観測次数1.8以上、相対周波数誤差0.002以下、離散分散一致誤差10⁻⁹以下、U*相対変動2×10⁻¹¹以下を別々に判定します。壁上の電場0、磁場の初期発散の保存、Usyncの解析的全エネルギーに対する最大相対誤差0.003以下、およびその約2次の細分化も別々に判定します。Usyncの変動幅は診断値として保存します。
 
-## Yee FDTD — 公開範囲と関連項目 [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — コード・固定入力・再実行 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#reproduce
+Coverage: reading
+
+新しい不変配布版を独立したフォルダへ展開し、ネットワークも元の作業コピーも使わず、テストと両入力を再実行しました。保存済みの数値指標・CSVとの一致を確認しています。既存の共通実行台帳22例とは別の補助配布版であり、過去の検証件数へ加算しません。
+コード・入力・結果ZIP
+日英の取得・実行手順
+solver.py
+run.py
+test_fdtd.py
+ファイル目録・SHA-256
+24検査成功・独立展開記録
+固定入力：periodic-wave
+inputs/periodic-wave.json · 数値判定・結果JSON · 場の分布CSV
+固定入力：pec-cavity
+inputs/pec-cavity.json · 数値判定・結果JSON · 場の分布CSV
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py
+python run.py --input inputs/periodic-wave.json --output output-periodic
+python run.py --input inputs/pec-cavity.json --output output-cavity
+空でない出力先は拒否します。終了コードは0=数値条件合格、1=数値条件不合格、2=入力・実行エラー。JSONには入力SHA-256、環境、誤差・収束・保存量の指標、各判定、終了理由が入ります。自作コードは同梱MIT License、本文・図・データはサイトの項目別利用条件を参照してください。
+
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+2次元TMz・一様真空の周期平面波と長方形PEC空洞の教育用実装・固定入力検証です。解析解と独自に導いた離散モード・保存量を参照し、他のFDTDライブラリとの比較は行っていません。PML、反射・透過、散乱体、電荷・電流、分散媒質、3次元一般形状は未実装・未検証です。
 Yee FDTD
 
-## Yee FDTD — 一次文献・関連資料と確認範囲 [ja]
+## Yee FDTD：周期平面波と完全導体空洞の実装・検証 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#sources
 Coverage: reading
 
 原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
 Kane Yee (1966). Numerical solution of initial boundary value problems involving maxwell's equations in isotropic media. IEEE Transactions on Antennas and Propagation
-研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
-DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+付録Aに再録された原論文302–304頁（PDF73–75頁）のTM更新式14a–c、変数配置、PEC接線電場条件を参照。CFLと保存量の説明は後年のBekmambetovaらに基づき、原論文の歴史的な安定性記述とは区別。
+Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding.
+研究プレプリント（査読論文版とは区別） · 原文の該当箇所を参照 · 確認した資料
+研究プレプリントv2のIII A–B節、修正エネルギー式26、厳密CFL不等式35とPECの議論を参照。ここでは源なし2次元TMzへの縮約に使用し、サブグリッド法は実装しない。
 
 ## 連続有限要素法：弱形式から疎行列の組立てへ [ja]
 
@@ -20395,6 +20537,13 @@ R. P. Feynman (1939). Forces in Molecules. 10.1103/PhysRev.56.340
 P. Pulay (1969). Ab initio calculation of force constants and equilibrium geometries in polyatomic molecules. I. Theory. 10.1080/00268976900100941
 J. M. Herbert and M. Head-Gordon (2005). Accelerated, energy-conserving Born–Oppenheimer molecular dynamics via Fock matrix extrapolation. 10.1039/B509494A
 
+## 原著の出版年順に並べた参考文献 — 主要手法の条件整理で追加した一次文献・資料 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
+Coverage: reading
+
+Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding. Original source
+
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
@@ -20909,7 +21058,7 @@ InutsukaのGSPH：Gaussian畳み込み、比体積再構成、向き付き粒子
 第1段階を追加：制限付き放物線FV、保存特性変数、FD WENO-ZのSod・接触面・Shu–Osher比較。直接Euler型の波追跡・急峻化・平坦化は第2段階に追加しました。Lagrange/remapは別課題です。
 従来のAUSM共通音速基準例を維持し、第2段階に定義を明示したAUSM+／AUSM+-up、波追跡PPM条件を揃えた比較、許容状態を保てない停止例を追加しました。
 Web実装済み：HLLD、Brio–Wu、Alfvén波の格子細分化、弱い磁場ループのCT-Contact／GLM比較。MHDテストを参照。
-予定 — 電磁場のFDTD（時間領域有限差分法）：Yee格子の変数配置、leapfrogによるMaxwell方程式の更新、CFL制限、数値分散。真空中の波と導体空洞のテストから始め、吸収境界・PMLの反射検査へ進みます。実装と専用の検証は未完了です。
+限定実装・検証済み — Yee FDTD：2次元TMz・一様真空の周期平面波と長方形PEC空洞を実装。解析解、格子・時間細分化、数値分散、12周期の離散エネルギー保存を専用コードと固定入力で確認しました。日英解説・コード・結果。媒質界面の反射・透過と吸収境界/PMLは次の段階です。
 予定 — プラズマPIC（Particle-in-Cell法）：静電的な粒子–Poisson連成から、電磁的な粒子–Maxwell連成へ進みます。粒子形状、格子への割当てと場の補間、Boris法、電荷保存電流割当て、Gauss則の診断を扱います。プラズマ振動、two-stream不安定性、Landau減衰を検証候補とし、エネルギー・ノイズ・格子／時間／粒子数依存性を確認します。既存の重力PM例とは適用範囲を分けます。WarpXのPIC理論ノートを出発点とし、プラズマPICソルバーは現時点では未実装です。
 硬い積分：BE／BDF2／SDIRK2／IMEX Eulerを超える高次IMEX、埋込みDIRK、可変BDF、演算子分割。
 疎行列・非線形：固定右GMRES／BiCGSTAB・ILU(0)を超える行列不要Newton–Krylov、頑健な並べ替え・フィル、可変前処理、広い非線形テスト。
@@ -21357,7 +21506,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素115項目・学術誌／会議論文224件・全参考資料265件。
+方程式・モデル46項目・計算法と構成要素116項目・学術誌／会議論文224件・全参考資料266件。
 保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め80章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
@@ -21453,7 +21602,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は99、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は100、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 

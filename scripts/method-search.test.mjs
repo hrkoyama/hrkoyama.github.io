@@ -124,7 +124,7 @@ function withDOM(run){
 
 test('published method cards expose every real related code/test URL and preserve availability',()=>withDOM(({render})=>{
   assert.equal(published.length,145);
-  assert.equal(published.filter(method=>method.status==='educational-example').length,99);
+  assert.equal(published.filter(method=>method.status==='educational-example').length,100);
   for(const method of published){
     for(const language of ['ja','en']){
       const card=render(method,language),anchors=links(card),urls=anchors.map(anchor=>new URL(anchor.href,origin));
@@ -180,7 +180,7 @@ test('untrusted method labels stay text and hostile destinations never become ac
 }));
 
 test('planned methods with new detailed reading advertise reading without implying available code',()=>withDOM(({render})=>{
- for(const id of ['ewald','fdtd','quadrature']){
+ for(const id of ['ewald','quadrature']){
   const m=published.find(m=>m.id===id),card=render(m,'ja');assert.ok(card.textContent.includes('解説あり・実装予定'));assert.ok(links(card).some(a=>a.textContent==='解説'));assert.ok(!links(card).some(a=>a.href.startsWith('/code/')));
  }
 }));

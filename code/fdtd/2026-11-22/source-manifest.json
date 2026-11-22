@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "family": "fdtd",
+  "edition": "2026-11-22",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/fdtd/2026-11-22/",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "8c6d3a5d4051136c2e8434f0a165355d93e768949c57e2fcab9fe2aee403d9f4",
+    "inputs/pec-cavity.json": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41",
+    "inputs/periodic-wave.json": "85c31f5864016207329343e7c70e03ff357c9ab9a418b5d03b99e1968812c2dd",
+    "requirements.txt": "545e1236cc9f4ef7b26df1bcf6943b9823eab6ff573259d0ffa9e8ea9530eb98",
+    "results/pec-cavity/convergence.csv": "1a66d832474b9d8cb2650fd6aceadf91e5a16db2e3222e514e4800cc3701e8d6",
+    "results/pec-cavity/energy.csv": "dd25daa5cf9d725f01dd7a3fa5f1c04f5a4063854cddaafd655a90ffba31f665",
+    "results/pec-cavity/result.json": "ee5f64751b376da6ee4394d26c1e6d53cd13088eae9ffd5bebf85094ffcf0df2",
+    "results/pec-cavity/solution.csv": "2239cda818db8d5a54f777c61a5631d402b2e453a97a5c4b919ff85467cf8a5c",
+    "results/pec-cavity/summary.png": "6fb79eea1d3cf3e5b335225d70a18292a5c33de1b577425df1d92253f045f25e",
+    "results/periodic-wave/convergence.csv": "a8769003133591b013cacbb04873d10ff9b75047ef120bc1686dcc34280e5a3c",
+    "results/periodic-wave/energy.csv": "6561c83c8ced52d14dd1169e78ea2913591f089694a63b553ff4361c80e5fe85",
+    "results/periodic-wave/result.json": "eef5763dc383a889bb72b22df0d4962301c62a685601ef8efeaca2f289d2e03c",
+    "results/periodic-wave/solution.csv": "3f662979995fae05fd93c875eb443f2a5028be513d8e045ddb1c2f6d39ce3f79",
+    "results/periodic-wave/summary.png": "acdcc4fcecc88ed69f6d6a4954588f1bcdd6cf987a688cd80a93ad67839062c5",
+    "run.py": "370a9ca80241232d61cdafc3006bf83bded2d1b8d21bac3ea2d66c2e6b2ec5d9",
+    "solver.py": "640dc67ac75c9a8ab3958375e064bfadb712cea96180d002fd20aebbac8e92c7",
+    "test_fdtd.py": "e58324e22ff1db1c9224a5f07422c296fb11a257f9fae30cd101381b24f212e1"
+  },
+  "scope": "Original 2D TMz Yee scheme, dimensionless source-free vacuum; oblique periodic plane wave and rectangular PEC cavity."
+}

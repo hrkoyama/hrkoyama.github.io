@@ -11,18 +11,18 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 115,
+    "methods": 116,
     "papers": 224,
-    "references": 265,
+    "references": 266,
     "journal_articles": 218,
     "conference_papers": 6,
     "books": 24,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 11,
+    "other_sources": 12,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 99,
+    "local_methods": 100,
     "reading_methods": 16,
     "biological_entries": 22,
     "gallery_cases": 9,
@@ -1510,6 +1510,16 @@
       "group": "Optimization & stochastic methods",
       "scope": "An educational one-parameter inverse problem on the smooth lower branch with fixed synthetic observations, bounded projected gradients and Armijo search. Same-discrete-model recovery, grid bias against continuous analytic observations and shifts under fixed noise are distinguished. Quasi-Newton methods, real data, branch identification and statistical confidence intervals are outside the verified scope.",
       "origin": "curated-inverse-example"
+    },
+    {
+      "kind": "method",
+      "id": "fdtd",
+      "label": "Yee finite-difference time-domain method",
+      "chapter": "fdtd",
+      "status": "local-example",
+      "group": "Coupling, constraints & particles",
+      "scope": "Educational fixed-input validation of 2D TMz homogeneous-vacuum periodic waves and a rectangular PEC cavity. References are continuum analytic solutions and separately derived discrete modes/invariants; no independent external FDTD-library comparison is claimed. PML, reflection/transmission, scatterers, charges/currents, dispersive media and general three-dimensional geometries remain unimplemented and unvalidated.",
+      "origin": "curated-fdtd-example"
     }
   ],
   "publications": [
@@ -2711,6 +2721,12 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "bekmambetova2017fdtd",
+      "type": "misc",
+      "identity": "url:https://arxiv.org/abs/1705.02274v2",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -2941,8 +2957,8 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "6e4105c2e8a61fc81a729c9a42a551127ba658601dab52b80a0a0b49b55547b9",
+    "catalog/atlas-methods.json": "a76ab613723efb2290bd7f28b40d61796e9ec1ec4a9b01cb203aabb835048ab8",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "9b4a042d5c6d48637f51c9667083cb4bdc9531ea737deebe2fdce44070e83380"
+    "catalog/atlas-method-primary-references.json": "82e06bb2173f45e83459e1424da12e7c6a37aa43b211c1c8445cd9ff8fe041cd"
   }
 }

@@ -38,6 +38,7 @@ def bibliography(chapter,lang):
         target='https://doi.org/'+r['doi'] if r.get('doi') else r['source']
         kind={'book':('著者による著書・関連資料','Author monograph / supporting reference'),'misc':('公式の参照資料','Official reference documentation')}.get(r.get('type'),('研究論文・提案または関連する定式化','Research publication: proposal or related formulation'))[0 if ja else 1]
         if ident=='higham2001':kind='数値法の教育的解説（原提案とは別）' if ja else 'Pedagogical account, distinct from the original proposal'
+        if r.get('source_role')=='research-preprint':kind='研究プレプリント（査読論文版とは区別）' if ja else 'Research preprint, distinct from the journal edition'
         result+='<li id="source-'+ident+'">'+link(target,r['author']+f' ({r["year"]}). '+r['title'])+'. '+escape(r.get('journal') or r.get('booktitle') or r.get('publisher',''))+'<p>'+escape(kind+' · '+label)+' · '+link(review['url'],'確認した資料' if ja else 'Consulted record')+'</p><p>'+escape(review['scope_ja'] if ja else (review.get('scope') or r.get('note') or 'Bibliographic identity checked; full-paper audit not claimed.'))+'</p></li>'
     return result+'</ol>'
 

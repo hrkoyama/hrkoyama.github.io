@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "archive": {
+    "file": "fdtd-2026-11-22.zip",
+    "sha256": "482404475f935e8df487580ed48b8f98ada580fd61a79dd705fef9d5cf620d4d",
+    "bytes": 726895,
+    "archive_directory": "fdtd-2026-11-22"
+  },
+  "archive_sha256": "482404475f935e8df487580ed48b8f98ada580fd61a79dd705fef9d5cf620d4d",
+  "source_manifest_sha256": "aa9d5c229a41ffb5c76fa3ca8c01518c3991c64a6cbee3d52eacdcbfaaa8bf0d",
+  "returncode": 0,
+  "tests": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed_tests": 24,
+  "passed": 24,
+  "recipes": [
+    {
+      "id": "periodic-wave",
+      "passed": true,
+      "input_sha256": "85c31f5864016207329343e7c70e03ff357c9ab9a418b5d03b99e1968812c2dd",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pec-cavity",
+      "passed": true,
+      "input_sha256": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41",
+      "metrics_identical": true,
+      "csv_identical": true
+    }
+  ],
+  "environment": {
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; all tests and both fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.",
+  "reference": "Continuum vacuum plane-wave and rectangular PEC eigenmode; separate exact discrete dispersion identity and modified-energy invariant. No independent external FDTD solver comparison claimed."
+}

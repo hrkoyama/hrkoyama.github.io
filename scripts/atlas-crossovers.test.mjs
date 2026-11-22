@@ -44,7 +44,7 @@ test('crossovers preserve the scientific inventory and canonical availability', 
   assert.equal(methods.length, 145);
   assert.equal(json('catalog/atlas-equations.json').equations.length, 46);
   assert.equal(json('numerical-methods-atlas/coverage.json').counts.papers, 224);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.references, 265);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.references, 266);
   assert.equal(json('catalog/atlas-test-problems.json').problems.length, 67);
   assert.equal(examples.length, 22);
   for (const id of ['born-oppenheimer-md', 'car-parrinello-md']) {

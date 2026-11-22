@@ -13,7 +13,7 @@
     "ja": "Maxwell方程式の格子上の変数配置と時間更新を扱う。",
     "en": "Connect staggered Maxwell fields and time updates."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/",
@@ -26,22 +26,29 @@
       "url": "https://doi.org/10.1109/tap.1966.1138693",
       "label": "Numerical solution of initial boundary value problems involving maxwell's equations in isotropic media (1966)",
       "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+    },
+    {
+      "url": "https://arxiv.org/abs/1705.02274v2",
+      "label": "Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding",
+      "scope": "Research preprint v2; energy Eq26 and strict CFL Eq35 consulted. Not a claim to implement its subgridding method."
     }
   ],
-  "assumptions": null,
-  "units": null,
-  "boundary_conditions": null,
+  "assumptions": [
+    "2D TMz, homogeneous vacuum, ε=μ=c=1, source-free. Lx=1, Ly=1.5; mode (1,1)."
+  ],
+  "units": "Dimensionless normalized length, time and fields.",
+  "boundary_conditions": "Periodic boundaries or Ez=0 on rectangular PEC walls.",
   "next_deliverable": {
-    "ja": "真空波・導体空洞からCFLと分散を検証。",
-    "en": "Check CFL and dispersion with vacuum waves and a conducting cavity."
+    "ja": "媒質界面の反射・透過と吸収境界/PMLの反射誤差を別に検証。",
+    "en": "Separately validate interface reflection/transmission and absorption/PML reflection error."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "2次元TMz・一様真空の周期平面波と長方形PEC空洞の教育用実装・固定入力検証です。解析解と独自に導いた離散モード・保存量を参照し、他のFDTDライブラリとの比較は行っていません。PML、反射・透過、散乱体、電荷・電流、分散媒質、3次元一般形状は未実装・未検証です。",
+    "en": "Educational fixed-input validation of 2D TMz homogeneous-vacuum periodic waves and a rectangular PEC cavity. References are continuum analytic solutions and separately derived discrete modes/invariants; no independent external FDTD-library comparison is claimed. PML, reflection/transmission, scatterers, charges/currents, dispersive media and general three-dimensional geometries remain unimplemented and unvalidated."
   },
   "metadata_review": {
-    "level": "candidate outline; scientific derivation and literature review incomplete",
-    "on": "2026-11-21"
+    "level": "Original educational 2D TMz code with continuum/discrete analytic checks, refinement, energy and independent ZIP rerun.",
+    "on": "2026-11-22"
   },
   "aliases": [
     "FDTD法",
@@ -49,14 +56,45 @@
     "有限差分時間領域法",
     "Yee法"
   ],
+  "fdtd_release": {
+    "base": "/code/fdtd/2026-11-22/",
+    "edition": "2026-11-22",
+    "archive": "fdtd-2026-11-22.zip",
+    "manifest": "source-manifest.json",
+    "verification": "verification.json"
+  },
+  "assumptions_ja": [
+    "2次元TMz、一様真空、ε=μ=c=1、源なし。Lx=1、Ly=1.5、モード(1,1)。"
+  ],
+  "units_ja": "無次元。長さ・時間・場を規格化。",
+  "boundary_conditions_ja": "周期境界、または長方形PEC壁上のEz=0。",
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
+  "code_urls": [
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22/solver.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22/run.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22/test_fdtd.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q test_fdtd.py",
+    "python run.py --input inputs/periodic-wave.json --output rerun-periodic-wave",
+    "python run.py --input inputs/pec-cavity.json --output rerun-pec-cavity"
+  ],
+  "run_from": "Extracted 2D TMz FDTD supplement directory",
+  "code_base": "https://hrkoyama.github.io/code/fdtd/2026-11-22/",
+  "code_edition": "2026-11-22",
+  "code_download": "https://hrkoyama.github.io/code/fdtd/2026-11-22/fdtd-2026-11-22.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/fdtd/2026-11-22/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/fdtd/2026-11-22/verification.json",
+  "code_archive_sha256": "482404475f935e8df487580ed48b8f98ada580fd61a79dd705fef9d5cf620d4d",
+  "results": "https://hrkoyama.github.io/code/fdtd/2026-11-22/results/periodic-wave/result.json",
+  "result_urls": {
+    "periodic-wave": "https://hrkoyama.github.io/code/fdtd/2026-11-22/results/periodic-wave/result.json",
+    "pec-cavity": "https://hrkoyama.github.io/code/fdtd/2026-11-22/results/pec-cavity/result.json"
+  },
+  "passed_tests": 24,
   "execution_examples": []
 }
