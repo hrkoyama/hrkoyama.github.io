@@ -8,16 +8,44 @@ const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
  assert.equal(source.chapters.length,27);
- assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,33);assert.equal(methods.filter(m=>m.status==='educational-example').length,96);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
+ assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,32);assert.equal(methods.filter(m=>m.status==='educational-example').length,97);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
  for(const id of originalPlanned){
-  const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde'].includes(id)?'educational-example':'planned');assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);
+  const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation'].includes(id)?'educational-example':'planned');
+  if(id!=='automatic-differentiation'){assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);}
   for(const lang of ['ja','en']){
-   assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);
-   for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);
+   if(id==='automatic-differentiation')assert.ok(chapter.html[lang].length>6000);
+   else{assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);}
    assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id}/`);
   }
  }
  for(const m of methods)assert.ok(m.reading.ja&&m.reading.en,m.id+' has both languages');
+});
+test('automatic differentiation publishes the foundation chapter and Bratu evidence at its existing bilingual addresses',()=>{
+ const chapter=source.chapters.find(c=>c.id==='automatic-differentiation');
+ const sections=['ways-to-differentiate','forward-mode','reverse-mode','bratu-problem','bratu-verification','solver-connections','limits','reproduce'];
+ const aliases=['model','algorithm','conditions','verification'];
+ const release='/code/autodiff/2026-11-22/';
+ assert.equal(methods.find(m=>m.id===chapter.id).status,'educational-example');
+ assert.deepEqual(chapter.references,['wengert1964','linnainmaa1976','baydin2018','jax-autodiff-cookbook']);
+ const formulaIds=Object.keys(source.formulas).filter(id=>id.startsWith('autodiff-foundations-'));
+ assert.equal(formulaIds.length,8);
+ assert.ok(source.formulas['autodiff-foundations-3'].includes('\\cosh^2(1/2)'));
+ const ref=id=>source.references.find(r=>r.id===id);
+ assert.equal(ref('baydin2018').source_review.level,'abstract-and-metadata');
+ assert.equal(ref('jax-autodiff-cookbook').source_review.level,'full-text');
+ for(const lang of ['ja','en']){
+  const html=chapter.html[lang],doc=read(`numerical-methods-atlas/${lang}/read/${chapter.id}/index.json`);
+  assert.deepEqual([...html.matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]),sections);
+  assert.deepEqual(doc.headings.map(h=>h.id),[...sections,'publication-scope','sources']);
+  for(const id of aliases){assert.ok(html.includes(`id="${id}"`));assert.ok(doc.html.includes(`id="${id}"`));}
+  for(const suffix of ['autodiff-2026-11-22.zip','README.md','numart/autodiff.py','numart/krylov.py','scripts/build_autodiff.py','tests/test_autodiff.py','verification.json','source-manifest.json'])assert.ok(html.includes(release+suffix),lang+' '+suffix);
+  for(const suffix of ['png','json'])assert.ok(html.includes('/numerical-methods-atlas/assets/autodiff-bratu.'+suffix));
+  assert.ok(html.includes('Bratu')&&html.includes('Newton')&&html.includes('JVP'));
+  assert.ok(html.includes('10⁻¹⁴')&&html.includes('1.738×10⁻⁴'));
+  assert.ok(html.includes('python scripts/build_autodiff.py'));
+  assert.ok(!html.includes('katex-mathml')&&!html.includes('.venv/bin/python'));
+  assert.equal(doc.implementation_status[chapter.id],'educational-example');
+ }
 });
 test('each detailed chapter publishes real equations, bilingual anchors, source roles and readable machine downloads',()=>{
  const refs=new Map(source.references.map(r=>[r.id,r]));

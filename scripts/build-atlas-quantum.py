@@ -120,6 +120,16 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
         if x.get('model_examples'):
             assert x['status']=='educational-example'
             coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':x['id'],'status':'local-example','group':x['group']['en'],'scope':x['example_scope']['en'],'origin':'curated-model-example'})
+    # Supplemental derivative code has its own immutable edition. Promote the
+    # existing AD candidate once, without adding it to the original code ZIP.
+    coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-autodiff-example']
+    for x in load(ROOT/'catalog/atlas-methods.json')['methods']:
+        if x.get('autodiff_release'):
+            assert x['status']=='educational-example'
+            coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
+                'chapter':'automatic-differentiation','status':'local-example',
+                'group':x['group']['en'],'scope':x['limitations']['en'],
+                'origin':'curated-autodiff-example'})
     coverage['publications']=[x for x in coverage['publications'] if x.get('origin')!='curated-quantum-reading']
     identities={x['identity'] for x in coverage['publications']}
     for r in refs.values():

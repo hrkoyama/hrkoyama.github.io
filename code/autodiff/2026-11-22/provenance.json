@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source_label": "Numerical methods atlas local AD supplement",
+  "original_source_sha256": {
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "scripts/build_autodiff.py": "554cd482e2d45f18e20151dd48d7bf792cf253d3e096b64bc34f37b2c45dbc9a",
+    "tests/test_autodiff.py": "858fa81825c87b1431c8cda4025e7c0d95d59916b53dec922a872552c8253513",
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6"
+  },
+  "adaptations": [
+    "Minimal numart/__init__.py avoids unrelated solver imports.",
+    "Builder source hash list uses tests/test_autodiff.py instead of the omitted broad-suite tests/test_sparse_fem.py.",
+    "Builder scope describes that original validation without an unavailable package path."
+  ],
+  "unchanged_code": [
+    "numart/autodiff.py",
+    "numart/krylov.py",
+    "tests/test_autodiff.py"
+  ]
+}

@@ -11,7 +11,7 @@
   },
   "counts": {
     "equations": 46,
-    "methods": 112,
+    "methods": 113,
     "papers": 221,
     "references": 262,
     "journal_articles": 215,
@@ -22,7 +22,7 @@
     "other_sources": 11,
     "local_equations": 18,
     "reading_equations": 28,
-    "local_methods": 96,
+    "local_methods": 97,
     "reading_methods": 16,
     "biological_entries": 22,
     "gallery_cases": 9,
@@ -1480,6 +1480,16 @@
       "group": "Optimization & stochastic methods",
       "scope": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order.",
       "origin": "curated-model-example"
+    },
+    {
+      "kind": "method",
+      "id": "automatic-differentiation",
+      "label": "Automatic differentiation",
+      "chapter": "automatic-differentiation",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs, implicit sensitivities and matrix-free Newton–Krylov are explanatory only. This does not validate a general AD library or shock sensitivities.",
+      "origin": "curated-autodiff-example"
     }
   ],
   "publications": [
@@ -2893,7 +2903,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "22ba356f826fcbf95ba84ba169ae75e29134c9adb6313da6591b801ba4940ba4",
-    "catalog/atlas-methods.json": "c93f0b7b7a5d8dd1ee929dd99656ddc2b81df509ced1343d3bd37f053a456fde",
+    "catalog/atlas-methods.json": "db573608a41361dfa9399cb55c09a97df448c1f83ee711a60aa4ea0ea33ca819",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
     "catalog/atlas-method-primary-references.json": "e388cfbb852195fc7683b3d1688557e7b00dd5d443b2c0c1d0ce199b0be79f94"
   }

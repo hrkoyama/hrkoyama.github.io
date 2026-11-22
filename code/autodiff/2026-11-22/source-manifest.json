@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "family": "autodiff",
+  "edition": "2026-11-22",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/autodiff/2026-11-22/",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "LICENSING.md": "8515f2961e3433ab0df36e85b208ea46445f74f723d4acf08595d6fd4ae09b38",
+    "README.md": "7eac41bc3d2bebc6dcef790452d512cfb6866996b3a1f689363794a0920a33ef",
+    "docs/figures/autodiff-bratu.json": "abb5a074962a22f871f807d177fd4d8c58502c6d0d49832acd487d97c1d9bfc2",
+    "docs/figures/autodiff-bratu.png": "4e877844584fe1dc03a142c85f818399d00ca69cff3881f30db9ab9742f44545",
+    "numart/__init__.py": "ac7008de75a9e3b5e27f9e45db001fcd72c563cbfe681f64ba0557163b2d9086",
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "provenance.json": "4fbb1b39d5ce60227048d1f59061237e223a5066af0ce26d45da69297cb1969d",
+    "requirements.txt": "632938dad94f057903cb9517a2c610c983966e68d68b4ade87ae5e38dc07fa3c",
+    "scripts/build_autodiff.py": "66ed37fa4c931ae3e0767eb10dd6abcd3577111b2234b483b721d0be1460578d",
+    "tests/test_autodiff.py": "858fa81825c87b1431c8cda4025e7c0d95d59916b53dec922a872552c8253513"
+  },
+  "scope": "Minimal forward AD and three-derivative Bratu verification; no general reverse-mode or sensitivity solver."
+}

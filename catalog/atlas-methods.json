@@ -11597,15 +11597,15 @@
         "en": "Automatic differentiation"
       },
       "group": {
-        "id": "stochastic",
-        "ja": "最適化・確率・逆問題",
-        "en": "Optimization & stochastic methods"
+        "id": "solvers",
+        "ja": "線形・非線形解法",
+        "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "計算グラフ上の微分と離散化した模型の感度を扱う。",
-        "en": "Map computational-graph derivatives and sensitivities of discretized models."
+        "ja": "共通基盤として連鎖律・前進／逆モード・JVPを学び、同じBratu方程式で解析微分・有限差分・前進モード自動微分を検証する。",
+        "en": "A shared foundation for the chain rule, forward/reverse modes and JVPs, with analytic, finite-difference and forward-AD verification on the same Bratu equation."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/automatic-differentiation/",
@@ -11629,23 +11629,37 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "解析・差分・自動微分の照合。",
-        "en": "Compare analytic, finite-difference and automatic derivatives."
+        "ja": "逆モード、陰関数感度、随伴法の独立した実行検証。",
+        "en": "Separate executable verification for reverse mode, implicit sensitivities and adjoints."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、陰関数感度、行列不要Newton–Krylovは解説のみ。汎用自動微分ライブラリや衝撃波の感度を検証するものではありません。",
+        "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs, implicit sensitivities and matrix-free Newton–Krylov are explanatory only. This does not validate a general AD library or shock sensitivities."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped forward-mode implementation; analytic/finite-difference/AD derivatives and Bratu refinement checked",
+        "on": "2026-11-22"
       },
       "aliases": [
         "AD",
         "自動微分法",
         "automatic differentiation",
-        "アルゴリズム微分"
-      ]
+        "アルゴリズム微分",
+        "Bratu",
+        "JVP",
+        "forward mode",
+        "前進モード",
+        "双対数"
+      ],
+      "code_mapping_scope": "Supplemental immutable AD edition; the original general code edition is unchanged. One residual and the existing Armijo-damped Newton solver; analytic Jacobian, coordinate finite differences and seeded dual-number Jacobian. Eight dedicated tests.",
+      "autodiff_release": {
+        "base": "/code/autodiff/2026-11-22/",
+        "edition": "2026-11-22",
+        "archive": "autodiff-2026-11-22.zip",
+        "manifest": "source-manifest.json",
+        "verification": "verification.json",
+        "evidence": "docs/figures/autodiff-bratu.json"
+      }
     },
     {
       "id": "pinn-operators",
