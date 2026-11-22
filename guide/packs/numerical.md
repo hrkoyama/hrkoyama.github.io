@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-e013807cb3
-Captured (UTC): 2026-11-22T01:05:53+00:00
+Snapshot: 2026-11-22-ed3d6d0aa2
+Captured (UTC): 2026-11-22T01:11:21+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -25,6 +25,7 @@ A-stability and L-stability describe the response of a time integrator to
 linear decay modes. L1, L2 and L∞ instead describe the size and distribution
 of an error. They answer different questions. A method can be stable with a
 large error, and a small algebraic residual need not imply a small PDE error.
+A/L-stability classification and accurate wave amplitudes and speeds are separate questions. For reading the magnitude and argument of an amplification factor, see von Neumann analysis: dissipation and dispersion basics.
 
 ## A-stability, L-stability and error norms — A-stability concerns the whole left half-plane# [en]
 
@@ -3402,6 +3403,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#non-dis
 Coverage: reading
 
 Dissipation changes amplitude; dispersion changes phase speed. A spatial operator can avoid artificial damping and still move different wavelengths at incorrect speeds. To isolate that distinction, linearize the symmetric, consistent two-point flux about one uniform state q₀. Symmetry and F(q,q)=f(q) give equal left and right Jacobians. For a scalar characteristic wave with speed a, the result is the centered advection equation:
+The von Neumann foundations explain the general procedure for reading dissipation and dispersion from an amplification factor’s magnitude and argument. Here that procedure is applied to KEEP linearized about a uniform state.
 \begin{aligned}\partial_1 F(q_0,q_0)&=\partial_2 F(q_0,q_0)=\tfrac12 A,\qquad A=f'(q_0),\\\dot v_i&=-a\frac{v_{i+1}-v_{i-1}}{2h}.\end{aligned}
 For an individual Fourier mode, with θ=kh, substitution gives
 \begin{aligned}v_i(t)&=\widehat v\,e^{\mathrm i(ki h-\omega_h t)},\qquad\theta=kh,\\\lambda_h&=-\mathrm i\,a\frac{\sin\theta}{h},\qquad\omega_h=a\frac{\sin\theta}{h}.\end{aligned}
@@ -8604,6 +8606,71 @@ Tests compare the analytical amplification factors from amplification with
 actual mode evolution from difference_step. The gallery seeds a small
 Nyquist perturbation and compares C=0.8 with C=1.1.
 
+## Differences, CFL, von Neumann analysis, and Lax — Dissipation and dispersion: read amplitude and phase separately# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#dissipation-and-dispersion
+Coverage: reading
+
+The same amplification factor used to test growth also explains two distinct errors: numerical dissipation damps a wave's amplitude; numerical dispersion changes its propagation speed in a wavelength-dependent way. Consider constant-speed scalar advection on a periodic uniform grid. Let h be the grid spacing, Δt the positive time step, k the wavenumber, θ the dimensionless grid wavenumber, and C the signed Courant number. The Fourier convention and exact one-step factor are
+\begin{gathered}u_t+a u_x=0,\qquad x_j=jh,\quad\theta=kh,\quad C=\frac{a\Delta t}{h},\\u_j^n=\widehat u^{\,n}e^{ij\theta},\qquad G_{\rm exact}=e^{-ia k\Delta t}=e^{-iC\theta}.\end{gathered}
+The exact solution translates without changing amplitude. This makes the model useful for separating artificial damping from transport error.
+
+## Differences, CFL, von Neumann analysis, and Lax — What the amplification factor measures# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#vn-amplitude-and-phase
+Coverage: reading
+
+For a linear, translation-invariant one-step scheme, write its factor in polar form:
+\begin{aligned}G(\theta)&=|G(\theta)|e^{-i\phi(\theta)},\\\widehat u^{\,n}&=G(\theta)^n\widehat u^{\,0},\qquad\frac{|\widehat u^{\,n}|}{|\widehat u^{\,0}|}=|G(\theta)|^n.\end{aligned}
+Thus |G|<1 damps this mode; repeated steps accumulate the loss. |G|=1 preserves its amplitude, while |G|>1 amplifies it. For this scalar periodic problem, the familiar requirement |G|≤1 controls growth, but says nothing about whether the amplitude stays close to its exact value of one.
+For 0<|G|, the loss can also be expressed as a damping rate σnum per unit time:
+\begin{aligned}\sigma_{\rm num}&=-\frac{\log|G|}{\Delta t},\\|\widehat u^{\,n}|&=e^{-\sigma_{\rm num}t_n}|\widehat u^{\,0}|,\qquad t_n=n\Delta t.\end{aligned}
+This is a decay rate with units of inverse time, not a diffusion coefficient. At G=0 the mode vanishes in one step; a finite damping rate and phase are undefined.
+Phase needs a sign convention as well. Use arg₀ for an argument continued from G(0)=1 along a branch on which G never vanishes. The minus sign matches the exact factor above:
+\begin{aligned}\phi(\theta)&=-\arg_0G(\theta),\qquad\omega_{\rm num}=\frac{\phi(\theta)}{\Delta t},\\\frac{c_{\rm num}}a&=\frac{\omega_{\rm num}/k}a=\frac{\phi(\theta)}{C\theta}\qquad(ak\ne0).\end{aligned}
+
+## Differences, CFL, von Neumann analysis, and Lax — What the amplification factor measures# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#vn-amplitude-and-phase
+Coverage: reading
+
+Correct transport requires φ=Cθ, as well as |G|=1. A stable wave can travel at the wrong speed and accumulate a large position error. At θ=0, use the low-wavenumber limit for the speed ratio. At G=0 the scheme has removed the mode and its phase is undefined. Principal arguments wrap by 2π; treating that jump as a physical change gives a false dispersion curve. At the Nyquist endpoints θ=±π, the sampled modes coincide, so their propagation direction cannot be uniquely recovered from grid samples.
+
+## Differences, CFL, von Neumann analysis, and Lax — Three examples reveal different errors# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#vn-three-discretizations
+Coverage: reading
+
+For a>0, forward Euler with backward spatial differencing is the first-order upwind scheme. Direct substitution gives
+\begin{aligned}G_{\rm up}&=1-C(1-e^{-i\theta}),\\|G_{\rm up}|^2&=1-4C(1-C)\sin^2\!\left(\frac\theta2\right),\\&\hspace{1em}0\le C\le1\qquad(a>0).\end{aligned}
+For 0<C<1, every nonconstant resolved Fourier mode is damped. This is numerical dissipation: the underlying advection equation has no physical decay. Its phase generally also differs from Cθ. For a<0, reverse the upwind stencil.
+Centered differencing with time still continuous instead gives
+\begin{aligned}\frac{d u_j}{dt}&=-a\frac{u_{j+1}-u_{j-1}}{2h},\qquad\lambda_h=-i\frac ah\sin\theta,\\\omega_h&=\frac ah\sin\theta,\qquad\frac{c_h}a=\frac{\sin\theta}{\theta}.\end{aligned}
+The eigenvalue is purely imaginary, so this semidiscrete mode has no amplitude decay. Yet sinθ/θ differs from one: it is dispersive. For θ=π/2, the phase speed is only 2/π≈0.637 times a. At θ=π the centered derivative vanishes, a stationary Nyquist checkerboard annihilated by the centered derivative, rather than correct transport.
+Time discretization changes the result. With forward Euler,
+\begin{aligned}G_{\rm FE+centered}&=1-iC\sin\theta,\\|G_{\rm FE+centered}|^2&=1+C^2\sin^2\theta.\end{aligned}
+
+## Differences, CFL, von Neumann analysis, and Lax — Three examples reveal different errors# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#vn-three-discretizations
+Coverage: reading
+
+Modes with sinθ≠0 grow for any nonzero C, explaining the FTCS instability discussed above. Other time integrators have different amplitude and phase responses on the same spatial eigenvalues. The linearized centered-wave discussion in KEEP and its RK4 amplitude and phase analysis make this separation explicit.
+For Lax–Wendroff (1960), the factor already derived above also yields
+\begin{aligned}G_{\rm LW}&=1-iC\sin\theta+C^2(\cos\theta-1),\\|G_{\rm LW}|^2&=1-4C^2(1-C^2)\sin^4\!\left(\frac\theta2\right).\end{aligned}
+At generic 0<|C|<1 it therefore has amplitude error as well as phase error; calling it “purely dispersive” is incorrect. Its leading smooth-wave error can be dispersive without eliminating higher-order damping. At C=1, both upwind and Lax–Wendroff reduce to G=e−iθ, an exact one-cell shift on this grid. This special Courant number is not representative of other step sizes.
+For C=0.8 and θ=π/2 (four grid spacings per wavelength), the one-step amplitude gain is about 0.8246 for upwind and 0.8773 for Lax–Wendroff. Their phase-speed ratios are about 1.0551 and 0.9135, respectively: the first travels too fast and the second too slowly. Both are stable, yet both have amplitude and phase errors.
+
+## Differences, CFL, von Neumann analysis, and Lax — Keep the physical and numerical questions distinct# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#vn-interpreting-stability
+Coverage: reading
+
+If the physical PDE includes viscosity or another decay mechanism, the exact |G| can itself be below one for the mode considered; compare numerical damping with that exact decay. Likewise, a physically dispersive PDE has a wavenumber-dependent exact phase speed. Error means disagreement with the physical reference.
+A-stability and L-stability classify a time integrator's response to linear test modes; neither guarantees accurate wave propagation at a chosen resolution. The formulas here concern scalar periodic linear advection. They do not certify nonlinear Euler dynamics, shocks, or wall boundary treatments.
+A useful diagnostic first fixes h and reduces Δt to expose the time integrator's contribution. Then reduce h with temporal error controlled. Refining with C held fixed changes both scales and does not by itself separate the two errors. For a smooth single mode, compare amplitude and unwrapped phase at the same physical time; agreement in only one of these quantities is incomplete evidence of accuracy.
+The formulas and worked values here follow by directly substituting Fourier modes into the displayed differences. For the assumptions of the analysis and comparison against the exact amplification factor, see R. R. Rosales’s author lecture notes (2022), §1 and §1.1.2.
+
 ## Differences, CFL, von Neumann analysis, and Lax — The Lax–Richtmyer equivalence theorem# [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/#the-laxrichtmyer-equivalence-theorem
@@ -9505,7 +9572,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/accuracy-stab
 Coverage: reading
 
 解説章公開コード・データ / Public code and data
-日本語訳はドラフトです。数式・計算・参照資料は英語原文と照合できます。
+日本語・英語の本文と数式を同時更新：2026-11-22。翻訳は草稿です。
 
 ## A安定性、L安定性、誤差ノルム — A安定性、L安定性、誤差ノルム [ja]
 
@@ -9513,6 +9580,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/accuracy-stab
 Coverage: reading
 
 A安定性（A-stability）とL安定性（L-stability）は、線形の減衰モードに対する時間積分法の応答を表します。一方、L1・L2・L∞は誤差の大きさと分布を測ります。安定な手法でも誤差は大きくなり得ます。また、代数残差が小さくてもPDEの誤差が小さいとは限りません。
+A・L安定性の分類と、波を正しい振幅・速さで運ぶ精度は別の問いです。増幅率の大きさと偏角の読み方は、von Neumann解析：散逸と分散の基礎説明を参照してください。
 
 ## A安定性、L安定性、誤差ノルム — A安定性と左半平面# [ja]
 
@@ -11620,6 +11688,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#non-dis
 Coverage: reading
 
 散逸は振幅を変え、分散は位相速度を変えます。 人工的な減衰を加えない空間差分でも、波長ごとの伝わる速さが正しいとは限りません。この違いを取り出すため、左右対称で整合する2点流束を、一様状態q₀のまわりで線形化します。左右対称性とF(q,q)=f(q)から、左右のヤコビ行列は等しくなります。速さaの1つの特性波については、次の中心差分の移流式になります。
+増幅率の大きさと偏角から散逸・分散を読む一般的な手順は、von Neumann解析の基礎説明にまとめています。ここでは、その考え方をKEEPの一様状態まわりの線形化に適用します。
 \begin{aligned}\partial_1 F(q_0,q_0)&=\partial_2 F(q_0,q_0)=\tfrac12 A,\qquad A=f'(q_0),\\\dot v_i&=-a\frac{v_{i+1}-v_{i-1}}{2h}.\end{aligned}
 θ=khとして、1つのフーリエモードを代入すると、
 \begin{aligned}v_i(t)&=\widehat v\,e^{\mathrm i(ki h-\omega_h t)},\qquad\theta=kh,\\\lambda_h&=-\mathrm i\,a\frac{\sin\theta}{h},\qquad\omega_h=a\frac{\sin\theta}{h}.\end{aligned}
@@ -11629,6 +11698,12 @@ Coverage: reading
 速度比は a≠0 の特性波に対するものです。a=0 ならこの線形化では ωh=0 となり、モードは静止します。
 このsinθ/hの関係を、非線形KEEP全体の分散関係と解釈してはいけません。 有限振幅の積はモードを結合し、エイリアシングも問題になります。Kuya・Kawai（2022）の分割形の解析は、その別の問題を扱います。そこでの非線形の修正波数を、この線形化した例に置き換えることはできず、有限差分の分割形が自動的にエイリアシングを除くわけでもありません。著者は、高次KEEPへ拡張する目的の一つ（第2.4節）として、分散誤差の低減も挙げています。
 図は、この一様状態まわりの線形例について、解析的な空間差分の速度比を比較します。後に示す非線形の渦計算とは別の確認です。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 無散逸でも、分散誤差は残る# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#non-dissipative-and-dispersive
+Coverage: reading
+
 一様状態まわりの線形化での空間分散。低波数の速度比は1ですが、短波長では位相・群速度がずれます。
 
 ## KEEP法：滑らかな流れの釣合いと限界を検証する — RK4で時間を進めると、何が変わるか# [ja]
@@ -15823,7 +15898,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
 Coverage: reading
 
 解説章公開コード・データ / Public code and data
-英語原文が更新されています。この日本語訳は旧版に対応します。
+日本語・英語の本文と数式を同時更新：2026-11-22。翻訳は草稿です。
 
 ## 差分、CFL条件、von Neumann解析、Laxの定理 — 差分、CFL条件、von Neumann解析、Laxの定理 [ja]
 
@@ -15873,6 +15948,65 @@ G=1-iC\sin θ+C^2(\cos θ-1),\quad
 |G|^2=1-4C^2(1-C^2)\sin^4(θ/2).
 です。この問題での安定条件は同じく|C|≤1です。2次精度であること自体は、不連続近傍の振動を抑える保証にはなりません。Lax–Wendroff（1960）。
 テストではamplificationによる解析的な増幅係数と、difference_stepによる実際のモード発展を比較します。図では小さなNyquist摂動を加え、C=0.8とC=1.1を比較しています。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 散逸と分散：増幅率を振幅と位相に分けて読む# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#dissipation-and-dispersion
+Coverage: reading
+
+増幅率は、誤差が成長するかどうかだけでなく、性質の異なる2つの誤差も示します。数値散逸は波の振幅を減衰させ、数値分散は波長ごとの伝播速度を変えます。 ここでは周期一様格子上の、速度一定のスカラー移流を考えます。格子幅をh、正の時間刻みをΔt、波数をk、無次元の格子波数をθ、符号付きのCourant数をCとします。フーリエモードの符号規約と、厳密な1ステップの倍率は
+\begin{gathered}u_t+a u_x=0,\qquad x_j=jh,\quad\theta=kh,\quad C=\frac{a\Delta t}{h},\\u_j^n=\widehat u^{\,n}e^{ij\theta},\qquad G_{\rm exact}=e^{-ia k\Delta t}=e^{-iC\theta}.\end{gathered}
+です。厳密解は振幅を変えずに平行移動します。そのため、この問題では人工的な減衰と、波を運ぶ際の誤差を分けて調べられます。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 増幅率が測るもの# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#vn-amplitude-and-phase
+Coverage: reading
+
+線形で平行移動に対して不変な1ステップ法の増幅率を、極形式で書きます。
+\begin{aligned}G(\theta)&=|G(\theta)|e^{-i\phi(\theta)},\\\widehat u^{\,n}&=G(\theta)^n\widehat u^{\,0},\qquad\frac{|\widehat u^{\,n}|}{|\widehat u^{\,0}|}=|G(\theta)|^n.\end{aligned}
+|G|<1ならこのモードは減衰し、ステップを重ねるほど振幅の損失が積み重なります。|G|=1なら振幅を保ち、|G|>1なら増幅します。このスカラーの周期問題で使う|G|≤1という条件は成長を抑えますが、振幅倍率が厳密値1に近いかどうかまでは述べていません。
+0<|G|の場合、振幅の減衰を単位時間あたりの率σnumで表すこともできます。
+\begin{aligned}\sigma_{\rm num}&=-\frac{\log|G|}{\Delta t},\\|\widehat u^{\,n}|&=e^{-\sigma_{\rm num}t_n}|\widehat u^{\,0}|,\qquad t_n=n\Delta t.\end{aligned}
+これは時間の逆数の次元を持つ減衰率で、拡散係数ではありません。G=0では1ステップでモードが消え、有限の減衰率と位相は定義できません。
+位相にも符号の規約が必要です。Gがゼロにならない枝に沿って、G(0)=1から連続につないだ偏角をarg₀と書きます。上の厳密な倍率に合わせて、位相の進みをマイナスの偏角で定義すると、
+\begin{aligned}\phi(\theta)&=-\arg_0G(\theta),\qquad\omega_{\rm num}=\frac{\phi(\theta)}{\Delta t},\\\frac{c_{\rm num}}a&=\frac{\omega_{\rm num}/k}a=\frac{\phi(\theta)}{C\theta}\qquad(ak\ne0).\end{aligned}
+です。正しく運ぶには、|G|=1に加えてφ=Cθも必要です。増幅しない安定な波でも、伝わる速さが違えば位置の誤差が大きくなります。θ=0での速度比は低波数極限で定めます。G=0ではモード自体が消えるため、位相は定義できません。偏角の主値は2πごとに折り返すので、その飛びを物理的な変化と読むと誤った分散曲線になります。またNyquist端点θ=±πでは、格子上のモードが同一になるため、標本値だけから伝播方向を一意には復元できません。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 3つの離散化で違いを見る# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#vn-three-discretizations
+Coverage: reading
+
+a>0で、時間に前進Euler、空間に後退差分を使うと、1次風上法になります。モードを直接代入すると、
+\begin{aligned}G_{\rm up}&=1-C(1-e^{-i\theta}),\\|G_{\rm up}|^2&=1-4C(1-C)\sin^2\!\left(\frac\theta2\right),\\&\hspace{1em}0\le C\le1\qquad(a>0).\end{aligned}
+を得ます。0<C<1なら、定数以外の解像されたフーリエモードはすべて減衰します。もとの移流方程式には物理的な減衰がないので、これは数値散逸です。位相も一般にはCθからずれます。a<0では風上側の差分を反転します。
+一方、時間を連続に保って空間だけを中心差分にすると、
+\begin{aligned}\frac{d u_j}{dt}&=-a\frac{u_{j+1}-u_{j-1}}{2h},\qquad\lambda_h=-i\frac ah\sin\theta,\\\omega_h&=\frac ah\sin\theta,\qquad\frac{c_h}a=\frac{\sin\theta}{\theta}.\end{aligned}
+となります。固有値は純虚数なので、この半離散モードの振幅は減衰しません。しかしsinθ/θは1とは異なり、分散誤差があります。θ=π/2では位相速度はaの2/π≈0.637倍です。θ=πでは中心差分がゼロになりますが、これはNyquistの格子模様を中心差分がゼロと評価して静止させることであり、正しい輸送ではありません。
+時間も離散化すると結果が変わります。前進Eulerなら、
+\begin{aligned}G_{\rm FE+centered}&=1-iC\sin\theta,\\|G_{\rm FE+centered}|^2&=1+C^2\sin^2\theta.\end{aligned}
+となり、Cがゼロでなければsinθ≠0のモードが成長します。これが上で見たFTCS不安定性です。同じ空間固有値でも、時間積分法が違えば振幅・位相応答が変わります。KEEPの線形化した中心差分波の説明と、RK4の振幅・位相解析では、この分離を具体的に追えます。
+Lax–Wendroff（1960）についても、先ほど導いた増幅率から、
+\begin{aligned}G_{\rm LW}&=1-iC\sin\theta+C^2(\cos\theta-1),\\|G_{\rm LW}|^2&=1-4C^2(1-C^2)\sin^4\!\left(\frac\theta2\right).\end{aligned}
+を得ます。したがって、一般の0<|C|<1では位相誤差だけでなく振幅誤差もあり、「純粋に分散的」とは呼べません。滑らかな低波数波の誤差の先頭項が分散的でも、より高次の減衰が消えるわけではありません。C=1では風上法もLax–WendroffもG=e−iθとなり、この格子上で厳密な1格子分の移動になります。この特別なCourant数の結果を、ほかの時間刻みへ一般化してはいけません。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 3つの離散化で違いを見る# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#vn-three-discretizations
+Coverage: reading
+
+具体例としてC=0.8、θ=π/2（1波長が4格子幅）の波を比べます。1ステップの振幅倍率は風上法で約0.8246、Lax–Wendroff法で約0.8773です。一方、位相速度比はそれぞれ約1.0551と0.9135で、前者は厳密解より速く、後者は遅く進みます。どちらも安定でも、振幅にも位相にも誤差があります。
+
+## 差分、CFL条件、von Neumann解析、Laxの定理 — 物理と数値の問いを分ける# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/#vn-interpreting-stability
+Coverage: reading
+
+物理モデルに粘性などの減衰機構があれば、対象モードの厳密な|G|自体が1より小さくなる場合があります。その場合は、数値的な減衰を厳密な減衰と比較します。同様に、物理的に分散性を持つPDEでは、厳密な位相速度も波数に依存します。誤差とは、物理的な参照解からのずれです。
+A安定性・L安定性は、線形試験モードに対する時間積分法の応答を分類します。どちらも、選んだ解像度で波を正確に運ぶ保証ではありません。ここでの式は周期境界の線形スカラー移流に対するものです。非線形Euler流、衝撃波、壁境界処理の保証にはなりません。
+診断では、まずhを固定してΔtを小さくし、時間積分の寄与を調べます。次に時間誤差を抑えたうえでhを小さくします。Cを固定した細分化は両方の刻みを変えるため、それだけで2つの誤差を分離したことにはなりません。滑らかな単一モードなら、同じ物理時刻で振幅と連続につないだ位相を比較します。片方だけの一致では精度の根拠として不十分です。
+ここでの式と数値例は、表示した差分へのFourierモードの直接代入から計算しています。解析の仮定と厳密な増幅率との比較については、R. R. Rosalesの著者講義ノート（2022）、§1・§1.1.2も参照できます。
 
 ## 差分、CFL条件、von Neumann解析、Laxの定理 — Lax–Richtmyerの同値定理# [ja]
 
