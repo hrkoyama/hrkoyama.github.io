@@ -80,6 +80,9 @@ test('workflow uses a fresh guarded public-only Linux environment, exact wheels 
   assert.doesNotMatch(workflow, /actions\/checkout|persist-credentials|secrets\.|write-all|contents: write|pip cache|cache: ['"]?pip/i);
   assert.match(workflow, /github\.repository == 'hrkoyama\/hrkoyama\.github\.io'/);
   assert.match(workflow, /head_repository\.full_name == github\.repository/);
+  const jobEnvironment=workflow.match(/^    env:\n([\s\S]*?)^    steps:/m)?.[1];
+  assert.ok(jobEnvironment);assert.doesNotMatch(jobEnvironment, /runner\./, 'runner context is only available to the steps');
+  assert.equal((workflow.match(/^          REPORT_DIR: \$\{\{ runner\.temp \}\}/gm)||[]).length,4);
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /workflows: \['Public site checks'\]/);

@@ -28,8 +28,6 @@ jobs:
     env:
       ATLAS_DEPTH_BOOTSTRAP_SHA256: 'a0892688b80fef1d0a4b93223aca1d43b30079f750d7e976e1526b487e99a2e1'
       ATLAS_DEPTH_REGISTRY_SHA256: '2296f282e987ebbda71d4ae926f90887afb8e372c96ca72be64c6e49f827e161'
-      REPORT_DIR: ${{ runner.temp }}/atlas-depth-public-report
-      ATLAS_VENV: ${{ runner.temp }}/atlas-depth-public-env
       PYTHONNOUSERSITE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
       PIP_DISABLE_PIP_VERSION_CHECK: '1'
@@ -39,6 +37,8 @@ jobs:
       MKL_NUM_THREADS: '1'
     steps:
       - name: Initialize context without a source checkout
+        env:
+          REPORT_DIR: ${{ runner.temp }}/atlas-depth-public-report
         shell: bash
         run: |
           set -euo pipefail
@@ -60,6 +60,8 @@ jobs:
           python-version: '3.12'
           check-latest: false
       - name: Wait for the reviewed public verifier and registry
+        env:
+          REPORT_DIR: ${{ runner.temp }}/atlas-depth-public-report
         shell: bash
         run: |
           set -euo pipefail
@@ -108,6 +110,9 @@ jobs:
           Path(os.environ['RUNNER_TEMP'], 'atlas-depth-bootstrap.py').write_bytes(payloads[sources[0][0]])
           PY
       - name: Install three pinned wheel dependencies and verify public ZIPs
+        env:
+          ATLAS_VENV: ${{ runner.temp }}/atlas-depth-public-env
+          REPORT_DIR: ${{ runner.temp }}/atlas-depth-public-report
         shell: bash
         run: |
           set -euo pipefail
@@ -129,6 +134,8 @@ jobs:
           } 2>&1 | tee "$REPORT_DIR/bootstrap.log"
       - name: Save the result summary on success or failure
         if: always()
+        env:
+          REPORT_DIR: ${{ runner.temp }}/atlas-depth-public-report
         shell: bash
         run: |
           python3 - <<'PY'
