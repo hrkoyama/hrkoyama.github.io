@@ -17064,27 +17064,75 @@
     },
     {
       "id": "local-access",
-      "title": "Local evidence available offline",
-      "state": "Resolved",
-      "detail": "Six SC08 PDFs are independently hash-verified and selected fields audited. Candidate bodies and indexes for 16 years were copied read-only; 86 local candidate records do not establish complete historical coverage."
+      "title": "Original HDD-copy milestone: 16 years and 86 records",
+      "state": "Historical milestone",
+      "detail": "The original read-only HDD collection milestone contains 86 candidate copy records from 16 years. This provenance count is separate from current manuscript availability: 166 of 208 indexed individual-paper entries have a retained version. Scientific manuscript review covers 62 entries; 104 retained entries await scientific review and 42 remain unrecovered. Third-party manuscript files remain offline.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "Local evidence available offline",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "state",
+          "text": "Resolved",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "detail",
+          "text": "Six SC08 PDFs are independently hash-verified and selected fields audited. Candidate bodies and indexes for 16 years were copied read-only; 86 local candidate records do not establish complete historical coverage.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "scope",
-      "title": "Precision and scope corrected from full text",
+      "title": "SC08 measurement-scope corrections retained",
       "state": "Checked",
-      "detail": "QMC Table I distinguishes 202.3 TFLOP/s FP64 from 408.9 mixed precision. VPIC Table II gives 374.2 end-to-end, separate from the 488 kernel claim. Mantle component and DG rates are retained separately."
+      "detail": "QMC Table I distinguishes 202.3 TFLOP/s FP64 from 408.9 mixed precision. VPIC Table II gives 374.2 end-to-end, separate from the 488 kernel claim. Mantle component and DG rates are retained separately.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "Precision and scope corrected from full text",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "metadata",
-      "title": "Ordered bylines and all six DOIs verified",
+      "title": "SC08 milestone: six ordered bylines and DOIs verified",
       "state": "Checked",
-      "detail": "PDF order resolves the seismic byline and confirms David H. Bailey in LS3DF. All six DOI codes and titles were directly matched against publisher-deposited Crossref registration records."
+      "detail": "PDF order resolves the seismic byline and confirms David H. Bailey in LS3DF. All six DOI codes and titles were directly matched against publisher-deposited Crossref registration records.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "Ordered bylines and all six DOIs verified",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "source-conflicts",
-      "title": "Source discrepancies remain visible",
+      "title": "SC08 manuscript discrepancies retained",
       "state": "Recorded",
-      "detail": "Seismic Jaguar is 28K in the abstract and 29K in the body. MD title rounds 368.6 to 369. Original table anomalies and version labels are documented, not silently repaired."
+      "detail": "Seismic Jaguar is 28K in the abstract and 29K in the body. MD title rounds 368.6 to 369. Original table anomalies and version labels are documented, not silently repaired.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "Source discrepancies remain visible",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "sc97",
@@ -17094,33 +17142,126 @@
     },
     {
       "id": "recent-fulltext",
-      "title": "Detailed manuscript coverage expanded beyond SC08",
-      "state": "Checked",
-      "detail": "Selected papers from each of 2023, 2024 and 2025 now include ordered bylines, editorial summaries, machine configurations and source-located performance records. Other web-roster entries retain their bibliography-only status."
+      "title": "Current manuscript acquisition and scientific-review scope",
+      "state": "Collection and review tracked separately",
+      "detail": "The index contains 209 entries: 208 individual papers or competition entries and one organization-level entry. Identifiable manuscript versions are retained for 166 individual entries; 62 have selected scientific fields checked and 104 retained entries await that review. The remaining 42 unrecovered entries span 17 years. The selected recent-paper audits are retained as an earlier expansion milestone, rather than treating every other web-roster entry as bibliography-only.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "Detailed manuscript coverage expanded beyond SC08",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "state",
+          "text": "Checked",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "detail",
+          "text": "Selected papers from each of 2023, 2024 and 2025 now include ordered bylines, editorial summaries, machine configurations and source-located performance records. Other web-roster entries retain their bibliography-only status.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "sc26-postconference",
       "state": "Recorded",
       "title": "SC26 award and source-version follow-up",
-      "detail": "Six official-program finalists reviewed after SC26. One winner is directly verified from ACM; individual outcomes of the other five remain unestablished here. All six publisher-assigned DOIs returned HTTP 404 on this check. Conference-day final scores remain unverified."
+      "detail": "Six official-program finalists were reviewed in the recorded 22 November 2026 postconference source check. One winner is directly verified from ACM; individual outcomes of the other five remain unestablished here. In that separate dated check, all six publisher-assigned DOIs returned HTTP 404. Resolver availability was not rechecked in this editorial review. Conference-day final scores remain unverified; manuscript evidence and institutional announcements remain separate.",
+      "note_history": [
+        {
+          "field": "detail",
+          "text": "Six official-program finalists reviewed after SC26. One winner is directly verified from ACM; individual outcomes of the other five remain unestablished here. All six publisher-assigned DOIs returned HTTP 404 on this check. Conference-day final scores remain unverified.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "historical-awards-bibliography",
-      "state": "Recorded",
-      "title": "GRAPE and historical Special categories reviewed",
-      "detail": "Recipient-hosted award certificates and contemporary result reports are linked by source. The 1996 Winner/Honorable Mention conflict remains explicit. Three missing paper bylines were recovered from preserved SC05 first pages; four publication bylines and seven title-known DOI matches remain unresolved. The 12 detailed manuscripts and 31 performance observations are unchanged."
+      "state": "Historical milestone; current scope shown",
+      "title": "Historical awards review and current archive totals",
+      "detail": "Recipient-hosted award certificates and contemporary result reports remain linked by source. The 1996 Winner versus Honorable Mention conflict remains explicit. Earlier first-page byline checks are preserved as a historical review stage, separate from later version-specific manuscript checks. Current index DOI states are 176 verified, 32 unresolved and one organization-level not-applicable entry. Scientific details currently cover 62 manuscripts and 181 performance observations; this wording review adds no scientific audit or award finding.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "GRAPE and historical Special categories reviewed",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "state",
+          "text": "Recorded",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "detail",
+          "text": "Recipient-hosted award certificates and contemporary result reports are linked by source. The 1996 Winner/Honorable Mention conflict remains explicit. Three missing paper bylines were recovered from preserved SC05 first pages; four publication bylines and seven title-known DOI matches remain unresolved. The 12 detailed manuscripts and 31 performance observations are unchanged.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "annual-first-manuscript-pass",
-      "title": "First manuscripts across previously untouched years",
-      "state": "In progress",
-      "detail": "All forty calendar years have an evidence inventory; this is not a claim that all manuscripts were read. First accessible manuscripts are added in chronological order, while unavailable originals retain a specific recovery route."
+      "title": "Current first-manuscript scientific-review gaps",
+      "state": "3 indexed years await first scientific review",
+      "detail": "The earlier chronological first-manuscript pass is preserved as a milestone. Current scientific manuscript details cover 62 papers across 36 years; 1987, 1989 and 1992 remain without a first scientific manuscript audit. The remaining 146 individual entries comprise 104 retained versions awaiting scientific review and 42 unrecovered manuscripts. Manuscript acquisition, scientific review and final-score reconciliation remain separate tasks.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "First manuscripts across previously untouched years",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "state",
+          "text": "In progress",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "detail",
+          "text": "All forty calendar years have an evidence inventory; this is not a claim that all manuscripts were read. First accessible manuscripts are added in chronological order, while unavailable originals retain a specific recovery route.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "early-roster-recovery",
-      "state": "Partial recovery",
-      "title": "1987, 1989 and 1992 entry identities recovered; complete rosters still pending",
-      "detail": "Thirteen identified entries added; all three recovered lists remain partial. Membership evidence, recognition, publication metadata and full manuscript audits are separate."
+      "state": "4 annual rosters remain partial",
+      "title": "Early roster milestone and four incomplete annual rosters",
+      "detail": "The earlier recovery added thirteen identified entries across 1987, 1989 and 1992; that milestone did not establish complete entrant totals. The current incomplete annual rosters are 1987, 1988, 1989 and 1992. The official SC2001 Showcase subsequently established its complete seven-entry finalist section. Historical membership, recognition, publication bibliography and manuscript scientific review retain separate evidence scopes.",
+      "note_history": [
+        {
+          "field": "title",
+          "text": "1987, 1989 and 1992 entry identities recovered; complete rosters still pending",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "state",
+          "text": "Partial recovery",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "detail",
+          "text": "Thirteen identified entries added; all three recovered lists remain partial. Membership evidence, recognition, publication metadata and full manuscript audits are separate.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "id": "year-batch-manuscripts",
@@ -23259,12 +23400,21 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/10046115/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed."
           ],
           "detailed_paper_id": "SC22_main01",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC22_main02",
@@ -23290,10 +23440,19 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/10046053/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC22_main03",
@@ -23393,9 +23552,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/10046132/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC22_main06",
@@ -23424,9 +23592,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/10046083/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -23596,12 +23773,21 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/3458817.3487397",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined.",
             "The program lists a presenting author or team label rather than the full byline; authors preserves the ordered registry author array, without a PDF-byline claim.",
             "The registry contains 67 ordered authors; no abbreviated program team label has been substituted for that array."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC21_main02",
@@ -23619,13 +23805,22 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/3458817.3487401",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined."
           ],
           "detailed_paper_id": "SC21_main02",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC21_main03",
@@ -23691,12 +23886,21 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/3458817.3487399",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined.",
             "The program lists a presenting author or team label rather than the full byline; authors preserves the ordered registry author array, without a PDF-byline claim."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC21_main05",
@@ -23751,10 +23955,19 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/3458817.3487400",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -23875,13 +24088,22 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/9355242/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed.",
             "The checked registration contains eight authors. A later ACM awards booklet names nine recipients; this roster retains the bibliographic registry array and makes no recipient-list/PDF-byline reconciliation."
           ],
           "detailed_paper_id": "SC20_main02",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC20_main03",
@@ -23902,9 +24124,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/9355291/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC20_main04",
@@ -23931,11 +24162,20 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/9355206/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC20_main05",
@@ -23962,10 +24202,19 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/9355269/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC20_main06",
@@ -23988,11 +24237,20 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/9355266/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "DOI verification uses the matched registration item returned by the cited Crossref search URL; a separate direct DOI-work fetch is not claimed.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -24073,12 +24331,21 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/3295500.3357156",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration.",
             "Program title is retained in title; publisher_title preserves the registration wording/capitalization with HTML markup removed and title/subtitle joined."
           ],
           "detailed_paper_id": "SC19_main01",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC19_main02",
@@ -24217,9 +24484,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/8665778/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC18_main02",
@@ -24245,9 +24521,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/8665768/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC18_main03",
@@ -24274,11 +24559,20 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/8665799/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
           ],
           "detailed_paper_id": "SC18_main03",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC18_main04",
@@ -24305,9 +24599,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/8665785/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC18_main05",
@@ -24334,9 +24637,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/8665798/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC18_main06",
@@ -24358,9 +24670,18 @@
           "authors_status": "registry_verified_not_pdf_audited",
           "publication_url": "https://ieeexplore.ieee.org/document/8665788/",
           "notes": [
-            "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+            "Current manuscript status: an identifiable version is retained and its acquisition identity has been checked. Scientific full-body review remains pending; the annual bibliography is kept separate from each retained version.",
             "Title, SC proceedings venue, publication year and ordered authors were matched to the publisher-deposited Crossref registration."
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Bibliographic roster entry only; manuscript PDF, performance measurements, and conference-final scores were not audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -28041,7 +28362,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1559976/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained.",
             "An OSTI technical-report DOI with the same title was also returned; the SC2005 conference-publication DOI is used here, not the report DOI."
@@ -28115,7 +28436,16 @@
             "source_ids": [
               "sc2005-batch-pap200-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2005-pap346",
@@ -28136,11 +28466,20 @@
           "authors_status": "registry_order_not_pdf_audited",
           "publication_url": "http://ieeexplore.ieee.org/document/1559977/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "detailed_paper_id": "sc2005-pap346",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2005-pap188",
@@ -28158,7 +28497,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1559996/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "detailed_paper_id": "sc2005-pap188",
@@ -28209,7 +28548,16 @@
             "source_ids": [
               "sc2005-batch-pap188-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2005-pap122",
@@ -28227,7 +28575,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": null,
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "No conference DOI match was established in the registration lookup. Similar titles from another year, journal articles and technical-report DOIs were not substituted.",
             "A follow-up exact-title Crossref query and both public IEEE Computer Society SC2005 catalog sets (75 records and one alternate record) did not yield this entry. This does not establish that no DOI was assigned; the candidate DOI remains unresolved."
           ],
@@ -28288,7 +28636,16 @@
                 "Peter S. Lomdahl"
               ]
             }
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2005-pap260",
@@ -28310,7 +28667,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": null,
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "No conference DOI match was established in the registration lookup. Similar titles from another year, journal articles and technical-report DOIs were not substituted.",
             "A follow-up exact-title Crossref query and both public IEEE Computer Society SC2005 catalog sets (75 records and one alternate record) did not yield this entry. This does not establish that no DOI was assigned; the candidate DOI remains unresolved."
           ],
@@ -28383,7 +28740,16 @@
                 "Angus Macnab"
               ]
             }
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2005-pap307",
@@ -28406,7 +28772,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": null,
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "No conference DOI match was established in the registration lookup. Similar titles from another year, journal articles and technical-report DOIs were not substituted.",
             "A follow-up exact-title Crossref query and both public IEEE Computer Society SC2005 catalog sets (75 records and one alternate record) did not yield this entry. This does not establish that no DOI was assigned; the candidate DOI remains unresolved."
           ],
@@ -28502,7 +28868,16 @@
                 "John A. Gunnels"
               ]
             }
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -28701,7 +29076,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1392964/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "historical_metadata_snapshot": {
@@ -28780,7 +29155,16 @@
             "source_ids": [
               "sc2004-batch-pap111-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2004-pap234",
@@ -28801,11 +29185,20 @@
           "authors_status": "registry_order_not_pdf_audited",
           "publication_url": "http://ieeexplore.ieee.org/document/1392965/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "detailed_paper_id": "sc2004-pap234",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2004-pap275",
@@ -28826,7 +29219,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1392966/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained.",
             "The publisher-deposited title spells Uusing; the preserved index spells using. This source difference is retained."
@@ -28888,7 +29281,16 @@
             "source_ids": [
               "sc2004-batch-pap275-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2004-pap231",
@@ -28922,7 +29324,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1392970/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "detailed_paper_id": "sc2004-pap231",
@@ -29019,7 +29421,16 @@
             "source_ids": [
               "sc2004-batch-pap231-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -29675,7 +30086,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592870/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained."
           ],
@@ -29744,7 +30155,16 @@
             "source_ids": [
               "sc2002-batch-pap146-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2002-pap216",
@@ -29768,7 +30188,7 @@
           "authors_status": "registry_order_not_pdf_audited",
           "publication_url": "http://ieeexplore.ieee.org/document/1592871/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "historical_metadata_snapshot": {
@@ -29798,7 +30218,16 @@
             "announcement_date": "2002-11-21"
           },
           "detailed_paper_id": "sc2002-pap216",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2002-pap277",
@@ -29817,7 +30246,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592872/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "historical_metadata_snapshot": {
@@ -29897,7 +30326,16 @@
             "source_ids": [
               "sc2002-batch-pap277-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2002-pap273",
@@ -29917,7 +30355,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592886/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained."
           ],
@@ -30001,7 +30439,16 @@
             "source_ids": [
               "sc2002-batch-pap273-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2002-pap147",
@@ -30020,7 +30467,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592887/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained."
           ],
@@ -30101,7 +30548,16 @@
             "source_ids": [
               "sc2002-batch-pap147-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc2002-pap331",
@@ -30129,7 +30585,7 @@
           "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1592888/",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
           ],
           "historical_metadata_snapshot": {
@@ -30236,7 +30692,16 @@
             "source_ids": [
               "sc2002-batch-pap331-manuscript"
             ]
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -30431,7 +30896,7 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/582034.582078",
           "notes": [
-            "Historical competition membership is supported by nersc01; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+            "Current roster evidence: the complete official SC2001 Showcase now enumerates seven finalists, including this entry. A complete manuscript version is retained; scientific full-body review remains pending. The annual publisher-registry names remain separate from version-specific checked bylines.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline."
           ],
           "title_kind": "source_title",
@@ -30443,7 +30908,16 @@
               "sc01-official-complete-showcase-pass2-20261122"
             ],
             "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by nersc01; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC01-spectral-climate",
@@ -30461,7 +30935,7 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/582034.582052",
           "notes": [
-            "Historical competition membership is supported by nersc01; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+            "Current roster evidence: the complete official SC2001 Showcase now enumerates seven finalists, including this entry. A complete manuscript version is retained; scientific full-body review remains pending. The annual publisher-registry names remain separate from version-specific checked bylines.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline."
           ],
           "title_kind": "source_title",
@@ -30473,7 +30947,16 @@
               "sc01-official-complete-showcase-pass2-20261122"
             ],
             "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by nersc01; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC01-primordial-stars",
@@ -30523,9 +31006,8 @@
           "authors_status": "ordered_byline_checked_author_hosted_manuscript_first_page",
           "publication_url": "https://jun-makino.sakura.ne.jp/papers/gbp2001.pdf",
           "notes": [
-            "Exact competition title and Peak Performance winner status are transcribed from the recipient-hosted SC2001 certificate. The author release independently identifies Makino and Fukushige as recipients; these names are not claimed to be an audited publication byline.",
-            "No exact DOI was verified. Crossref exact-title searches return the distinct 2000 1.349 Tflops paper, whose DOI is not reused for this 2001 11.55 Tflops entry.",
-            "This adds an explicitly documented historical competition entry; the annual roster remains partial. No manuscript performance record or final conference score is inferred from the title."
+            "Current evidence: the author-hosted manuscript first page verifies the ordered Junichiro Makino and Toshiyuki Fukushige byline. Award-certificate names are a separate source. The complete official SC2001 Showcase enumerates all seven finalists. The exact 2001 publication DOI remains unresolved, and scientific full-body review remains pending.",
+            "No exact DOI was verified. Crossref exact-title searches return the distinct 2000 1.349 Tflops paper, whose DOI is not reused for this 2001 11.55 Tflops entry."
           ],
           "award_result": {
             "status": "verified",
@@ -30574,7 +31056,22 @@
               "sc01-official-complete-showcase-pass2-20261122"
             ],
             "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Exact competition title and Peak Performance winner status are transcribed from the recipient-hosted SC2001 certificate. The author release independently identifies Makino and Fukushige as recipients; these names are not claimed to be an audited publication byline.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "This adds an explicitly documented historical competition entry; the annual roster remains partial. No manuscript performance record or final conference score is inferred from the title.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC01-mdm-861",
@@ -30754,11 +31251,9 @@
           "publisher_title": null,
           "publication_url": null,
           "notes": [
-            "This is an editorial description of a directly identified SC2001 competition entry, based on the official conference award announcement; it is not claimed to be the exact title of a submitted or published paper.",
+            "The recovered complete official Showcase gives the original program title and Seung J Kim, Chang S Lee, Joon S Hwang in that order. The source omits the closing parenthesis after Seoul National University. Expanded given names, manuscript publication byline and DOI remain unverified. Earlier award-release names and the editorial title are preserved separately.",
             "The official announcement names Joon Hwang, Seung Kim and Chang Lee in that order. Full-name expansions and a manuscript byline have not been verified.",
-            "No exact DOI or manuscript has been recovered. Related aircraft-impact articles are not substituted without an exact competition-work identity match.",
-            "Its presence in the SC2001 competition is directly supported by the official price/performance award announcement. This record adds the identified entry without asserting a complete annual candidate census or a final conference score.",
-            "The recovered complete official Showcase gives the original program title and Seung J Kim, Chang S Lee, Joon S Hwang in that order. The source omits the closing parenthesis after Seoul National University. Expanded given names, manuscript publication byline and DOI remain unverified. Earlier award-release names and the editorial title are preserved separately."
+            "No exact DOI or manuscript has been recovered. Related aircraft-impact articles are not substituted without an exact competition-work identity match."
           ],
           "membership_evidence": {
             "source_ids": [
@@ -30839,13 +31334,26 @@
           },
           "search_aliases": [
             "Study of impact locating on aircraft structure"
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "This is an editorial description of a directly identified SC2001 competition entry, based on the official conference award announcement; it is not claimed to be the exact title of a submitted or published paper.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "Its presence in the SC2001 competition is directly supported by the official price/performance award announcement. This record adds the identified entry without asserting a complete annual candidate census or a final conference score.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
-        "Four competition entries identified by institutional, author and original award-certificate evidence. One is retrospective author testimony; the full annual list and total remain unresolved.",
-        "Historical naming: these were Gordon Bell Prize competition entries before ACM began co-sponsoring in 2006; the award_series field groups the continuing main-prize lineage.",
-        "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero."
+        "Current roster evidence: the complete Gordon Bell Finalists Showcase section of the official linked SCglobal organizer program enumerates all seven known finalists. The aircraft entry has a source program title and program names; its manuscript and exact DOI remain unrecovered."
       ],
       "verified_doi_count": 5,
       "source_method": "complete_official_conference_program_with_separate_manuscript_bibliography",
@@ -30895,7 +31403,28 @@
           "note": "Five explicitly marked technical-paper finalists plus two additional entries directly identified in the official award release give at least seven distinct entries. A full Showcase roster or explicit contemporary official total has not been recovered."
         },
         "note": "Additional original official program evidence; prior roster-completeness and bibliographic fields are preserved as history."
-      }
+      },
+      "note_history": [
+        {
+          "field": "notes",
+          "text": "Four competition entries identified by institutional, author and original award-certificate evidence. One is retrospective author testimony; the full annual list and total remain unresolved.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "Historical naming: these were Gordon Bell Prize competition entries before ACM began co-sponsoring in 2006; the award_series field groups the continuing main-prize lineage.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "year": 2000,
@@ -30994,14 +31523,23 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "http://ieeexplore.ieee.org/document/1592758/",
           "notes": [
-            "Historical competition membership is supported by nih00; the annual membership set is complete against the publisher Gordon Bell sections. No full-text or performance audit was performed.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline.",
             "The institutional report explicitly labels this proceedings paper Finalist for Gordon Bell Award and separately lists its SC2000 talk. It supplies membership independently of any winner list.",
             "The publisher TOC independently lists this paper in its GORDON BELL I/II sections, with the same DOI. Existing registry author forms are preserved."
           ],
           "title_kind": "source_title",
           "detailed_paper_id": "SC00-namd",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by nih00; the annual membership set is complete against the publisher Gordon Bell sections. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC00-low-cost-cfd",
@@ -32015,7 +32553,7 @@
           "authors_status": "ordered_author_list_checked_official_program_not_pdf_byline",
           "publication_url": null,
           "notes": [
-            "Historical competition membership is supported by lbl98; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+            "Current evidence: the complete official SC98 finalist-program section enumerates all four finalists and lists this entry under its non-equilibrium-states program title, with nine Authors and a separately named Speaker. These program names do not establish a manuscript publication byline. The complete manuscript and exact publication DOI remain unrecovered.",
             "Title comes from the author-associated publication record paper98. LBNL’s contemporary finalist announcement and the NERSC report link the metallic-magnetism project to the competition.",
             "The attempted 1998-filtered Crossref title queries did not return a convincing SC98 registration. DOI remains null, rather than selecting a similarly worded magnetism conference paper.",
             "The complete official program lists nine names under Authors and separately names Balazs Ujfalussy as Speaker. Its non-equilibrium-states title is retained as a program version alongside the previously indexed complex-magnetic-properties title. The manuscript remains unrecovered."
@@ -32051,7 +32589,7 @@
               "Balazs L. Gyorffy"
             ],
             "names_kind": "Names in official retrospective award list; not a publication byline",
-            "next_evidence": "The SC98 submission/proceedings first page and exact publisher registration. The author-associated metadata page returned HTTP429 in this check."
+            "next_evidence": "Recover an identifiable complete manuscript or proceedings first page and its exact publisher registration. The official four-entry finalist program has already been recovered; program names remain distinct from a publication byline."
           },
           "before_followup_bibliography": {
             "membership_evidence": null,
@@ -32094,7 +32632,22 @@
               ],
               "speaker": "Balazs Ujfalussy"
             }
-          ]
+          ],
+          "note_history": [
+            {
+              "field": "bibliography_review.next_evidence",
+              "text": "The SC98 submission/proceedings first page and exact publisher registration. The author-associated metadata page returned HTTP429 in this check.",
+              "checked_on": "2026-11-22",
+              "date_label": "Check recorded on 2026-11-22"
+            },
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by lbl98; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC98-qcdsp",
@@ -32129,8 +32682,7 @@
           "authors_status": "ordered_byline_checked_complete_author_manuscript",
           "publication_url": null,
           "notes": [
-            "Editorial description: the BNL bulletin PDF pp. 1–2 identifies the QCD machine and explicitly calls it a price/performance finalist at upcoming SC98. Formal entrant-paper title, DOI and full ordered byline remain unresolved.",
-            "These are this author-hosted manuscript version’s fields. Publisher proceedings identity/registration and any normalization of names require a separate root decision."
+            "Current evidence: the complete author-hosted SC98 conference manuscript supplies the paper title and nineteen-author ordered byline, with selected scientific fields checked in Manuscript details. The separate updated three-author submission is another version. An exact publisher proceedings DOI for this entry remains unverified; no related-paper DOI is substituted."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -32224,7 +32776,22 @@
               "sc98-official-complete-showcase-pass2-20261122"
             ],
             "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Editorial description: the BNL bulletin PDF pp. 1–2 identifies the QCD machine and explicitly calls it a price/performance finalist at upcoming SC98. Formal entrant-paper title, DOI and full ordered byline remain unresolved.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "These are this author-hosted manuscript version’s fields. Publisher proceedings identity/registration and any normalization of names require a separate root decision.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC98-extra-parallel-eigensolver",
@@ -32312,9 +32879,7 @@
         }
       ],
       "notes": [
-        "Two finalist teams are supported by contemporary institutional sources. The NERSC report gives four finalists; the remaining two are unresolved from primary membership evidence.",
-        "Historical naming: these were Gordon Bell Prize competition entries before ACM began co-sponsoring in 2006; the award_series field groups the continuing main-prize lineage.",
-        "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero."
+        "Current roster evidence: the complete bounded Gordon Bell Prize Finalists section of the archived official SC98 program enumerates all four finalist entries. This supplies direct original-program support in addition to the previously reconstructed institutional and retrospective evidence. Manuscript availability is recorded separately."
       ],
       "verified_doi_count": 1,
       "source_method": "complete_official_conference_program_with_separate_manuscript_bibliography",
@@ -32368,7 +32933,28 @@
           "note": "The contemporary NERSC report explicitly gives four finalists. Two existing identities plus Sears and Avalon, identified in the committee-authored retrospective recognition appendix and author/publisher bibliographies, fill that count. This is a cross-source reconstruction, not recovery of the full original conference program."
         },
         "note": "Additional original official program evidence; prior roster-completeness and bibliographic fields are preserved as history."
-      }
+      },
+      "note_history": [
+        {
+          "field": "notes",
+          "text": "Two finalist teams are supported by contemporary institutional sources. The NERSC report gives four finalists; the remaining two are unresolved from primary membership evidence.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "Historical naming: these were Gordon Bell Prize competition entries before ACM began co-sponsoring in 2006; the award_series field groups the continuing main-prize lineage.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "year": 1997,
@@ -32504,9 +33090,7 @@
           "authors_status": "preserved_html_and_publisher_byline_checked",
           "publication_url": "https://www.computer.org/csdl/proceedings-article/sc/1997/19820058/12OmNBiygw4",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
-            "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
-            "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged."
+            "Current award evidence: the judges’ report places this entry under Other entrants. It is not individually promoted to a prize winner from the preserved session’s collective Winners heading. Session membership is retained."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -32521,7 +33105,28 @@
             "source_id": "judges97",
             "location": "PDF p. 6, printed p. 91, OTHER ENTRANTS continuation",
             "note": "The preserved official session includes this paper under a collective Winners heading. The later judges’ report places it under Other entrants. Session membership is retained; no individual award is inferred from the session heading."
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc1997-DEVINE",
@@ -32542,9 +33147,7 @@
           "authors_status": "preserved_html_and_publisher_byline_checked",
           "publication_url": "https://www.computer.org/csdl/proceedings-article/sc/1997/19820059/12OmNAXPy5p",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
-            "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
-            "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged."
+            "Current award evidence: the judges’ report places this entry under Other entrants. It is not individually promoted to a prize winner from the preserved session’s collective Winners heading. Session membership is retained."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -32559,7 +33162,28 @@
             "source_id": "judges97",
             "location": "PDF pp. 6–7, printed pp. 91–92, OTHER ENTRANTS continuation",
             "note": "The preserved official session includes this paper under a collective Winners heading. The later judges’ report places it under Other entrants. Session membership is retained; no individual award is inferred from the session heading."
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc1997-PHANTHIE",
@@ -32577,9 +33201,7 @@
           "authors_status": "preserved_html_and_publisher_byline_checked",
           "publication_url": "https://www.computer.org/csdl/proceedings-article/sc/1997/19820060/12OmNwwuDPZ",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
-            "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
-            "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged."
+            "Current award evidence: the judges’ report individually identifies this entry as Winner — Price/performance. A collective session heading is not used to establish the individual result. Manuscript versions and source-specific title/byline evidence remain separate."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -32612,7 +33234,28 @@
             "checked_on": "2026-11-22"
           },
           "detailed_paper_id": "sc1997-PHANTHIE",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "sc1997-WARREN",
@@ -32633,9 +33276,7 @@
           "authors_status": "preserved_html_and_publisher_byline_checked",
           "publication_url": "https://www.computer.org/csdl/proceedings-article/sc/1997/19820061/12OmNvDqsLb",
           "notes": [
-            "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
-            "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
-            "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged."
+            "Current award evidence: the judges’ report individually identifies this entry as Winner — Combined entry. A collective session heading is not used to establish the individual result. Manuscript versions and source-specific title/byline evidence remain separate."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -32672,7 +33313,28 @@
             "checked_on": "2026-11-22",
             "combined_submission_count": 2,
             "prize_count": 1
-          }
+          },
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "Authors follow the previously checked preserved HTML byline. The session index labels winners while the daily program labels finalists; award outcomes remain unresolved.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "DOI verified from the IEEE Computer Society article API, which returns this exact title, SC Conference (1997), and the same complete ordered byline as the preserved HTML. Crossref title search did not recover this legacy record. Award-label ambiguity is unchanged.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         }
       ],
       "notes": [
@@ -32829,10 +33491,8 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/369028.369130",
           "notes": [
-            "Historical competition membership is supported by judges96; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
-            "Exact original selection/program title was not recovered. The displayed title is the publisher-deposited paper title; title provenance therefore points to the registry response, separately from membership evidence.",
-            "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline.",
-            "The report states that one finalist using a special-purpose machine received recognition and identifies the GRAPE-4 galaxy-formation entry by Fukushige and Makino. The recovered record is a partial membership result, not a full roster inferred from prize winners."
+            "Current roster evidence: the complete judges’ report identifies six competition-entry groups; the separately recovered official SC96 program lists three finalists. These source scopes are not conflated. The official program title is now preserved, while the annual index continues to use the publisher-deposited publication title. The Winner versus Honorable Mention source conflict remains unresolved.",
+            "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline."
           ],
           "title_kind": "publisher_title",
           "award_result": {
@@ -32900,7 +33560,28 @@
             }
           },
           "detailed_paper_id": "SC96-grape4-galaxy",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by judges96; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "Exact original selection/program title was not recovered. The displayed title is the publisher-deposited paper title; title provenance therefore points to the registry response, separately from membership evidence.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "The report states that one finalist using a special-purpose machine received recognition and identifies the GRAPE-4 galaxy-formation entry by Fukushige and Makino. The recovered record is a partial membership result, not a full roster inferred from prize winners.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC96-electronic-structure",
@@ -32919,6 +33600,7 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "https://dl.acm.org/doi/10.1145/369028.369132",
           "notes": [
+            "Current evidence: the complete official SC96 PostScript is retained and all eight pages render, including figures and references. Its title and three-author ordered byline were checked for acquisition; the annual author list remains publisher-registry metadata. Scientific full-body review remains pending.",
             "The judges’ report PDF p. 1 identifies the Hoisie–Goedecker–Hutter electronic-structure entry. Its title is recovered separately from publisher metadata.",
             "DOI verified from the successful publisher-deposited Crossref query item, with matching title, authors, venue and year; no individual-work retrieval or PDF-byline audit is claimed."
           ],
@@ -32966,7 +33648,8 @@
               "Stefan Goedecker",
               "Jurg Hutter"
             ]
-          }
+          },
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC96-nwt-cascade",
@@ -32987,7 +33670,7 @@
           "authors_status": "verified_publisher_order_not_manuscript_byline",
           "publication_url": "https://doi.org/10.1145/369028.369127",
           "notes": [
-            "Editorial description of the Iwamiya–Yoshida–Matsuo–Fukuda–Nakamura competition entry identified on report PDF p. 1. Formal paper title and complete ordered byline remain unverified. A registry title query was rate-limited; no DOI is inferred."
+            "Current evidence: the exact publication title and DOI are verified from publisher metadata. The official SC96 seven-page PostScript and private reading PDF are now retained; their title and ordered five-name byline were checked during acquisition. Prize-recipient order remains separate from publication-author order. Scientific manuscript review remains pending; exact original-submission byte identity is not established."
           ],
           "historical_metadata_snapshot": {
             "before_review_on": "2026-11-22",
@@ -33042,13 +33725,13 @@
           "bibliography_review": {
             "checked_on": "2026-11-22",
             "status": "publisher_title_doi_and_byline_checked",
-            "note": "Publisher identity resolves the earlier descriptive label. Prize-recipient order and publication-author order remain separate; full manuscript is still unrecovered.",
+            "note": "Publisher metadata establishes the annual title, DOI and author order. The subsequently recovered official seven-page SC96 PostScript is now retained with its checked version byline; prize-recipient order remains separate. Scientific full-body review remains pending.",
             "source_ids": [
               "cascade-publisher-identity-20261122",
               "judges96"
             ],
             "performance_audit": "Not performed in this collection pass",
-            "next_evidence": "Recover the original or an identifiable complete author manuscript."
+            "next_evidence": "Review the retained official SC96 manuscript scientifically and, if identifiable, compare exact submission and publication versions. A complete reading version has already been recovered."
           },
           "before_collection_bibliography": {
             "title": "Three-dimensional jet-engine cascade-flow simulation on the Numerical Wind Tunnel",
@@ -33082,7 +33765,28 @@
               "next_evidence": "SC96 candidate-paper first page or exact official program title, followed by an article-level identifier match."
             }
           },
-          "authors_source_id": "cascade-publisher-identity-20261122"
+          "authors_source_id": "cascade-publisher-identity-20261122",
+          "note_history": [
+            {
+              "field": "bibliography_review.note",
+              "text": "Publisher identity resolves the earlier descriptive label. Prize-recipient order and publication-author order remain separate; full manuscript is still unrecovered.",
+              "checked_on": "2026-11-22",
+              "date_label": "Check recorded on 2026-11-22"
+            },
+            {
+              "field": "bibliography_review.next_evidence",
+              "text": "Recover the original or an identifiable complete author manuscript.",
+              "checked_on": "2026-11-22",
+              "date_label": "Check recorded on 2026-11-22"
+            },
+            {
+              "field": "notes",
+              "text": "Editorial description of the Iwamiya–Yoshida–Matsuo–Fukuda–Nakamura competition entry identified on report PDF p. 1. Formal paper title and complete ordered byline remain unverified. A registry title query was rate-limited; no DOI is inferred.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC96-extra-climate-assimilation",
@@ -33206,11 +33910,7 @@
         }
       ],
       "notes": [
-        "Three entries identified in the 1996 committee report are represented. The report’s separate OTHER ENTRANTS section is not treated as a finalist list; total finalist membership remains unresolved.",
-        "Historical naming: these were Gordon Bell Prize competition entries before ACM began co-sponsoring in 2006; the award_series field groups the continuing main-prize lineage.",
-        "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero.",
-        "The source title is 1996 Gordon Bell Prize Winners and explicitly dates the announcement to Supercomputing 96; January 1997 is the report publication date, not the competition year.",
-        "The retrieved publisher proceedings TOC has no explicitly labelled Gordon Bell section and does not identify the NWT cascade-flow entry; it is not used to establish a total."
+        "Current roster evidence: the complete contemporary judges’ report enumerates six competition-entry groups, including three Other entrants. The separately recovered official SC96 program lists three Gordon Bell finalists. The six-entry competition index does not assert six finalists."
       ],
       "verified_doi_count": 4,
       "source_method": "Primary online sources",
@@ -33246,7 +33946,40 @@
           "SC96-extra-hpf-satellite"
         ],
         "note": "Three explicitly described Other entrants added. Six entry groups enumerated from the complete contemporary report; cascade-flow publication metadata identified independently."
-      }
+      },
+      "note_history": [
+        {
+          "field": "notes",
+          "text": "Three entries identified in the 1996 committee report are represented. The report’s separate OTHER ENTRANTS section is not treated as a finalist list; total finalist membership remains unresolved.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "Historical naming: these were Gordon Bell Prize competition entries before ACM began co-sponsoring in 2006; the award_series field groups the continuing main-prize lineage.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "The source title is 1996 Gordon Bell Prize Winners and explicitly dates the announcement to Supercomputing 96; January 1997 is the report publication date, not the competition year.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        },
+        {
+          "field": "notes",
+          "text": "The retrieved publisher proceedings TOC has no explicitly labelled Gordon Bell section and does not identify the NWT cascade-flow entry; it is not used to establish a total.",
+          "checked_on": null,
+          "date_label": "Earlier catalogue check; exact date not established"
+        }
+      ],
+      "note_history_reviewed_on": "2026-11-22"
     },
     {
       "year": 1995,
@@ -33342,7 +34075,7 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "http://portal.acm.org/citation.cfm?doid=224170.224402",
           "notes": [
-            "Historical competition membership is supported by judges95; the annual membership set is complete against the publisher finalist section. No full-text or performance audit was performed.",
+            "Current manuscript status: a retained version has selected scientific fields checked in Manuscript details. The annual bibliography and version-specific manuscript byline remain separate evidence; no final conference score is established by that review.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline.",
             "The committee report identifies Panayotis Skordos’s wind-instrument entry. The publisher TOC selection title is now directly verified; the different ACM deposited title is retained in publisher_title.",
             "The publisher’s Gordon Bell Prize Finalists section independently confirms this entry; its IEEE registration is 10.1109/SUPERC.1995.62. The existing verified ACM DOI is retained for the same entry.",
@@ -33350,7 +34083,16 @@
           ],
           "title_kind": "source_title",
           "detailed_paper_id": "SC95-wind-instruments",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by judges95; the annual membership set is complete against the publisher finalist section. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC95-qcd-nwt",
@@ -33370,14 +34112,33 @@
           "authors_status": "verified_publisher_deposited_registry_order_not_pdf_audited",
           "publication_url": "http://portal.acm.org/citation.cfm?doid=224170.224403",
           "notes": [
-            "Historical competition membership is supported by judges95; the annual membership set is complete against the publisher finalist section. No full-text or performance audit was performed.",
+            "Current evidence: the complete official SC95 HTML article and both scientific figures are retained. Its five-name ordered byline uses M. Fukuda. The annual ACM registry field retains its deposited M. Fukada spelling; the IEEE TOC and retained HTML variant are kept separately rather than silently normalizing names. Scientific full-body review remains pending.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline.",
             "The committee report identifies the Yoshida/Nakamura/Fukuda/Hioki NWT quantum-chromodynamics entry. Completeness is established separately by the publisher finalist section, rather than inferred from award results.",
-            "The registry spells one author M. Fukada; the committee/institutional descriptions use Fukuda. Registry spelling is preserved here and the original paper byline has not been audited.",
-            "The publisher’s Gordon Bell Prize Finalists section independently confirms this entry; its IEEE registration is 10.1109/SUPERC.1995.64. The existing verified ACM DOI is retained for the same entry.",
-            "The IEEE publisher TOC spells the third author M. Fukuda; the existing ACM registry spelling M. Fukada remains recorded as originally deposited, pending paper-byline verification."
+            "The publisher’s Gordon Bell Prize Finalists section independently confirms this entry; its IEEE registration is 10.1109/SUPERC.1995.64. The existing verified ACM DOI is retained for the same entry."
           ],
-          "title_kind": "source_title"
+          "title_kind": "source_title",
+          "note_history": [
+            {
+              "field": "notes",
+              "text": "Historical competition membership is supported by judges95; the annual membership set is complete against the publisher finalist section. No full-text or performance audit was performed.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "The registry spells one author M. Fukada; the committee/institutional descriptions use Fukuda. Registry spelling is preserved here and the original paper byline has not been audited.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            },
+            {
+              "field": "notes",
+              "text": "The IEEE publisher TOC spells the third author M. Fukuda; the existing ACM registry spelling M. Fukada remains recorded as originally deposited, pending paper-byline verification.",
+              "checked_on": null,
+              "date_label": "Earlier catalogue check; exact date not established"
+            }
+          ],
+          "note_history_reviewed_on": "2026-11-22"
         },
         {
           "id": "SC95-grape4",
@@ -40944,7 +41705,16 @@
         "status": "not_recovered",
         "versions": [],
         "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "DOE searches found citing reports only; OpenAlex supplies a catalogue DOI and old CiteSeer lead, not an open original. ResearchGate indicated a PDF in search results but open returned HTTP 429; no bypass/retry. CiteSeer old fulltext URL returned 404. Official SC98 archive root was inaccessible. Not recovered."
+        "note": "The complete official SC98 program is now recovered and identifies all four finalists, but its magnetism entry provides an abstract rather than a linked complete manuscript. No complete identifiable magnetism manuscript or exact publication DOI has been recovered. Earlier discovery and HTTP-access failures are preserved under Earlier checks.",
+        "note_history": [
+          {
+            "field": "note",
+            "text": "DOE searches found citing reports only; OpenAlex supplies a catalogue DOI and old CiteSeer lead, not an open original. ResearchGate indicated a PDF in search results but open returned HTTP 429; no bypass/retry. CiteSeer old fulltext URL returned 404. Official SC98 archive root was inaccessible. Not recovered.",
+            "checked_on": null,
+            "date_label": "Earlier catalogue check; exact date not established"
+          }
+        ],
+        "note_history_reviewed_on": "2026-11-22"
       },
       {
         "record_id": "SC98-qcdsp",
@@ -45650,5 +46420,85 @@
       ],
       "note": "All five previously incomplete years were checked again. The official 2001 seven-entry Showcase closes one year; 1987, 1988, 1989 and 1992 remain partial. Annual totals follow the scope of primary evidence, never an assumed six per year. A separate original official program also confirms all four 1998 finalists."
     }
+  },
+  "note_history_cleanup": {
+    "checked_on": "2026-11-22",
+    "baseline_source_commit": "97f94c7021dbb6758b0e62961828618f128de4e2",
+    "candidate_records_reviewed": 52,
+    "candidate_record_ids": [
+      "SC22_main01",
+      "SC22_main02",
+      "SC22_main05",
+      "SC22_main06",
+      "SC21_main01",
+      "SC21_main02",
+      "SC21_main04",
+      "SC21_main06",
+      "SC20_main02",
+      "SC20_main03",
+      "SC20_main04",
+      "SC20_main05",
+      "SC20_main06",
+      "SC19_main01",
+      "SC18_main01",
+      "SC18_main02",
+      "SC18_main03",
+      "SC18_main04",
+      "SC18_main05",
+      "SC18_main06",
+      "sc2005-pap200",
+      "sc2005-pap346",
+      "sc2005-pap188",
+      "sc2005-pap122",
+      "sc2005-pap260",
+      "sc2005-pap307",
+      "sc2004-pap111",
+      "sc2004-pap234",
+      "sc2004-pap275",
+      "sc2004-pap231",
+      "sc2002-pap146",
+      "sc2002-pap216",
+      "sc2002-pap277",
+      "sc2002-pap273",
+      "sc2002-pap147",
+      "sc2002-pap331",
+      "SC01-spin-dynamics",
+      "SC01-spectral-climate",
+      "SC01-grape6",
+      "SC01-impact-locating",
+      "SC00-namd",
+      "SC98-magnetism",
+      "SC98-qcdsp",
+      "sc1997-ATTAWAY",
+      "sc1997-DEVINE",
+      "sc1997-PHANTHIE",
+      "sc1997-WARREN",
+      "SC96-grape4-galaxy",
+      "SC96-electronic-structure",
+      "SC96-nwt-cascade",
+      "SC95-wind-instruments",
+      "SC95-qcd-nwt"
+    ],
+    "collection_record_ids": [
+      "SC98-magnetism"
+    ],
+    "annual_years": [
+      2001,
+      1998,
+      1996
+    ],
+    "issue_ids": [
+      "local-access",
+      "scope",
+      "metadata",
+      "source-conflicts",
+      "recent-fulltext",
+      "sc26-postconference",
+      "historical-awards-bibliography",
+      "annual-first-manuscript-pass",
+      "early-roster-recovery"
+    ],
+    "earlier_statements_preserved": 100,
+    "policy": "Earlier statements are preserved verbatim with their original field. A check date is copied only from an explicit existing check field; otherwise the exact date remains unestablished. Current evidence summaries do not add manuscript recovery, scientific review, identifiers or award findings."
   }
 }

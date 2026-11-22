@@ -29,3 +29,4 @@
 .performance-updates{padding:14px 16px;background:#edf0e8;border-left:3px solid var(--green)}.performance-updates p,.performance-updates li{font-size:.875rem!important;line-height:1.75}.performance-updates li{margin:8px 0}
 
 .award-history,.bibliography-review{margin:12px 0;padding:12px 16px;border-left:3px solid var(--green);background:#edf0e8}.award-history[open]{border-left-color:#8c6b2b}.award-history p,.bibliography-review p{font-size:.875rem!important;line-height:1.75;overflow-wrap:anywhere}.award-history summary,.bibliography-review summary{line-height:1.6}
+.note-history,.copy-receipt-notes,.earlier-source-checks{border-left:2px solid var(--line);padding-left:12px;margin:14px 0}.note-history p,.note-review-date{font-size:.875rem;color:var(--muted)}.note-history ul{padding-left:20px}.year-manuscript-holdings,.year-scientific-review{font-weight:600}.hdd-copy-receipts p{font-size:.875rem;color:var(--muted)}
