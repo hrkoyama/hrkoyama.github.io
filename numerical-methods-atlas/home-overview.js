@@ -1,4 +1,5 @@
-import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=bba3727cae9d';
+import {wireGoalFilters} from './goal-filters.mjs?v=d653239ab595';
+import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=36209663dff7';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=766832c56082';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=42602b18cb1f';
@@ -70,7 +71,7 @@ export function homeOverviewPage(coverage,selected){
 }
 export function wireHomeOverview({rewriteLinks=html=>html}={}){
  const root=document.getElementById('home-overview');if(!root)return;
- wireHomeSearch();
+ wireHomeSearch();wireGoalFilters(root);
  for(const button of root.querySelectorAll('[data-home-area]'))button.addEventListener('click',()=>{
   const area=resolveHomeArea(button.dataset.homeArea);root.dataset.area=area.id;
   history.replaceState(null,'',homeAreaURL(location.href,area.id));
