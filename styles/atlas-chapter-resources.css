@@ -1,0 +1,33 @@
+/* Chapter navigation is generated around, never inside, the scientific article. */
+.chapter-resource-jump,.chapter-resource-navigation{box-sizing:border-box;min-width:0;overflow-wrap:anywhere;color:#2d4433;font-family:Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
+.chapter-resource-jump *,.chapter-resource-navigation *{box-sizing:border-box}
+.chapter-resource-jump{margin:16px 0 20px;padding:10px 14px;border:1px solid #d1dbca;background:#f6f8ef;border-radius:3px}
+.chapter-resource-jump>p{font-size:.82rem;line-height:1.6;font-weight:600;margin:0 0 3px}
+.chapter-resource-jump>ul{display:flex;flex-wrap:wrap;gap:1px 18px;list-style:none;margin:0;padding:0}
+.chapter-resource-jump>ul>li{margin:0;padding:0}
+.chapter-resource-jump a{display:inline-flex;align-items:center;min-height:44px;font-size:.875rem;line-height:1.6;color:#2d563d;text-decoration:underline;text-underline-offset:3px}
+.chapter-resource-navigation{max-width:1140px;margin:36px auto 28px;padding:20px;border:1px solid #c9d5c3;background:#fafbf6;border-radius:4px}
+.chapter-resource-navigation>h2{font-size:1.4rem;line-height:1.5;margin:0 0 12px;font-weight:500}
+.chapter-resource-navigation .chapter-resource-intro{font-size:.9rem;line-height:1.85;margin:0 0 18px;max-width:90ch;color:#52654d}
+.chapter-resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.chapter-resource-navigation .chapter-resource-category{min-width:0;margin:0;padding:12px 14px;border:1px solid #dae2d2;background:#fff;scroll-margin-top:20px}
+.chapter-resource-navigation .chapter-resource-category>h3{font-size:1rem;line-height:1.6;font-weight:600;margin:0 0 9px}
+.chapter-resource-navigation .chapter-resource-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.chapter-resource-navigation .chapter-resource-list>li{margin:0;padding:0;min-width:0}
+.chapter-resource-navigation .chapter-resource-name{font-size:.9rem;font-weight:500;line-height:1.7;margin:0 0 4px}
+.chapter-resource-navigation a{color:#2b563c;text-decoration:underline;text-underline-offset:3px}
+.chapter-resource-navigation .chapter-resource-name a,.chapter-resource-navigation .chapter-resource-directory a{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
+.chapter-resource-navigation .chapter-resource-note{font-size:.84rem;line-height:1.85;margin:5px 0;color:#50634c}
+.chapter-resource-navigation .chapter-resource-relation,.chapter-resource-navigation .chapter-resource-kind{font-size:.76rem;line-height:1.75;color:#775f42;margin:3px 0}
+.chapter-resource-navigation .chapter-resource-directory{font-size:.875rem;line-height:1.7;margin:6px 0 0}
+.chapter-resource-navigation .chapter-resource-more{margin-top:12px;padding-top:3px;border-top:1px solid #dce4d5}
+.chapter-resource-navigation .chapter-resource-more>summary{min-height:44px;align-content:center;cursor:pointer;font-size:.84rem;line-height:1.7;color:#4c6547}
+.chapter-resource-navigation .chapter-resource-more[open]>ul{margin-top:8px}
+.chapter-resource-navigation .chapter-resource-preview{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:18px;align-items:start;margin:22px 0 0;padding-top:16px;border-top:1px solid #d5dfcc;min-width:0}
+.chapter-resource-navigation .chapter-resource-preview>a{display:block;min-width:0;padding:4px;border:1px solid #dbe3d2;background:#f4f7eb}
+.chapter-resource-navigation .chapter-resource-preview img{display:block;width:100%;height:auto;max-width:100%;margin:0}
+.chapter-resource-navigation .chapter-resource-preview figcaption{min-width:0}
+.chapter-resource-jump a:hover,.chapter-resource-navigation a:hover{color:#8d5331}
+.chapter-resource-jump a:focus-visible,.chapter-resource-navigation a:focus-visible,.chapter-resource-navigation summary:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
+@media(max-width:700px){.chapter-resource-navigation{padding:16px;margin-top:28px}.chapter-resource-grid{grid-template-columns:minmax(0,1fr);gap:14px}.chapter-resource-navigation>h2{font-size:1.25rem}.chapter-resource-navigation .chapter-resource-preview{grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:12px}}
+@media(max-width:400px){.chapter-resource-jump{padding:9px 11px}.chapter-resource-jump>ul{gap:0 14px}.chapter-resource-navigation{padding:12px}.chapter-resource-navigation .chapter-resource-category{padding:10px}.chapter-resource-navigation .chapter-resource-preview{grid-template-columns:minmax(0,1fr)}}

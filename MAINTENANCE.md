@@ -281,6 +281,10 @@ PMLの電場・磁場の仕事は場と係数から直接集計し、修正離�
 
 ## アトラスの検索と3つの入口
 
+各解説章の資料ナビゲーションは `scripts/build-atlas-chapter-resources.py` が実在する日英の章と共通の対応情報から生成する。冒頭の5つの短い入口と章末の詳細を本文のarticleの外に置き、既存の数式・節ID・目次・index.json/Markdownとcontent JSONを保持する。各章の `resources.json`・`resources.md` と全体の `numerical-methods-atlas/reading-resources.json` も同時に更新する。章固有の対応がない場合と一部の分類が空の場合は「全体一覧」と明記し、未登録の科学的な対応を補わない。
+
+5つの基礎章の追加対応は `catalog/atlas-chapter-links.json`。既存の `related_methods` は関連する定義だけに使い、Jameson系の解説へ古典RK4などの実行例を継承しない。円筒座標・格子のソース検査とPDEの固定入力例も区別する。通常refreshの章生成・章目次・章ナビゲーションの後、検索の前に実行し、検索本文と研究相談の本文抽出から資料ナビゲーションを除外する。生成する実在章manifest `chapter-resources.mjs` により、旧 `#/read/...` も静的専用章を含めて正しい日英ページと節へ転送する。`scripts/atlas-chapter-resources.test.mjs` が全章、本文保持、再生成、転送と参照条件を確認する。
+
 検索結果の5つの入口は `scripts/atlas_search_routes.py` が公開済みの手法・問題・式・参照解台帳と検証済み実行例、明示的な章の対応から生成する。アトラス内検索とサイト全体検索は `search/navigation.mjs` の表示を共用し、方程式・参照解の個別項目も言語に対応した節へ直接つなぐ。複数候補と図の確認は折りたたみ、問題ごとの参照条件を集約時にも保持する。目的別の検索にはその目的で許可された実行例だけを渡し、予定手法や診断例へ他の実装・物理問題を割り当てない。検索語は従来どおりブラウザ内だけで処理する。
 
 対応JSONは `/search/atlas-navigation.json`。本文の検索語と関連資料の対応情報を分け、隣接するカードの案内文から科学的な対応や実装を推測しない。通常refresh・コミット前の生成・CIで両検索と対応JSONを更新し、`scripts/atlas-search-navigation.test.mjs` が元の対応、図の出典、目的の制限、日英のリンク、表示と検索語の非送信を検査する。

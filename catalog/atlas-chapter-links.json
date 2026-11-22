@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "scope": {
+    "ja": "既存の登録情報で対応が付いていなかった5つの技術解説章に、確認した関連資料だけを追加します。手法の定義、関連する固定入力、保存図、公開ソースと検査の範囲を区別し、新しい数値結果や実行例を登録しません。",
+    "en": "Reviewed additional resource links for five technical chapters without existing registered associations. Method definitions, related fixed inputs, saved figures, published sources and checks retain their separate scopes; no new numerical results or executions are registered."
+  },
+  "chapters": [
+    {
+      "id": "accuracy-stability",
+      "method_ids": [
+        "forward-euler",
+        "backward-euler",
+        "crank-nicolson",
+        "implicit-midpoint",
+        "sdirk2",
+        "bdf2"
+      ],
+      "equation_ids": [],
+      "problem_ids": [],
+      "execution_ids": [
+        "stiff-cosine"
+      ],
+      "reference_ids": [],
+      "code_problem_ids": [],
+      "code_links": [],
+      "note": {
+        "ja": "章で比較する時間積分法と、関連するSDIRK2の硬い余弦追従ODEを案内します。固定入力stiff-cosineの誤差・段階残差・刻み比較は、その条件の実行検証です。A/L安定性の一般的な証明や、列挙した全手法の同一条件での検証を意味しません。誤差ノルムと安定性の役割は分けて読みます。",
+        "en": "Links to the time integrators compared in the chapter and a related SDIRK2 stiff cosine-tracking ODE. Errors, stage residuals and step refinement for stiff-cosine validate that fixed input; they are neither a general A/L-stability proof nor a matched verification of every listed method. Error norms and stability retain their different meanings."
+      }
+    },
+    {
+      "id": "chapman-enskog",
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "equation_ids": [
+        "bgk"
+      ],
+      "problem_ids": [
+        "lbm-shear"
+      ],
+      "execution_ids": [],
+      "reference_ids": [],
+      "code_problem_ids": [
+        "lbm-shear"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "無外力・等温D2Q9格子BGKの低Mach数・近平衡展開と、周期せん断波から粘性を測る既存の検査を結びます。一般形のBGKカードには外力項も表示されますが、この章が導くのは外力をゼロとした場合です。Guo外力や壁境界を導出・検証する対応ではありません。熱方程式のsine-heat参照は同型の減衰を持つ関連モデルで、格子単位・波数・粘性が異なります。",
+        "en": "Connects the unforced, isothermal, low-Mach near-equilibrium D2Q9 lattice-BGK expansion to the existing periodic shear-wave viscosity check. The general BGK card also displays a forcing term; this chapter derives the zero-forcing case. This association does not derive or validate Guo forcing or wall boundaries. The sine-heat reference is a related decay model with different lattice units, wavenumber and viscosity."
+      }
+    },
+    {
+      "id": "coordinates-viscosity",
+      "method_ids": [],
+      "equation_ids": [],
+      "problem_ids": [],
+      "execution_ids": [],
+      "reference_ids": [],
+      "code_problem_ids": [],
+      "code_links": [
+        {
+          "id": "cylindrical-coordinate-source",
+          "name": {
+            "ja": "円筒座標のテンソル・粘性応力ルーチン",
+            "en": "Cylindrical tensor and viscous-stress routines"
+          },
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/coordinates.py",
+          "note": {
+            "ja": "r > 0の正規直交基底の物理成分について、速度勾配・Newton粘性応力・応力発散・基底変換を評価するソースです。円筒座標Navier–StokesのPDEソルバー、軸境界処理、球座標実装ではありません。",
+            "en": "Source routines for velocity gradients, Newtonian viscous stress, stress divergence and basis transformations using physical orthonormal components at r > 0. They do not supply a cylindrical Navier–Stokes PDE solver, an axis boundary scheme or a spherical-coordinate implementation."
+          }
+        },
+        {
+          "id": "cylindrical-coordinate-checks",
+          "name": {
+            "ja": "円筒座標の解析場・テンソル恒等式の検査",
+            "en": "Analytic-field and tensor-identity checks in cylindrical coordinates"
+          },
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_coordinates.py",
+          "note": {
+            "ja": "配布版を展開したディレクトリでpython -m pytest -q tests/test_coordinates.py。剛体回転、管内Poiseuille流、円筒Couette流、Cartesianアフィン場との変換、非負散逸、軸・不正入力の拒否を検査します。平行平板の参照解やPDE時間発展の実行例とは区別します。",
+            "en": "From the extracted distribution, run python -m pytest -q tests/test_coordinates.py. Checks cover rigid rotation, pipe Poiseuille flow, cylindrical Couette flow, Cartesian affine transformations, nonnegative dissipation and rejection of axis/invalid inputs. These checks are distinct from planar-channel reference cases and time-dependent PDE executions."
+          }
+        },
+        {
+          "id": "coordinates-viscosity-distribution",
+          "name": {
+            "ja": "対応する既存の共通配布版 / ZIP",
+            "en": "Existing shared code distribution / ZIP"
+          },
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+          "note": {
+            "ja": "上記のソースと検査を含む既存の共通配布版です。展開した配布フォルダで、上記の対象を絞った検査コマンドを実行できます。配布版全体には他章のコードも含まれるため、この章で確認する範囲は各リンクの注記に従います。",
+            "en": "The existing shared distribution contains the source and tests linked above. Run the focused check commands from the extracted distribution folder. The archive also contains other chapters’ code; the notes on each link identify the scope checked here."
+          }
+        }
+      ],
+      "note": {
+        "ja": "この章に対応するのは、与えた点での円筒座標のテンソル恒等式と解析場の検査です。管内Poiseuille流と円筒Couette流を、参照解一覧の平行平板ケースへ同一問題として結び付けません。対応する独立した問題図・固定入力PDE実行例は登録されていません。",
+        "en": "The chapter is supported by pointwise cylindrical tensor identities and analytic-field checks. Pipe Poiseuille and cylindrical Couette checks are not identified with the reference library's planar-channel cases. No matching standalone problem figure or fixed-input PDE execution is registered."
+      }
+    },
+    {
+      "id": "meshes",
+      "method_ids": [],
+      "equation_ids": [],
+      "problem_ids": [],
+      "execution_ids": [],
+      "reference_ids": [],
+      "code_problem_ids": [],
+      "code_links": [
+        {
+          "id": "mesh-geometry-source",
+          "name": {
+            "ja": "格子の幾何・接続情報を作るソース",
+            "en": "Source for mesh geometry and connectivity"
+          },
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py",
+          "note": {
+            "ja": "対応箇所はexample_meshes、mesh_topology、polygon_areaです。構造四角形格子、構造格子を分割した三角形、決定的な不規則点群の三角形分割について、面積と面共有の隣接関係を作ります。共有モジュールにはSPH・移動体積の関数も含まれますが、この対応は格子の幾何と接続に限ります。",
+            "en": "The relevant routines are example_meshes, mesh_topology and polygon_area. They construct areas and face-sharing adjacency for structured quadrilaterals, split-lattice triangles and a deterministic irregular triangulation. The shared module also contains SPH and moving-volume routines; this association covers mesh geometry and connectivity only."
+          }
+        },
+        {
+          "id": "mesh-geometry-checks",
+          "name": {
+            "ja": "単位正方形の格子面積・位相・隣接関係の検査",
+            "en": "Unit-square mesh area, topology and adjacency checks"
+          },
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+          "note": {
+            "ja": "配布版を展開したディレクトリでpython -m pytest -q tests/test_time_geometry.py -k test_mesh_areas_topology_and_neighbors_cover_unit_square。正のセル面積、総面積1、相互の面共有隣接、連結性、V−E+F_cells=1を検査します。同じファイルの時間積分・SPH・ALE検査や、有限要素・非構造流体ソルバーの検証をこの格子検査へ読み替えません。",
+            "en": "From the extracted distribution, run python -m pytest -q tests/test_time_geometry.py -k test_mesh_areas_topology_and_neighbors_cover_unit_square. Checks cover positive cell areas, unit total area, reciprocal face adjacency, connectivity and V−E+F_cells=1. Other time-integration/SPH/ALE checks in the file and finite-element or unstructured-flow solver verification retain their separate scopes."
+          }
+        },
+        {
+          "id": "meshes-distribution",
+          "name": {
+            "ja": "対応する既存の共通配布版 / ZIP",
+            "en": "Existing shared code distribution / ZIP"
+          },
+          "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",
+          "note": {
+            "ja": "上記のソースと検査を含む既存の共通配布版です。展開した配布フォルダで、上記の対象を絞った検査コマンドを実行できます。配布版全体には他章のコードも含まれるため、この章で確認する範囲は各リンクの注記に従います。",
+            "en": "The existing shared distribution contains the source and tests linked above. Run the focused check commands from the extracted distribution folder. The archive also contains other chapters’ code; the notes on each link identify the scope checked here."
+          }
+        }
+      ],
+      "note": {
+        "ja": "構造・非構造・三角形格子の幾何と接続を確認する展示です。公開ソースと対象を絞った検査を案内し、別章のFEM・ALE・SPHや流体実行例を、この格子展示の方程式・厳密解・PDE検証として継承しません。",
+        "en": "A geometry/connectivity demonstration for structured, unstructured and triangular meshes. Links identify its source and focused checks; FEM, ALE, SPH and flow executions in other chapters are not inherited as this demonstration's governing equations, exact solutions or PDE validation."
+      }
+    },
+    {
+      "id": "steady-runge-kutta",
+      "method_ids": [],
+      "equation_ids": [],
+      "problem_ids": [],
+      "execution_ids": [],
+      "reference_ids": [],
+      "code_problem_ids": [],
+      "code_links": [],
+      "note": {
+        "ja": "Jameson系の定常多段RK反復を読む章です。既存の詳細章カタログのrelated_methodsは関連する手法の定義だけを案内します。古典RK4・二重時間積分・低Mach前処理・多重格子の既存例は、完全なJameson型圧縮性流ソルバーの実装・検証を意味しません。この章専用のソルバー、固定入力実行例、新しい測定結果は追加していません。",
+        "en": "Reading on Jameson-family steady multistage RK iterations. The existing detailed-chapter catalog's related_methods links identify related method definitions only. Existing classical RK4, dual-time, low-Mach preconditioning and multigrid examples do not implement or validate a complete Jameson-type compressible solver. No dedicated solver, fixed-input execution or new measured result is added for this chapter."
+      }
+    }
+  ]
+}

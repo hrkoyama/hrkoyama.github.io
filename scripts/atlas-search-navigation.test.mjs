@@ -44,7 +44,8 @@ const registeredChapters=()=>{
   const result=new Set(),add=url=>{const match=new URL(url,origin).pathname.match(/^\/numerical-methods-atlas\/(?:ja|en)\/read\/([^/]+)\/$/);if(match)result.add(match[1]);};
   for(const record of [...publicMethods,...problems,...references,...common,...supplements])for(const url of Object.values(record.reading||{}))add(url);
   for(const equation of equations)result.add(equation.chapter);
-  for(const chapter of json('catalog/atlas-detailed-reading.json').chapters)if(chapter.methods?.length)result.add(chapter.id);
+  for(const chapter of json('catalog/atlas-detailed-reading.json').chapters)if(chapter.methods?.length||chapter.related_methods?.length)result.add(chapter.id);
+  for(const chapter of json('catalog/atlas-chapter-links.json').chapters)result.add(chapter.id);
   return [...result];
 };
 
@@ -371,6 +372,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-search-routes-') as directory:
       'catalog/atlas-problem-links.json':catalog,'catalog/atlas-execution-examples.json':{'examples':[{'id':'run','name':name,'scope':note,'reading':{}}]},
       'numerical-methods-atlas/validation/index.json':{'cases':[]},'catalog/atlas-goals.json':{'goals':[{'id':'restricted','methods':['alpha'],'resources':[],'examples':['run'],'scope':note,'availability':'reading-only'}]},
       'catalog/atlas-detailed-reading.json':{'chapters':[]}}
+    sources['catalog/atlas-chapter-links.json']={'schema_version':1,'chapters':[]}
     for path,value in sources.items():write(path,value)
     with patch.object(module,'load_execution_routes',return_value=graph):
         before=copy.deepcopy(graph);first=load_search_routes(fixture)

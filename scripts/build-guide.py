@@ -29,7 +29,7 @@ class Prose(HTMLParser):
   if len(text)>30: self.blocks.append((self.heading,self.anchor,text))
  def handle_starttag(self,tag,attrs):
   a=dict(attrs); parent=self.stack[-1][1] if self.stack else False
-  hidden=parent or tag in ('script','style','nav','header','footer','aside','svg','button','select','noscript') or 'katex-html' in a.get('class','').split() or 'hidden' in a
+  hidden=parent or tag in ('script','style','nav','header','footer','aside','svg','button','select','noscript') or bool(set(a.get('class','').split()) & {'katex-html','chapter-resource-navigation'}) or 'hidden' in a
   if tag in ('meta','link','img','input','br','hr','source','wbr'):
    if tag=='br' and self.main and not hidden:self.parts.append('\n')
    return

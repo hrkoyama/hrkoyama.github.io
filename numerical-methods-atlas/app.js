@@ -1,7 +1,8 @@
 const atlasIntroDescriptions = {"ja": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表22問題の固定入力・実行・結果照合を日英で案内します。", "en": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty-two fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=f86d20b0e2ca';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=fcb8c57ad35b';
 import {resolveHomeLegacyURL} from './home-navigation.mjs?v=ccc62d8175ef';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
+import {chapterEditions} from './chapter-resources.mjs?v=27b38b9db8ae';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';
 import {glossaryPage,wireGlossary} from './glossary.js';
@@ -266,6 +267,15 @@ async function route(options={}) {
  const [path,queryString='']=(location.hash.slice(1)||'/').split('?');
  const parts=path.split('/').filter(Boolean),type=parts[0]||'home',query=new URLSearchParams(queryString);
  if(type==='gallery'){location.replace('/numerical-methods-atlas/gallery/?lang='+currentLanguage());return;}
+ if(type==='read' && Object.hasOwn(chapterEditions,parts[1])) {
+  const editions=chapterEditions[parts[1]],language=editions[currentLanguage()]?currentLanguage():editions.en?'en':editions.ja?'ja':null;
+  if(language){
+   const target=new URL(editions[language],new URL('.',import.meta.url));
+   target.searchParams.set('lang',language);
+   if(query.get('section'))target.hash=query.get('section');
+   location.replace(target.href);return;
+  }
+ }
  if(type==='read' && !documents[parts[1]]) {
   const english=await loadDocuments('en');if(version!==navigationVersion)return;
   if(english[parts[1]])documents[parts[1]]=english[parts[1]];

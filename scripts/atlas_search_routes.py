@@ -64,6 +64,22 @@ def load_search_routes(root=ROOT):
         return {'kind': kind, 'id': ident, 'note': note, 'groups': {key: [] for key in GROUPS}}
 
     def append(target, category, row):
+        if target['kind'] == 'chapter' and category in {'code', 'references'}:
+            row = deepcopy(row)
+            ident = row['id']
+            if ident.startswith('method-') and ident[7:] in methods:
+                owner = methods[ident[7:]]['name']
+                labels = ('コード・検証', 'code and checks') if category == 'code' else ('比較・参照資料', 'comparison and reference material')
+            elif ident.startswith('problem-') and ident[8:] in problems:
+                owner = problems[ident[8:]]['name']
+                labels = ('コード・検証状況', 'code and validation status') if category == 'code' else ('参照・比較条件', 'references and comparison conditions')
+            elif category == 'references' and ident.startswith('validation-') and ident[11:] in executions['executions']:
+                owner = executions['executions'][ident[11:]]['name']
+                labels = ('参照・検証', 'references and checks')
+            else:
+                owner = None
+            if owner:
+                row['name'] = {lang: owner[lang]+('：' if lang == 'ja' else ' — ')+labels[lang == 'en'] for lang in LANGUAGES}
         if not any(old['id'] == row['id'] and old['url'] == row['url'] and
                    old.get('context_problem_id') == row.get('context_problem_id') and
                    old.get('context_execution_id') == row.get('context_execution_id')
@@ -233,6 +249,12 @@ def load_search_routes(root=ROOT):
             if ident not in methods:
                 raise ValueError('Unknown explicit chapter method: '+ident)
             chapter_add(chapter['id'], nodes['method:'+ident], ('methods', 'code'))
+        for ident in chapter.get('related_methods', []):
+            if ident not in methods:
+                raise ValueError('Unknown related chapter method: '+ident)
+            related = graph('chapter', chapter['id'], pair('関連する手法の定義です。', 'Definitions of related methods.'))
+            append(related, 'methods', method_item(ident, role='related'))
+            chapter_add(chapter['id'], related, ('methods',))
     for ident, problem in problems.items():
         for chapter in {chapter_for(url) for url in problem.get('reading', {}).values()}:
             chapter_add(chapter, nodes['problem:'+ident])
@@ -244,6 +266,58 @@ def load_search_routes(root=ROOT):
     for ident, case in {**common, **supplements}.items():
         for chapter in {chapter_for(url) for url in case.get('reading', {}).values()}:
             chapter_add(chapter, nodes['execution:'+ident])
+    reviewed = read('catalog/atlas-chapter-links.json')
+    if reviewed.get('schema_version') != 1:
+        raise ValueError('Unknown reviewed chapter-link schema')
+    seen_chapters = set()
+    for binding in reviewed['chapters']:
+        chapter = binding['id']
+        if chapter in seen_chapters or not re.fullmatch(r'[a-z0-9][a-z0-9.-]*', chapter):
+            raise ValueError('Invalid or repeated reviewed chapter identity: '+chapter)
+        seen_chapters.add(chapter)
+        if not all(isinstance(binding['note'].get(lang), str) and binding['note'][lang].strip() for lang in LANGUAGES):
+            raise ValueError('Missing reviewed chapter scope: '+chapter)
+        result = chapters.setdefault(chapter, graph('chapter', chapter, binding['note']))
+        result['note'] = note_join(result['note'], binding['note']) if result['note'] != binding['note'] else binding['note']
+
+        def attach(category, original, include_chapter_scope=True):
+            row = deepcopy(original)
+            row['note'] = note_join(binding['note'] if include_chapter_scope else None, row.get('note'))
+            row['context_chapter_id'] = chapter
+            row['role'] = 'related'
+            append(result, category, row)
+
+        for field, known in [('method_ids', methods), ('equation_ids', equations), ('problem_ids', problems),
+                             ('execution_ids', executions['executions']), ('reference_ids', references), ('code_problem_ids', problems)]:
+            identifiers = binding.get(field, [])
+            if len(identifiers) != len(set(identifiers)) or not set(identifiers) <= known.keys():
+                raise ValueError('Unknown or repeated '+field+' in reviewed chapter '+chapter)
+        for ident in binding.get('method_ids', []):
+            attach('methods', method_item(ident))
+        for ident in binding.get('equation_ids', []):
+            attach('equations', equation_item(ident))
+        for ident in binding.get('reference_ids', []):
+            attach('references', reference_item(ident))
+        for ident in binding.get('problem_ids', []):
+            for category in ('figures', 'references'):
+                for row in nodes['problem:'+ident]['groups'][category]:
+                    attach(category, row)
+        for ident in binding.get('execution_ids', []):
+            for category in GROUPS:
+                for row in nodes['execution:'+ident]['groups'][category]:
+                    attach(category, row)
+        for ident in binding.get('code_problem_ids', []):
+            for row in nodes['problem:'+ident]['groups']['code']:
+                if row['availability'] == 'source':
+                    attach('code', row)
+        for row in binding.get('code_links', []):
+            parsed = urlsplit(row['url'])
+            path = parsed.path.lstrip('/')
+            if not (root/path).is_file() or not path.startswith('code/'):
+                raise ValueError('Missing public chapter source: '+row['url'])
+            sources[path] = sha256((root/path).read_bytes()).hexdigest()
+            attach('code', item(row['id'], row['name'], {lang: row['url'] for lang in LANGUAGES},
+                                availability='source', note=row['note']), include_chapter_scope=False)
     nodes.update({'chapter:'+ident: value for ident, value in chapters.items()})
 
     # Purpose results never inherit an unrestricted method graph. Every group

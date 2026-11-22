@@ -1,0 +1,1349 @@
+{
+  "schema_version": 1,
+  "generated_by": "atlas-chapter-resources",
+  "id": "benchmarks",
+  "title": {
+    "ja": "テスト計算ライブラリ",
+    "en": "Benchmark library"
+  },
+  "routes": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
+  },
+  "association_status": "registered",
+  "resource_navigation": {
+    "kind": "chapter",
+    "id": "benchmarks",
+    "note": {
+      "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+      "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+    },
+    "groups": {
+      "methods": [
+        {
+          "id": "godunov",
+          "name": {
+            "ja": "Godunov型有限体積法",
+            "en": "Godunov-type finite volumes"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "weno-js",
+          "name": {
+            "ja": "WENO5-JS",
+            "en": "WENO5-JS"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "dg",
+          "name": {
+            "ja": "不連続Galerkin法／Legendre",
+            "en": "Discontinuous Galerkin / Legendre"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "fourier",
+          "name": {
+            "ja": "Fourier微分と時間発展",
+            "en": "Fourier differentiation and evolution"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fourier/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fourier/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "rusanov",
+          "name": {
+            "ja": "Rusanov／局所Lax–Friedrichs流束",
+            "en": "Rusanov / local Lax–Friedrichs flux"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "hll",
+          "name": {
+            "ja": "HLL",
+            "en": "HLL"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "hllc",
+          "name": {
+            "ja": "HLLC",
+            "en": "HLLC"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "roe",
+          "name": {
+            "ja": "Roe法",
+            "en": "Roe"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "hlle",
+          "name": {
+            "ja": "HLLE／Einfeldt波速",
+            "en": "HLLE / Einfeldt wave speeds"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+          },
+          "status": "educational-example"
+        },
+        {
+          "id": "godunov",
+          "name": {
+            "ja": "Godunov型有限体積法",
+            "en": "Godunov-type finite volumes"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "note": {
+            "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+            "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+          },
+          "context_problem_id": "sod"
+        },
+        {
+          "id": "hllc",
+          "name": {
+            "ja": "HLLC",
+            "en": "HLLC"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "note": {
+            "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+            "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+          },
+          "context_problem_id": "sod"
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "lax"
+        },
+        {
+          "id": "hllc",
+          "name": {
+            "ja": "HLLC",
+            "en": "HLLC"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "lax"
+        },
+        {
+          "id": "godunov",
+          "name": {
+            "ja": "Godunov型有限体積法",
+            "en": "Godunov-type finite volumes"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "double-rarefaction"
+        },
+        {
+          "id": "hlle",
+          "name": {
+            "ja": "HLLE／Einfeldt波速",
+            "en": "HLLE / Einfeldt wave speeds"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "double-rarefaction"
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "dam-break"
+        },
+        {
+          "id": "minmod",
+          "name": {
+            "ja": "Minmod",
+            "en": "Minmod"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "dam-break"
+        },
+        {
+          "id": "ssprk33",
+          "name": {
+            "ja": "SSPRK(3,3)",
+            "en": "SSPRK(3,3)"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "dam-break"
+        },
+        {
+          "id": "hll",
+          "name": {
+            "ja": "HLL",
+            "en": "HLL"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "dam-break"
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "isothermal-jump"
+        },
+        {
+          "id": "minmod",
+          "name": {
+            "ja": "Minmod",
+            "en": "Minmod"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "isothermal-jump"
+        },
+        {
+          "id": "ssprk33",
+          "name": {
+            "ja": "SSPRK(3,3)",
+            "en": "SSPRK(3,3)"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "isothermal-jump"
+        },
+        {
+          "id": "hll",
+          "name": {
+            "ja": "HLL",
+            "en": "HLL"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
+            "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          },
+          "context_problem_id": "isothermal-jump"
+        }
+      ],
+      "equations": [
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          },
+          "note": {
+            "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+            "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+          },
+          "context_problem_id": "sod"
+        },
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          },
+          "note": {
+            "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+            "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+          },
+          "context_problem_id": "lax"
+        },
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          },
+          "note": {
+            "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+            "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+          },
+          "context_problem_id": "double-rarefaction"
+        },
+        {
+          "id": "shallow-water",
+          "name": {
+            "ja": "浅水方程式",
+            "en": "Shallow-water equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#shallow-water-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#shallow-water-en"
+          },
+          "note": {
+            "ja": "前2式は平坦床・摩擦なしの1次元系。後2行は水深Hまわりの線形回転系。非線形流れのテストと、回転系のFourier記号の検証を区別します。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+            "en": "The first two equations are 1D flat-bed, frictionless flow; the remaining lines are the linear rotating system about depth H. Distinguish nonlinear flow tests from rotating-system Fourier-symbol checks. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+          },
+          "context_problem_id": "dam-break"
+        },
+        {
+          "id": "isothermal",
+          "name": {
+            "ja": "等温流体方程式",
+            "en": "Isothermal flow equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#isothermal-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#isothermal-en"
+          },
+          "note": {
+            "ja": "一定の等温音速cₛを用いる1次元の代表形。密度ジャンプの参照解へ。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+            "en": "A one-dimensional form with constant isothermal sound speed cₛ. Follow the density-jump reference solution. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+          },
+          "context_problem_id": "isothermal-jump"
+        },
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          },
+          "note": {
+            "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+            "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+          }
+        },
+        {
+          "id": "isothermal",
+          "name": {
+            "ja": "等温流体方程式",
+            "en": "Isothermal flow equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#isothermal-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#isothermal-en"
+          },
+          "note": {
+            "ja": "一定の等温音速cₛを用いる1次元の代表形。密度ジャンプの参照解へ。",
+            "en": "A one-dimensional form with constant isothermal sound speed cₛ. Follow the density-jump reference solution."
+          }
+        },
+        {
+          "id": "formulation-sod",
+          "name": {
+            "ja": "この実行例の式と条件",
+            "en": "This execution’s formulation and conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-sod-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-sod-en"
+          },
+          "note": {
+            "ja": "x=0.5の不連続、[0,1]の流出境界、t=0.2。Godunov型有限体積更新の数値流束は近似HLLC。参照は別の自己相似Riemann式で、星領域圧力には数値求根を使う。",
+            "en": "Jump at x=0.5, outflow boundaries on [0,1], t=0.2. Godunov-type finite volumes use approximate HLLC fluxes. The separate self-similar Riemann reference uses numerical root finding for star pressure."
+          },
+          "role": "problem"
+        }
+      ],
+      "figures": [
+        {
+          "id": "sod",
+          "name": {
+            "ja": "Sod衝撃波管",
+            "en": "Sod shock tube"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png",
+            "sha256": "a9d8f817001a737123543672067c9e575e8e835b159c3507c187ce9d85a8141c",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "note": {
+            "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+            "en": "Representative test-problem figure; the problem page records conditions and provenance."
+          }
+        },
+        {
+          "id": "lax",
+          "name": {
+            "ja": "Lax衝撃波管",
+            "en": "Lax shock tube"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/lax-entropy.png",
+            "sha256": "468467f127f5d7e5c151e5714a9545360c7dc3eef1548ae9155396d5f19aa8fa",
+            "width": 1385,
+            "height": 517,
+            "caption": {
+              "ja": "共有図の左パネル：Lax衝撃波管。右は別のエントロピー波収束計算。",
+              "en": "Shared figure, left: Lax shock tube. Right: a separate entropy-wave refinement study."
+            },
+            "source_kind": "existing-figure"
+          },
+          "note": {
+            "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+            "en": "Representative test-problem figure; the problem page records conditions and provenance."
+          }
+        },
+        {
+          "id": "double-rarefaction",
+          "name": {
+            "ja": "Euler二重膨張波",
+            "en": "Euler double rarefaction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/double-rarefaction.png",
+            "sha256": "2a843bf673dc414287780b54bea9f5a5bd48644c98c43630caa00a32b891ee6f",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。",
+              "en": "Calculated from the public code edition with fixed inputs; inputs, values and checks are linked."
+            },
+            "source_kind": "computed-preview"
+          },
+          "note": {
+            "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+            "en": "Representative test-problem figure; the problem page records conditions and provenance."
+          }
+        },
+        {
+          "id": "dam-break",
+          "name": {
+            "ja": "湿潤床ダム崩壊",
+            "en": "Wet-bed dam break"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/dam-break.png",
+            "sha256": "d421be0da4b3519a340c28da2242fc8048fe41a64b6782a7a8820c37ccd54f1d",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "note": {
+            "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+            "en": "Representative test-problem figure; the problem page records conditions and provenance."
+          }
+        },
+        {
+          "id": "isothermal-jump",
+          "name": {
+            "ja": "等温流体の密度ジャンプ",
+            "en": "Isothermal density jump"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/isothermal-jump.png",
+            "sha256": "e4b832033480e04e62d75ca73accd6e38d131a391bc9d1214be14c4b98101175",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存した最終時刻の数値波形と参照解。",
+              "en": "Stored final-time numerical profile and reference."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "note": {
+            "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+            "en": "Representative test-problem figure; the problem page records conditions and provenance."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "problem-sod",
+          "name": {
+            "ja": "Sod衝撃波管：参照・比較条件",
+            "en": "Sod shock tube — references and comparison conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#references-en"
+          },
+          "note": {
+            "ja": "理想気体γ=1.4の標準Sod初期値に対する半解析的Riemann解が基準です。同じ問題でも点値・保存変数のセル平均・格子と誤差ノルムは同一とは限りません。",
+            "en": "Use the semi-analytic Riemann solution for standard Sod data with γ=1.4. A matching problem does not imply identical point/cell-average sampling, grid or error norm."
+          }
+        },
+        {
+          "id": "euler-sod",
+          "name": {
+            "ja": "Euler／Sod問題",
+            "en": "Euler / Sod"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-sod-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-sod-en"
+          },
+          "reference_kind": "semi-analytic",
+          "note": {
+            "ja": "半解析解 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。 γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Semi-analytic reference Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity. γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          },
+          "relation": "related-model",
+          "context_problem_id": "sod"
+        },
+        {
+          "id": "problem-lax",
+          "name": {
+            "ja": "Lax衝撃波管：参照・比較条件",
+            "en": "Lax shock tube — references and comparison conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en#references-en"
+          },
+          "note": {
+            "ja": "左右状態(0.445,0.698,3.528)と(0.5,0,0.571)、γ=1.4の半解析的Riemann解が基準です。",
+            "en": "Use the semi-analytic Riemann solution for primitive states (0.445,0.698,3.528) and (0.5,0,0.571), γ=1.4."
+          }
+        },
+        {
+          "id": "euler-lax",
+          "name": {
+            "ja": "Euler／Lax問題",
+            "en": "Euler / Lax"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-lax-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-lax-en"
+          },
+          "reference_kind": "semi-analytic",
+          "note": {
+            "ja": "半解析解 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。 γ=1.4、左右(0.445,0.698,3.528)/(0.5,0,0.571)、[-5,5]、x0=0、t=1.3が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Semi-analytic reference Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity. γ=1.4, states (0.445,0.698,3.528)/(0.5,0,0.571), [-5,5], x0=0 and t=1.3 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          },
+          "relation": "related-model",
+          "context_problem_id": "lax"
+        },
+        {
+          "id": "problem-double-rarefaction",
+          "name": {
+            "ja": "Euler二重膨張波：参照・比較条件",
+            "en": "Euler double rarefaction — references and comparison conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#references-en"
+          },
+          "note": {
+            "ja": "左右状態(1,-2,0.4)と(1,2,0.4)、γ=1.4の低密度中央状態を持つ半解析的Riemann解が基準です。真空生成の別初期値とは区別します。",
+            "en": "Use the semi-analytic Riemann solution for states (1,-2,0.4) and (1,2,0.4), γ=1.4, with a low-density middle state. Distinguish the separate vacuum-generating data."
+          }
+        },
+        {
+          "id": "euler-double-rarefaction",
+          "name": {
+            "ja": "Euler／二重膨張波",
+            "en": "Euler / double rarefaction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-double-rarefaction-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-double-rarefaction-en"
+          },
+          "reference_kind": "semi-analytic",
+          "note": {
+            "ja": "半解析解 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。 γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Semi-analytic reference Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity. γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          },
+          "relation": "related-model",
+          "context_problem_id": "double-rarefaction"
+        },
+        {
+          "id": "problem-dam-break",
+          "name": {
+            "ja": "湿潤床ダム崩壊：参照・比較条件",
+            "en": "Wet-bed dam break — references and comparison conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en#references-en"
+          },
+          "note": {
+            "ja": "水深2と1、静止状態、g=1の湿潤河床Riemann解を半解析的に評価します。乾燥河床解の収録は、この有限体積コードの乾燥状態対応を意味しません。",
+            "en": "Use the semi-analytic wet-bed Riemann solution for depths 2 and 1, initially at rest, g=1. Library dry-bed formulas do not establish dry-state support in this finite-volume code."
+          }
+        },
+        {
+          "id": "swe-dam-break",
+          "name": {
+            "ja": "浅水流／水深が正のダム崩壊",
+            "en": "Shallow water / wet dam break"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-swe-dam-break-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-swe-dam-break-en"
+          },
+          "reference_kind": "semi-analytic",
+          "note": {
+            "ja": "半解析解 平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。 湿潤河床、g=1、左右水深(2,1)・速度0、x0=0.5が一致します。乾燥河床例への対応ではありません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Semi-analytic reference Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver. Wet bed, g=1, depths (2,1), zero velocities and x0=0.5 match; this is not a dry-bed correspondence. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          },
+          "relation": "related-model",
+          "context_problem_id": "dam-break"
+        },
+        {
+          "id": "problem-isothermal-jump",
+          "name": {
+            "ja": "等温流体の密度ジャンプ：参照・比較条件",
+            "en": "Isothermal density jump — references and comparison conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en#references-en"
+          },
+          "note": {
+            "ja": "音速1、静止した左右密度1と0.125の等温Riemann解が半解析的な基準です。Eulerのエネルギー方程式を含むSodとは別モデルです。",
+            "en": "Use the semi-analytic isothermal Riemann solution with sound speed one and stationary densities 1 and 0.125. This differs from Sod with an Euler energy equation."
+          }
+        },
+        {
+          "id": "isothermal-jump",
+          "name": {
+            "ja": "等温流／密度跳躍",
+            "en": "Isothermal / density jump"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isothermal-jump-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isothermal-jump-en"
+          },
+          "reference_kind": "semi-analytic",
+          "note": {
+            "ja": "半解析解 p = c_s² rho、一定の音速c_s。初期密度は厳密に正とし、真空状態とエネルギー方程式はありません。 p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Semi-analytic reference p = c_s² rho; constant c_s; strictly positive initial density; no vacuum state or energy equation. p=ρ, sound speed one, densities (1,0.125), zero velocities and x0=0.5 match. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          },
+          "relation": "related-model",
+          "context_problem_id": "isothermal-jump"
+        },
+        {
+          "id": "validation-sod",
+          "name": {
+            "ja": "Sod衝撃波管：Godunov型更新と自己相似解：参照・検証",
+            "en": "Sod shock tube: Godunov-type update and self-similar reference — references and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja#sod-ja-validation",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en#sod-en-validation"
+          },
+          "note": {
+            "ja": "細格子160セルの各中心でρ,u,pと同位置・同時刻の参照値を併記。初期値も点サンプルをセル値として与える既存solverを使う。解析的な波構造を使うが、圧力根の数値評価を含み、別コードベースとの独立照合ではない。",
+            "en": "Each of the 160 fine-grid centers carries ρ,u,p and reference values at the same time/location. The existing solver also initializes its cell values from point samples. Wave structure is analytic but reference pressure requires a numerical root; this is not a cross-check against an independent codebase."
+          },
+          "role": "execution"
+        },
+        {
+          "id": "euler-sod",
+          "name": {
+            "ja": "Euler／Sod問題",
+            "en": "Euler / Sod"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-sod-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-sod-en"
+          },
+          "reference_kind": "semi-analytic",
+          "note": {
+            "ja": "半解析解 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。 γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+            "en": "Semi-analytic reference Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity. γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+          },
+          "relation": "related-model",
+          "context_execution_id": "sod"
+        }
+      ],
+      "code": [
+        {
+          "id": "sod",
+          "name": {
+            "ja": "Sod衝撃波管：Godunov型更新と自己相似解",
+            "en": "Sod shock tube: Godunov-type update and self-similar reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en"
+          },
+          "availability": "run",
+          "method_ids": [
+            "godunov",
+            "hllc"
+          ],
+          "note": {
+            "ja": "γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。",
+            "en": "Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution."
+          }
+        },
+        {
+          "id": "method-godunov",
+          "name": {
+            "ja": "Godunov型有限体積法：コード・検証",
+            "en": "Godunov-type finite volumes — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "godunov"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "shu-independent",
+          "name": {
+            "ja": "Shu–Osher：独立参照と格子収束",
+            "en": "Shu–Osher: independent reference and mesh refinement"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en"
+          },
+          "availability": "run",
+          "method_ids": [
+            "muscl"
+          ],
+          "note": {
+            "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
+            "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
+          }
+        },
+        {
+          "id": "brio-wu",
+          "name": {
+            "ja": "Brio–Wu：HLLDと保存的に粗視化した数値参照",
+            "en": "Brio–Wu: HLLD and a conservatively restricted numerical reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en"
+          },
+          "availability": "run",
+          "method_ids": [
+            "hlld",
+            "muscl"
+          ],
+          "note": {
+            "ja": "γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。",
+            "en": "Evolve the one-dimensional γ=2 ideal-MHD shock tube with Bx=0.75 to t=0.1. Compare 64/128-cell HLLD/MC/SSPRK2 with a 512-cell numerical reference, recording density, pressure, longitudinal field, balances and fallback counts."
+          }
+        },
+        {
+          "id": "method-muscl",
+          "name": {
+            "ja": "MUSCL再構成：コード・検証",
+            "en": "MUSCL reconstruction — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "muscl"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-weno-js",
+          "name": {
+            "ja": "WENO5-JS：コード・検証",
+            "en": "WENO5-JS — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "weno-js"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-dg",
+          "name": {
+            "ja": "不連続Galerkin法／Legendre：コード・検証",
+            "en": "Discontinuous Galerkin / Legendre — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "dg"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-fourier",
+          "name": {
+            "ja": "Fourier微分と時間発展：コード・検証",
+            "en": "Fourier differentiation and evolution — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fourier/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fourier/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "fourier"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-rusanov",
+          "name": {
+            "ja": "Rusanov／局所Lax–Friedrichs流束：コード・検証",
+            "en": "Rusanov / local Lax–Friedrichs flux — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "rusanov"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-hll",
+          "name": {
+            "ja": "HLL：コード・検証",
+            "en": "HLL — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "hll"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-hllc",
+          "name": {
+            "ja": "HLLC：コード・検証",
+            "en": "HLLC — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "hllc"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-roe",
+          "name": {
+            "ja": "Roe法：コード・検証",
+            "en": "Roe — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "roe"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "method-hlle",
+          "name": {
+            "ja": "HLLE／Einfeldt波速：コード・検証",
+            "en": "HLLE / Einfeldt wave speeds — code and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja#method-execution-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en#method-execution-en"
+          },
+          "availability": "source",
+          "method_ids": [
+            "hlle"
+          ],
+          "note": {
+            "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+            "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+          }
+        },
+        {
+          "id": "problem-lax",
+          "name": {
+            "ja": "Lax衝撃波管：コード・検証状況",
+            "en": "Lax shock tube — code and validation status"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en#code-en"
+          },
+          "availability": "source",
+          "note": {
+            "ja": "対応する公開検査と配布版の条件を確認できます。",
+            "en": "Inspect the corresponding public checks and distribution conditions."
+          }
+        },
+        {
+          "id": "problem-double-rarefaction",
+          "name": {
+            "ja": "Euler二重膨張波：コード・検証状況",
+            "en": "Euler double rarefaction — code and validation status"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en#code-en"
+          },
+          "availability": "source",
+          "note": {
+            "ja": "対応する公開検査と配布版の条件を確認できます。",
+            "en": "Inspect the corresponding public checks and distribution conditions."
+          }
+        },
+        {
+          "id": "problem-dam-break",
+          "name": {
+            "ja": "湿潤床ダム崩壊：コード・検証状況",
+            "en": "Wet-bed dam break — code and validation status"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en#code-en"
+          },
+          "availability": "source",
+          "note": {
+            "ja": "対応する公開検査と配布版の条件を確認できます。",
+            "en": "Inspect the corresponding public checks and distribution conditions."
+          }
+        },
+        {
+          "id": "problem-isothermal-jump",
+          "name": {
+            "ja": "等温流体の密度ジャンプ：コード・検証状況",
+            "en": "Isothermal density jump — code and validation status"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en#code-en"
+          },
+          "availability": "source",
+          "note": {
+            "ja": "対応する公開検査と配布版の条件を確認できます。",
+            "en": "Inspect the corresponding public checks and distribution conditions."
+          }
+        }
+      ]
+    }
+  },
+  "directories": {
+    "methods": {
+      "name": {
+        "ja": "手法・コードの対応表",
+        "en": "Methods and code reference"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+      }
+    },
+    "equations": {
+      "name": {
+        "ja": "方程式",
+        "en": "Equations"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+      }
+    },
+    "figures": {
+      "name": {
+        "ja": "テスト問題の名前と図",
+        "en": "Test problems by name and figure"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+      }
+    },
+    "references": {
+      "name": {
+        "ja": "厳密解・参照解",
+        "en": "Exact and reference solutions"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+      }
+    },
+    "code": {
+      "name": {
+        "ja": "コード・入力・検証",
+        "en": "Code, inputs and validation"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+      }
+    }
+  },
+  "language": "en",
+  "source_sha256": {
+    "catalog/atlas-chapter-links.json": "4f41459ddda500d9cbddb7a8406dfee5a698346307d8a3fb50ce670d3ef72c9e",
+    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
+    "catalog/atlas-detailed-reading.json": "5c209859418a8b949710681a84511bdbc94a2a919e9641d27a1222e3e4a8f9f6",
+    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
+    "catalog/atlas-goals.json": "706721b859ac559fa4cdfca75b9ef00edc2e70fe590de3ee378bfc1bf89eacdd",
+    "catalog/atlas-methods.json": "6056ca2a6f1b583c218dbca94a741a451a381fd5788e30cc8265d2fb1be1490e",
+    "catalog/atlas-problem-links.json": "ce920e0e2d8b9a2c45b3466ddec2707c1c6534949fbfda9b71e3a2d3c532863b",
+    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
+    "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
+    "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
+    "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
+    "code/numerical-methods-atlas/2026-11-21/tests/test_coordinates.py": "3a29397b4011099b0ec28b24e7e6f7bcacc615d9e649c9680d2195c774e3262f",
+    "code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py": "dd6e3eb98af2bca603134916b7db474d3319ecf137083192b5c888c517eb08ed",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/amg-conditioning.png": "5f49ba07a6c8041814cb9232a60c60cabd0c606f4045916cad93caf7667716b8",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png": "ebc0a58aaaa831fdce8faa446b1ae8b42823fd5d817a7dd9330058ccf2fd65df",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+    "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
+    "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
+    "code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png": "d1e2a41d58baa80ea3910c7bab4d7efa0e6fcaa46a694eb102e2cc172d60795f",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/results/shu-independent.png": "0e5cc09c13e29f99160d4a22b489f98c9f24f4416515f01d1531d8112680a4e1",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+    "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
+    "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png": "377a985727d54477ba021b571b137562f65979026dc848808d4ad50b81b84492",
+    "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png": "9358e2e4e7c7d8cb9f5e0bcb4d6cb7c2cf52f0beb7cc14fe64313261aec5363d",
+    "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
+    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png": "4207da16dbd3e326736684e40899ced22cd23c00071f5623a1e61d838db52d9e",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "code/validated-examples/2026-11-22/particles/results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "code/validated-examples/2026-11-22/particles/results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "code/validated-examples/2026-11-22/particles/results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "code/validated-examples/2026-11-22/particles/results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/reaction-diffusion-splitting.png": "ac165c53c4832328365e2a2c4bc507a6ab73e053ac712d5f402f2b22137bee1d",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "numerical-methods-atlas/equations/index.json": "729030df248381ec653b4bcd9b05424ef7e722d4241e73892a6390451ae74d95",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f471ec4d77fc9efa9aa0d491c5083d0541e90ea46453f4419ae7a6f684d29278",
+    "numerical-methods-atlas/locales/messages.json": "246d3e8a6828d9129aa9938b30fab341acc62aaa8e6c81222f4dc83edf8002d4",
+    "numerical-methods-atlas/methods/index.json": "87dabbb924d5f48bd65984248013f77f747d6bf23f500ab271df563a11b8cbb5",
+    "numerical-methods-atlas/problems/index.json": "b4aacbcd597d2787215fd174b45e698ae1b02e93532fcf9b6b17c9bbd8d524c7",
+    "numerical-methods-atlas/solutions/index.json": "188fee0a1961d716d1e1c3b2621ee79abf2d0b59c1320db45e23f1ce95ea5fea",
+    "numerical-methods-atlas/validation/index.json": "5361f56d0b4bef88e8e6b1ddba2dc9820fd5f26d28afd71a9075bfb57a31ce8b"
+  }
+}
