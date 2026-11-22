@@ -3549,14 +3549,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "0b9163e06d478475ecc39f8aa1d79088e9d6952b84eece36b3719292977420bf",
-    "catalog/atlas-methods.json": "48353ae1cde8bbf61237e83a02bad9d9fd1b26d5da9c2704fae597ba4632f239",
-    "numerical-methods-atlas/methods/index.json": "1229e83620e55fe26e3fbf6f3ac2fdcf2a60b601fe21f15455d3fb88a04b6d47",
+    "catalog/atlas-methods.json": "c3b279c7ee212ea5310a5053828ab9d055b3dccb32c7f9e64e1c7ffcc1d73e7e",
+    "numerical-methods-atlas/methods/index.json": "d0a249ee6402084fda473b732222b1e690ebae6fad94563b575f74b6ec6bc50a",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "e31773063e009a6d982fb5829a083b766d8012db85aa6cfb38817da9b601d651",
+    "catalog/atlas-depth-expansion.json": "b7280de8fae51ff8f1b81557c7b83b22df6c366e02679e193908210a36f902b8",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

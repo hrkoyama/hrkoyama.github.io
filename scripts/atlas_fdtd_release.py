@@ -1,4 +1,4 @@
-"""Resolve the immutable, independently extracted 2D TMz FDTD supplement."""
+"""Resolve the immutable, independently extracted 2D Yee FDTD supplement."""
 import hashlib
 import json
 import re
@@ -9,6 +9,7 @@ LEGACY_CASES = ['periodic-wave', 'pec-cavity']
 SCATTERING_CASES = ['dielectric-interface', 'pml-pulse']
 CORNER_CASES = ['pml-corners']
 OBLIQUE_CASES = ['dielectric-oblique']
+POLARIZATION_CASES = ['p-polarization']
 
 
 def fdtd_release_record(root, method):
@@ -35,14 +36,17 @@ def fdtd_release_record(root, method):
     assert manifest['family'] == 'fdtd' and manifest['public_base_url'] == ORIGIN + base
     cases = config.get('cases', LEGACY_CASES)
     assert isinstance(cases, list) and len(cases) == len(set(cases))
-    assert set(LEGACY_CASES) <= set(cases) <= set(LEGACY_CASES + SCATTERING_CASES + CORNER_CASES + OBLIQUE_CASES)
+    assert set(LEGACY_CASES) <= set(cases) <= set(LEGACY_CASES + SCATTERING_CASES + CORNER_CASES + OBLIQUE_CASES + POLARIZATION_CASES)
     scattering = [case for case in cases if case in SCATTERING_CASES]
     corners = [case for case in cases if case in CORNER_CASES]
     oblique = [case for case in cases if case in OBLIQUE_CASES]
+    polarization = [case for case in cases if case in POLARIZATION_CASES]
     if corners:
         assert set(SCATTERING_CASES) <= set(cases)
     if oblique:
         assert set(SCATTERING_CASES + CORNER_CASES) <= set(cases)
+    if polarization:
+        assert set(SCATTERING_CASES + CORNER_CASES + OBLIQUE_CASES) <= set(cases)
     required = {'solver.py', 'run.py', 'test_fdtd.py', 'README.md', 'requirements.txt', 'LICENSE'}
     if scattering:
         required.update(['scattering.py', 'run_scattering.py', 'test_scattering.py'])
@@ -50,6 +54,10 @@ def fdtd_release_record(root, method):
         required.update(['corner.py', 'run_corner.py', 'test_corner.py'])
     if oblique:
         required.update(['oblique.py', 'run_oblique.py', 'test_oblique.py'])
+    if polarization:
+        required.update(['polarization.py', 'run_polarization.py', 'test_polarization.py'])
+        required.update('results/p-polarization/' + name + '.csv' for name in
+                        ['spectrum', 'waveforms-propagating', 'waveforms-brewster', 'waveforms-tir'])
     for case in cases:
         required.add('inputs/' + case + '.json')
         required.update('results/' + case + '/' + name for name in
@@ -79,19 +87,23 @@ def fdtd_release_record(root, method):
                for recipe in receipt['recipes'])
     code_names = (['solver.py', 'run.py'] + (['scattering.py', 'run_scattering.py'] if scattering else [])
                   + (['corner.py', 'run_corner.py'] if corners else [])
-                  + (['oblique.py', 'run_oblique.py'] if oblique else []))
+                  + (['oblique.py', 'run_oblique.py'] if oblique else [])
+                  + (['polarization.py', 'run_polarization.py'] if polarization else []))
     test_names = (['test_fdtd.py'] + (['test_scattering.py'] if scattering else [])
                   + (['test_corner.py'] if corners else [])
-                  + (['test_oblique.py'] if oblique else []))
+                  + (['test_oblique.py'] if oblique else [])
+                  + (['test_polarization.py'] if polarization else []))
     return dict(code_base=ORIGIN + base, code_edition=config['edition'],
                 code_urls=[ORIGIN + base + name for name in code_names],
                 test_urls=[ORIGIN + base + name for name in test_names],
                 run_commands=['python -m pytest -q ' + ' '.join(test_names)] +
-                    ['python ' + ('run_oblique.py' if case in OBLIQUE_CASES else
+                    ['python ' + ('run_polarization.py' if case in POLARIZATION_CASES else
+                                  'run_oblique.py' if case in OBLIQUE_CASES else
                                   'run_corner.py' if case in CORNER_CASES else
                                   'run_scattering.py' if case in SCATTERING_CASES else 'run.py')
                      + ' --input inputs/' + case + '.json --output rerun-' + case for case in cases],
-                run_from='Extracted 2D TMz FDTD supplement directory',
+                run_from=('Extracted 2D Yee FDTD (TMz/TEz) supplement directory' if polarization else
+                          'Extracted 2D TMz FDTD supplement directory'),
                 code_download=ORIGIN + base + config['archive'],
                 code_manifest=ORIGIN + base + config['manifest'],
                 code_verification=ORIGIN + base + config['verification'],

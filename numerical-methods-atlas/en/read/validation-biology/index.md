@@ -1,6 +1,6 @@
 # Independent validation of nonlinear reaction–diffusion and pattern formation
 
-Small fixed inputs connect numerical methods, references, errors, refinement and explicit failure conditions.
+Follow a 1D periodic Schnakenberg system from finite-amplitude transients to post-growth patterns. Compare with a separate numerical reference and distinguish grid, time-step and reference errors.
 
 These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.
 

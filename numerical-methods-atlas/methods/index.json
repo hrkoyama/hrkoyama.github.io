@@ -57242,8 +57242,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "2次元TMzの真空・斜めFresnel界面・四辺と角のPMLを固定入力で検証。",
-        "en": "Validate 2D TMz vacuum, oblique Fresnel interfaces and four-side/corner PML with fixed inputs."
+        "ja": "Yee FDTDのTMz/TEz、s/p偏光のFresnel界面、Brewster・全反射とPMLを固定入力で検証。",
+        "en": "Validate Yee TMz/TEz, s/p Fresnel interfaces, Brewster/TIR and PML with fixed inputs."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -57272,29 +57272,29 @@
         {
           "url": "https://arxiv.org/abs/2108.05348v1",
           "label": "Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs)",
-          "scope": "Author notes, selected sections 4.1–4.2 and 7.1–7.3: matching electric and magnetic damping, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation."
+          "scope": "Author notes, selected sections3.4,4.1–4.2 and7.1–7.3: independent x/y coordinate stretches and simultaneous corner damping, matching electric/magnetic rates, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation."
         },
         {
           "url": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/",
           "label": "Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach",
-          "scope": "Author textbook, selected sections 7-6-1 and 7-6-2, printed pages 522–524 (PDF pages 36–38): tangential E/H continuity, normal-incidence field reflection/transmission and impedance weighting of power. A textbook exposition, not an original Fresnel publication."
+          "scope": "Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit."
         }
       ],
       "assumptions": [
-        "Selected lossless nonmagnetic s-polarized dielectric packets with propagating transmission; retained vacuum and PML cases."
+        "Selected lossless nonmagnetic planar-interface single-ky TEz p packets; retained TMz vacuum, s-polarized and PML cases."
       ],
       "units": "Dimensionless normalized length, time and fields.",
-      "boundary_conditions": "Oblique interface: periodic y and distant PEC x caps before main return, no PML. Retained periodic/PEC and x/four-side/corner PML cases.",
+      "boundary_conditions": "New TEz cases: periodic y, distant PEC x caps, no PML; exact single-mode Yee reduction with full-2D equivalence tests. Retained TMz periodic/PEC and x/four-side/corner PML cases.",
       "next_deliverable": {
-        "ja": "p偏光、全反射、損失・分散媒質と3次元を別に検証。",
-        "en": "Separately validate p polarization, total internal reflection, loss/dispersion and 3D."
+        "ja": "損失・分散媒質、多モード界面とエバネッセント場のPMLを別に検証。",
+        "en": "Separately validate loss/dispersion, multimode interfaces and PML for evanescent fields."
       },
       "limitations": {
-        "ja": "2次元TMzの教育用例。真空モード、垂直誘電体界面、左右x方向PML、四辺・角PMLに加え、第4版で指定した無損失非磁性界面へのs偏光斜め波束をFresnel解・反射透過エネルギー・流束収支・格子収束で検証。p偏光・全反射・損失分散・一般媒質・3次元の包括的な実証ではない。",
-        "en": "Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D."
+        "ja": "教育用Yee FDTD。既存TMzの真空・界面・PMLに加え、第5版でTEzのp偏光・Brewster条件・全反射を、指定した単一横モードの波束で検証。一般2次元更新との同値性、連続Fresnel参照、有限窓の反射透過流束・複素振幅・エバネッセント減衰と蓄積、離散保存量・物理収支を区別。一般媒質・多モード・損失分散・3次元の包括的な実証ではない。",
+        "en": "Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D."
       },
       "metadata_review": {
-        "level": "Original educational 2D TMz code with continuum/discrete analytic checks, refinement, energy and independent ZIP rerun.",
+        "level": "Original educational Yee TMz/TEz code: continuum Fresnel checks, exact single-mode/full-2D equivalence, refinement, independent energy/flux budgets and ZIP reruns.",
         "on": "2026-11-22"
       },
       "aliases": [
@@ -57304,9 +57304,9 @@
         "Yee法"
       ],
       "fdtd_release": {
-        "base": "/code/fdtd/2026-11-22-r4/",
-        "edition": "2026-11-22-r4",
-        "archive": "fdtd-2026-11-22-r4.zip",
+        "base": "/code/fdtd/2026-11-22-r5/",
+        "edition": "2026-11-22-r5",
+        "archive": "fdtd-2026-11-22-r5.zip",
         "manifest": "source-manifest.json",
         "verification": "verification.json",
         "cases": [
@@ -57315,57 +57315,63 @@
           "dielectric-interface",
           "pml-pulse",
           "pml-corners",
-          "dielectric-oblique"
+          "dielectric-oblique",
+          "p-polarization"
         ]
       },
       "assumptions_ja": [
-        "指定した無損失・非磁性界面のs偏光波束と伝播する透過波。従来の真空・PML例も保持。"
+        "指定した無損失・非磁性平面界面の単一ky TEz p偏光波束。既存TMzの真空・s偏光・PML例も保持。"
       ],
       "units_ja": "無次元。長さ・時間・場を規格化。",
-      "boundary_conditions_ja": "斜め界面：y周期、主要な戻り波より前の時間窓で遠方PEC x外端、PMLなし。従来の周期/PEC・左右x方向/四辺/角PMLも保持。",
+      "boundary_conditions_ja": "新TEz例：y周期、遠方PEC x外端、PMLなし。単一モードへ厳密縮約し全2次元更新との同値性を検査。既存TMz周期/PEC・左右x/四辺/角PMLも保持。",
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.md",
       "code_urls": [
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/solver.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/run.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/scattering.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/run_scattering.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/corner.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/run_corner.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/oblique.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/run_oblique.py"
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/solver.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/run.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/scattering.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/run_scattering.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/corner.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/run_corner.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/oblique.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/run_oblique.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/polarization.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/run_polarization.py"
       ],
       "test_urls": [
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/test_fdtd.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/test_scattering.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/test_corner.py",
-        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/test_oblique.py"
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/test_fdtd.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/test_scattering.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/test_corner.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/test_oblique.py",
+        "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/test_polarization.py"
       ],
       "run_commands": [
-        "python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py",
+        "python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py",
         "python run.py --input inputs/periodic-wave.json --output rerun-periodic-wave",
         "python run.py --input inputs/pec-cavity.json --output rerun-pec-cavity",
         "python run_scattering.py --input inputs/dielectric-interface.json --output rerun-dielectric-interface",
         "python run_scattering.py --input inputs/pml-pulse.json --output rerun-pml-pulse",
         "python run_corner.py --input inputs/pml-corners.json --output rerun-pml-corners",
-        "python run_oblique.py --input inputs/dielectric-oblique.json --output rerun-dielectric-oblique"
+        "python run_oblique.py --input inputs/dielectric-oblique.json --output rerun-dielectric-oblique",
+        "python run_polarization.py --input inputs/p-polarization.json --output rerun-p-polarization"
       ],
-      "run_from": "Extracted 2D TMz FDTD supplement directory",
-      "code_base": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/",
-      "code_edition": "2026-11-22-r4",
-      "code_download": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/fdtd-2026-11-22-r4.zip",
-      "code_manifest": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/source-manifest.json",
-      "code_verification": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/verification.json",
-      "code_archive_sha256": "d34e3cb1bdf1daef35b008ac1495e4980f86fcb2dc0e8398f0df0e30dd576de1",
-      "results": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/periodic-wave/result.json",
+      "run_from": "Extracted 2D Yee FDTD (TMz/TEz) supplement directory",
+      "code_base": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/",
+      "code_edition": "2026-11-22-r5",
+      "code_download": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/fdtd-2026-11-22-r5.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/verification.json",
+      "code_archive_sha256": "ca3115c64733340e7d2be8cd9204f75b955a0b001b7078530357b548b0f912de",
+      "results": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/periodic-wave/result.json",
       "result_urls": {
-        "periodic-wave": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/periodic-wave/result.json",
-        "pec-cavity": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/pec-cavity/result.json",
-        "dielectric-interface": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/dielectric-interface/result.json",
-        "pml-pulse": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/pml-pulse/result.json",
-        "pml-corners": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/pml-corners/result.json",
-        "dielectric-oblique": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/results/dielectric-oblique/result.json"
+        "periodic-wave": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/periodic-wave/result.json",
+        "pec-cavity": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/pec-cavity/result.json",
+        "dielectric-interface": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/dielectric-interface/result.json",
+        "pml-pulse": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/pml-pulse/result.json",
+        "pml-corners": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/pml-corners/result.json",
+        "dielectric-oblique": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/dielectric-oblique/result.json",
+        "p-polarization": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/results/p-polarization/result.json"
       },
       "cases": [
         "periodic-wave",
@@ -57373,9 +57379,10 @@
         "dielectric-interface",
         "pml-pulse",
         "pml-corners",
-        "dielectric-oblique"
+        "dielectric-oblique",
+        "p-polarization"
       ],
-      "passed_tests": 71,
+      "passed_tests": 85,
       "execution_examples": []
     },
     {

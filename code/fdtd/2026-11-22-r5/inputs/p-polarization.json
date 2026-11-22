@@ -1,0 +1,162 @@
+{
+  "case": "p-polarization",
+  "reference_period": 256.0,
+  "courant": 0.65,
+  "accuracy_time": 2.0,
+  "subcases": [
+    {
+      "id": "propagating",
+      "lengths": [
+        80.0,
+        3.141592653589793
+      ],
+      "center": 36.0,
+      "interface": 48.0,
+      "width": 2.0,
+      "carrier_kx": 3.0,
+      "ky": 2.0,
+      "band": [
+        0.5,
+        5.5
+      ],
+      "band_half_width": 2.5,
+      "epsilon_left": 1.0,
+      "epsilon_right": 4.0,
+      "end_time": 48.0,
+      "monitor_offset": 3.0,
+      "flux_region": [
+        42.0,
+        54.0
+      ],
+      "accuracy_time": 18.0,
+      "meshes": [
+        [
+          1280,
+          64
+        ],
+        [
+          2560,
+          128
+        ],
+        [
+          5120,
+          256
+        ]
+      ]
+    },
+    {
+      "id": "brewster",
+      "lengths": [
+        112.0,
+        3.141592653589793
+      ],
+      "center": 40.0,
+      "interface": 56.0,
+      "width": 4.0,
+      "carrier_kx": 2.0,
+      "ky": 4.0,
+      "band": [
+        0.3,
+        3.7
+      ],
+      "band_half_width": 1.7,
+      "epsilon_left": 1.0,
+      "epsilon_right": 4.0,
+      "end_time": 96.0,
+      "monitor_offset": 2.0,
+      "flux_region": [
+        52.0,
+        60.0
+      ],
+      "accuracy_time": 44.0,
+      "meshes": [
+        [
+          1792,
+          64
+        ],
+        [
+          3584,
+          128
+        ],
+        [
+          7168,
+          256
+        ]
+      ]
+    },
+    {
+      "id": "tir",
+      "lengths": [
+        80.0,
+        3.141592653589793
+      ],
+      "center": 28.0,
+      "interface": 40.0,
+      "width": 1.2,
+      "carrier_kx": 4.0,
+      "ky": 4.0,
+      "band": [
+        1.5,
+        6.5
+      ],
+      "band_half_width": 2.5,
+      "epsilon_left": 4.0,
+      "epsilon_right": 1.0,
+      "end_time": 100.0,
+      "monitor_offset": 0.75,
+      "flux_region": [
+        37.0,
+        43.0
+      ],
+      "accuracy_time": 40.0,
+      "meshes": [
+        [
+          1280,
+          64
+        ],
+        [
+          2560,
+          128
+        ],
+        [
+          5120,
+          256
+        ]
+      ]
+    }
+  ],
+  "acceptance": {
+    "max_field_error": 0.05,
+    "max_early_field_error": 0.03,
+    "min_field_order": 1.7,
+    "max_energy_fraction_error": 0.003,
+    "min_energy_order": 1.5,
+    "max_energy_closure": 0.003,
+    "max_complex_r_error": 0.01,
+    "max_complex_t_error": 0.02,
+    "min_complex_r_order": 1.5,
+    "max_modified_energy_drift": 1e-10,
+    "max_flux_residual": 0.003,
+    "min_flux_order": 1.5,
+    "max_reference_period_error": 1e-05,
+    "max_reference_window_energy_gap": 0.001,
+    "max_reference_dft_error": 0.0003,
+    "max_initial_secondary_norm_fraction": 1e-06,
+    "max_analytic_cap_field": 0.001,
+    "max_brewster_carrier_reflection": 0.005,
+    "max_brewster_packet_reflection": 0.01,
+    "max_tir_transmission": 0.003,
+    "min_tir_peak_stored_energy": 0.001,
+    "max_incident_fluence_error": 0.005,
+    "max_decay_error": 0.02,
+    "max_reference_decay_error": 0.001,
+    "min_decay_order": 1.5,
+    "max_stored_energy_error": 0.03,
+    "max_tir_flux_waveform_error": 0.03
+  },
+  "refinements": [
+    1,
+    2,
+    4
+  ]
+}

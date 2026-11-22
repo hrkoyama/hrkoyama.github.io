@@ -1,6 +1,10 @@
 # Yee finite-difference time-domain method
 
-Yee FDTD: Fresnel interfaces, oblique incidence and PML
+Yee FDTD: s/p polarization, Fresnel interfaces and PML
+
+Revision r5 adds TEz p polarization, the Brewster condition and total internal reflection. Finite-band packet fluxes, complex reflection, evanescent decay, energy budgets and grid refinement are tested. The six earlier TMz inputs and four frozen editions remain available.
+
+[Go to revision-r5 implementation and measurements](#interface-p-polarization)
 
 Revision r4 validates oblique dielectric incidence with finite-band s-polarized packets. Fresnel fields, reflected/transmitted energy, global/local budgets and grid refinement are assessed separately. All three earlier editions and five inputs remain available.
 
@@ -347,7 +351,127 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py
 python run_oblique.py --input inputs/dielectric-oblique.json --output output-obliqueIndependent ZIP extraction reran all tests and all six inputs with identical metrics and CSVs. The old five inputs, numerical sources/tests and three frozen editions are retained. This dedicated FDTD supplement is separate from the common execution registry and other fields’ verification counts.
 
-Scope is the specified lossless/nonmagnetic s-polarized packets with propagating transmission, three grids and finite time. Optical p polarization, Brewster behavior, total internal reflection, loss/dispersion and 3D need separate validation. References are analytic modes and quadrature, not an independent external FDTD solver.
+Revision r4 covers the specified lossless/nonmagnetic s-polarized packets with propagating transmission, three grids and finite time. The p-polarized Brewster and TIR cases are tested separately in r5 below. Loss/dispersion and 3D remain separate tasks. References are analytic modes and quadrature, not an external FDTD solver.
+
+Revision r5: p polarization, Brewster condition and TIR
+
+TEz staggering and optical p polarization
+
+
+$$
+\partial_t H_z=\partial_yE_x-\partial_xE_y,\qquad\epsilon\partial_tE_x=\partial_yH_z,\qquad\epsilon\partial_tE_y=-\partial_xH_z,\quad\mu=1.
+$$
+The new TEz update places Hz at cell centers and integer times, with Ex/Ey on their own edges at half times. H is perpendicular to the xy incidence plane, corresponding to optical p polarization. Here Ex/Ey are physical electric components; the earlier TMz-PML used those names for auxiliary splits of Ez. Tangential interface Ey uses arithmetic permittivity averaging; normal Ex uses its cell’s material value. The interface inverse permittivity 2/(ε₁+ε₂) is the harmonic mean of the two side inverse permittivities. x caps are PEC, y is periodic, and this case uses no PML.
+
+
+$$
+\begin{gathered}\partial_y\longmapsto iK_y,\qquad K_y=\frac{2}{\Delta y}\sin\frac{k_y\Delta y}{2},\\\int_0^{L_y}\Re(Ae^{ik_yy})\Re(Be^{ik_yy})\,dy=\frac{L_y}{2}\Re(AB^*),\\k_yL_y=2\pi m,\qquad 0Fixed runs use an exact reduction to one positive ky mode. The derivative is the Yee symbol iKy, not the continuum iky. Separate tests establish equivalence with the full 2D array update; fixed runs refine both dx and dy. They do not time-step full Nx×Ny arrays in each benchmark.
+
+Magnetic Fresnel amplitudes and the two special angles
+
+
+$$
+\begin{gathered}\omega^2=(k^2+k_y^2)/\epsilon_1,\quad q=\sqrt{\epsilon_2\omega^2-k_y^2},\quad\Re q\ge0,\ \Im q\ge0,\\Y_1=k/\epsilon_1,\quad Y_2=q/\epsilon_2,\quad r_H=\frac{Y_1-Y_2}{Y_1+Y_2},\quad t_H=1+r_H,\\R=|r_H|^2,\qquad T=\frac{\Re Y_2}{Y_1}|t_H|^2,\quad E_x=-\frac{k_y}{\epsilon\omega}H_z,\quad E_y=\frac{k_x}{\epsilon\omega}H_z.\end{gathered}
+$$
+
+$$
+\tan\theta_B=\sqrt{\epsilon_2/\epsilon_1},\quad r_H(\theta_B)=0;\qquad\theta_c=\sin^{-1}\sqrt{\epsilon_2/\epsilon_1}\quad(\epsilon_1>\epsilon_2).
+$$
+The convention is exp[i(kx x+ky y−ωt)]. rH,tH are Hz amplitude coefficients; reflected E uses signed kx=−k and transmitted E uses kx=q. The tangential Ey reflection sign is distinguished from the polarization-basis amplitude convention. TIR takes q=iκ with κ>0, so fields decay to the right.
+
+
+$$
+\begin{gathered}u=(k-k_0)/b,\\A_H(k)=\begin{cases}C\exp\!\left[-\frac{w^2(k-k_0)^2}{2}-\frac{u^8}{1-u^2}\right],&|u|The input supplies a compact positive-k band with the smooth weight above; each mode uses its Fresnel solution. The fixed inputs use C=1; actual quadrature coefficients are saved in spectrum CSVs. This Hz-normalized incident energy has no ε₁ factor, unlike the preceding Ez packet. A carrier at the analytic Brewster angle generally leaves nonzero finite-band R∞. This validates a known Brewster condition, rather than independently locating the zero through an angular search.
+
+Isolating weak returns and finite-window measurements
+
+
+$$
+\begin{gathered}\Phi_X(t)=\frac{L_y}{2}\Re\!\left[E_{y,X}^{\rm centred}(t)H_X(t)^*\right],\\R_{\cal W}=-\frac{\int_{\cal W}\Phi_{\rm ref}\,dt}{\int_{\cal W}\Phi_{\rm inc}\,dt},\qquad T_{\cal W}=\frac{\int_{\cal W}\Phi_{\rm tr}\,dt}{\int_{\cal W}\Phi_{\rm inc}\,dt}.\end{gathered}
+$$
+Interface and homogeneous-medium runs use the same Yee update. Subtracting their H/E at the left monitor isolates the reflected component, avoiding ordinary incident dispersion obscuring a weak Brewster return. Incident/reflected left flux and transmitted right flux are integrated in time. H is spatially averaged to each face and E centered to integer time. Finite-window ratios are recorded separately from their gaps to asymptotic spectral R∞,T∞.
+
+
+$$
+\begin{gathered}\widehat H(\omega_0)=\int_{\cal W}H(t)e^{i\omega_0t}\,dt,\\r_{H,h}^{\rm DFT}=\frac{\widehat H_{\rm ref}}{\widehat H_{\rm inc}}e^{-2ik_hd},\\\kappa_h=-\frac{\log|\widehat H(x_2)/\widehat H(x_1)|}{x_2-x_1}.\end{gathered}
+$$
+
+$$
+\begin{gathered}\Omega_0=\frac{2}{\Delta t}\sin(\omega_0\Delta t/2),\\k_h=\frac{2}{\Delta x}\sin^{-1}\!\left[\frac{\Delta x}{2}\sqrt{\epsilon_1\Omega_0^2-K_y^2}\right].\end{gathered}
+$$
+The left monitor is distance d from the interface. Complex reflection is deembedded with kh from the same discrete dispersion relation; transmission also corrects the face-averaged H factor. TIR κ is measured from temporal Fourier components at two right-side probes. Refinement compares with continuum Fresnel data through the same finite window. Its gaps to ideal carrier coefficients and ideal κ remain visible, separating window error from grid error.
+
+TIR fields, stored energy and net flux
+
+The complete TIR support lies beyond the critical angle: every mode has R=1 and zero normal time-average T. Evanescent fields and transient stored energy still exist on the right. Signed incoming/outgoing transient flux, maximum right-side storage and final storage are recorded separately; right-side stored energy is not called transmittance.
+
+
+$$
+\begin{gathered}U_*^n=\tfrac12\bigl(\|H^n\|_h^2+\langle E^{n-1/2},\epsilon E^{n+1/2}\rangle_h\bigr),\quad U_*^n=U_*^0,\\\bar E^n=(E^{n-1/2}+E^{n+1/2})/2,\quad U_{\rm phys}^n-U_*^n=\tfrac18\|E^{n+1/2}-E^{n-1/2}\|_{\epsilon,h}^2,\\\Delta U_{[x_L,x_R]}+\int(\Phi_{x_R}-\Phi_{x_L})\,dt=0.\end{gathered}
+$$
+Modified discrete energy is distinct from physical energy using centered E. Interior flux is evaluated directly from fields, not reconstructed from energy loss. Splitting interface Ey energy assigns ε₁/2 and ε₂/2 to the two sides, retaining the global averaged coefficient. Field accuracy is assessed at a fixed interaction time; energy and flux continue to a later end time. End-time field error is reported separately.
+
+Fixed inputs and saved measurements
+
+Reference quadrature parameter P=256, Δk=0.0245437, Courant factor 0.65. Field-comparison times and later fluence/energy end times are listed separately; result JSON records the actual saved clocks.
+
+propagating: ε₁=1→ε₂=4, box 80×3.14159, initial center 36, interface 48, (k₀,ky)=(3,2), carrier incidence 33.6901°, k band [0.5, 5.5], w=2, b=2.5. Field time 18, fluence end 48, monitor distance d=3, budget slab [42.0, 54.0], grids 1280×64, 2560×128, 5120×256.
+
+brewster: ε₁=1→ε₂=4, box 112×3.14159, initial center 40, interface 56, (k₀,ky)=(2,4), carrier incidence 63.4349°, k band [0.3, 3.7], w=4, b=1.7. Field time 44, fluence end 96, monitor distance d=2, budget slab [52.0, 60.0], grids 1792×64, 3584×128, 7168×256.
+
+tir: ε₁=4→ε₂=1, box 80×3.14159, initial center 28, interface 40, (k₀,ky)=(4,4), carrier incidence 45°, k band [1.5, 6.5], w=1.2, b=2.5. Field time 40, fluence end 100, monitor distance d=0.75, budget slab [37.0, 43.0], grids 1280×64, 2560×128, 5120×256.
+
+All three grids. Field errors are relative L2; flux ratios use numerical incident fluence from the homogeneous control.CaseGridField clockInteraction field errorEnd-time field errorR_WT_W, signedComplex rH error / window referencepropagating1280×64180.1474550.8705790.06595690.9340430.00909874propagating2560×128180.03683170.2266380.06964630.9303540.00222338propagating5120×256180.009204090.05672690.07055870.9294410.000552736brewster1792×64440.4963441.832030.001378760.9986220.0131163brewster3584×128440.1253730.5825640.001156280.9988440.00318401brewster7168×256440.03132320.1474880.001139560.9988610.000790283tir1280×64400.2421050.5859371-1.22848e-090.0101086tir2560×128400.06073630.1494281-1.22624e-090.00250989tir5120×256400.0151880.03740621-1.22729e-090.00062594Asymptotic spectral values, finite-window continuum data and numerical targets remain distinct.CaseReference R∞Reference T∞Reference window R_WReference window T_WReference DFT→ideal rH gapNumerical DFT→ideal rH errorpropagating0.0708620.9291380.0708620.9291386.9802e-070.00055212brewster0.001137230.9988630.001137230.9988637.30357e-060.000786266tir101-1.23752e-090.000187080.00055515propagating observed orders: field: 2.00125, 2.0006; reflected fluence: 2.01258, 2.00318; transmitted fluence: 2.01258, 2.00318; complex rH / finite window: 2.03291, 2.00809; complex tH / finite window: 2.03288, 2.00808; local flux budget: 1.99738, 1.99935; transient transmitted-flux waveform: 2.03289, 2.00826.
+
+brewster observed orders: field: 1.98512, 2.00092; reflected fluence: 3.66482, 3.03245; transmitted fluence: 3.66482, 3.03245; complex rH / finite window: 2.04244, 2.0104; complex tH / finite window: 2.03468, 2.00847; local flux budget: 2.00677, 2.00163; transient transmitted-flux waveform: 2.05672, 2.01386.
+
+tir observed orders: field: 1.995, 1.99963; reflected fluence: 2.22383, 3.59628; complex rH / finite window: 2.00988, 2.00353; complex tH / finite window: 2.00848, 2.00541; local flux budget: 1.99629, 1.99909; κ / finite window: 2.00522, 2.03305; transient transmitted-flux waveform: 2.00779, 2.00251.
+
+These orders are observations for the selected three grids, packets and windows. Small errors or cancellation do not change the formal order of the update.
+
+Numerical Brewster and TIR evidence
+
+Brewster case: at carrier incidence 63.4349°, finest-grid |rH,DFT|=0.000786266, finite-band reflected-fluence fraction 0.00113956, and spectral Fresnel reference 0.00113723. The monochromatic null and nonzero packet reflection are separate observations.
+
+TIR case: carrier incidence 45°, critical angle 30°, and every input-band angle exceeds 31.6075°. Numerical rH=-0.777569-0.629054i. Right probes are x=40.75 and 41.5. Numerical κ=2.82793, finite-window reference κ=2.82867, ideal monochromatic κ=2.82843.
+
+TIR net-T reference errors: 9.05206e-12, 1.12867e-11, 1.02261e-11; raw apparent orders: -0.318305, 0.142363. No order criterion is imposed on this tiny error floor. The signed transient transmitted-flux waveform has relative L2 errors 0.160827, 0.0399902, 0.0099802 and a separate refinement criterion.
+
+Finest-grid maximum right stored energy / analytic incident energy is 0.0577621 at t=33.6529. The continuum reference at that time is 0.0577265, relative difference 0.000616712; final storage is 6.10545e-09. Right-monitor flux / incident energy ranges from -0.000223958 to 0.000220947, retaining its incoming/outgoing signs.
+
+Finest-grid invariant, physical budget and normalization are distinct checks.CaseModified-energy driftLocal flux residual|R_W+T_W−1|Incident fluence / analytic energy errorpropagating5.55112e-166.40756e-058.52962e-120.000128161brewster6.66134e-167.98332e-053.80685e-070.000195978tir8.88178e-163.93668e-052.07714e-077.96698e-05Maximum relative reference-field change after period doubling at interaction/end times is 7.11693e-12; initial secondary-field squared weighted-norm fraction is at most 7.50501e-08. The analytic cap-Ey audit uses up to 2049 sample times per run, with maximum 0.000266315. These controls concern the specified window, rather than arbitrary long times or all angles.
+
+The initial PEC clipping changes the squared weighted grid-field norm by a fraction at most 5.78842e-13. Initial-field, reference-quadrature and finite-window controls are retained separately in result JSON.
+
+Download and reproduce revision r5
+
+[](/numerical-methods-atlas/assets/fdtd-p-polarization.png)[p-polarization and TIR result JSON](/code/fdtd/2026-11-22-r5/results/p-polarization/result.json) · [spectrum.csv](/code/fdtd/2026-11-22-r5/results/p-polarization/spectrum.csv) · [convergence.csv](/code/fdtd/2026-11-22-r5/results/p-polarization/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22-r5/results/p-polarization/energy.csv)[Revision-r5 ZIP: retained six cases plus p polarization, Brewster and TIR](/code/fdtd/2026-11-22-r5/fdtd-2026-11-22-r5.zip)
+
+[Bilingual setup and execution](/code/fdtd/2026-11-22-r5/README.md)
+
+[polarization.py](/code/fdtd/2026-11-22-r5/polarization.py)
+
+[run_polarization.py](/code/fdtd/2026-11-22-r5/run_polarization.py)
+
+[test_polarization.py](/code/fdtd/2026-11-22-r5/test_polarization.py)
+
+[Fixed input and acceptance criteria](/code/fdtd/2026-11-22-r5/inputs/p-polarization.json)
+
+[SHA-256 manifest](/code/fdtd/2026-11-22-r5/source-manifest.json)
+
+[Unchanged earlier sources / provenance](/code/fdtd/2026-11-22-r5/provenance.json)
+
+[85 tests passed / independent-extraction record](/code/fdtd/2026-11-22-r5/verification.json)
+
+
+
+Full-clock complex monitor CSVs: [propagating](/code/fdtd/2026-11-22-r5/results/p-polarization/waveforms-propagating.csv) · [brewster](/code/fdtd/2026-11-22-r5/results/p-polarization/waveforms-brewster.csv) · [tir](/code/fdtd/2026-11-22-r5/results/p-polarization/waveforms-tir.csv)
+
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py
+python run_polarization.py --input inputs/p-polarization.json --output output-pIndependent ZIP extraction reran all tests and all seven inputs with identical metrics and every CSV. Numerical sources/tests of the old six inputs and four earlier editions are retained. This dedicated FDTD supplement is separate from common execution records and other fields’ verification counts.
+
+Scope is the selected lossless/nonmagnetic planar interfaces, one periodic-y mode, finite bands and windows. Loss/dispersion, anisotropy, arbitrary transverse spectra, 3D and PML absorption of evanescent fields need separate validation.
 
 Original vacuum edition: code and reproduction
 
@@ -384,7 +508,7 @@ python run.py --input inputs/pec-cavity.json --output output-cavityNonempty outp
 
 ## Publication scope
 
-Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D.
+Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D.
 
 ## Sources
 

@@ -1,7 +1,8 @@
-# Yee FDTD: vacuum, Fresnel interfaces and PML / 真空・Fresnel界面・PML
-Revision r4 contains six fixed inputs. The first sections retain the original
-vacuum examples; see the r2, r3 and r4 sections below for each added scope.
-All three earlier frozen editions are preserved.
+# Yee FDTD: TMz/TEz, Fresnel interfaces and PML / TMz・TEz・Fresnel界面・PML
+Revision r5 contains seven fixed inputs, adding TEz p polarization, Brewster
+incidence and total internal reflection. The first sections retain the original
+TMz vacuum examples; see each revision section for its added scope.
+All four earlier frozen editions are preserved.
 
 Original educational **two-dimensional TMz** Maxwell solver. Python 3.12;
 NumPy performs the update, Matplotlib draws saved results, pytest runs tests.
@@ -334,3 +335,92 @@ so lowercase r/t denote amplitudes and uppercase R/T denote energy fractions.
 
 Primary textbook section inspected for r4:
 https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/85a1dfee83863a0bad0dee5c7305ec30_MITRES_6_002S08_chapter7.pdf#page=52
+
+## Revision r5: p polarization, Brewster and TIR / 第5版：p偏光・Brewster角・全反射
+
+The new `polarization.py`, `run_polarization.py` and `test_polarization.py`
+implement TEz (Hz,Ex,Ey). Hz is perpendicular to the xy incidence plane,
+so this convention corresponds to optical **p polarization**. All earlier
+TMz numerical source, tests and six fixed inputs are retained unchanged.
+
+```sh
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py
+python run_polarization.py --input inputs/p-polarization.json --output output-p
+```
+
+The full 2D Yee update places Hz at cell centers and integer times, and Ex/Ey
+on their respective edges at half times. A planar dielectric interface uses
+native material permittivity at normal Ex edges and arithmetic permittivity
+averaging at the interface's tangential Ey edge. The interface inverse
+permittivity is the harmonic mean of the two side inverse permittivities. x caps are PEC; y is periodic.
+
+For the fixed experiments, an exact single-ky Fourier reduction executes the
+same Yee stencil. Its transverse derivative uses Ky=2*sin(ky*dy/2)/dy, not
+the continuum ky. Full 2D comparisons test equivalence, while the fixed runs
+refine both dx and dy. For resolved positive ky, the real field's y integral
+is Ly/2 times the complex-amplitude inner product. This restricted benchmark
+does not exercise arbitrary transverse spectra or a general two-dimensional
+material geometry.
+
+The time convention is exp[i(kx*x+ky*y-omega*t)], with mu=1. For incident k>0:
+
+    omega^2 = (k^2+ky^2)/epsilon1
+    q = sqrt(epsilon2*omega^2-ky^2), Re(q)>=0, Im(q)>=0
+    r_H = (k/epsilon1-q/epsilon2)/(k/epsilon1+q/epsilon2)
+    t_H = 1+r_H
+    R = |r_H|^2
+    T = (epsilon1/epsilon2)*Re(q)/k*|t_H|^2.
+
+These are **Hz amplitude** coefficients. Electric components follow
+Ex=-ky*Hz/(omega*epsilon), Ey=kx*Hz/(omega*epsilon), with signed or complex
+kx for reflected or evanescent fields. This avoids confusing a tangential
+electric-component sign with the chosen p-polarization amplitude convention.
+
+At the monochromatic Brewster angle tan(theta_B)=sqrt(epsilon2/epsilon1),
+r_H=0. A finite-band packet with its carrier at this angle generally has
+nonzero integrated reflection. The source records its actual spectrum and
+compares packet diagnostics with the spectral Fresnel reference separately
+from the carrier's zero.
+
+The TIR input has explicitly compact spectral support wholly beyond the
+critical angle. Every transmitted mode uses q=i*kappa and decays into medium2.
+Its monochromatic normal time-average transmission is zero, although its
+evanescent field and transient stored energy are nonzero. Finite-window right
+energy is not labeled transmittance. Phase, decay and signed transient flux
+are distinct diagnostics; consult the saved input and result for windows and
+reference controls.
+
+The magnetic-packet incident Parseval energy is
+Uinc=pi*Ly*integral |A_H(k)|^2 dk, with **no epsilon1 factor**. The global
+modified energy uses H at an integer time and the epsilon-weighted product
+of adjacent E half times. Centered physical energy and directly evaluated
+Sx=Ey*Hz supply a separate approximate flux balance. No PML is used here.
+
+Numerical reflected fields are isolated with a homogeneous-medium run of the
+same Yee stencil; this removes ordinary incident-wave dispersion from a weak
+Brewster return. Continuum Fresnel fields and fluxes remain a separate
+analytic comparison. Finite-window fluence and Fourier diagnostics include
+controls for temporal truncation, initial tails and outer-cap effects.
+Field accuracy is assessed at a saved time during interface interaction;
+the fluence and energy run continues to a later end time. The end-time field
+error remains a diagnostic. Fourier-amplitude and evanescent-decay refinement
+use the continuum reference evaluated through the same finite window, with
+its difference from the ideal carrier coefficient recorded separately.
+The nearly zero TIR net-transmission error can reach a cancellation/tail floor;
+its raw errors and apparent orders remain recorded. Refinement acceptance for
+TIR instead uses the signed transient transmitted-flux waveform's relative L2
+error, alongside the unchanged net-transmission accuracy check. Propagating
+transmission retains the fluence-fraction refinement check.
+
+第5版はTEz（Hz,Ex,Ey）を追加し、光学のp偏光を扱います。固定例はy周期の
+単一接線波数へ厳密に縮約したYee更新で実行し、一般の2次元更新との一致を別に
+検査します。Brewster角の単色波のゼロと有限帯域波束の残留反射、全反射での
+エバネッセント場・一時的な蓄積エネルギー・正味法線流束を区別します。
+既存のTMzの6入力と4配布版は変更しません。
+
+Scope is the selected lossless, nonmagnetic planar-interface packets and
+single transverse Fourier modes. Loss/dispersion, anisotropic media, arbitrary
+transverse spectra, 3D and evanescent PML absorption need separate validation.
+Zahn Chapter7 sections7-9-3/7-9-4 (printed pp541–544) provide the critical
+angle, evanescent-field interpretation, p-polarized amplitudes and Brewster
+condition. Its time convention is adapted explicitly in the formulas above.
