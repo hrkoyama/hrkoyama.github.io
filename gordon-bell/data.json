@@ -4314,6 +4314,56 @@
         "/Producer": "Acrobat Distiller 5.0.5 (Windows)"
       },
       "inspection_scope": "All PDF pages read through references; complete critical pages visually inspected. File metadata timestamps are not revision or measurement dates."
+    },
+    "sc2004-batch-pap111-manuscript": {
+      "label": "Preserved SC04 candidate manuscript: Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap111.pdf",
+      "sha256": "77e467798a7554650f58e00b59a47a1fad7fae318c83cb93be6bdb81411b9fc2",
+      "source_sha256": "77e467798a7554650f58e00b59a47a1fad7fae318c83cb93be6bdb81411b9fc2",
+      "size_bytes": 973450,
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/Producer": "GNU Ghostscript 7.05"
+      },
+      "inspection_scope": "All15 PDF pages read through references; complete critical pages1,7,8,9,10,11,12,13,14 rendered and visually inspected. Source hash,size and modification time unchanged. The preserved proceedings bytes do not establish an original submission or conference-day update date."
+    },
+    "sc2004-batch-pap275-manuscript": {
+      "label": "Preserved SC04 candidate manuscript: Optimal blade system design of a new concept VTOL vehicle using the Departmental Computing Grid system",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap275.pdf",
+      "sha256": "9f1d9c003a9b5d84eb19db7b7d95735dab223d0624edb8546690a5f3a84dc0f1",
+      "source_sha256": "9f1d9c003a9b5d84eb19db7b7d95735dab223d0624edb8546690a5f3a84dc0f1",
+      "media_type": "application/pdf",
+      "source_revision_date": null,
+      "pdf_creation_metadata": {
+        "/Producer": "ESP Ghostscript 7.07"
+      },
+      "inspection_scope": "All10 PDF pages read through references; complete pages1,3-10 visually inspected, including ordered byline, hardware table, workflow, structural models, elapsed-time histories and conclusion. PDF has no creation/modification date metadata; scientific revision and measurement dates remain unknown."
+    },
+    "sc2004-batch-pap231-manuscript": {
+      "label": "Preserved SC04 candidate manuscript: QCDOC: A 10 Teraflops Computer for Tightly-coupled Calculations",
+      "url": null,
+      "kind": "preserved_conference_manuscript",
+      "checked_on": "2026-11-22",
+      "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap231.pdf",
+      "sha256": "1efe319d53758a4a62277d0adae663e19f76fe6b3f745c2f3911adbce0845920",
+      "source_sha256": "1efe319d53758a4a62277d0adae663e19f76fe6b3f745c2f3911adbce0845920",
+      "media_type": "application/pdf",
+      "source_revision_date": "2004-07-26",
+      "source_revision_date_note": "Printed manuscript date on PDF page 1; it is not a measurement or presentation date and does not authenticate a later conference-day version.",
+      "pdf_creation_metadata": {
+        "/CreationDate": "D:20040728171126-04'00'",
+        "/Creator": "Preview",
+        "/ModDate": "D:20040728171126-04'00'",
+        "/Producer": "Mac OS X 10.3.3 Quartz PDFContext"
+      },
+      "inspection_scope": "All 13 PDF pages read through references. Complete critical pages 1,3,11,12,13 visually inspected. SHA-256, size and modification time checked unchanged before and after review. PDF metadata timestamps are distinguished from the printed July 26 manuscript date."
     }
   },
   "papers": [
@@ -9951,6 +10001,424 @@
       ]
     },
     {
+      "year": 2004,
+      "title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+      "authors": [
+        "Mark F. Adams",
+        "Harun H. Bayraktar",
+        "Tony M. Keaveny",
+        "Panayiotis Papadopoulos"
+      ],
+      "field": "Computational solid mechanics; nonlinear bone micro-finite-element analysis and algebraic multigrid",
+      "summary": "Image-derived finite-element meshes resolve the porous structure of a human vertebral body. An inexact Newton iteration solves finite-deformation elasticity, with conjugate gradients preconditioned by smoothed-aggregation algebraic multigrid. Parallel mesh partitioning, coarse-grid repartitioning and a reduced set of active processors on the coarsest grids support problems up to537 million degrees of freedom. The reported throughput covers the analysis rather than a stand-alone matrix kernel.",
+      "machines": [
+        "ASCI White"
+      ],
+      "machine_configurations": [
+        {
+          "name": "ASCI White",
+          "facility": "Lawrence Livermore National Laboratory",
+          "configuration": "IBM SP Power3;16 processors at375 MHz and16 GB memory per node. The131K-DOF-per-processor study uses14 active processors per node, up to292 nodes/4,088 processors. The164K-DOF study uses15 per node, up to217 nodes/3,255 processors. MPI application Olympus combines Athena/ParMetis, FEAP, Prometheus and PETSc. The largest runs used dedicated machine access.",
+          "location": "PDF pp.5-7 Sections4.2-4.3; p.9 Sections5.3-5.4.1 and Table5.1; p.13 Section5.4.3"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "ASCI White",
+          "value": 0.47,
+          "unit": "Tflop/s",
+          "precision": "Floating-point word length of the reported experiments is not explicitly specified. The machine model and solver tolerance do not establish a uniform IEEE FP64 or FP32 arithmetic format.",
+          "scope": "Sustained aggregate FLOP rate for the entire nonlinear finite-element analysis in the131K-DOF-per-processor scaled study, not just its linear-solve kernel",
+          "scale": "537 million degrees of freedom;135 million trilinear8-node hexahedral elements;30-micrometre mesh;292 nodes x14 active processors =4,088 processors; six displacement-controlled load steps to3% compressive strain",
+          "measurement_method": "Section5.4.1 identifies IBM Power3 hardware performance monitors accessed through hpm_count for global FLOP rates. The paper reports the aggregate sustained rate directly but does not publish the raw total counter numerator, detailed event weighting or exact timer start/end for this global rate. PETSc timing functions using rs6000_time are separately identified for the RAP matrix-setup and solve-phase rates. Section5 includes partitioning, mesh setup, element calculations, matrix setup and solves in its analysis-time breakdown; about2% unmeasured ancillary time is assigned to FEAP. Section5.3 takes the best of repeated smaller cases, but each largest experiment was run once per study under dedicated access.",
+          "page": 11,
+          "location": "PDF p.11 Section5.4.1 and Figure5.4; experiment protocol p.9 Section5.3; largest mesh p.9 Table5.1; total-time scope pp.7,10",
+          "note": "Retain the reported0.47 rate; the separately stated24 Gflop/s per-node theoretical peak and roughly7.5% discussion are not additional achieved observations. The mean linear-solve time in the conclusion has a narrower scope.",
+          "source_id": "sc2004-batch-pap111-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "=",
+          "flops": 470000000000.0
+        },
+        {
+          "machine": "ASCI White",
+          "value": 1.5,
+          "unit": "min/linear solve",
+          "precision": "Floating-point word length is not explicitly specified; inexact-Newton and linear residual tolerances are accuracy controls rather than arithmetic-format declarations.",
+          "scope": "Approximate average time per linear solve reported in the conclusion; not total end-to-end time for all nonlinear load steps",
+          "scale": "Largest reported537-million-DOF unstructured elasticity analysis on4,088 IBM Power3 processors",
+          "measurement_method": "Section6 states an average of about one and a half minutes per linear solve. The exact averaging denominator and a raw total of solver seconds are not supplied with this summary. Section5.4.1 separately identifies PETSc/rs6000_time for solve-phase timing. Do not assign this narrow average to the full six-load-step nonlinear analysis, which also incurs matrix setup, element calculations, partitioning and mesh setup.",
+          "page": 14,
+          "location": "PDF p.14 Section6 first paragraph; solve-phase instrumentation p.11; nonlinear analysis scope pp.7-10",
+          "note": "Approximate source value retained in its native minutes-per-linear-solve unit. The115-million-DOF/7-minute result mentioned next is a cited comparison to another paper and is not another measurement of this work.",
+          "source_id": "sc2004-batch-pap111-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "≈"
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2004-batch-pap111-manuscript"
+        ],
+        "authors": [
+          "sc2004-batch-pap111-manuscript"
+        ],
+        "machines": [
+          "sc2004-batch-pap111-manuscript"
+        ],
+        "abstract": [
+          "sc2004-batch-pap111-manuscript"
+        ],
+        "selection": [
+          "roster-2004-sc04-preserved-pap111",
+          "roster-2004-sc04-preserved-pap234",
+          "roster-2004-sc04-preserved-pap275",
+          "roster-2004-sc04-preserved-pap231"
+        ],
+        "doi": [
+          "roster-2004-sc04-crossref-pap111"
+        ],
+        "award": [
+          "roster-2004-sc16-historical-winners"
+        ]
+      },
+      "notes": [
+        "The first-page byline has four authors in the stated order. The page footer explicitly identifies SC04,November6-12,2004 and IEEE copyright. This identifies the preserved conference-manuscript context, not an authenticated submission revision or conference-day measurement date.",
+        "The physical problem is a finite-deformation neo-Hookean elastic model of a human thoracic vertebral body with endplates removed and uniform displacement boundary conditions. Six mesh resolutions range from150 to30 micrometres; the models are loaded in six steps to3% compression, with Poisson ratio0.3. Smoothed-aggregation AMG with one V-cycle preconditions CG; a second-order Chebyshev smoother and4-5 levels are used. Inexact Newton uses gamma0.9,eta_max1e-2,tau_r1e-6 and at most70 linear iterations per Newton step.",
+        "Scaled studies vary both the mesh and processor count. Domain geometry and stiffness change with resolution, so the resulting problems are not mathematically identical. The paper attributes part of growing total time to harder nonlinear problems, more iterations and changing sparse-matrix density, while distinguishing these effects from FLOP-rate efficiency.",
+        "Section5.4.2 is a separate fixed-size7.4-million-DOF,one-linear-solve speedup experiment on ASCI Frost and White, using15 processors per node over1-128 nodes with relative linear residual tolerance1e-6. It is not the4,088-processor537-million-DOF observation. Its92%,78% and41% solve-phase efficiencies are not whole-application efficiencies.",
+        "The authors explicitly state that a complete ultrascalable workflow remains future work: mesh construction, data processing and visualization are not established as ultrascalable by the solver experiments. Forecast claims about larger future machines are not achieved observations.",
+        "All15 text pages including references were read. Figures and equations on the critical method and results pages were inspected as full-page renderings. SHA-256,size and modification time match before and after inspection; no source PDF was altered. Third-party PDF,text and figures remain private. Arithmetic precision,raw global operation count and exact global timing interval remain unestablished where the manuscript does not specify them."
+      ],
+      "booktitle": "SC04 proceedings",
+      "event_year": 2004,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All15 PDF pages read through references; complete critical pages[1,7,8,9,10,11,12,13,14] visually inspected for byline,method,equations,mesh tables,timing scopes and measured versus prospective claims. Selected source-located observations; no independent numerical reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap111.pdf",
+        "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap111.pdf",
+        "source_url": null,
+        "sha256": "77e467798a7554650f58e00b59a47a1fad7fae318c83cb93be6bdb81411b9fc2",
+        "page_count": 15,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      "id": "sc2004-pap111",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2004.62",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2004-sc04-crossref-pap111",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": {
+        "label": "Award recipient — Special",
+        "category": "Special",
+        "source_id": "roster-2004-sc16-historical-winners"
+      },
+      "award_status": "Official award result checked in existing evidence",
+      "title_aliases": [],
+      "citation_title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+      "citation_authors": [
+        "Mark F. Adams",
+        "Harun H. Bayraktar",
+        "Tony M. Keaveny",
+        "Panayiotis Papadopoulos"
+      ],
+      "citation_year": 2004,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2004,
+      "title": "QCDOC: A 10 Teraflops Computer for Tightly-coupled Calculations",
+      "authors": [
+        "P.A. Boyle",
+        "D. Chen",
+        "N.H. Christ",
+        "M. Clark",
+        "S.D. Cohen",
+        "C. Cristian",
+        "Z. Dong",
+        "A. Gara",
+        "B. Joo",
+        "C. Jung",
+        "C. Kim",
+        "L. Levkova",
+        "X. Liao",
+        "G. Liu",
+        "R.D. Mawhinney",
+        "S. Ohta",
+        "K. Petrov",
+        "T. Wettig",
+        "A. Yamaguchi"
+      ],
+      "field": "Lattice quantum chromodynamics; low-latency custom parallel architecture and Dirac-equation conjugate-gradient solvers",
+      "summary": "QCDOC combines PowerPC-based custom chips, embedded memory and a six-dimensional mesh to keep local stencil work and global reductions efficient as the lattice volume per processor shrinks. The dated manuscript describes hardware, runtime software and working prototypes. Its selected numerical benchmarks are full-double-precision Dirac-equation solves on 128 nodes; the large machines in the title and the quoted large-system price/performance are construction targets and projections.",
+      "machines": [
+        "QCDOC"
+      ],
+      "machine_configurations": [
+        {
+          "name": "QCDOC",
+          "facility": "Columbia University QCDOC development system; the collaboration also includes RBRC/BNL, IBM and UKQCD",
+          "configuration": "The reported detailed benchmarks use 128 custom-ASIC nodes at 450 MHz with buffered DDR SDRAM. Each ASIC has an IBM PowerPC440 processor, 64-bit IEEE floating-point unit capable of one multiply and one add per cycle, 4 MB embedded DRAM and a six-dimensional nearest-neighbor network with hardware global operations. The 1 Gflop/s per-node peak stated for500 MHz is a different clock from the450 MHz benchmark. External DDR memory capacity for the specific128-node benchmark is not separately stated.",
+          "location": "PDF p.3 Section2.1; pp.4-6 network/memory; p.12 Section4"
+        },
+        {
+          "name": "QCDOC 512-node prototype",
+          "facility": "Columbia University development system",
+          "configuration": "A separate512-node system with unbuffered DDR memory had run QCD for days at360 MHz and was being checked at420 MHz. These clock/stability statements do not establish that the detailed128-node efficiency benchmarks were measured on512 nodes.",
+          "location": "PDF pp.11-12 Section4"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "QCDOC",
+          "value": 40,
+          "unit": "% of peak",
+          "precision": "Full double precision (FP64), explicitly stated for all three benchmarks on PDF page12",
+          "scope": "Naive-Wilson-fermion Dirac-equation conjugate-gradient benchmark using a hand-tuned assembly Dirac operator",
+          "scale": "128 nodes at450 MHz with buffered DDR SDRAM; local lattice volume4^4 sites per node",
+          "measurement_method": "The paper reports sustained throughput as a percentage of peak for the128-node benchmark. It does not state the solver operation-count formula, timer API, iteration count, residual criterion, timed-region boundaries, repetition protocol or I/O inclusion. The architecture supports one multiply plus one add per cycle; the nominal1 Gflop/s per-node number elsewhere is at500 MHz, while these benchmarks ran at450 MHz. The native reported efficiency is retained without manufacturing an absolute FLOP/s measurement.",
+          "page": 12,
+          "location": "PDF p.12 Section4, first paragraph; benchmark clock/memory paragraph later on same page",
+          "note": "This is a128-node measured efficiency. It is not an achieved10-Teraflops whole-system rate or the assumed45% used for future4096-node price estimates.",
+          "source_id": "sc2004-batch-pap231-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": "2004-07-26",
+          "measurement_date": null,
+          "measurement_date_note": "Reported as current performance in the July2004 manuscript; exact benchmark date not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "="
+        },
+        {
+          "machine": "QCDOC",
+          "value": 38,
+          "unit": "% of peak",
+          "precision": "Full double precision (FP64), explicitly stated for all three benchmarks on PDF page12",
+          "scope": "ASQTAD-staggered-fermion Dirac-equation conjugate-gradient benchmark using a hand-tuned assembly Dirac operator",
+          "scale": "128 nodes at450 MHz with buffered DDR SDRAM; local lattice volume4^4 sites per node",
+          "measurement_method": "The paper reports sustained throughput as a percentage of peak for the128-node benchmark. It does not state the solver operation-count formula, timer API, iteration count, residual criterion, timed-region boundaries, repetition protocol or I/O inclusion. The architecture supports one multiply plus one add per cycle; the nominal1 Gflop/s per-node number elsewhere is at500 MHz, while these benchmarks ran at450 MHz. The native reported efficiency is retained without manufacturing an absolute FLOP/s measurement.",
+          "page": 12,
+          "location": "PDF p.12 Section4, first paragraph; benchmark clock/memory paragraph later on same page",
+          "note": "This is a128-node measured efficiency. It is not an achieved10-Teraflops whole-system rate or the assumed45% used for future4096-node price estimates.",
+          "source_id": "sc2004-batch-pap231-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": "2004-07-26",
+          "measurement_date": null,
+          "measurement_date_note": "Reported as current performance in the July2004 manuscript; exact benchmark date not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "="
+        },
+        {
+          "machine": "QCDOC",
+          "value": 46.5,
+          "unit": "% of peak",
+          "precision": "Full double precision (FP64), explicitly stated for all three benchmarks on PDF page12",
+          "scope": "Clover-improved-Wilson-fermion Dirac-equation conjugate-gradient benchmark using a hand-tuned assembly Dirac operator",
+          "scale": "128 nodes at450 MHz with buffered DDR SDRAM; local lattice volume4^4 sites per node",
+          "measurement_method": "The paper reports sustained throughput as a percentage of peak for the128-node benchmark. It does not state the solver operation-count formula, timer API, iteration count, residual criterion, timed-region boundaries, repetition protocol or I/O inclusion. The architecture supports one multiply plus one add per cycle; the nominal1 Gflop/s per-node number elsewhere is at500 MHz, while these benchmarks ran at450 MHz. The native reported efficiency is retained without manufacturing an absolute FLOP/s measurement.",
+          "page": 12,
+          "location": "PDF p.12 Section4, first paragraph; benchmark clock/memory paragraph later on same page",
+          "note": "This is a128-node measured efficiency. It is not an achieved10-Teraflops whole-system rate or the assumed45% used for future4096-node price estimates.",
+          "source_id": "sc2004-batch-pap231-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": "2004-07-26",
+          "measurement_date": null,
+          "measurement_date_note": "Reported as current performance in the July2004 manuscript; exact benchmark date not stated",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22",
+          "relation": "="
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2004-batch-pap231-manuscript"
+        ],
+        "authors": [
+          "sc2004-batch-pap231-manuscript"
+        ],
+        "machines": [
+          "sc2004-batch-pap231-manuscript"
+        ],
+        "abstract": [
+          "sc2004-batch-pap231-manuscript"
+        ],
+        "selection": [
+          "roster-2004-sc04-preserved-pap231",
+          "roster-2004-sc04-preserved-pap111",
+          "roster-2004-sc04-preserved-pap234",
+          "roster-2004-sc04-preserved-pap275"
+        ],
+        "doi": [
+          "roster-2004-sc04-crossref-pap231"
+        ],
+        "award": []
+      },
+      "notes": [
+        "The complete first-page byline has19 authors in the recorded order, including C.Kim, S.D.Cohen and C.Cristian in sixth position. It differs from the earlier publisher-deposited18-author list; initials are preserved instead of guessed full names. The printed manuscript date is July26,2004; the PDF metadata creation/modification date is July28 and is not substituted for the printed date.",
+        "Lattice-QCD path-integral sampling repeatedly solves sparse Dirac systems with Krylov methods. QCDOC targets local nearest-neighbor communications and global sums as the local lattice shrinks. Hardware routing can map the native six-dimensional network into lower-dimensional partitions without recabling. Its host manages boot/I/O through Ethernet, while physics communication uses the custom mesh; the lightweight node kernel avoids time-sharing overhead.",
+        "The detailed measured performance paragraph identifies128 nodes and three discretizations, whereas the abstract describes512 nodes running with efficiencies as high as45%. Do not silently transfer the detailed40/38/46.5% observations to512 nodes or replace them by the abstract's rounded statement. The128-node measurements used450 MHz and buffered memory; the later512-node unbuffered system ran reliably at360 MHz and was being checked at420 MHz.",
+        "The title's10-Teraflops scale and the12,288-node machines are plans in this dated version. A1024-node system was in final debugging and4096 nodes were expected to be assembled in August. The abstract refers to two large machines for fall2004; the introduction additionally describes a third DOE-funded machine to follow. These are not completed measured configurations in this source.",
+        "Page12 gives purchased-component machine cost$1,610,442, plus$99,159 prorated design/prototyping for$1,709,601; academic salaries are excluded and the host/Ethernet/disk amount is still awaiting final accounting. Using the future4096-node size and an assumed45% efficiency, the manuscript estimates$1.29,$1.10,$1.03 per sustained MegaFLOP/s at360,420,450 MHz. These are extrapolations, not measured full-system price/performance observations, and the$1 target for12,288 nodes is a forecast.",
+        "The December2003 five-day128-node simulation repeated bit identically is a reliability/correctness account, not the dated performance measurement protocol. Single-precision performance is described only as slightly higher and external-memory performance only as around30% of peak; neither supplies a precise additional result for this receipt.",
+        "The source does not specify solver stopping tolerances or a complete benchmark time/operation-count protocol. It provides a native percentage-of-peak comparison, not enough detail to reproduce an absolute throughput result independently. Existing award evidence and authenticated conference-day updates remain separate.",
+        "Original PDF bytes and modification time were unchanged after rendering and review. The existing copy receipt authenticates this preserved file; a live source URL, original-submission byte identity and conference-day updated version were not authenticated. Original PDF, extracted text and rendered pages remain offline."
+      ],
+      "booktitle": "SC04 proceedings",
+      "event_year": 2004,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": "2004-07-26",
+      "verification": "All13 PDF pages read through references; complete critical pages1,3,11,12,13 rendered and visually inspected for ordered byline, explicit date, hardware/clock, full-double-precision efficiencies, price projections and construction status. Source hash, size and modification time unchanged. Selected source-located observations; no independent benchmark reproduction or final conference score.",
+      "local_fulltext": {
+        "filename": "pap231.pdf",
+        "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap231.pdf",
+        "source_url": null,
+        "sha256": "1efe319d53758a4a62277d0adae663e19f76fe6b3f745c2f3911adbce0845920",
+        "page_count": 13,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          3,
+          11,
+          12,
+          13
+        ]
+      },
+      "id": "sc2004-pap231",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2004.46",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2004-sc04-crossref-pap231",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [
+        {
+          "title": "QCDOC: A 10 Teraflops Computer for Tightly-Coupled Calculations",
+          "source_id": "roster-2004-sc04-preserved-pap231"
+        }
+      ],
+      "citation_title": "QCDOC: A 10 Teraflops Computer for Tightly-Coupled Calculations",
+      "citation_authors": [
+        "P.A. Boyle",
+        "D. Chen",
+        "N.H. Christ",
+        "M. Clark",
+        "S.D. Cohen",
+        "C. Cristian",
+        "Z. Dong",
+        "A. Gara",
+        "B. Joo",
+        "C. Jung",
+        "C. Kim",
+        "L. Levkova",
+        "X. Liao",
+        "G. Liu",
+        "R.D. Mawhinney",
+        "S. Ohta",
+        "K. Petrov",
+        "T. Wettig",
+        "A. Yamaguchi"
+      ],
+      "citation_year": 2004,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": "2004-07-26"
+        }
+      ]
+    },
+    {
       "doi": "10.1109/sc.2004.1",
       "title": "A 15.2 TFlops Simulation of Geodynamo on the Earth Simulator",
       "authors": [
@@ -10073,6 +10541,189 @@
       "reviewed_versions": [
         {
           "evidence_stage": "preserved_conference_manuscript",
+          "source_revision_date": null
+        }
+      ]
+    },
+    {
+      "year": 2004,
+      "title": "Optimal blade system design of a new concept VTOL vehicle using the Departmental Computing Grid system",
+      "authors": [
+        "Jin Woo Park",
+        "Si Hyoung Park",
+        "In Seong Hwang",
+        "Ji Joong Moon",
+        "Youngha Yoon",
+        "Seung Jo Kim"
+      ],
+      "field": "Composite rotor-blade structural optimization; asynchronous genetic algorithm and parallel finite-element simulation on a departmental grid",
+      "summary": "A continuous master-slave genetic algorithm searches composite cyclocopter blade designs using automatic meshing and IPSAP structural analyses. Jobs run across heterogeneous campus clusters through pyGlobus, Globus GRAM and OpenPBS. A preliminary search with coarser meshes supplies starting designs for a finer-mesh optimization. The reported application results are elapsed times and completed design simulations; a separate earlier Linpack benchmark is not a measurement of this optimization workflow.",
+      "machines": [
+        "Departmental Computing Grid (DCG)"
+      ],
+      "machine_configurations": [
+        {
+          "name": "Departmental Computing Grid (DCG)",
+          "facility": "School of Aerospace and Mechanical Engineering, Seoul National University",
+          "configuration": "Shared592-CPU pool comprising hpcgrid1-7 (512 dual-node Xeon CPUs,2.2-3.06GHz, Gigabit Ethernet), ssc1 (64 Pentium III CPUs, Fast Ethernet) and ssc4 (16 Pentium IV CPUs, Gigabit Ethernet). Globus2.4 on master/login nodes, OpenPBS and Linux2.4.26. Each IPSAP finite-element analysis uses8 processors on hpcgrid/ssc4 or16 on ssc1;592 is resource-pool capacity, not the processor count of a single tightly coupled solve.",
+          "location": "PDF p.3 Section3; p.4 Table1; p.7 Section6.3"
+        }
+      ],
+      "measurements": [
+        {
+          "machine": "Departmental Computing Grid (DCG)",
+          "value": 70,
+          "unit": "min/design evaluation",
+          "relation": "≈",
+          "precision": "Arithmetic formats and word lengths of the timed IPSAP analyses are not stated. Mesh degrees of freedom do not establish FP32 or FP64 arithmetic.",
+          "scope": "Elapsed time for one fine-mesh design-fitness evaluation on an hpcgrid system, including mesh generation, static analysis, vibration analysis and post-processing",
+          "scale": "About1million degrees of freedom per blade model;8 processors per hpcgrid finite-element analysis; one design case rather than the whole592-CPU grid",
+          "measurement_method": "Section6.3 reports approximately25min for static analysis and35min for vibration analysis, then approximately70min for the complete fitness evaluation including mesh generation and post-processing. This is a reported elapsed duration, with no operation-count numerator or FLOP/s denominator. Timer API, repetitions, resource-contention conditions and exact inclusion of submission/queue/transfer delays are not specified.",
+          "page": 7,
+          "location": "PDF p.7 Section6.3, Finite element analysis; complete job sequence p.8 Section7",
+          "note": "The8-processor hpcgrid case is separate from the16-processor ssc1 configuration. Approximate component timings and total are kept as reported; no serial-equivalent speedup, FLOP/s, or reciprocal throughput is synthesized.",
+          "source_id": "sc2004-batch-pap275-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22"
+        },
+        {
+          "machine": "Departmental Computing Grid (DCG)",
+          "value": 60,
+          "unit": "h",
+          "relation": "≈",
+          "precision": "Arithmetic formats and word lengths of the timed IPSAP analyses are not stated; no uniform FP32 or FP64 classification is inferred.",
+          "scope": "Total elapsed time of two consecutive high-fidelity genetic-optimization runs, with checkpoint continuation from the first run to the second",
+          "scale": "Fine blade meshes of up to1million degrees of freedom and about20 design variables; shared592-CPU departmental resource pool; individual analyses use8 or16 processors",
+          "measurement_method": "Section7.2 states that the high-fidelity optimization phase was performed twice with a combined elapsed time of about60h. Figure13 plots fitness versus elapsed hours and marks the continued run; Figure14 counts successful simulations per resource across both runs. A timer API and complete accounting of queue, checkpoint and interruption intervals are not given. The paper supplies no application operation-count numerator, measured FLOP/s, or price/performance denominator.",
+          "page": 8,
+          "location": "PDF p.8 Section7.2; p.9 Figures13-14 and associated text",
+          "note": "This duration excludes the separately described preliminary0.4million-DOF search and is not a single60h finite-element solve. Resource capacity does not establish exclusive occupation or592 processors simultaneously busy; the initial-search discussion explicitly notes shared cluster use.",
+          "source_id": "sc2004-batch-pap275-manuscript",
+          "evidence_stage": "preserved_proceedings_manuscript",
+          "source_revision_date": null,
+          "measurement_date": null,
+          "measurement_date_note": "Exact measurement date not established for this observation",
+          "presentation_date": null,
+          "conference_update_status": "No separate conference-day update authenticated in this batch",
+          "final_score_status": "Not established",
+          "checked_on": "2026-11-22"
+        }
+      ],
+      "provenance": {
+        "title": [
+          "sc2004-batch-pap275-manuscript"
+        ],
+        "authors": [
+          "sc2004-batch-pap275-manuscript"
+        ],
+        "machines": [
+          "sc2004-batch-pap275-manuscript"
+        ],
+        "abstract": [
+          "sc2004-batch-pap275-manuscript"
+        ],
+        "selection": [
+          "roster-2004-sc04-preserved-pap275",
+          "roster-2004-sc04-preserved-pap111",
+          "roster-2004-sc04-preserved-pap234",
+          "roster-2004-sc04-preserved-pap231"
+        ],
+        "doi": [
+          "roster-2004-sc04-crossref-pap275"
+        ],
+        "award": []
+      },
+      "notes": [
+        "The structural model uses manually abstracted blade geometry and regenerated meshes. Static response, stresses and natural frequencies enter the optimization. Deflection and eigenfrequency constraints use hard penalties; the stated stress/failure constraints are treated as soft constraints. The lower-fidelity search uses about0.4million degrees of freedom; the final phase uses up to1million.",
+        "The continuous master-slave algorithm removes the generation-evaluation barrier and updates the population after a chosen number of completed evaluations. The scheduler prioritizes later jobs in an already-started design sequence. Figures11-14 show fitness histories and per-resource successful-simulation counts, not a homogeneous-machine strong-scaling benchmark; bar heights were not digitized into exact counts.",
+        "The1.01Tflop/s value on p.3 is an earlier400-CPU HPL result for Pegasus, associated with the June2003 Top500 listing. It is neither the application throughput of the592-CPU optimization nor a new measured result for this paper. No application FLOP/s or cost/performance quotient is established in the preserved manuscript.",
+        "The observed high-fidelity design reduces the stated peak Von Mises stress by almost a factor of5 relative to an illustrated bad design while satisfying the stated displacement and vibration constraints. This does not prove a global optimum or independent experimental validation. Adding local gradient search and more multiphysics detail are future work, not completed capabilities.",
+        "These local bytes are authenticated by the existing read-only-copy receipt. No live full-text URL or independently dated conference-day update was authenticated in this audit. The original PDF, extracted text and rendered pages remain private."
+      ],
+      "booktitle": "SC04 proceedings",
+      "event_year": 2004,
+      "evidence_stage": "preserved_proceedings_manuscript",
+      "source_revision_date": null,
+      "verification": "All10 PDF pages read through references; complete pages1,3,4,5,6,7,8,9,10 rendered and visually inspected for byline, grid hardware, solver/optimization workflow, timings and graph scope. Selected representative timing observations; no independent reproduction or final conference-score certification.",
+      "local_fulltext": {
+        "filename": "pap275.pdf",
+        "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap275.pdf",
+        "source_url": null,
+        "sha256": "9f1d9c003a9b5d84eb19db7b7d95735dab223d0624edb8546690a5f3a84dc0f1",
+        "page_count": 10,
+        "media_type": "application/pdf"
+      },
+      "visual_review": {
+        "all_text_pages_read": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete_critical_pages_inspected": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "id": "sc2004-pap275",
+      "award_series": "ACM Gordon Bell Prize",
+      "selection": "Candidate",
+      "doi": "10.1109/sc.2004.35",
+      "summary_kind": "Editorial summary; not the original abstract",
+      "content_status": "Selected manuscript fields checked",
+      "conference_update_status": "Not established from manuscript evidence",
+      "final_score_status": "Not established from manuscript evidence",
+      "doi_verification": {
+        "status": "verified",
+        "source_id": "roster-2004-sc04-crossref-pap275",
+        "checked_on": "2026-11-22",
+        "detail": "Existing publisher DOI identity retained; preserved manuscript bytes and date are checked separately."
+      },
+      "award": null,
+      "award_status": "Individual award result not established in this record",
+      "title_aliases": [
+        {
+          "title": "Optimal Blade System Design of a New Concept VTOL Vehicle using the Departmental Computing Grid System",
+          "source_id": "roster-2004-sc04-preserved-pap275"
+        },
+        {
+          "title": "Optimal Blade System Design of a New Concept VTOL Vehicle Uusing the Departmental Computing Grid System",
+          "source_id": "roster-2004-sc04-crossref-pap275"
+        }
+      ],
+      "citation_title": "Optimal Blade System Design of a New Concept VTOL Vehicle Uusing the Departmental Computing Grid System",
+      "citation_authors": [
+        "Jin Woo Park",
+        "Si Hyoung Park",
+        "In Seong Hwang",
+        "Ji Joong Moon",
+        "Youngha Yoon",
+        "Seung Jo Kim"
+      ],
+      "citation_year": 2004,
+      "citation_type": "inproceedings",
+      "reviewed_versions": [
+        {
+          "evidence_stage": "preserved_proceedings_manuscript",
           "source_revision_date": null
         }
       ]
@@ -13791,9 +14442,9 @@
     },
     {
       "id": "year-batch-manuscripts",
-      "state": "2002 indexed cohort checked",
-      "title": "Complete-year manuscript review started with the remaining five SC02 candidates",
-      "detail": "All six indexed SC02 candidates now have a complete preserved version reviewed. Precision, analytical/counter operation counts and short-loop/end-to-end times remain distinct. Existing Salinas and all prior observations are unchanged."
+      "state": "2002, 2004 indexed cohorts checked",
+      "title": "Available manuscript candidates reviewed in complete year batches",
+      "detail": "All indexed candidates in 2002, 2004 have selected fields checked against complete preserved versions. Precision, operation counts, timing scope and measured versus projected results remain distinct. Earlier manuscript evidence and final conference scores remain separate."
     }
   ],
   "coverage": {
@@ -13877,7 +14528,7 @@
       2025,
       2026
     ],
-    "detailed_paper_count": 49
+    "detailed_paper_count": 52
   },
   "inventory_report": {
     "volume": "SC08_Proceedings",
@@ -15845,7 +16496,7 @@
     {
       "year": 2002,
       "local_candidate_count": 6,
-      "status": "All six indexed candidate manuscripts have selected fields checked against complete preserved versions; final conference scores remain unestablished.",
+      "status": "All 6 indexed candidate manuscripts have selected fields checked against complete preserved versions; final conference scores remain unestablished.",
       "candidate_count": 6,
       "verified_doi_count": 6,
       "sc_links": {
@@ -15877,7 +16528,7 @@
     {
       "year": 2004,
       "local_candidate_count": 4,
-      "status": "Annual source indexed; 4 DOI matches verified. Manuscript review is tracked separately.",
+      "status": "All 4 indexed candidate manuscripts have selected fields checked against complete preserved versions; final conference scores remain unestablished.",
       "candidate_count": 4,
       "verified_doi_count": 4,
       "sc_links": {
@@ -15887,7 +16538,7 @@
         "website_url": "https://sc04.supercomputing.org/",
         "year": 2004
       },
-      "detailed_paper_count": 1,
+      "detailed_paper_count": 4,
       "annual_review_year": 2004
     },
     {
@@ -24480,6 +25131,59 @@
           "local_reference": "歴史一次資料/GRAPE_Special_20261122/SC16_official_historical_winners.html",
           "source_sha256": "5ac2c7ed1b80710d8f10d0ec6f911c0a416c5d510db469eee875ba996f588ae4",
           "published_on": "2016-08-25"
+        },
+        {
+          "id": "sc2004-batch-pap111-manuscript",
+          "label": "Preserved SC04 candidate manuscript: Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap111.pdf",
+          "sha256": "77e467798a7554650f58e00b59a47a1fad7fae318c83cb93be6bdb81411b9fc2",
+          "source_sha256": "77e467798a7554650f58e00b59a47a1fad7fae318c83cb93be6bdb81411b9fc2",
+          "size_bytes": 973450,
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/Producer": "GNU Ghostscript 7.05"
+          },
+          "inspection_scope": "All15 PDF pages read through references; complete critical pages1,7,8,9,10,11,12,13,14 rendered and visually inspected. Source hash,size and modification time unchanged. The preserved proceedings bytes do not establish an original submission or conference-day update date."
+        },
+        {
+          "id": "sc2004-batch-pap275-manuscript",
+          "label": "Preserved SC04 candidate manuscript: Optimal blade system design of a new concept VTOL vehicle using the Departmental Computing Grid system",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap275.pdf",
+          "sha256": "9f1d9c003a9b5d84eb19db7b7d95735dab223d0624edb8546690a5f3a84dc0f1",
+          "source_sha256": "9f1d9c003a9b5d84eb19db7b7d95735dab223d0624edb8546690a5f3a84dc0f1",
+          "media_type": "application/pdf",
+          "source_revision_date": null,
+          "pdf_creation_metadata": {
+            "/Producer": "ESP Ghostscript 7.07"
+          },
+          "inspection_scope": "All10 PDF pages read through references; complete pages1,3-10 visually inspected, including ordered byline, hardware table, workflow, structural models, elapsed-time histories and conclusion. PDF has no creation/modification date metadata; scientific revision and measurement dates remain unknown."
+        },
+        {
+          "id": "sc2004-batch-pap231-manuscript",
+          "label": "Preserved SC04 candidate manuscript: QCDOC: A 10 Teraflops Computer for Tightly-coupled Calculations",
+          "url": null,
+          "kind": "preserved_conference_manuscript",
+          "checked_on": "2026-11-22",
+          "local_reference": "Gordon_Bell資料/2004/original/schedule/pdfs/pap231.pdf",
+          "sha256": "1efe319d53758a4a62277d0adae663e19f76fe6b3f745c2f3911adbce0845920",
+          "source_sha256": "1efe319d53758a4a62277d0adae663e19f76fe6b3f745c2f3911adbce0845920",
+          "media_type": "application/pdf",
+          "source_revision_date": "2004-07-26",
+          "source_revision_date_note": "Printed manuscript date on PDF page 1; it is not a measurement or presentation date and does not authenticate a later conference-day version.",
+          "pdf_creation_metadata": {
+            "/CreationDate": "D:20040728171126-04'00'",
+            "/Creator": "Preview",
+            "/ModDate": "D:20040728171126-04'00'",
+            "/Producer": "Mac OS X 10.3.3 Quartz PDFContext"
+          },
+          "inspection_scope": "All 13 PDF pages read through references. Complete critical pages 1,3,11,12,13 visually inspected. SHA-256, size and modification time checked unchanged before and after review. PDF metadata timestamps are distinguished from the printed July 26 manuscript date."
         }
       ],
       "roster_completeness": {
@@ -24504,12 +25208,12 @@
           "doi_source_id": "sc04-crossref-pap111",
           "publisher_title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
           "authors": [
-            "M.F. Adams",
-            "H.H. Bayraktar",
-            "T.M. Keaveny",
-            "P. Papadopoulos"
+            "Mark F. Adams",
+            "Harun H. Bayraktar",
+            "Tony M. Keaveny",
+            "Panayiotis Papadopoulos"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1392964/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
@@ -24539,6 +25243,58 @@
               }
             ],
             "checked_on": "2026-11-22"
+          },
+          "detailed_paper_id": "sc2004-pap111",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+            "title_kind": null,
+            "title_source_id": "sc04-preserved-pap111",
+            "publisher_title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+            "authors": [
+              "M.F. Adams",
+              "H.H. Bayraktar",
+              "T.M. Keaveny",
+              "P. Papadopoulos"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2004-batch-pap111-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc04-crossref-pap111",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+              "authors": [
+                "M.F. Adams",
+                "H.H. Bayraktar",
+                "T.M. Keaveny",
+                "P. Papadopoulos"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2004-batch-pap111-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "Ultrascalable Implicit Finite Element Analyses in Solid Mechanics with over a Half a Billion Degrees of Freedom",
+              "authors": [
+                "Mark F. Adams",
+                "Harun H. Bayraktar",
+                "Tony M. Keaveny",
+                "Panayiotis Papadopoulos"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2004-batch-pap111-manuscript"
+            ]
           }
         },
         {
@@ -24582,14 +25338,72 @@
             "Youngha Yoon",
             "Seung Jo Kim"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1392966/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline.",
             "Publisher title spelling/capitalization differs from the preserved selection title; both forms are retained.",
             "The publisher-deposited title spells Uusing; the preserved index spells using. This source difference is retained."
-          ]
+          ],
+          "detailed_paper_id": "sc2004-pap275",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "Optimal Blade System Design of a New Concept VTOL Vehicle using the Departmental Computing Grid System",
+            "title_kind": null,
+            "title_source_id": "sc04-preserved-pap275",
+            "publisher_title": "Optimal Blade System Design of a New Concept VTOL Vehicle Uusing the Departmental Computing Grid System",
+            "authors": [
+              "Jin Woo Park",
+              "Si Hyoung Park",
+              "In Seong Hwang",
+              "Ji Joong Moon",
+              "Youngha Yoon",
+              "Seung Jo Kim"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2004-batch-pap275-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc04-crossref-pap275",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "Optimal Blade System Design of a New Concept VTOL Vehicle Uusing the Departmental Computing Grid System",
+              "authors": [
+                "Jin Woo Park",
+                "Si Hyoung Park",
+                "In Seong Hwang",
+                "Ji Joong Moon",
+                "Youngha Yoon",
+                "Seung Jo Kim"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2004-batch-pap275-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "Optimal blade system design of a new concept VTOL vehicle using the Departmental Computing Grid system",
+              "authors": [
+                "Jin Woo Park",
+                "Si Hyoung Park",
+                "In Seong Hwang",
+                "Ji Joong Moon",
+                "Youngha Yoon",
+                "Seung Jo Kim"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2004-batch-pap275-manuscript"
+            ]
+          }
         },
         {
           "id": "sc2004-pap231",
@@ -24604,27 +25418,123 @@
             "D. Chen",
             "N.H. Christ",
             "M. Clark",
-            "S. Cohen",
-            "Zhihua Dong",
+            "S.D. Cohen",
+            "C. Cristian",
+            "Z. Dong",
             "A. Gara",
-            "Balint Joo",
-            "Chulwoo Jung",
+            "B. Joo",
+            "C. Jung",
+            "C. Kim",
             "L. Levkova",
-            "Xiaodong Liao",
-            "Guofeng Liu",
+            "X. Liao",
+            "G. Liu",
             "R.D. Mawhinney",
             "S. Ohta",
             "K. Petrov",
             "T. Wettig",
-            "A. Yamaguchi",
-            "C. Cristian"
+            "A. Yamaguchi"
           ],
-          "authors_status": "registry_order_not_pdf_audited",
+          "authors_status": "ordered_byline_checked_complete_preserved_manuscript",
           "publication_url": "http://ieeexplore.ieee.org/document/1392970/",
           "notes": [
             "Candidate membership and selection title come from the preserved official conference index; the original source is retained offline and has not been re-fetched from a live website. Bibliography only; no new manuscript-performance or award-outcome audit.",
             "DOI, registered title and SC proceedings venue matched in the successful Crossref response; the individual work endpoint is not claimed to have been fetched. Author names retain registry order, not a newly audited PDF byline."
-          ]
+          ],
+          "detailed_paper_id": "sc2004-pap231",
+          "content_status": "Selected manuscript fields checked",
+          "bibliography_before_year_batch": {
+            "title": "QCDOC: A 10 Teraflops Computer for Tightly-Coupled Calculations",
+            "title_kind": null,
+            "title_source_id": "sc04-preserved-pap231",
+            "publisher_title": "QCDOC: A 10 Teraflops Computer for Tightly-Coupled Calculations",
+            "authors": [
+              "P.A. Boyle",
+              "D. Chen",
+              "N.H. Christ",
+              "M. Clark",
+              "S. Cohen",
+              "Zhihua Dong",
+              "A. Gara",
+              "Balint Joo",
+              "Chulwoo Jung",
+              "L. Levkova",
+              "Xiaodong Liao",
+              "Guofeng Liu",
+              "R.D. Mawhinney",
+              "S. Ohta",
+              "K. Petrov",
+              "T. Wettig",
+              "A. Yamaguchi",
+              "C. Cristian"
+            ],
+            "authors_status": "registry_order_not_pdf_audited",
+            "authors_source_id": null
+          },
+          "authors_source_id": "sc2004-batch-pap231-manuscript",
+          "bibliographic_versions": [
+            {
+              "source_id": "sc04-crossref-pap231",
+              "version_label": "Earlier publisher-deposited byline",
+              "title": "QCDOC: A 10 Teraflops Computer for Tightly-Coupled Calculations",
+              "authors": [
+                "P.A. Boyle",
+                "D. Chen",
+                "N.H. Christ",
+                "M. Clark",
+                "S. Cohen",
+                "Zhihua Dong",
+                "A. Gara",
+                "Balint Joo",
+                "Chulwoo Jung",
+                "L. Levkova",
+                "Xiaodong Liao",
+                "Guofeng Liu",
+                "R.D. Mawhinney",
+                "S. Ohta",
+                "K. Petrov",
+                "T. Wettig",
+                "A. Yamaguchi",
+                "C. Cristian"
+              ],
+              "authors_status": "registry_order_not_pdf_audited"
+            },
+            {
+              "source_id": "sc2004-batch-pap231-manuscript",
+              "version_label": "Checked preserved manuscript first page",
+              "title": "QCDOC: A 10 Teraflops Computer for Tightly-coupled Calculations",
+              "authors": [
+                "P.A. Boyle",
+                "D. Chen",
+                "N.H. Christ",
+                "M. Clark",
+                "S.D. Cohen",
+                "C. Cristian",
+                "Z. Dong",
+                "A. Gara",
+                "B. Joo",
+                "C. Jung",
+                "C. Kim",
+                "L. Levkova",
+                "X. Liao",
+                "G. Liu",
+                "R.D. Mawhinney",
+                "S. Ohta",
+                "K. Petrov",
+                "T. Wettig",
+                "A. Yamaguchi"
+              ]
+            }
+          ],
+          "bibliography_review": {
+            "checked_on": "2026-11-22",
+            "status": "complete_preserved_manuscript_byline_checked",
+            "note": "Ordered full manuscript byline checked; earlier registry names and selection/publication titles retained in the version history.",
+            "byline_scope": "PDF page 1",
+            "performance_audit": "Selected source-located observations in Manuscript details",
+            "source_ids": [
+              "sc2004-batch-pap231-manuscript"
+            ]
+          }
         }
       ],
       "notes": [
@@ -24639,13 +25549,23 @@
         "website_url": "https://sc04.supercomputing.org/",
         "year": 2004
       },
-      "detailed_paper_count": 1,
+      "detailed_paper_count": 4,
       "historical_review": {
         "checked_on": "2026-11-22",
         "reviewed_record_ids": [
           "sc2004-pap111"
         ],
         "note": "Dated award and bibliography review; roster membership and full performance audits remain separate."
+      },
+      "manuscript_batch_review": {
+        "checked_on": "2026-11-22",
+        "added_record_ids": [
+          "sc2004-pap111",
+          "sc2004-pap275",
+          "sc2004-pap231"
+        ],
+        "indexed_manuscripts_checked": 4,
+        "note": "The three pending SC04 candidates were reviewed together from complete preserved versions. All four indexed candidate manuscripts now have selected fields checked. Scope is the preserved official index, not a newly independently recovered roster. Native timing/efficiency units, large-system forecasts, printed manuscript dates and earlier registry bylines remain distinct."
       }
     },
     {
@@ -31436,8 +32356,8 @@
     "summary": {
       "indexed_years": 39,
       "manuscript_years": 36,
-      "manuscript_papers": 49,
-      "manuscript_observations": 134,
+      "manuscript_papers": 52,
+      "manuscript_observations": 141,
       "awaiting_first_manuscript_years": [
         1987,
         1989,
@@ -32650,11 +33570,14 @@
         "year": 2004,
         "inventory_reviewed_on": "2026-11-22",
         "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
-        "manuscript_audits": 1,
+        "manuscript_audits": 4,
         "manuscript_ids": [
-          "sc2004-pap234"
+          "sc2004-pap234",
+          "sc2004-pap111",
+          "sc2004-pap275",
+          "sc2004-pap231"
         ],
-        "performance_observations": 1,
+        "performance_observations": 8,
         "offline_candidate_bodies": 4,
         "conference_final_score_status": "Not established",
         "sc_links": {
@@ -32671,10 +33594,11 @@
         "verified_dois": 4,
         "unresolved_dois": 0,
         "byline_status_counts": {
-          "registry_order_not_pdf_audited": 4
+          "ordered_byline_checked_complete_preserved_manuscript": 3,
+          "registry_order_not_pdf_audited": 1
         },
         "publication_byline_gaps": 0,
-        "manuscript_byline_checked_entries": 1,
+        "manuscript_byline_checked_entries": 4,
         "participants_only_entries": 0,
         "first_page_only_checks": 0,
         "award_supported_entries": 1,
@@ -32689,11 +33613,61 @@
           "roster-2004-sc04-preserved-pap111",
           "roster-2004-sc04-preserved-pap234",
           "roster-2004-sc04-preserved-pap275",
-          "roster-2004-sc04-preserved-pap231"
+          "roster-2004-sc04-preserved-pap231",
+          "sc2004-batch-pap111-manuscript",
+          "sc2004-batch-pap275-manuscript",
+          "sc2004-batch-pap231-manuscript"
         ],
-        "queue_status": "first_manuscript_checked",
-        "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
-        "batch_next_action": "Review the remaining 3 indexed candidates as a year batch; reuse preserved sources and recover unavailable originals separately."
+        "queue_status": "indexed_year_manuscript_batch_checked",
+        "next_action": "All four indexed SC04 manuscripts have selected fields checked. Recover authenticated conference-day updates and compare publication/submission versions separately; QCDOC large-system throughput and price/performance in this July version are projections.",
+        "before_year_batch": {
+          "year": 2004,
+          "inventory_reviewed_on": "2026-11-22",
+          "primary_evidence_policy": "Existing dated source checks reused; not a fresh retrieval of every source",
+          "manuscript_audits": 1,
+          "manuscript_ids": [
+            "sc2004-pap234"
+          ],
+          "performance_observations": 1,
+          "offline_candidate_bodies": 4,
+          "conference_final_score_status": "Not established",
+          "sc_links": {
+            "history_pdf_url": "https://supercomputing.org/app/uploads/2023/10/SC2004.pdf",
+            "label": "SC04",
+            "proceedings_url": "https://dl.acm.org/doi/proceedings/10.5555/1048933",
+            "website_url": "https://sc04.supercomputing.org/",
+            "year": 2004
+          },
+          "roster_status": "complete_against_preserved_official_index",
+          "indexed_entries": 4,
+          "expected_entries": 4,
+          "membership_label": "candidates",
+          "verified_dois": 4,
+          "unresolved_dois": 0,
+          "byline_status_counts": {
+            "registry_order_not_pdf_audited": 4
+          },
+          "publication_byline_gaps": 0,
+          "manuscript_byline_checked_entries": 1,
+          "participants_only_entries": 0,
+          "first_page_only_checks": 0,
+          "award_supported_entries": 1,
+          "award_conflicts": 0,
+          "other_entrant_entries": 0,
+          "award_unestablished_entries": 3,
+          "evidence_checked_on": [
+            "2026-11-12",
+            "2026-11-22"
+          ],
+          "source_ids": [
+            "roster-2004-sc04-preserved-pap111",
+            "roster-2004-sc04-preserved-pap234",
+            "roster-2004-sc04-preserved-pap275",
+            "roster-2004-sc04-preserved-pap231"
+          ],
+          "queue_status": "first_manuscript_checked",
+          "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved."
+        }
       },
       {
         "year": 2005,
@@ -34011,6 +34985,21 @@
           "new_manuscript_pages": 82,
           "next_action": "2002 has a complete first manuscript review for all six indexed candidates. Compare exact published/submitted versions and separately authenticated presentation-day updates when available; proceed to the remaining three 2004 candidates as the next year batch.",
           "evidence_file": "batch_2002_manuscripts_20261122.json"
+        },
+        {
+          "year": 2004,
+          "checked_on": "2026-11-22",
+          "added_record_ids": [
+            "sc2004-pap111",
+            "sc2004-pap275",
+            "sc2004-pap231"
+          ],
+          "new_manuscripts": 3,
+          "indexed_manuscripts_checked": 4,
+          "new_observations": 7,
+          "new_manuscript_pages": 38,
+          "next_action": "All four indexed SC04 manuscripts have selected fields checked. Recover authenticated conference-day updates and compare publication/submission versions separately; QCDOC large-system throughput and price/performance in this July version are projections.",
+          "evidence_file": "batch_2004_manuscripts_20261122.json"
         }
       ],
       "note": "Pending candidates are grouped by year for shared acquisition, extraction and publication; scientific scope and version evidence remain individual records."

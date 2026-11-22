@@ -45,6 +45,7 @@ function citationVersionNote(p) {
   if(!p.citation_type) return '';
   if(p.citation_type==='techreport') return `<p class="notice">Reviewed technical report: ${esc(p.report_number)} · ${esc(p.institution)} · ${esc(p.citation_year)}. Competition index year: ${p.year}. The earlier original submission is a distinct version.</p>`;
   if(p.citation_type==='article') return `<p class="notice">Reviewed journal article: ${esc(p.journal)} · ${esc(p.citation_year)}. Competition index year: ${p.year}. This DOI identifies the later article; the original submitted file remains unrecovered.</p>`;
+  if(p.evidence_stage==='preserved_proceedings_manuscript') return '<p class="notice">Reviewed preserved conference manuscript. Its file identity and version-specific values are recorded separately from original submissions and conference-day updates.</p>';
   return '<p class="notice">Reviewed author-hosted conference manuscript. Its byline and values remain separate from the updated committee submission and exact proceedings bytes.</p>';
 }
 function doiAvailability(p) {
@@ -201,7 +202,7 @@ function rosterCSV() {
 
 async function init() {
   try {
-    const response = await fetch('data.json?v=year-batch-2002-20261122'); if (!response.ok) throw new Error('Data request failed'); db = await response.json();
+    const response = await fetch('data.json?v=year-batch-2004-20261122'); if (!response.ok) throw new Error('Data request failed'); db = await response.json();
     $('catalogue-gaps').textContent='Years with no identified entry: '+(db.catalogue_summary.uncovered_years.join(', ')||'none')+'. Partial lists (further entries or total unconfirmed): '+db.catalogue_summary.partial_years.join(', ')+'. Historical year-label transition: '+db.catalogue_summary.context_years.map(y=>y+' → '+db.year_contexts.find(c=>c.year===y).target_year).join(', ')+'. Indexed years do not imply complete annual rosters.'; $('stat-papers').textContent=db.papers.length; $('stat-roster-years').textContent=db.catalogue_summary.years; $('stat-candidates').textContent=db.catalogue_summary.records; $('stat-dois').textContent=db.catalogue_summary.verified_dois; $('detail-scope').textContent=`${db.papers.length} selected papers · ${db.papers.reduce((n,p)=>n+p.measurements.length,0)} performance observations · ${new Set(db.papers.map(p=>p.year)).size} conference years`;
     fillSelect('paper-year',db.papers.map(p=>String(p.year))); fillSelect('field',db.papers.map(p=>p.field)); fillSelect('machine',db.papers.flatMap(p=>p.machines));
     for (const id of ['paper-year','result','field','machine']) $(id).addEventListener('change',render);
