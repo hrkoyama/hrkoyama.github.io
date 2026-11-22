@@ -15,4 +15,5 @@
 .atlas-resource-main .reviewed-methods summary{min-height:32px;font-weight:650;cursor:pointer}
 .atlas-resource-main .reviewed-links{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;font-size:15px}
 .atlas-resource-main .method-curated{display:block;color:#386552;font-size:14px}
+.atlas-resource-main #csvr-comparison .math-display{max-width:100%;overflow-x:auto;padding:8px 0}
 @media(max-width:700px){.atlas-resource-main .method-decision,.atlas-resource-main .reviewed-links{grid-template-columns:1fr;gap:0}.atlas-resource-main .reviewed-methods{padding:14px 16px}.atlas-resource-main .method-review dl{grid-template-columns:1fr}}

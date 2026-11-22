@@ -7,7 +7,8 @@ import {execFileSync} from 'node:child_process';
 const root = new URL('../', import.meta.url);
 const originalEdition = '2026-11-22';
 const secondEdition = '2026-11-22-r2';
-const edition = '2026-11-22-r3';
+const thirdEdition = '2026-11-22-r3';
+const edition = '2026-11-22-r4';
 const base = `code/fdtd/${edition}/`;
 const originalBase = `code/fdtd/${originalEdition}/`;
 const bytes = name => readFileSync(new URL(base+name, root));
@@ -19,8 +20,10 @@ const receipt = json('verification.json');
 const legacyCases = ['periodic-wave', 'pec-cavity'];
 const scatteringCases = ['dielectric-interface', 'pml-pulse'];
 const cornerCases = ['pml-corners'];
-const retainedCases = [...legacyCases, ...scatteringCases];
-const cases = [...retainedCases, ...cornerCases];
+const obliqueCases = ['dielectric-oblique'];
+const secondCases = [...legacyCases, ...scatteringCases];
+const retainedCases = [...secondCases, ...cornerCases];
+const cases = [...retainedCases, ...obliqueCases];
 
 function checkEdition(version) {
   const prefix = `code/fdtd/${version}/`;
@@ -44,10 +47,12 @@ function checkEdition(version) {
   return {get, metadata, verification};
 }
 
-test('both previous FDTD editions remain byte-identical and all three ZIP payloads match their manifests', () => {
+test('all three previous FDTD editions remain byte-identical and all four ZIP payloads match their manifests', () => {
   const original = checkEdition(originalEdition);
   const second = checkEdition(secondEdition);
+  const third = checkEdition(thirdEdition);
   checkEdition(edition);
+  assert.equal(third.verification.archive.sha256, '367fa305bc35f89c85217cecb5f6c383c86ae8a6b14b8a1b040889b75d690199');
   assert.equal(second.verification.archive.sha256, '50f8dad211f0b5fa54c538c9f272ec2509bc8740063f6b4e4c3ec907d8f7adcc');
   assert.equal(original.verification.archive.sha256, '482404475f935e8df487580ed48b8f98ada580fd61a79dd705fef9d5cf620d4d');
   for (const name of ['solver.py','run.py','test_fdtd.py', ...legacyCases.map(name=>`inputs/${name}.json`)]) {
@@ -55,7 +60,7 @@ test('both previous FDTD editions remain byte-identical and all three ZIP payloa
   }
   const output = execFileSync('python3', ['-B', '-c', `
 import hashlib,json,pathlib,stat,zipfile
-for edition in ['${originalEdition}','${secondEdition}','${edition}']:
+for edition in ['${originalEdition}','${secondEdition}','${thirdEdition}','${edition}']:
  base=pathlib.Path('code/fdtd')/edition
  m=json.loads((base/'source-manifest.json').read_bytes())
  prefix='fdtd-'+edition+'/'
@@ -67,13 +72,13 @@ for edition in ['${originalEdition}','${secondEdition}','${edition}']:
   assert z.read(prefix+'source-manifest.json')==(base/'source-manifest.json').read_bytes()
   for name,expected in m['files'].items():
    assert hashlib.sha256(z.read(prefix+name)).hexdigest()==expected,name
-print('verified all three exact FDTD archive payloads')
+print('verified all four exact FDTD archive payloads')
 `], {cwd: root, encoding: 'utf8'});
-  assert.match(output, /verified all three exact FDTD archive payloads/);
+  assert.match(output, /verified all four exact FDTD archive payloads/);
 });
 
-test('the new dedicated edition independently reran all five inputs and binds its code to measured results', () => {
-  assert.ok(receipt.passed_tests > 43);
+test('the new dedicated edition independently reran all six inputs and binds its code to measured results', () => {
+  assert.ok(receipt.passed_tests > 57);
   assert.deepEqual(receipt.recipes.map(row=>row.id).sort(), cases.slice().sort());
   for (const recipe of receipt.recipes) {
     assert.equal(recipe.passed, true);
@@ -81,7 +86,8 @@ test('the new dedicated edition independently reran all five inputs and binds it
     assert.equal(recipe.csv_identical, true);
     assert.equal(recipe.input_sha256, hash(bytes(`inputs/${recipe.id}.json`)));
   }
-  for (const name of ['scattering.py','run_scattering.py','test_scattering.py','corner.py','run_corner.py','test_corner.py']) assert.ok(manifest.files[name]);
+  for (const name of ['scattering.py','run_scattering.py','test_scattering.py','corner.py','run_corner.py','test_corner.py',
+    'oblique.py','run_oblique.py','test_oblique.py']) assert.ok(manifest.files[name]);
   for (const name of cases) {
     const result = json(`results/${name}/result.json`);
     assert.equal(result.case, name);
@@ -95,10 +101,22 @@ test('the new dedicated edition independently reran all five inputs and binds it
   }
 });
 
-test('r3 retains all r2 numerical source, fixed inputs and saved measurement values', () => {
+test('the current edition retains all r2 numerical source, fixed inputs and saved measurement values', () => {
   const previous = name => readFileSync(new URL(`code/fdtd/${secondEdition}/${name}`, root));
   for (const name of ['solver.py','run.py','test_fdtd.py','scattering.py','run_scattering.py','test_scattering.py',
-      ...retainedCases.map(name=>`inputs/${name}.json`)]) assert.deepEqual(bytes(name), previous(name), name);
+      ...secondCases.map(name=>`inputs/${name}.json`)]) assert.deepEqual(bytes(name), previous(name), name);
+  for (const name of secondCases) {
+    const before=JSON.parse(previous(`results/${name}/result.json`));
+    assert.deepEqual(json(`results/${name}/result.json`).metrics,before.metrics,name+' retains measured values');
+  }
+});
+
+test('r4 retains all five r3 numerical cases, sources, tests and fixed inputs', () => {
+  const previous = name => readFileSync(new URL(`code/fdtd/${thirdEdition}/${name}`, root));
+  for (const name of ['solver.py','run.py','test_fdtd.py','scattering.py','run_scattering.py','test_scattering.py',
+      'corner.py','run_corner.py','test_corner.py',...retainedCases.map(name=>`inputs/${name}.json`)]) {
+    assert.deepEqual(bytes(name), previous(name), name);
+  }
   for (const name of retainedCases) {
     const before=JSON.parse(previous(`results/${name}/result.json`));
     assert.deepEqual(json(`results/${name}/result.json`).metrics,before.metrics,name+' retains measured values');
@@ -310,13 +328,159 @@ test('saved corner return waveforms reproduce the reported Cauchy differences on
   }
 });
 
+test('oblique-interface packets use s-polarized spectral Fresnel energies and distinct carrier coefficients', () => {
+  const input=json('inputs/dielectric-oblique.json');
+  const result=json('results/dielectric-oblique/result.json');
+  const a=input.acceptance,rows=result.metrics.meshes;
+  const close=(actual,expected,label)=>assert.ok(Number.isFinite(actual)&&Math.abs(actual-expected)<=1e-11*Math.max(1,Math.abs(expected)),label);
+  assert.ok(input.transverse_wave_numbers.includes(0)&&input.transverse_wave_numbers.some(ky=>ky>0));
+  assert.ok(input.epsilon_right>input.epsilon_left);
+  assert.match(result.polarization,/optical s\/TE/);
+  assert.match(result.amplitude_scope,/expected gain 1/);
+  assert.match(result.amplitude_scope,/not a measured monochromatic carrier/);
+  assert.match(result.reference_scope,/underlying continuous spectrum/);
+  assert.match(result.reference_scope,/No independent external solver or PML comparison/);
+  assert.match(result.initial_secondary_scope,/staggered initial clocks/);
+  assert.match(result.initial_secondary_scope,/distinct from same-time physical energy/);
+  for(const check of ['field_accuracy','field_refinement','reflected_field_refinement','transmitted_field_refinement',
+    'spectral_template_amplitudes','fresnel_energy_fractions','reflected_energy_refinement','transmitted_energy_refinement',
+    'energy_fraction_closure','modified_energy','independent_flux_balance','flux_refinement','reference_period_control',
+    'finite_window_reference','reference_initial_energy_norm','initial_secondary_fields','distant_pec_caps'])assert.equal(result.checks[check],true,check);
+  assert.equal(rows.length,input.transverse_wave_numbers.length*input.meshes.length);
+  assert.deepEqual(result.metrics.series.map(row=>row.ky),input.transverse_wave_numbers);
+  assert.ok(manifest.files['results/dielectric-oblique/spectrum.csv']);
+  const lines=bytes('results/dielectric-oblique/spectrum.csv').toString().trim().split(/\r?\n/);
+  assert.deepEqual(lines.shift().split(','),['ky','kx','amplitude','energy_weight','omega','kx_transmitted','r_s','t_s','R_s','T_s','dkx2_dkx']);
+  const modes=new Map(input.transverse_wave_numbers.map(ky=>[ky,[]]));
+  const dk=2*Math.PI/input.reference_period;
+  for(const line of lines){
+    const values=line.split(',').map(Number);
+    assert.equal(values.length,11);
+    assert.ok(values.every(Number.isFinite));
+    const [ky,k,amplitude,weight,omega,q,r,t,R,T,qprime]=values;
+    assert.ok(modes.has(ky)&&k>0&&amplitude>0&&weight>0);
+    close(omega**2,(k*k+ky*ky)/input.epsilon_left,'Incident dispersion');
+    close(q*q+ky*ky,input.epsilon_right*omega**2,'Transmitted dispersion and conserved tangential wave number');
+    close(r,(k-q)/(k+q),'Signed electric reflection coefficient');
+    close(t,2*k/(k+q),'Electric transmission coefficient');
+    close(1+r,t,'Tangential electric-field continuity');
+    close(k*(1-r),q*t,'Tangential magnetic-field continuity');
+    close(R,r*r,'Reflectance differs from signed amplitude');
+    close(T,q/k*t*t,'Normal Poynting-flux factor');
+    close(R+T,1,'Lossless modal energy closure');
+    close(qprime,input.epsilon_right/input.epsilon_left*k/q,'Refraction packet Jacobian');
+    close(input.epsilon_right/(input.epsilon_left*qprime)*t*t,T,'Spatial transmitted-packet energy includes the Jacobian');
+    const expected=input.width/Math.sqrt(2*Math.PI)*Math.exp(-.5*(input.width*(k-input.carrier_kx))**2)*dk;
+    assert.ok(Math.abs(amplitude-expected)<=1e-11*expected,'Fixed input determines every spectral amplitude');
+    assert.ok(Math.abs(weight-amplitude*amplitude)<=1e-11*weight,'Parseval weights are squared modal amplitudes');
+    modes.get(ky).push({k,weight,R,T});
+  }
+  for(const ky of input.transverse_wave_numbers){
+    const spectrum=modes.get(ky),values=rows.filter(row=>row.ky===ky);
+    assert.equal(spectrum.length,Math.round(input.spectral_cutoff/dk));
+    spectrum.forEach((mode,i)=>close(mode.k,(i+1)*dk,'Positive-k quadrature grid'));
+    const weight=spectrum.reduce((sum,z)=>sum+z.weight,0);
+    const R=spectrum.reduce((sum,z)=>sum+z.weight*z.R,0)/weight;
+    const T=spectrum.reduce((sum,z)=>sum+z.weight*z.T,0)/weight;
+    const incident=.5*input.epsilon_left*input.lengths[1]*input.reference_period*weight;
+    const k=input.carrier_kx,omega=Math.sqrt((k*k+ky*ky)/input.epsilon_left);
+    const q=Math.sqrt(input.epsilon_right*omega**2-ky*ky),r=(k-q)/(k+q),t=2*k/(k+q);
+    const theta1=Math.atan2(ky,k),theta2=Math.atan2(ky,q);
+    assert.deepEqual(values.map(row=>[row.nx,row.ny]),input.meshes);
+    for(const row of values){
+      for(const [key,expected] of Object.entries({analytic_R:R,analytic_T:T,analytic_incident_energy:incident,
+        carrier_r:r,carrier_t:t,carrier_R:r*r,carrier_T:q/k*t*t,
+        incident_angle_degrees:theta1*180/Math.PI,transmitted_angle_degrees:theta2*180/Math.PI}))close(row[key],expected,key);
+      close(Math.sqrt(input.epsilon_left)*Math.sin(row.incident_angle_degrees*Math.PI/180),
+        Math.sqrt(input.epsilon_right)*Math.sin(row.transmitted_angle_degrees*Math.PI/180),'Carrier Snell law');
+      if(ky>0)assert.ok(row.incident_angle_degrees>row.transmitted_angle_degrees&&row.transmitted_angle_degrees>0);
+      close(row.dx,input.lengths[0]/row.nx,'dx');close(row.dy,input.lengths[1]/row.ny,'dy');
+      close(row.dt*row.steps,input.end_time,'Common physical end time');
+      assert.ok(row.dt*Math.hypot(1/row.dx,1/row.dy)/Math.sqrt(input.epsilon_left)<1,'Strict multidimensional CFL');
+      close(row.spectrum_dk,dk,'Spectral spacing');
+      close(row.spectrum_kmax,spectrum.at(-1).k,'Actual rounded spectral cutoff');
+      close(row.reference_period,input.reference_period,'Reference period');
+      close(row.reflection_gain_error,Math.abs(row.reflected_template_gain-1),'Broadband reflection-template gain');
+      close(row.transmission_gain_error,Math.abs(row.transmitted_template_gain-1),'Broadband transmission-template gain');
+      close(row.reflected_energy_error,Math.abs(row.reflected_energy_fraction-R),'Reflected packet energy error');
+      close(row.transmitted_energy_error,Math.abs(row.transmitted_energy_fraction-T),'Transmitted packet energy error');
+      close(row.energy_fraction_closure,Math.abs(row.reflected_energy_fraction+row.transmitted_energy_fraction-1),'Measured R + T closure');
+      assert.ok(row.modified_energy_max_relative_drift<=a.max_modified_energy_drift);
+      assert.ok(row.reference_period_doubling_relative_l2<=a.max_reference_period_error);
+      assert.ok(row.reference_window_energy_error<=a.max_reference_window_error);
+      assert.ok(Math.abs(row.reference_initial_energy_ratio-1)<=a.max_reference_window_error);
+      assert.ok(row.initial_secondary_field_energy_fraction<=a.max_initial_secondary_energy_fraction);
+      assert.ok(row.initial_pec_clipping_field_norm_fraction<=a.max_initial_secondary_energy_fraction);
+      assert.ok(Number.isFinite(row.reference_final_interface_electric_max)&&row.reference_final_interface_electric_max>=0);
+      assert.ok(row.analytic_cap_electric_max<=a.max_analytic_cap_field);
+    }
+    const finest=values.at(-1),series=result.metrics.series.find(s=>s.ky===ky);
+    assert.ok(finest.field_relative_l2<=a.max_field_error);
+    assert.ok(Math.max(finest.reflection_gain_error,finest.transmission_gain_error)<=a.max_template_gain_error);
+    assert.ok(Math.max(finest.reflected_energy_error,finest.transmitted_energy_error)<=a.max_energy_fraction_error);
+    assert.ok(finest.energy_fraction_closure<=a.max_energy_closure);
+    assert.ok(finest.physical_flux_budget_max_relative_residual<=a.max_flux_residual);
+    assert.ok(series.reference_energy_period_doubling_error<=a.max_reference_period_error);
+    for(const name of ['field_orders','reflection_field_orders','transmission_field_orders'])assert.ok(series[name].every(p=>p>=a.min_field_order));
+    for(const name of ['reflection_energy_orders','transmission_energy_orders'])assert.ok(series[name].every(p=>p>=a.min_energy_order));
+    assert.ok(series.flux_orders.every(p=>p>=a.min_flux_order));
+  }
+});
+
+test('saved oblique energy histories and convergence CSV independently reproduce the reported budgets and orders', () => {
+  const input=json('inputs/dielectric-oblique.json');
+  const result=json('results/dielectric-oblique/result.json');
+  const close=(actual,expected,label)=>assert.ok(Number.isFinite(actual)&&Math.abs(actual-expected)<=1e-11*Math.max(1,Math.abs(expected)),label);
+  function csv(name){
+    const lines=bytes(`results/dielectric-oblique/${name}.csv`).toString().trim().split(/\r?\n/),header=lines.shift().split(',');
+    return lines.map(line=>{
+      const values=line.split(',').map(Number);assert.equal(values.length,header.length);assert.ok(values.every(Number.isFinite));
+      return Object.fromEntries(header.map((key,i)=>[key,values[i]]));
+    });
+  }
+  const convergence=csv('convergence'),history=csv('energy');
+  assert.equal(convergence.length,result.metrics.meshes.length);
+  for(const row of result.metrics.meshes){
+    const saved=convergence.find(z=>z.nx===row.nx&&z.ny===row.ny&&z.ky===row.ky);assert.ok(saved);
+    for(const [key,value] of Object.entries(row))close(saved[key],value,'Saved convergence '+key);
+    const trace=history.filter(z=>z.nx===row.nx&&z.ny===row.ny&&z.ky===row.ky);
+    assert.equal(trace.length,row.steps+1);assert.equal(trace[0].time,0);close(trace.at(-1).time,input.end_time,'Energy end time');
+    close(trace[0].physical_energy/row.analytic_incident_energy,row.initial_physical_energy_ratio,'Initial numerical physical energy normalization');
+    close(trace[0].interface_region_energy,row.flux_region_initial_energy,'Initial interface-region energy');
+    const u0=trace[0].modified_energy,region0=trace[0].interface_region_energy;
+    let drift=0,residual=0;
+    for(let n=0;n<trace.length;n++){
+      const z=trace[n];close(z.time,n*row.dt,'Saved energy clock');
+      drift=Math.max(drift,Math.abs(z.modified_energy/u0-1));
+      residual=Math.max(residual,Math.abs(z.interface_region_energy-region0+z.flux_right_integral-z.flux_left_integral)/row.analytic_incident_energy);
+    }
+    close(drift,row.modified_energy_max_relative_drift,'Independently recomputed global modified-energy drift');
+    close(residual,row.physical_flux_budget_max_relative_residual,'Independently recomputed local Poynting-flux balance');
+    const final=trace.at(-1);
+    close(final.interface_region_energy,row.flux_region_final_energy,'Final local energy');
+    close(final.flux_left_integral,row.flux_left_integral,'Left face integrated flux');
+    close(final.flux_right_integral,row.flux_right_integral,'Right face integrated flux');
+  }
+  const orderFields={field_orders:'field_relative_l2',reflection_field_orders:'reflected_field_relative_l2',
+    transmission_field_orders:'transmitted_field_relative_l2',reflection_energy_orders:'reflected_energy_error',
+    transmission_energy_orders:'transmitted_energy_error',closure_orders:'energy_fraction_closure',
+    flux_orders:'physical_flux_budget_max_relative_residual'};
+  for(const series of result.metrics.series){
+    const values=input.meshes.map(([nx,ny])=>convergence.find(z=>z.nx===nx&&z.ny===ny&&z.ky===series.ky));
+    for(const [name,field] of Object.entries(orderFields)){
+      assert.equal(series[name].length,2);
+      for(let n=0;n<2;n++)close(Math.log2(values[n][field]/values[n+1][field]),series[name][n],'Recomputed '+name);
+    }
+  }
+});
+
 test('FDTD method and bilingual reading expose the new supplement and retain the original release', () => {
   const record = JSON.parse(readFileSync(new URL('numerical-methods-atlas/methods/fdtd/index.json', root)));
   assert.equal(record.status, 'educational-example');
   assert.equal(record.code_base, manifest.public_base_url);
   assert.equal(record.code_download, manifest.public_base_url+receipt.archive.file);
-  assert.deepEqual(record.code_urls, ['solver.py', 'run.py','scattering.py','run_scattering.py','corner.py','run_corner.py'].map(name => manifest.public_base_url+name));
-  assert.deepEqual(record.test_urls, ['test_fdtd.py','test_scattering.py','test_corner.py'].map(name=>manifest.public_base_url+name));
+  assert.deepEqual(record.code_urls, ['solver.py', 'run.py','scattering.py','run_scattering.py','corner.py','run_corner.py','oblique.py','run_oblique.py'].map(name => manifest.public_base_url+name));
+  assert.deepEqual(record.test_urls, ['test_fdtd.py','test_scattering.py','test_corner.py','test_oblique.py'].map(name=>manifest.public_base_url+name));
   assert.deepEqual(record.execution_examples, [], 'Supplement has its own extraction receipt; common registry remains separately verified');
   assert.deepEqual(Object.keys(record.result_urls).sort(), cases.slice().sort());
   for (const extension of ['html', 'md']) {
@@ -327,11 +491,14 @@ test('FDTD method and bilingual reading expose the new supplement and retain the
   for (const language of ['ja', 'en']) {
     const doc = JSON.parse(readFileSync(new URL(`numerical-methods-atlas/${language}/read/fdtd/index.json`, root)));
     assert.equal(doc.implementation_status.fdtd, 'educational-example');
-    for (const name of cornerCases) assert.ok(doc.html.includes(base+`results/${name}/result.json`));
+    for (const name of cornerCases) assert.ok(doc.html.includes(`code/fdtd/${thirdEdition}/results/${name}/result.json`));
+    for (const name of obliqueCases) assert.ok(doc.html.includes(base+`results/${name}/result.json`));
     for (const name of scatteringCases) assert.ok(doc.html.includes(`code/fdtd/${secondEdition}/results/${name}/result.json`));
     assert.ok(doc.html.includes(originalBase+`fdtd-${originalEdition}.zip`));
     assert.ok(doc.html.includes(`code/fdtd/${secondEdition}/fdtd-${secondEdition}.zip`));
+    assert.ok(doc.html.includes(`code/fdtd/${thirdEdition}/fdtd-${thirdEdition}.zip`));
     assert.ok(doc.html.includes('id="pml-corners"'));
+    assert.ok(doc.html.includes('id="interface-oblique"'));
     assert.ok(doc.html.includes(base+`fdtd-${edition}.zip`));
     for (const name of cases) {
       assert.deepEqual(readFileSync(new URL(`numerical-methods-atlas/assets/fdtd-${name}.png`,root)), bytes(`results/${name}/summary.png`));

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22-r4",
+  "verified_on": "2026-11-22",
+  "archive": {
+    "file": "fdtd-2026-11-22-r4.zip",
+    "sha256": "d34e3cb1bdf1daef35b008ac1495e4980f86fcb2dc0e8398f0df0e30dd576de1",
+    "bytes": 9684514,
+    "archive_directory": "fdtd-2026-11-22-r4"
+  },
+  "archive_sha256": "d34e3cb1bdf1daef35b008ac1495e4980f86fcb2dc0e8398f0df0e30dd576de1",
+  "source_manifest_sha256": "68faa58a31bad6e882fa0264c357c7e1c3622374496a986352356c1146e509b9",
+  "returncode": 0,
+  "tests": 71,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed_tests": 71,
+  "passed": 71,
+  "recipes": [
+    {
+      "id": "periodic-wave",
+      "passed": true,
+      "input_sha256": "85c31f5864016207329343e7c70e03ff357c9ab9a418b5d03b99e1968812c2dd",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pec-cavity",
+      "passed": true,
+      "input_sha256": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "dielectric-interface",
+      "passed": true,
+      "input_sha256": "7574b21ac1082124984542181fd88285471446f94c6812e9ef689e9784bd2a98",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pml-pulse",
+      "passed": true,
+      "input_sha256": "7622733d2020444d56b0b31cad1eacf4df9575ac23c1292120d5903a1b26c11b",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pml-corners",
+      "passed": true,
+      "input_sha256": "f6dc833a31fd90c4816314381760b12e387f9d481bd03c37c4f7fbf47a23b440",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "dielectric-oblique",
+      "passed": true,
+      "input_sha256": "d90a070dee775585d0d5fde801161eb5bbc24875600c53a0f848d6b50691f144",
+      "metrics_identical": true,
+      "csv_identical": true
+    }
+  ],
+  "environment": {
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; all tests and all six fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.",
+  "reference": "Continuum vacuum modes, Fresnel interface solution, analytic/spectral packet references and independently evaluated discrete energy/work/flux identities. See corner and oblique inputs for their reference scopes. No independent external FDTD solver comparison claimed."
+}

@@ -352,7 +352,8 @@ for x in METHODS:
             body+='<ul>'+''.join('<li>'+link(url,url.removeprefix(base))+'</li>' for url in record['code_urls']+record['test_urls'])+'</ul>'
             case_labels={'periodic-wave':('周期平面波','Periodic plane wave'),'pec-cavity':('完全導体空洞','PEC cavity'),
                          'dielectric-interface':('媒質界面の反射・透過','Dielectric reflection and transmission'),'pml-pulse':('PMLの反射とエネルギー収支','PML reflection and energy balance'),
-                         'pml-corners':('四辺・角PMLの反射とエネルギー収支','Four-side and corner PML reflection and energy balance')}
+                         'pml-corners':('四辺・角PMLの反射とエネルギー収支','Four-side and corner PML reflection and energy balance'),
+                         'dielectric-oblique':('媒質界面への斜め入射・Fresnel比較','Oblique dielectric-interface incidence / Fresnel comparison')}
             body+='<ul>'+''.join('<li>'+link(url,case_labels[case][0 if ja else 1]+' / JSON')+'</li>' for case,url in record['result_urls'].items())+'</ul>'
             body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link('/rights/','本文・図・データの利用条件' if ja else 'Terms for prose, figures and data')+'</p>'
@@ -427,7 +428,7 @@ for x in METHODS:
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('fdtd_release'):
-        md+='2D TMz Yee FDTD supplement: retained vacuum periodic/PEC modes, normal-incidence dielectric Fresnel scattering and matched PML cases. The reading distinguishes the x-directed strip and four-side/corner configurations actually included in the current edition. Analytic fields, reflection errors, grid refinement and independent energy/work/flux budgets are checked separately.\n\n'
+        md+='2D TMz Yee FDTD supplement: vacuum periodic/PEC modes, lossless dielectric Fresnel scattering and matched PML cases. The reading distinguishes normal/oblique interface incidence, s-polarization, x-directed strip and four-side/corner configurations actually included in the current edition. Analytic fields, reflection/transmission energies, grid refinement and independent energy/work/flux budgets are checked separately.\n\n'
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\n\n'+'\n'.join('- '+case+': '+u for case,u in record['result_urls'].items())+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'

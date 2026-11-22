@@ -1,6 +1,10 @@
 # Yee finite-difference time-domain method
 
-Yee FDTD: vacuum, dielectric interfaces and four-side/corner PML
+Yee FDTD: Fresnel interfaces, oblique incidence and PML
+
+Revision r4 validates oblique dielectric incidence with finite-band s-polarized packets. Fresnel fields, reflected/transmitted energy, global/local budgets and grid refinement are assessed separately. All three earlier editions and five inputs remain available.
+
+New results: [Oblique incidence at a dielectric interface](#interface-oblique)
 
 Revision r3 extends the PML to all four sides and corners. Separate packets aimed at sides and obliquely at corners test boundary returns, directional PML work, four-edge energy flux and grid refinement. Both earlier editions and their four inputs are retained.
 
@@ -247,7 +251,103 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
 python run_corner.py --input inputs/pml-corners.json --output output-cornersThe ZIP was independently extracted; all tests and all five inputs were rerun with identical numerical metrics and CSVs. Numerical sources, inputs and tests from the earlier editions remain byte-for-byte unchanged. This supplement is separate from the common 22-example / 67-problem inventory.
 
-Scope is the specified vacuum 2D TMz packets, square and finite time window. Oblique material-interface incidence, general grazing incidence, dispersive/anisotropic matter, 3D and general curved PML geometries need separate validation.
+Revision r3 covers the specified vacuum 2D TMz packets, square and finite time window. Oblique material-interface incidence is tested separately in r4 below. General grazing incidence, dispersive/anisotropic matter, 3D and curved PML geometries need separate validation.
+
+Revision r4: oblique incidence at a dielectric interface
+
+TMz, s polarization and Fresnel coefficients
+
+Two lossless, nondispersive, nonmagnetic dielectrics meet at x=a. Ez is perpendicular to the xy incidence plane, so this TMz convention corresponds to optical s/TE polarization. The y direction is periodic. This case uses distant PEC x caps and an observation window before their main return; no PML loss is included.
+
+
+$$
+\omega^2=(k^2+k_y^2)/\epsilon_1,\quad q=\sqrt{\epsilon_2\omega^2-k_y^2},\quad n_1\sin\theta_i=n_2\sin\theta_t,\quad\mu_1=\mu_2=1.
+$$
+
+$$
+r_s(k)=\frac{k-q}{k+q},\quad t_s(k)=\frac{2k}{k+q},\quad R_s=|r_s|^2,\quad T_s=\frac{q}{k}|t_s|^2,\quad R_s+T_s=1.
+$$
+Frequency ω and tangential wave number ky are shared across the interface for each positive incident normal wave number k. The selected low-to-high index cases have propagating transmitted waves. Lowercase r,t are signed electric amplitudes; uppercase R,T are normal energy-flux fractions. Transmittance includes q/k and is distinct from t².
+
+Analytic reference for a finite-band packet
+
+
+$$
+\begin{aligned}E_i&=\Re\int_0^\infty A(k)e^{i[k(x-c)+k_y y-\omega t]}\,dk,\\E_r&=\Re\int_0^\infty A(k)r_s(k)e^{i[k(2a-x-c)+k_y y-\omega t]}\,dk,\\E_t&=\Re\int_0^\infty A(k)t_s(k)e^{i[k(a-c)+q(x-a)+k_y y-\omega t]}\,dk.\end{aligned}
+$$
+
+$$
+\begin{aligned}R_{\rm packet}&=\frac{\int_0^\infty |A(k)|^2R_s(k)\,dk}{\int_0^\infty |A(k)|^2\,dk},\\T_{\rm packet}&=\frac{\int_0^\infty |A(k)|^2T_s(k)\,dk}{\int_0^\infty |A(k)|^2\,dk},\qquad\frac{dq}{dk}=\frac{\epsilon_2 k}{\epsilon_1 q}.\end{aligned}
+$$
+
+$$
+A(k)=\frac{w}{\sqrt{2\pi}}e^{-w^2(k-k_0)^2/2},\quad a_m=A(k_m)\Delta k,\quad\Delta k=2\pi/P,\quad n_j=\sqrt{\epsilon_j},\qquad U_{\rm inc}=\pi\epsilon_1 L_y\int_0^\infty |A(k)|^2\,dk\approx\frac{\epsilon_1 L_yP}{2}\sum_m a_m^2.
+$$
+Each mode of a positive-k packet centered initially at c uses its Fresnel solution. Magnetic amplitudes are Hx=(ky/ω)E and Hy=−(kx/ω)E with signed kx; E and H are evaluated at their own Yee positions and times. A finite quadrature evaluates the Gaussian-weighted spectral integral. Halving its spacing and integrating reference energy in the finite box control the approximation. Since refracted q values are nonuniform, quadrature period P does not imply that the transmitted packet is periodic in x.
+
+Carrier-angle monochromatic coefficients are distinguished from packet R,T, which weight Fresnel coefficients by |A(k)|². The transmitted-wave-number Jacobian produces the same q/k factor for packet energy. Numerical R,T divide the left/right physical energies by the incident packet Parseval quadrature; the initial numerical energy ratio is recorded separately.
+
+
+$$
+g_r=\frac{\sum_{xa,y}E_{\rm num}E_{t,\rm ref}}{\sum_{x>a,y}E_{t,\rm ref}^2},\qquad g_r,g_t\to1.
+$$
+Amplitude diagnostics project the final numerical Ez separately onto the signed analytic reflected/transmitted templates. The target gain is 1; these gains are distinct from measured carrier r,t. Separate L2 waveform errors retain phase and shape discrepancies.
+
+Independent energy and flux checks
+
+
+$$
+\begin{gathered}U_*^n=\tfrac12\bigl(\langle E^n,\epsilon E^n\rangle_h+\langle H^{n-1/2},H^{n+1/2}\rangle_h\bigr),\quad U_*^n=U_*^0,\\S_x=-E_zH_y,\quad U_{[x_L,x_R]}(t)-U_{[x_L,x_R]}(0)+\int_0^t\!\int_0^{L_y}[S_x(x_R,y,\tau)-S_x(x_L,y,\tau)]\,dy\,d\tau=0.\end{gathered}
+$$
+The full domain checks conservation of modified discrete energy with permittivity weighting. Physical energy averages H to integer times; two faces of an interior slab straddling the interface provide directly evaluated Poynting flux, integrated by the trapezoidal rule. Flux is not defined from an energy difference. This approximate physical balance is distinct from the exact discrete invariant. The interface electric node retains the arithmetic permittivity average.
+
+Fixed input and measured refinement
+
+ε₁=1, ε₂=4; box 32×1.5708, initial center c=8, interface a=16, width 1.2, carrier kx=6. ky=0, 4; grids 1024×16, 2048×32, 4096×64; end time 18. Flux slab: [12.0, 20.0].
+
+Reference quadrature uses P=64, Δk=0.0981748, and actual kmax=14.039 after rounding requested cutoff 14 to the nearest mode.
+
+All three grids. R/T errors use the spectral Fresnel reference for the same input.kyGridRelative field L2 errorNumerical RNumerical TLocal flux budget residual01024×160.3666450.1069330.8913670.0022301702048×320.09196090.1100750.88950.00056024104096×640.02297510.1108530.8890410.00014023341024×160.5483710.1503810.8471720.0024363942048×320.1385210.1558540.8435330.00061187744096×640.03462150.1572090.8426380.000153143Carrier-angle coefficients are distinct from finite-band packet fractions.Carrier incidence°Carrier refraction°Carrier rCarrier tCarrier RPacket reference RPacket reference T00-0.3333330.6666670.1111110.1111110.88888933.690116.1021-0.3956610.6043390.1565480.1576590.842341ky=0: observed orders, field 1.99529, 2.00095; reflected energy 2.01165, 2.0029; transmitted energy 2.02059, 2.00515; flux budget 1.99303, 1.99822. Finest template gains (gᵣ,gₜ)=(0.998868, 0.999845).
+
+ky=4: observed orders, field 1.98505, 2.00037; reflected energy 2.01151, 2.00285; transmitted energy 2.01829, 2.00455; flux budget 1.99343, 1.99836. Finest template gains (gᵣ,gₜ)=(0.998485, 0.999572).
+
+Maximum full-domain modified-energy drift over all grids: 4.44089e-16. At the final comparison time, doubling quadrature density changes reference fields over all meshes by at most 5.30355e-13 relatively; finite-box reference R/T differ from spectral integrals by at most 8.66989e-11. The initial secondary-field squared weighted staggered-norm fraction is at most 2.30339e-21; maximum analytic cap Ez is 1.24222e-06. Staggered field norms are distinguished from same-time physical energy.
+
+Initial PEC clipping changes the squared weighted staggered field norm by a fraction at most 2.29928e-22. Same-time continuum initial energy / incident quadrature differs from 1 by at most 2.22045e-16. The final reference interface Ez maximum 1.4462e-05 records the remaining interface field during the left/right energy partition.
+
+ky=0: initial numerical physical energy / incident quadrature 0.999894; final |R+T−1| 0.000106367.
+
+ky=4: initial numerical physical energy / incident quadrature 0.999847; final |R+T−1| 0.000153186.
+
+The small R+T closure difference includes the mismatch between initial numerical physical energy and analytic incident quadrature. This case has no absorption or PML, and modified discrete energy is conserved. Refining physical-energy interpolation/quadrature error is distinct from physical dissipation.
+
+Download and reproduce revision r4
+
+[](/numerical-methods-atlas/assets/fdtd-dielectric-oblique.png)[Oblique-interface result JSON](/code/fdtd/2026-11-22-r4/results/dielectric-oblique/result.json) · [spectrum.csv](/code/fdtd/2026-11-22-r4/results/dielectric-oblique/spectrum.csv) · [convergence.csv](/code/fdtd/2026-11-22-r4/results/dielectric-oblique/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22-r4/results/dielectric-oblique/energy.csv)[Revision-r4 ZIP: retained five cases plus oblique dielectric incidence](/code/fdtd/2026-11-22-r4/fdtd-2026-11-22-r4.zip)
+
+[Bilingual setup and execution](/code/fdtd/2026-11-22-r4/README.md)
+
+[oblique.py](/code/fdtd/2026-11-22-r4/oblique.py)
+
+[run_oblique.py](/code/fdtd/2026-11-22-r4/run_oblique.py)
+
+[test_oblique.py](/code/fdtd/2026-11-22-r4/test_oblique.py)
+
+[Fixed input and acceptance criteria](/code/fdtd/2026-11-22-r4/inputs/dielectric-oblique.json)
+
+[SHA-256 manifest](/code/fdtd/2026-11-22-r4/source-manifest.json)
+
+[Unchanged earlier sources / provenance](/code/fdtd/2026-11-22-r4/provenance.json)
+
+[71 tests passed / independent-extraction record](/code/fdtd/2026-11-22-r4/verification.json)
+
+
+
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py
+python run_oblique.py --input inputs/dielectric-oblique.json --output output-obliqueIndependent ZIP extraction reran all tests and all six inputs with identical metrics and CSVs. The old five inputs, numerical sources/tests and three frozen editions are retained. This dedicated FDTD supplement is separate from the common execution registry and other fields’ verification counts.
+
+Scope is the specified lossless/nonmagnetic s-polarized packets with propagating transmission, three grids and finite time. Optical p polarization, Brewster behavior, total internal reflection, loss/dispersion and 3D need separate validation. References are analytic modes and quadrature, not an independent external FDTD solver.
 
 Original vacuum edition: code and reproduction
 
@@ -284,7 +384,7 @@ python run.py --input inputs/pec-cavity.json --output output-cavityNonempty outp
 
 ## Publication scope
 
-Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D.
+Educational 2D TMz: retained vacuum modes, normal dielectric interface, x-PML and four-side/corner PML; r4 validates selected s-polarized oblique packets at a lossless nonmagnetic interface using Fresnel fields, packet R/T, flux balance and refinement. Not blanket validation of p polarization, total internal reflection, loss/dispersion, general media or 3D.
 
 ## Sources
 

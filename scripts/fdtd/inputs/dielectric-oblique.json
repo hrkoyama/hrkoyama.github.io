@@ -1,0 +1,32 @@
+{
+  "case": "dielectric-oblique",
+  "lengths": [32.0, 1.5707963267948966],
+  "center": 8.0,
+  "interface": 16.0,
+  "width": 1.2,
+  "carrier_kx": 6.0,
+  "transverse_wave_numbers": [0.0, 4.0],
+  "epsilon_left": 1.0,
+  "epsilon_right": 4.0,
+  "reference_period": 64.0,
+  "spectral_cutoff": 14.0,
+  "end_time": 18.0,
+  "courant": 0.65,
+  "flux_region": [12.0, 20.0],
+  "meshes": [[1024, 16], [2048, 32], [4096, 64]],
+  "acceptance": {
+    "max_field_error": 0.05,
+    "min_field_order": 1.7,
+    "max_template_gain_error": 0.01,
+    "max_energy_fraction_error": 0.01,
+    "min_energy_order": 1.7,
+    "max_energy_closure": 0.005,
+    "max_modified_energy_drift": 1e-10,
+    "max_flux_residual": 0.005,
+    "min_flux_order": 1.7,
+    "max_reference_period_error": 1e-6,
+    "max_reference_window_error": 1e-5,
+    "max_initial_secondary_energy_fraction": 1e-8,
+    "max_analytic_cap_field": 1e-5
+  }
+}
