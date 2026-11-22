@@ -162,6 +162,7 @@ for x in METHODS:
         if x['reading']:
             reading=x['reading'].get(lang) or x['reading']['en']
             label=('解説章を読む' if lang in x['reading'] else '英語の解説を読む（日本語版未公開）') if ja else 'Read the chapter'
+            label=x.get('reading_label',{}).get(lang,label)
             body+='<h2>'+('解説と位置付け' if ja else 'Read the formulation')+'</h2><p>'+link(reading,label)+'</p>'
         if x.get('caution'):body+='<h2>'+('比較するときの注意' if ja else 'Comparison notes')+'</h2><p>'+esc(x['caution'][lang])+'</p>'
         if x.get('assumptions'):

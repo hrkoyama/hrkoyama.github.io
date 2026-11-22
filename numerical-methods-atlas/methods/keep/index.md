@@ -8,8 +8,8 @@ Read about Original Cartesian KEEP split flux, follow the original references an
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
-- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/
-- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/
+- Reading (ja): https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#the-implemented-two-point-flux
+- Reading (en): https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux
 
 - Code: https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/keep.py
 

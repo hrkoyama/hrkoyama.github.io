@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-21-2f5c56e7d0
-Captured (UTC): 2026-11-21T23:53:35+00:00
+Snapshot: 2026-11-22-2f93d5814b
+Captured (UTC): 2026-11-22T00:03:59+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -3284,7 +3284,7 @@ We measure the dimensionless entropy proxy
 S_* = \int\rho\log\left(\frac{p}{\rho^\gamma}\right)dV.
 For a fixed ideal-gas composition this differs from physical entropy only by fixed factors and an additive mass term. Its change per initial mass is useful when initial isentropic data give S_* approximately zero; dividing by initial S_* would be ill-conditioned.
 
-## KEEP schemes: preserve the smooth-flow balance, test the limits — The implemented two-point flux# [en]
+## KEEP schemes: preserve the smooth-flow balance, test the limits — The semidiscrete update and two-point flux# [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux
 Coverage: reading
@@ -3297,6 +3297,31 @@ F_E&=C\left[\frac12\boldsymbol u_L\cdot\boldsymbol u_R+\overline e\right]
 +\frac12(u_{n,L}p_R+u_{n,R}p_L).
 \end{aligned}
 The mass flux is C. The cross-velocity kinetic term and cross-pressure work are deliberate; replacing them by a convenient average of the full physical flux changes the discrete energy exchange. The implementation is a central two-point flux-difference method of second spatial order. It has no Riemann-solver dissipation.
+Evaluate this two-point flux between neighboring grid nodes, then take the right-minus-left flux difference to update the conserved state. Written in the two-dimensional notation of this implementation, Kuya and Kawai (2022), §2.2, Eqs. (1), (8) and (9) give the following semidiscrete system: space is discrete while time remains continuous. E is total energy per unit volume.
+\begin{aligned}
+\boldsymbol q_{i,j}&=(\rho,\rho u,\rho v,E)^{\mathsf T}_{i,j},\\
+\frac{d\boldsymbol q_{i,j}}{dt}
+&=-\frac{\widehat{\boldsymbol F}^{\,x}_{i+1/2,j}-\widehat{\boldsymbol F}^{\,x}_{i-1/2,j}}{\Delta x}
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — The semidiscrete update and two-point flux# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux
+Coverage: reading
+
+-\frac{\widehat{\boldsymbol F}^{\,y}_{i,j+1/2}-\widehat{\boldsymbol F}^{\,y}_{i,j-1/2}}{\Delta y},\\
+\widehat{\boldsymbol F}^{\,x}_{i+1/2,j}
+&=\boldsymbol F^{(x)}(\boldsymbol q_{i,j},\boldsymbol q_{i+1,j}),\\
+\widehat{\boldsymbol F}^{\,y}_{i,j+1/2}
+&=\boldsymbol F^{(y)}(\boldsymbol q_{i,j},\boldsymbol q_{i,j+1}).
+\end{aligned}
+Here F(x) and F(y) are the two-point flux above with normal velocity u and v, respectively. In the public numart/keep.py, rhs() forms the right flux with keep_flux(q, np.roll(q, -1, axis=axis), axis) and subtracts the left flux obtained with np.roll(flux, 1, axis=axis). The implementation uses a square periodic uniform grid with Δx = Δy = L/N. This is a nearest-neighbor, second-order central spatial operator; higher-order multi-point assembly and curvilinear forms are not implemented.
+Both neighboring nodes share the same face flux. Its differences telescope when summed over the periodic grid, conserving total mass, momentum and total energy. RK4 retains these linear conservation laws, apart from roundoff. Kinetic-energy pressure-work balance and entropy involve nonlinear relations: this spatial formula alone does not guarantee their exact preservation after time discretization.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — The semidiscrete update and two-point flux# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux
+Coverage: reading
+
 Tests verify equal-state consistency, left/right symmetry, periodic conservation of the primary variables, and the semidiscrete kinetic-energy pressure-work identity. RK4 adds temporal truncation error and does not inherit every semidiscrete identity exactly.
 
 ## KEEP schemes: preserve the smooth-flow balance, test the limits — Appropriate first test: smooth isentropic vortex advection# [en]
@@ -11347,7 +11372,7 @@ Coverage: reading
 S_* = \int\rho\log\left(\frac{p}{\rho^\gamma}\right)dV.
 で測ります。固定組成の理想気体では、物理エントロピーとの差は定数係数と質量の加法項です。初期等エントロピー状態でS_*がほぼゼロなら、初期質量あたりの変化が有用です。初期S_*で割ると条件が悪くなります。
 
-## KEEP法：滑らかな流れの釣合いと限界を検証する — 実装した2点流束# [ja]
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 差分式と実装した2点流束# [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#the-implemented-two-point-flux
 Coverage: reading
@@ -11360,6 +11385,25 @@ F_E&=C\left[\frac12\boldsymbol u_L\cdot\boldsymbol u_R+\overline e\right]
 +\frac12(u_{n,L}p_R+u_{n,R}p_L).
 \end{aligned}
 です。質量流束はCです。交差速度の運動項と交差圧力仕事には意味があり、物理流束全体の都合のよい平均に置き換えると離散エネルギー交換が変わります。空間2次の中心2点流束差分法で、リーマンソルバーの散逸はありません。
+この2点流束を隣接する格子点の間で評価し、右側と左側の差を取って保存変数を更新します。Kuya・Kawai（2022）第2.2節、式(1)、(8)、(9)を、本実装の2次元の記号で書くと、空間だけを離散化した半離散式は次のようになります。Eは単位体積あたりの全エネルギーです。
+\begin{aligned}
+\boldsymbol q_{i,j}&=(\rho,\rho u,\rho v,E)^{\mathsf T}_{i,j},\\
+\frac{d\boldsymbol q_{i,j}}{dt}
+&=-\frac{\widehat{\boldsymbol F}^{\,x}_{i+1/2,j}-\widehat{\boldsymbol F}^{\,x}_{i-1/2,j}}{\Delta x}
+-\frac{\widehat{\boldsymbol F}^{\,y}_{i,j+1/2}-\widehat{\boldsymbol F}^{\,y}_{i,j-1/2}}{\Delta y},\\
+\widehat{\boldsymbol F}^{\,x}_{i+1/2,j}
+&=\boldsymbol F^{(x)}(\boldsymbol q_{i,j},\boldsymbol q_{i+1,j}),\\
+\widehat{\boldsymbol F}^{\,y}_{i,j+1/2}
+&=\boldsymbol F^{(y)}(\boldsymbol q_{i,j},\boldsymbol q_{i,j+1}).
+\end{aligned}
+ここでF(x)とF(y)は、上の2点流束で法線速度をそれぞれu、vとしたものです。公開コードのnumart/keep.pyのrhs()は、keep_flux(q, np.roll(q, -1, axis=axis), axis)で右側の流束を作り、np.roll(flux, 1, axis=axis)で得る左側の流束との差を取ります。実装は正方形の周期一様格子で、Δx = Δy = L/Nです。隣接点だけを使う空間2次の中心差分であり、高次中心差分の多点組立てや曲線座標版は含みません。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 差分式と実装した2点流束# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#the-implemented-two-point-flux
+Coverage: reading
+
+同じ面の流束を両側の格子点で共有するため、周期境界では差分の空間和が相殺し、質量・運動量・全エネルギーの総和を保存します。この線形の保存則はRK4でも保たれます（丸め誤差は別）。一方、運動エネルギーの圧力仕事との釣合いやエントロピーは非線形の関係であり、この空間差分式から時間離散後の厳密保存を保証することはできません。
 テストでは同一状態の整合性、左右対称性、主変数の周期保存、半離散運動エネルギー・圧力仕事の恒等式を検証します。RK4は時間打切り誤差を加え、すべての半離散恒等式を厳密に継承しません。
 
 ## KEEP法：滑らかな流れの釣合いと限界を検証する — 最初の適切なテスト：滑らかな等エントロピー渦の移流# [ja]

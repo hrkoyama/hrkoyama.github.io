@@ -6259,8 +6259,8 @@
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
-        "ja": "/numerical-methods-atlas/ja/read/keep/",
-        "en": "/numerical-methods-atlas/en/read/keep/"
+        "ja": "/numerical-methods-atlas/ja/read/keep/#the-implemented-two-point-flux",
+        "en": "/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux"
       },
       "code_modules": [
         "keep"
@@ -6301,6 +6301,10 @@
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21"
+      },
+      "reading_label": {
+        "ja": "差分式・2点流束の解説を読む",
+        "en": "Read the difference formula and two-point flux"
       }
     },
     {
