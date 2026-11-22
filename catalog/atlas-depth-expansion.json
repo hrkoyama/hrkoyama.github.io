@@ -121,6 +121,21 @@
         "ja": "AMG、QR／SVD、Krylov固有値解法、求積を固定した条件系列で比較します。残差と前進誤差、行列と積分の条件の違いを測り、独立参照との一致だけでなく、収束の限界や診断の見落としも確かめます。",
         "en": "Compare AMG, QR/SVD, Krylov eigenvalue methods and quadrature across fixed conditioning families. Separate residuals from forward error and matrix from integral conditioning; check independent references alongside convergence limits and diagnostic blind spots."
       }
+    },
+    {
+      "id": "particle-transport",
+      "title": {
+        "ja": "粒子・輸送：独立参照・保存則・統計誤差",
+        "en": "Particles and transport: independent references, conservation and statistical error"
+      },
+      "fields": [
+        "particles",
+        "transport"
+      ],
+      "intro": {
+        "ja": "周期力、FMM、PIC、衝突、放射輸送の既存問題を別版で検証します。決定論的な離散誤差、保存則、有限粒子数の偏りと統計誤差を分けます。",
+        "en": "Extend existing periodic-force, FMM, PIC, collision and radiation problems in a separate release. Separate deterministic discretization, conservation, finite-particle bias and statistical error."
+      }
     }
   ],
   "case_problem_ids": {
@@ -156,11 +171,17 @@
     "amg-conditioning": null,
     "qr-svd-conditioning": "matrix-factorization",
     "krylov-eigen-conditioning": "krylov-spectrum",
-    "quadrature-conditioning": "quadrature-moments"
+    "quadrature-conditioning": "quadrature-moments",
+    "ewald-convergence": "neutral-periodic-charges",
+    "spme-convergence": "neutral-periodic-charges",
+    "fmm-convergence": "logarithmic-particles",
+    "pic-conservation": "cold-plasma-pic",
+    "dsmc-statistics": "maxwell-collisions",
+    "radiation-convergence": "absorbing-slab"
   },
   "routine_policy": {
-    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する9グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs nine NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
+    "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する10グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
+    "en": "Routine supplement CI runs ten NumPy/SciPy/pytest groups, comparing stored independent-library references with versioned, input-traced stored values. The existing common 22-case suite, including quantum convergence, remains manual on explicit need; released artifacts, criteria and history are preserved."
   },
   "case_notes": {
     "ct-glm-independent": {
@@ -210,6 +231,30 @@
     "quadrature-conditioning": {
       "ja": "適応推定値や計算間の一致は任意の被積分関数の厳密誤差上界ではありません。相殺時の絶対誤差と相対誤差、未検出の局所構造、評価予算を分けて記録します。",
       "en": "An adaptive estimate or agreement between calculations is not a rigorous error bound for arbitrary integrands. Distinguish absolute and relative error under cancellation, unresolved local structure and evaluation budgets."
+    },
+    "ewald-convergence": {
+      "ja": "非対称な中性立方セルの全エネルギー・全24力成分を、別実装のGaussian/theta積分と比較します。積分・打切り・上限の感度は、この固定配置での確認です。",
+      "en": "Compare the asymmetric neutral cubic-cell energy and all 24 force components with a separately coded Gaussian/theta integral. Quadrature, truncation and upper-tail sensitivity apply to this fixed configuration."
+    },
+    "spme-convergence": {
+      "ja": "PME族のうちBスプラインSPMEのエネルギー勾配型を採用します。格子位相の依存と有限格子の合力を測り、厳密な運動量保存や原法Lagrange PMEの再現とはしません。",
+      "en": "Use the energy-gradient B-spline SPME variant of the PME family. Measure mesh-phase sensitivity and finite-mesh net force; do not claim exact momentum conservation or original Lagrange-PME reproduction."
+    },
+    "fmm-convergence": {
+      "ja": "自由空間2次元対数核の展開次数・木の深さ・回転平行移動の影響を測ります。深さで単調に改善するとは仮定せず、3次元Coulomb核や最適計算量へ広げません。",
+      "en": "Measure order, tree-depth and rotation/translation effects for the free-space 2D logarithmic kernel. Do not assume monotone depth improvement or generalize to 3D Coulomb kernels or optimal complexity."
+    },
+    "pic-conservation": {
+      "ja": "DOP853参照は同じ粒子格子RHSを積分し、時間積分に限る独立参照です。quiet startの収束と時刻0のランダム粒子雑音を分け、エネルギーの厳密保存は主張しません。",
+      "en": "DOP853 integrates the same particle-grid RHS and is independent only as a time algorithm. Separate quiet-start refinement from random-load noise at time zero; do not claim exact energy conservation."
+    },
+    "dsmc-statistics": {
+      "ja": "保存量を固定した有限N平衡のBeta分布と独立な球面標本を使います。粒子間相関があるので独立seed間の誤差を測り、衝突roundを物理時刻や剛体球輸送へ読み替えません。",
+      "en": "Use the finite-N equilibrium beta law and independent sphere samples at fixed invariants. Account for particle correlation via independent-seed error; collision rounds are not calibrated time or hard-sphere transport."
+    },
+    "radiation-convergence": {
+      "ja": "純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や放射流体連成は未検証です。",
+      "en": "Separate space and angle errors for a pure-absorption slab, comparing characteristics, adaptive quadrature and photon survival. Finite-seed coverage is no all-seed guarantee; scattering and radiation hydrodynamics remain unvalidated."
     }
   }
 }

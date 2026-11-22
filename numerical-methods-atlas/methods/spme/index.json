@@ -10,8 +10,8 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
-    "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+    "ja": "Bスプラインsmooth PMEの格子・次数収束: 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。 SPME：格子・補間次数・格子位相と保存則: BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+    "en": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -72,8 +72,8 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
-    "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+    "ja": "Bスプラインsmooth PMEの格子・次数収束: 有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。 SPME：格子・補間次数・格子位相と保存則: エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。",
+    "en": "Mesh/order convergence of B-spline smooth PME: Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed. SPME: mesh, interpolation order, mesh phase and conservation: Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
   },
   "metadata_review": {
     "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
@@ -170,10 +170,12 @@
       ],
       "not_checked": {
         "ja": [
-          "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。"
+          "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+          "エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。"
         ],
         "en": [
-          "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+          "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.",
+          "Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
         ]
       }
     }
@@ -347,9 +349,495 @@
     ]
   },
   "depth_scope": {
-    "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
-    "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+    "ja": "Bスプラインsmooth PMEの格子・次数収束: 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。 SPME：格子・補間次数・格子位相と保存則: BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+    "en": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
   },
+  "depth_additional_releases": [
+    {
+      "group": "particle-transport",
+      "case_ids": [
+        "spme-convergence"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/",
+      "code_edition": "2026-11-22",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-particle-transport-2026-11-22",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "code_archive_sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "passed_tests": 75,
+      "examples": [
+        {
+          "id": "spme-convergence",
+          "title": {
+            "ja": "SPME：格子・補間次数・格子位相と保存則",
+            "en": "SPME: mesh, interpolation order, mesh phase and conservation"
+          },
+          "method_ids": [
+            "pme",
+            "spme"
+          ],
+          "summary": {
+            "ja": "BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+            "en": "Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
+          },
+          "assumptions": {
+            "ja": "同じ中性周期8電荷、alpha=5.6、実空間像3。PME族のEssmann型SPMEであり、1993年のLagrange補間の原法とは区別します。",
+            "en": "Same neutral periodic eight-charge cell, alpha=5.6 and three real-space image shells. This is Essmann-style SPME in the PME family, distinct from the original 1993 Lagrange interpolation."
+          },
+          "algorithm": {
+            "ja": "16³/24³/40³格子と4/6次Bスプライン、3つの平行移動位相を用います。FFT逆空間エネルギーを割当て重みで位置微分し、実空間・自己項はEwald主計算と共有します。",
+            "en": "Use 16³/24³/40³ meshes, orders four/six and three translations relative to the mesh. Differentiate FFT reciprocal energy through assignment weights; real/self terms share the primary Ewald implementation."
+          },
+          "validation": {
+            "ja": "独立thetaエネルギー・全力との差と、共有Ewald経路自体の誤差を明記します。分配の総和・導関数総和、電荷、エネルギー差分3成分、位相間の幅、有限格子の合力と粗い格子の対照を保存します。",
+            "en": "Report full energy/force errors against theta integration and explicitly check the shared Ewald path. Store assignment and derivative sums, charge, three finite-difference derivatives, phase spread, finite-mesh net force and a coarse-mesh control."
+          },
+          "limits": {
+            "ja": "エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。",
+            "en": "Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
+          },
+          "equations": [
+            "\\mathbf F_i=-\\partial E_h/\\partial\\mathbf r_i",
+            "\\sum_j M_p(u-j)=1,\\qquad\\sum_j M_p^{\\prime}(u-j)=0"
+          ],
+          "references": [
+            {
+              "id": "darden1993",
+              "author": "T. Darden, D. York and L. Pedersen",
+              "year": 1993,
+              "title": "Particle mesh Ewald: An N·log(N) method for Ewald sums in large systems",
+              "doi": "10.1063/1.464397",
+              "url": "https://doi.org/10.1063/1.464397",
+              "review_level": "abstract-and-metadata",
+              "review_note": {
+                "ja": "原著PDFの冒頭と抄録を確認。歴史的なPME原法であり、実装したBスプライン変種とは区別。",
+                "en": "Original PDF opening and abstract checked; historical original PME is distinguished from the implemented B-spline variant."
+              }
+            },
+            {
+              "id": "essmann1995",
+              "author": "U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen",
+              "year": 1995,
+              "title": "A smooth particle mesh Ewald method",
+              "doi": "10.1063/1.470117",
+              "url": "https://doi.org/10.1063/1.470117",
+              "review_level": "selected-full-text",
+              "review_note": {
+                "ja": "原著PDFのBスプライン構造因子・FFT・解析勾配に関わる部分と抄録を確認。全ベンチマークの再現ではありません。",
+                "en": "Original PDF abstract and selected spline/structure-factor, FFT and analytic-gradient material checked; not a reproduction of every paper benchmark."
+              }
+            }
+          ],
+          "code_files": [
+            "longrange_experiments.py",
+            "electrostatics.py"
+          ],
+          "measured": {
+            "id": "spme-convergence",
+            "passed": true,
+            "checks": {
+              "fine_energy_error": true,
+              "fine_force_error": true,
+              "force_refinement_ratio": true,
+              "phase_energy_spread": true,
+              "phase_force_spread": true,
+              "charge_error": true,
+              "partition_error": true,
+              "partition_derivative_error": true,
+              "gradient_error": true,
+              "shared_ewald_energy_error": true,
+              "shared_ewald_force_error": true,
+              "fine_net_force": true,
+              "coarse_control_detected": true,
+              "both_orders_refine": true
+            },
+            "metrics": {
+              "fine_energy_error": 8.630229899608821e-07,
+              "fine_force_error": 7.855116843202836e-06,
+              "force_refinement_ratio": 0.005861182985296622,
+              "phase_energy_spread": 1.1496225127416437e-07,
+              "phase_force_spread": 1.447734647719301e-05,
+              "charge_error": 2.4202861936828413e-14,
+              "fine_net_force": 1.919342197087559e-05,
+              "maximum_net_force_all_meshes": 0.15409275755368146,
+              "shared_ewald_energy_error": 0.0,
+              "shared_ewald_force_error": 3.197442310920451e-14,
+              "partition_error": 2.8199664825478976e-14,
+              "partition_derivative_error": 3.268496584496461e-13,
+              "gradient_error": 2.401151921738176e-08,
+              "coarse_control_force_error": 0.03526113281182308
+            },
+            "records": [
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 16,
+                "phase": 0,
+                "energy": -8.41677108125003,
+                "energy_error": 0.00936456689944265,
+                "force_error": 0.03526113281182308,
+                "net_force": 0.1349051890669486,
+                "charge_error": 0.0
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 16,
+                "phase": 1,
+                "energy": -8.4169376878292,
+                "energy_error": 0.009531173478613653,
+                "force_error": 0.04175502052239821,
+                "net_force": 0.14521367168454624,
+                "charge_error": 2.6645352591003757e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 16,
+                "phase": 2,
+                "energy": -8.416360783797426,
+                "energy_error": 0.008954269446839191,
+                "force_error": 0.038925325747751316,
+                "net_force": 0.15409275755368146,
+                "charge_error": 1.7763568394002505e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 24,
+                "phase": 0,
+                "energy": -8.409150070483882,
+                "energy_error": 0.0017435561332952432,
+                "force_error": 0.00986757060085175,
+                "net_force": 0.01781399847920917,
+                "charge_error": 5.773159728050814e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 24,
+                "phase": 1,
+                "energy": -8.408727058261803,
+                "energy_error": 0.0013205439112162765,
+                "force_error": 0.010010302112580582,
+                "net_force": 0.03451176545016921,
+                "charge_error": 3.9968028886505635e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 24,
+                "phase": 2,
+                "energy": -8.409158733703798,
+                "energy_error": 0.0017522193532109043,
+                "force_error": 0.010594052752003869,
+                "net_force": 0.024336560922145978,
+                "charge_error": 2.6645352591003757e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 40,
+                "phase": 0,
+                "energy": -8.407635446514092,
+                "energy_error": 0.00022893216350539092,
+                "force_error": 0.0022487962069188683,
+                "net_force": 0.004905125746609507,
+                "charge_error": 1.1102230246251565e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 40,
+                "phase": 1,
+                "energy": -8.407598593995132,
+                "energy_error": 0.00019207964454537318,
+                "force_error": 0.0019163313891978895,
+                "net_force": 0.005215523998677085,
+                "charge_error": 8.881784197001252e-16
+              },
+              {
+                "series": "mesh_phase",
+                "order": 4,
+                "mesh": 40,
+                "phase": 2,
+                "energy": -8.407645438600287,
+                "energy_error": 0.0002389242497002897,
+                "force_error": 0.0020821462441764638,
+                "net_force": 0.004874858883503919,
+                "charge_error": 5.329070518200751e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 16,
+                "phase": 0,
+                "energy": -8.407717347728052,
+                "energy_error": 0.00031083337746551365,
+                "force_error": 0.001261291421948335,
+                "net_force": 0.0053316171351749375,
+                "charge_error": 5.329070518200751e-15
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 16,
+                "phase": 1,
+                "energy": -8.407713695308491,
+                "energy_error": 0.00030718095790405187,
+                "force_error": 0.0013401930741470114,
+                "net_force": 0.004590342239521483,
+                "charge_error": 1.1102230246251565e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 16,
+                "phase": 2,
+                "energy": -8.40770209921364,
+                "energy_error": 0.0002955848630534774,
+                "force_error": 0.0012849632631226626,
+                "net_force": 0.005902719161380077,
+                "charge_error": 1.7541523789077473e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 24,
+                "phase": 0,
+                "energy": -8.407426851306521,
+                "energy_error": 2.0336955934396883e-05,
+                "force_error": 0.00010386235804205057,
+                "net_force": 0.00024933280128469626,
+                "charge_error": 2.1760371282653068e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 24,
+                "phase": 1,
+                "energy": -8.407421302930011,
+                "energy_error": 1.4788579424163117e-05,
+                "force_error": 0.00011703544263497179,
+                "net_force": 0.00040032744394924435,
+                "charge_error": 2.398081733190338e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 24,
+                "phase": 2,
+                "energy": -8.40742667629545,
+                "energy_error": 2.016194486387235e-05,
+                "force_error": 0.00011597198777479889,
+                "net_force": 0.0003171835640034537,
+                "charge_error": 2.4202861936828413e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 40,
+                "phase": 0,
+                "energy": -8.407407332744686,
+                "energy_error": 8.183940991557392e-07,
+                "force_error": 7.855116843202836e-06,
+                "net_force": 1.919342197087559e-05,
+                "charge_error": 2.1871393585115584e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 40,
+                "phase": 1,
+                "energy": -8.407407217782435,
+                "energy_error": 7.034318478815749e-07,
+                "force_error": 7.21761847621849e-06,
+                "net_force": 1.8902388887021004e-05,
+                "charge_error": 1.554312234475219e-14
+              },
+              {
+                "series": "mesh_phase",
+                "order": 6,
+                "mesh": 40,
+                "phase": 2,
+                "energy": -8.407407377373577,
+                "energy_error": 8.630229899608821e-07,
+                "force_error": 7.234489257434973e-06,
+                "net_force": 1.9086107801769003e-05,
+                "charge_error": 9.992007221626409e-15
+              },
+              {
+                "series": "gradient",
+                "order": 6,
+                "mesh": 40,
+                "gradient_values": [
+                  -6.683588455125289,
+                  3.931604461548943,
+                  1.3455712961629729
+                ],
+                "force_components": [
+                  -6.683588463848711,
+                  3.9316044592351593,
+                  1.345571320174492
+                ],
+                "reference_forces": [
+                  [
+                    -6.683595658565547,
+                    -0.34671369331831636,
+                    2.8218952351740265
+                  ],
+                  [
+                    -4.150766769145923,
+                    1.338420125606612,
+                    -1.4957261147918457
+                  ],
+                  [
+                    6.4825243406059965,
+                    3.9316001016489084,
+                    -2.0298888349911994
+                  ],
+                  [
+                    1.1601403797303473,
+                    -1.0066903580408588,
+                    -0.7978729329462666
+                  ],
+                  [
+                    9.0602020232513,
+                    -1.295619482962859,
+                    -2.1191573544451114
+                  ],
+                  [
+                    9.306768202640297,
+                    0.17043115883261545,
+                    -0.3947041889199391
+                  ],
+                  [
+                    -4.41738535102652,
+                    1.9578537882182687,
+                    2.66987544228138
+                  ],
+                  [
+                    -10.75788716748995,
+                    -4.749281639984369,
+                    1.3455787486389554
+                  ]
+                ],
+                "forces": [
+                  [
+                    -6.683588463848711,
+                    -0.3467064406221906,
+                    2.82189941552114
+                  ],
+                  [
+                    -4.15077387653639,
+                    1.3384161268771613,
+                    -1.4957222137181672
+                  ],
+                  [
+                    6.482517205529598,
+                    3.9316044592351593,
+                    -2.0298966901080426
+                  ],
+                  [
+                    1.1601366204519832,
+                    -1.0066829689629961,
+                    -0.797880052857691
+                  ],
+                  [
+                    9.060198030842262,
+                    -1.2956122711393774,
+                    -2.1191500577550686
+                  ],
+                  [
+                    9.306772263921255,
+                    0.17043536582340849,
+                    -0.3947039808946775
+                  ],
+                  [
+                    -4.417381337068498,
+                    1.9578538219231767,
+                    2.669871157955068
+                  ],
+                  [
+                    -10.757891380462597,
+                    -4.74928889971237,
+                    1.345571320174492
+                  ]
+                ],
+                "shared_ewald_energy": -8.407406514350587,
+                "shared_ewald_forces": [
+                  [
+                    -6.683595658565579,
+                    -0.3467136933183183,
+                    2.8218952351740274
+                  ],
+                  [
+                    -4.150766769145934,
+                    1.3384201256066124,
+                    -1.4957261147918393
+                  ],
+                  [
+                    6.482524340606007,
+                    3.9316001016489177,
+                    -2.0298888349911994
+                  ],
+                  [
+                    1.1601403797303422,
+                    -1.006690358040854,
+                    -0.7978729329462644
+                  ],
+                  [
+                    9.060202023251302,
+                    -1.2956194829628553,
+                    -2.119157354445109
+                  ],
+                  [
+                    9.306768202640306,
+                    0.17043115883260515,
+                    -0.39470418891994274
+                  ],
+                  [
+                    -4.417385351026517,
+                    1.9578537882182663,
+                    2.669875442281368
+                  ],
+                  [
+                    -10.757887167489926,
+                    -4.749281639984363,
+                    1.3455787486389537
+                  ]
+                ]
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/#spme-convergence",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/#spme-convergence"
+          }
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/index.md",
@@ -357,10 +845,19 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -376,6 +873,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "spme-convergence",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -454,6 +960,29 @@
             "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
             "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
             "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          },
+          {
+            "id": "spme-convergence",
+            "kind": "supplement",
+            "name": {
+              "ja": "SPME：格子・補間次数・格子位相と保存則",
+              "en": "SPME: mesh, interpolation order, mesh phase and conservation"
+            },
+            "scope": {
+              "ja": "BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+              "en": "Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
+            },
+            "method_ids": [
+              "pme",
+              "spme"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
           }
         ],
         "role": "execution",

@@ -72,7 +72,7 @@ test('named executable cases retain priority over method cards and broad chapter
     assert.equal(rows[0]?.url,`/numerical-methods-atlas/validation/${id}/?lang=en`);
     const method=rows.find(row=>row.method?.id===id)?.method;
     assert.equal(method.status,'educational-example');
-    assert.deepEqual(method.execution_examples.map(example=>example.id),[id]);
+    assert.deepEqual(method.execution_examples.map(example=>example.id),[id,id+'-convergence']);
   }
 });
 

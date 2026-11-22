@@ -35,6 +35,20 @@ def paragraph(text):
     return '<p>'+escape(text)+'</p>'
 
 
+def initial_input_name(data):
+    """Use a separate initial file, or a proven unchanged preregistered input."""
+    files = data['manifest']['files']
+    if 'protocol-history.json' not in files:
+        return None
+    if 'inputs-initial.json' in files:
+        return 'inputs-initial.json'
+    history = read_json(data['directory']/'protocol-history.json')
+    assert history.get('locked_before_primary_pilot_and_reference') is True
+    assert history.get('post_pilot_criteria_changes') is False
+    assert history.get('input_sha256') == files['inputs.json'], 'Initial input is not proven identical'
+    return 'inputs.json'
+
+
 def localized(value, language):
     if isinstance(value, dict):
         return value[language]
@@ -149,9 +163,9 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
     body = '<article class="validation-case" data-validation-case="'+ident+'" id="'+anchor+'"><h'+str(heading_level)+'>'+escape(case['title'][language])+'</h'+str(heading_level)+'>'+paragraph(case['summary'][language])
     base = data['base']
     body += '<nav class="validation-actions" aria-label="'+('コード・入力・検証' if ja else 'Code, inputs and verification')+'">'+link(case_route(ident, language), '固定入力・実行入口' if ja else 'Fixed-input execution entry')+link(base+data['verification']['archive']['file'], 'コード / ZIP' if ja else 'Code / ZIP')+link(base+'inputs.json', '固定入力 / JSON' if ja else 'Fixed input / JSON')+link(base+'results/result.json', '全結果 / JSON' if ja else 'All results / JSON')+link(base+'verification.json', '独立展開の検証記録' if ja else 'Independent-extraction receipt')+'</nav>'
-    if 'protocol-history.json' in data['manifest']['files']:
-        assert 'inputs-initial.json' in data['manifest']['files']
-        body += '<p>'+link(base+'protocol-history.json', '入力・検証手順の履歴' if ja else 'Input and validation protocol history')+' · '+link(base+'inputs-initial.json', '初回の入力' if ja else 'Initial input')+'</p>'
+    initial = initial_input_name(data)
+    if initial:
+        body += '<p>'+link(base+'protocol-history.json', '入力・検証手順の履歴' if ja else 'Input and validation protocol history')+' · '+link(base+initial, '初回の入力' if ja else 'Initial input')+'</p>'
     fields = [('assumptions', '前提・単位・境界', 'Assumptions, units and boundaries'),
               ('algorithm', '採用した計算法', 'Adopted numerical method'),
               ('validation', '何と比較し、何を測るか', 'References and measured quantities'),
@@ -200,8 +214,9 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
     out += ('全recordsとreference_records：' if language == 'ja' else 'Complete records and reference_records: ')+ORIGIN+case_route(case['id'])+'index.json\n\n'
     out += subheading+' '+('取得・実行' if language == 'ja' else 'Download and run')+'\n\nZIP: '+ORIGIN+data['base']+data['verification']['archive']['file']+'\nInput: '+ORIGIN+data['base']+'inputs.json\nResults: '+ORIGIN+data['base']+'results/result.json\nReceipt: '+ORIGIN+data['base']+'verification.json\n\n```sh\npython -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output\n```\n\n'
     out += ('このコマンドは配布グループの全例を実行します。\n\n' if language == 'ja' else 'This command executes every fixed case in the distribution group.\n\n')
-    if 'protocol-history.json' in data['manifest']['files']:
-        out += ('入力・検証手順の履歴：' if language == 'ja' else 'Input and validation protocol history: ')+ORIGIN+data['base']+'protocol-history.json\n\n'+ORIGIN+data['base']+'inputs-initial.json\n\n'
+    initial = initial_input_name(data)
+    if initial:
+        out += ('入力・検証手順の履歴：' if language == 'ja' else 'Input and validation protocol history: ')+ORIGIN+data['base']+'protocol-history.json\n\n'+ORIGIN+data['base']+initial+'\n\n'
     out += subheading+' '+('出典と確認範囲' if language == 'ja' else 'Sources and review scope')+'\n\n'
     for reference in case['references']:
         url = reference.get('url') or reference.get('source') or 'https://doi.org/'+reference['doi']

@@ -49,7 +49,7 @@ test('sixteen additional physical problems bind to successful immutable suppleme
       assert.ok(existsSync(new URL(item.url.slice(1)+'index.html',root)));
     }
   }
-  assert.deepEqual(selected.find(x=>x.id==='neutral-periodic-charges').supplemental_examples.map(x=>x.id),['ewald','spme']);
+  assert.deepEqual(selected.find(x=>x.id==='neutral-periodic-charges').supplemental_examples.map(x=>x.id),['ewald','spme','ewald-convergence','spme-convergence']);
 });
 
 test('new recipes expose the exact fixed input, measured acceptance criteria and populated numerical output',()=>{

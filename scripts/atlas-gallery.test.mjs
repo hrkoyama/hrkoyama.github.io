@@ -20,7 +20,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
  assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
- assert.equal(gallery.counts.supplemental_release_case_count,33);
+ assert.equal(gallery.counts.supplemental_release_case_count,39);
  assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
  assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
  assert.deepEqual(item.caption,metadata.summary);
@@ -31,8 +31,39 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  assert.deepEqual(ot.supplemental_execution_entries.map(x=>x.id),['ct-glm-independent','ct-glm-ot-convergence']);
  assert.ok(!gallery.items.some(x=>x.id==='ct-glm-constraint-control'));
  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
- assert.equal(Object.keys(manifest.source_sha256).length,127);
+ const particleBase='code/validated-examples/2026-11-22/particle-transport/';
+ const particleCases=json(particleBase+'cases.json');
+ const particleSources=['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...particleCases.map(x=>'results/'+x.id+'.png')].map(name=>particleBase+name);
+ assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(particleSources).size);
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
+});
+
+test('six particle/transport checks retain all five historical images and add only explicitly bound evidence',()=>{
+ const base='code/validated-examples/2026-11-22/particle-transport/';
+ const cases=json(base+'cases.json');
+ const additions={
+  'neutral-periodic-charges':['ewald-convergence','spme-convergence'],
+  'logarithmic-particles':['fmm-convergence'],
+  'cold-plasma-pic':['pic-conservation'],
+  'maxwell-collisions':['dsmc-statistics'],
+  'absorbing-slab':['radiation-convergence'],
+ };
+ const oldImages={'neutral-periodic-charges':'ewald','logarithmic-particles':'fmm','cold-plasma-pic':'pic','maxwell-collisions':'dsmc','absorbing-slab':'radiation-transport'};
+ const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
+ for(const [problem,ids] of Object.entries(additions)){
+  const item=gallery.items.find(x=>x.id===problem);
+  assert.equal(item.image,'/code/validated-examples/2026-11-22/particles/results/'+oldImages[problem]+'.png');
+  for(const id of ids){
+   const entry=item.supplemental_execution_entries.find(x=>x.id===id);
+   assert.ok(entry,problem+' '+id);assert.equal(entry.group,'particle-transport');
+   assert.deepEqual(entry.title,cases.find(x=>x.id===id).title);
+   assert.ok(entry.download.endsWith('/particle-transport/atlas-particle-transport-2026-11-22.zip'));
+  }
+ }
+ for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
+ assert.equal(gallery.counts.supplemental_case_count,34);
+ assert.equal(gallery.counts.supplemental_release_case_count,39);
+ assert.equal(gallery.counts.runnable_problems,39);
 });
 
 test('optional domain buttons and image policies start collapsed while names, reset and current count remain visible', () => {

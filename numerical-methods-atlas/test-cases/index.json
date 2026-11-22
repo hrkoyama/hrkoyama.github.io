@@ -3009,6 +3009,32 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ewald-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "spme-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -3026,6 +3052,22 @@
           "name": {
             "ja": "Bスプラインsmooth PMEの格子・次数収束",
             "en": "Mesh/order convergence of B-spline smooth PME"
+          }
+        },
+        {
+          "id": "ewald-convergence",
+          "url": "/numerical-methods-atlas/validation/ewald-convergence/",
+          "name": {
+            "ja": "Ewald：非対称周期セルのエネルギー・力と独立theta積分",
+            "en": "Ewald: asymmetric-cell energies and forces versus independent theta integration"
+          }
+        },
+        {
+          "id": "spme-convergence",
+          "url": "/numerical-methods-atlas/validation/spme-convergence/",
+          "name": {
+            "ja": "SPME：格子・補間次数・格子位相と保存則",
+            "en": "SPME: mesh, interpolation order, mesh phase and conservation"
           }
         }
       ],
@@ -3072,6 +3114,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fmm-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -3081,6 +3138,14 @@
           "name": {
             "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
             "en": "2D logarithmic FMM with M2M, M2L and L2L"
+          }
+        },
+        {
+          "id": "fmm-convergence",
+          "url": "/numerical-methods-atlas/validation/fmm-convergence/",
+          "name": {
+            "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+            "en": "FMM: direct and analytic references, order and tree depth"
           }
         }
       ],
@@ -3127,6 +3192,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "pic-conservation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -3136,6 +3216,14 @@
           "name": {
             "ja": "CIC静電PICの冷たいプラズマ振動",
             "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+          }
+        },
+        {
+          "id": "pic-conservation",
+          "url": "/numerical-methods-atlas/validation/pic-conservation/",
+          "name": {
+            "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+            "en": "PIC: mesh/time convergence, invariants and particle noise"
           }
         }
       ],
@@ -3182,6 +3270,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-statistics"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -3191,6 +3294,14 @@
           "name": {
             "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
             "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+          }
+        },
+        {
+          "id": "dsmc-statistics",
+          "url": "/numerical-methods-atlas/validation/dsmc-statistics/",
+          "name": {
+            "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+            "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
           }
         }
       ],
@@ -3237,6 +3348,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "radiation-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -3246,6 +3372,14 @@
           "name": {
             "ja": "純吸収平板の離散座標放射輸送",
             "en": "Discrete-ordinate radiation transport through an absorbing slab"
+          }
+        },
+        {
+          "id": "radiation-convergence",
+          "url": "/numerical-methods-atlas/validation/radiation-convergence/",
+          "name": {
+            "ja": "放射輸送：空間・角度収束と光子統計",
+            "en": "Radiation transport: space/angle convergence and photon statistics"
           }
         }
       ],
@@ -3484,7 +3618,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
+    "catalog/atlas-test-problems.json": "4c66a1747c5805ac1608baa9707b6b1325a5890ae2dfa2ff151f4d5340856f4e",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3569,10 +3703,18 @@
     "code/validated-examples/2026-11-22/particles/results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
     "code/validated-examples/2026-11-22/particles/results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png": "377a985727d54477ba021b571b137562f65979026dc848808d4ad50b81b84492",
+    "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png": "4207da16dbd3e326736684e40899ced22cd23c00071f5623a1e61d838db52d9e",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
     "code/validated-examples/2026-11-22/particles/results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png": "9358e2e4e7c7d8cb9f5e0bcb4d6cb7c2cf52f0beb7cc14fe64313261aec5363d",
     "code/validated-examples/2026-11-22/particles/results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
     "code/validated-examples/2026-11-22/particles/results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
     "code/validated-examples/2026-11-22/particles/results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
     "code/validated-examples/2026-11-22/thermostats/inputs.json": "8097b48107f42800ce6883aeaf73f22cf37f01e2269884f2f965d85a315f2a38",

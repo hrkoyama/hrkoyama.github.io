@@ -2,11 +2,11 @@
 
 Status: educational-example
 
-Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
+2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
 
-自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
+2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
 
-No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation.
+2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim.
 
 Other names: FMM法, fast multipole method, 高速多重極法, 高速多重極展開法
 
@@ -19,9 +19,9 @@ Other names: FMM法, fast multipole method, 高速多重極法, 高速多重極�
 
 ## Small fixed-input validation supplements
 
-Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
+2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
 
-自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
+2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
 
 - 2D logarithmic FMM with M2M, M2L and L2L: https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/
 
@@ -29,7 +29,13 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
 
-Common execution records: [{"id": "fmm", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"}, "kind": "dedicated-supplement"}]
+- FMM: direct and analytic references, order and tree depth: https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json
+
+Common execution records: [{"id": "fmm", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "fmm-convergence", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Next: Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions.
 
@@ -59,6 +65,10 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 - [2次元対数核のM2M・M2L・L2Lを持つFMM](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja) (`fmm`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip)
 
 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
+
+- [FMM：直接和・解析配置と展開次数・木の深さ](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja) (`fmm-convergence`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
 
 
 #### 厳密解・参照解 (`method-references-ja`)
@@ -90,11 +100,21 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
 
+##### FMM：直接和・解析配置と展開次数・木の深さ (`fmm-convergence`)
+
+[2次元対数核のM2M・M2L・L2Lを持つFMM](https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json)
+
+96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
 
-自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
+2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
 
 Scoped fixed-input examples; original method variants and earlier releases remain distinct.
 
@@ -108,10 +128,19 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/particles/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py)
 - [/code/validated-examples/2026-11-22/particles/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py)
 - [/code/validated-examples/2026-11-22/particles/transport.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py)
+- [/code/validated-examples/2026-11-22/particle-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py)
+- [/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py)
+- [/code/validated-examples/2026-11-22/particle-transport/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py)
 
 ###### 配布版のテスト
 
 - [/code/validated-examples/2026-11-22/particles/test_particles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_longrange.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_runner.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -143,6 +172,10 @@ Methods from explicitly bound supplementary examples and, where present, the com
 
 Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
 
+- [FMM: direct and analytic references, order and tree depth](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en) (`fmm-convergence`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -173,11 +206,21 @@ Matched problem executions are separate from existing editions and related sourc
 
 Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
 
+##### FMM: direct and analytic references, order and tree depth (`fmm-convergence`)
+
+[2D logarithmic FMM with M2M, M2L and L2L](https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json)
+
+Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
 
-Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
+2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
 
 Scoped fixed-input examples; original method variants and earlier releases remain distinct.
 
@@ -191,10 +234,19 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/particles/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py)
 - [/code/validated-examples/2026-11-22/particles/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py)
 - [/code/validated-examples/2026-11-22/particles/transport.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py)
+- [/code/validated-examples/2026-11-22/particle-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py)
+- [/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py)
+- [/code/validated-examples/2026-11-22/particle-transport/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py)
 
 ###### Package tests
 
 - [/code/validated-examples/2026-11-22/particles/test_particles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_longrange.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_runner.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

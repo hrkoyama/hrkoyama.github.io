@@ -46,14 +46,20 @@ test('current work, conditional additions and published examples remain separate
   assert.equal(new Set(queue.items.map(x=>x.id)).size,queue.items.length);
   for(const id of ['current-roadmap','executable-example-registry']){
     const x=queue.items.find(x=>x.id===id);
-    assert.ok(['in-progress','published'].includes(x.state));
-    assert.equal(x.priority,'P0');assert.equal(x.track,'current');
+    assert.equal(x.state,'published');
+    assert.equal(x.priority,'P0');assert.equal(x.track,'published');
   }
-  const h2=queue.items.find(x=>x.id==='molecular-quantum-example');assert.equal(h2.state,'published-verified-example');assert.equal(h2.track,'current');
-  for(const id of ['ewald-pme-spme']){
+  const ongoing=queue.items.filter(x=>x.track==='current');
+  assert.deepEqual(ongoing.map(x=>x.id),['field-validation-depth','public-reproduction-checks','year-end-release']);
+  for(const x of ongoing){assert.equal(x.state,'in-progress');assert.equal(x.priority,'P0');}
+  for(const id of ['molecular-quantum-example','ewald-pme-spme','periodic-dft-validation','periodic-forces-validation']){
     const x=queue.items.find(x=>x.id===id);
-    assert.equal(x.state,'conditional-planned');assert.equal(x.track,'conditional');
+    assert.equal(x.state,'published-verified-example');assert.equal(x.track,'published');
   }
+  const conditional=queue.items.filter(x=>x.track==='conditional');
+  assert.deepEqual(conditional.map(x=>x.id),['bounded-gap-closure']);
+  assert.equal(conditional[0].state,'conditional-planned');assert.equal(conditional[0].priority,'P1');
+  assert.match(conditional[0].scope.en,/existing target/);assert.match(conditional[0].scope.en,/After 18 December allow only correctness-related fixes/);
   assert.equal(queue.items.find(x=>x.id==='quantum-examples').state,'hydrogenic-helium-verified');
   assert.equal(queue.items.find(x=>x.id==='barnes-hut-example').track,'published');
   assert.equal(queue.items.find(x=>x.id==='atlas-specialist-ai').target_year,2027);
@@ -80,6 +86,49 @@ test('public milestones give target dates without promising every implementation
     for(const x of queue.milestones)assert.ok(rendered[lang].html.includes(x.title[lang]));
     assert.ok(rendered[lang].html.includes(queue.milestones.find(x=>x.id==='year-end-edition').scope[lang]));
   }
+});
+
+test('year-end priorities use current evidence and visible acceptance gates without conflating reproduction and held-out science',()=>{
+  const byId=new Map(queue.items.map(x=>[x.id,x]));
+  const registry=JSON.parse(read('catalog/atlas-execution-examples.json'));
+  const problems=JSON.parse(read('catalog/atlas-test-problems.json'));
+  const methods=JSON.parse(read('catalog/atlas-methods.json'));
+  const quantum=JSON.parse(read('catalog/atlas-quantum.json'));
+  assert.equal(registry.examples.length,22);assert.equal(problems.problems.length,83);assert.equal(methods.methods.length,147);assert.equal(quantum.sections.length,20);
+  assert.match(byId.get('executable-example-registry').scope.en,/22 examples/);
+  assert.match(byId.get('representative-recipes').scope.en,/83-problem\/39-runnable-entrance/);
+  assert.match(byId.get('method-assumptions-review').scope.en,/all 147 entries/);
+  assert.match(byId.get('quantum-reading').scope.en,/20 topics/);
+  assert.match(queue.policy.en,/From 22 November 2026, new fields are outside the standard/);
+  assert.match(queue.policy.en,/18 December freezes additions to existing validation/);
+  assert.match(queue.policy.en,/Large basis\/k sweeps/);
+  assert.match(queue.policy.en,/new explicit request/);
+  const depth=byId.get('field-validation-depth');
+  assert.match(depth.scope.en,/remains pending publication until every public file matches/);
+  assert.match(depth.scope.en,/actual fresh-Linux public-ZIP rerun succeeds/);
+  assert.ok(depth.links.some(x=>x.url==='/numerical-methods-atlas/validation/releases.json'));
+  const ci=byId.get('linux-public-reproduction-ci');
+  assert.match(ci.scope.en,/pinned NumPy\/SciPy\/pytest/);
+  assert.match(ci.scope.en,/Detailed common-22 CI including quantum remains manual/);
+  const use=byId.get('public-reproduction-checks');
+  assert.match(use.scope.en,/existing public inputs only/);
+  assert.match(use.scope.en,/not held-out scientific validation/);
+  assert.match(use.scope.en,/Correct rejection of a changed fixed recipe is a separate input-validation check/);
+  const gate=queue.milestones.find(x=>x.id==='representative-paths');
+  for(const text of ['six goals','two public distributions','existing public inputs','two existing coarse/poor-mixing controls','not held-out scientific validation','not a commitment for this date'])assert.ok(gate.scope.en.includes(text),text);
+  assert.match(conditionalScope(),/separate preregistration and independent references/);
+  assert.match(conditionalScope(),/new immutable release and rerun receipt by 18 December/);
+  const release=byId.get('year-end-release');
+  for(const text of ['another directory','new release','persistent versioned public verification evidence','registry/archive hashes','case/pytest counts','CI run URL'])assert.ok(release.scope.en.includes(text));
+  assert.match(release.scope.en,/Do not mark complete with unresolved P0/);
+  assert.match(queue.milestones.find(x=>x.id==='year-end-edition').scope.en,/Beyond temporary Actions artifacts or badges/);
+  // Dated aggregate snapshots belong to audit records, not evergreen visible promises.
+  for(const language of ['ja','en']){
+    const visible=queue.description[language]+queue.policy[language]+queue.items.map(x=>x.scope[language]).join(' ')+queue.milestones.map(x=>x.scope[language]).join(' ');
+    assert.doesNotMatch(visible,/9補助配布版|9補助版|追加6ケース・75|nine public supplements|six cases and 75|ten supplements, 39 cases and 372/);
+    for(const item of queue.items)assert.ok(rendered[language].html.includes(item.scope[language].replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#x27;')));
+  }
+  function conditionalScope(){return byId.get('bounded-gap-closure').scope.en;}
 });
 
 test('history headings and static/content tables of contents agree without active old promises',()=>{

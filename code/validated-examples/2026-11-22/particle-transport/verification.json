@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "group": "particle-transport",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "source_manifest_sha256": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+  "archive": {
+    "file": "atlas-particle-transport-2026-11-22.zip",
+    "sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "bytes": 1135472,
+    "archive_directory": "atlas-particle-transport-2026-11-22"
+  },
+  "archive_sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+  "returncode": 0,
+  "passed_tests": 75,
+  "tests": 75,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "dsmc-statistics",
+    "ewald-convergence",
+    "fmm-convergence",
+    "pic-conservation",
+    "radiation-convergence",
+    "spme-convergence"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 2.862179833002301,
+  "independent_rerun_seconds": 1.1258491249973304,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

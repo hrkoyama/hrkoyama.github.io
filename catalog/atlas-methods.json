@@ -6834,8 +6834,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
-        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -6857,12 +6857,12 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
-        "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。 FMM：直接和・解析配置と展開次数・木の深さ: 木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
       },
       "metadata_review": {
-        "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
+        "on": "2026-11-22"
       },
       "aliases": [
         "FMM法",
@@ -6879,13 +6879,22 @@
         ]
       },
       "depth_scope": {
-        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
-        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
       },
       "next_deliverable": {
         "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
-      }
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "fmm-convergence"
+          ]
+        }
+      ]
     },
     {
       "id": "keep",
@@ -7845,8 +7854,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
-        "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
+        "ja": "中性周期セルのEwald和と独立theta積分: 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。",
+        "en": "Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -7906,8 +7915,8 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
-        "en": "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
+        "ja": "中性周期セルのEwald和と独立theta積分: 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 固定した中性立方セルだけです。上限感度は厳密な全配置の裾誤差保証ではありません。theta参照は別定式化の自作実装であり、第三者計算パッケージや公表された参照数表ではありません。非中性・非直交・スラブ・応力・長時間MDは対象外です。",
+        "en": "Neutral-cell Ewald sums and an independent theta integral: No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field. Ewald: asymmetric-cell energies and forces versus independent theta integration: One fixed neutral cubic cell. Upper-limit sensitivity is not a rigorous tail bound for arbitrary configurations. The theta reference is an independently formulated original implementation, not an external package or published numerical table. Charged/triclinic/slab cells, stress and long MD are outside scope."
       },
       "metadata_review": {
         "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
@@ -8001,10 +8010,12 @@
           ],
           "not_checked": {
             "ja": [
-              "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。"
+              "非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。",
+              "固定した中性立方セルだけです。上限感度は厳密な全配置の裾誤差保証ではありません。theta参照は別定式化の自作実装であり、第三者計算パッケージや公表された参照数表ではありません。非中性・非直交・スラブ・応力・長時間MDは対象外です。"
             ],
             "en": [
-              "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field."
+              "No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field.",
+              "One fixed neutral cubic cell. Upper-limit sensitivity is not a rigorous tail bound for arbitrary configurations. The theta reference is an independently formulated original implementation, not an external package or published numerical table. Charged/triclinic/slab cells, stress and long MD are outside scope."
             ]
           }
         }
@@ -8024,9 +8035,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。",
-        "en": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs."
-      }
+        "ja": "中性周期セルのEwald和と独立theta積分: 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。",
+        "en": "Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "ewald-convergence"
+          ]
+        }
+      ]
     },
     {
       "id": "pme",
@@ -8040,8 +8060,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
-        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+        "ja": "Bスプラインsmooth PMEの格子・次数収束: 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。 SPME：格子・補間次数・格子位相と保存則: BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+        "en": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -8102,8 +8122,8 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
-        "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+        "ja": "Bスプラインsmooth PMEの格子・次数収束: 有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。 SPME：格子・補間次数・格子位相と保存則: エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。",
+        "en": "Mesh/order convergence of B-spline smooth PME: Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed. SPME: mesh, interpolation order, mesh phase and conservation: Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
       },
       "metadata_review": {
         "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
@@ -8200,10 +8220,12 @@
           ],
           "not_checked": {
             "ja": [
-              "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。"
+              "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+              "エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。"
             ],
             "en": [
-              "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+              "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.",
+              "Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
             ]
           }
         }
@@ -8222,9 +8244,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
-        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
-      }
+        "ja": "Bスプラインsmooth PMEの格子・次数収束: 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。 SPME：格子・補間次数・格子位相と保存則: BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+        "en": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "spme-convergence"
+          ]
+        }
+      ]
     },
     {
       "id": "spme",
@@ -8238,8 +8269,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
-        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
+        "ja": "Bスプラインsmooth PMEの格子・次数収束: 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。 SPME：格子・補間次数・格子位相と保存則: BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+        "en": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -8300,8 +8331,8 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
-        "en": "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+        "ja": "Bスプラインsmooth PMEの格子・次数収束: 有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。 SPME：格子・補間次数・格子位相と保存則: エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。",
+        "en": "Mesh/order convergence of B-spline smooth PME: Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed. SPME: mesh, interpolation order, mesh phase and conservation: Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
       },
       "metadata_review": {
         "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
@@ -8398,10 +8429,12 @@
           ],
           "not_checked": {
             "ja": [
-              "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。"
+              "有限格子のaliasingにより、エネルギー勾配型の合力は厳密にはゼロでなく、その診断量を保存します。運動量保存・長時間MD・原法PME・最適化P³M・スラブ補正の検証ではありません。",
+              "エネルギー勾配型では有限格子のaliasingにより合力は一般にゼロではありません。厳密な運動量保存や任意配置での同じ誤差、長時間MD、原法PME、SPME全変種の検証とはしません。"
             ],
             "en": [
-              "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed."
+              "Finite-mesh aliasing permits nonzero net force for this energy-gradient variant; that diagnostic is reported. No exact momentum conservation, long MD, original PME, optimized P³M or slab validation is claimed.",
+              "Finite-mesh aliasing generally gives nonzero net force for this energy-gradient variant. No exact momentum conservation, arbitrary-configuration error bound, long MD, original PME or every SPME variant is certified."
             ]
           }
         }
@@ -8420,9 +8453,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。",
-        "en": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT."
-      }
+        "ja": "Bスプラインsmooth PMEの格子・次数収束: 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。 SPME：格子・補間次数・格子位相と保存則: BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+        "en": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "spme-convergence"
+          ]
+        }
+      ]
     },
     {
       "id": "slab-ewald",
@@ -11000,8 +11042,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
-        "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
+        "ja": "CIC静電PICの冷たいプラズマ振動: 1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。 PIC：格子・時間収束、保存量と粒子雑音: 冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC: Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently. PIC: mesh/time convergence, invariants and particle noise: Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11031,12 +11073,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。",
-        "en": "Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated."
+        "ja": "CIC静電PICの冷たいプラズマ振動: 有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。 PIC：格子・時間収束、保存量と粒子雑音: DOP853は独立PIC空間実装ではありません。電荷・運動量の保持とエネルギーの近似保存を区別し、初期雑音のNスケーリングを時間発展した熱プラズマの保証としません。Landau減衰・電磁PIC・相対論・衝突は未検証です。",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC: Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated. PIC: mesh/time convergence, invariants and particle noise: DOP853 is not an independent PIC spatial implementation. Distinguish charge/momentum preservation from approximate energy conservation. Initial-noise N scaling does not validate evolved warm plasmas. Landau damping, electromagnetic/relativistic PIC and collisions remain unvalidated."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
+        "on": "2026-11-22"
       },
       "aliases": [
         "PIC法",
@@ -11053,9 +11095,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
-        "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
-      }
+        "ja": "CIC静電PICの冷たいプラズマ振動: 1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。 PIC：格子・時間収束、保存量と粒子雑音: 冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
+        "en": "Cold-plasma oscillation with electrostatic CIC PIC: Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently. PIC: mesh/time convergence, invariants and particle noise: Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "pic-conservation"
+          ]
+        }
+      ]
     },
     {
       "id": "amg",
@@ -11942,8 +11993,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
-        "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
+        "ja": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11968,12 +12019,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。",
-        "en": "Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization."
+        "ja": "純吸収平板の離散座標放射輸送: 多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 放射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab: Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization. Radiation transport: space/angle convergence and photon statistics: Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
+        "on": "2026-11-22"
       },
       "aliases": [
         "放射輸送法",
@@ -11990,9 +12041,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。",
-        "en": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux."
-      }
+        "ja": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "radiation-convergence"
+          ]
+        }
+      ]
     },
     {
       "id": "dsmc",
@@ -12006,8 +12066,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
-        "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -12037,12 +12097,12 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。",
-        "en": "This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced."
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布: DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 固定した64seedの統計的診断であり、全seedの保証ではありません。同一seed内の粒子は保存量で相関し、IIDのKS p値へ読み替えません。空間輸送、衝突セル、剛体球の速度依存衝突選択・輸送係数は含みません。",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced. DSMC collision component: finite-N equilibrium, invariants and statistical error: Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
+        "on": "2026-11-22"
       },
       "aliases": [
         "DSMC法",
@@ -12058,9 +12118,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
-        "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
-      }
+        "ja": "等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
+        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "particle-transport",
+          "edition": "2026-11-22",
+          "case_ids": [
+            "dsmc-statistics"
+          ]
+        }
+      ]
     },
     {
       "id": "dae",

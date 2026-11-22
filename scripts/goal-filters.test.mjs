@@ -33,20 +33,21 @@ function environment(fn,blocked=false){
  if(result?.then)return result.finally(restore);restore();return result;
 }
 test('published goals classify runnable examples as also having code/tests, without promoting reading or planned goals',()=>{
- assert.equal(records.length,14);
- for(const [filter,count] of [['all',14],['run',12],['code',13],['reading',1],['planned',0]])assert.equal(records.filter(r=>goalMatches(r.states,filter)).length,count,filter);
+ assert.equal(records.length,15);
+ for(const [filter,count] of [['all',15],['run',13],['code',14],['reading',1],['planned',0]])assert.equal(records.filter(r=>goalMatches(r.states,filter)).length,count,filter);
  assert.equal(records.find(r=>r.id==='molecular-dft').states,'reading');
  assert.equal(records.find(r=>r.id==='biological-models').states,'run code');
  assert.equal(records.find(r=>r.id==='temperature-control').states,'run code');
+ assert.equal(records.find(r=>r.id==='particle-transport').states,'run code');
 });
 test('selection filters both navigation and articles, counts unique goals, persists across language/pages, and resets',()=>environment(()=>{
  const f=fixture();const [homeController]=wireGoalFilters(f.scope);assert.equal(f.controls.hidden,false);
- f.choose('reading');assert.deepEqual(f.visible(),['molecular-dft']);assert.equal(f.status.textContent,'1 / 14 件の目的');assert.equal(f.empty.hidden,true);
+ f.choose('reading');assert.deepEqual(f.visible(),['molecular-dft']);assert.equal(f.status.textContent,'1 / 15 件の目的');assert.equal(f.empty.hidden,true);
  assert.equal(f.items.filter(x=>!x.hidden).length,2);
- const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.field.value,'reading');assert.equal(en.status.textContent,'1 of 14 goals');
+ const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.field.value,'reading');assert.equal(en.status.textContent,'1 of 15 goals');
  en.chooseDomain('temperature');en.choose('run');assert.deepEqual(en.visible(),['temperature-control']);
  homeController.sync();assert.equal(f.field.value,'run');assert.equal(f.domain.value,'temperature');assert.deepEqual(f.visible(),['temperature-control'],'restored pages use the latest session selection');
- en.reset.fire('click');assert.equal(en.visible().length,14);assert.equal(en.field.value,'all');assert.equal(en.domain.value,'all');
+ en.reset.fire('click');assert.equal(en.visible().length,15);assert.equal(en.field.value,'all');assert.equal(en.domain.value,'all');
  assert.equal(wireGoalFilters(en.scope).length,1);
 }));
 test('direct links reveal a hidden target; intentionally changing filters clears an excluded anchor',()=>environment((loc,history)=>{
@@ -85,15 +86,16 @@ test('field and availability intersect, overlapping MHD membership does not dupl
   ['temperature','run',['temperature-control']],
   ['fluid','code',['shocks','smooth-vortex','magnetic-divergence']],
   ['mhd','code',['magnetic-divergence']],
-  ['diffusion','run',['poisson']],
+  ['diffusion','run',['poisson','particle-transport']],
   ['time','run',['stiff-time','stochastic-calculation']],
-  ['gravity','run',['particle-gravity']]
+  ['gravity','run',['particle-gravity','particle-transport']],
+  ['probability','run',['particle-transport','stochastic-calculation']]
  ]){
   f.chooseDomain(domain);f.choose(availability);assert.deepEqual(f.visible(),ids,domain+' + '+availability);
-  assert.equal(f.status.textContent,`${ids.length} / 14 件の目的`);assert.equal(f.empty.hidden,ids.length!==0);
+  assert.equal(f.status.textContent,`${ids.length} / 15 件の目的`);assert.equal(f.empty.hidden,ids.length!==0);
  }
- const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.domain.value,'gravity');assert.equal(en.field.value,'run');
- f.chooseDomain('temperature');f.choose('reading');assert.equal(f.empty.hidden,false);f.reset.fire('click');assert.equal(f.visible().length,14);assert.equal(f.domain.value,'all');assert.equal(f.field.value,'all');
+ const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.domain.value,'probability');assert.equal(en.field.value,'run');
+ f.chooseDomain('temperature');f.choose('reading');assert.equal(f.empty.hidden,false);f.reset.fire('click');assert.equal(f.visible().length,15);assert.equal(f.domain.value,'all');assert.equal(f.field.value,'all');
 }));
 test('changing only the field clears an excluded anchor and direct links reset a conflicting field',()=>environment((loc,history)=>{
  const f=fixture();const [controller]=wireGoalFilters(f.scope);
@@ -107,8 +109,8 @@ test('URL conditions override session preferences, missing partners and unknown 
  const f=fixture('en');const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons','molecular-hf','periodic-dft','periodic-forces']);
  assert.equal(values.get('atlas-goal-domain'),'quantum');
  loc.search='?lang=en&goal-domain=quantum';controller.sync();assert.equal(f.field.value,'all');assert.deepEqual(f.visible(),['atomic-electrons','molecular-dft','molecular-hf','periodic-dft','periodic-forces']);
- loc.search='?lang=en&goal-domain=unknown&goal-availability=invalid';controller.sync();assert.equal(f.visible().length,14);assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
- loc.search='?lang=en&goal-domain=all&goal-availability=all';values.set('atlas-goal-domain','biology');controller.sync();assert.equal(f.visible().length,14);
+ loc.search='?lang=en&goal-domain=unknown&goal-availability=invalid';controller.sync();assert.equal(f.visible().length,15);assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
+ loc.search='?lang=en&goal-domain=all&goal-availability=all';values.set('atlas-goal-domain','biology');controller.sync();assert.equal(f.visible().length,15);
 }));
 test('filter URLs preserve unrelated parameters and anchors; changes, back/forward and reset restore their own conditions',()=>environment((loc,history)=>{
  loc.search='?lang=ja&view=compact';loc.hash='#top';

@@ -1,0 +1,206 @@
+{
+  "id": "fmm-convergence",
+  "passed": true,
+  "checks": {
+    "fine_potential_error": true,
+    "fine_field_error": true,
+    "order_refinement_ratio": true,
+    "depth2_field_error": true,
+    "translation_potential_error": true,
+    "translation_field_error": true,
+    "rotation_potential_error": true,
+    "rotation_field_error": true,
+    "net_force_relative": true,
+    "analytic_direct_potential_error": true,
+    "analytic_direct_field_error": true,
+    "symmetric_field_error": true,
+    "multipole_potential_error": true,
+    "multipole_field_error": true,
+    "coarse_control_detected": true,
+    "actual_m2l": true,
+    "actual_l2l": true,
+    "near_pairs_subset": true,
+    "multipole_probe_has_far_translation": true
+  },
+  "metrics": {
+    "fine_potential_error": 1.6153974611299304e-06,
+    "fine_field_error": 0.00013124381103546412,
+    "order_refinement_ratio": 7.213976104507879e-05,
+    "depth2_field_error": 0.00010463275822658602,
+    "net_force_relative": 8.766244233276265e-08,
+    "net_force_absolute": 0.00011622325026383606,
+    "direct_net_force": 7.283063041541027e-14,
+    "coarse_control_field_error": 1.8192992204874692,
+    "translation_potential_error": 1.612941820106073e-06,
+    "translation_field_error": 0.0004069109892306244,
+    "rotation_potential_error": 1.614394697035948e-06,
+    "rotation_field_error": 0.00015204244904776232,
+    "analytic_direct_potential_error": 0.0,
+    "analytic_direct_field_error": 0.0,
+    "symmetric_field_error": 6.770015090751258e-06,
+    "multipole_potential_error": 1.3839596135767351e-11,
+    "multipole_field_error": 1.0251124393789723e-09
+  },
+  "records": [
+    {
+      "series": "order_depth",
+      "depth": 2,
+      "order": 2,
+      "potential_error": 0.0411865516022627,
+      "field_error": 0.8533525226369347,
+      "m2l_translations": 156,
+      "l2l_translations": 20,
+      "near_pairs": 6190,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 2,
+      "order": 4,
+      "potential_error": 0.0050239303087860065,
+      "field_error": 0.10212714577482629,
+      "m2l_translations": 156,
+      "l2l_translations": 20,
+      "near_pairs": 6190,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 2,
+      "order": 8,
+      "potential_error": 4.947919960063274e-05,
+      "field_error": 0.002759924206270803,
+      "m2l_translations": 156,
+      "l2l_translations": 20,
+      "near_pairs": 6190,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 2,
+      "order": 12,
+      "potential_error": 1.6088724317242509e-06,
+      "field_error": 0.00010463275822658602,
+      "m2l_translations": 156,
+      "l2l_translations": 20,
+      "near_pairs": 6190,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 3,
+      "order": 2,
+      "potential_error": 0.04460862444127667,
+      "field_error": 1.8192992204874692,
+      "m2l_translations": 1272,
+      "l2l_translations": 84,
+      "near_pairs": 2314,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 3,
+      "order": 4,
+      "potential_error": 0.007558891029321835,
+      "field_error": 0.23400296359160322,
+      "m2l_translations": 1272,
+      "l2l_translations": 84,
+      "near_pairs": 2314,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 3,
+      "order": 8,
+      "potential_error": 8.570152231235362e-05,
+      "field_error": 0.008486987602919882,
+      "m2l_translations": 1272,
+      "l2l_translations": 84,
+      "near_pairs": 2314,
+      "all_pairs": 9120
+    },
+    {
+      "series": "order_depth",
+      "depth": 3,
+      "order": 12,
+      "potential_error": 1.6153974611299304e-06,
+      "field_error": 0.00013124381103546412,
+      "m2l_translations": 1272,
+      "l2l_translations": 84,
+      "near_pairs": 2314,
+      "all_pairs": 9120
+    },
+    {
+      "series": "invariance",
+      "translation_potential_error": 1.612941820106073e-06,
+      "translation_field_error": 0.0004069109892306244,
+      "rotation_potential_error": 1.614394697035948e-06,
+      "rotation_field_error": 0.00015204244904776232,
+      "net_force": 0.00011622325026383606
+    },
+    {
+      "series": "analytic_two_source",
+      "potential": [
+        0.0,
+        0.0,
+        0.9628107475090479,
+        -0.9628107475090482
+      ],
+      "reference_potential": [
+        0.0,
+        0.0,
+        0.9628107475090479,
+        -0.9628107475090482
+      ],
+      "field": [
+        [
+          3.523316062176166,
+          0.0
+        ],
+        [
+          3.523316062176166,
+          0.0
+        ],
+        [
+          -2.9437229437229435,
+          0.0
+        ],
+        [
+          -2.9437229437229444,
+          0.0
+        ]
+      ],
+      "reference_field": [
+        [
+          3.523316062176166,
+          0.0
+        ],
+        [
+          3.523316062176166,
+          0.0
+        ],
+        [
+          -2.9437229437229435,
+          0.0
+        ],
+        [
+          -2.9437229437229444,
+          0.0
+        ]
+      ]
+    },
+    {
+      "series": "analytic_ring",
+      "potential": 4.165151607300834,
+      "reference_potential": 4.165151607314674,
+      "field": [
+        9.745073860466565,
+        9.29180485954421
+      ],
+      "reference_field": [
+        9.745073861491678,
+        9.291804859857475
+      ]
+    }
+  ]
+}

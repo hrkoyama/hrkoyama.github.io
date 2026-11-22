@@ -6,12 +6,12 @@
     "en": "Numerical Methods Atlas: current development plan"
   },
   "description": {
-    "ja": "人にもAIにも、条件と根拠を確かめ、公開コード・入力・結果を使える資料へ。既存の基盤を整え、代表例から実行・検証の経路を揃える。",
-    "en": "Help people and AI check conditions and evidence, then use public code, inputs and results. Improve the existing foundation and complete execution and validation paths through representative examples."
+    "ja": "公開済みの限定例を、初めて使う人にも条件・参照・入力・コード・結果・引用まで辿れる年末版へ整えます。件数を増やす段階から、公開配布の再現、根拠と状態の整合、更新・復元の確認へ重点を移します。",
+    "en": "Prepare a year-end edition whose scoped public examples let unfamiliar users follow conditions, references, inputs, code, results and citation. Shift emphasis from adding entries to public-release reproduction, consistent evidence/status and checked maintenance/restoration."
   },
   "policy": {
-    "ja": "新規項目を増やすより、既存分野の実装・検証の差を明示して埋める。固定入力・独立参照／解析解・残差・収束・終了理由を優先し、公開コードがあるだけで分野全体を検証済みにしない。専門AIは2027年以降。",
-    "en": "Prioritize revealing and closing implementation/validation gaps in existing fields over adding entries. Require fixed inputs, independent/analytic references, residuals, refinement and termination evidence; published code does not validate an entire field. Specialist AI remains deferred until 2027 or later."
+    "ja": "2026年11月22日から、新分野の追加を年内の標準計画に含めず、既存対象の公開品質と限定した検証の不足を優先します。12月18日は既存検証への追加を締め切る年末版候補の固定日です。固定入力・独立参照または解析解・残差・収束・保存量・統計誤差・終了理由を区別し、公開コードや検査件数を分野全体の検証へ読み替えません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力を基本とし、大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。既存の入力・公差・成功記録を保持し、専門AI・モデル研究は2027年以降とします。 新たな数値解法コードの自動生成や学習モデル、重い新物理の拡張は、翌年以降の別計画で検討します。",
+    "en": "From 22 November 2026, new fields are outside the standard year-end plan; prioritize publication quality and bounded validation gaps for existing targets. 18 December freezes additions to existing validation for the year-end release candidate. Distinguish fixed inputs, independent/analytic references, residuals, refinement, invariants, statistical error and termination reasons; neither published code nor test counts validate a whole field. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Preserve historical inputs, criteria and successful records; specialist-AI/model research remains deferred until 2027 or later. New numerical-solver code-generation or learning models and costly new-physics expansions belong to a separate plan from the following year onward."
   },
   "items": [
     {
@@ -21,12 +21,12 @@
       "track": "current",
       "priority": "P0",
       "title": {
-        "ja": "分野ごとの検証差を埋める",
-        "en": "Close validation gaps between fields"
+        "ja": "既存分野の限定検証を公開・再現・保守できる形へ",
+        "en": "Make scoped validation in existing fields publishable, reproducible and maintainable"
       },
       "scope": {
-        "ja": "生物2例・確率2例・H₂ RHF・固定Heの周期LDAに続き、非対称He₂の原子間力を追加し、現行22例の実行経路を整備。力を全6座標の有限差分と独立DFTK参照で照合し、基底/k点/SCF/FFTを分離検査。BOMDの力供給は局所確認まで。長時間NVE、他物質、反応拡散、MCMC、温度制御の分布・相関は次の検証候補。",
-        "en": "Following two biology/two stochastic examples, H₂ RHF and fixed-He periodic LDA, add asymmetric-He₂ forces for 22 execution paths. Compare forces with all-six-coordinate finite differences and independent DFTK, separately checking basis/k/SCF/FFT refinement. BOMD coverage is a local force-interface check. Long NVE, other materials, reaction–diffusion, MCMC and thermostat distributions/correlations remain future validation."
+        "ja": "共通22実行例と、分野別の補助配布版を別に扱い、公開状況・ケース数・検査件数は現在の公開配布台帳と日付付き追試記録で確認します。ローカルで数値検査・独立ZIP展開に合格した候補でも、公開URLの全ファイル照合と実際の新規Linux公開ZIP追試が揃うまでは公開確認待ちとします。年内は既存対象の独立参照、残差と解誤差、空間/時間/打切り収束、保存量と統計診断の読み分けを監査します。非線形反応拡散、MCMC、温度制御、CT/GLM、基盤手法、粒子・輸送の限定例を、分野全体の検証や重い新物理へ広げません。",
+        "en": "Keep the shared 22 execution examples separate from field-specific supplements; consult the current public release registry and dated rerun receipts for publication status, case counts and test counts. A candidate that passes local numerical checks and independent ZIP extraction remains pending publication until every public file matches and an actual fresh-Linux public-ZIP rerun succeeds. Year-end work audits independent references, residual versus solution error, space/time/truncation refinement, invariants and statistical diagnostics for existing targets. Scoped nonlinear reaction–diffusion, MCMC, thermostat, CT/GLM, foundations and particle/transport examples do not validate entire fields or justify costly new physics."
       },
       "links": [
         {
@@ -35,6 +35,13 @@
             "ja": "分野ごとの根拠と未実装範囲",
             "en": "Field evidence and unimplemented scope"
           }
+        },
+        {
+          "url": "/numerical-methods-atlas/validation/releases.json",
+          "label": {
+            "ja": "現在公開されている補助配布版と検査件数",
+            "en": "Current public supplements and test counts"
+          }
         }
       ]
     },
@@ -42,15 +49,15 @@
       "id": "periodic-dft-validation",
       "target_year": 2026,
       "state": "published-verified-example",
-      "track": "current",
+      "track": "published",
       "priority": "P0",
       "title": {
         "ja": "固定Heセルの周期DFT・k点収束を実装・検証",
         "en": "Implement and validate fixed-He periodic DFT and k-point refinement"
       },
       "scope": {
-        "ja": "固定した1原子単純立方Heセルの周期KS-DFT。PySCFを使う教育用ワークフローで、Γ点／k点、Gaussian軌道基底、FFT補助格子、SCF公差を別々に検査し、同じGTHパラメータ・LDA交換＋VWN5相関のDFTK平面波計算と比較。平衡He結晶や一般物質・金属の検証ではありません。",
-        "en": "Periodic KS-DFT for one fixed simple-cubic He cell. An educational PySCF workflow separately checks Gamma/k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF tolerances against independent DFTK plane waves with identical GTH parameters and LDA exchange plus VWN5 correlation. Does not validate equilibrium helium solids, general materials or metals."
+        "ja": "固定した1原子単純立方Heセルの周期KS-DFTを公開済みです。PySCFの教育用ワークフローでΓ/k点、Gaussian基底、FFT格子、SCF公差を分け、同じGTH・LDA交換＋VWN5の独立DFTK平面波参照と比較しました。年内は保存済みの配布版・数値基準・参照・日英説明を照合し、必要な場合だけ少数の固定代表入力を再確認します。基底/k点の全走査や独立参照を通常確認で再生成せず、一般物質・金属・平衡結晶の検証へ広げません。",
+        "en": "The fixed one-atom simple-cubic He periodic KS-DFT example is public. Its educational PySCF workflow separates Gamma/k sampling, Gaussian basis, FFT grid and SCF tolerance and compares matching GTH/LDA-exchange-plus-VWN5 DFTK plane waves. Year-end work checks saved releases, numerical criteria, references and bilingual explanations, rerunning only a few fixed representative inputs when needed. Routine checks do not regenerate full basis/k sweeps or independent references and do not extend validation to general materials, metals or equilibrium crystals."
       },
       "links": [
         {
@@ -66,15 +73,15 @@
       "id": "periodic-forces-validation",
       "target_year": 2026,
       "state": "published-verified-example",
-      "track": "current",
+      "track": "published",
       "priority": "P0",
       "title": {
         "ja": "多原子周期DFTの原子間力を実装・検証",
         "en": "Implement and validate multiatom periodic DFT forces"
       },
       "scope": {
-        "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
-        "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
+        "ja": "非対称2原子He周期セル・局所GTH・LDA交換＋VWN5の限定例を公開済みです。Gaussian基底の微分を含む解析力を全6座標のエネルギー差分と独立DFTK参照で照合し、基底・k点・SCF・FFTの収束履歴を保持します。年内は保存結果と力供給インターフェース、短い固定入力の説明を照合します。長時間NVE、CPMD、一般物質の精密計算や重い参照再生成は標準計画に含めません。",
+        "en": "The asymmetric two-He periodic local-GTH/LDA-exchange-plus-VWN5 example is public. Analytic forces including Gaussian-basis derivatives were compared with all-six-coordinate energy differences and independent DFTK references; basis/k/SCF/FFT histories are preserved. Year-end work checks saved results, the force-supply interface and explanations for short fixed inputs. Long NVE, CPMD, precise general-material calculations and costly reference regeneration are outside the standard plan."
       },
       "links": [
         {
@@ -90,14 +97,14 @@
       "id": "current-roadmap",
       "target_year": 2026,
       "state": "published",
-      "track": "current",
+      "track": "published",
       "title": {
-        "ja": "現行計画と履歴を分ける",
-        "en": "Separate the current plan from development history"
+        "ja": "現行計画と過去の履歴を分ける仕組みを保つ",
+        "en": "Maintain the separation of current plans and historical records"
       },
       "scope": {
-        "ja": "現行計画と開発履歴を日英で分け、本文・目次・JSONの見出しと状態を揃えた。既存の節リンクと履歴の翻訳状態を保持し、P0の整備、条件付きのEwald/H₂追加、2027年以降のAI研究を区別して公開・確認した。",
-        "en": "Published and checked a bilingual separation of the current plan and development history, with aligned headings and status in the text, tables of contents and JSON. Preserved existing section links and historical translation status, distinguishing P0 work, conditional Ewald/H₂ additions and AI research from 2027 onward."
+        "ja": "現行計画と過去の整備履歴を分ける日英の公開ページ・見出し・JSON・既存の節リンクを整備済みです。古い節目は履歴として保持し、更新時は本文・目次・検索と作業状態を照合します。計画の公開と、個別の実装・公開確認・再実行の完了を同じ状態にしません。",
+        "en": "Bilingual pages, headings, JSON and stable section links already separate current plans from historical development. Preserve old milestones as history and reconcile text, contents, search and work status on updates. Publishing a plan does not imply completion of each implementation, publication check or rerun."
       },
       "priority": "P0",
       "links": [
@@ -114,22 +121,22 @@
       "id": "executable-example-registry",
       "target_year": 2026,
       "state": "published",
-      "track": "current",
+      "track": "published",
       "title": {
-        "ja": "実行例の共通台帳と3つの雛形",
-        "en": "A shared executable-example registry and three templates"
+        "ja": "共通22実行例と補助配布版の役割を保つ",
+        "en": "Maintain the shared 22-case registry and separate supplement roles"
       },
       "scope": {
-        "ja": "公開済みのBarnes–Hut・水素型原子・Heの3例を、版・入力・実行場所・コマンド・出力・確認値・失敗判定・引用・既存の利用条件へ辿れる共通JSONと日英の実行案内に接続した。公開された一覧と配布ファイルだけを取得して再実行し、3例の数値条件と失敗判定の合格を確認した。",
-        "en": "Connected the three published Barnes–Hut, hydrogenic and helium examples through a common JSON registry and bilingual execution guide covering editions, inputs, working directories, commands, outputs, check values, failure rules, citation and existing terms. Retrieved only the public registry and release files, reran the examples and confirmed their numerical and expected-failure checks."
+        "ja": "最初のBarnes–Hut・水素型原子・Heの3雛形から発展した共通台帳は22例です。版、固定入力、実行場所、コマンド、出力、数値基準、失敗判定、引用、利用条件を保持します。補助配布版のケース数と共通22例、83問題のうち39問題にある実行入口を混同せず、同じ物理問題の追加検証を新問題へ加算しません。",
+        "en": "The shared registry grew from the first Barnes–Hut, hydrogenic and He templates to 22 examples. Preserve editions, fixed inputs, working directories, commands, outputs, numerical criteria, failure rules, citation and terms. Distinguish supplement cases from the shared 22 and the 39 runnable entrances among 83 problems; additional checks of one physical target do not create new problems."
       },
       "priority": "P0",
       "links": [
         {
           "url": "/numerical-methods-atlas/code-and-data/?lang={lang}",
           "label": {
-            "ja": "3例の取得・実行案内",
-            "en": "Download and run the three examples"
+            "ja": "共通22例の取得・実行案内",
+            "en": "Download and run the shared 22 examples"
           }
         },
         {
@@ -142,8 +149,8 @@
         {
           "url": "/numerical-methods-atlas/code-and-data/verification/2026-11-21.json",
           "label": {
-            "ja": "3例の追加実行記録",
-            "en": "Additional execution receipt for the three examples"
+            "ja": "3例の追加実行記録（最初の3雛形の履歴）",
+            "en": "Additional execution receipt for the three examples (history of the first three templates)"
           }
         },
         {
@@ -159,14 +166,14 @@
       "id": "method-assumptions-review",
       "target_year": 2026,
       "state": "published",
-      "track": "current",
+      "track": "published",
       "title": {
         "ja": "主要24手法の条件・制約・文献を整理",
         "en": "Curate assumptions, limits and sources for 24 priority methods"
       },
       "scope": {
-        "ja": "代表例に関わる手法から、何を解くか、使える条件、避ける条件、確認した範囲と原典を整理する。未確認と適用対象外を区別し、章単位の関連文献を個別手法の検証と混同しない。",
-        "en": "Start with methods used by representative examples: what they solve, applicable and unsuitable conditions, checked scope and original sources. Distinguish unknown from not applicable, and chapter-related references from method-specific verification."
+        "ja": "主要24手法の日英の個別整理と、147項目の手法台帳を公開済みです。各例の問題・採用変種・適用/回避条件・単位・境界・制約、文献の役割と確認範囲を表示します。章の関連文献と個別手法の検証、抄録/書誌確認と原文の参照、採用変種と未実装の原法を区別します。年末の監査ではこれらの整合を確認し、147項目すべての実装完了を目標にしません。",
+        "en": "The 24 individually curated bilingual methods and 147-entry method map are public. They identify problems, adopted variants, use/avoid conditions, units, boundaries, limitations, source roles and review depth. Distinguish chapter references from method-specific validation, abstract/bibliography checks from source passages, and adopted variants from unimplemented originals. Year-end audit checks these distinctions; it does not target implementation of all 147 entries."
       },
       "priority": "P0",
       "progress": {
@@ -194,26 +201,26 @@
       "id": "representative-recipes",
       "target_year": 2026,
       "state": "published",
-      "track": "current",
+      "track": "published",
       "title": {
-        "ja": "既存15問題を固定入力から再実行できる形へ",
-        "en": "Give 15 existing problems fixed-input reproduction paths"
+        "ja": "共通22例と既存の実行入口の再現条件を保持する",
+        "en": "Preserve reproduction conditions for the shared 22 examples and existing run entrances"
       },
       "scope": {
-        "ja": "既にある問題を選び、公開入力から結果ファイルを生成し、確認値・許容誤差・失敗を判定できる経路を揃える。既存の完成例を再利用し、新規15問題として総数へ加算しない。",
-        "en": "Select existing problems and provide paths from public inputs to result files, check values, tolerances and explicit failures. Reuse completed examples; these are not 15 new problems to add to the inventory."
+        "ja": "共通22例に固定入力・実行・JSON/CSV・数値基準・失敗の扱いがあり、公開台帳と配布物だけからの再実行記録があります。補助配布版を別に扱い、83問題・39実行入口という集計を保持します。年内は入力から実測結果への経路を初見の利用者の少数の代表実行で確認し、元の入力・公差・成功履歴を変更しません。",
+        "en": "The shared 22 examples provide fixed inputs, execution, JSON/CSV, numerical criteria, failure scope and public-registry-only rerun records. Treat supplements separately and preserve the 83-problem/39-runnable-entrance counts. Year-end checks follow inputs to measured results through a few representative unfamiliar-user runs without changing historical inputs, tolerances or successful records."
       },
       "priority": "P0",
       "progress": {
-        "ja": "既存3例に12例を追加し、15問題すべてに固定入力・実行・JSON/CSV・数値基準・失敗の扱いを公開。公開registryと配布物だけから14回（原子2例は共有）実行し、15問題が合格。新しい問題として加算せず、総数60を保持。",
-        "en": "Added twelve recipes to the existing three: all fifteen now have fixed inputs, execution, JSON/CSV, numerical criteria and failure scope. Fourteen executions using only the public registry and artifacts passed all fifteen cases; atomic cases share one run. These remain part of the existing sixty atlas problems."
+        "ja": "15例という過去の節目は履歴として保持し、現行の共通台帳は22例です。配布版の取得・環境・SHA・結果・数値基準を区別した確認記録へ接続します。",
+        "en": "Retain the historical fifteen-example milestone; the current shared registry contains 22. Link receipts that distinguish acquisition, environment, hashes, outputs and numerical criteria."
       },
       "links": [
         {
           "url": "/numerical-methods-atlas/code-and-data/?lang=ja",
           "label": {
-            "ja": "代表15問題の取得・実行・検証",
-            "en": "Run and validate fifteen representative problems"
+            "ja": "共通22例の取得・実行・検証",
+            "en": "Run and validate the shared 22 examples"
           }
         },
         {
@@ -226,8 +233,15 @@
         {
           "url": "/numerical-methods-atlas/code-and-data/verification/2026-11-22-public.json",
           "label": {
-            "ja": "公開一覧からの15問題の再実行記録",
-            "en": "Fifteen-case rerun from the public registry"
+            "ja": "15例時点の公開再実行記録（履歴）",
+            "en": "Public rerun receipt at the fifteen-example milestone (history)"
+          }
+        },
+        {
+          "url": "/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
+          "label": {
+            "ja": "現行22例の公開台帳による確認記録",
+            "en": "Current 22-example public-registry receipt"
           }
         }
       ]
@@ -236,19 +250,19 @@
       "id": "human-entry-points",
       "target_year": 2026,
       "state": "published",
-      "track": "current",
+      "track": "published",
       "title": {
-        "ja": "人とAIの入口・分野地図・共有用資料",
-        "en": "Entry points, field map and sharing materials for people and AI"
+        "ja": "目的・式・図から問題・参照・コードへの入口を保つ",
+        "en": "Maintain entrances from goals, equations and pictures to problems, references and code"
       },
       "scope": {
-        "ja": "Poisson・Barnes–Hut・H/Heを代表例として、得られる判断、条件、入力・コードへの進み方を日英で示す。分野地図と紹介文を現状に合わせ、解説・実行例・予定を区別する。",
-        "en": "Use Poisson, Barnes–Hut and hydrogenic/He examples to show useful decisions, conditions and paths to inputs and code in both languages. Update the field map and introductory copy, keeping reading, runnable examples and plans distinct."
+        "ja": "147手法の状態、83問題の保存図、式・厳密解/参照解・問題別ページ、39問題の実行入口と、日英の検索・目的別入口を公開済みです。解説、ブラウザ展示、固定入力実行例、実装予定を分け、同じ物理問題への複数の検証を重複加算しません。これらの入口を初見で使い切れるか、公開ZIPを実際に再現できるかは、現在進行中の受入確認として別に記録します。",
+        "en": "Status for 147 methods, saved illustrations for 83 problems, equation/exact-or-reference-solution/problem hubs, 39 runnable problem entrances and bilingual search/goal pages are public. Distinguish reading, browser exhibits, fixed-input runs and planned implementations; multiple checks of one physical target do not multiply problem counts. Unfamiliar-user completion of these routes and actual public-ZIP reproduction are recorded separately as ongoing acceptance work."
       },
       "priority": "P0",
       "progress": {
-        "ja": "文字・数式・全60問題の保存図から15問題の実行・検証例へ接続し、143手法の状態・日英キーワード絞り込みを公開。分野地図は量子化学・DFTと温度制御を含む8分野へ更新し、解説・ブラウザ展示・固定入力例・実装予定を区別。初訪問者向けの日英紹介、日英の短文・紹介画像・共有プレビューを用意しました。",
-        "en": "Published paths from words, formulas and saved illustrations for all sixty problems to fifteen runnable verification examples, plus status and bilingual keyword filters for 143 methods. The field map now includes eight areas, including quantum chemistry/DFT and thermostats, distinguishing reading, browser exhibits, fixed-input examples and planned implementations. Bilingual first-visit copy, short descriptions, images and sharing previews are available."
+        "ja": "文字・式・図から問題別ページと実行入口への導線は整備済みです。60問題・15例・143手法という古い集計を更新し、これからは初見の目的達成と、見つからなかった経路の記録を優先します。",
+        "en": "Routes from words, equations and pictures to problem hubs and run entrances exist. Replace stale sixty-problem/fifteen-example/143-method counts and prioritize unfamiliar-user task completion and recording paths that fail."
       },
       "links": [
         {
@@ -275,8 +289,8 @@
         {
           "url": "/numerical-methods-atlas/code-and-data/examples/?lang=ja",
           "label": {
-            "ja": "15問題の専用入口",
-            "en": "Dedicated entries for fifteen examples"
+            "ja": "共通22例の専用入口",
+            "en": "Dedicated entries for the shared 22 examples"
           }
         },
         {
@@ -289,8 +303,8 @@
         {
           "url": "/numerical-methods-atlas/gallery/?lang=ja",
           "label": {
-            "ja": "保存図から15例を探す",
-            "en": "Find fifteen examples by picture"
+            "ja": "保存図から既存の実行入口を探す",
+            "en": "Find existing run entrances from saved illustrations"
           }
         }
       ]
@@ -299,19 +313,19 @@
       "id": "linux-public-reproduction-ci",
       "target_year": 2026,
       "state": "published",
-      "track": "current",
+      "track": "published",
       "title": {
-        "ja": "Linuxの新規環境で公開15例を継続検証",
-        "en": "Continuously verify fifteen public examples in fresh Linux jobs"
+        "ja": "通常は軽量補助版、詳細22例は必要時の手動確認",
+        "en": "Use routine lightweight supplements and manual detailed 22-case checks"
       },
       "scope": {
-        "ja": "Ubuntu 24.04・Python 3.12の新しい環境で公開台帳・配布ZIP・固定入力・保存参照を取得し、依存導入から15問題の数値判定までを記録。元の数値基準と公開済みコード版・検証記録を保持する。",
-        "en": "Fetch the public registry, distribution ZIPs, fixed inputs and saved references in a fresh Ubuntu 24.04 / Python 3.12 job, recording dependency setup and numerical decisions for fifteen cases. Preserve the original criteria, immutable editions and historical verification records."
+        "ja": "通常のLinux CIはUbuntu 24.04・Python 3.12とNumPy/SciPy/pytestの固定3依存で公開補助ZIPだけを検査し、手動・毎週・サイト検査成功後に公開SHAの一致を待って実行する仕組みを整備済みです。対象版・ケース数・実測検査数は現在の公開配布台帳と日付付きLinux記録へ接続します。量子を含む共通22例の詳細CIは必要時の手動実行とし、既存の成功記録を保持します。ジョブ起動・ローカル合格・保存記録の照合と、今回実行した公開ZIPのLinux合格を区別します。",
+        "en": "Routine Linux CI is in place for public supplement ZIPs on Ubuntu 24.04/Python 3.12 with pinned NumPy/SciPy/pytest, triggered manually, weekly and after successful site checks while waiting for matching public hashes. Link the current release registry and dated Linux receipts for actual editions, case counts and measured tests. Detailed common-22 CI including quantum remains manual when needed, preserving successful history. Distinguish job startup, local passes and saved-record checks from an actual current Linux pass for public ZIPs."
       },
       "priority": "P0",
       "progress": {
-        "ja": "Ubuntu 24.04の新規ジョブで公開15問題を14回実行し、全問題の数値条件が合格。依存導入・環境・取得SHA・実行ログ・JSON/CSVを保存し、初回成功JSONも公開。手動・毎週・サイト検査成功後の起動を備え、公開URLの版照合を待って実行します。",
-        "en": "A fresh Ubuntu 24.04 job ran all fifteen public cases in fourteen executions; every numerical acceptance check passed. Dependency setup, environment, hashes, logs and JSON/CSV are retained, with a public first-success receipt. Manual, weekly and post-site-check triggers wait for matching public artifact versions."
+        "ja": "共通22例には公開台帳からのLinux成功記録があり、通常確認は別の軽量補助版CIへ分離済みです。最初の15例の記録は履歴として保持します。",
+        "en": "The common 22 have a successful public-registry Linux receipt; routine checks use the separate lightweight supplement CI. Preserve the original fifteen-example receipt as history."
       },
       "links": [
         {
@@ -324,15 +338,29 @@
         {
           "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-linux.json",
           "label": {
-            "ja": "初回Linux成功記録 / JSON",
-            "en": "First successful Linux receipt / JSON"
+            "ja": "初回Linux成功記録 / JSON（15例時点の履歴）",
+            "en": "First successful Linux receipt / JSON (history at the fifteen-example milestone)"
           }
         },
         {
           "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/44960654003",
           "label": {
-            "ja": "初回Linux実行のActions記録",
-            "en": "First Linux run in Actions"
+            "ja": "初回Linux実行のActions記録（15例時点の履歴）",
+            "en": "First Linux run in Actions (history at the fifteen-example milestone)"
+          }
+        },
+        {
+          "url": "/numerical-methods-atlas/code-and-data/ci/verification/2026-11-22-forces-linux.json",
+          "label": {
+            "ja": "共通22例のLinux成功記録（保存済み）",
+            "en": "Saved successful Linux receipt for the common 22"
+          }
+        },
+        {
+          "url": "/numerical-methods-atlas/validation/releases.json",
+          "label": {
+            "ja": "現在の軽量補助版台帳",
+            "en": "Current lightweight supplement registry"
           }
         }
       ]
@@ -343,17 +371,17 @@
       "state": "in-progress",
       "track": "current",
       "title": {
-        "ja": "公開配布だけを使う実行・取得・引用の確認",
-        "en": "Check execution, retrieval and citation using public releases only"
+        "ja": "公開物だけで取得・実行・失敗判定・引用を確認する",
+        "en": "Check public-only acquisition, execution, failure interpretation and citation"
       },
       "scope": {
-        "ja": "固定環境で公開ZIPを展開し、小規模な代表例を実行する。人の日英の導線と、AIの外部発見・情報取得・実行・引用を別々に記録する。年内に追加公開する例も同じ確認を通し、検索への掲載や将来の学習採用を保証しない。",
-        "en": "Extract public ZIPs in a fixed environment and run small representative examples. Record human bilingual navigation and AI discovery, retrieval, execution and citation separately. Apply the same checks to any newly published examples; do not promise search inclusion or future model-training use."
+        "ja": "12月12日までの少数の初見受入では、日英各1文脈・計6目的の導線と、決定論/統計例を含む2つの公開配布版を既存の公開入力だけで新規環境から実行した結果を記録します。既存の粗い/混合不良対照を少なくとも2件使い、意図した失敗の検出と正しい近似を読み分けます。これは初見の利用・公開再現の確認で、未提示の科学入力による外挿検証ではありません。固定recipeの変更を正しく拒否する検査も入力検証として区別します。未提示の科学入力は条件付きP1の別事前登録・独立参照・新配布版としてのみ検討し、この締切の約束にしません。サイト名/URLなしの固定検索とURL提示後の利用は分け、検索掲載・全seed・将来の学習採用を保証しません。",
+        "en": "By 12 December, a small unfamiliar-user acceptance exercise records six goal paths in one Japanese and one English context and fresh-environment execution of two public distributions spanning deterministic/statistical examples, using existing public inputs only. Use at least two existing coarse/poor-mixing controls to distinguish detected inaccuracy from correct approximation. This checks unfamiliar use and public reproduction; it is not held-out scientific validation. Correct rejection of a changed fixed recipe is a separate input-validation check. Unseen scientific inputs are considered only as conditional P1 with separate preregistration, independent references and a new release, not a commitment for this deadline. Separate fixed unbranded searches from URL-assisted use; do not guarantee search inclusion, all seeds or future model-training adoption."
       },
       "priority": "P0",
       "progress": {
-        "ja": "公開15問題は新規Linux CIで全例合格。別のAI受入確認では、サイト名・URLを含めない固定4検索の評価35エントリに対象が現れなかった。URL提示後は3エージェントが公開情報だけで5問題/4実行を再現し、数値条件・引用・利用条件の読み取りを確認。検索ツールのopen失敗とHTTP取得成功を分けて記録し、外部発見と今後の追加例の確認を継続する。",
-        "en": "All fifteen public examples passed fresh-Linux CI. A separate AI-use observation found no target among 35 evaluated entries from four fixed unbranded queries. After receiving a URL, three agents reproduced five cases in four executions using public information and checked numerical criteria, citations and terms. Web-open failure and HTTP success are recorded separately; external discovery and checks for future additions remain in progress."
+        "ja": "以前の固定4検索・評価35エントリでは外部発見を観測せず、URL提示後は3エージェントが5問題/4実行を再現しました。これはその日の小標本の観測です。新しい検索の結果や、初見の人による利用を確認済みとは扱いません。",
+        "en": "The earlier four fixed queries/35 evaluated entries did not observe external discovery; after receiving a URL, three agents reproduced five problems in four runs. This is a small observation from that date, not evidence for a new search result or confirmed use by unfamiliar humans."
       },
       "links": [
         {
@@ -368,30 +396,54 @@
     {
       "id": "year-end-release",
       "target_year": 2026,
-      "state": "planned",
+      "state": "in-progress",
       "track": "current",
       "title": {
-        "ja": "更新・復元できる年末版へまとめる",
-        "en": "Prepare a year-end edition that can be maintained and restored"
+        "ja": "固定候補の公開・再現・更新・復元を確認する",
+        "en": "Check publication, reproduction, maintenance and restoration of the frozen candidate"
       },
       "scope": {
-        "ja": "代表例の再現、日英案内、索引、取得先、版・利用条件を照合する。通常のGit・Python・Nodeによる更新と別フォルダへの復元を確認し、残る不足は次の台帳へ残す。",
-        "en": "Reconcile reproduction, bilingual guidance, indexes, downloads, editions and terms. Check ordinary Git/Python/Node maintenance and restoration in a separate directory, and carry remaining gaps into the next work queue."
+        "ja": "12月18日に既存検証への追加を締め切り、配布版・台帳・参照・図・日英説明の候補をSHAで固定します。12月23日までに、公開全ファイルの照合、新規Linuxでの軽量補助ZIP追試、保存済みの詳細22例記録、索引・状態・引用・利用条件を照合し、別フォルダで通常のGit/Python/Nodeによる復元と再生成を確認します。未解決P0があれば完了とせず、12月31日までは修正と残る不足の記録を優先します。数値修正は既存不変版を書き換えず、新しい版と独立記録で示します。 Actionsの一時成果物やバッジだけに頼らず、コミット、台帳とZIPのSHA、実行環境、ケース数・pytest数、結果要約、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。",
+        "en": "Freeze additions to existing validation on 18 December and pin candidate distributions, registries, references, figures and bilingual explanations by hash. By 23 December, reconcile every public file, fresh-Linux lightweight supplement ZIP runs, saved detailed-22 receipts, indexes, status, citation and terms; check ordinary Git/Python/Node restoration and regeneration in another directory. Do not mark complete with unresolved P0 issues. Through 31 December, prioritize corrections and recorded gaps. Numerical corrections receive a new release and independent receipt instead of rewriting immutable history. Beyond temporary Actions artifacts or badges, retain the commit, registry/archive hashes, environment, case/pytest counts, result summary and CI run URL in persistent versioned public verification evidence."
       },
       "priority": "P0"
     },
     {
-      "id": "ewald-pme-spme",
+      "id": "bounded-gap-closure",
       "target_year": 2026,
       "state": "conditional-planned",
       "track": "conditional",
+      "priority": "P1",
       "title": {
-        "ja": "Ewaldの小規模検証とPME/SPMEの解説",
-        "en": "A small Ewald validation example and PME/SPME reading"
+        "ja": "監査で見つかった既存対象の不足だけを小さく補う",
+        "en": "Close only bounded gaps found by auditing existing targets"
       },
       "scope": {
-        "ja": "共通台帳・代表例の整備を優先したうえで追加する候補。中性の3次元周期系で自己項・ゼロモード・境界・単位を固定し、エネルギー・力・収束を独立した参照と照合する。PME/SPMEは少なくとも原典・定式化・検証仕様を揃える。照合できなければ解説・予定の状態を維持する。",
-        "en": "A conditional addition after the shared registry and representative examples. Fix self and zero-mode terms, boundaries and units for a neutral 3D periodic system, then compare energies, forces and convergence with an independent reference. Provide at least original sources, formulations and validation specifications for PME/SPME. Keep entries as reading or planned if the comparison is not established."
+        "ja": "独立参照、保存則、適用範囲や公開状態の不整合を監査で見つけた場合だけ、既存対象の小さな固定入力と最小限の代表検査で補います。新分野・重い新物理・量子の大規模走査を追加する候補ではなく、年内の件数増加も目標にしません。12月18日以降は正しさに関わる不具合修正だけとし、未解決の不足は理由と範囲を残して翌年へ引き継ぎます。既存の不変配布版・成功記録・公差は書き換えません。 未提示の科学入力を扱う場合は任意のP1作業として別に事前登録し、独立参照を用意します。公開するなら12月18日までに新しい不変配布版と追試記録を整え、初見利用者の導線確認や入力拒否検査で代用しません。",
+        "en": "Only when an audit finds an inconsistency in independent references, invariants, applicability or publication status, close the gap for an existing target with small fixed inputs and minimal representative checks. This is not a candidate for new fields, costly new physics or large quantum sweeps, and increasing year-end counts is not a goal. After 18 December allow only correctness-related fixes; carry unresolved gaps forward with reasons and scope. Do not rewrite immutable releases, successful records or tolerances. Unseen scientific inputs are optional P1 work requiring separate preregistration and independent references. If published, provide a new immutable release and rerun receipt by 18 December; unfamiliar-user navigation and input-rejection checks are not substitutes."
+      },
+      "links": [
+        {
+          "url": "/numerical-methods-atlas/depth/",
+          "label": {
+            "ja": "既存分野の確認範囲と不足",
+            "en": "Existing-field checking scope and gaps"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ewald-pme-spme",
+      "target_year": 2026,
+      "state": "published-verified-example",
+      "track": "published",
+      "title": {
+        "ja": "公開済みEwald/B-spline SPMEの条件と収束根拠を保持する",
+        "en": "Preserve conditions and convergence evidence for public Ewald/B-spline SPME"
+      },
+      "scope": {
+        "ja": "中性周期点電荷の直接EwaldとB-splineのエネルギー勾配型SPMEは、旧particles配布版から公開済みです。原法PMEのLagrange補間、B-spline SPME、静電場と重力PMを区別し、追加版ごとの独立theta参照・打切り/格子/位相比較を公開台帳と追試記録へ接続します。有限格子SPMEの非ゼロ合力を保持し、厳密な運動量保存、原PME、任意配置・長時間MDや3次元Coulomb FMMの検証へ広げません。",
+        "en": "Direct Ewald and B-spline energy-gradient SPME for neutral periodic charges have been public since the historical particles release. Distinguish original Lagrange PME, B-spline SPME and electrostatics from gravity PM; link each companion’s independent-theta/cutoff/mesh/phase comparisons through the public registry and rerun receipts. Preserve finite-mesh SPME nonzero net force; do not extend evidence to exact momentum conservation, original PME, arbitrary configurations/long MD or 3D Coulomb FMM."
       },
       "priority": "P1"
     },
@@ -399,14 +451,14 @@
       "id": "molecular-quantum-example",
       "target_year": 2026,
       "state": "published-verified-example",
-      "track": "current",
+      "track": "published",
       "title": {
         "ja": "H₂の有限s型Gaussian基底RHF",
         "en": "H₂ RHF in finite s-Gaussian bases"
       },
       "scope": {
-        "ja": "新しいH₂の閉殻RHF例：自作s型Gaussian積分、独立PySCF比較、SCF残差・基底拡大を確認。有限のs型部分空間に限定し、一般分子・分子DFT・周期系・正しい解離極限は検証しません。",
-        "en": "New H₂ closed-shell RHF example: original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and basis refinement. Limited to finite s-type subspaces; does not validate general molecules, molecular DFT, periodic systems or correct dissociation."
+        "ja": "公開済みH₂閉殻RHFは自作s型Gaussian積分・独立PySCF比較・SCF残差と保存済みの基底拡大検査を持つ限定例です。年内は配布版と日英案内、保存参照、少数の固定入力を必要に応じて再確認します。有限s型部分空間に限定し、一般分子DFT、大きな基底走査、正しい解離極限を新たな標準目標にしません。",
+        "en": "The public H₂ closed-shell RHF example has original s-Gaussian integrals, independent PySCF comparisons, SCF residuals and saved basis-refinement checks. Year-end work checks releases, bilingual guidance, saved references and a few fixed inputs when needed. Keep the finite-s-subspace scope; general molecular DFT, large basis sweeps and the correct dissociation limit are not new standard targets."
       },
       "priority": "P1",
       "links": [
@@ -451,8 +503,8 @@
         "en": "Quantum chemistry and DFT: map and formulations"
       },
       "scope": {
-        "ja": "18項目の日英解説、代表式、一次文献。水素型原子・Heの限定した実行例は別章に公開し、その他の専用実装は今後の作業として区別する。",
-        "en": "Bilingual introductions to 18 entries, representative equations and primary references. A separate chapter supplies scoped hydrogenic/He runs; other dedicated implementations remain future work."
+        "ja": "20項目の日英解説、代表式、一次文献を公開済みです。水素型原子・球対称He、有限s型H₂ RHF、固定He周期LDAと限定原子間力の実行例は別の配布版・確認範囲で示します。解説の存在だけで、その他の専用実装や一般量子化学計算を完成済みとはしません。",
+        "en": "Bilingual reading, representative equations and primary references for 20 topics are public. Hydrogenic/spherical-He, finite-s H₂ RHF, fixed-He periodic LDA and scoped forces have separate distributions and evidence scopes. Reading alone does not imply other dedicated implementations or general quantum-chemistry capability."
       },
       "track": "published"
     },
@@ -503,60 +555,60 @@
       "id": "shared-first-examples",
       "target": "2026-11-30",
       "title": {
-        "ja": "11月末：共通台帳と3例の入口",
-        "en": "End of November: shared registry and three example entries"
+        "ja": "11月30日：現在の根拠・公開状態・配布版を揃える",
+        "en": "30 November: reconcile evidence, publication status and releases"
       },
       "scope": {
-        "ja": "公開済みのBarnes–Hut・水素型原子・Heから、入力・実行・結果・引用までの共通の経路を確認する。",
-        "en": "Check shared paths from the published Barnes–Hut, hydrogenic and helium examples to inputs, execution, results and citation."
+        "ja": "3例/15例・60問題などの古い記述を更新し、共通22例、補助配布版のケース/検査件数、問題台帳83件・39実行入口、147手法を区別する。公開版の正本は現在の配布台帳と日付付き追試記録とし、追加候補は公開URLの全ファイルSHAと実際のLinux公開ZIP追試が揃うまで公開済みへ移さない。旧版の値・公差・図・参照と過去の確認範囲を保持し、未完は確認待ちとして残す。",
+        "en": "Replace stale three/fifteen-example and sixty-problem text. Distinguish the common 22, supplement case/test counts, 83 catalogued problems/39 runnable entrances and 147 methods. Use the current release registry and dated rerun receipts as the public-version authority; do not promote candidates until every public file hash and actual Linux public-ZIP rerun match. Preserve old values, criteria, figures, references and historical checking scope; leave incomplete work pending."
       }
     },
     {
       "id": "representative-paths",
       "target": "2026-12-12",
       "title": {
-        "ja": "12月前半：代表15問題・主要24手法",
-        "en": "First half of December: 15 representative problems and 24 priority methods"
+        "ja": "12月12日：初見の目的・検索・実行と失敗解釈を確認する",
+        "en": "12 December: check unfamiliar-user goals, search, execution and failure interpretation"
       },
       "scope": {
-        "ja": "既存例の実行経路と条件・文献の整理を優先し、進捗と検証の成立を見てEwald/H₂の追加範囲を判断する。",
-        "en": "Prioritize reproduction paths and method conditions/sources, then decide the scope of Ewald/H₂ additions from progress and established validation."
+        "ja": "日英各1つの初見文脈で計6目的を、目的→手法→式/問題/参照→コード/テスト→引用まで確認する。新規環境で決定論/統計を含む2つの公開配布版を既存の公開入力で実行し、既存の粗い/混合不良対照を少なくとも2件読み分ける。これは初見の利用と公開再現の受入であり、未提示の科学入力による検証ではない。固定recipeの変更は通常どおり拒否されることを入力検証として確認する。外部検索、URL取得、実行・数値判定、失敗と追加説明を別々に記録する。未提示の科学入力は別事前登録・独立参照を要する任意P1とし、この日の約束にしない。量子の全走査は実行しない。",
+        "en": "Use one unfamiliar Japanese and one English context for six goals, following goal→method→equation/problem/reference→code/tests→citation. Run two public distributions spanning deterministic/statistical examples in fresh environments using existing public inputs, and interpret at least two existing coarse/poor-mixing controls. This accepts unfamiliar use and public reproduction, not held-out scientific validation. Verify normal rejection of changed fixed recipes as input validation. Record external search, URL retrieval, execution/numerical checks, failures and additional guidance separately. Unseen scientific inputs are optional P1 requiring separate preregistration and independent references, not a commitment for this date. Do not run full quantum sweeps."
       }
     },
     {
       "id": "feature-freeze",
       "target": "2026-12-18",
       "title": {
-        "ja": "12月18日：新分野の追加を止める目安",
-        "en": "18 December: target cutoff for adding new fields"
+        "ja": "12月18日：既存検証の追加を締め切り年末版候補を固定する",
+        "en": "18 December: freeze existing-validation additions and pin the year-end candidate"
       },
       "scope": {
-        "ja": "未検証の追加は予定のまま残し、公開済み例の再現と日英の導線確認へ移る。",
-        "en": "Leave unverified additions planned and move to reproduction and bilingual navigation checks for published examples."
+        "ja": "新分野の追加は11月22日から標準計画に含めない。18日は既存対象への追加検証も締め切り、公開候補の配布版・台帳・参照・図をSHAで固定する。未解決の検証不足は保留理由・適用範囲とともに翌年の台帳へ移し、合格基準を緩めて間に合わせない。以後は不具合修正・説明と公開確認に限る。",
+        "en": "New fields are outside the standard plan from 22 November. On the 18th also stop additions to existing validation and pin candidate releases, registries, references and figures by hash. Carry unresolved validation gaps forward with reasons and scope; do not relax criteria to meet the date. Afterward, limit work to defect correction, explanation and publication checks."
       }
     },
     {
       "id": "year-end-edition",
       "target": "2026-12-23",
       "title": {
-        "ja": "12月23日：年末版の確認目標",
-        "en": "23 December: target for checking the year-end edition"
+        "ja": "12月23日：公開・軽量Linux追試・更新と復元の受入目標",
+        "en": "23 December: acceptance target for publication, lightweight Linux and restoration"
       },
       "scope": {
-        "ja": "配布物・索引・状態表示・引用・更新と復元の手順を照合する。すべての候補の実装完了を意味しない。",
-        "en": "Reconcile releases, indexes, status, citation and maintenance/restoration instructions. This does not mean completing every implementation candidate."
+        "ja": "固定候補について公開全ファイルの一致、軽量補助ZIPの新規Linux実行、日英の導線・数式・図・索引・引用・利用条件を照合する。共通22例の保存済み詳細記録と今回の再実行範囲を区別し、量子の重い再生成は行わない。別フォルダの復元から再生成・静的検査までを記録する。未解決P0がある場合は完了とせず、全手法・全分野の実装完了を意味しない。 Actionsの一時成果物やバッジだけに頼らず、コミット、台帳とZIPのSHA、実行環境、ケース数・pytest数、結果要約、CI実行URLを、長期に残る版付きの公開検証記録へ保存します。",
+        "en": "For the frozen candidate, verify every public file, fresh-Linux lightweight supplement ZIP execution, bilingual routes, mathematics, figures, indexes, citation and terms. Distinguish saved detailed-22 receipts from this round’s actual reruns; do not regenerate costly quantum references. Record restoration in another directory through regeneration and static checks. Unresolved P0 issues prevent completion; this does not mean implementation of every method or field. Beyond temporary Actions artifacts or badges, retain the commit, registry/archive hashes, environment, case/pytest counts, result summary and CI run URL in persistent versioned public verification evidence."
       }
     },
     {
       "id": "correction-window",
       "target": "2026-12-31",
       "title": {
-        "ja": "12月末：修正と残る不足の記録",
-        "en": "End of December: corrections and recording remaining gaps"
+        "ja": "12月31日：修正を閉じ、範囲と残る不足を翌年へ引き継ぐ",
+        "en": "31 December: close corrections and carry scope and gaps into the next year"
       },
       "scope": {
-        "ja": "新しい範囲を増やさず、確認で見つかった問題を修正し、未完成項目を次の台帳へ引き継ぐ。",
-        "en": "Avoid new scope, fix issues found during checking and carry unfinished items into the next work queue."
+        "ja": "候補版以降は新分野・重い新物理を増やさず、受入で見つかった不具合を修正する。数値の修正は新しい不変版と追試記録へ分離し、旧成功記録は保持する。公開済み/確認待ち/解説のみ/未実装、参照と保存則の限界、未解決P1と保留理由を翌年の台帳へ記録する。専門AI・モデル研究は2027年以降とし、年末の全候補実装を約束しない。",
+        "en": "After the candidate, add no new fields or costly new physics; correct defects found during acceptance. Numerical corrections receive a new immutable version and rerun receipt while historical successes remain intact. Carry published/pending/reading-only/unimplemented status, reference/invariant limitations, unresolved P1 issues and deferral reasons into the next queue. Specialist-AI/model research remains for 2027 or later; do not promise every candidate by year end."
       }
     }
   ]

@@ -32,7 +32,9 @@ test('method and problem records lead to the same stable execution examples in b
     assert.equal(m.status,'educational-example');
     const ids=id==='ewald'?['ewald']:['spme'];
     assert.deepEqual(m.depth_release.case_ids,ids);
-    assert.deepEqual(m.execution_examples.map(x=>x.id),ids);
+    const added=id==='ewald'?'ewald-convergence':'spme-convergence';
+    assert.deepEqual(m.depth_additional_releases.find(x=>x.group==='particle-transport').case_ids,[added]);
+    assert.deepEqual(m.execution_examples.map(x=>x.id),[...ids,added]);
     for(const entry of m.execution_examples){
       assert.equal(entry.kind,'dedicated-supplement');
       assert.equal(entry.registry_url,'https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json');

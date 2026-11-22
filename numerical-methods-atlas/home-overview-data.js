@@ -977,6 +977,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-particle-transport": [
+    "ja",
+    "en"
+  ],
   "validation-particles": [
     "ja",
     "en"

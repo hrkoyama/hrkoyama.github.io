@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "proposed-before-first-numerical-execution",
+  "scope": "New fixed-input diagnostics; old depth-particles and its frozen distribution remain unchanged. Coulomb constant=1; neutral cubic 3D periodic tin-foil Ewald/SPME. FMM is free-space 2D negative-log potential only.",
+  "independence": "Continuous Gaussian heat-kernel/theta lattice integral for full asymmetric-cell energy and all 24 force components. Each 3D Gaussian lattice sum factors into separately coded 1D theta sums. Poisson theta form below the integration switch; image theta form above it. No primary Ewald, real_space, reciprocal_vectors or spline calls. Force integrates analytic derivatives of theta factors. Small-u neutrality cancellation is removed analytically. Quadrature, theta truncation, switch and finite upper-tail sensitivity are reported separately.",
+  "ewald": {
+    "positions": [[0.13,0.23,0.31],[0.67,0.19,0.41],[0.32,0.71,0.27],[0.79,0.73,0.82],[0.44,0.48,0.88],[0.91,0.36,0.65],[0.21,0.85,0.69],[0.59,0.92,0.12]],
+    "charges": [1,-1,1,-1,1,-1,1,-1],
+    "length": 1.0,
+    "alphas": [2.5,4.0,6.0],
+    "real_cutoffs": [0,1,2,3],
+    "reciprocal_cutoffs": [2,4,7,10,12],
+    "baseline_alpha": 4.0,
+    "baseline_images": 3,
+    "baseline_kmax": 12,
+    "reference": {"epsabs": 2e-11, "epsrel": 2e-12, "theta_terms": 8, "image_terms": 5, "switch": 2.0, "upper": 24.0},
+    "reference_refined": {"epsabs": 2e-12, "epsrel": 2e-13, "theta_terms": 12, "image_terms": 7, "switch": 2.5, "upper": 32.0},
+    "reference_tail": {"epsabs": 2e-12, "epsrel": 2e-13, "theta_terms": 12, "image_terms": 7, "switch": 2.5, "upper": 40.0},
+    "translation": [0.173,0.287,0.419],
+    "permutation": [3,0,6,4,1,2,7,5],
+    "finite_difference_step": 0.000002,
+    "gradient_components": [[0,0],[2,1],[7,2]],
+    "acceptance": {"reference_energy_refinement": 2e-9, "reference_force_refinement": 2e-8, "reference_tail_energy": 2e-10, "reference_tail_force": 2e-9, "reference_quadrature_estimate": 2e-9, "energy_error": 2e-9, "force_error": 2e-8, "splitting_energy_spread": 2e-9, "splitting_force_spread": 2e-8, "translation_energy": 2e-10, "translation_force": 2e-9, "permutation_force": 2e-9, "net_force": 2e-10, "gradient_error": 2e-6, "real_refinement_ratio": 0.01, "reciprocal_refinement_ratio": 0.01, "control_force_error_min": 0.0001}
+  },
+  "spme": {
+    "meshes": [16,24,40], "orders": [4,6], "alpha": 5.6, "images": 3,
+    "translations": [[0,0,0],[0.0073,0.0117,0.0191],[0.173,0.287,0.419]],
+    "finite_difference_step": 0.000002,
+    "gradient_components": [[0,0],[2,1],[7,2]],
+    "partition_phases": [0.001,0.123,0.499,0.881,0.999],
+    "acceptance": {"fine_energy_error": 0.00002, "fine_force_error": 0.0003, "force_refinement_ratio": 0.2, "phase_energy_spread": 0.00004, "phase_force_spread": 0.0006, "charge_error": 1e-10, "partition_error": 1e-10, "partition_derivative_error": 1e-8, "gradient_error": 2e-6, "shared_ewald_energy_error": 2e-9, "shared_ewald_force_error": 2e-8, "fine_net_force": 0.0006, "coarse_control_force_error_min": 0.0001}
+  },
+  "fmm": {
+    "seed": 1729, "particles": 96, "position_interval": [0.2,0.8], "charge_interval": [-1.0,1.0],
+    "orders": [2,4,8,12], "depths": [2,3], "baseline_depth": 3,
+    "translation": [0.073,-0.041], "rotation_radians": 0.37,
+    "symmetry_radius": 0.22, "symmetry_particles": 8,
+    "analytic_sources": [[0.33,0.5],[0.67,0.5]], "analytic_charges": [1.0,-1.0],
+    "analytic_targets": [[0.5,0.76],[0.5,0.24],[0.12,0.5],[0.88,0.5]],
+    "multipole_center": [0.5,0.5], "multipole_radius": 0.12, "multipole_sources": 8,
+    "multipole_target": [0.93,0.91],
+    "acceptance": {"fine_potential_error": 0.00002, "fine_field_error": 0.001, "order_refinement_ratio": 0.002, "depth2_field_error": 0.001, "translation_potential_error": 0.00005, "translation_field_error": 0.002, "rotation_potential_error": 0.00005, "rotation_field_error": 0.002, "net_force_relative": 0.00001, "analytic_direct_potential_error": 1e-13, "analytic_direct_field_error": 1e-12, "symmetric_field_error": 0.001, "multipole_potential_error": 1e-8, "multipole_field_error": 1e-6, "coarse_control_field_error_min": 0.001}
+  },
+  "failure_controls": ["Ewald zero-image / kmax=2 truncation must visibly fail the fine force target", "SPME coarsest order4 mesh16 must visibly fail the fine force target", "FMM order2 must visibly fail the fine field target", "Unit tests perturb one reference force component and require the detector to fail; invalid net charge, coincident positions, nonfinite input, unsupported tree depth/order and invalid meshes are rejected"],
+  "limits": "No monotonic tree-depth convergence claim: fixed-order truncation and interaction repartition can be nonmonotone. Report both depths and direct errors. Energy-gradient SPME and target-wise FMM are not asserted to conserve momentum exactly: absolute and scaled net force and translation/rotation errors are measured. No universal N log N complexity or 3D FMM claim. No quantum calculations.",
+  "runtime_target_seconds": 40,
+  "dependencies": {"python": "3.12", "numpy": "2.0.2", "scipy": "1.14.1", "pytest": "8.3.5"}
+}

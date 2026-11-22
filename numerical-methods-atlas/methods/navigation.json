@@ -12401,6 +12401,28 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "fmm-convergence",
+              "kind": "supplement",
+              "name": {
+                "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+                "en": "FMM: direct and analytic references, order and tree depth"
+              },
+              "scope": {
+                "ja": "96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+                "en": "Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+              },
+              "method_ids": [
+                "fmm"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -13549,6 +13571,28 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "ewald-convergence",
+              "kind": "supplement",
+              "name": {
+                "ja": "Ewald：非対称周期セルのエネルギー・力と独立theta積分",
+                "en": "Ewald: asymmetric-cell energies and forces versus independent theta integration"
+              },
+              "scope": {
+                "ja": "中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。",
+                "en": "Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation."
+              },
+              "method_ids": [
+                "ewald"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald-convergence/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald-convergence/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -13645,6 +13689,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "spme-convergence",
+              "kind": "supplement",
+              "name": {
+                "ja": "SPME：格子・補間次数・格子位相と保存則",
+                "en": "SPME: mesh, interpolation order, mesh phase and conservation"
+              },
+              "scope": {
+                "ja": "BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+                "en": "Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
+              },
+              "method_ids": [
+                "pme",
+                "spme"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -13741,6 +13808,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "spme-convergence",
+              "kind": "supplement",
+              "name": {
+                "ja": "SPME：格子・補間次数・格子位相と保存則",
+                "en": "SPME: mesh, interpolation order, mesh phase and conservation"
+              },
+              "scope": {
+                "ja": "BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+                "en": "Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
+              },
+              "method_ids": [
+                "pme",
+                "spme"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spme-convergence/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -15843,6 +15933,28 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "pic-conservation",
+              "kind": "supplement",
+              "name": {
+                "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+                "en": "PIC: mesh/time convergence, invariants and particle noise"
+              },
+              "scope": {
+                "ja": "冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
+                "en": "Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
+              },
+              "method_ids": [
+                "pic"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-conservation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-conservation/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -16822,6 +16934,28 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "radiation-convergence",
+              "kind": "supplement",
+              "name": {
+                "ja": "放射輸送：空間・角度収束と光子統計",
+                "en": "Radiation transport: space/angle convergence and photon statistics"
+              },
+              "scope": {
+                "ja": "純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
+                "en": "Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
+              },
+              "method_ids": [
+                "radiation-transport"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-convergence/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -16902,6 +17036,28 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+            },
+            {
+              "id": "dsmc-statistics",
+              "kind": "supplement",
+              "name": {
+                "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+                "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
+              },
+              "scope": {
+                "ja": "有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
+                "en": "Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+              },
+              "method_ids": [
+                "dsmc"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
             }
           ],
           "role": "execution",
@@ -17476,12 +17632,12 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
-    "catalog/atlas-problem-links.json": "91d171d542da368e69cf8f16a4cd14f60740094e8beefc1e76959e6d2e89a990",
-    "catalog/atlas-test-problems.json": "69a634ea480794c0e33ca20f4b9f287b7b322ae43e2701290e24c132c7c5281f",
+    "catalog/atlas-methods.json": "3c5baf043ced66d4e3973d829cdf62820d9ac32e8aed47e3b05d40d9c5965fb5",
+    "catalog/atlas-problem-links.json": "ce920e0e2d8b9a2c45b3466ddec2707c1c6534949fbfda9b71e3a2d3c532863b",
+    "catalog/atlas-test-problems.json": "4c66a1747c5805ac1608baa9707b6b1325a5890ae2dfa2ff151f4d5340856f4e",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -17517,6 +17673,11 @@
     "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
     "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
     "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
@@ -17530,7 +17691,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "440710ed55daf6e86c035fe2146169d71f92b570a9766ba4714e26934104de7c",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "606974737e1526254ca3405c554bce1fb7563cba85e16ad029b002d9f8caf378",
     "numerical-methods-atlas/locales/messages.json": "246d3e8a6828d9129aa9938b30fab341acc62aaa8e6c81222f4dc83edf8002d4"
   }
 }

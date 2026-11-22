@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-22",
+  "chapter": "particle-gravity",
+  "section_id": "logarithmic-fmm-supplements",
+  "title": {
+    "ja": "別モデルとして調べる：2次元対数FMM",
+    "en": "A separate model: 2D logarithmic FMM"
+  },
+  "intro": {
+    "ja": "上の重力・PM・ツリーの本文と境界条件は保持します。以下のFMMは、2次元自由空間の負の対数核を一様四分木で評価する別の教育用モデルです。3次元Coulombや軟化重力の1/r核へ精度を移しません。",
+    "en": "The gravity, PM and tree article and its boundary conventions above are preserved. The following FMM is a separate educational model: a negative-logarithmic kernel in 2D free space evaluated with a uniform quadtree. Its accuracy does not transfer to 3D Coulomb or softened-gravity 1/r kernels."
+  },
+  "comparison_note": {
+    "ja": "旧配布版を保持し、追加版では展開次数と木深さを分けてCartesian直接和・解析配置・保存診断と比較します。深さの単調収束や実測の計算量スケーリング、適応木・周期FMMを検証したとは表示しません。",
+    "en": "The historical release is retained. The companion separates expansion order from tree depth and compares Cartesian direct sums, analytic configurations and conservation diagnostics. No monotonic error with depth, empirical complexity scaling, adaptive-tree or periodic-FMM validation is claimed."
+  },
+  "supplemental_examples": [
+    "fmm",
+    "fmm-convergence"
+  ],
+  "historical_sha256": {
+    "ja": {
+      "content": "243487bcce2b2cdd7f4f1c636151ac7c7130cc2e9ca93836fb207b650c5e2bfb",
+      "static_article": "73896e8fe3fb0cef154e2e77fe53903c3e464f8a6cdc2bb9792b2652e588cf3f"
+    },
+    "en": {
+      "content": "e1a6478f4da3fabd9e5044db7865896217989ac6a65d9a420959af02eef33edb",
+      "static_article": "88dc6d0d9ce5a1ef6f5a44d735e27870013878a587b786be70be0a00edacb938"
+    }
+  }
+}

@@ -359,11 +359,12 @@ Schnakenbergは1次元周期の線形発現・有限振幅発展・成長後パ�
 
 - [粒子重力と周期PM](/numerical-methods-atlas/ja/read/particle-gravity/)
 - [孤立・周期・混合境界の区別](/numerical-methods-atlas/ja/read/gravity-boundaries/)
+- [別条件の粒子・輸送検証を読む（重力PMへの根拠移転なし）](/numerical-methods-atlas/ja/read/validation-particle-transport/)
 - [Cloud-in-cellの割当てと補間](https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja): educational-example
 - [FFT粒子格子力](https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/?lang=ja): educational-example
 - [周期PM粒子群：質量・内力・格子場](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja): 入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。
 
-残る差: 静的な力・格子場の範囲。全粒子力の独立な厳密周期参照、短距離補正、粒子時間発展、自己重力流体の連成はない。
+残る差: 静的な力・格子場の範囲。全粒子力の独立な厳密周期参照、短距離補正、粒子時間発展、自己重力流体の連成はない。 中性周期Coulomb、2次元自由空間対数核、静電cold-plasmaの追加検証は別モデルの読む導線です。これらの合格を重力PMや連成経路全体へ移しません。
 
 ### Poissonを速度の拘束条件へ使う
 
@@ -435,6 +436,8 @@ Poisson型演算子は圧力投影、Hartree場、重力場に現れる。右辺
 
 - [楕円型方程式](/numerical-methods-atlas/ja/read/elliptic/)
 - [AMG：代数的条件数診断とPDE誤差を区別](/numerical-methods-atlas/ja/read/amg/#scoped-examples)
+- [中性周期Ewald/SPME：独立theta参照（重力とは別条件）](/numerical-methods-atlas/ja/read/validation-particle-transport/#ewald-convergence)
+- [2次元自由空間対数FMM：直接和との比較](/numerical-methods-atlas/ja/read/validation-particle-transport/#fmm-convergence)
 
 ### 非線形反復・自己無撞着性
 
@@ -456,6 +459,7 @@ SCFや陰的反応更新では残差を減らす反復が必要になる。小�
 - [サーモスタットの比較](/numerical-methods-atlas/ja/read/thermostats/)
 - [MCMC：不変分布・混合・診断の違い](/numerical-methods-atlas/ja/read/mcmc/)
 - [2峰混合と独立診断比較の固定例](/numerical-methods-atlas/ja/read/validation-mcmc/)
+- [等質衝突round：有限粒子数の統計診断](/numerical-methods-atlas/ja/read/validation-particle-transport/#dsmc-statistics)
 
 根拠の出典: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 
@@ -826,11 +830,12 @@ Stage state: fixed-input
 
 - [Particle gravity and periodic PM](/numerical-methods-atlas/en/read/particle-gravity/)
 - [Isolated, periodic and mixed boundaries](/numerical-methods-atlas/en/read/gravity-boundaries/)
+- [Read separate particle/transport checks; no evidence transfer to gravity PM](/numerical-methods-atlas/en/read/validation-particle-transport/)
 - [Cloud-in-cell assignment and interpolation](https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en): educational-example
 - [FFT particle–mesh forces](https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/?lang=en): educational-example
 - [Periodic PM particles: mass, internal force and mesh field](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en): Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields.
 
-Remaining gap: Limited to static forces and mesh fields. No independent exact periodic reference for every particle force, short-range correction, particle evolution or coupled self-gravitating fluid is provided.
+Remaining gap: Limited to static forces and mesh fields. No independent exact periodic reference for every particle force, short-range correction, particle evolution or coupled self-gravitating fluid is provided. The additional neutral-periodic Coulomb, 2D free-space logarithmic and electrostatic cold-plasma checks are reading links for different models. Passing them does not validate gravity PM or the complete coupled route.
 
 ### Use Poisson to enforce a velocity constraint
 
@@ -902,6 +907,8 @@ Poisson-type operators appear in pressure projection, Hartree fields and gravity
 
 - [Elliptic equations](/numerical-methods-atlas/en/read/elliptic/)
 - [AMG: separate algebraic conditioning from PDE error](/numerical-methods-atlas/en/read/amg/#scoped-examples)
+- [Neutral periodic Ewald/SPME: theta reference, separate from gravity](/numerical-methods-atlas/en/read/validation-particle-transport/#ewald-convergence)
+- [2D free-space logarithmic FMM versus direct sums](/numerical-methods-atlas/en/read/validation-particle-transport/#fmm-convergence)
 
 ### Nonlinear iteration and self-consistency
 
@@ -923,6 +930,7 @@ Thermostats and MCMC require distributions, correlations and finite-sample uncer
 - [Thermostat comparisons](/numerical-methods-atlas/en/read/thermostats/)
 - [MCMC: invariance, mixing and diagnostic limits](/numerical-methods-atlas/en/read/mcmc/)
 - [Fixed bimodal-mixture and independent-diagnostic comparisons](/numerical-methods-atlas/en/read/validation-mcmc/)
+- [Homogeneous collision rounds: finite-particle statistical diagnostics](/numerical-methods-atlas/en/read/validation-particle-transport/#dsmc-statistics)
 
 Evidence sources: [Connection catalog](https://hrkoyama.github.io/catalog/atlas-crossovers.json) · [Method registry](https://hrkoyama.github.io/numerical-methods-atlas/methods/index.json) · [Common execution registry](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json) · [Common-registry rerun receipt](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json)
 

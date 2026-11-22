@@ -10,8 +10,8 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
-    "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+    "en": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -33,12 +33,12 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
-    "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
+    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。 FMM：直接和・解析配置と展開次数・木の深さ: 木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
+    "en": "2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
   },
   "metadata_review": {
-    "level": "chapter-linked; detailed method-specific curation in progress",
-    "on": "2026-11-21"
+    "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
+    "on": "2026-11-22"
   },
   "aliases": [
     "FMM法",
@@ -187,13 +187,313 @@
     ]
   },
   "depth_scope": {
-    "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
-    "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+    "en": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
   },
   "next_deliverable": {
     "ja": "公開した固定入力の範囲を維持し、拡張時は条件・参照・公差を別に検証する。",
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
+  "depth_additional_releases": [
+    {
+      "group": "particle-transport",
+      "case_ids": [
+        "fmm-convergence"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/",
+      "code_edition": "2026-11-22",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-particle-transport-2026-11-22",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "code_archive_sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "passed_tests": 75,
+      "examples": [
+        {
+          "id": "fmm-convergence",
+          "title": {
+            "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+            "en": "FMM: direct and analytic references, order and tree depth"
+          },
+          "method_ids": [
+            "fmm"
+          ],
+          "summary": {
+            "ja": "96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+            "en": "Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+          },
+          "assumptions": {
+            "ja": "自由空間のphi=−sum(q log r)、自己項なし。単位正方形は木の包囲領域で、壁・周期境界ではありません。3次元Coulomb核とは別です。",
+            "en": "Free-space phi=−sum(q log r), excluding self terms. The unit square bounds the tree and is not a wall or periodic boundary; this is separate from a 3D Coulomb kernel."
+          },
+          "algorithm": {
+            "ja": "P2M/M2M/M2L/L2Lと近接P2Pを保ち、次数2/4/8/12、深さ2/3を比較します。別のCartesian直接和、二点電荷の閉形式、正多角形の中心力と遠方ポテンシャルを参照にします。",
+            "en": "Retain P2M/M2M/M2L/L2L and near P2P; compare orders 2/4/8/12 and depths two/three. References include independent Cartesian direct sums, a closed-form charge pair and regular-polygon radial/far-field identities."
+          },
+          "validation": {
+            "ja": "ポテンシャル・場の最大絶対誤差、実際の遠方移動演算、回転・平行移動誤差、電荷を掛けた力の合計を測ります。粗い展開の失敗対照も確認します。",
+            "en": "Measure maximum absolute potential/field errors, actual far translations, rotation/translation differences and net charge-weighted force. Detect an inaccurate low-order control."
+          },
+          "limits": {
+            "ja": "木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
+            "en": "Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
+          },
+          "equations": [
+            "\\phi_i=-\\sum_{j\\ne i}q_j\\log|z_i-z_j|,\\qquad\\mathbf F_i=q_i\\mathbf E_i",
+            "\\epsilon_E=\\max_i\\|\\mathbf E_i^{\\rm FMM}-\\mathbf E_i^{\\rm direct}\\|_{\\infty}"
+          ],
+          "references": [
+            {
+              "id": "greengard1987",
+              "author": "L. Greengard and V. Rokhlin",
+              "year": 1987,
+              "title": "A fast algorithm for particle simulations",
+              "doi": "10.1016/0021-9991(87)90140-9",
+              "url": "https://doi.org/10.1016/0021-9991(87)90140-9",
+              "review_level": "selected-full-text",
+              "review_note": {
+                "ja": "著者所属機関の再録PDFで対数核、モーメント、3つの移動演算、上下走査を確認。再録版の掲載年1997と原著1987を区別。",
+                "en": "Institution-hosted reprint consulted for the log kernel, moments, three translations and up/down passes; 1997 reprint distinguished from 1987 original."
+              }
+            }
+          ],
+          "code_files": [
+            "longrange_experiments.py",
+            "fmm.py"
+          ],
+          "measured": {
+            "id": "fmm-convergence",
+            "passed": true,
+            "checks": {
+              "fine_potential_error": true,
+              "fine_field_error": true,
+              "order_refinement_ratio": true,
+              "depth2_field_error": true,
+              "translation_potential_error": true,
+              "translation_field_error": true,
+              "rotation_potential_error": true,
+              "rotation_field_error": true,
+              "net_force_relative": true,
+              "analytic_direct_potential_error": true,
+              "analytic_direct_field_error": true,
+              "symmetric_field_error": true,
+              "multipole_potential_error": true,
+              "multipole_field_error": true,
+              "coarse_control_detected": true,
+              "actual_m2l": true,
+              "actual_l2l": true,
+              "near_pairs_subset": true,
+              "multipole_probe_has_far_translation": true
+            },
+            "metrics": {
+              "fine_potential_error": 1.6153974611299304e-06,
+              "fine_field_error": 0.00013124381103546412,
+              "order_refinement_ratio": 7.213976104507879e-05,
+              "depth2_field_error": 0.00010463275822658602,
+              "net_force_relative": 8.766244233276265e-08,
+              "net_force_absolute": 0.00011622325026383606,
+              "direct_net_force": 7.283063041541027e-14,
+              "coarse_control_field_error": 1.8192992204874692,
+              "translation_potential_error": 1.612941820106073e-06,
+              "translation_field_error": 0.0004069109892306244,
+              "rotation_potential_error": 1.614394697035948e-06,
+              "rotation_field_error": 0.00015204244904776232,
+              "analytic_direct_potential_error": 0.0,
+              "analytic_direct_field_error": 0.0,
+              "symmetric_field_error": 6.770015090751258e-06,
+              "multipole_potential_error": 1.3839596135767351e-11,
+              "multipole_field_error": 1.0251124393789723e-09
+            },
+            "records": [
+              {
+                "series": "order_depth",
+                "depth": 2,
+                "order": 2,
+                "potential_error": 0.0411865516022627,
+                "field_error": 0.8533525226369347,
+                "m2l_translations": 156,
+                "l2l_translations": 20,
+                "near_pairs": 6190,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 2,
+                "order": 4,
+                "potential_error": 0.0050239303087860065,
+                "field_error": 0.10212714577482629,
+                "m2l_translations": 156,
+                "l2l_translations": 20,
+                "near_pairs": 6190,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 2,
+                "order": 8,
+                "potential_error": 4.947919960063274e-05,
+                "field_error": 0.002759924206270803,
+                "m2l_translations": 156,
+                "l2l_translations": 20,
+                "near_pairs": 6190,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 2,
+                "order": 12,
+                "potential_error": 1.6088724317242509e-06,
+                "field_error": 0.00010463275822658602,
+                "m2l_translations": 156,
+                "l2l_translations": 20,
+                "near_pairs": 6190,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 3,
+                "order": 2,
+                "potential_error": 0.04460862444127667,
+                "field_error": 1.8192992204874692,
+                "m2l_translations": 1272,
+                "l2l_translations": 84,
+                "near_pairs": 2314,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 3,
+                "order": 4,
+                "potential_error": 0.007558891029321835,
+                "field_error": 0.23400296359160322,
+                "m2l_translations": 1272,
+                "l2l_translations": 84,
+                "near_pairs": 2314,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 3,
+                "order": 8,
+                "potential_error": 8.570152231235362e-05,
+                "field_error": 0.008486987602919882,
+                "m2l_translations": 1272,
+                "l2l_translations": 84,
+                "near_pairs": 2314,
+                "all_pairs": 9120
+              },
+              {
+                "series": "order_depth",
+                "depth": 3,
+                "order": 12,
+                "potential_error": 1.6153974611299304e-06,
+                "field_error": 0.00013124381103546412,
+                "m2l_translations": 1272,
+                "l2l_translations": 84,
+                "near_pairs": 2314,
+                "all_pairs": 9120
+              },
+              {
+                "series": "invariance",
+                "translation_potential_error": 1.612941820106073e-06,
+                "translation_field_error": 0.0004069109892306244,
+                "rotation_potential_error": 1.614394697035948e-06,
+                "rotation_field_error": 0.00015204244904776232,
+                "net_force": 0.00011622325026383606
+              },
+              {
+                "series": "analytic_two_source",
+                "potential": [
+                  0.0,
+                  0.0,
+                  0.9628107475090479,
+                  -0.9628107475090482
+                ],
+                "reference_potential": [
+                  0.0,
+                  0.0,
+                  0.9628107475090479,
+                  -0.9628107475090482
+                ],
+                "field": [
+                  [
+                    3.523316062176166,
+                    0.0
+                  ],
+                  [
+                    3.523316062176166,
+                    0.0
+                  ],
+                  [
+                    -2.9437229437229435,
+                    0.0
+                  ],
+                  [
+                    -2.9437229437229444,
+                    0.0
+                  ]
+                ],
+                "reference_field": [
+                  [
+                    3.523316062176166,
+                    0.0
+                  ],
+                  [
+                    3.523316062176166,
+                    0.0
+                  ],
+                  [
+                    -2.9437229437229435,
+                    0.0
+                  ],
+                  [
+                    -2.9437229437229444,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "series": "analytic_ring",
+                "potential": 4.165151607300834,
+                "reference_potential": 4.165151607314674,
+                "field": [
+                  9.745073860466565,
+                  9.29180485954421
+                ],
+                "reference_field": [
+                  9.745073861491678,
+                  9.291804859857475
+                ]
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/#fmm-convergence",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/#fmm-convergence"
+          }
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/index.md",
@@ -201,10 +501,19 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -220,6 +529,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "fmm-convergence",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -296,6 +614,28 @@
             "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/inputs.json",
             "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
             "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json"
+          },
+          {
+            "id": "fmm-convergence",
+            "kind": "supplement",
+            "name": {
+              "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+              "en": "FMM: direct and analytic references, order and tree depth"
+            },
+            "scope": {
+              "ja": "96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+              "en": "Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+            },
+            "method_ids": [
+              "fmm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
           }
         ],
         "role": "execution",

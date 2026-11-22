@@ -374,19 +374,24 @@
         "spme",
         "fmm",
         "pic",
-        "dsmc"
+        "dsmc",
+        "ewald-convergence",
+        "spme-convergence",
+        "fmm-convergence",
+        "pic-conservation",
+        "dsmc-statistics"
       ],
       "scope": {
-        "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。",
-        "en": "Small validations of neutral-periodic Ewald/B-spline SPME, a genuine 2D free-space logarithmic FMM, 1D cold-plasma PIC and a homogeneous Maxwell-molecule DSMC collision component."
+        "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。 旧5例に加え、同じ問題の独立参照・打切り・格子・時間・保存量・統計診断を別配布版で比較します。",
+        "en": "Small validations of neutral-periodic Ewald/B-spline SPME, a genuine 2D free-space logarithmic FMM, 1D cold-plasma PIC and a homogeneous Maxwell-molecule DSMC collision component. A separate companion retains the five historical cases and compares independent references, cutoffs, meshes, time steps, conservation and statistical diagnostics for the same targets."
       },
       "reference": {
-        "ja": "Ewaldの別級数・直接和、SPMEと収束Ewald、FMMの直接粒子和、PICの線形振動、DSMCの保存量・分布診断を区別。",
-        "en": "Distinguish alternate Ewald series/direct sums, SPME against converged Ewald, FMM direct particle sums, PIC linear oscillation and DSMC conservation/distribution diagnostics."
+        "ja": "Ewaldの別級数・直接和、SPMEと収束Ewald、FMMの直接粒子和、PICの線形振動、DSMCの保存量・分布診断を区別。 追加版は独立theta積分、2次元対数核のCartesian直接和・解析配置、線形cold-plasma参照、固定運動量・エネルギー球面の解析モーメントと独立標本を役割別に用います。",
+        "en": "Distinguish alternate Ewald series/direct sums, SPME against converged Ewald, FMM direct particle sums, PIC linear oscillation and DSMC conservation/distribution diagnostics. The companion distinguishes independent theta integrals, Cartesian direct sums/analytic configurations for the 2D log kernel, linear cold-plasma references, and analytic constrained-sphere moments with independent samples."
       },
       "refinement": {
-        "ja": "打切り・メッシュ・多重極次数・PIC刻みを各例で確認。SPMEは1993年のLagrange補間PMEそのものではない。DSMCの衝突round数は物理時間と解釈しない。",
-        "en": "Check case-specific cutoffs, meshes, multipole order and PIC step refinement. SPME is not the original 1993 Lagrange-interpolation PME. DSMC collision rounds are not interpreted as physical time."
+        "ja": "打切り・メッシュ・多重極次数・PIC刻みを各例で確認。SPMEは1993年のLagrange補間PMEそのものではない。DSMCの衝突round数は物理時間と解釈しない。 SPMEの有限格子合力、FMMの木深さと展開次数、PICの粒子数・格子・刻み、DSMCのseed不確かさを別々に記録します。保存診断の合格は軌道や分布の一般保証ではありません。",
+        "en": "Check case-specific cutoffs, meshes, multipole order and PIC step refinement. SPME is not the original 1993 Lagrange-interpolation PME. DSMC collision rounds are not interpreted as physical time. Record finite-mesh SPME net force, FMM depth versus expansion order, PIC particle count/mesh/time step and DSMC seed uncertainty separately. Passing conservation diagnostics is no general guarantee of trajectories or distributions."
       },
       "next": {
         "ja": "一般3D Coulomb FMM、複雑なプラズマ、空間輸送を含む物理時間DSMC、実在気体は未検証。",
@@ -394,8 +399,8 @@
       },
       "examples": [],
       "reading": {
-        "ja": "/numerical-methods-atlas/ja/read/validation-particles/",
-        "en": "/numerical-methods-atlas/en/read/validation-particles/"
+        "ja": "/numerical-methods-atlas/ja/read/validation-particle-transport/",
+        "en": "/numerical-methods-atlas/en/read/validation-particle-transport/"
       }
     },
     {
@@ -405,19 +410,20 @@
         "en": "Radiative transport"
       },
       "supplemental_examples": [
-        "radiation-transport"
+        "radiation-transport",
+        "radiation-convergence"
       ],
       "scope": {
-        "ja": "吸収のみの1次元平板で角度離散化と風上空間離散化を実装。散乱や多周波輸送へ広げない。",
-        "en": "Implement angular quadrature and upwind spatial discretization in an absorbing 1D slab; excludes scattering and multifrequency transport."
+        "ja": "吸収のみの1次元平板で角度離散化と風上空間離散化を実装。散乱や多周波輸送へ広げない。 旧版を保持し、同じ純吸収標的の独立参照・空間/角度収束・放射収支を別配布版で比較します。",
+        "en": "Implement angular quadrature and upwind spatial discretization in an absorbing 1D slab; excludes scattering and multifrequency transport. Keep the historical release and compare independent references, spatial/angular refinement and radiative balance for the same pure-absorption target in a separate companion."
       },
       "reference": {
-        "ja": "厳密ray解、連続角度の指数積分によるfluxを独立参照に使う。",
-        "en": "Exact-ray solutions and continuum-angle exponential-integral flux provide independent references."
+        "ja": "厳密ray解、連続角度の指数積分によるfluxを独立参照に使う。 参照自身の求積細分化と、流入・流出・体積吸収の保存診断も区別します。",
+        "en": "Exact-ray solutions and continuum-angle exponential-integral flux provide independent references. Distinguish refinement of the reference quadrature itself from inflow/outflow/volume-absorption balance diagnostics."
       },
       "refinement": {
-        "ja": "厳密rayでの純角度誤差と、同じ角度求積に対する空間誤差を分離。",
-        "en": "Separate pure angular error using exact rays from spatial error at a fixed angular quadrature."
+        "ja": "厳密rayでの純角度誤差と、同じ角度求積に対する空間誤差を分離。 保存量の整合だけで放射の角度分布の精度を保証しません。",
+        "en": "Separate pure angular error using exact rays from spatial error at a fixed angular quadrature. Balance consistency alone does not guarantee angular-distribution accuracy."
       },
       "next": {
         "ja": "散乱、時間依存、多次元・不透明度結合は別の検証が必要。",
@@ -425,8 +431,8 @@
       },
       "examples": [],
       "reading": {
-        "ja": "/numerical-methods-atlas/ja/read/validation-particles/",
-        "en": "/numerical-methods-atlas/en/read/validation-particles/"
+        "ja": "/numerical-methods-atlas/ja/read/validation-particle-transport/",
+        "en": "/numerical-methods-atlas/en/read/validation-particle-transport/"
       }
     }
   ],
@@ -434,10 +440,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "d972c6c6359ba8e263cc06b8eb20a7311a4802f6c2e8858e05427768837b707b",
+    "catalog/atlas-depth.json": "086132547c32fdfd007da76f216c8bb8de535bf00037ff474a46f0106f339696",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "83b143bd304806e1ed17995a98a09e3c2faa9df65549f5ce6bc4725a45f5e2e1",
+    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -483,6 +489,11 @@
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
     "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
     "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
     "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
     "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
     "code/model-benchmarks/2026-11-22/results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",

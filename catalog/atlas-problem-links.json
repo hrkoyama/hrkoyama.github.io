@@ -1778,8 +1778,8 @@
         "poisson-laplace"
       ],
       "reference_note": {
-        "ja": "同じ中性周期電荷・規約の収束したEwald和、力の有限差分とカットオフ・格子収束を確認します。孤立重力粒子の直接和とは境界・相互作用が異なります。",
-        "en": "Check converged Ewald sums for identical neutral periodic charges/conventions, force finite differences and cutoff/mesh refinement. Boundaries and interactions differ from isolated gravitational direct sums."
+        "ja": "同じ中性周期電荷・規約の収束したEwald和、力の有限差分とカットオフ・格子収束を確認します。孤立重力粒子の直接和とは境界・相互作用が異なります。 追加版は同じ中性8点電荷・立方体・tin-foil規約のエネルギーと全粒子力を、別実装theta積分と参照自身の細分化に照合します。SPMEはB-splineのエネルギー勾配型であり、原Lagrange PMEや厳密運動量保存を主張しません。",
+        "en": "Check converged Ewald sums for identical neutral periodic charges/conventions, force finite differences and cutoff/mesh refinement. Boundaries and interactions differ from isolated gravitational direct sums. The companion compares energy and every force for the same neutral eight-charge cubic tin-foil cell against a separately implemented theta integral and its own refinement. SPME uses B-spline energy gradients; original Lagrange PME and exact momentum conservation are not claimed."
       },
       "references": [],
       "method_ids": [
@@ -1802,8 +1802,8 @@
         "poisson-laplace"
       ],
       "reference_note": {
-        "ja": "同じ2次元対数核と粒子配置の直接和を数値基準に、多重極の次数・階層変換・力誤差を確認します。3次元1/r核の基準は流用しません。",
-        "en": "Use direct summation with the same 2D logarithmic kernel and particles to check expansion order, hierarchical translations and force error. Do not reuse a 3D 1/r reference."
+        "ja": "同じ2次元対数核と粒子配置の直接和を数値基準に、多重極の次数・階層変換・力誤差を確認します。3次元1/r核の基準は流用しません。 追加版ではCartesian直接和と解析配置を別の基準にし、展開次数と木深さを分離します。深さに対する単調収束や3次元Coulomb核の精度・計算量を保証しません。",
+        "en": "Use direct summation with the same 2D logarithmic kernel and particles to check expansion order, hierarchical translations and force error. Do not reuse a 3D 1/r reference. The companion uses Cartesian direct sums and analytic configurations as separate references, varying expansion order and tree depth independently. It guarantees neither monotonic error with depth nor accuracy/complexity for a 3D Coulomb kernel."
       },
       "references": [],
       "method_ids": [
@@ -1824,8 +1824,8 @@
         "poisson-laplace"
       ],
       "reference_note": {
-        "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。",
-        "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories."
+        "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。 追加版は静止イオン背景のまま、電荷・運動量・粒子と場のエネルギーを軌道誤差と分けます。小振幅線形参照であり、熱的Landau減衰や電磁PICの根拠ではありません。",
+        "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories. The companion retains stationary background ions and separates charge, momentum and particle/field-energy diagnostics from trajectory error. Its reference is small-amplitude linear theory, supplying no evidence for thermal Landau damping or electromagnetic PIC."
       },
       "references": [],
       "method_ids": [
@@ -1844,8 +1844,8 @@
       "id": "maxwell-collisions",
       "equation_ids": [],
       "reference_note": {
-        "ja": "等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。",
-        "en": "Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation."
+        "ja": "等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。 追加版は固定運動量・エネルギー球面の有限粒子数モーメントを導出し、独立な射影正規標本と複数seedで比較します。衝突roundは物理時間ではなく、hard-sphere空間輸送へ対応を広げません。",
+        "en": "Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation. The companion derives finite-particle moments on a fixed-momentum/energy sphere and compares independent projected-Gaussian samples across seeds. Collision rounds are not physical time, and the correspondence does not extend to spatial hard-sphere transport."
       },
       "references": [],
       "method_ids": [
@@ -1864,8 +1864,8 @@
       "id": "absorbing-slab",
       "equation_ids": [],
       "reference_note": {
-        "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。",
-        "en": "Compare discrete ordinates with analytic directional exponential attenuation through a purely absorbing slab with specified inflow. This differs from relativistic M1 moment closure."
+        "ja": "純吸収・指定流入の平板に対する各方向の解析的な指数減衰と離散座標解を比較します。相対論的M1モーメント閉包とは別の放射モデルです。 追加版は解析rayと連続角度参照を保持し、固定角度の空間誤差と厳密rayの角度誤差、流入・流出・体積吸収の収支を分けます。散乱や多次元閉包へ拡張しません。",
+        "en": "Compare discrete ordinates with analytic directional exponential attenuation through a purely absorbing slab with specified inflow. This differs from relativistic M1 moment closure. The companion retains analytic rays and a continuum-angle reference, separating fixed-ordinate spatial error, exact-ray angular error and inflow/outflow/volume-absorption balance. It does not extend to scattering or multidimensional closures."
       },
       "references": [],
       "method_ids": [

@@ -71,12 +71,29 @@
         "ja": "1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。",
         "en": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently."
       }
+    },
+    {
+      "id": "supplement-pic-conservation",
+      "name": {
+        "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+        "en": "PIC: mesh/time convergence, invariants and particle noise"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\mathbb E[|\\widehat\\rho_1/n|^2]=\\frac{2+\\cos(2\\pi/n)}{3N}",
+        "H_h=\\frac{w}{2}\\sum_iv_i^2+\\frac{\\Delta x}{2}\\sum_jE_j^2"
+      ],
+      "note": {
+        "ja": "冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
+        "en": "Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
+      }
     }
   ],
   "references": [],
   "reference_note": {
-    "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。",
-    "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories."
+    "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。 追加版は静止イオン背景のまま、電荷・運動量・粒子と場のエネルギーを軌道誤差と分けます。小振幅線形参照であり、熱的Landau減衰や電磁PICの根拠ではありません。",
+    "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories. The companion retains stationary background ions and separates charge, momentum and particle/field-energy diagnostics from trajectory error. Its reference is small-amplitude linear theory, supplying no evidence for thermal Landau damping or electromagnetic PIC."
   },
   "methods": [
     {
@@ -146,6 +163,60 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "pic-conservation",
+      "kind": "supplement",
+      "name": {
+        "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+        "en": "PIC: mesh/time convergence, invariants and particle noise"
+      },
+      "method_ids": [
+        "pic"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-conservation/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-conservation/?lang=en"
+      },
+      "scope": {
+        "ja": "冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
+        "en": "Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
+      },
+      "assumptions": {
+        "ja": "長さ2pi、静止イオン密度1、電子q/m=−1、plasma frequency=1、微小正弦変位0.001、最終時刻1.6。格子系列は同じ2048粒子を使い、時間系列は同じ32格子・256粒子を使います。 w=2pi/Nは粒子重み、nは格子数です。",
+        "en": "Length 2pi, stationary unit-density ions, electron q/m=−1, plasma frequency one, sinusoidal displacement 0.001 and final time 1.6. Mesh runs retain 2048 particles; time runs retain a 32-cell mesh and 256 particles. The particle weight is w=2pi/N and n is the grid count."
+      },
+      "limits": {
+        "ja": "DOP853は独立PIC空間実装ではありません。電荷・運動量の保持とエネルギーの近似保存を区別し、初期雑音のNスケーリングを時間発展した熱プラズマの保証としません。Landau減衰・電磁PIC・相対論・衝突は未検証です。",
+        "en": "DOP853 is not an independent PIC spatial implementation. Distinguish charge/momentum preservation from approximate energy conservation. Initial-noise N scaling does not validate evolved warm plasmas. Landau damping, electromagnetic/relativistic PIC and collisions remain unvalidated."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "16/32/64格子とdt=.2/.1/.05を別に精密化し、線形cos(t)と時間参照の誤差を分離します。実数奇微分のNyquist零モードはGauss残差から分けて記録。時刻0の64seed・N=256/1024/4096のCICモード電力を解析期待値と比較します。",
+        "en": "Refine 16/32/64 grids and dt=.2/.1/.05 separately; distinguish continuum cos(t) from time-reference errors. Record the real odd derivative’s Nyquist null mode separately from Gauss residuals. Compare time-zero CIC mode power at 64 seeds and N=256/1024/4096 with its analytic expectation."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
       ],
       "source_scope": "package"
     }

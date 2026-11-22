@@ -211,10 +211,12 @@
           },
           "paragraphs": {
             "ja": [
-              "正味電荷がある場合は、背景電荷など追加の規約なしにはこの式を使えません。平均電位のゲージ、表面項、自己像、分子内除外は別々に指定します。重力の周期Poisson問題は核・符号・平均密度の扱いが異なるため、そのまま置き換えません。"
+              "正味電荷がある場合は、背景電荷など追加の規約なしにはこの式を使えません。平均電位のゲージ、表面項、自己像、分子内除外は別々に指定します。重力の周期Poisson問題は核・符号・平均密度の扱いが異なるため、そのまま置き換えません。",
+              "別配布版の対象も、中性の非対称8点電荷・立方体・3次元周期・tin-foil境界です。直接Ewaldの分割係数と実空間像・逆空間立方打切りを分け、熱核theta積分を別実装の参照にします。非中性背景やslabの検証へ広げません。"
             ],
             "en": [
-              "A net-charged cell requires an additional convention such as a compensating background. Specify potential gauge, surface term, periodic self images and molecular exclusions separately. A periodic gravitational Poisson solve changes the kernel/sign and mean-density treatment; it is not the same calculation."
+              "A net-charged cell requires an additional convention such as a compensating background. Specify potential gauge, surface term, periodic self images and molecular exclusions separately. A periodic gravitational Poisson solve changes the kernel/sign and mean-density treatment; it is not the same calculation.",
+              "The companion release keeps an asymmetric neutral eight-charge cubic cell, triply periodic with tin-foil boundaries. It separates the direct-Ewald splitting parameter, real-image and reciprocal-cube cutoffs, using a separately implemented heat-kernel theta integral as a reference. It does not extend to charged backgrounds or slabs."
             ]
           }
         },
@@ -226,10 +228,12 @@
           },
           "paragraphs": {
             "ja": [
-              "小さい中性配置で実空間・逆空間の打切りを独立に伸ばし、α依存が消えることを確認します。エネルギーの位置差分と力、全体平行移動に対する不変性、総力を比較します。収束前の和同士の一致は独立検証ではありません。"
+              "小さい中性配置で実空間・逆空間の打切りを独立に伸ばし、α依存が消えることを確認します。エネルギーの位置差分と力、全体平行移動に対する不変性、総力を比較します。収束前の和同士の一致は独立検証ではありません。",
+              "旧版と追加版の入力・公差・結果は別々に保持します。追加版ではエネルギーと全粒子力、参照積分自身の細分化、平行移動・粒子順序・合力とエネルギー差分を個別に照合し、意図的な低打切り対照を収束済み参照と区別します。"
             ],
             "en": [
-              "For a small neutral configuration, increase both cutoffs independently and test α independence. Compare forces with finite differences of energy, and check translation invariance and net force. Agreement between two unconverged sums is not independent validation."
+              "For a small neutral configuration, increase both cutoffs independently and test α independence. Compare forces with finite differences of energy, and check translation invariance and net force. Agreement between two unconverged sums is not independent validation.",
+              "Historical and companion inputs, criteria and results are retained separately. The companion checks energy and every particle force, refinement of the reference integral itself, translations, particle ordering, net force and energy differences individually; a deliberately truncated control is distinct from a converged reference."
             ]
           }
         }
@@ -237,7 +241,15 @@
       "references": [
         "ewald1921",
         "hockney1981book"
-      ]
+      ],
+      "scoped_supplements": [
+        "ewald",
+        "ewald-convergence"
+      ],
+      "publication_scope": {
+        "ja": "従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。",
+        "en": "The historical reading, equations, sources and release are preserved; a separate companion release supplies bounded checks for fixed conditions. This does not mean every general verification suggestion above has been executed. Consult each release’s dedicated page and saved record for inputs, references, checks and limits."
+      }
     },
     {
       "id": "pme",
@@ -294,10 +306,12 @@
           },
           "paragraphs": {
             "ja": [
-              "格子を細かくする誤差、補間次数、Ewaldの打切り、力の微分規約を混ぜずに比較します。FFTの正規化とk=0、単位を明記します。O(N log N)は通常の格子増大の仮定を伴う計算量の説明で、精度の保証ではありません。"
+              "格子を細かくする誤差、補間次数、Ewaldの打切り、力の微分規約を混ぜずに比較します。FFTの正規化とk=0、単位を明記します。O(N log N)は通常の格子増大の仮定を伴う計算量の説明で、精度の保証ではありません。",
+              "ここで結ぶ公開コードの採用形はB-splineの解析的エネルギー勾配を使うsmooth PMEです。1993年のLagrange補間PMEを実装・検証したという意味ではなく、元のPMEの式・文献・適用条件を保って別の採用変種へ案内します。"
             ],
             "en": [
-              "Separate mesh resolution, interpolation order, Ewald cutoffs and force differentiation in error studies. State FFT normalization, k=0 treatment and units. The usual O(N log N) description assumes an appropriate mesh-growth regime and is not an accuracy guarantee."
+              "Separate mesh resolution, interpolation order, Ewald cutoffs and force differentiation in error studies. State FFT normalization, k=0 treatment and units. The usual O(N log N) description assumes an appropriate mesh-growth regime and is not an accuracy guarantee.",
+              "The linked implementation adopts smooth PME with B-spline analytical energy gradients. It does not implement or validate the original 1993 Lagrange-interpolation PME; the original PME equations, sources and applicability remain distinct from this implemented variant."
             ]
           }
         },
@@ -309,10 +323,12 @@
           },
           "paragraphs": {
             "ja": [
-              "同一の小さい中性セルについて、十分収束した直接Ewald和を参照にします。格子数・補間次数・分割定数を変え、エネルギーと力のRMS/最大誤差、平行移動依存性を調べます。重力PMの成功をPMEの検証に流用しません。"
+              "同一の小さい中性セルについて、十分収束した直接Ewald和を参照にします。格子数・補間次数・分割定数を変え、エネルギーと力のRMS/最大誤差、平行移動依存性を調べます。重力PMの成功をPMEの検証に流用しません。",
+              "追加版では同じ中性周期電荷に対し格子数・B-spline order・共通平行移動を変え、収束した直接Ewaldと別実装theta積分に比較します。直接Ewaldとの共有実空間・自己項があるため、その一致だけを独立な全エネルギー検証とはしません。"
             ],
             "en": [
-              "Use a converged direct Ewald calculation for the identical neutral cell. Vary mesh size, interpolation order and screening; measure RMS/maximum energy and force errors and sensitivity to common translations. A gravity-PM test does not validate PME."
+              "Use a converged direct Ewald calculation for the identical neutral cell. Vary mesh size, interpolation order and screening; measure RMS/maximum energy and force errors and sensitivity to common translations. A gravity-PM test does not validate PME.",
+              "The companion varies mesh size, B-spline order and common translation for the same neutral periodic charges, comparing against converged direct Ewald and a separately implemented theta integral. The direct-Ewald comparison shares real-space/self terms, so agreement there alone is not independent validation of the entire energy."
             ]
           }
         }
@@ -320,7 +336,15 @@
       "references": [
         "darden1993pme",
         "ewald1921"
-      ]
+      ],
+      "scoped_supplements": [
+        "spme",
+        "spme-convergence"
+      ],
+      "publication_scope": {
+        "ja": "従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。",
+        "en": "The historical reading, equations, sources and release are preserved; a separate companion release supplies bounded checks for fixed conditions. This does not mean every general verification suggestion above has been executed. Consult each release’s dedicated page and saved record for inputs, references, checks and limits."
+      }
     },
     {
       "id": "spme",
@@ -377,10 +401,12 @@
           },
           "paragraphs": {
             "ja": [
-              "滑らかな補間だけで、エネルギー保存と総運動量保存が同時に保証されるわけではありません。境界・中性条件・自己項はEwaldから引き継ぎます。原PMEとの比較では、格子数だけでなく同じ許容誤差になるまで各方式の条件をそろえます。"
+              "滑らかな補間だけで、エネルギー保存と総運動量保存が同時に保証されるわけではありません。境界・中性条件・自己項はEwaldから引き継ぎます。原PMEとの比較では、格子数だけでなく同じ許容誤差になるまで各方式の条件をそろえます。",
+              "追加版もB-spline order 4/6の解析的エネルギー勾配型です。離散エネルギーと力の整合性、格子に対する平行移動依存と合力は別の観測量です。有限格子のaliasingにより合力は一般に厳密なゼロにならず、厳密な運動量保存を主張しません。"
             ],
             "en": [
-              "Smooth assignment alone does not guarantee both energy consistency and exact net-force cancellation. Ewald neutrality, boundary and self-term conventions still apply. Comparisons with original PME should control error tolerance and differentiation rules, not merely the number of mesh points."
+              "Smooth assignment alone does not guarantee both energy consistency and exact net-force cancellation. Ewald neutrality, boundary and self-term conventions still apply. Comparisons with original PME should control error tolerance and differentiation rules, not merely the number of mesh points.",
+              "The companion also uses analytical energy gradients with B-spline orders 4/6. Discrete energy–force consistency, common-translation mesh effects and net force are separate observables. Finite-mesh aliasing generally permits nonzero net force; exact momentum conservation is not claimed."
             ]
           }
         },
@@ -392,10 +418,12 @@
           },
           "paragraphs": {
             "ja": [
-              "同じ直接Ewald参照に対して力の誤差を測定し、エネルギーの位置差分でも確認します。平行移動に伴う格子誤差と総力を別々に報告します。実空間打切りの誤差が支配していないかも調べます。"
+              "同じ直接Ewald参照に対して力の誤差を測定し、エネルギーの位置差分でも確認します。平行移動に伴う格子誤差と総力を別々に報告します。実空間打切りの誤差が支配していないかも調べます。",
+              "16³・24³・40³の格子系列と複数の共通平行移動を、同じ直接Ewaldと独立theta参照に照合する設計です。割当重みの和・電荷、エネルギー差分、力のRMS/最大誤差、実空間打切りを区別し、長時間MDや原法PMEの根拠へ流用しません。"
             ],
             "en": [
-              "Measure force errors against the same converged Ewald reference and check energy finite differences. Report common-translation mesh effects and total force separately. Ensure real-space truncation is not hiding the reciprocal-space convergence trend."
+              "Measure force errors against the same converged Ewald reference and check energy finite differences. Report common-translation mesh effects and total force separately. Ensure real-space truncation is not hiding the reciprocal-space convergence trend.",
+              "The design compares 16³/24³/40³ meshes and several common translations against matching direct-Ewald and independent theta references. It separates partition of unity/charge, energy differences, RMS/maximum force errors and real-space truncation; it supplies no evidence for long MD or original PME."
             ]
           }
         }
@@ -403,7 +431,15 @@
       "references": [
         "essmann1995spme",
         "darden1993pme"
-      ]
+      ],
+      "scoped_supplements": [
+        "spme",
+        "spme-convergence"
+      ],
+      "publication_scope": {
+        "ja": "従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。",
+        "en": "The historical reading, equations, sources and release are preserved; a separate companion release supplies bounded checks for fixed conditions. This does not mean every general verification suggestion above has been executed. Consult each release’s dedicated page and saved record for inputs, references, checks and limits."
+      }
     },
     {
       "id": "slab-ewald",
@@ -684,10 +720,12 @@
           },
           "paragraphs": {
             "ja": [
-              "陽的静電PICではプラズマ振動の時間尺度とDebye長の解像を調べます。必要条件は押し出し法・形状・場の解法で変わり、万能なΔtやセル幅はありません。粒子数を増やす統計収束と格子/時間刻みの収束を分け、自己力・有限格子加熱にも注意します。"
+              "陽的静電PICではプラズマ振動の時間尺度とDebye長の解像を調べます。必要条件は押し出し法・形状・場の解法で変わり、万能なΔtやセル幅はありません。粒子数を増やす統計収束と格子/時間刻みの収束を分け、自己力・有限格子加熱にも注意します。",
+              "追加版は静止した一様イオン背景を持つ1次元周期・静電cold-electron PICです。CIC割当・補間、Poisson場と粒子押し出しの固定例であり、熱的Landau減衰、電磁PIC、イオン運動は対象外です。"
             ],
             "en": [
-              "Explicit electrostatic PIC must examine plasma-frequency time scales and Debye-length resolution. Exact restrictions depend on the particle pusher, shape and field solver. Separate sampling convergence in particle count from grid/time convergence, and check self-force and finite-grid heating."
+              "Explicit electrostatic PIC must examine plasma-frequency time scales and Debye-length resolution. Exact restrictions depend on the particle pusher, shape and field solver. Separate sampling convergence in particle count from grid/time convergence, and check self-force and finite-grid heating.",
+              "The companion is one-dimensional periodic electrostatic cold-electron PIC with a fixed uniform ion background. It is a fixed CIC deposit/gather, Poisson-field and particle-push example; thermal Landau damping, electromagnetic PIC and moving ions are outside its scope."
             ]
           }
         },
@@ -699,10 +737,14 @@
           },
           "paragraphs": {
             "ja": [
-              "単一粒子の自己力、中性一様分布、微小振幅のプラズマ振動やLandau減衰から始めます。総電荷、エネルギードリフト、粒子数依存と独立乱数系列を報告します。減衰率は理論の線形振幅域に限って比較します。"
+              "単一粒子の自己力、中性一様分布、微小振幅のプラズマ振動やLandau減衰から始めます。総電荷、エネルギードリフト、粒子数依存と独立乱数系列を報告します。減衰率は理論の線形振幅域に限って比較します。",
+              "線形の冷たいプラズマ振動を小振幅の参照とし、格子・時間刻み・粒子数を分けて比較します。総電荷、場の残差、自己力、粒子運動量と粒子・場エネルギーの診断を別々に示します。保存診断の小ささだけで軌道精度や任意の長時間安定性を保証しません。",
+              "追加版では固定CIC空間系の運動をDOP853でも積分し、公差と最大刻みの感度を調べます。これは時間積分の別アルゴリズムによる照合であり、独立した連続Vlasov–Poissonソルバーではありません。粒子数の乱数検査は初期時刻の単一Fourier電荷モードのpowerが対象で、CICの有限格子応答を含めて解析期待値と比較します。粒子数増大による任意の非線形軌道の収束とは区別します。"
             ],
             "en": [
-              "Begin with single-particle self-force, a uniform neutral distribution, and small-amplitude plasma oscillations or Landau damping. Report charge, energy drift, particle-count dependence and independent random realizations. Compare damping rates only within the linear-amplitude regime used by the theory."
+              "Begin with single-particle self-force, a uniform neutral distribution, and small-amplitude plasma oscillations or Landau damping. Report charge, energy drift, particle-count dependence and independent random realizations. Compare damping rates only within the linear-amplitude regime used by the theory.",
+              "Use linear cold-plasma oscillation as a small-amplitude reference and vary mesh, time step and particle count separately. Report charge, field residual, self-force, particle momentum and particle-plus-field energy diagnostics separately. Small conservation diagnostics alone guarantee neither trajectory accuracy nor arbitrary long-time stability.",
+              "The companion also integrates the fixed CIC spatial system with DOP853 and tests tolerance/maximum-step sensitivity. This is an alternative time-integration algorithm, not an independent continuum Vlasov–Poisson solver. The random particle-count check concerns the initial power of one Fourier charge mode, compared with its analytic expectation including the finite-grid CIC response. It is distinct from particle-count convergence of arbitrary nonlinear trajectories."
             ]
           }
         }
@@ -710,7 +752,15 @@
       "references": [
         "dawson1962",
         "hockney1981book"
-      ]
+      ],
+      "scoped_supplements": [
+        "pic",
+        "pic-conservation"
+      ],
+      "publication_scope": {
+        "ja": "従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。",
+        "en": "The historical reading, equations, sources and release are preserved; a separate companion release supplies bounded checks for fixed conditions. This does not mean every general verification suggestion above has been executed. Consult each release’s dedicated page and saved record for inputs, references, checks and limits."
+      }
     },
     {
       "id": "amg",
@@ -1816,10 +1866,12 @@
           },
           "paragraphs": {
             "ja": [
-              "M1は異なる方向の交差ビームを一般には独立に運べません。FLDは勾配方向に流束を結び付けるため影や強い異方性に制約があります。縮約光速は物理的な伝播/緩和時間を変えるので、支配的な時間尺度との関係を明示します。"
+              "M1は異なる方向の交差ビームを一般には独立に運べません。FLDは勾配方向に流束を結び付けるため影や強い異方性に制約があります。縮約光速は物理的な伝播/緩和時間を変えるので、支配的な時間尺度との関係を明示します。",
+              "追加版も1次元定常・純吸収・指定流入の平板で、μ∂xI=−κIを解きます。一般の放射モーメント閉包、散乱、時間依存、多周波数や流体との結合は検証しません。"
             ],
             "en": [
-              "M1 generally cannot propagate crossing beams independently. FLD ties flux to the energy gradient, limiting shadows and strongly anisotropic fields. A reduced light speed changes transport/relaxation scales and must be justified against the physical time scales of interest."
+              "M1 generally cannot propagate crossing beams independently. FLD ties flux to the energy gradient, limiting shadows and strongly anisotropic fields. A reduced light speed changes transport/relaxation scales and must be justified against the physical time scales of interest.",
+              "The companion retains a one-dimensional steady purely absorbing slab with specified inflow, solving μ∂xI=−κI. General radiation moment closures, scattering, time dependence, multiple frequencies and fluid coupling are unvalidated."
             ]
           }
         },
@@ -1831,17 +1883,29 @@
           },
           "paragraphs": {
             "ja": [
-              "吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、放射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。"
+              "吸収だけの指数減衰、等方拡散、自由流と影、交差ビームを分けて調べます。E≥0、|F|≤cEという実現可能性、放射と物質の総エネルギー、角度/空間/時間収束を確認します。閉包誤差と離散化誤差を混同しません。",
+              "Beer–Lambertの各ray解析解と連続角度の指数積分を使い、固定角度での風上空間誤差と、厳密ray伝播での角度求積誤差を分離します。流入−流出と体積吸収の収支・正値性を別に確認し、保存則だけで角度分布の精度を判定しません。",
+              "光学的厚さ0.1・0.7・3で、連続角度参照を指数積分expnと別の適応QUADPACK求積でも照合します。独立な輸送標本化では入射fluxに対応するμ=√Uを用い、透過をBernoulli変数として数えます。64反復の有限標本で二項信頼区間とRMSEを調べますが、公称95%の被覆を任意の入力や標本で保証したとは表示しません。"
             ],
             "en": [
-              "Test exponential absorption, isotropic diffusion, free streaming/shadows and crossing beams separately. Check E≥0, |F|≤cE, matter-plus-radiation energy and angular/spatial/time convergence. Distinguish closure error from discretization error."
+              "Test exponential absorption, isotropic diffusion, free streaming/shadows and crossing beams separately. Check E≥0, |F|≤cE, matter-plus-radiation energy and angular/spatial/time convergence. Distinguish closure error from discretization error.",
+              "Use directional Beer–Lambert solutions and a continuum-angle exponential integral, separating upwind spatial error at fixed ordinates from angular-quadrature error with exact ray propagation. Check inflow–outflow versus volume absorption and positivity separately; a balance check alone does not establish angular-distribution accuracy.",
+              "At optical depths 0.1/0.7/3, cross-check the continuum-angle reference using expn and a separate adaptive QUADPACK quadrature. Independent transport sampling draws μ=√U for the incident flux and counts transmission as a Bernoulli variable. Check binomial intervals and RMSE over 64 finite-sample replicates; nominal 95% coverage is not claimed for arbitrary inputs or samples."
             ]
           }
         }
       ],
       "references": [
         "levermore1984"
-      ]
+      ],
+      "scoped_supplements": [
+        "radiation-transport",
+        "radiation-convergence"
+      ],
+      "publication_scope": {
+        "ja": "従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。",
+        "en": "The historical reading, equations, sources and release are preserved; a separate companion release supplies bounded checks for fixed conditions. This does not mean every general verification suggestion above has been executed. Consult each release’s dedicated page and saved record for inputs, references, checks and limits."
+      }
     },
     {
       "id": "dsmc",
@@ -1898,10 +1962,12 @@
           },
           "paragraphs": {
             "ja": [
-              "希薄気体と分子混沌の仮定を用い、一般にはセル幅を平均自由行程、時間刻みを平均衝突時間と比較します。必要な解像は問題依存です。低速流では巨視的信号が熱運動の雑音に埋もれやすく、平均化時間を増やしてもバイアスは消えません。"
+              "希薄気体と分子混沌の仮定を用い、一般にはセル幅を平均自由行程、時間刻みを平均衝突時間と比較します。必要な解像は問題依存です。低速流では巨視的信号が熱運動の雑音に埋もれやすく、平均化時間を増やしてもバイアスは消えません。",
+              "追加版は位置を持たない等質Maxwell分子の弾性二体衝突roundです。断面積と相対速度を用いた物理時間のno-time-counter輸送、hard-sphereの空間運動、壁・流入境界の検証とは区別します。"
             ],
             "en": [
-              "DSMC uses dilute-gas and molecular-chaos assumptions. Compare cell size with mean free path and step size with mean collision time; adequate resolution is problem dependent. In low-speed flow, the macroscopic signal can be buried in thermal noise, and longer averaging does not remove discretization bias."
+              "DSMC uses dilute-gas and molecular-chaos assumptions. Compare cell size with mean free path and step size with mean collision time; adequate resolution is problem dependent. In low-speed flow, the macroscopic signal can be buried in thermal noise, and longer averaging does not remove discretization bias.",
+              "The companion consists of homogeneous Maxwell-molecule elastic pair-collision rounds without positions. It is distinct from physical-time no-time-counter transport with cross sections/relative speeds, spatial hard-sphere motion, walls or inflow boundaries."
             ]
           }
         },
@@ -1913,18 +1979,31 @@
           },
           "paragraphs": {
             "ja": [
-              "一様気体の速度緩和、Maxwell分布、壁面Couette流や希薄衝撃波で試します。衝突ごとの運動量・エネルギー保存、セル/刻み/粒子数依存、標本相関を含む不確かさを確認します。"
+              "一様気体の速度緩和、Maxwell分布、壁面Couette流や希薄衝撃波で試します。衝突ごとの運動量・エネルギー保存、セル/刻み/粒子数依存、標本相関を含む不確かさを確認します。",
+              "有限粒子数で固定運動量・エネルギーを持つ球面のモーメントをここで導出し、独立な正規乱数の射影・正規化標本と衝突標本を比較します。Scalasらの論文は有限系のmicrocanonical分布と熱力学極限の区別の参考であり、そのhard-sphere計算全体の再現ではありません。独立seed間の不確かさと粒子数依存を、各衝突の運動量・エネルギー保存と分けます。",
+              "固定運動量・エネルギーの有限系では、単一成分の二乗を適切に規格化するとBeta分布になります。16・64・256粒子と64 seedでこの有限粒子数の基準を使い、Maxwell極限との有限Nバイアスを標本誤差から分けます。24衝突round後の分布比較であり、round数を物理時刻へ換算しません。"
             ],
             "en": [
-              "Test homogeneous velocity relaxation, Maxwellian equilibrium, wall-driven Couette flow or a rarefied shock. Check collision-level momentum/energy conservation, cell/step/particle-count sensitivity and uncertainty accounting for correlated samples."
+              "Test homogeneous velocity relaxation, Maxwellian equilibrium, wall-driven Couette flow or a rarefied shock. Check collision-level momentum/energy conservation, cell/step/particle-count sensitivity and uncertainty accounting for correlated samples.",
+              "Derive moments on the finite-particle sphere with fixed momentum/energy here, comparing collision samples with independently projected and normalized Gaussian samples. Scalas et al. provide context for finite microcanonical distributions versus thermodynamic limits; this does not reproduce their complete hard-sphere calculation. Separate between-seed uncertainty and particle-count effects from momentum/energy conservation at each collision.",
+              "For the finite system with fixed momentum/energy, a suitably normalized squared velocity component has a Beta distribution. Use this finite-particle reference for 16/64/256 particles and 64 seeds, separating finite-N bias relative to the Maxwell limit from sampling error. The distribution comparison follows 24 collision rounds; rounds are not converted into physical time."
             ]
           }
         }
       ],
       "references": [
         "bird1963",
-        "bird1994"
-      ]
+        "bird1994",
+        "scalas2015microcanonical"
+      ],
+      "scoped_supplements": [
+        "dsmc",
+        "dsmc-statistics"
+      ],
+      "publication_scope": {
+        "ja": "従来の解説・式・文献と旧配布版を保持し、条件を固定した追加検証を別配布版として案内します。上の一般的な検証案すべてを実施したという意味ではありません。各版の入力・参照・合否・制約は専用ページと保存記録で確認してください。",
+        "en": "The historical reading, equations, sources and release are preserved; a separate companion release supplies bounded checks for fixed conditions. This does not mean every general verification suggestion above has been executed. Consult each release’s dedicated page and saved record for inputs, references, checks and limits."
+      }
     },
     {
       "id": "dae",
@@ -3944,6 +4023,26 @@
         "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
         "scope": "Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.",
         "scope_ja": "著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。"
+      }
+    },
+    {
+      "id": "scalas2015microcanonical",
+      "type": "article",
+      "author": "Scalas, Enrico; Gabriel, Adrian T.; Martin, Edgar; Germano, Guido",
+      "year": 2015,
+      "title": "Velocity and energy distributions in microcanonical ensembles of hard spheres",
+      "journal": "Physical Review E",
+      "volume": "92",
+      "pages": "022140",
+      "doi": "10.1103/PhysRevE.92.022140",
+      "source": "https://arxiv.org/abs/1207.3505v2",
+      "source_review": {
+        "checked_on": "2026-11-22",
+        "level": "abstract-and-metadata",
+        "url": "https://arxiv.org/abs/1207.3505v2",
+        "locator": "Abstract; journal reference and related DOI on the arXiv record",
+        "scope": "The abstract distinguishes finite microcanonical velocity/energy distributions from thermodynamic-limit Maxwell/Gamma laws. The constrained-sphere moment formulas used in this companion are derived and checked here; neither a full-paper audit nor reproduction of its complete hard-sphere simulations is claimed.",
+        "scope_ja": "抄録で有限microcanonical系の速度・エネルギー分布と、熱力学極限のMaxwell/Gamma則の区別を確認しました。追加版の制約球面モーメントはここで導出・照合したものであり、論文全体の監査やhard-sphereシミュレーション全体の再現ではありません。"
       }
     }
   ]

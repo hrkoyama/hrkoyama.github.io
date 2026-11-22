@@ -51,12 +51,30 @@
         "ja": "等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。",
         "en": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules."
       }
+    },
+    {
+      "id": "supplement-dsmc-statistics",
+      "name": {
+        "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+        "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\frac{e_i}{3(N-1)/2}\\sim\\mathrm{Beta}\\!\\left(\\frac32,\\frac{3(N-2)}2\\right)",
+        "\\mathbb E[v_x^4]=\\frac{9(N-1)}{3N-1},\\qquad\\mathbb E[D_r]=3\\left[\\frac{N-2}{2(N-1)}\\right]^r",
+        "e_i=|\\mathbf v_i|^2/2,\\qquad D_r=\\langle v_x^2-(v_y^2+v_z^2)/2\\rangle_r"
+      ],
+      "note": {
+        "ja": "有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
+        "en": "Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+      }
     }
   ],
   "references": [],
   "reference_note": {
-    "ja": "等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。",
-    "en": "Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation."
+    "ja": "等質衝突成分の運動量・エネルギー保存、異方性緩和と分布モーメントを確認します。有限粒子数の平衡はmicrocanonicalで、Maxwell/Gamma分布は大粒子数極限の基準です。空間輸送を含むBoltzmann方程式全体の厳密解検証ではありません。 追加版は固定運動量・エネルギー球面の有限粒子数モーメントを導出し、独立な射影正規標本と複数seedで比較します。衝突roundは物理時間ではなく、hard-sphere空間輸送へ対応を広げません。",
+    "en": "Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation. The companion derives finite-particle moments on a fixed-momentum/energy sphere and compares independent projected-Gaussian samples across seeds. Collision rounds are not physical time, and the correspondence does not extend to spatial hard-sphere transport."
   },
   "methods": [
     {
@@ -126,6 +144,60 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "dsmc-statistics",
+      "kind": "supplement",
+      "name": {
+        "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+        "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
+      },
+      "method_ids": [
+        "dsmc"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en"
+      },
+      "scope": {
+        "ja": "有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
+        "en": "Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+      },
+      "assumptions": {
+        "ja": "等質・等質量・等方散乱のMaxwell分子、N=16/64/256、独立64seed、運動量0、sum|v|²=3N。二つのビームから24round衝突させ、roundは物理時間へ換算しません。",
+        "en": "Homogeneous equal-mass isotropic Maxwell collisions; N=16/64/256, 64 independent seeds, zero momentum and sum|v|²=3N. Start with two beams and run 24 collision rounds; rounds are not calibrated physical time."
+      },
+      "limits": {
+        "ja": "固定した64seedの統計的診断であり、全seedの保証ではありません。同一seed内の粒子は保存量で相関し、IIDのKS p値へ読み替えません。空間輸送、衝突セル、剛体球の速度依存衝突選択・輸送係数は含みません。",
+        "en": "Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "全roundの運動量・エネルギーの最大保存誤差は決定論的な許容値で検査します。最初の6roundの異方性、4点のエネルギーCDF、4次モーメントと有限NのBeta参照との差は、独立seed間の標準誤差で測ります。NによるCDF標準誤差の減少と、有限NからMaxwellへの偏りを分けます。",
+        "en": "Check maximum momentum/energy errors over all rounds against deterministic tolerances. Use independent-seed standard errors for six-round anisotropy, four energy-CDF points and fourth moments against the finite-N beta reference. Separate decreasing CDF sampling error with N from finite-N Maxwell bias."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
       ],
       "source_scope": "package"
     }

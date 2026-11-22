@@ -1,0 +1,360 @@
+{
+  "id": "fmm-convergence",
+  "title": {
+    "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+    "en": "FMM: direct and analytic references, order and tree depth"
+  },
+  "method_ids": [
+    "fmm"
+  ],
+  "summary": {
+    "ja": "96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+    "en": "Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+  },
+  "assumptions": {
+    "ja": "自由空間のphi=−sum(q log r)、自己項なし。単位正方形は木の包囲領域で、壁・周期境界ではありません。3次元Coulomb核とは別です。",
+    "en": "Free-space phi=−sum(q log r), excluding self terms. The unit square bounds the tree and is not a wall or periodic boundary; this is separate from a 3D Coulomb kernel."
+  },
+  "algorithm": {
+    "ja": "P2M/M2M/M2L/L2Lと近接P2Pを保ち、次数2/4/8/12、深さ2/3を比較します。別のCartesian直接和、二点電荷の閉形式、正多角形の中心力と遠方ポテンシャルを参照にします。",
+    "en": "Retain P2M/M2M/M2L/L2L and near P2P; compare orders 2/4/8/12 and depths two/three. References include independent Cartesian direct sums, a closed-form charge pair and regular-polygon radial/far-field identities."
+  },
+  "validation": {
+    "ja": "ポテンシャル・場の最大絶対誤差、実際の遠方移動演算、回転・平行移動誤差、電荷を掛けた力の合計を測ります。粗い展開の失敗対照も確認します。",
+    "en": "Measure maximum absolute potential/field errors, actual far translations, rotation/translation differences and net charge-weighted force. Detect an inaccurate low-order control."
+  },
+  "limits": {
+    "ja": "木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
+    "en": "Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
+  },
+  "equations": [
+    "\\phi_i=-\\sum_{j\\ne i}q_j\\log|z_i-z_j|,\\qquad\\mathbf F_i=q_i\\mathbf E_i",
+    "\\epsilon_E=\\max_i\\|\\mathbf E_i^{\\rm FMM}-\\mathbf E_i^{\\rm direct}\\|_{\\infty}"
+  ],
+  "references": [
+    {
+      "id": "greengard1987",
+      "author": "L. Greengard and V. Rokhlin",
+      "year": 1987,
+      "title": "A fast algorithm for particle simulations",
+      "doi": "10.1016/0021-9991(87)90140-9",
+      "url": "https://doi.org/10.1016/0021-9991(87)90140-9",
+      "review_level": "selected-full-text",
+      "review_note": {
+        "ja": "著者所属機関の再録PDFで対数核、モーメント、3つの移動演算、上下走査を確認。再録版の掲載年1997と原著1987を区別。",
+        "en": "Institution-hosted reprint consulted for the log kernel, moments, three translations and up/down passes; 1997 reprint distinguished from 1987 original."
+      }
+    }
+  ],
+  "code_files": [
+    "longrange_experiments.py",
+    "fmm.py"
+  ],
+  "group": "particle-transport",
+  "edition": "2026-11-22",
+  "measured": {
+    "id": "fmm-convergence",
+    "passed": true,
+    "checks": {
+      "fine_potential_error": true,
+      "fine_field_error": true,
+      "order_refinement_ratio": true,
+      "depth2_field_error": true,
+      "translation_potential_error": true,
+      "translation_field_error": true,
+      "rotation_potential_error": true,
+      "rotation_field_error": true,
+      "net_force_relative": true,
+      "analytic_direct_potential_error": true,
+      "analytic_direct_field_error": true,
+      "symmetric_field_error": true,
+      "multipole_potential_error": true,
+      "multipole_field_error": true,
+      "coarse_control_detected": true,
+      "actual_m2l": true,
+      "actual_l2l": true,
+      "near_pairs_subset": true,
+      "multipole_probe_has_far_translation": true
+    },
+    "metrics": {
+      "fine_potential_error": 1.6153974611299304e-06,
+      "fine_field_error": 0.00013124381103546412,
+      "order_refinement_ratio": 7.213976104507879e-05,
+      "depth2_field_error": 0.00010463275822658602,
+      "net_force_relative": 8.766244233276265e-08,
+      "net_force_absolute": 0.00011622325026383606,
+      "direct_net_force": 7.283063041541027e-14,
+      "coarse_control_field_error": 1.8192992204874692,
+      "translation_potential_error": 1.612941820106073e-06,
+      "translation_field_error": 0.0004069109892306244,
+      "rotation_potential_error": 1.614394697035948e-06,
+      "rotation_field_error": 0.00015204244904776232,
+      "analytic_direct_potential_error": 0.0,
+      "analytic_direct_field_error": 0.0,
+      "symmetric_field_error": 6.770015090751258e-06,
+      "multipole_potential_error": 1.3839596135767351e-11,
+      "multipole_field_error": 1.0251124393789723e-09
+    },
+    "records": [
+      {
+        "series": "order_depth",
+        "depth": 2,
+        "order": 2,
+        "potential_error": 0.0411865516022627,
+        "field_error": 0.8533525226369347,
+        "m2l_translations": 156,
+        "l2l_translations": 20,
+        "near_pairs": 6190,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 2,
+        "order": 4,
+        "potential_error": 0.0050239303087860065,
+        "field_error": 0.10212714577482629,
+        "m2l_translations": 156,
+        "l2l_translations": 20,
+        "near_pairs": 6190,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 2,
+        "order": 8,
+        "potential_error": 4.947919960063274e-05,
+        "field_error": 0.002759924206270803,
+        "m2l_translations": 156,
+        "l2l_translations": 20,
+        "near_pairs": 6190,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 2,
+        "order": 12,
+        "potential_error": 1.6088724317242509e-06,
+        "field_error": 0.00010463275822658602,
+        "m2l_translations": 156,
+        "l2l_translations": 20,
+        "near_pairs": 6190,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 3,
+        "order": 2,
+        "potential_error": 0.04460862444127667,
+        "field_error": 1.8192992204874692,
+        "m2l_translations": 1272,
+        "l2l_translations": 84,
+        "near_pairs": 2314,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 3,
+        "order": 4,
+        "potential_error": 0.007558891029321835,
+        "field_error": 0.23400296359160322,
+        "m2l_translations": 1272,
+        "l2l_translations": 84,
+        "near_pairs": 2314,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 3,
+        "order": 8,
+        "potential_error": 8.570152231235362e-05,
+        "field_error": 0.008486987602919882,
+        "m2l_translations": 1272,
+        "l2l_translations": 84,
+        "near_pairs": 2314,
+        "all_pairs": 9120
+      },
+      {
+        "series": "order_depth",
+        "depth": 3,
+        "order": 12,
+        "potential_error": 1.6153974611299304e-06,
+        "field_error": 0.00013124381103546412,
+        "m2l_translations": 1272,
+        "l2l_translations": 84,
+        "near_pairs": 2314,
+        "all_pairs": 9120
+      },
+      {
+        "series": "invariance",
+        "translation_potential_error": 1.612941820106073e-06,
+        "translation_field_error": 0.0004069109892306244,
+        "rotation_potential_error": 1.614394697035948e-06,
+        "rotation_field_error": 0.00015204244904776232,
+        "net_force": 0.00011622325026383606
+      },
+      {
+        "series": "analytic_two_source",
+        "potential": [
+          0.0,
+          0.0,
+          0.9628107475090479,
+          -0.9628107475090482
+        ],
+        "reference_potential": [
+          0.0,
+          0.0,
+          0.9628107475090479,
+          -0.9628107475090482
+        ],
+        "field": [
+          [
+            3.523316062176166,
+            0.0
+          ],
+          [
+            3.523316062176166,
+            0.0
+          ],
+          [
+            -2.9437229437229435,
+            0.0
+          ],
+          [
+            -2.9437229437229444,
+            0.0
+          ]
+        ],
+        "reference_field": [
+          [
+            3.523316062176166,
+            0.0
+          ],
+          [
+            3.523316062176166,
+            0.0
+          ],
+          [
+            -2.9437229437229435,
+            0.0
+          ],
+          [
+            -2.9437229437229444,
+            0.0
+          ]
+        ]
+      },
+      {
+        "series": "analytic_ring",
+        "potential": 4.165151607300834,
+        "reference_potential": 4.165151607314674,
+        "field": [
+          9.745073860466565,
+          9.29180485954421
+        ],
+        "reference_field": [
+          9.745073861491678,
+          9.291804859857475
+        ]
+      }
+    ]
+  },
+  "problem_id": "logarithmic-particles",
+  "editorial_note": {
+    "ja": "自由空間2次元対数核の展開次数・木の深さ・回転平行移動の影響を測ります。深さで単調に改善するとは仮定せず、3次元Coulomb核や最適計算量へ広げません。",
+    "en": "Measure order, tree-depth and rotation/translation effects for the free-space 2D logarithmic kernel. Do not assume monotone depth improvement or generalize to 3D Coulomb kernels or optimal complexity."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/#fmm-convergence",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/#fmm-convergence"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/",
+    "archive": {
+      "file": "atlas-particle-transport-2026-11-22.zip",
+      "sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+      "bytes": 1135472,
+      "archive_directory": "atlas-particle-transport-2026-11-22"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+    ],
+    "passed_tests": 75
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  }
+}

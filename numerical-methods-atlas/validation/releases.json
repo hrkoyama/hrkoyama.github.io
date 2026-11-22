@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 33,
+  "case_count": 39,
   "releases": [
     {
       "group": "foundations",
@@ -152,6 +152,25 @@
         "quadrature-conditioning"
       ],
       "tests": 49
+    },
+    {
+      "group": "particle-transport",
+      "edition": "2026-11-22",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/",
+      "archive": "atlas-particle-transport-2026-11-22.zip",
+      "archive_sha256": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+      "manifest_sha256": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+      "verification_sha256": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "dsmc-statistics",
+        "ewald-convergence",
+        "fmm-convergence",
+        "pic-conservation",
+        "radiation-convergence",
+        "spme-convergence"
+      ],
+      "tests": 75
     }
   ]
 }

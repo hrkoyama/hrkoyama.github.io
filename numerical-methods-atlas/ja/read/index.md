@@ -90,6 +90,7 @@
 - [重力核：孤立FFTと周期スラブ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/gravity-boundaries/)
 - [放射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/)
 - [粒子・静電場・運動論・放射輸送](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/)
+- [粒子・輸送：独立参照・保存則・統計誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/)
 
 ## 電磁場・静電場・電子状態
 

@@ -64,6 +64,34 @@ test('conditioning releases extend only their three algebraic or integral famili
   assert.match(poisson.reference_note.en,/not borrowed as evidence/);
 });
 
+test('particle and transport checks extend five existing targets while keeping kernels, backgrounds and reference roles explicit',()=>{
+  const bindings=[
+    ['neutral-periodic-charges',['ewald','spme'],['ewald-convergence','spme-convergence'],['ewald','pme','spme']],
+    ['logarithmic-particles',['fmm'],['fmm-convergence'],['fmm']],
+    ['cold-plasma-pic',['pic'],['pic-conservation'],['pic']],
+    ['maxwell-collisions',['dsmc'],['dsmc-statistics'],['dsmc']],
+    ['absorbing-slab',['radiation-transport'],['radiation-convergence'],['radiation-transport']],
+  ];
+  for(const [id,previous,added,methodIds] of bindings){
+    const source=mapping.problems.find(row=>row.id===id),problem=index.problems.find(row=>row.id===id);
+    assert.deepEqual(source.method_ids,methodIds);
+    assert.deepEqual(source.references,[],'no different physical reference-library case is borrowed');
+    assert.deepEqual(problem.executions.map(row=>row.id),[...previous,...added]);
+    assert.deepEqual(problem.formulations.map(row=>row.id),[...previous,...added].map(value=>'supplement-'+value));
+    for(const addedId of added){
+      assert.equal(supplements[addedId],id);
+      const execution=problem.executions.find(row=>row.id===addedId);
+      assert.ok(execution.download.includes('/particle-transport/atlas-particle-transport-2026-11-22.zip'));
+      for(const language of ['ja','en'])assert.ok(execution.guide[language].includes('/validation/'+addedId+'/?lang='+language));
+    }
+  }
+  assert.match(mapping.problems.find(row=>row.id==='neutral-periodic-charges').reference_note.en,/original Lagrange PME and exact momentum conservation are not claimed/);
+  assert.match(mapping.problems.find(row=>row.id==='logarithmic-particles').reference_note.en,/neither monotonic error with depth/);
+  assert.match(mapping.problems.find(row=>row.id==='cold-plasma-pic').reference_note.en,/stationary background ions/);
+  assert.match(mapping.problems.find(row=>row.id==='maxwell-collisions').reference_note.en,/Collision rounds are not physical time/);
+  assert.match(mapping.problems.find(row=>row.id==='absorbing-slab').reference_note.en,/does not extend to scattering/);
+});
+
 function blocks(html,attribute,value){
   const result=[];
   for(const opening of html.matchAll(/<([a-z][\w:-]*)\b[^>]*>/gi)){

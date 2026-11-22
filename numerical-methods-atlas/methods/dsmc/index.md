@@ -2,11 +2,11 @@
 
 Status: educational-example
 
-Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
+Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
 
-等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
+等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
 
-This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced.
+Conservation and Maxwell relaxation in a homogeneous DSMC collision component: This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced. DSMC collision component: finite-N equilibrium, invariants and statistical error: Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients.
 
 Other names: DSMC法, direct simulation Monte Carlo, 直接シミュレーションモンテカルロ法
 
@@ -20,9 +20,9 @@ Other names: DSMC法, direct simulation Monte Carlo, 直接シミュレーショ
 
 ## Small fixed-input validation supplements
 
-Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
+Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
 
-等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
+等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
 
 - Conservation and Maxwell relaxation in a homogeneous DSMC collision component: https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/
 
@@ -30,7 +30,13 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/result.json
 
-Common execution records: [{"id": "dsmc", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"}, "kind": "dedicated-supplement"}]
+- DSMC collision component: finite-N equilibrium, invariants and statistical error: https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json
+
+Common execution records: [{"id": "dsmc", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "dsmc-statistics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Next: Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions.
 
@@ -60,6 +66,10 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 - [等質DSMC衝突成分の保存則・Maxwell分布](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja) (`dsmc`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip)
 
 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
+
+- [DSMC衝突成分：有限N平衡・保存則・統計誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja) (`dsmc-statistics`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
 
 
 #### 厳密解・参照解 (`method-references-ja`)
@@ -91,11 +101,21 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
 
+##### DSMC衝突成分：有限N平衡・保存則・統計誤差 (`dsmc-statistics`)
+
+[等質DSMC衝突成分の保存則・Maxwell分布](https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json)
+
+有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
 
-等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
+等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
 
 Scoped fixed-input examples; original method variants and earlier releases remain distinct.
 
@@ -109,10 +129,19 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/particles/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py)
 - [/code/validated-examples/2026-11-22/particles/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py)
 - [/code/validated-examples/2026-11-22/particles/transport.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py)
+- [/code/validated-examples/2026-11-22/particle-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py)
 
 ###### 配布版のテスト
 
 - [/code/validated-examples/2026-11-22/particles/test_particles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_longrange.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_runner.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -144,6 +173,10 @@ Methods from explicitly bound supplementary examples and, where present, the com
 
 Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
 
+- [DSMC collision component: finite-N equilibrium, invariants and statistical error](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en) (`dsmc-statistics`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -174,11 +207,21 @@ Matched problem executions are separate from existing editions and related sourc
 
 Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
 
+##### DSMC collision component: finite-N equilibrium, invariants and statistical error (`dsmc-statistics`)
+
+[Conservation and Maxwell relaxation in a homogeneous DSMC collision component](https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json)
+
+Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
 
-Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
+Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
 
 Scoped fixed-input examples; original method variants and earlier releases remain distinct.
 
@@ -192,10 +235,19 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/particles/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py)
 - [/code/validated-examples/2026-11-22/particles/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py)
 - [/code/validated-examples/2026-11-22/particles/transport.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py)
+- [/code/validated-examples/2026-11-22/particle-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py)
+- [/code/validated-examples/2026-11-22/particle-transport/electrostatics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/fmm.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py)
 
 ###### Package tests
 
 - [/code/validated-examples/2026-11-22/particles/test_particles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_longrange.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py)
+- [/code/validated-examples/2026-11-22/particle-transport/test_runner.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

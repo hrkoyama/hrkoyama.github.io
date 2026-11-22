@@ -719,6 +719,22 @@
             "ja": "Bスプラインsmooth PMEの格子・次数収束",
             "en": "Mesh/order convergence of B-spline smooth PME"
           }
+        },
+        {
+          "id": "ewald-convergence",
+          "url": "/numerical-methods-atlas/validation/ewald-convergence/",
+          "name": {
+            "ja": "Ewald：非対称周期セルのエネルギー・力と独立theta積分",
+            "en": "Ewald: asymmetric-cell energies and forces versus independent theta integration"
+          }
+        },
+        {
+          "id": "spme-convergence",
+          "url": "/numerical-methods-atlas/validation/spme-convergence/",
+          "name": {
+            "ja": "SPME：格子・補間次数・格子位相と保存則",
+            "en": "SPME: mesh, interpolation order, mesh phase and conservation"
+          }
         }
       ],
       "related_figures": [
@@ -728,6 +744,22 @@
           "caption": {
             "ja": "同じ中性周期点電荷に対するBスプライン次数4/6と16³/24³/40³格子のsmooth PME保存誤差。",
             "en": "Stored smooth-PME errors for the same neutral periodic charges at spline orders 4/6 and 16³/24³/40³ meshes."
+          }
+        },
+        {
+          "id": "ewald-convergence",
+          "source": "/code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png",
+          "caption": {
+            "ja": "中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。",
+            "en": "Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation."
+          }
+        },
+        {
+          "id": "spme-convergence",
+          "source": "/code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png",
+          "caption": {
+            "ja": "BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。",
+            "en": "Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force."
           }
         }
       ]
@@ -739,7 +771,35 @@
       "caption": {
         "ja": "固定seedの128粒子、2次元自由空間の対数核。FMMの展開次数2/4/8/12を独立した全対直接和と比べたポテンシャル・電場誤差の保存図。",
         "en": "Stored potential/field errors for 128 fixed-seed particles with a 2D free-space log kernel: FMM orders 2/4/8/12 versus a separate all-pairs sum."
-      }
+      },
+      "supplemental_examples": [
+        {
+          "id": "fmm",
+          "url": "/numerical-methods-atlas/validation/fmm/",
+          "name": {
+            "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+            "en": "2D logarithmic FMM with M2M, M2L and L2L"
+          }
+        },
+        {
+          "id": "fmm-convergence",
+          "url": "/numerical-methods-atlas/validation/fmm-convergence/",
+          "name": {
+            "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+            "en": "FMM: direct and analytic references, order and tree depth"
+          }
+        }
+      ],
+      "related_figures": [
+        {
+          "id": "fmm-convergence",
+          "source": "/code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png",
+          "caption": {
+            "ja": "96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+            "en": "Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+          }
+        }
+      ]
     },
     {
       "id": "cold-plasma-pic",
@@ -748,7 +808,35 @@
       "caption": {
         "ja": "1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。",
         "en": "One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps."
-      }
+      },
+      "supplemental_examples": [
+        {
+          "id": "pic",
+          "url": "/numerical-methods-atlas/validation/pic/",
+          "name": {
+            "ja": "CIC静電PICの冷たいプラズマ振動",
+            "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+          }
+        },
+        {
+          "id": "pic-conservation",
+          "url": "/numerical-methods-atlas/validation/pic-conservation/",
+          "name": {
+            "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+            "en": "PIC: mesh/time convergence, invariants and particle noise"
+          }
+        }
+      ],
+      "related_figures": [
+        {
+          "id": "pic-conservation",
+          "source": "/code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png",
+          "caption": {
+            "ja": "冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
+            "en": "Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
+          }
+        }
+      ]
     },
     {
       "id": "maxwell-collisions",
@@ -757,7 +845,35 @@
       "caption": {
         "ja": "等質なMaxwell分子の衝突成分。512/2048/8192粒子・16seedの保存モーメント誤差・標本不確かさと、物理時刻ではない衝突roundごとの異方性緩和。",
         "en": "Homogeneous Maxwell-molecule collision component: stored moment errors/seed uncertainty for 512/2048/8192 particles over 16 seeds, and anisotropy per collision round, not physical time."
-      }
+      },
+      "supplemental_examples": [
+        {
+          "id": "dsmc",
+          "url": "/numerical-methods-atlas/validation/dsmc/",
+          "name": {
+            "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
+            "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+          }
+        },
+        {
+          "id": "dsmc-statistics",
+          "url": "/numerical-methods-atlas/validation/dsmc-statistics/",
+          "name": {
+            "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+            "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
+          }
+        }
+      ],
+      "related_figures": [
+        {
+          "id": "dsmc-statistics",
+          "source": "/code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png",
+          "caption": {
+            "ja": "有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
+            "en": "Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+          }
+        }
+      ]
     },
     {
       "id": "absorbing-slab",
@@ -766,7 +882,35 @@
       "caption": {
         "ja": "光学的厚さ0.7の純吸収平板。32〜512セルのBeer–Lambert参照への空間誤差と、厳密セル内伝播を使う4〜32方向の角度誤差を分けた保存図。",
         "en": "Pure-absorption slab of optical depth 0.7: stored 32–512-cell spatial errors versus Beer–Lambert and a separate 4–32-ordinate angular sweep using exact cell propagation."
-      }
+      },
+      "supplemental_examples": [
+        {
+          "id": "radiation-transport",
+          "url": "/numerical-methods-atlas/validation/radiation-transport/",
+          "name": {
+            "ja": "純吸収平板の離散座標放射輸送",
+            "en": "Discrete-ordinate radiation transport through an absorbing slab"
+          }
+        },
+        {
+          "id": "radiation-convergence",
+          "url": "/numerical-methods-atlas/validation/radiation-convergence/",
+          "name": {
+            "ja": "放射輸送：空間・角度収束と光子統計",
+            "en": "Radiation transport: space/angle convergence and photon statistics"
+          }
+        }
+      ],
+      "related_figures": [
+        {
+          "id": "radiation-convergence",
+          "source": "/code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png",
+          "caption": {
+            "ja": "純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
+            "en": "Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
+          }
+        }
+      ]
     },
     {
       "id": "thermostatted-quartic",

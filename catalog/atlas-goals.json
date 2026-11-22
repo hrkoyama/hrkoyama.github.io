@@ -563,6 +563,63 @@
       ]
     },
     {
+      "id": "particle-transport",
+      "title": {
+        "ja": "粒子・輸送の収束と保存を確かめたい",
+        "en": "Check convergence and conservation in particle/transport methods"
+      },
+      "terms": [
+        "粒子 輸送 検証",
+        "粒子の収束",
+        "Ewald 収束",
+        "SPME 収束",
+        "FMM 収束",
+        "PIC 保存",
+        "DSMC 統計",
+        "放射輸送 収束",
+        "particle transport convergence",
+        "Ewald convergence",
+        "SPME convergence",
+        "FMM convergence",
+        "PIC conservation",
+        "DSMC statistics",
+        "radiation transport convergence"
+      ],
+      "scope": {
+        "ja": "中性周期Coulombの直接EwaldとB-spline SPME、2次元自由空間対数FMM、静止イオン背景の1次元cold-plasma PIC、等質Maxwell分子の衝突round、定常純吸収平板を別々の固定入力で調べます。旧版と追加版の参照・打切り/格子/刻み収束・保存量・seed不確かさを区別します。原Lagrange PME、3次元Coulomb FMM、Landau減衰、物理時間の空間DSMC、散乱放射輸送の実装や分野間連成の証拠へ広げません。",
+        "en": "Use separate fixed inputs for neutral periodic direct Ewald/B-spline SPME, 2D free-space logarithmic FMM, 1D cold-plasma PIC with stationary ions, homogeneous Maxwell-molecule collision rounds and a steady pure-absorption slab. Distinguish historical and companion references, cutoff/mesh/time refinement, conservation and seed uncertainty. This supplies no implementation evidence for original Lagrange PME, 3D Coulomb FMM, Landau damping, physical-time spatial DSMC, scattering radiation transport or cross-field coupling."
+      },
+      "methods": [
+        "ewald",
+        "pme",
+        "spme",
+        "fmm",
+        "pic",
+        "dsmc",
+        "radiation-transport"
+      ],
+      "examples": [],
+      "domains": [
+        "gravity",
+        "diffusion",
+        "probability"
+      ],
+      "supplemental_examples": [
+        "ewald",
+        "spme",
+        "fmm",
+        "pic",
+        "dsmc",
+        "radiation-transport",
+        "ewald-convergence",
+        "spme-convergence",
+        "fmm-convergence",
+        "pic-conservation",
+        "dsmc-statistics",
+        "radiation-convergence"
+      ]
+    },
+    {
       "id": "stochastic-calculation",
       "title": {
         "ja": "確率計算・MCMCの誤差と相関を確かめたい",

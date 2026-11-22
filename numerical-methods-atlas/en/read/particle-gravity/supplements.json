@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "locale": "en",
+  "chapter": "particle-gravity",
+  "title": "A separate model: 2D logarithmic FMM",
+  "supplements": [
+    {
+      "id": "fmm",
+      "group": "particles",
+      "title": {
+        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
+        "en": "2D logarithmic FMM with M2M, M2L and L2L"
+      },
+      "summary": {
+        "ja": "自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。",
+        "en": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums."
+      },
+      "limits": {
+        "ja": "3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。",
+        "en": "No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation."
+      },
+      "url": "/numerical-methods-atlas/validation/fmm/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-particles/#fmm",
+        "en": "/numerical-methods-atlas/en/read/validation-particles/#fmm"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/electrostatics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/fmm.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/transport.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/particles/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/particles/verification.json",
+      "problem_id": "logarithmic-particles"
+    },
+    {
+      "id": "fmm-convergence",
+      "group": "particle-transport",
+      "title": {
+        "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+        "en": "FMM: direct and analytic references, order and tree depth"
+      },
+      "summary": {
+        "ja": "96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
+        "en": "Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+      },
+      "limits": {
+        "ja": "木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
+        "en": "Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
+      },
+      "url": "/numerical-methods-atlas/validation/fmm-convergence/",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-particle-transport/#fmm-convergence",
+        "en": "/numerical-methods-atlas/en/read/validation-particle-transport/#fmm-convergence"
+      },
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+      ],
+      "download": "/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
+      "results": "/code/validated-examples/2026-11-22/particle-transport/results/result.json",
+      "verification": "/code/validated-examples/2026-11-22/particle-transport/verification.json",
+      "problem_id": "logarithmic-particles"
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-particle-transport-supplements.json": "fa7ee949e3bcc01a3d93f609f727d2196054c93db617f0a1975413442fd36ca5",
+    "catalog/atlas-depth-expansion.json": "cfacc25170ca12b38bb105505ddb28d37f76d0c91ce5a15da0428d330b14ad4c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9"
+  }
+}

@@ -1,0 +1,435 @@
+{
+  "schema_version": 1,
+  "maximum_seconds": 105,
+  "ewald": {
+    "positions": [
+      [
+        0.13,
+        0.23,
+        0.31
+      ],
+      [
+        0.67,
+        0.19,
+        0.41
+      ],
+      [
+        0.32,
+        0.71,
+        0.27
+      ],
+      [
+        0.79,
+        0.73,
+        0.82
+      ],
+      [
+        0.44,
+        0.48,
+        0.88
+      ],
+      [
+        0.91,
+        0.36,
+        0.65
+      ],
+      [
+        0.21,
+        0.85,
+        0.69
+      ],
+      [
+        0.59,
+        0.92,
+        0.12
+      ]
+    ],
+    "charges": [
+      1,
+      -1,
+      1,
+      -1,
+      1,
+      -1,
+      1,
+      -1
+    ],
+    "length": 1.0,
+    "alphas": [
+      2.5,
+      4.0,
+      6.0
+    ],
+    "real_cutoffs": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "reciprocal_cutoffs": [
+      2,
+      4,
+      7,
+      10,
+      12
+    ],
+    "baseline_alpha": 4.0,
+    "baseline_images": 3,
+    "baseline_kmax": 12,
+    "reference": {
+      "epsabs": 2e-11,
+      "epsrel": 2e-12,
+      "theta_terms": 8,
+      "image_terms": 5,
+      "switch": 2.0,
+      "upper": 24.0
+    },
+    "reference_refined": {
+      "epsabs": 2e-12,
+      "epsrel": 2e-13,
+      "theta_terms": 12,
+      "image_terms": 7,
+      "switch": 2.5,
+      "upper": 32.0
+    },
+    "reference_tail": {
+      "epsabs": 2e-12,
+      "epsrel": 2e-13,
+      "theta_terms": 12,
+      "image_terms": 7,
+      "switch": 2.5,
+      "upper": 40.0
+    },
+    "translation": [
+      0.173,
+      0.287,
+      0.419
+    ],
+    "permutation": [
+      3,
+      0,
+      6,
+      4,
+      1,
+      2,
+      7,
+      5
+    ],
+    "finite_difference_step": 2e-06,
+    "gradient_components": [
+      [
+        0,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        7,
+        2
+      ]
+    ],
+    "acceptance": {
+      "reference_energy_refinement": 2e-09,
+      "reference_force_refinement": 2e-08,
+      "reference_tail_energy": 2e-10,
+      "reference_tail_force": 2e-09,
+      "reference_quadrature_estimate": 2e-09,
+      "energy_error": 2e-09,
+      "force_error": 2e-08,
+      "splitting_energy_spread": 2e-09,
+      "splitting_force_spread": 2e-08,
+      "translation_energy": 2e-10,
+      "translation_force": 2e-09,
+      "permutation_force": 2e-09,
+      "net_force": 2e-10,
+      "gradient_error": 2e-06,
+      "real_refinement_ratio": 0.01,
+      "reciprocal_refinement_ratio": 0.01,
+      "control_force_error_min": 0.0001
+    }
+  },
+  "spme": {
+    "meshes": [
+      16,
+      24,
+      40
+    ],
+    "orders": [
+      4,
+      6
+    ],
+    "alpha": 5.6,
+    "images": 3,
+    "translations": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0.0073,
+        0.0117,
+        0.0191
+      ],
+      [
+        0.173,
+        0.287,
+        0.419
+      ]
+    ],
+    "finite_difference_step": 2e-06,
+    "gradient_components": [
+      [
+        0,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        7,
+        2
+      ]
+    ],
+    "partition_phases": [
+      0.001,
+      0.123,
+      0.499,
+      0.881,
+      0.999
+    ],
+    "acceptance": {
+      "fine_energy_error": 2e-05,
+      "fine_force_error": 0.0003,
+      "force_refinement_ratio": 0.2,
+      "phase_energy_spread": 4e-05,
+      "phase_force_spread": 0.0006,
+      "charge_error": 1e-10,
+      "partition_error": 1e-10,
+      "partition_derivative_error": 1e-08,
+      "gradient_error": 2e-06,
+      "shared_ewald_energy_error": 2e-09,
+      "shared_ewald_force_error": 2e-08,
+      "fine_net_force": 0.0006,
+      "coarse_control_force_error_min": 0.0001
+    }
+  },
+  "fmm": {
+    "seed": 1729,
+    "particles": 96,
+    "position_interval": [
+      0.2,
+      0.8
+    ],
+    "charge_interval": [
+      -1.0,
+      1.0
+    ],
+    "orders": [
+      2,
+      4,
+      8,
+      12
+    ],
+    "depths": [
+      2,
+      3
+    ],
+    "baseline_depth": 3,
+    "translation": [
+      0.073,
+      -0.041
+    ],
+    "rotation_radians": 0.37,
+    "symmetry_radius": 0.22,
+    "symmetry_particles": 8,
+    "analytic_sources": [
+      [
+        0.33,
+        0.5
+      ],
+      [
+        0.67,
+        0.5
+      ]
+    ],
+    "analytic_charges": [
+      1.0,
+      -1.0
+    ],
+    "analytic_targets": [
+      [
+        0.5,
+        0.76
+      ],
+      [
+        0.5,
+        0.24
+      ],
+      [
+        0.12,
+        0.5
+      ],
+      [
+        0.88,
+        0.5
+      ]
+    ],
+    "multipole_center": [
+      0.5,
+      0.5
+    ],
+    "multipole_radius": 0.12,
+    "multipole_sources": 8,
+    "multipole_target": [
+      0.93,
+      0.91
+    ],
+    "acceptance": {
+      "fine_potential_error": 2e-05,
+      "fine_field_error": 0.001,
+      "order_refinement_ratio": 0.002,
+      "depth2_field_error": 0.001,
+      "translation_potential_error": 5e-05,
+      "translation_field_error": 0.002,
+      "rotation_potential_error": 5e-05,
+      "rotation_field_error": 0.002,
+      "net_force_relative": 1e-05,
+      "analytic_direct_potential_error": 1e-13,
+      "analytic_direct_field_error": 1e-12,
+      "symmetric_field_error": 0.001,
+      "multipole_potential_error": 1e-08,
+      "multipole_field_error": 1e-06,
+      "coarse_control_field_error_min": 0.001
+    }
+  },
+  "pic": {
+    "amplitude": 0.001,
+    "end_time": 1.6,
+    "mesh_grids": [
+      16,
+      32,
+      64
+    ],
+    "mesh_particles": 2048,
+    "mesh_dt": 0.004,
+    "time_grid": 32,
+    "time_particles": 256,
+    "time_steps": [
+      0.2,
+      0.1,
+      0.05
+    ],
+    "reference_rtol": 1e-11,
+    "reference_atol": 1e-13,
+    "reference_max_steps": [
+      0.1,
+      0.05
+    ],
+    "shot_grid": 32,
+    "shot_particle_counts": [
+      256,
+      1024,
+      4096
+    ],
+    "shot_seeds": 64,
+    "shot_seed_start": 210000,
+    "acceptance": {
+      "finest_continuum_mode_error_max": 0.004,
+      "mesh_error_ratio_min": 2.5,
+      "time_order_min": 1.8,
+      "reference_mode_sensitivity_max": 1e-08,
+      "charge_max": 2e-12,
+      "momentum_max": 2e-12,
+      "resolved_gauss_max": 2e-12,
+      "nyquist_charge_max": 2e-12,
+      "relative_energy_drift_max": 0.05,
+      "shot_scaled_power_min": 0.5,
+      "shot_scaled_power_max": 1.5,
+      "shot_rms_reduction_min": 1.3
+    },
+    "independence": "Continuum mode cos(t) follows the independently derived cold-fluid linear equations, with O(amplitude^2) nonlinear scope. Mesh sweep keeps particle coordinates/count and dt fixed (ppc therefore varies explicitly); time sweep keeps mesh and particle coordinates fixed. DOP853 integrates exactly the same particle-grid RHS and is independent only as a time integration algorithm; its max-step sensitivity is measured. Random-load shot-noise ensembles vary only N at fixed mesh, measured at t=0, and are separate from quiet-start mesh/time errors. Analytic E[|mean exp(ix)|^2]=1/N tests particle loading; actual CIC grid mode obeys N E[|rhohat_1/grid|^2]=(2+cos(2*pi/grid))/3. Both normalized mean powers use the predeclared 0.5..1.5 bounds and their RMS reduction uses the same minimum 1.3, validating initial noise rather than evolved-plasma convergence. Gauss diagnostics exclude the real skew derivative's Nyquist null mode and separately bound that charge component."
+  },
+  "dsmc": {
+    "particle_counts": [
+      16,
+      64,
+      256
+    ],
+    "seeds": 64,
+    "seed_start": 310000,
+    "equilibrium_seed_start": 410000,
+    "collision_rounds": 24,
+    "anisotropy_rounds": 6,
+    "cdf_energy_points": [
+      0.25,
+      0.75,
+      1.5,
+      3.0
+    ],
+    "acceptance": {
+      "momentum_max": 2e-12,
+      "relative_energy_max": 2e-12,
+      "anisotropy_standard_errors_max": 5.5,
+      "cdf_standard_errors_max": 5.5,
+      "independent_sample_standard_errors_max": 5.5,
+      "fourth_standard_errors_max": 5.5,
+      "finite_n_maxwell_cdf_bias_min": 0.001,
+      "cdf_seed_standard_error_reduction_min": 1.2
+    },
+    "independence": "With total momentum zero and sum |v|^2=3N, equilibrium lies on the sphere of dimension D=3(N-1). A particle's e/[3(N-1)/2] has Beta(3/2,3(N-2)/2) CDF; E[vx^4]=9(N-1)/(3N-1), distinct from Maxwell 3. Independent Gaussian projection onto the zero-momentum subspace followed by radius normalization samples this exact equilibrium without collisions. Isotropic random-pair scattering has independently derived E[D_r]=3[(N-2)/(2(N-1))]^r. Empirical CDF errors, fourth moments and anisotropy are assessed using independent-seed standard errors, never iid particle KS p-values. Mean CDF seed standard error across fixed energy points must fall by at least 1.2 from N16 to N256; this measures the fixed independent replicate ensembles, not an all-seed scaling guarantee. 5.5-standard-error diagnostics are finite fixed-ensemble checks, not all-seed or exact confidence guarantees. Rounds are collision operations, not physical time."
+  },
+  "radiation": {
+    "optical_depths": [
+      0.1,
+      0.7,
+      3.0
+    ],
+    "spatial_cells": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "spatial_ordinates": 16,
+    "angular_ordinates": [
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "quad_epsabs": 1e-12,
+    "quad_epsrel": 1e-12,
+    "mc_histories": [
+      1024,
+      4096,
+      16384
+    ],
+    "mc_seeds": 64,
+    "mc_seed_start": 510000,
+    "mc_confidence": 0.95,
+    "acceptance": {
+      "reference_difference_max": 2e-11,
+      "quad_reported_error_max": 2e-11,
+      "spatial_order_min": 0.8,
+      "finest_spatial_flux_error_max": 0.01,
+      "finest_angular_flux_error_max": 2e-08,
+      "angular_overall_reduction_min": 10.0,
+      "balance_max": 2e-12,
+      "intensity_min": 0.0,
+      "intensity_max": 1.0,
+      "mc_mean_standard_errors_max": 5.5,
+      "mc_rmse_to_binomial_min": 0.65,
+      "mc_rmse_to_binomial_max": 1.4,
+      "mc_coverage_min": 0.8,
+      "mc_rmse_reduction_min": 1.3
+    },
+    "independence": "QUADPACK integrates mu*exp(-tau/mu) adaptively and is cross-checked against scipy.special.expn(3,tau), independently of Gauss-Legendre ordinates and upstream marching. Space series uses fixed ordinates and compares exact characteristics at those ordinates; angle series uses exact characteristics to remove spatial error. Analog MC launches flux-weighted mu=sqrt(U), samples an exponential optical path, and records Bernoulli survival: p=2 E3(tau), F=pi*p. Across-seed means, empirical RMSE, exact binomial standard deviations and Clopper-Pearson coverage are recorded separately. Each photon is either absorbed or exits, giving explicit count balance."
+  },
+  "policy": "Six bounded extensions of existing physical families. Inputs and criteria are saved before the first numerical pilot/reference execution. Conservation, deterministic truncation, finite-N model bias and across-seed statistical error are distinct. Intended coarse/failure controls do not certify accurate solutions. No quantum calculations."
+}

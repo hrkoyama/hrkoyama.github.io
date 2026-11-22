@@ -58,8 +58,8 @@
       "en": "Logs and JSON/CSV are retained in each run's Artifacts for 90 days. Downloading artifacts requires GitHub sign-in."
     },
     "limits": {
-      "ja": "固定入力と記載した数値公差を判定します。ZIP／入力をハッシュで照合し、再計算CSV／画像のバイト一致は求めません。配布版pytest全件、全67問題、独立PySCF／DFTK参照の再生成は別の確認です。周期Heは保存済みDFTK参照と比較します。 多原子He₂の力とBOMD局所接続は同梱DFTK参照で判定し、長時間MDを保証しません。",
-      "en": "Evaluate fixed inputs against stated numerical tolerances and check ZIP/input hashes, without requiring byte-identical rerun CSV/images. Full packaged pytest suites, all 67 problems and regeneration of independent PySCF/DFTK references are separate checks. Periodic He is compared against its saved DFTK reference. Multiatom-He₂ forces and the local BOMD interface use the saved DFTK reference; long MD trajectories are not certified."
+      "ja": "固定入力と記載した数値公差を判定します。ZIP／入力をハッシュで照合し、再計算CSV／画像のバイト一致は求めません。配布版pytest全件、問題台帳の全件、独立PySCF／DFTK参照の再生成は別の確認です。周期Heは保存済みDFTK参照と比較します。 多原子He₂の力とBOMD局所接続は同梱DFTK参照で判定し、長時間MDを保証しません。",
+      "en": "Evaluate fixed inputs against stated numerical tolerances and check ZIP/input hashes, without requiring byte-identical rerun CSV/images. Full packaged pytest suites, the full problem inventory and regeneration of independent PySCF/DFTK references are separate checks. Periodic He is compared against its saved DFTK reference. Multiatom-He₂ forces and the local BOMD interface use the saved DFTK reference; long MD trajectories are not certified."
     },
     "atomic": {
       "ja": "水素型原子とHeは同じ1回の実行を共有し、各問題の条件を別々に判定します。Heは保存済みの有限基底PySCF参照と比較します。",
@@ -172,14 +172,14 @@
     "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/workflows/atlas-depth-linux.yml",
     "guide": "/numerical-methods-atlas/validation/",
     "scope": {
-      "ja": "通常は9配布版・33補助ケースをNumPy/SciPy/pytestで検査します。独立参照の再生成は別の任意手順です。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
-      "en": "Routine checks run nine supplements and 33 supplementary cases with NumPy/SciPy/pytest. Independent-reference regeneration is a separate optional procedure. The common 22-case suite, including quantum-DFT convergence sweeps, remains manual on explicit need."
+      "ja": "通常は10配布版・39補助ケースをNumPy/SciPy/pytestで検査します。独立参照の再生成は別の任意手順です。量子DFTの収束走査を含む共通22例の詳細CIは必要時の手動実行に保ちます。",
+      "en": "Routine checks run ten supplements and 39 supplementary cases with NumPy/SciPy/pytest. Independent-reference regeneration is a separate optional procedure. The common 22-case suite, including quantum-DFT convergence sweeps, remains manual on explicit need."
     }
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/ci/",
   "catalog_source": {
     "url": "https://hrkoyama.github.io/catalog/atlas-ci.json",
-    "sha256": "a789e32c5d29c93dcf552763f9b2889d9421a2e7d5b17f711dc3112a3392edd5"
+    "sha256": "e1cbfc381fea80dcf74f7cd2320928d3ef86cb42a6eab9051a751eedb856c565"
   },
   "current_registry": {
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",

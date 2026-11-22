@@ -2151,6 +2151,32 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ewald-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "spme-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -2168,6 +2194,22 @@
           "name": {
             "ja": "Bスプラインsmooth PMEの格子・次数収束",
             "en": "Mesh/order convergence of B-spline smooth PME"
+          }
+        },
+        {
+          "id": "ewald-convergence",
+          "url": "/numerical-methods-atlas/validation/ewald-convergence/",
+          "name": {
+            "ja": "Ewald：非対称周期セルのエネルギー・力と独立theta積分",
+            "en": "Ewald: asymmetric-cell energies and forces versus independent theta integration"
+          }
+        },
+        {
+          "id": "spme-convergence",
+          "url": "/numerical-methods-atlas/validation/spme-convergence/",
+          "name": {
+            "ja": "SPME：格子・補間次数・格子位相と保存則",
+            "en": "SPME: mesh, interpolation order, mesh phase and conservation"
           }
         }
       ]
@@ -2203,6 +2245,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fmm-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -2212,6 +2269,14 @@
           "name": {
             "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM",
             "en": "2D logarithmic FMM with M2M, M2L and L2L"
+          }
+        },
+        {
+          "id": "fmm-convergence",
+          "url": "/numerical-methods-atlas/validation/fmm-convergence/",
+          "name": {
+            "ja": "FMM：直接和・解析配置と展開次数・木の深さ",
+            "en": "FMM: direct and analytic references, order and tree depth"
           }
         }
       ]
@@ -2247,6 +2312,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "pic-conservation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -2256,6 +2336,14 @@
           "name": {
             "ja": "CIC静電PICの冷たいプラズマ振動",
             "en": "Cold-plasma oscillation with electrostatic CIC PIC"
+          }
+        },
+        {
+          "id": "pic-conservation",
+          "url": "/numerical-methods-atlas/validation/pic-conservation/",
+          "name": {
+            "ja": "PIC：格子・時間収束、保存量と粒子雑音",
+            "en": "PIC: mesh/time convergence, invariants and particle noise"
           }
         }
       ]
@@ -2291,6 +2379,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-statistics"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -2300,6 +2403,14 @@
           "name": {
             "ja": "等質DSMC衝突成分の保存則・Maxwell分布",
             "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component"
+          }
+        },
+        {
+          "id": "dsmc-statistics",
+          "url": "/numerical-methods-atlas/validation/dsmc-statistics/",
+          "name": {
+            "ja": "DSMC衝突成分：有限N平衡・保存則・統計誤差",
+            "en": "DSMC collision component: finite-N equilibrium, invariants and statistical error"
           }
         }
       ]
@@ -2335,6 +2446,21 @@
         {
           "path": "code/validated-examples/2026-11-22/particles/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "radiation-convergence"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-22/particle-transport/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -2344,6 +2470,14 @@
           "name": {
             "ja": "純吸収平板の離散座標放射輸送",
             "en": "Discrete-ordinate radiation transport through an absorbing slab"
+          }
+        },
+        {
+          "id": "radiation-convergence",
+          "url": "/numerical-methods-atlas/validation/radiation-convergence/",
+          "name": {
+            "ja": "放射輸送：空間・角度収束と光子統計",
+            "en": "Radiation transport: space/angle convergence and photon statistics"
           }
         }
       ]

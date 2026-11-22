@@ -220,7 +220,7 @@ def build_public_roadmap(work,lang):
     history='これまでの整備・分野別の検証候補' if ja else 'Development history and field-specific validation candidates'
     headings=[{'level':2,'id':'atlas-work-queue','title':title}]
     states={
-        'in-progress':('実装中・公開確認待ち','In progress / publication check pending'),
+        'in-progress':('進行中・受入確認待ち','In progress / acceptance pending'),
         'planned':('予定','Planned'),
         'conditional-planned':('条件付きの候補','Conditional candidate'),
         'published-verified-example':('検証した限定例を公開済み','Scoped verified example published'),

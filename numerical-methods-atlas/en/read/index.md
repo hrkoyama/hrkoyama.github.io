@@ -90,6 +90,7 @@ Explore particle methods, distribution functions, long-range forces and transpor
 - [Gravity kernels: isolated FFTs and a periodic slab](https://hrkoyama.github.io/numerical-methods-atlas/en/read/gravity-boundaries/)
 - [Radiation transport and moment methods](https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/)
 - [Particles, electrostatics, kinetic and radiative transport](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/)
+- [Particles and transport: independent references, conservation and statistical error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/)
 
 ## Electromagnetic fields, electrostatics and electronic structure
 

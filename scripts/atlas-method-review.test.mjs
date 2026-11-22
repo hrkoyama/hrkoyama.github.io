@@ -213,7 +213,9 @@ test('scoped Ewald and smooth-PME examples expose their dedicated evidence witho
     assert.equal(source.status,'educational-example',id);
     assert.equal(source.method_review.verification.kind,'source-and-code-inspection',id);
     assert.deepEqual(source.depth_release,{group:'particles',edition:'2026-11-22',case_ids:caseIDs});
-    assert.deepEqual(record.execution_examples.map(example=>example.id),caseIDs,id+' scoped independent supplements');
+    const added=id==='ewald'?'ewald-convergence':'spme-convergence';
+    assert.deepEqual(source.depth_additional_releases.find(x=>x.group==='particle-transport').case_ids,[added]);
+    assert.deepEqual(record.execution_examples.map(example=>example.id),[...caseIDs,added],id+' scoped independent supplements');
     assert.equal(record.code_edition,'2026-11-22',id);
     assert.ok(record.code_urls.some(url=>url.endsWith('/particles/electrostatics.py')),id+' dedicated algorithm');
     assert.ok(record.test_urls.length>0&&record.run_commands.length>0,id+' actual tests and commands');

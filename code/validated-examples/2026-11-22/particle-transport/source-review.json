@@ -1,0 +1,44 @@
+{
+  "checked_on": "2026-11-22",
+  "scope": "Bibliographic records and actually consulted primary/official source sections, not a claim of full-paper auditing or external-package certification. Mathematical identities and fixed-case checks are derived separately.",
+  "records": [
+    {
+      "id": "scalas2015",
+      "doi": "10.1103/PhysRevE.92.022140",
+      "source": "https://arxiv.org/html/1207.3505",
+      "review_level": "abstract-and-selected-theory",
+      "review": "Finite microcanonical constraints and beta/gamma limits consulted. The precise zero-momentum sphere marginal used here is explicitly derived, rather than borrowing unconstrained-NVE parameters. No paper simulation data reused."
+    },
+    {
+      "id": "dlmf-theta-transform",
+      "source": "https://dlmf.nist.gov/20.7#viii",
+      "review_level": "official-equation",
+      "review": "Jacobi modular transformation, especially20.7.32, supports the equivalent theta forms. Full periodic-cell Gaussian integral and force reference are independently derived/implemented."
+    },
+    {
+      "id": "scipy-binomial-interval",
+      "source": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html",
+      "review_level": "official-versioned-documentation",
+      "review": "Exact method is Clopper-Pearson; nominal confidence and interval outputs verified. Publisher fulltext DOI10.1093/biomet/26.4.404 unavailable; no original-paper text reading claimed."
+    },
+    {
+      "id": "greengard1987",
+      "doi": "10.1016/0021-9991(87)90140-9",
+      "source": "https://www.stat.uchicago.edu/~lekheng/courses/302/classics/greengard-rokhlin.pdf",
+      "review_level": "selected-original-paper",
+      "review": "Scientist reviewed logarithmic multipole/local translations in the original paper. Current 2D educational case does not certify 3D kernels, adaptive trees or complexity."
+    },
+    {
+      "id": "ewald1921",
+      "doi": "10.1002/andp.19213690304",
+      "review_level": "publisher-metadata",
+      "review": "Historical original Ewald bibliography; no full original paper reading claimed."
+    },
+    {
+      "id": "essmann1995",
+      "doi": "10.1063/1.470117",
+      "review_level": "publisher-abstract plus retained earlier selected-source review",
+      "review": "B-spline energy-gradient variant distinguished from Darden original interpolation and other force variants."
+    }
+  ]
+}

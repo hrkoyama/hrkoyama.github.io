@@ -45,6 +45,9 @@ def main():
         if ident in ['amg','qr-svd','eigensolvers','quadrature']:
             m['metadata_review']['on']='2026-11-22'
             m['metadata_review']['level']='scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls'
+        if ident in ['ewald','pme','spme','fmm','pic','dsmc','radiation-transport']:
+            m['metadata_review']['on']='2026-11-22'
+            m['metadata_review']['level']='scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits'
         if ident in ['ct','glm']:
             m['metadata_review']['on']='2026-11-22'
             m['metadata_review']['level']='scoped CT/GLM whole-discretization comparisons under matched controls, conserved-average exact solutions and independent Athena references; separate grid and time errors'

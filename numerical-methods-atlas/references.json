@@ -3524,6 +3524,38 @@
     "origin": "curated-method-metadata"
   },
   {
+    "id": "scalas2015",
+    "author": "E. Scalas, A. T. Gabriel, E. Martin and G. Germano",
+    "year": 2015,
+    "title": "Velocity and energy distributions in microcanonical ensembles of hard spheres",
+    "doi": "10.1103/PhysRevE.92.022140",
+    "url": "https://arxiv.org/abs/1207.3505",
+    "type": "article",
+    "journal": "Physical Review E 92, 022140",
+    "review_level": "primary-abstract-and-selected-theory; separate center-of-mass sphere derivation",
+    "review_note": {
+      "ja": "初期設計は原著抄録を確認し、その後の追加レビューで有限系分布の理論の一部を参照。ここでの運動量0の球面・周辺Beta則は明示的に導出し、原著の分子動力学データを再利用したとはしません。",
+      "en": "Initial design reviewed the abstract; subsequent additional review consulted selected finite-system theory. Explicitly derive the zero-momentum sphere marginal here; no original molecular-dynamics data are reused."
+    },
+    "source": "https://arxiv.org/abs/1207.3505",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "scipy-binomial-interval",
+    "author": "SciPy developers",
+    "year": 2024,
+    "title": "SciPy 1.14.1: BinomTestResult.proportion_ci",
+    "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html",
+    "type": "misc",
+    "review_level": "official-versioned-documentation",
+    "review_note": {
+      "ja": "公式資料でexactがClopper–Pearson法を使うことと区間APIを確認。1934年原著本文は取得できず、本文閲覧とはしません。",
+      "en": "Official documentation confirms the exact Clopper–Pearson method and interval API. The 1934 publisher text was unavailable; no full-paper reading is claimed."
+    },
+    "source": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html",
+    "origin": "curated-method-metadata"
+  },
+  {
     "id": "schrodinger1926",
     "year": 1926,
     "author": "Schrödinger, E.",

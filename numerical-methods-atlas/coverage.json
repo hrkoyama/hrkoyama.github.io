@@ -12,14 +12,14 @@
   "counts": {
     "equations": 46,
     "methods": 131,
-    "papers": 242,
-    "references": 298,
-    "journal_articles": 236,
+    "papers": 243,
+    "references": 300,
+    "journal_articles": 237,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 25,
+    "other_sources": 26,
     "local_equations": 23,
     "reading_equations": 23,
     "local_methods": 114,
@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 91,
+    "reading_chapters": 92,
     "test_problems": 83,
     "saved_test_problems": 83,
     "code_test_problems": 0
@@ -1516,7 +1516,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Particle fields & gravity",
-      "scope": "Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.",
+      "scope": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.",
       "origin": "curated-depth-example"
     },
     {
@@ -1536,7 +1536,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Particle fields & gravity",
-      "scope": "Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.",
+      "scope": "Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation.",
       "origin": "curated-depth-example"
     },
     {
@@ -1546,7 +1546,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Particle fields & gravity",
-      "scope": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.",
+      "scope": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force.",
       "origin": "curated-depth-example"
     },
     {
@@ -1556,7 +1556,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Particle fields & gravity",
-      "scope": "A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.",
+      "scope": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force.",
       "origin": "curated-depth-example"
     },
     {
@@ -1566,7 +1566,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently.",
+      "scope": "Cold-plasma oscillation with electrostatic CIC PIC: Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently. PIC: mesh/time convergence, invariants and particle noise: Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error.",
       "origin": "curated-depth-example"
     },
     {
@@ -1626,7 +1626,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux.",
+      "scope": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage.",
       "origin": "curated-depth-example"
     },
     {
@@ -1636,7 +1636,7 @@
       "chapter": "validation-particles",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.",
+      "scope": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.",
       "origin": "curated-depth-example"
     },
     {
@@ -3077,6 +3077,18 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "scalas2015",
+      "type": "article",
+      "identity": "doi:10.1103/physreve.92.022140",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "scipy-binomial-interval",
+      "type": "misc",
+      "identity": "url:https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3307,9 +3319,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "c11e4eae80c17eb9719a19f6f656249b1b0565fdbfd23a4b148005933bd987c7",
+    "catalog/atlas-methods.json": "3c5baf043ced66d4e3973d829cdf62820d9ac32e8aed47e3b05d40d9c5965fb5",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
-    "catalog/atlas-method-primary-references.json": "7906644264f76ed465a06567243f4c3729d22880226769db95a73f8f7bc1d1b5"
+    "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",
