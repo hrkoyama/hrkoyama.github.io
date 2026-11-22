@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-2f93d5814b
-Captured (UTC): 2026-11-22T00:03:59+00:00
+Snapshot: 2026-11-22-074f0e0c09
+Captured (UTC): 2026-11-22T00:18:38+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -3283,6 +3283,7 @@ A kinetic-energy-consistent convective discretization should not create a spurio
 We measure the dimensionless entropy proxy
 S_* = \int\rho\log\left(\frac{p}{\rho^\gamma}\right)dV.
 For a fixed ideal-gas composition this differs from physical entropy only by fixed factors and an additive mass term. Its change per initial mass is useful when initial isentropic data give S_* approximately zero; dividing by initial S_* would be ill-conditioned.
+For the grid update formula, see the semidiscrete update and two-point flux.
 
 ## KEEP schemes: preserve the smooth-flow balance, test the limits — The semidiscrete update and two-point flux# [en]
 
@@ -11371,6 +11372,7 @@ Coverage: reading
 無次元のエントロピー代理量を、
 S_* = \int\rho\log\left(\frac{p}{\rho^\gamma}\right)dV.
 で測ります。固定組成の理想気体では、物理エントロピーとの差は定数係数と質量の加法項です。初期等エントロピー状態でS_*がほぼゼロなら、初期質量あたりの変化が有用です。初期S_*で割ると条件が悪くなります。
+格子上での更新式は、差分式と実装した2点流束で説明します。
 
 ## KEEP法：滑らかな流れの釣合いと限界を検証する — 差分式と実装した2点流束# [ja]
 
