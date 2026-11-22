@@ -45,7 +45,7 @@ function showRows() {
     const entityType={equation:{ja:'方程式',en:'Equation'},reference:{ja:'厳密解・参照解',en:'Exact / reference solution'}}[doc.kind];
     meta.textContent=doc.executionPriority?(locale()==='ja'?'固定入力の実行・検証例':'Runnable input and validation example'):entityType?entityType[locale()]:(locale()==='en' ? doc.categoryEn : doc.categoryJa)+' · '+words(doc.lang);
     const summary=document.createElement('p');summary.className='search-excerpt';
-    summary.textContent=doc.executionPriority && doc.execution?.snippet?.[locale()] ? doc.execution.snippet[locale()] : excerpt(doc.text,query);
+    summary.textContent=doc.snippet?.[locale()] || (doc.executionPriority && doc.execution?.snippet?.[locale()] ? doc.execution.snippet[locale()] : excerpt(doc.text,query));
     item.append(meta,heading,summary);appendSearchNavigation(item,doc,locale());(direct.length&&!doc.executionPriority&&!doc.entityPriority?secondary:fragment).append(item);
   }
   results.replaceChildren(fragment);

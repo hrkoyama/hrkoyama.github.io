@@ -108,6 +108,7 @@ for entity in navigation['entities']:
  doc=record(parsed_route.path+('?' + parsed_route.query if parsed_route.query else '')+'#'+parsed_route.fragment,
             entity['title'].get('ja') or entity['title']['en'],entity['title'].get('en',''),text,'both','numerical-methods-atlas')
  doc.update({'id':entity['id'],'kind':kind,'routes':entity['routes'],
+             'snippet':entity.get('snippet',{}),
              'headings':flatten(entity.get('headings',{})),
              'search_navigation':navigation['nodes'][kind+':'+identity]})
  documents.append(doc)

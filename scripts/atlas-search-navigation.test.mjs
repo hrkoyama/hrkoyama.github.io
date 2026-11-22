@@ -222,6 +222,8 @@ test('exact equation and reference searches remain in the main results of both i
             const entity=home.entries.find(row=>row.search_navigation?.kind===selectedEntry.kind&&row.search_navigation?.id===record.id);
             assert.ok(anchors(direct).some(anchor=>anchor.href===path(entity.routes[language])),'the exact localized equation/reference fragment is a main result');
             if(kind==='site'){
+              const summary=cards[0].parentElement.children.find(node=>node.className==='search-excerpt');
+              assert.equal(summary.textContent,entity.snippet[language],'readable scoped prose is displayed while the formula stays searchable');
               const expected=language==='ja'
                 ? selectedEntry.kind==='equation'?/方程式\s*[1-9]\d*件/:/(?:厳密解・)?参照解\s*[1-9]\d*件/
                 : selectedEntry.kind==='equation'?/[1-9]\d*\s+equations?\b/i:/[1-9]\d*\s+(?:exact\s*\/\s*)?reference(?:\s+solution)?s?\b/i;
