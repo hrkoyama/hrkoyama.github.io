@@ -8,6 +8,43 @@ These additional validation supplements are managed separately from the common 2
 
 Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.
 
+**Methods used**
+
+- [Ewald summation](https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=en) (`ewald`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en#ewald-en-algorithm)
+
+Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences.
+
+$$
+E=\frac12\sum_{ij\mathbf n}^{\prime}q_iq_j\frac{\operatorname{erfc}(\alpha r_{ij\mathbf n})}{r_{ij\mathbf n}}+\frac{2\pi}{V}\sum_{\mathbf k\ne0}\frac{e^{-k^2/(4\alpha^2)}}{k^2}|S(\mathbf k)|^2-\frac{\alpha}{\sqrt\pi}\sum_iq_i^2
+$$
+
+$$
+M_{\rm NaCl}=\frac2{\sqrt\pi}\int_0^\infty[1-\vartheta_4(0,e^{-u^2})^3]du
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Neutral-cell Ewald sums and an independent theta integral: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/ewald.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Neutral periodic charges: Ewald and smooth PME](https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en) (`neutral-periodic-charges`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en#ewald-en-validation)
+
+Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ### Assumptions, units and boundaries
 
 Cubic cell, zero total charge, Coulomb constant one and conducting/tin-foil boundary. An asymmetric eight-charge case is distinct from the eight-ion NaCl reference cell.
@@ -92,6 +129,44 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.
 
+**Methods used**
+
+- [Particle mesh Ewald / PME](https://hrkoyama.github.io/numerical-methods-atlas/methods/pme/?lang=en) (`pme`)
+- [Smooth particle mesh Ewald / SPME](https://hrkoyama.github.io/numerical-methods-atlas/methods/spme/?lang=en) (`spme`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en#spme-en-algorithm)
+
+Tensor-product cardinal splines of order four or six spread the charges. Apply the nodal-spline discrete structure-factor correction and Gaussian Green function through 3D FFTs; analytically differentiate assignment weights for forces.
+
+$$
+Q_{\mathbf j}=\sum_iq_i\prod_{a=1}^3M_p(u_{ia}-j_a+p/2)
+$$
+
+$$
+\mathbf F_i=-\partial E_h/\partial\mathbf r_i
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Mesh/order convergence of B-spline smooth PME: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/spme.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Neutral periodic charges: Ewald and smooth PME](https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en) (`neutral-periodic-charges`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/?lang=en#spme-en-validation)
+
+Meshes 16³/24³/40³ and two orders are compared with directly summed Ewald reciprocal terms. Shared real/self terms are stated. Check finest-grid force derivatives by energy differences and verify assigned total charge.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ### Assumptions, units and boundaries
 
 The neutral cubic cell and real-space term match the Ewald example. The adopted PME-family variant uses Essmann-type B-splines, distinct from Darden’s original Lagrange interpolation.
@@ -169,6 +244,43 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
 
+**Methods used**
+
+- [Fast multipole translations](https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=en) (`fmm`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en#fmm-en-algorithm)
+
+Implement leaf P2M, upward M2M, interaction-list M2L, downward L2L, local-polynomial evaluation and near-field P2P. Record translation and near-pair counts; this is not a Barnes–Hut traversal relabeled as FMM.
+
+$$
+M_k(c)=\sum_jq_j(z_j-c)^k
+$$
+
+$$
+f(z)=M_0\log(z-c)-\sum_{k=1}^p\frac{M_k}{k(z-c)^k},\qquad\phi=-\Re f
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![2D logarithmic FMM with M2M, M2L and L2L: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/fmm.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[2D logarithmic FMM with M2M, M2L and L2L](https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en) (`logarithmic-particles`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en#fmm-en-validation)
+
+For 128 fixed-seed particles, sweep orders 2/4/8/12 and compare every potential/field component with a separate all-pairs calculation. Also check two-source signs, permutation invariance and potential derivatives.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ### Assumptions, units and boundaries
 
 Particles lie in a unit-square bounding box, not a physical wall boundary. The kernel is phi=−sum(q log r), with field −grad(phi); self terms are excluded and no periodic images are used.
@@ -241,6 +353,43 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently.
 
+**Methods used**
+
+- [Particle-in-cell / PIC](https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en) (`pic`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en#pic-en-algorithm)
+
+Combine CIC deposition and matching field gathering, a mean-zero spectral Poisson solve and velocity Verlet. Set the field Nyquist mode to zero for a real skew-adjoint spectral derivative.
+
+$$
+\dot x_i=v_i,\quad\dot v_i=-E_h(x_i),\quad-\phi_{xx}=\rho,\quad E=-\phi_x
+$$
+
+$$
+A(t)/A(0)\simeq\cos(\omega_pt),\qquad\omega_p=1
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Cold-plasma oscillation with electrostatic CIC PIC: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/pic.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Cold-plasma oscillation with electrostatic CIC PIC](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en) (`cold-plasma-pic`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en#pic-en-validation)
+
+Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ### Assumptions, units and boundaries
 
 Dimensionless length 2pi, electron charge/mass −1, stationary ion density one and plasma frequency one. A quiet start receives a small sinusoidal displacement of amplitude 0.001.
@@ -318,6 +467,43 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
 
+**Methods used**
+
+- [DSMC and kinetic transport](https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en) (`dsmc`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en#dsmc-en-algorithm)
+
+Preserve pair center-of-mass velocity and relative speed, then choose the new relative direction uniformly on the sphere. Rounds count collision operations and are not calibrated physical time. For D=<vx²−(vy²+vz²)/2>, averaging a random partner multiplies the center-of-mass anisotropy by (N−2)/(2(N−1)); isotropic postcollision relative directions contribute zero expected anisotropy.
+
+$$
+\mathbf v_{1,2}^{\prime}=\mathbf V\pm\frac{|\mathbf g|}{2}\mathbf n,\qquad|\mathbf n|=1
+$$
+
+$$
+\mathbb E[D_{r+1}]=\frac{N-2}{2(N-1)}\mathbb E[D_r]
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Conservation and Maxwell relaxation in a homogeneous DSMC collision component: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/dsmc.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Conservation and Maxwell relaxation in a homogeneous DSMC collision component](https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en) (`maxwell-collisions`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en#dsmc-en-validation)
+
+Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ### Assumptions, units and boundaries
 
 Homogeneous, equal masses, isotropic scattering and constant collision rate. Each round randomly matches every particle once. Two initial beams at ±sqrt(3) give target temperature one. Each seed has zero total momentum and fixed total energy: its finite-N equilibrium is microcanonical, while Maxwell/Gamma are large-N references.
@@ -396,6 +582,43 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux.
 
+**Methods used**
+
+- [Radiation transport and moment methods](https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=en) (`radiation-transport`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=en#radiation-transport-en-algorithm)
+
+Use positive Gauss–Legendre ordinates and first-order upstream finite-volume marching. A separate angular-error sweep uses exact exponential propagation within each constant cell.
+
+$$
+\mu\frac{dI}{d\tau}+I=0,\qquad I(\tau,\mu)=e^{-\tau/\mu}
+$$
+
+$$
+F_{\rm out}=2\pi\int_0^1\mu e^{-\tau/\mu}d\mu=2\pi E_3(\tau)
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Discrete-ordinate radiation transport through an absorbing slab: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/radiation-transport.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Discrete-ordinate radiation transport through an absorbing slab](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en) (`absorbing-slab`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/absorbing-slab/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/radiation-transport/?lang=en#radiation-transport-en-validation)
+
+With 32–512 cells, check all ray intensities, spatial flux error, positivity and discrete absorption balance. A separate 4–32-ordinate sweep compares exit flux with the analytic 2pi E3(tau) representation.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ### Assumptions, units and boundaries
 
 A uniform slab of optical depth 0.7 receives unit intensity over the positive hemisphere, with zero reverse inflow, scattering and emission.

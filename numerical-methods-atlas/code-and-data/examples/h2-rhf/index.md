@@ -11,6 +11,47 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。
 
+**使用手法**
+
+- [Hartree–Fock法](https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=ja) (`hartree-fock`)
+- [電子状態計算の基底](https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/?lang=ja) (`electronic-bases`)
+- [自己無撞着場反復（SCF）](https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=ja) (`scf`)
+
+**方程式**
+
+[この実行例の近似式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-h2-rhf-ja)
+
+孤立2電子RHF・有限s型Gaussian基底。数値収束とRHF近似の誤差は別。
+
+$$
+F(P)C=SC\varepsilon,\quad P=2C_oC_o^T
+$$
+
+$$
+E_{\rm RHF}=\tfrac12\operatorname{Tr}[P(h+F)]+1/R
+$$
+
+- [閉殻Hartree–Fock方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja) (`hartree-fock-model`)
+
+**問題の図**
+
+![固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。](https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/preview.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[H₂分子RHF：独立参照・SCF・s型基底拡大](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=ja) (`h2-rhf`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja#h2-rhf-ja-validation)
+
+教育用コードをimportしない独立PySCF。同一幾何・同一有限基底のRHFであり、相関を含む厳密解ではありません。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。
@@ -80,6 +121,47 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation.
+
+**Methods used**
+
+- [Hartree–Fock](https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=en) (`hartree-fock`)
+- [Electronic-structure basis sets](https://hrkoyama.github.io/numerical-methods-atlas/methods/electronic-bases/?lang=en) (`electronic-bases`)
+- [Self-consistent field iteration / SCF](https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=en) (`scf`)
+
+**Equations**
+
+[This example’s approximation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-h2-rhf-en)
+
+Isolated two-electron RHF in finite s-Gaussian bases. Numerical convergence differs from RHF model error.
+
+$$
+F(P)C=SC\varepsilon,\quad P=2C_oC_o^T
+$$
+
+$$
+E_{\rm RHF}=\tfrac12\operatorname{Tr}[P(h+F)]+1/R
+$$
+
+- [Closed-shell Hartree–Fock equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hartree-fock-model-en) (`hartree-fock-model`)
+
+**Problem figure**
+
+![Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits.](https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/preview.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[H₂ molecular RHF: independent reference, SCF and s-basis refinement](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=en) (`h2-rhf`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en#h2-rhf-en-validation)
+
+Independent PySCF imports no educational solver. Same-geometry, same-finite-basis RHF, not an exact correlated solution.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

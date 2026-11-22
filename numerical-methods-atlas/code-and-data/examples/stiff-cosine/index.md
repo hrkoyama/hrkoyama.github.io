@@ -11,6 +11,45 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 硬い余弦追従問題の解析解と刻み細分化を比べ、別の強減衰問題でL安定な応答を確認する。
 
+**使用手法**
+
+- [L安定なSDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/?lang=ja) (`sdirk2`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-stiff-cosine-ja)
+
+既存2段SDIRK2を使う時間初期値問題。主問題はt=1、1000/2000/4000刻み。46モデル台帳とは別の実行例の式で、熱PDEや汎用硬い系の新規モデルとして数えない。
+
+$$
+y'=-1000(y-\cos t)-\sin t,\qquad y(0)=1,\qquad y_{\rm ref}(t)=\cos t
+$$
+
+$$
+z'=-10^8z,\qquad z(0)=1\quad\text{(separate one-step decay check)}
+$$
+
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+
+**問題の図**
+
+![保存済みの硬い余弦追従ODEの固定刻み誤差。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/stiff-cosine.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[硬い余弦追従ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja) (`stiff-cosine`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=ja#stiff-cosine-ja-validation)
+
+CSVは最細刻みの数値解・解析解・絶対誤差。観測次数は全時刻最大誤差から計算。旧保存例の粗格子で約1台になる挙動と、今回の解像した刻みでの次数を混同しない。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 既存のL安定2段SDIRK2でy′=−1000(y−cos t)−sin t、y(0)=1をt=1まで解く。解析解、固定刻み細分化、別の強減衰1段問題を検査。
@@ -76,6 +115,45 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compare stiff cosine tracking with its analytic solution under step refinement, plus a separate strongly damped problem.
+
+**Methods used**
+
+- [L-stable SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/?lang=en) (`sdirk2`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-stiff-cosine-en)
+
+Temporal initial-value problems using the existing two-stage SDIRK2. Main case: t=1 and 1000/2000/4000 steps. These example formulas are separate from the 46-model inventory, not new heat-PDE or general stiff-system entries.
+
+$$
+y'=-1000(y-\cos t)-\sin t,\qquad y(0)=1,\qquad y_{\rm ref}(t)=\cos t
+$$
+
+$$
+z'=-10^8z,\qquad z(0)=1\quad\text{(separate one-step decay check)}
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Stored fixed-step errors for the stiff cosine-tracking ODE.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/stiff-cosine.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Stiff cosine-tracking ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en) (`stiff-cosine`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=en#stiff-cosine-en-validation)
+
+CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

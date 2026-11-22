@@ -11,6 +11,47 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 固定19粒子のCIC質量・自己力・内力和・周期折返しを調べ、別の正弦密度で格子ポテンシャルと加速度を解析検証する。
 
+**使用手法**
+
+- [Cloud-in-cellの割当てと補間](https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja) (`cic`)
+- [FFT粒子格子力](https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/?lang=ja) (`pm`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-periodic-particles-ja)
+
+3次元周期箱L=1、24³格子、同じCIC配置・補間と連続k²のFourier記号。孤立直接和・Ewald・PME・SPMEではない。正弦密度の解析格子解は粒子近接力全体の精度保証ではない。
+
+$$
+\nabla^2\phi=4\pi(\rho-\overline\rho),\qquad\widehat\phi_{\boldsymbol0}=0,\qquad\boldsymbol a=-\nabla\phi
+$$
+
+$$
+\widehat\phi_{\boldsymbol k}=-\frac{4\pi}{k^2}\widehat\rho_{\boldsymbol k}\quad(\boldsymbol k\ne0),\qquad G=1
+$$
+
+- [重力粒子モデル](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja) (`particle-gravity`)
+- [Poisson・Laplace方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja) (`poisson-laplace`)
+
+**問題の図**
+
+![共有図の周期PM部分。孤立ツリーの比較は別問題です。](https://hrkoyama.github.io/numerical-methods-atlas/assets/particle-gravity.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[周期PM粒子群の質量・内力](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja) (`periodic-particles`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=ja#periodic-particles-ja-validation)
+
+CSVは粒子ごとの座標・質量・加速度・力。正弦密度の独立解析場検査はJSONの集計値に保存。PM格子細分化を粒子力の解析誤差として誤表示しない。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。
@@ -79,6 +120,47 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Inspect CIC mass, self-force, net internal force and wrapping for 19 fixed particles; separately check mesh potential/acceleration for a sinusoidal density.
+
+**Methods used**
+
+- [Cloud-in-cell assignment and interpolation](https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en) (`cic`)
+- [FFT particle–mesh forces](https://hrkoyama.github.io/numerical-methods-atlas/methods/pm/?lang=en) (`pm`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-periodic-particles-en)
+
+3D periodic L=1 box and 24³ grid, matched CIC and continuum-k² Fourier symbol. Not isolated summation, Ewald, PME or SPME. The analytic sinusoidal mesh check does not certify all close-pair particle forces.
+
+$$
+\nabla^2\phi=4\pi(\rho-\overline\rho),\qquad\widehat\phi_{\boldsymbol0}=0,\qquad\boldsymbol a=-\nabla\phi
+$$
+
+$$
+\widehat\phi_{\boldsymbol k}=-\frac{4\pi}{k^2}\widehat\rho_{\boldsymbol k}\quad(\boldsymbol k\ne0),\qquad G=1
+$$
+
+- [Gravitational particle model](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en) (`particle-gravity`)
+- [Poisson / Laplace equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en) (`poisson-laplace`)
+
+**Problem figure**
+
+![Periodic-PM part of a shared figure; isolated-tree comparisons are a separate problem.](https://hrkoyama.github.io/numerical-methods-atlas/assets/particle-gravity.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Periodic PM particle mass and internal force](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en) (`periodic-particles`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-particles/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-particles/?lang=en#periodic-particles-en-validation)
+
+CSV stores each particle's coordinates, mass, acceleration and force. Independent sinusoidal-field diagnostics are JSON metrics. No mesh refinement is misrepresented as analytic particle-force error.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

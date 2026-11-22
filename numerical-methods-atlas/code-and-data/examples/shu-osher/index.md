@@ -11,6 +11,45 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 衝撃波と密度波の相互作用を計算し、100/200点解と800点の同一手法による数値参照との差を確認する。
 
+**使用手法**
+
+- [有限差分WENO5-Z](https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/?lang=ja) (`weno-z`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-shu-osher-ja)
+
+初期不連続x=−4、左状態は固定入力を参照。特性有限差分WENO5-Zの点値を比較する。800点参照は同一方式の数値解であり、厳密解・独立ソルバーではない。
+
+$$
+U_t+F(U)_x=0,\qquad \gamma=1.4,\qquad -5\leq x\leq5
+$$
+
+$$
+\rho_R(x,0)=1+0.2\sin(5x),\quad v_R=0,\quad p_R=1,\qquad t_{\rm final}=1.8
+$$
+
+- [圧縮性Euler方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja) (`euler`)
+
+**問題の図**
+
+![保存したEuler密度波形（1つの手法を代表表示）。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/shu-osher.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[Shu–Osher衝撃波・エントロピー波干渉](https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja) (`shu-osher`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=ja#shu-osher-ja-validation)
+
+高解像度の保存変数の点値を各100/200点の格子中心へ線形補間する。誤差はそれぞれ同じ場所・t=1.8で平均する。CSVは200点の計算・参照を並べる。近似収支の許容値0.2%は固定境界の離散化誤差を許すためであり、密度誤差0.15の判定とは別。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 [-5,5]で衝撃波と密度正弦波の干渉をt=1.8まで計算。100/200点の特性FD WENO-Zを800点の同じ実装と比較し、参照との差と近似境界収支を別々に記録する。
@@ -78,6 +117,45 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compute shock–density-wave interaction and compare 100/200-point solutions with an 800-point same-method numerical reference.
+
+**Methods used**
+
+- [FD WENO5-Z](https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-z/?lang=en) (`weno-z`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-shu-osher-en)
+
+Initial jump at x=−4; see the fixed input for the left state. Compares characteristic finite-difference WENO5-Z point values. The 800-point reference is neither exact nor an independent solver.
+
+$$
+U_t+F(U)_x=0,\qquad \gamma=1.4,\qquad -5\leq x\leq5
+$$
+
+$$
+\rho_R(x,0)=1+0.2\sin(5x),\quad v_R=0,\quad p_R=1,\qquad t_{\rm final}=1.8
+$$
+
+- [Compressible Euler equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en) (`euler`)
+
+**Problem figure**
+
+![Stored Euler density profile, showing one representative method.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/shu-osher.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Shu–Osher shock/entropy interaction](https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en) (`shu-osher`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/shu-osher/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en#shu-osher-en-validation)
+
+Higher-resolution conserved point values are linearly interpolated to each 100/200-point grid's centers. Errors are averaged at matching locations and t=1.8; CSV pairs the 200-point solution and reference. The 0.2% approximate-balance allowance accommodates fixed-boundary discretization and is separate from the density-error bound of 0.15.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

@@ -11,6 +11,47 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 周期渦の速度と粘性エネルギー減衰を解析解と比べ、離散発散・圧力ゲージ・格子と時間刻みへの依存を確認する。
 
+**使用手法**
+
+- [MAC圧力射影法](https://hrkoyama.github.io/numerical-methods-atlas/methods/projection/?lang=ja) (`projection`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-taylor-green-ja)
+
+[0,2π)²周期、t=0.5、16/32/64格子のMAC圧力射影。保存すべき定数エネルギーではなく粘性減衰を調べる。空間と安定刻みの同時細分化と、同一格子の刻み感度を区別する。
+
+$$
+\boldsymbol u_t+(\boldsymbol u\cdot\nabla)\boldsymbol u=-\nabla p+\nu\nabla^2\boldsymbol u,\qquad\nabla\cdot\boldsymbol u=0
+$$
+
+$$
+\boldsymbol u_{\rm ref}(x,y,t)=\begin{pmatrix}\sin x\cos y\\-\cos x\sin y\end{pmatrix}e^{-2\nu t},\qquad\nu=0.1
+$$
+
+- [非圧縮Navier–Stokes](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja) (`navier-stokes`)
+
+**問題の図**
+
+![保存済みTaylor–Green渦の速度と圧力。](https://hrkoyama.github.io/numerical-methods-atlas/assets/field-taylor-green.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[周期Taylor–Green渦](https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja) (`taylor-green`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=ja#taylor-green-ja-validation)
+
+CSVは(i,j)をC順に並べ、u面・v面・圧力中心それぞれの座標、数値解と解析解を別列に保存。MAC速度を同じ位置の成分と誤解しない。JSONにエネルギー履歴と時間感度を保存。
+
+- [粘性流／2次元Taylor–Green渦](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-taylor-green-ja) (`taylor-green`; 関連モデルの参照 · 解析参照)
+
+同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。
+
+
 ### scope
 
 既存の2次元MAC投影法・中心対流項・明示SSPRK2を使用。16²/32²/64²で解析的減衰渦と比較し、最細格子はCFL半減でも確認。
@@ -79,6 +120,47 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compare periodic-vortex velocity and viscous energy decay with analytic references; inspect discrete divergence, pressure gauge and space/time sensitivity.
+
+**Methods used**
+
+- [MAC pressure projection](https://hrkoyama.github.io/numerical-methods-atlas/methods/projection/?lang=en) (`projection`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-taylor-green-en)
+
+Periodic [0,2π)², t=0.5, MAC pressure projection on 16/32/64 grids. Check viscous decay rather than constant energy. Combined space/stable-step refinement is separated from fixed-grid time-step sensitivity.
+
+$$
+\boldsymbol u_t+(\boldsymbol u\cdot\nabla)\boldsymbol u=-\nabla p+\nu\nabla^2\boldsymbol u,\qquad\nabla\cdot\boldsymbol u=0
+$$
+
+$$
+\boldsymbol u_{\rm ref}(x,y,t)=\begin{pmatrix}\sin x\cos y\\-\cos x\sin y\end{pmatrix}e^{-2\nu t},\qquad\nu=0.1
+$$
+
+- [Incompressible Navier–Stokes](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#navier-stokes-en) (`navier-stokes`)
+
+**Problem figure**
+
+![Stored Taylor–Green velocity and pressure fields.](https://hrkoyama.github.io/numerical-methods-atlas/assets/field-taylor-green.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Periodic Taylor–Green vortex](https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en) (`taylor-green`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en#taylor-green-en-validation)
+
+CSV uses C-order (i,j) rows with separate coordinates and numerical/analytic values for u faces, v faces and pressure centers; the components are not collocated. JSON includes energy histories and temporal sensitivity.
+
+- [Viscous flow / 2D Taylor–Green](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-taylor-green-en) (`taylor-green`; Related-model reference · Analytic reference)
+
+The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays.
+
 
 ### scope
 

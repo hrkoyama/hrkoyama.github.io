@@ -70,6 +70,8 @@ Google Search Consoleの対象プロパティは `https://hrkoyama.github.io/`�
 
 ## 数値計算アトラスの手法情報とコード版
 
+「コード・入力・検証」の各実行例から手法・式・問題図・参照解へ進む対応は `scripts/atlas_execution_routes.py` が共通実行台帳、式の対応表、明示的な問題対応と不変な追加配布版から解決する。共通案内・専用ページ・追加検証・入口一覧の日英HTML/JSON/Markdownを通常のrefreshで更新する。実際の `method_ids` と直接対応する式を使い、関連モデル・代表図・関連する参照解を固定入力そのものと混同しない。物理問題に結び付かない検査例は自身の保存済み検証図と比較条件へ案内する。`scripts/atlas-execution-routes.test.mjs` が対応と生成物を確認する。数値入力・結果・受入条件・共通registry・配布版の検証記録をナビゲーション整備のために変更しない。
+
 目的別の入口は `catalog/atlas-goals.json` が正本。`build-atlas-goals.py` が日英の静的な `/numerical-methods-atlas/start/` と共通検索用の照合データを生成する。目的は適用モデル・制約・候補手法ID・公開実行例IDを伴い、未検証の万能推奨や未公開コードのリンクを作らない。検索で認識できる代表表現を追加するときも、衝撃波と滑らかな低散逸流、相対論/MHDとEulerの範囲を混同しない。`scripts/atlas-goals.test.mjs` が両検索入口と実在するリンクを確認する。
 
 ホーム冒頭も同じ台帳の `home` と目的の台帳から `build-atlas-purpose.py` で生成する。目的のリンクは適用条件の節へ直接進める。収録数と資料一覧はその後に置き、日英の静的本文と動的ホームの両方でこの順番を保持する。

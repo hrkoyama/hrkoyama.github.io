@@ -1,0 +1,28 @@
+/* Reusable in the long guide, example chooser and each standalone execution. */
+.execution-navigation{margin:20px 0;min-width:0;overflow-wrap:anywhere}
+.execution-navigation,.execution-navigation *{box-sizing:border-box}
+.execution-navigation-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start}
+.execution-navigation .execution-navigation-card{min-width:0;padding:12px;border:1px solid #cdd7c5;background:#f6f8f0;border-radius:4px}
+.execution-navigation .execution-navigation-label{font-size:.95rem;line-height:1.6;margin:0 0 8px;color:#2c4b35}
+.execution-navigation .execution-navigation-label strong{font-weight:650}
+.execution-navigation a{color:#285139;text-decoration:underline;text-underline-offset:3px}
+.execution-navigation a:hover{color:#895430}
+.execution-navigation a:focus-visible,.execution-navigation summary:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
+.execution-navigation .execution-navigation-links,.execution-navigation .execution-navigation-reference-cases{list-style:none;margin:0;padding:0;display:grid;gap:3px}
+.execution-navigation .execution-navigation-links>li{margin:0;min-width:0}
+.execution-navigation .execution-navigation-links a,.execution-navigation .execution-navigation-primary a{display:inline-flex;align-items:center;min-height:44px;max-width:100%;font-size:.875rem;line-height:1.65}
+.execution-navigation .execution-navigation-primary{font-size:.875rem;line-height:1.7;margin:3px 0 6px}
+.execution-navigation .execution-navigation-note,.execution-navigation .execution-navigation-unbound,.execution-navigation .execution-navigation-reference-note{font-size:.82rem;line-height:1.8;margin:7px 0;color:#52624e}
+.execution-navigation .execution-navigation-reference-note{padding-left:8px;border-left:3px solid #c5ad86}
+.execution-navigation .execution-navigation-figure{display:block;width:100%;max-width:180px;min-width:0;padding:3px;background:#fff;border:1px solid #dce4d4;margin:3px 0 10px}
+.execution-navigation .execution-navigation-figure img{display:block;width:100%;max-width:100%;height:auto;margin:0}
+.execution-navigation .execution-navigation-scope{margin:7px 0;border-top:1px solid #dce4d4;padding-top:2px}
+.execution-navigation .execution-navigation-scope>summary{font-size:.8rem;line-height:1.7;min-height:44px;align-content:center;cursor:pointer;color:#405b40}
+.execution-navigation .execution-navigation-scope>p{font-size:.82rem;line-height:1.8;margin:6px 0;color:#52624e}
+.execution-navigation .execution-navigation-reference-cases>li{margin:8px 0 0;padding:8px 0 0;border-top:1px solid #dce4d4;min-width:0}
+.execution-navigation .execution-navigation-relation{font-size:.74rem;line-height:1.75;margin:0 0 3px;color:#756044}
+.execution-resource-details>summary{min-height:44px;align-content:center;cursor:pointer;font-size:.875rem;line-height:1.7}
+.execution-resource-details>summary:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
+@media(max-width:1100px){.execution-navigation-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.execution-navigation-grid{grid-template-columns:minmax(0,1fr)}.execution-navigation .execution-navigation-card{padding:12px}}
+@media(max-width:400px){.execution-navigation .execution-navigation-figure{max-width:none}}

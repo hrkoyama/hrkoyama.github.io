@@ -2,6 +2,37 @@
 
 GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。
 
+**使用手法**
+
+- [GLM発散クリーニング](https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/?lang=ja) (`glm`)
+
+**方程式**
+
+[この実行例の診断式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/?lang=ja#glm-fourier-mode-ja-algorithm)
+
+∂tBx=-∂xpsi、∂tpsi=-ch²∂xBx-κpsiを中心差分とRK4で積分。独立参照は連続Fourier記号の2×2行列指数です。
+
+$$
+B_t=-\psi_x,\quad\psi_t=-c_h^2B_x-\kappa\psi
+$$
+
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+
+**問題の図**
+
+![GLMの磁気単極子モード：解析的減衰：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png)
+
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+
+この検査・診断例には、別の物理テスト問題を割り当てていません。固有の診断図と検証資料を示しています。
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/?lang=ja#glm-fourier-mode-ja-validation)
+
+16/32/64点でL2誤差、空間2次収束、磁場divergenceモード振幅の減衰を判定します。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 ## 前提・単位・境界
 
 周期[0,1]、Bx=cos2πx、psi=0、ch=1、減衰κ=2、t=1。流体との結合を外した線形診断です。
@@ -65,6 +96,37 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.
 
+**Methods used**
+
+- [GLM divergence cleaning](https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/?lang=en) (`glm`)
+
+**Equations**
+
+[This example’s diagnostic and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/?lang=en#glm-fourier-mode-en-algorithm)
+
+Integrate Bx_t=-psi_x and psi_t=-ch² Bx_x-kappa psi with centered differences/RK4. The independent reference exponentiates the continuous 2x2 Fourier symbol.
+
+$$
+B_t=-\psi_x,\quad\psi_t=-c_h^2B_x-\kappa\psi
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![GLM longitudinal mode: analytic damping: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+No separate physical test problem is assigned to this check or diagnostic. Its own diagnostic figure and validation material are provided.
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/?lang=en#glm-fourier-mode-en-validation)
+
+Check L2 error, second-order spatial refinement and damping of the divergence-mode amplitude at 16/32/64 points.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
 ## Assumptions, units and boundaries
 
 Periodic [0,1], Bx=cos2pix, psi=0, ch=1, damping kappa=2, t=1. This linear diagnostic omits fluid coupling.

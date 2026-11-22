@@ -11,6 +11,46 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 exp(x)のLegendre射影とGLL補間を比較し、次数による誤差減少・係数・直交性を別の高次求積で確認する。
 
+**使用手法**
+
+- [Legendreモード基底・正規直交化](https://hrkoyama.github.io/numerical-methods-atlas/methods/legendre-basis/?lang=ja) (`legendre-basis`)
+- [Lagrange節点基底・GLL選点法](https://hrkoyama.github.io/numerical-methods-atlas/methods/nodal-basis/?lang=ja) (`nodal-basis`)
+
+**方程式**
+
+[この実行例の近似式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-smooth-function-projection-ja)
+
+重み1の区間射影とGLL節点補間で、PDEではない。32点求積による射影を、別のLegendre再帰式と64/96点求積で調べる。実行例の式は46モデルの件数に足さない。
+
+$$
+\Pi_p f(x)=\sum_{k=0}^{p}c_kP_k(x),\qquad c_k=\frac{2k+1}{2}\int_{-1}^{1}e^\xi P_k(\xi)\,d\xi
+$$
+
+$$
+I_pf(x)=\sum_{j=0}^{p}e^{x_j}\ell_j(x),\qquad\ell_j(x_i)=\delta_{ij},\qquad p=2,4,6,8
+$$
+
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+
+**問題の図**
+
+![保存済み8次多項式の射影・補間と元の関数。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/smooth-function-projection.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[滑らかな関数の多項式補間・射影](https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja) (`smooth-function-projection`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=ja#smooth-function-projection-ja-validation)
+
+CSVは次数ごとに201点、各行で射影値・GLL補間値・exp(x)を整列。次数別L2誤差、係数差、直交性残差、64/96点求積の差はJSONに記録する。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 exp(x)を次数2/4/6/8でL2射影し、同じ次数のGLL節点補間と比較する。実装の32点Gaussとは別の64/96点求積と独立Legendre再帰式で係数・直交性・誤差を確認する。
@@ -78,6 +118,46 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compare Legendre projection and GLL interpolation of exp(x); use higher-order reference quadrature for p-refinement, coefficients and orthogonality.
+
+**Methods used**
+
+- [Legendre modal basis / orthonormal scaling](https://hrkoyama.github.io/numerical-methods-atlas/methods/legendre-basis/?lang=en) (`legendre-basis`)
+- [Lagrange nodal basis / GLL collocation](https://hrkoyama.github.io/numerical-methods-atlas/methods/nodal-basis/?lang=en) (`nodal-basis`)
+
+**Equations**
+
+[This example’s approximation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-smooth-function-projection-en)
+
+Unit-weight interval projection and GLL interpolation, not a PDE. The 32-point projection is checked by a separate Legendre recurrence and 64/96-point rules; example formulas do not add to the 46 model entries.
+
+$$
+\Pi_p f(x)=\sum_{k=0}^{p}c_kP_k(x),\qquad c_k=\frac{2k+1}{2}\int_{-1}^{1}e^\xi P_k(\xi)\,d\xi
+$$
+
+$$
+I_pf(x)=\sum_{j=0}^{p}e^{x_j}\ell_j(x),\qquad\ell_j(x_i)=\delta_{ij},\qquad p=2,4,6,8
+$$
+
+No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.
+
+**Problem figure**
+
+![Stored degree-8 projection/interpolation and the original function.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/smooth-function-projection.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Polynomial interpolation and projection of a smooth function](https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en) (`smooth-function-projection`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/smooth-function-projection/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/smooth-function-projection/?lang=en#smooth-function-projection-en-validation)
+
+CSV provides 201 aligned projection/interpolation/exp(x) rows per degree. JSON records degree-wise L2 errors, coefficient differences, orthogonality and 64/96-point quadrature agreement.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

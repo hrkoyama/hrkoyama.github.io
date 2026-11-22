@@ -11,6 +11,45 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 小さい枝をNewton–GMRESで求め、解析解・独立な非線形残差・2次格子収束を確認する。
 
+**使用手法**
+
+- [Armijo減衰Newton法](https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja) (`newton`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-bratu-ja)
+
+31/63/127内部点、零初期値で小さい枝を選ぶ。βtanh(β/2)<2の枝を対象とし、大きい枝や分岐点の追跡を行わない。
+
+$$
+-u''=\lambda e^u,\qquad u(0)=u(1)=0
+$$
+
+$$
+u_{\rm ref}(x)=2\log\frac{\cosh(\beta/2)}{\cosh[\beta(x-1/2)]},\qquad \lambda=\frac{2\beta^2}{\cosh^2(\beta/2)},\quad\beta=1
+$$
+
+- [Bratu非線形境界値問題](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja) (`bratu`)
+
+**問題の図**
+
+![公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/bratu.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[1次元Bratu非線形境界値問題](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja) (`bratu`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja#bratu-ja-validation)
+
+CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 −u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。
@@ -77,6 +116,45 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compute the lower branch with Newton–GMRES and check its analytic solution, recomputed nonlinear residual and second-order refinement.
+
+**Methods used**
+
+- [Armijo-damped Newton](https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en) (`newton`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-bratu-en)
+
+31/63/127 interior nodes and a zero initial guess select the lower branch with βtanh(β/2)<2; no upper-branch or bifurcation tracking.
+
+$$
+-u''=\lambda e^u,\qquad u(0)=u(1)=0
+$$
+
+$$
+u_{\rm ref}(x)=2\log\frac{\cosh(\beta/2)}{\cosh[\beta(x-1/2)]},\qquad \lambda=\frac{2\beta^2}{\cosh^2(\beta/2)},\quad\beta=1
+$$
+
+- [Bratu nonlinear boundary-value problem](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en) (`bratu`)
+
+**Problem figure**
+
+![Calculated from the public code edition with fixed inputs; inputs, values and checks are linked.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/bratu.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[One-dimensional Bratu boundary-value problem](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en) (`bratu`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en#bratu-en-validation)
+
+CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

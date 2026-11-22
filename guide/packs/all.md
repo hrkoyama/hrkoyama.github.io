@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-325adcbac6
-Captured (UTC): 2026-11-22T15:24:39+00:00
+Snapshot: 2026-11-22-35bc9733fa
+Captured (UTC): 2026-11-22T18:05:44+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -14414,6 +14414,31 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bi
 Coverage: reading
 
 Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Implicit midpoint
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Strang-compose exact half-step diffusion of the FD matrix, diagonalized by FFT with symbol −4sin²(πk/N)/dx², and a full implicit-midpoint reaction step solved by local2×2 Newton iterations. FFT does not change FD space into spectral space. Fail on nonconvergence/budget excess; never clip concentrations.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Turing instability: linear growth and small-amplitude patterns
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Finite-amplitude Schnakenberg transient: nonlinearity and independent reference [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/
+Coverage: reading
+
+Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Radau reference (K32/64/96, cubic projection M=4(K+1)>4K, analytic Jacobian). Separately check K and ODE-tolerance sensitivity. Measure time order against a separately implemented Radau integration of the SAME FD semidiscretization. Norms are per-species mean-absolute/RMS/maximum, then the worse species. Record source/sink balance, every-step positive concentrations, initially absent k≥5 (first allowed k6 here), and departure from linearization. Convergence norms and reference sensitivities are assessed at the fixed final time; intermediate snapshot errors are separate evolution diagnostics.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Independent validation of nonlinear reaction–diffusion and pattern formation — Assumptions, units and boundaries [en]
@@ -14651,6 +14676,31 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bi
 Coverage: reading
 
 Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Implicit midpoint
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Strang-compose exact half-step diffusion of the FD matrix, diagonalized by FFT with symbol −4sin²(πk/N)/dx², and a full implicit-midpoint reaction step solved by local2×2 Newton iterations. FFT does not change FD space into spectral space. Fail on nonconvergence/budget excess; never clip concentrations.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Turing instability: linear growth and small-amplitude patterns
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Independent validation of nonlinear reaction–diffusion and pattern formation — Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/
+Coverage: reading
+
+Compare raw L1/L2/L∞ with a spatially independent cosine Fourier–Galerkin/Radau reference (K32/64/96, cubic projection M=4(K+1)>4K, analytic Jacobian). Separately check K and ODE-tolerance sensitivity. Measure time order against a separately implemented Radau integration of the SAME FD semidiscretization. Norms are per-species mean-absolute/RMS/maximum, then the worse species. Record source/sink balance, every-step positive concentrations, initially absent k≥5 (first allowed k6 here), and departure from linearization. Convergence norms and reference sensitivities are assessed at the fixed final time; intermediate snapshot errors are separate evolution diagnostics.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Independent validation of nonlinear reaction–diffusion and pattern formation — Assumptions, units and boundaries [en]
@@ -14924,6 +14974,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error.
+Methods, equations, figures and references
+Methods used
+Algebraic multigrid / AMG
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s diagnostic and conditions
+Formulation, approximation and diagnostic scope
+Reuse the earlier MIT-licensed Atlas educational smoothed-aggregation AMG in a separate source release. Matrix-only hierarchy setup uses strength .08, Jacobi smoothing, fixed relative tolerance 10⁻¹⁰ and at most 180 V-cycles. Sine-transform spectral inversion is reference-side only.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+No separate physical test problem is assigned to this check or diagnostic. Its own diagnostic figure and validation material are provided.
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — AMG: conditioning, anisotropy, residual and forward error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Store true residual, forward error, DST agreement, operator complexity and complete histories. Perturb a maximal-eigenmode RHS in the minimal-eigenmode direction and check the predicted relative amplification κ₂ with direct solves. Isotropic runs must converge; the predeclared anisotropy stress policy permits honestly reported budget exhaustion. A one-cycle control detects nonconvergence.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
 
@@ -15075,6 +15148,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Vary condition number from 1 to 2³⁶ for exactly representable 16×4 dyadic matrices, separating reconstruction from forward solution error. Compare LAPACK and separately executed 80/120-digit references for the actual binary64 inputs.
+Methods, equations, figures and references
+Methods used
+QR, SVD and least squares
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Implement Householder QR, one-sided Jacobi SVD and triangular back substitution. Vary rank cutoffs 10⁻⁸/10⁻¹²/10⁻¹⁴ and compare with LAPACK solutions using the same truncation convention. No executed normal-equations comparison is added.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — QR/SVD: prescribed spectra, perturbation gain and numerical rank [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Save reconstruction, orthogonality, singular values, solution perturbations, least-squares stationarity and an exact rank-two control. The mpmath1.3.0 SVD and QR reference was actually executed using integer-ratio conversions of binary inputs. Runtime SHA and completeness guards check all four inputs at both precisions and never substitute analytic truth after a mismatch.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
 
@@ -15197,6 +15293,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace.
+Methods, equations, figures and references
+Methods used
+Krylov eigenvalue solvers
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use fully reorthogonalized Lanczos and two-pass MGS Arnoldi; only the small projected matrix is solved densely. Compare QR-spanned top-two subspace projectors, invariant under signs and cluster rotations.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Krylov eigenvalues: cluster subspaces and nonnormal sensitivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Compare analytic triangular eigenvalues, SciPy dense eigenvalues and left/right eigenvector condition numbers. A separately constructed2×2 pseudoeigenpair has residual about2.5×10⁻⁸ but eigenvalue error.005 at K=1000. It is a sensitivity control, not a failure produced by the iterative solver.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
 
@@ -15329,6 +15448,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.
+Methods, equations, figures and references
+Methods used
+Gaussian and adaptive quadrature
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Implement Golub–Welsch nodes/weights and adaptive Simpson with a local difference/15 estimate. Companion checks use x=t² for the endpoint and a known-support split for the narrow bump; these are not general automatic rescue mechanisms.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Numerical foundations: conditioning, residuals, convergence and independent references — Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/
+Coverage: reading
+
+Compare roots_legendre, analytic atan integrals,2/3,the bump integral256w/315 and independent QUADPACK. Preserve QUADPACK status, estimated error, evaluation count and warning message. Cancellation uses a roundoff-aware absolute budget. When all initial five bump samples vanish, expose estimated error0 versus actual error about.00813.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Numerical foundations: conditioning, residuals, convergence and independent references — Assumptions, units and boundaries [en]
 
@@ -15507,6 +15649,32 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution.
+Methods, equations, figures and references
+Methods used
+Algebraic multigrid / AMG
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+A graph based on row-relative off-diagonal strength supplies greedy star aggregates; leftover nodes attach to adjacent aggregates. Smooth tentative T via P=(I−ωD⁻¹A)T with ω=4/(3ρ̄), where ρ̄ bounds the absolute row sums of D⁻¹A. Coarse operators are PᵀAP. V-cycles use two pre/post Jacobi sweeps and a terminal dense direct solve. This is a small adopted SA variant, not every construction or convergence theorem in the original paper.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+2D Poisson / single sine mode, including FEM
+This problem’s code and validation status
+Exact / reference solutions
+
+## AMG, factorizations, eigenvalues and quadrature — Matrix-based AMG: distinguish residual and solution error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+References and checks for this execution
+Reference and validation scope
+Store normalized residuals, relative solution differences against SciPy spsolve, discrete-L²-type continuum errors, observed order and operator complexity. A randomly permuted matrix is also checked against a direct solution to expose hidden geometric ordering assumptions. A zero cycle budget reports nonconvergence.
+Related-model reference · Manufactured solution
+Poisson / manufactured sine
+The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
 
 ## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
 
@@ -15577,6 +15745,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Original Householder QR and one-sided Jacobi SVD for real tall matrices are checked on ordinary, 10⁶-column-scaled and rank-deficient inputs, against separate LAPACK singular values and minimum-norm least-squares solutions.
+Methods, equations, figures and references
+Methods used
+QR, SVD and least squares
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Householder reflectors triangularize R while accumulating Q. The SVD repeatedly rotates column pairs toward orthogonality and uses their resulting lengths as singular values; it does not diagonalize AᵀA. Least squares uses triangular back substitution for QR and truncated compact SVD for deficient rank.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## AMG, factorizations, eigenvalues and quadrature — Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Compare QR/SVD relative reconstruction, Q/U/V orthogonality, singular values from SciPy LAPACK gesdd, least-squares solutions/ranks from gelsd/gelsy and normal-equation stationarity residuals. Singular-vector signs are not compared; zero matrices and budget exhaustion are tested.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
 
@@ -15661,6 +15853,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references.
+Methods, equations, figures and references
+Methods used
+Krylov eigenvalue solvers
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Lanczos uses its three-term recurrence plus two passes of full reorthogonalization; Arnoldi uses two-pass modified Gram–Schmidt. Only the small projected T/H is solved by NumPy eigh/eig before lifting Ritz vectors. A full dense solve of the original matrix is used only on the reference side.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## AMG, factorizations, eigenvalues and quadrature — Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Store ||Av−λv||₂, differences from independently solved dense eigenvalues and basis orthogonality; verify final improvement as Krylov dimension grows. Nonsymmetric Ritz convergence is not assumed monotone. Tests include identity-matrix happy breakdown, zero-start rejection and insufficient dimension budgets.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
 
@@ -15746,6 +15962,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fo
 Coverage: reading
 
 Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK.
+Methods, equations, figures and references
+Methods used
+Gaussian and adaptive quadrature
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Golub–Welsch obtains nodes from a symmetric Jacobi matrix and weights from twice the squared first eigenvector components. Adaptive Simpson bisects intervals and allocates tolerances using |Sleft+Sright−Swhole|/15 as a local estimate. Evaluation and depth limits report unmet targets explicitly.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## AMG, factorizations, eigenvalues and quadrature — Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/
+Coverage: reading
+
+Measure polynomial moments for every chosen order, node/weight differences from SciPy roots_legendre, order refinement for the analytic exponential integral, and agreement with analytic arctangent and SciPy quad references. Store evaluation counts/errors as tolerance tightens; test forced exhaustion after five evaluations and nonfinite integrands.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
 
@@ -15850,6 +16090,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mc
 Coverage: reading
 
 Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration.
+Methods, equations, figures and references
+Methods used
+Markov-chain Monte Carlo / MCMC
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Local scale.8; mixed uses y=−x+.8Z with probability.1, otherwise y=x+.8Z. The state-independent mixture is symmetric q(y|x)=q(x|y), so MH uses the log-target ratio. Chains use independent PCG64 streams, with no adaptation or removal of rejected states.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Multimodal MCMC: trapping, false reassurance and a global proposal
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Multimodal MCMC: trapping, false reassurance and a global proposal [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/
+Coverage: reading
+
+Compare with analytic moments, seven declared CDF points and positive occupancy. Record per-chain occupancies/transitions, rank/folded split Rhat, bulk/tail/mean and mode-indicator ESS, and within-only ACF/ESS. Dispersed trapped chains can have a good pooled distribution yet fail between-chain diagnostics; same-mode chains can have reassuring Rhat yet fail the known target. A control scenario passes when its intended failure is detected. CDF error is a declared-point maximum, not whole-line KS distance or an IID-test p-value.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Assumptions, units and boundaries [en]
 
@@ -16400,6 +16664,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mc
 Coverage: reading
 
 Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences.
+Methods, equations, figures and references
+Methods used
+Markov-chain Monte Carlo / MCMC
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s diagnostic and conditions
+Formulation, approximation and diagnostic scope
+Original equation-based implementation: split with the odd center dropped, average-tie Blom ranks using corrected S+1/4, re-rank folded deviations, and take the larger Rhat. Bulk ESS uses rank-split draws; tail ESS first determines Type7 quantiles on original full draws, then splits <= indicators. Use initial-positive/monotone pairs, declared endpoint handling and tau>=1/log10(total), without clipping antithetic ESS to N.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+No separate physical test problem is assigned to this check or diagnostic. Its own diagnostic figure and validation material are provided.
+Exact / reference solutions
+
+## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/
+Coverage: reading
+
+References and checks for this execution
+Reference and validation scope
+62 datasets: nine actual chains times three prefixes times x/indicator plus eight small fixtures. Regenerate and hash identical bytes; compare ordinary finite Rhat/ESS/ACF and test constants, zero within-chain variance, odd lengths, ties, shift and scale. Direct lag sums and infinite-series stationary-AR(1) tau=(1+rho)/(1−rho) provide separate checks of finite estimates. Routine runs compare stored references; live ArviZ regeneration is a separate optional procedure.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Assumptions, units and boundaries [en]
 
@@ -17385,6 +17672,31 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence.
+Methods, equations, figures and references
+Methods used
+Constrained transport / CT
+GLM divergence cleaning
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Both use piecewise constants, the same fixed Rusanov speed alpha3 and forward Euler. CT uses face B/shared arithmetic corner EMFs; GLM uses cell B/psi with fixed ch3 and physical damping rate kappa2. All meshes use384 steps and identical CT/GLM dt sequences; initial reconstructed CT cell B matches GLM cell B.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Measure conserved-variable L1/L2/Linf errors and observed orders at16²/32²/64². Compare finest-grid step doubling with.1 of the spatial error. At fixed8², compare16/32/64/128 steps with doubly refined DOP853 tolerances/max steps. Record mass/E, positivity, native CT divergence, common cell divergence and psi.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
@@ -17536,6 +17848,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated.
+Methods, equations, figures and references
+Methods used
+Constrained transport / CT
+GLM divergence cleaning
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Primary runs use fixed alpha=ch=3 Rusanov/forward Euler and grid-independent GLM kappa2. Independent C++ Athena++ uses HLLD/PLM/RK2/upwind CT. Continuous initial fields agree; Athena’s face/primitive discretization is not identical.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Orszag–Tang vortex (CT/GLM/error variants merged)
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Orszag–Tang: matched CT/GLM and converged independent references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Measure density/magnetic L1 error, mesh improvement, positivity, conservation and div/psi. Athena256²/512² both useCFL.15; fixed512² CFL.3/.15 checks reference time sensitivity, with increments compared against.1 of primary error. At fixed16², compare primary time refinement with separately executed DOP853 and check finest-grid step doubling.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
@@ -17671,6 +18007,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.
+Methods, equations, figures and references
+Methods used
+Constrained transport / CT
+GLM divergence cleaning
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s diagnostic and conditions
+Formulation, approximation and diagnostic scope
+Use the same fully coupled MHD code. With y-invariance andBy=vy=0, the GLM Bx/psi subsystem decouples from fluid feedback, allowing a separately constructed2x2 discrete Fourier symbol and forward-Euler matrix power. Compare kappa2/0 at identical dt and LLF viscosity, separating B/psi phase exchange from physical damping.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+No separate physical test problem is assigned to this check or diagnostic. Its own diagnostic figure and validation material are provided.
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## CT and GLM: matched controls, independent checks and grid/time convergence — Initial-constraint preservation by CT and active GLM cleaning: nonphysical control [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
+Coverage: reading
+
+Check preservation of the initial CT defect, nonzero GLM psi, independent FE agreement for bothBx/psi, positive density/pressure, and conserved physical E/mass. Test the kappa2/0 ratio of auxiliary wave energy W=mean(Bx²+psi²/ch²), separating FE, semidiscrete-exponential and continuum-Fourier references.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
@@ -17784,6 +18144,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++.
+Methods, equations, figures and references
+Methods used
+Constrained transport / CT
+GLM divergence cleaning
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Reuse the published first-order Rusanov/forward-Euler solvers: shared corner-EMF discrete curl for CT and cell-centered hyperbolic/parabolic GLM cleaning. Independent Athena++ uses HLLD, PLM and RK2.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Orszag–Tang vortex (CT/GLM/error variants merged)
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Measure density/By L1 error, mass/energy drift and positivity on 16²/32²/64². Check the independent 128²/256² reference and conservatively restrict its fine-cell averages.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
 
@@ -17869,6 +18246,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit.
+Methods, equations, figures and references
+Methods used
+HLLD MHD Riemann solver
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Atlas uses MC reconstruction and SSPRK2; the independent C++ reference uses HLLD, PLM and RK3. Implementations differ while sharing the HLLD flux family.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Brio–Wu shock tube
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Compare 128/256/512 cells with conservative averages of independently rerun 2048/4096-cell references. Check density/By L1 errors, refinement and positive density/pressure.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
 
@@ -17942,6 +18335,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code.
+Methods, equations, figures and references
+Methods used
+MUSCL reconstruction
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Atlas uses MC-MUSCL/HLLC/SSPRK3; Athena++ uses PLM/HLLC/RK3. A saved problem-generator patch matches only shock location and sinusoid wavenumber; the independent solver is unchanged.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Shu–Osher shock/entropy interaction
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Measure density L1 error, refinement and positivity on 100/200/400 cells; also compare 2048/4096/8192 reference differences with a predeclared bound. The shock has not reached the boundaries at the fixed comparison time.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
 
@@ -18015,6 +18424,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution.
+Methods, equations, figures and references
+Methods used
+GLM divergence cleaning
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s diagnostic and conditions
+Integrate Bx_t=-psi_x and psi_t=-ch² Bx_x-kappa psi with centered differences/RK4. The independent reference exponentiates the continuous 2x2 Fourier symbol.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+No separate physical test problem is assigned to this check or diagnostic. Its own diagnostic figure and validation material are provided.
+Exact / reference solutions
+References and checks for this execution
+Check L2 error, second-order spatial refinement and damping of the divergence-mode amplitude at 16/32/64 points.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
 
@@ -18098,6 +18522,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mo
 Coverage: reading
 
 Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence.
+Methods, equations, figures and references
+Methods used
+Markov-chain Monte Carlo / MCMC
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use a log-acceptance Metropolis update. Pool FFT within-chain autocovariances and obtain mean-observable ESS from Geyer initial-positive pairs starting at gamma0+gamma1. Also report classical split-Rhat.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Gaussian-target MCMC: distribution, autocorrelation and ESS
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Use the normal CDF as an independent analytic reference and compare chain-mean RMSE at 1024/2048/8192 retained samples. A separate stationary AR(1) sequence and exact tau=(1+rho)/(1-rho) check the diagnostic. Acceptance is predeclared in fixed inputs.
+
+## MCMC, temperature control and biological models — Gaussian-target MCMC: distribution, autocorrelation and ESS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
 
@@ -18198,6 +18645,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mo
 Coverage: reading
 
 Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations.
+Methods, equations, figures and references
+Methods used
+Langevin thermostat
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Compose force B and drift A half steps with exact OU noise O in B-A-O-A-B order. Record covariance, three CDFs, energy mean/variance and position correlation.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Langevin thermostat: canonical distributions, timestep bias and correlation
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Check against a SciPy discrete-Lyapunov solve and explicit harmonic covariance diag(T/omega²,T(1-h²omega²/4)). Separate second-order momentum bias from sampling error and evaluate burn transients from the map. A separate matrix exponential gives continuous correlation.
+
+## MCMC, temperature control and biological models — Langevin thermostat: canonical distributions, timestep bias and correlation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
 
@@ -18294,6 +18764,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mo
 Coverage: reading
 
 Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Advance original periodic second-centered differences with RK4. The spatial sequence uses one small time step; the temporal sequence fixes the spatial operator.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Reaction-diffusion: separate second-order space and fourth-order time
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Measure spatial order against r-Dk² and temporal order against r-4Dsin²(kdx/2)/dx². Both are independent analytic references, rather than a finer-grid run of the same solver.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
 
@@ -18366,6 +18853,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mo
 Coverage: reading
 
 Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Advance the linearized and short nonlinear PDEs using original centered differences/RK4. Record mode amplitudes/growth on three grids, minimum concentrations and early-pattern amplification.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Turing instability: linear growth and small-amplitude patterns
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Compare linear numerical fields with SciPy expm of continuum J-k²D and measure spatial convergence. Quantify the nonlinear run against a semidiscrete linear matrix exponential as a small-amplitude check, not validation of mature morphology.
+
+## MCMC, temperature control and biological models — Turing instability: linear growth and small-amplitude patterns [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
+Coverage: reading
+
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
 
@@ -18531,6 +19041,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mo
 Coverage: reading
 
 Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.
+Methods, equations, figures and references
+Methods used
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use original RK4 with steps 0.1/0.05/0.025, splitting time intervals exactly at pulse discontinuities. At output spacing 0.1, measure the peak and distance from rest.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Compare separate SciPy DOP853 at rtol=1e-11 and 1e-13 to check reference sensitivity; measure maximum solution error and time order against the tighter reference. Peak time is resolved only on the output grid.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
 
@@ -19707,6 +20233,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation.
+Methods, equations, figures and references
+Methods used
+Ewald summation
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Independently integrate the Gaussian representation of 1/r and products of one-dimensional theta sums. Use a Poisson transform and analytic neutrality cancellation at small integration arguments, and self-subtracted image sums at large arguments. Integrate analytic theta derivatives for forces.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Neutral periodic charges: Ewald and smooth PME
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Particles and transport: independent references, conservation and statistical error — Ewald: asymmetric-cell energies and forces versus independent theta integration [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
+Coverage: reading
+
+Record combined refinement of reference quadrature/theta/image/switch controls and a separate upper-limit 32-to-40 sensitivity. Compare three alpha values, four real and five reciprocal cutoffs, translation/permutation, net force and three energy-difference derivatives. Retain an intentionally inaccurate coarse-cutoff control.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -19846,6 +20396,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force.
+Methods, equations, figures and references
+Methods used
+Particle mesh Ewald / PME
+Smooth particle mesh Ewald / SPME
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use 16³/24³/40³ meshes, orders four/six and three translations relative to the mesh. Differentiate FFT reciprocal energy through assignment weights; real/self terms share the primary Ewald implementation.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Neutral periodic charges: Ewald and smooth PME
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Report full energy/force errors against theta integration and explicitly check the shared Ewald path. Store assignment and derivative sums, charge, three finite-difference derivatives, phase spread, finite-mesh net force and a coarse-mesh control.
+
+## Particles and transport: independent references, conservation and statistical error — SPME: mesh, interpolation order, mesh phase and conservation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
+Coverage: reading
+
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -19980,6 +20554,28 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
+Methods, equations, figures and references
+Methods used
+Fast multipole translations
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Retain P2M/M2M/M2L/L2L and near P2P; compare orders 2/4/8/12 and depths two/three. References include independent Cartesian direct sums, a closed-form charge pair and regular-polygon radial/far-field identities.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+2D logarithmic FMM with M2M, M2L and L2L
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Measure maximum absolute potential/field errors, actual far translations, rotation/translation differences and net charge-weighted force. Detect an inaccurate low-order control.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+
+## Particles and transport: independent references, conservation and statistical error — FMM: direct and analytic references, order and tree depth [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
+Coverage: reading
+
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -20098,6 +20694,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error.
+Methods, equations, figures and references
+Methods used
+Particle-in-cell / PIC
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+CIC deposition/matched gathering, spectral Poisson and velocity Verlet. The independent time algorithm DOP853 integrates the same particle-grid RHS; compare its own maximum-step refinements.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Cold-plasma oscillation with electrostatic CIC PIC
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Refine 16/32/64 grids and dt=.2/.1/.05 separately; distinguish continuum cos(t) from time-reference errors. Record the real odd derivative’s Nyquist null mode separately from Gauss residuals. Compare time-zero CIC mode power at 64 seeds and N=256/1024/4096 with its analytic expectation.
+
+## Particles and transport: independent references, conservation and statistical error — PIC: mesh/time convergence, invariants and particle noise [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
+Coverage: reading
+
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -21272,6 +21891,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
+Methods, equations, figures and references
+Methods used
+DSMC and kinetic transport
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Uniform random complete matchings and isotropic pair scattering preserve pair momentum/energy. An independent sampler projects Gaussian vectors into the zero-center-of-mass subspace and fixes their radius.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Conservation and Maxwell relaxation in a homogeneous DSMC collision component
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Particles and transport: independent references, conservation and statistical error — DSMC collision component: finite-N equilibrium, invariants and statistical error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
+Coverage: reading
+
+Check maximum momentum/energy errors over all rounds against deterministic tolerances. Use independent-seed standard errors for six-round anisotropy, four energy-CDF points and fourth moments against the finite-N beta reference. Separate decreasing CDF sampling error with N from finite-N Maxwell bias.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -22593,6 +23235,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use upstream finite volumes and Gauss-Legendre ordinates; exact exponential propagation removes spatial error in the angle series. Monte Carlo independently tracks survival/absorption using mu=sqrt(U) and exponential optical paths.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Discrete-ordinate radiation transport through an absorbing slab
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Particles and transport: independent references, conservation and statistical error — Radiation transport: space/angle convergence and photon statistics [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
+Coverage: reading
+
+Refine 16–256 cells and 4–64 ordinates separately; compare QUADPACK integration with E3. For 64 seeds and 1024/4096/16384 photons, record mean error, RMSE, binomial standard deviation and observed 95% Clopper–Pearson coverage. Check photon exit-plus-absorption counts, positivity and discrete flux balance.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -23693,6 +24358,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs.
+Methods, equations, figures and references
+Methods used
+Ewald summation
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Neutral periodic charges: Ewald and smooth PME
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Three splitting parameters, three real cutoffs and four reciprocal cutoffs. Check the NaCl Madelung constant against a separately implemented 1D Jacobi-theta integral, storing its quadrature error estimate.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -23783,6 +24464,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT.
+Methods, equations, figures and references
+Methods used
+Particle mesh Ewald / PME
+Smooth particle mesh Ewald / SPME
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Tensor-product cardinal splines of order four or six spread the charges. Apply the nodal-spline discrete structure-factor correction and Gaussian Green function through 3D FFTs; analytically differentiate assignment weights for forces.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Neutral periodic charges: Ewald and smooth PME
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Meshes 16³/24³/40³ and two orders are compared with directly summed Ewald reciprocal terms. Shared real/self terms are stated. Check finest-grid force derivatives by energy differences and verify assigned total charge.
+
+## Particles, electrostatics, kinetic and radiative transport — Mesh/order convergence of B-spline smooth PME [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -23862,6 +24566,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums.
+Methods, equations, figures and references
+Methods used
+Fast multipole translations
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Implement leaf P2M, upward M2M, interaction-list M2L, downward L2L, local-polynomial evaluation and near-field P2P. Record translation and near-pair counts; this is not a Barnes–Hut traversal relabeled as FMM.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+2D logarithmic FMM with M2M, M2L and L2L
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+For 128 fixed-seed particles, sweep orders 2/4/8/12 and compare every potential/field component with a separate all-pairs calculation. Also check two-source signs, permutation invariance and potential derivatives.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -23933,6 +24653,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently.
+Methods, equations, figures and references
+Methods used
+Particle-in-cell / PIC
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Combine CIC deposition and matching field gathering, a mean-zero spectral Poisson solve and velocity Verlet. Set the field Nyquist mode to zero for a real skew-adjoint spectral derivative.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Cold-plasma oscillation with electrostatic CIC PIC
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -24181,6 +24917,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules.
+Methods, equations, figures and references
+Methods used
+DSMC and kinetic transport
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Preserve pair center-of-mass velocity and relative speed, then choose the new relative direction uniformly on the sphere. Rounds count collision operations and are not calibrated physical time. For D=<vx²−(vy²+vz²)/2>, averaging a random partner multiplies the center-of-mass anisotropy by (N−2)/(2(N−1)); isotropic postcollision relative directions contribute zero expected anisotropy.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Conservation and Maxwell relaxation in a homogeneous DSMC collision component
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Particles, electrostatics, kinetic and radiative transport — Conservation and Maxwell relaxation in a homogeneous DSMC collision component [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -24288,6 +25048,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pa
 Coverage: reading
 
 Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use positive Gauss–Legendre ordinates and first-order upstream finite-volume marching. A separate angular-error sweep uses exact exponential propagation within each constant cell.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Discrete-ordinate radiation transport through an absorbing slab
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+With 32–512 cells, check all ray intensities, spatial flux error, positivity and discrete absorption balance. A separate 4–32-ordinate sweep compares exit flux with the analytic 2pi E3(tau) representation.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -24394,6 +25170,31 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sp
 Coverage: reading
 
 Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+Methods, equations, figures and references
+Methods used
+Lie–Trotter splitting
+Strang splitting
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Lie–Trotter uses diffusion(h) then reaction(h); Strang uses diffusion(h/2), reaction(h), diffusion(h/2), always passing the updated state. Both apply the exact exponential of the centered-FD diffusion matrix by FFT and the same implicit-midpoint reaction/Newton tolerance 2e−13 with at most 12 residual evaluations. The reaction flow is a second-order approximation, not exact. No clipping, adaptive steps or fallback; nonconvergence is failure.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Turing instability: linear growth and small-amplitude patterns
+
+## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Lie–Trotter versus Strang on the same nonlinear reaction–diffusion input [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
+Coverage: reading
+
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 Input and validation protocol history · Initial input
 
 ## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Assumptions, units and boundaries [en]
@@ -24536,6 +25337,29 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-th
 Coverage: reading
 
 Implement the bath-only CSVR update for 1, 2 and 6 degrees of freedom; compare exact conditional moments/noncentral-chi-square laws, canonical Gamma fluctuations and kinetic correlations.
+Methods, equations, figures and references
+Methods used
+Stochastic velocity rescaling (CSVR)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s diagnostic and conditions
+Formulation, approximation and diagnostic scope
+Use the completed-square exact CIR transition with normal R and independent chi-square(Nf−1) S. The same R sets the sign of global alpha; S=0 for Nf=1. Reconstruct momentum from its unit direction and new radius without a tiny-K energy ratio. Reject K=0 because its direction is undefined.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+No separate physical test problem is assigned to this check or diagnostic. Its own diagnostic figure and validation material are provided.
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Exact CSVR bath: conditional laws, fluctuations and kinetic correlation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Compare with separate CIR conditional moments, three SciPy noncentral-chi-square quantile probabilities, stationary Gamma K and bath-only exp(−t/tau) correlation. A separate noiseless mean-relaxation control demonstrates loss of fluctuations.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
 
@@ -24662,6 +25486,31 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-th
 Coverage: reading
 
 Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations.
+Methods, equations, figures and references
+Methods used
+Stochastic velocity rescaling (CSVR)
+Langevin thermostat
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Both use exact O(h/2)–velocity-Verlet–O(h/2), or OBABO. CSVR applies one factor to all momenta; Langevin uses independent component-wise OU noise. gamma=1/(2 tau) matches bath-only K relaxation. The earlier BAOAB release is retained as a different splitting.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Langevin thermostat: canonical distributions, timestep bias and correlation
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## CSVR and Langevin: distributions, fluctuations and correlations — CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For finite steps, compare the Verlet-shadow position variance T/[omega²(1−h² omega²/4)] and momentum variance T against a separately constructed Lyapunov solution. Deterministic biases at h=0.2/0.1/0.05 establish second order. Check Langevin q,p,K,H correlations against independent discrete propagation; report CSVR correlations with independent-replica standard errors and tau/h dependence.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
 
@@ -24972,6 +25821,30 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-th
 Coverage: reading
 
 Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
+Methods, equations, figures and references
+Methods used
+Stochastic velocity rescaling (CSVR)
+Langevin thermostat
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Compare global CSVR and local OU with the same OBABO splitting. Draw initial canonical positions by independent Gaussian-envelope rejection and momenta from Maxwell distributions, and evolve a separate heated initial ensemble.
+No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## CSVR and Langevin: distributions, fluctuations and correlations — Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
+Coverage: reading
+
+Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise.
+No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
 
 ## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
 
@@ -36935,6 +37808,24 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bi
 Coverage: reading
 
 t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+陰的中点則
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+二次中心FD行列の固有値−4sin²(πk/N)/Δx²をFFTで対角化して拡散を厳密に半刻み進め、反応を各点2×2 Newtonのimplicit midpointで全刻み進めるStrang合成。FFT使用時も空間離散はFDです。未収束・予算超過は失敗とし、濃度のclippingはしません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Turing不安定性：線形成長率と小振幅パターン
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+空間も異なるcosine Fourier–Galerkin＋Radau参照（K32/64/96、cubic投影M=4(K+1)>4K、analytic Jacobian）とraw L1/L2/L∞を比較。参照のK感度とODE公差感度を別検査し、時間次数は同じFD半離散系を別実装Radauで積分した値に対して測定。平均L1・RMS L2・最大L∞を成分ごとに求め悪い方を採用。反応収支・全step正濃度・初期ゼロのk≥5（本対称性で最初はk6）・線形化との差を記録します。 収束ノルムと参照感度は固定最終時刻で判定し、途中スナップショット誤差は別の推移診断です。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 非線形反応拡散・パターン形成の独立検証 — 前提・単位・境界 [ja]
@@ -37166,6 +38057,24 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bi
 Coverage: reading
 
 t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
+手法・式・図・参照解
+使用手法
+空間中心差分
+陰的中点則
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+二次中心FD行列の固有値−4sin²(πk/N)/Δx²をFFTで対角化して拡散を厳密に半刻み進め、反応を各点2×2 Newtonのimplicit midpointで全刻み進めるStrang合成。FFT使用時も空間離散はFDです。未収束・予算超過は失敗とし、濃度のclippingはしません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Turing不安定性：線形成長率と小振幅パターン
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+空間も異なるcosine Fourier–Galerkin＋Radau参照（K32/64/96、cubic投影M=4(K+1)>4K、analytic Jacobian）とraw L1/L2/L∞を比較。参照のK感度とODE公差感度を別検査し、時間次数は同じFD半離散系を別実装Radauで積分した値に対して測定。平均L1・RMS L2・最大L∞を成分ごとに求め悪い方を採用。反応収支・全step正濃度・初期ゼロのk≥5（本対称性で最初はk6）・線形化との差を記録します。 収束ノルムと参照感度は固定最終時刻で判定し、途中スナップショット誤差は別の推移診断です。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 非線形反応拡散・パターン形成の独立検証 — 前提・単位・境界 [ja]
@@ -37433,6 +38342,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。
+手法・式・図・参照解
+使用手法
+代数的マルチグリッド（AMG）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の診断式と条件
+MITライセンスの既存アトラス教材の平滑化集約AMGを新しい独立ソースへ再利用します。階層は行列だけから構築し、強度閾値.08、Jacobi平滑化、固定相対公差10⁻¹⁰、最大180 V-cycleを使います。DSTの正弦変換による直接反転は参照側だけです。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+この検査・診断例には、別の物理テスト問題を割り当てていません。固有の診断図と検証資料を示しています。
+厳密解・参照解
+この実行例の参照・検証
+真の残差、独立直接解との差、DSTとの差、operator complexity、全残差履歴を保存します。最大固有値方向の右辺へ最小固有値方向の摂動を加え、相対増幅κ₂を直接解で照合します。等方例は収束必須、異方性stress例は予算終了も正直に記録する事前基準です。1-cycle対照は未収束を検出します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
 
@@ -37584,6 +38508,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 二進で厳密に表現できる16×4行列の条件数を1から2³⁶まで変え、再構成誤差と解誤差を分けます。実際のbinary64入力に対し別環境で実行した80/120桁参照とLAPACKを比較します。
+手法・式・図・参照解
+使用手法
+QR・SVD・最小二乗
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Householder QR、片側Jacobi SVD、三角後退代入を実装します。SVDの数値階数閾値を10⁻⁸/10⁻¹²/10⁻¹⁴へ変え、同じ切捨て規約のLAPACK解と比較します。正規方程式の計算例は追加していません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Householder QRと片側Jacobi SVD：直交性・階数・最小二乗
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+再構成・直交性・特異値・右辺摂動による解差・最小二乗停留残差・厳密階数2の対照を保存します。高精度参照は実二進入力を整数比へ変換し、mpmath 1.3.0のSVDとQRを独立実行済みです。SHAと全4入力・両精度の完全性を実行時に検査し、不一致を解析解へ置換しません。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
 
@@ -37700,6 +38640,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。
+手法・式・図・参照解
+使用手法
+Krylov固有値解法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全再直交化Lanczosと2回MGSのArnoldiで縮約し、小さい射影行列だけを密に解きます。上位2ベクトルはQRで張る空間へ変換し、符号や回転に不変な射影行列差を測ります。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Lanczos・Arnoldi：Ritz値と固有対残差の収束
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析的対角固有値とSciPy密固有値、左右固有ベクトルによる条件数を照合します。別に構成した2×2擬固有対ではK=1000で残差約2.5×10⁻⁸に対し固有値誤差.005を示します。これは反復法が出力した失敗例ではなく、残差だけでは保証できないことを示す感度対照です。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
 
@@ -37826,6 +38782,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。
+手法・式・図・参照解
+使用手法
+Gauss求積・適応積分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Golub–Welschの節点・重みと、局所差/15を用いる適応Simpsonを実装します。端点ではx=t²変換を別対照とし、狭いbumpには既知支持区間を分割した対照を用意します。これは一般的な自動救済機構ではありません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+roots_legendre、解析atan積分、2/3、bumpの256w/315、独立QUADPACKを比較します。QUADPACKの状態・推定誤差・評価回数・警告文も保存します。相殺はε_machine×積分絶対量に対応する絶対予算を使います。初期5点が全て零のbumpでは推定誤差0と実誤差約.00813を明示します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 基盤手法：条件数・残差・収束と独立参照 — 前提・単位・境界 [ja]
 
@@ -38004,6 +38976,24 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。
+手法・式・図・参照解
+使用手法
+代数的マルチグリッド（AMG）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+各行の最大非対角係数に対する相対強度からグラフを作り、貪欲な星型集約と余剰節点の隣接集約への付着で暫定補間Tを作ります。P=(I−ωD⁻¹A)T、ω=4/(3ρ̄)、ρ̄はD⁻¹Aの絶対行和上界です。粗演算子はPᵀAP。前後2回のJacobi平滑化と最終小行列の直接解を用います。これは採用した小規模SA変種であり、原著の全構築法や収束定理の再現ではありません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2次元Poisson・正弦単一モード（FEMを含む）
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+正規化残差、SciPy spsolveとの相対解差、連続正弦解への離散L²型誤差、観測次数、operator complexityを保存します。節点順を無作為に置き換えた行列も直接解と照合し、幾何学的な粗格子を暗黙に使っていないことを確認します。反復予算0は未収束と報告します。
+関連モデルの参照 · 製造解
+Poisson／正弦波の製造解
+カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
 
 ## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
 
@@ -38074,6 +39064,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 実の縦長行列に対するHouseholder QRと片側Jacobi SVDを自作し、通常行列・列スケール差10⁶の行列・階数落ち行列を検査します。独立LAPACKの特異値と最小ノルム最小二乗解を照合します。
+手法・式・図・参照解
+使用手法
+QR・SVD・最小二乗
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Householder反射を左から蓄積してRを上三角化し、Qを構成します。Jacobi SVDは列対の内積を小さくする直交回転を繰り返し、回転した列の長さを特異値とします。AᵀAを作って固有値を求める方法ではありません。最小二乗はQRの後退代入、階数落ちでは打切りSVDで求めます。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Householder QRと片側Jacobi SVD：直交性・階数・最小二乗
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+QR/SVDの相対再構成誤差、Q/U/Vの直交性、SciPy LAPACK gesddの特異値、gelsd/gelsyの最小二乗解・階数、正規方程式の停留残差を比較します。特異ベクトルの符号は比較せず、零行列と予算切れも検査します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
 
@@ -38158,6 +39164,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。
+手法・式・図・参照解
+使用手法
+Krylov固有値解法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Lanczosの3項漸化式に2回の全再直交化を加え、Arnoldiは修正Gram–Schmidtを2回行います。小さな射影行列T/HだけをNumPyのeigh/eigで解き、元空間へRitzベクトルを戻します。大きな元行列の密固有値計算は参照側だけで使います。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Lanczos・Arnoldi：Ritz値と固有対残差の収束
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+||Av−λv||₂、独立密行列固有値との差、基底の直交性を保存し、Krylov次元を増やした末尾の改善を確認します。非対称Ritz値の単調収束は仮定しません。恒等行列のhappy breakdown、零初期ベクトル拒否、次元予算不足も検査します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
 
@@ -38243,6 +39265,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fo
 Coverage: reading
 
 Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。
+手法・式・図・参照解
+使用手法
+Gauss求積・適応積分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Golub–Welschで対称Jacobi行列の固有値を節点、最初の固有ベクトル成分の平方の2倍を重みとします。適応Simpsonは区間を二分し、|S左+S右−S全|/15を局所推定として公差を配分します。評価回数と深さの上限を持ち、未達を成功としません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+全指定次数の多項式モーメント、SciPy roots_legendreの節点・重みとの差、解析exp積分の次数収束、解析atan積分とSciPy quadへの一致を測ります。公差を厳しくしたときの評価数と誤差を示し、5評価の強制予算切れ、非有限関数値も検査します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
 
@@ -38347,6 +39385,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mc
 Coverage: reading
 
 同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。
+手法・式・図・参照解
+使用手法
+Markov連鎖Monte Carlo
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+局所幅.8、mixedのみ確率.1でy=−x+.8Z、それ以外y=x+.8Z。混合率は状態非依存でq(y|x)=q(x|y)のため対数標的比でMH判定。各鎖は独立PCG64 stream、提案の適応・棄却の間引きなし。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+多峰性MCMC：峰への閉じ込め・偽の安心・大域提案
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+解析平均・分散・CDFの指定7点・正側占有と照合。各鎖の占有率と峰間遷移、rank/folded split Rhat、bulk/tail/mean・modeindicator ESS、鎖内だけのACF/ESSを記録。分散trapped鎖はpooled分布が良くてもRhat/多鎖ESSで失敗、same-mode鎖はRhatが良くても既知標的に失敗する対照です。scenario passはこの期待失敗を検出できた意味です。CDF差は指定点最大でKS全域距離・IID検定p値ではありません。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 多峰性MCMC：混合不良と収束診断の独立検証 — 前提・単位・境界 [ja]
 
@@ -38891,6 +39946,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mc
 Coverage: reading
 
 同一鎖の62datasetを別環境ArviZ0.20.0で実計算し、固定recipe・入力・鎖・公式ソースSHAで結びます。通常の有限値照合と、不定値のpolicy差を分けて検査します。
+手法・式・図・参照解
+使用手法
+Markov連鎖Monte Carlo
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の診断式と条件
+原著式から独自実装。odd長は中央1標本を落としてsplit、平均順位のBlom式は訂正済みS+1/4、fold後再rank、最大Rhatを採用。bulk ESSはrank split、tail ESSは元の全鎖のType7分位点を先に求めた≤indicatorをsplit。Geyer initial-positive/monotoneと宣言した端点処理・tau≥1/log10(total)を用い、反相関ESSをNへclipしません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+この検査・診断例には、別の物理テスト問題を割り当てていません。固有の診断図と検証資料を示しています。
+厳密解・参照解
+この実行例の参照・検証
+実鎖9組×3prefix×x/indicator＋8小fixtureの62組。同じbytesを再生成して照合し、通常の有限値Rhat/ESS/ACFと、定数・鎖内ゼロ分散・odd・ties・shift・scaleを検査。別の直接lag和、定常AR(1)の無限列tau=(1+rho)/(1−rho)で有限推定の誤差も測定します。routineは保存参照との照合で、ArviZのその場再実行は任意の別手順です。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 多峰性MCMC：混合不良と収束診断の独立検証 — 前提・単位・境界 [ja]
 
@@ -39870,6 +40940,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。
+手法・式・図・参照解
+使用手法
+制約輸送法／CT
+GLM発散クリーニング
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+両法とも区分定数・同じ固定Rusanov速度α=3・前進Eulerです。CTは面Bと共有算術corner EMF、GLMはcell B/ψとch=3・物理減衰率κ=2を使用。全格子で同じ384刻み、両法のdt列も同一です。CT面平均から復元した初期cell BとGLM初期Bが一致します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+CT・GLM：移動する磁気静力学平衡の格子・時間収束
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+16²/32²/64²の保存変数L1/L2/L∞誤差と観測次数を測ります。最細格子の刻み倍増差を空間誤差の.1以下と比較。時間収束は固定8²で16/32/64/128刻みを、許容誤差・最大刻みを二重に細分したDOP853へ照合します。質量・E、正値性、native CT divと共通cell div、ψも記録します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
@@ -40015,6 +41102,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。
+手法・式・図・参照解
+使用手法
+制約輸送法／CT
+GLM発散クリーニング
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+主計算は固定α=ch=3のRusanovと前進Euler、GLMκ=2は格子に依存しません。独立C++ Athena++はHLLD・PLM・RK2・upwind CTです。同じ連続初期値を用いますが、Athenaのface/primitive離散化は主計算と完全同一ではありません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
@@ -40150,6 +41254,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。
+手法・式・図・参照解
+使用手法
+制約輸送法／CT
+GLM発散クリーニング
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の診断式と条件
+同じ完全結合MHDコードを使用。y不変・By=vy=0ではGLMのBx/ψ系が流体応答から独立するため、離散Fourier記号の2×2行列と前進Euler行列冪を別に構成します。κ=2とκ=0を同じdt・LLF粘性で比較し、Bxだけの減少を物理減衰と取り違えません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+この検査・診断例には、別の物理テスト問題を割り当てていません。固有の診断図と検証資料を示しています。
+厳密解・参照解
+この実行例の参照・検証
+CT native divの初期違反保持、GLMのψ励起、Bx/ψ双方の独立FE参照一致、密度・圧力正値性、物理的総E/質量保存を確認。補助波エネルギーW=〈Bx²+ψ²/ch²〉のκ2/κ0比を判定し、半離散行列指数と連続Fourier解も区別して表示します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
@@ -40263,6 +41383,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。
+手法・式・図・参照解
+使用手法
+制約輸送法／CT
+GLM発散クリーニング
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+公開済みの1次Rusanov/前進Eulerを再利用。CTは共有corner EMFの離散curl、GLMはcell中心Bと双曲・放物型cleaning。Athena++は別実装のHLLD+PLM+RK2。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+16²/32²/64²で密度とByのL1誤差、質量・エネルギードリフト、正値性を測定。独立参照は128²/256²でも収束を確認し、細胞平均を保存的に制限します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
 
@@ -40348,6 +41485,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。
+手法・式・図・参照解
+使用手法
+HLLDのMHDリーマン解法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+アトラス側はMC再構成とSSPRK2、参照は独立C++のHLLD・PLM・RK3。異なる実装ですがHLLDという数値流束の系列は共有します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Brio–Wu衝撃波管
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+128/256/512セルを、2048/4096セルで再実行した独立参照の保存的細胞平均と比較。rho/ByのL1誤差、格子改善、密度・圧力正値性を判定します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
 
@@ -40421,6 +41574,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。
+手法・式・図・参照解
+使用手法
+MUSCL再構成
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+アトラス側はMC-MUSCL/HLLC/SSPRK3、Athena++側はPLM/HLLC/RK3。公式problem generatorの位置と正弦波の波数だけを合わせるpatchを保存し、solver本体は変更しません。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Shu–Osher衝撃波・エントロピー波干渉
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+100/200/400セルの密度L1誤差と改善率、正値性を測り、参照2048/4096/8192セルの差も事前幅と比較します。境界へ衝撃波が届かない固定時刻で比較します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
 
@@ -40494,6 +41663,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 GLM cleaning単独の縦磁場Fourierモードを、連続線形方程式の行列指数解と比較します。
+手法・式・図・参照解
+使用手法
+GLM発散クリーニング
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の診断式と条件
+∂tBx=-∂xpsi、∂tpsi=-ch²∂xBx-κpsiを中心差分とRK4で積分。独立参照は連続Fourier記号の2×2行列指数です。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+この検査・診断例には、別の物理テスト問題を割り当てていません。固有の診断図と検証資料を示しています。
+厳密解・参照解
+この実行例の参照・検証
+16/32/64点でL2誤差、空間2次収束、磁場divergenceモード振幅の減衰を判定します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
 
@@ -40577,6 +41761,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mo
 Coverage: reading
 
 32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。
+手法・式・図・参照解
+使用手法
+Markov連鎖Monte Carlo
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+log受理比でMetropolis更新。FFTによる連鎖内自己共分散を平均し、Geyerのgamma0+gamma1から始まる初期正ペア和から平均観測量のESSを求めます。古典的split-Rhatも併記します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Gaussian標的のMCMC：分布・自己相関・ESS
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+正規CDFを独立参照とし、標本数1024/2048/8192の連鎖平均RMSEを比較。別の定常AR(1)系列と厳密tau=(1+rho)/(1-rho)で診断量を照合します。公差は固定入力で事前指定します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
 
@@ -40671,6 +41871,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mo
 Coverage: reading
 
 調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。
+手法・式・図・参照解
+使用手法
+Langevinサーモスタット
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+力B・ドリフトAの半ステップと厳密OUノイズ更新OをB-A-O-A-Bで合成。サンプルの共分散・3種のCDF・エネルギー平均/分散・位置相関を記録します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Langevin温度制御：正準分布・刻み偏り・時間相関
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+SciPy離散Lyapunov解および調和系の明示共分散diag(T/omega²,T(1-h²omega²/4))で照合。運動量の刻み2次偏りと有限標本誤差を分離し、burn過渡を写像で評価。連続相関は別の行列指数で算出します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
 
@@ -40767,6 +41983,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mo
 Coverage: reading
 
 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+周期中心2階差分と独自RK4で進めます。空間系列は小さな同一時間刻み、時間系列は同じ空間演算子を用います。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+反応拡散：空間2次と時間4次を分けて測る
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+連続固有値r-Dk²への最大誤差で空間次数、半離散固有値r-4Dsin²(kdx/2)/dx²への最大誤差で時間次数を測ります。独立した解析参照であり同じ実装の細格子値を参照にしません。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
 
@@ -40839,6 +42072,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mo
 Coverage: reading
 
 Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+独自の中心差分・RK4で線形化PDEと短い非線形PDEを進めます。3格子でのモード振幅と成長率、非線形の濃度最小値・初期パターン増幅を記録します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Turing不安定性：線形成長率と小振幅パターン
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+連続Fourier行列J-k²DのSciPy expmと線形数値解を比較し空間収束を測定。非線形計算は半離散線形行列指数との小振幅差を測り、成熟模様の参照照合とは区別します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
 
@@ -41004,6 +42254,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mo
 Coverage: reading
 
 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。
+手法・式・図・参照解
+使用手法
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+独自RK4を刻み0.1/0.05/0.025で使用し、パルスの不連続点で時間区間を厳密に分割します。出力刻み0.1でピークと休止状態からの距離も測定します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+別実装SciPy DOP853のrtol1e-11と1e-13を比較して参照の感度を確認し、厳しい参照への最大解誤差と時間次数を評価します。ピーク時刻は出力格子上の精度です。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
 
@@ -42180,6 +43446,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。
+手法・式・図・参照解
+使用手法
+Ewald法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+erfcと逆空間和による主計算とは別に、1/rのGaussian積分と1次元theta関数の積を数値積分します。小さい積分変数ではPoisson変換と中性条件、大きい側では自己項を引いた像和を使い、力はthetaの解析微分から積分します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+中性周期点電荷：Ewald・smooth PME
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照の求積・theta/像の打切り・切替点をまとめて精密化し、上限32→40の感度を別に記録します。alpha3点、実空間4点・逆空間5点、平行移動・並べ替え、合力、エネルギー差分の3成分を比較。粗い打切りの不正確さを検出する対照も残します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -42319,6 +43601,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 BスプラインSPMEを同じ独立theta参照へ照合し、格子・次数・位相への依存、電荷の保持、エネルギー勾配と合力を測ります。
+手法・式・図・参照解
+使用手法
+Particle Mesh Ewald（PME）
+Smooth PME（SPME）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+16³/24³/40³格子と4/6次Bスプライン、3つの平行移動位相を用います。FFT逆空間エネルギーを割当て重みで位置微分し、実空間・自己項はEwald主計算と共有します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+中性周期点電荷：Ewald・smooth PME
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立thetaエネルギー・全力との差と、共有Ewald経路自体の誤差を明記します。分配の総和・導関数総和、電荷、エネルギー差分3成分、位相間の幅、有限格子の合力と粗い格子の対照を保存します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -42453,6 +43752,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
+手法・式・図・参照解
+使用手法
+高速多重極法の移動演算
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+P2M/M2M/M2L/L2Lと近接P2Pを保ち、次数2/4/8/12、深さ2/3を比較します。別のCartesian直接和、二点電荷の閉形式、正多角形の中心力と遠方ポテンシャルを参照にします。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2次元対数核のM2M・M2L・L2Lを持つFMM
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+ポテンシャル・場の最大絶対誤差、実際の遠方移動演算、回転・平行移動誤差、電荷を掛けた力の合計を測ります。粗い展開の失敗対照も確認します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -42565,6 +43880,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。
+手法・式・図・参照解
+使用手法
+Particle-in-Cell（PIC）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+CIC割当て・同じ重みの場補間・スペクトルPoisson・速度Verlet。独立な時間積分法DOP853は同じ粒子格子RHSを積分し、参照自身の最大刻み感度を検査します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+CIC静電PICの冷たいプラズマ振動
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+16/32/64格子とdt=.2/.1/.05を別に精密化し、線形cos(t)と時間参照の誤差を分離します。実数奇微分のNyquist零モードはGauss残差から分けて記録。時刻0の64seed・N=256/1024/4096のCICモード電力を解析期待値と比較します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -43739,6 +45070,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
+手法・式・図・参照解
+使用手法
+DSMC・運動論輸送
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+ランダムな完全対合と球面一様の散乱で、各対の運動量・エネルギーを保持します。別の標本生成ではGaussianを重心ゼロ部分空間へ射影し、半径を固定します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+等質DSMC衝突成分の保存則・Maxwell分布
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+全roundの運動量・エネルギーの最大保存誤差は決定論的な許容値で検査します。最初の6roundの異方性、4点のエネルギーCDF、4次モーメントと有限NのBeta参照との差は、独立seed間の標準誤差で測ります。NによるCDF標準誤差の減少と、有限NからMaxwellへの偏りを分けます。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -45060,6 +46407,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+1次風上有限体積の空間更新とGauss–Legendre方向を使い、角度系列は正確な指数伝播で空間誤差を除きます。MCはmu=sqrt(U)と指数光学距離から生存・吸収を独立に判定します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+純吸収平板の離散座標放射輸送
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+16〜256セル・4〜64方向を別に収束させ、QUADPACK積分とE3を照合。64seed・1024/4096/16384光子で平均誤差、RMSE、二項標準偏差と95% Clopper–Pearson区間の実測被覆を記録します。全光子の出射＋吸収、正値性と離散フラックス収支を確認します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -46154,6 +47517,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。
+手法・式・図・参照解
+使用手法
+Ewald法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+erfcで減衰する実空間和、Gaussian係数を持つ構造因子の逆格子和、−alpha/sqrt(pi) sum(q²)を加えます。力は各項の位置微分から求め、24成分を中心エネルギー差分と比較します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+中性周期点電荷：Ewald・smooth PME
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+分割alphaを3点、実空間打切りを3点、逆空間打切りを4点で確認。NaClのMadelung定数は3次元和を呼ばない独立な1次元Jacobi-theta積分と照合し、求積の誤差推定も保存します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -46244,6 +47623,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 電荷をBスプラインで格子へ割り当て、FFTでEwald逆空間項を評価するsmooth PME（SPME）の小規模例です。
+手法・式・図・参照解
+使用手法
+Particle Mesh Ewald（PME）
+Smooth PME（SPME）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+4次または6次のcardinal Bスプラインのテンソル積で電荷を格子化し、節点スプラインの離散構造因子補正、Gaussian Green関数、3次元FFTを組み合わせます。格子エネルギーを重みの位置微分で解析的に微分します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+中性周期点電荷：Ewald・smooth PME
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+16³・24³・40³格子と2つの次数で、直接Ewald逆空間和との差を記録します。Ewaldと実空間項・自己項を共有する部分も明示。最細格子の力はエネルギー差分とも比較し、全電荷の保持を確認します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -46323,6 +47719,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。
+手法・式・図・参照解
+使用手法
+高速多重極法の移動演算
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+葉でP2M、上向きのM2M、相互作用リスト上のM2L、下向きのL2L、局所多項式の評価と近接P2Pを実装します。遠方を粒子ごとに開くBarnes–Hutへ置き換えず、移動演算回数と近接対数を記録します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2次元対数核のM2M・M2L・L2Lを持つFMM
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+固定seedの128粒子で次数2・4・8・12を走査し、別の全対直接和とポテンシャル・電場の全成分を照合します。2点の符号、順序不変性、ポテンシャル微分も検査します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -46394,6 +47806,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。
+手法・式・図・参照解
+使用手法
+Particle-in-Cell（PIC）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+CIC電荷割当てと同じ重みの場補間、ゼロ平均のスペクトルPoisson解、速度Verletを組み合わせます。実数の奇微分の規約により、電場のNyquistモードはゼロにします。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+CIC静電PICの冷たいプラズマ振動
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -46642,6 +48070,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。
+手法・式・図・参照解
+使用手法
+DSMC・運動論輸送
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+対の重心速度と相対速度の大きさを保持し、相対速度の方向を球面上で一様に選びます。roundは物理時刻ではなく衝突演算の回数です。 D=<vx²−(vy²+vz²)/2>と置くと、ランダムな相方の平均で重心の異方性が(N−2)/(2(N−1))倍になり、散乱後の相対方向の異方性期待値はゼロになるため、保存した期待減衰率が得られます。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+等質DSMC衝突成分の保存則・Maxwell分布
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+粒子512・2048・8192、16 seedで、運動量・運動エネルギー、Maxwellの2次/4次モーメント、Gamma(3/2,1)のエネルギーCDFを比較。異方性の期待減衰率(N−2)/(2(N−1))も独立に照合します。 有限Nの成分4次モーメントは3−6/(3N−1)であり、Maxwell値3との有限N偏りとseed間の標本誤差を区別します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -46749,6 +48193,22 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pa
 Coverage: reading
 
 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+正のGauss–Legendre離散方向と1次風上有限体積の空間行進を使います。角度誤差だけを分ける系列では、一定セル内を指数関数で正確に伝播します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+純吸収平板の離散座標放射輸送
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+32〜512セルで全方向の強度誤差・空間フラックス誤差・正値性・離散吸収収支を確認。4〜32方向の別系列は、出射フラックス2pi E3(tau)の解析表示と比較します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -46855,6 +48315,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sp
 Coverage: reading
 
 32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+手法・式・図・参照解
+使用手法
+Lie–Trotter分割
+Strang分割
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Lie–Trotterは拡散h→反応h、Strangは拡散h/2→反応h→拡散h/2。どちらも更新後の状態を次へ渡します。拡散は2次中心FD行列の指数をFFTで厳密適用、反応は同じ陰的中点則・Newton公差2e−13・上限12評価を使用。反応流は厳密解ではなく2次近似です。クリッピング・自動刻み変更・代替解法への切替を行わず、未収束は失敗にします。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Turing不安定性：線形成長率と小振幅パターン
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照は同じFD半離散系を実空間の疎行列・別記述の反応RHSで組み、分割せずRadauで積分した数値解です。Radauの公差細分化と別のDOP853で参照自身の差を測り、最細Strang誤差との比を判定します。ノルムは成分ごとの平均L1・RMS L2・最大L∞を求めて悪い成分を採用し、4つの正の共通出力時刻の最大値で次数を測定。Newton公差感度、全副段階の正濃度、反応source/sink収支と逆順Lieの対照も記録します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 入力・検証手順の履歴 · 初回の入力
 
 ## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 前提・単位・境界 [ja]
@@ -46991,6 +48468,21 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-th
 Coverage: reading
 
 自由度1・2・6のCSVR浴だけを実装し、厳密な条件付きモーメントと非心χ²分布、正準Gamma分布と運動エネルギー相関を照合します。
+手法・式・図・参照解
+使用手法
+確率的速度リスケーリング（CSVR）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の診断式と条件
+平方完成した厳密CIR遷移を、標準正規Rと独立χ²(Nf−1)のSから作ります。同じRでglobal αの符号を決め、Nf=1ではS=0。単位方向と新しい半径からpを再構成し、極小KでKnew/Kを作りません。K=0は方向が未定義として拒否します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+この検査・診断例には、別の物理テスト問題を割り当てていません。固有の診断図と検証資料を示しています。
+厳密解・参照解
+この実行例の参照・検証
+条件付き平均・分散は独立なCIR式、CDFの3確率点はSciPyの非心χ²分位点、定常KはGamma分布、浴単独ACFはexp(−t/τ)と照合。無雑音の平均緩和は分散を失う対照として別表示します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
 
@@ -47105,6 +48597,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-th
 Coverage: reading
 
 異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。
+手法・式・図・参照解
+使用手法
+確率的速度リスケーリング（CSVR）
+Langevinサーモスタット
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+両方式とも厳密な浴O(h/2)–velocity-Verlet–O(h/2)（OBABO）。CSVRは全運動量に同じ係数、Langevinは各成分に独立OU雑音を作用。γ=1/(2τ)で自由浴のK緩和時間をそろえます。以前のBAOAB例は変更せず別の分割として残します。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Langevin温度制御：正準分布・刻み偏り・時間相関
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+正準Gaussian・Gamma分布とK/U/Hの平均・分散を照合。有限刻みではVerletのshadow二次形式を使い、位置分散T/[ω²(1−h²ω²/4)]、運動量分散Tを別導出したLyapunov解と比較します。h=0.2/0.1/0.05の決定論的偏りで2次性を確認。Langevinのq,p,K,H相関は独立の離散伝播と照合し、CSVRの相関は独立複製の標準誤差とτ・h依存を表示します。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
 
@@ -47409,6 +48918,23 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-th
 Coverage: reading
 
 弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
+手法・式・図・参照解
+使用手法
+確率的速度リスケーリング（CSVR）
+Langevinサーモスタット
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+同じOBABO分割でglobal CSVRとlocal OUを比較。正準初期座標はGaussianを包絡にした独立棄却法、運動量はMaxwell分布から生成し、別の温度摂動初期集団も進めます。
+方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+非調和CSVRとLangevin：Boltzmann求積との分布比較
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
 ## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
 

@@ -11,6 +11,48 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 Sod衝撃波管を自己相似Riemann解と比べ、密度誤差の減少・正値性・境界流束を含む収支を確認する。
 
+**使用手法**
+
+- [Godunov型有限体積法](https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja) (`godunov`)
+- [HLLC](https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja) (`hllc`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-sod-ja)
+
+x=0.5の不連続、[0,1]の流出境界、t=0.2。Godunov型有限体積更新の数値流束は近似HLLC。参照は別の自己相似Riemann式で、星領域圧力には数値求根を使う。
+
+$$
+U_t+F(U)_x=0,\quad U=(\rho,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left(E-\frac{\rho v^2}{2}\right)
+$$
+
+$$
+(\rho,v,p)_L=(1,0,1),\quad(\rho,v,p)_R=(0.125,0,0.1),\quad\gamma=1.4
+$$
+
+- [圧縮性Euler方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja) (`euler`)
+
+**問題の図**
+
+![保存した最終時刻の数値波形と参照解。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[Sod衝撃波管](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja) (`sod`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja#sod-ja-validation)
+
+細格子160セルの各中心でρ,u,pと同位置・同時刻の参照値を併記。初期値も点サンプルをセル値として与える既存solverを使う。解析的な波構造を使うが、圧力根の数値評価を含み、別コードベースとの独立照合ではない。
+
+- [Euler／Sod問題](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-sod-ja) (`euler-sod`; 関連モデルの参照 · 半解析参照)
+
+γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
+
+
 ### scope
 
 γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。
@@ -77,6 +119,48 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compare the Sod shock tube with a self-similar Riemann solution; check decreasing density error, positivity and boundary-flux balances.
+
+**Methods used**
+
+- [Godunov-type finite volumes](https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en) (`godunov`)
+- [HLLC](https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en) (`hllc`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-sod-en)
+
+Jump at x=0.5, outflow boundaries on [0,1], t=0.2. Godunov-type finite volumes use approximate HLLC fluxes. The separate self-similar Riemann reference uses numerical root finding for star pressure.
+
+$$
+U_t+F(U)_x=0,\quad U=(\rho,\rho v,E)^{\mathsf T},\quad p=(\gamma-1)\left(E-\frac{\rho v^2}{2}\right)
+$$
+
+$$
+(\rho,v,p)_L=(1,0,1),\quad(\rho,v,p)_R=(0.125,0,0.1),\quad\gamma=1.4
+$$
+
+- [Compressible Euler equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en) (`euler`)
+
+**Problem figure**
+
+![Stored final-time numerical profile and reference.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Sod shock tube](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en) (`sod`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en#sod-en-validation)
+
+Each of the 160 fine-grid centers carries ρ,u,p and reference values at the same time/location. The existing solver also initializes its cell values from point samples. Wave structure is analytic but reference pressure requires a numerical root; this is not a cross-check against an independent codebase.
+
+- [Euler / Sod](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-sod-en) (`euler-sod`; Related-model reference · Semi-analytic reference)
+
+γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+
 
 ### scope
 

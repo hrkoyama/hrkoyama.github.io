@@ -169,7 +169,7 @@ def reference_values(example, result, lang):
     return body
 
 
-def render_example(x, result, lang, heading_level=2):
+def render_example(x, result, lang, heading_level=2, navigation=None, compact_navigation=False):
     """One verified record, shared by the complete guide and stable example pages."""
     assert lang in ['ja','en'] and heading_level in [1,2]
     ja = lang == 'ja'
@@ -177,6 +177,12 @@ def render_example(x, result, lang, heading_level=2):
     release = x['release']
     body += '<section class="execution-example" id="' + x['id'] + '-' + lang + '" data-execution-example="' + x['id'] + '"><h'+str(heading_level)+'>' + esc(x['name'][lang]) + '</h'+str(heading_level)+'>'
     body += paragraph(x['scope'][lang]) + '<p>' + link(x['reading'][lang], '式・図・誤差の解説' if ja else 'Equations, figures and error analysis') + ' · ' + link(release['download'], '対応するコードZIP' if ja else 'Code ZIP for this example') + '</p>'
+    if navigation is not None:
+        from atlas_execution_navigation import render_execution_navigation
+        navigation_html = render_execution_navigation(navigation, lang)
+        if compact_navigation:
+            navigation_html = '<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+navigation_html+'</details>'
+        body += navigation_html
     body += '<dl>'
     for key, jlabel, elabel in [('assumptions', '前提', 'Assumptions'), ('units', '単位', 'Units'), ('boundaries', '境界・モデルの範囲', 'Boundaries and model scope')]:
         value = x[key][lang]
@@ -191,7 +197,7 @@ def render_example(x, result, lang, heading_level=2):
     for kind, url in x['dependencies'].items():
         if url:
             body += '<li>' + link(url, kind + ' / ' + Path(urlparse(url).path).name) + '</li>'
-    body += '</ul></details><details class="execution-validation"><summary>' + ('出力・検証条件・引用を確認する' if ja else 'Inspect outputs, acceptance and citation') + '</summary><h3>' + ('できるファイルと参照出力' if ja else 'Generated files and reference outputs') + '</h3><ul class="execution-output-list">'
+    body += '</ul></details><details class="execution-validation" id="'+esc(x['id']+'-'+lang+'-validation')+'"><summary>' + ('出力・検証条件・引用を確認する' if ja else 'Inspect outputs, acceptance and citation') + '</summary><h3>' + ('できるファイルと参照出力' if ja else 'Generated files and reference outputs') + '</h3><ul class="execution-output-list">'
     for out in x['outputs']:
         body += '<li><code>' + esc(out['generated_path']) + '</code> (' + esc(out['format'].upper()) + ') · ' + link(out['url'], '配布版の参照出力' if ja else 'Packaged reference output') + '</li>'
     body += '</ul>'
@@ -215,13 +221,13 @@ def render_example(x, result, lang, heading_level=2):
     return body.replace('<h3>','<'+subheading+'>').replace('</h3>','</'+subheading+'>')
 
 
-def render_language(data, releases, receipt, results, lang):
+def render_language(data, releases, receipt, results, lang, navigation=None, problem_count=None):
     ja = lang == 'ja'
     examples = data['examples']
     body = '<section data-site-language="' + lang + '" lang="' + lang + '"><p class="eyebrow">PUBLIC CODE · FIXED INPUTS · CHECKED OUTPUTS</p>'
     body += '<h1>' + ('コードを取得し、結果を確かめる' if ja else 'Get the code. Reproduce the result.') + '</h1>'
     body += '<p class="intro">' + (f'移流・衝撃波・Poisson・ODE・粒子・原子など、{len(examples)}の代表問題を固定入力から実行できます。条件を読み、JSON/CSVを生成し、解析解・数値参照・保存則などの基準で結果を確かめます。' if ja else f'Run {len(examples)} representative advection, shock, Poisson, ODE, particle and atomic problems from fixed inputs. Generate JSON/CSV and inspect analytic references, numerical references, conservation and other acceptance conditions.') + '</p>'
-    body += '<nav class="resource-nav" aria-label="' + ('関連資料' if ja else 'Related resources') + '">' + ''.join(link(u, t) for u, t in [('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'), ('/numerical-methods-atlas/methods/?lang=' + lang, '手法の見取り図' if ja else 'Method map'), ('examples.json', '実行例の共通台帳 / JSON' if ja else 'Common execution registry / JSON'), ('#execution-steps-' + lang, '共通の実行手順' if ja else 'Common reproduction steps'), ('/numerical-methods-atlas/code-and-data/ci/?lang=' + lang, 'Linuxの継続検証' if ja else 'Linux verification CI')]) + '</nav>'
+    body += '<nav class="resource-nav" aria-label="' + ('関連資料' if ja else 'Related resources') + '">' + ''.join(link(u, t) for u, t in [('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'), ('/numerical-methods-atlas/methods/?lang=' + lang, '手法・コードの対応表' if ja else 'Methods and code reference'), ('examples.json', '実行例の共通台帳 / JSON' if ja else 'Common execution registry / JSON'), ('#execution-steps-' + lang, '共通の実行手順' if ja else 'Common reproduction steps'), ('/numerical-methods-atlas/code-and-data/ci/?lang=' + lang, 'Linuxの継続検証' if ja else 'Linux verification CI')]) + '</nav>'
     body += '<h2>' + ('まず、確かめたい例を選ぶ' if ja else 'Choose the result you want to check') + '</h2><div class="execution-choices">'
     for x in examples:
         body += '<article><h3>' + link('#' + x['id'] + '-' + lang, x['name'][lang]) + '</h3>' + paragraph(x['scope'][lang]) + '<p class="execution-family">' + esc(x['release']['family'] + ' · ' + x['release']['version']) + '</p></article>'
@@ -244,7 +250,7 @@ def render_language(data, releases, receipt, results, lang):
     body += paragraph('有効化は自分のOSの1行を選びます。その後、下記の例にある依存関係と実行コマンドを使います。最初の依存ライブラリ取得にはネット接続が必要ですが、導入後の通常実行にChatGPT・Codex・推論APIキーは不要です。' if ja else 'Choose the activation line for your OS, then use the dependency and execution commands below. Initial dependency installation needs network access; normal runs after setup require no ChatGPT, Codex or inference API key.') + '</details></section>'
 
     for x in examples:
-        body += render_example(x, results[x['id']], lang)
+        body += render_example(x, results[x['id']], lang, navigation=navigation['executions'][x['id']] if navigation is not None else None, compact_navigation=True)
 
     body += '<section><h2>' + ('配布版と検査件数の意味' if ja else 'Code editions and what their check counts mean') + '</h2>'
     for (family, version), record in releases.items():
@@ -259,7 +265,10 @@ def render_language(data, releases, receipt, results, lang):
         if family == 'numerical-methods-atlas':
             base = release['manifest'].rsplit('/', 1)[0] + '/'
             body += '<p>' + link(base + 'LICENSE', 'MIT License') + ' · ' + link(base + 'LICENSING.md', '適用範囲 / Licensing scope') + '</p>'
-    body += paragraph(f'上記は各配布版の自動検査数です。{len(examples)}の代表問題やアトラス全体の67問題とは別に数え、版をまたぐ検査数は合算しません。原子版の23検査と従来版の411検査も、それぞれの保存記録です。Ewald・PME・SPMEは未実装で、原子例も一般の分子・周期系DFT計算ではありません。' if ja else f'These are automated test counts for each edition, distinct from the {len(examples)} representative problems and the atlas-wide 67 problems. Do not add repeated tests across editions. The atomic 23 and original 411 checks retain their separate records. Ewald/PME/SPME remain unimplemented; the atomic examples are not general molecular or periodic DFT calculations.') + '</section>'
+    inventory_label = ('アトラス全体の'+str(problem_count)+'問題' if problem_count is not None else 'アトラスの問題台帳') if ja else ('the atlas-wide '+str(problem_count)+' problems' if problem_count is not None else 'the atlas problem inventory')
+    body += paragraph(f'上記は各配布版の自動検査数です。{len(examples)}の代表問題や{inventory_label}とは別に数え、版をまたぐ検査数は合算しません。原子版の23検査と従来版の411検査も、それぞれの保存記録です。' if ja else f'These are automated test counts for each edition, distinct from the {len(examples)} representative problems and {inventory_label}. Do not add repeated tests across editions. The atomic 23 and original 411 checks retain their separate records.')
+    body += paragraph('ここで使う従来の共通配布版にはEwald・PME・SPMEは含まれません。これらの限定した実装と検証は別配布の追加検証集で確認できます。原子計算例の対象は上記の孤立原子で、一般の分子・周期系DFT計算ではありません。' if ja else 'The original common code edition used here does not include Ewald, PME or SPME. Their scoped implementations and checks are available in separately distributed validation supplements. The atomic examples above cover isolated atoms, not general molecular or periodic DFT calculations.')
+    body += '<p>'+link('/numerical-methods-atlas/validation/?lang='+lang,'別配布の追加検証集へ' if ja else 'Open the separately distributed validation supplements')+'</p></section>'
     body += render_receipt(data['verification_receipt'], receipt, examples, lang)
     body += '<section><h2>' + ('公開資料だけで再現し、出典に戻る' if ja else 'Reproduce from public material and return to the source') + '</h2>'
     body += paragraph('自作の実装コードのMITと、本文・図・データ・第三者資料の条件は別です。この案内は新しい再配布・改変公開の権限を追加するものではありません。' if ja else 'MIT for original implementation code is separate from the terms for prose, figures, data and third-party material. This guide does not add redistribution or public-adaptation permissions.')
@@ -268,6 +277,10 @@ def render_language(data, releases, receipt, results, lang):
 
 
 def build(root=ROOT):
+    from atlas_execution_routes import load_execution_routes
+    root = Path(root)
+    navigation = load_execution_routes(root)
+    problem_count = len(json.loads((root/'catalog/atlas-test-problems.json').read_text())['problems'])
     data = json.loads((root / CATALOG).read_text())
     examples = data['examples']
     assert len(examples) == len({x['id'] for x in examples}) and examples
@@ -287,13 +300,15 @@ def build(root=ROOT):
     for x in examples:
         result = next(out for out in x['outputs'] if out['format'] == 'json')
         results[x['id']] = json.loads((root / urlparse(result['url']).path.lstrip('/')).read_text())
-    sections = ''.join(render_language(data, releases, receipt, results, lang) for lang in ['ja', 'en'])
+    sections = ''.join(render_language(data, releases, receipt, results, lang, navigation, problem_count) for lang in ['ja', 'en'])
     document = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     document += '<title data-page-title-ja="コード・入力・検証 | 数値計算法アトラス" data-page-title-en="Code, inputs and validation | Numerical Methods Atlas">コード・入力・検証 | 数値計算法アトラス</title>'
     document += '<meta name="description" content="代表22問題の公開コード、固定入力、実行手順、JSON/CSV出力、参照値と許容誤差。Public code, fixed inputs, reproduction commands and numerical acceptance checks for 22 representative problems."><link rel="canonical" href="' + ORIGIN + ROUTE + '">'
     for name in ['atlas-resources', 'atlas-execution']:
         digest = hashlib.sha256((root / 'styles' / (name + '.css')).read_bytes()).hexdigest()[:12]
         document += '<link rel="stylesheet" href="/styles/' + name + '.css?v=' + digest + '">'
+    navigation_css='numerical-methods-atlas/styles/atlas-execution-navigation.css'
+    document += '<link rel="stylesheet" href="/'+navigation_css+'?v='+hashlib.sha256((root/navigation_css).read_bytes()).hexdigest()[:12]+'">'
     document += '</head><body class="profile-page" data-site-language-anchors="suffix"><main id="main" class="profile-main atlas-resource-main atlas-execution-main">' + sections + '</main></body></html>\n'
     return document
 

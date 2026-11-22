@@ -11,6 +11,46 @@ Receipt: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verifi
 
 HLLDの64/128セル解を512セル数値参照と比べ、密度・圧力・一定縦磁場・流束収支と切替回数を確認する。
 
+**使用手法**
+
+- [HLLDのMHDリーマン解法](https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=ja) (`hlld`)
+- [MUSCL再構成](https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja) (`muscl`)
+
+**方程式**
+
+[この固定入力の問題式と条件](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-brio-wu-ja)
+
+[0,1]、初期不連続x=0.5、t=0.1。HLLD・MC再構成・SSPRK2で、512セルの保存量をブロック平均して比較する。同一ソルバーの数値参照であり厳密MHD解ではない。
+
+$$
+U_t+\partial_xF_{\rm MHD}(U)=0,\qquad\gamma=2,\quad B_x=0.75,\quad\mu_0=1
+$$
+
+$$
+(\rho,p,B_y)_L=(1,1,1),\qquad(\rho,p,B_y)_R=(0.125,0.1,-1),\qquad\boldsymbol v_{L,R}=\boldsymbol0
+$$
+
+- [理想MHD](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#mhd-ja) (`mhd`)
+
+**問題の図**
+
+![保存済みBrio–Wu衝撃波管の比較図。](https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/brio-wu.png)
+
+この問題の代表図です。格子・時刻・初期値などは、この実行例の固定入力と異なる場合があります。
+
+[Brio–Wu衝撃波管](https://hrkoyama.github.io/numerical-methods-atlas/problems/brio-wu/?lang=ja) (`brio-wu`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/brio-wu/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=ja#brio-wu-ja-validation)
+
+512セルの保存変数を64/128セルへ整数ブロック平均し、その後にprimitive変数へ変換する。CSVは128セルごとに計算値とそのセル平均に対応する参照値を配置。正値性、縦磁場10^-12、境界流束収支10^-10、経験的な誤差減少を別々に判定し、fallback回数を隠さない。
+
+参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+
+
 ### scope
 
 γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。
@@ -79,6 +119,46 @@ Content/data terms: https://hrkoyama.github.io/rights/
 ## en
 
 Compare 64/128-cell HLLD solutions with a 512-cell numerical reference; inspect density, pressure, constant longitudinal field, balances and fallbacks.
+
+**Methods used**
+
+- [HLLD MHD Riemann solver](https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=en) (`hlld`)
+- [MUSCL reconstruction](https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en) (`muscl`)
+
+**Equations**
+
+[This fixed-input problem and its conditions](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-brio-wu-en)
+
+[0,1], initial jump x=0.5, t=0.1. HLLD/MC/SSPRK2 is compared after conservative block averaging of the 512-cell result; this same-solver numerical reference is not an exact MHD solution.
+
+$$
+U_t+\partial_xF_{\rm MHD}(U)=0,\qquad\gamma=2,\quad B_x=0.75,\quad\mu_0=1
+$$
+
+$$
+(\rho,p,B_y)_L=(1,1,1),\qquad(\rho,p,B_y)_R=(0.125,0.1,-1),\qquad\boldsymbol v_{L,R}=\boldsymbol0
+$$
+
+- [Ideal magnetohydrodynamics](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#mhd-en) (`mhd`)
+
+**Problem figure**
+
+![Stored Brio–Wu shock-tube comparison.](https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/brio-wu.png)
+
+A representative figure for the problem. Its grid, time and initial data may differ from this execution’s fixed input.
+
+[Brio–Wu shock tube](https://hrkoyama.github.io/numerical-methods-atlas/problems/brio-wu/?lang=en) (`brio-wu`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/brio-wu/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en#brio-wu-en-validation)
+
+Restrict the 512-cell conserved variables by integer block averaging to 64/128 cells before converting to primitives. CSV pairs each 128-cell result with its corresponding restricted reference. Positivity, longitudinal-field error 10^-12, boundary-flux balance 10^-10 and empirical error decrease are separate checks; fallback counts remain visible.
+
+No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
 
 ### scope
 

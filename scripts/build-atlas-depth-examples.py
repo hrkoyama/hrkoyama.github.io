@@ -13,6 +13,8 @@ import subprocess
 import xml.etree.ElementTree as ET
 
 from atlas_depth_release import GROUPS, ORIGIN, depth_code_urls, digest, load_depth_group, read_json
+from atlas_execution_routes import load_execution_routes
+from atlas_execution_navigation import render_execution_navigation, execution_navigation_markdown
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS = ROOT/'numerical-methods-atlas'
@@ -124,6 +126,7 @@ def document(url, title, description, body, language=None, alternates=None):
     for name in ['atlas-resources', 'atlas-validation']:
         head += '<link rel="stylesheet" href="/styles/'+name+'.css?v='+digest(ROOT/'styles'/(name+'.css'))[:12]+'">'
     head += '<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css">'
+    head += '<link rel="stylesheet" href="/numerical-methods-atlas/styles/atlas-execution-navigation.css?v='+digest(ATLAS/'styles/atlas-execution-navigation.css')[:12]+'">'
     attribute = ' data-content-language="'+language+'"' if language else ' data-site-language-anchors="suffix"'
     return head+'</head><body class="profile-page"'+attribute+'><main id="main" class="validation-main">'+body+'</main></body></html>\n'
 
@@ -157,12 +160,17 @@ def reference_html(case, language, anchor):
     return result
 
 
-def render_case(case, measured, data, language, rendered, heading_level=2, commands=False, editorial_note=None):
+def render_case(case, measured, data, language, rendered, heading_level=2, commands=False, editorial_note=None, navigation=None):
     ja = language == 'ja'; ident = case['id']; anchor = ident if heading_level == 2 else ident+'-'+language
     level = heading_level+1
     body = '<article class="validation-case" data-validation-case="'+ident+'" id="'+anchor+'"><h'+str(heading_level)+'>'+escape(case['title'][language])+'</h'+str(heading_level)+'>'+paragraph(case['summary'][language])
     base = data['base']
     body += '<nav class="validation-actions" aria-label="'+('コード・入力・検証' if ja else 'Code, inputs and verification')+'">'+link(case_route(ident, language), '固定入力・実行入口' if ja else 'Fixed-input execution entry')+link(base+data['verification']['archive']['file'], 'コード / ZIP' if ja else 'Code / ZIP')+link(base+'inputs.json', '固定入力 / JSON' if ja else 'Fixed input / JSON')+link(base+'results/result.json', '全結果 / JSON' if ja else 'All results / JSON')+link(base+'source-manifest.json', '配布物のSHA-256' if ja else 'Release SHA-256 manifest')+link(base+'verification.json', '独立展開の検証記録' if ja else 'Independent-extraction receipt')+'</nav>'
+    if navigation:
+        resources = render_execution_navigation(navigation, language)
+        if heading_level == 2:
+            resources = '<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+resources+'</details>'
+        body += resources
     initial = initial_input_name(data)
     if initial:
         body += '<p>'+link(base+'protocol-history.json', '入力・検証手順の履歴' if ja else 'Input and validation protocol history')+' · '+link(base+initial, '初回の入力' if ja else 'Initial input')+'</p>'
@@ -196,11 +204,13 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
     return body
 
 
-def markdown_case(case, measured, data, language, heading_level=1, editorial_note=None):
+def markdown_case(case, measured, data, language, heading_level=1, editorial_note=None, navigation=None):
     title = case['title'][language]
     heading = '#'*heading_level
     subheading = heading+'#'
     out = heading+' '+title+'\n\n'+case['summary'][language]+'\n\n'
+    if navigation:
+        out += execution_navigation_markdown(navigation, language)
     for field, labels in [('assumptions', ('前提・単位・境界', 'Assumptions, units and boundaries')),
                           ('algorithm', ('採用した計算法', 'Adopted numerical method')),
                           ('validation', ('比較・検証', 'References and validation')),
@@ -229,6 +239,8 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
 
 def build():
     catalog = read_json(ROOT/CATALOG.lstrip('/'))
+    navigation = load_execution_routes(ROOT)
+    routes = navigation['executions']
     assert {group['id'] for group in catalog['groups']} == set(GROUPS)
     assert len(catalog['groups']) == len(GROUPS)
     for group in catalog['groups']:
@@ -269,13 +281,14 @@ def build():
                     'manifest': ORIGIN+current['base']+'source-manifest.json', 'verification': ORIGIN+current['base']+'verification.json',
                     'results': ORIGIN+current['base']+'results/result.json', 'input': ORIGIN+current['base']+'inputs.json',
                     'code_urls': depth_code_urls(current, [ident]), 'test_urls': current['test_urls'], 'passed_tests': current['verification']['passed_tests']},
-                'source_sha256': source_hashes, 'scope': {language: scope_text(language, common_count) for language in LANGUAGES}}
+                'source_sha256': source_hashes, 'scope': {language: scope_text(language, common_count) for language in LANGUAGES},
+                'execution_navigation': routes[ident], 'navigation_source_sha256': navigation['source_sha256']}
             public_cases.append(public_case)
             sections, markdown = [], ''
             for language in LANGUAGES:
                 nav = '<nav class="validation-actions">'+link(INDEX+'?lang='+language, '追加検証の一覧' if language == 'ja' else 'Additional validation index')+link(chapter_route(group_id, language)+'#'+ident, '詳しい解説' if language == 'ja' else 'Detailed reading')+link('index.json', 'JSON')+link('index.md', 'Markdown')+'</nav>'
-                sections.append('<section data-site-language="'+language+'" lang="'+language+'">'+nav+'<aside class="validation-scope">'+paragraph(scope_text(language, common_count))+'</aside>'+render_case(case, measured[ident], current, language, rendered, 1, True, editorial_note)+terms(language)+'</section>')
-                markdown += markdown_case(case, measured[ident], current, language, editorial_note=editorial_note)+'\n'
+                sections.append('<section data-site-language="'+language+'" lang="'+language+'">'+nav+'<aside class="validation-scope">'+paragraph(scope_text(language, common_count))+'</aside>'+render_case(case, measured[ident], current, language, rendered, 1, True, editorial_note, routes[ident])+terms(language)+'</section>')
+                markdown += markdown_case(case, measured[ident], current, language, editorial_note=editorial_note, navigation=routes[ident])+'\n'
             destination = ROOT/case_route(ident).lstrip('/'); destination.mkdir(parents=True, exist_ok=True)
             (destination/'index.html').write_text(document(case_route(ident), page_title, case['summary'], ''.join(sections)))
             dump(destination/'index.json', public_case); (destination/'index.md').write_text(markdown.rstrip()+'\n')
@@ -294,8 +307,8 @@ def build():
             markdown = '# '+title+'\n\n'+intro+'\n\n'+scope_text(language, common_count)+'\n\n'
             for case in current['metadata']:
                 note = catalog.get('case_notes', {}).get(case['id'])
-                body += render_case(case, measured[case['id']], current, language, rendered, editorial_note=note)
-                markdown += markdown_case(case, measured[case['id']], current, language, 2, note)+'\n'
+                body += render_case(case, measured[case['id']], current, language, rendered, editorial_note=note, navigation=routes[case['id']])
+                markdown += markdown_case(case, measured[case['id']], current, language, 2, note, routes[case['id']])+'\n'
             body += terms(language)
             headings = [{'level': int(level), 'id': ident, 'title': re.sub('<[^>]+>', '', text)}
                         for level, ident, text in re.findall(r'<h([23]) id="([a-z0-9-]+)">(.*?)</h[23]>', body, re.S)]
@@ -351,8 +364,9 @@ def build():
             body += '<section class="validation-group"><h2 id="'+group['id']+'-'+language+'">'+link(chapter_route(group['id'], language), group['title'][language])+'</h2><p>'+str(current['verification']['passed_tests'])+('検査に合格。ZIP独立展開から全入力を再実行。' if ja else ' tests passed; every input rerun from an independent ZIP extraction.')+'</p><ul>'
             markdown += '## '+group['title'][language]+'\n\n'
             for case in current['metadata']:
-                body += '<li data-validation-entry="'+case['id']+'"><h3>'+link(case_route(case['id'], language), case['title'][language])+'</h3>'+paragraph(case['summary'][language])+'</li>'
+                body += '<li data-validation-entry="'+case['id']+'"><h3>'+link(case_route(case['id'], language), case['title'][language])+'</h3>'+paragraph(case['summary'][language])+'<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+render_execution_navigation(routes[case['id']], language)+'</details></li>'
                 markdown += '- ['+case['title'][language]+']('+ORIGIN+case_route(case['id'], language)+'): '+case['summary'][language]+'\n'
+                markdown += execution_navigation_markdown(routes[case['id']], language)
             body += '</ul></section>'; markdown += '\n'
         sections.append(body+'</div>'+terms(language)+'</section>')
     destination = ROOT/INDEX.lstrip('/'); destination.mkdir(parents=True, exist_ok=True)
@@ -361,8 +375,15 @@ def build():
          'policy': catalog.get('policy'), 'routine_policy': catalog.get('routine_policy'),
          'case_problem_ids': catalog.get('case_problem_ids', {}),
          'common_registry': {'url': ORIGIN+'/numerical-methods-atlas/code-and-data/examples.json', 'example_count': common_count, 'sha256': registry_hash, 'modified_by_this_builder': False},
-         'case_count': len(identifiers), 'groups': public_groups, 'cases': public_cases, 'source_sha256': source_hashes})
+         'case_count': len(identifiers), 'groups': public_groups, 'cases': public_cases, 'source_sha256': source_hashes,
+         'navigation_source_sha256': navigation['source_sha256']})
     (destination/'index.md').write_text(markdown+'\nOriginal code: MIT. Other materials: https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.\n')
+    # Shared case prose also appears inside the atlas SPA.
+    shell = ATLAS/'index.html'
+    shell_html = re.sub(r'<!-- execution-navigation-assets -->.*?<!-- /execution-navigation-assets -->', '', shell.read_text(), flags=re.S)
+    assets = '<!-- execution-navigation-assets --><link rel="stylesheet" href="/numerical-methods-atlas/styles/atlas-execution-navigation.css?v='+digest(ATLAS/'styles/atlas-execution-navigation.css')[:12]+'"><!-- /execution-navigation-assets -->'
+    assert '</head>' in shell_html
+    shell.write_text(shell_html.replace('</head>', assets+'</head>'))
     sitemap = ATLAS/'sitemap.xml'; tree = ET.parse(sitemap); xml = tree.getroot(); namespace = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
     known = {element.text for element in xml.findall('.//{*}loc')}
     urls = [INDEX, *[case_route(ident) for ident in identifiers], *[chapter_route(group, language) for group in data for language in LANGUAGES]]
