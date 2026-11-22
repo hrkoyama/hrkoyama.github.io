@@ -7,12 +7,14 @@ import json
 import re
 import subprocess
 from atlas_depth import depth_teaser, depth_assets
+from atlas_crossovers import crossover_teaser, crossover_assets
 from atlas_execution_discovery import load_discovery, entry_url, ENTRY_BASE
 from atlas_goal_availability import goal_label, goal_attributes, goal_filter_controls, goal_filter_assets
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
 copy=json.loads((ROOT/'catalog/atlas-purpose.json').read_text())
+crossovers=json.loads((ROOT/'catalog/atlas-crossovers.json').read_text())
 policy=json.loads((ROOT/'catalog/atlas-methods.json').read_text())['editorial_policy']
 coverage=json.loads((ATLAS/'coverage.json').read_text())
 discovery=load_discovery(ROOT)
@@ -26,7 +28,8 @@ def goal_start(lang, static=False):
     cards=''.join('<a class="home-goal-choice"'+goal_attributes(g,methods)+' href="/numerical-methods-atlas/start/?lang='+lang+'#'+g['id']+'-'+lang+'"><span>'+html.escape(g['title'][lang])+'</span><small>'+html.escape(goal_label(g,methods,lang))+'</small></a>' for g in data['goals'])
     c={**c,'all':c['all'].format(count=len(data['goals']))}
     map_url='#atlas-map-'+lang if static else '#/?section=atlas-map'
-    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('21の実行例を見る' if ja else 'See 21 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section>'
+    crossover_action='<a href="/numerical-methods-atlas/connections/?lang='+lang+'"><strong>'+html.escape(crossovers['home']['action'][lang])+'</strong><span>'+html.escape(crossovers['home']['short_description'][lang])+'</span></a>'
+    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p><p class="home-crossover-entry">'+crossover_action+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('21の実行例を見る' if ja else 'See 21 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section><section class="page-width crossover-home">'+crossover_teaser(ROOT,lang)+'</section>'
 
 def browse(lang):
     c=copy[lang]
@@ -98,7 +101,8 @@ text=text.replace('</main>',fallback+'</main>')
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-goal-filters[.]css[^"]*">\n?','',text)
 text=re.sub(r'<script type="module" src="/numerical-methods-atlas/goal-filters[.]mjs[^"]*"></script>\n?','',text)
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-depth[.]css[^"]*">\n?','',text)
-text=text.replace('</head>',goal_filter_assets(ROOT)+depth_assets(ROOT)+'</head>')
+text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-crossovers[.]css[^"]*">\n?','',text)
+text=text.replace('</head>',goal_filter_assets(ROOT)+depth_assets(ROOT)+crossover_assets(ROOT)+'</head>')
 text=re.sub(r'href="home-overview.css(?:[?]v=[a-f0-9]+)?"','href="home-overview.css?v='+digest(ATLAS/'home-overview.css')+'"',text)
 text=re.sub(r'<link rel="stylesheet" href="/styles/atlas-purpose.css(?:[?]v=[a-f0-9]+)?">\n?','',text)
 text=text.replace('</head>','<link rel="stylesheet" href="/styles/atlas-purpose.css?v='+digest(ROOT/'styles/atlas-purpose.css')+'">\n</head>')
@@ -161,3 +165,6 @@ text=page.read_text();text=re.sub(r'src="app.js(?:[?]v=[a-f0-9]+)?"','src="app.j
 guide=ROOT/'llms.txt';text=re.sub(r'^- \[Atlas introduction and sharing\].*\n?','',guide.read_text(),flags=re.M)
 guide.write_text(text.rstrip()+'\n- [Atlas introduction and sharing](https://hrkoyama.github.io/numerical-methods-atlas/share/): Bilingual first-visit explanation, eight-area map in the homepage static text, and shareable introduction text and PNG/SVG cards. [Sharing metadata / JSON](https://hrkoyama.github.io/numerical-methods-atlas/share/sharing.json) derives counts from the existing catalogs. Introductory materials have their own limited sharing terms; scientific records and verification scope are unchanged.\n')
 print('Built bilingual atlas purpose statement for the live homepage and static fallback.')
+
+text=re.sub(r'^- \[Cross-field connections\].*\n?','',guide.read_text(),flags=re.M)
+guide.write_text(text.rstrip()+'\n- [Cross-field connections](https://hrkoyama.github.io/numerical-methods-atlas/connections/): bilingual routes from DFT to first-principles MD and thermostats, reaction–diffusion to biology and fluids, and Poisson operators to pressure, Hartree and gravity. Shared mathematics, transferred quantities and distinct validation requirements are explicit; component examples do not establish a validated coupled pipeline. Canonical metadata: /catalog/atlas-crossovers.json.\n')

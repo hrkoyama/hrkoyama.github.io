@@ -6,6 +6,7 @@ export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowe
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
 const executionIntents=new Set(['実行','コード','入力','検証','再現','ダウンロード','run','code','execute','execution','runnable','reproduce','validation','input','download','example']);
 const kindLabels={
+ connection:{ja:'分野間のつながり',en:'Cross-field connection'},
  'execution-example':{ja:'実行例',en:'Runnable example'},
  method:{ja:'手法',en:'Method'},
  chapter:{ja:'解説章',en:'Reading chapter'},
@@ -44,7 +45,7 @@ export function searchChapters(index,query,language='en'){
   const locale=language==='ja'&&entry.title.ja?'ja':'en';
   const shownHeading=heading?(entry.headings[locale].find(h=>h.id===heading.id)||heading):null;
   const snippet=typeof entry.snippet?.[locale]==='string'?plain(entry.snippet[locale]):'';
-  return [{id:entry.id,title:entry.title[locale],locale,section:titleHit?'':heading?.id||'',kind,badge:kindLabels[kind][locale],detail:snippet||shownHeading?.title||(keys.filter(key=>words.every(word=>normalizeSearch(key).includes(word))).slice(0,3).join(' · ')||keys.slice(0,4).join(' · ')),score,executionPriority:namedExecution&&(intent||(compoundName&&!methodResults.some(result=>result.exactMethod))),url:/^\/numerical-methods-atlas\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];
+  return [{id:entry.id,title:entry.title[locale],locale,section:titleHit?'':heading?.id||'',kind,badge:kindLabels[kind][locale],detail:snippet||shownHeading?.title||(keys.filter(key=>words.every(word=>normalizeSearch(key).includes(word))).slice(0,3).join(' · ')||keys.slice(0,4).join(' · ')),score,executionPriority:namedExecution&&(intent||(compoundName&&!methodResults.some(result=>result.exactMethod))),url:(/^\/numerical-methods-atlas\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')||entry.kind==='connection'&&/^\/numerical-methods-atlas\/connections\/\?lang=(ja|en)#(?:dft-md|reaction-transport|poisson-fields)-\1$/.test(entry.routes?.[locale]||'')&&entry.routes[locale].startsWith('/numerical-methods-atlas/connections/?lang='+locale+'#'))&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];
  }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
  if(!methodResults.length)return chapters;
  // A request for a particular runnable problem still opens that problem.
@@ -58,7 +59,7 @@ export function homeSearchPage(){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=62dc1cbb729a',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=8a5c2c2c61e5',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

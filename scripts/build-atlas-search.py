@@ -42,6 +42,17 @@ total=len(json.loads((ROOT/'catalog/atlas-test-problems.json').read_text())['pro
 add('visual-test-index',{'ja':f'絵から探す：全{total}のテスト計算','en':f'Browse all {total} test problems by picture'},['絵から探す','画像','ギャラリー','テスト計算','visual index','gallery'],{lang:'/numerical-methods-atlas/gallery/?lang='+lang for lang in ['ja','en']})
 add('quantum-chemistry-overview',{'ja':'量子化学・DFT：何を近似し、何を解くか','en':'Quantum chemistry and DFT: approximations and equations'},['量子化学','密度汎関数','電子状態','HF','DFT','Kohn–Sham','Hartree–Fock','quantum chemistry','対称群','小群','既約表現','band symmetry'],{lang:f'/numerical-methods-atlas/{lang}/read/quantum-chemistry/' for lang in ['ja','en']})
 add('quantum-atoms-examples',{'ja':'水素型原子とHe：実行・検証例','en':'Hydrogenic atoms and helium: runnable validation examples'},['水素型原子','ヘリウム','He','hydrogenic','helium','LDA_X','SCF','原子 計算 コード 検証'],{lang:f'/numerical-methods-atlas/{lang}/read/quantum-atoms/' for lang in ['ja','en']})
+connections=json.loads((ROOT/'catalog/atlas-crossovers.json').read_text())
+math_families={x['id']:x for x in connections['math_families']}
+crossover_terms=['分野間','分野横断','クロスオーバー','共通数理','共通の数理','検証の違い','crossover','cross field','shared mathematics','validation differences']
+add('crossovers-overview',connections['title'],crossover_terms+list(connections['intro'].values()),{lang:'/numerical-methods-atlas/connections/?lang='+lang for lang in ['ja','en']},'connection')
+index['entries'][-1]['snippet']=connections['intro']
+for route in connections['routes']:
+    keywords=[*crossover_terms,*route.get('keywords',[]),*route['summary'].values()]
+    for ident in route['math_ids']:keywords+=list(math_families[ident]['name'].values())+list(math_families[ident]['summary'].values())
+    for stage in route['stages']:keywords+=list(stage['title'].values())
+    add('crossover-'+route['id'],route['title'],list(dict.fromkeys(keywords)),{lang:'/numerical-methods-atlas/connections/?lang='+lang+'#'+route['id']+'-'+lang for lang in ['ja','en']},'connection')
+    index['entries'][-1]['snippet']=route['summary']
 execution_intents=['実行','コード','入力','検証','再現','ダウンロード','run','code','execute','execution','runnable','reproduce','validation','input','download','example']
 for item in load_discovery(ROOT)['examples']:
     execution=item['execution']
@@ -55,7 +66,7 @@ for item in load_discovery(ROOT)['examples']:
         'routes':{lang:entry_path(item['id'])+'?lang='+lang for lang in ['ja','en']},
         'kind':'execution-example','origin':'public-execution-discovery',
     })
-index['scope']='chapter titles, section headings, model and method labels, glossary aliases, reviewed applicability conditions, and 21 individually scoped runnable execution examples'
+index['scope']='chapter titles, section headings, model and method labels, glossary aliases, reviewed applicability conditions, 21 individually scoped runnable execution examples, and cross-field routes with distinct validation requirements'
 path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
 module=ATLAS/'home-search.js';text=module.read_text()
 text=re.sub(r"from '../search/method-search[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/method-search.mjs?v="+version_method_search(ROOT)+"'", text)
@@ -66,7 +77,7 @@ if marker not in text:
     text=text.replace(target,marker+" document.querySelectorAll('[data-atlas-word-search]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();input.focus({preventScroll:true});form.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});}));\n"+target,1)
 text=re.sub(r"new URL\('home-search-index[.]json(?:[?]v=[a-f0-9]+)?',import.meta.url\)","new URL('home-search-index.json?v="+hashlib.sha256(path.read_bytes()).hexdigest()[:12]+"',import.meta.url)",text)
 old='score}];'
-new="score,url:/^\\/numerical-methods-atlas\\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];"
+new="score,url:(/^\\/numerical-methods-atlas\\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')||entry.kind==='connection'&&/^\\/numerical-methods-atlas\\/connections\\/\\?lang=(ja|en)#(?:dft-md|reaction-transport|poisson-fields)-\\1$/.test(entry.routes?.[locale]||'')&&entry.routes[locale].startsWith('/numerical-methods-atlas/connections/?lang='+locale+'#'))&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];"
 if old in text:text=text.replace(old,new)
 assert new in text or 'findMethods(' in text,'Review upstream search result shape'
 text=text.replace("a.href=readingURL(new URL('.',import.meta.url),result.id,result.locale,result.section)","a.href=result.url||readingURL(new URL('.',import.meta.url),result.id,result.locale,result.section)")
