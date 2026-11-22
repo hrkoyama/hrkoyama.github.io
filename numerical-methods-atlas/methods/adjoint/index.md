@@ -6,7 +6,7 @@ Verify implicit state sensitivities and discrete-adjoint gradients on Bratu agai
 
 Bratu方程式のパラメータ感度で、陰関数の感度方程式・離散随伴勾配・解析的な連続感度・解き直した有限差分を検証する。
 
-Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented.
+The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented.
 
 Other names: 随伴法, 随伴解析, adjoint method, adjoint analysis, 陰関数微分, implicit differentiation, parameter sensitivity, パラメータ感度, Bratu, 随伴法・逆問題, Adjoint methods and inverse problems
 
@@ -42,7 +42,7 @@ python -m pytest -q tests/test_bratu_sensitivity.py
 python scripts/build_bratu_sensitivity.py
 ```
 
-Next: Separate verification for time-dependent adjoints, inverse optimization with multiple observations and nonsmooth problems.
+Next: Separate validation for time-dependent adjoints, multi-parameter inverse optimization and nonsmooth problems. A separate chapter provides the one-parameter synthetic-observation inverse case.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

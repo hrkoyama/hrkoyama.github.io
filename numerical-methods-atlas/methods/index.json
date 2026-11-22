@@ -13789,14 +13789,14 @@
         "en": "Optimization & stochastic methods"
       },
       "summary": {
-        "ja": "目的関数・勾配・制約と停止条件を整理する。",
-        "en": "Connect objectives, gradients, constraints and stopping criteria."
+        "ja": "Bratu方程式の合成観測からλを推定し、離散随伴勾配と区間制約付き勾配法を検証する。",
+        "en": "Estimate Bratu lambda from synthetic observations and verify discrete-adjoint gradients with bounded projected-gradient optimization."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/"
       },
       "code_modules": [],
       "test_files": [],
@@ -13805,22 +13805,31 @@
           "url": "https://doi.org/10.1093/comjnl/13.3.317",
           "label": "A new approach to variable metric algorithms (1970)",
           "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://doi.org/10.2140/pjm.1966.16.1",
+          "label": "Minimization of functions having Lipschitz continuous first partial derivatives (1966)",
+          "scope": "Original sufficient-decrease and backtracking construction; the detailed chapter distinguishes the local projected implementation from the original theorem."
         }
       ],
-      "assumptions": null,
-      "units": null,
-      "boundary_conditions": null,
+      "assumptions": [
+        "Smooth, locally nonsingular lower-branch Bratu states on a fixed mesh; fixed Dirichlet data.",
+        "Five fixed interior sensors, known positive observation weights and one bounded scalar parameter lambda.",
+        "Projected-gradient Armijo iteration uses adjoint gradients; convergence is checked independently of the known generating parameter."
+      ],
+      "units": "Dimensionless state and lambda; weighted least squares uses explicit sensor weights, not spatial integration weights.",
+      "boundary_conditions": "u(0)=u(1)=0, independent of lambda; observation locations fixed on [0,1].",
       "next_deliverable": {
-        "ja": "解析解を持つ目的関数と失敗例。",
-        "en": "Known-solution objectives and explicit failure cases."
+        "ja": "多パラメータ推定・正則化選択・実測データと準Newton法の独立検証。",
+        "en": "Independent validation of multiple parameters, regularization selection, real data and quasi-Newton methods."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "教育用の1パラメータ逆問題。検証範囲は滑らかな下側分枝、固定した合成観測、区間制約付き射影勾配法とArmijo線探索。同じ離散モデルでの回復、連続解析解からの観測による格子バイアス、固定ノイズによる推定値のずれを分ける。準Newton法、実測データ、分枝同定、統計的信頼区間は検証しない。",
+        "en": "An educational one-parameter inverse problem on the smooth lower branch with fixed synthetic observations, bounded projected gradients and Armijo search. Same-discrete-model recovery, grid bias against continuous analytic observations and shifts under fixed noise are distinguished. Quasi-Newton methods, real data, branch identification and statistical confidence intervals are outside the verified scope."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "level": "bounded scalar inverse example; adjoint versus tangent and re-solved finite differences; synthetic-data and grid-bias checks",
+        "on": "2026-11-22"
       },
       "aliases": [
         "数値最適化",
@@ -13828,17 +13837,58 @@
         "準Newton法",
         "準ニュートン法",
         "gradient descent",
-        "quasi Newton"
+        "quasi Newton",
+        "Bratu",
+        "λ推定",
+        "パラメータ推定",
+        "逆問題",
+        "inverse problem",
+        "parameter identification",
+        "projected gradient",
+        "Armijo"
       ],
+      "assumptions_ja": [
+        "固定格子・固定Dirichlet境界の滑らかなBratu下側分枝を用い、状態ヤコビ行列が局所的に可逆である。",
+        "固定した内部5点の観測、既知の正の観測重み、区間制約を持つ1個のスカラーパラメータλを用いる。",
+        "射影勾配法とArmijo線探索の探索方向に随伴勾配を用い、収束判定と生成パラメータの既知値との比較を分ける。"
+      ],
+      "units_ja": "状態とλは無次元。重み付き最小二乗の観測重みを明記し、空間積分の求積重みと区別する。",
+      "boundary_conditions_ja": "u(0)=u(1)=0をλに依存せず固定し、観測位置も区間[0,1]内で固定する。",
+      "code_mapping_scope": "Separate immutable Bratu inverse supplement. One scalar parameter, projected adjoint-gradient Armijo search, same-mesh recovery, continuous-observation refinement and deterministic-noise checks; the original broad code edition is unchanged.",
+      "inverse_release": {
+        "base": "/code/bratu-inverse/2026-11-22/",
+        "edition": "2026-11-22",
+        "archive": "bratu-inverse-2026-11-22.zip",
+        "manifest": "source-manifest.json",
+        "verification": "verification.json",
+        "evidence": "docs/figures/bratu-inverse.json"
+      },
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/",
       "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/index.json",
       "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/index.md",
-      "code_urls": [],
-      "test_urls": [],
-      "run_commands": [],
-      "run_from": null,
-      "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-      "code_edition": null,
+      "code_urls": [
+        "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/numart/bratu_inverse.py",
+        "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/numart/bratu_sensitivity.py",
+        "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/numart/autodiff.py",
+        "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/numart/krylov.py",
+        "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/scripts/build_bratu_inverse.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/tests/test_bratu_inverse.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q tests/test_bratu_inverse.py",
+        "python scripts/build_bratu_inverse.py"
+      ],
+      "run_from": "Extracted Bratu inverse-problem supplement directory",
+      "code_base": "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/",
+      "code_edition": "2026-11-22",
+      "code_download": "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/bratu-inverse-2026-11-22.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/verification.json",
+      "code_archive_sha256": "a32c45d2818abf135b63d2f496666166c2460d0600b04a314dee2944d7c53c33",
+      "results": "https://hrkoyama.github.io/code/bratu-inverse/2026-11-22/docs/figures/bratu-inverse.json",
+      "passed_tests": 23,
       "execution_examples": []
     },
     {
@@ -14140,12 +14190,12 @@
       "units": "Dimensionless Bratu variables and parameter; objective quadrature h=1/(n+1) is explicit.",
       "boundary_conditions": "u(0)=u(1)=0 on [0,1], fixed independently of lambda; corresponding boundary sensitivity is zero.",
       "next_deliverable": {
-        "ja": "時間依存の随伴、複数観測の逆問題最適化、非滑らかな問題への独立した検証。",
-        "en": "Separate verification for time-dependent adjoints, inverse optimization with multiple observations and nonsmooth problems."
+        "ja": "時間依存の随伴、多パラメータの逆問題最適化、非滑らかな問題への独立した検証。1パラメータの合成観測逆問題は別章で公開。",
+        "en": "Separate validation for time-dependent adjoints, multi-parameter inverse optimization and nonsmooth problems. A separate chapter provides the one-parameter synthetic-observation inverse case."
       },
       "limitations": {
-        "ja": "滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴はEuclid内積で定義し、目的関数の積分重みを明記する。逆問題の最適化や時間依存随伴、衝撃波感度は実装しない。",
-        "en": "Educational verification on the smooth Bratu lower branch and a small nonsymmetric linear example. The discrete adjoint uses the Euclidean pairing with objective quadrature weights explicit. Inverse optimization, time-dependent adjoints and shock sensitivities are not implemented."
+        "ja": "感度配布版は滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴はEuclid内積で定義し、目的関数の積分重みを明記する。1パラメータの合成観測逆問題は別章・別配布版で扱う。時間依存随伴、衝撃波感度は未実装。",
+        "en": "The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented."
       },
       "metadata_review": {
         "level": "implicit and discrete-adjoint implementation; analytic, re-solved finite-difference and spatial-refinement checks",

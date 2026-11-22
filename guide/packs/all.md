@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-0b638fcfc8
-Captured (UTC): 2026-11-22T07:05:26+00:00
+Snapshot: 2026-11-22-5165fd2ee0
+Captured (UTC): 2026-11-22T07:16:37+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -314,6 +314,7 @@ Inspect the sensitivity/adjoint source, figure and evidence builder, test source
 The existing AD foundation chapter explains how residual derivatives are obtained. Blondel et al. (2022), Section 2.1, and the official JAXopt references provide further discussion of root derivatives and their JVP/VJP constructions. This independent example uses NumPy and adds neither a JAX/JAXopt dependency nor a performance comparison with those libraries.
 Automatic differentiation foundation · Newton and conditioning
 The nine dedicated tests are rerun from an independently extracted copy of the release. The verification receipt also records checks of numerical evidence, the rebuilt figure and file hashes.
+The fixed sensitivity release in this chapter does not fit observations. A separate follow-up uses its adjoint construction to estimate λ from synthetic observations. Bratu inverse problem: fit a parameter to synthetic observations
 
 ## Implicit differentiation and adjoints: Bratu parameter sensitivity — Publication scope and related entries [en]
 
@@ -1718,6 +1719,167 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-mo
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/
+Coverage: reading
+
+A forward problem computes a state from a coefficient; an inverse problem estimates that coefficient from observations of the state. Fit one Bratu parameter λ to five observations and use the previous chapter’s discrete adjoint gradient in the actual optimization updates. The model, boundary conditions and observation positions are known in this small synthetic problem.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Specify the known inputs and the unknown parameter [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-data
+Coverage: reading
+
+State u, coordinate x and coefficient λ are dimensionless in this educational model. The grid, interval [0,1], zero Dirichlet boundary conditions, observation operator H and weights W are fixed. Only λ is unknown; model form and boundary values are not inferred simultaneously. Use centered differences with n interior unknowns and re-solve the nonlinear equation at each trial parameter.
+-u^{\prime\prime}-\lambda e^u=0,\quad u(0)=u(1)=0,\qquad F_h(u,\lambda)=D_hu-\lambda e^u=0,\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1),\quad h=(n+1)^{-1}.u_\alpha(x)=-2\log\!\frac{\cosh(\alpha(x-1/2))}{\cosh(\alpha/2)},\quad\lambda(\alpha)=\frac{2\alpha^2}{\cosh^2(\alpha/2)},\qquad\alpha_*=1.5,\quad\lambda_*\approx2.684636137266.
+The generating values are α*=1.5 and λ*≈2.684636137266. Restrict λ to [0.2,3.4] and start every state solve at zero to target the smaller-solution branch. Numerical branch selection is part of the problem specification. Fitting on the upper branch or continuing through a fold is not verified.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Observation operators and weighted least squares [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#least-squares
+Coverage: reading
+
+x_{\rm obs}=(1/8,1/4,1/2,3/4,7/8),\qquad r_h(\lambda)=H_hu_h(\lambda)-d,\quad W=\operatorname{diag}(w_j),\quad w_j=1/5.
+Five sensors lie at x=0.125, 0.25, 0.5, 0.75, 0.875. They coincide with grid nodes for n=15,31,63,127, so H selects interior state entries; no interpolation error is introduced. A row observing a fixed zero endpoint is zero. Save the observations d before optimization and keep them fixed rather than regenerating them for each trial λ.
+\Phi_h(\lambda)=\frac12 r_h(\lambda)^TWr_h(\lambda)+\frac\gamma2(\lambda-\lambda_{\rm prior})^2,\qquad\gamma\ge0,\quad\ell=0.2\le\lambda\le b=3.4.
+All published experiments use γ=0 and wⱼ=1/5, making the objective half the mean squared observation residual. The implementation also accepts positive nonuniform weights and γ≥0, with separate tests for the weights and explicit prior term. Interpreting W as an inverse error covariance would require a specified probability model; none is assumed here.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Build an adjoint gradient from observation residuals [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#adjoint-gradient
+Coverage: reading
+
+J=F_u=D_h-\lambda\operatorname{diag}(e^u),\quad F_\lambda=-e^u,\quad q=H_h^TWr_h,\qquad J^Tp=q.\frac{d\Phi_h}{d\lambda}=\underbrace{\gamma(\lambda-\lambda_{\rm prior})}_{\text{explicit parameter term}}-p^TF_\lambda=\gamma(\lambda-\lambda_{\rm prior})+p^Te^u.
+The state partial derivative q includes both the transpose of H and the observation weights. With the Lagrangian convention Φ−pᵀF, subtract pᵀF_λ from the explicit parameter derivative. Since F_λ=−exp(u), the Bratu state-mediated term has a plus sign. Setting γ=0 removes the explicit term, not the state-mediated term.
+Assemble J at the converged primal state and solve Jᵀp=q using the existing implicit-differentiation linear algebra. Do not differentiate an unrolled Newton iteration sequence. This Bratu J is symmetric: an independent nonsymmetric manufactured problem tests transposition in the previous release, while the new dedicated tests check the observation operator, nonuniform weights and regularization.
+There is one parameter and one objective, so a direct sensitivity solve Js=exp(u) also has one right-hand side. This example demonstrates no adjoint speed advantage. It checks a construction that can extend to many parameters on a small inverse problem.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Run a gradient method with box constraints [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#bounded-optimization
+Coverage: reading
+
+\Pi_{[\ell,b]}(z)=\min(b,\max(\ell,z)),\qquad\lambda_{\rm trial}=\Pi_{[\ell,b]}(\lambda_k-a g_k),\quad\Delta\lambda=\lambda_{\rm trial}-\lambda_k.\Phi_h(\lambda_{\rm trial})\le\Phi_h(\lambda_k)+c g_k\Delta\lambda,\qquad c=10^{-4},\quad a=10\,2^{-j},\quad j=0,1,\ldots .
+Update λ using its current adjoint gradient g and project into the interval. Restart the step length at a=10 on each iteration and halve it until the sufficient-decrease inequality holds. Use the actual displacement after projection in gΔλ. Accepted and rejected trial evaluations use the same primal controls. A failed state solve stops the calculation rather than supplying a valid objective value.
+G(\lambda)=\lambda-\Pi_{[\ell,b]}(\lambda-g(\lambda)),\qquad |G(\lambda)|\le10^{-10}.
+The stopping measure is the absolute projected-gradient mapping with a unit step. It equals the ordinary gradient at an interior solution where projection is inactive; at an active bound a nonzero g can satisfy constrained stationarity. Save every accepted point, step length, backtrack count, primal/adjoint residual and termination reason, with at most 300 updates and 50 line-search trials. A small objective change alone is not the convergence test.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Run a gradient method with box constraints [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#bounded-optimization
+Coverage: reading
+
+Armijo (1966) provides the sufficient-decrease and variable-step idea; this implementation applies it to the projected displacement. The original unconstrained convergence theorem is not cited as a global-convergence guarantee for this nonlinear inverse problem. This is also not an implementation of BFGS or a general constrained-optimization library.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Keep three synthetic data regimes distinct [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#synthetic-data
+Coverage: reading
+
+d^{\rm disc}=H_hu_h(\lambda_*),\qquad d^{\rm cont}_j=u_{\alpha_*}(x_j),\qquad d^{\rm noisy}=d^{\rm cont}+10^{-3}(1,-0.6,0.4,-1,0.3)^T.
+Noiseless data from the same discretization. Generate d with the n=31 forward solver and invert with that same discretization. Recovering λ* is an inverse crime: it checks consistency among data generation, observations, gradient and optimizer, not accuracy for the continuous problem or real measurements.
+Noiseless data from the independent continuous family. Fix the closed-form u_α values at the observation points. Refine the inverse grid through n=15,31,63,127 to examine discretization bias in the difference from the generating parameter.
+Data with a fixed perturbation. Add the displayed deterministic vector once to the same continuous observations. No random draw or known noise distribution is assumed, and no resampling occurs. The published perturbed-data fit uses n=63. A best fit displaced from λ* need not indicate optimizer failure.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Verification: gradients, optimization, grids and observations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+The saved measurements and input data record figure values, controls, residuals and termination reasons.
+g_{\rm FD}(\varepsilon)=\frac{\Phi_h(\lambda+\varepsilon)-\Phi_h(\lambda-\varepsilon)}{2\varepsilon},\qquad F_h(u_h(\lambda\pm\varepsilon),\lambda\pm\varepsilon)=0.
+Check gradients away from stationary points. Re-solve the state at λ±ε for several λ and compare objective-only central differences with adjoint gradients. Do not rely only on both gradients being nearly zero at an optimum.
+Use an independent scalar reference. Compare the adjoint-gradient fit with objective-only golden-section search. Golden section assumes a unimodal objective; sampled objective landscapes are also saved. Agreement is not a proof of global optimality across all branches.
+Use three starting values. Compare accepted updates, objective decrease, projected gradients and termination reasons from 0.5,1.5,3.2.
+Vary the data generation and grid separately. Record same-discretization consistency, mesh error for continuous data and the shift in best fit under the fixed perturbation.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Verification: gradients, optimization, grids and observations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+Saved measurements 1: gradient checks. At n=31 and λ=0.8,1.8,3.0, central differences with ε=10⁻⁵ differ from adjoint gradients by approximately 1.31×10⁻¹², 2.81×10⁻¹² and 1.79×10⁻¹². The maximum absolute direct-sensitivity/adjoint gradient difference is below 1.4×10⁻¹⁷. The JSON also saves a perturbation sweep. These check derivatives of the implemented discrete objective.
+Measurements 2: same-discretization recovery. For n=31, starts λ=0.5,1.5,3.2 take 33,30,25 accepted updates. Absolute errors from λ* are approximately 1.48×10⁻⁹, 1.10×10⁻⁹ and 1.65×10⁻⁹. All three projected gradients are at most 10⁻¹⁰ and data RMS residuals below 3.9×10⁻¹⁰. Read this close agreement as a same-discretization consistency check.
+Measurements 3: mesh dependence for continuous data. For n=15,31,63,127, fitted λ values are approximately 2.6816989071, 2.6839024768, 2.6844527616, 2.6845902950. Absolute errors from λ* are approximately 2.9372×10⁻³, 7.3366×10⁻⁴, 1.8338×10⁻⁴, 4.5842×10⁻⁵, decreasing by about four as h halves. Observed orders are 2.0013, 2.0003, 2.0001. The optimizer converges while finite-mesh bias remains.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Verification: gradients, optimization, grids and observations [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+Measurements 4: a fixed perturbation shifts the best fit. At n=63 the fitted λ≈2.6841620622 shifts by about −2.9070×10⁻⁴ from the unperturbed optimum on the same grid. Absolute error from λ* is about 4.7408×10⁻⁴, data RMS residual about 7.1942×10⁻⁴ and objective about 2.5878×10⁻⁷. The projected gradient is about 6.39×10⁻¹¹, so the departure from truth is not explained simply by unfinished optimization.
+The four continuous-data fits and the fixed-perturbation fit agree with the objective-only golden-section reference to within 2.1×10⁻⁹ in λ. The reference’s final interval width is below about 8.65×10⁻⁹; it is not a certificate of an exact optimum. Primal residuals at the eight final fits above are at most 1.4×10⁻¹¹. Judge derivative agreement, optimizer stopping and closeness to the generating parameter separately.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Observations that can and cannot identify λ [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#identifiability
+Coverage: reading
+
+J s=e^u,\qquad \frac{d(H_hu_h)}{d\lambda}=H_hs,\qquad \|W^{1/2}H_hs\|_2>0\ \text{is a local sensitivity diagnostic}.
+A response of the interior observations to λ is a useful local sensitivity diagnostic in this scalar problem. A weak response can amplify small data changes into large parameter changes. Local sensitivity alone does not prove global uniqueness. Changing the branch, sensor positions or admissible interval changes the inverse problem.
+For a counterexample, observe only x=0,1. Their fixed Dirichlet values vanish independently of λ, so H=0 and Hs=0. With γ=0, the objective is independent of λ and the data cannot identify it. Dedicated tests check this property, and the fitting function rejects this setting as uninformative. A regularization term could select a parameter but would not make the boundary observations informative.
+The fixed-perturbation experiment supplies no statistical confidence intervals. Real observations, unknown model discrepancy, optimal sensor placement and identifiability of many parameters are outside the verified scope.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Separate parameter error from optimization error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#error-scope
+Coverage: reading
+
+e_\lambda=|\widehat\lambda_h-\lambda_*|,\qquad r_{\rm data}=\sqrt{\frac15\sum_{j=1}^5(H_hu_h-d)_j^2},\qquad r_F=\|F_h(u_h,\lambda)\|_2,\quad r_p=\|J^Tp-q\|_2.
+Error from the generating λ*, observation residual, primal residual, adjoint residual and projected gradient are different quantities. A small projected gradient checks stationarity for the chosen grid, observations and constraints; it does not guarantee truth recovery or a zero observation residual. Conversely, continuous/discrete mismatch or fixed observation perturbations can move a well-converged optimum away from λ*.
+Primal solves use an unscaled Euclidean residual tolerance of 10⁻¹⁰ and at most 40 updates. Adjoint systems use small dense matrices. Finite-difference gradient checks balance perturbation truncation, roundoff and inner-solve error. Mesh refinement, tighter optimizer stopping and improvement of a physical model address different errors.
+This release is an educational scalar, box-constrained fit on a specified Bratu branch. It is not a general inverse-problem library, quasi-Newton implementation, transient adjoint, singular-point continuation method, model-selection procedure or validation of a physical model with experimental data.
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Run the fixed release and inspect its inputs [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#reproduce
+Coverage: reading
+
+Extract the dated release ZIP and follow the README. The earlier AD and sensitivity supplements remain separate, fixed releases; this synthetic inverse example has its own package.
+python -m pip install -r requirements.txt
+python scripts/build_bratu_inverse.py
+python -m pytest tests/test_bratu_inverse.py
+Inspect the objective, adjoint and optimizer source, figure and evidence builder, dedicated tests, independent-extraction verification record and file inventory and SHA-256 hashes. JSON inputs include positions, generating parameter, fixed perturbation, weights, starts and stopping controls.
+Blondel et al. (2022), Section 2.1, and the official JAXopt documentation discuss root derivatives built from residual derivatives and linear solves; Jameson (1988) gives historical context for adjoints in design. This NumPy educational implementation does not claim to reproduce their paper experiments or JAXopt’s implementation or performance.
+Implicit differentiation and Bratu sensitivity · Automatic differentiation foundation · General gradient and quasi-Newton reading
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#publication-scope
+Coverage: reading
+
+An educational box-constrained adjoint-gradient implementation estimates one Bratu coefficient λ from synthetic observations. Measured checks cover same-discretization consistency, mesh dependence for independent continuous-family data, fixed observation perturbations, gradient differences and an objective-only reference search. Scope is a specified smaller-solution branch, fixed observations and small dense matrices. It does not validate BFGS or optimization methods generally, all-branch uniqueness, real data, statistical uncertainty or unknown model discrepancy.
+Gradient and quasi-Newton optimization
+Implicit differentiation and adjoint methods
+Automatic differentiation
+Armijo-damped Newton
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. Pacific Journal of Mathematics
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted pages 1–2: hypotheses, sufficient decrease and the modified steepest-descent step-halving rule in Corollary 2. No full-paper audit, reproduction or direct transfer of its unconstrained convergence theorem to the projected nonlinear inverse problem is claimed.
+Antony Jameson (1988). Aerodynamic design via control theory. Journal of Scientific Computing
+Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
+Publisher summary/conclusion for aerodynamic adjoints; the residual Lagrangian here is a generic discrete derivation.
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+
+## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/#sources
+Coverage: reading
+
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted Section 2.1, pages 3–4: differentiating a root under local nonsingularity, and forming JVPs/VJPs through linear systems. Full-paper audit and reproduction of the paper experiments are not claimed.
+The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
+Official reference documentation · Selected source passages consulted · Consulted record
+Consulted the distinction between implicit and unrolled differentiation, custom_root support and the root_jvp/root_vjp API invariant optimality_fun(sol,*args)==0 with a supplied linear solver. No library benchmarking or reproduction of all examples is claimed.
 
 ## The carbuncle phenomenon [en]
 
@@ -5629,13 +5791,14 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/
 Coverage: reading
 
 Vary conditioning on positive-definite quadratics with known minima and check gradients by directional differences. On curved valleys vary initialization, scaling and line searches. Decreasing an objective does not validate physical assumptions or constraints.
+Verified implementation example: adjoint-gradient fitting of the Bratu synthetic inverse problem
 
 ## Gradient and quasi-Newton optimization — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/optimization/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+This page gives general gradient/quasi-Newton reading. Implemented scope is the separate Bratu synthetic inverse example: a scalar box-constrained projected-gradient method with Armijo backtracking. BFGS, general quasi-Newton methods and the broader checks proposed on this page are not implemented or verified by that example.
 Gradient and quasi-Newton optimization
 
 ## Gradient and quasi-Newton optimization — Primary publications, supporting sources and review scope [en]
@@ -10438,8 +10601,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 114 methods and building blocks · 221 journal/conference papers · 262 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 78 reading chapters including this inventory.
+46 equation/model entries · 115 methods and building blocks · 221 journal/conference papers · 262 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 79 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -10533,7 +10696,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-98 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+99 entries have scoped local examples; 16 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -12370,6 +12533,7 @@ python -m pytest tests/test_bratu_sensitivity.py
 自動微分との役割分担は既存の共通基盤章へ戻って確認できます。Blondelほか（2022）の根の微分とJVP・VJPの構成、およびJAXopt公式資料は、残差の微分と線形求解を組み合わせる見方への参照先です。今回の実装はNumPyを用い、JAX・JAXoptへの依存や、それらのライブラリの性能比較は追加していません。
 自動微分の共通基盤 · Newton法と条件数
 配布版の専用テスト9件を、独立したフォルダに展開した内容で再実行しています。数値結果・生成図・ファイルのハッシュを照合する手順も検証記録に残します。
+この章の固定した感度配布版は、観測への当てはめを含みません。次の独立した章では、その随伴計算を使って合成観測からλを推定します。 Bratu逆問題：合成観測からのパラメータ推定
 
 ## 陰関数微分と随伴法：Bratuのパラメータ感度 — 公開範囲と関連項目 [ja]
 
@@ -13333,6 +13497,149 @@ Coverage: reading
 Murrayの第3版入門書（2002）は、これらの分野を横断する読書経路になります。PhysiomeのHodgkin–HuxleyワークスペースとAliev–Panfilovの符号化は、実装パラメータを選ぶ前に確認すべきモデルの版の参照先です。独立した検証データではありません。
 今後の独立した調査対象には、神経集団場、空間確率反応拡散、細胞内極性と質量保存反応網、細胞周期のサイズ構造、頂点・位相場による細胞力学、腫瘍と栄養の自由境界、遺伝的浮動を含む集団遺伝学などがあります。現在の22項目が生物モデルの全範囲を尽くすという主張ではありません。指定した方程式に対する数値検証と、生物個体や実験データに対する妥当性検証も異なります。
 方程式ギャラリー、歴史アトラス、全参考文献へ戻れます。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — Bratu逆問題：合成観測からλを随伴勾配で推定する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/
+Coverage: reading
+
+順問題を「係数から状態を求める」計算とすれば、逆問題は「観測された状態から係数を推定する」計算です。ここではBratu方程式の5つの観測値から1つのパラメータλを推定し、前章で導いた離散随伴勾配を実際の最適化の更新に使います。対象は、既知の方程式・境界条件・観測位置を持つ小規模な合成問題です。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 何を既知とし、何を推定するか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#inverse-data
+Coverage: reading
+
+状態u、座標x、係数λは、この教育用モデルでは無次元です。格子、区間[0,1]、ゼロDirichlet境界条件、観測演算子Hと重みWは固定します。未知量はλだけで、モデルの形や境界値を同時に推定する例ではありません。内部未知数nに対する中心差分を使い、各試行λで非線形方程式を解き直します。
+-u^{\prime\prime}-\lambda e^u=0,\quad u(0)=u(1)=0,\qquad F_h(u,\lambda)=D_hu-\lambda e^u=0,\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1),\quad h=(n+1)^{-1}.u_\alpha(x)=-2\log\!\frac{\cosh(\alpha(x-1/2))}{\cosh(\alpha/2)},\quad\lambda(\alpha)=\frac{2\alpha^2}{\cosh^2(\alpha/2)},\qquad\alpha_*=1.5,\quad\lambda_*\approx2.684636137266.
+合成データの生成値はα*=1.5、λ*≈2.684636137266です。λ∈[0.2,3.4]に制限し、状態の初期値を毎回ゼロとして、小さい解の枝を対象にします。数値的な枝の選択を問題設定に含めます。折り返し点を越える追跡や高い方の解の枝での推定は検証していません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 観測演算子と重み付き最小二乗 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#least-squares
+Coverage: reading
+
+x_{\rm obs}=(1/8,1/4,1/2,3/4,7/8),\qquad r_h(\lambda)=H_hu_h(\lambda)-d,\quad W=\operatorname{diag}(w_j),\quad w_j=1/5.
+5つのセンサーをx=0.125, 0.25, 0.5, 0.75, 0.875に置きます。n=15,31,63,127のいずれでも格子点に一致するため、Hは対応する内部状態を取り出す行列です。この例に補間誤差は入りません。固定されたゼロ端点を観測する行はゼロになります。観測値dは最適化開始前に保存し、各試行λに合わせて生成し直しません。
+\Phi_h(\lambda)=\frac12 r_h(\lambda)^TWr_h(\lambda)+\frac\gamma2(\lambda-\lambda_{\rm prior})^2,\qquad\gamma\ge0,\quad\ell=0.2\le\lambda\le b=3.4.
+公開実験はすべてγ=0、wⱼ=1/5です。そのため目的関数は観測残差の平均二乗の半分です。実装は正の非一様重みと任意のγ≥0も受け取り、別テストで重み・事前値への陽な依存を検査します。Wを観測誤差の逆共分散と解釈するには、別途その確率モデルが必要です。ここではその仮定を置きません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 観測残差から随伴勾配を組み立てる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#adjoint-gradient
+Coverage: reading
+
+J=F_u=D_h-\lambda\operatorname{diag}(e^u),\quad F_\lambda=-e^u,\quad q=H_h^TWr_h,\qquad J^Tp=q.\frac{d\Phi_h}{d\lambda}=\underbrace{\gamma(\lambda-\lambda_{\rm prior})}_{\text{explicit parameter term}}-p^TF_\lambda=\gamma(\lambda-\lambda_{\rm prior})+p^Te^u.
+状態の偏微分qに、Hの転置と観測重みを両方含めます。LagrangianをΦ−pᵀFとする規約では、総微分は陽な項からpᵀF_λを引きます。F_λ=−exp(u)なので、Bratuの状態を通した項はプラスになります。γ=0では陽な項だけがゼロであり、状態を通した項までゼロになるわけではありません。
+順問題を収束させた状態でJを組み立て、Jᵀp=qを解きます。既存の陰関数微分の線形求解を使い、Newton反復列を展開して微分しません。このBratuのJは対称です。転置を検査する独立の非対称製造問題は前章の配布版に、観測演算子・非一様重み・正則化の検査は今回の専用テストにあります。
+λが1つ、目的関数も1つなので、直接感度Js=exp(u)を解く方法でも右辺は1本です。随伴の計算時間の優位性を示す例ではありません。多数のパラメータへ拡張する際の構成を、小さな逆問題で確認する例です。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 箱制約つき勾配法を実際に動かす [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#bounded-optimization
+Coverage: reading
+
+\Pi_{[\ell,b]}(z)=\min(b,\max(\ell,z)),\qquad\lambda_{\rm trial}=\Pi_{[\ell,b]}(\lambda_k-a g_k),\quad\Delta\lambda=\lambda_{\rm trial}-\lambda_k.\Phi_h(\lambda_{\rm trial})\le\Phi_h(\lambda_k)+c g_k\Delta\lambda,\qquad c=10^{-4},\quad a=10\,2^{-j},\quad j=0,1,\ldots .
+現在点の随伴勾配gを使ってλを更新し、区間へ射影します。ステップの候補は毎反復a=10から始め、上の十分減少条件を満たすまで半分にします。右辺のgΔλには、射影後の実際の変位を使います。受理・棄却された候補を含め、各評価で同じ非線形求解の制御を使います。順問題が失敗すれば、目的関数の有効な評価として扱わず停止します。
+G(\lambda)=\lambda-\Pi_{[\ell,b]}(\lambda-g(\lambda)),\qquad |G(\lambda)|\le10^{-10}.
+停止判定は単位ステップで定義した射影勾配写像の絶対値です。内部最適点では通常の勾配と一致しますが、制約端点ではgがゼロでなくても制約付き停留点となり得ます。最大300更新、線探索は最大50試行で、終了理由・全受理点・ステップ長・後退回数・順問題残差・随伴残差を保存します。目的関数が少し変化しただけでは収束としません。
+Armijo（1966）の原論文の十分減少・可変ステップの考え方を参照し、この教材では射影後の変位に適用します。原論文の無制約問題の収束定理を、この非線形逆問題全体の大域収束保証として引用しません。BFGSや汎用の制約付き最適化実装を追加したわけでもありません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 3種類の合成データを混同しない [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#synthetic-data
+Coverage: reading
+
+d^{\rm disc}=H_hu_h(\lambda_*),\qquad d^{\rm cont}_j=u_{\alpha_*}(x_j),\qquad d^{\rm noisy}=d^{\rm cont}+10^{-3}(1,-0.6,0.4,-1,0.3)^T.
+同じ離散化から生成した無雑音データ。 n=31の順問題でdを作り、その同じ離散化を逆問題にも使います。λ*の再現は、データ生成・観測・勾配・最適化が整合することを確かめるinverse crimeです。連続問題や実測データに対する精度の証拠にはしません。
+独立した連続解族から生成した無雑音データ。 解析式u_αを観測点で評価して固定します。逆問題の有限差分格子をn=15,31,63,127と細分化すると、生成値との差に含まれる空間離散化の偏りを調べられます。
+固定摂動を加えたデータ。 同じ連続解の5成分に、上式の決定論的な摂動を一度だけ加えます。乱数や既知のノイズ分布を仮定せず、摂動の再標本化はしません。固定摂動の公開適合はn=63です。最良適合値が生成λ*からずれても、最適化の失敗とは限りません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 検証：勾配・最適化・格子・観測を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+保存した全測定値と入力データから、図・設定・残差・終了理由を確認できます。
+g_{\rm FD}(\varepsilon)=\frac{\Phi_h(\lambda+\varepsilon)-\Phi_h(\lambda-\varepsilon)}{2\varepsilon},\qquad F_h(u_h(\lambda\pm\varepsilon),\lambda\pm\varepsilon)=0.
+停留点以外で勾配を照合。 複数のλでλ±εの状態をそれぞれ解き直し、目的関数だけの中心差分と随伴勾配を比較します。最適点付近の両者が単にゼロに近いことだけを検査しません。
+独立した1次元参照。 勾配を使わない黄金分割探索と随伴勾配による適合結果を比較します。黄金分割は単峰性を前提とし、標本化した目的関数曲線も保存します。この一致を全分枝での大域最適性の証明にはしません。
+3つの初期値。 0.5,1.5,3.2からの更新・目的関数の減少・射影勾配・終了理由を照合します。
+生成方法と格子の違い。 同じ離散化での再現性、連続データへの格子誤差、固定摂動による最良適合値の移動を別々に記録します。
+保存した実測値①：勾配の照合。 n=31、λ=0.8,1.8,3.0でε=10⁻⁵とした中心差分との差は、順に約1.31×10⁻¹²、2.81×10⁻¹²、1.79×10⁻¹²です。状態感度から作る直接勾配との絶対差は、最大1.4×10⁻¹⁷未満でした。JSONには摂動幅の走査も保存しています。これは実装された離散目的関数の微分の検査です。
+実測値②：同じ離散化での回復。 n=31で初期λ=0.5,1.5,3.2から始めると、受理した更新は33,30,25回、生成λ*との絶対差は約1.48×10⁻⁹、1.10×10⁻⁹、1.65×10⁻⁹でした。3例とも射影勾配は10⁻¹⁰以下、観測残差RMSは3.9×10⁻¹⁰未満です。この高い一致は同じ離散化による整合性検査として読みます。
+実測値③：連続データへの格子依存。 n=15,31,63,127で推定λは約2.6816989071、2.6839024768、2.6844527616、2.6845902950です。λ*との差の絶対値は約2.9372×10⁻³、7.3366×10⁻⁴、1.8338×10⁻⁴、4.5842×10⁻⁵で、hを半分にするごとにおおむね4分の1になります。観測された次数は2.0013、2.0003、2.0001です。最適化が収束しても、有限格子では生成λ*との差が残ります。
+実測値④：固定摂動で最良適合値が移る。 n=63で推定λ≈2.6841620622となり、同じ格子の無摂動データの最適値から約−2.9070×10⁻⁴ずれます。生成λ*との絶対差は約4.7408×10⁻⁴、観測残差RMSは約7.1942×10⁻⁴、目的関数は約2.5878×10⁻⁷です。射影勾配は約6.39×10⁻¹¹なので、真値との差を未収束だけで説明しません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 検証：勾配・最適化・格子・観測を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#inverse-verification
+Coverage: reading
+
+連続データの4格子と固定摂動の適合は、目的関数だけの黄金分割参照とλで2.1×10⁻⁹以内に一致します。参照探索の最終区間幅は約8.65×10⁻⁹以下で、厳密な最適値の証明ではありません。上記8つの最終適合の順問題残差は1.4×10⁻¹¹以下でした。勾配の照合、最適化の停止、生成値への近さを別々に判定します。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 識別できる観測と、できない観測 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#identifiability
+Coverage: reading
+
+J s=e^u,\qquad \frac{d(H_hu_h)}{d\lambda}=H_hs,\qquad \|W^{1/2}H_hs\|_2>0\ \text{is a local sensitivity diagnostic}.
+内部観測がλに反応することは、この1パラメータ問題で局所的な識別を考える手がかりになります。ただし、感度が小さければデータの小さな変化が大きな推定値の変化を生み得ます。局所感度だけで大域的な一意性は示せません。枝・観測位置・許容区間を変えると別の推定問題になります。
+反例として端点x=0,1だけを観測すると、Dirichlet値はλによらずゼロなのでH=0、H s=0です。γ=0なら目的関数はλに依存せず、データからλを識別できません。専用テストでこの性質を確認し、最適化関数はこの設定を情報不足として拒否します。正則化で特定の値を選んでも、境界観測が情報を与えたことにはなりません。
+固定摂動の実験から統計的な信頼区間は作りません。実データ、未知のモデル誤差、センサー配置の最適化、多数パラメータの識別可能性は、今回の検証対象に含めていません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 推定値の誤差と最適化の誤差を区別する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#error-scope
+Coverage: reading
+
+e_\lambda=|\widehat\lambda_h-\lambda_*|,\qquad r_{\rm data}=\sqrt{\frac15\sum_{j=1}^5(H_hu_h-d)_j^2},\qquad r_F=\|F_h(u_h,\lambda)\|_2,\quad r_p=\|J^Tp-q\|_2.
+生成λ*との差、観測残差、順問題残差、随伴方程式残差、射影勾配は別の量です。小さい射影勾配は、選んだ格子・観測・制約での停留性を検査します。λ*の回復や、観測残差がゼロになることを保証しません。逆に、固定摂動や連続・離散のずれがあれば、十分収束した最適点でもλ*とは異なり得ます。
+順問題の許容値は非スケーリングのEuclid残差ノルム10⁻¹⁰、最大40更新です。随伴線形系は小規模密行列を用います。勾配差分ではεの打切り誤差・丸め誤差・内側求解誤差が競合します。格子を細かくすること、最適化を厳しく止めること、モデルを正しくすることは、別々の改善です。
+この配布版は、指定したBratuの枝で、観測からλを推定する1次元・箱制約つきの教育用例です。汎用逆問題ライブラリ、準Newton法、時間発展随伴、分岐点の通過、モデル選択、実験データによる物理モデルの妥当性検証を提供しません。
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 実行・入力データ・固定した配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#reproduce
+Coverage: reading
+
+日付を固定した配布ZIPを展開し、READMEに従って実行します。以前の自動微分・感度配布版はそのまま参照でき、今回の合成逆問題は別の配布物です。
+python -m pip install -r requirements.txt
+python scripts/build_bratu_inverse.py
+python -m pytest tests/test_bratu_inverse.py
+目的関数・随伴勾配・最適化のソース、図と測定記録の生成、専用テスト、独立展開後の検証記録、ファイル一覧とSHA-256を公開します。観測位置・生成値・固定摂動・重み・初期値・停止条件もJSONに保存します。
+残差の微分から根の微分へ進む考え方はBlondelほか（2022）第2.1節とJAXopt公式資料、設計目的への随伴の歴史的文脈はJameson（1988）を参照します。NumPyによる教材であり、それらの原論文の実験やJAXoptの実装・性能を再現する主張はしません。
+陰関数微分とBratuの感度 · 自動微分の共通基盤 · 勾配法・準Newton法の一般的な解説
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#publication-scope
+Coverage: reading
+
+合成観測から1つのBratu係数λを推定する、箱制約つき随伴勾配法の教育用実装です。同じ離散化での再現性、独立した連続解データへの格子依存、固定観測摂動、差分勾配と目的関数のみの参照探索を実行検証します。指定した小さい解の枝・固定観測・小規模密行列に限定します。BFGSなどの最適化手法全般、全分枝の一意性、実データ、確率的な不確かさ推定、未知のモデル誤差は検証しません。
+勾配法・準Newton法
+陰関数微分・随伴法
+自動微分
+Armijo減衰Newton法
+
+## Bratu逆問題：合成観測からλを随伴勾配で推定する — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. Pacific Journal of Mathematics
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+原論文1〜2頁の仮定・十分減少・系2の可変ステップ（半減探索）を参照。全文監査・数値再現・無制約問題の収束定理を射影つき非線形逆問題へそのまま適用する主張はしません。
+Antony Jameson (1988). Aerodynamic design via control theory. Journal of Scientific Computing
+研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
+出版社の概要・結論を空力設計の随伴法の文脈で参照。ここでの離散残差のLagrangianは一般形で説明しています。
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+第2.1節・3〜4頁の、局所的な正則性を仮定した根の微分、線形方程式によるJVP・VJPの構成を参照。論文全体の監査や掲載実験の再現は主張しません。
+The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+陰関数微分と反復展開の区別、custom_root、線形求解器を受け取るroot_jvp・root_vjpと収束した根を前提とする説明を参照。ライブラリの性能比較や全例の再現は未実施です。
 
 ## カーバンクル現象 [ja]
 
@@ -16067,13 +16374,14 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/
 Coverage: reading
 
 既知解の正定値二次関数で条件数を変え、勾配を方向差分でも照合します。Rosenbrock型の谷では初期値・スケール・線探索を変えます。目的関数が減ったことだけで制約や物理モデルの妥当性は証明できません。
+検証済みの実装例：Bratu合成逆問題の随伴勾配による推定
 
 ## 勾配法・準Newton法 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/optimization/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+このページは勾配法・準Newton法の一般的な解説です。実装済みの範囲は、別章のBratu合成逆問題における1次元の箱制約つき射影勾配法とArmijo後退探索です。BFGS・汎用準Newton法や、このページで挙げた一般的な検証案を実装検証した意味ではありません。
 勾配法・準Newton法
 
 ## 勾配法・準Newton法 — 一次文献・関連資料と確認範囲 [ja]
@@ -20273,8 +20581,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素114項目・学術誌／会議論文221件・全参考資料262件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め78章です。
+方程式・モデル46項目・計算法と構成要素115項目・学術誌／会議論文221件・全参考資料262件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め79章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -20369,7 +20677,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は98、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は99、文献解説のみは16です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
