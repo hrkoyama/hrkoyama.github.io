@@ -11,13 +11,50 @@ function stageLabel(m) { return ({preserved_proceedings_manuscript:'Preserved pr
 function awardLabel(p) { if(!p.award && p.year<=1990) return 'COMPETITION ENTRY · AWARD NOT CHECKED'; return p.award?.label || (p.award_status?.startsWith('Source conflict') ? 'AWARD CLAIMS CONFLICT' : p.award_status?.startsWith('Outcome checked') ? 'FINALIST' : 'FINALIST · AWARD NOT CHECKED'); }
 function reviewedVersions(p) { return (p.reviewed_versions || [{evidence_stage:'preserved_proceedings_manuscript',source_revision_date:null}]).map(v=>stageLabel(v)+(v.source_revision_date?' · '+v.source_revision_date:'')).join('; '); }
 function fillSelect(id, values) { for (const value of [...new Set(values)].sort()) { const o = document.createElement('option'); o.value = value; o.textContent = value; $(id).append(o); } }
+function manuscriptRecord(id) { return db.manuscript_collection?.records.find(r=>r.record_id===id) || null; }
+function manuscriptStatusLabel(status) {
+  return ({available_reviewed:'Collected · scientifically reviewed',available_review_pending:'Collected · scientific review pending',not_recovered:'Manuscript not recovered',not_a_single_paper:'Organization entry · no single paper'})[status] || 'Collection status not recorded';
+}
+function manuscriptFilterMatches(p, status) {
+  const state=manuscriptRecord(p.id)?.status;
+  return status==='all' || (status==='available' ? ['available_reviewed','available_review_pending'].includes(state) : state===status);
+}
+function publicManuscriptURL(value) { return typeof value==='string' && /^https?:\/\/[^\s<>"'\\]+$/i.test(value) ? value : null; }
+function manuscriptVersionLabel(v) {
+  const label=v.version_label||'Version not specified';
+  const readable=/^[A-Z0-9_]+$/.test(label)?label.toLowerCase().replaceAll('_',' '):label;
+  return [readable,v.revision_date?'version date '+v.revision_date:'',v.pages?String(v.pages)+' pages':''].filter(Boolean).join(' · ');
+}
+function manuscriptAvailability(p) {
+  const r=manuscriptRecord(p.id);
+  if(!r) return '<p class="manuscript-status unrecorded">Collection status not recorded.</p>';
+  const versions=(r.versions||[]).map(v=>{
+    const url=publicManuscriptURL(v.source_url);
+    const variant=(v.title&&v.title!==p.title)||((v.authors||[]).length&&(v.authors||[]).join('|')!==(p.authors||[]).join('|'));
+    const bibliography=variant?`<details class="manuscript-bibliography"><summary>Version title and byline</summary>${v.title?`<p>${esc(v.title)}</p>`:''}${v.authors?.length?`<p>${esc(v.authors.join(' · '))}</p>`:''}<p>This version's bibliography is kept separate from the annual index byline.</p></details>`:'';
+    return `<li>${url?`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source manuscript</a>`:'<span>Retained offline; public source link not recorded</span>'}<span class="manuscript-version">${esc(manuscriptVersionLabel(v))}</span>${v.source_class?`<span class="manuscript-copy">${esc(v.source_class.replaceAll('_',' '))}</span>`:''}${bibliography}</li>`;
+  }).join('');
+  return `<div class="manuscript-availability ${esc(r.status)}"><p class="manuscript-status"><span class="tag ${r.status==='available_reviewed'?'winner':r.status==='available_review_pending'?'collected':'pending'}">${esc(manuscriptStatusLabel(r.status))}</span></p>${versions?`<ul class="manuscript-versions">${versions}</ul>`:''}${typeof r.note==='string'&&r.note?`<p class="manuscript-note">${esc(r.note)}</p>`:''}</div>`;
+}
+function manuscriptAnnual(year) { return db.manuscript_collection?.annual.find(r=>r.year===year) || null; }
+function annualCollectionStatus(year) {
+  const a=manuscriptAnnual(year);
+  return a?`<p class="roster-collection">Collection: ${esc(a.available)} of ${esc(a.indexed_single_papers)} indexed papers have a version · ${esc(a.not_recovered)} not recovered · ${esc(a.scientifically_reviewed)} scientifically reviewed.${a.roster_partial?' Annual roster total unconfirmed.':''}</p>`:'';
+}
+function manuscriptCollectionSummary() {
+  const target=$('manuscript-collection-summary'),c=db.manuscript_collection;
+  if(!target) return;
+  if(!c) { target.innerHTML='<p class="notice">Manuscript collection totals have not been indexed yet.</p>'; return; }
+  const s=c.summary,available=c.records.filter(r=>['available_reviewed','available_review_pending'].includes(r.status)).length;
+  target.innerHTML=`<h3>Manuscript collection and scientific review</h3><p>${esc(available)} of ${esc(s.indexed_single_papers)} indexed single-paper entries have a collected version. Counts follow the identified candidates in each year; they do not establish a complete historical roster.</p><dl class="collection-totals"><div><dt>Collected</dt><dd>${esc(available)}</dd></div><div><dt>Scientifically reviewed</dt><dd>${esc(s.scientifically_reviewed)}</dd></div><div><dt>Collected, review pending</dt><dd>${esc(s.available_review_pending)}</dd></div><div><dt>Not recovered</dt><dd>${esc(s.not_recovered)}</dd></div></dl><p>Collection means a manuscript version is retained offline. Scientific review is a separate step. This site links to external sources and does not distribute the manuscripts. A linked copy may differ from the original conference submission.</p><p class="collection-scope">${esc(s.organization_entries)} organization-level entries are separate from the paper totals. Checked ${esc(c.checked_on)}.${s.partial_roster_years?.length?' Partial annual rosters · total unconfirmed: '+esc(s.partial_roster_years.join(', '))+'.':''}</p>`;
+}
 function catalogueMatches(p,r,q) {
   const detailed=db.papers.find(d=>d.id===p.detailed_paper_id);
-  return !q || [p.title,p.publisher_title,p.doi,r.year,...p.authors,...(p.search_aliases||[]),p.award_result?.label,p.award_result?.category,...(p.award_result?.recipients||[]),...(p.award_result?.claims||[]).flatMap(c=>[c.outcome,c.category,c.project_title_as_printed,...(c.recipients||[])]),...(p.bibliography_review?.named_participants||[]),...(p.bibliographic_versions||[]).flatMap(v=>v.authors||[]),detailed?.title,...(detailed?.authors||[]),...(detailed?.title_aliases||[]).map(a=>a.title),...(detailed?.machines||[])].join(' ').toLowerCase().includes(q);
+  return !q || [p.title,p.publisher_title,p.doi,r.year,...p.authors,...(p.search_aliases||[]),...(manuscriptRecord(p.id)?.versions||[]).flatMap(v=>[v.title,...(v.authors||[])]),p.award_result?.label,p.award_result?.category,...(p.award_result?.recipients||[]),...(p.award_result?.claims||[]).flatMap(c=>[c.outcome,c.category,c.project_title_as_printed,...(c.recipients||[])]),...(p.bibliography_review?.named_participants||[]),...(p.bibliographic_versions||[]).flatMap(v=>v.authors||[]),detailed?.title,...(detailed?.authors||[]),...(detailed?.title_aliases||[]).map(a=>a.title),...(detailed?.machines||[])].join(' ').toLowerCase().includes(q);
 }
 function catalogueMatchCount(q) { return (db.annual_rosters||db.recent_rosters).reduce((n,r)=>n+r.records.filter(p=>catalogueMatches(p,r,q)).length,0); }
 function syncArchiveSearch(from) {
-  const other=from==='search'?'recent-search':'search'; $(other).value=$(from).value; if(from==='search') { $('recent-year').value='all'; $('roster-doi').value='all'; } renderRecent(); render();
+  const other=from==='search'?'recent-search':'search'; $(other).value=$(from).value; if(from==='search') { $('recent-year').value='all'; $('roster-doi').value='all'; if($('manuscript-status')) $('manuscript-status').value='all'; } renderRecent(); render();
 }
 function render() {
   const q = $('search').value.toLowerCase().trim();
@@ -108,6 +145,7 @@ function annualReviewNotes(y) {
   return html;
 }
 function renderYearCoverage() {
+  manuscriptCollectionSummary();
   const audit=db.annual_review, view=$('coverage-view').value;
   const rows=audit.rows.filter(y=>view==='all'||(view==='untouched'&&y.queue_status!=='context_only'&&!y.manuscript_audits)||(view==='reviewed'&&y.manuscript_audits)||(view==='continuation'&&audit.continuation?.target_years.includes(y.year))||(view==='early'&&audit.early_recovery?.target_years.includes(y.year))||(view==='batches'&&audit.year_batches?.completed.some(b=>b.year===y.year)));
   $('annual-review-summary').textContent=`${audit.calendar_years} calendar years inventoried · ${audit.summary.indexed_years} annual index groups · ${audit.summary.manuscript_years} years with manuscript audits · ${audit.summary.awaiting_first_manuscript_years.length} indexed years await their first manuscript. Inventory reviewed ${audit.checked_on}; original source-check dates retained.`;
@@ -171,12 +209,12 @@ function annualSnapshot(r) {
   return `<details class="roster-evidence preconference-history"><summary>Archived preconference snapshot · ${esc(old.checked_on)}</summary><p>The six scheduled entries and publisher bylines were captured before SC26. That snapshot established membership and publisher-assigned DOIs; it did not establish award outcomes or final scores.</p><ul>${old.records.map(p=>`<li>${esc(p.title)} · ${p.authors.length} publisher-listed authors</li>`).join('')}</ul><p>Complete source-linked metadata is retained in the full JSON export. Each current entry also shows its dated author lists.</p></details>`;
 }
 function renderRecent() {
-  const q=$('recent-search').value.trim().toLowerCase(), year=$('recent-year').value, doiState=$('roster-doi').value;
+  const q=$('recent-search').value.trim().toLowerCase(), year=$('recent-year').value, doiState=$('roster-doi').value, manuscriptState=$('manuscript-status')?.value||'all';
   const catalogue=db.annual_rosters || db.recent_rosters;
   let total=0,matched=0; rosterVisible=[];
   const html=catalogue.map(r=>{
     total+=r.records.length;
-    const records=r.records.filter(p=>(year==='all'||String(r.year)===year)&&catalogueMatches(p,r,q)&&(doiState==='all'||(doiState==='verified'&&p.doi_status==='verified')||(doiState==='unresolved'&&!['verified','not_applicable'].includes(p.doi_status))||(doiState==='not_applicable'&&p.doi_status==='not_applicable')));
+    const records=r.records.filter(p=>(year==='all'||String(r.year)===year)&&catalogueMatches(p,r,q)&&manuscriptFilterMatches(p,manuscriptState)&&(doiState==='all'||(doiState==='verified'&&p.doi_status==='verified')||(doiState==='unresolved'&&!['verified','not_applicable'].includes(p.doi_status))||(doiState==='not_applicable'&&p.doi_status==='not_applicable')));
     matched+=records.length;
     if(!records.length) return '';
     const sources=Object.fromEntries(r.sources.map(s=>[s.id,s]));
@@ -184,11 +222,11 @@ function renderRecent() {
     const ref=(id,label)=>sources[id]?link(sources[id].url,label||sources[id].label):'';
     const rosterSources=r.roster_completeness.basis_source_ids.map(id=>ref(id)).join(' ');
     const note=r.roster_completeness.note || r.notes?.[0] || '';
-    const open=year!=='all'||q||doiState!=='all';
+    const open=year!=='all'||q||doiState!=='all'||manuscriptState!=='all';
     const membership=r.roster_completeness.membership_label || 'candidates';
-    const partial=r.roster_completeness.expected_count==null || r.roster_completeness.status.includes('partial');
-    const countLabel=partial ? r.records.length+' identified · partial list' : r.records.length+' '+membership+(r.roster_completeness.status.includes('award_labels_unresolved')?' · labels unresolved':'');
-    return `<details class="roster-year" ${open?'open':''}><summary><strong>${r.year}${r.event_label?' · '+esc(r.event_label):' / SC'+String(r.year).slice(-2)}</strong><span>${esc(countLabel)} · ${r.verified_doi_count} DOI verified</span></summary><p class="annual-links">${/Compcon/i.test(r.event_label||'')?'SC resources for '+esc(r.conference_year)+' (separate from the Compcon presentation): ':''}${annualLinks(r.sc_links)}</p><details class="roster-evidence"><summary>Annual source evidence</summary><p class="source-links">${rosterSources}</p>${note?`<p>${esc(note)}</p>`:''}</details><p class="roster-status">${esc(rosterStatus(r))} · ${r.detailed_paper_count || 0} detailed manuscript audits · Conference-day scores unverified.</p>${r.postconference_review?`<p class="conference-review notice">${esc(r.postconference_review.note)} ${ref(r.postconference_review.award_source_id,'ACM award announcement')}</p>`:''}${annualSnapshot(r)}${r.roster_recovery_on?`<p class="notice">${esc(note)}</p>`:""}<ol class="roster-records">${records.map(p=>`<li>${p.award_result?`<p class="award-result"><span class="tag ${p.award_result.status==='verified'?'winner':'pending'}">${esc(p.award_result.label)}</span>${ref(p.award_result.source_id,'Award evidence')}</p>`:''}<h4>${esc(p.title)}</h4>${p.title_kind==='editorial_description'?'<p class="title-kind">Editorial description; formal paper title not recovered.</p>':p.title_kind==='corporate_entry'?'<p class="title-kind">Organization-level finalist; no single paper is implied.</p>':p.title_kind==='publisher_title'?'<p class="title-kind">Publication title; original selection title not recovered.</p>':''}<div class="paper-links">${p.doi_status==='verified'?link('https://doi.org/'+p.doi,'DOI: '+p.doi):p.doi_status==='not_applicable'?'<span>DOI not applicable to this organization-level entry</span>':'<span class="unresolved-doi">DOI unresolved</span>'}${p.doi_verification?.resolver_status==='not_found'?'<span class="unresolved-doi">Publisher-assigned DOI; resolver returned HTTP 404 (checked '+esc(p.doi_verification.resolver_checked_on)+')</span>':''}${p.detailed_paper_id?`<button data-paper="${esc(p.detailed_paper_id)}">Manuscript details</button>`:''}${ref(p.title_source_id,'Title source')}${p.publication_url?link(p.publication_url,'Publisher record'):''}${p.doi_status==='verified'?ref(p.doi_source_id,'DOI verification'):''}</div>${historicalReview(p,ref)}${annualReview(p,ref)}<details><summary>Bibliographic evidence & title variants</summary>${p.publisher_title&&p.publisher_title!==p.title?`<p>Publisher title: ${esc(p.publisher_title)}</p>`:''}${p.authors.length?`<p>${esc(p.authors.join(' · '))}</p><p>${esc(authorEvidenceNote(p))}</p>`:/corporate|not_applicable/i.test(p.authors_status)?'<p>Organization-level entry; no single paper byline.</p>':'<p>Author list not yet verified.</p>'}${p.award_result?.evidence_note?`<p>${esc(p.award_result.evidence_note)}</p>`:''}${p.notes.length?`<ul>${p.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}<p>Checked ${esc(r.checked_on)}. ${p.detailed_paper_id?'Selected manuscript fields checked; see Manuscript details for version-specific values and award evidence.':'Manuscript, performance and award-outcome checks remain separate from this bibliography.'}</p></details></li>`).join('')}</ol></details>`;
+    const partial=manuscriptAnnual(r.year)?.roster_partial || r.roster_completeness.expected_count==null || r.roster_completeness.status.includes('partial');
+    const countLabel=partial ? r.records.length+' identified · partial list · total unconfirmed' : r.records.length+' '+membership+(r.roster_completeness.status.includes('award_labels_unresolved')?' · labels unresolved':'');
+    return `<details class="roster-year" ${open?'open':''}><summary><strong>${r.year}${r.event_label?' · '+esc(r.event_label):' / SC'+String(r.year).slice(-2)}</strong><span>${esc(countLabel)} · ${r.verified_doi_count} DOI verified</span></summary><p class="annual-links">${/Compcon/i.test(r.event_label||'')?'SC resources for '+esc(r.conference_year)+' (separate from the Compcon presentation): ':''}${annualLinks(r.sc_links)}</p><details class="roster-evidence"><summary>Annual source evidence</summary><p class="source-links">${rosterSources}</p>${note?`<p>${esc(note)}</p>`:''}</details><p class="roster-status">${esc(rosterStatus(r))} · ${r.detailed_paper_count || 0} detailed manuscript audits · Conference-day scores unverified.</p>${r.postconference_review?`<p class="conference-review notice">${esc(r.postconference_review.note)} ${ref(r.postconference_review.award_source_id,'ACM award announcement')}</p>`:''}${annualSnapshot(r)}${annualCollectionStatus(r.year)}${r.roster_recovery_on?`<p class="notice">${esc(note)}</p>`:""}<ol class="roster-records">${records.map(p=>`<li data-record-id="${esc(p.id)}">${p.award_result?`<p class="award-result"><span class="tag ${p.award_result.status==='verified'?'winner':'pending'}">${esc(p.award_result.label)}</span>${ref(p.award_result.source_id,'Award evidence')}</p>`:''}<h4>${esc(p.title)}</h4>${p.title_kind==='editorial_description'?'<p class="title-kind">Editorial description; formal paper title not recovered.</p>':p.title_kind==='corporate_entry'?'<p class="title-kind">Organization-level finalist; no single paper is implied.</p>':p.title_kind==='publisher_title'?'<p class="title-kind">Publication title; original selection title not recovered.</p>':''}<div class="paper-links">${p.doi_status==='verified'?link('https://doi.org/'+p.doi,'DOI: '+p.doi):p.doi_status==='not_applicable'?'<span>DOI not applicable to this organization-level entry</span>':'<span class="unresolved-doi">DOI unresolved</span>'}${p.doi_verification?.resolver_status==='not_found'?'<span class="unresolved-doi">Publisher-assigned DOI; resolver returned HTTP 404 (checked '+esc(p.doi_verification.resolver_checked_on)+')</span>':''}${p.detailed_paper_id?`<button data-paper="${esc(p.detailed_paper_id)}">Manuscript details</button>`:''}${ref(p.title_source_id,'Title source')}${p.publication_url?link(p.publication_url,'Publisher record'):''}${p.doi_status==='verified'?ref(p.doi_source_id,'DOI verification'):''}</div>${manuscriptAvailability(p)}${historicalReview(p,ref)}${annualReview(p,ref)}<details><summary>Bibliographic evidence & title variants</summary>${p.publisher_title&&p.publisher_title!==p.title?`<p>Publisher title: ${esc(p.publisher_title)}</p>`:''}${p.authors.length?`<p>${esc(p.authors.join(' · '))}</p><p>${esc(authorEvidenceNote(p))}</p>`:/corporate|not_applicable/i.test(p.authors_status)?'<p>Organization-level entry; no single paper byline.</p>':'<p>Author list not yet verified.</p>'}${p.award_result?.evidence_note?`<p>${esc(p.award_result.evidence_note)}</p>`:''}${p.notes.length?`<ul>${p.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul>`:''}<p>Checked ${esc(r.checked_on)}. ${p.detailed_paper_id?'Selected manuscript fields checked; see Manuscript details for version-specific values and award evidence.':'Manuscript, performance and award-outcome checks remain separate from this bibliography.'}</p></details></li>`).join('')}</ol></details>`;
   }).join('');
   $('recent-count').textContent=`${matched} of ${total} indexed entries`;
   $('recent-list').innerHTML=html||'<p class="empty">No annual records match these filters.</p>';
@@ -200,9 +238,20 @@ function rosterCSV() {
   return '\uFEFF'+[columns,...rows].map(row=>row.map(cell).join(',')).join('\r\n');
 }
 
+function manuscriptCollectionCSV() {
+  const columns=['record_id','year','title','doi','collection_status','identity_status','version_label','revision_date','source_url','source_class','pages','sha256','size_bytes','version_title','version_authors','note','collection_checked_on','annual_roster_partial'];
+  const rows=[];
+  for(const p of rosterVisible) {
+    const r=manuscriptRecord(p.id),versions=r?.versions?.length?r.versions:[null];
+    for(const v of versions) rows.push([p.id,p.year,p.title,p.doi||'',r?.status||'not_indexed',r?.identity_status||'',v?.version_label||'',v?.revision_date||'',publicManuscriptURL(v?.source_url)||'',v?.source_class||'',v?.pages??'',v?.sha256||'',v?.size_bytes??'',v?.title||'',(v?.authors||[]).join('; '),r?.note||'',db.manuscript_collection?.checked_on||'',manuscriptAnnual(p.year)?.roster_partial??'']);
+  }
+  const cell=value=>{const s=String(value??'');return '"'+((/^\s*[=+\-@]/.test(s)||/^[\t\r\n]/.test(s))?"'":'')+s.replaceAll('"','""')+'"';};
+  return '\uFEFF'+[columns,...rows].map(row=>row.map(cell).join(',')).join('\r\n');
+}
+
 async function init() {
   try {
-    const response = await fetch('data.json?v=year-batch-2006-20261122'); if (!response.ok) throw new Error('Data request failed'); db = await response.json();
+    const response = await fetch('data.json?v=manuscript-collection-20261122'); if (!response.ok) throw new Error('Data request failed'); db = await response.json();
     $('catalogue-gaps').textContent='Years with no identified entry: '+(db.catalogue_summary.uncovered_years.join(', ')||'none')+'. Partial lists (further entries or total unconfirmed): '+db.catalogue_summary.partial_years.join(', ')+'. Historical year-label transition: '+db.catalogue_summary.context_years.map(y=>y+' → '+db.year_contexts.find(c=>c.year===y).target_year).join(', ')+'. Indexed years do not imply complete annual rosters.'; $('stat-papers').textContent=db.papers.length; $('stat-roster-years').textContent=db.catalogue_summary.years; $('stat-candidates').textContent=db.catalogue_summary.records; $('stat-dois').textContent=db.catalogue_summary.verified_dois; $('detail-scope').textContent=`${db.papers.length} selected papers · ${db.papers.reduce((n,p)=>n+p.measurements.length,0)} performance observations · ${new Set(db.papers.map(p=>p.year)).size} conference years`;
     fillSelect('paper-year',db.papers.map(p=>String(p.year))); fillSelect('field',db.papers.map(p=>p.field)); fillSelect('machine',db.papers.flatMap(p=>p.machines));
     for (const id of ['paper-year','result','field','machine']) $(id).addEventListener('change',render);
@@ -217,6 +266,8 @@ async function init() {
     fillSelect('holdings-year',db.holdings.records.map(r=>String(r.year)));
     $('holdings-search').addEventListener('input',renderHoldings); $('holdings-year').addEventListener('change',renderHoldings);
     fillSelect('recent-year',db.annual_rosters.map(r=>String(r.year))); $('roster-csv').addEventListener('click',()=>download('gordon-bell-candidate-index.csv',rosterCSV(),'text/csv;charset=utf-8'));
+    $('manuscript-csv').addEventListener('click',()=>download('gordon-bell-manuscript-locations.csv',manuscriptCollectionCSV(),'text/csv;charset=utf-8'));
+    $('manuscript-status').addEventListener('change',renderRecent);
     $('recent-search').addEventListener('input',()=>syncArchiveSearch('recent-search')); $('recent-year').addEventListener('change',renderRecent); $('roster-doi').addEventListener('change',renderRecent);
     renderYearCoverage(); renderHoldings(); renderRecent(); render();
   } catch(err) { $('list').innerHTML='<p class="empty">The research records could not be loaded. Please reload the page.</p>'; console.error(err); }
