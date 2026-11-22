@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "family": "bratu-multinverse",
+  "edition": "2026-11-22",
+  "version": "2026-11-22",
+  "public_base_url": "https://hrkoyama.github.io/code/bratu-multinverse/2026-11-22/",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "LICENSING.md": "8515f2961e3433ab0df36e85b208ea46445f74f723d4acf08595d6fd4ae09b38",
+    "README.md": "f06ca78671d6ad794df9943965bc2b841782e84087c5c49314b23e81e7177cc0",
+    "docs/figures/bratu-multinverse.json": "8c34b36267b525b786288c0f1435d1e33ca7caddabdb7226b33fe5897d787edc",
+    "docs/figures/bratu-multinverse.png": "251d0273f7208454804626b94c7dd4ef4f9ea0be2c380f2b16b218b0864ae2a9",
+    "inputs/synthetic-observations.json": "d17059934636617f1fbe58cc84dd04ef9464533ba3ec349751eca54009df1e5e",
+    "numart/__init__.py": "9f1fcd8aeac10bc22f4805d1a5befc5ae06405a9cead726e155df996de5f72d7",
+    "numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "numart/bratu_inverse.py": "aea8b5710c8574118ea2db5f7c77b4cf47ceecfde994ba1ce3418f22e57ec9f4",
+    "numart/bratu_multinverse.py": "7388b971a87db1f4ce2e4c12ab1f42385d3092e692e60d249c25e4304248e5ec",
+    "numart/bratu_sensitivity.py": "31f694599475892c75bcff9b4e9bd08921716bb48d6a78d48d12f1484a023609",
+    "numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "provenance.json": "59b57b21f955d7977b6797eed7b8f7e1917039a9414284fefc46df7e57cc6eb8",
+    "requirements.txt": "632938dad94f057903cb9517a2c610c983966e68d68b4ade87ae5e38dc07fa3c",
+    "scripts/build_bratu_multinverse.py": "b1c70e11f673ca7a70ebc50ad4ea09c3b08af3af4d9740b9f8007ab1aa5c4797",
+    "tests/test_bratu_multinverse.py": "8768fbbbcd8e9bf9527107229bf4ad1db95055d879c90e53da0868fc14a1d2f7"
+  },
+  "scope": "Two-coefficient lower-branch spatial Bratu inverse estimation with vector discrete-adjoint projected Armijo updates, Tikhonov regularization, fixed synthetic observations, numerical-reference refinement and data-only identifiability diagnostics."
+}

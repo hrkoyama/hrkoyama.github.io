@@ -44,6 +44,11 @@ export const homeAreas = [
           "name": "inverse.home-title",
           "route": "/read/bratu-inverse",
           "kind": "reading"
+        },
+        {
+          "name": "multinverse.home-title",
+          "route": "/read/bratu-multi-inverse",
+          "kind": "reading"
         }
       ],
       [

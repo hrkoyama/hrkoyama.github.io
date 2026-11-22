@@ -144,7 +144,7 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
         if x.get('inverse_release'):
             assert x['status']=='educational-example'
             coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
-                'chapter':'bratu-inverse','status':'local-example','group':x['group']['en'],
+                'chapter':'bratu-multi-inverse' if x.get('multi_inverse_release') else 'bratu-inverse','status':'local-example','group':x['group']['en'],
                 'scope':x['limitations']['en'],'origin':'curated-inverse-example'})
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-fdtd-example']
     for x in load(ROOT/'catalog/atlas-methods.json')['methods']:

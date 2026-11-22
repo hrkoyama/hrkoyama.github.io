@@ -125,11 +125,12 @@ test('inverse saved evidence distinguishes consistency, continuum bias, perturba
 test('published optimization entry and bilingual inverse chapter use the verified supplement', () => {
   const record = JSON.parse(readFileSync(new URL('numerical-methods-atlas/methods/optimization/index.json', root)));
   assert.equal(record.status, 'educational-example');
-  assert.equal(record.code_base, manifest.public_base_url);
-  assert.equal(record.code_download, manifest.public_base_url+receipt.archive.file);
-  assert.equal(record.code_verification, manifest.public_base_url+'verification.json');
-  assert.ok(record.code_urls.includes(manifest.public_base_url+'numart/bratu_inverse.py'));
-  assert.ok(record.test_urls.includes(manifest.public_base_url+'tests/test_bratu_inverse.py'));
+  const scalar = record.scalar_inverse_release || record;
+  assert.equal(scalar.code_base, manifest.public_base_url);
+  assert.equal(scalar.code_download, manifest.public_base_url+receipt.archive.file);
+  assert.equal(scalar.code_verification, manifest.public_base_url+'verification.json');
+  assert.ok(scalar.code_urls.includes(manifest.public_base_url+'numart/bratu_inverse.py'));
+  assert.ok(scalar.test_urls.includes(manifest.public_base_url+'tests/test_bratu_inverse.py'));
   for (const extension of ['json', 'png']) {
     assert.deepEqual(readFileSync(new URL('numerical-methods-atlas/assets/bratu-inverse.'+extension, root)),
                      bytes('docs/figures/bratu-inverse.'+extension));

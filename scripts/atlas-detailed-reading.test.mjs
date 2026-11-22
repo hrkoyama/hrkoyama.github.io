@@ -7,7 +7,7 @@ const source=read('catalog/atlas-detailed-reading.json');
 const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
- assert.equal(source.chapters.length,28);
+ assert.equal(source.chapters.length,29);
  assert.equal(methods.length,145);assert.equal(methods.filter(m=>m.status==='planned').length,29);assert.equal(methods.filter(m=>m.status==='educational-example').length,100);assert.equal(methods.filter(m=>m.status==='reading-only').length,16);
  for(const id of originalPlanned){
   const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation','adjoint','optimization','fdtd'].includes(id)?'educational-example':'planned');
@@ -19,10 +19,52 @@ test('all 23 formerly unlinked methods have substantive bilingual reading while 
     assert.equal([...chapter.html[lang].matchAll(/<math-placeholder id="fdtd-[^"]+"><\/math-placeholder>/g)].length,7);
    }
    else{assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);}
-   assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id==='optimization'?'bratu-inverse':id}/`);
+   assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id==='optimization'?'bratu-multi-inverse':id}/`);
   }
  }
  for(const m of methods)assert.ok(m.reading.ja&&m.reading.en,m.id+' has both languages');
+});
+test('multi-parameter Bratu reading separates data sensitivity from regularized curvature and preserves the scalar experiment',()=>{
+ const chapter=source.chapters.find(c=>c.id==='bratu-multi-inverse');
+ const sections=['multi-parameter-model','observations-and-data','multi-adjoint-gradient','regularization','bounded-fit','data-identifiability','reflection-ambiguity','multi-verification','error-and-scope','reproduce'];
+ const release='/code/bratu-multinverse/2026-11-22/';
+ assert.deepEqual(chapter.methods,['optimization','adjoint']);
+ assert.ok(chapter.related_methods.includes('qr-svd'));
+ assert.deepEqual(chapter.references,['armijo1966','blondel2022implicit','golub1970','hansen2008regutools']);
+ const hansen=source.references.find(r=>r.id==='hansen2008regutools');
+ assert.equal(hansen.type,'misc');assert.equal(hansen.year,2008);
+ assert.equal(hansen.source_review.level,'full-text');assert.match(hansen.source_review.scope,/Section 2\.3\.1/);
+ const formulaIds=Object.keys(source.formulas).filter(id=>id.startsWith('bratu-multi-'));
+ assert.equal(formulaIds.length,16);
+ assert.ok(source.formulas['bratu-multi-model'].includes('a+b(2x-1)'));
+ assert.ok(source.formulas['bratu-multi-adjoint'].includes('J^Tp=q'));
+ assert.ok(source.formulas['bratu-multi-adjoint'].includes('-B_\\theta^Tp'));
+ assert.ok(source.formulas['bratu-multi-adjoint'].includes('+Q_h^T(e^u\\odot p)'));
+ assert.ok(source.formulas['bratu-multi-regularized-curvature'].includes('A_{\\rm data}^TA_{\\rm data}+\\gamma I_2'));
+ assert.ok(source.formulas['bratu-multi-center-rank'].includes('\\operatorname{rank}(H_{\\rm center}S)\\le1'));
+ assert.ok(source.formulas['bratu-multi-reflection'].includes('u_h(a,-b;1/2)=u_h(a,b;1/2)'));
+ assert.ok(source.formulas['bratu-multi-update'].includes('g_k^T\\Delta\\theta'));
+ assert.ok(source.formulas['bratu-multi-stopping'].includes('\\theta-\\Pi_{\\mathcal B}(\\theta-g(\\theta))'));
+ for(const lang of ['ja','en']){
+  const html=chapter.html[lang],doc=read(`numerical-methods-atlas/${lang}/read/bratu-multi-inverse/index.json`);
+  assert.deepEqual([...html.matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]),sections);
+  assert.deepEqual(doc.headings.map(h=>h.id),[...sections,'publication-scope','sources']);
+  assert.deepEqual([...html.matchAll(/<math-placeholder id="([^"]+)"><\/math-placeholder>/g)].map(m=>m[1]).sort(),formulaIds.slice().sort());
+  assert.equal(doc.implementation_status.optimization,'educational-example');
+  for(const suffix of ['bratu-multinverse-2026-11-22.zip','README.md','numart/bratu_multinverse.py','scripts/build_bratu_multinverse.py','tests/test_bratu_multinverse.py','verification.json','source-manifest.json'])assert.ok(html.includes(release+suffix),lang+' '+suffix);
+  for(const suffix of ['png','json'])assert.ok(html.includes('/numerical-methods-atlas/assets/bratu-multinverse.'+suffix));
+  assert.ok(html.includes('href="/numerical-methods-atlas/assets/bratu-multinverse.png"'));
+  assert.ok(html.includes(lang==='ja'?'局所的に可逆':'locally nonsingular'));
+  assert.ok(html.includes('inverse crime')&&html.includes('Tikhonov')&&html.includes('Gauss–Newton'));
+  assert.ok(html.includes('255')&&html.includes('511')&&html.includes('1023'));
+  assert.ok(!html.includes('katex-mathml')&&!html.includes('__MEASUREMENTS')&&!html.includes('.venv/bin/python'));
+  for(const id of ['bratu-inverse','adjoint','optimization']){
+   const old=source.chapters.find(c=>c.id===id);
+   assert.ok(old.html[lang].includes(`/numerical-methods-atlas/${lang}/read/bratu-multi-inverse/`));
+   assert.ok(read(`numerical-methods-atlas/${lang}/read/${id}/index.json`).html.includes(`/numerical-methods-atlas/${lang}/read/bratu-multi-inverse/`));
+  }
+  assert.ok(html.includes(`/numerical-methods-atlas/${lang}/read/bratu-inverse/`));
+ }
 });
 test('the independent Bratu inverse chapter publishes measured adjoint-gradient fits and preserves existing chapter addresses',()=>{
  const chapter=source.chapters.find(c=>c.id==='bratu-inverse');

@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 from atlas_sensitivity_release import sensitivity_release_record
 from atlas_inverse_release import inverse_release_record
 from atlas_fdtd_release import fdtd_release_record
+from atlas_multinverse_release import multinverse_release_record
 from atlas_method_review import (validate_method_reviews, review_intro, field_note,
                                  verification_html, references_html, review_markdown)
 
@@ -184,6 +185,9 @@ def public_record(x):
     if x.get('sensitivity_release'):record.update(sensitivity_release_record(ROOT,x))
     if x.get('inverse_release'):record.update(inverse_release_record(ROOT,x))
     if x.get('fdtd_release'):record.update(fdtd_release_record(ROOT,x))
+    if x.get('multi_inverse_release'):
+        record['scalar_inverse_release']=inverse_release_record(ROOT,x)
+        record.update(multinverse_release_record(ROOT,x))
     record['execution_examples']=execution_links(x['id'])
     return record
 
@@ -308,12 +312,21 @@ for x in METHODS:
             body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
         if x.get('inverse_release'):
-            base=record['code_base']
+            scalar=record.get('scalar_inverse_release',record)
+            base=scalar['code_base']
             body+='<h2>'+('Bratuの逆問題：随伴勾配によるλ推定の専用配布版' if ja else 'Bratu inverse problem: adjoint-gradient parameter fitting')+'</h2>'
-            body+='<p>'+esc(x['limitations'][lang])+'</p>'
+            body+='<p>'+('定数λを1個推定する既存配布版です。同じ離散化での回復、連続解析解からの観測、固定摂動を分けて検証します。2パラメータの拡張は次の別配布版で扱います。' if ja else 'The existing edition fits one constant lambda and distinguishes same-discretization recovery, continuous analytic observations and fixed perturbations. The following separate edition provides the two-parameter extension.')+'</p>'
+            body+='<p>'+link(base+'README.md','取得・実行手順 / README')+' · '+link(scalar['code_download'],'コード・検査・観測データ・図 ZIP' if ja else 'Code, tests, observations and figure ZIP')+' · '+link(scalar['code_manifest'],'ファイル目録・SHA-256' if ja else 'File manifest / SHA-256')+' · '+link(scalar['code_verification'],str(scalar['passed_tests'])+('件成功・検証記録' if ja else ' tests passed / verification'))+'</p>'
+            body+='<ul>'+''.join('<li>'+link(url,url.removeprefix(base))+'</li>' for url in scalar['code_urls']+scalar['test_urls'])+'</ul>'
+            body+='<p>'+link(scalar['results'],'随伴勾配・推定履歴・格子バイアス・固定ノイズの記録 / JSON' if ja else 'Adjoint gradients, fit histories, grid bias and fixed-noise records / JSON')+'</p>'
+            body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(scalar['run_commands']))+'</code></pre>'
+            body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
+        if x.get('multi_inverse_release'):
+            base=record['code_base']
+            body+='<h2>'+('Bratuの複数パラメータ逆問題：正則化と識別可能性' if ja else 'Multi-parameter Bratu inversion: regularization and identifiability')+'</h2><p>'+esc(x['limitations'][lang])+'</p>'
             body+='<p>'+link(base+'README.md','取得・実行手順 / README')+' · '+link(record['code_download'],'コード・検査・観測データ・図 ZIP' if ja else 'Code, tests, observations and figure ZIP')+' · '+link(record['code_manifest'],'ファイル目録・SHA-256' if ja else 'File manifest / SHA-256')+' · '+link(record['code_verification'],str(record['passed_tests'])+('件成功・検証記録' if ja else ' tests passed / verification'))+'</p>'
             body+='<ul>'+''.join('<li>'+link(url,url.removeprefix(base))+'</li>' for url in record['code_urls']+record['test_urls'])+'</ul>'
-            body+='<p>'+link(record['results'],'随伴勾配・推定履歴・格子バイアス・固定ノイズの記録 / JSON' if ja else 'Adjoint gradients, fit histories, grid bias and fixed-noise records / JSON')+'</p>'
+            body+='<p>'+link(record['results'],'係数推定・正則化・データ感度SVD・識別不能例の記録 / JSON' if ja else 'Coefficient fits, regularization, data-sensitivity SVD and ambiguity records / JSON')+'</p>'
             body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
         if x.get('fdtd_release'):
@@ -376,7 +389,12 @@ for x in METHODS:
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('force_examples'):md+='Force scope: '+x['force_scope']['en']+'\n\n'+json.dumps(record['force_release'],ensure_ascii=False,indent=2)+'\n\n'
     if x.get('inverse_release'):
+        scalar=record.get('scalar_inverse_release',record)
         md+='Bratu inverse supplement: bounded projected adjoint-gradient fitting of one scalar parameter from fixed synthetic observations. Same-model consistency, continuous-observation grid bias and fixed-noise shifts are separate checks.\n\n'
+        md+='\n'.join('- Code: '+u for u in scalar['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in scalar['test_urls'])+'\n\n'
+        md+='Download: '+scalar['code_download']+'\nManifest: '+scalar['code_manifest']+'\nVerification: '+scalar['code_verification']+'\nMeasurements: '+scalar['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(scalar['run_commands'])+'\n```\n\n'
+    if x.get('multi_inverse_release'):
+        md+='Multi-parameter Bratu inverse supplement: two spatial coefficients, adjoint fitting, Tikhonov regularization and data-only SVD identifiability diagnostics. Regularization does not add observational information.\n\n'
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('fdtd_release'):
