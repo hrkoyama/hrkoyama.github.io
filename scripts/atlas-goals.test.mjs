@@ -5,10 +5,29 @@ import {goals,matchGoals} from '../search/goals-data.mjs';
 import {findMethods} from '../search/method-search.mjs';
 import {makeSearch} from '../search/engine.mjs';
 import {searchChapters} from '../numerical-methods-atlas/home-search.js';
+import {homeOverviewPage} from '../numerical-methods-atlas/home-overview.js';
+import {configureLocale} from '../numerical-methods-atlas/i18n.js';
 const read=p=>JSON.parse(fs.readFileSync(new URL('../'+p,import.meta.url)));
 const methods=read('numerical-methods-atlas/methods/index.json').methods;
 const global=makeSearch(read('search/index.json').documents);
 const local=read('numerical-methods-atlas/home-search-index.json');
+test('first-time visitors reach every goal from the introductory section before counts and directories',()=>{
+ const page=fs.readFileSync(new URL('../numerical-methods-atlas/index.html',import.meta.url),'utf8');
+ for(const lang of ['ja','en']){
+  configureLocale(read('numerical-methods-atlas/locales/messages.json'),lang);
+  const runtime=homeOverviewPage(read('numerical-methods-atlas/coverage.json'));
+  const intro=runtime.match(/<section class="intro[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(intro);
+  assert.equal((intro.match(/class="home-goal-choice"/g)||[]).length,6);
+  for(const g of goals){
+   const route=`/numerical-methods-atlas/start/?lang=${lang}#${g.id}-${lang}`;
+   assert.ok(intro.includes(route),route);
+   assert.ok(page.includes(route),'static route '+route);
+  }
+  assert.ok(runtime.indexOf('home-goal-choice')<runtime.indexOf('atlas-metrics'));
+  assert.ok(runtime.indexOf('home-goal-choice')<runtime.indexOf('atlas-ways'));
+ }
+});
 test('natural goal phrases reach conditional candidate methods through both searches',()=>{
  for(const [q,id] of [['衝撃波を計算したい','hllc'],['渦を低散逸で解きたい','keep'],['resolve a smooth vortex','keep'],['solve poisson equation','cg'],['磁場の発散誤差を抑えたい','ct'],['硬い方程式を時間積分したい','sdirk2'],['粒子の重力を計算したい','barnes-hut']]){
   for(const lang of ['ja','en']){

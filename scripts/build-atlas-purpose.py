@@ -17,6 +17,13 @@ discovery=load_discovery(ROOT)
 discovery_by_id={x['id']:x for x in discovery['examples']}
 format_counts={**coverage['counts'],'execution_examples':len(discovery['examples'])}
 map_fallback=json.loads(subprocess.check_output(['node','scripts/render-atlas-home-map.mjs'],cwd=ROOT,text=True))
+def goal_start(lang, static=False):
+    data=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
+    c=data['home'][lang];ja=lang=='ja'
+    cards=''.join('<a class="home-goal-choice" href="/numerical-methods-atlas/start/?lang='+lang+'#'+g['id']+'-'+lang+'">'+html.escape(g['title'][lang])+'</a>' for g in data['goals'])
+    map_url='#atlas-map-'+lang if static else '#/?section=atlas-map'
+    return '<section class="intro page-width goal-first-intro"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p><nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('15の実行例を見る' if ja else 'See 15 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p></div></section>'
+
 def browse(lang):
     c=copy[lang]
     routes={'words':'/search/?lang='+lang,'equations':'/numerical-methods-atlas/equations/?lang='+lang,'pictures':'/numerical-methods-atlas/gallery/?lang='+lang}
@@ -55,16 +62,16 @@ def featured(lang):
 
 sections={lang:render(lang) for lang in copy}
 module=ATLAS/'atlas-purpose.js'
-module.write_text("// Generated from atlas purpose, coverage and verified execution discovery.\nimport {currentLanguage} from './i18n.js';\nconst sections="+json.dumps(sections,ensure_ascii=False)+";\nconst metrics="+json.dumps({lang:metrics(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasPurpose=()=>sections[currentLanguage()];\nexport const atlasMetrics=()=>metrics[currentLanguage()];\nconst featured="+json.dumps({lang:featured(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasExamples=()=>featured[currentLanguage()];\n")
+module.write_text("// Generated from atlas purpose, coverage and verified execution discovery.\nimport {currentLanguage} from './i18n.js';\nconst sections="+json.dumps(sections,ensure_ascii=False)+";\nconst metrics="+json.dumps({lang:metrics(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasPurpose=()=>sections[currentLanguage()];\nexport const atlasMetrics=()=>metrics[currentLanguage()];\nconst featured="+json.dumps({lang:featured(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasExamples=()=>featured[currentLanguage()];\nconst goalStarts="+json.dumps({lang:goal_start(lang) for lang in copy},ensure_ascii=False)+";\nexport const atlasGoalStart=()=>goalStarts[currentLanguage()];\n")
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
 overview=ATLAS/'home-overview.js';text=overview.read_text()
 text=re.sub(r"from './home-overview-data[.]js(?:[?]v=[a-f0-9]+)?'","from './home-overview-data.js?v="+digest(ATLAS/'home-overview-data.js')+"'",text)
-text=re.sub(r"import \{atlasPurpose(?:,atlasMetrics)?(?:,atlasExamples)?\} from './atlas-purpose[.]js(?:[?]v=[a-f0-9]+)?';\n?",'',text)
+text=re.sub(r"import \{atlasPurpose[^}]*\} from './atlas-purpose[.]js(?:[?]v=[a-f0-9]+)?';\n?",'',text)
 marker=' ${homeSearchPage()}'
 text=re.sub(r'^[ \t]*\$\{atlasPurpose\(\)\}[ \t]*\n(?:[ \t]*\n)*','',text,flags=re.M)
 text=re.sub(r'^[ \t]*\$\{atlasExamples\(\)\}[ \t]*\n(?:[ \t]*\n)*','',text,flags=re.M)
 assert text.count(marker)==1,'Review upstream homepage layout before adapting'
-text="import {atlasPurpose,atlasMetrics,atlasExamples} from './atlas-purpose.js?v="+digest(module)+"';\n"+text.replace(marker,' ${atlasPurpose()}\n'+marker+'\n ${atlasExamples()}\n')
+text="import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v="+digest(module)+"';\n"+text.replace(marker,' ${atlasPurpose()}\n'+marker+'\n ${atlasExamples()}\n')
 if '${atlasMetrics()}' not in text:
     text,count=re.subn(r'<div class="summary-counts">.*?</div><p class="flow">','${atlasMetrics()}<p class="flow">',text,count=1)
     assert count==1,'Review upstream coverage presentation'
@@ -77,7 +84,7 @@ page=ATLAS/'index.html';text=page.read_text()
 text=re.sub(r'<!-- atlas-purpose-fallback -->.*?<!-- /atlas-purpose-fallback -->','',text,flags=re.S)
 text=re.sub(r'<!-- atlas-intro-fallback -->.*?<!-- /atlas-intro-fallback -->','',text,flags=re.S)
 text=re.sub(r'(<main\b[^>]*>)\s*<section class="page-intro page-width">.*?</section>',r'\1',text,count=1,flags=re.S)
-intro='<!-- atlas-intro-fallback -->'+''.join('<section class="page-intro page-width" data-site-language="'+lang+'" lang="'+lang+'"><h1>'+('数値計算法アトラス' if lang=='ja' else 'An Atlas of Numerical Methods')+'</h1><p>'+html.escape(copy[lang]['meta_description'])+'</p><p><a href="#atlas-map-'+lang+'">'+('分野地図を見る' if lang=='ja' else 'Explore the field map')+'</a> · <a href="'+ENTRY_BASE+'?lang='+lang+'">'+('代表15問題を実行する' if lang=='ja' else 'Run fifteen representative examples')+'</a></p></section>' for lang in copy)+'<!-- /atlas-intro-fallback -->'
+intro='<!-- atlas-intro-fallback -->'+''.join('<div class="home-overview" data-site-language="'+lang+'" lang="'+lang+'">'+goal_start(lang,True)+'</div>' for lang in copy)+'<!-- /atlas-intro-fallback -->'
 fallback='<!-- atlas-purpose-fallback -->'+''.join('<div class="home-overview atlas-static" data-site-language="'+lang+'" lang="'+lang+'"><section class="page-width">'+metrics(lang)+'</section>'+sections[lang]+featured(lang)+map_fallback[lang]+'</div>' for lang in copy)+'<!-- /atlas-purpose-fallback -->'
 text=re.sub(r'(<main\b[^>]*>)',lambda m:m[1]+intro,text,count=1)
 text=text.replace('</main>',fallback+'</main>')

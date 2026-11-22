@@ -1,4 +1,4 @@
-import {atlasPurpose,atlasMetrics,atlasExamples} from './atlas-purpose.js?v=bebe063d5b79';
+import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=b0723062ef50';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=450af705e824';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=42602b18cb1f';
@@ -56,7 +56,8 @@ export function renderHomeMap(selected,lang=currentLanguage(),{staticMode=false}
 export function homeOverviewPage(coverage,selected){
  const area=resolveHomeArea(selected),c=coverage.counts,lang=currentLanguage();
  return `<div class="home-overview" id="home-overview" data-area="${area.id}" data-localize="false">
- <section class="intro page-width"><div><p class="eyebrow">${text('eyebrow')}</p><h1>${text('title')}<br><em>${text('title-em')}</em></h1><p class="intro-description">${text('description')}</p><nav class="home-primary-actions" aria-label="${text('primary-actions')}"><a class="home-map-action" href="#/?section=atlas-map">${text('browse-map')}</a><a class="home-run-action" href="/numerical-methods-atlas/code-and-data/examples/?lang=${lang}">${text('run-examples')}</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang=${lang}">${text('share-label')}</a></p></div><div class="intro-summary"><div><p class="summary-title">${text('coverage')}</p>${atlasMetrics()}<p class="flow">${['equation','discretize','solve','verify'].map(key=>`<span>${text(key)}</span>`).join('<span class="flow-arrow" aria-hidden="true">→</span>')}</p></div>${link('/coverage',homeCopy.counting,'quiet-link')}</div></section>
+ ${atlasGoalStart()}
+ <section class="page-width home-scope-summary" aria-label="${lang==='ja'?'現在の収録範囲':'Current coverage'}">${atlasMetrics()}</section>
  ${atlasPurpose()}
  ${homeSearchPage()}
  ${atlasExamples()}

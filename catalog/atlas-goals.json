@@ -159,5 +159,19 @@
         "periodic-particles"
       ]
     }
-  ]
+  ],
+  "home": {
+    "ja": {
+      "title": "何を計算したいですか？",
+      "description": "手法名が分からなくても大丈夫。目的を選び、使える条件を確認して、解説・コード・テストへ進めます。",
+      "all": "6つの目的と適用条件を見る",
+      "label": "目的から探す"
+    },
+    "en": {
+      "title": "What would you like to compute?",
+      "description": "Start with a goal, even without a method name. Check its conditions, then open explanations, code and tests.",
+      "all": "View all six goals and their conditions",
+      "label": "Find by goal"
+    }
+  }
 }
