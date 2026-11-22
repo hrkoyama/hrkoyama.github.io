@@ -26,6 +26,10 @@ export function wireGoalFilters(scope=document){
   if(controllers.has(root))return controllers.get(root);
   const field=root.querySelector('[data-goal-filter]'),domainField=root.querySelector('[data-goal-domain]'),reset=root.querySelector('[data-goal-reset]');
   const status=root.querySelector('[data-goal-count]'),empty=root.querySelector('[data-goal-empty]');
+  const copy=root.querySelector('[data-goal-copy]'),copyFeedback=root.querySelector('[data-goal-copy-feedback]');
+  const copyFallback=root.querySelector('[data-goal-copy-fallback]'),copyURL=root.querySelector('[data-goal-copy-url]');
+  let copyVersion=0;
+  function clearCopyFeedback(){copyVersion++;copyFeedback.hidden=true;copyFeedback.textContent='';copyFallback.hidden=true;copyURL.value='';}
   const items=[...root.querySelectorAll('[data-goal-item]')];
   const domains=new Set(['all',...items.flatMap(item=>tokens(item.dataset.goalDomains))]);
   const total=new Set(items.map(item=>item.dataset.goalId)).size,ja=root.dataset.goalLanguage==='ja';
@@ -40,6 +44,7 @@ export function wireGoalFilters(scope=document){
    if(url.href!==current.href){try{history[mode==='push'?'pushState':'replaceState'](history.state,'',url.href);}catch{}}
   }
   function render(value,domainValue,mode='replace'){
+   clearCopyFeedback();
    const selected=allowed.has(value)?value:'all',domain=domains.has(domainValue)?domainValue:'all';
    field.value=selected;domainField.value=domain;
    const visible=new Set();
@@ -50,7 +55,7 @@ export function wireGoalFilters(scope=document){
    if(mode)writeURL(mode,mode==='push'&&anchor()?.hidden);
    updateLinks(root,selected,domain);
   }
-  function revealAnchor(){const target=anchor();if(target?.hidden)render('all','all');}
+  function revealAnchor(){clearCopyFeedback();const target=anchor();if(target?.hidden)render('all','all');}
   function sync(){
    const params=currentURL()?.searchParams;
    const explicit=params?.has(availabilityParam)||params?.has(domainParam);
@@ -59,6 +64,21 @@ export function wireGoalFilters(scope=document){
   function change(){render(field.value,domainField.value,'push');}
   field.addEventListener('change',change);domainField.addEventListener('change',change);
   reset.addEventListener('click',()=>render('all','all','push'));
+  copy.addEventListener('click',async()=>{
+   clearCopyFeedback();const version=copyVersion,current=currentURL();if(!current)return;
+   const url=goalFilterURL(current.href,field.value,domainField.value);url.searchParams.set('lang',ja?'ja':'en');
+   copy.disabled=true;
+   try{
+    await globalThis.navigator.clipboard.writeText(url.href);
+    if(version!==copyVersion)return;
+    copyFeedback.textContent=ja?'共有リンクをコピーしました。':'Share link copied.';
+   }catch{
+    if(version!==copyVersion)return;
+    copyFeedback.textContent=ja?'コピーできませんでした。下のURLを選択してコピーしてください。':'Could not copy. Select and copy the URL below.';
+    copyURL.value=url.href;copyFallback.hidden=false;copyURL.focus();copyURL.select();
+   }finally{copy.disabled=false;}
+   copyFeedback.hidden=false;
+  });
   sync();root.querySelector('[data-goal-controls]').hidden=false;
   const controller={revealAnchor,sync};controllers.set(root,controller);return controller;
  });

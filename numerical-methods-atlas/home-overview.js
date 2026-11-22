@@ -1,5 +1,5 @@
-import {wireGoalFilters} from './goal-filters.mjs?v=434062b6df29';
-import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=7d9e571465fe';
+import {wireGoalFilters} from './goal-filters.mjs?v=4b109b47d93c';
+import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=cc7569b56944';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=7355486c84c0';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=42602b18cb1f';
