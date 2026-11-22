@@ -150,6 +150,8 @@ python -m pytest tests/test_bratu_inverse.py
 
 [陰関数微分とBratuの感度](/numerical-methods-atlas/ja/read/adjoint/) · [自動微分の共通基盤](/numerical-methods-atlas/ja/read/automatic-differentiation/) · [勾配法・準Newton法の一般的な解説](/numerical-methods-atlas/ja/read/optimization/)
 
+[次へ：Bratuの2係数推定・正則化・識別可能性](/numerical-methods-atlas/ja/read/bratu-multi-inverse/) — この章の固定配布版の検証範囲を保持し、複数パラメータへの拡張は別章・別配布版で扱います。
+
 ## 公開範囲
 
 合成観測から1つのBratu係数λを推定する、箱制約つき随伴勾配法の教育用実装です。同じ離散化での再現性、独立した連続解データへの格子依存、固定観測摂動、差分勾配と目的関数のみの参照探索を実行検証します。指定した小さい解の枝・固定観測・小規模密行列に限定します。BFGSなどの最適化手法全般、全分枝の一意性、実データ、確率的な不確かさ推定、未知のモデル誤差は検証しません。

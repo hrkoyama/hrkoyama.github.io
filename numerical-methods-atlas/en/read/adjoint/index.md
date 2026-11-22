@@ -208,6 +208,9 @@ The nine dedicated tests are rerun from an independently extracted copy of the r
 
 The fixed sensitivity release in this chapter does not fit observations. A separate follow-up uses its adjoint construction to estimate λ from synthetic observations. [Bratu inverse problem: fit a parameter to synthetic observations](/numerical-methods-atlas/en/read/bratu-inverse/)
 
+
+[Next: two-coefficient Bratu fitting, regularization and identifiability](/numerical-methods-atlas/en/read/bratu-multi-inverse/) — This chapter retains its dated supplement’s scope; the multi-parameter extension has a separate chapter and release.
+
 ## Publication scope
 
 An educational implementation verifies implicit state sensitivity and a discrete adjoint gradient on a specified smaller-solution Bratu branch, with a separate nonsymmetric multiparameter manufactured transpose test. State, derivative, mesh and parameter-perturbation errors are separated. Scope is small steady dense systems; it does not provide general reverse-mode AD, transient adjoints, singular-point continuation or a real-data inverse solver.

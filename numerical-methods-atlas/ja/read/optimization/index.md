@@ -26,6 +26,8 @@ $$
 
 [検証済みの実装例：Bratu合成逆問題の随伴勾配による推定](/numerical-methods-atlas/ja/read/bratu-inverse/)
 
+[次へ：Bratuの2係数推定・正則化・識別可能性](/numerical-methods-atlas/ja/read/bratu-multi-inverse/) — この一般解説の既存節を保持し、2係数の実行検証は専用章へ案内します。
+
 ## 公開範囲
 
 このページは勾配法・準Newton法の一般的な解説です。実装済みの範囲は、別章のBratu合成逆問題における1次元の箱制約つき射影勾配法とArmijo後退探索です。BFGS・汎用準Newton法や、このページで挙げた一般的な検証案を実装検証した意味ではありません。

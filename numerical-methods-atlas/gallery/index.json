@@ -2319,6 +2319,10 @@
         {
           "path": "code/bratu-inverse/2026-11-22/docs/figures/bratu-inverse.json",
           "json_pointer": "/grid_runs"
+        },
+        {
+          "path": "code/bratu-multinverse/2026-11-22/docs/figures/bratu-multinverse.json",
+          "json_pointer": "/grid_runs"
         }
       ],
       "availability": "saved-output",
@@ -3962,7 +3966,7 @@
     "numerical-methods-atlas/gallery/preview-manifest.json": "23b843f2d0979f59a698218acf60454a59cd51d55dd94dcb130901f955d85cb7",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "b9269f620ec6349cd3ac3b8971378689f4a8f2b42f6ff189165bc2ef9d2cd357",
+    "numerical-methods-atlas/test-cases/index.json": "f6eb9c7a43865dc8afda546fc401fe6bacfbf1a494abf420268e188e3b8210bf",
     "catalog/atlas-execution-discovery.json": "b863a1415695738156b34c26a562c27bddec8c22a1b0cad498a6c0be7e3bacd1",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be"
   }

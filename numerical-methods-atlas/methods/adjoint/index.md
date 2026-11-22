@@ -2,11 +2,11 @@
 
 Status: educational-example
 
-Verify implicit state sensitivities and discrete-adjoint gradients on Bratu against analytic continuous sensitivities and finite differences with fresh nonlinear solves.
+Compare implicit sensitivities and discrete adjoints on Bratu, then follow separate synthetic inverse editions for one and two fitted coefficients.
 
-Bratu方程式のパラメータ感度で、陰関数の感度方程式・離散随伴勾配・解析的な連続感度・解き直した有限差分を検証する。
+Bratuのパラメータ感度で陰関数微分と離散随伴を照合し、別配布版で1個・2個の係数を推定する合成逆問題へ進む。
 
-The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented.
+The sensitivity edition verifies smooth lower-branch Bratu and a small nonsymmetric linear example with explicit adjoint pairing and objective quadrature. Separate inverse editions fit constant lambda and two spatial coefficients with regularization and identifiability checks. Time-dependent adjoints and shock sensitivities remain unimplemented.
 
 Other names: 随伴法, 随伴解析, adjoint method, adjoint analysis, 陰関数微分, implicit differentiation, parameter sensitivity, パラメータ感度, Bratu, 随伴法・逆問題, Adjoint methods and inverse problems
 
@@ -42,7 +42,7 @@ python -m pytest -q tests/test_bratu_sensitivity.py
 python scripts/build_bratu_sensitivity.py
 ```
 
-Next: Separate validation for time-dependent adjoints, multi-parameter inverse optimization and nonsmooth problems. A separate chapter provides the one-parameter synthetic-observation inverse case.
+Next: Separate validation for time-dependent adjoints, high-dimensional inverse problems and nonsmooth models. Dedicated chapters and editions cover one- and two-coefficient synthetic inversions.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

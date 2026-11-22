@@ -1,0 +1,181 @@
+# Multi-parameter Bratu inversion: regularization and identifiability
+
+Multi-parameter Bratu inversion: regularization and identifiability
+
+Adding a second coefficient changes what a successful fit can tell us. Observations may respond strongly to one parameter combination and barely change along another. We extend the previous constant λ to a spatial coefficient λ(x), separating adjoint-gradient fitting, selection by regularization and information supplied by observations.
+
+Extend constant λ to a level and a slope
+
+
+$$
+-u^{\prime\prime}(x)-\lambda(x;\theta)e^{u(x)}=0,\quad u(0)=u(1)=0,\quad \lambda(x;\theta)=a+b(2x-1),\quad\theta=(a,b)^T.
+$$
+
+$$
+\mathcal B=[1,2.8]\times[-0.5,0.5],\qquad 0.5\le\lambda(x;\theta)\le3.3,\qquad \theta_*=(2.2,0.35)^T.
+$$
+
+$$
+F_h(u,\theta)=D_hu-(Q_h\theta)\odot e^u=0,\quad (Q_h)_{i,:}=(1,2x_i-1),\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1).
+$$
+The unknown a sets the coefficient level and b multiplies the tilt basis (2x−1). The actual spatial derivative dλ/dx and the end-to-end difference λ(1)−λ(0) both equal 2b. Setting b=0 recovers the constant-coefficient Bratu model. This is a two-basis-function extension of the coefficient, rather than duplicate estimates of one constant λ. State, coordinate and both parameters are dimensionless. Domain, mesh, zero Dirichlet data and observation operator are fixed.
+
+The published experiments use the box and generating vector θ*=(2.2,0.35) above. A positive coefficient does not imply identifiability. These bounds alone do not guarantee existence, uniqueness or convergence for arbitrary meshes and starting states. Every primal solve starts at zero and uses damped Newton with an explicit residual acceptance check; the tested smaller-solution branch defines the scope.
+
+Fix the observations and their numerical generator
+
+The ordinary experiment samples x=0.125,0.25,0.5,0.75,0.875. All are exact interior nodes on the inverse meshes, so H selects state components. Observations at mirrored locations are retained separately: symmetric sensor positions do not discard the left-right difference. The published weights are wⱼ=1/5. They weight observations, rather than approximate a spatial integral.
+
+A noiseless control generated and fitted on the same mesh first checks recovery of both coefficients. It is an inverse crime used for code consistency. Separate fixed observations from a numerical reference, with its own refinement check, support inverse-mesh refinement. For b≠0 we do not reuse the closed-form constant-coefficient Bratu family as an analytic reference. The saved inputs and evidence specify the actual generator, resolution and self-refinement difference.
+
+The numerical generator uses a separate Newton implementation with Thomas elimination for tridiagonal systems. Grids n=255,511,1023 are compared, and n=1023 observations are fixed. Linear-system implementations differ, but both use second-order centered finite differences. The finer grid is not an exact continuous solution, and parameter error also contains its finite-grid error. Generator controls use the infinity norm of h²F and final Newton correction, recorded separately from the unscaled inverse-solve residual.
+
+A perturbed experiment likewise saves the observations once, before fitting. Trials do not regenerate data, and different γ values use the same perturbation. Noise here means a deterministic observation perturbation; no probability distribution or real measurement is assumed.
+
+Obtain both gradient components from one adjoint equation
+
+
+$$
+r_h(\theta)=H_hu_h(\theta)-d,\qquad\Phi_\gamma(\theta)=\underbrace{\tfrac12r_h^TWr_h}_{\Phi_{\rm data}}+\underbrace{\tfrac\gamma2\|\theta-\theta_{\rm prior}\|_2^2}_{\Phi_{\rm prior}},\quad\gamma\ge0.
+$$
+
+$$
+J=F_u=D_h-\operatorname{diag}\!\big((Q_h\theta)\odot e^u\big),\qquad B_\theta=F_\theta=-\operatorname{diag}(e^u)Q_h.
+$$
+
+$$
+q=H_h^TWr_h,\qquad J^Tp=q,\qquad g=\nabla_\theta\Phi_\gamma=\gamma(\theta-\theta_{\rm prior})-B_\theta^Tp=\gamma(\theta-\theta_{\rm prior})+Q_h^T(e^u\odot p).
+$$
+Assume a smooth selected state branch and a locally nonsingular state Jacobian J. Invertibility of the primal Jacobian J and full column rank of the observation Jacobian Adata are separate conditions. With the Lagrangian convention Φ−pᵀF, the residual parameter derivative Bθ has two columns, while p has one right-hand side. The state partial q includes Hᵀ and W. Multiplication by Bθᵀp produces both components of g. The state-mediated term Qᵀ(exp(u)⊙p) remains when γ=0. We differentiate the converged discrete equation, rather than unroll a finite sequence of Newton iterations.
+
+
+$$
+JS=-B_\theta=\operatorname{diag}(e^u)Q_h,\qquad S=\frac{\partial u_h}{\partial\theta}\in\mathbb R^{n\times2}.
+$$
+The direct sensitivity S uses two right-hand sides. It provides an independent gradient diagnostic. Actual optimization directions use the adjoint gradient; neither finite differences nor direct sensitivities substitute for it. A two-parameter example with small dense matrices does not establish an unmeasured speed advantage.
+
+Vary regularization and inspect prior bias
+
+The Tikhonov-type quadratic penalty adds distance from θprior to the observation misfit. The implementation uses Euclidean distance, equivalent to the regularization matrix R=I₂. Zero, weak and stronger penalties are applied to identical observations, recording data residual, distance from the prior and error against the generating vector separately. Increasing γ need not move the estimate closer to the generating truth.
+
+A displaced prior pulls the estimate toward its own values. Regularization may suppress amplification of observation perturbations along a weak direction while introducing prior bias. A synthetic experiment can compare parameter errors because θ* is known; this does not supply a corresponding choice rule for real data. The published γ sweep illustrates sensitivity and bias. It does not validate automatic tuning, cross-validation, an L-curve corner rule or statistical confidence intervals.
+
+Hansen’s author-maintained manual describes the quadratic penalty, augmented least squares and spectral analysis. Its squared regularization parameter corresponds to γ here. Its linear formulas are distinguished from this implemented nonlinear coefficient fit.
+
+Optimize with a fixed scaling of the adjoint gradient
+
+
+$$
+\theta_{\rm trial}=\Pi_{\mathcal B}(\theta_k-sP g_k),\quad\Delta\theta=\theta_{\rm trial}-\theta_k,\qquad\Phi_\gamma(\theta_{\rm trial})\le\Phi_\gamma(\theta_k)+c\,g_k^T\Delta\theta,\quad P=\operatorname{diag}(1,100),\ s=10\,2^{-j},\ c=10^{-4}.
+$$
+
+$$
+G(\theta)=\theta-\Pi_{\mathcal B}(\theta-g(\theta)),\qquad\|G(\theta)\|_\infty\le10^{-9}.
+$$
+P=diag(1,100) is a fixed positive diagonal matrix that adjusts progress along the differently sensitive level and slope directions. The evidence records P, initial step, halving rule, Armijo constant, iteration limits and tolerances. P adds no observation and is not a Gauss–Newton matrix estimated from the data. Rescaling an optimizer is distinct from improving identifiability.
+
+The Armijo inner product uses the actual projected displacement Δθ. Stopping uses the unit-step projected gradient G without P, so a small preconditioned update alone cannot imply convergence. A bound-constrained stationary point may have nonzero gradient components at active bounds. At most 1000 updates and 50 backtracking trials are allowed. Inspect the termination reason and accepted history; closeness to the generating vector is not a stopping criterion.
+
+Diagnose data-only sensitivity with singular values
+
+
+$$
+A_{\rm data}=W^{1/2}H_hS\in\mathbb R^{m\times2},\quad A_{\rm data}=U\Sigma V^T,\quad\sigma_1\ge\sigma_2\ge0,\qquad\|A_{\rm data}v_2\|_2=\sigma_2.
+$$
+
+$$
+\Delta\theta=T\Delta z,\quad A_z=A_{\rm data}T,\qquad\delta(W^{1/2}Hu)\approx A_{\rm data}\Delta\theta=A_z\Delta z.
+$$
+Adata linearizes changes in weighted observations as the parameters change. The right singular vector v₂ associated with a small σ₂ identifies a coefficient combination with little effect on those observations. Two independent observed directions yield full column rank at this point. This is a local diagnostic for the chosen state branch and observation operator, rather than a proof of global uniqueness for the nonlinear inverse problem.
+
+Singular values and condition numbers depend on observation weights, parameter units and parameter scaling. The published SVD uses T=I₂, the raw (a,b) coordinates. Changes of units or coefficient basis require the scaling to be stated. Numerical rank counts singular values above 10⁻¹⁰σ₁ and records that absolute threshold as well. A small singular value is not a universal identification threshold independent of measurement precision and floating-point error.
+
+
+$$
+A_{\rm aug}=\begin{pmatrix}A_{\rm data}\\ \sqrt\gamma I_2\end{pmatrix},\qquad A_{\rm aug}^TA_{\rm aug}=A_{\rm data}^TA_{\rm data}+\gamma I_2.
+$$
+Positive γ raises the singular-value floor of this local augmented matrix. The term γI₂ comes from a prior penalty, not new observations. AdataᵀAdata+γI₂ is a regularized Gauss–Newton-type local curvature; it is not generally the exact Hessian at nonzero residual, nor proof of global convexity. Data-only and augmented diagnostics are separate in the evidence.
+
+Exhibit information lost by a central observation
+
+
+$$
+u_h(a,-b;x_i)=u_h(a,b;1-x_i),\qquad u_h(a,-b;1/2)=u_h(a,b;1/2).
+$$
+
+$$
+H_{\rm center}S\in\mathbb R^{1\times2}\ \Longrightarrow\ \operatorname{rank}(H_{\rm center}S)\le1;\qquad \left.\frac{\partial u_h(1/2)}{\partial b}\right|_{b=0}=0.
+$$
+A single observation at x=1/2 gives a 1×2 observation Jacobian, whose rank is at most one at every θ. At b=0 the state is even about the center and the slope sensitivity is odd, so the center has zero first derivative with respect to b. Moreover, reflection x↦1−x changes b to −b while preserving the central value. Opposite slope signs are observationally indistinguishable there. This is information lost by H, not a floating-point defect or merely stalled optimization.
+
+Fits using center-only data and mirrored priors check that regularized estimates depend on prior choice. Obtaining a smooth stationary point or a positive regularized local curvature does not show that the data identified the slope sign. A penalty may select a solution by adding an assumption; it does not create the missing observational information.
+
+A compact SVD of a 1×2 matrix returns only one singular value. Its lack of a second returned entry must not be read as absence of a null direction. We retain the zero direction and right singular vectors in the full two-dimensional parameter space. Five sensors and one central sensor are compared through independent sensitivities, not their counts alone.
+
+Separate gradient, fitting, regularization and information checks
+
+[Saved settings, observations and complete measurements](/numerical-methods-atlas/assets/bratu-multinverse.json) specify every plotted experiment. · [View full-size figure](/numerical-methods-atlas/assets/bratu-multinverse.png)
+$$
+g_j^{\rm FD}(\varepsilon)=\frac{\Phi_\gamma(\theta+\varepsilon e_j)-\Phi_\gamma(\theta-\varepsilon e_j)}{2\varepsilon},\qquad F_h(u_\pm,\theta\pm\varepsilon e_j)=0.
+$$
+Every adjoint component. Away from stationary points, perturb a and b separately in both directions and re-solve the primal equation for objective-only differences. Direct sensitivity gives another comparison. Include the explicit regularization term.
+
+Same-discretization two-parameter recovery. Compare multiple starts, accepted objective decrease, projected gradients and parameter errors while preserving the inverse-crime interpretation.
+
+Fixed reference observations and meshes. Refine the inverse mesh while keeping the numerical reference data fixed. Report reference-generation error checks; this is not an error against an exact continuous solution.
+
+One perturbation and a γ sweep. Hold observations and prior fixed while comparing fit residual, distance from the prior and parameter error.
+
+Insufficient observations. Check center-only rank, equality under slope reflection and prior dependence. Augmented rank is not data rank.
+
+Measurement 1: both gradient components. On n=31, the points (a,b)=(1.3,−0.3),(2.1,0.2),(2.6,0.4) use γ=0,10⁻⁴,10⁻³ respectively. Across all six components, the largest absolute difference between the adjoint and central objective differences with ε=10⁻⁵ is about 7.74×10⁻¹². The direct-sensitivity difference is at most about 6.94×10⁻¹⁸. These checks do not rely on both gradients simply being small near an optimum.
+
+Measurement 2: same-discretization recovery. For noiseless n=31 data, starts (1.3,−0.4),(2,0),(2.7,0.45) require 52,46,46 accepted updates. Their Euclidean errors against (2.2,0.35) are about 1.72×10⁻⁷,1.33×10⁻⁷,1.94×10⁻⁷, with final observation RMS below 6.5×10⁻⁹. All satisfy the unscaled projected-gradient infinity-norm threshold 10⁻⁹. This is a consistency control for the same discretization.
+
+Measurement 3: inverse-mesh dependence for fixed numerical-reference data. Consecutive observation differences have Euclidean norms about 2.1046×10⁻⁶ for 255→511 and 5.2614×10⁻⁷ for 511→1023, a ratio about 4.00005. The n=1023 generator has an h²F infinity norm about 1.02×10⁻¹⁶, unscaled F Euclidean norm about 1.104×10⁻⁹ and final Newton correction infinity norm about 3.45×10⁻¹⁵. Its tolerances are 2×10⁻¹⁴ for h²F and 2×10⁻¹³ for the correction. Differently scaled residuals are not judged against the same tolerance. Self-refinement is an error diagnostic, not a rigorous error bound.
+
+Holding those n=1023 observations fixed, inverse grids n=15,31,63,127 give generating-parameter errors about 2.2187×10⁻³,5.5382×10⁻⁴,1.3798×10⁻⁴,3.4049×10⁻⁵. Observed orders are about 2.0022,2.0049,2.0188; the final value is also affected by the fixed reference-grid floor. The n=127 estimate is about (2.1999715336,0.3499813181). It is not claimed to equal the estimate for exact continuous observations.
+
+Measurement 4: stabilization and prior bias. On n=63 with prior (2,0) and one fixed observation perturbation, γ=0,10⁻⁵,10⁻⁴,10⁻³ are compared. The unregularized estimate is about (2.1995554520,0.3363439565), while γ=10⁻³ gives about (2.1937407950,0.0795027282). Generating-parameter errors increase through approximately 0.013663,0.024173,0.095712,0.270570. Observation RMS increases from about 6.7849×10⁻⁴ to 4.7026×10⁻³, while distance from the prior decreases from about 0.39109 to 0.20942.
+
+At fixed γ, the norm of “perturbed-data estimate minus unperturbed-data estimate” decreases from about 0.013584 at γ=0 to 0.0032396 at γ=10⁻³. For this prior, reducing perturbation response and reducing generating-parameter error are different goals. The four perturbed fits agree with the objective-only simplex reference within 1.42×10⁻⁷ in parameter Euclidean norm. This is a local cross-check, not a rigorous error bound against an unknown exact optimum.
+
+Measurement 5: data rank and regularized curvature. At n=31, θ=(2.2,0.35), five sensors with weights 1/5 give data singular values about (0.1728295,0.0175934), rank two and condition number about 9.8235. At the same θ, one central observation with weight one gives about (0.2500373,0), rank one. Different weights mean the leading singular-value magnitudes should not be directly compared.
+
+The plotted central symmetric-state comparison uses a separate diagnostic point θ=(2.2,0), one central observation with weight one and γ=10⁻². Its data-only singular values are about (0.2499068,0), while augmented values are about (0.2691718,0.1). Data rank remains one; the extra curvature comes from the penalty.
+
+Measurement 6: central observations and mirrored priors. At n=31 with fixed center-only reference data and γ=10⁻⁴, the same initial vector (2,0) with priors (2.2,±0.4) leads after 101 updates to estimates about (2.19930979,±0.39998726). Both have observation RMS about 2.7818×10⁻⁷, so the data do not distinguish the opposite slope signs. Separately, central predictions generated at θ=(2.2,±0.35) differ by about 1.94×10⁻¹⁵. These results match the observation operator’s reflection symmetry.
+
+Distinguish why an estimate moves and what was verified
+
+
+$$
+e_\theta=\|\widehat\theta-\theta_*\|_2,\quad\rho_d=\|W^{1/2}r_h\|_2,\quad\rho_F=\|F_h\|_2,\quad\rho_p=\|J^Tp-q\|_2.\qquad \rho_d\ne\rho_F.
+$$
+Generating-parameter error, observation fit, primal residual, adjoint residual and projected gradient measure different things. Regularization, fixed observation perturbations, inverse discretization and reference-generation errors can shift a fully converged fit away from θ*. Conversely, a small data residual does not establish that both parameters were identified.
+
+Scope is a small dense-matrix example with two fixed coefficient basis functions, box bounds, the smaller-solution branch, known boundary conditions and observation operator, and synthetic data. General function recovery for λ(x), guarantees for many coefficients, BFGS or Gauss–Newton optimization, real measurements, unknown boundaries or model discrepancy, optimal experimental design and probabilistic uncertainty or confidence intervals are outside the checks.
+
+Re-run the immutable dated supplement
+
+Extract the [two-coefficient code, tests, inputs and figure ZIP](/code/bratu-multinverse/2026-11-22/bratu-multinverse-2026-11-22.zip) and follow its [README](/code/bratu-multinverse/2026-11-22/README.md). The preceding scalar inverse, AD and sensitivity supplements retain their own immutable results.
+
+python -m pip install -r requirements.txt
+python -m pytest -q tests/test_bratu_multinverse.py
+python scripts/build_bratu_multinverse.py
+[Primal solve, adjoint, fitting and diagnostics](/code/bratu-multinverse/2026-11-22/numart/bratu_multinverse.py) · [Figure and JSON builder](/code/bratu-multinverse/2026-11-22/scripts/build_bratu_multinverse.py) · [Dedicated tests](/code/bratu-multinverse/2026-11-22/tests/test_bratu_multinverse.py) · [Independent-extraction verification](/code/bratu-multinverse/2026-11-22/verification.json) · [Payload and SHA-256 manifest](/code/bratu-multinverse/2026-11-22/source-manifest.json)
+
+References distinguish implicit root differentiation (Blondel et al.), sufficient-decrease step selection (Armijo), the SVD formulation (Golub–Reinsch) and quadratic penalties with augmented matrices (Hansen’s author-maintained manual). This independent two-coefficient Bratu implementation does not claim a full-source audit, reproduction of complete software packages or direct application of their general convergence results.
+
+[Previous chapter: infer one λ](/numerical-methods-atlas/en/read/bratu-inverse/) · [Implicit differentiation and discrete adjoints](/numerical-methods-atlas/en/read/adjoint/) · [QR and singular value decomposition](/numerical-methods-atlas/en/read/qr-svd/)
+
+## Publication scope
+
+A two-coefficient Bratu inverse problem with spatial coefficient λ(x)=a+b(2x−1). Executed checks cover both adjoint components, bounded fitting, fixed perturbations and regularization, observation-sensitivity singular values and center-only nonidentifiability. Scope is a specified smaller-solution branch, fixed synthetic observations and small dense matrices. Local sensitivities and regularized curvature do not establish global uniqueness, statistical confidence intervals or general function recovery.
+
+## Sources
+
+- Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. https://doi.org/10.2140/pjm.1966.16.1
+- Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. https://doi.org/10.52202/068431-0378
+- G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. https://doi.org/10.1007/bf02163027
+- Per Christian Hansen (2008). Regularization Tools: A Matlab Package for Analysis and Solution of Discrete Ill-Posed Problems, Version 4.1. https://www.imm.dtu.dk/~pcha/Regutools/RTv4manual.pdf

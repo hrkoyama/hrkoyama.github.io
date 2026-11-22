@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "Bratu方程式のパラメータ感度で、陰関数の感度方程式・離散随伴勾配・解析的な連続感度・解き直した有限差分を検証する。",
-    "en": "Verify implicit state sensitivities and discrete-adjoint gradients on Bratu against analytic continuous sensitivities and finite differences with fresh nonlinear solves."
+    "ja": "Bratuのパラメータ感度で陰関数微分と離散随伴を照合し、別配布版で1個・2個の係数を推定する合成逆問題へ進む。",
+    "en": "Compare implicit sensitivities and discrete adjoints on Bratu, then follow separate synthetic inverse editions for one and two fitted coefficients."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -51,12 +51,12 @@
   "units": "Dimensionless Bratu variables and parameter; objective quadrature h=1/(n+1) is explicit.",
   "boundary_conditions": "u(0)=u(1)=0 on [0,1], fixed independently of lambda; corresponding boundary sensitivity is zero.",
   "next_deliverable": {
-    "ja": "時間依存の随伴、多パラメータの逆問題最適化、非滑らかな問題への独立した検証。1パラメータの合成観測逆問題は別章で公開。",
-    "en": "Separate validation for time-dependent adjoints, multi-parameter inverse optimization and nonsmooth problems. A separate chapter provides the one-parameter synthetic-observation inverse case."
+    "ja": "時間依存随伴、多数係数の逆問題、非滑らかな問題への独立検証。1・2係数の合成逆問題は別章・別配布版で公開。",
+    "en": "Separate validation for time-dependent adjoints, high-dimensional inverse problems and nonsmooth models. Dedicated chapters and editions cover one- and two-coefficient synthetic inversions."
   },
   "limitations": {
-    "ja": "感度配布版は滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴はEuclid内積で定義し、目的関数の積分重みを明記する。1パラメータの合成観測逆問題は別章・別配布版で扱う。時間依存随伴、衝撃波感度は未実装。",
-    "en": "The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented."
+    "ja": "感度配布版は滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴の内積と目的関数の積分重みを明記する。定数λの推定と2パラメータ空間係数の正則化・識別可能性は別の逆問題配布版で扱う。時間依存随伴と衝撃波感度は未実装。",
+    "en": "The sensitivity edition verifies smooth lower-branch Bratu and a small nonsymmetric linear example with explicit adjoint pairing and objective quadrature. Separate inverse editions fit constant lambda and two spatial coefficients with regularization and identifiability checks. Time-dependent adjoints and shock sensitivities remain unimplemented."
   },
   "metadata_review": {
     "level": "implicit and discrete-adjoint implementation; analytic, re-solved finite-difference and spatial-refinement checks",

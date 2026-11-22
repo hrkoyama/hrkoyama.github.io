@@ -150,6 +150,8 @@ Blondel et al. (2022), Section 2.1, and the official JAXopt documentation discus
 
 [Implicit differentiation and Bratu sensitivity](/numerical-methods-atlas/en/read/adjoint/) · [Automatic differentiation foundation](/numerical-methods-atlas/en/read/automatic-differentiation/) · [General gradient and quasi-Newton reading](/numerical-methods-atlas/en/read/optimization/)
 
+[Next: two-coefficient Bratu fitting, regularization and identifiability](/numerical-methods-atlas/en/read/bratu-multi-inverse/) — This chapter retains its dated supplement’s scope; the multi-parameter extension has a separate chapter and release.
+
 ## Publication scope
 
 An educational box-constrained adjoint-gradient implementation estimates one Bratu coefficient λ from synthetic observations. Measured checks cover same-discretization consistency, mesh dependence for independent continuous-family data, fixed observation perturbations, gradient differences and an objective-only reference search. Scope is a specified smaller-solution branch, fixed observations and small dense matrices. It does not validate BFGS or optimization methods generally, all-branch uniqueness, real data, statistical uncertainty or unknown model discrepancy.

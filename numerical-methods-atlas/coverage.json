@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 80,
+    "reading_chapters": 81,
     "test_problems": 67,
     "saved_test_problems": 67,
     "code_test_problems": 0
@@ -1498,17 +1498,17 @@
       "chapter": "adjoint",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
-      "scope": "The sensitivity edition verifies the smooth Bratu lower branch and a small nonsymmetric linear example, using the Euclidean adjoint with explicit objective quadrature weights. A separate chapter and edition address the one-parameter synthetic-observation inverse problem. Time-dependent adjoints and shock sensitivities remain unimplemented.",
+      "scope": "The sensitivity edition verifies smooth lower-branch Bratu and a small nonsymmetric linear example with explicit adjoint pairing and objective quadrature. Separate inverse editions fit constant lambda and two spatial coefficients with regularization and identifiability checks. Time-dependent adjoints and shock sensitivities remain unimplemented.",
       "origin": "curated-sensitivity-example"
     },
     {
       "kind": "method",
       "id": "optimization",
       "label": "Gradient and quasi-Newton optimization",
-      "chapter": "bratu-inverse",
+      "chapter": "bratu-multi-inverse",
       "status": "local-example",
       "group": "Optimization & stochastic methods",
-      "scope": "An educational one-parameter inverse problem on the smooth lower branch with fixed synthetic observations, bounded projected gradients and Armijo search. Same-discrete-model recovery, grid bias against continuous analytic observations and shifts under fixed noise are distinguished. Quasi-Newton methods, real data, branch identification and statistical confidence intervals are outside the verified scope.",
+      "scope": "Educational tests use small smooth lower-branch Bratu problems and fixed synthetic observations. They cover two spatial coefficients, Tikhonov regularization, local data-sensitivity SVD, rank loss with central observations and reflection ambiguity. Prior selection through regularization does not add observational information. Real data, high-dimensional function estimation, global uniqueness, statistical confidence intervals and quasi-Newton methods generally are outside scope.",
       "origin": "curated-inverse-example"
     },
     {
@@ -2957,7 +2957,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "a76ab613723efb2290bd7f28b40d61796e9ec1ec4a9b01cb203aabb835048ab8",
+    "catalog/atlas-methods.json": "1e1ff566d4e754a1a6e5efc1af871913fb9918054ee962ce3e342192f176b0ec",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
     "catalog/atlas-method-primary-references.json": "82e06bb2173f45e83459e1424da12e7c6a37aa43b211c1c8445cd9ff8fe041cd"
   }

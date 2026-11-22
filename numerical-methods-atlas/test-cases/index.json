@@ -1391,6 +1391,10 @@
         {
           "path": "code/bratu-inverse/2026-11-22/docs/figures/bratu-inverse.json",
           "json_pointer": "/grid_runs"
+        },
+        {
+          "path": "code/bratu-multinverse/2026-11-22/docs/figures/bratu-multinverse.json",
+          "json_pointer": "/grid_runs"
         }
       ],
       "availability": "saved-output",
@@ -2335,7 +2339,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "346fe2ef324b933ccddea6675f6d142920a3de911200da99f1d7a9c20774d8c7",
+    "catalog/atlas-test-problems.json": "20f104227f098647d4f927529b003f032da0df1b3ae50f2814ca261d4994eec5",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -2367,6 +2371,7 @@
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/bratu-sensitivity/2026-11-22/docs/figures/bratu-sensitivity.json": "373e1f1c34c978f908e032fd93b841dc456cc32b9413e77a7b06fb49becc7069",
     "code/bratu-inverse/2026-11-22/docs/figures/bratu-inverse.json": "31b12780b38ac8cca2c6d0df42d6a2f1e58acae67318967960416a40027900aa",
+    "code/bratu-multinverse/2026-11-22/docs/figures/bratu-multinverse.json": "8c34b36267b525b786288c0f1435d1e33ca7caddabdb7226b33fe5897d787edc",
     "code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py": "45a38aa6b8f5a4113699d3f89732ef25a713a33eb39303cbd428e362cbdded42",
     "numerical-methods-atlas/assets/gravity-boundaries.json": "22b3f50c1facb15f6e9b9db2cc393f49161c20ea46fce5bd22cbf7b9df3da168",
     "code/numerical-methods-atlas/2026-11-21/tests/test_gravity_boundaries.py": "328bf0dd6555fab95ce2348e9b9405df744df57eae5fcba7a62a3d2fa762660a",

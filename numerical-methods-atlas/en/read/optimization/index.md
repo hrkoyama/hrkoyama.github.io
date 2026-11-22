@@ -26,6 +26,8 @@ Vary conditioning on positive-definite quadratics with known minima and check gr
 
 [Verified implementation example: adjoint-gradient fitting of the Bratu synthetic inverse problem](/numerical-methods-atlas/en/read/bratu-inverse/)
 
+[Next: two-coefficient Bratu fitting, regularization and identifiability](/numerical-methods-atlas/en/read/bratu-multi-inverse/) — The existing general-method sections remain; the dedicated chapter contains the two-coefficient execution checks.
+
 ## Publication scope
 
 This page gives general gradient/quasi-Newton reading. Implemented scope is the separate Bratu synthetic inverse example: a scalar box-constrained projected-gradient method with Armijo backtracking. BFGS, general quasi-Newton methods and the broader checks proposed on this page are not implemented or verified by that example.

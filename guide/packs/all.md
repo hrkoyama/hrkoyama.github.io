@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-f7655fc5ab
-Captured (UTC): 2026-11-22T07:34:37+00:00
+Snapshot: 2026-11-22-9a44c89c96
+Captured (UTC): 2026-11-22T07:40:04+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -315,6 +315,13 @@ The existing AD foundation chapter explains how residual derivatives are obtaine
 Automatic differentiation foundation · Newton and conditioning
 The nine dedicated tests are rerun from an independently extracted copy of the release. The verification receipt also records checks of numerical evidence, the rebuilt figure and file hashes.
 The fixed sensitivity release in this chapter does not fit observations. A separate follow-up uses its adjoint construction to estimate λ from synthetic observations. Bratu inverse problem: fit a parameter to synthetic observations
+
+## Implicit differentiation and adjoints: Bratu parameter sensitivity — Run and inspect the fixed release [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/adjoint/#reproduce
+Coverage: reading
+
+Next: two-coefficient Bratu fitting, regularization and identifiability — This chapter retains its dated supplement’s scope; the multi-parameter extension has a separate chapter and release.
 
 ## Implicit differentiation and adjoints: Bratu parameter sensitivity — Publication scope and related entries [en]
 
@@ -1844,6 +1851,7 @@ python -m pytest tests/test_bratu_inverse.py
 Inspect the objective, adjoint and optimizer source, figure and evidence builder, dedicated tests, independent-extraction verification record and file inventory and SHA-256 hashes. JSON inputs include positions, generating parameter, fixed perturbation, weights, starts and stopping controls.
 Blondel et al. (2022), Section 2.1, and the official JAXopt documentation discuss root derivatives built from residual derivatives and linear solves; Jameson (1988) gives historical context for adjoints in design. This NumPy educational implementation does not claim to reproduce their paper experiments or JAXopt’s implementation or performance.
 Implicit differentiation and Bratu sensitivity · Automatic differentiation foundation · General gradient and quasi-Newton reading
+Next: two-coefficient Bratu fitting, regularization and identifiability — This chapter retains its dated supplement’s scope; the multi-parameter extension has a separate chapter and release.
 
 ## Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients — Publication scope and related entries [en]
 
@@ -1880,6 +1888,209 @@ Consulted Section 2.1, pages 3–4: differentiating a root under local nonsingul
 The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
 Official reference documentation · Selected source passages consulted · Consulted record
 Consulted the distinction between implicit and unrolled differentiation, custom_root support and the root_jvp/root_vjp API invariant optimality_fun(sol,*args)==0 with a supplied linear solver. No library benchmarking or reproduction of all examples is claimed.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Multi-parameter Bratu inversion: regularization and identifiability [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/
+Coverage: reading
+
+Adding a second coefficient changes what a successful fit can tell us. Observations may respond strongly to one parameter combination and barely change along another. We extend the previous constant λ to a spatial coefficient λ(x), separating adjoint-gradient fitting, selection by regularization and information supplied by observations.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Extend constant λ to a level and a slope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-parameter-model
+Coverage: reading
+
+-u^{\prime\prime}(x)-\lambda(x;\theta)e^{u(x)}=0,\quad u(0)=u(1)=0,\quad \lambda(x;\theta)=a+b(2x-1),\quad\theta=(a,b)^T.\mathcal B=[1,2.8]\times[-0.5,0.5],\qquad 0.5\le\lambda(x;\theta)\le3.3,\qquad \theta_*=(2.2,0.35)^T.F_h(u,\theta)=D_hu-(Q_h\theta)\odot e^u=0,\quad (Q_h)_{i,:}=(1,2x_i-1),\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1).
+The unknown a sets the coefficient level and b multiplies the tilt basis (2x−1). The actual spatial derivative dλ/dx and the end-to-end difference λ(1)−λ(0) both equal 2b. Setting b=0 recovers the constant-coefficient Bratu model. This is a two-basis-function extension of the coefficient, rather than duplicate estimates of one constant λ. State, coordinate and both parameters are dimensionless. Domain, mesh, zero Dirichlet data and observation operator are fixed.
+The published experiments use the box and generating vector θ*=(2.2,0.35) above. A positive coefficient does not imply identifiability. These bounds alone do not guarantee existence, uniqueness or convergence for arbitrary meshes and starting states. Every primal solve starts at zero and uses damped Newton with an explicit residual acceptance check; the tested smaller-solution branch defines the scope.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Fix the observations and their numerical generator [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#observations-and-data
+Coverage: reading
+
+The ordinary experiment samples x=0.125,0.25,0.5,0.75,0.875. All are exact interior nodes on the inverse meshes, so H selects state components. Observations at mirrored locations are retained separately: symmetric sensor positions do not discard the left-right difference. The published weights are wⱼ=1/5. They weight observations, rather than approximate a spatial integral.
+A noiseless control generated and fitted on the same mesh first checks recovery of both coefficients. It is an inverse crime used for code consistency. Separate fixed observations from a numerical reference, with its own refinement check, support inverse-mesh refinement. For b≠0 we do not reuse the closed-form constant-coefficient Bratu family as an analytic reference. The saved inputs and evidence specify the actual generator, resolution and self-refinement difference.
+The numerical generator uses a separate Newton implementation with Thomas elimination for tridiagonal systems. Grids n=255,511,1023 are compared, and n=1023 observations are fixed. Linear-system implementations differ, but both use second-order centered finite differences. The finer grid is not an exact continuous solution, and parameter error also contains its finite-grid error. Generator controls use the infinity norm of h²F and final Newton correction, recorded separately from the unscaled inverse-solve residual.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Fix the observations and their numerical generator [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#observations-and-data
+Coverage: reading
+
+A perturbed experiment likewise saves the observations once, before fitting. Trials do not regenerate data, and different γ values use the same perturbation. Noise here means a deterministic observation perturbation; no probability distribution or real measurement is assumed.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Obtain both gradient components from one adjoint equation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-adjoint-gradient
+Coverage: reading
+
+r_h(\theta)=H_hu_h(\theta)-d,\qquad\Phi_\gamma(\theta)=\underbrace{\tfrac12r_h^TWr_h}_{\Phi_{\rm data}}+\underbrace{\tfrac\gamma2\|\theta-\theta_{\rm prior}\|_2^2}_{\Phi_{\rm prior}},\quad\gamma\ge0.J=F_u=D_h-\operatorname{diag}\!\big((Q_h\theta)\odot e^u\big),\qquad B_\theta=F_\theta=-\operatorname{diag}(e^u)Q_h.q=H_h^TWr_h,\qquad J^Tp=q,\qquad g=\nabla_\theta\Phi_\gamma=\gamma(\theta-\theta_{\rm prior})-B_\theta^Tp=\gamma(\theta-\theta_{\rm prior})+Q_h^T(e^u\odot p).
+Assume a smooth selected state branch and a locally nonsingular state Jacobian J. Invertibility of the primal Jacobian J and full column rank of the observation Jacobian Adata are separate conditions. With the Lagrangian convention Φ−pᵀF, the residual parameter derivative Bθ has two columns, while p has one right-hand side. The state partial q includes Hᵀ and W. Multiplication by Bθᵀp produces both components of g. The state-mediated term Qᵀ(exp(u)⊙p) remains when γ=0. We differentiate the converged discrete equation, rather than unroll a finite sequence of Newton iterations.
+JS=-B_\theta=\operatorname{diag}(e^u)Q_h,\qquad S=\frac{\partial u_h}{\partial\theta}\in\mathbb R^{n\times2}.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Obtain both gradient components from one adjoint equation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-adjoint-gradient
+Coverage: reading
+
+The direct sensitivity S uses two right-hand sides. It provides an independent gradient diagnostic. Actual optimization directions use the adjoint gradient; neither finite differences nor direct sensitivities substitute for it. A two-parameter example with small dense matrices does not establish an unmeasured speed advantage.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Vary regularization and inspect prior bias [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#regularization
+Coverage: reading
+
+The Tikhonov-type quadratic penalty adds distance from θprior to the observation misfit. The implementation uses Euclidean distance, equivalent to the regularization matrix R=I₂. Zero, weak and stronger penalties are applied to identical observations, recording data residual, distance from the prior and error against the generating vector separately. Increasing γ need not move the estimate closer to the generating truth.
+A displaced prior pulls the estimate toward its own values. Regularization may suppress amplification of observation perturbations along a weak direction while introducing prior bias. A synthetic experiment can compare parameter errors because θ* is known; this does not supply a corresponding choice rule for real data. The published γ sweep illustrates sensitivity and bias. It does not validate automatic tuning, cross-validation, an L-curve corner rule or statistical confidence intervals.
+Hansen’s author-maintained manual describes the quadratic penalty, augmented least squares and spectral analysis. Its squared regularization parameter corresponds to γ here. Its linear formulas are distinguished from this implemented nonlinear coefficient fit.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Optimize with a fixed scaling of the adjoint gradient [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#bounded-fit
+Coverage: reading
+
+\theta_{\rm trial}=\Pi_{\mathcal B}(\theta_k-sP g_k),\quad\Delta\theta=\theta_{\rm trial}-\theta_k,\qquad\Phi_\gamma(\theta_{\rm trial})\le\Phi_\gamma(\theta_k)+c\,g_k^T\Delta\theta,\quad P=\operatorname{diag}(1,100),\ s=10\,2^{-j},\ c=10^{-4}.G(\theta)=\theta-\Pi_{\mathcal B}(\theta-g(\theta)),\qquad\|G(\theta)\|_\infty\le10^{-9}.
+P=diag(1,100) is a fixed positive diagonal matrix that adjusts progress along the differently sensitive level and slope directions. The evidence records P, initial step, halving rule, Armijo constant, iteration limits and tolerances. P adds no observation and is not a Gauss–Newton matrix estimated from the data. Rescaling an optimizer is distinct from improving identifiability.
+The Armijo inner product uses the actual projected displacement Δθ. Stopping uses the unit-step projected gradient G without P, so a small preconditioned update alone cannot imply convergence. A bound-constrained stationary point may have nonzero gradient components at active bounds. At most 1000 updates and 50 backtracking trials are allowed. Inspect the termination reason and accepted history; closeness to the generating vector is not a stopping criterion.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Diagnose data-only sensitivity with singular values [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#data-identifiability
+Coverage: reading
+
+A_{\rm data}=W^{1/2}H_hS\in\mathbb R^{m\times2},\quad A_{\rm data}=U\Sigma V^T,\quad\sigma_1\ge\sigma_2\ge0,\qquad\|A_{\rm data}v_2\|_2=\sigma_2.\Delta\theta=T\Delta z,\quad A_z=A_{\rm data}T,\qquad\delta(W^{1/2}Hu)\approx A_{\rm data}\Delta\theta=A_z\Delta z.
+Adata linearizes changes in weighted observations as the parameters change. The right singular vector v₂ associated with a small σ₂ identifies a coefficient combination with little effect on those observations. Two independent observed directions yield full column rank at this point. This is a local diagnostic for the chosen state branch and observation operator, rather than a proof of global uniqueness for the nonlinear inverse problem.
+Singular values and condition numbers depend on observation weights, parameter units and parameter scaling. The published SVD uses T=I₂, the raw (a,b) coordinates. Changes of units or coefficient basis require the scaling to be stated. Numerical rank counts singular values above 10⁻¹⁰σ₁ and records that absolute threshold as well. A small singular value is not a universal identification threshold independent of measurement precision and floating-point error.
+A_{\rm aug}=\begin{pmatrix}A_{\rm data}\\ \sqrt\gamma I_2\end{pmatrix},\qquad A_{\rm aug}^TA_{\rm aug}=A_{\rm data}^TA_{\rm data}+\gamma I_2.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Diagnose data-only sensitivity with singular values [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#data-identifiability
+Coverage: reading
+
+Positive γ raises the singular-value floor of this local augmented matrix. The term γI₂ comes from a prior penalty, not new observations. AdataᵀAdata+γI₂ is a regularized Gauss–Newton-type local curvature; it is not generally the exact Hessian at nonzero residual, nor proof of global convexity. Data-only and augmented diagnostics are separate in the evidence.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Exhibit information lost by a central observation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#reflection-ambiguity
+Coverage: reading
+
+u_h(a,-b;x_i)=u_h(a,b;1-x_i),\qquad u_h(a,-b;1/2)=u_h(a,b;1/2).H_{\rm center}S\in\mathbb R^{1\times2}\ \Longrightarrow\ \operatorname{rank}(H_{\rm center}S)\le1;\qquad \left.\frac{\partial u_h(1/2)}{\partial b}\right|_{b=0}=0.
+A single observation at x=1/2 gives a 1×2 observation Jacobian, whose rank is at most one at every θ. At b=0 the state is even about the center and the slope sensitivity is odd, so the center has zero first derivative with respect to b. Moreover, reflection x↦1−x changes b to −b while preserving the central value. Opposite slope signs are observationally indistinguishable there. This is information lost by H, not a floating-point defect or merely stalled optimization.
+Fits using center-only data and mirrored priors check that regularized estimates depend on prior choice. Obtaining a smooth stationary point or a positive regularized local curvature does not show that the data identified the slope sign. A penalty may select a solution by adding an assumption; it does not create the missing observational information.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Exhibit information lost by a central observation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#reflection-ambiguity
+Coverage: reading
+
+A compact SVD of a 1×2 matrix returns only one singular value. Its lack of a second returned entry must not be read as absence of a null direction. We retain the zero direction and right singular vectors in the full two-dimensional parameter space. Five sensors and one central sensor are compared through independent sensitivities, not their counts alone.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Separate gradient, fitting, regularization and information checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+Saved settings, observations and complete measurements specify every plotted experiment. · View full-size figureg_j^{\rm FD}(\varepsilon)=\frac{\Phi_\gamma(\theta+\varepsilon e_j)-\Phi_\gamma(\theta-\varepsilon e_j)}{2\varepsilon},\qquad F_h(u_\pm,\theta\pm\varepsilon e_j)=0.
+Every adjoint component. Away from stationary points, perturb a and b separately in both directions and re-solve the primal equation for objective-only differences. Direct sensitivity gives another comparison. Include the explicit regularization term.
+Same-discretization two-parameter recovery. Compare multiple starts, accepted objective decrease, projected gradients and parameter errors while preserving the inverse-crime interpretation.
+Fixed reference observations and meshes. Refine the inverse mesh while keeping the numerical reference data fixed. Report reference-generation error checks; this is not an error against an exact continuous solution.
+One perturbation and a γ sweep. Hold observations and prior fixed while comparing fit residual, distance from the prior and parameter error.
+Insufficient observations. Check center-only rank, equality under slope reflection and prior dependence. Augmented rank is not data rank.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Separate gradient, fitting, regularization and information checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+Measurement 1: both gradient components. On n=31, the points (a,b)=(1.3,−0.3),(2.1,0.2),(2.6,0.4) use γ=0,10⁻⁴,10⁻³ respectively. Across all six components, the largest absolute difference between the adjoint and central objective differences with ε=10⁻⁵ is about 7.74×10⁻¹². The direct-sensitivity difference is at most about 6.94×10⁻¹⁸. These checks do not rely on both gradients simply being small near an optimum.
+Measurement 2: same-discretization recovery. For noiseless n=31 data, starts (1.3,−0.4),(2,0),(2.7,0.45) require 52,46,46 accepted updates. Their Euclidean errors against (2.2,0.35) are about 1.72×10⁻⁷,1.33×10⁻⁷,1.94×10⁻⁷, with final observation RMS below 6.5×10⁻⁹. All satisfy the unscaled projected-gradient infinity-norm threshold 10⁻⁹. This is a consistency control for the same discretization.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Separate gradient, fitting, regularization and information checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+Measurement 3: inverse-mesh dependence for fixed numerical-reference data. Consecutive observation differences have Euclidean norms about 2.1046×10⁻⁶ for 255→511 and 5.2614×10⁻⁷ for 511→1023, a ratio about 4.00005. The n=1023 generator has an h²F infinity norm about 1.02×10⁻¹⁶, unscaled F Euclidean norm about 1.104×10⁻⁹ and final Newton correction infinity norm about 3.45×10⁻¹⁵. Its tolerances are 2×10⁻¹⁴ for h²F and 2×10⁻¹³ for the correction. Differently scaled residuals are not judged against the same tolerance. Self-refinement is an error diagnostic, not a rigorous error bound.
+Holding those n=1023 observations fixed, inverse grids n=15,31,63,127 give generating-parameter errors about 2.2187×10⁻³,5.5382×10⁻⁴,1.3798×10⁻⁴,3.4049×10⁻⁵. Observed orders are about 2.0022,2.0049,2.0188; the final value is also affected by the fixed reference-grid floor. The n=127 estimate is about (2.1999715336,0.3499813181). It is not claimed to equal the estimate for exact continuous observations.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Separate gradient, fitting, regularization and information checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+Measurement 4: stabilization and prior bias. On n=63 with prior (2,0) and one fixed observation perturbation, γ=0,10⁻⁵,10⁻⁴,10⁻³ are compared. The unregularized estimate is about (2.1995554520,0.3363439565), while γ=10⁻³ gives about (2.1937407950,0.0795027282). Generating-parameter errors increase through approximately 0.013663,0.024173,0.095712,0.270570. Observation RMS increases from about 6.7849×10⁻⁴ to 4.7026×10⁻³, while distance from the prior decreases from about 0.39109 to 0.20942.
+At fixed γ, the norm of “perturbed-data estimate minus unperturbed-data estimate” decreases from about 0.013584 at γ=0 to 0.0032396 at γ=10⁻³. For this prior, reducing perturbation response and reducing generating-parameter error are different goals. The four perturbed fits agree with the objective-only simplex reference within 1.42×10⁻⁷ in parameter Euclidean norm. This is a local cross-check, not a rigorous error bound against an unknown exact optimum.
+Measurement 5: data rank and regularized curvature. At n=31, θ=(2.2,0.35), five sensors with weights 1/5 give data singular values about (0.1728295,0.0175934), rank two and condition number about 9.8235. At the same θ, one central observation with weight one gives about (0.2500373,0), rank one. Different weights mean the leading singular-value magnitudes should not be directly compared.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Separate gradient, fitting, regularization and information checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+The plotted central symmetric-state comparison uses a separate diagnostic point θ=(2.2,0), one central observation with weight one and γ=10⁻². Its data-only singular values are about (0.2499068,0), while augmented values are about (0.2691718,0.1). Data rank remains one; the extra curvature comes from the penalty.
+Measurement 6: central observations and mirrored priors. At n=31 with fixed center-only reference data and γ=10⁻⁴, the same initial vector (2,0) with priors (2.2,±0.4) leads after 101 updates to estimates about (2.19930979,±0.39998726). Both have observation RMS about 2.7818×10⁻⁷, so the data do not distinguish the opposite slope signs. Separately, central predictions generated at θ=(2.2,±0.35) differ by about 1.94×10⁻¹⁵. These results match the observation operator’s reflection symmetry.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Distinguish why an estimate moves and what was verified [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#error-and-scope
+Coverage: reading
+
+e_\theta=\|\widehat\theta-\theta_*\|_2,\quad\rho_d=\|W^{1/2}r_h\|_2,\quad\rho_F=\|F_h\|_2,\quad\rho_p=\|J^Tp-q\|_2.\qquad \rho_d\ne\rho_F.
+Generating-parameter error, observation fit, primal residual, adjoint residual and projected gradient measure different things. Regularization, fixed observation perturbations, inverse discretization and reference-generation errors can shift a fully converged fit away from θ*. Conversely, a small data residual does not establish that both parameters were identified.
+Scope is a small dense-matrix example with two fixed coefficient basis functions, box bounds, the smaller-solution branch, known boundary conditions and observation operator, and synthetic data. General function recovery for λ(x), guarantees for many coefficients, BFGS or Gauss–Newton optimization, real measurements, unknown boundaries or model discrepancy, optimal experimental design and probabilistic uncertainty or confidence intervals are outside the checks.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Re-run the immutable dated supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#reproduce
+Coverage: reading
+
+Extract the two-coefficient code, tests, inputs and figure ZIP and follow its README. The preceding scalar inverse, AD and sensitivity supplements retain their own immutable results.
+python -m pip install -r requirements.txt
+python -m pytest -q tests/test_bratu_multinverse.py
+python scripts/build_bratu_multinverse.py
+Primal solve, adjoint, fitting and diagnostics · Figure and JSON builder · Dedicated tests · Independent-extraction verification · Payload and SHA-256 manifest
+References distinguish implicit root differentiation (Blondel et al.), sufficient-decrease step selection (Armijo), the SVD formulation (Golub–Reinsch) and quadratic penalties with augmented matrices (Hansen’s author-maintained manual). This independent two-coefficient Bratu implementation does not claim a full-source audit, reproduction of complete software packages or direct application of their general convergence results.
+Previous chapter: infer one λ · Implicit differentiation and discrete adjoints · QR and singular value decomposition
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#publication-scope
+Coverage: reading
+
+A two-coefficient Bratu inverse problem with spatial coefficient λ(x)=a+b(2x−1). Executed checks cover both adjoint components, bounded fitting, fixed perturbations and regularization, observation-sensitivity singular values and center-only nonidentifiability. Scope is a specified smaller-solution branch, fixed synthetic observations and small dense matrices. Local sensitivities and regularized curvature do not establish global uniqueness, statistical confidence intervals or general function recovery.
+Gradient and quasi-Newton optimization
+Implicit differentiation and adjoint methods
+Automatic differentiation
+QR, SVD and least squares
+Armijo-damped Newton
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. Pacific Journal of Mathematics
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted pages 1–2: hypotheses, sufficient decrease and the modified steepest-descent step-halving rule in Corollary 2. No full-paper audit, reproduction or direct transfer of its unconstrained convergence theorem to the projected nonlinear inverse problem is claimed.
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted Section 2.1, pages 3–4: differentiating a root under local nonsingularity, and forming JVPs/VJPs through linear systems. Full-paper audit and reproduction of the paper experiments are not claimed.
+
+## Multi-parameter Bratu inversion: regularization and identifiability — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/#sources
+Coverage: reading
+
+G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. Numerische Mathematik
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted the original introduction on page 403, including the SVD, ordering of singular values and relation to rank, through the Göttingen digitization. This does not claim reproduction of the ALGOL implementation or a proof of global nonlinear parameter identifiability.
+Per Christian Hansen (2008). Regularization Tools: A Matlab Package for Analysis and Solution of Discrete Ill-Posed Problems, Version 4.1. Author manual, Technical University of Denmark, March 2008
+Official reference documentation · Selected source passages consulted · Consulted record
+Consulted Section 2.3.1, printed pages 13–14 (SVD and weak directions), Section 2.7.1, printed page 25 (augmented Tikhonov least squares) and the tikhonov reference, printed page 114 (nonzero prior). No reproduction of the MATLAB package or transfer of linear uniqueness results to the nonlinear Bratu problem is claimed.
 
 ## The carbuncle phenomenon [en]
 
@@ -5864,6 +6075,7 @@ Coverage: reading
 
 Vary conditioning on positive-definite quadratics with known minima and check gradients by directional differences. On curved valleys vary initialization, scaling and line searches. Decreasing an objective does not validate physical assumptions or constraints.
 Verified implementation example: adjoint-gradient fitting of the Bratu synthetic inverse problem
+Next: two-coefficient Bratu fitting, regularization and identifiability — The existing general-method sections remain; the dedicated chapter contains the two-coefficient execution checks.
 
 ## Gradient and quasi-Newton optimization — Publication scope and related entries [en]
 
@@ -6959,8 +7171,8 @@ Alston S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix
 Research publication: proposal or related formulation · Bibliography checked · Consulted record
 Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
 G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. Numerische Mathematik
-Research publication: proposal or related formulation · Bibliography checked · Consulted record
-Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Consulted the original introduction on page 403, including the SVD, ordering of singular values and relation to rank, through the Göttingen digitization. This does not claim reproduction of the ALGOL implementation or a proof of global nonlinear parameter identifiability.
 
 ## Gaussian and adaptive quadrature — Gaussian and adaptive quadrature [en]
 
@@ -11090,7 +11302,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 116 methods and building blocks · 224 journal/conference papers · 266 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 80 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 81 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -13022,6 +13234,7 @@ python -m pytest tests/test_bratu_sensitivity.py
 自動微分の共通基盤 · Newton法と条件数
 配布版の専用テスト9件を、独立したフォルダに展開した内容で再実行しています。数値結果・生成図・ファイルのハッシュを照合する手順も検証記録に残します。
 この章の固定した感度配布版は、観測への当てはめを含みません。次の独立した章では、その随伴計算を使って合成観測からλを推定します。 Bratu逆問題：合成観測からのパラメータ推定
+次へ：Bratuの2係数推定・正則化・識別可能性 — この章の固定配布版の検証範囲を保持し、複数パラメータへの拡張は別章・別配布版で扱います。
 
 ## 陰関数微分と随伴法：Bratuのパラメータ感度 — 公開範囲と関連項目 [ja]
 
@@ -14098,6 +14311,7 @@ python -m pytest tests/test_bratu_inverse.py
 目的関数・随伴勾配・最適化のソース、図と測定記録の生成、専用テスト、独立展開後の検証記録、ファイル一覧とSHA-256を公開します。観測位置・生成値・固定摂動・重み・初期値・停止条件もJSONに保存します。
 残差の微分から根の微分へ進む考え方はBlondelほか（2022）第2.1節とJAXopt公式資料、設計目的への随伴の歴史的文脈はJameson（1988）を参照します。NumPyによる教材であり、それらの原論文の実験やJAXoptの実装・性能を再現する主張はしません。
 陰関数微分とBratuの感度 · 自動微分の共通基盤 · 勾配法・準Newton法の一般的な解説
+次へ：Bratuの2係数推定・正則化・識別可能性 — この章の固定配布版の検証範囲を保持し、複数パラメータへの拡張は別章・別配布版で扱います。
 
 ## Bratu逆問題：合成観測からλを随伴勾配で推定する — 公開範囲と関連項目 [ja]
 
@@ -14128,6 +14342,161 @@ Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Feli
 The JAXopt authors (2026). Implicit differentiation; root_jvp and root_vjp. JAXopt official documentation; accessed November 22, 2026
 公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
 陰関数微分と反復展開の区別、custom_root、線形求解器を受け取るroot_jvp・root_vjpと収束した根を前提とする説明を参照。ライブラリの性能比較や全例の再現は未実施です。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — Bratu逆問題の複数パラメータ化：正則化と識別可能性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/
+Coverage: reading
+
+係数を1個から2個へ増やすと、観測への適合だけでは判断しにくい問題が現れます。ある組み合わせには観測が強く反応しても、別の組み合わせにはほとんど反応しないことがあるからです。ここでは前章の定数λを位置依存の係数λ(x)へ拡張し、随伴勾配による推定、正則化による選択、観測が持つ情報を分けて検証します。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 定数λを、平均と傾きの2係数へ拡張する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#multi-parameter-model
+Coverage: reading
+
+-u^{\prime\prime}(x)-\lambda(x;\theta)e^{u(x)}=0,\quad u(0)=u(1)=0,\quad \lambda(x;\theta)=a+b(2x-1),\quad\theta=(a,b)^T.\mathcal B=[1,2.8]\times[-0.5,0.5],\qquad 0.5\le\lambda(x;\theta)\le3.3,\qquad \theta_*=(2.2,0.35)^T.F_h(u,\theta)=D_hu-(Q_h\theta)\odot e^u=0,\quad (Q_h)_{i,:}=(1,2x_i-1),\quad D_h=h^{-2}\operatorname{tridiag}(-1,2,-1).
+未知量aは係数の平均レベル、bは基底(2x−1)に掛かる傾きの係数です。実際の空間微分dλ/dxと左右端の係数差λ(1)−λ(0)は、どちらも2bです。b=0なら前章の定数係数Bratu問題に戻ります。これは同じ定数λを重複して推定する例ではなく、方程式の係数を2つの基底関数で表した拡張です。状態u、座標x、a、bは無次元とし、区間[0,1]、格子、ゼロDirichlet境界と観測演算子を固定します。
+公開実験は上の箱制約と生成値θ*=(2.2,0.35)を使います。係数が正であることと、逆問題が識別可能であることは別の条件です。この係数範囲だけで任意の格子・初期値における非線形解の存在、一意性、収束を保証するわけではありません。状態は毎回ゼロから減衰Newton法で解き、残差で受理を判定した小さい解の枝に範囲を限定します。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 観測と合成データの生成方法を固定する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#observations-and-data
+Coverage: reading
+
+通常の観測はx=0.125,0.25,0.5,0.75,0.875の5点です。使う逆問題の格子ではすべて内部格子点に一致し、Hは状態成分を取り出します。対称な位置に置いたセンサーも、左右の値を別々の観測として残します。対称な位置を使うこと自体は、左右の差を捨てることを意味しません。Wの対角成分は公開実験では1/5です。これは観測の重みで、空間積分の求積ではありません。
+同じ格子・同じ順問題から作る無雑音データで、2係数を再現できるかを最初に確認します。これはinverse crimeによるコード整合性の対照です。別実装と細分化の確認を伴う数値観測を固定し、逆問題の格子だけを変える検査と区別します。b≠0の拡張では、前章の定数係数Bratuの閉じた解析解を参照解として流用しません。生成法・解像度・自己細分化の差は保存した入力とJSONで確認できます。
+数値参照は三重対角線形系をThomas消去法で解く別のNewton実装で、n=255,511,1023を比較し、n=1023の観測を固定します。線形系の実装は異なりますが、空間近似は同じ2次中心差分です。細かい格子も厳密な連続解ではなく、逆問題の係数誤差には参照生成側の有限格子誤差も含まれます。参照側はh²Fの最大ノルムと最終Newton補正で制御し、逆問題の非スケーリング残差ノルムとは別に記録します。
+固定摂動を加える実験でも、観測値を一度保存してから推定します。最適化の各試行で観測を作り直したり、γごとに別のノイズを引き直したりしません。ノイズという語はここでは決定論的な観測摂動を指し、確率分布や実測データを仮定しません。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 1本の随伴方程式から勾配の2成分を得る [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#multi-adjoint-gradient
+Coverage: reading
+
+r_h(\theta)=H_hu_h(\theta)-d,\qquad\Phi_\gamma(\theta)=\underbrace{\tfrac12r_h^TWr_h}_{\Phi_{\rm data}}+\underbrace{\tfrac\gamma2\|\theta-\theta_{\rm prior}\|_2^2}_{\Phi_{\rm prior}},\quad\gamma\ge0.J=F_u=D_h-\operatorname{diag}\!\big((Q_h\theta)\odot e^u\big),\qquad B_\theta=F_\theta=-\operatorname{diag}(e^u)Q_h.q=H_h^TWr_h,\qquad J^Tp=q,\qquad g=\nabla_\theta\Phi_\gamma=\gamma(\theta-\theta_{\rm prior})-B_\theta^Tp=\gamma(\theta-\theta_{\rm prior})+Q_h^T(e^u\odot p).
+選択した状態の枝が滑らかで、状態ヤコビ行列Jが局所的に可逆であることを仮定します。順問題のJの可逆性と、観測感度Adataの列ランクが十分であることは別の条件です。LagrangianをΦ−pᵀFとする符号規約です。残差のθ微分Bθには2列があり、随伴ベクトルpは1本です。qには観測の転置Hᵀと重みWを含め、gの2成分をBθᵀpから同時に作ります。γ=0でも、状態を通じたQᵀ(exp(u)⊙p)は残ります。非線形反復を有限回展開して微分するのではなく、収束した離散方程式を微分します。
+JS=-B_\theta=\operatorname{diag}(e^u)Q_h,\qquad S=\frac{\partial u_h}{\partial\theta}\in\mathbb R^{n\times2}.
+直接感度Sは2本の右辺を持つ線形系を解きます。このSを使った勾配との一致を独立な診断に使います。最適化の探索方向を作るのは随伴勾配であり、有限差分や直接感度を探索方向の代用品にしません。小規模密行列で2係数だけを推定する例なので、実測していない計算速度の優位性は主張しません。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 正則化の強さと事前値への偏りを調べる [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#regularization
+Coverage: reading
+
+Tikhonov型の二乗ペナルティは、観測への適合に加えて事前値θpriorからの距離を罰します。ここでの実装はユークリッド距離、すなわち正則化行列R=I₂です。γ=0、弱い正則化、強い正則化を同じ観測に適用し、観測残差、事前値からの距離、生成係数との誤差を別々に保存します。γを大きくすれば必ず生成値に近づく、という検証ではありません。
+事前値が生成値からずれていれば、強い正則化は推定をその方向へ引き寄せます。観測摂動を増幅する弱い方向を抑えられる場合でも、事前値由来の偏りを導入します。生成値を知っている合成実験では誤差も比較できますが、実データで同じ選択ができるという意味ではありません。公開のγ走査は感度と偏りの例示であり、最適なγの自動選択、交差検証、L曲線の角の選択や統計的な信頼区間を検証するものではありません。
+Hansenの著者公式マニュアルでは、二乗ペナルティと拡大最小二乗、特異値による解析を説明しています。同書の正則化パラメータの二乗に、この章のγが対応します。線形問題の公式と、ここで実装した非線形の係数推定を区別してください。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 固定した尺度付きの随伴勾配法で最適化する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#bounded-fit
+Coverage: reading
+
+\theta_{\rm trial}=\Pi_{\mathcal B}(\theta_k-sP g_k),\quad\Delta\theta=\theta_{\rm trial}-\theta_k,\qquad\Phi_\gamma(\theta_{\rm trial})\le\Phi_\gamma(\theta_k)+c\,g_k^T\Delta\theta,\quad P=\operatorname{diag}(1,100),\ s=10\,2^{-j},\ c=10^{-4}.G(\theta)=\theta-\Pi_{\mathcal B}(\theta-g(\theta)),\qquad\|G(\theta)\|_\infty\le10^{-9}.
+P=diag(1,100)は固定した正の対角行列です。観測に対する平均と傾きの感度の大きさが違うため、両成分の進み方を調整します。Pの値、初期ステップ、半減の規則、Armijo定数、最大更新数、許容値をJSONに保存します。Pは観測を追加する操作でも、データから計算したGauss–Newton行列でもありません。最適化の尺度の変更と、識別可能性の改善を区別します。
+Armijo条件の内積には、射影後の実際の変位Δθを使います。停止に使うGはPを含まない単位ステップの射影勾配です。小さい尺度を掛けて更新を小さくしただけで、収束と判定しません。制約端点ではgの成分がゼロでなくても制約付き停留点となり得ます。最大1000更新、線探索は最大50試行とし、停止理由と全受理点の履歴を確認し、生成値との差が小さいことを停止条件にしません。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — データだけの感度を特異値で診断する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#data-identifiability
+Coverage: reading
+
+A_{\rm data}=W^{1/2}H_hS\in\mathbb R^{m\times2},\quad A_{\rm data}=U\Sigma V^T,\quad\sigma_1\ge\sigma_2\ge0,\qquad\|A_{\rm data}v_2\|_2=\sigma_2.\Delta\theta=T\Delta z,\quad A_z=A_{\rm data}T,\qquad\delta(W^{1/2}Hu)\approx A_{\rm data}\Delta\theta=A_z\Delta z.
+Adataは、パラメータを変えたときの重み付き観測の変化を線形化した行列です。小さい特異値σ₂に対応する右特異ベクトルv₂は、観測をあまり変えない係数の組み合わせを示します。2係数に対し独立な観測方向が2つあれば、この点での線形化は列フルランクになります。ただし、これは指定した点・枝・観測での局所診断で、非線形問題全体の大域的一意性を証明しません。
+特異値の大きさと条件数は、観測重み、パラメータの単位と尺度に依存します。公開のSVDはT=I₂、すなわち生の(a,b)座標で行います。パラメータの単位や基底を変えれば、尺度を明記して比較する必要があります。数値ランクはσ₁の10⁻¹⁰倍を閾値として数え、閾値そのものも保存します。小さい特異値を、ノイズの大きさや丸め誤差と無関係な普遍的な識別判定の閾値として扱いません。
+A_{\rm aug}=\begin{pmatrix}A_{\rm data}\\ \sqrt\gamma I_2\end{pmatrix},\qquad A_{\rm aug}^TA_{\rm aug}=A_{\rm data}^TA_{\rm data}+\gamma I_2.
+γ>0なら、この局所的な拡大行列の特異値はデータだけの場合より底上げされます。右辺のγI₂は事前値のペナルティから来たもので、新しい観測ではありません。AdataᵀAdata+γI₂は正則化したGauss–Newton型の局所曲率であり、一般の非ゼロ残差での厳密なHessianや、非線形問題の大域凸性を主張する式ではありません。公開JSONではデータだけの診断と、正則化を加えた診断を分けます。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 中央1点では識別できない組み合わせを示す [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#reflection-ambiguity
+Coverage: reading
+
+u_h(a,-b;x_i)=u_h(a,b;1-x_i),\qquad u_h(a,-b;1/2)=u_h(a,b;1/2).H_{\rm center}S\in\mathbb R^{1\times2}\ \Longrightarrow\ \operatorname{rank}(H_{\rm center}S)\le1;\qquad \left.\frac{\partial u_h(1/2)}{\partial b}\right|_{b=0}=0.
+中央x=1/2の値だけを観測すると、観測感度は1行2列なので、どのθでもランクは最大1です。特にb=0では状態が左右対称となり、傾きbへの感度は反対称なので中央ではゼロになります。さらに、座標をxから1−xへ反転するとbの符号が変わるため、bと−bは中央で同じ観測を作ります。これは単なる丸め誤差や最適化の停滞ではなく、観測演算子が失う情報です。
+中央のみのデータに、互いに鏡映した事前値を与える検査では、正則化された推定値が事前値の選択に依存することを確認します。滑らかな1つの最適点が得られたり、正則化した曲率が正になったりしても、データがbの符号を識別したことにはなりません。正則化は、観測にない情報を仮定として加えて解を選ぶことができますが、失われた観測情報を復元したと解釈しません。
+不足した行が消える1行2列のコンパクトSVDを、そのまま「ゼロ特異値がない」と読まないことも検査します。2次元のパラメータ空間に対応するゼロ方向と右特異ベクトルを含めて記録します。通常の5点観測と中央1点観測の違いを、センサーの個数だけでなく感度の独立性で比較します。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 勾配・推定・正則化・識別を別々に検証する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+保存した設定・観測データ・全測定値から各曲線の条件を確認できます。 · 図を拡大g_j^{\rm FD}(\varepsilon)=\frac{\Phi_\gamma(\theta+\varepsilon e_j)-\Phi_\gamma(\theta-\varepsilon e_j)}{2\varepsilon},\qquad F_h(u_\pm,\theta\pm\varepsilon e_j)=0.
+随伴の全成分。 停留点以外でa、bをそれぞれ正負にずらして順問題を解き直し、有限差分勾配と随伴勾配を比較します。直接感度から作る勾配も独立に照合し、正則化の陽な項を含む場合を検査します。
+同じ離散化での2係数回復。 複数の初期値から推定し、目的関数の受理ごとの減少、射影勾配、生成値との差を別々に確認します。inverse crimeとしての位置づけを保ちます。
+固定観測と格子。 生成用の数値参照を固定し、逆問題の格子を細分化します。参照生成側の誤差の確認を併記し、厳密な連続解との誤差とは呼びません。
+同じ摂動とγの走査。 同じ観測、同じ事前値でγを変え、適合残差・事前値への距離・係数誤差を分けて比較します。
+識別できない観測。 中央だけのデータのランク、bの符号反転による観測の一致、事前値依存を確認します。正則化した行列のランクを、データのランクと取り違えません。
+測定①：勾配の2成分。 n=31、(a,b)=(1.3,−0.3),(2.1,0.2),(2.6,0.4)をそれぞれγ=0,10⁻⁴,10⁻³で照合しました。ε=10⁻⁵の中心差分と随伴勾配の全6成分の最大絶対差は約7.74×10⁻¹²、直接感度による勾配との差は約6.94×10⁻¹⁸以下です。停留点付近で両者が小さいことだけを検査した結果ではありません。
+測定②：同じ離散化での回復。 n=31の無雑音データに対して、初期値(1.3,−0.4),(2,0),(2.7,0.45)からの受理更新は52,46,46回でした。生成値(2.2,0.35)との2ノルム誤差は順に約1.72×10⁻⁷、1.33×10⁻⁷、1.94×10⁻⁷、最終の観測残差RMSは6.5×10⁻⁹未満です。3例とも、尺度Pを含まない射影勾配の最大ノルムが10⁻⁹以下で停止しています。これは同じ離散化の整合性の確認です。
+測定③：固定した数値参照への格子依存。 参照側の観測差の2ノルムは、255→511で約2.1046×10⁻⁶、511→1023で約5.2614×10⁻⁷、比は約4.00005です。n=1023生成時のh²Fの最大ノルムは約1.02×10⁻¹⁶、非スケーリングFの2ノルムは約1.104×10⁻⁹、最終Newton補正の最大ノルムは約3.45×10⁻¹⁵でした。参照側の許容値はh²Fで2×10⁻¹⁴、補正で2×10⁻¹³です。異なる尺度の残差を、同じ許容値で比較しません。この自己細分化は誤差の目安であり、厳密な誤差限界ではありません。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 勾配・推定・正則化・識別を別々に検証する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#multi-verification
+Coverage: reading
+
+そのn=1023観測を固定し、逆問題をn=15,31,63,127で解くと、生成係数との誤差は約2.2187×10⁻³、5.5382×10⁻⁴、1.3798×10⁻⁴、3.4049×10⁻⁵でした。観測次数は約2.0022、2.0049、2.0188です。最後の値にも、固定した参照格子の誤差床が影響します。n=127の推定値は約(2.1999715336,0.3499813181)で、厳密な連続観測への推定値と同一だとは主張しません。
+測定④：正則化の安定化と偏り。 n=63、事前値(2,0)、同じ固定摂動に対し、γ=0,10⁻⁵,10⁻⁴,10⁻³を比較しました。γ=0の推定値は約(2.1995554520,0.3363439565)、γ=10⁻³では約(2.1937407950,0.0795027282)です。生成値との誤差は約0.013663,0.024173,0.095712,0.270570と増え、観測残差RMSも約6.7849×10⁻⁴から4.7026×10⁻³へ増えました。一方、事前値への距離は約0.39109から0.20942へ減りました。
+同じγでの「摂動ありの推定値−摂動なしの推定値」のノルムは、γ=0で約0.013584、γ=10⁻³で約0.0032396に減りました。今回の事前値では、摂動に対する応答を抑えることと、生成値からの誤差を小さくすることが一致しません。4つの摂動ありの適合は、目的関数だけの単体探索とパラメータの2ノルムで1.42×10⁻⁷以内に一致しました。これは局所的な照合であり、未知の真の最適値への厳密な誤差限界ではありません。
+測定⑤：データのランクと正則化の曲率。 n=31、θ=(2.2,0.35)、5点観測・各重み1/5で、データ感度の特異値は約(0.1728295,0.0175934)、ランク2、条件数は約9.8235でした。同じθで中央1点・重み1にすると約(0.2500373,0)、ランク1です。重みが異なるので、先頭特異値の大きさだけを直接比較しません。
+図中の中央・対称状態の比較は、別の診断点θ=(2.2,0)、中央1点・重み1、γ=10⁻²です。データだけの特異値は約(0.2499068,0)、正則化を加えた拡大行列では約(0.2691718,0.1)です。データのランクは1のままで、増えた曲率はペナルティ由来です。
+測定⑥：中央観測と鏡映した事前値。 n=31、中央だけの固定参照データ、γ=10⁻⁴で、共通の初期値(2,0)から事前値(2.2,±0.4)を変えると、101更新後の推定は約(2.19930979,±0.39998726)となりました。どちらも観測残差RMSは約2.7818×10⁻⁷で、符号の異なる推定をデータから区別できません。別にθ=(2.2,±0.35)で作った中央予測の差は約1.94×10⁻¹⁵でした。これらは観測演算子の対称性と整合します。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 推定値が動く理由と、今回の検証範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#error-and-scope
+Coverage: reading
+
+e_\theta=\|\widehat\theta-\theta_*\|_2,\quad\rho_d=\|W^{1/2}r_h\|_2,\quad\rho_F=\|F_h\|_2,\quad\rho_p=\|J^Tp-q\|_2.\qquad \rho_d\ne\rho_F.
+生成係数との誤差、データへの適合、主問題残差、随伴残差、射影勾配は異なる量です。正則化、固定観測の摂動、格子と参照生成法の誤差があれば、十分収束した推定値もθ*からずれます。逆に、小さいデータ残差だけでは2係数を識別できたことになりません。
+対象は、固定した2つの係数基底、箱制約、小さい解の枝、既知の境界・観測演算子と合成データを使う小規模密行列の例です。一般の関数λ(x)の復元、多数係数への精度・速度の保証、BFGSやGauss–Newton最適化、実測データ、未知の境界値やモデル誤差、実験計画の最適化、確率的な不確かさや信頼区間は検証していません。
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 日付を固定した配布版を再実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#reproduce
+Coverage: reading
+
+2係数逆問題のコード・検査・入力・図のZIPを展開し、READMEに従って実行します。前章の1係数配布版と、その前の自動微分・感度配布版は、それぞれの固定した結果を保持します。
+python -m pip install -r requirements.txt
+python -m pytest -q tests/test_bratu_multinverse.py
+python scripts/build_bratu_multinverse.py
+順問題・随伴勾配・最適化・識別診断のソース · 図とJSONの生成 · 専用テスト · 独立展開した検証記録 · 配布ファイルとSHA-256
+根の微分はBlondelほか、十分減少によるステップ選択はArmijo、SVDの定式化はGolub–Reinsch、二乗ペナルティと拡大行列の関係はHansenの著者公式マニュアルを参照します。この教材の2係数Bratu実験は独立した実装であり、それらの全文監査・ソフトウェアの全機能再現・一般の収束定理の直接適用を主張しません。
+前章：1つのλを推定する逆問題 · 陰関数微分と離散随伴 · QR分解と特異値分解
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#publication-scope
+Coverage: reading
+
+位置依存係数λ(x)=a+b(2x−1)を持つBratuの2係数逆問題。随伴勾配の各成分、箱制約つき推定、固定摂動・正則化の影響、観測感度の特異値と中央観測の不識別性を実行検証します。対象は指定した小さい解の枝・固定合成観測・小規模密行列です。局所感度や正則化した曲率を、大域的一意性・統計的信頼区間・一般の関数復元の保証とは解釈しません。
+勾配法・準Newton法
+陰関数微分・随伴法
+自動微分
+QR・SVD・最小二乗
+Armijo減衰Newton法
+
+## Bratu逆問題の複数パラメータ化：正則化と識別可能性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+Larry Armijo (1966). Minimization of functions having Lipschitz continuous first partial derivatives. Pacific Journal of Mathematics
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+原論文1〜2頁の仮定・十分減少・系2の可変ステップ（半減探索）を参照。全文監査・数値再現・無制約問題の収束定理を射影つき非線形逆問題へそのまま適用する主張はしません。
+Mathieu Blondel, Quentin Berthet, Marco Cuturi, Roy Frostig, Stephan Hoyer, Felipe Llinares-López, Fabian Pedregosa and Jean-Philippe Vert (2022). Efficient and Modular Implicit Differentiation. Advances in Neural Information Processing Systems 35
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+第2.1節・3〜4頁の、局所的な正則性を仮定した根の微分、線形方程式によるJVP・VJPの構成を参照。論文全体の監査や掲載実験の再現は主張しません。
+G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. Numerische Mathematik
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+Göttingenの原論文デジタル版で403頁の導入部にあるSVD、特異値の順序とランクの関係を参照。ALGOL実装の再現や、非線形パラメータの大域的識別可能性の証明を主張しません。
+Per Christian Hansen (2008). Regularization Tools: A Matlab Package for Analysis and Solution of Discrete Ill-Posed Problems, Version 4.1. Author manual, Technical University of Denmark, March 2008
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+第2.3.1節・印刷頁13〜14のSVDと弱い方向、第2.7.1節・25頁のTikhonov拡大最小二乗、tikhonov参照・114頁の非ゼロ事前値を参照。MATLAB一式の再現や、線形問題の一意性を非線形Bratuへそのまま移す主張はしません。
 
 ## カーバンクル現象 [ja]
 
@@ -16929,6 +17298,7 @@ Coverage: reading
 
 既知解の正定値二次関数で条件数を変え、勾配を方向差分でも照合します。Rosenbrock型の谷では初期値・スケール・線探索を変えます。目的関数が減ったことだけで制約や物理モデルの妥当性は証明できません。
 検証済みの実装例：Bratu合成逆問題の随伴勾配による推定
+次へ：Bratuの2係数推定・正則化・識別可能性 — この一般解説の既存節を保持し、2係数の実行検証は専用章へ案内します。
 
 ## 勾配法・準Newton法 — 公開範囲と関連項目 [ja]
 
@@ -17930,8 +18300,8 @@ Alston S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix
 研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
 DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
 G. H. Golub and C. Reinsch (1970). Singular value decomposition and least squares solutions. Numerische Mathematik
-研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
-DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+Göttingenの原論文デジタル版で403頁の導入部にあるSVD、特異値の順序とランクの関係を参照。ALGOL実装の再現や、非線形パラメータの大域的識別可能性の証明を主張しません。
 
 ## Gauss求積・適応積分 — Gauss求積・適応積分 [ja]
 
@@ -21507,7 +21877,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素116項目・学術誌／会議論文224件・全参考資料266件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め80章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め81章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
