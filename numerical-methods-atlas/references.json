@@ -3208,6 +3208,60 @@
     "origin": "curated-method-metadata"
   },
   {
+    "id": "berenger1994pml",
+    "author": "Jean-Pierre Bérenger",
+    "title": "A Perfectly Matched Layer for the Absorption of Electromagnetic Waves",
+    "year": 1994,
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "114",
+    "number": "2",
+    "pages": "185–200",
+    "doi": "10.1006/jcph.1994.1159",
+    "source": "https://doi.org/10.1006/jcph.1994.1159",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://doi.org/10.1006/jcph.1994.1159",
+      "scope": "Original split-field PML publication: bibliographic identity and abstract checked. Original full text was not available for inspection. The implemented reduction and discrete balance are derived and tested separately; consult Johnson for the matched-layer interpretation.",
+      "scope_ja": "分割場PMLの原著。書誌と抄録を確認し、原論文本文は未閲覧。実装の縮約と離散収支は別に導出・検証し、整合層の解釈はJohnsonの解説を参照。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "johnson2021pml",
+    "author": "Steven G. Johnson",
+    "title": "Notes on Perfectly Matched Layers (PMLs)",
+    "year": 2021,
+    "type": "misc",
+    "source_role": "research-preprint",
+    "source": "https://arxiv.org/abs/2108.05348v1",
+    "note": "Author notes, arXiv:2108.05348v1; source version explicitly identified.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://arxiv.org/html/2108.05348v1",
+      "scope": "Author notes, selected sections3.4,4.1–4.2 and7.1–7.3: independent x/y coordinate stretches and simultaneous corner damping, matching electric/magnetic rates, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation.",
+      "scope_ja": "著者による解説の3.4節、4.1–4.2節、7.1–7.3節を参照。独立したx/y座標伸長と角での同時減衰、電場・磁場の整合、異方性の解釈、離散化による反射と入射条件の制約。全PML定式化の監査ではない。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "zahn2003em",
+    "author": "Markus Zahn",
+    "title": "Electromagnetic Field Theory: A Problem Solving Approach",
+    "year": 2003,
+    "type": "book",
+    "publisher": "Krieger Publishing Company",
+    "source": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/",
+    "note": "2003 corrected reprint; first edition 1979. Chapter 7 supplies the Fresnel continuity and power normalization reference.",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/a351c693a668be056fefd2ffff0dc068_MITRES_6_002S08_chp07_text.pdf#page=36",
+      "scope": "Author textbook, selected sections 7-6-1 and 7-6-2, printed pages 522–524 (PDF pages 36–38): tangential E/H continuity, normal-incidence field reflection/transmission and impedance weighting of power. A textbook exposition, not an original Fresnel publication.",
+      "scope_ja": "著者の教科書7-6-1/7-6-2節、印刷522–524頁（PDF36–38頁）を参照。接線E/Hの連続、垂直入射の振幅反射・透過、インピーダンスによるパワー換算。Fresnelの原著とは区別。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
     "id": "schrodinger1926",
     "year": 1926,
     "author": "Schrödinger, E.",

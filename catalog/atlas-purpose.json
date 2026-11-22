@@ -26,7 +26,7 @@
       {
         "id": "pictures",
         "title": "絵から探す",
-        "description": "全{test_problems}問題の保存図を一覧。実行・検証例のある{execution_examples}問題に絞れます。",
+        "description": "全{test_problems}問題の保存図を一覧。実行・検証例のある{gallery_runnable_problems}問題に絞れます。",
         "action": "図から実行例を選ぶ"
       }
     ],
@@ -48,7 +48,7 @@
         "note": "全分野の独立問題・重複を除く"
       }
     },
-    "status_note": "教育用例・関連コードあり、解説のみ、実装予定を区別しています。22例は全67問題から選んだ実行経路です。分野ごとの実装・検証範囲で、参照・収束確認と未実装の差を確認できます。汎用の分子・周期DFTソルバーではありません。",
+    "status_note": "教育用例・関連コードあり、解説のみ、実装予定を区別しています。22例は全80問題から選んだ実行経路です。分野ごとの実装・検証範囲で、参照・収束確認と未実装の差を確認できます。汎用の分子・周期DFTソルバーではありません。",
     "scope_toggle": "収録範囲と利用条件",
     "share": "紹介文・共有用画像",
     "meta_description": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表22問題の固定入力・実行・結果照合を日英で案内します。"
@@ -80,7 +80,7 @@
       {
         "id": "pictures",
         "title": "Browse by picture",
-        "description": "See saved illustrations for all {test_problems} problems and filter to {execution_examples} runnable examples.",
+        "description": "See saved illustrations for all {test_problems} problems and filter to {gallery_runnable_problems} runnable examples.",
         "action": "Choose examples by picture"
       }
     ],
@@ -102,7 +102,7 @@
         "note": "Independent problems; variants merged"
       }
     },
-    "status_note": "Educational code, reading only and planned implementations are distinct. The 22 recipes select paths through 67 problems. The field-evidence page separates references, refinement checks and unimplemented scope. This is not a general molecular/periodic DFT solver.",
+    "status_note": "Educational code, reading only and planned implementations are distinct. The 22 recipes select paths through 80 problems. The field-evidence page separates references, refinement checks and unimplemented scope. This is not a general molecular/periodic DFT solver.",
     "scope_toggle": "Coverage and use",
     "share": "Introduction and sharing materials",
     "meta_description": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty-two fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."

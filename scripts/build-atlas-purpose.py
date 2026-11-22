@@ -19,7 +19,7 @@ policy=json.loads((ROOT/'catalog/atlas-methods.json').read_text())['editorial_po
 coverage=json.loads((ATLAS/'coverage.json').read_text())
 discovery=load_discovery(ROOT)
 discovery_by_id={x['id']:x for x in discovery['examples']}
-format_counts={**coverage['counts'],'execution_examples':len(discovery['examples'])}
+format_counts={**coverage['counts'],'execution_examples':len(discovery['examples']),'gallery_runnable_problems':json.loads((ATLAS/'gallery/index.json').read_text())['counts']['runnable_problems']}
 map_fallback=json.loads(subprocess.check_output(['node','scripts/render-atlas-home-map.mjs'],cwd=ROOT,text=True))
 def validation_teaser(lang):
     ja=lang=='ja'
@@ -29,7 +29,7 @@ def validation_teaser(lang):
     cases=sum(len(r['case_ids']) for r in receipts);tests=sum(r['passed_tests'] for r in receipts)
     title='6分野の小さな実装・検証例' if ja else 'Small validated examples across six fields'
     text=(f'{cases}固定ケース・{len(receipts)}配布版・{tests}自動検査。基盤手法、確率、生物、温度制御、粒子・輸送、流体・MHDを、条件・参照・収束とともにたどれます。' if ja else f'{cases} fixed cases, {len(receipts)} supplements and {tests} automated tests. Explore foundations, stochastic models, biology, thermostats, particles/transport and fluid/MHD with conditions, references and refinement.')
-    return '<section class="page-width atlas-purpose" aria-labelledby="small-validation-'+lang+'"><h2 id="small-validation-'+lang+'">'+title+'</h2><p>'+text+'</p><p><a href="/numerical-methods-atlas/validation/?lang='+lang+'">'+('19例の結果・コード・テストと進捗を見る' if ja else 'See the19 results, code, tests and progress')+'</a></p></section>'
+    return '<section class="page-width atlas-purpose" aria-labelledby="small-validation-'+lang+'"><h2 id="small-validation-'+lang+'">'+title+'</h2><p>'+text+'</p><p><a href="/numerical-methods-atlas/validation/?lang='+lang+'">'+('19例の結果・コード・テストと進捗を見る' if ja else 'See the 19 results, code, tests and progress')+'</a></p></section>'
 
 def goal_start(lang, static=False):
     data=json.loads((ROOT/'catalog/atlas-goals.json').read_text())

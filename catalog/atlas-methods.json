@@ -10854,8 +10854,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "Maxwell方程式の格子上の変数配置と時間更新を扱う。",
-        "en": "Connect staggered Maxwell fields and time updates."
+        "ja": "2次元TMzの真空・媒質界面・四辺と角のPMLを固定入力で検証。",
+        "en": "Validate 2D TMz vacuum, a dielectric interface and four-side/corner PML with fixed inputs."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -10875,20 +10875,35 @@
           "url": "https://arxiv.org/abs/1705.02274v2",
           "label": "Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Theory for Three-Dimensional FDTD with Application to Stability Analysis and Subgridding",
           "scope": "Research preprint v2; energy Eq26 and strict CFL Eq35 consulted. Not a claim to implement its subgridding method."
+        },
+        {
+          "url": "https://doi.org/10.1006/jcph.1994.1159",
+          "label": "Jean-Pierre Bérenger (1994). A Perfectly Matched Layer for the Absorption of Electromagnetic Waves",
+          "scope": "Original split-field PML publication: bibliographic identity and abstract checked. Original full text was not available for inspection. The implemented reduction and discrete balance are derived and tested separately; consult Johnson for the matched-layer interpretation."
+        },
+        {
+          "url": "https://arxiv.org/abs/2108.05348v1",
+          "label": "Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs)",
+          "scope": "Author notes, selected sections 4.1–4.2 and 7.1–7.3: matching electric and magnetic damping, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation."
+        },
+        {
+          "url": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/",
+          "label": "Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach",
+          "scope": "Author textbook, selected sections 7-6-1 and 7-6-2, printed pages 522–524 (PDF pages 36–38): tangential E/H continuity, normal-incidence field reflection/transmission and impedance weighting of power. A textbook exposition, not an original Fresnel publication."
         }
       ],
       "assumptions": [
-        "2D TMz, homogeneous vacuum, ε=μ=c=1, source-free. Lx=1, Ly=1.5; mode (1,1)."
+        "Selected vacuum 2D TMz packets with four-side/corner PML, retained vacuum modes and normal-incidence lossless dielectric interface."
       ],
       "units": "Dimensionless normalized length, time and fields.",
-      "boundary_conditions": "Periodic boundaries or Ez=0 on rectangular PEC walls.",
+      "boundary_conditions": "Retained periodic/PEC and x-PML cases; four-side/corner PML rectangle has outer PEC caps on every side.",
       "next_deliverable": {
-        "ja": "媒質界面の反射・透過と吸収境界/PMLの反射誤差を別に検証。",
-        "en": "Separately validate interface reflection/transmission and absorption/PML reflection error."
+        "ja": "媒質界面への斜め入射、掠れ入射、分散物質・3次元のPMLを別に検証。",
+        "en": "Separately validate oblique material-interface incidence, grazing incidence and PML for dispersive media/3D."
       },
       "limitations": {
-        "ja": "2次元TMz・一様真空の周期平面波と長方形PEC空洞の教育用実装・固定入力検証です。解析解と独自に導いた離散モード・保存量を参照し、他のFDTDライブラリとの比較は行っていません。PML、反射・透過、散乱体、電荷・電流、分散媒質、3次元一般形状は未実装・未検証です。",
-        "en": "Educational fixed-input validation of 2D TMz homogeneous-vacuum periodic waves and a rectangular PEC cavity. References are continuum analytic solutions and separately derived discrete modes/invariants; no independent external FDTD-library comparison is claimed. PML, reflection/transmission, scatterers, charges/currents, dispersive media and general three-dimensional geometries remain unimplemented and unvalidated."
+        "ja": "2次元TMzの教育用実装。初版の真空モード、第2版の垂直誘電体界面・左右x方向PML、第3版の四辺・四つの角PMLを、指定した固定波束・格子・観測窓で検証。連続参照・離散Fourier参照・自己収束・独立集計した仕事・物理流束を区別。一般媒質・任意入射・3次元の包括的な認証ではない。",
+        "en": "Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D."
       },
       "metadata_review": {
         "level": "Original educational 2D TMz code with continuum/discrete analytic checks, refinement, energy and independent ZIP rerun.",
@@ -10901,17 +10916,24 @@
         "Yee法"
       ],
       "fdtd_release": {
-        "base": "/code/fdtd/2026-11-22/",
-        "edition": "2026-11-22",
-        "archive": "fdtd-2026-11-22.zip",
+        "base": "/code/fdtd/2026-11-22-r3/",
+        "edition": "2026-11-22-r3",
+        "archive": "fdtd-2026-11-22-r3.zip",
         "manifest": "source-manifest.json",
-        "verification": "verification.json"
+        "verification": "verification.json",
+        "cases": [
+          "periodic-wave",
+          "pec-cavity",
+          "dielectric-interface",
+          "pml-pulse",
+          "pml-corners"
+        ]
       },
       "assumptions_ja": [
-        "2次元TMz、一様真空、ε=μ=c=1、源なし。Lx=1、Ly=1.5、モード(1,1)。"
+        "選定した真空2次元TMz波束の四辺・角PML。従来の真空モードと垂直入射の無損失誘電体界面も保持。"
       ],
       "units_ja": "無次元。長さ・時間・場を規格化。",
-      "boundary_conditions_ja": "周期境界、または長方形PEC壁上のEz=0。"
+      "boundary_conditions_ja": "従来の周期/PEC・左右x方向PMLの例を保持。四辺・角PMLの矩形はすべての外端がPEC。"
     },
     {
       "id": "pic",

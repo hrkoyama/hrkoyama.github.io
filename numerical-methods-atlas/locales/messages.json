@@ -7049,8 +7049,8 @@
     "ja": "条件と検証から選ぶ。"
   },
   "home-map.description": {
-    "en": "Read method assumptions, limits and primary papers. Run 15 fixed-input examples and compare outputs with reference values and tolerances. Use eight areas to connect your model with a method.",
-    "ja": "手法の前提・制約と原論文を読み、15の固定入力例を実行して、参照値・許容誤差と照合できます。8分野の地図から、扱うモデルと解法を結びます。"
+    "en": "Read method assumptions, limits and primary papers. Run the fixed-input examples and compare outputs with reference values and tolerances. Use eight areas to connect your model with a method.",
+    "ja": "手法の前提・制約と原論文を読み、公開した固定入力例を実行して、参照値・許容誤差と照合できます。8分野の地図から、扱うモデルと解法を結びます。"
   },
   "home-map.coverage": {
     "en": "Current coverage",
@@ -7137,8 +7137,8 @@
     "ja": "まず、小さな実験から。"
   },
   "home-map.first-description": {
-    "en": "Use browser exhibits to inspect motion and error, then read assumptions and stability conditions. Use the 15-problem entry above to download and run code.",
-    "ja": "ブラウザ展示で動きと誤差をつかみ、前提と安定条件を読みます。コードの実行には、上の15問題の入口を使います。"
+    "ja": "ブラウザ展示で動きと誤差をつかみ、前提と安定条件を読みます。上の固定入力の入口から、コードと検証手順へ進めます。",
+    "en": "Use browser exhibits to inspect motion and error, then read assumptions and stability conditions. Follow the fixed-input entries above for code and verification steps."
   },
   "home-map.first-wave": {
     "en": "See waves in an equation",
@@ -7201,8 +7201,8 @@
     "ja": "根拠と実装範囲を、一緒に読む。"
   },
   "home-map.evidence-description": {
-    "ja": "解説{chapters}章・全参考資料{sources}件。生物{biology}項目のうちロジスティック増殖・閉鎖SIRに実行・検証例があります。分野ごとの範囲も確認できます。",
-    "en": "{chapters} chapters and {sources} sources. Among {biology} biological entries, logistic growth and closed SIR have executed validation. Check each field’s scope."
+    "ja": "解説{chapters}章・全参考資料{sources}件。生物{biology}項目の文献解説に、増殖・SIR、反応拡散・Turing発現・FitzHugh–Nagumoの小規模例を接続しています。各例の参照と検証範囲を確認できます。",
+    "en": "{chapters} chapters and {sources} sources. The {biology}-entry biology survey links small growth/SIR, reaction–diffusion, Turing-onset and FitzHugh–Nagumo examples. Check each reference and validation scope."
   },
   "home-map.inventory": {
     "en": "Full inventory",
@@ -7261,8 +7261,8 @@
     "ja": "分野地図を見る"
   },
   "home-map.run-examples": {
-    "en": "Run the 15 problems",
-    "ja": "15問題を実行する"
+    "en": "Run the 22 shared examples",
+    "ja": "共通22問題を実行する"
   },
   "home-map.share-label": {
     "en": "Introduction and sharing materials",

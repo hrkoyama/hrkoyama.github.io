@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the dedicated FDTD edition and expose its two saved scientific figures."""
+"""Verify the dedicated FDTD edition and expose its saved scientific figures."""
 import json
 from pathlib import Path
 import re
@@ -11,7 +11,7 @@ method = next(m for m in json.loads((ROOT/'catalog/atlas-methods.json').read_tex
               if m['id'] == 'fdtd')
 record = fdtd_release_record(ROOT, method)
 release = ROOT/method['fdtd_release']['base'].lstrip('/')
-for case in ['periodic-wave', 'pec-cavity']:
+for case in record['cases']:
     shutil.copyfile(release/'results'/case/'summary.png',
                     ROOT/'numerical-methods-atlas/assets'/('fdtd-'+case+'.png'))
 
@@ -26,8 +26,23 @@ for lang in ['ja', 'en']:
         'fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. ')
     replacement += '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">'+(
         '日英解説・コード・結果' if ja else 'Reading, code and results')+'</a>。' if ja else '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">Reading, code and results</a>. '
-    replacement += ('媒質界面の反射・透過と吸収境界/PMLは次の段階です。</li>' if ja else
-                    'Interface reflection/transmission and absorbing boundaries/PML remain future work.</li>')
+    if 'pml-corners' in record['cases']:
+        replacement += ('媒質界面・左右x方向PMLに続き、四辺・角部を含む2次元PMLの固定入力例を追加しました。'
+                        '反射誤差、独立したエネルギー・仕事・流束収支、格子細分化を別々に確認します。'
+                        '実行した入射方向・時間窓と未検証の一般媒質・3次元は同じ章で区別します。</li>' if ja else
+                        'Following the dielectric-interface and x-directed strip cases, a separate fixed input exercises '
+                        'two-dimensional PML on all four sides and in corners. Reflection error, independent '
+                        'energy/work/flux balances and grid refinement are checked separately. The reading distinguishes '
+                        'tested directions and time windows from unvalidated general media and three-dimensional cases.</li>')
+    elif 'dielectric-interface' in record['cases'] and 'pml-pulse' in record['cases']:
+        replacement += ('媒質界面の反射・透過とPMLの固定入力例も、解析解・反射誤差・エネルギー収支・格子収束を別に確認しました。'
+                        '検証した入射・境界の範囲と、未検証のPML角部・一般媒質は同じ章で区別します。</li>' if ja else
+                        'Separate fixed-input dielectric-interface and PML examples check analytic references, reflection error, '
+                        'energy balance and grid refinement. The reading distinguishes tested incidence and boundaries '
+                        'from unvalidated PML corners and general media.</li>')
+    else:
+        replacement += ('媒質界面の反射・透過と吸収境界/PMLは次の段階です。</li>' if ja else
+                        'Interface reflection/transmission and absorbing boundaries/PML remain future work.</li>')
     pattern = r'<li(?: id="fdtd-verified-scope")?><strong>(?:予定 — 電磁場のFDTD|Planned — electromagnetic FDTD|限定実装・検証済み — Yee FDTD|Scoped implementation and validation — Yee FDTD).*?</li>'
     def update(text):
         text, count = re.subn(pattern, lambda m: replacement, text, flags=re.S)
@@ -41,4 +56,4 @@ for lang in ['ja', 'en']:
         (content_path.parent/'content.json').write_text(content_path.read_text())
     static = ROOT/'numerical-methods-atlas'/lang/'read/roadmap/index.html'
     static.write_text(update(static.read_text()))
-print('Verified FDTD supplement and copied both saved result figures.')
+print('Verified FDTD supplement and copied',len(record['cases']),'saved result figures.')

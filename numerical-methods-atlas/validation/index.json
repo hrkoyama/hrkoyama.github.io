@@ -7,11 +7,11 @@
   },
   "policy": {
     "ja": "各ケースの条件・採用変種・独立参照または解析解・残差・収束・失敗の扱いを確認します。共通22実行例とは別の補助配布版です。量子DFTの全走査は通常の軽量確認へ含めません。",
-    "en": "Check each case’s assumptions, adopted variant, independent/analytic reference, residuals, refinement and failure handling. These supplements are separate from the shared22 execution registry. Detailed quantum-DFT sweeps are outside routine lightweight checks."
+    "en": "Check each case’s assumptions, adopted variant, independent/analytic reference, residuals, refinement and failure handling. These supplements are separate from the shared 22 execution registry. Detailed quantum-DFT sweeps are outside routine lightweight checks."
   },
   "routine_policy": {
     "ja": "通常の新規補助例CIはNumPy・SciPy・pytestで実行する4グループです。重い量子収束を含む従来22例の詳細CIは明示的な手動実行へ分け、検証済み配布物・公差・履歴を保持します。",
-    "en": "Routine supplement CI runs four NumPy/SciPy/pytest groups. The existing detailed22-case CI, including expensive quantum convergence sweeps, is kept as an explicit manual run with released artifacts, criteria and history preserved."
+    "en": "Routine supplement CI runs four NumPy/SciPy/pytest groups. The existing detailed 22-case CI, including expensive quantum convergence sweeps, is kept as an explicit manual run with released artifacts, criteria and history preserved."
   },
   "case_problem_ids": {
     "sa-amg": "poisson-2d-sine",
@@ -274,7 +274,7 @@
         "passed_tests": 29
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -477,7 +477,7 @@
         "passed_tests": 29
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -783,7 +783,7 @@
         "passed_tests": 29
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -1037,7 +1037,7 @@
         "passed_tests": 29
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -1267,7 +1267,7 @@
         "passed_tests": 26
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -1563,7 +1563,7 @@
         "passed_tests": 26
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -1741,7 +1741,7 @@
         "passed_tests": 26
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -2325,7 +2325,7 @@
         "passed_tests": 26
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -8932,7 +8932,7 @@
         "passed_tests": 26
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -9147,7 +9147,7 @@
         "passed_tests": 27
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -9338,7 +9338,7 @@
         "passed_tests": 27
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -9506,7 +9506,7 @@
         "passed_tests": 27
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -10588,7 +10588,7 @@
         "passed_tests": 27
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -10900,7 +10900,7 @@
         "passed_tests": 27
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -11183,7 +11183,7 @@
         "passed_tests": 27
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -11417,7 +11417,7 @@
         "passed_tests": 11
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -11597,7 +11597,7 @@
         "passed_tests": 11
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -11780,7 +11780,7 @@
         "passed_tests": 11
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -11931,7 +11931,7 @@
         "passed_tests": 11
       },
       "source_sha256": {
-        "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+        "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
         "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
         "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
         "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -11960,7 +11960,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "3e14875c5e1a7e340707c2909beff8f761b45732aed00da813f20102d2d09565",
+    "catalog/atlas-depth-expansion.json": "afd6dd8bbc04303dc47d98b6e76e3cb112a16c57fa1b0b1b24e2a2979a3608c8",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",

@@ -344,11 +344,14 @@ for x in METHODS:
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link(base+'LICENSING.md','適用範囲 / Licensing scope')+'</p>'
         if x.get('fdtd_release'):
             base=record['code_base']
-            body+='<h2>'+('2次元TMzのYee FDTD：周期波・完全導体空洞' if ja else '2D TMz Yee FDTD: periodic wave and PEC cavity')+'</h2>'
+            body+='<h2>'+('Yee FDTDの専用配布版と固定入力' if ja else 'Dedicated Yee FDTD edition and fixed inputs')+'</h2>'
             body+='<p>'+esc(x['limitations'][lang])+'</p>'
             body+='<p>'+link(base+'README.md','取得・実行手順 / README')+' · '+link(record['code_download'],'コード・固定入力・結果 ZIP' if ja else 'Code, fixed inputs and results ZIP')+' · '+link(record['code_manifest'],'ファイル目録・SHA-256' if ja else 'File manifest / SHA-256')+' · '+link(record['code_verification'],str(record['passed_tests'])+('件成功・独立展開の検証記録' if ja else ' tests passed / independent-extraction verification'))+'</p>'
             body+='<ul>'+''.join('<li>'+link(url,url.removeprefix(base))+'</li>' for url in record['code_urls']+record['test_urls'])+'</ul>'
-            body+='<p>'+link(record['result_urls']['periodic-wave'],'周期平面波 / Periodic-wave JSON')+' · '+link(record['result_urls']['pec-cavity'],'完全導体空洞 / PEC-cavity JSON')+'</p>'
+            case_labels={'periodic-wave':('周期平面波','Periodic plane wave'),'pec-cavity':('完全導体空洞','PEC cavity'),
+                         'dielectric-interface':('媒質界面の反射・透過','Dielectric reflection and transmission'),'pml-pulse':('PMLの反射とエネルギー収支','PML reflection and energy balance'),
+                         'pml-corners':('四辺・角PMLの反射とエネルギー収支','Four-side and corner PML reflection and energy balance')}
+            body+='<ul>'+''.join('<li>'+link(url,case_labels[case][0 if ja else 1]+' / JSON')+'</li>' for case,url in record['result_urls'].items())+'</ul>'
             body+='<pre><code>'+esc('python -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands']))+'</code></pre>'
             body+='<p>'+link(base+'LICENSE','MIT License')+' · '+link('/rights/','本文・図・データの利用条件' if ja else 'Terms for prose, figures and data')+'</p>'
         if x.get('molecular_examples'):
@@ -421,7 +424,7 @@ for x in METHODS:
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('fdtd_release'):
-        md+='2D TMz Yee FDTD supplement: source-free dimensionless vacuum, periodic oblique plane wave and rectangular PEC cavity. Analytic fields, grid refinement, dispersion and modified discrete energy are checked separately.\n\n'
+        md+='2D TMz Yee FDTD supplement: retained vacuum periodic/PEC modes, normal-incidence dielectric Fresnel scattering and matched PML cases. The reading distinguishes the x-directed strip and four-side/corner configurations actually included in the current edition. Analytic fields, reflection errors, grid refinement and independent energy/work/flux budgets are checked separately.\n\n'
         md+='\n'.join('- Code: '+u for u in record['code_urls'])+'\n\n'+'\n'.join('- Tests: '+u for u in record['test_urls'])+'\n\n'
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\n\n'+'\n'.join('- '+case+': '+u for case,u in record['result_urls'].items())+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if record['execution_examples']:md+='Common execution records: '+json.dumps(record['execution_examples'],ensure_ascii=False)+'\n\n'

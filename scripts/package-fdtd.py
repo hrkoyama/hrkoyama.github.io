@@ -16,8 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ['solver.py', 'run.py', 'test_fdtd.py', 'README.md', 'LICENSE',
-           'requirements.txt', 'inputs/periodic-wave.json', 'inputs/pec-cavity.json']
-CASES = ['periodic-wave', 'pec-cavity']
+           'requirements.txt', 'inputs/periodic-wave.json', 'inputs/pec-cavity.json',
+           'scattering.py', 'run_scattering.py', 'test_scattering.py',
+           'inputs/dielectric-interface.json', 'inputs/pml-pulse.json',
+           'corner.py', 'run_corner.py', 'test_corner.py', 'inputs/pml-corners.json']
+CASES = ['periodic-wave', 'pec-cavity', 'dielectric-interface', 'pml-pulse', 'pml-corners']
+LEGACY = ['solver.py', 'run.py', 'test_fdtd.py', 'inputs/periodic-wave.json', 'inputs/pec-cavity.json',
+          'scattering.py', 'run_scattering.py', 'test_scattering.py',
+          'inputs/dielectric-interface.json', 'inputs/pml-pulse.json']
 
 
 def sha(path):
@@ -42,11 +48,22 @@ def package(edition):
         for name in SOURCES:
             (staged/name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/'scripts/fdtd'/name, staged/name)
+        original = ROOT/'code/fdtd/2026-11-22-r2'
+        unchanged = {name: sha(original/name) for name in LEGACY}
+        assert all(sha(staged/name) == digest for name, digest in unchanged.items())
+        dump(staged/'provenance.json', dict(schema_version=1,
+            unchanged_source_release='https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/',
+            unchanged_source_sha256=unchanged,
+            additions=['Original four-side and corner matched split-field PML examples.',
+                       'Previous vacuum and x-PML solvers, all four inputs and tests retained byte-for-byte.']))
         env = {**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'MPLBACKEND': 'Agg',
-               'MPLCONFIGDIR': str(temporary/'mpl')}
+               'MPLCONFIGDIR': str(temporary/'mpl'), 'OPENBLAS_NUM_THREADS': '1',
+               'OMP_NUM_THREADS': '1'}
 
         def run_case(directory, case, output):
-            proc = subprocess.run([sys.executable, 'run.py', '--input', 'inputs/'+case+'.json',
+            runner = ('run_corner.py' if case == 'pml-corners' else
+                      'run.py' if case in CASES[:2] else 'run_scattering.py')
+            proc = subprocess.run([sys.executable, runner, '--input', 'inputs/'+case+'.json',
                                    '--output', str(output)], cwd=directory, env=env,
                                   check=True, capture_output=True, text=True)
             result = json.loads((output/'result.json').read_text())
@@ -60,7 +77,7 @@ def package(edition):
                  if p.is_file() and '__pycache__' not in p.parts}
         dump(staged/'source-manifest.json', dict(schema_version=1, family='fdtd', edition=edition,
             version=edition, public_base_url='https://hrkoyama.github.io/code/fdtd/'+edition+'/',
-            files=files, scope='Original 2D TMz Yee scheme, dimensionless source-free vacuum; oblique periodic plane wave and rectangular PEC cavity.'))
+            files=files, scope='Original educational Yee TMz scheme: retained vacuum/interface/x-PML cases and new four-side/corner-PML checks; see per-input assumptions.'))
         archive = staged/(prefix+'.zip')
         with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zipped:
             for name in sorted([*files, 'source-manifest.json']):
@@ -76,7 +93,7 @@ def package(edition):
             zipped.extractall(extracted)
         extracted /= prefix
         proc = subprocess.run([sys.executable, '-m', 'pytest', '-q', '-p', 'no:cacheprovider',
-            'test_fdtd.py', '--junitxml='+str(temporary/'tests.xml')], cwd=extracted,
+            'test_fdtd.py', 'test_scattering.py', 'test_corner.py', '--junitxml='+str(temporary/'tests.xml')], cwd=extracted,
             env=env, capture_output=True, text=True, check=True)
         print(proc.stdout)
         suite = ET.parse(temporary/'tests.xml').getroot().find('testsuite')
@@ -89,7 +106,8 @@ def package(edition):
             original = json.loads((staged/'results'/case/'result.json').read_text())
             assert result['metrics'] == original['metrics'], case
             assert result['checks'] == original['checks'], case
-            for name in ['convergence.csv', 'energy.csv', 'solution.csv']:
+            for path in (staged/'results'/case).glob('*.csv'):
+                name = path.name
                 assert sha(output/name) == sha(staged/'results'/case/name), (case, name)
             assert result['input_sha256'] == sha(extracted/'inputs'/(case+'.json'))
             recipes.append(dict(id=case, passed=True, input_sha256=result['input_sha256'],
@@ -101,8 +119,8 @@ def package(edition):
             source_manifest_sha256=sha(staged/'source-manifest.json'), returncode=0,
             **counts, passed_tests=counts['tests'], passed=counts['tests'], recipes=recipes,
             environment={n: importlib.metadata.version(n) for n in ['numpy', 'matplotlib', 'pytest']},
-            execution='ZIP independently extracted; all tests and both fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.',
-            reference='Continuum vacuum plane-wave and rectangular PEC eigenmode; separate exact discrete dispersion identity and modified-energy invariant. No independent external FDTD solver comparison claimed.'))
+            execution='ZIP independently extracted; all tests and all five fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.',
+            reference='Continuum vacuum modes, Fresnel interface solution, analytic/spectral packet references and independently evaluated discrete energy/work/flux identities. See corner input for its reference scope. No independent external FDTD solver comparison claimed.'))
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(staged, target)
     print(json.dumps(dict(edition=edition, archive=archive_info, tests=counts, recipes=recipes), indent=2))

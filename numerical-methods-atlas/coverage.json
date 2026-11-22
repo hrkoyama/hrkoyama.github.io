@@ -12,14 +12,14 @@
   "counts": {
     "equations": 46,
     "methods": 128,
-    "papers": 232,
-    "references": 279,
-    "journal_articles": 226,
+    "papers": 233,
+    "references": 282,
+    "journal_articles": 227,
     "conference_papers": 6,
-    "books": 24,
+    "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 17,
+    "other_sources": 18,
     "local_equations": 18,
     "reading_equations": 28,
     "local_methods": 113,
@@ -1455,7 +1455,7 @@
       "chapter": "fdtd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Educational fixed-input validation of 2D TMz homogeneous-vacuum periodic waves and a rectangular PEC cavity. References are continuum analytic solutions and separately derived discrete modes/invariants; no independent external FDTD-library comparison is claimed. PML, reflection/transmission, scatterers, charges/currents, dispersive media and general three-dimensional geometries remain unimplemented and unvalidated.",
+      "scope": "Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D.",
       "origin": "curated-fdtd-example"
     },
     {
@@ -2932,6 +2932,24 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "berenger1994pml",
+      "type": "article",
+      "identity": "doi:10.1006/jcph.1994.1159",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "johnson2021pml",
+      "type": "misc",
+      "identity": "url:https://arxiv.org/abs/2108.05348v1",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "zahn2003em",
+      "type": "book",
+      "identity": "url:https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3162,8 +3180,8 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "216986625549487ea407dc446dddf44785e9a6d7f41d5ae37b741dcefd1c9c26",
+    "catalog/atlas-methods.json": "eaa16c7a3fd6513f7eb347c90b8e67c0009a6a118406da1b51374c68321dc634",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "2a1d24539244af90d7a623d9c05dca2155d8ec8cc05b9b4f545fafb7eab36432"
+    "catalog/atlas-method-primary-references.json": "bb74159621ec8d84c8413b71c7e32dbee44b2c949dbe328dbd02e7653e0bab67"
   }
 }
