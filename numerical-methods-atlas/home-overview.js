@@ -1,5 +1,5 @@
 import {homeLandingCopy} from './atlas-home-data.js?v=c4da2d83fbfd';
-import {homeSearchPage,wireHomeSearch} from './home-search.js?v=a23ac8bc6b09';
+import {homeSearchPage,wireHomeSearch} from './home-search.js?v=31523a73a1de';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=ce2a211cd38c';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -59,6 +59,17 @@ export function renderHomeGuides(lang=currentLanguage()){
  return `<section class="page-width guided" aria-labelledby="home-start-title-${lang}"><h2 id="home-start-title-${lang}">${text('start-title')}</h2><p class="guided-intro">${text('start-description')}</p><div class="guided-list">${homePaths.map(path=>`<article class="guided-route"><p class="eyebrow">${esc(t(path.tag))}</p><h3>${esc(t(path.title))}</h3><p>${esc(t(path.description))}</p><ol>${path.links.map(([route,key])=>`<li>${link(route,key,'',lang)}</li>`).join('')}</ol></article>`).join('')}</div></section>`;
 }
 
+/** Small secondary routes shared by the front door and the reading directory. */
+export function renderHomeBrowse(lang=currentLanguage(),{headingId}={}){
+ lang=locale(lang);const ja=lang==='ja';headingId=headingId||'home-browse-title-'+lang;
+ const cards=[
+  {id:'solutions',title:ja?'厳密解・参照解':'Exact and reference solutions',description:ja?'計算結果を照合する基準を探す。':'Find a standard for checking a computed result.',visual:'<span class="home-browse-formula" aria-hidden="true">u<sub>exact</sub><br>u<sub>ref</sub></span>'},
+  {id:'gallery',title:ja?'テスト問題（名前と図）':'Test problems by name and figure',description:ja?'問題名と保存済みの図から選ぶ。':'Choose a problem by name or stored figure.',visual:'<img src="/numerical-methods-atlas/assets/field-taylor-green.png" width="1575" height="690" loading="lazy" alt="'+(ja?'保存済みTaylor–Green渦の速度・圧力場':'Stored Taylor–Green velocity and pressure fields')+'">'},
+  {id:'equations',title:ja?'方程式':'Equations',description:ja?'解きたい方程式から解説へ進む。':'Start with the equation you want to solve.',visual:'<span class="home-browse-formula" aria-hidden="true">F(u) = 0<br>∂<sub>t</sub>u = …</span>'},
+ ];
+ return `<nav class="page-width home-browse" aria-labelledby="${esc(headingId)}"><h2 id="${esc(headingId)}">${ja?'式や図から探す':'Browse by equations and figures'}</h2><ul class="home-browse-grid">${cards.map(card=>`<li><a class="home-browse-card" data-home-browse="${card.id}" href="/numerical-methods-atlas/${card.id}/?lang=${lang}"><span class="home-browse-visual">${card.visual}</span><span class="home-browse-copy"><strong>${esc(card.title)}</strong><span>${esc(card.description)}</span></span></a></li>`).join('')}</ul></nav>`;
+}
+
 /** The front door offers one search and three paths; inventories live beyond it. */
 export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  const lang=currentLanguage(),copy=homeLandingCopy[lang],suffix=staticMode?'-'+lang:'';
@@ -67,6 +78,7 @@ export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  ${homeSearchPage({compact:true,staticMode})}
  <nav class="page-width home-entrypoints" aria-label="${lang==='ja'?'3つの入口':'Three ways to begin'}"><ul class="home-entry-grid">${copy.entries.map(entry=>`<li><a class="home-entry" data-home-entry="${esc(entry.id)}" href="${esc(entry.href)}"><h2>${esc(entry.title)}</h2><p>${esc(entry.description)}</p><span class="home-entry-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ul></nav>
  <aside class="page-width home-reference-links" aria-labelledby="home-reference-title${suffix}"><h2 id="home-reference-title${suffix}">${lang==='ja'?'教科書・参考文献を探す':'Find textbooks and references'}</h2><p><a href="/numerical-methods-atlas/${lang}/read/textbooks/">${lang==='ja'?'教科書案内':'Textbook guide'}</a><a href="/numerical-methods-atlas/${lang}/read/references/">${lang==='ja'?'参考文献一覧':'Reference list'}</a></p></aside>
+ ${renderHomeBrowse(lang,{headingId:'home-browse-title'+suffix})}
  </div>`;
 }
 export function wireHomeOverview({rewriteLinks=html=>html}={}){

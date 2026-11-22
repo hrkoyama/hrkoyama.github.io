@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from hashlib import sha256
 from html.parser import HTMLParser
 from pathlib import Path
+from guide_snapshot import capture_stamp
 import argparse, json, re, sys, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://hrkoyama.github.io'
@@ -123,6 +124,10 @@ def main():
  for work in catalog:
   for lang in ('ja','en'):
    records.append({'domain':work['domain'],'lang':lang,'title':work['title'][lang],'section':'','url':work['url'],'text':work['description'][lang]+'\n'+work['scope'][lang],'kind':'overview','keywords':work.get('keywords','')})
+ if args.local_site:
+  snapshot=ROOT/'guide/index.json'
+  previous=json.loads(snapshot.read_text()) if snapshot.is_file() else None
+  stamp=capture_stamp(previous,pages,records,stamp)
  data={'version':stamp[:10]+'-'+sha256(json.dumps(records,ensure_ascii=False).encode()).hexdigest()[:10],'capturedAt':stamp,'pages':pages,'records':records}
  (ROOT/'guide/index.json').write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n')
  for domain in ['all']+[d[0] for d in DOMAINS]:
