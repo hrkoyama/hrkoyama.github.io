@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "scope": "Linear centered-difference and classical RK4 diagnostics; optional frozen KEEP uniform-state directional-derivative check. Not a nonlinear Euler verification.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1071,
+      "sha256": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 2704,
+      "sha256": "1d7e3ed498a354d8d74bf025cb53bcd202d14a1f72635a8ab819ed116fef6e74"
+    },
+    {
+      "path": "analyse-keep.py",
+      "bytes": 15369,
+      "sha256": "e0467c57aec34561c46e1aa50927267fe1813d17689fcbc1149cadca125a76f6"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 31,
+      "sha256": "9219ba01fa741ccca28c752db67a0ac180f6d9e55cb5198821ded5aa4b4099bd"
+    },
+    {
+      "path": "result.json",
+      "bytes": 8672,
+      "sha256": "4a0dadb1e0cd572212948c1022621fc20211d22d1bd67fc271f5bb20196261e1"
+    },
+    {
+      "path": "rk4-response.csv",
+      "bytes": 86923,
+      "sha256": "694322ada45196baa11efc65c39eba615adac8bd2917c16f539fb4ba6b0d0562"
+    },
+    {
+      "path": "rk4-response.png",
+      "bytes": 99088,
+      "sha256": "70614dafd51cb0d226dc7ab5d57d3fce0a9d58b12ac1fcb28a37fdac4ff37228"
+    },
+    {
+      "path": "spatial-dispersion.csv",
+      "bytes": 41957,
+      "sha256": "96ab8fd594b130c9af0a3a068cbf4fdd4e56710481de4cc7667e8fe30cdc12e5"
+    },
+    {
+      "path": "spatial-dispersion.png",
+      "bytes": 108116,
+      "sha256": "87beb50f68480cfcc6d1513ca7654e582e9da119ff5df0983a8736bbec26d3b8"
+    }
+  ],
+  "source_script_matches_result": true,
+  "visual_review": {
+    "spatial-dispersion.png": "inspected; readable labels and captions, no clipping",
+    "rk4-response.png": "inspected; readable labels, continuous phase branch and instability shading, no clipping"
+  },
+  "published_layout": "These nine files are intended to be copied into one directory; manifest.json is additional metadata.",
+  "portable_analytic_rerun": {
+    "passed": true,
+    "requires_keep_package": false,
+    "four_plot_and_csv_hashes_identical": true
+  }
+}

@@ -12,9 +12,9 @@ catalog=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
 path=ATLAS/'home-search-index.json';index=json.loads(path.read_text())
 index['entries']=[x for x in index['entries'] if x.get('origin') not in {'public-method-registry','public-execution-discovery'}]
 for entry in index['entries']:
-    if entry['id']=='roadmap':
+    if entry['id'] in {'roadmap','keep'}:
         for lang in ['ja','en']:
-            entry['headings'][lang]=json.loads((ATLAS/('content.'+lang+'.json')).read_text())['roadmap']['headings']
+            entry['headings'][lang]=json.loads((ATLAS/('content.'+lang+'.json')).read_text())[entry['id']]['headings']
 def add(ident,title,keywords,routes,kind='resource'):
     index['entries'].append({'id':ident,'title':title,'headings':{'ja':[],'en':[]},'keywords':keywords,'routes':routes,'origin':'public-method-registry','kind':kind})
 for x in catalog['methods']:

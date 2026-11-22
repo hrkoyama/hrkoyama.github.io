@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-074f0e0c09
-Captured (UTC): 2026-11-22T00:18:38+00:00
+Snapshot: 2026-11-22-e013807cb3
+Captured (UTC): 2026-11-22T00:54:29+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -3298,32 +3298,179 @@ F_E&=C\left[\frac12\boldsymbol u_L\cdot\boldsymbol u_R+\overline e\right]
 +\frac12(u_{n,L}p_R+u_{n,R}p_L).
 \end{aligned}
 The mass flux is C. The cross-velocity kinetic term and cross-pressure work are deliberate; replacing them by a convenient average of the full physical flux changes the discrete energy exchange. The implementation is a central two-point flux-difference method of second spatial order. It has no Riemann-solver dissipation.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 1. Distinguish the two discrete operators# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#face-means-and-jumps
+Coverage: reading
+
+Work first in one space dimension on a periodic uniform grid of spacing h, with positive density. The left and right states at a face are the two neighboring nodal values. A bar is their arithmetic mean and a jump is right minus left. D differences a face flux; D₀ is the centered derivative of a nodal field.
+\begin{aligned}\bar a_{i+1/2}&=\frac{a_i+a_{i+1}}2,\qquad [a]_{i+1/2}=a_{i+1}-a_i,\\(D\mathcal F)_i&=\frac{\mathcal F_{i+1/2}-\mathcal F_{i-1/2}}h,\\(D_0a)_i&=\frac{a_{i+1}-a_{i-1}}{2h}.\end{aligned}
+Two exact algebraic identities explain why the particular averages matter:
+[ab]=\bar a[b]+\bar b[a],\qquad
+\overline{ab}=\bar a\,\bar b+\frac14[a][b].
+For example, averaging ρu is different from multiplying the separate means of ρ and u. They agree for equal states and to first order about a constant state, but their nonlinear jump terms differ. KEEP chooses the products of means to make the equations exchange energy consistently. Conservation of the summed total energy alone would not determine these products.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 2. Derive kinetic energy from mass and momentum# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#deriving-the-kinetic-energy-balance
+Coverage: reading
+
+Let m denote momentum per unit volume. Use the mass flux C and momentum flux M below; each face has one shared flux. The full two-dimensional flux was given above. Here the velocity is a scalar to expose the cancellation.
+\begin{aligned}m_i&=\rho_i u_i,\qquad\dot\rho_i=-(DC)_i,\qquad\dot m_i=-(DM)_i,\\C&=\bar\rho\,\bar u,\qquad M=C\bar u+\bar p.\end{aligned}
+Time is still continuous, so the ordinary chain rule applies to K=m²/(2ρ). Substituting the two conservative equations gives a kinetic-energy flux 𝒦 and a pressure-gradient term:
+\begin{aligned}
+K_i&=\frac{m_i^2}{2\rho_i}=\frac12\rho_i u_i^2,\\
+\dot K_i&=u_i\dot m_i-\frac12u_i^2\dot\rho_i
+=-(D\mathcal K)_i-u_i(D_0p)_i,\\
+\mathcal K_{i+1/2}&=\frac12 C_{i+1/2}u_i u_{i+1}.
+\end{aligned}
+The advective cancellation at the right face is explicit:
+u_i\left(C_{i+1/2}\frac{u_i+u_{i+1}}2\right)
+-\frac12u_i^2 C_{i+1/2}
+=\frac12u_i u_{i+1}C_{i+1/2}.
+The left face cancels in the same way. Also D applied to the face mean of p is D₀p. Summing over the periodic grid cancels all shared kinetic-energy fluxes; discrete summation by parts then gives
+\frac{d}{dt}\left(h\sum_i K_i\right)
+=-h\sum_i u_i(D_0p)_i
+=h\sum_i p_i(D_0u)_i.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 2. Derive kinetic energy from mass and momentum# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#deriving-the-kinetic-energy-balance
+Coverage: reading
+
+The sign is positive in the last expression: pressure dilatation transfers energy between kinetic and internal energy. Thus compressible-flow kinetic energy is generally not constant. The identity excludes a spurious advective source while retaining that physical exchange. In multiple dimensions, replace uLuR by the velocity dot product and sum the directional pressure work.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 3. Recover the internal-energy pressure work# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#pressure-work-and-internal-energy
+Coverage: reading
+
+Choose the pressure contribution P to the total-energy flux as a cross product of left and right values. Expanding its face difference gives an exact discrete product rule:
+\begin{aligned}
+P_{i+1/2}&=\frac12(u_i p_{i+1}+u_{i+1}p_i),\\
+(DP)_i&=\frac{u_i(p_{i+1}-p_{i-1})+p_i(u_{i+1}-u_{i-1})}{2h}\\
+&=u_i(D_0p)_i+p_i(D_0u)_i.
+\end{aligned}
+Use the same mass flux to transport the arithmetic mean of the specific internal energy. Subtracting the derived kinetic-energy equation from the total-energy equation then yields
+\begin{aligned}
+I_i&=\rho_i e_i=E_i-K_i,\qquad e_i=\frac{p_i}{\rho_i(\gamma-1)},\\
+\mathcal I_{i+1/2}&=C_{i+1/2}\bar e_{i+1/2},\qquad
+F^E=\mathcal K+\mathcal I+P,\\
+\dot E_i+(DF^E)_i&=0
+\quad\Longrightarrow\quad
+\dot I_i+(D\mathcal I)_i+p_i(D_0u)_i=0.
+\end{aligned}
+The unwanted uD₀p terms cancel, leaving the internal-energy pressure work pD₀u with the required sign. This explains the cross-pressure term and the cross-velocity kinetic term in the implemented flux. They are not an arbitrary average of the physical energy flux. These are independent algebraic steps for the published implementation, corresponding to the second-order formulation in §2.2, Eqs. (8)–(12).
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 3. Recover the internal-energy pressure work# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#pressure-work-and-internal-energy
+Coverage: reading
+
+This derivation does not prove roundoff-exact entropy conservation. Entropy also involves nonlinear thermodynamic chain rules. The arithmetic-mean 2018 baseline preserves the balances above but retains entropy-conservation error; later KEEP variants and logarithmic-mean entropy-conservative fluxes have different definitions. The next formula returns to the actual two-dimensional update used by the code.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 4. The implemented two-dimensional update [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#implemented-two-dimensional-update
+Coverage: reading
+
 Evaluate this two-point flux between neighboring grid nodes, then take the right-minus-left flux difference to update the conserved state. Written in the two-dimensional notation of this implementation, Kuya and Kawai (2022), §2.2, Eqs. (1), (8) and (9) give the following semidiscrete system: space is discrete while time remains continuous. E is total energy per unit volume.
 \begin{aligned}
 \boldsymbol q_{i,j}&=(\rho,\rho u,\rho v,E)^{\mathsf T}_{i,j},\\
 \frac{d\boldsymbol q_{i,j}}{dt}
 &=-\frac{\widehat{\boldsymbol F}^{\,x}_{i+1/2,j}-\widehat{\boldsymbol F}^{\,x}_{i-1/2,j}}{\Delta x}
-
-## KEEP schemes: preserve the smooth-flow balance, test the limits — The semidiscrete update and two-point flux# [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux
-Coverage: reading
-
 -\frac{\widehat{\boldsymbol F}^{\,y}_{i,j+1/2}-\widehat{\boldsymbol F}^{\,y}_{i,j-1/2}}{\Delta y},\\
 \widehat{\boldsymbol F}^{\,x}_{i+1/2,j}
 &=\boldsymbol F^{(x)}(\boldsymbol q_{i,j},\boldsymbol q_{i+1,j}),\\
 \widehat{\boldsymbol F}^{\,y}_{i,j+1/2}
 &=\boldsymbol F^{(y)}(\boldsymbol q_{i,j},\boldsymbol q_{i,j+1}).
 \end{aligned}
-Here F(x) and F(y) are the two-point flux above with normal velocity u and v, respectively. In the public numart/keep.py, rhs() forms the right flux with keep_flux(q, np.roll(q, -1, axis=axis), axis) and subtracts the left flux obtained with np.roll(flux, 1, axis=axis). The implementation uses a square periodic uniform grid with Δx = Δy = L/N. This is a nearest-neighbor, second-order central spatial operator; higher-order multi-point assembly and curvilinear forms are not implemented.
-Both neighboring nodes share the same face flux. Its differences telescope when summed over the periodic grid, conserving total mass, momentum and total energy. RK4 retains these linear conservation laws, apart from roundoff. Kinetic-energy pressure-work balance and entropy involve nonlinear relations: this spatial formula alone does not guarantee their exact preservation after time discretization.
 
-## KEEP schemes: preserve the smooth-flow balance, test the limits — The semidiscrete update and two-point flux# [en]
+## KEEP schemes: preserve the smooth-flow balance, test the limits — 4. The implemented two-dimensional update [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#the-implemented-two-point-flux
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#implemented-two-dimensional-update
 Coverage: reading
 
+Here F(x) and F(y) are the two-point flux above with normal velocity u and v, respectively. In the public numart/keep.py, rhs() forms the right flux with keep_flux(q, np.roll(q, -1, axis=axis), axis) and subtracts the left flux obtained with np.roll(flux, 1, axis=axis). The implementation uses a square periodic uniform grid with Δx = Δy = L/N. This is a nearest-neighbor, second-order central spatial operator; higher-order multi-point assembly and curvilinear forms are not implemented.
+Both neighboring nodes share the same face flux. Its differences telescope when summed over the periodic grid, conserving total mass, momentum and total energy. RK4 retains these linear conservation laws, apart from roundoff. Kinetic-energy pressure-work balance and entropy involve nonlinear relations: this spatial formula alone does not guarantee their exact preservation after time discretization.
 Tests verify equal-state consistency, left/right symmetry, periodic conservation of the primary variables, and the semidiscrete kinetic-energy pressure-work identity. RK4 adds temporal truncation error and does not inherit every semidiscrete identity exactly.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — Non-dissipative does not mean dispersion-free# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#non-dissipative-and-dispersive
+Coverage: reading
+
+Dissipation changes amplitude; dispersion changes phase speed. A spatial operator can avoid artificial damping and still move different wavelengths at incorrect speeds. To isolate that distinction, linearize the symmetric, consistent two-point flux about one uniform state q₀. Symmetry and F(q,q)=f(q) give equal left and right Jacobians. For a scalar characteristic wave with speed a, the result is the centered advection equation:
+\begin{aligned}\partial_1 F(q_0,q_0)&=\partial_2 F(q_0,q_0)=\tfrac12 A,\qquad A=f'(q_0),\\\dot v_i&=-a\frac{v_{i+1}-v_{i-1}}{2h}.\end{aligned}
+For an individual Fourier mode, with θ=kh, substitution gives
+\begin{aligned}v_i(t)&=\widehat v\,e^{\mathrm i(ki h-\omega_h t)},\qquad\theta=kh,\\\lambda_h&=-\mathrm i\,a\frac{\sin\theta}{h},\qquad\omega_h=a\frac{\sin\theta}{h}.\end{aligned}
+The eigenvalue is purely imaginary, so this semidiscrete linear mode has no amplitude decay. Its phase and group velocities are nevertheless
+\begin{aligned}\frac{c_{\rm ph}}a&=\frac{\omega_h}{ak}=\frac{\sin\theta}{\theta},\\\frac{c_{\rm g}}a&=\frac1a\frac{d\omega_h}{dk}=\cos\theta,\\\frac{\sin\theta}{\theta}&=1-\frac{\theta^2}{6}+O(\theta^4).\end{aligned}
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — Non-dissipative does not mean dispersion-free# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#non-dissipative-and-dispersive
+Coverage: reading
+
+The ratio at θ=0 is understood by continuity. At four grid points per wavelength, θ=π/2, the second-order phase speed is only 2/π≈0.637 times a. At θ=π the centered derivative vanishes on the alternating grid mode; that is a resolution failure, not accurate transport. Underresolved wave packets can also have an incorrect group velocity.
+The speed ratios assume a≠0. When a=0, this linearization has ωh=0 and the mode is stationary.
+The sine relation is not a general nonlinear KEEP dispersion law. Finite-amplitude products couple modes and introduce aliasing questions. Kuya and Kawai’s 2022 split-form analysis treats that different problem: its nonlinear modified wavenumber cannot be replaced by this linearized example, and a finite-difference split form does not automatically remove aliasing. The authors also identify dispersion-error reduction as a reason for higher-order KEEP formulations (§2.4).
+The figure compares the analytical spatial ratios for this uniform-state linear example. It is separate from the nonlinear saved vortex calculation below.
+Spatial dispersion of the uniform-state linearization. Speed ratios approach one at low wavenumber; short waves have phase and group errors.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — What changes when RK4 advances time?# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#rk4-amplitude-and-phase
+Coverage: reading
+
+The displayed solver uses classical four-stage RK4. For a frozen linear mode with eigenvalue −iωh, one step multiplies the amplitude by G. This follows directly from the RK4 stages; it is an analysis of the integrator used here, not of a later fully conservative temporal KEEP scheme.
+\begin{aligned}v^{n+1}&=Gv^n,\qquad G=R(-\mathrm i\xi),\qquad\xi=\omega_h\Delta t,\\R(z)&=1+z+\frac{z^2}{2}+\frac{z^3}{6}+\frac{z^4}{24}.\end{aligned}
+Its squared amplitude gain is exactly
+\begin{gathered}|G|^2=1-\frac{\xi^6}{72}+\frac{\xi^8}{576},\\|G|\le1\ \Longleftrightarrow\ |\xi|\le2\sqrt2\quad(\xi\in\mathbb R).\end{gathered}
+Strictly inside this interval, a nonzero ξ gives |G| smaller than one. Thus RK4 damps this otherwise undamped spatial mode. Gain is one at ξ=0 and at the two endpoints; beyond them it exceeds one. This pure-imaginary linear-mode stability limit is not a global CFL or positivity guarantee for the nonlinear, variable-state, two-dimensional solver.
+Phase must also be checked. Define arg₀ by continuous continuation from ξ=0 rather than by a wrapped principal angle. The fully discrete frequency Ω and the amplitude after n equal steps satisfy
+\begin{aligned}\Omega\Delta t&=-\arg_0R(-\mathrm i\xi),\qquad |v^n|=|G|^n|v^0|,\\\Omega\Delta t&=\xi-\frac{\xi^5}{120}+O(\xi^7).\end{aligned}
+For small ξ the leading amplitude defect and the combined spatial/temporal phase-speed ratio are
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — What changes when RK4 advances time?# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#rk4-amplitude-and-phase
+Coverage: reading
+
+\begin{aligned}\log|G|&=-\frac{\xi^6}{144}+O(\xi^8),\\\frac{\Omega\Delta t}{a k\Delta t}&=\frac{\sin\theta}{\theta}\,\frac{-\arg_0R(-\mathrm i\xi)}{\xi}.\end{aligned}
+For θ=π/2 and aΔt/h=0.5, the spatial phase-speed ratio is about 0.636620; including RK4 gives about 0.636317. The RK4 gain is about 0.999894878 per step and 0.989542 after 100 steps. These are calculations for one linear mode.
+The small-ξ expansion shows phase lag near zero, but RK4 does not lag throughout its stable interval. At ξ=2, for example, its continuous phase is about 2.0344, ahead of the exact value 2.
+The first factor in the last expression is spatial dispersion. The second is the additional RK4 phase error, with its limit taken at ξ=0. The accompanying response plot is for the scalar linear test equation; its amplitude is not a measured entropy error of the vortex.
+There is no contradiction with conservation of the summed primary variables. If the discrete right-hand side has zero summed mass, momentum and total-energy residual at every stage, RK4 preserves those linear sums, apart from roundoff. K=m²/(2ρ), entropy, wave amplitudes and phases are nonlinear or more detailed properties; preserving the sums does not fix them. See the Runge–Kutta chapter for the stages and stability-function context.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — What changes when RK4 advances time?# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#rk4-amplitude-and-phase
+Coverage: reading
+
+RK4 amplitude and phase response for a pure-imaginary eigenvalue. Outside the dashed stability boundary this linear test equation is unstable.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — Read the diagnostics separately# [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#separating-spatial-and-temporal-errors
+Coverage: reading
+
+At fixed grid spacing, reduce Δt. Changes in amplitude and phase expose temporal error; the spatial dispersion remains.
+Refine the grid as well, with sufficiently small temporal error. Refinement at fixed CFL changes both h and Δt, so it alone does not separate their contributions.
+For small perturbations of a uniform state, compare one mode with its exact amplitude and phase. For a nonlinear vortex, compare fields and pressure-work/entropy diagnostics instead of applying the scalar sine relation to the whole flow.
+Track primary conservation, kinetic-energy pressure-work balance, entropy-proxy change, density/pressure positivity, and field error separately. A dispersive oscillation is not automatically growing instability; conversely, actual growth cannot be dismissed as harmless dispersion.
+The two response figures are analytical diagnostics, not additional atlas test problems. They do not change the published solver, fixed inputs, saved vortex results or code-edition ZIP. The existing vortex study below supplies the separate finite-grid evidence.
+
+## KEEP schemes: preserve the smooth-flow balance, test the limits — Recompute the figures and data [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/#recompute-the-linear-analysis
+Coverage: reading
+
+Save the analysis script and requirements in one folder, then run with Python 3.9 or later. Choose a new output directory. See the instructions and scope and script license.
+python -m pip install -r requirements.txt
+python analyse-keep.py --output generated
+Spatial dispersion CSV · RK4 response CSV · Results and fixed inputs JSON · File hashes JSON · Editable prose and LaTeX JSON
 
 ## KEEP schemes: preserve the smooth-flow balance, test the limits — Appropriate first test: smooth isentropic vortex advection# [en]
 
@@ -11351,7 +11498,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/
 Coverage: reading
 
 解説章公開コード・データ / Public code and data
-英語原文が更新されています。この日本語訳は旧版に対応します。
+日本語・英語の本文と数式を同時更新：2026-11-22。翻訳は草稿です。
 
 ## KEEP法：滑らかな流れの釣合いと限界を検証する — KEEP法：滑らかな流れの釣合いと限界を検証する [ja]
 
@@ -11387,6 +11534,71 @@ F_E&=C\left[\frac12\boldsymbol u_L\cdot\boldsymbol u_R+\overline e\right]
 +\frac12(u_{n,L}p_R+u_{n,R}p_L).
 \end{aligned}
 です。質量流束はCです。交差速度の運動項と交差圧力仕事には意味があり、物理流束全体の都合のよい平均に置き換えると離散エネルギー交換が変わります。空間2次の中心2点流束差分法で、リーマンソルバーの散逸はありません。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 1. 面流束の差分と、格子点の中心差分を区別する# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#face-means-and-jumps
+Coverage: reading
+
+まず、格子幅hが一定の1次元周期格子で考えます。密度は正とし、面の左右の状態には隣り合う格子点の値を使います。上線は算術平均、角括弧は右から左を引いた差です。Dは面に定義した流束の差分、D₀は格子点の値の中心差分を表します。
+\begin{aligned}\bar a_{i+1/2}&=\frac{a_i+a_{i+1}}2,\qquad [a]_{i+1/2}=a_{i+1}-a_i,\\(D\mathcal F)_i&=\frac{\mathcal F_{i+1/2}-\mathcal F_{i-1/2}}h,\\(D_0a)_i&=\frac{a_{i+1}-a_{i-1}}{2h}.\end{aligned}
+平均の取り方が重要な理由は、次の代数的な恒等式から分かります。近似的な関係ではありません。
+[ab]=\bar a[b]+\bar b[a],\qquad
+\overline{ab}=\bar a\,\bar b+\frac14[a][b].
+例えばρuを平均した値と、ρの平均にuの平均を掛けた値は異なります。同じ状態の左右値や、一様状態まわりの1次の微小変動では一致しますが、非線形の差の積が違います。KEEPでは、各方程式の間でエネルギーを整合して受け渡すように平均の組合せを選びます。全エネルギーの総和を保存するという条件だけから、この組合せが決まるわけではありません。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 2. 質量・運動量の差分式から運動エネルギー式を導く# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#deriving-the-kinetic-energy-balance
+Coverage: reading
+
+mを単位体積あたりの運動量とします。面で共有する質量流束Cと運動量流束Mを用いて、次の保存形で更新します。2次元の流束は上に示しましたが、ここでは打ち消し合う項が見えるように、速度を1成分に限定します。
+\begin{aligned}m_i&=\rho_i u_i,\qquad\dot\rho_i=-(DC)_i,\qquad\dot m_i=-(DM)_i,\\C&=\bar\rho\,\bar u,\qquad M=C\bar u+\bar p.\end{aligned}
+まだ時間は連続なので、K=m²/(2ρ)には通常の連鎖則を使えます。質量と運動量の式を代入すると、運動エネルギー流束𝒦と圧力勾配の項に分かれます。
+\begin{aligned}
+K_i&=\frac{m_i^2}{2\rho_i}=\frac12\rho_i u_i^2,\\
+\dot K_i&=u_i\dot m_i-\frac12u_i^2\dot\rho_i
+=-(D\mathcal K)_i-u_i(D_0p)_i,\\
+\mathcal K_{i+1/2}&=\frac12 C_{i+1/2}u_i u_{i+1}.
+\end{aligned}
+右側の面で対流項がどう整理されるかを、1段書き下すと次のようになります。
+u_i\left(C_{i+1/2}\frac{u_i+u_{i+1}}2\right)
+-\frac12u_i^2 C_{i+1/2}
+=\frac12u_i u_{i+1}C_{i+1/2}.
+左側の面でも同様です。また、面平均したpにDを作用させるとD₀pになります。周期格子全体で和を取ると、共有する運動エネルギー流束が相殺し、離散的な部分積分によって
+\frac{d}{dt}\left(h\sum_i K_i\right)
+=-h\sum_i u_i(D_0p)_i
+=h\sum_i p_i(D_0u)_i.
+を得ます。最後の式の符号は正です。圧力と膨張・圧縮によって、運動エネルギーと内部エネルギーが受け渡されます。したがって、圧縮性流で運動エネルギーそのものが一定になるわけではありません。対流離散化による偽の生成を避けながら、この物理的な交換を残すのがここでの整合性です。多次元ではuLuRを速度の内積に置き換え、各方向の圧力仕事を足し合わせます。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 3. 全エネルギー式から、内部エネルギーの圧力仕事を取り出す# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#pressure-work-and-internal-energy
+Coverage: reading
+
+全エネルギー流束の圧力寄与Pには、左右を交差させた積を使います。面の差を展開すると、次の離散積公式が厳密に成り立ちます。
+\begin{aligned}
+P_{i+1/2}&=\frac12(u_i p_{i+1}+u_{i+1}p_i),\\
+(DP)_i&=\frac{u_i(p_{i+1}-p_{i-1})+p_i(u_{i+1}-u_{i-1})}{2h}\\
+&=u_i(D_0p)_i+p_i(D_0u)_i.
+\end{aligned}
+比内部エネルギーの算術平均も、同じ質量流束Cで運びます。全エネルギー式から先ほどの運動エネルギー式を引くと、
+\begin{aligned}
+I_i&=\rho_i e_i=E_i-K_i,\qquad e_i=\frac{p_i}{\rho_i(\gamma-1)},\\
+\mathcal I_{i+1/2}&=C_{i+1/2}\bar e_{i+1/2},\qquad
+F^E=\mathcal K+\mathcal I+P,\\
+\dot E_i+(DF^E)_i&=0
+\quad\Longrightarrow\quad
+\dot I_i+(D\mathcal I)_i+p_i(D_0u)_i=0.
+\end{aligned}
+となります。uD₀pが相殺し、内部エネルギーの圧力仕事pD₀uが正しい符号で残ります。これが、実装のエネルギー流束で交差圧力項と交差速度の運動項を使う理由です。物理的なエネルギー流束をそのまま平均したものではありません。ここでは、著者の2次精度の定式化（第2.2節・式(8)–(12)）に対応する公開実装を、独立した代数計算として展開しました。
+ただし、ここから丸め誤差までの厳密なエントロピー保存が証明されたわけではありません。エントロピーには非線形の熱力学的な連鎖則も関わります。2018年の算術平均を使う基準法は、上の釣合いを満たしつつエントロピー保存誤差を残します。後のKEEPの変種や、対数平均を使うエントロピー保存流束とは定義を区別します。続く式で、公開コードが使う2次元の更新に戻ります。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 4. 実装の2次元差分式 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#implemented-two-dimensional-update
+Coverage: reading
+
 この2点流束を隣接する格子点の間で評価し、右側と左側の差を取って保存変数を更新します。Kuya・Kawai（2022）第2.2節、式(1)、(8)、(9)を、本実装の2次元の記号で書くと、空間だけを離散化した半離散式は次のようになります。Eは単位体積あたりの全エネルギーです。
 \begin{aligned}
 \boldsymbol q_{i,j}&=(\rho,\rho u,\rho v,E)^{\mathsf T}_{i,j},\\
@@ -11399,14 +11611,72 @@ F_E&=C\left[\frac12\boldsymbol u_L\cdot\boldsymbol u_R+\overline e\right]
 &=\boldsymbol F^{(y)}(\boldsymbol q_{i,j},\boldsymbol q_{i,j+1}).
 \end{aligned}
 ここでF(x)とF(y)は、上の2点流束で法線速度をそれぞれu、vとしたものです。公開コードのnumart/keep.pyのrhs()は、keep_flux(q, np.roll(q, -1, axis=axis), axis)で右側の流束を作り、np.roll(flux, 1, axis=axis)で得る左側の流束との差を取ります。実装は正方形の周期一様格子で、Δx = Δy = L/Nです。隣接点だけを使う空間2次の中心差分であり、高次中心差分の多点組立てや曲線座標版は含みません。
-
-## KEEP法：滑らかな流れの釣合いと限界を検証する — 差分式と実装した2点流束# [ja]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#the-implemented-two-point-flux
-Coverage: reading
-
 同じ面の流束を両側の格子点で共有するため、周期境界では差分の空間和が相殺し、質量・運動量・全エネルギーの総和を保存します。この線形の保存則はRK4でも保たれます（丸め誤差は別）。一方、運動エネルギーの圧力仕事との釣合いやエントロピーは非線形の関係であり、この空間差分式から時間離散後の厳密保存を保証することはできません。
 テストでは同一状態の整合性、左右対称性、主変数の周期保存、半離散運動エネルギー・圧力仕事の恒等式を検証します。RK4は時間打切り誤差を加え、すべての半離散恒等式を厳密に継承しません。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 無散逸でも、分散誤差は残る# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#non-dissipative-and-dispersive
+Coverage: reading
+
+散逸は振幅を変え、分散は位相速度を変えます。 人工的な減衰を加えない空間差分でも、波長ごとの伝わる速さが正しいとは限りません。この違いを取り出すため、左右対称で整合する2点流束を、一様状態q₀のまわりで線形化します。左右対称性とF(q,q)=f(q)から、左右のヤコビ行列は等しくなります。速さaの1つの特性波については、次の中心差分の移流式になります。
+\begin{aligned}\partial_1 F(q_0,q_0)&=\partial_2 F(q_0,q_0)=\tfrac12 A,\qquad A=f'(q_0),\\\dot v_i&=-a\frac{v_{i+1}-v_{i-1}}{2h}.\end{aligned}
+θ=khとして、1つのフーリエモードを代入すると、
+\begin{aligned}v_i(t)&=\widehat v\,e^{\mathrm i(ki h-\omega_h t)},\qquad\theta=kh,\\\lambda_h&=-\mathrm i\,a\frac{\sin\theta}{h},\qquad\omega_h=a\frac{\sin\theta}{h}.\end{aligned}
+を得ます。固有値は純虚数なので、この半離散の線形モードの振幅は減衰しません。一方、位相速度と群速度は、
+\begin{aligned}\frac{c_{\rm ph}}a&=\frac{\omega_h}{ak}=\frac{\sin\theta}{\theta},\\\frac{c_{\rm g}}a&=\frac1a\frac{d\omega_h}{dk}=\cos\theta,\\\frac{\sin\theta}{\theta}&=1-\frac{\theta^2}{6}+O(\theta^4).\end{aligned}
+です。θ=0の比は極限で定義します。例えば1波長を4格子点で表す粗い波ではθ=π/2で、2次差分の位相速度はaの2/π≈0.637倍に過ぎません。θ=πの交互に符号が変わる格子モードでは中心差分がゼロになりますが、正確に運んでいるのではなく、解像できていない状態です。低解像の波束では、群速度も誤ります。
+速度比は a≠0 の特性波に対するものです。a=0 ならこの線形化では ωh=0 となり、モードは静止します。
+このsinθ/hの関係を、非線形KEEP全体の分散関係と解釈してはいけません。 有限振幅の積はモードを結合し、エイリアシングも問題になります。Kuya・Kawai（2022）の分割形の解析は、その別の問題を扱います。そこでの非線形の修正波数を、この線形化した例に置き換えることはできず、有限差分の分割形が自動的にエイリアシングを除くわけでもありません。著者は、高次KEEPへ拡張する目的の一つ（第2.4節）として、分散誤差の低減も挙げています。
+図は、この一様状態まわりの線形例について、解析的な空間差分の速度比を比較します。後に示す非線形の渦計算とは別の確認です。
+一様状態まわりの線形化での空間分散。低波数の速度比は1ですが、短波長では位相・群速度がずれます。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — RK4で時間を進めると、何が変わるか# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#rk4-amplitude-and-phase
+Coverage: reading
+
+表示しているソルバーの時間積分は、古典的な4段のRK4です。固有値が−iωhの固定した線形モードでは、1ステップで振幅にGを掛けます。これはRK4の各段を代入して得る関係で、後の時間方向にも保存的なKEEP方式の説明ではありません。
+\begin{aligned}v^{n+1}&=Gv^n,\qquad G=R(-\mathrm i\xi),\qquad\xi=\omega_h\Delta t,\\R(z)&=1+z+\frac{z^2}{2}+\frac{z^3}{6}+\frac{z^4}{24}.\end{aligned}
+振幅倍率の2乗は、厳密に
+\begin{gathered}|G|^2=1-\frac{\xi^6}{72}+\frac{\xi^8}{576},\\|G|\le1\ \Longleftrightarrow\ |\xi|\le2\sqrt2\quad(\xi\in\mathbb R).\end{gathered}
+となります。この区間の内部でξがゼロでなければ、|G|は1より小さくなります。つまり、空間差分では減衰しないこのモードも、RK4によって減衰します。ξ=0と区間の両端では倍率が1、区間の外では1を超えます。これは純虚固有値を持つ線形モードの安定条件であって、状態が変わる非線形2次元ソルバー全体のCFL条件や正値性の保証ではありません。
+位相も別に確かめます。arg₀は、主値の角度をそのまま使うのでなく、ξ=0から連続につないだ位相です。完全離散の角振動数Ωと、同じ刻みでnステップ進めた振幅は、
+\begin{aligned}\Omega\Delta t&=-\arg_0R(-\mathrm i\xi),\qquad |v^n|=|G|^n|v^0|,\\\Omega\Delta t&=\xi-\frac{\xi^5}{120}+O(\xi^7).\end{aligned}
+を満たします。ξが小さい場合の振幅誤差の先頭項と、空間・時間を合わせた位相速度の比は、
+\begin{aligned}\log|G|&=-\frac{\xi^6}{144}+O(\xi^8),\\\frac{\Omega\Delta t}{a k\Delta t}&=\frac{\sin\theta}{\theta}\,\frac{-\arg_0R(-\mathrm i\xi)}{\xi}.\end{aligned}
+具体例として θ=π/2、aΔt/h=0.5 なら、空間離散だけの位相速度比は約0.636620、RK4込みでは約0.636317です。RK4の振幅倍率は1ステップで約0.999894878、100ステップで約0.989542となります。これは単一の線形モードの計算値です。
+小さい ξ では上式の位相遅れが現れますが、安定域全体で常に遅れるわけではありません。例えば ξ=2 では連続位相が約2.0344となり、厳密値2より進みます。
+です。最後の式の第1因子が空間差分の分散、第2因子がRK4による追加の位相誤差で、ξ=0では極限を取ります。隣の応答図はスカラーの線形試験方程式のものであり、渦計算で測ったエントロピー誤差ではありません。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — RK4で時間を進めると、何が変わるか# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#rk4-amplitude-and-phase
+Coverage: reading
+
+この振幅誤差と、主保存量の総和が保存されることは矛盾しません。各段で質量・運動量・全エネルギーの右辺の総和がゼロなら、RK4でもそれらの線形な総和は丸め誤差を除いて保存されます。一方、K=m²/(2ρ)、エントロピー、波の振幅や位相は、非線形あるいはそれ以上に詳しい性質です。総和の保存だけでは決まりません。各段や安定性関数の位置付けは、Runge–Kutta法の章も参照してください。
+純虚固有値に対するRK4の振幅・位相応答。破線の外側はこの線形試験方程式で不安定です。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 診断量を分けて読む# [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#separating-spatial-and-temporal-errors
+Coverage: reading
+
+格子幅を固定してΔtを小さくします。振幅や位相の変化から時間積分の寄与を調べます。空間差分の分散は、それだけでは消えません。
+時間誤差を十分小さくしたうえで、格子も細かくします。CFL一定の格子細分化はhとΔtの両方を変えるので、それだけで両者の寄与を分離したことにはなりません。
+一様状態の微小変動なら、1つの波の振幅と位相を厳密解と比較します。非線形の渦では場の誤差や圧力仕事・エントロピーの診断を比較し、スカラーのsinθ/hの関係を流れ全体へ当てはめません。
+主保存量の総和、運動エネルギーと圧力仕事の釣合い、エントロピー代理量、密度・圧力の正値性、場の誤差は別々に追います。分散による波打ちが直ちに増幅不安定を意味するわけではなく、逆に、実際の増幅を無害な分散として片付けることもできません。
+2枚の応答図は解析的な診断であり、アトラスのテスト問題数を増やすものではありません。公開ソルバー、固定入力、保存済みの渦計算結果、配布ZIPは変更しません。有限格子で実行した別の根拠は、以下の既存の渦計算で確認できます。
+
+## KEEP法：滑らかな流れの釣合いと限界を検証する — 図とデータを再計算する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/#recompute-the-linear-analysis
+Coverage: reading
+
+解析スクリプトと依存パッケージ一覧を同じフォルダーへ保存し、Python 3.9以降で実行できます。新しい出力フォルダーを指定してください。実行説明と適用範囲、スクリプトのライセンスも確認できます。
+python -m pip install -r requirements.txt
+python analyse-keep.py --output generated
+空間分散 CSV · RK4応答 CSV · 実行結果・固定入力 JSON · ファイルハッシュ JSON · 編集用の本文・LaTeX JSON
 
 ## KEEP法：滑らかな流れの釣合いと限界を検証する — 最初の適切なテスト：滑らかな等エントロピー渦の移流# [ja]
 

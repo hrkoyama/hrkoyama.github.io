@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "scope": "Uniform-state linearization / linear scalar characteristic mode only; not the modified wavenumber of nonlinear split products or a nonlinear Euler verification.",
+  "source_script_sha256": "e0467c57aec34561c46e1aa50927267fe1813d17689fcbc1149cadca125a76f6",
+  "environment": {
+    "python": "3.12.14",
+    "system": "Darwin",
+    "machine": "arm64",
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4"
+  },
+  "inputs": {
+    "spatial_theta_interval": [
+      0.0,
+      3.141592653589793
+    ],
+    "spatial_samples": 513,
+    "rk4_xi_interval": [
+      0.0,
+      3.1
+    ],
+    "rk4_uniform_samples": 801,
+    "rk4_stability_boundary_included": true
+  },
+  "formulas": {
+    "spatial": "lambda_h=-i*a*sin(theta)/h; cp/a=sin(theta)/theta; cg/a=cos(theta)",
+    "rk4": "R(z)=1+z+z^2/2+z^3/6+z^4/24; z=-i*xi",
+    "gain_squared": "abs(R(-i*xi))^2=1-xi^6/72+xi^8/576"
+  },
+  "spatial": {
+    "scope": "Uniform-state linearization / linear scalar characteristic mode only; not the modified wavenumber of nonlinear split products or a nonlinear Euler verification.",
+    "samples": 513,
+    "stencil_probe": {
+      "n": 64,
+      "length": 1.0,
+      "a": 0.4,
+      "cases": [
+        {
+          "mode": 1,
+          "theta": 0.09817477042468103,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -2.5092387924367516,
+          "observed_lambda_real": 4.24302226674634e-18,
+          "observed_lambda_imag": -2.5092387924367516,
+          "projection_residual": 4.24302226674634e-18,
+          "maximum_vector_residual": 9.144356508438812e-15
+        },
+        {
+          "mode": 4,
+          "theta": 0.39269908169872414,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -9.7966958685463,
+          "observed_lambda_real": -2.6596640026856966e-18,
+          "observed_lambda_imag": -9.7966958685463,
+          "projection_residual": 2.6596640026856966e-18,
+          "maximum_vector_residual": 3.375102368649545e-14
+        },
+        {
+          "mode": 8,
+          "theta": 0.7853981633974483,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -18.101933598375616,
+          "observed_lambda_real": -3.60728053776458e-16,
+          "observed_lambda_imag": -18.101933598375616,
+          "projection_residual": 3.60728053776458e-16,
+          "maximum_vector_residual": 6.775129049539923e-14
+        },
+        {
+          "mode": 16,
+          "theta": 1.5707963267948966,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -25.6,
+          "observed_lambda_real": 6.310887241768095e-30,
+          "observed_lambda_imag": -25.600000000000005,
+          "projection_residual": 3.552713678800501e-15,
+          "maximum_vector_residual": 1.8189894035458568e-13
+        },
+        {
+          "mode": 24,
+          "theta": 2.356194490192345,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -18.10193359837562,
+          "observed_lambda_real": -3.1853015494813643e-16,
+          "observed_lambda_imag": -18.10193359837562,
+          "projection_residual": 3.1853015494813643e-16,
+          "maximum_vector_residual": 2.824304231263157e-13
+        },
+        {
+          "mode": 31,
+          "theta": 3.043417883165112,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -2.5092387924367574,
+          "observed_lambda_real": 9.574021049430282e-18,
+          "observed_lambda_imag": -2.5092387924367516,
+          "projection_residual": 5.773167666668517e-15,
+          "maximum_vector_residual": 2.8519276285897144e-13
+        },
+        {
+          "mode": 32,
+          "theta": 3.141592653589793,
+          "expected_lambda_real": 0.0,
+          "expected_lambda_imag": -3.1350958058172244e-15,
+          "observed_lambda_real": -1.1210387714598537e-44,
+          "observed_lambda_imag": 2.7610131682735413e-30,
+          "projection_residual": 3.135095805817227e-15,
+          "maximum_vector_residual": 2.7284841053187846e-13
+        }
+      ],
+      "max_projection_residual": 5.773167666668517e-15,
+      "max_vector_residual": 2.8519276285897144e-13,
+      "acceptance": {
+        "projection_max": 2e-12,
+        "vector_max": 5e-12
+      },
+      "passed": true
+    },
+    "nyquist": {
+      "theta": 3.141592653589793,
+      "sine_observed": 1.2246467991473532e-16,
+      "theoretical_modified_wavenumber": 0.0,
+      "phase_speed_ratio_limit": 0.0,
+      "meaning": "Alternating grid values lie in the nullspace of the centered derivative."
+    }
+  },
+  "rk4": {
+    "scope": "Uniform-state linearization / linear scalar characteristic mode only; not the modified wavenumber of nonlinear split products or a nonlinear Euler verification.",
+    "samples": 802,
+    "phase_branch": "continuous from xi=0, via numpy.unwrap",
+    "imaginary_axis_stability_bound": 2.8284271247461903,
+    "checks": {
+      "stage_vs_polynomial_maximum_residual": 9.930136612989092e-16,
+      "gain_squared_identity_maximum_residual": 3.9968028886505635e-15,
+      "absolute_residual_acceptance": 2e-14,
+      "passed": true
+    },
+    "fixed_example": {
+      "theta": 1.5707963267948966,
+      "cfl_a_dt_over_h": 0.5,
+      "xi": 0.5,
+      "exact_continuum_phase_per_step": 0.7853981633974483,
+      "exact_semidiscrete_gain_per_step": 1.0,
+      "exact_semidiscrete_phase_per_step": 0.5,
+      "rk4_gain_per_step": 0.9998948783722911,
+      "rk4_phase_per_step": 0.4997624356449582,
+      "spatial_phase_speed_over_a": 0.6366197723675814,
+      "fully_discrete_phase_speed_over_a": 0.6363172960363227,
+      "rk4_amplitude_after_100_steps": 0.9895423501230034,
+      "note": "A scalar Fourier mode, not a finite-amplitude Euler/KEEP solution."
+    }
+  },
+  "frozen_public_keep_linearization": {
+    "scope": "Centered finite-epsilon directional derivative about a uniform Euler state; entropy characteristic, x direction only.",
+    "source": {
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/keep.py",
+      "sha256": "0819e2c3de3e4ab9ffe763f247a471a21966fde88da6ed13621ae334afc71f91",
+      "edition": "2026-11-21"
+    },
+    "n": 32,
+    "mode": 3,
+    "length": 1.0,
+    "theta": 0.5890486225480862,
+    "uniform_primitive_state": {
+      "rho": 1.0,
+      "u": 0.4,
+      "v": 0.2,
+      "p": 1.0
+    },
+    "perturbation_conserved_vector": [
+      1.0,
+      0.4,
+      0.2,
+      0.10000000000000002
+    ],
+    "epsilon_cases": [
+      {
+        "epsilon": 0.001,
+        "relative_directional_derivative_residual": 2.723796104142262e-07,
+        "density_mode_lambda_real": 4.344591807087654e-15,
+        "density_mode_lambda_imag": -7.111298982650625,
+        "expected_lambda_imag": -7.111298982650908
+      },
+      {
+        "epsilon": 0.0001,
+        "relative_directional_derivative_residual": 2.7250253361790186e-09,
+        "density_mode_lambda_real": 3.5413669703035355e-15,
+        "density_mode_lambda_imag": -7.11129898265171,
+        "expected_lambda_imag": -7.111298982650908
+      },
+      {
+        "epsilon": 1e-05,
+        "relative_directional_derivative_residual": 1.3125794519871336e-10,
+        "density_mode_lambda_real": 3.722419871856687e-15,
+        "density_mode_lambda_imag": -7.111298982674912,
+        "expected_lambda_imag": -7.111298982650908
+      },
+      {
+        "epsilon": 1e-06,
+        "relative_directional_derivative_residual": 1.169730196096858e-09,
+        "density_mode_lambda_real": 4.700581562082549e-15,
+        "density_mode_lambda_imag": -7.111298982510598,
+        "expected_lambda_imag": -7.111298982650908
+      }
+    ],
+    "best_relative_directional_derivative_residual": 1.3125794519871336e-10,
+    "maximum_in_phase_lambda_real": 4.700581562082549e-15,
+    "acceptance": {
+      "best_relative_residual_max": 2e-08,
+      "in_phase_lambda_real_max": 2e-09
+    },
+    "passed": true,
+    "limitation": "Does not establish finite-amplitude modal nondissipation, nonlinear split-product dispersion, entropy equality, or shock behavior."
+  },
+  "passed": true,
+  "outputs": [
+    {
+      "path": "rk4-response.csv",
+      "bytes": 86923,
+      "sha256": "694322ada45196baa11efc65c39eba615adac8bd2917c16f539fb4ba6b0d0562"
+    },
+    {
+      "path": "rk4-response.png",
+      "bytes": 99088,
+      "sha256": "70614dafd51cb0d226dc7ab5d57d3fce0a9d58b12ac1fcb28a37fdac4ff37228"
+    },
+    {
+      "path": "spatial-dispersion.csv",
+      "bytes": 41957,
+      "sha256": "96ab8fd594b130c9af0a3a068cbf4fdd4e56710481de4cc7667e8fe30cdc12e5"
+    },
+    {
+      "path": "spatial-dispersion.png",
+      "bytes": 108116,
+      "sha256": "87beb50f68480cfcc6d1513ca7654e582e9da119ff5df0983a8736bbec26d3b8"
+    }
+  ]
+}
