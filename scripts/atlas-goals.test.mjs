@@ -24,6 +24,8 @@ test('explicit scopes distinguish Euler shocks, smooth KEEP, magnetic operators 
  assert.ok(!matchGoals('without shock waves').some(g=>g.id==='shocks'));
  assert.deepEqual(matchGoals('zxqvnotfound'),[]);
  assert.ok(!matchGoals('衝撃波を低散逸で計算したい').some(g=>g.id==='smooth-vortex'));
+ assert.ok(!matchGoals('MHDを低散逸で解きたい').some(g=>g.id==='smooth-vortex'));
+ assert.ok(!matchGoals('非圧縮の渦を低散逸で解きたい').some(g=>g.id==='smooth-vortex'));
  assert.match(goals.find(g=>g.id==='smooth-vortex').scope.en,/neither a shock stabilizer/);
  assert.match(goals.find(g=>g.id==='magnetic-divergence').scope.en,/does not validate multidimensional/);
 });

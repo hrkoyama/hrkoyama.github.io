@@ -17,6 +17,7 @@ module+='''export function matchGoals(query){
  const q=String(query).normalize('NFKC').toLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\\s+/g,' ').trim();
  if(!q)return [];
  return goals.filter(g=>{
+  if(g.id==='smooth-vortex' && /相対論|relativ|mhd|非圧縮|incompressible/.test(q))return false;
   if(g.id==='smooth-vortex' && /衝撃波|shock/.test(q) && !/含まない|なし|without|no shock/.test(q))return false;
   if(g.id==='shocks' && /相対論|relativ|mhd|衝撃波を含まない|衝撃波なし|without shocks?|no shocks?/.test(q))return false;
   return g.terms.some(t=>q.includes(t.normalize('NFKC').toLowerCase().replace(/[‐‑‒–—−-]/g,' ')));
