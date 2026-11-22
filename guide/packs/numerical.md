@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-f2d80653d2
-Captured (UTC): 2026-11-22T15:19:46+00:00
+Snapshot: 2026-11-22-325adcbac6
+Captured (UTC): 2026-11-22T15:24:39+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -11482,14 +11482,21 @@ The focus is mathematical methods, formulations, applicability and verification.
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
-Build a development foundation that lets a user’s AI agent obtain implementations, assumptions, benchmark problems and references from the Atlas, then assemble, modify, run and verify code for the requested calculation. Demonstrate this complete development cycle on a few existing-field tasks by year end. Public reproduction, maintenance and restoration support that goal.
+Build a development foundation that lets a user’s AI agent obtain implementations, assumptions, benchmark problems and references from the Atlas, then assemble, modify, run and verify code for the requested calculation. Demonstrate this complete development cycle on a few existing-field tasks by year end. Public reproduction, maintenance and restoration support that goal. The 16 December retreat is the first presentation target: an A0 portrait poster, mainly Japanese with English technical terms, reporting the demonstrated results.
 
 ## Implementation roadmap — Current development plan and published examples [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
 Coverage: reading
 
-The central year-end deliverable is a prototype in which a user’s AI agent uses public resources and machine-readable manifests to start from Atlas verified implementations, develop the requested code, assess it with Atlas benchmarks and return it to the user. Start with bounded 1D advection and diffusion. Provide bilingual requirements, applicability, retrieval, dependencies, execution, output contracts, references, criteria, failure reasons and citation. Keep original-implementation passes separate from this run’s derived-code receipts. From 22 November 2026, new fields are outside the standard year-end plan. 18 December freezes kit/interface additions and additions to existing validation. Fix reference data, input families and tolerances in advance; agents cannot redefine passing criteria. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Development support through users’ existing AI agents is in scope this year; specialist-AI training/model research remains for 2027 or later.
+The central year-end deliverable is a prototype in which a user’s AI agent uses public resources and machine-readable manifests to start from Atlas verified implementations, develop the requested code, assess it with Atlas benchmarks and return it to the user. Start with bounded 1D advection and diffusion. Provide bilingual requirements, applicability, retrieval, dependencies, execution, output contracts, references, criteria, failure reasons and citation. Keep original-implementation passes separate from this run’s derived-code receipts. From 22 November 2026, new fields are outside the standard year-end plan. 18 December freezes kit/interface additions and additions to existing validation. Fix reference data, input families and tolerances in advance; agents cannot redefine passing criteria. Quantum chemistry defaults to small educational models, saved-result checks and a few fixed inputs. Large basis/k sweeps, costly independent-reference regeneration, long first-principles MD and precise material calculations require a new explicit request. Development support through users’ existing AI agents is in scope this year; specialist-AI training/model research remains for 2027 or later. Freeze the demonstrated code/reference/criteria versions and poster results by 12 December; target the poster PDF on the 14th, display/print preparation and offline explanation checks on the 15th, a
+
+## Implementation roadmap — Current development plan and published examples [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+nd presentation readiness for the retreat on the 16th. Distinguish the version actually demonstrated on the poster from the later year-end candidate.
 
 ## Implementation roadmap — Target milestones and review gates [en]
 
@@ -11505,14 +11512,16 @@ Audit existing advection/diffusion code; choose supplied language, dependencies,
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
-Starting from the public URL and one Japanese and one English calculation request, a separate AI agent completes two advection/diffusion tasks. Record kit retrieval → configuration/implementation modification → execution → reference comparison → error/refinement/invariant assessment → code/report delivery. Fix input families, references and criteria before execution and distinguish original from derived-code results. Use a valid modification and an intentional implementation bug as controls for missing failures or inaccuracy. Check six goal paths; keep this deliverable separate from rerunning original public distributions on existing public inputs. Do not claim success for arbitrary equations, requests or every agent; run no full quantum sweeps. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions.
-18 December: freeze provided kits, machine-readable contracts and verification criteria
+Starting from the public URL and one Japanese and one English calculation request, a separate AI agent completes two advection/diffusion tasks. Record kit retrieval → configuration/implementation modification → execution → reference comparison → error/refinement/invariant assessment → code/report delivery. Fix input families, references and criteria before execution and distinguish original from derived-code results. Use a valid modification and an intentional implementation bug as controls for missing failures or inaccuracy. Check six goal paths; keep this deliverable separate from rerunning original public distributions on existing public inputs. Do not claim success for arbitrary equations, requests or every agent; run no full quantum sweeps. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions. By this date, freeze the measured results and distribution/reference/criteria/executed-code versions for the poster, preserving demonstration, intervention and failure records.
+16 December: readiness for an A0 portrait poster at the retreat
 
 ## Implementation roadmap — Target milestones and review gates [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
+Summarize the two advection/diffusion development demonstrations frozen on the 12th in an A0 portrait poster, mainly Japanese with English terminology. Complete the PDF by the 14th; check full-size readability, figures/equations, citation, QR targets and display/print data on the 15th. Report measured code retrieval → adaptation → execution → accuracy/refinement assessment → artifact delivery, valid/bug controls and original/derived-code distinctions. Keep a demo video and run records locally for explanation without network access. Explicitly show unfinished work, failures, interventions and exclusions; do not prewrite unobserved success. Keep the presentation edition separate from the later year-end candidate and version numerical corrections with reasons.
+18 December: freeze provided kits, machine-readable contracts and verification criteria
 Pin code, manifests, interfaces, references, input families, criteria and bilingual guidance for the two required tasks by hash, without adding fields. Stop additions to existing validation as well. Carry unfinished P1 extensions forward with reasons and scope; do not relax criteria to meet the date. Limit later work to correctness fixes, explanation and publication checks.
 23 December: accept development, verification and delivery in fresh agent contexts
 
@@ -11552,6 +11561,14 @@ Coverage: reading
 
 bitrary new-physics generation and Atlas-hosted or trained AI are not year-end requirements. At least one of the two tasks must complete a meaningful source-level assembly/adaptation, such as replacing a spatial operator or time integrator, with an actual diff. Configuration changes alone do not satisfy this gate. Start the demonstration agent with the public URL, request and explicitly listed public materials, without private working copies; record any hints or interventions. Pin the evaluator, tests, references, inputs and thresholds separately from editable solver code. A clean evaluation environment executes the actual delivered derived-code entrypoint and records the executed source SHA; agent self-reported passes or accidental imports of the original implementation are not evidence.
 Candidate implementations and assumptions (existing registry) · Benchmarks, references and run entries (existing foundation)
+
+## Implementation roadmap — Present the development-support demonstration at the 16 December retreat [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/
+Coverage: reading
+
+In progress / acceptance pending
+This is preparation planning; the poster PDF and agent demonstration are not yet complete. Use A0 portrait, mainly Japanese with English technical terms. Center the poster on two advection/diffusion demonstrations in which a user’s AI agent retrieves provided code, benchmarks and references from the public Atlas, makes a meaningful code adaptation, assesses accuracy/refinement and delivers code plus a report. Show existing catalogue scale as background, separately from the tested scope of development support. Freeze measured results, diffs, valid/bug controls and reference/criteria/executed-code versions by 12 December; finish the PDF on the 14th; check full-size readability, figures, equations, references, QR targets, display/print data and offline explanation through a short demo video and run records on the 15th. The presentation on the 16th reports completed flows, failures, manual intervention, unimplemented features and scope as observed; it does not guarantee arbitrary-code correctness or general code generation. Keep the presentation edition separate from later year-end changes and version any numerical corrections with reasons.
 
 ## Implementation roadmap — Audit references and applicability for development tests [en]
 
@@ -34470,8 +34487,8 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
 Coverage: reading
 
-利用者のAIエージェントが、要求に合う実装・前提条件・標準問題・参照解をアトラスから取得し、コードの組立・改修・実行・精度検証を進められる開発基盤を目指します。年末は既存分野の少数の課題で、この開発サイクルを最初から最後まで実証します。公開再現・保守・復元はそれを支える基盤として整えます。
-年末の中心成果は、利用者側のAIエージェントが公開資料と機械可読台帳を使い、アトラスの検証済み実装から開発を始め、改修後のコードをアトラスの標準問題で評価して利用者へ渡せる試作版です。最初は1次元移流・拡散に範囲を固定し、要求・適用条件・取得先・依存・実行手順・出力契約・参照・判定基準・失敗理由・引用を日英で揃えます。元実装の合格と派生コードの今回の合格を別の記録にします。2026年11月22日から、新分野の追加を年内の標準計画に含めず、12月18日に提供キット・接続仕様と既存検証の追加を締め切ります。参照・入力群・公差を事前固定し、エージェントが合格基準を変更して成功とすることを認めません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力が基本です。大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。利用者側の既存AIエージェントによる開発支援は年内対象で、専門AIの学習・モデル研究は2027年以降です。
+利用者のAIエージェントが、要求に合う実装・前提条件・標準問題・参照解をアトラスから取得し、コードの組立・改修・実行・精度検証を進められる開発基盤を目指します。年末は既存分野の少数の課題で、この開発サイクルを最初から最後まで実証します。公開再現・保守・復元はそれを支える基盤として整えます。 12月16日のリトリートを最初の発表目標とし、A0縦・日本語中心、専門用語を英語併記するポスターへ実証結果をまとめます。
+年末の中心成果は、利用者側のAIエージェントが公開資料と機械可読台帳を使い、アトラスの検証済み実装から開発を始め、改修後のコードをアトラスの標準問題で評価して利用者へ渡せる試作版です。最初は1次元移流・拡散に範囲を固定し、要求・適用条件・取得先・依存・実行手順・出力契約・参照・判定基準・失敗理由・引用を日英で揃えます。元実装の合格と派生コードの今回の合格を別の記録にします。2026年11月22日から、新分野の追加を年内の標準計画に含めず、12月18日に提供キット・接続仕様と既存検証の追加を締め切ります。参照・入力群・公差を事前固定し、エージェントが合格基準を変更して成功とすることを認めません。量子化学は小規模な教育用モデル、保存結果の照合と少数の固定入力が基本です。大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は新たな明示依頼がある場合に扱います。利用者側の既存AIエージェントによる開発支援は年内対象で、専門AIの学習・モデル研究は2027年以降です。 12月12日までにポスター用の実証結果とコード/参照/判定の版を固定し、14日にPDF完成、15日に表示・印刷準備・オフライン説明を確認して16日に発表できる状態を目指します。18日以降の年末候補と、ポスターで実際に示した版は区別します。
 
 ## 実装ロードマップ — 整備の目安と確認の節目 [ja]
 
@@ -34481,18 +34498,20 @@ Coverage: reading
 11月30日：提供コードとエージェント向け接続仕様を決める
 既存の移流・拡散コードを調べ、提供言語・依存・対応パラメータ・制限・ライセンス・引用を明確にする。AIエージェントが要求から取得・実行・評価まで辿る機械可読manifest、JSON入出力と配列/時刻/境界/単位/セル平均の契約、検証CLIと失敗理由を仕様化する。共通22例、補助ケース/検査件数、問題台帳83件・39実行入口、147手法を区別し、現在の公開状態を同期する。既存版・基準・履歴は保持し、仕様策定を実装済みと表示しない。
 12月12日：別のAIエージェントでコード提供から精度評価まで通す
-公開URLと日英各1つの計算要求から、別のAIエージェントが移流・拡散の2課題を実施する。提供キット取得→設定/実装改修→実行→参照比較→誤差/収束/保存量の評価→コードと報告の引渡しを記録する。検証する入力族・参照・判定基準は事前固定し、元コードと派生コードの結果を区別する。妥当な変更と意図的な実装不具合を対照にし、失敗や精度不足を見落とさないか確認する。導線は計6目的を確認し、既存公開入力による元配布版の追試とは別の成果として示す。任意の方程式・要求や全エージェントの成功保証とはせず、量子全走査は行わない。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。
+公開URLと日英各1つの計算要求から、別のAIエージェントが移流・拡散の2課題を実施する。提供キット取得→設定/実装改修→実行→参照比較→誤差/収束/保存量の評価→コードと報告の引渡しを記録する。検証する入力族・参照・判定基準は事前固定し、元コードと派生コードの結果を区別する。妥当な変更と意図的な実装不具合を対照にし、失敗や精度不足を見落とさないか確認する。導線は計6目的を確認し、既存公開入力による元配布版の追試とは別の成果として示す。任意の方程式・要求や全エージェントの成功保証とはせず、量子全走査は行わない。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。 この日までにポスターへ載せる実測と配布/参照/基準/実行コードの版を固定し、実証と介入・失敗の記録を保存します。
+12月16日：リトリートでA0縦ポスター発表できる状態へ
+12日に固定した移流・拡散2課題の開発実証を、A0縦・日本語中心/英語用語併記のポスターへまとめる。14日までにPDFを完成し、15日に原寸可読性・図式・引用・QR先・表示/印刷データを確認する。提供コードの取得→改修→実行→精度/収束評価→成果物引渡し、正常/不具合対照、元/派生コードの区別を実測で示す。デモ動画と実行記録を手元に保存し、通信がなくても説明できる状態にする。未完了・失敗・介入・対象外は明示し、未実証の成功を先に書かない。発表用の版は後続の年末候補と区別し、数値修正は理由と新版を残す。
 12月18日：提供キット・機械可読仕様・検証基準を固定する
 新分野を増やさず、必達2課題のコード・manifest・接続仕様・参照・入力族・判定基準・日英説明を候補版としてSHAで固定する。既存検証への追加も締め切る。P1の対象拡張が間に合わなければ保留理由と範囲を残し、合格基準を緩めて間に合わせない。以後は正しさに関わる修正・説明・公開確認に限る。
 12月23日：新規エージェント文脈で開発・検証・引渡しを受け入れる
-固定候補を新規のAIエージェント文脈で利用し、要求→アトラスからコード取得→改修→実行→精度/収束評価→成果物の引渡しを確認する。元実装の成功・派生実装の実測・不具合対照の失敗を別の記録へ残す。公開ファイル、軽量Linux、日英・引用・利用条件、別フォルダからの復元を確認する。参照/基準のSHAと改修差分、環境・実測結果・CI URLを永続的な版付き公開記録へ残す。未解決P0があれば完了とせず、任意の利用者要求や全分野のコード生成を保証しない。量子は保存済み記録と軽量な固定例にとどめる。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。
-12月31日：開発キットの修正と次の対象への引継ぎを整える
 
 ## 実装ロードマップ — 整備の目安と確認の節目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/#atlas-queue-milestones
 Coverage: reading
 
+固定候補を新規のAIエージェント文脈で利用し、要求→アトラスからコード取得→改修→実行→精度/収束評価→成果物の引渡しを確認する。元実装の成功・派生実装の実測・不具合対照の失敗を別の記録へ残す。公開ファイル、軽量Linux、日英・引用・利用条件、別フォルダからの復元を確認する。参照/基準のSHAと改修差分、環境・実測結果・CI URLを永続的な版付き公開記録へ残す。未解決P0があれば完了とせず、任意の利用者要求や全分野のコード生成を保証しない。量子は保存済み記録と軽量な固定例にとどめる。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。
+12月31日：開発キットの修正と次の対象への引継ぎを整える
 受入で見つかったコード・接続仕様・判定・説明の不具合を直し、新分野・重い新物理は増やさない。数値修正は新しい不変版と追試記録へ分け、旧成功は保持する。提供済みのキット/対応条件、エージェントで実証済みの課題、未検証の改修・未対応要求、残るP1と保留理由を翌年へ引き継ぐ。専門AIの学習・モデル研究は2027年以降とし、利用者側AIによる公開資産の利用と区別する。
 
 ## 実装ロードマップ — 利用者のAIエージェントへ開発コードと検証一式を提供する [ja]
@@ -34503,6 +34522,14 @@ Coverage: reading
 進行中・受入確認待ち
 現在は仕様策定段階です。利用者の計算要求から、AIエージェントが機械可読manifestで対応方程式・手法・適用条件を調べ、アトラスの検証済みコード・設定・標準問題・参照解・テスト・引用を取得し、コードを組立/改修して実行し、結果と適用範囲を返す流れを作ります。最初の必達範囲は小さな1次元移流・拡散の2課題です。既存実装を調べて再利用範囲を決め、提供キットは新しい版として固定します。言語と依存は11月30日の棚卸しで決め、全言語の対応を約束しません。JSONの要求/台帳/結果と明記した配列・座標・時刻・境界・単位・節点値/セル平均の出力契約、取得と実行のCLI、誤差ノルム・格子/時間収束・適切な保存量を用意します。許可するパラメータ族と判定基準を先に固定し、その範囲の入力変更を扱う新しい開発用テストを作ります。旧固定recipeの拒否規則と不変版は保持します。提供コードの取得・改修・評価を別のAIエージェントが公開資料だけで実施し、妥当な変更と意図的な実装不具合をそれぞれ確認します。要求との不一致・精度不足・未収束を成功へ読み替えず、元コード/変更差分/参照/入力/基準の版とSHA、実行結果、失敗理由を別々に記録します。任意の新物理の自動生成や、アトラス側でAIをホスト/学習する機能の完成は年末条件にしません。 2課題の少なくとも一方では、差分演算子や時間積分部の交換など、意味のあるソースコードの組立/改修を成功させ、実際の差分を残します。設定値の変更だけではこの条件を満たしません。実証用エージェントの開始文脈は公開URL・要求と明示した公開資料に限り、非公開作業コピーを使わず、途中の助言・介入を記録します。 評価器・テスト・参照・入力・閾値を編集可能な計算コードと別に固定し、クリーンな評価環境で実際に引き渡す派生コードの入口を実行します。実行したソースのSHAを記録し、エージェントの自己申告や元実装の誤読込みを合格の根拠にしません。
 提供実装の候補と前提条件（既存台帳） · 標準問題・参照・実行入口（既存基盤）
+
+## 実装ロードマップ — 12月16日のリトリートで開発支援の実証をポスター発表する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/roadmap/
+Coverage: reading
+
+進行中・受入確認待ち
+準備計画の段階で、ポスターPDFとエージェント実証は未完成です。A0縦・日本語中心、専門用語は英語併記とします。中心は、利用者のAIエージェントが公開アトラスから提供コード・標準問題・参照を取得し、意味のあるコード改修を行って精度/収束を評価し、コードと報告を引き渡す移流・拡散2課題の実証です。既存の収録規模は背景情報とし、この開発支援の検証範囲と分けて表示します。12月12日までに実測・変更差分・正常/不具合対照・参照/基準/実行コードの版を固定し、14日にPDFを仕上げ、15日に原寸可読性、図・式・文献・QRのリンク、表示と印刷用データ、短いデモ動画・実行記録によるオフライン説明を確認します。16日の発表物では、完了した流れと失敗・手動介入・未実装・適用範囲を実測どおり示し、任意コードの正しさや汎用コード生成を保証しません。発表用版を年末版の後続変更と混ぜず、数値を訂正した場合は版と理由を残します。
 
 ## 実装ロードマップ — 開発用テストの根拠・適用範囲を監査する [ja]
 

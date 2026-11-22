@@ -43,6 +43,7 @@ const rendered=JSON.parse(probe.stdout);
 
 test('current work, conditional additions and published examples remain separate',()=>{
   assert.equal(queue.schema_version,2);
+  assert.equal(queue.items.length,20);
   assert.equal(new Set(queue.items.map(x=>x.id)).size,queue.items.length);
   for(const id of ['current-roadmap','executable-example-registry']){
     const x=queue.items.find(x=>x.id===id);
@@ -50,7 +51,7 @@ test('current work, conditional additions and published examples remain separate
     assert.equal(x.priority,'P0');assert.equal(x.track,'published');
   }
   const ongoing=queue.items.filter(x=>x.track==='current');
-  assert.deepEqual(ongoing.map(x=>x.id),['validated-code-kits','field-validation-depth','public-reproduction-checks','year-end-release']);
+  assert.deepEqual(ongoing.map(x=>x.id),['validated-code-kits','retreat-poster','field-validation-depth','public-reproduction-checks','year-end-release']);
   for(const x of ongoing){assert.equal(x.state,'in-progress');assert.equal(x.priority,'P0');}
   for(const id of ['molecular-quantum-example','ewald-pme-spme','periodic-dft-validation','periodic-forces-validation']){
     const x=queue.items.find(x=>x.id===id);
@@ -83,10 +84,30 @@ test('roadmap rendering preserves anchors and is idempotent for both languages',
 });
 
 test('public milestones give target dates without promising every implementation',()=>{
-  assert.deepEqual(queue.milestones.map(x=>x.target),['2026-11-30','2026-12-12','2026-12-18','2026-12-23','2026-12-31']);
+  assert.deepEqual(queue.milestones.map(x=>x.target),['2026-11-30','2026-12-12','2026-12-16','2026-12-18','2026-12-23','2026-12-31']);
   for(const lang of ['ja','en']){
     for(const x of queue.milestones)assert.ok(rendered[lang].html.includes(x.title[lang]));
     assert.ok(rendered[lang].html.includes(queue.milestones.find(x=>x.id==='year-end-edition').scope[lang]));
+  }
+});
+
+test('the retreat poster has its own A0 Japanese preparation gates and does not preclaim the demonstration or the year-end candidate',()=>{
+  const poster=queue.items.find(x=>x.id==='retreat-poster');
+  assert.equal(poster.target_year,2026);assert.equal(poster.state,'in-progress');
+  assert.equal(poster.priority,'P0');assert.equal(poster.track,'current');
+  for(const text of ['poster PDF and agent demonstration are not yet complete','A0 portrait, mainly Japanese with English technical terms','two advection/diffusion demonstrations','meaningful code adaptation','catalogue scale as background','measured results, diffs, valid/bug controls','reference/criteria/executed-code versions by 12 December','finish the PDF on the 14th','full-size readability','QR targets','display/print data','short demo video and run records on the 15th','manual intervention, unimplemented features and scope as observed','presentation edition separate from later year-end changes'])assert.ok(poster.scope.en.includes(text),text);
+  assert.match(poster.scope.ja,/ポスターPDFとエージェント実証は未完成/);
+  assert.match(poster.scope.ja,/A0縦・日本語中心/);
+  const measuredFreeze=queue.milestones.find(x=>x.id==='representative-paths');
+  assert.match(measuredFreeze.scope.en,/freeze the measured results and distribution\/reference\/criteria\/executed-code versions for the poster/);
+  const presentation=queue.milestones.find(x=>x.id==='retreat-presentation');
+  assert.equal(presentation.target,'2026-12-16');
+  for(const text of ['frozen on the 12th','A0 portrait poster, mainly Japanese with English terminology','Complete the PDF by the 14th','on the 15th','valid/bug controls and original/derived-code distinctions','without network access','do not prewrite unobserved success','presentation edition separate from the later year-end candidate','version numerical corrections with reasons'])assert.ok(presentation.scope.en.includes(text),text);
+  assert.equal(queue.milestones.find(x=>x.id==='feature-freeze').target,'2026-12-18');
+  for(const language of ['ja','en']){
+    assert.ok(rendered[language].html.includes(poster.title[language]));
+    assert.ok(rendered[language].html.includes(presentation.title[language]));
+    assert.ok(rendered[language].html.includes(language==='ja'?'未実証の成功を先に書かない':'do not prewrite unobserved success'));
   }
 });
 
