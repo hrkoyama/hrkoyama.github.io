@@ -1,6 +1,6 @@
 import {wireGoalFilters} from './goal-filters.mjs?v=4b109b47d93c';
 import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=dfb5071428b4';
-import {homeSearchPage,wireHomeSearch} from './home-search.js?v=d661d07809d9';
+import {homeSearchPage,wireHomeSearch} from './home-search.js?v=c7d287e6d178';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=e1228a79f331';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

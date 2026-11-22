@@ -7,6 +7,7 @@ from pathlib import Path
 ORIGIN = 'https://hrkoyama.github.io'
 LEGACY_CASES = ['periodic-wave', 'pec-cavity']
 SCATTERING_CASES = ['dielectric-interface', 'pml-pulse']
+CORNER_CASES = ['pml-corners']
 
 
 def fdtd_release_record(root, method):
@@ -33,11 +34,16 @@ def fdtd_release_record(root, method):
     assert manifest['family'] == 'fdtd' and manifest['public_base_url'] == ORIGIN + base
     cases = config.get('cases', LEGACY_CASES)
     assert isinstance(cases, list) and len(cases) == len(set(cases))
-    assert set(LEGACY_CASES) <= set(cases) <= set(LEGACY_CASES + SCATTERING_CASES)
+    assert set(LEGACY_CASES) <= set(cases) <= set(LEGACY_CASES + SCATTERING_CASES + CORNER_CASES)
     scattering = [case for case in cases if case in SCATTERING_CASES]
+    corners = [case for case in cases if case in CORNER_CASES]
+    if corners:
+        assert set(SCATTERING_CASES) <= set(cases)
     required = {'solver.py', 'run.py', 'test_fdtd.py', 'README.md', 'requirements.txt', 'LICENSE'}
     if scattering:
         required.update(['scattering.py', 'run_scattering.py', 'test_scattering.py'])
+    if corners:
+        required.update(['corner.py', 'run_corner.py', 'test_corner.py'])
     for case in cases:
         required.add('inputs/' + case + '.json')
         required.update('results/' + case + '/' + name for name in
@@ -63,13 +69,18 @@ def fdtd_release_record(root, method):
     assert {recipe['id'] for recipe in receipt['recipes']} == set(cases)
     assert all(recipe['passed'] is True and recipe['metrics_identical'] is True
                and recipe['csv_identical'] is True for recipe in receipt['recipes'])
-    code_names = ['solver.py', 'run.py'] + (['scattering.py', 'run_scattering.py'] if scattering else [])
-    test_names = ['test_fdtd.py'] + (['test_scattering.py'] if scattering else [])
+    assert all(recipe['input_sha256'] == digest(file('inputs/' + recipe['id'] + '.json'))
+               for recipe in receipt['recipes'])
+    code_names = (['solver.py', 'run.py'] + (['scattering.py', 'run_scattering.py'] if scattering else [])
+                  + (['corner.py', 'run_corner.py'] if corners else []))
+    test_names = (['test_fdtd.py'] + (['test_scattering.py'] if scattering else [])
+                  + (['test_corner.py'] if corners else []))
     return dict(code_base=ORIGIN + base, code_edition=config['edition'],
                 code_urls=[ORIGIN + base + name for name in code_names],
                 test_urls=[ORIGIN + base + name for name in test_names],
                 run_commands=['python -m pytest -q ' + ' '.join(test_names)] +
-                    ['python ' + ('run_scattering.py' if case in SCATTERING_CASES else 'run.py')
+                    ['python ' + ('run_corner.py' if case in CORNER_CASES else
+                                  'run_scattering.py' if case in SCATTERING_CASES else 'run.py')
                      + ' --input inputs/' + case + '.json --output rerun-' + case for case in cases],
                 run_from='Extracted 2D TMz FDTD supplement directory',
                 code_download=ORIGIN + base + config['archive'],

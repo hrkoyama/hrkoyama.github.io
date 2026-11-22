@@ -1,6 +1,8 @@
 # Yee FDTD
 
-Yee FDTD：真空モード・媒質界面・PMLの実装と検証
+Yee FDTD：真空・媒質界面・四辺と角のPML
+
+第3版では四辺と四つの角へPMLを拡張しました。辺へ向かう波と斜めに角へ向かう波を分け、反射・方向別のPML仕事・四辺の流束・格子収束を検証します。旧2配布版と既存の4入力も保持しています。
 
 初版の真空2例に、第2版の誘電体界面と左右x方向PMLを追加しました。前半は真空の解析モード、後半は垂直入射のFresnel比較と、垂直・斜めパルスの境界反射を扱います。旧版のコード・図・数値は保持しています。
 
@@ -155,7 +157,97 @@ PMLのない物理領域については、補間した物理エネルギーとPo
 [](/numerical-methods-atlas/assets/fdtd-dielectric-interface.png)[dielectric-interface result.json](/code/fdtd/2026-11-22-r2/results/dielectric-interface/result.json) · [fixed input](/code/fdtd/2026-11-22-r2/inputs/dielectric-interface.json) · [energy.csv](/code/fdtd/2026-11-22-r2/results/dielectric-interface/energy.csv) · [convergence.csv](/code/fdtd/2026-11-22-r2/results/dielectric-interface/convergence.csv)[](/numerical-methods-atlas/assets/fdtd-pml-pulse.png)[pml-pulse result.json](/code/fdtd/2026-11-22-r2/results/pml-pulse/result.json) · [fixed input](/code/fdtd/2026-11-22-r2/inputs/pml-pulse.json) · [energy.csv](/code/fdtd/2026-11-22-r2/results/pml-pulse/energy.csv) · [convergence.csv](/code/fdtd/2026-11-22-r2/results/pml-pulse/convergence.csv)python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py
 python run_scattering.py --input inputs/dielectric-interface.json --output output-interface
-python run_scattering.py --input inputs/pml-pulse.json --output output-pmlこの版で検証したのは媒質界面への垂直入射と、真空帯領域の左右x方向PMLです。界面への斜め入射、四辺・角のPML、非常に浅い入射、分散・異方性物質、任意形状、3次元は今後の範囲です。
+python run_scattering.py --input inputs/pml-pulse.json --output output-pml第2版の範囲は界面への垂直入射と、真空帯領域の左右x方向PMLです。四辺・角のPMLは以下の第3版で追加しました。界面への斜め入射、非常に浅い入射、分散物質、一般形状、3次元は別の課題です。
+
+第3版：四辺と角のPML
+
+方向別の減衰と角の重なり
+
+
+$$
+\begin{aligned}E_z&=E_x+E_y,\\\partial_t E_x+\gamma_{x,E}E_x&=\partial_xH_y,&\partial_t E_y+\gamma_{y,E}E_y&=-\partial_yH_x,\\\partial_t H_x+\gamma_{y,H}H_x&=-\partial_yE_z,&\partial_t H_y+\gamma_{x,H}H_y&=\partial_xE_z,\quad\epsilon=\mu=1.\end{aligned}
+$$
+真空の2次元TMz正方形で、左右にγx、上下にγyのPMLを置き、四つの外端は完全導体（PEC）とします。角の領域ではγxとγyが同時に非ゼロになります。Eₓ,EᵧはEzの補助分割で、電場の物理的なx,y成分ではありません。各減衰率は電場節点・磁場の半格子位置でそれぞれ評価し、時間方向の減衰は台形則で更新します。
+
+辺へ向かう波の組と、斜めに角へ向かう波の組を分けます。単に全体のエネルギーが減るだけでなく、四辺それぞれの流出と、四つの角で減衰が実際に働いた根拠を調べます。層の物理厚さ・強度・形状は格子を細かくしても保持し、解く物理条件を変えません。
+
+参照波形と反射の意味
+
+境界のない同じ離散Maxwell方程式をFourierモードで進めた参照波形と比較し、通常の格子上の伝播誤差を境界の効果から切り分けます。この参照の更新・時刻配置を、別の小規模な周期格子のYee更新と照合します。参照の周期長と、初期層内の物理場・補助分割場の微小な裾を別に確認し、有限周期の像を反射と取り違えないようにします。外部ライブラリによる独立ソルバーとの比較ではありません。
+
+ここでの反射指標は、物理領域のPML場と境界なし参照の差を入射場で規格化した「境界による場差」です。有限層と初期のPML/補助分割場の裾の影響を含み、純粋な理想PMLの反射係数とは呼びません。有限厚・外端PECの系では、十分細かい格子でも有限の戻り波が残り得ます。戻り波の絶対値と、格子を細分化したときの波形の変化を区別し、観測窓の外や任意の角度に反射ゼロを保証しません。
+
+初期場は有限Fourierモード和の定在波束です。軸向きの搬送波は(±6, 0), (0, ±6)、斜め向きは(±4, ±4)を中心に持ち、時間発展で四方向へ分かれます。斜め波の中心方向は45度ですが、有限帯域を持つので単一角度の単色平面波ではありません。
+
+4観測点は、辺向きで(c±a,c),(c,c±a)、斜め向きで(c±a,c±a)です。c=8、a=2。各格子の保存時刻集合Tₕ上で下式を評価し、自己収束のノルムも観測窓内の時間最大・4点RMSとします。
+
+
+$$
+\begin{gathered}A_{\mathrm{inc},h}=\max_{t\in\mathcal T_h,\,0\le t独立に求める仕事と四辺の流束
+
+
+$$
+\begin{aligned}W_n={}&\Delta t\langle\bar E_n,\gamma_{x,E}\bar E_{x,n}+\gamma_{y,E}\bar E_{y,n}\rangle_h\\&+\frac{\Delta t}{2}\langle H_x^{n+1/2},\gamma_{y,H}(\bar H_{x,n}+\bar H_{x,n+1})\rangle_h\\&+\frac{\Delta t}{2}\langle H_y^{n+1/2},\gamma_{x,H}(\bar H_{y,n}+\bar H_{y,n+1})\rangle_h,\\U_*^{n+1}-U_*^n+W_n={}&0.\end{aligned}
+$$
+平均場の定義と修正離散エネルギーU*は前節と同じですが、仕事には電場x/yと磁場x/yの全4項を含めます。磁場は3つの連続した半時刻を用います。各項は場と減衰率から直接集計し、エネルギー差から逆算しません。局所的には符号付きの補助場の仕事であり、正の物理発熱とは区別します。任意の分割場に対する一般的な安定性定理を新しく証明したという主張でもありません。
+
+
+$$
+\begin{gathered}S_x=-E_zH_y,\quad S_y=E_zH_x,\\\Phi(t)=\int_{y_B}^{y_T}(S_x(x_R,y,t)-S_x(x_L,y,t))\,dy+\int_{x_L}^{x_R}(S_y(x,y_T,t)-S_y(x,y_B,t))\,dx,\\U_{\rm physical}(t)-U_{\rm physical}(0)+\int_0^t\Phi(\tau)\,d\tau=0.\end{gathered}
+$$
+PMLの内側の物理矩形では、右−左と上−下のPoynting流束を加え、内部エネルギーとの収支を測ります。角の電場節点には1/4、辺には1/2の積分重みを使い、共有点を重複加算しません。全領域の厳密な離散仕事恒等式と、補間・時間積分を含む物理領域の近似収支は別の判定です。
+
+固定入力と実測結果
+
+計算領域は一辺 16 の正方形、物理PML厚さ 2、最大減衰率 8、プロファイル次数 3 です。初期波束の中心は(8, 8)、幅は 1。格子は 128×128, 256×256, 512×512、観測はt=24まで、戻り波の窓はt=8以降です。
+
+参照Fourier周期は 64、波数間隔Δk=0.098175。要求した打切り波数 14 を最寄りのモード番号へ丸めるため、実際の各軸最大波数は 14.039 です。係数スロット数 20736（DC成分はゼロ）を使う有限和であり、無限帯域の厳密なGaussianとは区別します。
+
+第3版の固定入力。各条件の数値判定と参照情報は結果JSONに保存。波の組格子早期の場の相対誤差境界による場差（初期化含む）エネルギー＋仕事の残差四辺の流束収支残差辺へ向かう波128 × 1280.113280.000272455.8233e-160.029017辺へ向かう波256 × 2560.0302560.000338388.5458e-160.0075302辺へ向かう波512 × 5120.00758380.000362772.5493e-150.0019002斜めに角へ向かう波128 × 1280.0392119.7478e-065.8085e-160.02655斜めに角へ向かう波256 × 2560.0105171.0326e-058.5392e-160.0067585斜めに角へ向かう波512 × 5120.00265931.0584e-058.4959e-160.0016973辺への波の観測次数：早期の場 1.9046, 1.9962、四辺の流束収支 1.9461, 1.9865、戻り波の自己収束 1.66。参照周期を2倍にした差／入射振幅は 8.6937e-11。
+
+斜めの角への波の観測次数：早期の場 1.8986, 1.9836、四辺の流束収支 1.9739, 1.9935、戻り波の自己収束 1.8964。参照周期を2倍にした差／入射振幅は 6.6332e-10。
+
+最細格子の四辺からの累積流出／初期物理領域エネルギー。波の組左辺右辺下辺上辺辺への波0.249530.249530.249530.24953斜め角への波0.249580.249580.249580.24958斜めの波の組での角の累積絶対仕事増分／初期全エネルギー：SW=0.11008, SE=0.11008, NW=0.11008, NE=0.11008。各時刻で角領域の仕事を合計してから絶対値を取り、その値を時間方向に足した量です。局所仕事密度の絶対値の積分とは異なります。
+
+axis：最細格子で初期層内の場をゼロにした制御計算とのモニター差／入射振幅 3.4327e-09、標準入力の戻り信号に対する比は 9.4624e-06（判定値 0.01 以下）。物理領域の初期波束は保持し、層内の微小な物理場・補助場だけを変えた感度確認です。別の初期条件であり、これを標準入力の誤差上界とは呼びません。
+
+diagonal：最細格子で初期層内の場をゼロにした制御計算とのモニター差／入射振幅 7.8814e-09、標準入力の戻り信号に対する比は 0.00074467（判定値 0.01 以下）。物理領域の初期波束は保持し、層内の微小な物理場・補助場だけを変えた感度確認です。別の初期条件であり、これを標準入力の誤差上界とは呼びません。
+
+戻り場の自己収束次数はこの波束・層プロファイル・3格子で観測した値です。全ての入射・格子範囲で同じ次数になるという意味ではありません。
+
+格子間の波形差は同じ物理時刻へ揃えて比較します。自己収束から得た次数やRichardson型の見積もりは経験的な指標であり、厳密な誤差上界ではありません。全ての生の戻り波がゼロへ向かうこととは区別します。
+
+
+$$
+\delta_h=\|r_h-\mathcal I r_{h/2}\|_{\mathcal W},\qquad p_h=\frac{\log(\delta_h/\delta_{h/2})}{\log2}.
+$$
+第3版の取得と再実行
+
+[](/numerical-methods-atlas/assets/fdtd-pml-corners.png)[四辺・角PMLの結果JSON](/code/fdtd/2026-11-22-r3/results/pml-corners/result.json) · [convergence.csv](/code/fdtd/2026-11-22-r3/results/pml-corners/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22-r3/results/pml-corners/energy.csv)[第3版：旧4例＋四辺・角PMLのコードZIP](/code/fdtd/2026-11-22-r3/fdtd-2026-11-22-r3.zip)
+
+[日英の取得・実行手順](/code/fdtd/2026-11-22-r3/README.md)
+
+[corner.py](/code/fdtd/2026-11-22-r3/corner.py)
+
+[run_corner.py](/code/fdtd/2026-11-22-r3/run_corner.py)
+
+[test_corner.py](/code/fdtd/2026-11-22-r3/test_corner.py)
+
+[固定入力・許容値](/code/fdtd/2026-11-22-r3/inputs/pml-corners.json)
+
+[SHA-256 manifest](/code/fdtd/2026-11-22-r3/source-manifest.json)
+
+[旧版との同一性・来歴](/code/fdtd/2026-11-22-r3/provenance.json)
+
+[57テスト成功・独立展開記録](/code/fdtd/2026-11-22-r3/verification.json)
+
+
+
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
+python run_corner.py --input inputs/pml-corners.json --output output-cornersZIPを別フォルダへ独立展開し、全テストと旧4入力・新入力の全5例を再実行して、数値指標とCSVの一致を確認しました。旧版の数値ソース・入力・テストは同一バイト列で保持しています。共通22実行例・固有67問題とは別の補助配布版です。
+
+対象は指定した真空2次元TMz波束・正方形・有限時間です。媒質界面への斜め入射、掠れ入射全般、分散・異方性物質、3次元や一般曲面のPMLには、この結果をそのまま適用しません。
 
 初版の真空2例：コード・再実行
 
@@ -192,7 +284,7 @@ python run.py --input inputs/pec-cavity.json --output output-cavity空でない�
 
 ## 公開範囲
 
-2次元TMzの教育用実装。初版の一様真空の周期波・PEC空洞に加え、ε₁=1、ε₂=4の界面への垂直入射と、y周期・左右x方向PMLでの垂直/斜めパルスを固定入力で検証。Fresnel解・連続Fourierモード和・広領域の同じYee法を区別して参照。四辺/角PML、媒質界面への斜め入射、分散物質、3次元は未検証。
+2次元TMzの教育用実装。初版の真空モード、第2版の垂直誘電体界面・左右x方向PML、第3版の四辺・四つの角PMLを、指定した固定波束・格子・観測窓で検証。連続参照・離散Fourier参照・自己収束・独立集計した仕事・物理流束を区別。一般媒質・任意入射・3次元の包括的な認証ではない。
 
 ## 文献
 

@@ -1,6 +1,8 @@
 # Yee finite-difference time-domain method
 
-Yee FDTD: vacuum modes, dielectric interfaces and PML validation
+Yee FDTD: vacuum, dielectric interfaces and four-side/corner PML
+
+Revision r3 extends the PML to all four sides and corners. Separate packets aimed at sides and obliquely at corners test boundary returns, directional PML work, four-edge energy flux and grid refinement. Both earlier editions and their four inputs are retained.
 
 Revision r2 adds a dielectric interface and left/right x-directed PML to the original two vacuum cases. The first part covers vacuum analytic modes; the extension covers normal-incidence Fresnel comparisons and boundary reflections of normal/oblique packets. The original code edition, figures and measurements are retained.
 
@@ -155,7 +157,97 @@ The revision-r2 ZIP was independently extracted; all four inputs, including both
 [](/numerical-methods-atlas/assets/fdtd-dielectric-interface.png)[dielectric-interface result.json](/code/fdtd/2026-11-22-r2/results/dielectric-interface/result.json) · [fixed input](/code/fdtd/2026-11-22-r2/inputs/dielectric-interface.json) · [energy.csv](/code/fdtd/2026-11-22-r2/results/dielectric-interface/energy.csv) · [convergence.csv](/code/fdtd/2026-11-22-r2/results/dielectric-interface/convergence.csv)[](/numerical-methods-atlas/assets/fdtd-pml-pulse.png)[pml-pulse result.json](/code/fdtd/2026-11-22-r2/results/pml-pulse/result.json) · [fixed input](/code/fdtd/2026-11-22-r2/inputs/pml-pulse.json) · [energy.csv](/code/fdtd/2026-11-22-r2/results/pml-pulse/energy.csv) · [convergence.csv](/code/fdtd/2026-11-22-r2/results/pml-pulse/convergence.csv)python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py
 python run_scattering.py --input inputs/dielectric-interface.json --output output-interface
-python run_scattering.py --input inputs/pml-pulse.json --output output-pmlThis edition validates normal incidence at the material interface and left/right x-PML in a vacuum strip. Oblique material-interface incidence, four-side/corner PML, grazing incidence, dispersive/anisotropic matter, arbitrary geometry and 3D remain future work.
+python run_scattering.py --input inputs/pml-pulse.json --output output-pmlRevision r2 validates normal incidence at the material interface and left/right x-PML in a vacuum strip. Four-side/corner PML is added below in r3. Oblique material-interface incidence, grazing incidence, dispersive matter, general geometry and 3D remain separate tasks.
+
+Revision r3: four-side and corner PML
+
+Directional damping and corner overlap
+
+
+$$
+\begin{aligned}E_z&=E_x+E_y,\\\partial_t E_x+\gamma_{x,E}E_x&=\partial_xH_y,&\partial_t E_y+\gamma_{y,E}E_y&=-\partial_yH_x,\\\partial_t H_x+\gamma_{y,H}H_x&=-\partial_yE_z,&\partial_t H_y+\gamma_{x,H}H_y&=\partial_xE_z,\quad\epsilon=\mu=1.\end{aligned}
+$$
+In the implemented vacuum 2D TMz square, γx layers occupy the left/right sides and γy layers the bottom/top sides. All outer caps are PEC. Both directional rates are nonzero in the four overlap corners. Eₓ and Eᵧ are auxiliary splits of Ez, not physical x/y electric components. Each rate is sampled at its own electric or staggered magnetic location; damping uses the trapezoidal time update.
+
+One packet family targets ordinary sides; another targets corners obliquely. Checks establish more than a decrease in global energy: all four outgoing fluxes and contributions in all four corners are recorded. Physical layer thickness, strength and shape stay fixed during refinement, so changing resolution does not change the physical layer.
+
+Reference waveform and interpretation of reflection
+
+A boundary-free Fourier-mode evolution of the same discrete Maxwell equations separates ordinary propagation dispersion from boundary effects. Its update and time staggering are checked against explicit Yee updates on a separate small periodic grid. Reference period and initial physical/auxiliary split-field tails inside the layers are separately audited to distinguish periodic images from reflected waves. This is not a comparison against an independent external solver library.
+
+The reported boundary-induced probe error normalizes the difference between PML and boundary-free monitor fields by incident amplitude. It includes finite-layer and initial PML/auxiliary-tail effects and is not called a pure ideal-PML reflection coefficient. A finite PEC-backed layer can retain nonzero returns even at very fine resolution. Absolute return amplitude is distinguished from changes of the return waveform under refinement. No zero-reflection guarantee is made outside the observation window or for arbitrary incidence.
+
+Initial fields are standing finite-Fourier packets. Axis carriers center on (±6, 0), (0, ±6); diagonal carriers center on (±4, ±4), producing four outgoing groups. Diagonal carrier directions are 45 degrees; the finite bandwidth is distinct from a single-angle monochromatic plane wave.
+
+The four probes are (c±a,c),(c,c±a) for axis packets and (c±a,c±a) for diagonal packets, with c=8 and a=2. The formula uses each grid’s saved time set Tₕ; the self-convergence norm is likewise the maximum over the window of four-probe RMS.
+
+
+$$
+\begin{gathered}A_{\mathrm{inc},h}=\max_{t\in\mathcal T_h,\,0\le tIndependently evaluated work and four-edge flux
+
+
+$$
+\begin{aligned}W_n={}&\Delta t\langle\bar E_n,\gamma_{x,E}\bar E_{x,n}+\gamma_{y,E}\bar E_{y,n}\rangle_h\\&+\frac{\Delta t}{2}\langle H_x^{n+1/2},\gamma_{y,H}(\bar H_{x,n}+\bar H_{x,n+1})\rangle_h\\&+\frac{\Delta t}{2}\langle H_y^{n+1/2},\gamma_{x,H}(\bar H_{y,n}+\bar H_{y,n+1})\rangle_h,\\U_*^{n+1}-U_*^n+W_n={}&0.\end{aligned}
+$$
+The averaged fields and modified energy U* retain their definitions above, but work now includes all four electric-x/y and magnetic-x/y terms. Magnetic work uses three consecutive half times. Every term is tallied directly from fields and rates, not reconstructed from energy loss. Auxiliary work can be locally signed and is distinct from positive physical heating. This does not claim a new general stability theorem for arbitrary split fields.
+
+
+$$
+\begin{gathered}S_x=-E_zH_y,\quad S_y=E_zH_x,\\\Phi(t)=\int_{y_B}^{y_T}(S_x(x_R,y,t)-S_x(x_L,y,t))\,dy+\int_{x_L}^{x_R}(S_y(x,y_T,t)-S_y(x,y_B,t))\,dx,\\U_{\rm physical}(t)-U_{\rm physical}(0)+\int_0^t\Phi(\tau)\,d\tau=0.\end{gathered}
+$$
+The physical rectangle inside the PML sums right-minus-left and top-minus-bottom Poynting fluxes and compares them with interior energy change. Electric corner nodes use quarter quadrature weights and edge nodes half weights, avoiding double counting. The exact full-domain discrete work identity is checked separately from the interpolated/time-integrated physical-region balance.
+
+Fixed input and saved measurements
+
+The benchmark is a square of side 16, physical PML thickness 2, maximum damping rate 8 and profile order 3. Initial packet center is (8, 8), width 1. Grids are 128×128, 256×256, 512×512; the observation ends at t=24 and returned fields are evaluated from t=8.
+
+The reference Fourier period is 64, with Δk=0.098175. Rounding requested cutoff 14 to the nearest mode gives actual per-axis kmax=14.039. The finite sum has 20736 coefficient slots with the DC component removed; it is distinct from an infinite-band exact Gaussian.
+
+Revision-r3 fixed input. Individual acceptance decisions and reference information are stored in result JSON.Packet familyGridEarly relative field errorBoundary-induced probe errorEnergy + work residualFour-edge flux residualaxis128 × 1280.113280.000272455.8233e-160.029017axis256 × 2560.0302560.000338388.5458e-160.0075302axis512 × 5120.00758380.000362772.5493e-150.0019002diagonal128 × 1280.0392119.7478e-065.8085e-160.02655diagonal256 × 2560.0105171.0326e-058.5392e-160.0067585diagonal512 × 5120.00265931.0584e-058.4959e-160.0016973axis observed orders: early field 1.9046, 1.9962; four-edge flux balance 1.9461, 1.9865; return-waveform self-convergence 1.66. Doubling the reference period changes the trace by 8.6937e-11 relative to incident amplitude.
+
+diagonal observed orders: early field 1.8986, 1.9836; four-edge flux balance 1.9739, 1.9935; return-waveform self-convergence 1.8964. Doubling the reference period changes the trace by 6.6332e-10 relative to incident amplitude.
+
+Finest-grid cumulative outward flux per edge / initial physical-region energy.FamilyLeft edgeRight edgeBottom edgeTop edgeaxis0.249530.249530.249530.24953diagonal0.249580.249580.249580.24958Diagonal-family accumulated absolute corner work increments / initial total energy: SW=0.11008, SE=0.11008, NW=0.11008, NE=0.11008. Regional work is summed over cells/components before taking its absolute value at each step, then accumulated in time. This is distinct from integrating the pointwise absolute work density.
+
+axis: zeroing the initial layer fields changes the finest-grid monitor trace by 3.4327e-09 relative to incident amplitude, or 9.4624e-06 of the standard return signal (criterion ≤ 0.01). This sensitivity control preserves the interior packet while perturbing tiny physical/auxiliary fields inside the layers. It is a different initial condition, not a rigorous error bound for the standard input.
+
+diagonal: zeroing the initial layer fields changes the finest-grid monitor trace by 7.8814e-09 relative to incident amplitude, or 0.00074467 of the standard return signal (criterion ≤ 0.01). This sensitivity control preserves the interior packet while perturbing tiny physical/auxiliary fields inside the layers. It is a different initial condition, not a rigorous error bound for the standard input.
+
+Return-waveform self-convergence orders are observations for this packet, layer profile and three-grid range. They do not establish the same order for all incidence or grid ranges.
+
+Waveform differences across meshes are compared at common physical times. Self-convergence orders and any Richardson-type estimates are empirical diagnostics, not rigorous error bounds. They do not require every raw return to vanish.
+
+
+$$
+\delta_h=\|r_h-\mathcal I r_{h/2}\|_{\mathcal W},\qquad p_h=\frac{\log(\delta_h/\delta_{h/2})}{\log2}.
+$$
+Download and reproduce revision r3
+
+[](/numerical-methods-atlas/assets/fdtd-pml-corners.png)[Four-side/corner result JSON](/code/fdtd/2026-11-22-r3/results/pml-corners/result.json) · [convergence.csv](/code/fdtd/2026-11-22-r3/results/pml-corners/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22-r3/results/pml-corners/energy.csv)[Revision-r3 ZIP: retained four cases plus four-side/corner PML](/code/fdtd/2026-11-22-r3/fdtd-2026-11-22-r3.zip)
+
+[Bilingual setup and execution](/code/fdtd/2026-11-22-r3/README.md)
+
+[corner.py](/code/fdtd/2026-11-22-r3/corner.py)
+
+[run_corner.py](/code/fdtd/2026-11-22-r3/run_corner.py)
+
+[test_corner.py](/code/fdtd/2026-11-22-r3/test_corner.py)
+
+[Fixed input and acceptance criteria](/code/fdtd/2026-11-22-r3/inputs/pml-corners.json)
+
+[SHA-256 manifest](/code/fdtd/2026-11-22-r3/source-manifest.json)
+
+[Unchanged earlier sources / provenance](/code/fdtd/2026-11-22-r3/provenance.json)
+
+[57 tests passed / independent extraction](/code/fdtd/2026-11-22-r3/verification.json)
+
+
+
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
+python run_corner.py --input inputs/pml-corners.json --output output-cornersThe ZIP was independently extracted; all tests and all five inputs were rerun with identical numerical metrics and CSVs. Numerical sources, inputs and tests from the earlier editions remain byte-for-byte unchanged. This supplement is separate from the common 22-example / 67-problem inventory.
+
+Scope is the specified vacuum 2D TMz packets, square and finite time window. Oblique material-interface incidence, general grazing incidence, dispersive/anisotropic matter, 3D and general curved PML geometries need separate validation.
 
 Original vacuum edition: code and reproduction
 
@@ -192,7 +284,7 @@ python run.py --input inputs/pec-cavity.json --output output-cavityNonempty outp
 
 ## Publication scope
 
-Educational2D TMz: original vacuum periodic/PEC modes plus normal incidence at an ε₁=1,ε₂=4 dielectric interface and normal/oblique pulses with x-directed PML in a y-periodic strip. Fresnel solutions, continuum Fourier modes and same-Yee wide-domain references have distinct roles. Four-side/corner PML, oblique material-interface incidence, dispersive matter and3D remain unvalidated.
+Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D.
 
 ## Sources
 

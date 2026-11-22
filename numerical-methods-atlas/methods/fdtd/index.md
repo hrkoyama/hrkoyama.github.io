@@ -2,11 +2,11 @@
 
 Status: educational-example
 
-Validate2D TMz vacuum modes, a dielectric interface and left/right x-PML against analytic references.
+Validate 2D TMz vacuum, a dielectric interface and four-side/corner PML with fixed inputs.
 
-2次元TMzの真空モード、誘電体界面、左右x方向PMLを解析参照と検証。
+2次元TMzの真空・媒質界面・四辺と角のPMLを固定入力で検証。
 
-Educational2D TMz: original vacuum periodic/PEC modes plus normal incidence at an ε₁=1,ε₂=4 dielectric interface and normal/oblique pulses with x-directed PML in a y-periodic strip. Fresnel solutions, continuum Fourier modes and same-Yee wide-domain references have distinct roles. Four-side/corner PML, oblique material-interface incidence, dispersive matter and3D remain unvalidated.
+Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D.
 
 Other names: FDTD法, finite difference time domain, 有限差分時間領域法, Yee法
 
@@ -21,37 +21,42 @@ Other names: FDTD法, finite difference time domain, 有限差分時間領域法
 - Reference: https://arxiv.org/abs/2108.05348v1 — Author notes, selected sections 4.1–4.2 and 7.1–7.3: matching electric and magnetic damping, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation.
 - Reference: https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/ — Author textbook, selected sections 7-6-1 and 7-6-2, printed pages 522–524 (PDF pages 36–38): tangential E/H continuity, normal-incidence field reflection/transmission and impedance weighting of power. A textbook exposition, not an original Fresnel publication.
 
-2D TMz Yee FDTD supplement: retained vacuum periodic/PEC modes, normal-incidence dielectric Fresnel scattering and matched x-directed PML in a y-periodic strip. Analytic fields, finite-layer return waveforms, grid refinement and independent energy/work/flux budgets are checked separately.
+2D TMz Yee FDTD supplement: retained vacuum periodic/PEC modes, normal-incidence dielectric Fresnel scattering and matched PML cases. The reading distinguishes the x-directed strip and four-side/corner configurations actually included in the current edition. Analytic fields, reflection errors, grid refinement and independent energy/work/flux budgets are checked separately.
 
-- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/solver.py
-- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/run.py
-- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/scattering.py
-- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/run_scattering.py
+- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/solver.py
+- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/run.py
+- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/scattering.py
+- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/run_scattering.py
+- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/corner.py
+- Code: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/run_corner.py
 
-- Tests: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/test_fdtd.py
-- Tests: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/test_scattering.py
+- Tests: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/test_fdtd.py
+- Tests: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/test_scattering.py
+- Tests: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/test_corner.py
 
-Download: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/fdtd-2026-11-22-r2.zip
-Manifest: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/source-manifest.json
-Verification: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/verification.json
+Download: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/fdtd-2026-11-22-r3.zip
+Manifest: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/source-manifest.json
+Verification: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/verification.json
 
-- periodic-wave: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/periodic-wave/result.json
-- pec-cavity: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/pec-cavity/result.json
-- dielectric-interface: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/dielectric-interface/result.json
-- pml-pulse: https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/pml-pulse/result.json
+- periodic-wave: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/periodic-wave/result.json
+- pec-cavity: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/pec-cavity/result.json
+- dielectric-interface: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/dielectric-interface/result.json
+- pml-pulse: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/pml-pulse/result.json
+- pml-corners: https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/pml-corners/result.json
 
 Commands (from extracted supplement):
 
 ```sh
 python -m pip install -r requirements.txt
-python -m pytest -q test_fdtd.py test_scattering.py
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
 python run.py --input inputs/periodic-wave.json --output rerun-periodic-wave
 python run.py --input inputs/pec-cavity.json --output rerun-pec-cavity
 python run_scattering.py --input inputs/dielectric-interface.json --output rerun-dielectric-interface
 python run_scattering.py --input inputs/pml-pulse.json --output rerun-pml-pulse
+python run_corner.py --input inputs/pml-corners.json --output rerun-pml-corners
 ```
 
-Next: Separately validate oblique material-interface incidence, four-side/corner PML and grazing incidence.
+Next: Separately validate oblique material-interface incidence, grazing incidence and PML for dispersive media/3D.
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/

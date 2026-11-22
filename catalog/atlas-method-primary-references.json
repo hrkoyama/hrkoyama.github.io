@@ -1188,8 +1188,8 @@
       "source_review": {
         "level": "full-text",
         "url": "https://arxiv.org/html/2108.05348v1",
-        "scope": "Author notes, selected sections 4.1–4.2 and 7.1–7.3: matching electric and magnetic damping, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation.",
-        "scope_ja": "著者による解説の4.1–4.2節、7.1–7.3節を参照。電場・磁場の減衰の整合、異方性の解釈、離散化による反射と入射条件の制約。全PML定式化の監査ではない。"
+        "scope": "Author notes, selected sections3.4,4.1–4.2 and7.1–7.3: independent x/y coordinate stretches and simultaneous corner damping, matching electric/magnetic rates, anisotropic interpretation, discretization reflections and incidence limitations. Not a complete audit of every PML formulation.",
+        "scope_ja": "著者による解説の3.4節、4.1–4.2節、7.1–7.3節を参照。独立したx/y座標伸長と角での同時減衰、電場・磁場の整合、異方性の解釈、離散化による反射と入射条件の制約。全PML定式化の監査ではない。"
       }
     },
     {

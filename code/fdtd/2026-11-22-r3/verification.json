@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22-r3",
+  "verified_on": "2026-11-22",
+  "archive": {
+    "file": "fdtd-2026-11-22-r3.zip",
+    "sha256": "367fa305bc35f89c85217cecb5f6c383c86ae8a6b14b8a1b040889b75d690199",
+    "bytes": 8914722,
+    "archive_directory": "fdtd-2026-11-22-r3"
+  },
+  "archive_sha256": "367fa305bc35f89c85217cecb5f6c383c86ae8a6b14b8a1b040889b75d690199",
+  "source_manifest_sha256": "75c1e01a92ae3bdc0f73d2c2ed478605161a471e2e02d58ace83411f1d33be48",
+  "returncode": 0,
+  "tests": 57,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed_tests": 57,
+  "passed": 57,
+  "recipes": [
+    {
+      "id": "periodic-wave",
+      "passed": true,
+      "input_sha256": "85c31f5864016207329343e7c70e03ff357c9ab9a418b5d03b99e1968812c2dd",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pec-cavity",
+      "passed": true,
+      "input_sha256": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "dielectric-interface",
+      "passed": true,
+      "input_sha256": "7574b21ac1082124984542181fd88285471446f94c6812e9ef689e9784bd2a98",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pml-pulse",
+      "passed": true,
+      "input_sha256": "7622733d2020444d56b0b31cad1eacf4df9575ac23c1292120d5903a1b26c11b",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pml-corners",
+      "passed": true,
+      "input_sha256": "f6dc833a31fd90c4816314381760b12e387f9d481bd03c37c4f7fbf47a23b440",
+      "metrics_identical": true,
+      "csv_identical": true
+    }
+  ],
+  "environment": {
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; all tests and all five fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.",
+  "reference": "Continuum vacuum modes, Fresnel interface solution, analytic/spectral packet references and independently evaluated discrete energy/work/flux identities. See corner input for its reference scope. No independent external FDTD solver comparison claimed."
+}

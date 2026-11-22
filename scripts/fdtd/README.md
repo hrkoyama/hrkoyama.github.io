@@ -1,4 +1,7 @@
-# Yee FDTD: vacuum modes, dielectric interface and PML / 真空モード・媒質界面・PML
+# Yee FDTD: vacuum, interfaces and four-side/corner PML / 真空・界面・四辺と角のPML
+Revision r3 contains five fixed inputs. The first sections retain the original
+vacuum examples; see the r2 and r3 sections below for interface and PML scopes.
+The two earlier frozen editions are preserved.
 
 Original educational **two-dimensional TMz** Maxwell solver. Python 3.12;
 NumPy performs the update, Matplotlib draws saved results, pytest runs tests.
@@ -221,3 +224,43 @@ Additional sources, with access-depth notes in the bilingual chapter:
 - M. Zahn, *Electromagnetic Field Theory: A Problem Solving Approach*,
   2003 corrected reprint, Chapter7 sections7-6-1/7-6-2 (MIT OpenCourseWare).
   Textbook exposition of normal-incidence continuity and power normalization.
+
+## Revision r3: four-side and corner PML / 第3版：四辺と角のPML
+
+The original vacuum, dielectric-interface and x-PML code, tests and four fixed
+inputs are retained unchanged from r2. The added `corner.py`, `run_corner.py`
+and `test_corner.py` implement a vacuum TMz square with matched split PML
+on all four sides, simultaneous x/y damping in corners, and outer PEC caps.
+
+```sh
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
+python run_corner.py --input inputs/pml-corners.json --output output-corners
+```
+
+E=Ex+Ey uses auxiliary electric splits: Ex damps at gamma_x and Ey at gamma_y;
+Hy damps at gamma_x and Hx at gamma_y. Each rate is sampled at that component's
+own Yee location. Magnetic updates precede the electric update; damping uses
+the trapezoidal rule. Both directional rates are active in the overlap corners.
+The work identity separately tallies electric x/y and magnetic x/y terms from
+fields and coefficients. It is not obtained by defining work as energy loss.
+As in r2, signed auxiliary-field work is not pointwise physical Ohmic heating.
+
+Separate outgoing-packet families test ordinary sides and oblique corner paths.
+Reported checks distinguish early-field accuracy, boundary-return error, work
+balance, physical-interior Poynting flux and grid refinement. The input JSON
+fixes layer thickness/strength, packet spectrum, grids, windows and numerical
+acceptance criteria; result.json records every decision and reference scope.
+Read the bilingual chapter for the controlled reference and measured errors.
+Finite thickness, initial tails and finite observation time limit any claim of
+reflectionlessness; corners do not make the PML an exact discrete absorber.
+
+第3版では、四辺すべてにPMLを置き、四つの角でx・y両方向の減衰を同時に適用します。
+辺へ向かう波と角へ向かう斜め波を区別し、反射・エネルギー仕事・内側領域の流束・
+格子収束を別に判定します。旧4入力は変更せず、新しい固定入力pml-corners.jsonを
+追加します。四辺の外端はPECで、分散媒質、媒質界面への斜め入射、3次元への拡張は
+この例で検証したことにはしません。
+
+Johnson's PML notes, section3.4, explicitly discuss independent directional
+coordinate stretches and simultaneous conductivities at corners:
+https://arxiv.org/html/2108.05348v1 . The current discrete updates and work
+identity are independently tested; no external FDTD solver is bundled.

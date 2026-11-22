@@ -18,7 +18,7 @@ test('all 23 formerly unlinked methods have substantive bilingual reading while 
     const headings=[...chapter.html[lang].matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]);
     const original=['model','algorithm','periodic-mode','cavity-mode','conditions','energy','verification','reproduce'];
     assert.deepEqual(headings.filter(id=>original.includes(id)),original);
-    for(const id of ['interface','pml'])assert.ok(headings.includes(id),lang+' '+id);
+    for(const id of ['interface','pml','pml-corners'])assert.ok(headings.includes(id),lang+' '+id);
     assert.equal(new Set(headings).size,headings.length);
     const formulas=[...chapter.html[lang].matchAll(/<math-placeholder id="(fdtd-[^"]+)"><\/math-placeholder>/g)].map(m=>m[1]);
     for(const id of ['fdtd-pde','fdtd-update','fdtd-plane','fdtd-cavity','fdtd-dispersion','fdtd-energy','fdtd-order'])assert.ok(formulas.includes(id),lang+' '+id);

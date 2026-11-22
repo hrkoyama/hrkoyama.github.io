@@ -10,8 +10,8 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "2次元TMzの真空モード、誘電体界面、左右x方向PMLを解析参照と検証。",
-    "en": "Validate2D TMz vacuum modes, a dielectric interface and left/right x-PML against analytic references."
+    "ja": "2次元TMzの真空・媒質界面・四辺と角のPMLを固定入力で検証。",
+    "en": "Validate 2D TMz vacuum, a dielectric interface and four-side/corner PML with fixed inputs."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -49,17 +49,17 @@
     }
   ],
   "assumptions": [
-    "Educational2D TMz, nonmagnetic nondispersive media; normal-incidence dielectric interface and periodic-transverse strip with matched x-directed PML."
+    "Selected vacuum 2D TMz packets with four-side/corner PML, retained vacuum modes and normal-incidence lossless dielectric interface."
   ],
   "units": "Dimensionless normalized length, time and fields.",
-  "boundary_conditions": "Original periodic/PEC modes; dielectric interface with remote PEC caps; x-directed matched PML with PEC outercaps and periodic y.",
+  "boundary_conditions": "Retained periodic/PEC and x-PML cases; four-side/corner PML rectangle has outer PEC caps on every side.",
   "next_deliverable": {
-    "ja": "媒質界面への斜め入射、四辺・角PML、浅い入射を別に検証。",
-    "en": "Separately validate oblique material-interface incidence, four-side/corner PML and grazing incidence."
+    "ja": "媒質界面への斜め入射、掠れ入射、分散物質・3次元のPMLを別に検証。",
+    "en": "Separately validate oblique material-interface incidence, grazing incidence and PML for dispersive media/3D."
   },
   "limitations": {
-    "ja": "2次元TMzの教育用実装。初版の一様真空の周期波・PEC空洞に加え、ε₁=1、ε₂=4の界面への垂直入射と、y周期・左右x方向PMLでの垂直/斜めパルスを固定入力で検証。Fresnel解・連続Fourierモード和・広領域の同じYee法を区別して参照。四辺/角PML、媒質界面への斜め入射、分散物質、3次元は未検証。",
-    "en": "Educational2D TMz: original vacuum periodic/PEC modes plus normal incidence at an ε₁=1,ε₂=4 dielectric interface and normal/oblique pulses with x-directed PML in a y-periodic strip. Fresnel solutions, continuum Fourier modes and same-Yee wide-domain references have distinct roles. Four-side/corner PML, oblique material-interface incidence, dispersive matter and3D remain unvalidated."
+    "ja": "2次元TMzの教育用実装。初版の真空モード、第2版の垂直誘電体界面・左右x方向PML、第3版の四辺・四つの角PMLを、指定した固定波束・格子・観測窓で検証。連続参照・離散Fourier参照・自己収束・独立集計した仕事・物理流束を区別。一般媒質・任意入射・3次元の包括的な認証ではない。",
+    "en": "Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D."
   },
   "metadata_review": {
     "level": "Original educational 2D TMz code with continuum/discrete analytic checks, refinement, energy and independent ZIP rerun.",
@@ -72,63 +72,70 @@
     "Yee法"
   ],
   "fdtd_release": {
-    "base": "/code/fdtd/2026-11-22-r2/",
-    "edition": "2026-11-22-r2",
-    "archive": "fdtd-2026-11-22-r2.zip",
+    "base": "/code/fdtd/2026-11-22-r3/",
+    "edition": "2026-11-22-r3",
+    "archive": "fdtd-2026-11-22-r3.zip",
     "manifest": "source-manifest.json",
     "verification": "verification.json",
     "cases": [
       "periodic-wave",
       "pec-cavity",
       "dielectric-interface",
-      "pml-pulse"
+      "pml-pulse",
+      "pml-corners"
     ]
   },
   "assumptions_ja": [
-    "2次元TMz・非磁性非分散媒質。誘電体界面は垂直入射、PMLはy周期の帯領域の左右x方向に限定。"
+    "選定した真空2次元TMz波束の四辺・角PML。従来の真空モードと垂直入射の無損失誘電体界面も保持。"
   ],
   "units_ja": "無次元。長さ・時間・場を規格化。",
-  "boundary_conditions_ja": "初版の周期/PECモード。界面例は遠方PEC端、PML例はy周期・左右x方向整合層・外端PEC。",
+  "boundary_conditions_ja": "従来の周期/PEC・左右x方向PMLの例を保持。四辺・角PMLの矩形はすべての外端がPEC。",
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/solver.py",
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/run.py",
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/scattering.py",
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/run_scattering.py"
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/solver.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/run.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/scattering.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/run_scattering.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/corner.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/run_corner.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/test_fdtd.py",
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/test_scattering.py"
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/test_fdtd.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/test_scattering.py",
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/test_corner.py"
   ],
   "run_commands": [
-    "python -m pytest -q test_fdtd.py test_scattering.py",
+    "python -m pytest -q test_fdtd.py test_scattering.py test_corner.py",
     "python run.py --input inputs/periodic-wave.json --output rerun-periodic-wave",
     "python run.py --input inputs/pec-cavity.json --output rerun-pec-cavity",
     "python run_scattering.py --input inputs/dielectric-interface.json --output rerun-dielectric-interface",
-    "python run_scattering.py --input inputs/pml-pulse.json --output rerun-pml-pulse"
+    "python run_scattering.py --input inputs/pml-pulse.json --output rerun-pml-pulse",
+    "python run_corner.py --input inputs/pml-corners.json --output rerun-pml-corners"
   ],
   "run_from": "Extracted 2D TMz FDTD supplement directory",
-  "code_base": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/",
-  "code_edition": "2026-11-22-r2",
-  "code_download": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/fdtd-2026-11-22-r2.zip",
-  "code_manifest": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/source-manifest.json",
-  "code_verification": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/verification.json",
-  "code_archive_sha256": "50f8dad211f0b5fa54c538c9f272ec2509bc8740063f6b4e4c3ec907d8f7adcc",
-  "results": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/periodic-wave/result.json",
+  "code_base": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/",
+  "code_edition": "2026-11-22-r3",
+  "code_download": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/fdtd-2026-11-22-r3.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/verification.json",
+  "code_archive_sha256": "367fa305bc35f89c85217cecb5f6c383c86ae8a6b14b8a1b040889b75d690199",
+  "results": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/periodic-wave/result.json",
   "result_urls": {
-    "periodic-wave": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/periodic-wave/result.json",
-    "pec-cavity": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/pec-cavity/result.json",
-    "dielectric-interface": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/dielectric-interface/result.json",
-    "pml-pulse": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r2/results/pml-pulse/result.json"
+    "periodic-wave": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/periodic-wave/result.json",
+    "pec-cavity": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/pec-cavity/result.json",
+    "dielectric-interface": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/dielectric-interface/result.json",
+    "pml-pulse": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/pml-pulse/result.json",
+    "pml-corners": "https://hrkoyama.github.io/code/fdtd/2026-11-22-r3/results/pml-corners/result.json"
   },
   "cases": [
     "periodic-wave",
     "pec-cavity",
     "dielectric-interface",
-    "pml-pulse"
+    "pml-pulse",
+    "pml-corners"
   ],
-  "passed_tests": 43,
+  "passed_tests": 57,
   "execution_examples": []
 }

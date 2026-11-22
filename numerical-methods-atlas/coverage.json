@@ -1518,7 +1518,7 @@
       "chapter": "fdtd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Educational2D TMz: original vacuum periodic/PEC modes plus normal incidence at an ε₁=1,ε₂=4 dielectric interface and normal/oblique pulses with x-directed PML in a y-periodic strip. Fresnel solutions, continuum Fourier modes and same-Yee wide-domain references have distinct roles. Four-side/corner PML, oblique material-interface incidence, dispersive matter and3D remain unvalidated.",
+      "scope": "Educational 2D TMz: original vacuum modes, r2 normal dielectric interface/x-PML, and r3 four-side/four-corner PML for specified packets, grids and observation windows. Continuum references, discrete Fourier references, self-convergence, independently tallied work and physical flux have distinct roles. Not blanket validation of general matter, arbitrary incidence or 3D.",
       "origin": "curated-fdtd-example"
     }
   ],
@@ -2975,8 +2975,8 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "4ab341079679cb61017b39636615c6ae37cb57976946e8ad894c7ef8029cd1c3",
+    "catalog/atlas-methods.json": "9167f56a81adefabb75661d4add08d65adc2a90e6b26bbae926317b9ccd2e895",
     "catalog/atlas-equations.json": "abd7c1cc2732b5062cc58e7bb7d08c8ef6df1c88d974fd31d4b6181012ba6433",
-    "catalog/atlas-method-primary-references.json": "c56b0061854ee67d2f69b96e6411f799f35ac7ed6d8ec82b0ef753885d756176"
+    "catalog/atlas-method-primary-references.json": "5afd0d836adf3c1bb963b8c8e15c3105a1b16582d9ce69d13589fe1473176196"
   }
 }

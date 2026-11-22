@@ -26,7 +26,15 @@ for lang in ['ja', 'en']:
         'fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. ')
     replacement += '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">'+(
         '日英解説・コード・結果' if ja else 'Reading, code and results')+'</a>。' if ja else '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">Reading, code and results</a>. '
-    if 'dielectric-interface' in record['cases'] and 'pml-pulse' in record['cases']:
+    if 'pml-corners' in record['cases']:
+        replacement += ('媒質界面・左右x方向PMLに続き、四辺・角部を含む2次元PMLの固定入力例を追加しました。'
+                        '反射誤差、独立したエネルギー・仕事・流束収支、格子細分化を別々に確認します。'
+                        '実行した入射方向・時間窓と未検証の一般媒質・3次元は同じ章で区別します。</li>' if ja else
+                        'Following the dielectric-interface and x-directed strip cases, a separate fixed input exercises '
+                        'two-dimensional PML on all four sides and in corners. Reflection error, independent '
+                        'energy/work/flux balances and grid refinement are checked separately. The reading distinguishes '
+                        'tested directions and time windows from unvalidated general media and three-dimensional cases.</li>')
+    elif 'dielectric-interface' in record['cases'] and 'pml-pulse' in record['cases']:
         replacement += ('媒質界面の反射・透過とPMLの固定入力例も、解析解・反射誤差・エネルギー収支・格子収束を別に確認しました。'
                         '検証した入射・境界の範囲と、未検証のPML角部・一般媒質は同じ章で区別します。</li>' if ja else
                         'Separate fixed-input dielectric-interface and PML examples check analytic references, reflection error, '
