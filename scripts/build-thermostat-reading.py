@@ -105,7 +105,7 @@ for lang in ['ja','en']:
     other='en' if ja else 'ja'
     body='<p class="eyebrow">MOLECULAR DYNAMICS / THERMOSTATS</p><h1>'+esc(title)+'</h1><p class="intro">'+esc(description)+'</p>'
     body+='<p class="resource-summary">'+esc(field['scope'][lang])+'</p>'
-    body+='<nav class="resource-nav">'+''.join('<a href="'+u+'">'+esc(label)+'</a>' for u,label in [('/numerical-methods-atlas/methods/','手法の見取り図' if ja else 'Method map'),(f'/numerical-methods-atlas/{lang}/read/','解説章の目次' if ja else 'Reading chapters'),(f'/numerical-methods-atlas/{other}/read/thermostats/?lang={other}','English' if ja else '日本語')])+'</nav>'
+    body+='<nav class="resource-nav">'+''.join('<a href="'+u+'"'+(' hreflang="'+other+'"' if '?lang='+other in u else '')+'>'+esc(label)+'</a>' for u,label in [('/numerical-methods-atlas/methods/','手法の見取り図' if ja else 'Method map'),(f'/numerical-methods-atlas/{lang}/read/','解説章の目次' if ja else 'Reading chapters'),(f'/numerical-methods-atlas/{other}/read/thermostats/?lang={other}','English' if ja else '日本語')])+'</nav>'
     body+='<p><a href="index.json">JSON</a> · <a href="index.md">Markdown</a></p>'
     for ident,heading,text in paragraphs[lang][:3]:body+=f'<section><h2 id="{ident}">{esc(heading)}</h2><p>{esc(text)}</p></section>'
     if comparison_enabled:body+=comparison_section(lang)

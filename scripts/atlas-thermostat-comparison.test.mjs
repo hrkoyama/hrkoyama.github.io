@@ -28,6 +28,8 @@ for(const lang of ['ja','en'])test(`published ${lang} reading keeps equations, r
  const base=`numerical-methods-atlas/${lang}/read/thermostats/`;
  const page=read(base+'index.html'),markdown=read(base+'index.md'),data=json(base+'index.json');
  assert.equal(data.comparison_enabled,true);
+ const other=lang==='ja'?'en':'ja';
+ assert.ok(page.includes(`href="/numerical-methods-atlas/${other}/read/thermostats/?lang=${other}" hreflang="${other}"`),'body language switch retains its target language through shared navigation');
  assert.deepEqual(data.case_ids,['langevin-harmonic',...expected]);
  assert.deepEqual(new Set(data.implemented_method_ids),new Set(['langevin-thermostat','stochastic-velocity-rescaling']));
  assert.equal(data.planned_method_ids.length,10);
