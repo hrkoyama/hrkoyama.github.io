@@ -5,6 +5,8 @@ import re
 from pathlib import Path
 
 ORIGIN = 'https://hrkoyama.github.io'
+LEGACY_CASES = ['periodic-wave', 'pec-cavity']
+SCATTERING_CASES = ['dielectric-interface', 'pml-pulse']
 
 
 def fdtd_release_record(root, method):
@@ -29,8 +31,13 @@ def fdtd_release_record(root, method):
     receipt = json.loads(file(config['verification']).read_text())
     assert manifest.get('version', manifest.get('edition')) == config['edition']
     assert manifest['family'] == 'fdtd' and manifest['public_base_url'] == ORIGIN + base
-    cases = ['periodic-wave', 'pec-cavity']
+    cases = config.get('cases', LEGACY_CASES)
+    assert isinstance(cases, list) and len(cases) == len(set(cases))
+    assert set(LEGACY_CASES) <= set(cases) <= set(LEGACY_CASES + SCATTERING_CASES)
+    scattering = [case for case in cases if case in SCATTERING_CASES]
     required = {'solver.py', 'run.py', 'test_fdtd.py', 'README.md', 'requirements.txt', 'LICENSE'}
+    if scattering:
+        required.update(['scattering.py', 'run_scattering.py', 'test_scattering.py'])
     for case in cases:
         required.add('inputs/' + case + '.json')
         required.update('results/' + case + '/' + name for name in
@@ -52,11 +59,18 @@ def fdtd_release_record(root, method):
     assert receipt['tests'] == receipt['passed_tests']
     assert receipt['failures'] == receipt['errors'] == receipt['skipped'] == 0
     assert receipt['source_manifest_sha256'] == digest(file(config['manifest']))
+    assert len(receipt['recipes']) == len(cases)
+    assert {recipe['id'] for recipe in receipt['recipes']} == set(cases)
+    assert all(recipe['passed'] is True and recipe['metrics_identical'] is True
+               and recipe['csv_identical'] is True for recipe in receipt['recipes'])
+    code_names = ['solver.py', 'run.py'] + (['scattering.py', 'run_scattering.py'] if scattering else [])
+    test_names = ['test_fdtd.py'] + (['test_scattering.py'] if scattering else [])
     return dict(code_base=ORIGIN + base, code_edition=config['edition'],
-                code_urls=[ORIGIN + base + name for name in ['solver.py', 'run.py']],
-                test_urls=[ORIGIN + base + 'test_fdtd.py'],
-                run_commands=['python -m pytest -q test_fdtd.py'] +
-                    ['python run.py --input inputs/' + case + '.json --output rerun-' + case for case in cases],
+                code_urls=[ORIGIN + base + name for name in code_names],
+                test_urls=[ORIGIN + base + name for name in test_names],
+                run_commands=['python -m pytest -q ' + ' '.join(test_names)] +
+                    ['python ' + ('run_scattering.py' if case in SCATTERING_CASES else 'run.py')
+                     + ' --input inputs/' + case + '.json --output rerun-' + case for case in cases],
                 run_from='Extracted 2D TMz FDTD supplement directory',
                 code_download=ORIGIN + base + config['archive'],
                 code_manifest=ORIGIN + base + config['manifest'],
@@ -64,4 +78,5 @@ def fdtd_release_record(root, method):
                 code_archive_sha256=archive['sha256'],
                 results=ORIGIN + base + 'results/periodic-wave/result.json',
                 result_urls={case: ORIGIN + base + 'results/' + case + '/result.json' for case in cases},
+                cases=cases,
                 passed_tests=receipt['passed_tests'])

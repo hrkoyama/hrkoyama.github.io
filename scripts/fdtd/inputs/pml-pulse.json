@@ -1,0 +1,47 @@
+{
+  "case": "pml-pulse",
+  "lengths": [
+    12.0,
+    0.7853981633974483
+  ],
+  "center": 5.0,
+  "width": 0.5,
+  "carrier_kx": 12.0,
+  "transverse_wave_numbers": [
+    0.0,
+    8.0
+  ],
+  "meshes": [
+    [
+      384,
+      16
+    ],
+    [
+      768,
+      32
+    ],
+    [
+      1536,
+      64
+    ]
+  ],
+  "pml_thickness": 2.0,
+  "pml_strength": 10.0,
+  "pml_order": 3,
+  "end_time": 18.0,
+  "accuracy_time": 1.0,
+  "monitor_x": 6.0,
+  "reflection_gate_start": 8.0,
+  "courant": 0.65,
+  "acceptance": {
+    "max_field_error": 0.03,
+    "max_reflection_amplitude": 0.003,
+    "max_work_budget_residual": 1e-10,
+    "max_flux_budget_residual": 0.005,
+    "max_remaining_energy_fraction": 0.005,
+    "min_field_refinement_order": 1.7,
+    "min_flux_refinement_order": 1.7,
+    "max_reflection_waveform_error": 0.0001,
+    "min_reflection_refinement_order": 1.7
+  }
+}

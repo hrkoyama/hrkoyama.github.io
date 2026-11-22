@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "unchanged_source_release": "https://hrkoyama.github.io/code/fdtd/2026-11-22/",
+  "unchanged_source_sha256": {
+    "solver.py": "640dc67ac75c9a8ab3958375e064bfadb712cea96180d002fd20aebbac8e92c7",
+    "run.py": "370a9ca80241232d61cdafc3006bf83bded2d1b8d21bac3ea2d66c2e6b2ec5d9",
+    "test_fdtd.py": "e58324e22ff1db1c9224a5f07422c296fb11a257f9fae30cd101381b24f212e1",
+    "inputs/periodic-wave.json": "85c31f5864016207329343e7c70e03ff357c9ab9a418b5d03b99e1968812c2dd",
+    "inputs/pec-cavity.json": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41"
+  },
+  "additions": [
+    "Original dielectric-interface and matched split-field PML examples.",
+    "Previous vacuum solver and both fixed inputs retained byte-for-byte."
+  ]
+}

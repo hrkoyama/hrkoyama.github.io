@@ -15,8 +15,14 @@ test('all 23 formerly unlinked methods have substantive bilingual reading while 
   for(const lang of ['ja','en']){
    if(['automatic-differentiation','adjoint'].includes(id))assert.ok(chapter.html[lang].length>6000);
    else if(id==='fdtd'){
-    assert.deepEqual([...chapter.html[lang].matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]),['model','algorithm','periodic-mode','cavity-mode','conditions','energy','verification','reproduce']);
-    assert.equal([...chapter.html[lang].matchAll(/<math-placeholder id="fdtd-[^"]+"><\/math-placeholder>/g)].length,7);
+    const headings=[...chapter.html[lang].matchAll(/<h2 id="([^"]+)">/g)].map(m=>m[1]);
+    const original=['model','algorithm','periodic-mode','cavity-mode','conditions','energy','verification','reproduce'];
+    assert.deepEqual(headings.filter(id=>original.includes(id)),original);
+    for(const id of ['interface','pml'])assert.ok(headings.includes(id),lang+' '+id);
+    assert.equal(new Set(headings).size,headings.length);
+    const formulas=[...chapter.html[lang].matchAll(/<math-placeholder id="(fdtd-[^"]+)"><\/math-placeholder>/g)].map(m=>m[1]);
+    for(const id of ['fdtd-pde','fdtd-update','fdtd-plane','fdtd-cavity','fdtd-dispersion','fdtd-energy','fdtd-order'])assert.ok(formulas.includes(id),lang+' '+id);
+    for(const id of formulas)assert.ok(source.formulas[id],id);
    }
    else{assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);}
    assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id==='optimization'?'bratu-multi-inverse':id}/`);

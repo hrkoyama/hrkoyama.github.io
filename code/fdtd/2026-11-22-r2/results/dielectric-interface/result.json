@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "case": "dielectric-interface",
+  "input_sha256": "7574b21ac1082124984542181fd88285471446f94c6812e9ef689e9784bd2a98",
+  "environment": {
+    "python": "3.12.16",
+    "numpy": "2.0.2"
+  },
+  "termination": "fixed_budget_completed",
+  "metrics": {
+    "meshes": [
+      {
+        "nx": 160,
+        "ny": 4,
+        "dx": 0.1,
+        "dt": 0.06015037593984962,
+        "steps": 133,
+        "field_relative_l2": 0.07536581665878461,
+        "reflection_amplitude": -0.3297861561955659,
+        "transmission_amplitude": 0.6654093741353715,
+        "analytic_r": -0.3333333333333333,
+        "analytic_t": 0.6666666666666666,
+        "reflected_energy_fraction": 0.1087463725444564,
+        "transmitted_energy_fraction": 0.8903507320496223,
+        "analytic_R": 0.1111111111111111,
+        "analytic_T": 0.8888888888888888,
+        "reflection_amplitude_error": 0.003547177137767421,
+        "transmission_amplitude_error": 0.00125729253129514,
+        "reflected_energy_error": 0.0023647385666547005,
+        "transmitted_energy_error": 0.0014618431607335003,
+        "energy_fraction_closure": 0.0009028954059212557,
+        "modified_energy_max_relative_drift": 5.551115123125783e-16,
+        "physical_energy_relative_error": 0.0009028954059212557
+      },
+      {
+        "nx": 320,
+        "ny": 4,
+        "dx": 0.05,
+        "dt": 0.031746031746031744,
+        "steps": 252,
+        "field_relative_l2": 0.0183999708315043,
+        "reflection_amplitude": -0.3324874753802029,
+        "transmission_amplitude": 0.6667506949201457,
+        "analytic_r": -0.3333333333333333,
+        "analytic_t": 0.6666666666666666,
+        "reflected_energy_fraction": 0.11052502740757529,
+        "transmitted_energy_fraction": 0.8892231467087552,
+        "analytic_R": 0.1111111111111111,
+        "analytic_T": 0.8888888888888888,
+        "reflection_amplitude_error": 0.0008458579531304133,
+        "transmission_amplitude_error": 8.402825347908482e-05,
+        "reflected_energy_error": 0.0005860837035358141,
+        "transmitted_energy_error": 0.00033425781986640146,
+        "energy_fraction_closure": 0.00025182588366945424,
+        "modified_energy_max_relative_drift": 4.440892098500626e-16,
+        "physical_energy_relative_error": 0.00025182588366945424
+      },
+      {
+        "nx": 640,
+        "ny": 4,
+        "dx": 0.025,
+        "dt": 0.01616161616161616,
+        "steps": 495,
+        "field_relative_l2": 0.00455362335284601,
+        "reflection_amplitude": -0.3331242358337021,
+        "transmission_amplitude": 0.6667111488510843,
+        "analytic_r": -0.3333333333333333,
+        "analytic_t": 0.6666666666666666,
+        "reflected_energy_fraction": 0.11096481017040706,
+        "transmitted_energy_fraction": 0.8889698988954201,
+        "analytic_R": 0.1111111111111111,
+        "analytic_T": 0.8888888888888888,
+        "reflection_amplitude_error": 0.0002090974996312167,
+        "transmission_amplitude_error": 4.4482184417660164e-05,
+        "reflected_energy_error": 0.00014630094070404442,
+        "transmitted_energy_error": 8.1010006531268e-05,
+        "energy_fraction_closure": 6.529093417284582e-05,
+        "modified_energy_max_relative_drift": 4.440892098500626e-16,
+        "physical_energy_relative_error": 6.52909341727348e-05
+      }
+    ],
+    "field_orders": [
+      2.0342068357599694,
+      2.014616608416507
+    ],
+    "reflection_orders": [
+      2.068184063197961,
+      2.016239598177534
+    ],
+    "transmission_orders": [
+      3.9033020489121206,
+      0.9176468609046916
+    ],
+    "energy_orders": [
+      1.8421322946851062,
+      1.9474719880467404
+    ]
+  },
+  "checks": {
+    "field_accuracy": true,
+    "field_refinement": true,
+    "fresnel_amplitudes": true,
+    "reflection_refinement": true,
+    "transmission_error_decreases": true,
+    "physical_energy_refinement": true,
+    "fresnel_energy_fractions": true,
+    "energy_fraction_closure": true,
+    "modified_energy": true
+  },
+  "passed": true
+}
