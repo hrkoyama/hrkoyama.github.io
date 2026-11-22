@@ -4685,6 +4685,24 @@
       "kind": "official_conference_session_program",
       "checked_on": "2026-11-22",
       "inspection_scope": "All three scheduled candidate titles/authors and session boundaries read. Session speakers/presenters are distinct from manuscript bylines."
+    },
+    "roster-1998-sc98-official-complete-showcase-pass2-20261122": {
+      "url": "https://web.archive.org/web/20010628003043id_/http://www.supercomp.org/sc98/awards/",
+      "label": "SC98 official Gordon Bell Prize Finalists program: complete bounded four-entry section",
+      "kind": "archived_official_conference_program",
+      "checked_on": "2026-11-22",
+      "source_sha256": "0d162b9ca5467e48d72c04e2919d6862ad9e8144242739055aee7c0bae5e6348",
+      "source_size_bytes": 16617,
+      "inspection_scope": "Candidate identities, ordered program names, speaker roles and complete section boundaries only. This does not establish manuscript publication bylines or exact original submission files."
+    },
+    "roster-2001-sc01-official-complete-showcase-pass2-20261122": {
+      "url": "https://web.archive.org/web/20020225222920id_/http://www-fp.mcs.anl.gov/scglobal/program_details.htm",
+      "label": "SC2001 official linked SCglobal organizer program: complete seven-entry Gordon Bell Finalists Showcase",
+      "kind": "archived_official_conference_program",
+      "checked_on": "2026-11-22",
+      "source_sha256": "40941b62c2cfa3178c17d42ac39121aac00e7297dde9d0aa84577876cfef2065",
+      "source_size_bytes": 56319,
+      "inspection_scope": "Candidate identities, ordered program names, speaker roles and complete section boundaries only. This does not establish manuscript publication bylines or exact original submission files."
     }
   },
   "papers": [
@@ -19096,7 +19114,7 @@
     {
       "year": 1998,
       "local_candidate_count": null,
-      "status": "4 candidate identities reconcile with the contemporary reported total through the cited retrospective and bibliographic evidence; the full original program was not recovered. Manuscript availability and scientific review are separate.",
+      "status": "4 candidates enumerated against the complete official program. Manuscript availability and scientific review are separate.",
       "candidate_count": 4,
       "verified_doi_count": 1,
       "sc_links": {
@@ -19144,7 +19162,7 @@
     {
       "year": 2001,
       "local_candidate_count": null,
-      "status": "Partial roster: 7 entries identified; further candidates may be missing. Manuscript availability and scientific review are separate.",
+      "status": "7 candidates enumerated against the complete official program. Manuscript availability and scientific review are separate.",
       "candidate_count": 7,
       "verified_doi_count": 5,
       "sc_links": {
@@ -30369,17 +30387,26 @@
           "source_size_bytes": 207285,
           "page_count": 25,
           "inspection_scope": "First-page identity and file integrity only; full scientific body review pending."
+        },
+        {
+          "id": "sc01-official-complete-showcase-pass2-20261122",
+          "url": "https://web.archive.org/web/20020225222920id_/http://www-fp.mcs.anl.gov/scglobal/program_details.htm",
+          "label": "SC2001 official linked SCglobal organizer program: complete seven-entry Gordon Bell Finalists Showcase",
+          "kind": "archived_official_conference_program",
+          "checked_on": "2026-11-22",
+          "source_sha256": "40941b62c2cfa3178c17d42ac39121aac00e7297dde9d0aa84577876cfef2065",
+          "source_size_bytes": 56319,
+          "inspection_scope": "Candidate identities, ordered program names, speaker roles and complete section boundaries only. This does not establish manuscript publication bylines or exact original submission files."
         }
       ],
       "roster_completeness": {
-        "status": "partial_from_primary_source",
-        "expected_count": null,
-        "confirmed_minimum_count": 7,
+        "status": "complete_from_primary_program",
+        "expected_count": 7,
+        "membership_label": "finalists",
         "basis_source_ids": [
-          "sc01-official-technical-program-archive-20261122",
-          "sc01-official-awards-archive-20261122"
+          "sc01-official-complete-showcase-pass2-20261122"
         ],
-        "note": "Five explicitly marked technical-paper finalists plus two additional entries directly identified in the official award release give at least seven distinct entries. A full Showcase roster or explicit contemporary official total has not been recovered."
+        "note": "The complete Gordon Bell Finalists Showcase section on the organizer site linked by the official SC2001 site lists seven titles; its seventh entry independently matches the official award-release aircraft entry. This establishes the official finalist section, not every historical submission."
       },
       "records": [
         {
@@ -30407,7 +30434,16 @@
             "Historical competition membership is supported by nersc01; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline."
           ],
-          "title_kind": "source_title"
+          "title_kind": "source_title",
+          "before_followup_bibliography": {
+            "membership_evidence": null
+          },
+          "membership_evidence": {
+            "source_ids": [
+              "sc01-official-complete-showcase-pass2-20261122"
+            ],
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          }
         },
         {
           "id": "SC01-spectral-climate",
@@ -30428,7 +30464,16 @@
             "Historical competition membership is supported by nersc01; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
             "DOI verified from the successful Crossref query item, matching paper title, authors, conference venue and publication year; no individual-work endpoint retrieval is claimed. Authors are registry metadata, not a verified full PDF byline."
           ],
-          "title_kind": "source_title"
+          "title_kind": "source_title",
+          "before_followup_bibliography": {
+            "membership_evidence": null
+          },
+          "membership_evidence": {
+            "source_ids": [
+              "sc01-official-complete-showcase-pass2-20261122"
+            ],
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          }
         },
         {
           "id": "SC01-primordial-stars",
@@ -30451,7 +30496,16 @@
             "DOI verified from the successful publisher-deposited Crossref query item, with matching title, authors, venue and year; no individual-work retrieval or PDF-byline audit is claimed."
           ],
           "detailed_paper_id": "SC01-primordial-stars",
-          "content_status": "Selected manuscript fields checked"
+          "content_status": "Selected manuscript fields checked",
+          "before_followup_bibliography": {
+            "membership_evidence": null
+          },
+          "membership_evidence": {
+            "source_ids": [
+              "sc01-official-complete-showcase-pass2-20261122"
+            ],
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          }
         },
         {
           "id": "SC01-grape6",
@@ -30511,6 +30565,15 @@
             "byline_scope": "Author-hosted manuscript PDF p. 1",
             "doi_status": "unresolved",
             "next_evidence": "Exact article-level publisher registration for the 2001 submission; the author PDF is a usable primary reading link."
+          },
+          "before_followup_bibliography": {
+            "membership_evidence": null
+          },
+          "membership_evidence": {
+            "source_ids": [
+              "sc01-official-complete-showcase-pass2-20261122"
+            ],
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
           }
         },
         {
@@ -30537,9 +30600,10 @@
           ],
           "membership_evidence": {
             "source_ids": [
-              "sc01-official-technical-program-archive-20261122"
+              "sc01-official-technical-program-archive-20261122",
+              "sc01-official-complete-showcase-pass2-20261122"
             ],
-            "note": "Explicit official program finalist label or direct official competition award identity."
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
           },
           "alternate_dois": [
             {
@@ -30568,7 +30632,15 @@
               ],
               "title": "An 8.61 Tflop/s Molecular Dynamics Simulation for NaCl with a Special-Purpose Computer: MDM"
             }
-          ]
+          ],
+          "before_followup_bibliography": {
+            "membership_evidence": {
+              "source_ids": [
+                "sc01-official-technical-program-archive-20261122"
+              ],
+              "note": "Explicit official program finalist label or direct official competition award identity."
+            }
+          }
         },
         {
           "id": "SC01-cactus-globus",
@@ -30600,9 +30672,10 @@
           "membership_evidence": {
             "source_ids": [
               "sc01-official-technical-program-archive-20261122",
-              "sc01-official-awards-archive-20261122"
+              "sc01-official-awards-archive-20261122",
+              "sc01-official-complete-showcase-pass2-20261122"
             ],
-            "note": "Explicit official program finalist label or direct official competition award identity."
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
           },
           "alternate_dois": [
             {
@@ -30652,20 +30725,29 @@
               ],
               "title": "Supporting Efficient Execution in Heterogeneous Distributed Computing Environments with Cactus and Globus"
             }
-          ]
+          ],
+          "before_followup_bibliography": {
+            "membership_evidence": {
+              "source_ids": [
+                "sc01-official-technical-program-archive-20261122",
+                "sc01-official-awards-archive-20261122"
+              ],
+              "note": "Explicit official program finalist label or direct official competition award identity."
+            }
+          }
         },
         {
           "id": "SC01-impact-locating",
-          "title": "Study of impact locating on aircraft structure",
-          "title_kind": "editorial_description",
-          "title_source_id": "sc01-official-awards-archive-20261122",
+          "title": "Impact locating on aircraft structure by low-cost cluster 24.6 cents/Mflops",
+          "title_kind": "source_title",
+          "title_source_id": "sc01-official-complete-showcase-pass2-20261122",
           "authors": [
-            "Joon Hwang",
-            "Seung Kim",
-            "Chang Lee"
+            "Seung J Kim",
+            "Chang S Lee",
+            "Joon S Hwang"
           ],
-          "authors_status": "named_award_team_not_a_verified_manuscript_byline",
-          "authors_source_id": "sc01-official-awards-archive-20261122",
+          "authors_status": "ordered_author_list_checked_official_program_not_pdf_byline",
+          "authors_source_id": "sc01-official-complete-showcase-pass2-20261122",
           "doi": null,
           "doi_status": "unresolved",
           "doi_source_id": null,
@@ -30675,13 +30757,15 @@
             "This is an editorial description of a directly identified SC2001 competition entry, based on the official conference award announcement; it is not claimed to be the exact title of a submitted or published paper.",
             "The official announcement names Joon Hwang, Seung Kim and Chang Lee in that order. Full-name expansions and a manuscript byline have not been verified.",
             "No exact DOI or manuscript has been recovered. Related aircraft-impact articles are not substituted without an exact competition-work identity match.",
-            "Its presence in the SC2001 competition is directly supported by the official price/performance award announcement. This record adds the identified entry without asserting a complete annual candidate census or a final conference score."
+            "Its presence in the SC2001 competition is directly supported by the official price/performance award announcement. This record adds the identified entry without asserting a complete annual candidate census or a final conference score.",
+            "The recovered complete official Showcase gives the original program title and Seung J Kim, Chang S Lee, Joon S Hwang in that order. The source omits the closing parenthesis after Seoul National University. Expanded given names, manuscript publication byline and DOI remain unverified. Earlier award-release names and the editorial title are preserved separately."
           ],
           "membership_evidence": {
             "source_ids": [
-              "sc01-official-awards-archive-20261122"
+              "sc01-official-awards-archive-20261122",
+              "sc01-official-complete-showcase-pass2-20261122"
             ],
-            "note": "Explicit official program finalist label or direct official competition award identity."
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
           },
           "alternate_dois": [],
           "bibliographic_versions": [
@@ -30694,7 +30778,67 @@
                 "Chang Lee"
               ],
               "title": "Study of impact locating on aircraft structure"
+            },
+            {
+              "source_id": "sc01-official-awards-archive-20261122",
+              "version_label": "previous award-release team names; not manuscript byline",
+              "title": "Study of impact locating on aircraft structure",
+              "authors": [
+                "Joon Hwang",
+                "Seung Kim",
+                "Chang Lee"
+              ]
+            },
+            {
+              "source_id": "sc01-official-complete-showcase-pass2-20261122",
+              "version_label": "official Showcase program title and names; not manuscript byline",
+              "title": "Impact locating on aircraft structure by low-cost cluster 24.6 cents/Mflops",
+              "authors": [
+                "Seung J Kim",
+                "Chang S Lee",
+                "Joon S Hwang"
+              ]
             }
+          ],
+          "before_followup_bibliography": {
+            "membership_evidence": {
+              "source_ids": [
+                "sc01-official-awards-archive-20261122"
+              ],
+              "note": "Explicit official program finalist label or direct official competition award identity."
+            },
+            "title": "Study of impact locating on aircraft structure",
+            "title_kind": "editorial_description",
+            "title_source_id": "sc01-official-awards-archive-20261122",
+            "authors": [
+              "Joon Hwang",
+              "Seung Kim",
+              "Chang Lee"
+            ],
+            "authors_source_id": "sc01-official-awards-archive-20261122",
+            "authors_status": "named_award_team_not_a_verified_manuscript_byline",
+            "search_aliases": null,
+            "bibliographic_versions": [
+              {
+                "source_id": "sc01-official-awards-archive-20261122",
+                "version_label": "official award team order",
+                "authors": [
+                  "Joon Hwang",
+                  "Seung Kim",
+                  "Chang Lee"
+                ],
+                "title": "Study of impact locating on aircraft structure"
+              }
+            ],
+            "notes": [
+              "This is an editorial description of a directly identified SC2001 competition entry, based on the official conference award announcement; it is not claimed to be the exact title of a submitted or published paper.",
+              "The official announcement names Joon Hwang, Seung Kim and Chang Lee in that order. Full-name expansions and a manuscript byline have not been verified.",
+              "No exact DOI or manuscript has been recovered. Related aircraft-impact articles are not substituted without an exact competition-work identity match.",
+              "Its presence in the SC2001 competition is directly supported by the official price/performance award announcement. This record adds the identified entry without asserting a complete annual candidate census or a final conference score."
+            ]
+          },
+          "search_aliases": [
+            "Study of impact locating on aircraft structure"
           ]
         }
       ],
@@ -30704,7 +30848,7 @@
         "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero."
       ],
       "verified_doi_count": 5,
-      "source_method": "Primary online sources",
+      "source_method": "complete_official_conference_program_with_separate_manuscript_bibliography",
       "sc_links": {
         "history_pdf_url": "https://supercomputing.org/app/uploads/2023/10/SC2001.pdf",
         "label": "SC01",
@@ -30737,6 +30881,20 @@
           "SC01-impact-locating"
         ],
         "note": "Three previously unindexed entries added. The primary-source union reaches seven; annual completeness remains unconfirmed. Publisher and complete manuscript bylines remain distinct."
+      },
+      "roster_followup": {
+        "checked_on": "2026-11-22",
+        "before_completeness": {
+          "status": "partial_from_primary_source",
+          "expected_count": null,
+          "confirmed_minimum_count": 7,
+          "basis_source_ids": [
+            "sc01-official-technical-program-archive-20261122",
+            "sc01-official-awards-archive-20261122"
+          ],
+          "note": "Five explicitly marked technical-paper finalists plus two additional entries directly identified in the official award release give at least seven distinct entries. A full Showcase roster or explicit contemporary official total has not been recovered."
+        },
+        "note": "Additional original official program evidence; prior roster-completeness and bibliographic fields are preserved as history."
       }
     },
     {
@@ -31813,20 +31971,26 @@
           "checked_on": "2026-11-22",
           "local_reference": "全候補本文回収_20261122/early/extra-SC98-avalon-author-index.html",
           "source_sha256": "a1de1971f5c3dbfe44f90aed2de13ac385320920072417c9d38ac52fb8f56984"
+        },
+        {
+          "id": "sc98-official-complete-showcase-pass2-20261122",
+          "url": "https://web.archive.org/web/20010628003043id_/http://www.supercomp.org/sc98/awards/",
+          "label": "SC98 official Gordon Bell Prize Finalists program: complete bounded four-entry section",
+          "kind": "archived_official_conference_program",
+          "checked_on": "2026-11-22",
+          "source_sha256": "0d162b9ca5467e48d72c04e2919d6862ad9e8144242739055aee7c0bae5e6348",
+          "source_size_bytes": 16617,
+          "inspection_scope": "Candidate identities, ordered program names, speaker roles and complete section boundaries only. This does not establish manuscript publication bylines or exact original submission files."
         }
       ],
       "roster_completeness": {
-        "status": "complete_from_primary_count_and_retrospective_membership",
+        "status": "complete_from_primary_program",
         "expected_count": 4,
-        "membership_label": "candidates",
+        "membership_label": "finalists",
         "basis_source_ids": [
-          "nersc98",
-          "lbl98",
-          "paper98",
-          "bnl98-qcdsp",
-          "extra-retrospective2018"
+          "sc98-official-complete-showcase-pass2-20261122"
         ],
-        "note": "The contemporary NERSC report explicitly gives four finalists. Two existing identities plus Sears and Avalon, identified in the committee-authored retrospective recognition appendix and author/publisher bibliographies, fill that count. This is a cross-source reconstruction, not recovery of the full original conference program."
+        "note": "Four entries in the complete bounded official Gordon Bell Prize Finalists section; no extrapolation from awards or assumed annual count. This establishes the official finalist section, not every historical submission."
       },
       "records": [
         {
@@ -31837,13 +32001,24 @@
           "doi_status": "not_checked",
           "doi_source_id": null,
           "publisher_title": null,
-          "authors": [],
-          "authors_status": "not_checked",
+          "authors": [
+            "Balazs Ujfalussy",
+            "Xindong Wang",
+            "Xiaoguang Zhang",
+            "D. M. C. Nicholson",
+            "W. A. Shelton",
+            "G. M. Stocks",
+            "A. Canning",
+            "Yang Wang",
+            "B. L. Gyorffy"
+          ],
+          "authors_status": "ordered_author_list_checked_official_program_not_pdf_byline",
           "publication_url": null,
           "notes": [
             "Historical competition membership is supported by lbl98; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
             "Title comes from the author-associated publication record paper98. LBNL’s contemporary finalist announcement and the NERSC report link the metallic-magnetism project to the competition.",
-            "The attempted 1998-filtered Crossref title queries did not return a convincing SC98 registration. DOI remains null, rather than selecting a similarly worded magnetism conference paper."
+            "The attempted 1998-filtered Crossref title queries did not return a convincing SC98 registration. DOI remains null, rather than selecting a similarly worded magnetism conference paper.",
+            "The complete official program lists nine names under Authors and separately names Balazs Ujfalussy as Speaker. Its non-equilibrium-states title is retained as a program version alongside the previously indexed complex-magnetic-properties title. The manuscript remains unrecovered."
           ],
           "title_kind": "source_title",
           "historical_metadata_snapshot": {
@@ -31877,7 +32052,49 @@
             ],
             "names_kind": "Names in official retrospective award list; not a publication byline",
             "next_evidence": "The SC98 submission/proceedings first page and exact publisher registration. The author-associated metadata page returned HTTP429 in this check."
-          }
+          },
+          "before_followup_bibliography": {
+            "membership_evidence": null,
+            "authors": [],
+            "authors_source_id": null,
+            "authors_status": "not_checked",
+            "search_aliases": null,
+            "bibliographic_versions": null,
+            "notes": [
+              "Historical competition membership is supported by lbl98; this record does not establish a complete annual roster. No full-text or performance audit was performed.",
+              "Title comes from the author-associated publication record paper98. LBNL’s contemporary finalist announcement and the NERSC report link the metallic-magnetism project to the competition.",
+              "The attempted 1998-filtered Crossref title queries did not return a convincing SC98 registration. DOI remains null, rather than selecting a similarly worded magnetism conference paper."
+            ]
+          },
+          "membership_evidence": {
+            "source_ids": [
+              "sc98-official-complete-showcase-pass2-20261122"
+            ],
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          },
+          "authors_source_id": "sc98-official-complete-showcase-pass2-20261122",
+          "search_aliases": [
+            "High Performance First Principles Method for Non-Equilibrium States in Magnets"
+          ],
+          "bibliographic_versions": [
+            {
+              "source_id": "sc98-official-complete-showcase-pass2-20261122",
+              "version_label": "official program Authors field; manuscript byline unverified",
+              "title": "High Performance First Principles Method for Non-Equilibrium States in Magnets",
+              "authors": [
+                "Balazs Ujfalussy",
+                "Xindong Wang",
+                "Xiaoguang Zhang",
+                "D. M. C. Nicholson",
+                "W. A. Shelton",
+                "G. M. Stocks",
+                "A. Canning",
+                "Yang Wang",
+                "B. L. Gyorffy"
+              ],
+              "speaker": "Balazs Ujfalussy"
+            }
+          ]
         },
         {
           "id": "SC98-qcdsp",
@@ -31998,7 +32215,16 @@
           ],
           "search_aliases": [
             "Lattice quantum chromodynamics on the RIKEN-BNL QCD supercomputer"
-          ]
+          ],
+          "before_followup_bibliography": {
+            "membership_evidence": null
+          },
+          "membership_evidence": {
+            "source_ids": [
+              "sc98-official-complete-showcase-pass2-20261122"
+            ],
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          }
         },
         {
           "id": "SC98-extra-parallel-eigensolver",
@@ -32027,9 +32253,18 @@
           "authors_source_id": "extra-csdl98-toc",
           "membership_evidence": {
             "source_ids": [
-              "extra-retrospective2018"
+              "extra-retrospective2018",
+              "sc98-official-complete-showcase-pass2-20261122"
             ],
-            "note": "Retrospective appendix, printed pages 478-479, identifies the recognized entry; it is not the original manuscript or a full submission roster."
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          },
+          "before_followup_bibliography": {
+            "membership_evidence": {
+              "source_ids": [
+                "extra-retrospective2018"
+              ],
+              "note": "Retrospective appendix, printed pages 478-479, identifies the recognized entry; it is not the original manuscript or a full submission roster."
+            }
           }
         },
         {
@@ -32061,9 +32296,18 @@
           "authors_source_id": "extra-salmon-author-index",
           "membership_evidence": {
             "source_ids": [
-              "extra-retrospective2018"
+              "extra-retrospective2018",
+              "sc98-official-complete-showcase-pass2-20261122"
             ],
-            "note": "Retrospective recognition appendix cross-referenced against the exact five-author SC98 paper in Salmon's bibliography; no completeness inference."
+            "note": "Explicitly enumerated in the complete official Gordon Bell finalist program section; program membership is distinct from manuscript availability and byline verification."
+          },
+          "before_followup_bibliography": {
+            "membership_evidence": {
+              "source_ids": [
+                "extra-retrospective2018"
+              ],
+              "note": "Retrospective recognition appendix cross-referenced against the exact five-author SC98 paper in Salmon's bibliography; no completeness inference."
+            }
           }
         }
       ],
@@ -32073,7 +32317,7 @@
         "Primary membership evidence and publisher title/DOI metadata are separate. No winner, performance, full-text or final-score claim is added. Unknown totals are null, never zero."
       ],
       "verified_doi_count": 1,
-      "source_method": "Primary online sources",
+      "source_method": "complete_official_conference_program_with_separate_manuscript_bibliography",
       "sc_links": {
         "history_pdf_url": "https://supercomputing.org/app/uploads/2023/10/SC1998.pdf",
         "label": "SC98",
@@ -32107,6 +32351,23 @@
           "SC98-extra-avalon"
         ],
         "note": "Sears/Stanley/Henry and Avalon added using recognition identity and exact publisher/author bibliography; four identified entries reconcile with the contemporary reported total."
+      },
+      "roster_followup": {
+        "checked_on": "2026-11-22",
+        "before_completeness": {
+          "status": "complete_from_primary_count_and_retrospective_membership",
+          "expected_count": 4,
+          "membership_label": "candidates",
+          "basis_source_ids": [
+            "nersc98",
+            "lbl98",
+            "paper98",
+            "bnl98-qcdsp",
+            "extra-retrospective2018"
+          ],
+          "note": "The contemporary NERSC report explicitly gives four finalists. Two existing identities plus Sears and Avalon, identified in the committee-authored retrospective recognition appendix and author/publisher bibliographies, fill that count. This is a cross-source reconstruction, not recovery of the full original conference program."
+        },
+        "note": "Additional original official program evidence; prior roster-completeness and bibliographic fields are preserved as history."
       }
     },
     {
@@ -36213,7 +36474,6 @@
       1991
     ],
     "partial_years": [
-      2001,
       1992,
       1989,
       1988,
@@ -36446,7 +36706,6 @@
         1991
       ],
       "partial_roster_years": [
-        2001,
         1992,
         1989,
         1988,
@@ -37164,19 +37423,19 @@
           "website_url": null,
           "year": 1998
         },
-        "roster_status": "complete_from_primary_count_and_retrospective_membership",
+        "roster_status": "complete_from_primary_program",
         "indexed_entries": 4,
         "expected_entries": 4,
-        "membership_label": "candidates",
+        "membership_label": "finalists",
         "verified_dois": 1,
         "unresolved_dois": 3,
         "byline_status_counts": {
-          "not_checked": 1,
+          "ordered_author_list_checked_official_program_not_pdf_byline": 1,
           "ordered_byline_checked_complete_author_manuscript": 1,
           "verified_publisher_proceedings_toc_order_not_pdf_audited": 1,
           "verified_native_postscript_first_page_literals_and_author_index_not_scientifically_reviewed": 1
         },
-        "publication_byline_gaps": 1,
+        "publication_byline_gaps": 0,
         "manuscript_byline_checked_entries": 1,
         "participants_only_entries": 0,
         "first_page_only_checks": 1,
@@ -37193,7 +37452,8 @@
           "roster-1998-lbl98",
           "roster-1998-paper98",
           "roster-1998-bnl98-qcdsp",
-          "roster-1998-extra-retrospective2018"
+          "roster-1998-extra-retrospective2018",
+          "roster-1998-sc98-official-complete-showcase-pass2-20261122"
         ],
         "queue_status": "first_manuscript_checked",
         "next_action": "Recover the exact proceedings registration/DOI and compare with this nineteen-author conference paper. Check the separate three-author updated submission independently, and identify the other two candidates.",
@@ -37458,22 +37718,21 @@
           "website_url": null,
           "year": 2001
         },
-        "roster_status": "partial_from_primary_source",
+        "roster_status": "complete_from_primary_program",
         "indexed_entries": 7,
-        "expected_entries": null,
-        "membership_label": "candidate entries",
+        "expected_entries": 7,
+        "membership_label": "finalists",
         "verified_dois": 5,
         "unresolved_dois": 2,
         "byline_status_counts": {
           "verified_publisher_deposited_registry_order_not_pdf_audited": 3,
           "ordered_byline_checked_author_hosted_manuscript_first_page": 1,
-          "ordered_author_list_checked_official_program_not_pdf_byline": 1,
-          "ordered_byline_checked_institutional_manuscript_first_page": 1,
-          "named_award_team_not_a_verified_manuscript_byline": 1
+          "ordered_author_list_checked_official_program_not_pdf_byline": 2,
+          "ordered_byline_checked_institutional_manuscript_first_page": 1
         },
         "publication_byline_gaps": 0,
         "manuscript_byline_checked_entries": 3,
-        "participants_only_entries": 1,
+        "participants_only_entries": 0,
         "first_page_only_checks": 2,
         "award_supported_entries": 1,
         "award_conflicts": 0,
@@ -37488,7 +37747,8 @@
           "roster-2001-abel01-cv",
           "roster-2001-makino01-award-certificate",
           "roster-2001-sc01-official-technical-program-archive-20261122",
-          "roster-2001-sc01-official-awards-archive-20261122"
+          "roster-2001-sc01-official-awards-archive-20261122",
+          "roster-2001-sc01-official-complete-showcase-pass2-20261122"
         ],
         "queue_status": "first_manuscript_checked",
         "next_action": "A first manuscript is checked. Further candidate manuscripts, unresolved award/bibliography fields and dated score updates remain separate work; the original checked values are preserved.",
@@ -39344,27 +39604,27 @@
     "summary": {
       "indexed_single_papers": 208,
       "organization_entries": 1,
-      "available_candidate_versions": 161,
-      "not_recovered": 47,
+      "available_candidate_versions": 166,
+      "not_recovered": 42,
       "scientifically_reviewed": 62,
-      "available_review_pending": 99,
-      "newly_recovered_from_90": 46,
+      "available_review_pending": 104,
+      "newly_recovered_from_90": 51,
       "additional_identified_candidates": 8,
       "partial_roster_years": [
         1987,
         1988,
         1989,
-        1992,
-        2001
-      ]
+        1992
+      ],
+      "newly_available_this_followup": 5
     },
     "annual": [
       {
         "year": 1987,
         "indexed_single_papers": 4,
         "organization_entries": 0,
-        "available": 1,
-        "not_recovered": 3,
+        "available": 2,
+        "not_recovered": 2,
         "scientifically_reviewed": 0,
         "roster_partial": true
       },
@@ -39408,8 +39668,8 @@
         "year": 1993,
         "indexed_single_papers": 4,
         "organization_entries": 1,
-        "available": 1,
-        "not_recovered": 3,
+        "available": 2,
+        "not_recovered": 2,
         "scientifically_reviewed": 1,
         "roster_partial": false
       },
@@ -39426,8 +39686,8 @@
         "year": 1995,
         "indexed_single_papers": 3,
         "organization_entries": 0,
-        "available": 2,
-        "not_recovered": 1,
+        "available": 3,
+        "not_recovered": 0,
         "scientifically_reviewed": 1,
         "roster_partial": false
       },
@@ -39435,8 +39695,8 @@
         "year": 1996,
         "indexed_single_papers": 6,
         "organization_entries": 0,
-        "available": 2,
-        "not_recovered": 4,
+        "available": 4,
+        "not_recovered": 2,
         "scientifically_reviewed": 1,
         "roster_partial": false
       },
@@ -39483,7 +39743,7 @@
         "available": 6,
         "not_recovered": 1,
         "scientifically_reviewed": 1,
-        "roster_partial": true
+        "roster_partial": false
       },
       {
         "year": 2002,
@@ -39717,10 +39977,40 @@
         "year": 1987,
         "title": "Analysis of scientific application programs on a 1024-processor hypercube",
         "doi": null,
-        "status": "not_recovered",
-        "versions": [],
-        "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "Original 1987 competition report was not located. Existing 29-page later SIAM/web-revision material is explicitly a later related version, and exact-title OSTI search returned no records."
+        "status": "available_review_pending",
+        "versions": [
+          {
+            "title": "Development of Parallel Methods For a 1024-Processor Hypercube",
+            "authors": [
+              "John L. Gustafson",
+              "Gary R. Montry",
+              "Robert E. Benner"
+            ],
+            "source_url": "https://rsim.cs.illinois.edu/arch/qual_papers/systems/6.pdf",
+            "version_label": "1988 journal article presented as a 1995 author web revision; complete 29-page web layout; original 1987 competition submission remains unrecovered",
+            "revision_date": null,
+            "pages": 29,
+            "sha256": "0c34414f69520fb18825739fad28012b6b00759e8581753292994efce15f8547",
+            "size_bytes": 225518,
+            "source_class": "complete_author_or_archived_candidate_version",
+            "date_note": "The paper states March 1988 and SIAM Journal on Scientific and Statistical Computing 9(4), July 1988, pages 609–638; its title page separately identifies minor web-presentation revisions by JLG in 1995.",
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass."
+          }
+        ],
+        "identity_status": "first_page_and_original_submission_self_reference_visually_checked",
+        "note": "Existing complete later journal/web version reused after primary evidence established its relation to the 1987 competition work. The original 1987 submission file remains unrecovered; this availability change adds no scientific body audit. The note explicitly identifies research reported in this paper with the Gordon Bell and Karp awards presented at COMPCON 1988 after December 1987 submissions. The authors cite R. E. Benner, J. L. Gustafson and G. R. Montry, Analysis of scientific application programs on a 1024-processor hypercube, Report for the 1988 Gordon Bell Competition, Sandia National Laboratories, 1987.",
+        "original_submission_identity": "not_established",
+        "recovered_on": "2026-11-22",
+        "before_followup_recovery": {
+          "record_id": "gb1987-sandia-applications",
+          "year": 1987,
+          "title": "Analysis of scientific application programs on a 1024-processor hypercube",
+          "doi": null,
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "body_not_recovered_after_recorded_routes",
+          "note": "Original 1987 competition report was not located. Existing 29-page later SIAM/web-revision material is explicitly a later related version, and exact-title OSTI search returned no records."
+        }
       },
       {
         "record_id": "gb1987-global-ocean",
@@ -40100,10 +40390,39 @@
         "year": 1993,
         "title": "A Deterministic Parallel Algorithm to Solve a Model Boltzmann Equation (BGK)",
         "doi": "10.1145/169627.169795",
-        "status": "not_recovered",
-        "versions": [],
-        "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "The author PDF timed out and the discovered CiteSeer PDF returned 404. Candidate submission title/seven-author roster differs from the two-author publication title associated with the same DOI; retain this identity issue until a body is acquired."
+        "status": "available_review_pending",
+        "versions": [
+          {
+            "title": "Solving the Boltzmann Equation at 61 gigaflops on a 1024-Node CM-5",
+            "authors": [
+              "L. N. Long",
+              "J. Myczkowski"
+            ],
+            "source_url": "https://web.archive.org/web/20060920105600id_/http://www.personal.psu.edu/lnl/papers/bgk.pdf",
+            "version_label": "Archived author-hosted six-page manuscript, revision date not printed; distinct from the seven-page typeset proceedings publication and seven-name candidate announcement",
+            "revision_date": null,
+            "pages": 6,
+            "sha256": "26f42fde108565987f1e406b6209817ca15e7990b046584ba79c6bb040cae609",
+            "size_bytes": 299726,
+            "source_class": "complete_author_or_archived_candidate_version",
+            "date_note": null,
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass."
+          }
+        ],
+        "identity_status": "complete_author_version_title_and_two_author_byline_checked",
+        "note": "Complete six-page archived author manuscript, matched through the author institution to the existing SC1993 publication DOI. The two-author manuscript and seven-name earlier candidate announcement are kept distinct; the other five participants occur in the acknowledgments. No exact original-submission byte identity is asserted. Author institution identifies this exact two-author title with SC1993pp528–534 and existing candidate-linked publication DOI10.1145/169627.169795.",
+        "original_submission_identity": "Not established; original finalist announcement has a different title and seven names. Preserve the explicit publication-version crosswalk rather than overwriting the earlier byline.",
+        "recovered_on": "2026-11-22",
+        "before_followup_recovery": {
+          "record_id": "sc1993-boltzmann",
+          "year": 1993,
+          "title": "A Deterministic Parallel Algorithm to Solve a Model Boltzmann Equation (BGK)",
+          "doi": "10.1145/169627.169795",
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "body_not_recovered_after_recorded_routes",
+          "note": "The author PDF timed out and the discovered CiteSeer PDF returned 404. Candidate submission title/seven-author roster differs from the two-author publication title associated with the same DOI; retain this identity issue until a body is acquired."
+        }
       },
       {
         "record_id": "sc1993-bispectrum",
@@ -40220,10 +40539,42 @@
         "year": 1995,
         "title": "Quantum Chromodynamics Simulation on NWT",
         "doi": "10.1145/224170.224403",
-        "status": "not_recovered",
-        "versions": [],
-        "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "Author/publisher/institutional bibliographies identify the paper; no open manuscript file was found and the official SC95 archive root was inaccessible in the web tool. Later related JAXA papers are not substituted."
+        "status": "available_review_pending",
+        "versions": [
+          {
+            "title": "Quantum Chromodynamics Simulation on NWT",
+            "authors": [
+              "M. Yoshida",
+              "A. Nakamura",
+              "M. Fukuda",
+              "T. Nakamura",
+              "S. Hioki"
+            ],
+            "source_url": "https://web.archive.org/web/19970211182205id_/http://www.supercomp.org/sc95/proceedings/720_MF/SC95.HTM",
+            "version_label": "SC95 official conference full HTML publication preserved by Internet Archive; copyright1995; pagination not applicable",
+            "revision_date": null,
+            "pages": null,
+            "sha256": "8da80772adb46199be43d6ca76dedfcd36ddadcf0a99b95e82e5293e901dffaa",
+            "size_bytes": 23002,
+            "source_class": "official_conference_archived",
+            "date_note": null,
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass."
+          }
+        ],
+        "identity_status": "first_page_and_primary_candidate_correspondence_checked",
+        "note": "Complete official SC95 HTML article and both embedded scientific figures, reached directly from the official Gordon Bell Prize Finalists index; exact title and five-name ordered byline checked. Acquisition and identity only; scientific review remains pending.  The official finalist title links directly to this full article; title and ordered byline match. No original-submission byte-identity is asserted.",
+        "original_submission_identity": "not_established",
+        "recovered_on": "2026-11-22",
+        "before_followup_recovery": {
+          "record_id": "SC95-qcd-nwt",
+          "year": 1995,
+          "title": "Quantum Chromodynamics Simulation on NWT",
+          "doi": "10.1145/224170.224403",
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "body_not_recovered_after_recorded_routes",
+          "note": "Author/publisher/institutional bibliographies identify the paper; no open manuscript file was found and the official SC95 archive root was inaccessible in the web tool. Later related JAXA papers are not substituted."
+        }
       },
       {
         "record_id": "SC95-grape4",
@@ -40294,20 +40645,120 @@
         "year": 1996,
         "title": "Electronic structure of materials using self-interaction corrected density functional theory",
         "doi": "10.1145/369028.369132",
-        "status": "not_recovered",
-        "versions": [],
-        "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "Complete Cornell report 96-254 was acquired, but its different title/two-author byline and IBM SP2 context do not identify it as the three-author target. Basel author-publication route timed out; no exact candidate body was recovered."
+        "status": "available_review_pending",
+        "versions": [
+          {
+            "title": "Electronic Structure of Materials Using Self-Interaction Corrected Density Functional Theory",
+            "authors": [
+              "Adolfy Hoisie",
+              "Stefan Goedecker",
+              "Jurg Hutter"
+            ],
+            "source_url": "https://web.archive.org/web/19980708144157id_/http://www.supercomp.org/sc96/proceedings/SC96PROC/HOISIE/HOISIE.PS",
+            "version_label": "SC96 official conference PostScript publication preserved by Internet Archive",
+            "revision_date": null,
+            "pages": 8,
+            "sha256": "a837e1899eb736a60d6ca4e69d4820d02355959f596df755564b0929fa4fa1d3",
+            "size_bytes": 3724568,
+            "source_class": "official_conference_archived",
+            "date_note": null,
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass."
+          },
+          {
+            "title": "Electronic Structure of Materials Using Self-Interaction Corrected Density Functional Theory",
+            "authors": [
+              "Adolfy Hoisie",
+              "Stefan Goedecker",
+              "Jurg Hutter"
+            ],
+            "source_url": null,
+            "version_label": "Local reading PDF derived from retained official SC96 PostScript; not a separately published or revised manuscript",
+            "revision_date": null,
+            "pages": 8,
+            "sha256": "c68029488a2c89d6d314ca58bc18396eb6e920f4ce256c271cd75826079669d2",
+            "size_bytes": 168173,
+            "source_class": "local_reading_derivative",
+            "date_note": null,
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass.",
+            "derived_from_sha256": "a837e1899eb736a60d6ca4e69d4820d02355959f596df755564b0929fa4fa1d3"
+          }
+        ],
+        "identity_status": "first_page_and_primary_candidate_correspondence_checked",
+        "note": "Complete standalone eight-page official SC96 PostScript, reached from the official Gordon Bell finalist index through its exact candidate article. Private PDF rendering confirms all pages, figures and references; original PS retained unchanged. Incomplete companion HTML is a locator only.  ",
+        "original_submission_identity": "not_established",
+        "recovered_on": "2026-11-22",
+        "before_followup_recovery": {
+          "record_id": "SC96-electronic-structure",
+          "year": 1996,
+          "title": "Electronic structure of materials using self-interaction corrected density functional theory",
+          "doi": "10.1145/369028.369132",
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "body_not_recovered_after_recorded_routes",
+          "note": "Complete Cornell report 96-254 was acquired, but its different title/two-author byline and IBM SP2 context do not identify it as the three-author target. Basel author-publication route timed out; no exact candidate body was recovered."
+        }
       },
       {
         "record_id": "SC96-nwt-cascade",
         "year": 1996,
         "title": "Simulation of the 3 dimensional cascade flow with numerical wind tunnel (NWT)",
         "doi": "10.1145/369028.369127",
-        "status": "not_recovered",
-        "versions": [],
-        "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "Publisher resolves the actual paper title, DOI and five-author byline. No body was found beyond the common publisher-only PDF route; official SC96 archive root was inaccessible in the web tool."
+        "status": "available_review_pending",
+        "versions": [
+          {
+            "title": "Simulation of the 3 Dimensional Cascade Flow with Numerical Wind Tunnel (NWT)",
+            "authors": [
+              "Takashi Nakamura",
+              "Toshiyuki Iwamiya",
+              "Masahiro Yoshida",
+              "Yuichi Matsuo",
+              "Masahiro Fukuda"
+            ],
+            "source_url": "https://web.archive.org/web/19980708142305id_/http://www.supercomp.org/sc96/proceedings/SC96PROC/NAKAMURA/NAKAMURA.PS",
+            "version_label": "SC96 official conference PostScript publication preserved by Internet Archive",
+            "revision_date": "1996-08-01",
+            "pages": 7,
+            "sha256": "ac54e0df1b0b69fbb544266d5be3d15e0a244ca0e7cd059a6c7d21361b7f3fba",
+            "size_bytes": 1140569,
+            "source_class": "official_conference_archived",
+            "date_note": "August1,1996 printed on source first page; no claim of initial-submission byte identity.",
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass."
+          },
+          {
+            "title": "Simulation of the 3 Dimensional Cascade Flow with Numerical Wind Tunnel (NWT)",
+            "authors": [
+              "Takashi Nakamura",
+              "Toshiyuki Iwamiya",
+              "Masahiro Yoshida",
+              "Yuichi Matsuo",
+              "Masahiro Fukuda"
+            ],
+            "source_url": null,
+            "version_label": "Local reading PDF derived from retained official SC96 PostScript; not a separately published or revised manuscript",
+            "revision_date": "1996-08-01",
+            "pages": 7,
+            "sha256": "67b9d37b3bd0cb5930ed0f6ea390bd9bd23a69d745858b7575e4b34fa4c9b27b",
+            "size_bytes": 164541,
+            "source_class": "local_reading_derivative",
+            "date_note": null,
+            "inspection_scope": "File completeness and candidate identity checked; no scientific full-body review in this acquisition pass.",
+            "derived_from_sha256": "ac54e0df1b0b69fbb544266d5be3d15e0a244ca0e7cd059a6c7d21361b7f3fba"
+          }
+        ],
+        "identity_status": "first_page_and_primary_candidate_correspondence_checked",
+        "note": "Complete standalone seven-page official SC96 PostScript, reached from the official Gordon Bell finalist index through its exact candidate article. Private PDF rendering confirms all pages, diagrams and ending; original PS retained unchanged. Incomplete companion HTML is a locator only.  ",
+        "original_submission_identity": "not_established",
+        "recovered_on": "2026-11-22",
+        "before_followup_recovery": {
+          "record_id": "SC96-nwt-cascade",
+          "year": 1996,
+          "title": "Simulation of the 3 dimensional cascade flow with numerical wind tunnel (NWT)",
+          "doi": "10.1145/369028.369127",
+          "status": "not_recovered",
+          "versions": [],
+          "identity_status": "body_not_recovered_after_recorded_routes",
+          "note": "Publisher resolves the actual paper title, DOI and five-author byline. No body was found beyond the common publisher-only PDF route; official SC96 archive root was inaccessible in the web tool."
+        }
       },
       {
         "record_id": "SC96-extra-climate-assimilation",
@@ -41089,12 +41540,13 @@
       {
         "record_id": "SC01-impact-locating",
         "year": 2001,
-        "title": "Study of impact locating on aircraft structure",
+        "title": "Impact locating on aircraft structure by low-cost cluster 24.6 cents/Mflops",
         "doi": null,
         "status": "not_recovered",
         "versions": [],
         "identity_status": "body_not_recovered_after_recorded_routes",
-        "note": "No complete identifiable candidate manuscript was recovered from the recorded public routes. Further sources may exist."
+        "note": "No complete identifiable candidate manuscript was recovered from the recorded public routes. Further sources may exist.",
+        "before_followup_title": "Study of impact locating on aircraft structure"
       },
       {
         "record_id": "sc2002-pap146",
@@ -45138,6 +45590,65 @@
         "identity_status": "title_and_printed_byline_text_checked_acquisition_only",
         "note": ""
       }
-    ]
+    ],
+    "followup_recovery": {
+      "checked_on": "2026-11-22",
+      "before": {
+        "indexed_single_papers": 208,
+        "organization_entries": 1,
+        "available_candidate_versions": 161,
+        "not_recovered": 47,
+        "scientifically_reviewed": 62,
+        "available_review_pending": 99,
+        "newly_recovered_from_90": 46,
+        "additional_identified_candidates": 8,
+        "partial_roster_years": [
+          1987,
+          1988,
+          1989,
+          1992,
+          2001
+        ]
+      },
+      "added_record_ids": [
+        "gb1987-sandia-applications",
+        "sc1993-boltzmann",
+        "SC95-qcd-nwt",
+        "SC96-nwt-cascade",
+        "SC96-electronic-structure"
+      ],
+      "candidates_rechecked": 47,
+      "evidence_file": "collection_pass2_20261122.json",
+      "policy": "A complete later manuscript or publication may supply a candidate version only when primary evidence identifies its relationship to that competition work. The original submission and later version remain distinct. Similar subject matter alone is insufficient."
+    },
+    "roster_followup": {
+      "checked_on": "2026-11-22",
+      "years": [
+        {
+          "year": 1987,
+          "summary": "New current judge-author selected-publication catalogue and public historical-site metadata route did not recover the original committee report. The archive query timed out; it is not evidence of absence. Existing eleven-submission/seven-entry scope discrepancy remains unresolved."
+        },
+        {
+          "year": 1988,
+          "summary": "Ordinary browser access reached the coauthor-uploaded article page and its readable first-page text preview. It reconfirms four entries and three judged within the rules. The fourth entry is not identified by this follow-up. This is not recovery of the original eight-page PDF.",
+          "source_url": "https://www.researchgate.net/publication/3246676_1988_Gordon_Bell_Prize"
+        },
+        {
+          "year": 1989,
+          "summary": "Additional current judge-author catalogue, public library catalogue and DOI-discovery routes did not produce the complete contemporary report. Previously identified recognition groups do not establish all entrants."
+        },
+        {
+          "year": 1992,
+          "summary": "The normal ACM proceedings page was expanded to all 89 article entries. It shows the five known papers but no Gordon Bell session or category labels; bibliographic adjacency cannot establish completeness. Front-matter link returned403 through the lookup tool.",
+          "source_url": "https://dl.acm.org/doi/proceedings/10.5555/147877"
+        },
+        {
+          "year": 2001,
+          "summary": "The complete official linked organizer Showcase section enumerates all seven known finalists. Annual status is now complete_from_primary_program, expected count seven. Aircraft program title and names are preserved separately from an unverified publication byline.",
+          "source_url": "https://web.archive.org/web/20020225222920id_/http://www-fp.mcs.anl.gov/scglobal/program_details.htm"
+        }
+      ],
+      "note": "All five previously incomplete years were checked again. The official 2001 seven-entry Showcase closes one year; 1987, 1988, 1989 and 1992 remain partial. Annual totals follow the scope of primary evidence, never an assumed six per year. A separate original official program also confirms all four 1998 finalists."
+    }
   }
 }

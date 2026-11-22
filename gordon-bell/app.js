@@ -47,6 +47,8 @@ function manuscriptCollectionSummary() {
   if(!c) { target.innerHTML='<p class="notice">Manuscript collection totals have not been indexed yet.</p>'; return; }
   const s=c.summary,available=c.records.filter(r=>['available_reviewed','available_review_pending'].includes(r.status)).length;
   target.innerHTML=`<h3>Manuscript collection and scientific review</h3><p>${esc(available)} of ${esc(s.indexed_single_papers)} indexed single-paper entries have a collected version. Counts follow the identified candidates in each year; they do not establish a complete historical roster.</p><dl class="collection-totals"><div><dt>Collected</dt><dd>${esc(available)}</dd></div><div><dt>Scientifically reviewed</dt><dd>${esc(s.scientifically_reviewed)}</dd></div><div><dt>Collected, review pending</dt><dd>${esc(s.available_review_pending)}</dd></div><div><dt>Not recovered</dt><dd>${esc(s.not_recovered)}</dd></div></dl><p>Collection means a manuscript version is retained offline. Scientific review is a separate step. This site links to external sources and does not distribute the manuscripts. A linked copy may differ from the original conference submission.</p><p class="collection-scope">${esc(s.organization_entries)} organization-level entries are separate from the paper totals. Checked ${esc(c.checked_on)}.${s.partial_roster_years?.length?' Partial annual rosters · total unconfirmed: '+esc(s.partial_roster_years.join(', '))+'.':''}</p>`;
+  const followup=c.followup_recovery,rosters=c.roster_followup;
+  if(followup) target.innerHTML+=`<details class="collection-followup"><summary>Latest recovery pass · ${esc(followup.checked_on)}</summary><p>${esc(followup.added_record_ids.length)} additional candidate versions secured after checking ${esc(followup.candidates_rechecked)} previously unrecovered records. These are acquisition checks; the scientific-review total is unchanged.</p><p>${esc(followup.policy)}</p>${rosters?`<h4>Incomplete annual rosters checked again</h4><ul>${rosters.years.map(y=>`<li><strong>${esc(y.year)}</strong> · ${esc(y.summary)}${y.source_url?' '+link(y.source_url,'Source checked'):''}</li>`).join('')}</ul><p>${esc(rosters.note)}</p>`:''}</details>`;
 }
 function catalogueMatches(p,r,q) {
   const detailed=db.papers.find(d=>d.id===p.detailed_paper_id);
@@ -184,6 +186,7 @@ function historicalReview(p, ref) {
   return award+review+bibliography;
 }
 function authorEvidenceNote(p) {
+  if(p.authors_status==='ordered_author_list_checked_official_program_not_pdf_byline') return 'Ordered names checked in the official program; the manuscript publication byline has not been verified.';
   if(p.detailed_paper_id) return 'This annual byline follows its cited bibliographic source. The linked manuscript audit has its own checked byline; versions may differ.';
   if(p.authors_status?.startsWith('ordered_byline_checked')) return 'Ordered names checked on the cited manuscript first page. This bibliography check does not include performance methodology.';
   if(p.detailed_paper_id) return 'Registry names are preserved here; the reviewed manuscript byline is shown in Manuscript details.';
