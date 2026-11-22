@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {goalMatches,wireGoalFilters} from '../numerical-methods-atlas/goal-filters.mjs';
+import {goalMatches,goalFilterURL,wireGoalFilters} from '../numerical-methods-atlas/goal-filters.mjs';
 const root=new URL('../',import.meta.url);
 const records=JSON.parse(execFileSync('python3',['-c',`import sys,json
 from pathlib import Path
@@ -24,10 +24,11 @@ function environment(fn,blocked=false){
  const saved=Object.fromEntries(['sessionStorage','location','history'].map(k=>[k,Object.getOwnPropertyDescriptor(globalThis,k)]));
  const values=new Map();
  const storage={getItem:k=>{if(blocked)throw Error('blocked');return values.get(k)||null;},setItem:(k,v)=>{if(blocked)throw Error('blocked');values.set(k,v);}};
- const loc={hash:'',pathname:'/numerical-methods-atlas/start/',search:'?lang=ja'};
- const history={replaceState(a,b,url){loc.hash='';this.last=url;}};
+ const loc=new URL('https://hrkoyama.github.io/numerical-methods-atlas/start/?lang=ja');
+ const entries=[loc.href];let index=0;
+ const history={state:{atlas:'retained'},replaceState(state,b,url){this.state=state;loc.href=new URL(url,loc).href;entries[index]=loc.href;this.last=loc.href;},pushState(state,b,url){this.state=state;loc.href=new URL(url,loc).href;entries.splice(++index);entries.push(loc.href);this.last=loc.href;},back(){if(index>0)loc.href=entries[--index];},forward(){if(index+1<entries.length)loc.href=entries[++index];}};
  for(const [k,value] of Object.entries({sessionStorage:storage,location:loc,history}))Object.defineProperty(globalThis,k,{value,configurable:true});
- try{fn(loc,history);}finally{for(const [k,d] of Object.entries(saved)){if(d)Object.defineProperty(globalThis,k,d);else delete globalThis[k];}}
+ try{fn(loc,history,values);}finally{for(const [k,d] of Object.entries(saved)){if(d)Object.defineProperty(globalThis,k,d);else delete globalThis[k];}}
 }
 test('published goals classify runnable examples as also having code/tests, without promoting reading or planned goals',()=>{
  assert.equal(records.length,10);
@@ -50,7 +51,7 @@ test('direct links reveal a hidden target; intentionally changing filters clears
  const first=fixture();wireGoalFilters(first.scope);first.choose('run');first.chooseDomain('quantum');
  loc.hash='#biological-models-ja';
  const linked=fixture();wireGoalFilters(linked.scope);assert.equal(linked.field.value,'all');assert.equal(linked.domain.value,'all');assert.ok(linked.visible().includes('biological-models'));
- linked.choose('planned');assert.equal(loc.hash,'');assert.equal(history.last,loc.pathname+loc.search);
+ linked.choose('planned');assert.equal(loc.hash,'');assert.equal(history.last,loc.href);
 }));
 test('blocked storage, invalid values and zero matches remain usable',()=>environment(()=>{
  const f=fixture('en',records.filter(r=>r.states==='reading'));wireGoalFilters(f.scope);
@@ -91,6 +92,41 @@ test('field and availability intersect, overlapping MHD membership does not dupl
 }));
 test('changing only the field clears an excluded anchor and direct links reset a conflicting field',()=>environment((loc,history)=>{
  const f=fixture();const [controller]=wireGoalFilters(f.scope);
- loc.hash='#magnetic-divergence-ja';f.chooseDomain('quantum');assert.equal(loc.hash,'');assert.equal(history.last,loc.pathname+loc.search);
+ loc.hash='#magnetic-divergence-ja';f.chooseDomain('quantum');assert.equal(loc.hash,'');assert.equal(history.last,loc.href);
  loc.hash='#magnetic-divergence-ja';controller.revealAnchor();assert.equal(f.domain.value,'all');assert.ok(f.visible().includes('magnetic-divergence'));
+}));
+
+test('URL conditions override session preferences, missing partners and unknown values resolve to all',()=>environment((loc,history,values)=>{
+ values.set('atlas-goal-domain','biology');values.set('atlas-goal-availability','reading');
+ loc.search='?lang=en&goal-domain=quantum&goal-availability=run';
+ const f=fixture('en');const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons']);
+ assert.equal(values.get('atlas-goal-domain'),'quantum');
+ loc.search='?lang=en&goal-domain=quantum';controller.sync();assert.equal(f.field.value,'all');assert.deepEqual(f.visible(),['atomic-electrons','molecular-dft']);
+ loc.search='?lang=en&goal-domain=unknown&goal-availability=invalid';controller.sync();assert.equal(f.visible().length,10);assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
+ loc.search='?lang=en&goal-domain=all&goal-availability=all';values.set('atlas-goal-domain','biology');controller.sync();assert.equal(f.visible().length,10);
+}));
+test('filter URLs preserve unrelated parameters and anchors; changes, back/forward and reset restore their own conditions',()=>environment((loc,history)=>{
+ loc.search='?lang=ja&view=compact';loc.hash='#top';
+ const f=fixture();const [controller]=wireGoalFilters(f.scope);
+ f.chooseDomain('quantum');f.choose('run');
+ const shared=loc.href;assert.equal(loc.searchParams.get('goal-domain'),'quantum');assert.equal(loc.searchParams.get('goal-availability'),'run');assert.equal(loc.searchParams.get('view'),'compact');assert.equal(loc.hash,'#top');assert.deepEqual(history.state,{atlas:'retained'});
+ history.back();controller.sync();assert.equal(f.domain.value,'quantum');assert.equal(f.field.value,'all');assert.equal(f.visible().length,2);
+ history.forward();controller.sync();assert.equal(loc.href,shared);assert.deepEqual(f.visible(),['atomic-electrons']);
+ f.reset.fire('click');assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');
+ history.back();controller.sync();assert.equal(loc.href,shared);assert.deepEqual(f.visible(),['atomic-electrons']);
+ const url=goalFilterURL('https://hrkoyama.github.io/numerical-methods-atlas/start/?lang=en&view=compact#atomic-electrons-en','run','quantum');
+ assert.equal(url.searchParams.get('lang'),'en');assert.equal(url.hash,'#atomic-electrons-en');assert.equal(url.searchParams.get('view'),'compact');
+}));
+test('URL conditions work when storage is unavailable and conflicting direct anchors normalize the shared URL',()=>environment((loc)=>{
+ loc.search='?lang=ja&goal-domain=quantum&goal-availability=run';
+ const f=fixture();const [controller]=wireGoalFilters(f.scope);assert.deepEqual(f.visible(),['atomic-electrons']);
+ loc.hash='#magnetic-divergence-ja';controller.revealAnchor();assert.equal(loc.searchParams.get('goal-domain'),'all');assert.equal(loc.searchParams.get('goal-availability'),'all');assert.equal(loc.hash,'#magnetic-divergence-ja');
+},true));
+test('only same-origin home, purpose and language links carry the current conditions, including copied or new-tab links',()=>environment(()=>{
+ const link=href=>({href,getAttribute(){return this.href;},hasAttribute(){return false;},setAttribute(name,value){this.href=value;}});
+ const links=[link('/numerical-methods-atlas/start/?lang=en#atomic-electrons-en'),link('/numerical-methods-atlas/?lang=ja'),link('?lang=en'),link('#top'),link('/numerical-methods-atlas/methods/?lang=ja'),link('https://example.org/numerical-methods-atlas/')];
+ const f=fixture();f.scope.ownerDocument={querySelectorAll:()=>links};wireGoalFilters(f.scope);f.chooseDomain('quantum');f.choose('run');
+ for(const target of links.slice(0,3)){const url=new URL(target.href);assert.equal(url.searchParams.get('goal-domain'),'quantum');assert.equal(url.searchParams.get('goal-availability'),'run');}
+ assert.equal(new URL(links[0].href).hash,'#atomic-electrons-en');assert.equal(new URL(links[0].href).searchParams.get('lang'),'en');
+ assert.equal(links[3].href,'#top');assert.equal(links[4].href,'/numerical-methods-atlas/methods/?lang=ja');assert.equal(links[5].href,'https://example.org/numerical-methods-atlas/');
 }));
