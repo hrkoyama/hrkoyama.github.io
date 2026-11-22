@@ -35,12 +35,15 @@ export function wireGoalFilters(scope=document){
   });
   reset.addEventListener('click',()=>render('all',true));
   render(read());revealAnchor();root.querySelector('[data-goal-controls]').hidden=false;
-  const controller={revealAnchor};controllers.set(root,controller);return controller;
+  const controller={revealAnchor,sync(){render(read());revealAnchor();}};controllers.set(root,controller);return controller;
  });
 }
 if(typeof document!=='undefined'){
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>wireGoalFilters());else wireGoalFilters();
  globalThis.addEventListener('hashchange',()=>{
   for(const root of document.querySelectorAll('[data-goal-filter-root]'))controllers.get(root)?.revealAnchor();
+ });
+ globalThis.addEventListener('pageshow',event=>{
+  if(event.persisted)for(const root of document.querySelectorAll('[data-goal-filter-root]'))controllers.get(root)?.sync();
  });
 }

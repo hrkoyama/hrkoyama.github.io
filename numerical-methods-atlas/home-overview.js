@@ -1,4 +1,4 @@
-import {wireGoalFilters} from './goal-filters.mjs?v=d653239ab595';
+import {wireGoalFilters} from './goal-filters.mjs?v=a019e366d506';
 import {atlasPurpose,atlasMetrics,atlasExamples,atlasGoalStart} from './atlas-purpose.js?v=36209663dff7';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=766832c56082';
 import {t,currentLanguage} from './i18n.js';

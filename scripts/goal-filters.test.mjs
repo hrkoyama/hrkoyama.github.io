@@ -37,11 +37,12 @@ test('published goals classify runnable examples as also having code/tests, with
  assert.equal(records.find(r=>r.id==='temperature-control').states,'planned');
 });
 test('selection filters both navigation and articles, counts unique goals, persists across language/pages, and resets',()=>environment(()=>{
- const f=fixture();wireGoalFilters(f.scope);assert.equal(f.controls.hidden,false);
+ const f=fixture();const [homeController]=wireGoalFilters(f.scope);assert.equal(f.controls.hidden,false);
  f.choose('reading');assert.deepEqual(f.visible(),['molecular-dft','biological-models']);assert.equal(f.status.textContent,'2 / 10 件の目的');assert.equal(f.empty.hidden,true);
  assert.equal(f.items.filter(x=>!x.hidden).length,4);
  const en=fixture('en');wireGoalFilters(en.scope);assert.equal(en.field.value,'reading');assert.equal(en.status.textContent,'2 of 10 goals');
  en.choose('planned');assert.deepEqual(en.visible(),['temperature-control']);
+ homeController.sync();assert.equal(f.field.value,'planned');assert.deepEqual(f.visible(),['temperature-control'],'restored pages use the latest session selection');
  en.reset.fire('click');assert.equal(en.visible().length,10);assert.equal(en.field.value,'all');
  assert.equal(wireGoalFilters(en.scope).length,1);
 }));
