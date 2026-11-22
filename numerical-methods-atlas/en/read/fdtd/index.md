@@ -1,18 +1,10 @@
 # Yee finite-difference time-domain method
 
-Yee FDTD: s/p polarization, Fresnel interfaces and PML
+Yee FDTD: foundations and verified examples
 
-Revision r5 adds TEz p polarization, the Brewster condition and total internal reflection. Finite-band packet fluxes, complex reflection, evanescent decay, energy budgets and grid refinement are tested. The six earlier TMz inputs and four frozen editions remain available.
+The Yee method advances Maxwell equations with staggered electric and magnetic fields. Start with the basic equations, then select a verification example. The latest r6 addition covers one-dimensional lossy and Lorentz-dispersive media.
 
-[Go to revision-r5 implementation and measurements](#interface-p-polarization)
-
-Revision r4 validates oblique dielectric incidence with finite-band s-polarized packets. Fresnel fields, reflected/transmitted energy, global/local budgets and grid refinement are assessed separately. All three earlier editions and five inputs remain available.
-
-New results: [Oblique incidence at a dielectric interface](#interface-oblique)
-
-Revision r3 extends the PML to all four sides and corners. Separate packets aimed at sides and obliquely at corners test boundary returns, directional PML work, four-edge energy flux and grid refinement. Both earlier editions and their four inputs are retained.
-
-Revision r2 adds a dielectric interface and left/right x-directed PML to the original two vacuum cases. The first part covers vacuum analytic modes; the extension covers normal-incidence Fresnel comparisons and boundary reflections of normal/oblique packets. The original code edition, figures and measurements are retained.
+[Basic model](#model) · [Loss and dispersion](#interface-loss-dispersion) · [Fresnel interfaces](#interface) · [Side/corner PML](#pml-corners) · [Oblique incidence](#interface-oblique) · [p polarization, Brewster and TIR](#interface-p-polarization)
 
 This original educational implementation evolves 2D TMz fields (Ez, Hx, Hy) with original vacuum cases in dimensionless homogeneous vacuum without current or charge sources. The original periodic plane waves and rectangular perfect-electric-conductor (PEC) cavity are compared with continuum analytic solutions. Grid refinement, numerical dispersion, a discrete invariant and an approximation to physical energy are measured separately.
 
@@ -22,7 +14,7 @@ Model, units and scope
 $$
 \partial_t E_z=\partial_xH_y-\partial_yH_x,\qquad \partial_tH_x=-\partial_yE_z,\qquad \partial_tH_y=\partial_xE_z,\quad \epsilon=\mu=c=1.
 $$
-Length, time and fields are normalized so ε=μ=c=1. The rectangle has Lx=1 and Ly=1.5, with mode indices (m,l)=(1,1). An oblique periodic mode on a rectangular domain exercises both spatial derivatives and magnetic-field signs. Dispersive media, losses, dielectric interfaces and driven sources are outside this edition.
+Length, time and fields are normalized so ε=μ=c=1. The rectangle has Lx=1 and Ly=1.5, with mode indices (m,l)=(1,1). An oblique periodic mode on a rectangular domain exercises both spatial derivatives and magnetic-field signs. These initial vacuum examples exclude dispersion, loss, interfaces and external excitation; later examples cover their stated additional scopes.
 
 Yee placement and staggered time update
 
@@ -68,7 +60,49 @@ Inner products include cell area and the appropriate PEC boundary weights. U*, c
 
 For unit-amplitude continuum fields the total energies are LxLy/2 for the traveling periodic wave and LxLy/8 for the cavity standing wave. Twelve periods are used to track relative U* drift and the variation of Usync; the error against the analytic physical energy must decrease at approximately second order under grid/time refinement. Tests also check U* conservation with compatible random fields, beyond single eigenmodes.
 
-Fixed inputs and measured results
+Revision r6: lossy and dispersive media
+
+A one-dimensional packet is normally incident on a finite slab surrounded by vacuum. Two examples use Ohmic conductivity and one damped Lorentz resonance. Ez, polarization P and polarization current J occupy integer times; Hy occupies half times. A Yee magnetic step is followed by a local implicit-midpoint E/P/J solve.
+
+
+$$
+\begin{gathered}\epsilon_\infty\partial_t E=\partial_xH-\sigma E-J,\quad\partial_tH=\partial_xE,\\\partial_tP=J,\quad\partial_tJ=fE-\omega_0^2P-\gamma J,\quad f=\Delta\epsilon\,\omega_0^2,\\\epsilon(\omega)=\epsilon_\infty+\frac{f}{\omega_0^2-\omega^2-i\gamma\omega}+\frac{i\sigma}{\omega},\quad e^{-i\omega t}.\end{gathered}
+$$
+σ multiplies the conventional current σE. When f=0, P=J=0 and oscillator terms are omitted. Distant PEC caps close the domain, with no PML in this example. Interface electric control volumes use half-volume averages of ε∞, σ and f.
+
+The analytic solution includes internal multiple reflections and a complex wavenumber, weighted by the actual incident spectrum. Numerical R/T come from exterior Poynting fluences; A comes from directly accumulated conductive and polarization damping work. Absorption and transient material storage are separated, with energy budgets and spatial/temporal refinement checked.
+
+Finest-grid finite-window measurements and spectrum-weighted analytic values.SlabNumerical RNumerical TDirect AAnalytic R / T / Aohmic0.04217920.1631050.7947160.0422517 / 0.163222 / 0.794527lorentz0.1210680.05543760.8234950.121356 / 0.0555188 / 0.823125[](/numerical-methods-atlas/assets/fdtd-loss-dispersion.png)[Results and all acceptance checks](/code/fdtd/2026-11-22-r6/results/loss-dispersion/result.json) · [convergence.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/convergence.csv) · [Open full-size figure](/numerical-methods-atlas/assets/fdtd-loss-dispersion.png)[Revision-r6 code ZIP: loss/dispersion plus seven retained inputs](/code/fdtd/2026-11-22-r6/fdtd-2026-11-22-r6.zip) · [Bilingual execution guide](/code/fdtd/2026-11-22-r6/README.md)
+
+Scope is linear, isotropic, nonmagnetic 1D normal incidence, with the stated spectrum and finite window. Drude, multiple resonances, oblique dispersive incidence, dispersive media combined with PML, and general 2D/3D are unvalidated.
+
+Open derivation, full refinement results and reproduction material
+$$
+\begin{gathered}n=\sqrt{\epsilon},\quad\Re n\ge0,\quad\Im n\ge0,\quad\rho=\frac{1-n}{1+n},\quad z=e^{2in\omega d},\\r=\frac{\rho(1-z)}{1-\rho^2z},\quad t=\frac{(1-\rho^2)e^{in\omega d}}{1-\rho^2z},\\R=|r|^2,\quad T=|t|^2,\quad A=1-R-T,\\A_{\rm volume}=\int_0^d\!\left(\sigma+\frac{\gamma\omega^2f}{|\omega_0^2-\omega^2-i\gamma\omega|^2}\right)|E(x)|^2\,dx.\end{gathered}
+$$
+t is the electric amplitude at the exit face. Both exteriors are vacuum, so T=|t|². E(x) in the volume integral has unit incident amplitude. Analytic A=1−R−T is checked against this separate internal-field dissipation integral. Carrier coefficients, spectral averages and finite-window DFT differences are retained separately.
+
+
+$$
+\begin{gathered}U_*^n=\tfrac12\|E^n\|_{\epsilon_\infty,h}^2+\tfrac12\Re\langle H^{n-1/2},H^{n+1/2}\rangle_h+U_{\rm mat}^n,\\U_{\rm mat}=\sum_{f_j>0}\frac{|J_j|^2+\omega_0^2|P_j|^2}{2f_j}\Delta x,\\\Delta W_\sigma=\Delta t\sum_j\sigma_j|\bar E_j|^2\Delta x,\quad\Delta W_\gamma=\Delta t\sum_{f_j>0}\frac{\gamma|\bar J_j|^2}{f_j}\Delta x,\\U_*^n+W_\sigma^n+W_\gamma^n=U_*^0.\end{gathered}
+$$
+Complex fields represent two real quadratures, consistently across energies and fluxes. Wσ/Wγ are computed from midpoint fields, independently of energy deficits and 1−R−T. The modified discrete energy identity and physical local Poynting budget with centered H have separate criteria. Midpoint inner products cancel E–J exchange, and paired discrete curls cancel at PEC caps, giving the identity. The strict CFL uses ε∞, rather than static permittivity: Δt/Δx<min(1,√ε∞). Oscillator storage is not added to absorption.
+
+Three grids at matched physical clocks.SlabNxField relative L2R errorT errorA errorPhysical flux residualohmic30720.120280.001165190.001887640.003052830.00215611ohmic61440.03010150.0002903310.0004686340.0007589650.00053856ohmic122880.0075267.2522e-050.0001169550.0001894770.000134611lorentz30720.104430.004686770.001302980.005989750.00215381lorentz61440.02633820.001157060.0003250520.001482110.000537989lorentz122880.006597650.0002883548.12193e-050.0003695730.000134468Finest-grid Lorentz polarization P and current J relative L2 errors are 0.011884 and 0.0124923.
+
+ohmic observed orders: field 1.99849, 1.99988; R 2.0048, 2.00121; T 2.01005, 2.0025; A 2.00804, 2.00201; complex r 2.00255, 2.00077; complex t 2.00708, 2.0018; physical flux budget 2.00126, 2.00032; physical energy 2.00565, 2.00141; fixed-space time-halving self-convergence order: 2.00388
+
+lorentz observed orders: field 1.9873, 1.99713; R 2.01813, 2.00455; T 2.00307, 2.00078; A 2.01484, 2.00372; complex r 1.99893, 2.00058; complex t 2.00077, 2.00052; physical flux budget 2.00124, 2.00031; physical energy 2.00952, 2.00236; P 2.02312, 2.00687; J 2.02239, 2.00672; fixed-space time-halving self-convergence order: 2.00371
+
+Separate conservation, loss, residual storage and reference controls.SlabMaximum modified balance residual|R+T+A−1|Final material storage / incidentReference window fluence gapReference period-doubling field gapohmic1.64405e-133.04201e-1403.33067e-161.28307e-09lorentz1.76686e-131.09499e-103.10325e-126.24744e-111.92765e-09Field accuracy is measured at the saved interaction clock; flux/loss integration continues to the later end time. Initial E is the incident packet, H is half-time aligned using the Yee dispersion relation, and P=J=0. A same-Yee vacuum control isolates reflection. Omitted continuum scattering/polarization tails, caps, omitted frequency tails, doubled reference period/spatial quadrature and finite-window DFT gaps are recorded in JSON. Temporal self-convergence concerns the fixed spatial discretization, rather than comparison with an external PDE solver.
+
+[dispersive.py](/code/fdtd/2026-11-22-r6/dispersive.py) · [run_dispersive.py](/code/fdtd/2026-11-22-r6/run_dispersive.py) · [test_dispersive.py](/code/fdtd/2026-11-22-r6/test_dispersive.py) · [Fixed input and tolerances](/code/fdtd/2026-11-22-r6/inputs/loss-dispersion.json) · [energy.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/energy.csv) · [solution.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/solution.csv) · [spectrum.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/spectrum.csv) · [waveforms-ohmic.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/waveforms-ohmic.csv) · [waveforms-lorentz.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/waveforms-lorentz.csv) · [SHA-256 manifest](/code/fdtd/2026-11-22-r6/source-manifest.json) · [Earlier-source provenance](/code/fdtd/2026-11-22-r6/provenance.json) · [108 tests passed / extraction rerun](/code/fdtd/2026-11-22-r6/verification.json)
+
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py
+python run_dispersive.py --input inputs/loss-dispersion.json --output output-lossIndependent ZIP extraction reran all tests and all eight inputs with identical metrics and every CSV. Numerical sources/tests of the seven earlier inputs and all five earlier releases remain unchanged. This supplement does not increment other execution registries. Selected official Meep documentation supplies Lorentz-model context; its conductivity convention and explicit ADE differ from this implementation.
+
+Detailed initial evidence: periodic wave and PEC cavityFixed inputs and measured results
 
 
 $$
@@ -78,7 +112,7 @@ Grids are 16×24, 32×48 and 64×96. Continuum field errors are evaluated exactl
 
 Fixed-input measurements. Field and frequency errors use continuum analytic solutions.CaseGrid Nx × NyRelative field L² errorObserved orderRelative frequency errorMaximum relative modified-energy driftPeriodic wave16 × 240.021645—0.00312712.22e-16Periodic wave32 × 480.00539262.00490.000779622.22e-16Periodic wave64 × 960.00133092.01860.000192442.22e-16PEC cavity16 × 240.0055511—0.000779624.441e-16PEC cavity32 × 480.00135142.03830.000192444.441e-16PEC cavity64 × 960.000333262.01974.7804e-052.22e-16Periodic plane wave · [JSON](/code/fdtd/2026-11-22/results/periodic-wave/result.json) · [convergence.csv](/code/fdtd/2026-11-22/results/periodic-wave/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22/results/periodic-wave/energy.csv)PEC cavity · [JSON](/code/fdtd/2026-11-22/results/pec-cavity/result.json) · [convergence.csv](/code/fdtd/2026-11-22/results/pec-cavity/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22/results/pec-cavity/energy.csv)Acceptance tolerances are saved in each fixed input. Separate checks require field error ≤0.01, observed orders ≥1.8, relative frequency error ≤0.002, discrete-dispersion identity error ≤10⁻⁹ and relative U* drift ≤2×10⁻¹¹. Separate checks require zero wall electric field, preservation of initial magnetic divergence, maximum Usync error against the analytic total energy ≤0.003, and approximately second-order refinement of that error. The Usync variation span is retained as a diagnostic.
 
-Dielectric interface: Fresnel amplitudes and energy
+Detailed r2 evidence: interface and x PMLDielectric interface: Fresnel amplitudes and energy
 
 
 $$
@@ -167,7 +201,7 @@ python -m pytest -q test_fdtd.py test_scattering.py
 python run_scattering.py --input inputs/dielectric-interface.json --output output-interface
 python run_scattering.py --input inputs/pml-pulse.json --output output-pmlRevision r2 validates normal incidence at the material interface and left/right x-PML in a vacuum strip. Four-side/corner PML is added below in r3. Oblique material-interface incidence, grazing incidence, dispersive matter, general geometry and 3D remain separate tasks.
 
-Revision r3: four-side and corner PML
+Detailed r3 evidence: sides and cornersRevision r3: four-side and corner PML
 
 Directional damping and corner overlap
 
@@ -257,7 +291,7 @@ python run_corner.py --input inputs/pml-corners.json --output output-cornersThe 
 
 Revision r3 covers the specified vacuum 2D TMz packets, square and finite time window. Oblique material-interface incidence is tested separately in r4 below. General grazing incidence, dispersive/anisotropic matter, 3D and curved PML geometries need separate validation.
 
-Revision r4: oblique incidence at a dielectric interface
+Detailed r4 evidence: oblique incidenceRevision r4: oblique incidence at a dielectric interface
 
 TMz, s polarization and Fresnel coefficients
 
@@ -353,7 +387,7 @@ python run_oblique.py --input inputs/dielectric-oblique.json --output output-obl
 
 Revision r4 covers the specified lossless/nonmagnetic s-polarized packets with propagating transmission, three grids and finite time. The p-polarized Brewster and TIR cases are tested separately in r5 below. Loss/dispersion and 3D remain separate tasks. References are analytic modes and quadrature, not an external FDTD solver.
 
-Revision r5: p polarization, Brewster condition and TIR
+Detailed r5 evidence: p polarization, Brewster and TIRRevision r5: p polarization, Brewster condition and TIR
 
 TEz staggering and optical p polarization
 
@@ -471,9 +505,9 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py
 python run_polarization.py --input inputs/p-polarization.json --output output-pIndependent ZIP extraction reran all tests and all seven inputs with identical metrics and every CSV. Numerical sources/tests of the old six inputs and four earlier editions are retained. This dedicated FDTD supplement is separate from common execution records and other fields’ verification counts.
 
-Scope is the selected lossless/nonmagnetic planar interfaces, one periodic-y mode, finite bands and windows. Loss/dispersion, anisotropy, arbitrary transverse spectra, 3D and PML absorption of evanescent fields need separate validation.
+Scope is the selected lossless/nonmagnetic planar interfaces, one periodic-y mode, finite bands and windows. Revision r5 is lossless; normal-incidence loss/dispersion is tested separately in r6. Anisotropy, arbitrary transverse spectra, 3D and PML absorption of evanescent fields remain outside scope.
 
-Original vacuum edition: code and reproduction
+Initial-edition downloads and reproductionOriginal vacuum edition: code and reproduction
 
 The immutable ZIP was extracted into an independent directory. All tests and both inputs were rerun without network access or the source checkout, reproducing saved numerical metrics and CSVs. This is a dedicated supplement, separate from the existing 22-example common execution registry and its historical receipts.
 
@@ -508,7 +542,7 @@ python run.py --input inputs/pec-cavity.json --output output-cavityNonempty outp
 
 ## Publication scope
 
-Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D.
+Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D.
 
 ## Sources
 
@@ -517,3 +551,4 @@ Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p pola
 - Jean-Pierre Bérenger (1994). A Perfectly Matched Layer for the Absorption of Electromagnetic Waves. https://doi.org/10.1006/jcph.1994.1159
 - Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs). https://arxiv.org/abs/2108.05348v1
 - Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/
+- Meep developers (2026). Materials — Meep Documentation. https://meep.readthedocs.io/en/latest/Materials/

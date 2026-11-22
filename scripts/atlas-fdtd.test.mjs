@@ -9,7 +9,8 @@ const originalEdition = '2026-11-22';
 const secondEdition = '2026-11-22-r2';
 const thirdEdition = '2026-11-22-r3';
 const fourthEdition = '2026-11-22-r4';
-const edition = '2026-11-22-r5';
+const fifthEdition = '2026-11-22-r5';
+const edition = '2026-11-22-r6';
 const base = `code/fdtd/${edition}/`;
 const originalBase = `code/fdtd/${originalEdition}/`;
 const bytes = name => readFileSync(new URL(base+name, root));
@@ -23,10 +24,12 @@ const scatteringCases = ['dielectric-interface', 'pml-pulse'];
 const cornerCases = ['pml-corners'];
 const obliqueCases = ['dielectric-oblique'];
 const polarizationCases = ['p-polarization'];
+const dispersiveCases = ['loss-dispersion'];
 const secondCases = [...legacyCases, ...scatteringCases];
 const thirdCases = [...secondCases, ...cornerCases];
-const retainedCases = [...thirdCases, ...obliqueCases];
-const cases = [...retainedCases, ...polarizationCases];
+const fourthCases = [...thirdCases, ...obliqueCases];
+const retainedCases = [...fourthCases, ...polarizationCases];
+const cases = [...retainedCases, ...dispersiveCases];
 
 function checkEdition(version) {
   const prefix = `code/fdtd/${version}/`;
@@ -50,12 +53,14 @@ function checkEdition(version) {
   return {get, metadata, verification};
 }
 
-test('all four previous FDTD editions remain byte-identical and all five ZIP payloads match their manifests', () => {
+test('all five previous FDTD editions remain byte-identical and all six ZIP payloads match their manifests', () => {
   const original = checkEdition(originalEdition);
   const second = checkEdition(secondEdition);
   const third = checkEdition(thirdEdition);
   const fourth = checkEdition(fourthEdition);
+  const fifth = checkEdition(fifthEdition);
   checkEdition(edition);
+  assert.equal(fifth.verification.archive.sha256, 'ca3115c64733340e7d2be8cd9204f75b955a0b001b7078530357b548b0f912de');
   assert.equal(fourth.verification.archive.sha256, 'd34e3cb1bdf1daef35b008ac1495e4980f86fcb2dc0e8398f0df0e30dd576de1');
   assert.equal(third.verification.archive.sha256, '367fa305bc35f89c85217cecb5f6c383c86ae8a6b14b8a1b040889b75d690199');
   assert.equal(second.verification.archive.sha256, '50f8dad211f0b5fa54c538c9f272ec2509bc8740063f6b4e4c3ec907d8f7adcc');
@@ -65,7 +70,7 @@ test('all four previous FDTD editions remain byte-identical and all five ZIP pay
   }
   const output = execFileSync('python3', ['-B', '-c', `
 import hashlib,json,pathlib,stat,zipfile
-for edition in ['${originalEdition}','${secondEdition}','${thirdEdition}','${fourthEdition}','${edition}']:
+for edition in ['${originalEdition}','${secondEdition}','${thirdEdition}','${fourthEdition}','${fifthEdition}','${edition}']:
  base=pathlib.Path('code/fdtd')/edition
  m=json.loads((base/'source-manifest.json').read_bytes())
  prefix='fdtd-'+edition+'/'
@@ -77,13 +82,13 @@ for edition in ['${originalEdition}','${secondEdition}','${thirdEdition}','${fou
   assert z.read(prefix+'source-manifest.json')==(base/'source-manifest.json').read_bytes()
   for name,expected in m['files'].items():
    assert hashlib.sha256(z.read(prefix+name)).hexdigest()==expected,name
-print('verified all five exact FDTD archive payloads')
+print('verified all six exact FDTD archive payloads')
 `], {cwd: root, encoding: 'utf8'});
-  assert.match(output, /verified all five exact FDTD archive payloads/);
+  assert.match(output, /verified all six exact FDTD archive payloads/);
 });
 
-test('the new dedicated edition independently reran all seven inputs and binds its code to measured results', () => {
-  assert.ok(receipt.passed_tests > 71);
+test('the new dedicated edition independently reran all eight inputs and binds its code to measured results', () => {
+  assert.ok(receipt.passed_tests > 85);
   assert.deepEqual(receipt.recipes.map(row=>row.id).sort(), cases.slice().sort());
   for (const recipe of receipt.recipes) {
     assert.equal(recipe.passed, true);
@@ -93,7 +98,8 @@ test('the new dedicated edition independently reran all seven inputs and binds i
   }
   for (const name of ['scattering.py','run_scattering.py','test_scattering.py','corner.py','run_corner.py','test_corner.py',
     'oblique.py','run_oblique.py','test_oblique.py',
-    'polarization.py','run_polarization.py','test_polarization.py']) assert.ok(manifest.files[name]);
+    'polarization.py','run_polarization.py','test_polarization.py',
+    'dispersive.py','run_dispersive.py','test_dispersive.py']) assert.ok(manifest.files[name]);
   for (const name of cases) {
     const result = json(`results/${name}/result.json`);
     assert.equal(result.case, name);
@@ -129,14 +135,23 @@ test('the current edition retains all five r3 numerical cases, sources, tests an
   }
 });
 
-test('r5 retains all six r4 numerical cases, sources, tests and fixed inputs', () => {
+test('the current edition retains all six r4 numerical cases, sources, tests and fixed inputs', () => {
   const previous = name => readFileSync(new URL(`code/fdtd/${fourthEdition}/${name}`, root));
   for (const name of ['solver.py','run.py','test_fdtd.py','scattering.py','run_scattering.py','test_scattering.py',
       'corner.py','run_corner.py','test_corner.py','oblique.py','run_oblique.py','test_oblique.py',
-      ...retainedCases.map(name=>`inputs/${name}.json`)]) assert.deepEqual(bytes(name), previous(name), name);
-  for (const name of retainedCases) {
+      ...fourthCases.map(name=>`inputs/${name}.json`)]) assert.deepEqual(bytes(name), previous(name), name);
+  for (const name of fourthCases) {
     const before=JSON.parse(previous(`results/${name}/result.json`));
     assert.deepEqual(json(`results/${name}/result.json`).metrics,before.metrics,name+' retains measured values');
+  }
+});
+
+test('r6 retains all seven r5 numerical cases, source files, fixed inputs and saved outputs byte for byte', () => {
+  const previous = checkEdition(fifthEdition);
+  for (const name of Object.keys(previous.metadata.files)) {
+    if (name.endsWith('.py') || name.startsWith('inputs/') || name.startsWith('results/')) {
+      assert.deepEqual(bytes(name), previous.get(name), name);
+    }
   }
 });
 
@@ -759,16 +774,321 @@ test('saved p-polarization histories reproduce fluxes, complex Fresnel ratios, e
   }
 });
 
+function dispersiveCsv(name,visit){
+  const lines=bytes('results/loss-dispersion/'+name+'.csv').toString().trim().split(/\r?\n/);
+  const header=lines.shift().split(',');
+  for(const line of lines){
+    const fields=line.split(',');assert.equal(fields.length,header.length,name+' column count');
+    const row=Object.fromEntries(header.map((key,i)=>[key,key==='subcase'?fields[i]:Number(fields[i])]));
+    assert.ok(Object.entries(row).every(([key,value])=>key==='subcase'||Number.isFinite(value)),name+' finite values');
+    visit(row);
+  }
+  return header;
+}
+
+const lossComplex={
+  add:(a,b)=>[a[0]+b[0],a[1]+b[1]],
+  scale:(a,b)=>[a[0]*b,a[1]*b],
+  mul:(a,b)=>[a[0]*b[0]-a[1]*b[1],a[0]*b[1]+a[1]*b[0]],
+  div:(a,b)=>{const d=b[0]*b[0]+b[1]*b[1];assert.ok(d>0);return[(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];},
+  norm2:a=>a[0]*a[0]+a[1]*a[1],
+  expi:a=>[Math.cos(a[0])*Math.exp(-a[1]),Math.sin(a[0])*Math.exp(-a[1])],
+  sqrt:a=>{const h=Math.hypot(...a);return[Math.sqrt(Math.max(0,(h+a[0])/2)),Math.sign(a[1])*Math.sqrt(Math.max(0,(h-a[0])/2))];}
+};
+
+// Independent continuum slab calculation: exp(-i omega t), vacuum exteriors.
+// tFace is measured at the back face; t removes propagation through that vacuum length.
+function lossySlab(omega,d,epsilonInfinity,sigma,strength,omega0,gamma){
+  const {add,scale,mul,div,norm2,expi,sqrt}=lossComplex;
+  const denominator=[omega0*omega0-omega*omega,-gamma*omega];
+  const epsilon=add([epsilonInfinity,sigma/omega],strength===0?[0,0]:div([strength,0],denominator));
+  const n=sqrt(epsilon);assert.ok(n[0]>=0&&n[1]>=0,'Passive outgoing square-root branch');
+  const rho=div(add([1,0],scale(n,-1)),add([1,0],n)),delta=scale(n,omega*d);
+  const phase=expi(delta),q=mul(phase,phase),rho2=mul(rho,rho),den=add([1,0],scale(mul(rho2,q),-1));
+  const r=div(mul(rho,add([1,0],scale(q,-1))),den);
+  const tFace=div(mul(add([1,0],scale(rho2,-1)),phase),den),t=mul(tFace,expi([-omega*d,0]));
+  const a=div(div([2,0],add([1,0],n)),den),b=scale(mul(mul(a,rho),q),-1);
+  const kr=omega*n[0],ki=omega*n[1],s=2*ki;
+  const forward=s===0?d:-Math.expm1(-s*d)/s,backward=s===0?d:Math.expm1(s*d)/s;
+  const cross=kr===0?[d,0]:[Math.sin(2*kr*d)/(2*kr),(1-Math.cos(2*kr*d))/(2*kr)];
+  const integral=norm2(a)*forward+norm2(b)*backward+2*mul(mul(a,[b[0],-b[1]]),cross)[0];
+  const ohmicDensity=sigma,lorentzDensity=strength===0?0:gamma*omega*omega*strength/norm2(denominator);
+  const R=norm2(r),T=norm2(tFace),directA=(ohmicDensity+lorentzDensity)*integral;
+  return {epsilon,n,r,tFace,t,a,b,R,T,A:1-R-T,directA,ohmicDensity,lorentzDensity,integral};
+}
+
+test('lossy and Lorentz spectra reproduce passive slab amplitudes and independent volume absorption', () => {
+  const input=json('inputs/loss-dispersion.json'),result=json('results/loss-dispersion/result.json');
+  const close=(actual,expected,label)=>assert.ok(Number.isFinite(actual)&&Math.abs(actual-expected)<=3e-10*Math.max(1,Math.abs(expected)),label);
+  const definitions=new Map(input.subcases.map(c=>[c.id,c])),groups=new Map(input.subcases.map(c=>[c.id,[]]));
+  assert.deepEqual([...definitions.keys()],['ohmic','lorentz']);
+  assert.match(result.backend,/1D normal-incidence.*implicit-midpoint passive Lorentz ADE/);
+  assert.match(result.scope,/no PML/);assert.match(result.energy_scope,/directly integrated/);
+  assert.match(result.amplitude_scope,/front\/back slab faces/);
+  for(const name of ['field_accuracy','field_refinement','slab_packet_RTA','RTA_refinement',
+    'complex_slab_amplitudes','complex_amplitude_refinement','energy_fraction_closure',
+    'direct_absorption_nonnegative','exact_modified_energy_balance','independent_physical_flux',
+    'physical_flux_refinement','final_material_tail','reference_period_control','reference_direct_absorption',
+    'finite_window_fluence','finite_window_DFT','distant_PEC_caps','initial_secondary_tails',
+    'incident_fluence_normalization','fixed_space_time_refinement','initial_full_analytic_tails',
+    'material_PJ_accuracy','material_PJ_refinement','finite_window_energy_with_storage'])assert.equal(result.checks[name],true,name);
+  const header=dispersiveCsv('spectrum',row=>{
+    const c=definitions.get(row.subcase);assert.ok(c);const strength=c.delta_epsilon*c.omega0**2;
+    const z=lossySlab(row.omega,c.slab[1]-c.slab[0],c.epsilon_inf,c.sigma,strength,c.omega0,c.gamma);
+    assert.ok(row.omega>0&&row.omega<=c.spectrum_max);
+    assert.ok(row.n_real>=0&&row.n_imag>=0&&row.epsilon_imag>=0,'Passive decaying branch');
+    for(const [name,value] of Object.entries({epsilon_real:z.epsilon[0],epsilon_imag:z.epsilon[1],
+      n_real:z.n[0],n_imag:z.n[1],r_real:z.r[0],r_imag:z.r[1],t_real:z.tFace[0],t_imag:z.tFace[1],
+      R:z.R,T:z.T,A:z.A,A_direct:z.directA}))close(row[name],value,'Independent slab '+name);
+    close(row.A,row.A_direct,'Absorption closure versus direct internal-field volume integral');
+    close(row.R+row.T+row.A_direct,1,'Independent modal energy balance');
+    close(z.ohmicDensity+z.lorentzDensity,row.omega*row.epsilon_imag,'Imaginary permittivity and positive damping density');
+    assert.ok(row.R>=0&&row.T>=0&&row.A_direct>=0);
+    const dw=2*Math.PI/input.reference_period;
+    const amplitude=c.width/Math.sqrt(2*Math.PI)*Math.exp(-.5*c.width**2*(row.omega-c.carrier)**2)*dw;
+    assert.ok(row.amplitude>=0&&row.weight>=0,'Positive Gaussian amplitudes and energy weights');
+    close(row.amplitude,amplitude,'Prescribed Gaussian quadrature amplitude');
+    close(row.weight,amplitude**2,'Parseval weight uses squared amplitude');
+    groups.get(c.id).push(row);
+  });
+  assert.deepEqual(header,['subcase','omega','amplitude','weight','epsilon_real','epsilon_imag','n_real','n_imag','r_real','r_imag','t_real','t_imag','R','T','A','A_direct']);
+  for(const c of input.subcases){
+    const spectrum=groups.get(c.id),rows=result.metrics.meshes.filter(r=>r.subcase===c.id),series=result.metrics.series.find(s=>s.subcase===c.id);
+    assert.equal(spectrum.length,Math.floor(c.spectrum_max*input.reference_period/(2*Math.PI)));
+    for(let i=0;i<spectrum.length;i++)close(spectrum[i].omega,(i+1)*2*Math.PI/input.reference_period,'Uniform positive-frequency quadrature');
+    const total=spectrum.reduce((s,z)=>s+z.weight,0),weighted=name=>spectrum.reduce((s,z)=>s+z.weight*z[name],0)/total;
+    assert.ok(total>0);assert.deepEqual(rows.map(r=>r.nx),c.meshes);
+    const carrier=lossySlab(c.carrier,c.slab[1]-c.slab[0],c.epsilon_inf,c.sigma,c.delta_epsilon*c.omega0**2,c.omega0,c.gamma);
+    assert.deepEqual(rows.map(r=>r.steps),rows.map((r,i)=>rows[0].steps*2**i),'Nested fixed physical clocks');
+    for(const row of rows){
+      for(const name of ['R','T','A'])close(row['analytic_'+name],weighted(name),'Spectrally weighted packet '+name);
+      close(row.dx,c.length/row.nx,'Slab dx');close(row.dt*row.steps,c.end_time,'Fixed physical end clock');
+      assert.ok(row.dt/row.dx<Math.min(1,Math.sqrt(c.epsilon_inf)),'Strict epsilon-infinity CFL');
+      close(row.reflection_error,Math.abs(row.reflection_fraction-row.analytic_R),'Reflection error');
+      close(row.transmission_error,Math.abs(row.transmission_fraction-row.analytic_T),'Transmission error');
+      close(row.absorption_error,Math.abs(row.absorption_direct_fraction-row.analytic_A),'Direct absorption error');
+      close(row.absorption_direct_fraction,row.ohmic_absorption_fraction+row.lorentz_absorption_fraction,'Separate positive damping channels');
+      close(row.energy_fraction_closure,Math.abs(row.reflection_fraction+row.transmission_fraction+row.absorption_direct_fraction-1),'R/T/direct-A closure');
+      for(const [prefix,z] of [['r',carrier.r],['t',carrier.tFace]]){
+        close(row['analytic_carrier_'+prefix+'_real'],z[0],'Carrier coefficient real');
+        close(row['analytic_carrier_'+prefix+'_imag'],z[1],'Carrier coefficient imaginary');
+        close(row['carrier_complex_'+prefix+'_error'],Math.hypot(row['numerical_'+prefix+'_real']-z[0],row['numerical_'+prefix+'_imag']-z[1]),'Ideal carrier complex error');
+      }
+      assert.ok(row.modified_energy_max_relative_balance<=input.acceptance.max_modified_energy_balance);
+      assert.ok(row.reference_period_doubling_relative_l2<=input.acceptance.max_reference_period_error);
+      assert.ok(row.reference_window_fluence_gap<=input.acceptance.max_reference_window_gap);
+      assert.ok(Math.max(row.reference_dft_r_error,row.reference_dft_t_error)<=input.acceptance.max_reference_dft_error);
+      assert.ok(row.analytic_cap_electric_max<=input.acceptance.max_analytic_cap_field);
+      assert.ok(row.initial_secondary_field_norm_fraction<=input.acceptance.max_initial_secondary_field_norm);
+      assert.ok(Math.max(row.initial_secondary_E_relative_l2,row.initial_secondary_H_relative_l2)<=input.acceptance.max_initial_secondary_field_norm);
+      assert.ok(row.initial_omitted_material_energy_fraction>=0&&Math.sqrt(row.initial_omitted_material_energy_fraction)<=input.acceptance.max_initial_secondary_field_norm);
+    }
+    const thresholds={field_relative_l2:'min_field_order',reflection_error:'min_energy_order',
+      transmission_error:'min_energy_order',absorption_error:'min_energy_order',complex_r_error:'min_complex_order',
+      complex_t_error:'min_complex_order',physical_flux_budget_max_relative_residual:'min_flux_order',
+      polarization_relative_l2:'min_field_order',current_relative_l2:'min_field_order'};
+    for(const [name,orders] of Object.entries(series.orders)){
+      assert.equal(orders.length,2);
+      for(let i=0;i<2;i++)close(orders[i],Math.log2(rows[i][name]/rows[i+1][name]),'Independent saved '+name+' order');
+      if(thresholds[name])assert.ok(orders.every(p=>p>=input.acceptance[thresholds[name]]));
+    }
+    const temporal=series.temporal;assert.equal(temporal.nx,c.meshes[0]);close(temporal.accuracy_time,c.accuracy_time,'Time-only interaction clock');
+    assert.equal(temporal.clocks.length,3);assert.equal(temporal.relative_field_differences.length,2);
+    for(let i=0;i<3;i++){
+      close(temporal.clocks[i].dt*temporal.clocks[i].steps,c.accuracy_time,'Time-only common end clock');
+      close(temporal.clocks[i].dt,rows[0].dt/2**i,'Fixed-space time halving');
+    }
+    close(temporal.self_convergence_order,Math.log2(temporal.relative_field_differences[0]/temporal.relative_field_differences[1]),'Time self-convergence order');
+    assert.ok(temporal.self_convergence_order>=input.acceptance.min_time_order);
+    assert.ok(Math.max(series.reference_energy_period_doubling_relative_error,series.reference_fractions_period_doubling_error)<=input.acceptance.max_reference_period_error);
+    assert.ok(Math.max(series.reference_direct_absorption_closure,series.reference_spatial_quadrature_doubling_error)<=input.acceptance.max_reference_quadrature_error);
+    const fine=rows.at(-1);
+    assert.ok(fine.field_relative_l2<=input.acceptance.max_field_error);
+    assert.ok(Math.max(fine.reflection_error,fine.transmission_error,fine.absorption_error)<=input.acceptance.max_energy_fraction_error);
+    assert.ok(Math.max(fine.carrier_complex_r_error,fine.carrier_complex_t_error)<=input.acceptance.max_complex_coefficient_error);
+    assert.ok(fine.energy_fraction_closure<=input.acceptance.max_energy_closure);
+    assert.ok(fine.physical_flux_budget_max_relative_residual<=input.acceptance.max_physical_flux_residual);
+    assert.ok(fine.final_material_energy_fraction<=input.acceptance.max_final_material_energy);
+    assert.ok(Math.max(fine.polarization_relative_l2,fine.current_relative_l2)<=input.acceptance.max_field_error);
+    assert.ok(fine.finite_window_energy_fraction_residual<=input.acceptance.max_energy_closure);
+    assert.ok(fine.incident_fluence_energy_relative_error<=input.acceptance.max_incident_fluence_error);
+    if(c.id==='ohmic'){
+      assert.ok(c.sigma>0&&c.delta_epsilon===0);assert.ok(rows.every(r=>r.lorentz_absorption_fraction===0&&r.peak_material_energy_fraction===0));
+    }else{
+      assert.ok(c.sigma===0&&c.delta_epsilon>0&&c.gamma>0);assert.ok(rows.every(r=>r.ohmic_absorption_fraction===0&&r.peak_material_energy_fraction>0));
+    }
+  }
+});
+
+test('saved dispersive histories reproduce direct damping, energy budgets, fluences and complex slab DFTs', () => {
+  const input=json('inputs/loss-dispersion.json'),result=json('results/loss-dispersion/result.json');
+  const close=(actual,expected,label)=>assert.ok(Number.isFinite(actual)&&Math.abs(actual-expected)<=2e-9*Math.max(1,Math.abs(expected)),label);
+  const key=z=>z.subcase+'/'+z.nx,definitions=new Map(input.subcases.map(c=>[c.id,c]));
+  const measurements=new Map(result.metrics.meshes.map(z=>[key(z),z]));
+  const convergence=[];dispersiveCsv('convergence',z=>convergence.push(z));
+  assert.equal(convergence.length,measurements.size);
+  for(const row of result.metrics.meshes){
+    const saved=convergence.find(z=>key(z)===key(row));assert.ok(saved);
+    for(const [name,value] of Object.entries(row)){
+      if(typeof value==='string')assert.equal(saved[name],value);else close(saved[name],value,'Saved convergence '+name);
+    }
+  }
+  const energies=new Map();
+  const energyHeader=dispersiveCsv('energy',z=>{
+    const id=key(z),row=measurements.get(id);assert.ok(row);
+    if(!energies.has(id))energies.set(id,{data:[],u0:z.modified_energy,phys0:z.physical_energy,modified:0,physical:0,ohmic:0,lorentz:0,peak:0});
+    const s=energies.get(id),last=s.data.at(-1);close(z.time,s.data.length*row.dt,'Saved energy clock');
+    assert.ok(z.ohmic_power_to_next_time>=0&&z.lorentz_power_to_next_time>=0,'Direct midpoint damping powers are nonnegative');
+    assert.ok(z.ohmic_loss>=0&&z.lorentz_loss>=0&&z.material_energy>=0);
+    if(last){
+      s.ohmic+=(z.time-last.time)*last.ohmic_power_to_next_time;
+      s.lorentz+=(z.time-last.time)*last.lorentz_power_to_next_time;
+    }
+    close(z.ohmic_loss,s.ohmic,'Ohmic loss from forward-transition midpoint power');
+    close(z.lorentz_loss,s.lorentz,'Lorentz damping loss from forward-transition midpoint power');
+    s.modified=Math.max(s.modified,Math.abs(z.modified_energy+z.ohmic_loss+z.lorentz_loss-s.u0)/s.u0);
+    s.physical=Math.max(s.physical,Math.abs(z.physical_energy+z.ohmic_loss+z.lorentz_loss-s.phys0)/s.u0);
+    s.peak=Math.max(s.peak,z.material_energy);s.data.push(z);
+  });
+  assert.deepEqual(energyHeader,['subcase','nx','time','modified_energy','physical_energy','material_energy','region_energy','ohmic_loss','lorentz_loss','ohmic_power_to_next_time','lorentz_power_to_next_time']);
+  for(const row of result.metrics.meshes){
+    const s=energies.get(key(row));assert.ok(s);assert.equal(s.data.length,row.steps+1);
+    close(s.modified,row.modified_energy_max_relative_balance,'Recomputed exact modified-energy balance');
+    close(s.physical,row.physical_energy_max_relative_balance,'Separate synchronized physical-energy error');
+    assert.equal(s.data.at(-1).ohmic_power_to_next_time,0);assert.equal(s.data.at(-1).lorentz_power_to_next_time,0);
+  }
+  const {add,scale,mul,div,norm2,expi}=lossComplex,complex=(z,name)=>[z[name+'_real'],z[name+'_imag']];
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1],waves=new Map();
+  const signalNames=['incident_E','incident_H','reflected_E','reflected_H','transmitted_E','transmitted_H','vacuum_right_E','vacuum_right_H',
+    'reference_incident_E','reference_reflected_E','reference_transmitted_E','reference_vacuum_right_E'];
+  for(const c of input.subcases){
+    const name='waveforms-'+c.id;assert.ok(manifest.files['results/loss-dispersion/'+name+'.csv']);
+    const header=dispersiveCsv(name,z=>{
+      assert.equal(z.subcase,c.id);const id=key(z),row=measurements.get(id),energy=energies.get(id);assert.ok(row&&energy);
+      if(!waves.has(id))waves.set(id,{count:0,last:null,fluence:Array(6).fill(0),fourier:Array.from({length:8},()=>[0,0]),net:0,budgets:[],material:[]});
+      const s=waves.get(id);close(z.time,s.count*row.dt,'Saved waveform clock');
+      const e=energy.data[s.count];assert.ok(e);s.count++;
+      const fields=Object.fromEntries(signalNames.map(name=>[name,complex(z,name)]));
+      const fluxes=[-dot(fields.incident_E,fields.incident_H),dot(fields.reflected_E,fields.reflected_H),-dot(fields.transmitted_E,fields.transmitted_H)];
+      for(const [i,name] of ['incident_flux','reflected_flux','transmitted_flux'].entries())close(z[name],fluxes[i],'Independent Poynting '+name);
+      fluxes.push(...['reference_incident_E','reference_reflected_E','reference_transmitted_E'].map(name=>norm2(fields[name])));
+      const totalLeft=-dot(add(fields.incident_E,fields.reflected_E),add(fields.incident_H,fields.reflected_H));
+      const net=fluxes[2]-totalLeft,phase=expi([c.carrier*z.time,0]);
+      const transformed=['incident_E','reflected_E','transmitted_E','vacuum_right_E',
+        'reference_incident_E','reference_reflected_E','reference_transmitted_E','reference_vacuum_right_E'].map(name=>mul(fields[name],phase));
+      if(s.last){
+        const dt=z.time-s.last.time;
+        for(let i=0;i<6;i++)s.fluence[i]+=.5*dt*(s.last.fluxes[i]+fluxes[i]);
+        for(let i=0;i<8;i++)s.fourier[i]=add(s.fourier[i],scale(add(s.last.transformed[i],transformed[i]),.5*dt));
+        s.net+=.5*dt*(s.last.net+net);
+      }
+      const budget=e.region_energy-energy.data[0].region_energy+e.ohmic_loss+e.lorentz_loss+s.net;
+      s.budgets.push([budget,z.physical_region_budget_fraction]);s.material.push(z.material_energy_fraction);
+      s.last={time:z.time,fluxes,transformed,net};
+    });
+    const expected=['subcase','nx','time'];for(const name of signalNames)for(const part of ['real','imag'])expected.push(name+'_'+part);
+    expected.push('incident_flux','reflected_flux','transmitted_flux','physical_region_budget_fraction','material_energy_fraction');
+    assert.deepEqual(header,expected);
+  }
+  for(const row of result.metrics.meshes){
+    const c=definitions.get(row.subcase),s=waves.get(key(row)),energy=energies.get(key(row));assert.ok(s);
+    assert.equal(s.count,row.steps+1);close(s.last.time,c.end_time,'Waveform end time');
+    const [Fi,Fr,Ft,Ai,Ar,At]=s.fluence;assert.ok(Fi>0&&Ai>0);
+    close(Fr/Fi,row.reflection_fraction,'Independent reflected fluence');close(Ft/Fi,row.transmission_fraction,'Independent transmitted fluence');
+    close(energy.ohmic/Fi,row.ohmic_absorption_fraction,'Direct integrated Ohmic absorption');
+    close(energy.lorentz/Fi,row.lorentz_absorption_fraction,'Direct integrated Lorentz absorption');
+    close((energy.ohmic+energy.lorentz)/Fi,row.absorption_direct_fraction,'Direct absorption is not inferred from closure');
+    let weight=0;dispersiveCsv('spectrum',z=>{if(z.subcase===c.id)weight+=z.weight;});
+    const exact=input.reference_period*weight;
+    close(Math.abs(Fi/exact-1),row.incident_fluence_energy_relative_error,'Same-Yee fluence versus Parseval incident energy');
+    close(Math.max(Math.abs(Ai/exact-1),Math.abs(Ar/exact-row.analytic_R),Math.abs(At/exact-row.analytic_T)),row.reference_window_fluence_gap,'Independent continuum fluence coverage');
+    let maxBudget=0;for(let i=0;i<s.budgets.length;i++){
+      const [raw,saved]=s.budgets[i];close(saved,raw/Fi,'Full physical control-volume energy/flux/damping balance');
+      close(s.material[i],energy.data[i].material_energy/Fi,'Stored material energy has its own normalization');maxBudget=Math.max(maxBudget,Math.abs(raw)/Fi);
+    }
+    close(maxBudget,row.physical_flux_budget_max_relative_residual,'Independent maximum control-volume residual');
+    close(energy.peak/Fi,row.peak_material_energy_fraction,'Peak oscillator stored energy');
+    close(energy.data.at(-1).material_energy/Fi,row.final_material_energy_fraction,'Residual oscillator energy is excluded from absorption');
+    close(energy.data.at(-1).region_energy/Fi,row.final_region_energy_fraction,'Final control-volume energy');
+    close(energy.data[0].region_energy/Fi,row.initial_region_energy_fraction,'Initial control-volume energy');
+    close(Math.abs((Fr+Ft+energy.ohmic+energy.lorentz+energy.data.at(-1).region_energy-energy.data[0].region_energy)/Fi-1),
+      row.finite_window_energy_fraction_residual,'Finite-window energy includes final stored fields and material');
+    const [ni,nr,nt,nv,ai,ar,at,av]=s.fourier,d=c.slab[1]-c.slab[0],offset=c.slab[0]-c.monitors[0];
+    const argument=row.dx/row.dt*Math.sin(c.carrier*row.dt/2);assert.ok(argument>0&&argument<1);
+    const k=2/row.dx*Math.asin(argument);
+    const rn=mul(div(nr,ni),expi([-2*k*offset,0])),tn=mul(div(nt,nv),expi([k*d,0]));
+    const rr=mul(div(ar,ai),expi([-2*c.carrier*offset,0])),tt=mul(div(at,av),expi([c.carrier*d,0]));
+    for(const [name,z] of [['r',rn],['t',tn]]){
+      close(z[0],row['numerical_'+name+'_real'],'Saved-signal DFT real '+name);close(z[1],row['numerical_'+name+'_imag'],'Saved-signal DFT imaginary '+name);
+    }
+    for(const [name,numerical,reference] of [['r',rn,rr],['t',tn,tt]]){
+      close(Math.hypot(...add(numerical,scale(reference,-1))),row['complex_'+name+'_error'],'Finite-window complex '+name+' error');
+      const carrier=[row['analytic_carrier_'+name+'_real'],row['analytic_carrier_'+name+'_imag']];
+      close(Math.hypot(...add(reference,scale(carrier,-1))),row['reference_dft_'+name+'_error'],'Windowed-reference versus ideal carrier '+name);
+    }
+  }
+  const snapshots=new Map(input.subcases.map(c=>[c.id,[]]));dispersiveCsv('solution',z=>{assert.ok(snapshots.has(z.subcase));snapshots.get(z.subcase).push(z);});
+  for(const c of input.subcases){
+    const fine=result.metrics.meshes.filter(z=>z.subcase===c.id).at(-1),saved=snapshots.get(c.id),energy=energies.get(key(fine));
+    const modes=[];dispersiveCsv('spectrum',z=>{if(z.subcase===c.id)modes.push({...z,
+      ...lossySlab(z.omega,c.slab[1]-c.slab[0],c.epsilon_inf,c.sigma,c.delta_epsilon*c.omega0**2,c.omega0,c.gamma)});});
+    assert.equal(saved.length,fine.nx+1);let error=0,reference=0,material=0,pError=0,pNorm=0,jError=0,jNorm=0;
+    for(let i=0;i<saved.length;i++){
+      const z=saved[i];close(z.x,i*fine.dx,'Snapshot integer-node position');
+      error+=norm2(add(complex(z,'E'),scale(complex(z,'reference_E'),-1)));reference+=norm2(complex(z,'reference_E'));
+      const fraction=(z.x===c.slab[0]||z.x===c.slab[1]) ? 0.5 : (z.x>c.slab[0]&&z.x<c.slab[1]) ? 1 : 0;
+      if(i%Math.max(1,Math.floor(fine.nx/24))===0||fraction===.5){
+        let exact=[0,0];
+        for(const mode of modes){
+          let value;
+          if(z.x<c.slab[0])value=add(expi([mode.omega*(z.x-c.center-c.accuracy_time),0]),
+            mul(mode.r,expi([mode.omega*(2*c.slab[0]-z.x-c.center-c.accuracy_time),0])));
+          else if(z.x>c.slab[1])value=mul(mode.tFace,expi([mode.omega*(c.slab[0]+z.x-c.slab[1]-c.center-c.accuracy_time),0]));
+          else{
+            const position=scale(mode.n,mode.omega*(z.x-c.slab[0]));
+            value=mul(add(mul(mode.a,expi(position)),mul(mode.b,expi(scale(position,-1)))),
+              expi([mode.omega*(c.slab[0]-c.center-c.accuracy_time),0]));
+          }
+          exact=add(exact,scale(value,mode.amplitude));
+        }
+        close(z.reference_E_real,exact[0],'Independent continuum snapshot real field');
+        close(z.reference_E_imag,exact[1],'Independent continuum snapshot imaginary field');
+      }
+      const strength=fraction*c.delta_epsilon*c.omega0**2;
+      if(strength>0)material+=(norm2(complex(z,'J'))+c.omega0**2*norm2(complex(z,'P')))/(2*strength)*fine.dx;
+      else close(norm2(complex(z,'P'))+norm2(complex(z,'J')),0,'No oscillator state where its strength is zero');
+      if(strength>0){
+        let pref=[0,0],jref=[0,0];
+        for(const mode of modes){
+          const position=scale(mode.n,mode.omega*(z.x-c.slab[0]));
+          const internal=add(mul(mode.a,expi(position)),mul(mode.b,expi(scale(position,-1))));
+          const phase=scale(expi([mode.omega*(c.slab[0]-c.center-c.accuracy_time),0]),mode.amplitude);
+          const susceptibility=div([strength,0],[c.omega0**2-mode.omega**2,-c.gamma*mode.omega]);
+          const p=mul(susceptibility,mul(internal,phase));pref=add(pref,p);jref=add(jref,mul([0,-mode.omega],p));
+        }
+        pError+=norm2(add(complex(z,'P'),scale(pref,-1)));pNorm+=norm2(pref);
+        jError+=norm2(add(complex(z,'J'),scale(jref,-1)));jNorm+=norm2(jref);
+      }
+    }
+    close(Math.sqrt(error/reference),fine.field_relative_l2,'Snapshot continuum field error norm');
+    const accuracy=energy.data[Math.round(c.accuracy_time/fine.dt)];close(accuracy.time,c.accuracy_time,'Snapshot energy clock');
+    close(material,accuracy.material_energy,'Oscillator energy recomputed from saved P and J');
+    close(pNorm>0?Math.sqrt(pError/pNorm):0,fine.polarization_relative_l2,'Independent continuum polarization norm');
+    close(jNorm>0?Math.sqrt(jError/jNorm):0,fine.current_relative_l2,'Independent continuum polarization-current norm');
+  }
+});
+
 test('FDTD method and bilingual reading expose the new supplement and retain the original release', () => {
   const record = JSON.parse(readFileSync(new URL('numerical-methods-atlas/methods/fdtd/index.json', root)));
   assert.equal(record.status, 'educational-example');
   assert.equal(record.code_base, manifest.public_base_url);
   assert.equal(record.code_download, manifest.public_base_url+receipt.archive.file);
   assert.match(record.run_from,/TMz\/TEz/);
-  assert.equal(record.run_commands[0], 'python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py');
+  assert.equal(record.run_commands[0], 'python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py');
   assert.ok(record.run_commands.includes('python run_polarization.py --input inputs/p-polarization.json --output rerun-p-polarization'));
-  assert.deepEqual(record.code_urls, ['solver.py', 'run.py','scattering.py','run_scattering.py','corner.py','run_corner.py','oblique.py','run_oblique.py','polarization.py','run_polarization.py'].map(name => manifest.public_base_url+name));
-  assert.deepEqual(record.test_urls, ['test_fdtd.py','test_scattering.py','test_corner.py','test_oblique.py','test_polarization.py'].map(name=>manifest.public_base_url+name));
+  assert.ok(record.run_commands.includes('python run_dispersive.py --input inputs/loss-dispersion.json --output rerun-loss-dispersion'));
+  assert.deepEqual(record.code_urls, ['solver.py', 'run.py','scattering.py','run_scattering.py','corner.py','run_corner.py','oblique.py','run_oblique.py','polarization.py','run_polarization.py','dispersive.py','run_dispersive.py'].map(name => manifest.public_base_url+name));
+  assert.deepEqual(record.test_urls, ['test_fdtd.py','test_scattering.py','test_corner.py','test_oblique.py','test_polarization.py','test_dispersive.py'].map(name=>manifest.public_base_url+name));
   assert.deepEqual(record.execution_examples, [], 'Supplement has its own extraction receipt; common registry remains separately verified');
   assert.deepEqual(Object.keys(record.result_urls).sort(), cases.slice().sort());
   for (const extension of ['html', 'md']) {
@@ -781,15 +1101,18 @@ test('FDTD method and bilingual reading expose the new supplement and retain the
     assert.equal(doc.implementation_status.fdtd, 'educational-example');
     for (const name of cornerCases) assert.ok(doc.html.includes(`code/fdtd/${thirdEdition}/results/${name}/result.json`));
     for (const name of obliqueCases) assert.ok(doc.html.includes(`code/fdtd/${fourthEdition}/results/${name}/result.json`));
-    for (const name of polarizationCases) assert.ok(doc.html.includes(base+`results/${name}/result.json`));
+    for (const name of polarizationCases) assert.ok(doc.html.includes(`code/fdtd/${fifthEdition}/results/${name}/result.json`));
+    for (const name of dispersiveCases) assert.ok(doc.html.includes(base+`results/${name}/result.json`));
     for (const name of scatteringCases) assert.ok(doc.html.includes(`code/fdtd/${secondEdition}/results/${name}/result.json`));
     assert.ok(doc.html.includes(originalBase+`fdtd-${originalEdition}.zip`));
     assert.ok(doc.html.includes(`code/fdtd/${secondEdition}/fdtd-${secondEdition}.zip`));
     assert.ok(doc.html.includes(`code/fdtd/${thirdEdition}/fdtd-${thirdEdition}.zip`));
     assert.ok(doc.html.includes(`code/fdtd/${fourthEdition}/fdtd-${fourthEdition}.zip`));
+    assert.ok(doc.html.includes(`code/fdtd/${fifthEdition}/fdtd-${fifthEdition}.zip`));
     assert.ok(doc.html.includes('id="pml-corners"'));
     assert.ok(doc.html.includes('id="interface-oblique"'));
     assert.ok(doc.html.includes('id="interface-p-polarization"'));
+    assert.ok(doc.html.includes('id="interface-loss-dispersion"'));
     assert.ok(doc.html.includes(base+`fdtd-${edition}.zip`));
     for (const name of cases) {
       assert.deepEqual(readFileSync(new URL(`numerical-methods-atlas/assets/fdtd-${name}.png`,root)), bytes(`results/${name}/summary.png`));

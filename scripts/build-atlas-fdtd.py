@@ -26,7 +26,15 @@ for lang in ['ja', 'en']:
         'fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. ')
     replacement += '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">'+(
         '日英解説・コード・結果' if ja else 'Reading, code and results')+'</a>。' if ja else '<a href="/numerical-methods-atlas/'+lang+'/read/fdtd/">Reading, code and results</a>. '
-    if 'p-polarization' in record['cases']:
+    if 'loss-dispersion' in record['cases']:
+        replacement += ('従来の2次元の界面・PML・p偏光例を保持し、法線入射する1次元の有限厚Ohmic・Lorentz媒質スラブを追加しました。'
+                        '複素誘電率の解析解と反射・透過・吸収率を比較し、直接積算した散逸、媒質振動子の蓄積エネルギー、'
+                        '離散・物理エネルギー収支と格子収束を分けて確認します。一般2次元の分散媒質・分散PMLは検証範囲に含みません。</li>' if ja else
+                        'The retained 2D interface, PML and p-polarized examples are joined by normally incident 1D finite Ohmic and Lorentz slabs. '
+                        'Complex-permittivity slab solutions check reflection, transmission and absorption. Directly accumulated dissipation, '
+                        'material oscillator storage, discrete and physical energy budgets, and grid refinement are separate checks. '
+                        'General 2D dispersive media and dispersive PML are outside the validated scope.</li>')
+    elif 'p-polarization' in record['cases']:
         replacement += ('従来のs偏光界面・PMLに加え、光学のp偏光に対応するTEzの固定例を追加しました。'
                         'Brewster角の単色係数と有限帯域波束の反射率、全反射時のエバネッセント場と正味法線流束を区別し、'
                         'Fresnel解析解、エネルギー収支、格子収束を確認します。選定した無損失・非磁性の条件に範囲を限定します。</li>' if ja else

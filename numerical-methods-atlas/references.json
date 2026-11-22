@@ -3256,8 +3256,8 @@
     "source_review": {
       "level": "full-text",
       "url": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/85a1dfee83863a0bad0dee5c7305ec30_MITRES_6_002S08_chapter7.pdf#page=56",
-      "scope": "Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit.",
-      "scope_ja": "著者の教科書7-6-1/7-6-2節（印刷522–524頁）、7-9-1節（538–540頁）、7-9-3/7-9-4節（541–544頁）を参照。垂直・斜めFresnel振幅、Snell則・臨界角、エバネッセント場、p偏光のBrewster条件と法線パワー換算。場・符号の規約は明示して変換。Fresnelの原著・全巻監査とは区別。"
+      "scope": "Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit. Selected sections 7-2-1 and 7-6-3 additionally consulted for conducting waves, complex wavenumber and conducting-interface context; the finite Lorentz slab and midpoint energy law are derived separately.",
+      "scope_ja": "著者の教科書7-6-1/7-6-2節（印刷522–524頁）、7-9-1節（538–540頁）、7-9-3/7-9-4節（541–544頁）を参照。垂直・斜めFresnel振幅、Snell則・臨界角、エバネッセント場、p偏光のBrewster条件と法線パワー換算。場・符号の規約は明示して変換。Fresnelの原著・全巻監査とは区別。 さらに7-2-1節と7-6-3節の導電媒質中の波、複素波数、導電界面を参照。有限厚Lorentz板と中点離散エネルギー則は別に導出。"
     },
     "origin": "curated-method-metadata"
   },
@@ -3484,6 +3484,23 @@
     },
     "source": "https://arxiv.org/abs/1006.3962",
     "type": "article",
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "meep-materials",
+    "author": "Meep developers",
+    "title": "Materials — Meep Documentation",
+    "year": 2026,
+    "type": "misc",
+    "source": "https://meep.readthedocs.io/en/latest/Materials/",
+    "note": "Living official implementation documentation, accessed 2026-11-22; year records access, not an original discovery date.",
+    "source_review": {
+      "level": "full-text",
+      "checked_on": "2026-11-22",
+      "url": "https://meep.readthedocs.io/en/latest/Materials/#material-dispersion",
+      "scope": "Official HTML, selected Material Dispersion, Loss and Gain, and Conductivity and Complex ε sections: Lorentz polarization equation and exp(−iωt) convention. Meep uses a D-conductivity convention; this example instead uses conventional σE. Its explicit-ADE resonance stability bound is not attributed to our implicit midpoint update. No Meep numerical comparison or full documentation audit.",
+      "scope_ja": "公式HTMLのMaterial Dispersion、Loss and Gain、Conductivity and Complex ε節を参照。Lorentz分極方程式とexp(−iωt)規約。MeepのD導電率と本例の通常のσEを区別し、陽的ADEの共鳴安定条件を本例の陰的中点更新へ転用しない。Meepによる数値比較や全資料監査は未実施。"
+    },
     "origin": "curated-method-metadata"
   },
   {

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-22-r6",
+  "verified_on": "2026-11-22",
+  "archive": {
+    "file": "fdtd-2026-11-22-r6.zip",
+    "sha256": "c76781e2e0273e429160bce1b1050b0b1ff9fffdd7154bf156a659c7f27e1690",
+    "bytes": 46544224,
+    "archive_directory": "fdtd-2026-11-22-r6"
+  },
+  "archive_sha256": "c76781e2e0273e429160bce1b1050b0b1ff9fffdd7154bf156a659c7f27e1690",
+  "source_manifest_sha256": "83adad978e7eebd9816768ea2fa6a7b9c69308e747e355f2ee5b3384957ba588",
+  "returncode": 0,
+  "tests": 108,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed_tests": 108,
+  "passed": 108,
+  "recipes": [
+    {
+      "id": "periodic-wave",
+      "passed": true,
+      "input_sha256": "85c31f5864016207329343e7c70e03ff357c9ab9a418b5d03b99e1968812c2dd",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pec-cavity",
+      "passed": true,
+      "input_sha256": "6c4464a2d3ed801040d1737d0b4358bfd978f5c98f7631962a6c3c7d4aadbf41",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "dielectric-interface",
+      "passed": true,
+      "input_sha256": "7574b21ac1082124984542181fd88285471446f94c6812e9ef689e9784bd2a98",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pml-pulse",
+      "passed": true,
+      "input_sha256": "7622733d2020444d56b0b31cad1eacf4df9575ac23c1292120d5903a1b26c11b",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "pml-corners",
+      "passed": true,
+      "input_sha256": "f6dc833a31fd90c4816314381760b12e387f9d481bd03c37c4f7fbf47a23b440",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "dielectric-oblique",
+      "passed": true,
+      "input_sha256": "d90a070dee775585d0d5fde801161eb5bbc24875600c53a0f848d6b50691f144",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "p-polarization",
+      "passed": true,
+      "input_sha256": "cc7a93c0519329b2fe3afa997869618e9bad79f16916405ca37663f870c95c48",
+      "metrics_identical": true,
+      "csv_identical": true
+    },
+    {
+      "id": "loss-dispersion",
+      "passed": true,
+      "input_sha256": "426ab750de6a90ab550169e47ffb71eba28b50330ca3a02ec60ad700c3b43e55",
+      "metrics_identical": true,
+      "csv_identical": true
+    }
+  ],
+  "environment": {
+    "numpy": "2.0.2",
+    "matplotlib": "3.9.4",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; all tests and all eight fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.",
+  "reference": "Continuum vacuum modes, Fresnel/slab solutions, spectral packet references and independently evaluated discrete energy/work/flux identities. Dissipative work, material storage and transmission are distinct diagnostics. No independent external FDTD solver comparison claimed."
+}

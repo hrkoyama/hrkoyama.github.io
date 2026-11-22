@@ -13,13 +13,13 @@
     "equations": 46,
     "methods": 129,
     "papers": 241,
-    "references": 296,
+    "references": 297,
     "journal_articles": 235,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
-    "other_sources": 24,
+    "other_sources": 25,
     "local_equations": 23,
     "reading_equations": 23,
     "local_methods": 114,
@@ -1446,7 +1446,7 @@
       "chapter": "fdtd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D.",
+      "scope": "Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D.",
       "origin": "curated-fdtd-example"
     },
     {
@@ -3045,6 +3045,12 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "meep-materials",
+      "type": "misc",
+      "identity": "url:https://meep.readthedocs.io/en/latest/Materials/",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3275,9 +3281,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "9f82a08d7e5c40b432bac0e8994fa6fdee62e7e69648c5561b3b3f45236c731b",
+    "catalog/atlas-methods.json": "957a1a215fdb230d349e19f72e62b17ee5ed4dabe75880945b7ac8b6e517b183",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
-    "catalog/atlas-method-primary-references.json": "11e106d28d92e8bd7254d1bff56f2291bee3d5ad45387d5fea56bf09c3e66c00"
+    "catalog/atlas-method-primary-references.json": "bdd56f1d36f3045f1a24fbdd4d4d1ed8f06da0eb1bba328a94b57fb7a987b1a4"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",

@@ -1,0 +1,21 @@
+{
+  "case": "dielectric-interface",
+  "lengths": [16.0, 1.0],
+  "epsilon_left": 1.0,
+  "epsilon_right": 4.0,
+  "interface": 8.0,
+  "center": 4.0,
+  "width": 0.5,
+  "end_time": 8.0,
+  "meshes": [160, 320, 640],
+  "transverse_cells": 4,
+  "courant": 0.65,
+  "acceptance": {
+    "max_field_error": 0.01,
+    "max_amplitude_error": 0.002,
+    "max_energy_fraction_error": 0.002,
+    "max_energy_closure": 0.002,
+    "max_modified_energy_drift": 1e-10,
+    "min_refinement_order": 1.75
+  }
+}

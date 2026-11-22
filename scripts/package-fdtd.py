@@ -21,13 +21,15 @@ SOURCES = ['solver.py', 'run.py', 'test_fdtd.py', 'README.md', 'LICENSE',
            'inputs/dielectric-interface.json', 'inputs/pml-pulse.json',
            'corner.py', 'run_corner.py', 'test_corner.py', 'inputs/pml-corners.json',
            'oblique.py', 'run_oblique.py', 'test_oblique.py', 'inputs/dielectric-oblique.json',
-           'polarization.py', 'run_polarization.py', 'test_polarization.py', 'inputs/p-polarization.json']
-CASES = ['periodic-wave', 'pec-cavity', 'dielectric-interface', 'pml-pulse', 'pml-corners', 'dielectric-oblique', 'p-polarization']
+           'polarization.py', 'run_polarization.py', 'test_polarization.py', 'inputs/p-polarization.json',
+           'dispersive.py', 'run_dispersive.py', 'test_dispersive.py', 'inputs/loss-dispersion.json']
+CASES = ['periodic-wave', 'pec-cavity', 'dielectric-interface', 'pml-pulse', 'pml-corners', 'dielectric-oblique', 'p-polarization', 'loss-dispersion']
 LEGACY = ['solver.py', 'run.py', 'test_fdtd.py', 'inputs/periodic-wave.json', 'inputs/pec-cavity.json',
           'scattering.py', 'run_scattering.py', 'test_scattering.py',
           'inputs/dielectric-interface.json', 'inputs/pml-pulse.json',
           'corner.py', 'run_corner.py', 'test_corner.py', 'inputs/pml-corners.json',
-          'oblique.py', 'run_oblique.py', 'test_oblique.py', 'inputs/dielectric-oblique.json']
+          'oblique.py', 'run_oblique.py', 'test_oblique.py', 'inputs/dielectric-oblique.json',
+          'polarization.py', 'run_polarization.py', 'test_polarization.py', 'inputs/p-polarization.json']
 
 
 def sha(path):
@@ -52,20 +54,21 @@ def package(edition):
         for name in SOURCES:
             (staged/name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/'scripts/fdtd'/name, staged/name)
-        original = ROOT/'code/fdtd/2026-11-22-r4'
+        original = ROOT/'code/fdtd/2026-11-22-r5'
         unchanged = {name: sha(original/name) for name in LEGACY}
         assert all(sha(staged/name) == digest for name, digest in unchanged.items())
         dump(staged/'provenance.json', dict(schema_version=1,
-            unchanged_source_release='https://hrkoyama.github.io/code/fdtd/2026-11-22-r4/',
+            unchanged_source_release='https://hrkoyama.github.io/code/fdtd/2026-11-22-r5/',
             unchanged_source_sha256=unchanged,
-            additions=['Original TEz p-polarization, Brewster and total-internal-reflection examples.',
-                       'Previous vacuum, interface and PML solvers, all six inputs and tests retained byte-for-byte.']))
+            additions=['Original normal-incidence Ohmic and passive Lorentz slab examples with midpoint auxiliary polarization/current.',
+                       'Previous vacuum, interface, PML and p-polarization solvers, all seven inputs and tests retained byte-for-byte.']))
         env = {**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'MPLBACKEND': 'Agg',
                'MPLCONFIGDIR': str(temporary/'mpl'), 'OPENBLAS_NUM_THREADS': '1',
                'OMP_NUM_THREADS': '1'}
 
         def run_case(directory, case, output):
-            runner = ('run_polarization.py' if case == 'p-polarization' else
+            runner = ('run_dispersive.py' if case == 'loss-dispersion' else
+                      'run_polarization.py' if case == 'p-polarization' else
                       'run_oblique.py' if case == 'dielectric-oblique' else
                       'run_corner.py' if case == 'pml-corners' else
                       'run.py' if case in CASES[:2] else 'run_scattering.py')
@@ -84,7 +87,7 @@ def package(edition):
                  if p.is_file() and '__pycache__' not in p.parts}
         dump(staged/'source-manifest.json', dict(schema_version=1, family='fdtd', edition=edition,
             version=edition, public_base_url='https://hrkoyama.github.io/code/fdtd/'+edition+'/',
-            files=files, scope='Original educational Yee schemes: retained TMz vacuum/interface/PML and oblique s-polarization checks; added TEz p-polarization, Brewster and total internal reflection. See per-input assumptions.'))
+            files=files, scope='Original educational Yee schemes: retained TMz/TEz vacuum/interface/PML and s/p polarization checks; added 1D normal-incidence Ohmic and passive Lorentz slabs, direct dissipative work and material storage. See per-input assumptions.'))
         archive = staged/(prefix+'.zip')
         with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zipped:
             for name in sorted([*files, 'source-manifest.json']):
@@ -100,7 +103,7 @@ def package(edition):
             zipped.extractall(extracted)
         extracted /= prefix
         proc = subprocess.run([sys.executable, '-m', 'pytest', '-q', '-p', 'no:cacheprovider',
-            'test_fdtd.py', 'test_scattering.py', 'test_corner.py', 'test_oblique.py', 'test_polarization.py', '--junitxml='+str(temporary/'tests.xml')], cwd=extracted,
+            'test_fdtd.py', 'test_scattering.py', 'test_corner.py', 'test_oblique.py', 'test_polarization.py', 'test_dispersive.py', '--junitxml='+str(temporary/'tests.xml')], cwd=extracted,
             env=env, capture_output=True, text=True, check=True)
         print(proc.stdout, flush=True)
         suite = ET.parse(temporary/'tests.xml').getroot().find('testsuite')
@@ -127,8 +130,8 @@ def package(edition):
             source_manifest_sha256=sha(staged/'source-manifest.json'), returncode=0,
             **counts, passed_tests=counts['tests'], passed=counts['tests'], recipes=recipes,
             environment={n: importlib.metadata.version(n) for n in ['numpy', 'matplotlib', 'pytest']},
-            execution='ZIP independently extracted; all tests and all seven fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.',
-            reference='Continuum vacuum modes, Fresnel interface solution, analytic/spectral packet references and independently evaluated discrete energy/work/flux identities. See per-input scopes, especially the distinction between TIR reactive storage and normal transmission. No independent external FDTD solver comparison claimed.'))
+            execution='ZIP independently extracted; all tests and all eight fixed-input cases rerun without network or private source; numerical metrics and CSVs matched exactly.',
+            reference='Continuum vacuum modes, Fresnel/slab solutions, spectral packet references and independently evaluated discrete energy/work/flux identities. Dissipative work, material storage and transmission are distinct diagnostics. No independent external FDTD solver comparison claimed.'))
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(staged, target)
     print(json.dumps(dict(edition=edition, archive=archive_info, tests=counts, recipes=recipes), indent=2))

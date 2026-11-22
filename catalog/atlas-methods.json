@@ -10899,8 +10899,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "Yee FDTDのTMz/TEz、s/p偏光のFresnel界面、Brewster・全反射とPMLを固定入力で検証。",
-        "en": "Validate Yee TMz/TEz, s/p Fresnel interfaces, Brewster/TIR and PML with fixed inputs."
+        "ja": "Yee FDTDの真空・Fresnel界面・PMLと一次元の損失・Lorentz分散板を固定入力で検証。",
+        "en": "Fixed-input Yee FDTD checks for vacuum, Fresnel interfaces, PML and 1D lossy/Lorentz slabs."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -10934,24 +10934,29 @@
         {
           "url": "https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/",
           "label": "Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach",
-          "scope": "Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit."
+          "scope": "Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit. Selected sections 7-2-1 and 7-6-3 additionally consulted for conducting waves, complex wavenumber and conducting-interface context; the finite Lorentz slab and midpoint energy law are derived separately."
+        },
+        {
+          "url": "https://meep.readthedocs.io/en/latest/Materials/",
+          "label": "Meep developers (accessed 2026). Materials — official documentation",
+          "scope": "Official HTML, selected Material Dispersion, Loss and Gain, and Conductivity and Complex ε sections: Lorentz polarization equation and exp(−iωt) convention. Meep uses a D-conductivity convention; this example instead uses conventional σE. Its explicit-ADE resonance stability bound is not attributed to our implicit midpoint update. No Meep numerical comparison or full documentation audit."
         }
       ],
       "assumptions": [
-        "Selected lossless nonmagnetic planar-interface single-ky TEz p packets; retained TMz vacuum, s-polarized and PML cases."
+        "New r6: linear isotropic passive nonmagnetic finite slabs in vacuum, 1D normal incidence, one Lorentz resonance or Ohmic conduction. Earlier TMz/TEz cases retained."
       ],
       "units": "Dimensionless normalized length, time and fields.",
-      "boundary_conditions": "New TEz cases: periodic y, distant PEC x caps, no PML; exact single-mode Yee reduction with full-2D equivalence tests. Retained TMz periodic/PEC and x/four-side/corner PML cases.",
+      "boundary_conditions": "New r6: distant PEC caps, no PML, aligned half-volume slab interfaces and vacuum monitors. Earlier periodic/PEC and PML examples retained.",
       "next_deliverable": {
-        "ja": "損失・分散媒質、多モード界面とエバネッセント場のPMLを別に検証。",
-        "en": "Separately validate loss/dispersion, multimode interfaces and PML for evanescent fields."
+        "ja": "多共鳴・斜め分散界面と分散媒質PMLは別に検証。",
+        "en": "Separately validate multiple resonances, oblique dispersive interfaces and dispersive-media PML."
       },
       "limitations": {
-        "ja": "教育用Yee FDTD。既存TMzの真空・界面・PMLに加え、第5版でTEzのp偏光・Brewster条件・全反射を、指定した単一横モードの波束で検証。一般2次元更新との同値性、連続Fresnel参照、有限窓の反射透過流束・複素振幅・エバネッセント減衰と蓄積、離散保存量・物理収支を区別。一般媒質・多モード・損失分散・3次元の包括的な実証ではない。",
-        "en": "Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D."
+        "ja": "教育用Yee FDTD。真空・Fresnel界面・s/p偏光・PMLの既存例を保持し、第6版で一次元垂直入射のOhmic・受動Lorentz板を追加。帯域解析解、反射・透過・直接散逸・物質蓄積、修正離散収支・物理流束と格子・時間収束を分けて検査。一般分散、多共鳴、斜め分散入射、分散PML、一般2/3次元の包括的検証ではない。",
+        "en": "Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D."
       },
       "metadata_review": {
-        "level": "Original educational Yee TMz/TEz code: continuum Fresnel checks, exact single-mode/full-2D equivalence, refinement, independent energy/flux budgets and ZIP reruns.",
+        "level": "Original educational Yee code: continuum slab/packet checks, direct dissipative work and oscillator storage, discrete/physical energy budgets, spatial/temporal refinement and independent ZIP reruns.",
         "on": "2026-11-22"
       },
       "aliases": [
@@ -10961,9 +10966,9 @@
         "Yee法"
       ],
       "fdtd_release": {
-        "base": "/code/fdtd/2026-11-22-r5/",
-        "edition": "2026-11-22-r5",
-        "archive": "fdtd-2026-11-22-r5.zip",
+        "base": "/code/fdtd/2026-11-22-r6/",
+        "edition": "2026-11-22-r6",
+        "archive": "fdtd-2026-11-22-r6.zip",
         "manifest": "source-manifest.json",
         "verification": "verification.json",
         "cases": [
@@ -10973,14 +10978,15 @@
           "pml-pulse",
           "pml-corners",
           "dielectric-oblique",
-          "p-polarization"
+          "p-polarization",
+          "loss-dispersion"
         ]
       },
       "assumptions_ja": [
-        "指定した無損失・非磁性平面界面の単一ky TEz p偏光波束。既存TMzの真空・s偏光・PML例も保持。"
+        "第6版は線形・等方・受動・非磁性板、真空中の一次元垂直入射、単一Lorentz共鳴または導電損失。旧TMz/TEz例も保持。"
       ],
       "units_ja": "無次元。長さ・時間・場を規格化。",
-      "boundary_conditions_ja": "新TEz例：y周期、遠方PEC x外端、PMLなし。単一モードへ厳密縮約し全2次元更新との同値性を検査。既存TMz周期/PEC・左右x/四辺/角PMLも保持。"
+      "boundary_conditions_ja": "第6版は遠方PEC外端、PMLなし、半体積平均の整合界面と真空モニター。旧周期/PEC・PML例を保持。"
     },
     {
       "id": "pic",

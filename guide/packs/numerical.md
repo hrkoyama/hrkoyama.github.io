@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-7c58675620
-Captured (UTC): 2026-11-22T14:12:05+00:00
+Snapshot: 2026-11-22-1108388aeb
+Captured (UTC): 2026-11-22T14:28:13+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -3579,34 +3579,24 @@ Coverage: reading
 
 Historical atlas →Computed gallery →
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Yee FDTD: s/p polarization, Fresnel interfaces and PML [en]
+## Yee FDTD: foundations and verified examples — Yee FDTD: foundations and verified examples [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
 
-Revision r5 adds TEz p polarization, the Brewster condition and total internal reflection. Finite-band packet fluxes, complex reflection, evanescent decay, energy budgets and grid refinement are tested. The six earlier TMz inputs and four frozen editions remain available.
-Go to revision-r5 implementation and measurements
-Revision r4 validates oblique dielectric incidence with finite-band s-polarized packets. Fresnel fields, reflected/transmitted energy, global/local budgets and grid refinement are assessed separately. All three earlier editions and five inputs remain available.
-New results: Oblique incidence at a dielectric interface
-Revision r3 extends the PML to all four sides and corners. Separate packets aimed at sides and obliquely at corners test boundary returns, directional PML work, four-edge energy flux and grid refinement. Both earlier editions and their four inputs are retained.
-Revision r2 adds a dielectric interface and left/right x-directed PML to the original two vacuum cases. The first part covers vacuum analytic modes; the extension covers normal-incidence Fresnel comparisons and boundary reflections of normal/oblique packets. The original code edition, figures and measurements are retained.
-
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Yee FDTD: s/p polarization, Fresnel interfaces and PML [en]
-
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
-Coverage: reading
-
+The Yee method advances Maxwell equations with staggered electric and magnetic fields. Start with the basic equations, then select a verification example. The latest r6 addition covers one-dimensional lossy and Lorentz-dispersive media.
+Basic model · Loss and dispersion · Fresnel interfaces · Side/corner PML · Oblique incidence · p polarization, Brewster and TIR
 This original educational implementation evolves 2D TMz fields (Ez, Hx, Hy) with original vacuum cases in dimensionless homogeneous vacuum without current or charge sources. The original periodic plane waves and rectangular perfect-electric-conductor (PEC) cavity are compared with continuum analytic solutions. Grid refinement, numerical dispersion, a discrete invariant and an approximation to physical energy are measured separately.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Model, units and scope [en]
+## Yee FDTD: foundations and verified examples — Model, units and scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#model
 Coverage: reading
 
 \partial_t E_z=\partial_xH_y-\partial_yH_x,\qquad \partial_tH_x=-\partial_yE_z,\qquad \partial_tH_y=\partial_xE_z,\quad \epsilon=\mu=c=1.
-Length, time and fields are normalized so ε=μ=c=1. The rectangle has Lx=1 and Ly=1.5, with mode indices (m,l)=(1,1). An oblique periodic mode on a rectangular domain exercises both spatial derivatives and magnetic-field signs. Dispersive media, losses, dielectric interfaces and driven sources are outside this edition.
+Length, time and fields are normalized so ε=μ=c=1. The rectangle has Lx=1 and Ly=1.5, with mode indices (m,l)=(1,1). An oblique periodic mode on a rectangular domain exercises both spatial derivatives and magnetic-field signs. These initial vacuum examples exclude dispersion, loss, interfaces and external excitation; later examples cover their stated additional scopes.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Yee placement and staggered time update [en]
+## Yee FDTD: foundations and verified examples — Yee placement and staggered time update [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#algorithm
 Coverage: reading
@@ -3615,7 +3605,7 @@ Coverage: reading
 Ez lives at nodes and integer times; Hx is displaced by half a y cell and Hy by half an x cell, both at half-integer times. Each step advances H first and then E. Initial E at time zero and H at −Δt/2 are sampled from analytic fields; assigning both fields time zero would introduce a first-order initialization error.
 Periodic arrays omit duplicate endpoints and wrap differences. PEC walls fix tangential Ez=0 and update only interior electric nodes. Half weights for boundary magnetic samples make the weighted inner products compatible with discrete summation by parts and the energy identity.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Continuum periodic plane wave [en]
+## Yee FDTD: foundations and verified examples — Continuum periodic plane wave [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#periodic-mode
 Coverage: reading
@@ -3623,7 +3613,7 @@ Coverage: reading
 \begin{gathered}k_x=2\pi m/L_x,\quad k_y=2\pi l/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\quad\phi=k_xx+k_yy-\omega t,\\ E_z=\cos\phi,\quad H_x=(k_y/\omega)\cos\phi,\quad H_y=-(k_x/\omega)\cos\phi.\end{gathered}
 Evaluate the electric and both magnetic fields at their own spatial locations and times. Frequency supplies a phase-speed error separate from field error. A sampled continuum magnetic field need not have exactly zero discrete divergence, so the continuum-initialized run checks preservation of its initial divergence.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Continuum PEC cavity eigenmode [en]
+## Yee FDTD: foundations and verified examples — Continuum PEC cavity eigenmode [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#cavity-mode
 Coverage: reading
@@ -3631,7 +3621,7 @@ Coverage: reading
 \begin{gathered}k_x=m\pi/L_x,\quad k_y=l\pi/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\\E_z=\sin(k_xx)\sin(k_yy)\cos(\omega t),\\H_x=-\frac{k_y}{\omega}\sin(k_xx)\cos(k_yy)\sin(\omega t),\quad H_y=\frac{k_x}{\omega}\cos(k_xx)\sin(k_yy)\sin(\omega t).\end{gathered}
 This standing wave has Ez=0 on all four walls. It uses a different boundary implementation from the periodic wave, with checks of maximum wall electric field, eigenfrequency and field error. The cavity here is a z-invariant two-dimensional section; it does not cover the full three-dimensional cavity spectrum.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — CFL condition and discrete dispersion [en]
+## Yee FDTD: foundations and verified examples — CFL condition and discrete dispersion [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#conditions
 Coverage: reading
@@ -3640,7 +3630,7 @@ Coverage: reading
 The fixed input sets a Courant-number ceiling of 0.7; S≥1 is rejected. Rounding the required step count upward and choosing Δt from that count reaches the prescribed 1.1-period comparison time exactly, with actual S at or slightly below 0.7. Refining the grid also refines the time step, so measured orders describe coupled spatial and temporal refinement. They are not separate experimental estimates of spatial order and temporal order.
 A three-time-level recurrence for evolved modal projection coefficients measures frequency. Its convergence toward continuum ω is separate from agreement with discrete ωh. Additional tests initialize magnetic amplitudes with the discrete wave numbers and check the exact discrete eigenmode to roundoff accuracy.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Discrete invariant versus physical energy [en]
+## Yee FDTD: foundations and verified examples — Discrete invariant versus physical energy [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#energy
 Coverage: reading
@@ -3649,7 +3639,80 @@ Coverage: reading
 Inner products include cell area and the appropriate PEC boundary weights. U*, containing magnetic fields from two different half times, is conserved up to roundoff in the closed periodic/PEC systems. The strict CFL inequality also ensures positivity of this modified energy. Usync, using magnetic fields averaged to an integer time, is a second-order approximation to physical energy but is not exactly invariant.
 For unit-amplitude continuum fields the total energies are LxLy/2 for the traveling periodic wave and LxLy/8 for the cavity standing wave. Twelve periods are used to track relative U* drift and the variation of Usync; the error against the analytic physical energy must decrease at approximately second order under grid/time refinement. Tests also check U* conservation with compatible random fields, beyond single eigenmodes.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed inputs and measured results [en]
+## Yee FDTD: foundations and verified examples — Revision r6: lossy and dispersive media [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+A one-dimensional packet is normally incident on a finite slab surrounded by vacuum. Two examples use Ohmic conductivity and one damped Lorentz resonance. Ez, polarization P and polarization current J occupy integer times; Hy occupies half times. A Yee magnetic step is followed by a local implicit-midpoint E/P/J solve.
+\begin{gathered}\epsilon_\infty\partial_t E=\partial_xH-\sigma E-J,\quad\partial_tH=\partial_xE,\\\partial_tP=J,\quad\partial_tJ=fE-\omega_0^2P-\gamma J,\quad f=\Delta\epsilon\,\omega_0^2,\\\epsilon(\omega)=\epsilon_\infty+\frac{f}{\omega_0^2-\omega^2-i\gamma\omega}+\frac{i\sigma}{\omega},\quad e^{-i\omega t}.\end{gathered}
+σ multiplies the conventional current σE. When f=0, P=J=0 and oscillator terms are omitted. Distant PEC caps close the domain, with no PML in this example. Interface electric control volumes use half-volume averages of ε∞, σ and f.
+The analytic solution includes internal multiple reflections and a complex wavenumber, weighted by the actual incident spectrum. Numerical R/T come from exterior Poynting fluences; A comes from directly accumulated conductive and polarization damping work. Absorption and transient material storage are separated, with energy budgets and spatial/temporal refinement checked.
+Finest-grid finite-window measurements and spectrum-weighted analytic values.
+SlabNumerical RNumerical TDirect AAnalytic R / T / A
+
+## Yee FDTD: foundations and verified examples — Revision r6: lossy and dispersive media [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+ohmic0.04217920.1631050.7947160.0422517 / 0.163222 / 0.794527
+lorentz0.1210680.05543760.8234950.121356 / 0.0555188 / 0.823125
+Results and all acceptance checks · convergence.csv · Open full-size figure
+Revision-r6 code ZIP: loss/dispersion plus seven retained inputs · Bilingual execution guide
+Scope is linear, isotropic, nonmagnetic 1D normal incidence, with the stated spectrum and finite window. Drude, multiple resonances, oblique dispersive incidence, dispersive media combined with PML, and general 2D/3D are unvalidated.
+Open derivation, full refinement results and reproduction material\begin{gathered}n=\sqrt{\epsilon},\quad\Re n\ge0,\quad\Im n\ge0,\quad\rho=\frac{1-n}{1+n},\quad z=e^{2in\omega d},\\r=\frac{\rho(1-z)}{1-\rho^2z},\quad t=\frac{(1-\rho^2)e^{in\omega d}}{1-\rho^2z},\\R=|r|^2,\quad T=|t|^2,\quad A=1-R-T,\\A_{\rm volume}=\int_0^d\!\left(\sigma+\frac{\gamma\omega^2f}{|\omega_0^2-\omega^2-i\gamma\omega|^2}\right)|E(x)|^2\,dx.\end{gathered}
+t is the electric amplitude at the exit face. Both exteriors are vacuum, so T=|t|². E(x) in the volume integral has unit incident amplitude. Analytic A=1−R−T is checked against this separate internal-field dissipation integral. Carrier coefficients, spectral averages and finite-window DFT differences are retained separately.
+
+## Yee FDTD: foundations and verified examples — Revision r6: lossy and dispersive media [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+\begin{gathered}U_*^n=\tfrac12\|E^n\|_{\epsilon_\infty,h}^2+\tfrac12\Re\langle H^{n-1/2},H^{n+1/2}\rangle_h+U_{\rm mat}^n,\\U_{\rm mat}=\sum_{f_j>0}\frac{|J_j|^2+\omega_0^2|P_j|^2}{2f_j}\Delta x,\\\Delta W_\sigma=\Delta t\sum_j\sigma_j|\bar E_j|^2\Delta x,\quad\Delta W_\gamma=\Delta t\sum_{f_j>0}\frac{\gamma|\bar J_j|^2}{f_j}\Delta x,\\U_*^n+W_\sigma^n+W_\gamma^n=U_*^0.\end{gathered}
+Complex fields represent two real quadratures, consistently across energies and fluxes. Wσ/Wγ are computed from midpoint fields, independently of energy deficits and 1−R−T. The modified discrete energy identity and physical local Poynting budget with centered H have separate criteria. Midpoint inner products cancel E–J exchange, and paired discrete curls cancel at PEC caps, giving the identity. The strict CFL uses ε∞, rather than static permittivity: Δt/Δx<min(1,√ε∞). Oscillator storage is not added to absorption.
+Three grids at matched physical clocks.
+SlabNxField relative L2R errorT errorA errorPhysical flux residual
+ohmic30720.120280.001165190.001887640.003052830.00215611
+ohmic61440.03010150.0002903310.0004686340.0007589650.00053856
+ohmic122880.0075267.2522e-050.0001169550.0001894770.000134611
+lorentz30720.104430.004686770.001302980.005989750.00215381
+lorentz61440.02633820.001157060.0003250520.001482110.000537989
+lorentz122880.006597650.0002883548.12193e-050.0003695730.000134468
+
+## Yee FDTD: foundations and verified examples — Revision r6: lossy and dispersive media [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+Finest-grid Lorentz polarization P and current J relative L2 errors are 0.011884 and 0.0124923.
+ohmic observed orders: field 1.99849, 1.99988; R 2.0048, 2.00121; T 2.01005, 2.0025; A 2.00804, 2.00201; complex r 2.00255, 2.00077; complex t 2.00708, 2.0018; physical flux budget 2.00126, 2.00032; physical energy 2.00565, 2.00141; fixed-space time-halving self-convergence order: 2.00388
+lorentz observed orders: field 1.9873, 1.99713; R 2.01813, 2.00455; T 2.00307, 2.00078; A 2.01484, 2.00372; complex r 1.99893, 2.00058; complex t 2.00077, 2.00052; physical flux budget 2.00124, 2.00031; physical energy 2.00952, 2.00236; P 2.02312, 2.00687; J 2.02239, 2.00672; fixed-space time-halving self-convergence order: 2.00371
+Separate conservation, loss, residual storage and reference controls.
+SlabMaximum modified balance residual|R+T+A−1|Final material storage / incidentReference window fluence gapReference period-doubling field gap
+ohmic1.64405e-133.04201e-1403.33067e-161.28307e-09
+lorentz1.76686e-131.09499e-103.10325e-126.24744e-111.92765e-09
+
+## Yee FDTD: foundations and verified examples — Revision r6: lossy and dispersive media [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+Field accuracy is measured at the saved interaction clock; flux/loss integration continues to the later end time. Initial E is the incident packet, H is half-time aligned using the Yee dispersion relation, and P=J=0. A same-Yee vacuum control isolates reflection. Omitted continuum scattering/polarization tails, caps, omitted frequency tails, doubled reference period/spatial quadrature and finite-window DFT gaps are recorded in JSON. Temporal self-convergence concerns the fixed spatial discretization, rather than comparison with an external PDE solver.
+dispersive.py · run_dispersive.py · test_dispersive.py · Fixed input and tolerances · energy.csv · solution.csv · spectrum.csv · waveforms-ohmic.csv · waveforms-lorentz.csv · SHA-256 manifest · Earlier-source provenance · 108 tests passed / extraction rerun
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py
+python run_dispersive.py --input inputs/loss-dispersion.json --output output-loss
+
+## Yee FDTD: foundations and verified examples — Revision r6: lossy and dispersive media [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+Independent ZIP extraction reran all tests and all eight inputs with identical metrics and every CSV. Numerical sources/tests of the seven earlier inputs and all five earlier releases remain unchanged. This supplement does not increment other execution registries. Selected official Meep documentation supplies Lorentz-model context; its conductivity convention and explicit ADE differ from this implementation.
+Detailed initial evidence: periodic wave and PEC cavity
+
+## Yee FDTD: foundations and verified examples — Fixed inputs and measured results [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#verification
 Coverage: reading
@@ -3666,14 +3729,15 @@ PEC cavity32 × 480.00135142.03830.000192444.441e-16
 PEC cavity64 × 960.000333262.01974.7804e-052.22e-16
 Periodic plane wave · JSON · convergence.csv · energy.csvPEC cavity · JSON · convergence.csv · energy.csv
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed inputs and measured results [en]
+## Yee FDTD: foundations and verified examples — Fixed inputs and measured results [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#verification
 Coverage: reading
 
 Acceptance tolerances are saved in each fixed input. Separate checks require field error ≤0.01, observed orders ≥1.8, relative frequency error ≤0.002, discrete-dispersion identity error ≤10⁻⁹ and relative U* drift ≤2×10⁻¹¹. Separate checks require zero wall electric field, preservation of initial magnetic divergence, maximum Usync error against the analytic total energy ≤0.003, and approximately second-order refinement of that error. The Usync variation span is retained as a diagnostic.
+Detailed r2 evidence: interface and x PML
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Dielectric interface: Fresnel amplitudes and energy [en]
+## Yee FDTD: foundations and verified examples — Dielectric interface: Fresnel amplitudes and energy [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface
 Coverage: reading
@@ -3687,14 +3751,14 @@ NxRelative field L² errorMeasured rMeasured tIntegrated RIntegrated T|R+T−1|
 3200.0184-0.332490.666750.110530.889220.00025183
 6400.0045536-0.333120.666710.110960.888976.5291e-05
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Dielectric interface: Fresnel amplitudes and energy [en]
+## Yee FDTD: foundations and verified examples — Dielectric interface: Fresnel amplitudes and energy [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#interface
 Coverage: reading
 
 Observed orders: field 2.0342, 2.0146; reflection-amplitude error 2.0682, 2.0162; transmission-amplitude error 3.9033, 0.91765; energy closure 1.8421, 1.9475. Leading-error cancellation affects transmission amplitude; every metric is not claimed to exhibit the same second order on every pair.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Left/right x-PML: normal and oblique packets [en]
+## Yee FDTD: foundations and verified examples — Left/right x-PML: normal and oblique packets [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#pml
 Coverage: reading
@@ -3703,7 +3767,7 @@ Coverage: reading
 Eₓ and Eᵧ are auxiliary splits of Ez, not physical x/y electric components. A Bérenger-type split-field PML on only the left/right x sides of a y-periodic TMz strip matches damping of the electric split Eₓ and magnetic Hy. Outer caps are PEC. This differs from an isotropic sponge that damps every field component equally.
 Physical PML thickness 2, cubic damping profile and maximum rate 10 remain fixed across 384×16,768×32 and 1536×64 grids in a 12×π/4 domain. A Gaussian-weighted sum of 511 positive-kx continuum Fourier modes uses carrier kx=12 and ky=0 or 8. Carrier angles are 0° and about 33.690°, while finite bandwidth gives an angular spectrum. Every mode solves the continuum Maxwell equations exactly; the same finite superposition is the analytic reference.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Left/right x-PML: normal and oblique packets [en]
+## Yee FDTD: foundations and verified examples — Left/right x-PML: normal and oblique packets [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#pml
 Coverage: reading
@@ -3718,7 +3782,7 @@ GridCarrier angle (deg)Early relative field errorReturn amplitude ρAnalytic ret
 1536 × 6400.00338484.509e-054.5412e-051.7049e-062.5538e-150.00033546
 384 × 1633.690.053840.000195850.000202720.000138368.0989e-160.0076616
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Left/right x-PML: normal and oblique packets [en]
+## Yee FDTD: foundations and verified examples — Left/right x-PML: normal and oblique packets [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#pml
 Coverage: reading
@@ -3730,7 +3794,7 @@ Observed orders at ky=8: early field 1.9935, 2.0076; reflected-waveform error 1.
 The finite-layer return also has an analytic modal reference. With G=γmax d/(m+1), each longitudinal mode has round-trip attenuation exp[−2(kx/ω)G] and PEC electric reflection factor−1. Sum the phases of every reflected mode and normalize the maximum RMS waveform difference by incident amplitude. Raw returned amplitude is not required to converge to zero; its error against this analytic finite-layer waveform is refined. The check is limited to a single-bounce time window; initial layer energy and cap fields are recorded in JSON.
 \omega_k=\sqrt{k^2+k_y^2},\quad G=\int_{L-d}^{L}\gamma(x)\,dx=\frac{\gamma_{\max}d}{m+1},\quad E_{\rm ret}(x,y,t)=\operatorname{Re}\sum_{k>0}-A_k e^{i[k(2L-x-x_0)+k_y y-\omega_k t]}e^{-2(k/\omega_k)G}.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Energy budgets and revision-r2 reproduction [en]
+## Yee FDTD: foundations and verified examples — Energy budgets and revision-r2 reproduction [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#scattering-verification
 Coverage: reading
@@ -3740,7 +3804,7 @@ Here U* is the modified discrete energy weighted by permittivity. Magnetic work 
 S_x=-E_zH_y,\qquad U_{\rm physical}(t)-U_{\rm physical}(0)+\int_0^t\!\int_0^{L_y}[S_x(x_R,y,\tau)-S_x(x_L,y,\tau)]\,dy\,d\tau=0.
 Coarse meshes did not enter the asymptotic regime for the long round-trip phase error. The final input therefore uses 384×16,768×32 and 1536×64 with unchanged physical layer and acceptance tolerances; earlier trial outcomes were not relabeled as successful.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Energy budgets and revision-r2 reproduction [en]
+## Yee FDTD: foundations and verified examples — Energy budgets and revision-r2 reproduction [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#scattering-verification
 Coverage: reading
@@ -3760,15 +3824,16 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py
 python run_scattering.py --input inputs/dielectric-interface.json --output output-interface
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Energy budgets and revision-r2 reproduction [en]
+## Yee FDTD: foundations and verified examples — Energy budgets and revision-r2 reproduction [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#scattering-verification
 Coverage: reading
 
 python run_scattering.py --input inputs/pml-pulse.json --output output-pml
 Revision r2 validates normal incidence at the material interface and left/right x-PML in a vacuum strip. Four-side/corner PML is added below in r3. Oblique material-interface incidence, grazing incidence, dispersive matter, general geometry and 3D remain separate tasks.
+Detailed r3 evidence: sides and corners
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Directional damping and corner overlap [en]
+## Yee FDTD: foundations and verified examples — Directional damping and corner overlap [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3777,7 +3842,7 @@ Coverage: reading
 In the implemented vacuum 2D TMz square, γx layers occupy the left/right sides and γy layers the bottom/top sides. All outer caps are PEC. Both directional rates are nonzero in the four overlap corners. Eₓ and Eᵧ are auxiliary splits of Ez, not physical x/y electric components. Each rate is sampled at its own electric or staggered magnetic location; damping uses the trapezoidal time update.
 One packet family targets ordinary sides; another targets corners obliquely. Checks establish more than a decrease in global energy: all four outgoing fluxes and contributions in all four corners are recorded. Physical layer thickness, strength and shape stay fixed during refinement, so changing resolution does not change the physical layer.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Reference waveform and interpretation of reflection [en]
+## Yee FDTD: foundations and verified examples — Reference waveform and interpretation of reflection [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3786,7 +3851,7 @@ A boundary-free Fourier-mode evolution of the same discrete Maxwell equations se
 The reported boundary-induced probe error normalizes the difference between PML and boundary-free monitor fields by incident amplitude. It includes finite-layer and initial PML/auxiliary-tail effects and is not called a pure ideal-PML reflection coefficient. A finite PEC-backed layer can retain nonzero returns even at very fine resolution. Absolute return amplitude is distinguished from changes of the return waveform under refinement. No zero-reflection guarantee is made outside the observation window or for arbitrary incidence.
 Initial fields are standing finite-Fourier packets. Axis carriers center on (±6, 0), (0, ±6); diagonal carriers center on (±4, ±4), producing four outgoing groups. Diagonal carrier directions are 45 degrees; the finite bandwidth is distinct from a single-angle monochromatic plane wave.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Reference waveform and interpretation of reflection [en]
+## Yee FDTD: foundations and verified examples — Reference waveform and interpretation of reflection [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3794,7 +3859,7 @@ Coverage: reading
 The four probes are (c±a,c),(c,c±a) for axis packets and (c±a,c±a) for diagonal packets, with c=8 and a=2. The formula uses each grid’s saved time set Tₕ; the self-convergence norm is likewise the maximum over the window of four-probe RMS.
 \begin{gathered}A_{\mathrm{inc},h}=\max_{t\in\mathcal T_h,\,0\le t<8}\sqrt{\frac14\sum_{j=1}^{4}E_{\mathrm{cont}}(p_j,t)^2},\\r_{h,j}(t)=\frac{E_{\mathrm{PML},h}(p_j,t)-E_{\mathrm{free},h}(p_j,t)}{A_{\mathrm{inc},h}},\\\rho_h=\max_{t\in\mathcal T_h,\,8\le t\le24}\sqrt{\frac14\sum_{j=1}^{4}r_{h,j}(t)^2}.\end{gathered}
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Independently evaluated work and four-edge flux [en]
+## Yee FDTD: foundations and verified examples — Independently evaluated work and four-edge flux [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3804,7 +3869,7 @@ The averaged fields and modified energy U* retain their definitions above, but w
 \begin{gathered}S_x=-E_zH_y,\quad S_y=E_zH_x,\\\Phi(t)=\int_{y_B}^{y_T}(S_x(x_R,y,t)-S_x(x_L,y,t))\,dy+\int_{x_L}^{x_R}(S_y(x,y_T,t)-S_y(x,y_B,t))\,dx,\\U_{\rm physical}(t)-U_{\rm physical}(0)+\int_0^t\Phi(\tau)\,d\tau=0.\end{gathered}
 The physical rectangle inside the PML sums right-minus-left and top-minus-bottom Poynting fluxes and compares them with interior energy change. Electric corner nodes use quarter quadrature weights and edge nodes half weights, avoiding double counting. The exact full-domain discrete work identity is checked separately from the interpolated/time-integrated physical-region balance.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed input and saved measurements [en]
+## Yee FDTD: foundations and verified examples — Fixed input and saved measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3821,7 +3886,7 @@ diagonal256 × 2560.0105171.0326e-058.5392e-160.0067585
 diagonal512 × 5120.00265931.0584e-058.4959e-160.0016973
 axis observed orders: early field 1.9046, 1.9962; four-edge flux balance 1.9461, 1.9865; return-waveform self-convergence 1.66. Doubling the reference period changes the trace by 8.6937e-11 relative to incident amplitude.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed input and saved measurements [en]
+## Yee FDTD: foundations and verified examples — Fixed input and saved measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3834,7 +3899,7 @@ diagonal0.249580.249580.249580.24958
 Diagonal-family accumulated absolute corner work increments / initial total energy: SW=0.11008, SE=0.11008, NW=0.11008, NE=0.11008. Regional work is summed over cells/components before taking its absolute value at each step, then accumulated in time. This is distinct from integrating the pointwise absolute work density.
 axis: zeroing the initial layer fields changes the finest-grid monitor trace by 3.4327e-09 relative to incident amplitude, or 9.4624e-06 of the standard return signal (criterion ≤ 0.01). This sensitivity control preserves the interior packet while perturbing tiny physical/auxiliary fields inside the layers. It is a different initial condition, not a rigorous error bound for the standard input.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed input and saved measurements [en]
+## Yee FDTD: foundations and verified examples — Fixed input and saved measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3844,7 +3909,7 @@ Return-waveform self-convergence orders are observations for this packet, layer 
 Waveform differences across meshes are compared at common physical times. Self-convergence orders and any Richardson-type estimates are empirical diagnostics, not rigorous error bounds. They do not require every raw return to vanish.
 \delta_h=\|r_h-\mathcal I r_{h/2}\|_{\mathcal W},\qquad p_h=\frac{\log(\delta_h/\delta_{h/2})}{\log2}.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Download and reproduce revision r3 [en]
+## Yee FDTD: foundations and verified examples — Download and reproduce revision r3 [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3864,8 +3929,9 @@ python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
 python run_corner.py --input inputs/pml-corners.json --output output-corners
 The ZIP was independently extracted; all tests and all five inputs were rerun with identical numerical metrics and CSVs. Numerical sources, inputs and tests from the earlier editions remain byte-for-byte unchanged. This supplement is separate from the common 22-example / 67-problem inventory.
 Revision r3 covers the specified vacuum 2D TMz packets, square and finite time window. Oblique material-interface incidence is tested separately in r4 below. General grazing incidence, dispersive/anisotropic matter, 3D and curved PML geometries need separate validation.
+Detailed r4 evidence: oblique incidence
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — TMz, s polarization and Fresnel coefficients [en]
+## Yee FDTD: foundations and verified examples — TMz, s polarization and Fresnel coefficients [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3874,7 +3940,7 @@ Two lossless, nondispersive, nonmagnetic dielectrics meet at x=a. Ez is perpendi
 \omega^2=(k^2+k_y^2)/\epsilon_1,\quad q=\sqrt{\epsilon_2\omega^2-k_y^2},\quad n_1\sin\theta_i=n_2\sin\theta_t,\quad\mu_1=\mu_2=1.r_s(k)=\frac{k-q}{k+q},\quad t_s(k)=\frac{2k}{k+q},\quad R_s=|r_s|^2,\quad T_s=\frac{q}{k}|t_s|^2,\quad R_s+T_s=1.
 Frequency ω and tangential wave number ky are shared across the interface for each positive incident normal wave number k. The selected low-to-high index cases have propagating transmitted waves. Lowercase r,t are signed electric amplitudes; uppercase R,T are normal energy-flux fractions. Transmittance includes q/k and is distinct from t².
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Analytic reference for a finite-band packet [en]
+## Yee FDTD: foundations and verified examples — Analytic reference for a finite-band packet [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3882,7 +3948,7 @@ Coverage: reading
 \begin{aligned}E_i&=\Re\int_0^\infty A(k)e^{i[k(x-c)+k_y y-\omega t]}\,dk,\\E_r&=\Re\int_0^\infty A(k)r_s(k)e^{i[k(2a-x-c)+k_y y-\omega t]}\,dk,\\E_t&=\Re\int_0^\infty A(k)t_s(k)e^{i[k(a-c)+q(x-a)+k_y y-\omega t]}\,dk.\end{aligned}\begin{aligned}R_{\rm packet}&=\frac{\int_0^\infty |A(k)|^2R_s(k)\,dk}{\int_0^\infty |A(k)|^2\,dk},\\T_{\rm packet}&=\frac{\int_0^\infty |A(k)|^2T_s(k)\,dk}{\int_0^\infty |A(k)|^2\,dk},\qquad\frac{dq}{dk}=\frac{\epsilon_2 k}{\epsilon_1 q}.\end{aligned}A(k)=\frac{w}{\sqrt{2\pi}}e^{-w^2(k-k_0)^2/2},\quad a_m=A(k_m)\Delta k,\quad\Delta k=2\pi/P,\quad n_j=\sqrt{\epsilon_j},\qquad U_{\rm inc}=\pi\epsilon_1 L_y\int_0^\infty |A(k)|^2\,dk\approx\frac{\epsilon_1 L_yP}{2}\sum_m a_m^2.
 Each mode of a positive-k packet centered initially at c uses its Fresnel solution. Magnetic amplitudes are Hx=(ky/ω)E and Hy=−(kx/ω)E with signed kx; E and H are evaluated at their own Yee positions and times. A finite quadrature evaluates the Gaussian-weighted spectral integral. Halving its spacing and integrating reference energy in the finite box control the approximation. Since refracted q values are nonuniform, quadrature period P does not imply that the transmitted packet is periodic in x.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Analytic reference for a finite-band packet [en]
+## Yee FDTD: foundations and verified examples — Analytic reference for a finite-band packet [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3891,7 +3957,7 @@ Carrier-angle monochromatic coefficients are distinguished from packet R,T, whic
 g_r=\frac{\sum_{x<a,y}E_{\rm num}E_{r,\rm ref}}{\sum_{x<a,y}E_{r,\rm ref}^2},\quad g_t=\frac{\sum_{x>a,y}E_{\rm num}E_{t,\rm ref}}{\sum_{x>a,y}E_{t,\rm ref}^2},\qquad g_r,g_t\to1.
 Amplitude diagnostics project the final numerical Ez separately onto the signed analytic reflected/transmitted templates. The target gain is 1; these gains are distinct from measured carrier r,t. Separate L2 waveform errors retain phase and shape discrepancies.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Independent energy and flux checks [en]
+## Yee FDTD: foundations and verified examples — Independent energy and flux checks [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3899,7 +3965,7 @@ Coverage: reading
 \begin{gathered}U_*^n=\tfrac12\bigl(\langle E^n,\epsilon E^n\rangle_h+\langle H^{n-1/2},H^{n+1/2}\rangle_h\bigr),\quad U_*^n=U_*^0,\\S_x=-E_zH_y,\quad U_{[x_L,x_R]}(t)-U_{[x_L,x_R]}(0)+\int_0^t\!\int_0^{L_y}[S_x(x_R,y,\tau)-S_x(x_L,y,\tau)]\,dy\,d\tau=0.\end{gathered}
 The full domain checks conservation of modified discrete energy with permittivity weighting. Physical energy averages H to integer times; two faces of an interior slab straddling the interface provide directly evaluated Poynting flux, integrated by the trapezoidal rule. Flux is not defined from an energy difference. This approximate physical balance is distinct from the exact discrete invariant. The interface electric node retains the arithmetic permittivity average.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed input and measured refinement [en]
+## Yee FDTD: foundations and verified examples — Fixed input and measured refinement [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3921,7 +3987,7 @@ Carrier incidence°Carrier refraction°Carrier rCarrier tCarrier RPacket referen
 ky=0: observed orders, field 1.99529, 2.00095; reflected energy 2.01165, 2.0029; transmitted energy 2.02059, 2.00515; flux budget 1.99303, 1.99822. Finest template gains (gᵣ,gₜ)=(0.998868, 0.999845).
 ky=4: observed orders, field 1.98505, 2.00037; reflected energy 2.01151, 2.00285; transmitted energy 2.01829, 2.00455; flux budget 1.99343, 1.99836. Finest template gains (gᵣ,gₜ)=(0.998485, 0.999572).
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed input and measured refinement [en]
+## Yee FDTD: foundations and verified examples — Fixed input and measured refinement [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3932,7 +3998,7 @@ ky=0: initial numerical physical energy / incident quadrature 0.999894; final |R
 ky=4: initial numerical physical energy / incident quadrature 0.999847; final |R+T−1| 0.000153186.
 The small R+T closure difference includes the mismatch between initial numerical physical energy and analytic incident quadrature. This case has no absorption or PML, and modified discrete energy is conserved. Refining physical-energy interpolation/quadrature error is distinct from physical dissipation.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Download and reproduce revision r4 [en]
+## Yee FDTD: foundations and verified examples — Download and reproduce revision r4 [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3952,8 +4018,9 @@ python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.
 python run_oblique.py --input inputs/dielectric-oblique.json --output output-oblique
 Independent ZIP extraction reran all tests and all six inputs with identical metrics and CSVs. The old five inputs, numerical sources/tests and three frozen editions are retained. This dedicated FDTD supplement is separate from the common execution registry and other fields’ verification counts.
 Revision r4 covers the specified lossless/nonmagnetic s-polarized packets with propagating transmission, three grids and finite time. The p-polarized Brewster and TIR cases are tested separately in r5 below. Loss/dispersion and 3D remain separate tasks. References are analytic modes and quadrature, not an external FDTD solver.
+Detailed r5 evidence: p polarization, Brewster and TIR
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — TEz staggering and optical p polarization [en]
+## Yee FDTD: foundations and verified examples — TEz staggering and optical p polarization [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3963,7 +4030,7 @@ The new TEz update places Hz at cell centers and integer times, with Ex/Ey on th
 \begin{gathered}\partial_y\longmapsto iK_y,\qquad K_y=\frac{2}{\Delta y}\sin\frac{k_y\Delta y}{2},\\\int_0^{L_y}\Re(Ae^{ik_yy})\Re(Be^{ik_yy})\,dy=\frac{L_y}{2}\Re(AB^*),\\k_yL_y=2\pi m,\qquad 0<k_y\Delta y<\pi.\end{gathered}
 Fixed runs use an exact reduction to one positive ky mode. The derivative is the Yee symbol iKy, not the continuum iky. Separate tests establish equivalence with the full 2D array update; fixed runs refine both dx and dy. They do not time-step full Nx×Ny arrays in each benchmark.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Magnetic Fresnel amplitudes and the two special angles [en]
+## Yee FDTD: foundations and verified examples — Magnetic Fresnel amplitudes and the two special angles [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3972,14 +4039,14 @@ Coverage: reading
 The convention is exp[i(kx x+ky y−ωt)]. rH,tH are Hz amplitude coefficients; reflected E uses signed kx=−k and transmitted E uses kx=q. The tangential Ey reflection sign is distinguished from the polarization-basis amplitude convention. TIR takes q=iκ with κ>0, so fields decay to the right.
 \begin{gathered}u=(k-k_0)/b,\\A_H(k)=\begin{cases}C\exp\!\left[-\frac{w^2(k-k_0)^2}{2}-\frac{u^8}{1-u^2}\right],&|u|<1,\\0,&|u|\ge1,\end{cases}\\U_{\rm inc}=\pi L_y\int|A_H(k)|^2\,dk\approx\frac{L_yP}{2}\sum_m a_m^2,\\a_m=A_H(k_m)\Delta k,\qquad\Delta k=2\pi/P,\\R_\infty=\frac{\int |A_H|^2R(k)\,dk}{\int |A_H|^2\,dk},\qquad T_\infty=\frac{\int |A_H|^2T(k)\,dk}{\int |A_H|^2\,dk}.\end{gathered}
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Magnetic Fresnel amplitudes and the two special angles [en]
+## Yee FDTD: foundations and verified examples — Magnetic Fresnel amplitudes and the two special angles [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
 
 The input supplies a compact positive-k band with the smooth weight above; each mode uses its Fresnel solution. The fixed inputs use C=1; actual quadrature coefficients are saved in spectrum CSVs. This Hz-normalized incident energy has no ε₁ factor, unlike the preceding Ez packet. A carrier at the analytic Brewster angle generally leaves nonzero finite-band R∞. This validates a known Brewster condition, rather than independently locating the zero through an angular search.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Isolating weak returns and finite-window measurements [en]
+## Yee FDTD: foundations and verified examples — Isolating weak returns and finite-window measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -3988,14 +4055,14 @@ Coverage: reading
 Interface and homogeneous-medium runs use the same Yee update. Subtracting their H/E at the left monitor isolates the reflected component, avoiding ordinary incident dispersion obscuring a weak Brewster return. Incident/reflected left flux and transmitted right flux are integrated in time. H is spatially averaged to each face and E centered to integer time. Finite-window ratios are recorded separately from their gaps to asymptotic spectral R∞,T∞.
 \begin{gathered}\widehat H(\omega_0)=\int_{\cal W}H(t)e^{i\omega_0t}\,dt,\\r_{H,h}^{\rm DFT}=\frac{\widehat H_{\rm ref}}{\widehat H_{\rm inc}}e^{-2ik_hd},\\\kappa_h=-\frac{\log|\widehat H(x_2)/\widehat H(x_1)|}{x_2-x_1}.\end{gathered}\begin{gathered}\Omega_0=\frac{2}{\Delta t}\sin(\omega_0\Delta t/2),\\k_h=\frac{2}{\Delta x}\sin^{-1}\!\left[\frac{\Delta x}{2}\sqrt{\epsilon_1\Omega_0^2-K_y^2}\right].\end{gathered}
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Isolating weak returns and finite-window measurements [en]
+## Yee FDTD: foundations and verified examples — Isolating weak returns and finite-window measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
 
 The left monitor is distance d from the interface. Complex reflection is deembedded with kh from the same discrete dispersion relation; transmission also corrects the face-averaged H factor. TIR κ is measured from temporal Fourier components at two right-side probes. Refinement compares with continuum Fresnel data through the same finite window. Its gaps to ideal carrier coefficients and ideal κ remain visible, separating window error from grid error.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — TIR fields, stored energy and net flux [en]
+## Yee FDTD: foundations and verified examples — TIR fields, stored energy and net flux [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4004,7 +4071,7 @@ The complete TIR support lies beyond the critical angle: every mode has R=1 and 
 \begin{gathered}U_*^n=\tfrac12\bigl(\|H^n\|_h^2+\langle E^{n-1/2},\epsilon E^{n+1/2}\rangle_h\bigr),\quad U_*^n=U_*^0,\\\bar E^n=(E^{n-1/2}+E^{n+1/2})/2,\quad U_{\rm phys}^n-U_*^n=\tfrac18\|E^{n+1/2}-E^{n-1/2}\|_{\epsilon,h}^2,\\\Delta U_{[x_L,x_R]}+\int(\Phi_{x_R}-\Phi_{x_L})\,dt=0.\end{gathered}
 Modified discrete energy is distinct from physical energy using centered E. Interior flux is evaluated directly from fields, not reconstructed from energy loss. Splitting interface Ey energy assigns ε₁/2 and ε₂/2 to the two sides, retaining the global averaged coefficient. Field accuracy is assessed at a fixed interaction time; energy and flux continue to a later end time. End-time field error is reported separately.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed inputs and saved measurements [en]
+## Yee FDTD: foundations and verified examples — Fixed inputs and saved measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4018,7 +4085,7 @@ CaseGridField clockInteraction field errorEnd-time field errorR_WT_W, signedComp
 propagating1280×64180.1474550.8705790.06595690.9340430.00909874
 propagating2560×128180.03683170.2266380.06964630.9303540.00222338
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed inputs and saved measurements [en]
+## Yee FDTD: foundations and verified examples — Fixed inputs and saved measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4037,7 +4104,7 @@ brewster0.001137230.9988630.001137230.9988637.30357e-060.000786266
 tir101-1.23752e-090.000187080.00055515
 propagating observed orders: field: 2.00125, 2.0006; reflected fluence: 2.01258, 2.00318; transmitted fluence: 2.01258, 2.00318; complex rH / finite window: 2.03291, 2.00809; complex tH / finite window: 2.03288, 2.00808; local flux budget: 1.99738, 1.99935; transient transmitted-flux waveform: 2.03289, 2.00826.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Fixed inputs and saved measurements [en]
+## Yee FDTD: foundations and verified examples — Fixed inputs and saved measurements [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4046,7 +4113,7 @@ brewster observed orders: field: 1.98512, 2.00092; reflected fluence: 3.66482, 3
 tir observed orders: field: 1.995, 1.99963; reflected fluence: 2.22383, 3.59628; complex rH / finite window: 2.00988, 2.00353; complex tH / finite window: 2.00848, 2.00541; local flux budget: 1.99629, 1.99909; κ / finite window: 2.00522, 2.03305; transient transmitted-flux waveform: 2.00779, 2.00251.
 These orders are observations for the selected three grids, packets and windows. Small errors or cancellation do not change the formal order of the update.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Numerical Brewster and TIR evidence [en]
+## Yee FDTD: foundations and verified examples — Numerical Brewster and TIR evidence [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4059,7 +4126,7 @@ Finest-grid invariant, physical budget and normalization are distinct checks.
 CaseModified-energy driftLocal flux residual|R_W+T_W−1|Incident fluence / analytic energy error
 propagating5.55112e-166.40756e-058.52962e-120.000128161
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Numerical Brewster and TIR evidence [en]
+## Yee FDTD: foundations and verified examples — Numerical Brewster and TIR evidence [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4069,7 +4136,7 @@ tir8.88178e-163.93668e-052.07714e-077.96698e-05
 Maximum relative reference-field change after period doubling at interaction/end times is 7.11693e-12; initial secondary-field squared weighted-norm fraction is at most 7.50501e-08. The analytic cap-Ey audit uses up to 2049 sample times per run, with maximum 0.000266315. These controls concern the specified window, rather than arbitrary long times or all angles.
 The initial PEC clipping changes the squared weighted grid-field norm by a fraction at most 5.78842e-13. Initial-field, reference-quadrature and finite-window controls are retained separately in result JSON.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Download and reproduce revision r5 [en]
+## Yee FDTD: foundations and verified examples — Download and reproduce revision r5 [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/
 Coverage: reading
@@ -4089,9 +4156,10 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py
 python run_polarization.py --input inputs/p-polarization.json --output output-p
 Independent ZIP extraction reran all tests and all seven inputs with identical metrics and every CSV. Numerical sources/tests of the old six inputs and four earlier editions are retained. This dedicated FDTD supplement is separate from common execution records and other fields’ verification counts.
-Scope is the selected lossless/nonmagnetic planar interfaces, one periodic-y mode, finite bands and windows. Loss/dispersion, anisotropy, arbitrary transverse spectra, 3D and PML absorption of evanescent fields need separate validation.
+Scope is the selected lossless/nonmagnetic planar interfaces, one periodic-y mode, finite bands and windows. Revision r5 is lossless; normal-incidence loss/dispersion is tested separately in r6. Anisotropy, arbitrary transverse spectra, 3D and PML absorption of evanescent fields remain outside scope.
+Initial-edition downloads and reproduction
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Original vacuum edition: code and reproduction [en]
+## Yee FDTD: foundations and verified examples — Original vacuum edition: code and reproduction [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#reproduce
 Coverage: reading
@@ -4114,15 +4182,15 @@ python run.py --input inputs/periodic-wave.json --output output-periodic
 python run.py --input inputs/pec-cavity.json --output output-cavity
 Nonempty output directories are refused. Exit codes are 0 for accepted numerical checks, 1 for failed numerical checks and 2 for input/runtime errors. JSON records the input SHA-256, environment, error/refinement/invariant metrics, individual checks and termination reason. Original code uses the bundled MIT License; prose, figures and data follow the site’s item-specific terms.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Publication scope and related entries [en]
+## Yee FDTD: foundations and verified examples — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#publication-scope
 Coverage: reading
 
-Educational Yee FDTD: retained TMz vacuum/interface/PML cases plus r5 TEz p polarization, Brewster condition and TIR for specified single-transverse-mode packets. Full-2D equivalence, continuum Fresnel data, finite-window flux/amplitudes, evanescent decay/storage, discrete invariants and physical budgets have distinct roles. Not blanket validation of general media, multiple modes, loss/dispersion or 3D.
+Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D.
 Yee finite-difference time-domain method
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Primary publications, supporting sources and review scope [en]
+## Yee FDTD: foundations and verified examples — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#sources
 Coverage: reading
@@ -4135,7 +4203,7 @@ Fadime Bekmambetova and Xinyue Zhang and Piero Triverio (2017). A Dissipation Th
 Research preprint, distinct from the journal edition · Selected source passages consulted · Consulted record
 Research preprint v2, selected full-text sections III A–B, energy equation (26), strict CFL equation (35), and PEC boundary discussion. Applied here to the source-free 2D TMz reduction; no subgridding implementation.
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Primary publications, supporting sources and review scope [en]
+## Yee FDTD: foundations and verified examples — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#sources
 Coverage: reading
@@ -4149,12 +4217,15 @@ Author notes, selected sections3.4,4.1–4.2 and7.1–7.3: independent x/y coord
 Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. Krieger Publishing Company
 Author monograph / supporting reference · Selected source passages consulted · Consulted record
 
-## Yee FDTD: s/p polarization, Fresnel interfaces and PML — Primary publications, supporting sources and review scope [en]
+## Yee FDTD: foundations and verified examples — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fdtd/#sources
 Coverage: reading
 
-Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit.
+Author textbook, selected sections 7-6-1/7-6-2 (printed pp522–524), 7-9-1 (pp538–540), and 7-9-3/7-9-4 (pp541–544): normal/oblique Fresnel amplitudes, Snell and critical angles, evanescent fields, p-polarized Brewster condition and normal-power weighting. Field/sign conventions are adapted explicitly. Not an original Fresnel publication or a full-book audit. Selected sections 7-2-1 and 7-6-3 additionally consulted for conducting waves, complex wavenumber and conducting-interface context; the finite Lorentz slab and midpoint energy law are derived separately.
+Meep developers (2026). Materials — Meep Documentation.
+Official reference documentation · Selected source passages consulted · Consulted record
+Official HTML, selected Material Dispersion, Loss and Gain, and Conductivity and Complex ε sections: Lorentz polarization equation and exp(−iωt) convention. Meep uses a D-conductivity convention; this example instead uses conventional σE. Its explicit-ADE resonance stability bound is not attributed to our implicit midpoint update. No Meep numerical comparison or full documentation audit.
 
 ## Continuous finite elements: from weak form to sparse assembly [en]
 
@@ -10692,6 +10763,7 @@ LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Pr
 mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation. Original source
 LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview. Original source
 P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. 10.1145/1824801.1824804
+Meep developers (2026). Materials — Meep Documentation. Original source
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -11397,7 +11469,7 @@ Completed web stage: HLLD with Brio–Wu, Alfvén-wave refinement and weak field
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/roadmap/#authorized-next-work
 Coverage: reading
 
-Scoped implementation and validation — Yee FDTD: 2D TMz vacuum periodic plane waves and a rectangular PEC cavity now have original code, fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. Reading, code and results. The retained s-polarized interface and PML examples are joined by selected TEz cases for optical p polarization. Monochromatic Brewster coefficients are distinguished from finite-band packet reflectance, and evanescent fields under total internal reflection from net normal energy flux. Fresnel fields, energy budgets and refinement are checked for the specified lossless, nonmagnetic cases.
+Scoped implementation and validation — Yee FDTD: 2D TMz vacuum periodic plane waves and a rectangular PEC cavity now have original code, fixed inputs, analytic comparisons, grid/time refinement, dispersion and twelve-period discrete-energy checks. Reading, code and results. The retained 2D interface, PML and p-polarized examples are joined by normally incident 1D finite Ohmic and Lorentz slabs. Complex-permittivity slab solutions check reflection, transmission and absorption. Directly accumulated dissipation, material oscillator storage, discrete and physical energy budgets, and grid refinement are separate checks. General 2D dispersive media and dispersive PML are outside the validated scope.
 Planned — plasma PIC (Particle-in-Cell): start with electrostatic
 particle–Poisson coupling, then electromagnetic particle–Maxwell coupling.
 Cover particle shapes, deposition/gather, Boris pushing, charge-conserving
@@ -12066,7 +12138,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-46 equation/model entries · 129 methods and building blocks · 241 journal/conference papers · 296 total sources.
+46 equation/model entries · 129 methods and building blocks · 241 journal/conference papers · 297 total sources.
 There are 9 saved-profile equation-gallery cases across 7 equation families, and 90 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
@@ -23141,28 +23213,24 @@ Coverage: reading
 CIPノートは、一様周期格子のスカラー移流で、原型の3次Hermite CIPと線形の点補間を比較します。独立に輸送する勾配、初期勾配の選択、滑らかな解の収束、矩形パルスのオーバーシュート、解析的な保存性の反例を示します。定義を参照してください。点値と有限体積平均は交換できません。同期前にpython scripts/build_cip.pyで再生成します。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — Yee FDTD：s/p偏光・Fresnel界面・PML [ja]
+## Yee FDTD：基礎と検証例 — Yee FDTD：基礎と検証例 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
 
-第5版ではTEzのp偏光、Brewster条件、全反射を追加しました。有限帯域波束の反射・透過流束、複素反射係数、エバネッセント減衰、エネルギー収支と格子収束を検証します。既存TMzの6入力と4配布版も保持しています。
-第5版の実装・測定結果へ
-第4版では、媒質界面への斜め入射をs偏光の有限帯域波束で検証します。Fresnel解析解、反射・透過エネルギー、全体と局所の収支、格子収束を別々に比較します。旧3配布版・既存5入力は保持しています。
-新版の結果：媒質界面への斜め入射
-第3版では四辺と四つの角へPMLを拡張しました。辺へ向かう波と斜めに角へ向かう波を分け、反射・方向別のPML仕事・四辺の流束・格子収束を検証します。旧2配布版と既存の4入力も保持しています。
-初版の真空2例に、第2版の誘電体界面と左右x方向PMLを追加しました。前半は真空の解析モード、後半は垂直入射のFresnel比較と、垂直・斜めパルスの境界反射を扱います。旧版のコード・図・数値は保持しています。
+Maxwell方程式を電場・磁場の位置と時刻をずらして解くYee法です。基本式を先に読み、必要な検証例を選べます。最新の第6版は一次元の損失・Lorentz分散媒質を扱います。
+基本モデル · 損失・分散媒質 · Fresnel界面 · 四辺・角PML · 斜め入射 · p偏光・Brewster・全反射
 2次元TMz（Ez、Hx、Hy）の自作教育用コードです。初版の検証では無次元の一様真空・電流/電荷源なしに限定し、周期平面波と完全導体（PEC）長方形空洞を連続解析解と比較しました。格子収束、数値分散、離散保存量、物理エネルギーの近似を別々に確認します。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — モデル・単位・適用範囲 [ja]
+## Yee FDTD：基礎と検証例 — モデル・単位・適用範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#model
 Coverage: reading
 
 \partial_t E_z=\partial_xH_y-\partial_yH_x,\qquad \partial_tH_x=-\partial_yE_z,\qquad \partial_tH_y=\partial_xE_z,\quad \epsilon=\mu=c=1.
-長さ・時間・場を規格化し、ε=μ=c=1とします。計算領域はLx=1、Ly=1.5、モード番号(m,l)=(1,1)。矩形・斜めの周期モードを使い、軸の入れ替えや磁場の符号を見逃さない構成です。分散媒質、損失、誘電体界面、外部励起は含みません。
+長さ・時間・場を規格化し、ε=μ=c=1とします。計算領域はLx=1、Ly=1.5、モード番号(m,l)=(1,1)。矩形・斜めの周期モードを使い、軸の入れ替えや磁場の符号を見逃さない構成です。この初版の真空例には分散・損失・界面・外部励起を含みません。界面と損失・分散は各追加例で別に扱います。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — Yee格子と時間をずらした更新 [ja]
+## Yee FDTD：基礎と検証例 — Yee格子と時間をずらした更新 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#algorithm
 Coverage: reading
@@ -23171,7 +23239,7 @@ Coverage: reading
 Ezを格子点・整数時刻、Hxをy方向の半格子・半整数時刻、Hyをx方向の半格子・半整数時刻に置きます。各ステップは磁場を先に更新し、その磁場で電場を更新します。時刻0の電場と−Δt/2の磁場を解析式から初期化し、初期時刻のずれによる1次誤差を避けます。
 周期境界では重複端点を持たず、差分が周期的につながります。PECでは壁上の接線電場Ez=0を固定し、電場の内部点のみを更新します。壁上に置かれた磁場成分の内積には半分の端点重みを与え、離散部分積分とエネルギー式を整合させます。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 周期平面波の連続解析解 [ja]
+## Yee FDTD：基礎と検証例 — 周期平面波の連続解析解 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#periodic-mode
 Coverage: reading
@@ -23179,7 +23247,7 @@ Coverage: reading
 \begin{gathered}k_x=2\pi m/L_x,\quad k_y=2\pi l/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\quad\phi=k_xx+k_yy-\omega t,\\ E_z=\cos\phi,\quad H_x=(k_y/\omega)\cos\phi,\quad H_y=-(k_x/\omega)\cos\phi.\end{gathered}
 電場と2成分の磁場を、それぞれの格子位置・時刻で評価します。位相速度の誤差は周波数から測り、場の誤差とは別に保存します。空間にサンプルした連続磁場は離散発散が厳密に0とは限らないため、磁場発散は初期値からの変化を調べます。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 完全導体空洞の連続固有モード [ja]
+## Yee FDTD：基礎と検証例 — 完全導体空洞の連続固有モード [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#cavity-mode
 Coverage: reading
@@ -23187,7 +23255,7 @@ Coverage: reading
 \begin{gathered}k_x=m\pi/L_x,\quad k_y=l\pi/L_y,\quad\omega=\sqrt{k_x^2+k_y^2},\\E_z=\sin(k_xx)\sin(k_yy)\cos(\omega t),\\H_x=-\frac{k_y}{\omega}\sin(k_xx)\cos(k_yy)\sin(\omega t),\quad H_y=\frac{k_x}{\omega}\cos(k_xx)\sin(k_yy)\sin(\omega t).\end{gathered}
 4辺の壁でEz=0となる定在波です。周期波とは異なる境界実装を使い、壁上の最大電場、固有角周波数、場の誤差を確認します。ここでの「空洞」はz方向に変化のない2次元断面であり、3次元の全固有モードを扱うものではありません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — CFL条件と離散分散関係 [ja]
+## Yee FDTD：基礎と検証例 — CFL条件と離散分散関係 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#conditions
 Coverage: reading
@@ -23196,7 +23264,7 @@ Coverage: reading
 入力ではCourant数の上限を0.7とし、S≥1は拒否します。解析解との比較時刻を厳密に1.1周期に合わせるため、必要な整数ステップ数を切り上げ、実際の時間刻みとSをわずかに小さくします。格子とともに時間刻みも細分化するため、示す次数は空間・時間を同時に細分化した収束です。空間次数と時間次数を個別に実測したという意味ではありません。
 時間発展したモードの投影係数から3時刻の漸化式で周波数を測定し、連続ωへの近づき方と離散ωhとの一致を分けます。別テストでは離散波数に整合する磁場振幅で初期化し、離散固有モードが丸め誤差程度で再現されることを調べます。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 離散保存量と物理エネルギーを分ける [ja]
+## Yee FDTD：基礎と検証例 — 離散保存量と物理エネルギーを分ける [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#energy
 Coverage: reading
@@ -23205,7 +23273,62 @@ Coverage: reading
 内積には格子面積とPECの境界重みを含めます。異なる半時刻の磁場の積を使うU*は、閉じた周期／PEC系で丸め誤差を除き保存されます。厳密なCFL不等式はこの修正エネルギーの正定値性にも関係します。整数時刻へ平均した磁場によるUsyncは物理エネルギーの2次近似ですが、厳密な保存量ではありません。
 単位振幅の連続場では、周期進行波の全エネルギーはLxLy/2、空洞定在波ではLxLy/8です。12周期にわたってU*の相対変動とUsyncの変動幅を記録し、後者と解析的な全エネルギーとの差が格子・刻みの細分化で約2次に減ることを確認します。固有モードだけでなく、乱数で作った適合する場でもU*の保存をテストします。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と実測結果 [ja]
+## Yee FDTD：基礎と検証例 — 第6版：損失・分散媒質 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+真空に挟まれた有限厚の板へ垂直に入射する一次元波束を計算します。導電損失の板と、減衰を持つ単一共鳴Lorentz板の2例です。Ez・分極P・分極電流Jを整数時刻、Hyを半時刻に置き、磁場のYee更新後にE/P/Jを局所陰的中点法で進めます。
+\begin{gathered}\epsilon_\infty\partial_t E=\partial_xH-\sigma E-J,\quad\partial_tH=\partial_xE,\\\partial_tP=J,\quad\partial_tJ=fE-\omega_0^2P-\gamma J,\quad f=\Delta\epsilon\,\omega_0^2,\\\epsilon(\omega)=\epsilon_\infty+\frac{f}{\omega_0^2-\omega^2-i\gamma\omega}+\frac{i\sigma}{\omega},\quad e^{-i\omega t}.\end{gathered}
+σは通常の電流σEの係数です。f=0ではP=J=0として振動子項を除きます。外端は遠方のPECで、ここではPMLを使いません。界面の電場制御体積ではε∞・σ・fを半体積で平均します。
+板内の多重反射と複素波数を含む解析解を、実際の入射スペクトルで重み付けします。数値のR/Tは外側のPoynting流束、Aは導電・分極電流の散逸を直接積算して求めます。吸収と媒質内の一時的な蓄積を分け、エネルギー収支と格子・時間の収束を照合します。
+最細格子の有限窓測定と帯域重み付き解析値。
+板数値R数値T直接A解析R / T / A
+ohmic0.04217920.1631050.7947160.0422517 / 0.163222 / 0.794527
+lorentz0.1210680.05543760.8234950.121356 / 0.0555188 / 0.823125
+結果・全判定JSON · convergence.csv · 図を開いて拡大
+第6版コードZIP：損失・分散＋既存7入力 · 日英の実行手順
+範囲は線形・等方・非磁性の一次元垂直入射、指定した帯域と有限時間です。Drude、多共鳴、分散媒質への斜め入射、分散媒質とPMLの併用、一般2/3次元は未検証です。
+式の導出・全格子の結果・再現資料を開く\begin{gathered}n=\sqrt{\epsilon},\quad\Re n\ge0,\quad\Im n\ge0,\quad\rho=\frac{1-n}{1+n},\quad z=e^{2in\omega d},\\r=\frac{\rho(1-z)}{1-\rho^2z},\quad t=\frac{(1-\rho^2)e^{in\omega d}}{1-\rho^2z},\\R=|r|^2,\quad T=|t|^2,\quad A=1-R-T,\\A_{\rm volume}=\int_0^d\!\left(\sigma+\frac{\gamma\omega^2f}{|\omega_0^2-\omega^2-i\gamma\omega|^2}\right)|E(x)|^2\,dx.\end{gathered}
+
+## Yee FDTD：基礎と検証例 — 第6版：損失・分散媒質 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+tは板の出口面での電場振幅です。両外側が真空なのでT=|t|²です。体積積分のE(x)は入射振幅1の内部場です。解析A=1−R−Tはこの独立した散逸積分とも照合します。搬送波の係数、帯域平均、有限窓DFTの差を別に保存します。
+\begin{gathered}U_*^n=\tfrac12\|E^n\|_{\epsilon_\infty,h}^2+\tfrac12\Re\langle H^{n-1/2},H^{n+1/2}\rangle_h+U_{\rm mat}^n,\\U_{\rm mat}=\sum_{f_j>0}\frac{|J_j|^2+\omega_0^2|P_j|^2}{2f_j}\Delta x,\\\Delta W_\sigma=\Delta t\sum_j\sigma_j|\bar E_j|^2\Delta x,\quad\Delta W_\gamma=\Delta t\sum_{f_j>0}\frac{\gamma|\bar J_j|^2}{f_j}\Delta x,\\U_*^n+W_\sigma^n+W_\gamma^n=U_*^0.\end{gathered}
+複素場は二つの実直交成分を表し、全エネルギー・流束は同じ規約です。WσとWγは中点場から直接計算し、Uの減少や1−R−Tから逆算しません。修正離散エネルギー恒等式と、中心化磁場を使う物理的な局所Poynting収支は別々に判定します。中点の内積でE–Jの交換項が相殺し、PEC外端では離散curlの組が相殺するため、この恒等式を得ます。厳密CFL条件は静的誘電率ではなくε∞を使うΔt/Δx<min(1,√ε∞)です。振動子の蓄積は吸収率へ足しません。
+同じ物理時刻での3格子。
+板Nx場の相対L2R誤差T誤差A誤差物理流束残差
+ohmic30720.120280.001165190.001887640.003052830.00215611
+ohmic61440.03010150.0002903310.0004686340.0007589650.00053856
+ohmic122880.0075267.2522e-050.0001169550.0001894770.000134611
+lorentz30720.104430.004686770.001302980.005989750.00215381
+lorentz61440.02633820.001157060.0003250520.001482110.000537989
+lorentz122880.006597650.0002883548.12193e-050.0003695730.000134468
+Lorentz板の最細格子で分極Pと電流Jの相対L2誤差は 0.011884 と 0.0124923 です。
+ohmicの観測次数：場 1.99849, 1.99988; R 2.0048, 2.00121; T 2.01005, 2.0025; A 2.00804, 2.00201; 複素r 2.00255, 2.00077; 複素t 2.00708, 2.0018; 物理流束収支 2.00126, 2.00032; 物理エネルギー 2.00565, 2.00141。固定空間での時間刻み半減の自己収束次数：2.00388
+
+## Yee FDTD：基礎と検証例 — 第6版：損失・分散媒質 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#interface-loss-dispersion
+Coverage: reading
+
+lorentzの観測次数：場 1.9873, 1.99713; R 2.01813, 2.00455; T 2.00307, 2.00078; A 2.01484, 2.00372; 複素r 1.99893, 2.00058; 複素t 2.00077, 2.00052; 物理流束収支 2.00124, 2.00031; 物理エネルギー 2.00952, 2.00236; P 2.02312, 2.00687; J 2.02239, 2.00672。固定空間での時間刻み半減の自己収束次数：2.00371
+保存・散逸・残留蓄積・参照制御を分離。
+板修正収支の最大相対残差|R+T+A−1|終時刻の物質蓄積 / 入射窓内参照fluence差参照周期倍増の場の差
+ohmic1.64405e-133.04201e-1403.33067e-161.28307e-09
+lorentz1.76686e-131.09499e-103.10325e-126.24744e-111.92765e-09
+場の精度は波束と板が相互作用する保存時刻で判定し、流束・吸収の積分は後の終時刻まで続けます。初期Eは入射波束、Hは同じYee分散で半時刻へ合わせ、P=J=0とします。同じYee法の真空対照で反射を分離します。省略した連続散乱場・分極の初期裾、外端、正周波数帯域の切り落とし、参照周期と空間求積の倍増、有限窓DFTの差はJSONへ記録します。時間の自己収束は固定空間離散内の検査であり、独立PDEソルバーとの比較ではありません。
+dispersive.py · run_dispersive.py · test_dispersive.py · 固定入力・許容値 · energy.csv · solution.csv · spectrum.csv · waveforms-ohmic.csv · waveforms-lorentz.csv · SHA-256 manifest · 旧版の同一性 · 108テスト成功・独立追試
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py
+python run_dispersive.py --input inputs/loss-dispersion.json --output output-loss
+ZIPを独立展開し、全テストと全8入力を再実行して指標・全CSVの一致を確認しました。旧7入力の数値ソース・テストと過去5配布版は不変です。共通実行台帳や他分野の件数へ加算しません。Lorentzモデルの参照はMeep公式資料の該当節であり、Meepの導電率規約・陽的ADEと本実装を区別します。
+初版の詳しい検証：周期波・導体空洞
+
+## Yee FDTD：基礎と検証例 — 固定入力と実測結果 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#verification
 Coverage: reading
@@ -23222,8 +23345,9 @@ e_h=\left(\frac{\lVert E_h-E\rVert_h^2+\lVert H_h-H\rVert_h^2}{\mathcal N^2}\rig
 導体空洞64 × 960.000333262.01974.7804e-052.22e-16
 周期平面波 · JSON · convergence.csv · energy.csv完全導体空洞 · JSON · convergence.csv · energy.csv
 許容値は固定入力のacceptanceに保存しています。全場誤差0.01以下、観測次数1.8以上、相対周波数誤差0.002以下、離散分散一致誤差10⁻⁹以下、U*相対変動2×10⁻¹¹以下を別々に判定します。壁上の電場0、磁場の初期発散の保存、Usyncの解析的全エネルギーに対する最大相対誤差0.003以下、およびその約2次の細分化も別々に判定します。Usyncの変動幅は診断値として保存します。
+第2版の詳しい検証：界面・左右PML
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 誘電体界面：Fresnelの振幅とエネルギー [ja]
+## Yee FDTD：基礎と検証例 — 誘電体界面：Fresnelの振幅とエネルギー [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#interface
 Coverage: reading
@@ -23238,7 +23362,7 @@ Nx場の相対L²誤差r（実測）t（実測）R（積分）T（積分）|R+T�
 6400.0045536-0.333120.666710.110960.888976.5291e-05
 実測収束次数：場 2.0342, 2.0146、反射振幅誤差 2.0682, 2.0162、透過振幅誤差 3.9033, 0.91765、エネルギー収支 1.8421, 1.9475。透過振幅では先頭誤差の打消しがあるため、全ての指標が各格子対で同じ2次を示すとは主張しません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 左右x方向PML：垂直・斜めパルス [ja]
+## Yee FDTD：基礎と検証例 — 左右x方向PML：垂直・斜めパルス [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#pml
 Coverage: reading
@@ -23252,7 +23376,7 @@ PMLの物理厚さ2、3次の減衰プロファイル、最大減衰率10は固�
 固定物理厚さのPML。早期誤差・戻り波・仕事は別の指標。
 格子中心角度（度）早期の場の相対誤差戻り振幅ρ解析戻り振幅解析戻り波との差修正エネルギー＋仕事の残差物理領域の流束収支残差
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 左右x方向PML：垂直・斜めパルス [ja]
+## Yee FDTD：基礎と検証例 — 左右x方向PML：垂直・斜めパルス [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#pml
 Coverage: reading
@@ -23268,7 +23392,7 @@ ky=8の実測次数：早期の場 1.9935, 2.0076、解析戻り波との差 1.9
 有限厚のPMLの理想的な戻り波も解析的に計算します。G=γmax d/(m+1)とすると、各波数の往復減衰はexp[−2(kx/ω)G]、PECでの電場反射は−1です。全モードの位相を含めて戻り波を足し、実測との差の最大RMSを入射振幅で規格化します。生の戻り波がゼロへ収束することは要求せず、この解析戻り波との差を細分化して評価します。単一反射の時間窓に限定し、初期層内エネルギーと外端の初期場もJSONへ保存します。
 \omega_k=\sqrt{k^2+k_y^2},\quad G=\int_{L-d}^{L}\gamma(x)\,dx=\frac{\gamma_{\max}d}{m+1},\quad E_{\rm ret}(x,y,t)=\operatorname{Re}\sum_{k>0}-A_k e^{i[k(2L-x-x_0)+k_y y-\omega_k t]}e^{-2(k/\omega_k)G}.
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — エネルギー収支と第2版の再実行 [ja]
+## Yee FDTD：基礎と検証例 — エネルギー収支と第2版の再実行 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#scattering-verification
 Coverage: reading
@@ -23289,7 +23413,7 @@ SHA-256 manifest
 43テスト成功・独立展開記録
 dielectric-interface result.json · fixed input · energy.csv · convergence.csvpml-pulse result.json · fixed input · energy.csv · convergence.csv
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — エネルギー収支と第2版の再実行 [ja]
+## Yee FDTD：基礎と検証例 — エネルギー収支と第2版の再実行 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#scattering-verification
 Coverage: reading
@@ -23299,8 +23423,9 @@ python -m pytest -q test_fdtd.py test_scattering.py
 python run_scattering.py --input inputs/dielectric-interface.json --output output-interface
 python run_scattering.py --input inputs/pml-pulse.json --output output-pml
 第2版の範囲は界面への垂直入射と、真空帯領域の左右x方向PMLです。四辺・角のPMLは以下の第3版で追加しました。界面への斜め入射、非常に浅い入射、分散物質、一般形状、3次元は別の課題です。
+第3版の詳しい検証：四辺・角PML
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 方向別の減衰と角の重なり [ja]
+## Yee FDTD：基礎と検証例 — 方向別の減衰と角の重なり [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23309,7 +23434,7 @@ Coverage: reading
 真空の2次元TMz正方形で、左右にγx、上下にγyのPMLを置き、四つの外端は完全導体（PEC）とします。角の領域ではγxとγyが同時に非ゼロになります。Eₓ,EᵧはEzの補助分割で、電場の物理的なx,y成分ではありません。各減衰率は電場節点・磁場の半格子位置でそれぞれ評価し、時間方向の減衰は台形則で更新します。
 辺へ向かう波の組と、斜めに角へ向かう波の組を分けます。単に全体のエネルギーが減るだけでなく、四辺それぞれの流出と、四つの角で減衰が実際に働いた根拠を調べます。層の物理厚さ・強度・形状は格子を細かくしても保持し、解く物理条件を変えません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 参照波形と反射の意味 [ja]
+## Yee FDTD：基礎と検証例 — 参照波形と反射の意味 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23320,7 +23445,7 @@ Coverage: reading
 4観測点は、辺向きで(c±a,c),(c,c±a)、斜め向きで(c±a,c±a)です。c=8、a=2。各格子の保存時刻集合Tₕ上で下式を評価し、自己収束のノルムも観測窓内の時間最大・4点RMSとします。
 \begin{gathered}A_{\mathrm{inc},h}=\max_{t\in\mathcal T_h,\,0\le t<8}\sqrt{\frac14\sum_{j=1}^{4}E_{\mathrm{cont}}(p_j,t)^2},\\r_{h,j}(t)=\frac{E_{\mathrm{PML},h}(p_j,t)-E_{\mathrm{free},h}(p_j,t)}{A_{\mathrm{inc},h}},\\\rho_h=\max_{t\in\mathcal T_h,\,8\le t\le24}\sqrt{\frac14\sum_{j=1}^{4}r_{h,j}(t)^2}.\end{gathered}
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 独立に求める仕事と四辺の流束 [ja]
+## Yee FDTD：基礎と検証例 — 独立に求める仕事と四辺の流束 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23330,7 +23455,7 @@ Coverage: reading
 \begin{gathered}S_x=-E_zH_y,\quad S_y=E_zH_x,\\\Phi(t)=\int_{y_B}^{y_T}(S_x(x_R,y,t)-S_x(x_L,y,t))\,dy+\int_{x_L}^{x_R}(S_y(x,y_T,t)-S_y(x,y_B,t))\,dx,\\U_{\rm physical}(t)-U_{\rm physical}(0)+\int_0^t\Phi(\tau)\,d\tau=0.\end{gathered}
 PMLの内側の物理矩形では、右−左と上−下のPoynting流束を加え、内部エネルギーとの収支を測ります。角の電場節点には1/4、辺には1/2の積分重みを使い、共有点を重複加算しません。全領域の厳密な離散仕事恒等式と、補間・時間積分を含む物理領域の近似収支は別の判定です。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と実測結果 [ja]
+## Yee FDTD：基礎と検証例 — 固定入力と実測結果 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23354,7 +23479,7 @@ Coverage: reading
 斜めの波の組での角の累積絶対仕事増分／初期全エネルギー：SW=0.11008, SE=0.11008, NW=0.11008, NE=0.11008。各時刻で角領域の仕事を合計してから絶対値を取り、その値を時間方向に足した量です。局所仕事密度の絶対値の積分とは異なります。
 axis：最細格子で初期層内の場をゼロにした制御計算とのモニター差／入射振幅 3.4327e-09、標準入力の戻り信号に対する比は 9.4624e-06（判定値 0.01 以下）。物理領域の初期波束は保持し、層内の微小な物理場・補助場だけを変えた感度確認です。別の初期条件であり、これを標準入力の誤差上界とは呼びません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と実測結果 [ja]
+## Yee FDTD：基礎と検証例 — 固定入力と実測結果 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23364,7 +23489,7 @@ diagonal：最細格子で初期層内の場をゼロにした制御計算との
 格子間の波形差は同じ物理時刻へ揃えて比較します。自己収束から得た次数やRichardson型の見積もりは経験的な指標であり、厳密な誤差上界ではありません。全ての生の戻り波がゼロへ向かうこととは区別します。
 \delta_h=\|r_h-\mathcal I r_{h/2}\|_{\mathcal W},\qquad p_h=\frac{\log(\delta_h/\delta_{h/2})}{\log2}.
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 第3版の取得と再実行 [ja]
+## Yee FDTD：基礎と検証例 — 第3版の取得と再実行 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23384,8 +23509,9 @@ python -m pytest -q test_fdtd.py test_scattering.py test_corner.py
 python run_corner.py --input inputs/pml-corners.json --output output-corners
 ZIPを別フォルダへ独立展開し、全テストと旧4入力・新入力の全5例を再実行して、数値指標とCSVの一致を確認しました。旧版の数値ソース・入力・テストは同一バイト列で保持しています。共通22実行例・固有67問題とは別の補助配布版です。
 第3版の対象は指定した真空2次元TMz波束・正方形・有限時間です。媒質界面への斜め入射は以下の第4版で別に検証します。掠れ入射全般、分散・異方性物質、3次元や一般曲面のPMLには、この結果をそのまま適用しません。
+第4版の詳しい検証：斜め界面入射
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — TMzとs偏光・Fresnel係数 [ja]
+## Yee FDTD：基礎と検証例 — TMzとs偏光・Fresnel係数 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23394,7 +23520,7 @@ x=aを境界とする非磁性・無損失・非分散の誘電体を扱いま�
 \omega^2=(k^2+k_y^2)/\epsilon_1,\quad q=\sqrt{\epsilon_2\omega^2-k_y^2},\quad n_1\sin\theta_i=n_2\sin\theta_t,\quad\mu_1=\mu_2=1.r_s(k)=\frac{k-q}{k+q},\quad t_s(k)=\frac{2k}{k+q},\quad R_s=|r_s|^2,\quad T_s=\frac{q}{k}|t_s|^2,\quad R_s+T_s=1.
 正の法線波数kについて、周波数ωと接線波数kyを界面の左右で等しくします。式は透過波が伝播する低屈折率側から高屈折率側への入射に限定します。小文字r,tは符号付き電場振幅、大文字R,Tは法線方向のエネルギー流の比です。透過率はt²だけではなくq/kを含みます。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 有限帯域波束の解析参照 [ja]
+## Yee FDTD：基礎と検証例 — 有限帯域波束の解析参照 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23405,7 +23531,7 @@ Coverage: reading
 g_r=\frac{\sum_{x<a,y}E_{\rm num}E_{r,\rm ref}}{\sum_{x<a,y}E_{r,\rm ref}^2},\quad g_t=\frac{\sum_{x>a,y}E_{\rm num}E_{t,\rm ref}}{\sum_{x>a,y}E_{t,\rm ref}^2},\qquad g_r,g_t\to1.
 反射・透過の振幅確認には、終時刻の左右それぞれで数値Ezを符号込みの解析波束へ射影した倍率gを使います。目標は1であり、これを搬送波のr,tの実測値とは呼びません。波形のL2誤差も別に保存するため、倍率だけで位相・形の誤差を隠しません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 独立したエネルギーと流束の確認 [ja]
+## Yee FDTD：基礎と検証例 — 独立したエネルギーと流束の確認 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23413,7 +23539,7 @@ Coverage: reading
 \begin{gathered}U_*^n=\tfrac12\bigl(\langle E^n,\epsilon E^n\rangle_h+\langle H^{n-1/2},H^{n+1/2}\rangle_h\bigr),\quad U_*^n=U_*^0,\\S_x=-E_zH_y,\quad U_{[x_L,x_R]}(t)-U_{[x_L,x_R]}(0)+\int_0^t\!\int_0^{L_y}[S_x(x_R,y,\tau)-S_x(x_L,y,\tau)]\,dy\,d\tau=0.\end{gathered}
 全領域では誘電率を含む修正離散エネルギーの保存を測ります。物理エネルギーは磁場を整数時刻へ平均し、界面をまたぐ内部区間で左右のPoynting流束を場から直接計算して台形積分します。流束をエネルギー差で定義しません。物理エネルギー・流束の近似収支と、厳密な離散保存量は別の判定です。界面の電場節点には従来どおり誘電率の算術平均を置きます。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と格子収束の実測 [ja]
+## Yee FDTD：基礎と検証例 — 固定入力と格子収束の実測 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23438,7 +23564,7 @@ ky=4：場の観測次数 1.98505, 2.00037、反射エネルギー 2.01151, 2.00
 初期PEC条件への切り詰めの重み付き格子場ノルム二乗比は最大 2.29928e-22、同時刻の連続参照による初期エネルギー／入射求積の1からの差は最大 2.22045e-16。終時刻の界面上の参照Ez最大値 1.4462e-05 も保存し、左右のエネルギー分割時に界面上に残る場の大きさを示します。
 ky=0：初期数値物理エネルギー／入射求積 0.999894、終時刻の|R+T−1| 0.000106367。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と格子収束の実測 [ja]
+## Yee FDTD：基礎と検証例 — 固定入力と格子収束の実測 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23446,7 +23572,7 @@ Coverage: reading
 ky=4：初期数値物理エネルギー／入射求積 0.999847、終時刻の|R+T−1| 0.000153186。
 R+Tの微小な1からの差は、初期数値物理エネルギーと解析入射求積の差も含みます。この例には吸収やPMLがなく、修正離散エネルギーは保存されます。物理エネルギーの補間・求積誤差が格子とともに減少することと、物理的な散逸を区別します。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 第4版の取得と再実行 [ja]
+## Yee FDTD：基礎と検証例 — 第4版の取得と再実行 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23466,8 +23592,9 @@ python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.
 python run_oblique.py --input inputs/dielectric-oblique.json --output output-oblique
 ZIPを別フォルダへ独立展開し、全テストと全6入力を再実行して数値指標・CSVの一致を確認しました。旧5入力・数値ソース・テストと、過去3配布版は保持しています。これはFDTD専用の補助配布版で、共通実行台帳や他分野の検証件数には加算しません。
 第4版の対象は指定した無損失・非磁性のs偏光波束、伝播する透過波、3格子と有限時間です。p偏光・Brewster条件・全反射は以下の第5版で別に検証します。損失や分散・3次元は引き続き別の範囲です。参照は解析式と数値積分で、外部FDTDソルバーとの比較ではありません。
+第5版の詳しい検証：p偏光・Brewster・全反射
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — TEzの格子配置とp偏光 [ja]
+## Yee FDTD：基礎と検証例 — TEzの格子配置とp偏光 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23477,7 +23604,7 @@ Hzをセル中心・整数時刻、Ex/Eyを各辺・半時刻に置く新しいT
 \begin{gathered}\partial_y\longmapsto iK_y,\qquad K_y=\frac{2}{\Delta y}\sin\frac{k_y\Delta y}{2},\\\int_0^{L_y}\Re(Ae^{ik_yy})\Re(Be^{ik_yy})\,dy=\frac{L_y}{2}\Re(AB^*),\\k_yL_y=2\pi m,\qquad 0<k_y\Delta y<\pi.\end{gathered}
 固定例は正の単一kyモードへ厳密に縮約して実行します。連続微分ikyへ置き換えるのではなく、同じYee差分の記号iKyを使います。一般の2次元配列更新との同値性を別に検査し、固定実行ではdxとdyを同時に細分化します。各固定実行でNx×Nyの全配列を時間発展させたという意味ではありません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 磁場振幅のFresnel係数と二つの角度 [ja]
+## Yee FDTD：基礎と検証例 — 磁場振幅のFresnel係数と二つの角度 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23487,7 +23614,7 @@ Coverage: reading
 \begin{gathered}u=(k-k_0)/b,\\A_H(k)=\begin{cases}C\exp\!\left[-\frac{w^2(k-k_0)^2}{2}-\frac{u^8}{1-u^2}\right],&|u|<1,\\0,&|u|\ge1,\end{cases}\\U_{\rm inc}=\pi L_y\int|A_H(k)|^2\,dk\approx\frac{L_yP}{2}\sum_m a_m^2,\\a_m=A_H(k_m)\Delta k,\qquad\Delta k=2\pi/P,\\R_\infty=\frac{\int |A_H|^2R(k)\,dk}{\int |A_H|^2\,dk},\qquad T_\infty=\frac{\int |A_H|^2T(k)\,dk}{\int |A_H|^2\,dk}.\end{gathered}
 入力のコンパクトな正k帯域を上式の滑らかな形で重み付けし、各モードへFresnel解を適用します。固定入力ではC=1で、実際の求積係数はスペクトルCSVに保存します。Hzを規格化するこの入射エネルギーには、前節のEz波束のようなε₁の係数は付きません。搬送波を解析的Brewster角へ置いても、角度分布を持つ有限帯域波束のR∞は一般にゼロではありません。これは既知のBrewster条件での検証で、角度を走査して独立に零点を探索した計算ではありません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 弱い反射の取り出しと有限時間の測定 [ja]
+## Yee FDTD：基礎と検証例 — 弱い反射の取り出しと有限時間の測定 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23497,7 +23624,7 @@ Coverage: reading
 \begin{gathered}\widehat H(\omega_0)=\int_{\cal W}H(t)e^{i\omega_0t}\,dt,\\r_{H,h}^{\rm DFT}=\frac{\widehat H_{\rm ref}}{\widehat H_{\rm inc}}e^{-2ik_hd},\\\kappa_h=-\frac{\log|\widehat H(x_2)/\widehat H(x_1)|}{x_2-x_1}.\end{gathered}\begin{gathered}\Omega_0=\frac{2}{\Delta t}\sin(\omega_0\Delta t/2),\\k_h=\frac{2}{\Delta x}\sin^{-1}\!\left[\frac{\Delta x}{2}\sqrt{\epsilon_1\Omega_0^2-K_y^2}\right].\end{gathered}
 左モニターは界面から距離dにあり、複素反射係数は同じ離散分散関係のkhで界面へ位相を戻します。透過振幅には面上の磁場平均に対応する補正も含めます。全反射のκは右の2観測点の時間Fourier成分から測ります。格子収束の比較先は、同じ有限時間窓を通した連続Fresnel参照です。参照と理想単色係数・理想κの差も表示し、時間窓の誤差を格子誤差と混同しません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 全反射の場・蓄積・正味流束 [ja]
+## Yee FDTD：基礎と検証例 — 全反射の場・蓄積・正味流束 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23506,7 +23633,7 @@ Coverage: reading
 \begin{gathered}U_*^n=\tfrac12\bigl(\|H^n\|_h^2+\langle E^{n-1/2},\epsilon E^{n+1/2}\rangle_h\bigr),\quad U_*^n=U_*^0,\\\bar E^n=(E^{n-1/2}+E^{n+1/2})/2,\quad U_{\rm phys}^n-U_*^n=\tfrac18\|E^{n+1/2}-E^{n-1/2}\|_{\epsilon,h}^2,\\\Delta U_{[x_L,x_R]}+\int(\Phi_{x_R}-\Phi_{x_L})\,dt=0.\end{gathered}
 全領域の修正離散エネルギーと、電場を中心時刻へ平均した物理エネルギーを区別します。界面をまたぐ区間の流束は場から直接計算し、エネルギー差から逆算しません。界面上のEyエネルギーを左右へ分けるときは、それぞれε₁/2、ε₂/2を使い、全体のε平均との整合を保ちます。場の精度は界面との相互作用中の固定時刻で判定し、エネルギーと流束はより遅い終時刻まで追います。終時刻の場の誤差も別に掲載します。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と保存した測定値 [ja]
+## Yee FDTD：基礎と検証例 — 固定入力と保存した測定値 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23529,7 +23656,7 @@ tir5120×256400.0151880.03740621-1.22729e-090.00062594
 無限時間のスペクトル値、有限窓の連続参照、数値の比較先を明示。
 例解析R∞解析T∞解析有限窓R_W解析有限窓T_W参照DFT→理想rHの差数値DFT→理想rHの差
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 固定入力と保存した測定値 [ja]
+## Yee FDTD：基礎と検証例 — 固定入力と保存した測定値 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23542,7 +23669,7 @@ brewsterの観測次数：場: 1.98512, 2.00092; 反射流束: 3.66482, 3.03245;
 tirの観測次数：場: 1.995, 1.99963; 反射流束: 2.22383, 3.59628; 複素rH／有限窓: 2.00988, 2.00353; 複素tH／有限窓: 2.00848, 2.00541; 局所流束収支: 1.99629, 1.99909; κ／有限窓: 2.00522, 2.03305; 過渡透過流束波形: 2.00779, 2.00251。
 これらは選んだ3格子・波束・時間窓での観測次数です。特定の小さな誤差や打消しから、更新式全体を高次法と呼び替えません。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — Brewster条件と全反射の数値的な確認 [ja]
+## Yee FDTD：基礎と検証例 — Brewster条件と全反射の数値的な確認 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23559,7 +23686,7 @@ tir8.88178e-163.93668e-052.07714e-077.96698e-05
 参照の周期倍増による場の最大相対差（相互作用時刻と終時刻） 7.11693e-12、初期の二次場の重み付きノルム二乗比 7.50501e-08。外端Eyの参照監査は各実行につき最大2049点の時刻で行い、最大値は 0.000266315。これは指定した窓の制御で、任意の長時間や角度への反射ゼロの保証ではありません。
 初期PEC条件への切り詰めによる重み付き格子場ノルム二乗比は最大 5.78842e-13。初期場、参照求積、時間窓の制御は、それぞれ結果JSONに残しています。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 第5版の取得と再実行 [ja]
+## Yee FDTD：基礎と検証例 — 第5版の取得と再実行 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/
 Coverage: reading
@@ -23579,9 +23706,10 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py
 python run_polarization.py --input inputs/p-polarization.json --output output-p
 ZIPを別フォルダへ独立展開し、全テストと全7入力を再実行して数値指標・全CSVの一致を確認しました。旧6入力の数値ソース・テストと過去4配布版は保持しています。FDTD専用の補助配布版であり、共通実行台帳や他分野の検証件数へ加算しません。
-検証範囲は指定した無損失・非磁性の平面界面、周期yの単一モード、有限帯域と時間窓です。損失・分散、異方性、任意の横方向スペクトル、3次元やエバネッセント場のPML吸収は別の検証が必要です。
+検証範囲は指定した無損失・非磁性の平面界面、周期yの単一モード、有限帯域と時間窓です。第5版は無損失です。損失・分散の垂直入射は第6版で別に検証します。異方性、任意の横方向スペクトル、3次元やエバネッセント場のPML吸収は対象外です。
+初版の配布物と再現手順
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 初版の真空2例：コード・再実行 [ja]
+## Yee FDTD：基礎と検証例 — 初版の真空2例：コード・再実行 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#reproduce
 Coverage: reading
@@ -23604,15 +23732,15 @@ python run.py --input inputs/periodic-wave.json --output output-periodic
 python run.py --input inputs/pec-cavity.json --output output-cavity
 空でない出力先は拒否します。終了コードは0=数値条件合格、1=数値条件不合格、2=入力・実行エラー。JSONには入力SHA-256、環境、誤差・収束・保存量の指標、各判定、終了理由が入ります。自作コードは同梱MIT License、本文・図・データはサイトの項目別利用条件を参照してください。
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 公開範囲と関連項目 [ja]
+## Yee FDTD：基礎と検証例 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#publication-scope
 Coverage: reading
 
-教育用Yee FDTD。既存TMzの真空・界面・PMLに加え、第5版でTEzのp偏光・Brewster条件・全反射を、指定した単一横モードの波束で検証。一般2次元更新との同値性、連続Fresnel参照、有限窓の反射透過流束・複素振幅・エバネッセント減衰と蓄積、離散保存量・物理収支を区別。一般媒質・多モード・損失分散・3次元の包括的な実証ではない。
+教育用Yee FDTD。真空・Fresnel界面・s/p偏光・PMLの既存例を保持し、第6版で一次元垂直入射のOhmic・受動Lorentz板を追加。帯域解析解、反射・透過・直接散逸・物質蓄積、修正離散収支・物理流束と格子・時間収束を分けて検査。一般分散、多共鳴、斜め分散入射、分散PML、一般2/3次元の包括的検証ではない。
 Yee FDTD
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 一次文献・関連資料と確認範囲 [ja]
+## Yee FDTD：基礎と検証例 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#sources
 Coverage: reading
@@ -23633,12 +23761,15 @@ Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs).
 Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. Krieger Publishing Company
 著者による著書・関連資料 · 原文の該当箇所を参照 · 確認した資料
 
-## Yee FDTD：s/p偏光・Fresnel界面・PML — 一次文献・関連資料と確認範囲 [ja]
+## Yee FDTD：基礎と検証例 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/#sources
 Coverage: reading
 
-著者の教科書7-6-1/7-6-2節（印刷522–524頁）、7-9-1節（538–540頁）、7-9-3/7-9-4節（541–544頁）を参照。垂直・斜めFresnel振幅、Snell則・臨界角、エバネッセント場、p偏光のBrewster条件と法線パワー換算。場・符号の規約は明示して変換。Fresnelの原著・全巻監査とは区別。
+著者の教科書7-6-1/7-6-2節（印刷522–524頁）、7-9-1節（538–540頁）、7-9-3/7-9-4節（541–544頁）を参照。垂直・斜めFresnel振幅、Snell則・臨界角、エバネッセント場、p偏光のBrewster条件と法線パワー換算。場・符号の規約は明示して変換。Fresnelの原著・全巻監査とは区別。 さらに7-2-1節と7-6-3節の導電媒質中の波、複素波数、導電界面を参照。有限厚Lorentz板と中点離散エネルギー則は別に導出。
+Meep developers (2026). Materials — Meep Documentation.
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式HTMLのMaterial Dispersion、Loss and Gain、Conductivity and Complex ε節を参照。Lorentz分極方程式とexp(−iωt)規約。MeepのD導電率と本例の通常のσEを区別し、陽的ADEの共鳴安定条件を本例の陰的中点更新へ転用しない。Meepによる数値比較や全資料監査は未実施。
 
 ## 連続有限要素法：弱形式から疎行列の組立てへ [ja]
 
@@ -29171,6 +29302,7 @@ LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Pr
 mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation. Original source
 LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview. Original source
 P. Gonnet (2010). Increasing the Reliability of Adaptive Quadrature Using Explicit Interpolants. 10.1145/1824801.1824804
+Meep developers (2026). Materials — Meep Documentation. Original source
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -29686,7 +29818,7 @@ InutsukaのGSPH：Gaussian畳み込み、比体積再構成、向き付き粒子
 第1段階を追加：制限付き放物線FV、保存特性変数、FD WENO-ZのSod・接触面・Shu–Osher比較。直接Euler型の波追跡・急峻化・平坦化は第2段階に追加しました。Lagrange/remapは別課題です。
 従来のAUSM共通音速基準例を維持し、第2段階に定義を明示したAUSM+／AUSM+-up、波追跡PPM条件を揃えた比較、許容状態を保てない停止例を追加しました。
 Web実装済み：HLLD、Brio–Wu、Alfvén波の格子細分化、弱い磁場ループのCT-Contact／GLM比較。MHDテストを参照。
-限定実装・検証済み — Yee FDTD：2次元TMz・一様真空の周期平面波と長方形PEC空洞を実装。解析解、格子・時間細分化、数値分散、12周期の離散エネルギー保存を専用コードと固定入力で確認しました。日英解説・コード・結果。従来のs偏光界面・PMLに加え、光学のp偏光に対応するTEzの固定例を追加しました。Brewster角の単色係数と有限帯域波束の反射率、全反射時のエバネッセント場と正味法線流束を区別し、Fresnel解析解、エネルギー収支、格子収束を確認します。選定した無損失・非磁性の条件に範囲を限定します。
+限定実装・検証済み — Yee FDTD：2次元TMz・一様真空の周期平面波と長方形PEC空洞を実装。解析解、格子・時間細分化、数値分散、12周期の離散エネルギー保存を専用コードと固定入力で確認しました。日英解説・コード・結果。従来の2次元の界面・PML・p偏光例を保持し、法線入射する1次元の有限厚Ohmic・Lorentz媒質スラブを追加しました。複素誘電率の解析解と反射・透過・吸収率を比較し、直接積算した散逸、媒質振動子の蓄積エネルギー、離散・物理エネルギー収支と格子収束を分けて確認します。一般2次元の分散媒質・分散PMLは検証範囲に含みません。
 予定 — プラズマPIC（Particle-in-Cell法）：静電的な粒子–Poisson連成から、電磁的な粒子–Maxwell連成へ進みます。粒子形状、格子への割当てと場の補間、Boris法、電荷保存電流割当て、Gauss則の診断を扱います。プラズマ振動、two-stream不安定性、Landau減衰を検証候補とし、エネルギー・ノイズ・格子／時間／粒子数依存性を確認します。既存の重力PM例とは適用範囲を分けます。WarpXのPIC理論ノートを出発点とし、プラズマPICソルバーは現時点では未実装です。
 硬い積分：BE／BDF2／SDIRK2／IMEX Eulerを超える高次IMEX、埋込みDIRK、可変BDF、演算子分割。
 疎行列・非線形：固定右GMRES／BiCGSTAB・ILU(0)を超える行列不要Newton–Krylov、頑健な並べ替え・フィル、可変前処理、広い非線形テスト。
@@ -30140,7 +30272,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文241件・全参考資料296件。
+方程式・モデル46項目・計算法と構成要素129項目・学術誌／会議論文241件・全参考資料297件。
 保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め90章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]

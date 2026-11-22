@@ -1,8 +1,8 @@
-# Yee FDTD: TMz/TEz, Fresnel interfaces and PML / TMz・TEz・Fresnel界面・PML
-Revision r5 contains seven fixed inputs, adding TEz p polarization, Brewster
-incidence and total internal reflection. The first sections retain the original
+# Yee FDTD: TMz/TEz, interfaces, PML and dispersive loss / 界面・PML・損失分散
+Revision r6 contains eight fixed inputs, adding normal-incidence Ohmic and
+passive Lorentz slabs with directly measured absorption. The first sections retain the original
 TMz vacuum examples; see each revision section for its added scope.
-All four earlier frozen editions are preserved.
+All five earlier frozen editions are preserved.
 
 Original educational **two-dimensional TMz** Maxwell solver. Python 3.12;
 NumPy performs the update, Matplotlib draws saved results, pytest runs tests.
@@ -424,3 +424,87 @@ transverse spectra, 3D and evanescent PML absorption need separate validation.
 Zahn Chapter7 sections7-9-3/7-9-4 (printed pp541–544) provide the critical
 angle, evanescent-field interpretation, p-polarized amplitudes and Brewster
 condition. Its time convention is adapted explicitly in the formulas above.
+
+## Revision r6: Ohmic loss and Lorentz dispersion / 第6版：損失・分散媒質
+
+This addition is a **one-dimensional, normal-incidence**, nonmagnetic,
+linear passive vacuum–slab–vacuum benchmark. It evolves Ez, Hy and, inside
+an optional single-resonance Lorentz material, polarization P and current J.
+Distant PEC caps close the domain; this addition does not combine dispersive
+material with a PML or claim arbitrary two-dimensional material support.
+The seven earlier inputs, numerical sources/tests and five frozen releases
+remain unchanged.
+
+With time dependence exp(-i omega t), normalized mu=epsilon0=1, the model is
+
+    eps_inf E_t = H_x - sigma E - J,  H_t = E_x,
+    P_t = J,  J_t = f E - omega0^2 P - gamma J,
+    f = delta_eps * omega0^2,
+    eps(omega) = eps_inf + f/(omega0^2-omega^2-i gamma omega)
+                         + i sigma/omega.
+
+Here sigma is the conventional **E-current conductivity**, not Meep's
+D-conductivity parameter. eps_inf>0, sigma>=0, f>=0 and gamma>=0 define
+passive inputs. With f=0, P=J=0 and the material-energy term is omitted.
+The square-root refractive index has nonnegative real and imaginary parts.
+A finite slab uses both interface reflections, its internal phase and damping;
+a single-interface Fresnel coefficient does not describe its total R/T.
+Both external media are vacuum, so R=|r|^2 and T=|t|^2. A separate spatial
+integral of the analytic internal-field dissipation checks A=1-R-T.
+
+E,P,J occupy integer times; H occupies half times. After the explicit Yee H
+update, a **local implicit midpoint** solve advances the coupled E,P,J.
+Material coefficients at an interface E node use half-volume averaging;
+P/J are polarization/current densities on the same control volume. The
+strict Yee CFL uses the minimum eps_inf. Energy passivity of this midpoint
+oscillator does not remove its time-resolution requirement.
+
+For complex quadrature fields, squared norms below mean modulus squares and
+products mean real Hermitian products. These fields represent a pair of real
+quadratures; all energies and fluxes use the same convention. With H- and H+
+adjacent to E^n, the closed-domain identity is
+
+    U* = (||E||_eps_inf^2 + Re <H-,H+>)/2
+           + sum_active (|J|^2+omega0^2 |P|^2)/(2f) dx,
+    W_sigma += dt sum sigma |E_mid|^2 dx,
+    W_gamma += dt sum_active gamma |J_mid|^2/f dx,
+    U*(t) + W_sigma(t) + W_gamma(t) = U*(0).
+
+Each W is accumulated **directly from the midpoint fields**, independently
+of the energy deficit or R/T. Material storage is the positive oscillator
+energy, not absorbed energy. Centering H gives a physical field-energy
+diagnostic that differs from U* by ||H+-H-||^2/8. Physical local Poynting
+balances therefore have a discretization residual separate from the exact
+modified-energy/work identity.
+
+The saved finite-band incident spectrum is propagated through the complex
+slab solution for the continuum comparison. Monochromatic coefficients,
+packet-weighted asymptotic R/T/A, finite observation windows and residual
+stored energy are distinguished. A same-Yee vacuum control isolates the
+reflected packet. Fixed inputs specify all meshes, clocks, quadrature and
+acceptance criteria; CSVs retain the measured fields/work and errors rather
+than only pass/fail labels. Spatial/time refinement, normalization, initial
+and outer-cap tails and reference controls are separate checks. See the
+input, result JSON and bilingual chapter for the exact measured limits.
+
+```sh
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py
+python run_dispersive.py --input inputs/loss-dispersion.json --output output-loss
+```
+
+第6版は真空に挟まれた有限厚の媒質板への垂直入射を扱う一次元検証です。
+導電電流sigma Eと単一共鳴Lorentz分極を局所陰的中点法で更新します。
+反射・透過の流束、電場と分極電流から直接積算した二種類の散逸、媒質内部の
+振動子エネルギーを別々に記録します。解析的な板の多重反射解、内部場の散逸積分、
+修正離散エネルギー恒等式と物理Poynting収支を照合し、格子・時間収束を調べます。
+一般の分散媒質、斜め入射、分散媒質とPMLの併用、Drudeモデル、異方性や3次元の
+包括的な検証ではありません。旧7入力と過去5配布版は保持します。
+
+Reference access: Meep developers, *Materials*, official documentation,
+“Material Dispersion”, “Loss and Gain”, and “Conductivity and Complex ε”
+(HTML consulted 2026-11-22), https://meep.readthedocs.io/en/latest/Materials/ .
+This supplies the Lorentz model and sign conventions, not an external solver
+comparison or the midpoint algorithm used here. Zahn Chapter7 sections7-2-1
+and7-6-3 supply supporting conductivity/complex-wave and conducting-interface
+context. The implemented midpoint update and its discrete balance are derived
+and independently tested for this benchmark.

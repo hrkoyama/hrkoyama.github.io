@@ -98,7 +98,7 @@
 - [Particle Mesh Ewald（PME）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pme/)
 - [Smooth PME（SPME）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spme/)
 - [スラブ静電場と2次元周期Ewald](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/slab-ewald/)
-- [Yee FDTD：s/p偏光・Fresnel界面・PML](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/)
+- [Yee FDTD：基礎と検証例](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fdtd/)
 - [Particle-in-Cell（PIC）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pic/)
 - [量子化学・DFT：何を近似し、何を解くか](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/)
 - [水素型原子とHe：実行・検証例](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/)

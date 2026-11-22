@@ -1,18 +1,10 @@
 # Yee FDTD
 
-Yee FDTD：s/p偏光・Fresnel界面・PML
+Yee FDTD：基礎と検証例
 
-第5版ではTEzのp偏光、Brewster条件、全反射を追加しました。有限帯域波束の反射・透過流束、複素反射係数、エバネッセント減衰、エネルギー収支と格子収束を検証します。既存TMzの6入力と4配布版も保持しています。
+Maxwell方程式を電場・磁場の位置と時刻をずらして解くYee法です。基本式を先に読み、必要な検証例を選べます。最新の第6版は一次元の損失・Lorentz分散媒質を扱います。
 
-[第5版の実装・測定結果へ](#interface-p-polarization)
-
-第4版では、媒質界面への斜め入射をs偏光の有限帯域波束で検証します。Fresnel解析解、反射・透過エネルギー、全体と局所の収支、格子収束を別々に比較します。旧3配布版・既存5入力は保持しています。
-
-新版の結果：[媒質界面への斜め入射](#interface-oblique)
-
-第3版では四辺と四つの角へPMLを拡張しました。辺へ向かう波と斜めに角へ向かう波を分け、反射・方向別のPML仕事・四辺の流束・格子収束を検証します。旧2配布版と既存の4入力も保持しています。
-
-初版の真空2例に、第2版の誘電体界面と左右x方向PMLを追加しました。前半は真空の解析モード、後半は垂直入射のFresnel比較と、垂直・斜めパルスの境界反射を扱います。旧版のコード・図・数値は保持しています。
+[基本モデル](#model) · [損失・分散媒質](#interface-loss-dispersion) · [Fresnel界面](#interface) · [四辺・角PML](#pml-corners) · [斜め入射](#interface-oblique) · [p偏光・Brewster・全反射](#interface-p-polarization)
 
 2次元TMz（Ez、Hx、Hy）の自作教育用コードです。初版の検証では無次元の一様真空・電流/電荷源なしに限定し、周期平面波と完全導体（PEC）長方形空洞を連続解析解と比較しました。格子収束、数値分散、離散保存量、物理エネルギーの近似を別々に確認します。
 
@@ -22,7 +14,7 @@ Yee FDTD：s/p偏光・Fresnel界面・PML
 $$
 \partial_t E_z=\partial_xH_y-\partial_yH_x,\qquad \partial_tH_x=-\partial_yE_z,\qquad \partial_tH_y=\partial_xE_z,\quad \epsilon=\mu=c=1.
 $$
-長さ・時間・場を規格化し、ε=μ=c=1とします。計算領域はLx=1、Ly=1.5、モード番号(m,l)=(1,1)。矩形・斜めの周期モードを使い、軸の入れ替えや磁場の符号を見逃さない構成です。分散媒質、損失、誘電体界面、外部励起は含みません。
+長さ・時間・場を規格化し、ε=μ=c=1とします。計算領域はLx=1、Ly=1.5、モード番号(m,l)=(1,1)。矩形・斜めの周期モードを使い、軸の入れ替えや磁場の符号を見逃さない構成です。この初版の真空例には分散・損失・界面・外部励起を含みません。界面と損失・分散は各追加例で別に扱います。
 
 Yee格子と時間をずらした更新
 
@@ -68,7 +60,49 @@ $$
 
 単位振幅の連続場では、周期進行波の全エネルギーはLxLy/2、空洞定在波ではLxLy/8です。12周期にわたってU*の相対変動とUsyncの変動幅を記録し、後者と解析的な全エネルギーとの差が格子・刻みの細分化で約2次に減ることを確認します。固有モードだけでなく、乱数で作った適合する場でもU*の保存をテストします。
 
-固定入力と実測結果
+第6版：損失・分散媒質
+
+真空に挟まれた有限厚の板へ垂直に入射する一次元波束を計算します。導電損失の板と、減衰を持つ単一共鳴Lorentz板の2例です。Ez・分極P・分極電流Jを整数時刻、Hyを半時刻に置き、磁場のYee更新後にE/P/Jを局所陰的中点法で進めます。
+
+
+$$
+\begin{gathered}\epsilon_\infty\partial_t E=\partial_xH-\sigma E-J,\quad\partial_tH=\partial_xE,\\\partial_tP=J,\quad\partial_tJ=fE-\omega_0^2P-\gamma J,\quad f=\Delta\epsilon\,\omega_0^2,\\\epsilon(\omega)=\epsilon_\infty+\frac{f}{\omega_0^2-\omega^2-i\gamma\omega}+\frac{i\sigma}{\omega},\quad e^{-i\omega t}.\end{gathered}
+$$
+σは通常の電流σEの係数です。f=0ではP=J=0として振動子項を除きます。外端は遠方のPECで、ここではPMLを使いません。界面の電場制御体積ではε∞・σ・fを半体積で平均します。
+
+板内の多重反射と複素波数を含む解析解を、実際の入射スペクトルで重み付けします。数値のR/Tは外側のPoynting流束、Aは導電・分極電流の散逸を直接積算して求めます。吸収と媒質内の一時的な蓄積を分け、エネルギー収支と格子・時間の収束を照合します。
+
+最細格子の有限窓測定と帯域重み付き解析値。板数値R数値T直接A解析R / T / Aohmic0.04217920.1631050.7947160.0422517 / 0.163222 / 0.794527lorentz0.1210680.05543760.8234950.121356 / 0.0555188 / 0.823125[](/numerical-methods-atlas/assets/fdtd-loss-dispersion.png)[結果・全判定JSON](/code/fdtd/2026-11-22-r6/results/loss-dispersion/result.json) · [convergence.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/convergence.csv) · [図を開いて拡大](/numerical-methods-atlas/assets/fdtd-loss-dispersion.png)[第6版コードZIP：損失・分散＋既存7入力](/code/fdtd/2026-11-22-r6/fdtd-2026-11-22-r6.zip) · [日英の実行手順](/code/fdtd/2026-11-22-r6/README.md)
+
+範囲は線形・等方・非磁性の一次元垂直入射、指定した帯域と有限時間です。Drude、多共鳴、分散媒質への斜め入射、分散媒質とPMLの併用、一般2/3次元は未検証です。
+
+式の導出・全格子の結果・再現資料を開く
+$$
+\begin{gathered}n=\sqrt{\epsilon},\quad\Re n\ge0,\quad\Im n\ge0,\quad\rho=\frac{1-n}{1+n},\quad z=e^{2in\omega d},\\r=\frac{\rho(1-z)}{1-\rho^2z},\quad t=\frac{(1-\rho^2)e^{in\omega d}}{1-\rho^2z},\\R=|r|^2,\quad T=|t|^2,\quad A=1-R-T,\\A_{\rm volume}=\int_0^d\!\left(\sigma+\frac{\gamma\omega^2f}{|\omega_0^2-\omega^2-i\gamma\omega|^2}\right)|E(x)|^2\,dx.\end{gathered}
+$$
+tは板の出口面での電場振幅です。両外側が真空なのでT=|t|²です。体積積分のE(x)は入射振幅1の内部場です。解析A=1−R−Tはこの独立した散逸積分とも照合します。搬送波の係数、帯域平均、有限窓DFTの差を別に保存します。
+
+
+$$
+\begin{gathered}U_*^n=\tfrac12\|E^n\|_{\epsilon_\infty,h}^2+\tfrac12\Re\langle H^{n-1/2},H^{n+1/2}\rangle_h+U_{\rm mat}^n,\\U_{\rm mat}=\sum_{f_j>0}\frac{|J_j|^2+\omega_0^2|P_j|^2}{2f_j}\Delta x,\\\Delta W_\sigma=\Delta t\sum_j\sigma_j|\bar E_j|^2\Delta x,\quad\Delta W_\gamma=\Delta t\sum_{f_j>0}\frac{\gamma|\bar J_j|^2}{f_j}\Delta x,\\U_*^n+W_\sigma^n+W_\gamma^n=U_*^0.\end{gathered}
+$$
+複素場は二つの実直交成分を表し、全エネルギー・流束は同じ規約です。WσとWγは中点場から直接計算し、Uの減少や1−R−Tから逆算しません。修正離散エネルギー恒等式と、中心化磁場を使う物理的な局所Poynting収支は別々に判定します。中点の内積でE–Jの交換項が相殺し、PEC外端では離散curlの組が相殺するため、この恒等式を得ます。厳密CFL条件は静的誘電率ではなくε∞を使うΔt/Δx<min(1,√ε∞)です。振動子の蓄積は吸収率へ足しません。
+
+同じ物理時刻での3格子。板Nx場の相対L2R誤差T誤差A誤差物理流束残差ohmic30720.120280.001165190.001887640.003052830.00215611ohmic61440.03010150.0002903310.0004686340.0007589650.00053856ohmic122880.0075267.2522e-050.0001169550.0001894770.000134611lorentz30720.104430.004686770.001302980.005989750.00215381lorentz61440.02633820.001157060.0003250520.001482110.000537989lorentz122880.006597650.0002883548.12193e-050.0003695730.000134468Lorentz板の最細格子で分極Pと電流Jの相対L2誤差は 0.011884 と 0.0124923 です。
+
+ohmicの観測次数：場 1.99849, 1.99988; R 2.0048, 2.00121; T 2.01005, 2.0025; A 2.00804, 2.00201; 複素r 2.00255, 2.00077; 複素t 2.00708, 2.0018; 物理流束収支 2.00126, 2.00032; 物理エネルギー 2.00565, 2.00141。固定空間での時間刻み半減の自己収束次数：2.00388
+
+lorentzの観測次数：場 1.9873, 1.99713; R 2.01813, 2.00455; T 2.00307, 2.00078; A 2.01484, 2.00372; 複素r 1.99893, 2.00058; 複素t 2.00077, 2.00052; 物理流束収支 2.00124, 2.00031; 物理エネルギー 2.00952, 2.00236; P 2.02312, 2.00687; J 2.02239, 2.00672。固定空間での時間刻み半減の自己収束次数：2.00371
+
+保存・散逸・残留蓄積・参照制御を分離。板修正収支の最大相対残差|R+T+A−1|終時刻の物質蓄積 / 入射窓内参照fluence差参照周期倍増の場の差ohmic1.64405e-133.04201e-1403.33067e-161.28307e-09lorentz1.76686e-131.09499e-103.10325e-126.24744e-111.92765e-09場の精度は波束と板が相互作用する保存時刻で判定し、流束・吸収の積分は後の終時刻まで続けます。初期Eは入射波束、Hは同じYee分散で半時刻へ合わせ、P=J=0とします。同じYee法の真空対照で反射を分離します。省略した連続散乱場・分極の初期裾、外端、正周波数帯域の切り落とし、参照周期と空間求積の倍増、有限窓DFTの差はJSONへ記録します。時間の自己収束は固定空間離散内の検査であり、独立PDEソルバーとの比較ではありません。
+
+[dispersive.py](/code/fdtd/2026-11-22-r6/dispersive.py) · [run_dispersive.py](/code/fdtd/2026-11-22-r6/run_dispersive.py) · [test_dispersive.py](/code/fdtd/2026-11-22-r6/test_dispersive.py) · [固定入力・許容値](/code/fdtd/2026-11-22-r6/inputs/loss-dispersion.json) · [energy.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/energy.csv) · [solution.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/solution.csv) · [spectrum.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/spectrum.csv) · [waveforms-ohmic.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/waveforms-ohmic.csv) · [waveforms-lorentz.csv](/code/fdtd/2026-11-22-r6/results/loss-dispersion/waveforms-lorentz.csv) · [SHA-256 manifest](/code/fdtd/2026-11-22-r6/source-manifest.json) · [旧版の同一性](/code/fdtd/2026-11-22-r6/provenance.json) · [108テスト成功・独立追試](/code/fdtd/2026-11-22-r6/verification.json)
+
+python -m pip install -r requirements.txt
+python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py
+python run_dispersive.py --input inputs/loss-dispersion.json --output output-lossZIPを独立展開し、全テストと全8入力を再実行して指標・全CSVの一致を確認しました。旧7入力の数値ソース・テストと過去5配布版は不変です。共通実行台帳や他分野の件数へ加算しません。Lorentzモデルの参照はMeep公式資料の該当節であり、Meepの導電率規約・陽的ADEと本実装を区別します。
+
+初版の詳しい検証：周期波・導体空洞固定入力と実測結果
 
 
 $$
@@ -78,7 +112,7 @@ $$
 
 固定入力の実測値。誤差と周波数は連続解析解に対して評価。問題格子 Nx × Ny全場の相対L²誤差観測次数相対周波数誤差離散エネルギー最大相対変動周期波16 × 240.021645—0.00312712.22e-16周期波32 × 480.00539262.00490.000779622.22e-16周期波64 × 960.00133092.01860.000192442.22e-16導体空洞16 × 240.0055511—0.000779624.441e-16導体空洞32 × 480.00135142.03830.000192444.441e-16導体空洞64 × 960.000333262.01974.7804e-052.22e-16周期平面波 · [JSON](/code/fdtd/2026-11-22/results/periodic-wave/result.json) · [convergence.csv](/code/fdtd/2026-11-22/results/periodic-wave/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22/results/periodic-wave/energy.csv)完全導体空洞 · [JSON](/code/fdtd/2026-11-22/results/pec-cavity/result.json) · [convergence.csv](/code/fdtd/2026-11-22/results/pec-cavity/convergence.csv) · [energy.csv](/code/fdtd/2026-11-22/results/pec-cavity/energy.csv)許容値は固定入力のacceptanceに保存しています。全場誤差0.01以下、観測次数1.8以上、相対周波数誤差0.002以下、離散分散一致誤差10⁻⁹以下、U*相対変動2×10⁻¹¹以下を別々に判定します。壁上の電場0、磁場の初期発散の保存、Usyncの解析的全エネルギーに対する最大相対誤差0.003以下、およびその約2次の細分化も別々に判定します。Usyncの変動幅は診断値として保存します。
 
-誘電体界面：Fresnelの振幅とエネルギー
+第2版の詳しい検証：界面・左右PML誘電体界面：Fresnelの振幅とエネルギー
 
 
 $$
@@ -167,7 +201,7 @@ python -m pytest -q test_fdtd.py test_scattering.py
 python run_scattering.py --input inputs/dielectric-interface.json --output output-interface
 python run_scattering.py --input inputs/pml-pulse.json --output output-pml第2版の範囲は界面への垂直入射と、真空帯領域の左右x方向PMLです。四辺・角のPMLは以下の第3版で追加しました。界面への斜め入射、非常に浅い入射、分散物質、一般形状、3次元は別の課題です。
 
-第3版：四辺と角のPML
+第3版の詳しい検証：四辺・角PML第3版：四辺と角のPML
 
 方向別の減衰と角の重なり
 
@@ -257,7 +291,7 @@ python run_corner.py --input inputs/pml-corners.json --output output-cornersZIP�
 
 第3版の対象は指定した真空2次元TMz波束・正方形・有限時間です。媒質界面への斜め入射は以下の第4版で別に検証します。掠れ入射全般、分散・異方性物質、3次元や一般曲面のPMLには、この結果をそのまま適用しません。
 
-第4版：媒質界面への斜め入射
+第4版の詳しい検証：斜め界面入射第4版：媒質界面への斜め入射
 
 TMzとs偏光・Fresnel係数
 
@@ -353,7 +387,7 @@ python run_oblique.py --input inputs/dielectric-oblique.json --output output-obl
 
 第4版の対象は指定した無損失・非磁性のs偏光波束、伝播する透過波、3格子と有限時間です。p偏光・Brewster条件・全反射は以下の第5版で別に検証します。損失や分散・3次元は引き続き別の範囲です。参照は解析式と数値積分で、外部FDTDソルバーとの比較ではありません。
 
-第5版：p偏光・Brewster条件・全反射
+第5版の詳しい検証：p偏光・Brewster・全反射第5版：p偏光・Brewster条件・全反射
 
 TEzの格子配置とp偏光
 
@@ -471,9 +505,9 @@ python -m pip install -r requirements.txt
 python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py
 python run_polarization.py --input inputs/p-polarization.json --output output-pZIPを別フォルダへ独立展開し、全テストと全7入力を再実行して数値指標・全CSVの一致を確認しました。旧6入力の数値ソース・テストと過去4配布版は保持しています。FDTD専用の補助配布版であり、共通実行台帳や他分野の検証件数へ加算しません。
 
-検証範囲は指定した無損失・非磁性の平面界面、周期yの単一モード、有限帯域と時間窓です。損失・分散、異方性、任意の横方向スペクトル、3次元やエバネッセント場のPML吸収は別の検証が必要です。
+検証範囲は指定した無損失・非磁性の平面界面、周期yの単一モード、有限帯域と時間窓です。第5版は無損失です。損失・分散の垂直入射は第6版で別に検証します。異方性、任意の横方向スペクトル、3次元やエバネッセント場のPML吸収は対象外です。
 
-初版の真空2例：コード・再実行
+初版の配布物と再現手順初版の真空2例：コード・再実行
 
 新しい不変配布版を独立したフォルダへ展開し、ネットワークも元の作業コピーも使わず、テストと両入力を再実行しました。保存済みの数値指標・CSVとの一致を確認しています。既存の共通実行台帳22例とは別の補助配布版であり、過去の検証件数へ加算しません。
 
@@ -508,7 +542,7 @@ python run.py --input inputs/pec-cavity.json --output output-cavity空でない�
 
 ## 公開範囲
 
-教育用Yee FDTD。既存TMzの真空・界面・PMLに加え、第5版でTEzのp偏光・Brewster条件・全反射を、指定した単一横モードの波束で検証。一般2次元更新との同値性、連続Fresnel参照、有限窓の反射透過流束・複素振幅・エバネッセント減衰と蓄積、離散保存量・物理収支を区別。一般媒質・多モード・損失分散・3次元の包括的な実証ではない。
+教育用Yee FDTD。真空・Fresnel界面・s/p偏光・PMLの既存例を保持し、第6版で一次元垂直入射のOhmic・受動Lorentz板を追加。帯域解析解、反射・透過・直接散逸・物質蓄積、修正離散収支・物理流束と格子・時間収束を分けて検査。一般分散、多共鳴、斜め分散入射、分散PML、一般2/3次元の包括的検証ではない。
 
 ## 文献
 
@@ -517,3 +551,4 @@ python run.py --input inputs/pec-cavity.json --output output-cavity空でない�
 - Jean-Pierre Bérenger (1994). A Perfectly Matched Layer for the Absorption of Electromagnetic Waves. https://doi.org/10.1006/jcph.1994.1159
 - Steven G. Johnson (2021). Notes on Perfectly Matched Layers (PMLs). https://arxiv.org/abs/2108.05348v1
 - Markus Zahn (2003). Electromagnetic Field Theory: A Problem Solving Approach. https://ocw.mit.edu/courses/res-6-002-electromagnetic-field-theory-a-problem-solving-approach-spring-2008/pages/about-this-book/
+- Meep developers (2026). Materials — Meep Documentation. https://meep.readthedocs.io/en/latest/Materials/
