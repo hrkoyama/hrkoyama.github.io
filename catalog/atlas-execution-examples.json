@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "reviewed_on": "2026-11-22",
-  "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-domains.json",
+  "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-h2.json",
   "policy": {
     "ja": "既存15問題の固定入力・実行・出力・数値判定を結ぶ共通案内です。解析解・数値参照・保存則・残差を区別し、実行終了と数値条件の合格を別々に記録します。原子2例は同じrunnerを1回実行して個別に判定します。既存の60問題へ15を加算せず、版をまたぐ自動検査も合算しません。",
     "en": "Fixed inputs, execution, output and numerical acceptance for 15 existing problem families. Analytic references, numerical references, conservation and residuals are distinct; process completion and numerical acceptance are recorded separately. Both atomic cases share one runner and receive separate decisions. Do not add these 15 to the existing 60 atlas problems or sum repeated tests across editions."
@@ -4447,6 +4447,293 @@
           }
         }
       ]
+    },
+    {
+      "id": "h2-rhf",
+      "name": {
+        "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+        "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+      },
+      "problem_id": "h2-rhf",
+      "method_ids": [
+        "hartree-fock",
+        "electronic-bases",
+        "scf"
+      ],
+      "scope": {
+        "ja": "孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。",
+        "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
+      },
+      "assumptions": {
+        "ja": "固定核・一重項の制限HF、1空間軌道の二重占有。自作Gaussian積分と別実装PySCFで同じ幾何・基底を使用。",
+        "en": "Fixed nuclei, singlet restricted HF, one doubly occupied spatial orbital. Original Gaussian integrals and independent PySCF use identical geometries and bases."
+      },
+      "units": {
+        "ja": "原子単位系：核間距離bohr、全エネルギーhartree。重なり行列・電子数・密度行列の規格化は入力と解説に記載。",
+        "en": "Atomic units: distances in bohr and total energies in hartree. Overlap, electron count and density normalization are specified in inputs/reading."
+      },
+      "boundaries": {
+        "ja": "孤立有限分子、Gaussian関数による全空間積分。周期境界や有限箱を使用しない。",
+        "en": "Isolated finite molecule with whole-space Gaussian integrals; no periodic boundary or finite box."
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/"
+      },
+      "release": {
+        "family": "molecular-hf",
+        "version": "2026-11-22",
+        "download": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip",
+        "sha256": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
+        "manifest": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/source-manifest.json",
+        "manifest_sha256": "ca34057ae326169d84f70974b8f324555482fdd4afe57a69b56efef5c3008df2",
+        "verification": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/verification.json",
+        "archive_directory": "molecular-hf-2026-11-22"
+      },
+      "citation": {
+        "creator": "Hiroshi Koyama",
+        "title": {
+          "ja": "H₂分子RHF：独立参照・SCF・s型基底拡大",
+          "en": "H₂ molecular RHF: independent reference, SCF and s-basis refinement"
+        },
+        "version": "2026-11-22",
+        "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/",
+        "method_publications": [
+          "https://doi.org/10.1098/rspa.1950.0036",
+          "https://doi.org/10.1103/RevModPhys.23.69",
+          "https://doi.org/10.1063/5.0006074"
+        ]
+      },
+      "terms": {
+        "code": "MIT",
+        "code_license": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/LICENSE",
+        "content_and_data": "https://hrkoyama.github.io/rights/",
+        "scope": {
+          "ja": "自作コードはMIT。入力・数値データ・図・本文はサイトの個別条件に従います。この台帳は利用許諾を拡大しません。",
+          "en": "Original code is MIT. Inputs, numerical data, figures and prose retain the site’s item-specific terms. This registry does not expand reuse permissions."
+        }
+      },
+      "execution_group": "h2-rhf",
+      "shared_runner_cases": [
+        "h2-rhf"
+      ],
+      "inputs": {
+        "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/inputs.json",
+        "path": "inputs.json",
+        "sha256": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf"
+      },
+      "dependencies": {
+        "core": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/requirements.txt",
+        "testing": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/requirements.txt"
+      },
+      "commands": {
+        "install": "python -m pip install -r requirements.txt",
+        "run": "python run.py --input inputs.json --output output",
+        "tests": "python -m pytest -q test_molecular_hf.py",
+        "run_argv": [
+          "python",
+          "run.py",
+          "--input",
+          "inputs.json",
+          "--output",
+          "{output}"
+        ],
+        "tests_argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "test_molecular_hf.py"
+        ]
+      },
+      "outputs": [
+        {
+          "id": "results",
+          "format": "json",
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/result.json",
+          "path": "results/result.json",
+          "sha256": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
+          "generated_path": "result.json"
+        },
+        {
+          "id": "solution",
+          "format": "csv",
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/solution.csv",
+          "path": "results/solution.csv",
+          "sha256": "cdcfd8c95548cbf7f881acda5a27f3d525c4ff6903a01a615bc9a0ba513399fa",
+          "generated_path": "solution.csv"
+        },
+        {
+          "id": "scf",
+          "format": "csv",
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/scf.csv",
+          "path": "results/scf.csv",
+          "sha256": "944b33e9de0791131c1f97b8d2cd406742e04e2ad5a2a3148f840b4cd4990c43",
+          "generated_path": "scf.csv"
+        }
+      ],
+      "checks": [
+        {
+          "id": "numerical-flags",
+          "pointer": "/checks",
+          "comparison": "all_true",
+          "description": {
+            "ja": "固定入力の全数値判定",
+            "en": "All fixed-input numerical checks"
+          }
+        },
+        {
+          "id": "input-provenance",
+          "pointer": "/input_sha256",
+          "comparison": "equals",
+          "expected": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf",
+          "description": {
+            "ja": "入力ハッシュ",
+            "en": "Input SHA-256"
+          }
+        },
+        {
+          "id": "max_reference_energy_error",
+          "pointer": "/metrics/max_reference_energy_error",
+          "comparison": "maximum",
+          "tolerance": 1e-09,
+          "description": {
+            "ja": "max_reference_energy_error（定義・単位は解説）",
+            "en": "max_reference_energy_error (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "max_scf_commutator",
+          "pointer": "/metrics/max_scf_commutator",
+          "comparison": "maximum",
+          "tolerance": 1e-08,
+          "description": {
+            "ja": "max_scf_commutator（定義・単位は解説）",
+            "en": "max_scf_commutator (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "max_orthogonality_error",
+          "pointer": "/metrics/max_orthogonality_error",
+          "comparison": "maximum",
+          "tolerance": 1e-09,
+          "description": {
+            "ja": "max_orthogonality_error（定義・単位は解説）",
+            "en": "max_orthogonality_error (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "max_electron_count_error",
+          "pointer": "/metrics/max_electron_count_error",
+          "comparison": "maximum",
+          "tolerance": 1e-09,
+          "description": {
+            "ja": "max_electron_count_error（定義・単位は解説）",
+            "en": "max_electron_count_error (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "max_energy_consistency_error",
+          "pointer": "/metrics/max_energy_consistency_error",
+          "comparison": "maximum",
+          "tolerance": 1e-09,
+          "description": {
+            "ja": "max_energy_consistency_error（定義・単位は解説）",
+            "en": "max_energy_consistency_error (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "max_idempotency_error",
+          "pointer": "/metrics/max_idempotency_error",
+          "comparison": "maximum",
+          "tolerance": 1e-08,
+          "description": {
+            "ja": "max_idempotency_error（定義・単位は解説）",
+            "en": "max_idempotency_error (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "basis_energy_increase_max",
+          "pointer": "/metrics/basis_energy_increase_max",
+          "comparison": "maximum",
+          "tolerance": 1e-08,
+          "description": {
+            "ja": "basis_energy_increase_max（定義・単位は解説）",
+            "en": "basis_energy_increase_max (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "last_basis_energy_change_max",
+          "pointer": "/metrics/last_basis_energy_change_max",
+          "comparison": "maximum",
+          "tolerance": 0.001,
+          "description": {
+            "ja": "last_basis_energy_change_max（定義・単位は解説）",
+            "en": "last_basis_energy_change_max (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "last_two_basis_changes_max",
+          "pointer": "/metrics/last_two_basis_changes_max",
+          "comparison": "maximum",
+          "tolerance": 0.001,
+          "description": {
+            "ja": "last_two_basis_changes_max（定義・単位は解説）",
+            "en": "last_two_basis_changes_max (definitions/units in reading)"
+          }
+        },
+        {
+          "id": "scf_tolerance_energy_error_max",
+          "pointer": "/metrics/scf_tolerance_energy_error_max",
+          "comparison": "maximum",
+          "tolerance": 1e-06,
+          "description": {
+            "ja": "scf_tolerance_energy_error_max（定義・単位は解説）",
+            "en": "scf_tolerance_energy_error_max (definitions/units in reading)"
+          }
+        }
+      ],
+      "expected_failures": [],
+      "references": [
+        {
+          "type": "independent-numerical-reference",
+          "url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/reference-pyscf.json",
+          "path": "reference-pyscf.json",
+          "sha256": "3649493f9aeca86bcfeb058501f724400e97ad8bf4315c163d3230c70a314e72",
+          "description": {
+            "ja": "教育用コードをimportしない独立PySCF。同一幾何・同一有限基底のRHFであり、相関を含む厳密解ではありません。",
+            "en": "Independent PySCF imports no educational solver. Same-geometry, same-finite-basis RHF, not an exact correlated solution."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://doi.org/10.1098/rspa.1950.0036",
+          "description": {
+            "ja": "原法・独立参照の文献。確認深度は解説に明記。",
+            "en": "Primary formulation/reference publication; review depth stated in reading."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://doi.org/10.1103/RevModPhys.23.69",
+          "description": {
+            "ja": "原法・独立参照の文献。確認深度は解説に明記。",
+            "en": "Primary formulation/reference publication; review depth stated in reading."
+          }
+        },
+        {
+          "type": "primary-publication",
+          "url": "https://doi.org/10.1063/5.0006074",
+          "description": {
+            "ja": "原法・独立参照の文献。確認深度は解説に明記。",
+            "en": "Primary formulation/reference publication; review depth stated in reading."
+          }
+        }
+      ],
+      "failure_scope": {
+        "ja": "最大反復・特異な重なり・不適切入力は失敗として扱う。SCF停止と基底公差、物理近似の妥当性を区別する。",
+        "en": "Iteration limits, singular overlap and invalid inputs fail explicitly. SCF stopping, basis tolerance and physical adequacy remain distinct."
+      }
     }
   ],
   "verification_receipt_history": [

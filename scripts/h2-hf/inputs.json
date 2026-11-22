@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "case": "h2-rhf",
+  "units": "atomic units; clamped nuclei, bond in bohr, energy in hartree",
+  "scope": "Two-electron closed-shell H2, real atom-centered s Gaussians only. Nested s-only convergence is not complete-basis HF convergence; restricted HF is qualitatively wrong at dissociation.",
+  "bonds_bohr": [
+    0.8,
+    1.4,
+    3.0
+  ],
+  "basis_definitions": [
+    {
+      "id": "sto-3g",
+      "label": "STO-3G minimal contraction",
+      "family": "contracted-minimal",
+      "shells": [
+        {
+          "exponents": [
+            3.425250914,
+            0.6239137298,
+            0.168855404
+          ],
+          "coefficients": [
+            0.1543289673,
+            0.5353281423,
+            0.4446345422
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-2",
+      "label": "Nested uncontracted 2s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-3",
+      "label": "Nested uncontracted 3s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            2.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-4",
+      "label": "Nested uncontracted 4s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.0375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            2.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-5",
+      "label": "Nested uncontracted 5s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.0375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            2.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            9.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-6",
+      "label": "Nested uncontracted 6s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.0375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            2.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            9.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            38.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-7",
+      "label": "Nested uncontracted 7s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.0375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            2.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            9.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            38.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.009375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nested-s-8",
+      "label": "Nested uncontracted 8s per H",
+      "family": "nested-s-only",
+      "shells": [
+        {
+          "exponents": [
+            0.0375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.15
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            2.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            9.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            38.4
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            0.009375
+          ],
+          "coefficients": [
+            1.0
+          ]
+        },
+        {
+          "exponents": [
+            153.6
+          ],
+          "coefficients": [
+            1.0
+          ]
+        }
+      ]
+    }
+  ],
+  "scf": {
+    "energy_tolerance": 1e-12,
+    "density_tolerance": 1e-10,
+    "residual_tolerance": 1e-10,
+    "max_cycles": 240,
+    "mixing": 0.5,
+    "initial_rotation": 0.15,
+    "overlap_minimum": 1e-08
+  },
+  "tolerance_sweep": {
+    "bond_bohr": 1.4,
+    "basis_id": "nested-s-8",
+    "levels": [
+      {
+        "id": "loose",
+        "energy_tolerance": 1e-05,
+        "density_tolerance": 0.001,
+        "residual_tolerance": 0.001
+      },
+      {
+        "id": "medium",
+        "energy_tolerance": 1e-08,
+        "density_tolerance": 1e-06,
+        "residual_tolerance": 1e-06
+      },
+      {
+        "id": "tight",
+        "energy_tolerance": 1e-12,
+        "density_tolerance": 1e-10,
+        "residual_tolerance": 1e-10
+      }
+    ]
+  },
+  "reference": {
+    "energy_tolerance": 1e-13,
+    "gradient_tolerance": 1e-10,
+    "max_cycles": 240
+  },
+  "acceptance": {
+    "max_reference_energy_error": 2e-09,
+    "max_scf_commutator": 1e-09,
+    "max_orbital_residual": 1e-08,
+    "max_orthogonality_error": 1e-10,
+    "max_electron_count_error": 1e-10,
+    "max_energy_consistency_error": 1e-10,
+    "max_idempotency_error": 1e-09,
+    "max_basis_energy_increase": 1e-09,
+    "max_last_basis_energy_change": 0.001,
+    "max_tolerance_sweep_energy_error": 2e-06
+  },
+  "basis_convergence_target": {
+    "two_successive_additions_max_change": 0.001,
+    "scope": "Finite prescribed nested s subspaces only; passing both final diffuse and tight additions is not a complete-basis-limit error bound."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "basis": "STO-3G for H",
+  "version": "1",
+  "revision_description": "Data from Gaussian09",
+  "revision_date": "2018-06-19",
+  "accessed_on": "2026-11-22",
+  "source": "https://www.basissetexchange.org/api/basis/sto-3g/format/json/?elements=1,2&version=1",
+  "source_review": "Input values initially entered from a standard table and independently checked numerically against BSE v1 H exponents and coefficients at the published precision.",
+  "original_publication": "https://doi.org/10.1063/1.1672392",
+  "scope": "Only H s-shell numerical parameters are used; PySCF reference receives the same explicit parameters rather than its built-in basis name.",
+  "nested_basis": "Original educational even-tempered factor-four s-only exponent sets. Each level retains every previous shell; no exponents are optimized and no small-overlap eigenvectors are dropped."
+}

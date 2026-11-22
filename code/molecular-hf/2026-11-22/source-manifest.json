@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "family": "molecular-hf",
+  "edition": "2026-11-22",
+  "files": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "29a7e2f7fcce2784c75a5c1cefba236a3f3c87593e4d4c40d90c2f65aa5fc86a",
+    "basis-provenance.json": "91d738350b74c50ee1f1ec7d674114f56fafe945d5819bd2396288d6f64405c2",
+    "inputs.json": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf",
+    "molecular_hf.py": "d8ee4f8b26d99868c025e41f82308886569e864a3a04099966e6b8d3e9ae074d",
+    "plot_results.py": "496cb70fd9a0e706990406a451acd1f4318f7f3e2ef0506a78771409c70d7913",
+    "reference-pyscf.json": "3649493f9aeca86bcfeb058501f724400e97ad8bf4315c163d3230c70a314e72",
+    "reference_pyscf.py": "05f19fd763efbdc9ae52d333bf891cacdd9ed484fd827d4e657cb83e68f41e13",
+    "requirements-plotting.txt": "0bd535b5fbc9cb5acdc5acf9027c4cae807cf59ef8437bebe02de3d55c4fc8e2",
+    "requirements-reference.txt": "1d1c94b7f28a3c9e3cf73d78fe610db2981e5c14a4e422ce6c65528900db1403",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "results/preview.png": "ba6a00cf70bfffc53f66b874a12c783388858aa5277a44e7d5e323132b4bb31d",
+    "results/result.json": "6ec4b8f0163b8001f919c2e529144ba5fa38750b5d42e2214ef983ad5c59a465",
+    "results/scf.csv": "944b33e9de0791131c1f97b8d2cd406742e04e2ad5a2a3148f840b4cd4990c43",
+    "results/scf.png": "e17cae9f9fb299a34474b7684451d663202a7d742d0ce573f9769492f135c0a1",
+    "results/solution.csv": "cdcfd8c95548cbf7f881acda5a27f3d525c4ff6903a01a615bc9a0ba513399fa",
+    "run.py": "1f4e3707ed75bdcc03ac4fec82f80db74da0d03cab47e4f70eb0cabb959bfd9e",
+    "test_molecular_hf.py": "294a1dbd836929e3be2bec265c2e323bda189f3dd1ce40e064bd2bd49489c5e0"
+  },
+  "public_base_url": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/",
+  "terms": {
+    "original_python": "MIT / LICENSE",
+    "text_figures_data": "https://hrkoyama.github.io/rights/"
+  },
+  "scope": "Only isolated clamped-nuclei two-electron H2 RHF with real s Gaussian contractions; finite prescribed nested s-space stabilization, not complete-basis convergence or correlated dissociation."
+}

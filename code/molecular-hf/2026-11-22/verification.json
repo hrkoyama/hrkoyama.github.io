@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "family": "molecular-hf",
+  "edition": "2026-11-22",
+  "verified_on": "2026-11-22",
+  "archive_sha256": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
+  "source_manifest_sha256": "ca34057ae326169d84f70974b8f324555482fdd4afe57a69b56efef5c3008df2",
+  "execution": "ZIP independently extracted; all packaged tests and the complete fixed-input runner executed without network or private source. Optional independent PySCF reference was also regenerated before packaging.",
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5",
+    "matplotlib": "3.9.4",
+    "pyscf": "2.11.0"
+  },
+  "tests": 20,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 20,
+  "fixed_input": {
+    "id": "h2-rhf",
+    "geometries": 3,
+    "geometry_basis_cases": 24,
+    "scf_tolerance_cases": 3,
+    "passed": true,
+    "metrics": {
+      "max_reference_energy_error": 2.531308496145357e-14,
+      "max_scf_commutator": 9.133879537172292e-11,
+      "max_orbital_residual": 5.000619111681432e-11,
+      "max_orthogonality_error": 3.697042672001771e-14,
+      "max_electron_count_error": 3.1086244689504383e-15,
+      "max_energy_consistency_error": 2.220446049250313e-15,
+      "max_idempotency_error": 1.778286106086941e-15,
+      "basis_energy_increase_max": 0.0,
+      "last_basis_energy_change_max": 0.00035529830657132777,
+      "last_two_basis_changes_max": 0.00035529830657132777,
+      "scf_tolerance_energy_error_max": 2.1869092980963956e-07,
+      "scf_tolerance_errors": [
+        2.1869092980963956e-07,
+        6.483702463810914e-14,
+        0.0
+      ],
+      "max_overlap_condition_number": 3534.730308676294
+    },
+    "maximum_reproduced_energy_difference": 0.0
+  },
+  "independent_reference": {
+    "file": "reference-pyscf.json",
+    "sha256": "3649493f9aeca86bcfeb058501f724400e97ad8bf4315c163d3230c70a314e72",
+    "environment": {
+      "python": "3.12.14",
+      "numpy": "2.0.2",
+      "scipy": "1.14.1",
+      "pyscf": "2.11.0"
+    },
+    "maximum_regenerated_energy_difference": 0.0
+  },
+  "failure_check": {
+    "command": "python run.py --input inputs.json --output failed --max-cycles 1",
+    "exit_code": 1,
+    "termination": "scf_not_converged",
+    "passed_is_false": true
+  },
+  "scope": "Two-electron closed-shell H2, real atom-centered s Gaussians only. Nested s-only convergence is not complete-basis HF convergence; restricted HF is qualitatively wrong at dissociation."
+}
