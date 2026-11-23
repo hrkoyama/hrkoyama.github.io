@@ -13,9 +13,10 @@ const text = path => bytes(path).toString();
 const json = path => JSON.parse(text(path));
 const sha = path => createHash('sha256').update(bytes(path)).digest('hex');
 const catalog = json('catalog/atlas-depth-expansion.json');
-const base = group => `code/validated-examples/${catalog.edition}/${group}/`;
+const edition = group => catalog.groups.find(x => x.id === group).edition || catalog.edition;
+const base = group => `code/validated-examples/${edition(group)}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting'];
+const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh'];
 const expectedIds = [
   'sa-amg', 'qr-svd-factorization', 'krylov-eigenvalues', 'gauss-adaptive-quadrature',
   'gaussian-mcmc', 'langevin-harmonic', 'reaction-diffusion-fourier', 'turing-schnakenberg', 'fitzhugh-nagumo',
@@ -27,7 +28,7 @@ const expectedIds = [
   'ct-glm-smooth-convergence', 'ct-glm-ot-convergence', 'ct-glm-constraint-control',
   'amg-conditioning', 'qr-svd-conditioning', 'krylov-eigen-conditioning', 'quadrature-conditioning',
   'ewald-convergence', 'spme-convergence', 'fmm-convergence', 'pic-conservation', 'dsmc-statistics', 'radiation-convergence',
-  'reaction-diffusion-splitting',
+  'reaction-diffusion-splitting', 'noh-shock',
 ].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
@@ -36,11 +37,15 @@ const metadata = group => {
 const measured = group => json(base(group) + 'results/result.json');
 const actualCases = groupIds.flatMap(group => metadata(group).map(item => ({group, item})));
 
-test('forty additional cases and eleven releases stay distinct from the existing execution registry', () => {
+test('forty original cases plus Noh and their independently dated releases stay distinct from the existing execution registry', () => {
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 40);
+  assert.equal(index.case_count, 41);
+  assert.equal(actualCases.filter(x => x.group !== 'noh').length, 40);
+  assert.equal(edition('noh'), '2026-11-23-r3');
+  assert.ok(groupIds.filter(x => x !== 'noh').every(x => edition(x) === '2026-11-22'));
+  assert.equal(index.case_problem_ids['noh-shock'], 'noh');
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);
   assert.equal(index.common_registry.modified_by_this_builder, false);
@@ -63,7 +68,8 @@ test('frozen files, manifests and real independent-extraction receipts agree for
     const receipt = json(prefix + 'verification.json'), results = measured(group);
     assert.equal(manifest.family, 'depth-' + group);
     assert.equal(manifest.group, group);
-    assert.equal(manifest.version, catalog.edition);
+    assert.equal(manifest.version, edition(group));
+    assert.equal(receipt.edition, edition(group));
     assert.equal(receipt.passed, true);
     assert.equal(receipt.all_cases_rerun, true);
     assert.ok(Number.isInteger(receipt.passed_tests) && receipt.passed_tests > 0);
@@ -93,6 +99,7 @@ test('each bilingual entry exposes its actual measurement, code, input, tests, f
     const markdown = text(entry(item.id) + 'index.md');
     assert.equal(record.id, item.id);
     assert.equal(record.group, group);
+    assert.equal(record.edition, edition(group));
     assert.equal(record.problem_id, catalog.case_problem_ids[item.id]);
     assert.deepEqual(record.measured, measured(group).cases.find(x => x.id === item.id));
     assert.deepEqual(record.method_ids, item.method_ids);
@@ -122,7 +129,7 @@ test('each bilingual entry exposes its actual measurement, code, input, tests, f
   }
 });
 
-test('all ten readings preserve measured records, real KaTeX output and machine-readable sibling documents', () => {
+test('all supplemental readings preserve measured records, real KaTeX output and machine-readable sibling documents', () => {
   for (const group of groupIds) for (const lang of ['ja', 'en']) {
     const path = `numerical-methods-atlas/${lang}/read/validation-${group}/`;
     const doc = json(path + 'index.json'), html = text(path + 'index.html'), md = text(path + 'index.md');
@@ -186,7 +193,7 @@ for method in methods:
   assert all(not u.endswith('/__init__.py') for u in scoped['code_urls'])
   assert scoped['test_urls'] and scoped['passed_tests']>0
   assert all(method['id'] in e['method_ids'] and e['measured']['passed'] for e in scoped['examples'])
-bad={'id':'mcmc','status':'educational-example','depth_release':{'group':'foundations','edition':'${catalog.edition}','case_ids':['sa-amg']}}
+bad={'id':'mcmc','status':'educational-example','depth_release':{'group':'foundations','edition':'${edition('foundations')}','case_ids':['sa-amg']}}
 try:depth_release_record(Path.cwd(),bad)
 except AssertionError:pass
 else:raise AssertionError('Unrelated code was borrowed')
@@ -207,7 +214,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path.cwd()/'scripts'))
 from atlas_depth_release import depth_release_record
 temporary=Path(sys.argv[1]);directory=temporary/'${base('foundations')}'
-m={'id':'amg','status':'educational-example','depth_release':{'group':'foundations','edition':'${catalog.edition}','case_ids':['sa-amg']}}
+m={'id':'amg','status':'educational-example','depth_release':{'group':'foundations','edition':'${edition('foundations')}','case_ids':['sa-amg']}}
 depth_release_record(temporary,m)
 path=directory/'solvers.py';original=path.read_bytes();path.write_bytes(original+b'\n# tampered\n')
 try:depth_release_record(temporary,m)
@@ -215,7 +222,7 @@ except AssertionError:pass
 else:raise AssertionError('Changed source was accepted')
 path.write_bytes(original)
 depth_release_record(temporary,m)
-archive=directory/'atlas-foundations-${catalog.edition}.zip';archive.write_bytes(archive.read_bytes()+b'changed')
+archive=directory/'atlas-foundations-${edition('foundations')}.zip';archive.write_bytes(archive.read_bytes()+b'changed')
 try:depth_release_record(temporary,m)
 except AssertionError:pass
 else:raise AssertionError('Changed archive was accepted')

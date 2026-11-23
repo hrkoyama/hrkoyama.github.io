@@ -71,10 +71,12 @@ test('the two methods acquire only the verified dedicated release and the physic
   assert.ok(method.code_urls.every(url=>url.includes('/splitting/')));
  }
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.releases.length,11);assert.equal(registry.case_count,40);
- assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),388);
+ assert.equal(registry.releases.length,12);assert.equal(registry.case_count,41);
+ assert.equal(registry.releases.filter(row=>row.group!=='noh').reduce((sum,row)=>sum+row.tests,0),388);
+ assert.equal(registry.releases.find(row=>row.group==='noh').tests,12);
+ assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),400);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
- assert.equal(problems.length,83);
+ assert.equal(problems.length,84);
  assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===id)).map(x=>x.id),['turing-schnakenberg']);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  const oldArchive='code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip';

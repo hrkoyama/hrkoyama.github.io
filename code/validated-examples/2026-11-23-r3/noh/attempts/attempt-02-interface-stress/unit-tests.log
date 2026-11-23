@@ -1,0 +1,14 @@
+test_crossing_cell_pressure_average_is_not_pressure_of_average (test_noh.NohReferenceTests.test_crossing_cell_pressure_average_is_not_pressure_of_average) ... ok
+test_exact_cell_averages_against_split_point_quadrature (test_noh.NohReferenceTests.test_exact_cell_averages_against_split_point_quadrature) ... ok
+test_global_integrals_include_time_dependent_radial_inflow (test_noh.NohReferenceTests.test_global_integrals_include_time_dependent_radial_inflow) ... ok
+test_known_gamma53_states_and_jump (test_noh.NohReferenceTests.test_known_gamma53_states_and_jump) ... ok
+test_cold_state_is_not_replaced_by_positive_pressure_floor (test_noh.NohSolverTests.test_cold_state_is_not_replaced_by_positive_pressure_floor) ... ok
+test_cylindrical_outer_boundary_density_grows_in_time (test_noh.NohSolverTests.test_cylindrical_outer_boundary_density_grows_in_time) ... ok
+test_geometric_static_pressure_cancellation (test_noh.NohSolverTests.test_geometric_static_pressure_cancellation) ... ok
+test_origin_generates_heat_without_injecting_mass_or_energy (test_noh.NohSolverTests.test_origin_generates_heat_without_injecting_mass_or_energy) ... ok
+test_rejects_genuinely_negative_internal_energy (test_noh.NohSolverTests.test_rejects_genuinely_negative_internal_energy) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.020s
+
+OK

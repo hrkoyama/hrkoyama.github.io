@@ -26,7 +26,7 @@ def main():
         for group,case in rows:grouped[group].append(case['id'])
         primary=m.get('depth_release',{}).get('group',rows[0][0])
         assert primary in grouped, 'Never silently replace an existing primary release'
-        configs=[{'group':group,'edition':config['edition'],'case_ids':grouped[group]}
+        configs=[{'group':group,'edition':next(g.get('edition',config['edition']) for g in config['groups'] if g['id']==group),'case_ids':grouped[group]}
                  for group in [primary,*[g for g in grouped if g!=primary]]]
         m['depth_release']=configs[0]
         if len(configs)>1:m['depth_additional_releases']=configs[1:]
@@ -58,7 +58,7 @@ def main():
         if m.get('method_review') and previous!='educational-example':
             v=m['method_review']['verification'];v['kind']='source-and-code-inspection'
             v['summary']={'ja':'原典・採用形の整理に加え、新しい専用補助配布版をZIP独立展開し、固定入力と数値判定を実行しました。採用変種と確認範囲は下の専用例・検証記録で確認できます。','en':'In addition to original-source and variant curation, independently extracted the new dedicated supplement ZIP and actually ran its fixed inputs and numerical checks. Dedicated examples and receipts state the adopted variant and scope.'}
-            base='https://hrkoyama.github.io/code/validated-examples/'+config['edition']+'/'+rows[0][0]+'/'
+            base='https://hrkoyama.github.io/code/validated-examples/'+next(g.get('edition',config['edition']) for g in config['groups'] if g['id']==rows[0][0])+'/'+rows[0][0]+'/'
             v['evidence']=[{'kind':'fixed-input-results','url':base+'results/result.json','label':'Fixed-input measured checks / 固定入力の実測判定'},{'kind':'independent-extraction-receipt','url':base+'verification.json','label':'Independent ZIP-extraction receipt / ZIP独立展開の記録'}]
             v['not_checked']={lang:[c['limits'][lang] for _,c in rows] for lang in ['ja','en']}
             if ident in ['pme','spme']:

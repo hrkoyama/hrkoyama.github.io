@@ -104,6 +104,7 @@ for lang in ['ja', 'en']:
         ('/numerical-methods-atlas/?lang=' + lang, 'アトラス冒頭' if ja else 'Atlas home'),
         ('/numerical-methods-atlas/equations/?lang=' + lang, '数式から探す' if ja else 'Browse by equation'),
         ('/numerical-methods-atlas/test-cases/?lang=' + lang, '問題台帳と数え方' if ja else 'Inventory and counting rules'),
+        ('/numerical-methods-atlas/backlog/?lang=' + lang, '未実装・拡充候補' if ja else 'Implementation and verification backlog'),
         ('/numerical-methods-atlas/?lang=' + lang + '#/figures', '図版・比較ツール' if ja else 'Figures and comparison tools'),
     ]) + '</nav>'
     body += '<div class="gallery-tools"><label for="gallery-query-' + lang + '">' + ('問題名・現象で絞り込む（日英対応）' if ja else 'Filter by problem or phenomenon (Japanese / English)') + '</label><div class="gallery-search-row"><input id="gallery-query-' + lang + '" type="search" placeholder="' + ('例：Poisson、渦、衝撃波' if ja else 'e.g. Poisson, vortex, shock') + '"><button type="button" data-gallery-reset>' + ('絞り込みを解除' if ja else 'Reset filters') + '</button></div><details class="gallery-domain-filter"><summary>' + ('分野で絞り込む' if ja else 'Filter by domain') + '</summary><div class="gallery-groups" role="group" aria-label="' + ('分野' if ja else 'Domain') + '">'

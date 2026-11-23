@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "policy": {
     "ja": "アトラス全体の公開済み計算データ、および検証済み公開コード版の独立したテスト問題を数えます。方程式・次元・境界条件・名前を付けた初期値やソースの違いで問題を区別し、同じ問題の手法・格子数・刻み幅・パラメータ走査・乱数種・表示形式の違いは統合します。Sodの重複掲載、楔のMach数違い、CT/GLMの違いも加算しません。参照式の評価のみ、予定・文献調査のみ、図のみ、局所的な恒等式・不変量・入力エラー等の単体検査は総数に含めません。静的な力・境界値・関数近似・代数方程式の問題を含み、全件が時間発展シミュレーションという意味ではありません。",
     "en": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
@@ -2630,6 +2630,58 @@
           "name": {
             "ja": "CT・GLM：移動する磁気静力学平衡の格子・時間収束",
             "en": "CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium"
+          }
+        }
+      ]
+    },
+    {
+      "id": "noh",
+      "group": "fluid",
+      "name": {
+        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+        "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+      },
+      "chapter": "validation-noh",
+      "reading_section": "noh-shock",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r3/noh/",
+      "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "noh-shock"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/inputs.json",
+          "json_pointer": "/cases/noh-shock"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json",
+          "json_pointer": "/passed"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "noh-shock",
+          "url": "/numerical-methods-atlas/validation/noh-shock/",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
           }
         }
       ]

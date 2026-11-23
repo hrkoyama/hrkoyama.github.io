@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 40,
+  "case_count": 41,
   "releases": [
     {
       "group": "foundations",
@@ -185,6 +185,20 @@
         "reaction-diffusion-splitting"
       ],
       "tests": 16
+    },
+    {
+      "group": "noh",
+      "edition": "2026-11-23-r3",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/",
+      "archive": "atlas-noh-2026-11-23-r3.zip",
+      "archive_sha256": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36",
+      "manifest_sha256": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
+      "verification_sha256": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "noh-shock"
+      ],
+      "tests": 12
     }
   ]
 }

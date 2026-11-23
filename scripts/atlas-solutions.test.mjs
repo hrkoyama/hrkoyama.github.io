@@ -12,7 +12,8 @@ const read=path=>readFileSync(new URL(path,root),'utf8');
 const json=path=>JSON.parse(read(path));
 const sha=path=>createHash('sha256').update(readFileSync(new URL(path,root))).digest('hex');
 const source='numerical-methods-atlas/assets/reference-solutions.json';
-const cases=json(source).cases,messages=json('numerical-methods-atlas/locales/messages.json');
+const historicalCases=json(source).cases,supplementSource='catalog/atlas-reference-supplements.json';
+const cases=[...historicalCases,...json(supplementSource).cases],messages=json('numerical-methods-atlas/locales/messages.json');
 const translations=new Map(Object.values(messages).map(entry=>[entry.en?.replace(/\s+/g,' ').trim(),entry]));
 const decode=value=>value.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#x27;',"'").replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>');
 const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map(match=>[match[1],decode(match[2])]));
@@ -42,7 +43,7 @@ from atlas_problem_routes import load_problem_routes
 routes=load_problem_routes(site)
 spec=importlib.util.spec_from_file_location('solutions_builder',site/'scripts/build-atlas-solutions.py')
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css']
+inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css','catalog/atlas-reference-supplements.json']
 before={name:hashlib.sha256((site/name).read_bytes()).hexdigest() for name in inputs}
 with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary:
     root=pathlib.Path(temporary)
@@ -58,7 +59,10 @@ with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary
 `],{cwd:fileURLToPath(root),encoding:'utf8',maxBuffer:4*1024*1024}));
 
 test('the saved-solution index derives every existing case and source hash without changing scientific inputs',()=>{
-  assert.equal(cases.length,18);
+  assert.equal(historicalCases.length,18);
+  assert.equal(sha(source),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc','the historical18 scientific references remain byte-identical');
+  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh']);
+  assert.equal(rendered.record.supplements_source_sha256,sha(supplementSource));
   assert.deepEqual(rendered.record.cases.map(row=>row.id),cases.map(row=>row.id));
   assert.equal(rendered.record.count,cases.length);
   assert.equal(rendered.record.source_sha256,sha(source));
@@ -92,7 +96,10 @@ test('each edition exposes all names, formulas and assumptions as visible static
     const cards=blocks(section,'data-solution-id');
     assert.deepEqual(cards.map(card=>card.attributes['data-solution-id']),cases.map(row=>row.id));
     for(const [index,card]of cards.entries()){
-      const row=rendered.record.cases[index],original=withoutProblemRoutes(card.body),body=label(original);
+      const row=rendered.record.cases[index];
+      let original=withoutProblemRoutes(card.body);
+      for(const citation of blocks(original,'class','solution-citations').reverse())original=original.slice(0,citation.start)+original.slice(citation.end);
+      const body=label(original);
       assert.equal(card.attributes['data-solution-kind'],row.kind);
       assert.ok(body.includes(row.title[language])&&body.includes(row.formula)&&body.includes(row.assumptions[language]));
       assert.doesNotMatch(original,/<details\b|\shidden(?:\s|=|>)/,'the original reference name, formula and conditions stay visible before optional related-problem disclosures');
@@ -105,14 +112,23 @@ test('each edition exposes all names, formulas and assumptions as visible static
   assert.equal(ids.length,new Set(ids).size);
 });
 
-test('every card opens its existing exact-solution case and translated reference guide',()=>{
+test('historical cards retain SPA views while reviewed supplements open their own validation and guide',()=>{
   for(const row of rendered.record.cases)for(const language of ['ja','en']){
     const view=new URL(row.view[language],origin);
-    assert.equal(view.origin,origin);assert.equal(view.pathname,'/numerical-methods-atlas/');
+    assert.equal(view.origin,origin);
+    const original=cases.find(item=>item.id===row.id);
+    if(original.view){
+      assert.equal(row.view[language],original.view[language]);
+      assert.equal(view.pathname,'/numerical-methods-atlas/validation/noh-shock/');
+      assert.equal(view.hash,'#noh-shock-'+language+'-measurements');
+    }else{
+      assert.equal(view.pathname,'/numerical-methods-atlas/');
+      assert.equal(view.hash,'#/exact-solutions?case='+row.id);
+    }
     assert.equal(view.searchParams.get('lang'),language);
-    assert.equal(view.hash,'#/exact-solutions?case='+row.id);
     const reading=new URL(row.reading[language],origin);
-    assert.equal(reading.pathname,`/numerical-methods-atlas/${language}/read/reference-solutions/`);
+    assert.equal(reading.pathname,`/numerical-methods-atlas/${language}/read/${original.reading?'validation-noh':'reference-solutions'}/`);
+    if(original.reading)assert.equal(row.reading[language],original.reading[language]);
     assert.ok(existsSync(new URL(reading.pathname.slice(1)+'index.html',root)));
     assert.ok(rendered.html.includes(row.view[language])&&rendered.markdown.includes(origin+row.view[language]));
   }

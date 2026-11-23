@@ -35,7 +35,7 @@ map_fallback=json.loads(subprocess.check_output(['node','scripts/render-atlas-ho
 def validation_teaser(lang):
     ja=lang=='ja'
     config=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())
-    receipts=[json.loads((ROOT/'code/validated-examples'/config['edition']/g['id']/'verification.json').read_text()) for g in config['groups']]
+    receipts=[json.loads((ROOT/'code/validated-examples'/g.get('edition',config['edition'])/g['id']/'verification.json').read_text()) for g in config['groups']]
     assert all(r['passed'] and r['all_cases_rerun'] for r in receipts)
     cases=sum(len(r['case_ids']) for r in receipts);tests=sum(r['passed_tests'] for r in receipts)
     title='6分野の小さな実装・検証例' if ja else 'Small validated examples across six fields'

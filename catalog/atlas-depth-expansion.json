@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "edition": "2026-11-22",
   "title": {
     "ja": "分野ごとの小規模実装・検証をたどる",
@@ -150,6 +150,21 @@
         "ja": "短い時間区間の非線形Schnakenberg反応拡散を、同じ初期場・格子・部分ソルバー・出力時刻で比較します。時間の収束と数値参照の感度を調べる軽量な追加例です。既存の空間収束・長時間パターンの記録は保持します。",
         "en": "Compare short-time nonlinear Schnakenberg reaction–diffusion with the same initial field, grid, subsolvers and observation times. This lightweight addition checks temporal convergence and numerical-reference sensitivity while retaining existing spatial and long-time pattern records."
       }
+    },
+    {
+      "id": "noh",
+      "edition": "2026-11-23-r3",
+      "title": {
+        "ja": "Noh衝撃波：厳密解・過熱誤差・格子収束",
+        "en": "Noh shocks: exact reference, origin heating and refinement"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "初期圧力ゼロの平面・円筒対称Noh問題を小さな有限体積コードで解きます。原著と固定版ExactPackを引用し、厳密解・体積平均・原点過熱・保存収支と、残る誤差を一緒に確認します。",
+        "en": "A small finite-volume code solves zero-pressure planar and cylindrical Noh flow. Cite the original problem and pinned ExactPack, and examine exact volume averages, origin heating, budgets and remaining errors."
+      }
     }
   ],
   "case_problem_ids": {
@@ -192,7 +207,8 @@
     "pic-conservation": "cold-plasma-pic",
     "dsmc-statistics": "maxwell-collisions",
     "radiation-convergence": "absorbing-slab",
-    "reaction-diffusion-splitting": "turing-schnakenberg"
+    "reaction-diffusion-splitting": "turing-schnakenberg",
+    "noh-shock": "noh"
   },
   "routine_policy": {
     "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する11グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -270,6 +286,21 @@
     "radiation-convergence": {
       "ja": "純吸収平板の空間・角度誤差を分離し、特性解・適応求積・光子生存率を照合します。有限seedの区間被覆を全seed保証とせず、散乱や放射流体連成は未検証です。",
       "en": "Separate space and angle errors for a pure-absorption slab, comparing characteristics, adaptive quadrature and photon survival. Finite-seed coverage is no all-seed guarantee; scattering and radiation hydrodynamics remain unvalidated."
+    },
+    "noh-shock": {
+      "ja": "初回不合格の保存物は、実行ソース・入力・全8格子計算の診断ログと、そこから原文のまま抽出した不合格サマリーです。初回の全場CSVが保存されているという意味ではありません。公開する成功版は、別途生成した全断面CSV・履歴・結果とZIP独立展開の再実行記録を備えます。",
+      "en": "The retained failed attempt includes source, inputs, diagnostic logs for all eight runs and its failed summary recovered verbatim from stdout. It does not contain every failed full-field CSV. The successful release separately supplies all profile CSVs, histories, results and an independently extracted ZIP rerun."
+    }
+  },
+  "case_equations": {
+    "noh-shock": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "理想気体Eulerの平面・円筒半径対称という限定した形です。幾何源と初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。",
+        "en": "The scoped planar and cylindrical-radial form of ideal-gas Euler. This example defines the geometric source and zero initial pressure in its formulas and fixed input."
+      }
     }
   }
 }

@@ -34,7 +34,7 @@ def rejects(call):
     raise AssertionError('Unsafe or invalid input was accepted')
 def fixture(group='foundations'):
     release = copy.deepcopy(next(r for r in registry['releases'] if r['group']==group))
-    directory = ROOT/'code/validated-examples'/registry['edition']/group
+    directory = ROOT/'code/validated-examples'/release['edition']/group
     manifest = v.strict_json((directory/'source-manifest.json').read_bytes())
     receipt = v.strict_json((directory/'verification.json').read_bytes())
     return release, manifest, receipt, (directory/release['archive']).read_bytes(), (directory/'requirements.txt').read_bytes()
@@ -58,10 +58,17 @@ function shellBlocks() {
 }
 const pythonBlocks = shellBlocks().flatMap(block => [...block.matchAll(/python(?:3)? - <<'PY'\n([\s\S]*?)\nPY/g)].map(match => match[1]));
 
-test('registry and two workflow pins describe exactly the frozen eleven releases and forty cases', () => {
+test('registry preserves eleven frozen releases and adds the separately dated Noh release with two workflow pins', () => {
   const registry = json(registryPath);
-  assert.equal(registry.case_count, 40);
-  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting']);
+  assert.equal(registry.case_count, 41);
+  const previous = registry.releases.filter(x => x.group !== 'noh');
+  assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'), 'b2e03aeb8798240a38d00bbe2491a5fc50109f2020078decf419f7276eb3241f', 'old eleven release metadata and hashes are immutable');
+  assert.ok(previous.every(x => x.edition === '2026-11-22'));
+  const noh = registry.releases.find(x => x.group === 'noh');
+  assert.equal(noh.edition, '2026-11-23-r3');
+  assert.deepEqual(noh.case_ids, ['noh-shock']);
+  assert.ok(noh.tests > 0);
+  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh']);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);
   assert.equal(registry.releases[5].tests,28);
@@ -70,11 +77,11 @@ test('registry and two workflow pins describe exactly the frozen eleven releases
   assert.equal(registry.releases[8].tests,49);
   assert.equal(registry.releases[9].tests,75);
   assert.equal(registry.releases[10].tests,16);
-  assert.equal(registry.releases.reduce((sum,release)=>sum+release.tests,0),388);
-  assert.deepEqual(registry.releases.map(x => x.case_ids.length), [4, 5, 6, 4, 3, 2, 2, 3, 4, 6, 1]);
-  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 40);
+  assert.equal(previous.reduce((sum,release)=>sum+release.tests,0),388);
+  assert.deepEqual(previous.map(x => x.case_ids.length), [4, 5, 6, 4, 3, 2, 2, 3, 4, 6, 1]);
+  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 41);
   for (const release of registry.releases) {
-    const base = `code/validated-examples/${registry.edition}/${release.group}/`;
+    const base = `code/validated-examples/${release.edition}/${release.group}/`;
     assert.equal(release.base, 'https://hrkoyama.github.io/' + base);
     for (const [file, key] of [[release.archive, 'archive_sha256'], ['source-manifest.json', 'manifest_sha256'], ['verification.json', 'verification_sha256'], ['requirements.txt', 'requirements_sha256']])
       assert.equal(sha(base + file), release[key]);
@@ -124,7 +131,7 @@ rejects(lambda: v.validate_registry_url('https://hrkoyama.github.io/other/regist
 for patch in [('schema_version', True), ('case_count', 18), ('edition', '../2026-11-22')]:
     value = copy.deepcopy(registry); value[patch[0]] = patch[1]
     rejects(lambda: v.validate_registry(value))
-for key, value in [('base', 'https://hrkoyama.github.io/code/validated-examples/other/'),
+for key, value in [('edition', '../2026-11-23'), ('edition', True), ('edition', '2026-11-23'), ('base', 'https://hrkoyama.github.io/code/validated-examples/other/'),
                    ('archive', '../evil.zip'), ('tests', True), ('archive_sha256', 'a'*63)]:
     altered = copy.deepcopy(registry); altered['releases'][0][key] = value
     rejects(lambda: v.validate_registry(altered))
@@ -217,7 +224,7 @@ rejects(lambda: v.NoRedirect().redirect_request(None, None, 302, '', {}, 'https:
 test('numerical result validation requires literal booleans, finite values, original input and completion', () => {
   python(String.raw`
 release, manifest, receipt, payload, requirements = fixture()
-source = ROOT/'code/validated-examples'/registry['edition']/'foundations/results/result.json'
+source = ROOT/'code/validated-examples'/release['edition']/'foundations/results/result.json'
 stored = v.strict_json(source.read_bytes())
 def check(value): return v.validate_result(value, release['case_ids'], manifest['files']['inputs.json'], stored['termination'])
 for key, value in [('passed', 1), ('schema_version', True), ('input_sha256', '0'*64), ('termination', 'interrupted')]:
@@ -312,13 +319,13 @@ os.environ['GITHUB_TOKEN'] = 'do-not-inherit'
 os.environ['AWS_SECRET_ACCESS_KEY'] = 'do-not-inherit'
 `;
 
-test('full verifier state machine accepts forty saved fixture cases without scientific execution', () => {
+test('full verifier state machine accepts every mixed-edition saved fixture case without scientific execution', () => {
   python(mockedPipeline + String.raw`
 with tempfile.TemporaryDirectory() as temporary:
     report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'run')
     assert report['passed'] is True, report
-    assert report['phase']=='complete' and report['case_count']==40 and report['tests']==sum(g['tests'] for g in registry['releases'])
-    assert len(report['acquisitions'])==45 and all(r['passed'] for r in report['acquisitions'])
+    assert report['phase']=='complete' and report['case_count']==registry['case_count'] and report['tests']==sum(g['tests'] for g in registry['releases'])
+    assert len(report['acquisitions'])==1+4*len(registry['releases']) and all(r['passed'] for r in report['acquisitions'])
     assert all(g['pytest']['skipped']==0 and g['passed'] and g['generated_csv'] for g in report['groups'])
     assert v.strict_json((Path(temporary)/'run/report.json').read_bytes())['passed'] is True
     for group in v.GROUPS:

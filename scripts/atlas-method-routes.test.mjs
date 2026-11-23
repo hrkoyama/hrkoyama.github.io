@@ -16,6 +16,7 @@ const catalog=json('catalog/atlas-problem-links.json'),methodSource=json('catalo
 const sourceMethods=byId(methodSource),sourceProblems=byId(catalog.problems);
 const problems=byId(json('numerical-methods-atlas/problems/index.json').problems);
 const equations=byId(json('catalog/atlas-equations.json').equations);
+const referenceSources=byId([...json('numerical-methods-atlas/assets/reference-solutions.json').cases,...json('catalog/atlas-reference-supplements.json').cases]);
 const publicMethods=json('numerical-methods-atlas/methods/index.json');
 const python=process.env.ATLAS_INDEX_PYTHON||'python3';
 const importHelper=String.raw`
@@ -88,7 +89,8 @@ test('all method routes derive from reviewed problem bindings and only that exac
         assert.equal(reference.kind,originalReference.kind);assert.deepEqual(reference.title,originalReference.title);
         for(const language of ['ja','en']){
           const url=local(reference.url[language]);assert.equal(url.pathname,'/numerical-methods-atlas/solutions/');assert.equal(url.hash,`#solution-${reference.id}-${language}`);
-          assert.equal(local(reference.view[language]).hash,'#/exact-solutions?case='+reference.id);
+          const originalView=referenceSources.get(reference.id).view?.[language] || '/numerical-methods-atlas/?lang='+language+'#/exact-solutions?case='+reference.id;
+          assert.equal(local(reference.view[language]).href,local(originalView).href);
         }
       }
       for(const language of ['ja','en']){
@@ -258,6 +260,12 @@ assert routes['alpha']['problems'][0]['role']=='related' and routes['alpha']['pr
 assert [run['id'] for run in routes['beta']['problems'][0]['executions']]==['beta-run']
 assert routes['planned']['problems']==[]
 assert routes['alpha']['references'][0]['cases'][0]['note']==note
+assert routes['alpha']['references'][0]['cases'][0]['view']=={lang:'https://hrkoyama.github.io/numerical-methods-atlas/?lang='+lang+'#/exact-solutions?case=ref' for lang in ['ja','en']}
+references['ref']['view']={lang:'/numerical-methods-atlas/validation/noh-shock/?lang='+lang+'#noh-shock-'+lang+'-measurements' for lang in ['ja','en']}
+reference_before=copy.deepcopy(references)
+overridden=build_method_routes(catalog,methods,cards,equations,references)
+assert overridden['alpha']['references'][0]['cases'][0]['view']==references['ref']['view']
+assert references==reference_before
 assert (catalog,cards)==before
 catalog['problems'][0]['method_ids']=[];catalog['problems'][1]['method_ids']=['alpha']
 changed=build_method_routes(catalog,methods,cards,equations,references)

@@ -61,6 +61,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Preconditioning matrices, low Mach numbers, sonic points and entropy fixes](https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/)
 - [Damping Runge–Kutta iterations for steady solutions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/steady-runge-kutta/)
 - [NASA 2D verification and validation case catalog](https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/)
+- [Noh shocks: exact reference, origin heating and refinement](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/)
 
 ## Meshes, finite elements and coupled equations
 

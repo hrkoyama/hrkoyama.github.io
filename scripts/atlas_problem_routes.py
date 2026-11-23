@@ -1,4 +1,5 @@
 """Resolve reverse model/reference routes from sources, without reading problem hubs."""
+from atlas_reference_catalog import load_reference_cases
 from copy import deepcopy
 from hashlib import sha256
 import json
@@ -61,7 +62,7 @@ def load_problem_routes(root=ROOT):
     inventory = read('catalog/atlas-test-problems.json')
     previews = read('numerical-methods-atlas/gallery/preview-manifest.json')
     equation_ids = [row['id'] for row in read('catalog/atlas-equations.json')['equations']]
-    reference_ids = [row['id'] for row in read('numerical-methods-atlas/assets/reference-solutions.json')['cases']]
+    reference_ids = [row['id'] for row in load_reference_cases(root, read)]
     method_ids = [row['id'] for row in read('catalog/atlas-methods.json')['methods']]
     problem_ids = [row['id'] for row in inventory['problems']]
     validate_catalog(catalog, problem_ids, equation_ids, reference_ids, method_ids)

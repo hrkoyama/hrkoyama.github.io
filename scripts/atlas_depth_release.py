@@ -7,7 +7,7 @@ import re
 import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh')
 EDITION_PATTERN = r'\d{4}-\d{2}-\d{2}(?:-r\d+)?'
 
 
@@ -135,7 +135,9 @@ def load_depth_group(root, group, edition):
             assert hashlib.sha256(zipped.read(prefix+'/'+name)).hexdigest() == expected, 'Changed ZIP member: '+name
         assert hashlib.sha256(zipped.read(prefix+'/source-manifest.json')).hexdigest() == digest(file('source-manifest.json'))
 
-    python_files = sorted(name for name in manifest['files'] if name.endswith('.py'))
+    # Failed, archived revisions remain in the manifest/ZIP, not active code links.
+    python_files = sorted(name for name in manifest['files']
+                          if name.endswith('.py') and PurePosixPath(name).parts[0] != 'attempts')
     tests = [name for name in python_files if PurePosixPath(name).name.startswith('test_')]
     code = [name for name in python_files if name not in tests and PurePosixPath(name).name not in ('plot.py', '__init__.py')]
     assert 'run.py' in code and tests

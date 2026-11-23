@@ -1,0 +1,15 @@
+{
+  "stage": "final-source pre-run receipt",
+  "saved_at_utc": "2026-11-23T00:58:59.015200+00:00",
+  "acceptance_unchanged_from_attempt01": true,
+  "files": {
+    "inputs.json": "20c0883d11f1aacd35761ccd1e46fe5c45c79345f698ddd9ffbb0281c23385d8",
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "noh_solver.py": "ad1446f241b7e79f9cf42de84f077dcc3da695987a0552c1549d0838a8398f98",
+    "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+    "run.py": "3c93688a752dcc007ca1194cae8fceb6965437ba27f93121eecebcc17d75bfbc",
+    "requirements.txt": "d44f8143c3ca9bc41e7672f24e92f92da851df4cf79e1310f860cf3d1f4953b5",
+    "test_noh.py": "cdcaf66347a2c18c057134a43f6434436e4463828bc4f0c1428e8e6b1273a0c8",
+    "cases.json": "cf2ee0f1aaa7dec66ae1deccd9a50a9c90a194b287265a9cf4905138d271abc7"
+  }
+}

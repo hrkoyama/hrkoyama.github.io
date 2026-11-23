@@ -66,7 +66,10 @@ test('execution routes cover only the explicit common and supplemental source ca
     const problemId=route.kind==='common'?source.problem_id:expansion.case_problem_ids[route.id];
     assert.equal(route.problem?.id??null,problemId);
     const direct=route.kind==='common'?discovery.examples.find(row=>row.id===route.id):null;
-    assert.deepEqual(route.equations.map(row=>row.id),direct?.equation_ids||[]);
+    const explicitEquations=route.kind==='supplement'?expansion.case_equations?.[route.id]:null;
+    assert.deepEqual(route.equations.map(row=>row.id),direct?.equation_ids||explicitEquations?.ids||[]);
+    if(route.kind==='supplement'&&route.id!=='noh-shock')assert.deepEqual(route.equations,[],route.id+' historical supplemental formulas do not infer an equation-index binding');
+    if(explicitEquations)for(const equation of route.equations)assert.deepEqual(equation.note,explicitEquations.note);
     for(const equation of route.equations)assert.deepEqual(equation.name,equations.get(equation.id).name);
     assert.equal(route.formulation.role,direct?.formula.role||(problemId?'example-definition':'diagnostic'));
     assert.deepEqual(route.formulation.latex,direct?.formula.latex||source.formulas||source.equations||[]);
@@ -162,6 +165,12 @@ test('every bilingual execution page displays four scoped destinations with actu
       assert.deepEqual(blocks(card('equations'),'data-execution-equation-link').map(row=>row.attributes.href),route.equations.map(row=>row.url[language]));
       assert.ok(text(card('equations')).includes(route.formulation.note[language].replace(/\s+/g,' ').trim()),route.id+'/'+language+' exact formulation scope');
       assert.equal(blocks(card('figure'),'data-execution-figure-link')[0]?.attributes.href,route.figure.url);
+      for(const equation of route.equations)if(equation.note){
+        const row=blocks(card('equations'),'data-execution-equation-id',equation.id)[0];
+        assert.ok(text(row.body).includes(equation.note[language].replace(/\s+/g,' ').trim()));
+        assert.doesNotMatch(row.body,/<details\b/,'explicit model scope stays beside its equation link');
+        assert.ok(markdown.includes(equation.note[language]));
+      }
       const image=attrs(card('figure').match(/<img\b[^>]*>/)?.[0]||'');
       assert.equal(image.src,route.figure.url);assert.equal(image.width,String(route.figure.width));assert.equal(image.height,String(route.figure.height));assert.ok(image.alt);
       const problemLinks=blocks(card('figure'),'data-execution-problem-link'),codeLinks=blocks(card('figure'),'data-execution-problem-code');
@@ -245,7 +254,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-execution-routes-') as directory:
     write('numerical-methods-atlas/assets/reference-solutions.json',{'cases':[{'id':'ref','title':'Reference','kind':'analytic'}]})
     write('numerical-methods-atlas/locales/messages.json',{'reference':{'ja':'参照','en':'Reference'}})
     expansion={'case_problem_ids':{'bound':'one','control':None}};write('catalog/atlas-depth-expansion.json',expansion)
-    cards={ident:{'id':ident,'name':name,'model':'same-model','image':{'url':'/'+ident+'.png'},'executions':[{'id':'unrelated','method_ids':['beta']}]} for ident in ['one','two']}
+    cards={ident:{'id':ident,'name':name,'model':'same-model','image':{'url':'/'+ident+'.png'},'hub':{lang:'/numerical-methods-atlas/problems/'+ident+'/?lang='+lang for lang in ['ja','en']},'code':{lang:'/numerical-methods-atlas/problems/'+ident+'/?lang='+lang+'#code-'+lang for lang in ['ja','en']},'executions':[{'id':'unrelated','method_ids':['beta']}]} for ident in ['one','two']}
     graph={'problems':cards,'source_sha256':{}}
     discovery={'examples':[{'id':'common','problem_id':'one','equation_ids':['direct'],'formula':{'role':'problem','latex':['x=1'],'note':note},'execution':{'name':name,'method_ids':['alpha'],'reference_notes':note}}]}
     supplements=[{'id':ident,'title':name,'method_ids':['alpha'],'download':'/code/fixture/group/archive.zip','formulas':['q=0'],'algorithm':note,'validation':note,'source_sha256':{}} for ident in ['bound','control']]
@@ -262,6 +271,31 @@ with tempfile.TemporaryDirectory(prefix='atlas-execution-routes-') as directory:
         assert routes['control']['references']['cases']==[] and routes['control']['formulation']['role']=='diagnostic'
         assert routes['common']['references']['cases'][0]['note']==note
         assert (catalog,graph,discovery,supplements)==original,'Loader mutated scientific source inputs'
+        expansion['case_equations']={'bound':{'ids':['related'],'note':note}};write('catalog/atlas-depth-expansion.json',expansion)
+        explicit=load_execution_routes(fixture)['executions']
+        assert [row['id'] for row in explicit['bound']['equations']]==['related']
+        assert explicit['bound']['equations'][0]['note']==note
+        assert explicit['control']['equations']==[],'An explicit bound-case equation does not leak into a diagnostic'
+        from atlas_execution_navigation import _equations,execution_navigation_markdown
+        from html import escape
+        unsafe='<img src=x onerror=alert(1)>'
+        scoped=copy.deepcopy(explicit['bound']);scoped['equations'][0]['note']={'ja':unsafe,'en':unsafe}
+        for lang in ['ja','en']:
+            html=_equations(scoped,lang)
+            assert escape(unsafe) in html and unsafe not in html,'Model scope is escaped as visible text'
+            assert unsafe in execution_navigation_markdown(scoped,lang)
+        for bad in [
+            {'unknown-case':{'ids':['related'],'note':note}},
+            {'bound':{'ids':['unknown-equation'],'note':note}},
+            {'bound':{'ids':['related','related'],'note':note}},
+            {'bound':{'ids':['related'],'note':{'ja':'限定'}}},
+        ]:
+            expansion['case_equations']=bad;write('catalog/atlas-depth-expansion.json',expansion)
+            try:load_execution_routes(fixture)
+            except ValueError:pass
+            else:raise AssertionError('Invalid explicit equation binding accepted: '+str(bad))
+        expansion['case_equations']={};write('catalog/atlas-depth-expansion.json',expansion)
+        assert load_execution_routes(fixture)['executions']['bound']['equations']==[],'Removing the source binding removes its equation route'
         discovery['examples'][0]['problem_id']='two';discovery['examples'][0]['equation_ids']=[]
         discovery['examples'][0]['execution']['method_ids']=['beta']
         expansion['case_problem_ids']['bound']=None;write('catalog/atlas-depth-expansion.json',expansion)

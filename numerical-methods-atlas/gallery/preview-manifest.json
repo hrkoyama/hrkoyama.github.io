@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "items": [
     {
       "id": "advection-sine",
@@ -997,10 +997,22 @@
         "ja": "非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。",
         "en": "Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence."
       }
+    },
+    {
+      "id": "noh",
+      "image": "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+      "image_sha256": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+      "width": 832,
+      "height": 494,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
+        "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "2462a1c75f6d266953afe85f81a78d1a34819c1bb89c1bc344a8f4b6d8911ed7",
+    "catalog/atlas-gallery.json": "c6e290aa216523fc4775ac53424445d97d7bacea65fbe8da7563cedcbc0175d9",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1047,8 +1059,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
-    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
+    "catalog/atlas-test-problems.json": "ca55076edfb48f2dcb4e45612a3b2fd84a526008bd5a18aa57167af64061f230",
+    "catalog/atlas-depth-expansion.json": "ec2c98f7597aa423af185c0c0c58728b39d5a3b878799d899c596a0306f995b5",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1137,7 +1149,14 @@
     "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png": "9358e2e4e7c7d8cb9f5e0bcb4d6cb7c2cf52f0beb7cc14fe64313261aec5363d",
     "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
     "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
-    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f"
+    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
+    "code/validated-examples/2026-11-23-r3/noh/cases.json": "8409325dd840291acadfcdf78b2570b938bbf22efb8e3bdf7c12e715e19e144b",
+    "code/validated-examples/2026-11-23-r3/noh/inputs.json": "20c0883d11f1aacd35761ccd1e46fe5c45c79345f698ddd9ffbb0281c23385d8",
+    "code/validated-examples/2026-11-23-r3/noh/source-manifest.json": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
+    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
+    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
+    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png": "f89d3289b2ac41d2e291f0964f8635e8084355420d53cb583876a579d94810fd",
+    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

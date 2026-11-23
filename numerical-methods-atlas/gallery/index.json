@@ -4,15 +4,15 @@
   "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 83,
-    "runnable_problems": 39,
+    "test_problems": 84,
+    "runnable_problems": 40,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 20,
-    "supplemental_case_count": 35,
-    "supplemental_release_case_count": 40,
+    "supplemental_runnable_problems": 21,
+    "supplemental_case_count": 36,
+    "supplemental_release_case_count": 41,
     "groups": {
       "transport": 9,
-      "fluid": 16,
+      "fluid": 17,
       "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
@@ -26,7 +26,7 @@
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 47,
+      "existing-figure": 48,
       "computed-preview": 9
     }
   },
@@ -6991,10 +6991,125 @@
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json"
         }
       ]
+    },
+    {
+      "id": "noh",
+      "group": "fluid",
+      "name": {
+        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+        "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+      },
+      "chapter": "validation-noh",
+      "reading_section": "noh-shock",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r3/noh/",
+      "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "noh-shock"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/inputs.json",
+          "json_pointer": "/cases/noh-shock"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json",
+          "json_pointer": "/passed"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "noh-shock",
+          "url": "/numerical-methods-atlas/validation/noh-shock/",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#noh",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+      "image_sha256": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+      "width": 832,
+      "height": 494,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
+        "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+      },
+      "visual_input": {
+        "id": "noh",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+        "caption": {
+          "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
+          "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#noh-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "noh-shock",
+          "title": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          },
+          "group": "noh",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/noh_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/noh_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/generate_exactpack_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/plot_noh.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/test_noh.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "2462a1c75f6d266953afe85f81a78d1a34819c1bb89c1bc344a8f4b6d8911ed7",
+    "catalog/atlas-gallery.json": "c6e290aa216523fc4775ac53424445d97d7bacea65fbe8da7563cedcbc0175d9",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7041,8 +7156,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
-    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
+    "catalog/atlas-test-problems.json": "ca55076edfb48f2dcb4e45612a3b2fd84a526008bd5a18aa57167af64061f230",
+    "catalog/atlas-depth-expansion.json": "ec2c98f7597aa423af185c0c0c58728b39d5a3b878799d899c596a0306f995b5",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7132,18 +7247,25 @@
     "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
     "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
     "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
+    "code/validated-examples/2026-11-23-r3/noh/cases.json": "8409325dd840291acadfcdf78b2570b938bbf22efb8e3bdf7c12e715e19e144b",
+    "code/validated-examples/2026-11-23-r3/noh/inputs.json": "20c0883d11f1aacd35761ccd1e46fe5c45c79345f698ddd9ffbb0281c23385d8",
+    "code/validated-examples/2026-11-23-r3/noh/source-manifest.json": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
+    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
+    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
+    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png": "f89d3289b2ac41d2e291f0964f8635e8084355420d53cb583876a579d94810fd",
+    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "f471ec4d77fc9efa9aa0d491c5083d0541e90ea46453f4419ae7a6f684d29278",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c3f00613d6e379a01c22b6aae9049787dc80d237384a0f3f9e82043120a474c0",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "08388692ecd75c2216efd9810318a30e79c07c185b8543cf34e6f52b8d901f76",
+    "numerical-methods-atlas/test-cases/index.json": "00b5428759596acc290c41de4dfc1152cb06b8c4c0e591ea0a4e17cec1861dd3",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "e2959b291dae332d39948a8751b2c3df5a9aeb1994b9a5eaf1a5508bb39f77e9",
+    "scripts/atlas_depth_release.py": "cee32847016fedc1bb0305a8a2334767081cb43057fb77d682d3ca351d79a50e",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7159,6 +7281,7 @@
     "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
     "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
     "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
-    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404"
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36"
   }
 }

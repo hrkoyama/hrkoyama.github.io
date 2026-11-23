@@ -30,7 +30,7 @@ import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
 REGISTRY_URL = ORIGIN + '/numerical-methods-atlas/validation/releases.json'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh')
 DIRECT_PINS = {'numpy': '2.0.2', 'scipy': '1.14.1', 'pytest': '8.3.5'}
 GROUP_TIMEOUT_SECONDS = 120
 MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024
@@ -150,11 +150,13 @@ def validate_registry(registry):
     all_cases = []
     for release in releases:
         group = release['group']
-        require(release.get('edition') == edition, 'Mixed release editions')
-        base = ORIGIN + '/code/validated-examples/' + edition + '/' + group + '/'
+        release_edition = release.get('edition')
+        require(isinstance(release_edition, str) and re.fullmatch(EDITION_PATTERN, release_edition),
+                'Invalid release edition')
+        base = ORIGIN + '/code/validated-examples/' + release_edition + '/' + group + '/'
         require(release.get('base') == base, 'Release base is outside its reviewed prefix')
         validate_url(base)
-        require(release.get('archive') == 'atlas-' + group + '-' + edition + '.zip', 'Unexpected archive name')
+        require(release.get('archive') == 'atlas-' + group + '-' + release_edition + '.zip', 'Unexpected archive name')
         for key in ['archive_sha256', 'manifest_sha256', 'verification_sha256', 'requirements_sha256']:
             require(re.fullmatch(SHA_PATTERN, release.get(key, '')) is not None, 'Invalid release SHA-256: ' + key)
         ids = release.get('case_ids')

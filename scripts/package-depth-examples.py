@@ -3,7 +3,7 @@
 import argparse,hashlib,importlib.metadata,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting']
+GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh']
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
@@ -22,8 +22,8 @@ def package(group,edition):
         tmp=Path(tmp);stage=tmp/prefix;stage.mkdir()
         for p in source.rglob('*'):
             rel=p.relative_to(source)
-            if not p.is_file() or any(x in rel.parts for x in ['__pycache__','.pytest_cache','results','output','outputs']):continue
-            if p.name!='LICENSE' and not p.name.startswith('athinput-') and p.suffix not in ['.py','.json','.md','.txt','.npz','.patch','.csv']:raise ValueError('Unexpected source file '+str(rel))
+            if not p.is_file() or any(x in rel.parts for x in ['__pycache__','.pytest_cache']) or rel.parts[0] in ['results','output','outputs']:continue
+            if p.name!='LICENSE' and not p.name.startswith('athinput-') and p.suffix not in ['.py','.json','.md','.txt','.npz','.patch','.csv','.log']:raise ValueError('Unexpected source file '+str(rel))
             (stage/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,stage/rel)
         env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1','MKL_NUM_THREADS':'1','MPLBACKEND':'Agg','MPLCONFIGDIR':str(tmp/'mpl')}
         def execute(cwd,out):

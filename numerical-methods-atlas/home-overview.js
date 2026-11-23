@@ -1,7 +1,7 @@
 import {homeLandingCopy} from './atlas-home-data.js?v=c4da2d83fbfd';
-import {homeSearchPage,wireHomeSearch} from './home-search.js?v=9a2540955cd4';
+import {homeSearchPage,wireHomeSearch} from './home-search.js?v=29bad8da44ef';
 import {t,currentLanguage} from './i18n.js';
-import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=72903daffc11';
+import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=16e8220e0bbb';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=(key,values)=>esc(t(homeCopy[key],values));
 const locale=lang=>['ja','en'].includes(lang)?lang:currentLanguage();

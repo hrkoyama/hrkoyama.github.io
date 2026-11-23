@@ -3,6 +3,7 @@
 Never infer an implementation or reference from a shared chapter/model name.
 Generated execution pages are outputs, not inputs to this graph.
 """
+from atlas_reference_catalog import load_reference_cases
 from copy import deepcopy
 from hashlib import sha256
 import json
@@ -35,7 +36,7 @@ def load_execution_routes(root=ROOT):
     bindings = {row['id']: row for row in catalog['problems']}
     methods = {row['id']: row for row in read('catalog/atlas-methods.json')['methods']}
     equations = {row['id']: row for row in read('catalog/atlas-equations.json')['equations']}
-    references = read('numerical-methods-atlas/assets/reference-solutions.json')['cases']
+    references = load_reference_cases(root, read)
     messages = read('numerical-methods-atlas/locales/messages.json')
     translations = {' '.join(row['en'].split()): row for row in messages.values() if row.get('en')}
     reference_records = {}
@@ -95,6 +96,9 @@ def load_execution_routes(root=ROOT):
         }
 
     expansion = read('catalog/atlas-depth-expansion.json')
+    reviewed_equations = expansion.get('case_equations', {})
+    if not isinstance(reviewed_equations, dict) or not set(reviewed_equations) <= expansion['case_problem_ids'].keys():
+        raise ValueError('Explicit equation bindings need a registered supplemental case')
     supplements = load_supplemental_examples(root, list(expansion['case_problem_ids']))
     for case in supplements:
         ident = case['id']
@@ -113,15 +117,28 @@ def load_execution_routes(root=ROOT):
         if min(width, height) <= 0:
             raise ValueError('Invalid saved execution figure: '+ident)
         entry = {lang: BASE+'validation/'+ident+'/?lang='+lang for lang in LANGUAGES}
+        explicit_equations = reviewed_equations.get(ident, {})
+        if not isinstance(explicit_equations, dict):
+            raise ValueError('Supplement equation binding must be a record')
+        equation_ids = explicit_equations.get('ids', [])
+        if not isinstance(equation_ids, list):
+            raise ValueError('Supplement equation IDs must be a list')
+        if len(equation_ids) != len(set(equation_ids)) or not set(equation_ids) <= equations.keys():
+            raise ValueError('Unknown or repeated explicit supplement equation: '+ident)
+        if equation_ids:
+            bilingual(explicit_equations.get('note'), 'supplement equation scope')
         executions[ident] = {
             'id': ident, 'kind': 'supplement', 'name': case['title'],
             'methods': method_cards(case['method_ids']),
             'formulation': {'role': 'example-definition' if problem else 'diagnostic',
                             'latex': case.get('formulas', case.get('equations', [])), 'note': case['algorithm'],
                             'url': {lang: entry[lang]+'#'+ident+'-'+lang+'-algorithm' for lang in LANGUAGES}},
-            # The supplement defines its own fixed-input formulas. A related
-            # physical problem's model IDs do not establish a direct equation.
-            'equations': [], 'problem': problem,
+            # Only reviewed explicit bindings establish a shared model edge.
+            # A related physical problem or matching prose never adds one.
+            'equations': [{'id': equation, 'name': equations[equation]['name'],
+                           'note': explicit_equations['note'],
+                           'url': {lang: BASE+'equations/?lang='+lang+'#'+equation+'-'+lang for lang in LANGUAGES}}
+                          for equation in equation_ids], 'problem': problem,
             'figure': {'url': url, 'sha256': sha256(raw).hexdigest(), 'width': width, 'height': height,
                        'kind': 'case-validation', 'caption': {
                            'ja': case['title']['ja']+'：この実行例の保存済み検証図。',

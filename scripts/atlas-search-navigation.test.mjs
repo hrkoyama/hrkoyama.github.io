@@ -272,7 +272,7 @@ test('execution, method and reverse-reference graphs preserve exact runners, nul
   for(const id of [...ids(common),...Object.keys(expansion.case_problem_ids)]){
     const graph=source.nodes['execution:'+id],record=commonById.get(id)||supplementById.get(id);
     assert.deepEqual(ids(graph.groups.methods),record.method_ids,id+' actual execution methods');
-    assert.deepEqual(ids(graph.groups.equations),['formulation-'+id,...(commonById.has(id)?discovery.find(row=>row.id===id).equation_ids:[])]);
+    assert.deepEqual(ids(graph.groups.equations),['formulation-'+id,...(commonById.has(id)?discovery.find(row=>row.id===id).equation_ids:(expansion.case_equations?.[id]?.ids||[]))]);
     assert.deepEqual(runIds(graph),[id]);assert.deepEqual(graph.groups.code[0].method_ids,record.method_ids);
     const problemId=commonById.has(id)?record.problem_id:expansion.case_problem_ids[id];
     assert.equal(graph.groups.figures.length,1);assert.equal(graph.groups.figures[0].problem_id,problemId);

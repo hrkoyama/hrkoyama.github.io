@@ -1,0 +1,12 @@
+{
+  "stage": "revision02 pre-run contract",
+  "saved_at_utc": "2026-11-23T00:55:02.352634+00:00",
+  "acceptance_unchanged_from_attempt01": true,
+  "files": {
+    "inputs.json": "ab2d9ca4e92e23096d174fad03ef915faa2f981997d0a30f10907b5b88218074",
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "noh_solver.py": "f5668628eee0be93cdedf71088cfe431fa329040aed739d3f1cb493a6077a9c9",
+    "noh_reference.py": "7eca327794031511067e5f23586c5b548e73271e3c600d9b436e2da307fe7d82",
+    "run.py": "8cf6b8b38e9dd8fb66bd1a25c2de37ae2987300fb8ce3bd844cb458b7d2c5423"
+  }
+}

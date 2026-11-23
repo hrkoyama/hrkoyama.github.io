@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "references": [
+    {
+      "id": "noh1987",
+      "type": "article",
+      "author": "Noh, W. F.",
+      "year": 1987,
+      "title": "Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
+      "journal": "Journal of Computational Physics",
+      "volume": "72",
+      "number": "1",
+      "pages": "78--120",
+      "doi": "10.1016/0021-9991(87)90074-X",
+      "source": "https://doi.org/10.1016/0021-9991(87)90074-X",
+      "review_level": "publisher-metadata-abstract-and-independent-solution-derivation",
+      "note": "Original Noh problem and wall-heating context. Publisher record/abstract checked. Atlas independently derives and tests the gamma=5/3 cold-inflow solution; no claim of reproducing every original figure or algorithm.",
+      "origin": "atlas-benchmark-references"
+    },
+    {
+      "id": "thrussell2023exactpack",
+      "type": "article",
+      "author": "Thrussell, Jasper and Ferguson, Jim Michael",
+      "year": 2023,
+      "title": "ExactPack: A python library of exact analytic solutions",
+      "journal": "SoftwareX",
+      "volume": "24",
+      "pages": "101560",
+      "doi": "10.1016/j.softx.2023.101560",
+      "source": "https://doi.org/10.1016/j.softx.2023.101560",
+      "review_level": "original-software-paper-and-selected-upstream-code",
+      "note": "Cite ExactPack as reference software separately from the original physical problem. LANL/OSTI publication checked; actual Noh evaluator, fixed commit and comparison receipt are recorded in the Atlas Noh edition.",
+      "origin": "atlas-benchmark-references"
+    },
+    {
+      "id": "exactpack-noh-9bacc477",
+      "type": "software",
+      "author": "Los Alamos National Laboratory, ExactPack contributors",
+      "year": 2026,
+      "title": "ExactPack Noh evaluator, commit 9bacc477eb791e959c9621e771fc7a725db755fa",
+      "version": "9bacc477eb791e959c9621e771fc7a725db755fa",
+      "source": "https://github.com/lanl/ExactPack/blob/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/noh/noh1.py",
+      "review_level": "selected-source-and-actual-isolated-execution",
+      "note": "Fixed inspected revision, not a release-date claim. BSD-3-Clause; copyright2023 Triad National Security LLC. Actual pointwise and shell-integral reference comparisons use gamma5/3,rho0=1,inward speed1. This does not execute an independent numerical Euler solver or ExactPack full test suite.",
+      "origin": "atlas-benchmark-references"
+    }
+  ]
+}

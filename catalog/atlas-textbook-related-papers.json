@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "papers": [
+    {
+      "reference_id": "ablowitz1979",
+      "title": {
+        "ja": "Fisher方程式の厳密な進行波を調べたい",
+        "en": "Find an exact traveling wave of Fisher’s equation"
+      },
+      "summary": {
+        "ja": "Fisher方程式の特殊な波速に対する厳密進行波を扱う原著論文です。一般の最小伝播速度とは区別して、反応拡散の数値解・前線位置・波速を検証する入口になります。書籍ではなく論文として案内します。",
+        "en": "An original article giving exact traveling waves at special speeds of Fisher’s equation. Distinguish these speeds from the general minimal propagation speed when testing reaction–diffusion profiles and fronts. This is a journal article, not a book."
+      },
+      "links": [
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/ja/read/biological-models/?lang=ja#06-1937-fisherkpp-invasion-front",
+            "en": "/numerical-methods-atlas/en/read/biological-models/?lang=en#06-1937-fisherkpp-invasion-front"
+          },
+          "label": {
+            "ja": "Fisher–KPPの解説と条件",
+            "en": "Fisher–KPP explanation and assumptions"
+          }
+        },
+        {
+          "url": {
+            "ja": "/numerical-methods-atlas/backlog/?lang=ja#biology-space-1-ja",
+            "en": "/numerical-methods-atlas/backlog/?lang=en#biology-space-1-en"
+          },
+          "label": {
+            "ja": "厳密前線の実装候補",
+            "en": "Exact-front implementation backlog"
+          }
+        }
+      ]
+    }
+  ]
+}

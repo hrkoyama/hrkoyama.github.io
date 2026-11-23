@@ -20,9 +20,10 @@ def build_registry(root):
     root = Path(root)
     config = read_json(root / 'catalog/atlas-depth-expansion.json')
     assert [g['id'] for g in config['groups']] == list(GROUPS), 'Review every group in its canonical order'
+    editions = {group['id']: group.get('edition', config['edition']) for group in config['groups']}
     records = []
     for group in GROUPS:
-        data = load_depth_group(root, group, config['edition'])
+        data = load_depth_group(root, group, editions[group])
         directory = data['directory']
         receipt = data['verification']
         records.append({'group': group, 'edition': data['edition'],

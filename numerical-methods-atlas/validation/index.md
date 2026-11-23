@@ -1620,6 +1620,65 @@ $$
 
 参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
 
+## Noh衝撃波：厳密解・過熱誤差・格子収束
+
+- [Noh衝撃波：初期圧力ゼロの平面・円筒対称計算](https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja): 圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。
+**使用手法**
+
+- [Rusanov／局所Lax–Friedrichs流束](https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja) (`rusanov`)
+- [Heun法／SSPRK(2,2)](https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja) (`heun`)
+
+**方程式**
+
+[この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-algorithm)
+
+区分定数再構築のlocal Lax–Friedrichs/Rusanov流束とSSPRK2（Heun）。幾何CFLはV/(A_L a_L+A_R a_R)に基づきます。運動量の幾何源は面の数値法線応力P*=F_mom−((u_L+u_R)/2)F_massを左右平均しΔAで積分する独自の整合的一次求積です。静止定圧では厳密相殺、d=1では源がゼロ。反射面の数値応力を原点セルへ伝え、cold流の特異な蓄積を避けます。保存量・圧力のfloor、クリッピング、厳密解への置換はありません。丸め誤差内の負内部エネルギーは記録し、音速の平方根引数だけゼロを使います。
+
+$$
+\partial_tU+r^{1-d}\partial_r(r^{d-1}F(U))=(0,(d-1)p/r,0)^T,\quad U=(\rho,\rho u,E)^T
+$$
+
+$$
+C=(\gamma+1)/(\gamma-1),\quad r_s=|u_0|(\gamma-1)t/2,\quad \rho_2=\rho_0C^d,\quad p_2=(\gamma-1)\rho_2u_0^2/2
+$$
+
+$$
+\rho_1(r,t)=\rho_0(1+|u_0|t/r)^{d-1},\quad u_1=u_0,\quad p_1=0
+$$
+
+$$
+V_i=(r_{i+1/2}^d-r_{i-1/2}^d)/d,\quad P_f^*=\widehat F_{m,f}-\bar u_f\widehat F_{\rho,f},\quad S_{m,i}V_i=\tfrac12(P_{i-1/2}^*+P_{i+1/2}^*)(A_{i+1/2}-A_{i-1/2})
+$$
+
+$$
+\mathcal E_1=\frac{\sum_iV_i|\bar\rho_i-\bar\rho_i^{\rm exact}|}{\sum_iV_i\bar\rho_i^{\rm exact}},\quad M(t)=\rho_0(R+|u_0|t)^d/d,\quad E_{\rm tot}(t)=u_0^2M(t)/2
+$$
+
+- [圧縮性Euler方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja) (`euler`)
+
+理想気体Eulerの平面・円筒半径対称という限定した形です。幾何源と初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。
+
+
+**問題の図**
+
+![Noh衝撃波：初期圧力ゼロの平面・円筒対称計算：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png)
+
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+
+[Noh衝撃波：初期圧力ゼロの平面・円筒対称計算](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja) (`noh`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-validation)
+
+入力・受入基準・hashを初回実行前に保存。セル平均圧力p_iΔAを使った初回は平面のみ合格し、円筒はshock不形成で不合格。そのソース・全系列結果を保持し、同じ閾値でinterface-stress版を再実行しました。厳密保存量セル平均は衝撃をまたぐ積分を解析的に分割し、p(U平均)と圧力の体積平均を別列に保存。独立LANL ExactPack固定版から点値・分割求積平均を別実行して照合。全域の相対体積重みL1/L2/Linfと、原点・衝撃・plateauのマスク別診断、shock半値位置、密度増幅4^d（衝撃自体の跳躍は4）、SSPRK2各段の境界流入を積算した保存収支を検査します。
+
+- [Nohの冷たい流入衝撃波：平面・円筒対称](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja) (`noh`; 同じ問題の参照 · 解析参照)
+
+同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。
+
 # Explore small implemented validations by field
 
 These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.
@@ -3241,6 +3300,65 @@ A saved validation figure for this execution example. Its conditions and accepta
 The reference independently assembles the SAME FD semidiscretization with a real-space sparse matrix and separately written reaction RHS, then integrates it unsplit with Radau. Tighter Radau and separate DOP853 runs measure reference sensitivity relative to the finest Strang error. Norms are per-species mean L1, RMS L2 and maximum L∞, then the worse species; refinement uses the maximum across the four common positive observation times. Also record Newton-tolerance sensitivity, positive tested substeps, reaction source/sink balance and reversed-Lie ordering.
 
 No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+
+## Noh shocks: exact reference, origin heating and refinement
+
+- [Noh shocks: zero-pressure planar and cylindrical flow](https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en): A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow.
+**Methods used**
+
+- [Rusanov / local Lax–Friedrichs flux](https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en) (`rusanov`)
+- [Heun / SSPRK(2,2)](https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en) (`heun`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-algorithm)
+
+Piecewise-constant local Lax–Friedrichs/Rusanov flux and SSPRK2 (Heun), with a geometric CFL based on V/(A_L a_L+A_R a_R). The radial-momentum source uses an original consistent first-order quadrature: average the two interfacial numerical normal stresses P*=F_mom−((u_L+u_R)/2)F_mass and multiply by delta A. This exactly balances static constant pressure and vanishes for d=1. Reflection stress reaches the origin cell rather than allowing singular cold accumulation. No state/pressure floor, clipping or substitution of analytic solution arrays. Negative internal energy within roundoff is logged; only the sound-speed square-root argument uses zero at roundoff.
+
+$$
+\partial_tU+r^{1-d}\partial_r(r^{d-1}F(U))=(0,(d-1)p/r,0)^T,\quad U=(\rho,\rho u,E)^T
+$$
+
+$$
+C=(\gamma+1)/(\gamma-1),\quad r_s=|u_0|(\gamma-1)t/2,\quad \rho_2=\rho_0C^d,\quad p_2=(\gamma-1)\rho_2u_0^2/2
+$$
+
+$$
+\rho_1(r,t)=\rho_0(1+|u_0|t/r)^{d-1},\quad u_1=u_0,\quad p_1=0
+$$
+
+$$
+V_i=(r_{i+1/2}^d-r_{i-1/2}^d)/d,\quad P_f^*=\widehat F_{m,f}-\bar u_f\widehat F_{\rho,f},\quad S_{m,i}V_i=\tfrac12(P_{i-1/2}^*+P_{i+1/2}^*)(A_{i+1/2}-A_{i-1/2})
+$$
+
+$$
+\mathcal E_1=\frac{\sum_iV_i|\bar\rho_i-\bar\rho_i^{\rm exact}|}{\sum_iV_i\bar\rho_i^{\rm exact}},\quad M(t)=\rho_0(R+|u_0|t)^d/d,\quad E_{\rm tot}(t)=u_0^2M(t)/2
+$$
+
+- [Compressible Euler equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en) (`euler`)
+
+The scoped planar and cylindrical-radial form of ideal-gas Euler. This example defines the geometric source and zero initial pressure in its formulas and fixed input.
+
+
+**Problem figure**
+
+![Noh shocks: zero-pressure planar and cylindrical flow: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Noh shocks: zero-pressure planar and cylindrical flow](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en) (`noh`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-validation)
+
+Inputs, acceptance criteria and hashes were saved before the first run. The initial cell-pressure p_i delta A source passed planar checks but failed cylindrical shock formation; its source and full refinement results are retained. The interface-stress revision is tested against the SAME thresholds. Analytic conservative cell means split shock-crossing integrals, storing p(mean U) separately from the physical mean pressure. Pinned independent LANL ExactPack was separately executed for points and split-quadrature means. Checks include full-domain volume-weighted relative L1/L2/Linf, explicit center/shock/plateau masks, pressure half-height shock location, initial density amplification 4^d (shock jump 4), and stage-weighted SSPRK2 boundary-inflow budgets.
+
+- [Noh cold-inflow shock: planar and cylindrical symmetry](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en) (`noh`; Same-problem reference · Analytic reference)
+
+The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p.
 
 
 Original code: MIT. Other materials: https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

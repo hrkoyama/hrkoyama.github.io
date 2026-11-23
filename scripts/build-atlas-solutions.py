@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Publish the saved reference-solution inventory without evaluating new solutions."""
 from collections import Counter
+from atlas_reference_catalog import load_reference_cases, SUPPLEMENT_SOURCE
 from html import escape
 from pathlib import Path
 import hashlib
@@ -14,6 +15,11 @@ ROUTE = BASE + 'solutions/'
 SOURCE = 'numerical-methods-atlas/assets/reference-solutions.json'
 TRANSLATIONS = 'numerical-methods-atlas/locales/messages.json'
 KIND_NAMES = {'analytic': 'Analytic reference', 'semi-analytic': 'Semi-analytic reference', 'manufactured': 'Manufactured solution'}
+CITATION_ROLES = {'original-problem': ('原問題・誤差解析', 'Original problem and error analysis'), 'reference-software-paper': ('参照ソフトの論文', 'Reference-software paper'), 'executed-reference-implementation': ('実際に照合したコード版', 'Executed reference implementation')}
+
+def citation_role(citation, language):
+    return CITATION_ROLES.get(citation['role'], (citation['role'], citation['role']))[language == 'en']
+
 SLICE_NOTE = 'Taylor–Green: x-slice at y = π/4. These are point values, not two-dimensional cell averages.'
 
 
@@ -34,7 +40,7 @@ def load(root=ROOT):
         return {'ja': entry['ja'], 'en': value}
 
     cases = []
-    for source_case in source['cases']:
+    for source_case in load_reference_cases(root):
         ident, kind = source_case['id'], source_case['kind']
         if not re.fullmatch(r'[a-z0-9-]+', ident) or kind not in KIND_NAMES:
             raise ValueError('Unknown reference-solution identity or kind: ' + ident)
@@ -43,14 +49,18 @@ def load(root=ROOT):
         case = {key: source_case[key] for key in ['id', 'model', 'kind', 'formula', 'dimension', 'bounds', 'components', 'field_type', 'parameters', 'sources']}
         case.update(title=localized(source_case['title']), assumptions=localized(source_case['assumptions']),
                     kind_label=localized(KIND_NAMES[kind]),
-                    view={language: BASE + '?lang=' + language + '#/exact-solutions?case=' + ident for language in ['ja', 'en']},
-                    reading={language: BASE + language + '/read/reference-solutions/' for language in ['ja', 'en']})
+                    view=source_case.get('view', {language: BASE + '?lang=' + language + '#/exact-solutions?case=' + ident for language in ['ja', 'en']}),
+                    reading=source_case.get('reading', {language: BASE + language + '/read/reference-solutions/' for language in ['ja', 'en']}))
+        for key in ['citations', 'reference_scope']:
+            if key in source_case:
+                case[key] = source_case[key]
         if ident == 'taylor-green':
             case['sampling_note'] = localized(SLICE_NOTE)
         cases.append(case)
     if len({case['id'] for case in cases}) != len(cases):
         raise ValueError('Duplicate reference-solution ID')
-    return dict(schema_version=1, url=ORIGIN + ROUTE, source='/' + SOURCE, source_sha256=digest(root / SOURCE),
+    extra = {'supplements_source': '/'+SUPPLEMENT_SOURCE, 'supplements_source_sha256': digest(root/SUPPLEMENT_SOURCE)} if (root/SUPPLEMENT_SOURCE).is_file() else {}
+    return dict(**extra, schema_version=1, url=ORIGIN + ROUTE, source='/' + SOURCE, source_sha256=digest(root / SOURCE),
                 translations_source='/' + TRANSLATIONS, translations_source_sha256=digest(root / TRANSLATIONS),
                 count=len(cases), counts=dict(Counter(case['kind'] for case in cases)), cases=cases)
 
@@ -87,6 +97,11 @@ def section(data, language):
         body += '<nav class="solution-links" aria-label="' + escape(case['title'][language], quote=True) + '">'
         body += link(case['view'][language], '保存済みの解を表示 →' if ja else 'View the saved profile →')
         body += link(case['reading'][language], '定義・条件を読む' if ja else 'Read definitions and conditions') + '</nav>'
+        if case.get('citations'):
+            body += '<details class="solution-citations"><summary>'+('出典・参照実装と確認範囲' if ja else 'Sources, reference software and scope')+'</summary><ul>'
+            for citation in case['citations']:
+                body += '<li>'+escape(citation_role(citation, language))+': '+link(citation['url'], citation['title'])+(' — '+escape(citation.get('note', '')) if citation.get('note') else '')+'</li>'
+            body += '</ul></details>'
         body += render_problem_routes(case.get('related_problems', []), language, heading_level=3, limit=3) + '</article>'
     body += '</div><footer class="solutions-footer">' + link('index.json', 'JSON') + link('index.md', 'Markdown')
     body += link('/' + SOURCE, '参照値の元データ' if ja else 'Source reference values') + link('/using/', '引用と利用条件' if ja else 'Citation and reuse') + '</footer></section>'
@@ -107,6 +122,8 @@ def markdown(data):
             if case.get('sampling_note'):
                 result += case['sampling_note'][language] + '\n\n'
             result += '[' + ('保存済みの解を表示' if ja else 'View the saved profile') + '](' + ORIGIN + case['view'][language] + ') · [' + ('定義・条件を読む' if ja else 'Read definitions and conditions') + '](' + ORIGIN + case['reading'][language] + ')\n\n'
+            for citation in case.get('citations', []):
+                result += '- '+citation['role']+': ['+citation['title']+']('+citation['url']+')'+(' — '+citation.get('note', '') if citation.get('note') else '')+'\n'
             result += markdown_problem_routes(case.get('related_problems', []), language) + '\n\n'
     return result.rstrip() + '\n'
 

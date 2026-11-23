@@ -181,6 +181,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   γ=2、Bx=0.75の1次元理想MHD衝撃波管をt=0.1まで計算。HLLD＋MC＋SSPRK2の64/128セルを512セルの数値参照と比較し、密度・圧力・縦磁場・保存収支・切替回数を記録する。
+- [Noh衝撃波：初期圧力ゼロの平面・円筒対称計算](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja>)
+  availability: run
+
+  圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。
 - [Godunov型有限体積法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja>)
   availability: source
 

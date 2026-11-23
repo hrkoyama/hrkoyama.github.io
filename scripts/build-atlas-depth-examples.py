@@ -245,7 +245,7 @@ def build():
     assert len(catalog['groups']) == len(GROUPS)
     for group in catalog['groups']:
         assert all(group['title'].get(language) for language in LANGUAGES)
-    data = {group['id']: load_depth_group(ROOT, group['id'], catalog['edition']) for group in catalog['groups']}
+    data = {group['id']: load_depth_group(ROOT, group['id'], group.get('edition', catalog['edition'])) for group in catalog['groups']}
     identifiers = [case['id'] for group in data.values() for case in group['metadata']]
     assert len(identifiers) == len(set(identifiers))
     registry_path = ATLAS/'code-and-data/examples.json'
@@ -265,13 +265,13 @@ def build():
     for group in catalog['groups']:
         group_id = group['id']; current = data[group_id]
         measured = {row['id']: row for row in current['results']['cases']}
-        public_groups.append({**group, 'case_ids': [case['id'] for case in current['metadata']],
+        public_groups.append({**group, 'edition': current['edition'], 'case_ids': [case['id'] for case in current['metadata']],
             'release_base': ORIGIN+current['base'], 'verification': ORIGIN+current['base']+'verification.json',
             'passed_tests': current['verification']['passed_tests'], 'independent_rerun_seconds': current['verification']['independent_rerun_seconds']})
         for case in current['metadata']:
             ident = case['id']; page_title = {language: case['title'][language]+(' | 実行・検証例' if language == 'ja' else ' | Runnable validation') for language in LANGUAGES}
             editorial_note = catalog.get('case_notes', {}).get(ident)
-            public_case = {**case, 'group': group_id, 'edition': catalog['edition'], 'measured': measured[ident],
+            public_case = {**case, 'group': group_id, 'edition': current['edition'], 'measured': measured[ident],
                 'problem_id': catalog.get('case_problem_ids', {}).get(ident),
                 'editorial_note': editorial_note,
                 'url': ORIGIN+case_route(ident), 'entry': {language: ORIGIN+case_route(ident, language) for language in LANGUAGES},
@@ -315,7 +315,7 @@ def build():
             # Case section IDs live on their article; expose them as TOC/search headings.
             headings += [{'level': 2, 'id': case['id'], 'title': case['title'][language]} for case in current['metadata']]
             entry = {'title': title, 'html': body, 'headings': headings, 'locale': language,
-                     'source_url': current['base']+'cases.json', 'updated_on': catalog['edition'][:10]}
+                     'source_url': current['base']+'cases.json', 'updated_on': current['edition'][:10]}
             if ja:
                 entry['translation_status'] = 'draft'
             documents[language][chapter_id] = entry; chapter_entries[group_id][language] = entry
@@ -326,7 +326,7 @@ def build():
                  'case_ids': [case['id'] for case in current['metadata']], 'measurements': current['results']['cases'],
                  'source_sha256': source_hashes}); (destination/'index.md').write_text(markdown.rstrip()+'\n')
             translations['chapters'][chapter_id] = {'status': 'draft', 'source_url': current['base']+'cases.json',
-                'source_sha256': digest(current['directory']/'cases.json'), 'checked_on': catalog['edition'][:10]}
+                'source_sha256': digest(current['directory']/'cases.json'), 'checked_on': current['edition'][:10]}
     for language in LANGUAGES:
         dump(ATLAS/('content.'+language+'.json'), documents[language])
         if language == 'en':

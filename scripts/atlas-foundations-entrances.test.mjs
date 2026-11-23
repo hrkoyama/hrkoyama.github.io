@@ -51,7 +51,7 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const problemCatalog=json('catalog/atlas-test-problems.json');
  assert.match(problemCatalog.excluded_examples.en.at(-1),/amg-conditioning/);
  const inventory=problemCatalog.problems;
- assert.equal(inventory.length,83);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
+ assert.equal(inventory.length,84);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(methods.length,147);assert.equal(methods.filter(x=>x.status==='educational-example').length,116);
 });
@@ -89,7 +89,7 @@ for lang in ['ja','en']:
 });
 
 test('all 83 historical illustrations, checksums and captions remain unchanged',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>x.id!=='noh');
  assert.equal(items.length,83);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'57239dc61d0fc48ff97ec9cfa2c771bd1b675b561a884bb6843c70251f4481c0');
 });

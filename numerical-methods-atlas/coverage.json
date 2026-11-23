@@ -27,9 +27,9 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 93,
-    "test_problems": 83,
-    "saved_test_problems": 83,
+    "reading_chapters": 94,
+    "test_problems": 84,
+    "saved_test_problems": 84,
     "code_test_problems": 0
   },
   "items": [
@@ -314,15 +314,6 @@
     },
     {
       "kind": "method",
-      "id": "rusanov",
-      "label": "Rusanov / local Lax–Friedrichs flux",
-      "chapter": "benchmarks",
-      "status": "local-example",
-      "group": "Riemann fluxes & corrections",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "hll",
       "label": "HLL",
       "chapter": "benchmarks",
@@ -451,15 +442,6 @@
       "kind": "method",
       "id": "backward-euler",
       "label": "Backward Euler",
-      "chapter": "time-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "heun",
-      "label": "Heun / SSPRK(2,2)",
       "chapter": "time-integration",
       "status": "local-example",
       "group": "Time integration",
@@ -1467,6 +1449,26 @@
       "status": "local-example",
       "group": "Spatial discretization",
       "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "rusanov",
+      "label": "Rusanov / local Lax–Friedrichs flux",
+      "chapter": "validation-noh",
+      "status": "local-example",
+      "group": "Riemann fluxes & corrections",
+      "scope": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "heun",
+      "label": "Heun / SSPRK(2,2)",
+      "chapter": "validation-noh",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow.",
       "origin": "curated-depth-example"
     },
     {
@@ -3315,11 +3317,11 @@
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
     "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/index.json",
     "catalog": "catalog/atlas-test-problems.json",
-    "reviewed_on": "2026-11-22"
+    "reviewed_on": "2026-11-23"
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "6056ca2a6f1b583c218dbca94a741a451a381fd5788e30cc8265d2fb1be1490e",
+    "catalog/atlas-methods.json": "033e6472c6650b8757642c7d87215e99eed704a4f5be6c2e2c8eadd6e6b6ff99",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },

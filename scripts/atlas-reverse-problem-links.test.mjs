@@ -14,7 +14,7 @@ const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].ma
 const byId=rows=>new Map(rows.map(row=>[row.id,row]));
 const catalog=json('catalog/atlas-problem-links.json');
 const equationSource=json('catalog/atlas-equations.json').equations;
-const referenceSource=json('numerical-methods-atlas/assets/reference-solutions.json').cases;
+const referenceSource=[...json('numerical-methods-atlas/assets/reference-solutions.json').cases,...json('catalog/atlas-reference-supplements.json').cases];
 const inventory=json('catalog/atlas-test-problems.json').problems;
 const hubs=byId(json('numerical-methods-atlas/problems/index.json').problems);
 const pictures=byId(json('numerical-methods-atlas/gallery/preview-manifest.json').items);

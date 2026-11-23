@@ -8966,7 +8966,7 @@
     "passed_tests": 75
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
+    "catalog/atlas-depth-expansion.json": "ec2c98f7597aa423af185c0c0c58728b39d5a3b878799d899c596a0306f995b5",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -9021,7 +9021,12 @@
     "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
     "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
     "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
-    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404"
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r3/noh/source-manifest.json": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
+    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
+    "code/validated-examples/2026-11-23-r3/noh/cases.json": "8409325dd840291acadfcdf78b2570b938bbf22efb8e3bdf7c12e715e19e144b",
+    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
+    "code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36"
   },
   "scope": {
     "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
@@ -9161,12 +9166,13 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
+    "catalog/atlas-depth-expansion.json": "ec2c98f7597aa423af185c0c0c58728b39d5a3b878799d899c596a0306f995b5",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "6056ca2a6f1b583c218dbca94a741a451a381fd5788e30cc8265d2fb1be1490e",
-    "catalog/atlas-problem-links.json": "ce920e0e2d8b9a2c45b3466ddec2707c1c6534949fbfda9b71e3a2d3c532863b",
-    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
+    "catalog/atlas-methods.json": "033e6472c6650b8757642c7d87215e99eed704a4f5be6c2e2c8eadd6e6b6ff99",
+    "catalog/atlas-problem-links.json": "b8fa6ecffc8970cc3bf5ccbd24b84353f5c993c3ad14639bb487865f8c23ebcb",
+    "catalog/atlas-reference-supplements.json": "e02d28b66c1530eb267dcaa94b662ebbfd85cd4e85ebdfbd85afb9dc83621947",
+    "catalog/atlas-test-problems.json": "ca55076edfb48f2dcb4e45612a3b2fd84a526008bd5a18aa57167af64061f230",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -9262,10 +9268,16 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36",
+    "code/validated-examples/2026-11-23-r3/noh/cases.json": "8409325dd840291acadfcdf78b2570b938bbf22efb8e3bdf7c12e715e19e144b",
+    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png": "f89d3289b2ac41d2e291f0964f8635e8084355420d53cb583876a579d94810fd",
+    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
+    "code/validated-examples/2026-11-23-r3/noh/source-manifest.json": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
+    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "f471ec4d77fc9efa9aa0d491c5083d0541e90ea46453f4419ae7a6f684d29278",
-    "numerical-methods-atlas/locales/messages.json": "246d3e8a6828d9129aa9938b30fab341acc62aaa8e6c81222f4dc83edf8002d4"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c3f00613d6e379a01c22b6aae9049787dc80d237384a0f3f9e82043120a474c0",
+    "numerical-methods-atlas/locales/messages.json": "001acc4b119671baec3f38157f9aa8c87022516877797dfa8715a27fd721a889"
   }
 }

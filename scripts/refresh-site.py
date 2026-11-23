@@ -13,6 +13,7 @@ for command in [
     [sys.executable, 'scripts/build-quantum-examples.py'],
     [sys.executable, 'scripts/build-atlas-method-sources.py'],
     [sys.executable, 'scripts/build-atlas-fdtd.py'],
+    [sys.executable, 'scripts/build-atlas-benchmark-references.py'],
     [sys.executable, 'scripts/build-atlas-detailed-reading.py'],
     [sys.executable, 'scripts/build-atlas-depth-examples.py'],
     [sys.executable, 'scripts/build-atlas-mhd-supplements.py'],
@@ -38,9 +39,11 @@ for command in [
     [sys.executable, 'scripts/build-atlas-goals.py'],
     [sys.executable, 'scripts/build-atlas-depth.py'],
     [sys.executable, 'scripts/build-atlas-crossovers.py'],
+    [sys.executable, 'scripts/build-atlas-textbook-papers.py'],
     [sys.executable, 'scripts/build-atlas-reading-index.py'],
     [sys.executable, 'scripts/build-atlas-reading-navigation.py'],
     [sys.executable, 'scripts/build-atlas-chapter-resources.py'],
+    [sys.executable, 'scripts/build-atlas-benchmark-backlog.py'],
     # Index the final home/explore counts and roadmap prose. The later purpose
     # pass also versions the search module's parents after its content changes.
     [sys.executable, 'scripts/build-atlas-purpose.py'],

@@ -1,0 +1,47 @@
+{
+  "passed": false,
+  "checks": 59,
+  "failed": [
+    {
+      "name": "cylindrical: finest density_l1",
+      "passed": false,
+      "value": 0.29897898764996117,
+      "bound": 0.12
+    },
+    {
+      "name": "cylindrical: finest shock_error_in_dx",
+      "passed": false,
+      "value": null,
+      "bound": 3.0
+    },
+    {
+      "name": "cylindrical: finest plateau_density_relative_error",
+      "passed": false,
+      "value": 0.5384845217994825,
+      "bound": 0.1
+    },
+    {
+      "name": "cylindrical: finest plateau_pressure_relative_error",
+      "passed": false,
+      "value": 1.0,
+      "bound": 0.1
+    },
+    {
+      "name": "cylindrical: density L1 decreases",
+      "passed": false,
+      "value": [
+        0.2917187937424832,
+        0.2957016894419632,
+        0.29792224622407526,
+        0.29897898764996117
+      ],
+      "bound": null
+    },
+    {
+      "name": "cylindrical: last-pair L1 order",
+      "passed": false,
+      "value": -0.0051082394235010525,
+      "bound": 0.35
+    }
+  ]
+}

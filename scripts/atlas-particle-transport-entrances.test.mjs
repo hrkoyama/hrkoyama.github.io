@@ -104,7 +104,7 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.equal(new Set(Object.values(physical)).size,5);
  assert.equal(Object.values(mapping).filter(x=>x===null).length,5);
  const inventory=json('catalog/atlas-test-problems.json').problems;
- assert.equal(inventory.length,83);assert.ok(!inventory.some(x=>added.includes(x.id)));
+ assert.equal(inventory.length,84);assert.ok(!inventory.some(x=>added.includes(x.id)));
  const ids=json('catalog/atlas-reading-index.json').groups.find(x=>x.id==='particles-transport').chapters;
  assert.equal(ids[ids.indexOf('validation-particles')+1],'validation-particle-transport');
  assert.equal(ids.filter(x=>x==='validation-particle-transport').length,1);
@@ -128,9 +128,9 @@ test('one scoped goal and two depth fields expose six new checks without changin
 });
 
 test('all 83 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>x.id!=='noh');
  assert.equal(items.length,83);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'57239dc61d0fc48ff97ec9cfa2c771bd1b675b561a884bb6843c70251f4481c0');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
- assert.equal(gallery.items.length,83);assert.equal(gallery.items.filter(x=>x.runnable).length,39);
+ assert.equal(gallery.items.length,84);assert.equal(gallery.items.filter(x=>x.runnable).length,40);
 });

@@ -123,7 +123,7 @@ def _equations(route, language):
     if equations:
         body += '<ul class="execution-navigation-links">'
         for equation in equations:
-            body += '<li data-execution-equation-id="' + _id(equation['id']) + '">' + _link(equation['url'][language], _text(equation['name'], language), ' data-execution-equation-link') + '</li>'
+            body += '<li data-execution-equation-id="' + _id(equation['id']) + '">' + _link(equation['url'][language], _text(equation['name'], language), ' data-execution-equation-link') + _paragraph(equation.get('note'), language, 'execution-navigation-equation-note') + '</li>'
         body += '</ul>'
     else:
         body += _paragraph('方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。' if ja else 'No corresponding equation-registry entry is registered. The example-specific definition above supplies its formulation, approximation or diagnostic.', language)
@@ -206,6 +206,8 @@ def execution_navigation_markdown(route, lang):
         lines += ['$$', latex, '$$', '']
     for equation in route.get('equations', []):
         lines += ['- ' + _md_link(equation['url'][lang], _text(equation['name'], lang)) + ' (`' + _id(equation['id']) + '`)']
+        if _text(equation.get('note'), lang):
+            lines += ['', _text(equation['note'], lang), '']
     if not route.get('equations'):
         lines += ['方程式一覧の対応項目は未登録です。個別の式・近似・診断は上の定義に示します。' if ja else 'No corresponding equation-registry entry is registered; consult the example-specific formulation, approximation or diagnostic above.']
     lines += ['', '**' + LABELS['figure'][lang] + '**', '', _md_link(route['figure']['url'], _text(route['figure'].get('caption'), lang) or _text(route['name'], lang), image=True), '', _figure_scope(route, lang), '']

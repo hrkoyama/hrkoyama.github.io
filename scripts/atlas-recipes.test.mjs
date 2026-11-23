@@ -16,8 +16,8 @@ const supplementalProblemIds=['matrix-factorization','krylov-spectrum','quadratu
 test('all 22 runnable representative problems have one reproduction record within the 83-problem inventory',()=>{
   assert.equal(registry.examples.length,22);
   assert.deepEqual(registry.examples.map(x=>x.problem_id).sort(),[...targets].sort());
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length,83);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,83);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length,84);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,84);
   assert.equal(registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22').length,12);
   for(const id of ['barnes-hut','hydrogenic-atoms','helium-ground-state'])assert.equal(registry.examples.find(x=>x.id===id).release.version,'2026-11-21');
 });
@@ -26,7 +26,12 @@ test('sixteen additional physical problems bind to successful immutable suppleme
   const inventory=json('catalog/atlas-test-problems.json').problems;
   const mapping=json('catalog/atlas-depth-expansion.json').case_problem_ids;
   const selected=inventory.filter(x=>supplementalProblemIds.includes(x.id));
-  assert.equal(selected.length,16);assert.equal(inventory.length-selected.length,67);
+  assert.equal(selected.length,16);
+  const earlier=inventory.filter(x=>x.id!=='noh');
+  assert.equal(earlier.length-selected.length,67,'the historical representative/supplemental distinction remains intact');
+  assert.equal(inventory.length-selected.length,68);
+  assert.equal(inventory.filter(x=>x.id==='noh').length,1);
+  assert.equal(mapping['noh-shock'],'noh');
   assert.equal(mapping.ewald,mapping.spme);assert.equal(mapping['glm-fourier-mode'],null);
   assert.equal(inventory.filter(x=>x.id==='neutral-periodic-charges').length,1);
   for(const problem of selected){

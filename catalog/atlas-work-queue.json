@@ -475,6 +475,13 @@
             "ja": "既存分野の確認範囲と不足",
             "en": "Existing-field checking scope and gaps"
           }
+        },
+        {
+          "url": "/numerical-methods-atlas/backlog/",
+          "label": {
+            "ja": "全候補の逐次実装・図版化台帳",
+            "en": "Sequential implementation and figure backlog"
+          }
         }
       ]
     },
@@ -669,5 +676,14 @@
         "en": "Correct code, interface, assessment and guidance defects found in acceptance; add no new fields or costly new physics. Numerical corrections receive new immutable editions and rerun receipts while old successes remain intact. Carry supplied kits/conditions, agent-demonstrated tasks, unverified modifications, unsupported requests and P1 deferrals into the next plan. Specialist-AI training/model research remains for 2027 or later, separate from users’ agents consuming the public assets."
       }
     }
-  ]
+  ],
+  "benchmark_backlog": {
+    "source": "catalog/atlas-benchmark-backlog.json",
+    "url": "/numerical-methods-atlas/backlog/",
+    "authorized_on": "2026-11-23",
+    "scope": {
+      "ja": "2026年11月23日の指示により全候補を順次進めます。Nohから着手し、一つの単位を実装・独立追試・引用・図・公開まで揃えてから次へ進みます。新規実装、既存検証の拡充、出典整理を区別し、未着手や検証中を実装済みと表示しません。既存の年末必達計画とは別の継続台帳で、全項目の完了期限は設定していません。",
+      "en": "The 23 November 2026 instruction authorizes sequential work on all candidates, starting with Noh. Complete implementation, independent rerun, citation, figure and publication for one unit before the next. Distinguish new code, verification extensions and citation work. This continuing backlog has no all-items completion deadline and remains separate from the required year-end milestones."
+    }
+  }
 }

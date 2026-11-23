@@ -26,16 +26,17 @@ def load_supplemental_evidence(root, case_ids):
     catalog_path = root/'catalog/atlas-depth-expansion.json'
     catalog = read_json(catalog_path)
     by_id = {}
+    editions = {group['id']: group.get('edition', catalog['edition']) for group in catalog['groups']}
     for group in catalog['groups']:
         assert group['id'] in GROUPS
-        directory = root/'code/validated-examples'/catalog['edition']/group['id']
+        directory = root/'code/validated-examples'/editions[group['id']]/group['id']
         metadata = read_json(directory/'cases.json')
         metadata = metadata['cases'] if isinstance(metadata, dict) else metadata
         for case in metadata:
             assert case['id'] not in by_id, 'Duplicate supplemental case ID'
             by_id[case['id']] = group['id']
     assert set(case_ids) <= by_id.keys(), 'Unknown supplemental evidence ID'
-    groups = {group: load_depth_group(root, group, catalog['edition'])
+    groups = {group: load_depth_group(root, group, editions[group])
               for group in sorted({by_id[ident] for ident in case_ids})}
     sources = {'catalog/atlas-depth-expansion.json': digest(catalog_path)}
     receipts, cases = {}, {}
@@ -50,7 +51,7 @@ def load_supplemental_evidence(root, case_ids):
         measured = {case['id']: case for case in data['results']['cases']}
         for ident in sorted(set(case_ids) & metadata.keys()):
             case = metadata[ident]
-            cases[ident] = {'id': ident, 'group': group, 'edition': catalog['edition'],
+            cases[ident] = {'id': ident, 'group': group, 'edition': data['edition'],
                 'title': case['title'], 'scope': case['summary'], 'limits': case['limits'],
                 'method_ids': case['method_ids'], 'domains': case.get('domains', []),
                 'url': ORIGIN+'/numerical-methods-atlas/validation/'+ident+'/',

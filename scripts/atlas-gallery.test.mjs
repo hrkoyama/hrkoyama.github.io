@@ -19,8 +19,8 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const cases=json(base+'cases.json');
  const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
- assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
- assert.equal(gallery.counts.supplemental_release_case_count,40);
+ assert.equal(gallery.items.length,84);assert.equal(gallery.counts.runnable_problems,40);
+ assert.equal(gallery.counts.supplemental_release_case_count,41);
  assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
  assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
  assert.deepEqual(item.caption,metadata.summary);
@@ -36,7 +36,10 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
   const cases=json(base+'cases.json');
   return ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')].map(name=>base+name);
  });
- assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(addedSources).size);
+ const nohBase='code/validated-examples/2026-11-23-r3/noh/';
+ const nohSources=['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json','results/noh-shock.png','results/noh-shock-preview.png'].map(name=>nohBase+name);
+ assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(addedSources).size+nohSources.length);
+ for(const path of nohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of addedSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  // Splitting adds a supplementary run link, while this preview keeps the
  // historical onset image. Its full release provenance belongs to the gallery
@@ -73,9 +76,9 @@ test('six particle/transport checks retain all five historical images and add on
   }
  }
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
- assert.equal(gallery.counts.supplemental_case_count,35);
- assert.equal(gallery.counts.supplemental_release_case_count,40);
- assert.equal(gallery.counts.runnable_problems,39);
+ assert.equal(gallery.counts.supplemental_case_count,36);
+ assert.equal(gallery.counts.supplemental_release_case_count,41);
+ assert.equal(gallery.counts.runnable_problems,40);
 });
 
 test('optional domain buttons and image policies start collapsed while names, reset and current count remain visible', () => {
@@ -176,7 +179,7 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
   const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
   const quartic=gallery.items.find(x=>x.id==='thermostatted-quartic');
   const metadata=cases.find(x=>x.id==='csvr-langevin-quartic');
-  assert.equal(gallery.items.length,83);
+  assert.equal(gallery.items.length,84);
   assert.equal(quartic.image,'/'+base+'results/csvr-langevin-quartic.png');
   assert.equal(quartic.image_sha256,digest(base+'results/csvr-langevin-quartic.png'));
   assert.deepEqual(quartic.caption,metadata.summary);
@@ -196,8 +199,8 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
 test('nonlinear Schnakenberg runs are additional entrances and retain the saved onset illustration',()=>{
   const identifiers=['schnakenberg-nonlinear','schnakenberg-pattern'];
   const item=gallery.items.find(x=>x.id==='turing-schnakenberg');
-  assert.equal(gallery.items.length,83);
-  assert.equal(gallery.counts.runnable_problems,39);
+  assert.equal(gallery.items.length,84);
+  assert.equal(gallery.counts.runnable_problems,40);
   assert.equal(item.image,'/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
   assert.equal(item.image_sha256,'d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893');
   assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers,'reaction-diffusion-splitting']);
@@ -211,7 +214,7 @@ test('the bimodal MCMC visual is one new physical target and preserves the old s
   const base='code/validated-examples/2026-11-22/mcmc/';
   const metadata=json(base+'cases.json').find(x=>x.id==='mcmc-multimodal-mixing');
   const problem=gallery.items.find(x=>x.id==='mcmc-bimodal-mixture');
-  assert.equal(gallery.items.length,83);assert.equal(gallery.counts.runnable_problems,39);
+  assert.equal(gallery.items.length,84);assert.equal(gallery.counts.runnable_problems,40);
   assert.equal(problem.image,'/'+base+'results/mcmc-multimodal-mixing.png');
   assert.equal(problem.image_sha256,digest(base+'results/mcmc-multimodal-mixing.png'));
   assert.deepEqual(problem.caption,metadata.summary);

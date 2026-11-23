@@ -1,0 +1,92 @@
+[
+  {
+    "id": "noh-shock",
+    "title": {
+      "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+      "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+    },
+    "method_ids": [
+      "rusanov",
+      "heun"
+    ],
+    "domains": [
+      "fluid",
+      "shock",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "noh_solver.py",
+      "noh_reference.py",
+      "generate_exactpack_reference.py"
+    ],
+    "summary": {
+      "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
+      "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+    },
+    "assumptions": {
+      "ja": "無次元r∈[0,1]、gamma=5/3、rho0=1、u0=-1、p0=0、T=.6。平面d=1と円筒半径対称d=2だけをPDE実行し、衝撃半径は.2。外側はrho(1,t)=1+tの円筒低温流入（平面は1）。原点は反射、体積測度r^(d-1)dr、角度因子は全ての収支から共通に省きます。球対称の解析参照検査とCartesian 2D Euler計算を混同しません。",
+      "en": "Nondimensional r in [0,1], gamma=5/3, rho0=1, u0=-1, p0=0 and T=.6. PDE executions are only planar d=1 and cylindrical-radial d=2, with shock radius .2. Outer cold density is 1+t for cylindrical flow, 1 for planar flow. Reflecting origin, measure r^(d-1)dr, with the same angular factor omitted throughout. Neither geometry-3 analytic-reference checks nor a revolved display are Cartesian 2D Euler simulations."
+    },
+    "algorithm": {
+      "ja": "区分定数再構築のlocal Lax–Friedrichs/Rusanov流束とSSPRK2（Heun）。幾何CFLはV/(A_L a_L+A_R a_R)に基づきます。運動量の幾何源は面の数値法線応力P*=F_mom−((u_L+u_R)/2)F_massを左右平均しΔAで積分する独自の整合的一次求積です。静止定圧では厳密相殺、d=1では源がゼロ。反射面の数値応力を原点セルへ伝え、cold流の特異な蓄積を避けます。保存量・圧力のfloor、クリッピング、厳密解への置換はありません。丸め誤差内の負内部エネルギーは記録し、音速の平方根引数だけゼロを使います。",
+      "en": "Piecewise-constant local Lax–Friedrichs/Rusanov flux and SSPRK2 (Heun), with a geometric CFL based on V/(A_L a_L+A_R a_R). The radial-momentum source uses an original consistent first-order quadrature: average the two interfacial numerical normal stresses P*=F_mom−((u_L+u_R)/2)F_mass and multiply by delta A. This exactly balances static constant pressure and vanishes for d=1. Reflection stress reaches the origin cell rather than allowing singular cold accumulation. No state/pressure floor, clipping or substitution of analytic solution arrays. Negative internal energy within roundoff is logged; only the sound-speed square-root argument uses zero at roundoff."
+    },
+    "validation": {
+      "ja": "入力・受入基準・hashを初回実行前に保存。セル平均圧力p_iΔAを使った初回は平面のみ合格し、円筒はshock不形成で不合格。そのソース・全系列結果を保持し、同じ閾値でinterface-stress版を再実行しました。厳密保存量セル平均は衝撃をまたぐ積分を解析的に分割し、p(U平均)と圧力の体積平均を別列に保存。独立LANL ExactPack固定版から点値・分割求積平均を別実行して照合。全域の相対体積重みL1/L2/Linfと、原点・衝撃・plateauのマスク別診断、shock半値位置、密度増幅4^d（衝撃自体の跳躍は4）、SSPRK2各段の境界流入を積算した保存収支を検査します。",
+      "en": "Inputs, acceptance criteria and hashes were saved before the first run. The initial cell-pressure p_i delta A source passed planar checks but failed cylindrical shock formation; its source and full refinement results are retained. The interface-stress revision is tested against the SAME thresholds. Analytic conservative cell means split shock-crossing integrals, storing p(mean U) separately from the physical mean pressure. Pinned independent LANL ExactPack was separately executed for points and split-quadrature means. Checks include full-domain volume-weighted relative L1/L2/Linf, explicit center/shock/plateau masks, pressure half-height shock location, initial density amplification 4^d (shock jump 4), and stage-weighted SSPRK2 boundary-inflow budgets."
+    },
+    "limits": {
+      "ja": "空間一次・衝撃捕獲の教育用ソルバーです。最細円筒でもplateau密度誤差と原点過熱が残り、中心最大誤差のゼロ収束・正値性の一般証明・高次精度・Cartesian多次元・球対称PDE・任意gammaの独立照合を主張しません。全域誤差から原点を除外せず、中心過熱を合格のために隠しません。質量/エネルギー収支だけでは解の正しさを証明できないことを初回失敗で示します。ExactPackは解析参照の独立実装であり、独立PDEエンジンではありません。 円筒の全域密度L∞はこの系列では単調減少しません。収束の合格判定は事前に指定した体積重みL1で行い、L∞も隠さず保存します。",
+      "en": "An educational first-order-space shock-capturing solver. Plateau density error and origin heating remain even on the finest cylindrical grid. No claim of vanishing center maximum error, a general positivity proof, high-order accuracy, Cartesian multidimensional or spherical PDE execution, or independent validation for arbitrary gamma. The center remains in full-domain errors and heating is not hidden to pass. The retained initial failure shows why mass/energy balance alone does not prove the solution correct. ExactPack is an independent implementation of the analytic reference, not an independent PDE engine. Full-domain cylindrical density Linf does not decrease monotonically in this series. The convergence gate uses the predeclared volume-weighted L1; Linf is retained without concealment."
+    },
+    "formulas": [
+      "\\partial_tU+r^{1-d}\\partial_r(r^{d-1}F(U))=(0,(d-1)p/r,0)^T,\\quad U=(\\rho,\\rho u,E)^T",
+      "C=(\\gamma+1)/(\\gamma-1),\\quad r_s=|u_0|(\\gamma-1)t/2,\\quad \\rho_2=\\rho_0C^d,\\quad p_2=(\\gamma-1)\\rho_2u_0^2/2",
+      "\\rho_1(r,t)=\\rho_0(1+|u_0|t/r)^{d-1},\\quad u_1=u_0,\\quad p_1=0",
+      "V_i=(r_{i+1/2}^d-r_{i-1/2}^d)/d,\\quad P_f^*=\\widehat F_{m,f}-\\bar u_f\\widehat F_{\\rho,f},\\quad S_{m,i}V_i=\\tfrac12(P_{i-1/2}^*+P_{i+1/2}^*)(A_{i+1/2}-A_{i-1/2})",
+      "\\mathcal E_1=\\frac{\\sum_iV_i|\\bar\\rho_i-\\bar\\rho_i^{\\rm exact}|}{\\sum_iV_i\\bar\\rho_i^{\\rm exact}},\\quad M(t)=\\rho_0(R+|u_0|t)^d/d,\\quad E_{\\rm tot}(t)=u_0^2M(t)/2"
+    ],
+    "references": [
+      {
+        "id": "noh1987",
+        "author": "W. F. Noh",
+        "year": 1987,
+        "title": "Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
+        "journal": "Journal of Computational Physics",
+        "volume": "72",
+        "number": "1",
+        "pages": "78–120",
+        "doi": "10.1016/0021-9991(87)90074-X",
+        "url": "https://www.sciencedirect.com/science/article/pii/002199918790074X",
+        "type": "article",
+        "role": "original-problem-and-error-analysis",
+        "review_level": "publisher-metadata-and-abstract",
+        "review": {
+          "ja": "出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。",
+          "en": "Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization."
+        }
+      },
+      {
+        "id": "thrussell2023exactpack",
+        "author": "J. Thrussell and J. M. Ferguson",
+        "year": 2023,
+        "title": "ExactPack: A python library of exact analytic solutions",
+        "journal": "SoftwareX",
+        "volume": "24",
+        "article_number": "101560",
+        "doi": "10.1016/j.softx.2023.101560",
+        "url": "https://doi.org/10.1016/j.softx.2023.101560",
+        "type": "article",
+        "role": "independent-reference-software",
+        "software_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+        "software_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+        "review_level": "official-record-and-unmodified-pinned-code-execution",
+        "review": {
+          "ja": "LANL公式書誌と固定commit 9bacc477eb791e959c9621e771fc7a725db755faのNohコードを確認・別実行。gamma=5/3,rho0=|u0|=1に限定し、点値と衝撃を分割したGauss積分で参照保存量平均を照合。3次元の解析参照検査は球対称PDEの実行を意味しません。",
+          "en": "Checked the LANL software record and separately executed unmodified Noh code at commit 9bacc477eb791e959c9621e771fc7a725db755fa. Cross-checks use only gamma=5/3 and rho0=|u0|=1: points and shock-split Gauss integration of conservative means. Geometry-3 reference checks are not a spherical PDE execution."
+        }
+      }
+    ]
+  }
+]

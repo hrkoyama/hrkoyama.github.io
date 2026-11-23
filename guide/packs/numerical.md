@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-22-35bc9733fa
-Captured (UTC): 2026-11-22T23:20:34+00:00
+Snapshot: 2026-11-23-c17ee58cda
+Captured (UTC): 2026-11-23T01:25:15+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -8887,7 +8887,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 83-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 84-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -11628,7 +11628,7 @@ Coverage: reading
 
 Conditional candidate
 Separate from the two required development-kit tasks, close only bounded gaps in existing targets where independent references, invariants, applicability or publication status are inconsistent. Extending kits to Sod or similar cases is optional P1 only if input families, references and criteria can be fixed before execution and an independent rerun completed by 18 December. Add no new fields, costly new physics or large quantum sweeps. After 18 December allow only correctness-related fixes. Carry unresolved gaps forward with reasons and scope; preserve immutable releases, successful records and tolerances.
-Existing-field checking scope and gaps
+Existing-field checking scope and gaps · Sequential implementation and figure backlog
 
 ## Implementation roadmap — Implement and validate fixed-He periodic DFT and k-point refinement [en]
 
@@ -12593,7 +12593,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 93 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 94 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -14032,9 +14032,18 @@ Amazon Japan ↗
 Publisher / record ↗
 hockney1981book
 
-## Textbooks: where to look next — Hockney · Eastwood# [en]
+## Textbooks: where to look next — Find an exact traveling wave of Fisher’s equation [en]
 
-Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/#hockney1981book
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/#ablowitz1979-paper
+Coverage: reading
+
+Ablowitz, Mark J. and Zeppetella, Anthony (1979). Explicit solutions of Fisher’s equation for a special wave speed. Bulletin of Mathematical Biology 41, 835–840.
+An original article giving exact traveling waves at special speeds of Fisher’s equation. Distinguish these speeds from the general minimal propagation speed when testing reaction–diffusion profiles and fronts. This is a journal article, not a book.
+DOI / Publisher record and abstractFisher–KPP explanation and assumptionsExact-front implementation backlog
+
+## Textbooks: where to look next — Find an exact traveling wave of Fisher’s equation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/textbooks/#ablowitz1979-paper
 Coverage: reading
 
 Historical atlas →Computed gallery →
@@ -20208,6 +20217,216 @@ IEEE publisher abstract, volume, pages and DOI checked. Historical source for re
 The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 Review scope / review_level: official-api-documentation
 Official DOP853, dense output, tolerance and success specifications checked. Implementation documentation for the separate numerical reference.
+
+## Noh shocks: exact reference, origin heating and refinement — Noh shocks: exact reference, origin heating and refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/
+Coverage: reading
+
+A small finite-volume code solves zero-pressure planar and cylindrical Noh flow. Cite the original problem and pinned ExactPack, and examine exact volume averages, origin heating, budgets and remaining errors.
+
+## Noh shocks: exact reference, origin heating and refinement — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#run-all
+Coverage: reading
+
+Run inside atlas-noh-2026-11-23-r3 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Noh shocks: exact reference, origin heating and refinement — Noh shocks: zero-pressure planar and cylindrical flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/
+Coverage: reading
+
+A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow.
+Methods, equations, figures and references
+Methods used
+Rusanov / local Lax–Friedrichs flux
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Piecewise-constant local Lax–Friedrichs/Rusanov flux and SSPRK2 (Heun), with a geometric CFL based on V/(A_L a_L+A_R a_R). The radial-momentum source uses an original consistent first-order quadrature: average the two interfacial numerical normal stresses P*=F_mom−((u_L+u_R)/2)F_mass and multiply by delta A. This exactly balances static constant pressure and vanishes for d=1. Reflection stress reaches the origin cell rather than allowing singular cold accumulation. No state/pressure floor, clipping or substitution of analytic solution arrays. Negative internal energy within roundoff is logged; only the sound-speed square-root argument uses zero at roundoff.
+Compressible Euler equations
+
+## Noh shocks: exact reference, origin heating and refinement — Noh shocks: zero-pressure planar and cylindrical flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/
+Coverage: reading
+
+The scoped planar and cylindrical-radial form of ideal-gas Euler. This example defines the geometric source and zero initial pressure in its formulas and fixed input.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Noh shocks: zero-pressure planar and cylindrical flow
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Inputs, acceptance criteria and hashes were saved before the first run. The initial cell-pressure p_i delta A source passed planar checks but failed cylindrical shock formation; its source and full refinement results are retained. The interface-stress revision is tested against the SAME thresholds. Analytic conservative cell means split shock-crossing integrals, storing p(mean U) separately from the physical mean pressure. Pinned independent LANL ExactPack was separately executed for points and split-quadrature means. Checks include full-domain volume-weighted relative L1/L2/Linf, explicit center/shock/plateau masks, pressure half-height shock location, initial density amplification 4^d (shock jump 4), and stage-weighted SSPRK2 boundary-inflow budgets.
+Same-problem reference · Analytic reference
+Noh cold-inflow shock: planar and cylindrical symmetry
+
+## Noh shocks: exact reference, origin heating and refinement — Noh shocks: zero-pressure planar and cylindrical flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/
+Coverage: reading
+
+The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p.
+
+## Noh shocks: exact reference, origin heating and refinement — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-assumptions
+Coverage: reading
+
+Nondimensional r in [0,1], gamma=5/3, rho0=1, u0=-1, p0=0 and T=.6. PDE executions are only planar d=1 and cylindrical-radial d=2, with shock radius .2. Outer cold density is 1+t for cylindrical flow, 1 for planar flow. Reflecting origin, measure r^(d-1)dr, with the same angular factor omitted throughout. Neither geometry-3 analytic-reference checks nor a revolved display are Cartesian 2D Euler simulations.
+
+## Noh shocks: exact reference, origin heating and refinement — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-algorithm
+Coverage: reading
+
+Piecewise-constant local Lax–Friedrichs/Rusanov flux and SSPRK2 (Heun), with a geometric CFL based on V/(A_L a_L+A_R a_R). The radial-momentum source uses an original consistent first-order quadrature: average the two interfacial numerical normal stresses P*=F_mom−((u_L+u_R)/2)F_mass and multiply by delta A. This exactly balances static constant pressure and vanishes for d=1. Reflection stress reaches the origin cell rather than allowing singular cold accumulation. No state/pressure floor, clipping or substitution of analytic solution arrays. Negative internal energy within roundoff is logged; only the sound-speed square-root argument uses zero at roundoff.
+\partial_tU+r^{1-d}\partial_r(r^{d-1}F(U))=(0,(d-1)p/r,0)^T,\quad U=(\rho,\rho u,E)^TC=(\gamma+1)/(\gamma-1),\quad r_s=|u_0|(\gamma-1)t/2,\quad \rho_2=\rho_0C^d,\quad p_2=(\gamma-1)\rho_2u_0^2/2\rho_1(r,t)=\rho_0(1+|u_0|t/r)^{d-1},\quad u_1=u_0,\quad p_1=0V_i=(r_{i+1/2}^d-r_{i-1/2}^d)/d,\quad P_f^*=\widehat F_{m,f}-\bar u_f\widehat F_{\rho,f},\quad S_{m,i}V_i=\tfrac12(P_{i-1/2}^*+P_{i+1/2}^*)(A_{i+1/2}-A_{i-1/2})\mathcal E_1=\frac{\sum_iV_i|\bar\rho_i-\bar\rho_i^{\rm exact}|}{\sum_iV_i\bar\rho_i^{\rm exact}},\quad M(t)=\rho_0(R+|u_0|t)^d/d,\quad E_{\rm tot}(t)=u_0^2M(t)/2
+
+## Noh shocks: exact reference, origin heating and refinement — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-validation
+Coverage: reading
+
+Inputs, acceptance criteria and hashes were saved before the first run. The initial cell-pressure p_i delta A source passed planar checks but failed cylindrical shock formation; its source and full refinement results are retained. The interface-stress revision is tested against the SAME thresholds. Analytic conservative cell means split shock-crossing integrals, storing p(mean U) separately from the physical mean pressure. Pinned independent LANL ExactPack was separately executed for points and split-quadrature means. Checks include full-domain volume-weighted relative L1/L2/Linf, explicit center/shock/plateau masks, pressure half-height shock location, initial density amplification 4^d (shock jump 4), and stage-weighted SSPRK2 boundary-inflow budgets.
+
+## Noh shocks: exact reference, origin heating and refinement — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-limits
+Coverage: reading
+
+An educational first-order-space shock-capturing solver. Plateau density error and origin heating remain even on the finest cylindrical grid. No claim of vanishing center maximum error, a general positivity proof, high-order accuracy, Cartesian multidimensional or spherical PDE execution, or independent validation for arbitrary gamma. The center remains in full-domain errors and heating is not hidden to pass. The retained initial failure shows why mass/energy balance alone does not prove the solution correct. ExactPack is an independent implementation of the analytic reference, not an independent PDE engine. Full-domain cylindrical density Linf does not decrease monotonically in this series. The convergence gate uses the predeclared volume-weighted L1; Linf is retained without concealment.
+
+## Noh shocks: exact reference, origin heating and refinement — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+planar_density_l1_finest0.00638902155007
+planar_density_l2_finest0.0356223242197
+planar_density_linf_finest0.29133106497
+planar_density_l1_order_finest1.08897205377
+planar_shock_error_finest0.000624335611132
+planar_center_max_sie_relative_excess_finest0.0257760176204
+cylindrical_density_l1_finest0.0186826953716
+cylindrical_density_l2_finest0.108138068694
+cylindrical_density_linf_finest0.579479198469
+cylindrical_density_l1_order_finest0.960399114482
+cylindrical_shock_error_finest0.00414697074672
+cylindrical_center_max_sie_relative_excess_finest0.0816116742198
+判定 / checkPassed
+all_runs_reach_final_timetrue
+planar-n64: finite positive densitytrue
+planar-n64: pressure within roundofftrue
+planar-n64: no state floorstrue
+planar-n64: mass_balance_relativetrue
+planar-n64: energy_balance_relativetrue
+planar-n128: finite positive densitytrue
+planar-n128: pressure within roundofftrue
+planar-n128: no state floorstrue
+planar-n128: mass_balance_relativetrue
+planar-n128: energy_balance_relativetrue
+planar-n256: finite positive densitytrue
+planar-n256: pressure within roundofftrue
+planar-n256: no state floorstrue
+planar-n256: mass_balance_relativetrue
+planar-n256: energy_balance_relativetrue
+
+## Noh shocks: exact reference, origin heating and refinement — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+planar-n512: finite positive densitytrue
+planar-n512: pressure within roundofftrue
+planar-n512: no state floorstrue
+planar-n512: mass_balance_relativetrue
+planar-n512: energy_balance_relativetrue
+cylindrical-n64: finite positive densitytrue
+cylindrical-n64: pressure within roundofftrue
+cylindrical-n64: no state floorstrue
+cylindrical-n64: mass_balance_relativetrue
+cylindrical-n64: energy_balance_relativetrue
+cylindrical-n128: finite positive densitytrue
+cylindrical-n128: pressure within roundofftrue
+cylindrical-n128: no state floorstrue
+cylindrical-n128: mass_balance_relativetrue
+cylindrical-n128: energy_balance_relativetrue
+cylindrical-n256: finite positive densitytrue
+cylindrical-n256: pressure within roundofftrue
+cylindrical-n256: no state floorstrue
+cylindrical-n256: mass_balance_relativetrue
+cylindrical-n256: energy_balance_relativetrue
+cylindrical-n512: finite positive densitytrue
+cylindrical-n512: pressure within roundofftrue
+cylindrical-n512: no state floorstrue
+cylindrical-n512: mass_balance_relativetrue
+cylindrical-n512: energy_balance_relativetrue
+planar: finest density_l1true
+planar: finest shock_error_in_dxtrue
+planar: finest plateau_density_relative_errortrue
+planar: finest plateau_pressure_relative_errortrue
+planar: finest mass_vs_analytic_relativetrue
+planar: finest energy_vs_analytic_relativetrue
+planar: density L1 decreasestrue
+planar: last-pair L1 ordertrue
+
+## Noh shocks: exact reference, origin heating and refinement — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+planar: unmasked center heating reportedtrue
+cylindrical: finest density_l1true
+cylindrical: finest shock_error_in_dxtrue
+cylindrical: finest plateau_density_relative_errortrue
+cylindrical: finest plateau_pressure_relative_errortrue
+cylindrical: finest mass_vs_analytic_relativetrue
+cylindrical: finest energy_vs_analytic_relativetrue
+cylindrical: density L1 decreasestrue
+cylindrical: last-pair L1 ordertrue
+cylindrical: unmasked center heating reportedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+geometrynstepsdensity_l1density_l2density_linfshock_error_in_dxplateau_density_amplificationplateau_pressurecenter_max_sie_relative_excessmass_balance_relativeenergy_balance_relative
+planar642460.05178476137280.1177013276250.366308166840.3299417315483.843016667361.33137558030.08415476533562.08166817117e-162.08166817117e-16
+planar1284910.02409601236670.07317254556340.3261422617940.3128767508623.942716368781.333467358860.05589624683356.93889390391e-176.93889390391e-17
+planar2569790.01359088086750.05604548645260.283852356980.314512062393.982869747861.333349555780.03760874346636.93889390391e-172.08166817117e-16
+planar51219560.006389021550070.03562232421970.291331064970.31965983293.99668011021.333329199890.02577601762047.6327832943e-167.6327832943e-16
+
+## Noh shocks: exact reference, origin heating and refinement — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+cylindrical642500.1145346878480.302365779960.4594047057311.5025784436411.78220886464.422737361460.19846832850300
+cylindrical1284950.0659930933190.2152430515850.5281380987541.8565383248613.54136965454.811172851530.1509461544874.33680868994e-164.33680868994e-16
+cylindrical2569850.03635368784610.156776609320.5287548967462.021003506714.70819824845.052165343140.1118680757233.46944695195e-161.73472347598e-16
+cylindrical51219630.01868269537160.1081380686940.5794791984692.1232490223215.35771525745.18696861640.08161167421983.46944695195e-163.46944695195e-16
+Measurements and complete records / JSON
+
+## Noh shocks: exact reference, origin heating and refinement — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux · DOI: 10.1016/0021-9991(87)90074-X
+Review scope / review_level: publisher-metadata-and-abstract
+Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization.
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+Review scope / review_level: official-record-and-unmodified-pinned-code-execution
+Checked the LANL software record and separately executed unmodified Noh code at commit 9bacc477eb791e959c9621e771fc7a725db755fa. Cross-checks use only gamma=5/3 and rho0=|u0|=1: points and shock-split Gauss integration of conservative means. Geometry-3 reference checks are not a spherical PDE execution.
 
 ## Particles and transport: independent references, conservation and statistical error — Particles and transport: independent references, conservation and statistical error [en]
 
@@ -32992,7 +33211,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全83問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全84問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -35437,7 +35656,7 @@ Coverage: reading
 
 条件付きの候補
 開発用キットの必達2課題とは別に、独立参照・保存則・適用範囲や公開状態の不整合が見つかった既存対象だけを、小さな入力と代表検査で補います。Sod等へのキット拡張は12月18日までに参照・入力族・基準を事前固定して独立追試までできる場合のP1候補とし、必達へ含めません。新分野・重い新物理・量子の大規模走査を追加せず、18日以降は正しさに関わる修正だけにします。未解決の不足は理由と範囲を残し、既存の不変配布版・成功記録・公差は保持します。
-既存分野の確認範囲と不足
+既存分野の確認範囲と不足 · 全候補の逐次実装・図版化台帳
 
 ## 実装ロードマップ — 固定Heセルの周期DFT・k点収束を実装・検証 [ja]
 
@@ -36130,7 +36349,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め93章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め94章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -37450,6 +37669,15 @@ Hockney, R. W.; Eastwood, J. W. Computer Simulation Using Particles. McGraw-Hill
 Amazon Japan ↗
 出版社・書誌情報 ↗
 hockney1981book
+
+## 教科書案内：次に何を調べるか — Fisher方程式の厳密な進行波を調べたい [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/textbooks/#ablowitz1979-paper
+Coverage: reading
+
+Ablowitz, Mark J. and Zeppetella, Anthony (1979). Explicit solutions of Fisher’s equation for a special wave speed. Bulletin of Mathematical Biology 41, 835–840.
+Fisher方程式の特殊な波速に対する厳密進行波を扱う原著論文です。一般の最小伝播速度とは区別して、反応拡散の数値解・前線位置・波速を検証する入口になります。書籍ではなく論文として案内します。
+DOI / 出版社の書誌・抄録Fisher–KPPの解説と条件厳密前線の実装候補
 
 ## サーモスタット：温度制御と分布の比較 [ja]
 
@@ -43421,6 +43649,204 @@ IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と�
 The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 確認範囲 / review_level: official-api-documentation
 公式のDOP853、dense_output、許容誤差、successの仕様を確認。独立数値参照の実装資料です。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — Noh衝撃波：厳密解・過熱誤差・格子収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/
+Coverage: reading
+
+初期圧力ゼロの平面・円筒対称Noh問題を小さな有限体積コードで解きます。原著と固定版ExactPackを引用し、厳密解・体積平均・原点過熱・保存収支と、残る誤差を一緒に確認します。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#run-all
+Coverage: reading
+
+ZIPの atlas-noh-2026-11-23-r3 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — Noh衝撃波：初期圧力ゼロの平面・円筒対称計算 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/
+Coverage: reading
+
+圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。
+手法・式・図・参照解
+使用手法
+Rusanov／局所Lax–Friedrichs流束
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+式・近似・診断の範囲
+区分定数再構築のlocal Lax–Friedrichs/Rusanov流束とSSPRK2（Heun）。幾何CFLはV/(A_L a_L+A_R a_R)に基づきます。運動量の幾何源は面の数値法線応力P*=F_mom−((u_L+u_R)/2)F_massを左右平均しΔAで積分する独自の整合的一次求積です。静止定圧では厳密相殺、d=1では源がゼロ。反射面の数値応力を原点セルへ伝え、cold流の特異な蓄積を避けます。保存量・圧力のfloor、クリッピング、厳密解への置換はありません。丸め誤差内の負内部エネルギーは記録し、音速の平方根引数だけゼロを使います。
+圧縮性Euler方程式
+理想気体Eulerの平面・円筒半径対称という限定した形です。幾何源と初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Noh衝撃波：初期圧力ゼロの平面・円筒対称計算
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+入力・受入基準・hashを初回実行前に保存。セル平均圧力p_iΔAを使った初回は平面のみ合格し、円筒はshock不形成で不合格。そのソース・全系列結果を保持し、同じ閾値でinterface-stress版を再実行しました。厳密保存量セル平均は衝撃をまたぐ積分を解析的に分割し、p(U平均)と圧力の体積平均を別列に保存。独立LANL ExactPack固定版から点値・分割求積平均を別実行して照合。全域の相対体積重みL1/L2/Linfと、原点・衝撃・plateauのマスク別診断、shock半値位置、密度増幅4^d（衝撃自体の跳躍は4）、SSPRK2各段の境界流入を積算した保存収支を検査します。
+同じ問題の参照 · 解析参照
+Nohの冷たい流入衝撃波：平面・円筒対称
+同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-assumptions
+Coverage: reading
+
+無次元r∈[0,1]、gamma=5/3、rho0=1、u0=-1、p0=0、T=.6。平面d=1と円筒半径対称d=2だけをPDE実行し、衝撃半径は.2。外側はrho(1,t)=1+tの円筒低温流入（平面は1）。原点は反射、体積測度r^(d-1)dr、角度因子は全ての収支から共通に省きます。球対称の解析参照検査とCartesian 2D Euler計算を混同しません。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-algorithm
+Coverage: reading
+
+区分定数再構築のlocal Lax–Friedrichs/Rusanov流束とSSPRK2（Heun）。幾何CFLはV/(A_L a_L+A_R a_R)に基づきます。運動量の幾何源は面の数値法線応力P*=F_mom−((u_L+u_R)/2)F_massを左右平均しΔAで積分する独自の整合的一次求積です。静止定圧では厳密相殺、d=1では源がゼロ。反射面の数値応力を原点セルへ伝え、cold流の特異な蓄積を避けます。保存量・圧力のfloor、クリッピング、厳密解への置換はありません。丸め誤差内の負内部エネルギーは記録し、音速の平方根引数だけゼロを使います。
+\partial_tU+r^{1-d}\partial_r(r^{d-1}F(U))=(0,(d-1)p/r,0)^T,\quad U=(\rho,\rho u,E)^TC=(\gamma+1)/(\gamma-1),\quad r_s=|u_0|(\gamma-1)t/2,\quad \rho_2=\rho_0C^d,\quad p_2=(\gamma-1)\rho_2u_0^2/2\rho_1(r,t)=\rho_0(1+|u_0|t/r)^{d-1},\quad u_1=u_0,\quad p_1=0V_i=(r_{i+1/2}^d-r_{i-1/2}^d)/d,\quad P_f^*=\widehat F_{m,f}-\bar u_f\widehat F_{\rho,f},\quad S_{m,i}V_i=\tfrac12(P_{i-1/2}^*+P_{i+1/2}^*)(A_{i+1/2}-A_{i-1/2})\mathcal E_1=\frac{\sum_iV_i|\bar\rho_i-\bar\rho_i^{\rm exact}|}{\sum_iV_i\bar\rho_i^{\rm exact}},\quad M(t)=\rho_0(R+|u_0|t)^d/d,\quad E_{\rm tot}(t)=u_0^2M(t)/2
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-validation
+Coverage: reading
+
+入力・受入基準・hashを初回実行前に保存。セル平均圧力p_iΔAを使った初回は平面のみ合格し、円筒はshock不形成で不合格。そのソース・全系列結果を保持し、同じ閾値でinterface-stress版を再実行しました。厳密保存量セル平均は衝撃をまたぐ積分を解析的に分割し、p(U平均)と圧力の体積平均を別列に保存。独立LANL ExactPack固定版から点値・分割求積平均を別実行して照合。全域の相対体積重みL1/L2/Linfと、原点・衝撃・plateauのマスク別診断、shock半値位置、密度増幅4^d（衝撃自体の跳躍は4）、SSPRK2各段の境界流入を積算した保存収支を検査します。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-limits
+Coverage: reading
+
+空間一次・衝撃捕獲の教育用ソルバーです。最細円筒でもplateau密度誤差と原点過熱が残り、中心最大誤差のゼロ収束・正値性の一般証明・高次精度・Cartesian多次元・球対称PDE・任意gammaの独立照合を主張しません。全域誤差から原点を除外せず、中心過熱を合格のために隠しません。質量/エネルギー収支だけでは解の正しさを証明できないことを初回失敗で示します。ExactPackは解析参照の独立実装であり、独立PDEエンジンではありません。 円筒の全域密度L∞はこの系列では単調減少しません。収束の合格判定は事前に指定した体積重みL1で行い、L∞も隠さず保存します。
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+planar_density_l1_finest0.00638902155007
+planar_density_l2_finest0.0356223242197
+planar_density_linf_finest0.29133106497
+planar_density_l1_order_finest1.08897205377
+planar_shock_error_finest0.000624335611132
+planar_center_max_sie_relative_excess_finest0.0257760176204
+cylindrical_density_l1_finest0.0186826953716
+cylindrical_density_l2_finest0.108138068694
+cylindrical_density_linf_finest0.579479198469
+cylindrical_density_l1_order_finest0.960399114482
+cylindrical_shock_error_finest0.00414697074672
+cylindrical_center_max_sie_relative_excess_finest0.0816116742198
+判定 / check合格
+all_runs_reach_final_timetrue
+planar-n64: finite positive densitytrue
+planar-n64: pressure within roundofftrue
+planar-n64: no state floorstrue
+planar-n64: mass_balance_relativetrue
+planar-n64: energy_balance_relativetrue
+planar-n128: finite positive densitytrue
+planar-n128: pressure within roundofftrue
+planar-n128: no state floorstrue
+planar-n128: mass_balance_relativetrue
+planar-n128: energy_balance_relativetrue
+planar-n256: finite positive densitytrue
+planar-n256: pressure within roundofftrue
+planar-n256: no state floorstrue
+planar-n256: mass_balance_relativetrue
+planar-n256: energy_balance_relativetrue
+planar-n512: finite positive densitytrue
+planar-n512: pressure within roundofftrue
+planar-n512: no state floorstrue
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+planar-n512: mass_balance_relativetrue
+planar-n512: energy_balance_relativetrue
+cylindrical-n64: finite positive densitytrue
+cylindrical-n64: pressure within roundofftrue
+cylindrical-n64: no state floorstrue
+cylindrical-n64: mass_balance_relativetrue
+cylindrical-n64: energy_balance_relativetrue
+cylindrical-n128: finite positive densitytrue
+cylindrical-n128: pressure within roundofftrue
+cylindrical-n128: no state floorstrue
+cylindrical-n128: mass_balance_relativetrue
+cylindrical-n128: energy_balance_relativetrue
+cylindrical-n256: finite positive densitytrue
+cylindrical-n256: pressure within roundofftrue
+cylindrical-n256: no state floorstrue
+cylindrical-n256: mass_balance_relativetrue
+cylindrical-n256: energy_balance_relativetrue
+cylindrical-n512: finite positive densitytrue
+cylindrical-n512: pressure within roundofftrue
+cylindrical-n512: no state floorstrue
+cylindrical-n512: mass_balance_relativetrue
+cylindrical-n512: energy_balance_relativetrue
+planar: finest density_l1true
+planar: finest shock_error_in_dxtrue
+planar: finest plateau_density_relative_errortrue
+planar: finest plateau_pressure_relative_errortrue
+planar: finest mass_vs_analytic_relativetrue
+planar: finest energy_vs_analytic_relativetrue
+planar: density L1 decreasestrue
+planar: last-pair L1 ordertrue
+planar: unmasked center heating reportedtrue
+cylindrical: finest density_l1true
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+cylindrical: finest shock_error_in_dxtrue
+cylindrical: finest plateau_density_relative_errortrue
+cylindrical: finest plateau_pressure_relative_errortrue
+cylindrical: finest mass_vs_analytic_relativetrue
+cylindrical: finest energy_vs_analytic_relativetrue
+cylindrical: density L1 decreasestrue
+cylindrical: last-pair L1 ordertrue
+cylindrical: unmasked center heating reportedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+geometrynstepsdensity_l1density_l2density_linfshock_error_in_dxplateau_density_amplificationplateau_pressurecenter_max_sie_relative_excessmass_balance_relativeenergy_balance_relative
+planar642460.05178476137280.1177013276250.366308166840.3299417315483.843016667361.33137558030.08415476533562.08166817117e-162.08166817117e-16
+planar1284910.02409601236670.07317254556340.3261422617940.3128767508623.942716368781.333467358860.05589624683356.93889390391e-176.93889390391e-17
+planar2569790.01359088086750.05604548645260.283852356980.314512062393.982869747861.333349555780.03760874346636.93889390391e-172.08166817117e-16
+planar51219560.006389021550070.03562232421970.291331064970.31965983293.99668011021.333329199890.02577601762047.6327832943e-167.6327832943e-16
+cylindrical642500.1145346878480.302365779960.4594047057311.5025784436411.78220886464.422737361460.19846832850300
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-measurements
+Coverage: reading
+
+cylindrical1284950.0659930933190.2152430515850.5281380987541.8565383248613.54136965454.811172851530.1509461544874.33680868994e-164.33680868994e-16
+cylindrical2569850.03635368784610.156776609320.5287548967462.021003506714.70819824845.052165343140.1118680757233.46944695195e-161.73472347598e-16
+cylindrical51219630.01868269537160.1081380686940.5794791984692.1232490223215.35771525745.18696861640.08161167421983.46944695195e-163.46944695195e-16
+この例の実測値・全記録 / JSON
+
+## Noh衝撃波：厳密解・過熱誤差・格子収束 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux · DOI: 10.1016/0021-9991(87)90074-X
+確認範囲 / review_level: publisher-metadata-and-abstract
+出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+確認範囲 / review_level: official-record-and-unmodified-pinned-code-execution
+LANL公式書誌と固定commit 9bacc477eb791e959c9621e771fc7a725db755faのNohコードを確認・別実行。gamma=5/3,rho0=|u0|=1に限定し、点値と衝撃を分割したGauss積分で参照保存量平均を照合。3次元の解析参照検査は球対称PDEの実行を意味しません。
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 粒子・輸送：独立参照・保存則・統計誤差 [ja]
 

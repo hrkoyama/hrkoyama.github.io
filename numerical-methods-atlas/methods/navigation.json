@@ -2807,9 +2807,120 @@
     "rusanov": {
       "method_id": "rusanov",
       "status": "educational-example",
-      "equations": [],
-      "problems": [],
-      "references": []
+      "equations": [
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "problem_ids": [
+            "noh"
+          ],
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          }
+        }
+      ],
+      "problems": [
+        {
+          "id": "noh",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+            "sha256": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
+              "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "noh-shock",
+              "kind": "supplement",
+              "name": {
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+                "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+              },
+              "scope": {
+                "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
+                "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+              },
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json"
+            }
+          ],
+          "role": "execution",
+          "method_note": {
+            "ja": "新しい専用配布版は区分定数Rusanov流束とSSPRK2/Heunを使用します。旧Eulerモジュールを圧力床で変更したものではなく、半径方向の面応力を用いる独自の整合的一次源項を検証します。",
+            "en": "The new dedicated edition uses piecewise-constant Rusanov flux with SSPRK2/Heun. It does not alter the older Euler module with a pressure floor; it checks an original consistent first-order radial face-stress source."
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          }
+        }
+      ],
+      "references": [
+        {
+          "problem_id": "noh",
+          "problem_name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          },
+          "cases": [
+            {
+              "id": "noh",
+              "title": {
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒対称",
+                "en": "Noh cold-inflow shock: planar and cylindrical symmetry"
+              },
+              "kind": "analytic",
+              "relation": "same-problem",
+              "note": {
+                "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
+                "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+              },
+              "view": {
+                "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
+                "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"
+              }
+            }
+          ]
+        }
+      ]
     },
     "hll": {
       "method_id": "hll",
@@ -5877,7 +5988,22 @@
     "heun": {
       "method_id": "heun",
       "status": "educational-example",
-      "equations": [],
+      "equations": [
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "problem_ids": [
+            "noh"
+          ],
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          }
+        }
+      ],
       "problems": [
         {
           "id": "nonlinear-exp-ode",
@@ -5950,6 +6076,66 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=ja#references-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en#references-en"
           }
+        },
+        {
+          "id": "noh",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+            "sha256": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
+              "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "noh-shock",
+              "kind": "supplement",
+              "name": {
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+                "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+              },
+              "scope": {
+                "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
+                "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+              },
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json"
+            }
+          ],
+          "role": "execution",
+          "method_note": {
+            "ja": "新しい専用配布版は区分定数Rusanov流束とSSPRK2/Heunを使用します。旧Eulerモジュールを圧力床で変更したものではなく、半径方向の面応力を用いる独自の整合的一次源項を検証します。",
+            "en": "The new dedicated edition uses piecewise-constant Rusanov flux with SSPRK2/Heun. It does not alter the older Euler module with a pressure floor; it checks an original consistent first-order radial face-stress source."
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          }
         }
       ],
       "references": [
@@ -5976,6 +6162,40 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-decay/?lang=en#references-en"
           },
           "cases": []
+        },
+        {
+          "problem_id": "noh",
+          "problem_name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          },
+          "cases": [
+            {
+              "id": "noh",
+              "title": {
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒対称",
+                "en": "Noh cold-inflow shock: planar and cylindrical symmetry"
+              },
+              "kind": "analytic",
+              "relation": "same-problem",
+              "note": {
+                "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
+                "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+              },
+              "view": {
+                "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
+                "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"
+              }
+            }
+          ]
         }
       ]
     },
@@ -17838,12 +18058,13 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "2595d857e58854d222adf2c139a9fe8dc2891b66c34a5fbad68dd1c14d5c088c",
+    "catalog/atlas-depth-expansion.json": "ec2c98f7597aa423af185c0c0c58728b39d5a3b878799d899c596a0306f995b5",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "6056ca2a6f1b583c218dbca94a741a451a381fd5788e30cc8265d2fb1be1490e",
-    "catalog/atlas-problem-links.json": "ce920e0e2d8b9a2c45b3466ddec2707c1c6534949fbfda9b71e3a2d3c532863b",
-    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
+    "catalog/atlas-methods.json": "033e6472c6650b8757642c7d87215e99eed704a4f5be6c2e2c8eadd6e6b6ff99",
+    "catalog/atlas-problem-links.json": "b8fa6ecffc8970cc3bf5ccbd24b84353f5c993c3ad14639bb487865f8c23ebcb",
+    "catalog/atlas-reference-supplements.json": "e02d28b66c1530eb267dcaa94b662ebbfd85cd4e85ebdfbd85afb9dc83621947",
+    "catalog/atlas-test-problems.json": "ca55076edfb48f2dcb4e45612a3b2fd84a526008bd5a18aa57167af64061f230",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -17899,10 +18120,15 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36",
+    "code/validated-examples/2026-11-23-r3/noh/cases.json": "8409325dd840291acadfcdf78b2570b938bbf22efb8e3bdf7c12e715e19e144b",
+    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
+    "code/validated-examples/2026-11-23-r3/noh/source-manifest.json": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
+    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "f471ec4d77fc9efa9aa0d491c5083d0541e90ea46453f4419ae7a6f684d29278",
-    "numerical-methods-atlas/locales/messages.json": "246d3e8a6828d9129aa9938b30fab341acc62aaa8e6c81222f4dc83edf8002d4"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c3f00613d6e379a01c22b6aae9049787dc80d237384a0f3f9e82043120a474c0",
+    "numerical-methods-atlas/locales/messages.json": "001acc4b119671baec3f38157f9aa8c87022516877797dfa8715a27fd721a889"
   }
 }

@@ -1,4 +1,5 @@
 """Resolve reviewed problem relationships against existing public evidence."""
+from atlas_reference_catalog import load_reference_cases
 from pathlib import Path
 from urllib.parse import parse_qsl, unquote, urlencode, urljoin, urlsplit, urlunsplit
 import ast
@@ -115,9 +116,12 @@ def load_problem_links(root=ROOT):
     methods_data = read('numerical-methods-atlas/methods/index.json')
     equations_data = read('catalog/atlas-equations.json')
     solutions = read('numerical-methods-atlas/solutions/index.json')
-    reference_source = read('numerical-methods-atlas/assets/reference-solutions.json')
+    reference_source = {'cases': load_reference_cases(root, read)}
     if solutions['source_sha256'] != receipts['numerical-methods-atlas/assets/reference-solutions.json']:
         raise ValueError('Refresh the reference-solution index before problem links')
+    extra_source = 'catalog/atlas-reference-supplements.json'
+    if (root/extra_source).is_file() and solutions.get('supplements_source_sha256') != receipts[extra_source]:
+        raise ValueError('Refresh supplementary reference cards before problem links')
     problems = {row['id']: row for row in inventory['problems']}
     visuals = {row['id']: row for row in gallery['items']}
     methods = {row['id']: row for row in methods_data['methods']}

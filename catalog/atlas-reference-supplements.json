@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "scope": "Additional explicitly cited references; preserve all historical saved cases and their original evidence.",
+  "cases": [
+    {
+      "id": "noh",
+      "model": "euler",
+      "kind": "analytic",
+      "formula": "s=(gamma-1)/2=1/3; rho2=4^d; u2=0; p2=4^d/3; r_s=t/3; upstream rho=(1+t/r)^(d-1), u=-1, p=0.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "density",
+        "radial momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "rho0": 1.0,
+        "inward_speed": 1.0,
+        "p0": 0.0,
+        "geometry_dimensions": [
+          1,
+          2
+        ],
+        "time": 0.6
+      },
+      "sources": [
+        "https://doi.org/10.1016/0021-9991(87)90074-X",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa"
+      ],
+      "title": "Noh cold-inflow shock: planar and cylindrical symmetry",
+      "assumptions": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1) and cylindrically symmetric radial (d=2) finite-volume calculations; no pressure floor. The radial color image is a revolved one-dimensional solution, not a two-dimensional Cartesian computation.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-noh/#noh-shock",
+        "en": "/numerical-methods-atlas/en/read/validation-noh/#noh-shock"
+      },
+      "reference_scope": "Analytic continuous solution and independently evaluated ExactPack values. Conserved-volume averages are the FV reference; primitive pressure of a conserved average is distinguished from averaged analytic pressure. The PDE numerical solution is Atlas original code.",
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "W. F. Noh (1987), Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux, JCP72,78–120",
+          "url": "https://doi.org/10.1016/0021-9991(87)90074-X",
+          "note": "Original problem and wall-heating analysis. Publisher metadata/abstract checked; no claim of reproducing every original calculation."
+        },
+        {
+          "role": "reference-software-paper",
+          "title": "Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX24,101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Cite the software paper separately from Noh1987. The analytic evaluator is a reference, not a numerical Euler solver."
+        },
+        {
+          "role": "executed-reference-implementation",
+          "title": "LANL ExactPack, commit9bacc477eb791e959c9621e771fc7a725db755fa, exactpack/solvers/noh/noh1.py",
+          "url": "https://github.com/lanl/ExactPack/blob/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/noh/noh1.py",
+          "note": "BSD-3-Clause. Actual evaluation is restricted to gamma=5/3,rho0=1,inward speed1. Source hashes, point/shell comparisons and parameter-limit control are saved in the Noh release."
+        }
+      ]
+    }
+  ]
+}

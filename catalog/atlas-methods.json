@@ -1442,7 +1442,19 @@
         "LLF",
         "ルサノフ法",
         "ルサノフ流束"
-      ]
+      ],
+      "depth_release": {
+        "group": "noh",
+        "edition": "2026-11-23-r3",
+        "case_ids": [
+          "noh-shock"
+        ]
+      },
+      "depth_previous_status": "educational-example",
+      "depth_scope": {
+        "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
+        "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+      }
     },
     {
       "id": "hll",
@@ -2591,7 +2603,19 @@
         "SSP RK2",
         "explicit trapezoidal method",
         "陽的台形則"
-      ]
+      ],
+      "depth_release": {
+        "group": "noh",
+        "edition": "2026-11-23-r3",
+        "case_ids": [
+          "noh-shock"
+        ]
+      },
+      "depth_previous_status": "educational-example",
+      "depth_scope": {
+        "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
+        "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+      }
     },
     {
       "id": "explicit-midpoint",

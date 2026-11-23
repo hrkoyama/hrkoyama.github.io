@@ -127,7 +127,7 @@ function links(html){
 }
 
 test('the reviewed problem links and generated hub inventory cover every physical problem exactly once',()=>{
-  assert.equal(inventory.length,83);
+  assert.equal(inventory.length,84);
   const expected=inventory.map(row=>row.id);
   for(const rows of [mapping.problems,index.problems]){
     assert.deepEqual(rows.map(row=>row.id),expected);
@@ -415,7 +415,8 @@ test('unknown or duplicate problem, equation, reference and method identities fa
 import copy
 catalog=json.loads((root/'catalog/atlas-problem-links.json').read_text())
 def ids(path,key):return {row['id'] for row in json.loads((root/path).read_text())[key]}
-arguments=[ids('catalog/atlas-test-problems.json','problems'),ids('catalog/atlas-equations.json','equations'),ids('numerical-methods-atlas/assets/reference-solutions.json','cases'),ids('catalog/atlas-methods.json','methods')]
+from atlas_reference_catalog import load_reference_cases
+arguments=[ids('catalog/atlas-test-problems.json','problems'),ids('catalog/atlas-equations.json','equations'),{row['id'] for row in load_reference_cases(root)},ids('catalog/atlas-methods.json','methods')]
 module.validate_catalog(catalog,*arguments)
 checked=[]
 for name,mutation in json.loads(sys.argv[2]):

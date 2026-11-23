@@ -1,0 +1,14 @@
+{
+  "stage": "packaging-compatible input/output pre-run receipt",
+  "saved_at_utc": "2026-11-23T00:56:44.058910+00:00",
+  "acceptance_unchanged": true,
+  "solver_revision": "02-interface-stress",
+  "files": {
+    "inputs.json": "20c0883d11f1aacd35761ccd1e46fe5c45c79345f698ddd9ffbb0281c23385d8",
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "noh_solver.py": "f5668628eee0be93cdedf71088cfe431fa329040aed739d3f1cb493a6077a9c9",
+    "noh_reference.py": "7eca327794031511067e5f23586c5b548e73271e3c600d9b436e2da307fe7d82",
+    "run.py": "e6d66528578dc8ab15d9ac3d95a76c7cc147db353f0ea31efa1e7bfc22319621",
+    "requirements.txt": "d44f8143c3ca9bc41e7672f24e92f92da851df4cf79e1310f860cf3d1f4953b5"
+  }
+}

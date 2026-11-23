@@ -61,6 +61,7 @@
 - [前処理行列・低Mach数・音速点とエントロピー修正](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/)
 - [定常解のためのダンピングRunge–Kutta反復](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/steady-runge-kutta/)
 - [NASAの2次元検証・妥当性確認問題集](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/nasa-2d/)
+- [Noh衝撃波：厳密解・過熱誤差・格子収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/)
 
 ## 格子・有限要素・連成方程式
 

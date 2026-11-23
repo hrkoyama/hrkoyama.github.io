@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "policy": {
     "ja": "アトラス全体の公開済み計算データ、および検証済み公開コード版の独立したテスト問題を数えます。方程式・次元・境界条件・名前を付けた初期値やソースの違いで問題を区別し、同じ問題の手法・格子数・刻み幅・パラメータ走査・乱数種・表示形式の違いは統合します。Sodの重複掲載、楔のMach数違い、CT/GLMの違いも加算しません。参照式の評価のみ、予定・文献調査のみ、図のみ、局所的な恒等式・不変量・入力エラー等の単体検査は総数に含めません。静的な力・境界値・関数近似・代数方程式の問題を含み、全件が時間発展シミュレーションという意味ではありません。",
     "en": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
@@ -3579,6 +3579,69 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "noh",
+      "group": "fluid",
+      "name": {
+        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+        "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+      },
+      "chapter": "validation-noh",
+      "reading_section": "noh-shock",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r3/noh/",
+      "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "noh-shock"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/inputs.json",
+          "json_pointer": "/cases/noh-shock"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json",
+          "json_pointer": "/passed"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "noh-shock",
+          "url": "/numerical-methods-atlas/validation/noh-shock/",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
+            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#noh",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -3607,12 +3670,12 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 83,
-    "saved_test_problems": 83,
+    "test_problems": 84,
+    "saved_test_problems": 84,
     "code_test_problems": 0,
     "groups": {
       "transport": 9,
-      "fluid": 16,
+      "fluid": 17,
       "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
@@ -3626,7 +3689,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "98c49cc1444655f64ff5c86b4a013ee4a611a14c8e5b0834c01fabb3e107b1ca",
+    "catalog/atlas-test-problems.json": "ca55076edfb48f2dcb4e45612a3b2fd84a526008bd5a18aa57167af64061f230",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3731,7 +3794,12 @@
     "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
     "code/validated-examples/2026-11-22/mcmc/inputs.json": "b20b594ab2d001426fbc58d1fe86fe4719bd42455f6a10f502966f85fb6eb49a",
     "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
-    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b"
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
+    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+    "code/validated-examples/2026-11-23-r3/noh/inputs.json": "20c0883d11f1aacd35761ccd1e46fe5c45c79345f698ddd9ffbb0281c23385d8",
+    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
+    "code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

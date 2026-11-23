@@ -1,8 +1,8 @@
 const atlasIntroDescriptions = {"ja": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表22問題の固定入力・実行・結果照合を日英で案内します。", "en": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty-two fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=fcb8c57ad35b';
-import {resolveHomeLegacyURL} from './home-navigation.mjs?v=ccc62d8175ef';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=1818a1e37403';
+import {resolveHomeLegacyURL} from './home-navigation.mjs?v=5e3e7de14b3f';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
-import {chapterEditions} from './chapter-resources.mjs?v=27b38b9db8ae';
+import {chapterEditions} from './chapter-resources.mjs?v=69a0dea6ec19';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';
 import {glossaryPage,wireGlossary} from './glossary.js';
@@ -121,7 +121,7 @@ const eras = [
  ['1994–2026','Particles meet a Riemann problem','Inutsuka · Iwasaki · Kitajima · Seno','Trace GSPH through its detailed 2002 formulation, particle MHD, and special-relativistic SRGSPH. Literature and a staged implementation plan.','gsph','inutsuka2002']
 ].sort((a,b)=>parseInt(a[0],10)-parseInt(b[0],10));
 let documents, references, sod, experiments, foundations, coverage, translationStatus, localeCatalog, glossary;
-const atlasDocumentVersions = {"ja": "a5a2b73fe42f", "en": "da55dda52b61"};
+const atlasDocumentVersions = {"ja": "b99e7cfa16b0", "en": "071fb167274e"};
 const documentCache = new Map();
 const originalShell = new Map([...document.querySelectorAll('.site-header,.site-footer,#figure-dialog,.skip-link')].map(element => [element, element.innerHTML]));
 let navigationVersion = 0, switching = false;
@@ -330,7 +330,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=246d3e8a6828','references.json?v=d1abb3724281','sod.json','experiments.json','foundations.json','coverage.json?v=a017ea8f0fd8','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=001acc4b1196','references.json?v=0e00fc7d297f','sod.json','experiments.json','foundations.json','coverage.json?v=38238376a3dc','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

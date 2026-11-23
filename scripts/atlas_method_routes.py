@@ -1,4 +1,5 @@
 """Source-first routes from a method to reviewed problems and their evidence."""
+from atlas_reference_catalog import load_reference_cases
 from copy import deepcopy
 from hashlib import sha256
 import json
@@ -52,7 +53,9 @@ def build_method_routes(catalog, method_records, problem_cards, equation_records
                     'id': ref_id, 'title': reference['title'], 'kind': reference['kind'],
                     'relation': binding['relation'], 'note': deepcopy(binding['note']),
                     'url': {lang: ORIGIN+BASE+'solutions/?lang='+lang+'#solution-'+ref_id+'-'+lang for lang in LANGUAGES},
-                    'view': {lang: ORIGIN+BASE+'?lang='+lang+'#/exact-solutions?case='+ref_id for lang in LANGUAGES}})
+                    'view': {lang: reference.get('view', {}).get(lang) or
+                             ORIGIN+BASE+'?lang='+lang+'#/exact-solutions?case='+ref_id
+                             for lang in LANGUAGES}})
             route['references'].append(context)
     return methods
 
@@ -70,7 +73,7 @@ def load_method_routes(root=ROOT):
     catalog = read('catalog/atlas-problem-links.json')
     methods = {row['id']: row for row in read('catalog/atlas-methods.json')['methods']}
     equations = {row['id']: row for row in read('catalog/atlas-equations.json')['equations']}
-    raw_references = read('numerical-methods-atlas/assets/reference-solutions.json')['cases']
+    raw_references = load_reference_cases(root, read)
     messages = read('numerical-methods-atlas/locales/messages.json')
     translations = {' '.join(row['en'].split()): row for row in messages.values() if row.get('en')}
     references = {}
