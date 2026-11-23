@@ -72,7 +72,7 @@ $$
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
-[Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja) (`noh`)
+[Noh問題：冷たい収束流と外向き衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja) (`noh`)
 
 [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja)
 
@@ -84,7 +84,7 @@ $$
 
 - [Nohの冷たい流入衝撃波：平面・円筒・球対称](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja) (`noh`; 同じ問題の参照 · 解析参照)
 
-同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。
+同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。
 ### 前提・単位・境界
 
 無次元r∈[0,1]、γ=5/3、ρ0=1、u0=-1、p0=0、T=.6。平面d=1・円筒半径対称d=2・球半径対称d=3をPDE実行し、衝撃半径は.2。外側密度は(1+t)^(d-1)、原点は反射、体積測度r^(d-1)dr。角度因子をすべての収支から共通に省き、球の解析総量はM=512/375、E=256/375です。球の図は1D半径解の中心断面で、Cartesianの2D/3D計算や角度方向の対称性破れの検証ではありません。

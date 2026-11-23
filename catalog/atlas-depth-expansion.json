@@ -165,6 +165,21 @@
         "ja": "初期圧力ゼロの平面・円筒・球対称Noh問題を1D有限体積法で解きます。厳密セル平均・原点過熱・格子収束を比較し、球では離散保存と境界時間求積の誤差を別々に検証します。",
         "en": "Solve zero-pressure planar, cylindrical and spherical Noh flow with 1D finite volumes. Compare exact cell means, origin heating and refinement; separately verify discrete budgets and boundary-time-quadrature error in spherical flow."
       }
+    },
+    {
+      "id": "noh-cartesian",
+      "edition": "2026-11-23-r2",
+      "title": {
+        "ja": "Noh問題：2次元Cartesianと格子方向の誤差",
+        "en": "Noh:2D Cartesian flow and grid orientation error"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+        "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
+      }
     }
   ],
   "case_problem_ids": {
@@ -208,7 +223,8 @@
     "dsmc-statistics": "maxwell-collisions",
     "radiation-convergence": "absorbing-slab",
     "reaction-diffusion-splitting": "turing-schnakenberg",
-    "noh-shock": "noh"
+    "noh-shock": "noh",
+    "noh-cartesian-2d": "noh"
   },
   "routine_policy": {
     "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する11グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -301,6 +317,15 @@
         "ja": "理想気体Eulerの平面・円筒・球の半径対称という限定した形です。幾何源・外側流入・初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。",
         "en": "The scoped planar, cylindrical-radial and spherical-radial forms of ideal-gas Euler. This example defines the geometric source, outer inflow and exactly zero initial pressure in its formulas and fixed input."
       }
+    },
+    "noh-cartesian-2d": {
+      "note": {
+        "ja": "幾何源のない2次元Cartesian Euler系です。密度・2成分運動量・全エネルギーを正方形全域で更新します。",
+        "en": "Two-dimensional Cartesian Euler without a geometric source, evolving density, both momenta and energy over the full square."
+      },
+      "ids": [
+        "euler"
+      ]
     }
   }
 }

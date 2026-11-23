@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-8742a15d2f
-Captured (UTC): 2026-11-23T02:27:23+00:00
+Snapshot: 2026-11-23-6b6cdffb14
+Captured (UTC): 2026-11-23T03:16:27+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -12593,7 +12593,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 94 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 95 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -20218,6 +20218,216 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 Review scope / review_level: official-api-documentation
 Official DOP853, dense output, tolerance and success specifications checked. Implementation documentation for the separate numerical reference.
 
+## Noh:2D Cartesian flow and grid orientation error — Noh:2D Cartesian flow and grid orientation error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/
+Coverage: reading
+
+A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array.
+
+## Noh:2D Cartesian flow and grid orientation error — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#run-all
+Coverage: reading
+
+Run inside atlas-noh-cartesian-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Noh:2D Cartesian flow and grid orientation error — Noh problem: an actual 2D Cartesian Euler calculation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/
+Coverage: reading
+
+A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array.
+Methods, equations, figures and references
+Methods used
+Rusanov / local Lax–Friedrichs flux
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Unsplit shared-face x/y piecewise-constant Rusanov fluxes and SSPRK2/Heun. CFL .35 uses (max a_x+max a_y)/dx. Cold physical outer fluxes are spatially integrated analytically and their affine time dependence is integrated at both Heun stages. No cell repair, pressure floor/seed or hidden timestep retry; invalid stages retain raw arrays and fail.
+Compressible Euler equations
+Two-dimensional Cartesian Euler without a geometric source, evolving density, both momenta and energy over the full square.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Noh problem: cold converging flow and outward shock
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## Noh:2D Cartesian flow and grid orientation error — Noh problem: an actual 2D Cartesian Euler calculation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/
+Coverage: reading
+
+Reference and validation scope
+Inputs/source/acceptance hashes are saved before execution. All 19 unit tests and 49 gates on three grids passed at the first attempt. Analytic density is integrated over cells by splitting shock-circle cuts and 64-point Gauss quadrature with x=rs sin(theta), checked against 128 points and analytic total mass; these are quadrature references, not closed-form exact cell means. At 128², full-square density L1=.09981, origin-inclusive core L1=.12231; shock errors are.968 axis cells and1.469 diagonal cells. Maximum relative discrete-budget residual is about 4.6e-15. D4 conserved parity and continuous rotational symmetry are measured separately.
+Same-problem reference · Analytic reference
+Noh cold-inflow shock: planar, cylindrical and spherical symmetry
+Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p.
+
+## Noh:2D Cartesian flow and grid orientation error — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-assumptions
+Coverage: reading
+
+Nondimensional [-.5,.5]², gamma=5/3, rho0=1, inward speed 1, p0=0, T=.6, shock radius.2. Initial conserved states are cell-center cold samples, not exact initial momentum means. All four edges prescribe supersonic inflow rho=1+t/r and u=(-x/r,-y/r). No symmetry boundary, radial projection or geometric source.
+
+## Noh:2D Cartesian flow and grid orientation error — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-algorithm
+Coverage: reading
+
+Unsplit shared-face x/y piecewise-constant Rusanov fluxes and SSPRK2/Heun. CFL .35 uses (max a_x+max a_y)/dx. Cold physical outer fluxes are spatially integrated analytically and their affine time dependence is integrated at both Heun stages. No cell repair, pressure floor/seed or hidden timestep retry; invalid stages retain raw arrays and fail.
+\partial_t U+\partial_xF(U)+\partial_yG(U)=0,\quad U=(\rho,\rho u,\rho v,E)^Tr_s=t/3,\quad(\rho,p,u_r)_2=(16,16/3,0),\quad(\rho,p,u_r)_1=(1+t/r,0,-1)\bar\rho_i=\frac{1}{\Delta x\Delta y}\int_{C_i}\rho_{\rm exact}(\sqrt{x^2+y^2},t)\,dx\,dyM(t)=4R^2+8Rt\operatorname{asinh}(1)+\pi t^2,\qquad E_{\rm tot}=M/2,\quad R=0.5\Delta t=\frac{0.35}{\max a_x/\Delta x+\max a_y/\Delta y}
+
+## Noh:2D Cartesian flow and grid orientation error — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-validation
+Coverage: reading
+
+Inputs/source/acceptance hashes are saved before execution. All 19 unit tests and 49 gates on three grids passed at the first attempt. Analytic density is integrated over cells by splitting shock-circle cuts and 64-point Gauss quadrature with x=rs sin(theta), checked against 128 points and analytic total mass; these are quadrature references, not closed-form exact cell means. At 128², full-square density L1=.09981, origin-inclusive core L1=.12231; shock errors are.968 axis cells and1.469 diagonal cells. Maximum relative discrete-budget residual is about 4.6e-15. D4 conserved parity and continuous rotational symmetry are measured separately.
+
+## Noh:2D Cartesian flow and grid orientation error — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-limits
+Coverage: reading
+
+A first-order-space lightweight example retains origin heating and shock errors. Finest maximum center specific internal energy is still about 14% high. Axis/diagonal shock-radius difference is about .501dx and is not monotone over these grids. Roundoff-level D4 parity does not establish exact circular symmetry. General perturbation stability, displaced origins, rotated meshes, 3D Cartesian flow and high-order accuracy are unverified. Earlier planar/cylindrical/spherical 1D editions and gates remain unchanged.
+
+## Noh:2D Cartesian flow and grid orientation error — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n128
+steps494
+time0.6
+density_l10.0998087989866
+density_l20.194255690475
+density_linf0.50346097137
+core_density_l10.122308379999
+plateau_density_relative_error0.112115237852
+plateau_pressure_relative_error0.0642362470167
+center_max_internal_energy_excess0.139888525666
+center_min_density13.2072344084
+density_min1.85686721391
+density_max16.4603962018
+minimum_density_all_stages1
+minimum_pressure_all_stages0
+minimum_internal_roundoff_units0
+state_floor_count0
+d4_conserved_parity_relative0
+reference_order_relative_l1_difference3.48526113022e-18
+reference_mass_relative_error0
+mass_vs_analytic_relative1.7763568394e-15
+energy_vs_analytic_relative3.33066907388e-15
+axis_shock_radius0.207564359773
+diagonal_shock_radius0.211475677359
+axis_shock_error_cells0.968238050967
+diagonal_shock_error_cells1.46888670201
+shock_axis_diagonal_difference_cells0.500648651046
+判定 / checkPassed
+all three Cartesian grids completetrue
+n32: positive density all stagestrue
+n32: internal energy within roundofftrue
+n32: no floors or cell repairtrue
+n32: mass discrete balancetrue
+n32: x momentum discrete balancetrue
+n32: y momentum discrete balancetrue
+n32: energy discrete balancetrue
+n32: mass_vs_analytic_relativetrue
+
+## Noh:2D Cartesian flow and grid orientation error — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+n32: energy_vs_analytic_relativetrue
+n32: d4_conserved_parity_relativetrue
+n32: reference_order_relative_l1_differencetrue
+n32: reference_mass_relative_errortrue
+n32: unmasked center and maximum errors reportedtrue
+n64: positive density all stagestrue
+n64: internal energy within roundofftrue
+n64: no floors or cell repairtrue
+n64: mass discrete balancetrue
+n64: x momentum discrete balancetrue
+n64: y momentum discrete balancetrue
+n64: energy discrete balancetrue
+n64: mass_vs_analytic_relativetrue
+n64: energy_vs_analytic_relativetrue
+n64: d4_conserved_parity_relativetrue
+n64: reference_order_relative_l1_differencetrue
+n64: reference_mass_relative_errortrue
+n64: unmasked center and maximum errors reportedtrue
+n128: positive density all stagestrue
+n128: internal energy within roundofftrue
+n128: no floors or cell repairtrue
+n128: mass discrete balancetrue
+n128: x momentum discrete balancetrue
+n128: y momentum discrete balancetrue
+n128: energy discrete balancetrue
+n128: mass_vs_analytic_relativetrue
+n128: energy_vs_analytic_relativetrue
+n128: d4_conserved_parity_relativetrue
+n128: reference_order_relative_l1_differencetrue
+n128: reference_mass_relative_errortrue
+n128: unmasked center and maximum errors reportedtrue
+finest density_l1true
+finest core_density_l1true
+finest plateau_density_relative_errortrue
+finest plateau_pressure_relative_errortrue
+finest axis_shock_error_cellstrue
+
+## Noh:2D Cartesian flow and grid orientation error — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+finest diagonal_shock_error_cellstrue
+finest shock_axis_diagonal_difference_cellstrue
+density L1 decreasestrue
+last pair density L1 ordertrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+nstepstimedensity_l1density_l2density_linfcore_density_l1plateau_density_relative_errorplateau_pressure_relative_errorcenter_max_internal_energy_excesscenter_min_densitydensity_mindensity_maxminimum_density_all_stagesminimum_pressure_all_stagesminimum_internal_roundoff_unitsstate_floor_countd4_conserved_parity_relativereference_order_relative_l1_differencereference_mass_relative_errormass_vs_analytic_relativeenergy_vs_analytic_relativeaxis_shock_radiusdiagonal_shock_radiusaxis_shock_error_cellsdiagonal_shock_error_cellsshock_axis_diagonal_difference_cellsinitial_integralfinal_integralboundary_net_integralconservation_residualconservation_relativefieldhistory
+
+## Noh:2D Cartesian flow and grid orientation error — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+321260.60.296084253930.3825430228720.371471002160.3498567296410.3429282508260.2045740207480.27594806208310.05646396541.8846372266110.967966925100008.98763309771e-1801.88737914186e-151.7763568394e-150.2233706331290.2193467565120.7478602601230.6190962083750.128764051749[1.0,-6.830473686658678e-18,-4.336808689942018e-18,0.5][4.246269964139221,6.5052130349130266e-18,8.239936510889834e-18,2.123134982069618][3.2462699641392296,0.0,0.0,1.6231349820696148][-8.881784197001252e-15,1.3335686721571705e-17,1.2576745200831851e-17,3.1086244689504383e-15][2.091667339102331e-15,3.14056497448226e-18,2.9618336344710747e-18,1.4641671373716318e-15]field-n32.npzhistory-n32.json
+642490.60.1795548849160.2777722359270.4974118302970.2215675969870.2110108555580.1172794900960.20063133267311.81586999771.8656337445314.2683689286100007.45565018332e-182.22044604925e-161.7763568394e-152.22044604925e-160.2158878024240.2176330783411.016819355121.128517013820.111697658704[1.0,-4.87890977618477e-19,-2.574980159653073e-17,0.5][4.246269964139237,1.6967763999398144e-17,-6.554002132674874e-17,2.123134982069615][3.246269964139231,0.0,0.0,1.6231349820696155][5.773159728050814e-15,1.745565497701662e-17,-3.979021973021801e-17,-6.661338147750939e-16][1.3595837704165154e-15,4.110820820257267e-18,9.370628826300728e-18,3.137501008653497e-16]field-n64.npzhistory-n64.json
+
+## Noh:2D Cartesian flow and grid orientation error — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+1284940.60.09980879898660.1942556904750.503460971370.1223083799990.1121152378520.06423624701670.13988852566613.20723440841.8568672139116.4603962018100003.48526113022e-1801.7763568394e-153.33066907388e-150.2075643597730.2114756773590.9682380509671.468886702010.500648651046[1.0,-3.5914196963582334e-19,4.343584953520052e-18,0.5][4.246269964139237,4.065758146820642e-18,-2.1412992906588713e-18,2.1231349820696215][3.2462699641392234,0.0,0.0,1.6231349820696117][1.3322676295501878e-14,4.424900116456465e-18,-6.4848842441789234e-18,9.769962616701378e-15][3.137501008653497e-15,1.0420675448866442e-18,1.5271954677741478e-18,4.601668146025129e-15]field-n128.npzhistory-n128.json
+Measurements and complete records / JSON
+
+## Noh:2D Cartesian flow and grid orientation error — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux · DOI: 10.1016/0021-9991(87)90074-X
+Review scope / review_level: publisher-metadata-and-abstract
+Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization.
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+Review scope / review_level: official-record-and-unmodified-pinned-code-execution
+Selected pinned official Noh evaluator code checked. Reuse previously independently executed d=2 point values away from the jump; no new ExactPack execution or independent 2D PDE-engine comparison.
+
 ## Noh shocks: exact reference, origin heating and refinement — Noh shocks: exact reference, origin heating and refinement [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/
@@ -20263,7 +20473,7 @@ Compressible Euler equations
 The scoped planar, cylindrical-radial and spherical-radial forms of ideal-gas Euler. This example defines the geometric source, outer inflow and exactly zero initial pressure in its formulas and fixed input.
 Problem figure
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
-Noh shocks: zero-pressure planar, cylindrical and spherical flow
+Noh problem: cold converging flow and outward shock
 
 ## Noh shocks: exact reference, origin heating and refinement — Noh shocks: zero-pressure planar, cylindrical and spherical flow [en]
 
@@ -20290,7 +20500,7 @@ Coverage: reading
 al N=512 the whole-domain density L1 is .0114343, shock error 1.98856 cells, plateau-density error 5.2533%, and origin-inclusive core-density L1 .0549503. Maximum center specific-internal-energy excess is 20.59%, worse than the second attempt's 15.52%; not every diagnostic improves.
 Same-problem reference · Analytic reference
 Noh cold-inflow shock: planar, cylindrical and spherical symmetry
-The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p.
+Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p.
 
 ## Noh shocks: exact reference, origin heating and refinement — Assumptions, units and boundaries [en]
 
@@ -36493,7 +36703,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め94章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め95章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -43794,6 +44004,209 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 確認範囲 / review_level: official-api-documentation
 公式のDOP853、dense_output、許容誤差、successの仕様を確認。独立数値参照の実装資料です。
 
+## Noh問題：2次元Cartesianと格子方向の誤差 — Noh問題：2次元Cartesianと格子方向の誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/
+Coverage: reading
+
+正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#run-all
+Coverage: reading
+
+ZIPの atlas-noh-cartesian-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — Noh問題：実際の2次元Cartesian Euler計算 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/
+Coverage: reading
+
+正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。
+手法・式・図・参照解
+使用手法
+Rusanov／局所Lax–Friedrichs流束
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+区分定数のRusanov流束をx/y両方向の共有面に置く非分割更新とSSPRK2（Heun）です。CFL=.35を(max a_x+max a_y)/Δxに適用。外辺の冷たい物理流束は面内で解析積分し、時間に一次の流入をHeunの両段で積分します。セル平均の修復・圧力floor・seed・隠れた時間刻み再試行はなく、不正なRK段は配列を保存して失敗にします。
+圧縮性Euler方程式
+幾何源のない2次元Cartesian Euler系です。密度・2成分運動量・全エネルギーを正方形全域で更新します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Noh問題：冷たい収束流と外向き衝撃波
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+実行前に入力・ソース・受入基準をhash保存。19単体検査と3格子・49判定が初回から合格しました。解析密度のセル積分は衝撃円の交差で区間を分割し、x=rs sinθによる64点Gauss求積で評価、128点との差と全質量の解析式で確認します。閉形式の厳密セル平均とは区別します。128²で密度全域L1=.09981、原点込みcore L1=.12231、衝撃位置は軸.968セル・対角1.469セルの誤差。離散収支の最大相対残差は約4.6e-15です。D4の鏡映・座標交換の保存量偶奇性と、連続回転対称性を区別して測ります。
+同じ問題の参照 · 解析参照
+Nohの冷たい流入衝撃波：平面・円筒・球対称
+同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-assumptions
+Coverage: reading
+
+無次元[-.5,.5]²、γ=5/3、ρ0=1、内向き速度1、p0=0、T=.6、衝撃半径.2。初期保存量はセル中心の冷たい状態の標本で、初期運動量の厳密セル平均ではありません。全4辺へρ=1+t/r、u=(-x/r,-y/r)の超音速流入を与え、対称境界・半径方向への射影・幾何源は使いません。
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-algorithm
+Coverage: reading
+
+区分定数のRusanov流束をx/y両方向の共有面に置く非分割更新とSSPRK2（Heun）です。CFL=.35を(max a_x+max a_y)/Δxに適用。外辺の冷たい物理流束は面内で解析積分し、時間に一次の流入をHeunの両段で積分します。セル平均の修復・圧力floor・seed・隠れた時間刻み再試行はなく、不正なRK段は配列を保存して失敗にします。
+\partial_t U+\partial_xF(U)+\partial_yG(U)=0,\quad U=(\rho,\rho u,\rho v,E)^Tr_s=t/3,\quad(\rho,p,u_r)_2=(16,16/3,0),\quad(\rho,p,u_r)_1=(1+t/r,0,-1)\bar\rho_i=\frac{1}{\Delta x\Delta y}\int_{C_i}\rho_{\rm exact}(\sqrt{x^2+y^2},t)\,dx\,dyM(t)=4R^2+8Rt\operatorname{asinh}(1)+\pi t^2,\qquad E_{\rm tot}=M/2,\quad R=0.5\Delta t=\frac{0.35}{\max a_x/\Delta x+\max a_y/\Delta y}
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-validation
+Coverage: reading
+
+実行前に入力・ソース・受入基準をhash保存。19単体検査と3格子・49判定が初回から合格しました。解析密度のセル積分は衝撃円の交差で区間を分割し、x=rs sinθによる64点Gauss求積で評価、128点との差と全質量の解析式で確認します。閉形式の厳密セル平均とは区別します。128²で密度全域L1=.09981、原点込みcore L1=.12231、衝撃位置は軸.968セル・対角1.469セルの誤差。離散収支の最大相対残差は約4.6e-15です。D4の鏡映・座標交換の保存量偶奇性と、連続回転対称性を区別して測ります。
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-limits
+Coverage: reading
+
+空間一次の軽量例で、原点過熱と衝撃層の誤差が残ります。最細格子でも中心最大比内部エネルギーは厳密値より約14%高いままです。軸・対角の衝撃半径差は約.501Δxで、3格子間で単調には減りません。D4偶奇性が丸め誤差でも円対称性が厳密という意味ではありません。一般の摂動安定性・原点位置ずらし・回転格子・3D Cartesian・高次精度は未検証です。旧1D平面/円筒/球の配布版と判定は変更しません。
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n128
+steps494
+time0.6
+density_l10.0998087989866
+density_l20.194255690475
+density_linf0.50346097137
+core_density_l10.122308379999
+plateau_density_relative_error0.112115237852
+plateau_pressure_relative_error0.0642362470167
+center_max_internal_energy_excess0.139888525666
+center_min_density13.2072344084
+density_min1.85686721391
+density_max16.4603962018
+minimum_density_all_stages1
+minimum_pressure_all_stages0
+minimum_internal_roundoff_units0
+state_floor_count0
+d4_conserved_parity_relative0
+reference_order_relative_l1_difference3.48526113022e-18
+reference_mass_relative_error0
+mass_vs_analytic_relative1.7763568394e-15
+energy_vs_analytic_relative3.33066907388e-15
+axis_shock_radius0.207564359773
+diagonal_shock_radius0.211475677359
+axis_shock_error_cells0.968238050967
+diagonal_shock_error_cells1.46888670201
+shock_axis_diagonal_difference_cells0.500648651046
+判定 / check合格
+all three Cartesian grids completetrue
+n32: positive density all stagestrue
+n32: internal energy within roundofftrue
+n32: no floors or cell repairtrue
+n32: mass discrete balancetrue
+n32: x momentum discrete balancetrue
+n32: y momentum discrete balancetrue
+n32: energy discrete balancetrue
+n32: mass_vs_analytic_relativetrue
+n32: energy_vs_analytic_relativetrue
+n32: d4_conserved_parity_relativetrue
+n32: reference_order_relative_l1_differencetrue
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+n32: reference_mass_relative_errortrue
+n32: unmasked center and maximum errors reportedtrue
+n64: positive density all stagestrue
+n64: internal energy within roundofftrue
+n64: no floors or cell repairtrue
+n64: mass discrete balancetrue
+n64: x momentum discrete balancetrue
+n64: y momentum discrete balancetrue
+n64: energy discrete balancetrue
+n64: mass_vs_analytic_relativetrue
+n64: energy_vs_analytic_relativetrue
+n64: d4_conserved_parity_relativetrue
+n64: reference_order_relative_l1_differencetrue
+n64: reference_mass_relative_errortrue
+n64: unmasked center and maximum errors reportedtrue
+n128: positive density all stagestrue
+n128: internal energy within roundofftrue
+n128: no floors or cell repairtrue
+n128: mass discrete balancetrue
+n128: x momentum discrete balancetrue
+n128: y momentum discrete balancetrue
+n128: energy discrete balancetrue
+n128: mass_vs_analytic_relativetrue
+n128: energy_vs_analytic_relativetrue
+n128: d4_conserved_parity_relativetrue
+n128: reference_order_relative_l1_differencetrue
+n128: reference_mass_relative_errortrue
+n128: unmasked center and maximum errors reportedtrue
+finest density_l1true
+finest core_density_l1true
+finest plateau_density_relative_errortrue
+finest plateau_pressure_relative_errortrue
+finest axis_shock_error_cellstrue
+finest diagonal_shock_error_cellstrue
+finest shock_axis_diagonal_difference_cellstrue
+density L1 decreasestrue
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+last pair density L1 ordertrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+nstepstimedensity_l1density_l2density_linfcore_density_l1plateau_density_relative_errorplateau_pressure_relative_errorcenter_max_internal_energy_excesscenter_min_densitydensity_mindensity_maxminimum_density_all_stagesminimum_pressure_all_stagesminimum_internal_roundoff_unitsstate_floor_countd4_conserved_parity_relativereference_order_relative_l1_differencereference_mass_relative_errormass_vs_analytic_relativeenergy_vs_analytic_relativeaxis_shock_radiusdiagonal_shock_radiusaxis_shock_error_cellsdiagonal_shock_error_cellsshock_axis_diagonal_difference_cellsinitial_integralfinal_integralboundary_net_integralconservation_residualconservation_relativefieldhistory
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+321260.60.296084253930.3825430228720.371471002160.3498567296410.3429282508260.2045740207480.27594806208310.05646396541.8846372266110.967966925100008.98763309771e-1801.88737914186e-151.7763568394e-150.2233706331290.2193467565120.7478602601230.6190962083750.128764051749[1.0,-6.830473686658678e-18,-4.336808689942018e-18,0.5][4.246269964139221,6.5052130349130266e-18,8.239936510889834e-18,2.123134982069618][3.2462699641392296,0.0,0.0,1.6231349820696148][-8.881784197001252e-15,1.3335686721571705e-17,1.2576745200831851e-17,3.1086244689504383e-15][2.091667339102331e-15,3.14056497448226e-18,2.9618336344710747e-18,1.4641671373716318e-15]field-n32.npzhistory-n32.json
+642490.60.1795548849160.2777722359270.4974118302970.2215675969870.2110108555580.1172794900960.20063133267311.81586999771.8656337445314.2683689286100007.45565018332e-182.22044604925e-161.7763568394e-152.22044604925e-160.2158878024240.2176330783411.016819355121.128517013820.111697658704[1.0,-4.87890977618477e-19,-2.574980159653073e-17,0.5][4.246269964139237,1.6967763999398144e-17,-6.554002132674874e-17,2.123134982069615][3.246269964139231,0.0,0.0,1.6231349820696155][5.773159728050814e-15,1.745565497701662e-17,-3.979021973021801e-17,-6.661338147750939e-16][1.3595837704165154e-15,4.110820820257267e-18,9.370628826300728e-18,3.137501008653497e-16]field-n64.npzhistory-n64.json
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-measurements
+Coverage: reading
+
+1284940.60.09980879898660.1942556904750.503460971370.1223083799990.1121152378520.06423624701670.13988852566613.20723440841.8568672139116.4603962018100003.48526113022e-1801.7763568394e-153.33066907388e-150.2075643597730.2114756773590.9682380509671.468886702010.500648651046[1.0,-3.5914196963582334e-19,4.343584953520052e-18,0.5][4.246269964139237,4.065758146820642e-18,-2.1412992906588713e-18,2.1231349820696215][3.2462699641392234,0.0,0.0,1.6231349820696117][1.3322676295501878e-14,4.424900116456465e-18,-6.4848842441789234e-18,9.769962616701378e-15][3.137501008653497e-15,1.0420675448866442e-18,1.5271954677741478e-18,4.601668146025129e-15]field-n128.npzhistory-n128.json
+この例の実測値・全記録 / JSON
+
+## Noh問題：2次元Cartesianと格子方向の誤差 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux · DOI: 10.1016/0021-9991(87)90074-X
+確認範囲 / review_level: publisher-metadata-and-abstract
+出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+確認範囲 / review_level: official-record-and-unmodified-pinned-code-execution
+固定commitの公式Noh解析評価器を選択確認。既存の独立実行済みd=2点値を再利用し、今回もジャンプから離れた点で照合。ExactPackの再実行や独立2D PDEソルバーとの比較ではありません。
+
 ## Noh衝撃波：厳密解・過熱誤差・格子収束 — Noh衝撃波：厳密解・過熱誤差・格子収束 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/
@@ -43833,7 +44246,7 @@ Rusanov流束とSSPRK2（Heun）を使用します。平面・円筒は従来の
 理想気体Eulerの平面・円筒・球の半径対称という限定した形です。幾何源・外側流入・初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。
 問題の図
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
-Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算
+Noh問題：冷たい収束流と外向き衝撃波
 この問題のコード・検証状況
 厳密解・参照解
 この実行例の参照・検証
@@ -43847,7 +44260,7 @@ Coverage: reading
 旧平面・円筒の受入基準と59判定を保持し、球の追加基準・入力・ソースhashを初回の球PDE実行前に保存します。初回の円筒不合格はソース・全8本の診断ログ・不合格サマリーを保持し、同じ基準で面応力版を再検証した履歴です。厳密保存量セル平均は衝撃をまたぐ積分を分割し、p(平均U)と平均pを分けます。固定版LANL ExactPackの独立解析照合はd=1/2/3を含みます。球の新規PDE系列では全域r²重みL1/L2/L∞、原点を含むr≤.70rsの密度L1、原点・衝撃・plateauを別測定。各段の境界流入による離散保存収支と、連続解析総量との差を分け、M_h−M_exact=Σdt³/6、E_h−E_exact=Σdt³/12というSSPRK2境界求積の恒等式を検査します。 最初の球対称実行は旧算術平均源のまま105条件中2条件で不合格（最細衝撃位置3.923セル、plateau密度誤差11.03%）となり、全結果を保存しました。第2試行は球の面応力求積だけを変更しましたが、同じ2条件が未達（衝撃位置3.919セル、密度誤差11.018%）でした。第3試行はその求積を保ち、球だけMUSCL・minmod再構築を加えて、同じ105条件で比較します。 第3試行は28検査と全12格子計算を完了し、105条件すべてに合格しました。球N=512では全域密度L1=.0114343、衝撃位置誤差1.98856セル、plateau密度誤差5.2533%、原点込みcore密度L1=.0549503です。一方、中心最大比内部エネルギーの相対過剰は20.59%で、第2試行の15.52%より悪化しており、全指標の改善は主張しません。
 同じ問題の参照 · 解析参照
 Nohの冷たい流入衝撃波：平面・円筒・球対称
-同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。
+同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。
 
 ## Noh衝撃波：厳密解・過熱誤差・格子収束 — 前提・単位・境界 [ja]
 

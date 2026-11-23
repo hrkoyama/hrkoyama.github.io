@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "saved_at_utc": "2026-11-23T03:13:33.592254+00:00",
+  "target_edition": "2026-11-23-r2",
+  "reason": "Public Linux verifier requires an explicit termination reason in the result envelope. Add only fixed_budget_completed. Numerical helpers and all solver/reference/input/test/acceptance files remain unchanged. Unpublished first package is retained outside the public tree. The envelope also hashes this corrective provenance contract.",
+  "before_corrected_packaging_execution": true,
+  "original_contract_sha256": "a8b9212ff66972b16c106a3e639ed1bc0a27adb7c58f0e7ce437062b90ba8f57",
+  "run_sha256": "f3b8cb33cef67b73044843acba5e092b0b29a79766cbfda7c5feb5b05d2480d7",
+  "numerical_helper_AST_identical": true,
+  "unchanged_files_sha256": {
+    "cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
+    "cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
+    "test_cartesian.py": "fb5dc3f3e5bffa8e92cf4971853a36376d23a802a68b9560f455536d8141bad8",
+    "inputs.json": "c256e3b102a9108e7bf3bc60b282fcc31c763bc66a3791451ca48f7ca32c6851",
+    "acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
+    "exactpack-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+    "exactpack-reuse.json": "ff87a615159be76679fe616a36da71421c80080c844256dc2abe51935df59aa9",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  }
+}

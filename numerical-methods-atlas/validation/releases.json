@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 41,
+  "case_count": 42,
   "releases": [
     {
       "group": "foundations",
@@ -199,6 +199,20 @@
         "noh-shock"
       ],
       "tests": 28
+    },
+    {
+      "group": "noh-cartesian",
+      "edition": "2026-11-23-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/",
+      "archive": "atlas-noh-cartesian-2026-11-23-r2.zip",
+      "archive_sha256": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+      "manifest_sha256": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+      "verification_sha256": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "noh-cartesian-2d"
+      ],
+      "tests": 19
     }
   ]
 }

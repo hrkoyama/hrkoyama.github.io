@@ -1,0 +1,8 @@
+{
+  "software": "LANL ExactPack",
+  "commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+  "original_published_snapshot": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/exactpack-reference-snapshot.json",
+  "snapshot_sha256": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+  "selected_geometry": 2,
+  "scope": "Reuse existing independent analytic d=2 point evaluations; no new ExactPack execution and no independent 2D PDE-engine comparison. Cartesian cell integration and both momentum updates are new Atlas code."
+}

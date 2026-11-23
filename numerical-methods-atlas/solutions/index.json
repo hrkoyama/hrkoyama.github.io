@@ -1,12 +1,12 @@
 {
   "supplements_source": "/catalog/atlas-reference-supplements.json",
-  "supplements_source_sha256": "ea4014bbe27f19de45865bfa74a5f7995343ea94582114ff020c2393558ea5aa",
+  "supplements_source_sha256": "2552843c7b68ee2c5943817bab71ce232e816578216a5e4153d887cbe47aaf45",
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/",
   "source": "/numerical-methods-atlas/assets/reference-solutions.json",
   "source_sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
   "translations_source": "/numerical-methods-atlas/locales/messages.json",
-  "translations_source_sha256": "3e711e98b27c782dc89ab98cb38888b33948a1e7d026f313ebea36d948204e74",
+  "translations_source_sha256": "d03ed5ebcf41ff499ac13502abe26feab90ab181f8154f94925cc0c4bfe6ff67",
   "count": 19,
   "counts": {
     "analytic": 13,
@@ -1792,7 +1792,12 @@
           2,
           3
         ],
-        "time": 0.6
+        "time": 0.6,
+        "cartesian_2d_grids": [
+          32,
+          64,
+          128
+        ]
       },
       "sources": [
         "https://doi.org/10.1016/0021-9991(87)90074-X",
@@ -1804,8 +1809,8 @@
         "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
       },
       "assumptions": {
-        "ja": "理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。",
-        "en": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation."
+        "ja": "理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 別の実2D Cartesian版では[-.5,.5]²の32²/64²/128²格子、2成分運動量と両方向流束を使い、半径還元は行いません。密度参照は衝撃円で分割した64/128点の求積セル平均です。",
+        "en": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. A separate full-square2D Cartesian calculation uses [-.5,.5]^2 with32²/64²/128² cells, both momenta and no radial reduction. Its density-cell reference is shock-split quadrature, checked at orders64/128."
       },
       "kind_label": {
         "ja": "解析解",
@@ -1844,17 +1849,17 @@
         {
           "id": "noh",
           "name": {
-            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
-            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+            "ja": "Noh問題：冷たい収束流と外向き衝撃波",
+            "en": "Noh problem: cold converging flow and outward shock"
           },
           "image": {
-            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
-            "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
-            "width": 832,
-            "height": 494,
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+            "sha256": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
+            "width": 1312,
+            "height": 728,
             "caption": {
-              "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
-              "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
+              "ja": "実際の2次元Cartesian Euler計算の密度場。正方形全域128²セル、初期圧力ゼロ、γ=5/3、t=.6。白破線は厳密衝撃円。軸・対角方向の差と原点過熱を残し、1D半径例にも辿れます。",
+              "en": "Density from an actual2D Cartesian Euler computation:full square128²,p0=0,gamma5/3,t=.6. White dashed circle is the exact shock. Axis/diagonal differences and origin heating remain visible, with links to earlier1D radial examples."
             },
             "source_kind": "existing-figure"
           },
@@ -1891,25 +1896,48 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
+            },
+            {
+              "id": "noh-cartesian-2d",
+              "kind": "supplement",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+              },
+              "scope": {
+                "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+                "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
+              },
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json"
             }
           ],
           "relation": "same-problem",
           "note": {
-            "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
-            "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+            "ja": "同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。",
+            "en": "Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p."
           }
         }
       ]
     }
   ],
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "e5444358fd0d14c96bd9ec6f29f4c6cd16ee0d50f9c33d565cfda2f822d9bfcd",
+    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "19d4c81cf54153548c06b323117f0a3badb52f365d334961bb37b5d5349509c1",
-    "catalog/atlas-problem-links.json": "e37f01b7fbf713137aba04b47765875f157f06ff5780b1cc9897c4a3faa7bc87",
-    "catalog/atlas-reference-supplements.json": "ea4014bbe27f19de45865bfa74a5f7995343ea94582114ff020c2393558ea5aa",
-    "catalog/atlas-test-problems.json": "a30773033afdacf1e13eb3a569bd77b415d50b414dad4c2e3624e61285365e05",
+    "catalog/atlas-methods.json": "b02963b715ee25e04df15e1038a7f4be87fc4c585898368d1f8c6daf7e60ea2f",
+    "catalog/atlas-problem-links.json": "d9fd8319032fac0e7ab60cf78e84739779cdf673618dbfa14c083242d8fa1158",
+    "catalog/atlas-reference-supplements.json": "2552843c7b68ee2c5943817bab71ce232e816578216a5e4153d887cbe47aaf45",
+    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -1965,6 +1993,11 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
     "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
     "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
@@ -1973,6 +2006,6 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "65d3451bdcb20f18baa6835149e3cdcbae9c5a52fa77e827343fb5df46eb6fb2"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "115154d283f75676dd01b182c9c61735c86ca4318555996ecc299ef579523728"
   }
 }

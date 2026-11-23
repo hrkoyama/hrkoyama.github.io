@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "result_sha256": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+  "plot_sha256": "cdbd4035a2dc47e623a067442999c75f723929a45b3eb529f23dcfd4fea7dfea",
+  "files_sha256": {
+    "field-n32.npz": "aec1402df142d6533ce221667f959bf045b8758a9345f9deee87938e0fb04de7",
+    "history-n32.json": "cbe7760c9433bd80d6c06049b3dbaa2695295e4ac8cc7274a4d6ab638a4fa288",
+    "field-n64.npz": "9e3025b9c63a705bb043d9f613a384df31c6dbd75492df296af4c28c9bd9f422",
+    "history-n64.json": "def7f26883c7f1e14725e301c61f24d662f4b0a7fd6a8506f9cc9451e93a809c",
+    "field-n128.npz": "088dd0d99e5905fc671af549daca806a3cf9eec6c92b877bbcadf3f24af2f524",
+    "history-n128.json": "4622fb818bf07a940a847079d3a54a8e22ae47f979028b176aafa64b3f77b201"
+  },
+  "n": 128,
+  "actual_cartesian_field": true,
+  "display_interpolation": "nearest",
+  "geometry": "full square 2D; not a rotated radial computation",
+  "figures": [
+    {
+      "path": "noh-cartesian-2d-preview.png",
+      "sha256": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f"
+    },
+    {
+      "path": "noh-cartesian-2d-preview.svg",
+      "sha256": "732500b3be6020c0876dee388b6ca5bc56457545eab374b7c1497918e8afe54c"
+    },
+    {
+      "path": "noh-cartesian-2d-preview.pdf",
+      "sha256": "e28d59141b9a6e36c7ee5d9209a09272d66e396f3b72303274aeb585fdc1ab8b"
+    },
+    {
+      "path": "noh-cartesian-2d.png",
+      "sha256": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4"
+    },
+    {
+      "path": "noh-cartesian-2d.svg",
+      "sha256": "4cf0f2f4f278ccd96ae1fb28a42b8aa39ce75fa52bfa3de42e5373e65efd5b04"
+    },
+    {
+      "path": "noh-cartesian-2d.pdf",
+      "sha256": "ea0b167910c905379699acf921a72b9563c70fbffc82e843313942f05a7b52f9"
+    }
+  ]
+}

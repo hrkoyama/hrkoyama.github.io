@@ -62,6 +62,7 @@
 - [定常解のためのダンピングRunge–Kutta反復](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/steady-runge-kutta/)
 - [NASAの2次元検証・妥当性確認問題集](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/nasa-2d/)
 - [Noh衝撃波：厳密解・過熱誤差・格子収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/)
+- [Noh問題：2次元Cartesianと格子方向の誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/)
 
 ## 格子・有限要素・連成方程式
 

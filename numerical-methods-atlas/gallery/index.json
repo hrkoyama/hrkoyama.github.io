@@ -8,8 +8,8 @@
     "runnable_problems": 40,
     "common_runnable_problems": 22,
     "supplemental_runnable_problems": 21,
-    "supplemental_case_count": 36,
-    "supplemental_release_case_count": 41,
+    "supplemental_case_count": 37,
+    "supplemental_release_case_count": 42,
     "groups": {
       "transport": 9,
       "fluid": 17,
@@ -6996,14 +6996,14 @@
       "id": "noh",
       "group": "fluid",
       "name": {
-        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
-        "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+        "ja": "Noh問題：冷たい収束流と外向き衝撃波",
+        "en": "Noh problem: cold converging flow and outward shock"
       },
-      "chapter": "validation-noh",
-      "reading_section": "noh-shock",
+      "chapter": "validation-noh-cartesian",
+      "reading_section": "noh-cartesian-2d",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23-r5/noh/",
-      "verification": "/code/validated-examples/2026-11-23-r5/noh/verification.json",
+      "code_base": "/code/validated-examples/2026-11-23-r2/noh-cartesian/",
+      "verification": "/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
       "commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
@@ -7031,6 +7031,21 @@
         {
           "path": "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json",
           "json_pointer": "/passed"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "noh-cartesian-2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -7041,35 +7056,43 @@
             "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
             "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           }
+        },
+        {
+          "id": "noh-cartesian-2d",
+          "url": "/numerical-methods-atlas/validation/noh-cartesian-2d/",
+          "name": {
+            "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+            "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+          }
         }
       ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d"
       },
-      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#noh",
       "run_commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ],
-      "image": "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
-      "image_sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
-      "width": 832,
-      "height": 494,
+      "image": "/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+      "image_sha256": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
+      "width": 1312,
+      "height": 728,
       "source_kind": "existing-figure",
       "caption": {
-        "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
-        "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
+        "ja": "実際の2次元Cartesian Euler計算の密度場。正方形全域128²セル、初期圧力ゼロ、γ=5/3、t=.6。白破線は厳密衝撃円。軸・対角方向の差と原点過熱を残し、1D半径例にも辿れます。",
+        "en": "Density from an actual2D Cartesian Euler computation:full square128²,p0=0,gamma5/3,t=.6. White dashed circle is the exact shock. Axis/diagonal differences and origin heating remain visible, with links to earlier1D radial examples."
       },
       "visual_input": {
         "id": "noh",
         "kind": "image",
-        "source": "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+        "source": "/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
         "caption": {
-          "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
-          "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
+          "ja": "実際の2次元Cartesian Euler計算の密度場。正方形全域128²セル、初期圧力ゼロ、γ=5/3、t=.6。白破線は厳密衝撃円。軸・対角方向の差と原点過熱を残し、1D半径例にも辿れます。",
+          "en": "Density from an actual2D Cartesian Euler computation:full square128²,p0=0,gamma5/3,t=.6. White dashed circle is the exact shock. Axis/diagonal differences and origin heating remain visible, with links to earlier1D radial examples."
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#noh-ja",
@@ -7104,12 +7127,35 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
+        },
+        {
+          "id": "noh-cartesian-2d",
+          "title": {
+            "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+            "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+          },
+          "group": "noh-cartesian",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json"
         }
       ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "ed6b1dbf0cb4b152b0d636a6b938c07fee4da99d89cbace77e6f504047a0e776",
+    "catalog/atlas-gallery.json": "f6bf5d3ed17d90fa86a3f51f761587e8c8e37babb3957a9147282f3ca5cc8184",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7156,8 +7202,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "a30773033afdacf1e13eb3a569bd77b415d50b414dad4c2e3624e61285365e05",
-    "catalog/atlas-depth-expansion.json": "e5444358fd0d14c96bd9ec6f29f4c6cd16ee0d50f9c33d565cfda2f822d9bfcd",
+    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
+    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7261,18 +7307,25 @@
     "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
     "code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png": "f89d3289b2ac41d2e291f0964f8635e8084355420d53cb583876a579d94810fd",
     "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/inputs.json": "c256e3b102a9108e7bf3bc60b282fcc31c763bc66a3791451ca48f7ca32c6851",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "65d3451bdcb20f18baa6835149e3cdcbae9c5a52fa77e827343fb5df46eb6fb2",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "115154d283f75676dd01b182c9c61735c86ca4318555996ecc299ef579523728",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "2969bb57a14cd2304d69f68852b731547a11354e4d5f0667139ca7178bc0c94c",
+    "numerical-methods-atlas/test-cases/index.json": "b44b170317a5b330bb368bb35afe67096248516292ab58e4cb4acd58cdbcd2f6",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "7cb89f4ac58e19ca37335e99364c38bce5b3b9696d460307e400f0e7bb8c274e",
+    "scripts/atlas_depth_release.py": "d3c3bfed97edd08b7c919d82121febaf12cef416f2ea0201dc0b162d38822abc",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7289,6 +7342,7 @@
     "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
     "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
     "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
-    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733"
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918"
   }
 }

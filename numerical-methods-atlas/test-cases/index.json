@@ -3584,14 +3584,14 @@
       "id": "noh",
       "group": "fluid",
       "name": {
-        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
-        "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+        "ja": "Noh問題：冷たい収束流と外向き衝撃波",
+        "en": "Noh problem: cold converging flow and outward shock"
       },
-      "chapter": "validation-noh",
-      "reading_section": "noh-shock",
+      "chapter": "validation-noh-cartesian",
+      "reading_section": "noh-cartesian-2d",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23-r5/noh/",
-      "verification": "/code/validated-examples/2026-11-23-r5/noh/verification.json",
+      "code_base": "/code/validated-examples/2026-11-23-r2/noh-cartesian/",
+      "verification": "/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
       "commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
@@ -3619,6 +3619,21 @@
         {
           "path": "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json",
           "json_pointer": "/passed"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "noh-cartesian-2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "supplemental_examples": [
@@ -3629,13 +3644,21 @@
             "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
             "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           }
+        },
+        {
+          "id": "noh-cartesian-2d",
+          "url": "/numerical-methods-atlas/validation/noh-cartesian-2d/",
+          "name": {
+            "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+            "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+          }
         }
       ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#noh-cartesian-2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#noh-cartesian-2d"
       },
-      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#noh",
       "run_commands": [
@@ -3689,7 +3712,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "a30773033afdacf1e13eb3a569bd77b415d50b414dad4c2e3624e61285365e05",
+    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3799,7 +3822,10 @@
     "code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
     "code/validated-examples/2026-11-23-r5/noh/inputs.json": "c40e6a8ec27de510a77b7b41778b8c2c34ff0d10d90657fbcb574f03206f0a60",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
-    "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64"
+    "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

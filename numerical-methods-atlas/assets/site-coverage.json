@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 94,
+    "reading_chapters": 95,
     "test_problems": 84,
     "saved_test_problems": 84,
     "code_test_problems": 0
@@ -1449,7 +1449,7 @@
       "chapter": "validation-noh",
       "status": "local-example",
       "group": "Riemann fluxes & corrections",
-      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity.",
+      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square.",
       "origin": "curated-depth-example"
     },
     {
@@ -1469,7 +1469,7 @@
       "chapter": "validation-noh",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity.",
+      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square.",
       "origin": "curated-depth-example"
     },
     {
@@ -3322,7 +3322,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "19d4c81cf54153548c06b323117f0a3badb52f365d334961bb37b5d5349509c1",
+    "catalog/atlas-methods.json": "b02963b715ee25e04df15e1038a7f4be87fc4c585898368d1f8c6daf7e60ea2f",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },

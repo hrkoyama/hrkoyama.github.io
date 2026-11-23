@@ -185,6 +185,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。
+- [Noh問題：実際の2次元Cartesian Euler計算](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja>)
+  availability: run
+
+  正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。
 - [Godunov型有限体積法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja>)
   availability: source
 

@@ -66,7 +66,7 @@ $$
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
-[Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja) (`noh`)
+[Noh問題：冷たい収束流と外向き衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja) (`noh`)
 
 [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja)
 
@@ -78,7 +78,7 @@ $$
 
 - [Nohの冷たい流入衝撃波：平面・円筒・球対称](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja) (`noh`; 同じ問題の参照 · 解析参照)
 
-同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。
+同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。
 ## 前提・単位・境界
 
 無次元r∈[0,1]、γ=5/3、ρ0=1、u0=-1、p0=0、T=.6。平面d=1・円筒半径対称d=2・球半径対称d=3をPDE実行し、衝撃半径は.2。外側密度は(1+t)^(d-1)、原点は反射、体積測度r^(d-1)dr。角度因子をすべての収支から共通に省き、球の解析総量はM=512/375、E=256/375です。球の図は1D半径解の中心断面で、Cartesianの2D/3D計算や角度方向の対称性破れの検証ではありません。
@@ -402,7 +402,7 @@ The scoped planar, cylindrical-radial and spherical-radial forms of ideal-gas Eu
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
-[Noh shocks: zero-pressure planar, cylindrical and spherical flow](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en) (`noh`)
+[Noh problem: cold converging flow and outward shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en) (`noh`)
 
 [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en)
 
@@ -414,7 +414,7 @@ Retain the planar/cylindrical acceptance file and all 59 original decisions, and
 
 - [Noh cold-inflow shock: planar, cylindrical and spherical symmetry](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en) (`noh`; Same-problem reference · Analytic reference)
 
-The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p.
+Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p.
 ## Assumptions, units and boundaries
 
 Nondimensional r in [0,1], gamma=5/3, rho0=1, u0=-1, p0=0, T=.6. PDE runs use planar d=1, cylindrical-radial d=2 and spherical-radial d=3, with shock radius .2. Outer density is (1+t)^(d-1), the origin reflects, and the measure is r^(d-1)dr. The same angular factor is omitted throughout; spherical analytic totals are M=512/375 and E=256/375. Its figure is a central section of a 1D radial solution, not a Cartesian 2D/3D calculation or a test of angular symmetry breaking.

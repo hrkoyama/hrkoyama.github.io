@@ -1,0 +1,49 @@
+{
+  "contract_sha256": "a8b9212ff66972b16c106a3e639ed1bc0a27adb7c58f0e7ce437062b90ba8f57",
+  "started_at_utc": "2026-11-23T03:03:05.152887+00:00",
+  "source_match_before": true,
+  "stages": [
+    {
+      "name": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-cartesian-env/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=attempts/01/pytest.xml"
+      ],
+      "returncode": 0,
+      "seconds": 0.8344357080000009,
+      "log_sha256": "9afcb92d8ac2f67413521f01576bcf556ecd2afa2e87968f70c3d1afd1a4ede1"
+    },
+    {
+      "name": "pde",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-cartesian-env/bin/python",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "attempts/01/results"
+      ],
+      "returncode": 0,
+      "seconds": 1.7180702910000036,
+      "log_sha256": "5fc750e118e4ff6165e900eb59e9452ec30dccc8dc6c59020900f4b818edaebc"
+    }
+  ],
+  "completed_at_utc": "2026-11-23T03:03:07.706127+00:00",
+  "source_match_after": true,
+  "passed": true,
+  "results_sha256": {
+    "results/history-n128.json": "4622fb818bf07a940a847079d3a54a8e22ae47f979028b176aafa64b3f77b201",
+    "results/result.json": "0e685d92df4ebc78059e86902ff65ccfbf30a47ae6fe41c04c2b34abd7d08c06",
+    "results/noh-cartesian-2d.csv": "1b61864ea0c10ccfeca0f8e5f744b7e50267f16a861e1463ae2385b73a91d309",
+    "results/field-n32.npz": "aec1402df142d6533ce221667f959bf045b8758a9345f9deee87938e0fb04de7",
+    "results/field-n128.npz": "088dd0d99e5905fc671af549daca806a3cf9eec6c92b877bbcadf3f24af2f524",
+    "results/history-n64.json": "def7f26883c7f1e14725e301c61f24d662f4b0a7fd6a8506f9cc9451e93a809c",
+    "results/history-n32.json": "cbe7760c9433bd80d6c06049b3dbaa2695295e4ac8cc7274a4d6ab638a4fa288",
+    "results/field-n64.npz": "9e3025b9c63a705bb043d9f613a384df31c6dbd75492df296af4c28c9bd9f422"
+  }
+}

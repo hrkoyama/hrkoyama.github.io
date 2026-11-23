@@ -24,8 +24,8 @@ test('time refinement preserves the initially declared numerical acceptance crit
 
 test('nonlinear biological comparisons reuse one physical problem and preserve the earlier linear-onset release',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,41);
- assert.equal(index.groups.length,12);
+ assert.equal(index.case_count,42);
+ assert.equal(index.groups.length,13);
  for(const id of cases)assert.equal(index.case_problem_ids[id],'turing-schnakenberg');
  const inventory=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(inventory.length,84);

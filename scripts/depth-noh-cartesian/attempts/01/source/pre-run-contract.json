@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "saved_at_utc": "2026-11-23T03:02:47.065883+00:00",
+  "target_group": "noh-cartesian",
+  "target_edition": "2026-11-23",
+  "unit_tests_or_pde_executed": false,
+  "files_sha256": {
+    "cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
+    "cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
+    "run.py": "430a11a73bb1fd2f8b961cd211ec959aeaf161b04cc19712cab4a66fd644c93e",
+    "test_cartesian.py": "fb5dc3f3e5bffa8e92cf4971853a36376d23a802a68b9560f455536d8141bad8",
+    "inputs.json": "c256e3b102a9108e7bf3bc60b282fcc31c763bc66a3791451ca48f7ca32c6851",
+    "acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
+    "exactpack-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+    "exactpack-reuse.json": "ff87a615159be76679fe616a36da71421c80080c844256dc2abe51935df59aa9",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  },
+  "planned_tests": [
+    "test_true_zero_pressure_is_not_replaced",
+    "test_negative_internal_energy_rejected",
+    "test_nonfinite_and_nonpositive_density_rejected",
+    "test_equal_state_flux_and_wave_speed",
+    "test_axis_rotation_exchanges_both_momenta",
+    "test_outer_face_flux_against_independent_gauss_integration",
+    "test_cartesian_operator_telescopes_all_four_conserved_quantities",
+    "test_transverse_coupling_is_present_in_both_directions",
+    "test_invalid_mesh_or_budget_rejected",
+    "test_short_full_square_update_has_closed_budgets_and_d4_parity",
+    "test_invalid_predictor_is_retained_without_retry_or_repair",
+    "test_radial_point_values_match_reused_pinned_exactpack",
+    "test_inverse_radius_rectangle_has_known_square_integral",
+    "test_inverse_radius_rectangle_matches_independent_quadrature_away_from_origin",
+    "test_initial_density_reference_is_uniform",
+    "test_cut_cell_reference_is_bounded_and_resolves_disk_area",
+    "test_reference_quadrature_refinement_is_far_below_pde_error",
+    "test_global_mass_formula_and_flux_rate",
+    "test_missing_grid_cannot_be_reported_as_pass"
+  ],
+  "planned_test_count": 19,
+  "planned_grids": [
+    32,
+    64,
+    128
+  ],
+  "review": "Cartesian conservative divergence contains both flux directions and both momenta, no radial source/projection; all four analytic cold boundary fluxes were independently derived. Heun updates and CFL reviewed. Density reference splits disk cuts and uses x=rs sin(theta); independent quadrature refinement and total mass/area checks are predeclared. No floors, hidden dt retries or invalid-state repair. Invalid stages retain raw arrays. ExactPack reuse is restricted to existing d=2 analytic points away from the jump.",
+  "policy": "Do not modify acceptance thresholds after execution. Preserve all failed trials with original sources/results/logs; any method revision needs its own pre-run record."
+}

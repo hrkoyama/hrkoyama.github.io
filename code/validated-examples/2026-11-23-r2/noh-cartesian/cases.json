@@ -1,0 +1,91 @@
+[
+  {
+    "id": "noh-cartesian-2d",
+    "title": {
+      "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+      "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+    },
+    "method_ids": [
+      "rusanov",
+      "heun"
+    ],
+    "domains": [
+      "fluid",
+      "shock",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "cartesian_solver.py",
+      "cartesian_reference.py"
+    ],
+    "summary": {
+      "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+      "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
+    },
+    "assumptions": {
+      "ja": "無次元[-.5,.5]²、γ=5/3、ρ0=1、内向き速度1、p0=0、T=.6、衝撃半径.2。初期保存量はセル中心の冷たい状態の標本で、初期運動量の厳密セル平均ではありません。全4辺へρ=1+t/r、u=(-x/r,-y/r)の超音速流入を与え、対称境界・半径方向への射影・幾何源は使いません。",
+      "en": "Nondimensional [-.5,.5]², gamma=5/3, rho0=1, inward speed 1, p0=0, T=.6, shock radius.2. Initial conserved states are cell-center cold samples, not exact initial momentum means. All four edges prescribe supersonic inflow rho=1+t/r and u=(-x/r,-y/r). No symmetry boundary, radial projection or geometric source."
+    },
+    "algorithm": {
+      "ja": "区分定数のRusanov流束をx/y両方向の共有面に置く非分割更新とSSPRK2（Heun）です。CFL=.35を(max a_x+max a_y)/Δxに適用。外辺の冷たい物理流束は面内で解析積分し、時間に一次の流入をHeunの両段で積分します。セル平均の修復・圧力floor・seed・隠れた時間刻み再試行はなく、不正なRK段は配列を保存して失敗にします。",
+      "en": "Unsplit shared-face x/y piecewise-constant Rusanov fluxes and SSPRK2/Heun. CFL .35 uses (max a_x+max a_y)/dx. Cold physical outer fluxes are spatially integrated analytically and their affine time dependence is integrated at both Heun stages. No cell repair, pressure floor/seed or hidden timestep retry; invalid stages retain raw arrays and fail."
+    },
+    "validation": {
+      "ja": "実行前に入力・ソース・受入基準をhash保存。19単体検査と3格子・49判定が初回から合格しました。解析密度のセル積分は衝撃円の交差で区間を分割し、x=rs sinθによる64点Gauss求積で評価、128点との差と全質量の解析式で確認します。閉形式の厳密セル平均とは区別します。128²で密度全域L1=.09981、原点込みcore L1=.12231、衝撃位置は軸.968セル・対角1.469セルの誤差。離散収支の最大相対残差は約4.6e-15です。D4の鏡映・座標交換の保存量偶奇性と、連続回転対称性を区別して測ります。",
+      "en": "Inputs/source/acceptance hashes are saved before execution. All 19 unit tests and 49 gates on three grids passed at the first attempt. Analytic density is integrated over cells by splitting shock-circle cuts and 64-point Gauss quadrature with x=rs sin(theta), checked against 128 points and analytic total mass; these are quadrature references, not closed-form exact cell means. At 128², full-square density L1=.09981, origin-inclusive core L1=.12231; shock errors are.968 axis cells and1.469 diagonal cells. Maximum relative discrete-budget residual is about 4.6e-15. D4 conserved parity and continuous rotational symmetry are measured separately."
+    },
+    "limits": {
+      "ja": "空間一次の軽量例で、原点過熱と衝撃層の誤差が残ります。最細格子でも中心最大比内部エネルギーは厳密値より約14%高いままです。軸・対角の衝撃半径差は約.501Δxで、3格子間で単調には減りません。D4偶奇性が丸め誤差でも円対称性が厳密という意味ではありません。一般の摂動安定性・原点位置ずらし・回転格子・3D Cartesian・高次精度は未検証です。旧1D平面/円筒/球の配布版と判定は変更しません。",
+      "en": "A first-order-space lightweight example retains origin heating and shock errors. Finest maximum center specific internal energy is still about 14% high. Axis/diagonal shock-radius difference is about .501dx and is not monotone over these grids. Roundoff-level D4 parity does not establish exact circular symmetry. General perturbation stability, displaced origins, rotated meshes, 3D Cartesian flow and high-order accuracy are unverified. Earlier planar/cylindrical/spherical 1D editions and gates remain unchanged."
+    },
+    "formulas": [
+      "\\partial_t U+\\partial_xF(U)+\\partial_yG(U)=0,\\quad U=(\\rho,\\rho u,\\rho v,E)^T",
+      "r_s=t/3,\\quad(\\rho,p,u_r)_2=(16,16/3,0),\\quad(\\rho,p,u_r)_1=(1+t/r,0,-1)",
+      "\\bar\\rho_i=\\frac{1}{\\Delta x\\Delta y}\\int_{C_i}\\rho_{\\rm exact}(\\sqrt{x^2+y^2},t)\\,dx\\,dy",
+      "M(t)=4R^2+8Rt\\operatorname{asinh}(1)+\\pi t^2,\\qquad E_{\\rm tot}=M/2,\\quad R=0.5",
+      "\\Delta t=\\frac{0.35}{\\max a_x/\\Delta x+\\max a_y/\\Delta y}"
+    ],
+    "references": [
+      {
+        "id": "noh1987",
+        "author": "W. F. Noh",
+        "year": 1987,
+        "title": "Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
+        "journal": "Journal of Computational Physics",
+        "volume": "72",
+        "number": "1",
+        "pages": "78–120",
+        "doi": "10.1016/0021-9991(87)90074-X",
+        "url": "https://www.sciencedirect.com/science/article/pii/002199918790074X",
+        "type": "article",
+        "role": "original-problem-and-error-analysis",
+        "review_level": "publisher-metadata-and-abstract",
+        "review": {
+          "ja": "出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。",
+          "en": "Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization."
+        }
+      },
+      {
+        "id": "thrussell2023exactpack",
+        "author": "J. Thrussell and J. M. Ferguson",
+        "year": 2023,
+        "title": "ExactPack: A python library of exact analytic solutions",
+        "journal": "SoftwareX",
+        "volume": "24",
+        "article_number": "101560",
+        "doi": "10.1016/j.softx.2023.101560",
+        "url": "https://doi.org/10.1016/j.softx.2023.101560",
+        "type": "article",
+        "role": "independent-reference-software",
+        "software_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+        "software_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+        "review_level": "official-record-and-unmodified-pinned-code-execution",
+        "review": {
+          "ja": "固定commitの公式Noh解析評価器を選択確認。既存の独立実行済みd=2点値を再利用し、今回もジャンプから離れた点で照合。ExactPackの再実行や独立2D PDEソルバーとの比較ではありません。",
+          "en": "Selected pinned official Noh evaluator code checked. Reuse previously independently executed d=2 point values away from the jump; no new ExactPack execution or independent 2D PDE-engine comparison."
+        }
+      }
+    ]
+  }
+]

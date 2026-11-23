@@ -31,7 +31,12 @@
           2,
           3
         ],
-        "time": 0.6
+        "time": 0.6,
+        "cartesian_2d_grids": [
+          32,
+          64,
+          128
+        ]
       },
       "sources": [
         "https://doi.org/10.1016/0021-9991(87)90074-X",
@@ -39,7 +44,7 @@
         "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa"
       ],
       "title": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry",
-      "assumptions": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation.",
+      "assumptions": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. A separate full-square2D Cartesian calculation uses [-.5,.5]^2 with32²/64²/128² cells, both momenta and no radial reduction. Its density-cell reference is shock-split quadrature, checked at orders64/128.",
       "view": {
         "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
         "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"

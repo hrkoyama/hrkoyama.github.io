@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_unit_or_pde_execution": true,
+  "scope": "Three small full-square 2D Cartesian Noh grids; no threshold changes after viewing results. Retain failed attempts.",
+  "limits": {
+    "balance": 2e-12,
+    "parity": 5e-12,
+    "reference_order": 1e-05,
+    "reference_mass": 5e-08,
+    "density_l1": 0.15,
+    "core_density_l1": 0.25,
+    "plateau_density": 0.25,
+    "plateau_pressure": 0.2,
+    "shock_cells": 4.0,
+    "angular_cells": 2.0,
+    "order": 0.3
+  },
+  "unbounded_diagnostics": [
+    "center maximum specific internal energy",
+    "whole-field density L2/Linf",
+    "radial scatter"
+  ],
+  "notes": "D4 parity is a coding symmetry check, distinct from continuous rotational symmetry. Core includes origin. No general perturbation stability or high-order claim."
+}

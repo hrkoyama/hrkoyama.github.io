@@ -2442,6 +2442,26 @@
               }
             },
             {
+              "id": "noh-cartesian-2d",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "note": {
+                "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+                "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
+              }
+            },
+            {
               "id": "method-rusanov",
               "name": {
                 "ja": "Rusanov／局所Lax–Friedrichs流束：コード・検証",
@@ -23009,6 +23029,26 @@
               }
             },
             {
+              "id": "noh-cartesian-2d",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "note": {
+                "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+                "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
+              }
+            },
+            {
               "id": "method-heun",
               "name": {
                 "ja": "Heun法／SSPRK(2,2)：コード・検証",
@@ -27149,78 +27189,6 @@
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
               },
               "status": "educational-example",
-              "role": "execution",
-              "note": {
-                "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
-                "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
-              },
-              "context_problem_id": "noh"
-            },
-            {
-              "id": "heun",
-              "name": {
-                "ja": "Heun法／SSPRK(2,2)",
-                "en": "Heun / SSPRK(2,2)"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
-              },
-              "status": "educational-example",
-              "role": "execution",
-              "note": {
-                "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
-                "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
-              },
-              "context_problem_id": "noh"
-            },
-            {
-              "id": "muscl",
-              "name": {
-                "ja": "MUSCL再構成",
-                "en": "MUSCL reconstruction"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
-              },
-              "status": "educational-example",
-              "role": "execution",
-              "note": {
-                "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
-                "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
-              },
-              "context_problem_id": "noh"
-            },
-            {
-              "id": "minmod",
-              "name": {
-                "ja": "Minmod",
-                "en": "Minmod"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
-              },
-              "status": "educational-example",
-              "role": "execution",
-              "note": {
-                "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
-                "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
-              },
-              "context_problem_id": "noh"
-            },
-            {
-              "id": "rusanov",
-              "name": {
-                "ja": "Rusanov／局所Lax–Friedrichs流束",
-                "en": "Rusanov / local Lax–Friedrichs flux"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
-              },
-              "status": "educational-example",
               "role": "execution"
             },
             {
@@ -27265,22 +27233,6 @@
           ],
           "equations": [
             {
-              "id": "euler",
-              "name": {
-                "ja": "圧縮性Euler方程式",
-                "en": "Compressible Euler equations"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
-              },
-              "note": {
-                "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 理想気体Eulerの平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)のNoh流入問題。幾何源、冷たい流入、反射原点、p0=0と境界時間求積は実行例で定義します。",
-                "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Planar(d=1), cylindrical-radial(d=2) and spherical-radial(d=3) ideal-gas Euler Noh inflow. The example defines the geometric source, cold inflow, reflecting origin, exactly p0=0 and boundary-time quadrature."
-              },
-              "context_problem_id": "noh"
-            },
-            {
               "id": "formulation-noh-shock",
               "name": {
                 "ja": "この実行例の式と条件",
@@ -27314,32 +27266,6 @@
           ],
           "figures": [
             {
-              "id": "noh",
-              "name": {
-                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
-                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
-              },
-              "image": {
-                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
-                "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
-                "width": 832,
-                "height": 494,
-                "caption": {
-                  "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
-                  "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
-                },
-                "source_kind": "existing-figure"
-              },
-              "note": {
-                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
-                "en": "Representative test-problem figure; the problem page records conditions and provenance."
-              }
-            },
-            {
               "id": "noh-shock",
               "name": {
                 "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
@@ -27369,21 +27295,6 @@
           ],
           "references": [
             {
-              "id": "problem-noh",
-              "name": {
-                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算：参照・比較条件",
-                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow — references and comparison conditions"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
-              },
-              "note": {
-                "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
-                "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
-              }
-            },
-            {
               "id": "noh",
               "name": {
                 "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
@@ -27395,26 +27306,8 @@
               },
               "reference_kind": "analytic",
               "note": {
-                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
-                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
-              },
-              "relation": "same-problem",
-              "context_problem_id": "noh"
-            },
-            {
-              "id": "noh",
-              "name": {
-                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
-                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
-              },
-              "reference_kind": "analytic",
-              "note": {
-                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。",
-                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation."
+                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 別の実2D Cartesian版では[-.5,.5]²の32²/64²/128²格子、2成分運動量と両方向流束を使い、半径還元は行いません。密度参照は衝撃円で分割した64/128点の求積セル平均です。",
+                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. A separate full-square2D Cartesian calculation uses [-.5,.5]^2 with32²/64²/128² cells, both momenta and no radial reduction. Its density-cell reference is shock-split quadrature, checked at orders64/128."
               }
             },
             {
@@ -27445,8 +27338,8 @@
               },
               "reference_kind": "analytic",
               "note": {
-                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
-                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 別の実2D Cartesian版では[-.5,.5]²の32²/64²/128²格子、2成分運動量と両方向流束を使い、半径還元は行いません。密度参照は衝撃円で分割した64/128点の求積セル平均です。 同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。",
+                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. A separate full-square2D Cartesian calculation uses [-.5,.5]^2 with32²/64²/128² cells, both momenta and no radial reduction. Its density-cell reference is shock-split quadrature, checked at orders64/128. Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p."
               },
               "relation": "same-problem",
               "context_execution_id": "noh-shock"
@@ -27473,6 +27366,397 @@
               "note": {
                 "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
                 "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
+    "validation-noh-cartesian": {
+      "id": "validation-noh-cartesian",
+      "title": {
+        "ja": "Noh問題：2次元Cartesianと格子方向の誤差",
+        "en": "Noh:2D Cartesian flow and grid orientation error"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "validation-noh-cartesian",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "rusanov",
+              "name": {
+                "ja": "Rusanov／局所Lax–Friedrichs流束",
+                "en": "Rusanov / local Lax–Friedrichs flux"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "RusanovとHeunは1D半径例と新2D Cartesian例で使用。MUSCL/minmodは旧球対称系列に限定され、新2D版は区分定数です。",
+                "en": "Rusanov/Heun are used in both radial1D and new Cartesian2D runs. MUSCL/minmod apply only to the earlier spherical series; the new2D reconstruction is piecewise constant."
+              },
+              "context_problem_id": "noh"
+            },
+            {
+              "id": "heun",
+              "name": {
+                "ja": "Heun法／SSPRK(2,2)",
+                "en": "Heun / SSPRK(2,2)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "RusanovとHeunは1D半径例と新2D Cartesian例で使用。MUSCL/minmodは旧球対称系列に限定され、新2D版は区分定数です。",
+                "en": "Rusanov/Heun are used in both radial1D and new Cartesian2D runs. MUSCL/minmod apply only to the earlier spherical series; the new2D reconstruction is piecewise constant."
+              },
+              "context_problem_id": "noh"
+            },
+            {
+              "id": "muscl",
+              "name": {
+                "ja": "MUSCL再構成",
+                "en": "MUSCL reconstruction"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "RusanovとHeunは1D半径例と新2D Cartesian例で使用。MUSCL/minmodは旧球対称系列に限定され、新2D版は区分定数です。",
+                "en": "Rusanov/Heun are used in both radial1D and new Cartesian2D runs. MUSCL/minmod apply only to the earlier spherical series; the new2D reconstruction is piecewise constant."
+              },
+              "context_problem_id": "noh"
+            },
+            {
+              "id": "minmod",
+              "name": {
+                "ja": "Minmod",
+                "en": "Minmod"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "RusanovとHeunは1D半径例と新2D Cartesian例で使用。MUSCL/minmodは旧球対称系列に限定され、新2D版は区分定数です。",
+                "en": "Rusanov/Heun are used in both radial1D and new Cartesian2D runs. MUSCL/minmod apply only to the earlier spherical series; the new2D reconstruction is piecewise constant."
+              },
+              "context_problem_id": "noh"
+            },
+            {
+              "id": "rusanov",
+              "name": {
+                "ja": "Rusanov／局所Lax–Friedrichs流束",
+                "en": "Rusanov / local Lax–Friedrichs flux"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "heun",
+              "name": {
+                "ja": "Heun法／SSPRK(2,2)",
+                "en": "Heun / SSPRK(2,2)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            }
+          ],
+          "equations": [
+            {
+              "id": "euler",
+              "name": {
+                "ja": "圧縮性Euler方程式",
+                "en": "Compressible Euler equations"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+              },
+              "note": {
+                "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 1D平面・円筒・球の半径対称Euler系と、実際の2D Cartesian Euler系。2D版には幾何源・半径還元・対称境界がなく、全4辺の冷たい流入を与えます。",
+                "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Planar/cylindrical/spherical radial Euler and actual2D Cartesian Euler. The2D edition has no geometric source, radial reduction or symmetry boundary; all four edges prescribe cold inflow."
+              },
+              "context_problem_id": "noh"
+            },
+            {
+              "id": "formulation-noh-cartesian-2d",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja#noh-cartesian-2d-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en#noh-cartesian-2d-en-algorithm"
+              },
+              "note": {
+                "ja": "区分定数のRusanov流束をx/y両方向の共有面に置く非分割更新とSSPRK2（Heun）です。CFL=.35を(max a_x+max a_y)/Δxに適用。外辺の冷たい物理流束は面内で解析積分し、時間に一次の流入をHeunの両段で積分します。セル平均の修復・圧力floor・seed・隠れた時間刻み再試行はなく、不正なRK段は配列を保存して失敗にします。",
+                "en": "Unsplit shared-face x/y piecewise-constant Rusanov fluxes and SSPRK2/Heun. CFL .35 uses (max a_x+max a_y)/dx. Cold physical outer fluxes are spatially integrated analytically and their affine time dependence is integrated at both Heun stages. No cell repair, pressure floor/seed or hidden timestep retry; invalid stages retain raw arrays and fail."
+              },
+              "role": "example-definition"
+            },
+            {
+              "id": "euler",
+              "name": {
+                "ja": "圧縮性Euler方程式",
+                "en": "Compressible Euler equations"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+              },
+              "note": {
+                "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+                "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+              }
+            }
+          ],
+          "figures": [
+            {
+              "id": "noh",
+              "name": {
+                "ja": "Noh問題：冷たい収束流と外向き衝撃波",
+                "en": "Noh problem: cold converging flow and outward shock"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+                "sha256": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
+                "width": 1312,
+                "height": 728,
+                "caption": {
+                  "ja": "実際の2次元Cartesian Euler計算の密度場。正方形全域128²セル、初期圧力ゼロ、γ=5/3、t=.6。白破線は厳密衝撃円。軸・対角方向の差と原点過熱を残し、1D半径例にも辿れます。",
+                  "en": "Density from an actual2D Cartesian Euler computation:full square128²,p0=0,gamma5/3,t=.6. White dashed circle is the exact shock. Axis/diagonal differences and origin heating remain visible, with links to earlier1D radial examples."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Representative test-problem figure; the problem page records conditions and provenance."
+              }
+            },
+            {
+              "id": "noh-cartesian-2d",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png",
+                "sha256": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
+                "width": 1792,
+                "height": 1440,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "Noh問題：実際の2次元Cartesian Euler計算：この実行例の保存済み検証図。",
+                  "en": "Noh problem: an actual 2D Cartesian Euler calculation: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "noh"
+            }
+          ],
+          "references": [
+            {
+              "id": "problem-noh",
+              "name": {
+                "ja": "Noh問題：冷たい収束流と外向き衝撃波：参照・比較条件",
+                "en": "Noh problem: cold converging flow and outward shock — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。",
+                "en": "Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p."
+              }
+            },
+            {
+              "id": "noh",
+              "name": {
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 別の実2D Cartesian版では[-.5,.5]²の32²/64²/128²格子、2成分運動量と両方向流束を使い、半径還元は行いません。密度参照は衝撃円で分割した64/128点の求積セル平均です。 同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。",
+                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. A separate full-square2D Cartesian calculation uses [-.5,.5]^2 with32²/64²/128² cells, both momenta and no radial reduction. Its density-cell reference is shock-split quadrature, checked at orders64/128. Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "noh"
+            },
+            {
+              "id": "validation-noh-cartesian-2d",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算：参照・検証",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja#noh-cartesian-2d-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en#noh-cartesian-2d-en-validation"
+              },
+              "note": {
+                "ja": "実行前に入力・ソース・受入基準をhash保存。19単体検査と3格子・49判定が初回から合格しました。解析密度のセル積分は衝撃円の交差で区間を分割し、x=rs sinθによる64点Gauss求積で評価、128点との差と全質量の解析式で確認します。閉形式の厳密セル平均とは区別します。128²で密度全域L1=.09981、原点込みcore L1=.12231、衝撃位置は軸.968セル・対角1.469セルの誤差。離散収支の最大相対残差は約4.6e-15です。D4の鏡映・座標交換の保存量偶奇性と、連続回転対称性を区別して測ります。",
+                "en": "Inputs/source/acceptance hashes are saved before execution. All 19 unit tests and 49 gates on three grids passed at the first attempt. Analytic density is integrated over cells by splitting shock-circle cuts and 64-point Gauss quadrature with x=rs sin(theta), checked against 128 points and analytic total mass; these are quadrature references, not closed-form exact cell means. At 128², full-square density L1=.09981, origin-inclusive core L1=.12231; shock errors are.968 axis cells and1.469 diagonal cells. Maximum relative discrete-budget residual is about 4.6e-15. D4 conserved parity and continuous rotational symmetry are measured separately."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "noh",
+              "name": {
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。 別の実2D Cartesian版では[-.5,.5]²の32²/64²/128²格子、2成分運動量と両方向流束を使い、半径還元は行いません。密度参照は衝撃円で分割した64/128点の求積セル平均です。 同じNoh問題の解析参照。1Dは保存量の厳密体積平均、2Dは衝撃円で分割した密度の求積セル平均を使用します。点値とセル平均、p(平均U)と平均pを区別します。",
+                "en": "Analytic reference Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation. A separate full-square2D Cartesian calculation uses [-.5,.5]^2 with32²/64²/128² cells, both momenta and no radial reduction. Its density-cell reference is shock-split quadrature, checked at orders64/128. Analytic reference for the same Noh problem.1D uses exact conserved-volume means;2D uses density means from shock-split Cartesian cell quadrature. Distinguish points/cell means and p(mean U)/mean p."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "noh-cartesian-2d"
+            }
+          ],
+          "code": [
+            {
+              "id": "noh-shock",
+              "name": {
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun",
+                "muscl",
+                "minmod"
+              ],
+              "note": {
+                "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+                "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+              }
+            },
+            {
+              "id": "noh-cartesian-2d",
+              "name": {
+                "ja": "Noh問題：実際の2次元Cartesian Euler計算",
+                "en": "Noh problem: an actual 2D Cartesian Euler calculation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "note": {
+                "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
+                "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
               }
             }
           ]
@@ -30036,16 +30320,16 @@
   },
   "source_sha256": {
     "catalog/atlas-chapter-links.json": "4f41459ddda500d9cbddb7a8406dfee5a698346307d8a3fb50ce670d3ef72c9e",
-    "catalog/atlas-depth-expansion.json": "e5444358fd0d14c96bd9ec6f29f4c6cd16ee0d50f9c33d565cfda2f822d9bfcd",
+    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
     "catalog/atlas-detailed-reading.json": "5c209859418a8b949710681a84511bdbc94a2a919e9641d27a1222e3e4a8f9f6",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-goals.json": "706721b859ac559fa4cdfca75b9ef00edc2e70fe590de3ee378bfc1bf89eacdd",
-    "catalog/atlas-methods.json": "19d4c81cf54153548c06b323117f0a3badb52f365d334961bb37b5d5349509c1",
-    "catalog/atlas-problem-links.json": "e37f01b7fbf713137aba04b47765875f157f06ff5780b1cc9897c4a3faa7bc87",
-    "catalog/atlas-reference-supplements.json": "ea4014bbe27f19de45865bfa74a5f7995343ea94582114ff020c2393558ea5aa",
-    "catalog/atlas-test-problems.json": "a30773033afdacf1e13eb3a569bd77b415d50b414dad4c2e3624e61285365e05",
+    "catalog/atlas-methods.json": "b02963b715ee25e04df15e1038a7f4be87fc4c585898368d1f8c6daf7e60ea2f",
+    "catalog/atlas-problem-links.json": "d9fd8319032fac0e7ab60cf78e84739779cdf673618dbfa14c083242d8fa1158",
+    "catalog/atlas-reference-supplements.json": "2552843c7b68ee2c5943817bab71ce232e816578216a5e4153d887cbe47aaf45",
+    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
     "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
     "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
@@ -30146,6 +30430,12 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
     "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
     "code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png": "11d0f030985cf900b04ce6f8b903be486684c43129f2e3f4226ed81b70041f4f",
@@ -30155,12 +30445,12 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/equations/index.json": "89fae90aa27ba667afb721a6b1a2d6fd7bfe5f974f8c655af3a1db8c33c5bdc8",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "65d3451bdcb20f18baa6835149e3cdcbae9c5a52fa77e827343fb5df46eb6fb2",
-    "numerical-methods-atlas/locales/messages.json": "3e711e98b27c782dc89ab98cb38888b33948a1e7d026f313ebea36d948204e74",
-    "numerical-methods-atlas/methods/index.json": "a9c2b8bcb6302a9c7652da0cbaedaa968d9ae9961cf3ddc615483d43b20ad70e",
-    "numerical-methods-atlas/problems/index.json": "e5e2daa0372b2c238c7eff843db25ffeb269232e447bf220febc9293f58cf693",
-    "numerical-methods-atlas/solutions/index.json": "9f67beb26e11e6bf962db4a0480503a2978bdd8daf7e4f053adbdce5879e009f",
-    "numerical-methods-atlas/validation/index.json": "13a2b2936bc3920748e1d6bf561ccaa1c43bff5c7874af7691dc3acea750740e"
+    "numerical-methods-atlas/equations/index.json": "8a2b2308f97d69806fbe872892ff8b5f031804375ae18dfb79e2dde2f4bd50c3",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "115154d283f75676dd01b182c9c61735c86ca4318555996ecc299ef579523728",
+    "numerical-methods-atlas/locales/messages.json": "d03ed5ebcf41ff499ac13502abe26feab90ab181f8154f94925cc0c4bfe6ff67",
+    "numerical-methods-atlas/methods/index.json": "b072154d581049bd8068983486817cef6d2db7a66477b9c0ee60294ef00585a2",
+    "numerical-methods-atlas/problems/index.json": "bc9b711dd013bc05126bdc3f04aadc7238aa613ca752734eef04ee4fd64878ea",
+    "numerical-methods-atlas/solutions/index.json": "f99d7d7a8bf7851bfbc495abe2ae18d9226b42b88c2fa553c3327a538a417520",
+    "numerical-methods-atlas/validation/index.json": "5742a2142d8b11341551fc184c613fd3ea7ef00b9c94d7c2b9b0bf6394caf3bd"
   }
 }

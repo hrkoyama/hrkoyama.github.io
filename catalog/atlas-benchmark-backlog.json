@@ -340,7 +340,7 @@
         "セル平均と点値、体積重み付き誤差、衝撃近傍と原点近傍の誤差を分ける。",
         "厳密なcold limit p0=0と正圧近似を区別。既存Eulerはp<=0を拒否するので無言のfloor追加で厳密Nohと称さない。"
       ],
-      "scope_note": "公開した段階は、初期圧力ゼロの平面・円筒・球の1D半径対称PDEです。旧平面・円筒8本と59基準を保持し、球の4格子・厳密セル平均・原点を含むcore誤差・離散収支と境界時間求積のΣdt³を検証しました。球の定数再構築2試行の不合格を保存し、同じ105条件で線形面応力求積＋MUSCL/minmodを比較します。図は1D半径解の中心断面です。Cartesian多次元・角度方向の対称性破れは未実行で、候補全体は進行中です。",
+      "scope_note": "初期圧力ゼロの1D平面・円筒・球に加え、正方形全域の実2D Cartesian Euler版を追加。32²/64²/128²の3格子、19検査・49判定で密度誤差、全4保存量収支、原点過熱、D4偶奇性と軸・対角方向の差を確認。最細密度L1約10%、中心過熱約14%、衝撃半径の方向差は約.501Δxで単調減少しません。旧r3/r5の配布物と基準は保持。新図は実2D配列で、旧1D回転表示と区別します。原点位置ずらし・一般摂動安定性・3D Cartesianは未検証で、拡充候補として進行中です。",
       "sources": [
         {
           "title": "Noh (1987), Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
@@ -377,19 +377,26 @@
           "/code/validated-examples/2026-11-23-r5/noh/acceptance.json",
           "/code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json",
           "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical.json",
-          "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical-revision03.json"
+          "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical-revision03.json",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/inputs.json",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/pre-run-contract.json"
         ],
         "plots": [
           "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
           "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png",
           "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-errors.png",
-          "/code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png"
+          "/code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#noh-ja",
-        "execution": "/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+        "execution": "/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja",
         "code": [
           "/code/validated-examples/2026-11-23-r5/noh/noh_solver.py",
-          "/code/validated-examples/2026-11-23-r5/noh/noh_reference.py"
+          "/code/validated-examples/2026-11-23-r5/noh/noh_reference.py",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py",
+          "/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py"
         ],
         "references": [
           "/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",

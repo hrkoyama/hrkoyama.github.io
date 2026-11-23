@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "noh-cartesian",
+  "edition": "2026-11-23-r2",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+  "archive": {
+    "file": "atlas-noh-cartesian-2026-11-23-r2.zip",
+    "sha256": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "bytes": 1433402,
+    "archive_directory": "atlas-noh-cartesian-2026-11-23-r2"
+  },
+  "archive_sha256": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+  "returncode": 0,
+  "passed_tests": 19,
+  "tests": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "noh-cartesian-2d"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 2.186565334000079,
+  "independent_rerun_seconds": 1.67918545800012,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

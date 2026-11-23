@@ -206,7 +206,7 @@ test('Noh reference, figure, chapter and execution connect through their actual 
   const run=json('numerical-methods-atlas/validation/noh-shock/index.json');
   const gallery=json('numerical-methods-atlas/gallery/index.json').items.find(row=>row.id==='noh');
   assert.deepEqual(run.additional_figures.map(row=>row.file),['noh-shock-errors.png','noh-spherical-budget.png']);
-  assert.deepEqual(problem.executions.map(row=>row.id),['noh-shock']);
+  assert.deepEqual(problem.executions.map(row=>row.id),['noh-shock','noh-cartesian-2d']);
   assert.deepEqual(problem.references.map(row=>row.id),['noh']);
   assert.deepEqual(problem.equations.map(row=>row.id),['euler']);
   assert.deepEqual([...run.method_ids].sort(),['heun','minmod','muscl','rusanov']);
@@ -217,8 +217,8 @@ test('Noh reference, figure, chapter and execution connect through their actual 
   assert.deepEqual(run.execution_navigation.equations.map(row=>row.id),mapping.ids);
   assert.deepEqual(run.execution_navigation.equations[0].note,mapping.note);
   assert.equal(run.navigation_source_sha256['catalog/atlas-depth-expansion.json'],sha('catalog/atlas-depth-expansion.json'));
-  assert.equal(gallery.image,'/'+base+'results/noh-shock-preview.png');
-  assert.equal(gallery.image_sha256,sha(base+'results/noh-shock-preview.png'));
+  assert.equal(gallery.image,'/code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png');
+  assert.equal(gallery.image_sha256,sha(gallery.image.slice(1)));
   assert.equal(run.execution_navigation.figure.url,origin+'/'+base+'results/noh-shock.png');
   assert.notEqual(gallery.image,new URL(run.execution_navigation.figure.url).pathname);
   const methods=json('numerical-methods-atlas/methods/index.json').methods;
@@ -232,7 +232,7 @@ test('Noh reference, figure, chapter and execution connect through their actual 
   for(const id of ['heun','minmod','muscl','rusanov']){
     const method=methods.find(row=>row.id===id),card=method.problem_navigation.problems.find(row=>row.id==='noh');
     assert.equal(card.role,'execution');
-    assert.deepEqual(card.executions.map(row=>row.id),['noh-shock'],id+' is tied to the actual four-method Noh edition');
+    assert.deepEqual(card.executions.map(row=>row.id),['heun','rusanov'].includes(id)?['noh-shock','noh-cartesian-2d']:['noh-shock'],id+' retains its actual scoped Noh executions');
   }
   assert.equal(addition[0].dimension,1,'symmetry dimension is distinct from a Cartesian multidimensional computation');
   assert.deepEqual(addition[0].parameters.geometry_dimensions,[1,2,3]);

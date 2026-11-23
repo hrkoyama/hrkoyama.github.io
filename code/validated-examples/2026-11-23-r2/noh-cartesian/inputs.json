@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "noh-cartesian-2d": {
+      "gamma": 1.6666666666666667,
+      "rho0": 1,
+      "speed": 1,
+      "p0": 0,
+      "radius": 0.5,
+      "final_time": 0.6,
+      "grids": [
+        32,
+        64,
+        128
+      ],
+      "cfl": 0.35,
+      "reference_order": 64,
+      "reference_check_order": 128,
+      "initialization": "cell-center samples of the true zero-pressure state, not exact initial conserved cell averages",
+      "boundary": "exact spatially integrated physical cold inflow on all four outer faces",
+      "flux": "rusanov",
+      "time_integrator": "heun",
+      "reconstruction": "piecewise-constant",
+      "symmetry_projection": false,
+      "state_floor": null
+    }
+  }
+}

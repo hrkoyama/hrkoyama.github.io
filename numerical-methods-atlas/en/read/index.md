@@ -62,6 +62,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Damping Runge–Kutta iterations for steady solutions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/steady-runge-kutta/)
 - [NASA 2D verification and validation case catalog](https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/)
 - [Noh shocks: exact reference, origin heating and refinement](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/)
+- [Noh:2D Cartesian flow and grid orientation error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/)
 
 ## Meshes, finite elements and coupled equations
 

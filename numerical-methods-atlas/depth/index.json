@@ -43,7 +43,8 @@
       },
       "supplemental_examples": [
         "shu-independent",
-        "noh-shock"
+        "noh-shock",
+        "noh-cartesian-2d"
       ]
     },
     {
@@ -442,10 +443,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "c392ee226cdb29fa60fd3374b8953b9d98dbd239e321b1055efc2138cad3dfac",
+    "catalog/atlas-depth.json": "14d059abd6f84a672e76c08405d85be8b4cd8d54e4149632314480a20e181897",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "e5444358fd0d14c96bd9ec6f29f4c6cd16ee0d50f9c33d565cfda2f822d9bfcd",
+    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -456,6 +457,11 @@
     "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
     "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
     "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
     "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
