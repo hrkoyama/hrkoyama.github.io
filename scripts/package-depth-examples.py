@@ -27,7 +27,7 @@ def package(group,edition):
             (stage/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,stage/rel)
         env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1','MKL_NUM_THREADS':'1','MPLBACKEND':'Agg','MPLCONFIGDIR':str(tmp/'mpl')}
         def execute(cwd,out):
-            start=time.monotonic();p=subprocess.run([sys.executable,'run.py','--input','inputs.json','--output',str(out)],cwd=cwd,env=env,text=True,capture_output=True,timeout=120)
+            start=time.monotonic();p=subprocess.run([sys.executable,'-W','error','run.py','--input','inputs.json','--output',str(out)],cwd=cwd,env=env,text=True,capture_output=True,timeout=120)
             if p.returncode:raise RuntimeError(p.stdout+'\n'+p.stderr)
             result=json.loads((out/'result.json').read_text());assert result['passed'] is True and result['checks'] and all(result['checks'].values())
             assert {c['id'] for c in result['cases']}==ids
@@ -50,7 +50,7 @@ def package(group,edition):
             for name,digest in files.items():assert hashlib.sha256(z.read(prefix+'/'+name)).hexdigest()==digest
             z.extractall(tmp/'independent')
         extracted=tmp/'independent'/prefix
-        test=subprocess.run([sys.executable,'-m','pytest','-q','-p','no:cacheprovider','--junitxml='+str(tmp/'tests.xml')],cwd=extracted,env=env,text=True,capture_output=True,timeout=120)
+        test=subprocess.run([sys.executable,'-W','error','-m','pytest','-q','-p','no:cacheprovider','--junitxml='+str(tmp/'tests.xml')],cwd=extracted,env=env,text=True,capture_output=True,timeout=120)
         if test.returncode:raise RuntimeError(test.stdout+'\n'+test.stderr)
         suite=ET.parse(tmp/'tests.xml').getroot().find('testsuite');counts={k:int(suite.attrib[k]) for k in ['tests','failures','errors','skipped']};assert counts['tests']>0 and not any(counts[k] for k in ['failures','errors','skipped'])
         rerun,second_seconds=execute(extracted,tmp/'rerun')

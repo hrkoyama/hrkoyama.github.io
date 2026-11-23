@@ -7,3 +7,6 @@ the-art-of-thermal-instability/**/*.svg binary
 # Preserve the hash-checked upstream ExactPack license verbatim.
 scripts/depth-sedov/exactpack-LICENSE.txt -whitespace
 code/validated-examples/2026-11-23/sedov/exactpack-LICENSE.txt -whitespace
+code/validated-examples/2026-11-23-r2/sedov/exactpack-LICENSE.txt -whitespace
+scripts/depth-sedov/**/exactpack-LICENSE.txt -whitespace
+code/validated-examples/2026-11-23-r2/sedov/**/exactpack-LICENSE.txt -whitespace

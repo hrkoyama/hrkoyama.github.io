@@ -11,7 +11,7 @@
 
 [この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-algorithm)
 
-球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
+球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4はmax((|u|+c)/(V/(A左+A右)))の逆数を使い、残り時間との比較を先に行います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
 
 $$
 \partial_t U+\frac{1}{r^2}\partial_r(r^2F)=\left(0,2p/r,0\right)^T,\quad U=(\rho,\rho u,E)^T
@@ -40,7 +40,7 @@ $$
 
 **問題の図**
 
-![Sedov–Taylor点爆発：球対称の軽量検証：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png)
+![Sedov–Taylor点爆発：球対称の軽量検証：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png)
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
@@ -52,7 +52,7 @@ $$
 
 [この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-validation)
 
-入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。
+初版r1はMacで22単体検査・48判定が合格しましたが、公開ZIPのLinux追試では警告を例外にする設定でCFL比のoverflowにより失敗しました。r2は代数的に等価な逆数最大率へ評価順を変更し、元の入力・参照・受入基準48条件を維持。r2専用の実行前hash契約を保存してから、警告を例外にした23検査と全4計算・48判定が合格しました。初版のソース・契約・Linux失敗記録も保存しています。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約8.89e-16です。
 
 - [Sedov–Taylorの点爆発：エネルギー正規化した球対称自己相似解](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja) (`sedov`; 同じ問題の参照 · 半解析参照)
 
@@ -63,11 +63,11 @@ $$
 
 **編集上の補足**
 
-固定した有限の投入半径で点源の自己相似参照と比べるため、誤差曲線には投入モデルの差も含まれ、純粋な空間精度の収束次数ではありません。同じ最細格子で投入半径を変える比較は感度診断であり、連続極限の投入誤差とPDE離散化誤差を完全に分離する検証ではありません。
+初版r1はMacで22検査・4計算が合格しましたが、公開ZIPのLinux追試では22検査の後、-Werror付き本計算で冷たい裾の極小波速に対するCFL候補比がoverflow警告となり失敗しました。r2は同じCFL条件を1/max(波速/幅)で計算して中間overflowを回避します。入力・受入閾値は変更せず、旧版・失敗記録を保持して23検査と全固定入力を新しいZIPで再実行しました。固定投入半径で点源参照と比べる誤差にはモデル差も含まれ、その傾きは純粋な空間精度次数ではありません。投入半径の比較は感度診断であり、投入モデルとPDE離散化誤差の完全分離ではありません。 初版Linux失敗記録: https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662 （22検査は合格、最初の128セル・投入半径.03の本計算でRuntimeWarning: overflow encountered in divide）。
 
 ## 採用した計算法
 
-球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
+球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4はmax((|u|+c)/(V/(A左+A右)))の逆数を使い、残り時間との比較を先に行います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
 
 $$
 \partial_t U+\frac{1}{r^2}\partial_r(r^2F)=\left(0,2p/r,0\right)^T,\quad U=(\rho,\rho u,E)^T
@@ -91,11 +91,11 @@ $$
 
 ## 比較・検証
 
-入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。
+初版r1はMacで22単体検査・48判定が合格しましたが、公開ZIPのLinux追試では警告を例外にする設定でCFL比のoverflowにより失敗しました。r2は代数的に等価な逆数最大率へ評価順を変更し、元の入力・参照・受入基準48条件を維持。r2専用の実行前hash契約を保存してから、警告を例外にした23検査と全4計算・48判定が合格しました。初版のソース・契約・Linux失敗記録も保存しています。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約8.89e-16です。
 
 ## 確認の限界
 
-有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。冷たい裾の極小波速では局所CFL比が浮動小数点overflowで∞になりますが、制限しない比として扱い、選ばれる全体刻みの有限性・正値性を検査します。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。
+有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。r1でLinux失敗を招いた極小波速の局所CFL比overflowは、r2では最大逆率を評価する等価な式で避けます。警告抑制や物理量floorによる回避ではありません。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。
 
 ## 保存実測値と判定
 
@@ -106,24 +106,24 @@ $$
     "deposit_radius": 0.03,
     "time": 0.05,
     "steps": 4009,
-    "density_l1": 0.005369634041936693,
-    "active_density_l1": 0.0745788634711047,
-    "active_pressure_l1": 0.07615237367293834,
-    "density_l2": 0.058313703526242607,
-    "density_linf": 0.3892475533701589,
-    "density_min": 0.014842231748925943,
+    "density_l1": 0.0053696340419367985,
+    "active_density_l1": 0.07457886347110618,
+    "active_pressure_l1": 0.07615237367293778,
+    "density_l2": 0.05831370352624319,
+    "density_linf": 0.3892475533701634,
+    "density_min": 0.01484223174892597,
     "density_max": 2.918215810146801,
     "pressure_min": 0.0,
-    "pressure_max": 4.8023695991464725,
-    "maximum_speed": 2.007592026879321,
-    "center_density": 0.014842231748925943,
-    "center_pressure": 1.641701683913197,
+    "pressure_max": 4.80236959914648,
+    "maximum_speed": 2.0075920268793204,
+    "center_density": 0.01484223174892597,
+    "center_pressure": 1.6417016839131997,
     "center_reference_density": 4.1043889913677827e-11,
     "center_reference_pressure": 1.7744715646691345,
     "shock_radius": 0.349609375,
     "reference_shock_radius": 0.3474679123327071,
     "shock_error_cells": 1.0964288856539781,
-    "minimum_density_all_stages": 0.014842231581750319,
+    "minimum_density_all_stages": 0.014842231581750347,
     "minimum_pressure_all_stages": 0.0,
     "minimum_internal_roundoff_units": 0.0,
     "state_floor_count": 0,
@@ -188,10 +188,10 @@ $$
 
 ## 取得・実行
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json
 
 ```sh
 python -m pip install -r requirements.txt
@@ -223,7 +223,7 @@ A lightweight spherical-radial Euler finite-volume example deposits unit energy 
 
 [This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-algorithm)
 
-Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails.
+Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the reciprocal maximum (|u|+c)/(V/(A_left+A_right)), comparing with the remaining interval before division. No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails.
 
 $$
 \partial_t U+\frac{1}{r^2}\partial_r(r^2F)=\left(0,2p/r,0\right)^T,\quad U=(\rho,\rho u,E)^T
@@ -252,7 +252,7 @@ The one-dimensional spherical-radial ideal-gas Euler system. This example define
 
 **Problem figure**
 
-![Sedov–Taylor point blast: lightweight spherical-radial validation: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png)
+![Sedov–Taylor point blast: lightweight spherical-radial validation: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png)
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
@@ -264,7 +264,7 @@ A saved validation figure for this execution example. Its conditions and accepta
 
 [References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-validation)
 
-Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15.
+Original r1 passed22 tests and48 gates on Mac, but its public-ZIP Linux run failed when warnings-as-errors raised a cold-tail CFL overflow. Revision r2 uses the algebraically equivalent reciprocal maximum-rate evaluation while preserving the original inputs, reference and48 acceptance gates. A new r2-specific pre-execution hash contract precedes23 tests and all four calculations/48 gates passing with warnings as errors. Original sources, contract and actual Linux-failure evidence remain archived. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about8.89e-16.
 
 - [Sedov–Taylor point blast: energy-normalized spherical similarity solution](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sedov-en) (`sedov`; Same-problem reference · Semi-analytic reference)
 
@@ -275,11 +275,11 @@ Nondimensional gamma=5/3, ambient density1, velocity0, pressure0, radius[0,1], d
 
 **Editorial clarification**
 
-At fixed finite deposition radius, comparison with the point-source similarity reference includes deposition-model discrepancy; its refinement slope is not a pure spatial order. Changing deposition radius on the same finest grid is a sensitivity diagnostic, not a complete separation of continuum deposition and PDE-discretization errors.
+Revisionr1 passed22 tests and four runs on Mac, but its public-ZIP Linux retry passed22 tests then failed in the -Werror main run when a CFL candidate ratio overflowed at tiny cold-tail wave speeds. Revisionr2 evaluates the same CFL condition as1/max(speed/width), avoiding intermediate overflow. Inputs/acceptance thresholds stay unchanged; retain the old release/failure and independently rerun23 tests and all fixed inputs from a new ZIP. Fixed-radius point-source comparison includes model discrepancy: its refinement slope is not a pure spatial order, and the radius comparison is sensitivity rather than complete deposition/PDE-error separation. Original Linux failure: https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662 (all22 tests passed; the first128-cell,rdep.03 main calculation raised RuntimeWarning: overflow encountered in divide before completion).
 
 ## Adopted numerical method
 
-Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails.
+Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the reciprocal maximum (|u|+c)/(V/(A_left+A_right)), comparing with the remaining interval before division. No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails.
 
 $$
 \partial_t U+\frac{1}{r^2}\partial_r(r^2F)=\left(0,2p/r,0\right)^T,\quad U=(\rho,\rho u,E)^T
@@ -303,11 +303,11 @@ $$
 
 ## References and validation
 
-Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15.
+Original r1 passed22 tests and48 gates on Mac, but its public-ZIP Linux run failed when warnings-as-errors raised a cold-tail CFL overflow. Revision r2 uses the algebraically equivalent reciprocal maximum-rate evaluation while preserving the original inputs, reference and48 acceptance gates. A new r2-specific pre-execution hash contract precedes23 tests and all four calculations/48 gates passing with warnings as errors. Original sources, contract and actual Linux-failure evidence remain archived. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about8.89e-16.
 
 ## Limits
 
-A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. Extremely small cold-tail wave speeds can overflow a local CFL ratio to infinity; it is unrestrictive, and the chosen global timestep is checked finite. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified.
+A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. The cold-tail local-CFL overflow that caused the r1 Linux failure is avoided in r2 by the equivalent maximum inverse-rate evaluation, without suppressing warnings or adding a physical floor. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified.
 
 ## Stored measurements and decisions
 
@@ -318,24 +318,24 @@ A finite deposition sphere and an ideal point blast have different initial data;
     "deposit_radius": 0.03,
     "time": 0.05,
     "steps": 4009,
-    "density_l1": 0.005369634041936693,
-    "active_density_l1": 0.0745788634711047,
-    "active_pressure_l1": 0.07615237367293834,
-    "density_l2": 0.058313703526242607,
-    "density_linf": 0.3892475533701589,
-    "density_min": 0.014842231748925943,
+    "density_l1": 0.0053696340419367985,
+    "active_density_l1": 0.07457886347110618,
+    "active_pressure_l1": 0.07615237367293778,
+    "density_l2": 0.05831370352624319,
+    "density_linf": 0.3892475533701634,
+    "density_min": 0.01484223174892597,
     "density_max": 2.918215810146801,
     "pressure_min": 0.0,
-    "pressure_max": 4.8023695991464725,
-    "maximum_speed": 2.007592026879321,
-    "center_density": 0.014842231748925943,
-    "center_pressure": 1.641701683913197,
+    "pressure_max": 4.80236959914648,
+    "maximum_speed": 2.0075920268793204,
+    "center_density": 0.01484223174892597,
+    "center_pressure": 1.6417016839131997,
     "center_reference_density": 4.1043889913677827e-11,
     "center_reference_pressure": 1.7744715646691345,
     "shock_radius": 0.349609375,
     "reference_shock_radius": 0.3474679123327071,
     "shock_error_cells": 1.0964288856539781,
-    "minimum_density_all_stages": 0.014842231581750319,
+    "minimum_density_all_stages": 0.014842231581750347,
     "minimum_pressure_all_stages": 0.0,
     "minimum_internal_roundoff_units": 0.0,
     "state_floor_count": 0,
@@ -400,10 +400,10 @@ Complete records and reference_records: https://hrkoyama.github.io/numerical-met
 
 ## Download and run
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json
 
 ```sh
 python -m pip install -r requirements.txt

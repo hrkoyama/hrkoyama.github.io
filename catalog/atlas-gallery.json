@@ -951,7 +951,7 @@
     {
       "id": "sedov",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+      "source": "/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png",
       "caption": {
         "ja": "1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。",
         "en": "A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation."

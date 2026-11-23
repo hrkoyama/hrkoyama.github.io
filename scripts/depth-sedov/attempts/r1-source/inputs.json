@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "sedov-blast": {
+      "gamma": 1.6666666666666667,
+      "rho0": 1.0,
+      "energy": 1.0,
+      "p0": 0.0,
+      "radius": 1.0,
+      "final_time": 0.05,
+      "cfl": 0.4,
+      "grids": [128, 256, 512],
+      "deposit_radius": 0.03,
+      "sensitivity_deposit_radius": 0.015,
+      "reference_order": 16,
+      "reference_check_order": 32,
+      "active_radius_factor": 1.2,
+      "shock_search_factors": [0.7, 1.3]
+    }
+  }
+}

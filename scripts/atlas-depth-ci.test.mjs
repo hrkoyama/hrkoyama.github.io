@@ -68,7 +68,7 @@ test('registry preserves eleven frozen releases and adds the separately dated No
   assert.equal(noh.edition, '2026-11-23-r5');
   assert.deepEqual(noh.case_ids, ['noh-shock']);
   assert.equal(noh.tests,28);
-  assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),457);
+  assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),458);
   assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov']);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);

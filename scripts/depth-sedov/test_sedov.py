@@ -2,6 +2,7 @@
 from pathlib import Path
 import hashlib
 import json
+import warnings
 from unittest.mock import patch
 import numpy as np
 import pytest
@@ -123,6 +124,13 @@ def test_preregistered_numerical_sources_and_acceptance_unchanged():
     assert contract['declared_before_first_pde_run'] is True
     for name,digest in contract['files_sha256'].items():
         assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,name
+    assert contract['target_edition']=='2026-11-23-r2'
+    previous=json.loads((ROOT/'contract-r1.json').read_text())
+    for name,digest in previous['files_sha256'].items():
+        archived='archived_test_sedov.py' if name=='test_sedov.py' else name
+        assert hashlib.sha256((ROOT/'attempts/r1-source'/archived).read_bytes()).hexdigest()==digest,name
+    for name in ['inputs.json','acceptance.json','reference_sedov.py','exactpack-snapshot.json','exactpack-receipt.json']:
+        assert contract['files_sha256'][name]==previous['files_sha256'][name],name
 
 def test_pinned_exactpack_snapshot_provenance():
     receipt=json.loads((ROOT/'exactpack-receipt.json').read_text())
@@ -142,3 +150,15 @@ def test_independently_executed_exactpack_points_and_shock():
         for got,name in zip(local,['density','radial_velocity','pressure']):
             external=np.array(row[name])
             assert np.max(abs(got-external)/np.maximum(1,abs(external)))<=receipt['criteria']['exactpack_point_scaled_max']
+
+
+def test_cfl_cold_subnormal_and_zero_speeds_raise_no_warning():
+    # The old width/speed reduction overflowed at this unrestrictive tail cell.
+    tiny=np.nextafter(0.,1.)
+    width=np.full(4,.25)
+    with warnings.catch_warnings():
+        warnings.simplefilter('error')
+        with np.errstate(over='raise',divide='raise',invalid='raise'):
+            assert s.cfl_step(np.array([1.,tiny,0.,0.]),width,.4,1.)==.1
+            assert s.cfl_step(np.zeros(4),width,.4,.05)==.05
+            assert s.cfl_step(np.full(4,tiny),width,.4,.05)==.05

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "first_ode_trial_source_sha256": "a9e26a797a6941d59d6cb80d033fdf4f8bf22715f20b3dccc7858bebfbe0e9ae",
+  "first_ode_source_archive": "reference-development/ode01-source.py",
+  "final_reference_sha256": "7a2904a043a2f3aa823b7bb4686b9acd9b1b80759f3dca608d59615b7a0e160a",
+  "change": "Metadata convenience function appended after first ODE resolution trial; numerical helper code unchanged. ExactPack comparison then used the final source.",
+  "pde_execution": false,
+  "independent_reference_passed": true,
+  "checks": {
+    "beta_resolution_relative": true,
+    "swept_mass_relative": true,
+    "exactpack_beta_relative": true,
+    "exactpack_point_scaled_max": true
+  },
+  "errors": {
+    "exactpack_beta_relative": 1.893374346195742e-12,
+    "exactpack_point_scaled_max": 0.00027378711790526286
+  }
+}

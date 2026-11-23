@@ -1,0 +1,25 @@
+{
+  "original_to_archived": {
+    "LICENSE": "LICENSE",
+    "README.md": "README.md",
+    "acceptance.json": "acceptance.json",
+    "cases.json": "cases.json",
+    "exactpack-LICENSE.txt": "exactpack-LICENSE.txt",
+    "exactpack-generate.py": "exactpack-generate.py",
+    "exactpack-receipt.json": "exactpack-receipt.json",
+    "exactpack-snapshot.json": "exactpack-snapshot.json",
+    "exactpack-sources.json": "exactpack-sources.json",
+    "inputs.json": "inputs.json",
+    "plot.py": "plot.py",
+    "pre-run-contract.json": "pre-run-contract.json",
+    "reference-contract.json": "reference-contract.json",
+    "reference-development.json": "reference-development.json",
+    "reference_sedov.py": "reference_sedov.py",
+    "requirements-plotting.txt": "requirements-plotting.txt",
+    "requirements.txt": "requirements.txt",
+    "run.py": "run.py",
+    "sedov_solver.py": "sedov_solver.py",
+    "test_sedov.py": "archived_test_sedov.py"
+  },
+  "reason": "Preserve every original top-level r1 file byte-for-byte before the r2 CFL evaluation-order correction; archived test renamed to avoid duplicate collection."
+}

@@ -1012,7 +1012,7 @@
     },
     {
       "id": "sedov",
-      "image": "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+      "image": "/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png",
       "image_sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
       "width": 1312,
       "height": 728,
@@ -1024,7 +1024,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "f8dbae6cb668a25c758e62396ce2752786b8e7ed6b21c2978b6f137e83010358",
+    "catalog/atlas-gallery.json": "693ddae09d21ad345a5a486dd461a57c5b672370686948d27451a52c436cb8e1",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1071,8 +1071,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "b32c87977ad028925d9e49bb4b25ace8e7934f182d6ade7a608327d62b2b24d0",
-    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
+    "catalog/atlas-test-problems.json": "1d441ab46fc99d1a65edf673484c5b2d53d5dc4fb7ee4a0e1ca65ae58b8d16a4",
+    "catalog/atlas-depth-expansion.json": "837d924d9dbff1039bdb5c66549ed98042f4d5cd71eee1fb596a6c14c96f3e62",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1189,7 +1189,14 @@
     "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
     "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
     "code/validated-examples/2026-11-23/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
-    "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847"
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

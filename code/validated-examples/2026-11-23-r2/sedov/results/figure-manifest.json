@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "result_sha256": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+  "plot_sha256": "3c87151e0f7a780e8cb84ca07af40ca70a6aab4a986748ef07fbb33100ea57a1",
+  "files_sha256": {
+    "field-n128.npz": "0e126a6978606e97b242a0cbd942d30f98c9eb7c8276850a028dbf3e662b7695",
+    "history-n128.json": "14b67df52557c0d270e28c67ec70caba93db93f4645b6d86c324aa46dadd91e7",
+    "field-n256.npz": "176d4a8ce4a43763cd7a947159c7b8932d27dff0698e9ebb99d4adfd63531f30",
+    "history-n256.json": "914b23e89024929a2f0abe0af5973c1651dfbee84318fa3b0df6d95befc69913",
+    "field-n512.npz": "fb5dc62e30dc9f15016bd0ee58f17ebefce4aa99372bb363957040a052a3af0e",
+    "history-n512.json": "0bd852c970709550d06b3e6acd27f0c200de825ba46e30bea6f5d808e21d816a",
+    "field-radius-probe.npz": "f9af2d2fb0113baadf774632420f1f2bca3a1aedb2e03bbee1082b33aacb856a",
+    "history-radius-probe.json": "9318ada0431e40e0cab9c8d104bdb104aef40d236af8b3aaaa7bb4f5eb8d5dc8"
+  },
+  "geometry": "1D spherical radial section display, not a 2D computation",
+  "actual_cartesian_field": false,
+  "n": 512,
+  "figures": [
+    {
+      "path": "sedov-blast-preview.png",
+      "sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847"
+    },
+    {
+      "path": "sedov-blast-preview.svg",
+      "sha256": "bb6556f1617ab3899ccc2934ea4ff581ad0ffba02dd9f9ae93ecee1b70b56798"
+    },
+    {
+      "path": "sedov-blast-preview.pdf",
+      "sha256": "94aabe21d84f4500ef51a975e8e4afccbab2776aaf7c416e8b46db6adbe57b02"
+    },
+    {
+      "path": "sedov-blast.png",
+      "sha256": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146"
+    },
+    {
+      "path": "sedov-blast.svg",
+      "sha256": "21ff9cb6437ab22042e635f1296b8b6ad3cacfbdbb7db2baa01d1957f2a1ce85"
+    },
+    {
+      "path": "sedov-blast.pdf",
+      "sha256": "0916c8ac539c15bf0a3bb1fe78de8d6400eb1b47eda1deea2c3a1f95a94ec190"
+    }
+  ]
+}

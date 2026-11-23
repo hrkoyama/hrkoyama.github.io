@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "r1_result_sha256": "2558dd24fedc991fda9f951f2457eebde04cafd5525e56834c22e188811b028c",
+  "r2_result_sha256": "bedd9e0de20fc7b3577bedb4b0c119433aadd6754b7730437b3089e6b905e712",
+  "r1_mac_passed": true,
+  "r1_linux_passed": false,
+  "r2_warnings_as_errors_passed": true,
+  "r2_pytest": 23,
+  "scientific_gate_count": 48,
+  "scientific_gate_names_unchanged": true,
+  "arrays": [
+    {
+      "n": 128,
+      "deposit_radius": 0.03,
+      "r1_steps": 566,
+      "r2_steps": 566,
+      "maximum_conserved_array_absolute_difference": 1.1546319456101628e-14,
+      "maximum_conserved_array_scaled_difference": 1.2625606617944302e-15,
+      "density_L1_absolute_difference": 4.163336342344337e-16,
+      "pressure_L1_absolute_difference": 2.7755575615628914e-16
+    },
+    {
+      "n": 256,
+      "deposit_radius": 0.03,
+      "r1_steps": 1526,
+      "r2_steps": 1526,
+      "maximum_conserved_array_absolute_difference": 3.730349362740526e-14,
+      "maximum_conserved_array_scaled_difference": 3.380688925912991e-15,
+      "density_L1_absolute_difference": 3.885780586188048e-16,
+      "pressure_L1_absolute_difference": 3.3306690738754696e-16
+    },
+    {
+      "n": 512,
+      "deposit_radius": 0.03,
+      "r1_steps": 4009,
+      "r2_steps": 4009,
+      "maximum_conserved_array_absolute_difference": 1.2878587085651816e-13,
+      "maximum_conserved_array_scaled_difference": 9.998784707098224e-15,
+      "density_L1_absolute_difference": 1.4710455076283324e-15,
+      "pressure_L1_absolute_difference": 5.551115123125783e-16
+    },
+    {
+      "n": 512,
+      "deposit_radius": 0.015,
+      "r1_steps": 4369,
+      "r2_steps": 4369,
+      "maximum_conserved_array_absolute_difference": 2.4868995751603507e-14,
+      "maximum_conserved_array_scaled_difference": 1.9321515090524678e-15,
+      "density_L1_absolute_difference": 3.0531133177191805e-16,
+      "pressure_L1_absolute_difference": 1.3877787807814457e-16
+    }
+  ],
+  "interpretation": "Diagnostic comparison, not a new acceptance gate: evaluating the algebraically equivalent CFL restriction in reciprocal rate form can change floating-point rounding. No bit-for-bit equality is claimed; original inputs/reference/48 gates remain fixed."
+}

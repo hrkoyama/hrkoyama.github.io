@@ -14312,7 +14312,7 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en"
       },
       "image": {
-        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png",
         "sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
         "width": 1312,
         "height": 728,
@@ -14467,33 +14467,33 @@
             "en": "Nondimensional gamma=5/3, ambient density1, velocity0, pressure0, radius[0,1], deposited energy1, T=.05. Uniform thermal energy inside a sphere is assigned using exact cut-shell volumes. Deposition radius0.03 is shared by all three grids; a separate512-cell run uses0.015. The origin is reflecting and the outer boundary is outflow; actual boundary fluxes enter measured budgets."
           },
           "limits": {
-            "ja": "有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。冷たい裾の極小波速では局所CFL比が浮動小数点overflowで∞になりますが、制限しない比として扱い、選ばれる全体刻みの有限性・正値性を検査します。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。",
-            "en": "A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. Extremely small cold-tail wave speeds can overflow a local CFL ratio to infinity; it is unrestrictive, and the chosen global timestep is checked finite. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified."
+            "ja": "有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。r1でLinux失敗を招いた極小波速の局所CFL比overflowは、r2では最大逆率を評価する等価な式で避けます。警告抑制や物理量floorによる回避ではありません。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。",
+            "en": "A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. The cold-tail local-CFL overflow that caused the r1 Linux failure is avoided in r2 by the equivalent maximum inverse-rate evaluation, without suppressing warnings or adding a physical floor. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified."
           },
-          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json",
-          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip",
-          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json",
-          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/source-manifest.json",
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/source-manifest.json",
           "commands": [
             "python -m pip install -r requirements.txt",
             "python -m pytest -q",
             "python run.py --input inputs.json --output output"
           ],
           "reference_note": {
-            "ja": "入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。",
-            "en": "Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15."
+            "ja": "初版r1はMacで22単体検査・48判定が合格しましたが、公開ZIPのLinux追試では警告を例外にする設定でCFL比のoverflowにより失敗しました。r2は代数的に等価な逆数最大率へ評価順を変更し、元の入力・参照・受入基準48条件を維持。r2専用の実行前hash契約を保存してから、警告を例外にした23検査と全4計算・48判定が合格しました。初版のソース・契約・Linux失敗記録も保存しています。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約8.89e-16です。",
+            "en": "Original r1 passed22 tests and48 gates on Mac, but its public-ZIP Linux run failed when warnings-as-errors raised a cold-tail CFL overflow. Revision r2 uses the algebraically equivalent reciprocal maximum-rate evaluation while preserving the original inputs, reference and48 acceptance gates. A new r2-specific pre-execution hash contract precedes23 tests and all four calculations/48 gates passing with warnings as errors. Original sources, contract and actual Linux-failure evidence remain archived. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about8.89e-16."
           },
           "reference_data": [],
           "results": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/result.json"
           ],
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py"
           ],
           "source_scope": "package"
         }
@@ -14502,7 +14502,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
+    "catalog/atlas-depth-expansion.json": "837d924d9dbff1039bdb5c66549ed98042f4d5cd71eee1fb596a6c14c96f3e62",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-problem-links.json": "feef5ed8a84db9c9851da6ef79eef298cba3707b973173686cbff4d1b4a54103",
@@ -14573,22 +14573,22 @@
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
     "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
     "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
     "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
-    "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
-    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
-    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
-    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
-    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/index.json": "bce52534dc3ab254d309440c039c1c8b599130d7ed927a05b3db864e741c6bd5",
-    "numerical-methods-atlas/methods/index.json": "05ee064e8ab9045f7327da5b7cf98bea411ab3c4c3cd0ffe40370556c2315d9a",
-    "numerical-methods-atlas/solutions/index.json": "4d5f8182968fd87993653ea45e8c9b2b87aa05cc5674da96453d3804bb850fdf",
-    "numerical-methods-atlas/test-cases/index.json": "8a59ef4d5f41ed8d03985b2393f6edecda7087b97a8f32fd9f7b26f8a8330fa2"
+    "numerical-methods-atlas/gallery/index.json": "7392094c20a39fdd58a731dd9219fd9d101cab0b0debb9bbfc5b6ddfdf168580",
+    "numerical-methods-atlas/methods/index.json": "a888e1ca5b47f16754907ce09ab4649a8427e0b79d3e2fcb33df4cced43dff7a",
+    "numerical-methods-atlas/solutions/index.json": "fefa5692cc322385f1b50965e6a2a93ee79cf18f6c708eeb854edcc7e34c6938",
+    "numerical-methods-atlas/test-cases/index.json": "f366f57c1e62fcc0007487f64ed2c644c75c5faa46d101c8e5b8effa338703bb"
   }
 }

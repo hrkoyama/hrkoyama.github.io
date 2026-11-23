@@ -1,0 +1,92 @@
+[
+  {
+    "id": "sedov-blast",
+    "title": {
+      "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+      "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+    },
+    "method_ids": [
+      "rusanov",
+      "heun"
+    ],
+    "domains": [
+      "fluid",
+      "shock",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "sedov_solver.py",
+      "reference_sedov.py"
+    ],
+    "summary": {
+      "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
+      "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
+    },
+    "assumptions": {
+      "ja": "無次元、γ=5/3、初期密度1・速度0・背景圧力0、半径[0,1]、総注入エネルギー1、T=.05。球内一様の熱エネルギーを各殻の切断体積で正確に配分します。注入半径0.03を3格子で共通にし、512セルでは半径0.015の別実行も保存します。原点は鏡映、外端は流出境界で、実際の境界流束を収支へ含めます。",
+      "en": "Nondimensional gamma=5/3, ambient density1, velocity0, pressure0, radius[0,1], deposited energy1, T=.05. Uniform thermal energy inside a sphere is assigned using exact cut-shell volumes. Deposition radius0.03 is shared by all three grids; a separate512-cell run uses0.015. The origin is reflecting and the outer boundary is outflow; actual boundary fluxes enter measured budgets."
+    },
+    "algorithm": {
+      "ja": "球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。",
+      "en": "Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails."
+    },
+    "validation": {
+      "ja": "入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。",
+      "en": "Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15."
+    },
+    "limits": {
+      "ja": "有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。冷たい裾の極小波速では局所CFL比が浮動小数点overflowで∞になりますが、制限しない比として扱い、選ばれる全体刻みの有限性・正値性を検査します。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。",
+      "en": "A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. Extremely small cold-tail wave speeds can overflow a local CFL ratio to infinity; it is unrestrictive, and the chosen global timestep is checked finite. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified."
+    },
+    "formulas": [
+      "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2F)=\\left(0,2p/r,0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
+      "R_s(t)=\\beta(E_0t^2/\\rho_0)^{1/5},\\quad\\beta\\simeq1.15166641793,\\quad\\dot R_s=2R_s/(5t)",
+      "\\rho=\\rho_0G(\\xi),\\quad u=\\dot R_sV(\\xi),\\quad p=\\rho_0\\dot R_s^2P(\\xi),\\quad\\xi=r/R_s",
+      "E_0=4\\pi\\int_0^\\infty\\left(\\frac{p}{\\gamma-1}+\\frac{\\rho u^2}{2}\\right)r^2\\,dr=1",
+      "\\bar U_i=\\frac{3}{r_{i+1/2}^3-r_{i-1/2}^3}\\int_{r_{i-1/2}}^{r_{i+1/2}}U(r)r^2\\,dr"
+    ],
+    "references": [
+      {
+        "id": "taylor1950blast",
+        "author": "G. I. Taylor",
+        "year": 1950,
+        "title": "The formation of a blast wave by a very intense explosion I. Theoretical discussion",
+        "journal": "Proceedings of the Royal Society A",
+        "volume": "201",
+        "number": "1065",
+        "pages": "159–174",
+        "doi": "10.1098/rspa.1950.0049",
+        "url": "https://doi.org/10.1098/rspa.1950.0049",
+        "type": "article",
+        "role": "original-similarity-theory",
+        "review_level": "selected-original-pages",
+        "review": {
+          "ja": "大学公開の原著スキャンpp159–167で相似仮定・Euler縮約・強衝撃条件・エネルギー規格化・中心指数を選択確認。出版社は403で、全文読了やPDF再配布を主張しません。",
+          "en": "Selected original pp159–167 in a university-hosted scan checked for similarity assumptions, Euler reduction, strong-shock jumps, energy normalization and center exponent. Publisher access403; no full-text review or PDF redistribution claimed."
+        },
+        "review_url": "https://homepage.physics.uiowa.edu/~ghowes/teach/phys7729/docs/Taylor50a.pdf"
+      },
+      {
+        "id": "thrussell2023exactpack",
+        "author": "J. Thrussell and J. M. Ferguson",
+        "year": 2023,
+        "title": "ExactPack: A python library of exact analytic solutions",
+        "journal": "SoftwareX",
+        "volume": "24",
+        "article_number": "101560",
+        "doi": "10.1016/j.softx.2023.101560",
+        "url": "https://doi.org/10.1016/j.softx.2023.101560",
+        "type": "article",
+        "role": "independent-reference-software",
+        "software_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+        "software_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+        "review_level": "official-record-and-selected-pinned-code-execution",
+        "review": {
+          "ja": "固定commitの未改変Sedov評価器を6001/12001点で実行。ソースhash・パラメータ・点値・照合判定・BSD-3-Clauseを保存。別のEuler数値ソルバーや全ライブラリ検査ではありません。",
+          "en": "Unmodified selected pinned Sedov evaluator actually run at6001/12001 points. Source hashes, parameters, point values, decisions and BSD-3-Clause retained; not another numerical Euler solver or whole-library test."
+        }
+      }
+    ]
+  }
+]

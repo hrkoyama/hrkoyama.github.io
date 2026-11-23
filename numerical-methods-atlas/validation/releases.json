@@ -216,17 +216,17 @@
     },
     {
       "group": "sedov",
-      "edition": "2026-11-23",
-      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/",
-      "archive": "atlas-sedov-2026-11-23.zip",
-      "archive_sha256": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
-      "manifest_sha256": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
-      "verification_sha256": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+      "edition": "2026-11-23-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/",
+      "archive": "atlas-sedov-2026-11-23-r2.zip",
+      "archive_sha256": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+      "manifest_sha256": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+      "verification_sha256": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
       "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
       "case_ids": [
         "sedov-blast"
       ],
-      "tests": 22
+      "tests": 23
     }
   ]
 }

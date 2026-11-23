@@ -226,7 +226,7 @@ ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
 
 調査時の現状：
 
-γ=5/3・周囲密度1・爆発エネルギー1・初期圧力0の1D球対称Eulerの固定入力、半解析参照、独立ExactPack点値照合、保存図・実行コードを追加。
+1D球対称の固定入力・半解析参照・独立ExactPack点値・図・コードを追加。初版のLinux追試はCFL中間比のoverflow警告で失敗したため、その失敗と旧配布物を保持し、新r2で等価なCFL計算へ修正。入力と受入閾値を保って23検査・全4計算を再実行。
 
 追加内容・最小の検証：
 
@@ -243,7 +243,7 @@ ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
 
 公開した段階と残る範囲：
 
-今回の軽量検証は1D球半径の128/256/512球殻と、同じ最細格子での投入半径.03/.015感度に限定します。有限投入半径と理想点源のモデル差が残り、誤差曲線の傾きは純粋な空間精度の次数ではありません。投入誤差とPDE離散化誤差の完全な連続極限分離、実2D Cartesian、非対称安定性、他γや周囲密度勾配は未検証の拡充候補です。
+軽量検証は128/256/512球殻と同じ最細格子での投入半径.03/.015感度に限定します。r1はMacで成功後、公開ZIPのLinux -Werror本計算でoverflow警告を例外扱いし失敗。r2では1/max(波速/幅)という等価なCFL演算で中間overflowを回避し、数値基準を緩めていません。有限投入半径と理想点源のモデル差が残り、傾きは純粋な空間精度次数ではありません。完全な連続極限分離、実2D Cartesian、非対称安定性、他γ・周囲密度勾配は未検証です。
 
 調査時の根拠：
 
@@ -259,28 +259,30 @@ ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+  "verification": "/code/validated-examples/2026-11-23-r2/sedov/verification.json",
   "inputs": [
-    "/code/validated-examples/2026-11-23/sedov/inputs.json",
-    "/code/validated-examples/2026-11-23/sedov/acceptance.json",
-    "/code/validated-examples/2026-11-23/sedov/pre-run-contract.json",
-    "/code/validated-examples/2026-11-23/sedov/reference-contract.json"
+    "/code/validated-examples/2026-11-23-r2/sedov/inputs.json",
+    "/code/validated-examples/2026-11-23-r2/sedov/acceptance.json",
+    "/code/validated-examples/2026-11-23-r2/sedov/pre-run-contract.json",
+    "/code/validated-examples/2026-11-23-r2/sedov/reference-contract.json",
+    "/code/validated-examples/2026-11-23-r2/sedov/contract-r1.json"
   ],
   "plots": [
-    "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
-    "/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png"
+    "/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png",
+    "/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sedov-ja",
   "execution": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
   "code": [
-    "/code/validated-examples/2026-11-23/sedov/run.py",
-    "/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
-    "/code/validated-examples/2026-11-23/sedov/reference_sedov.py"
+    "/code/validated-examples/2026-11-23-r2/sedov/run.py",
+    "/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py",
+    "/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py"
   ],
   "references": [
     "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
-    "/code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
-    "/code/validated-examples/2026-11-23/sedov/exactpack-snapshot.json"
+    "/code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json",
+    "/code/validated-examples/2026-11-23-r2/sedov/exactpack-snapshot.json",
+    "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662"
   ]
 }
 ```

@@ -2719,8 +2719,8 @@
       "chapter": "validation-sedov",
       "reading_section": "sedov-blast",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23/sedov/",
-      "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+      "code_base": "/code/validated-examples/2026-11-23-r2/sedov/",
+      "verification": "/code/validated-examples/2026-11-23-r2/sedov/verification.json",
       "commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
@@ -2747,6 +2747,29 @@
         },
         {
           "path": "code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+          "json_pointer": "/passed"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/sedov/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sedov-blast"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/sedov/inputs.json",
+          "json_pointer": "/cases/sedov-blast"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/sedov/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json",
           "json_pointer": "/passed"
         }
       ],

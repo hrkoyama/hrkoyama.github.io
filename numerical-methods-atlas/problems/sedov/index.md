@@ -4,7 +4,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/
 
 ## 日本語
 
-[1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png)
+[1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png)
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast) · [条件・根拠](https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#sedov)
 
@@ -70,9 +70,9 @@ R_s(t)=beta*(E0*t^2/rho0)^(1/5), beta≈1.15166641793; D=2*R_s/(5*t); rho=rho0*G
 
 #### Sedov–Taylor点爆発：球対称の軽量検証
 
-入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。
+初版r1はMacで22単体検査・48判定が合格しましたが、公開ZIPのLinux追試では警告を例外にする設定でCFL比のoverflowにより失敗しました。r2は代数的に等価な逆数最大率へ評価順を変更し、元の入力・参照・受入基準48条件を維持。r2専用の実行前hash契約を保存してから、警告を例外にした23検査と全4計算・48判定が合格しました。初版のソース・契約・Linux失敗記録も保存しています。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約8.89e-16です。
 
-- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json)
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/result.json)
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja)
 
@@ -93,11 +93,11 @@ R_s(t)=beta*(E0*t^2/rho0)^(1/5), beta≈1.15166641793; D=2*R_s/(5*t); rho=rho0*G
 
 無次元、γ=5/3、初期密度1・速度0・背景圧力0、半径[0,1]、総注入エネルギー1、T=.05。球内一様の熱エネルギーを各殻の切断体積で正確に配分します。注入半径0.03を3格子で共通にし、512セルでは半径0.015の別実行も保存します。原点は鏡映、外端は流出境界で、実際の境界流束を収支へ含めます。
 
-[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json)
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json)
 
-[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/source-manifest.json)
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/source-manifest.json)
 
 ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
 
@@ -107,18 +107,18 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。冷たい裾の極小波速では局所CFL比が浮動小数点overflowで∞になりますが、制限しない比として扱い、選ばれる全体刻みの有限性・正値性を検査します。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。
+有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。r1でLinux失敗を招いた極小波速の局所CFL比overflowは、r2では最大逆率を評価する等価な式で避けます。警告抑制や物理量floorによる回避ではありません。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。
 
 同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
 
-- [/code/validated-examples/2026-11-23/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py)
-- [/code/validated-examples/2026-11-23/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py)
-- [/code/validated-examples/2026-11-23/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py)
-- [/code/validated-examples/2026-11-23/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/run.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py)
 
 ## English
 
-[A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png)
+[A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png)
 
 [Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast) · [Conditions and evidence](https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#sedov-en)
 
@@ -184,9 +184,9 @@ An energy-normalized spherical similarity reference. Numerical integration of si
 
 #### Sedov–Taylor point blast: lightweight spherical-radial validation
 
-Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15.
+Original r1 passed22 tests and48 gates on Mac, but its public-ZIP Linux run failed when warnings-as-errors raised a cold-tail CFL overflow. Revision r2 uses the algebraically equivalent reciprocal maximum-rate evaluation while preserving the original inputs, reference and48 acceptance gates. A new r2-specific pre-execution hash contract precedes23 tests and all four calculations/48 gates passing with warnings as errors. Original sources, contract and actual Linux-failure evidence remain archived. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about8.89e-16.
 
-- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json)
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/result.json)
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en)
 
@@ -207,11 +207,11 @@ A lightweight spherical-radial Euler finite-volume example deposits unit energy 
 
 Nondimensional gamma=5/3, ambient density1, velocity0, pressure0, radius[0,1], deposited energy1, T=.05. Uniform thermal energy inside a sphere is assigned using exact cut-shell volumes. Deposition radius0.03 is shared by all three grids; a separate512-cell run uses0.015. The origin is reflecting and the outer boundary is outflow; actual boundary fluxes enter measured budgets.
 
-[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json)
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json)
 
-[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/source-manifest.json)
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/source-manifest.json)
 
 After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
 
@@ -221,11 +221,11 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. Extremely small cold-tail wave speeds can overflow a local CFL ratio to infinity; it is unrestrictive, and the chosen global timestep is checked finite. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified.
+A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. The cold-tail local-CFL overflow that caused the r1 Linux failure is avoided in r2 by the equivalent maximum inverse-rate evaluation, without suppressing warnings or adding a physical floor. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified.
 
 These source and test lists include files shared across the package; they are not all dedicated to this problem.
 
-- [/code/validated-examples/2026-11-23/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py)
-- [/code/validated-examples/2026-11-23/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py)
-- [/code/validated-examples/2026-11-23/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py)
-- [/code/validated-examples/2026-11-23/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/run.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py)

@@ -1,0 +1,37 @@
+{
+  "commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/LICENSE.txt",
+      "sha256": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40"
+    },
+    {
+      "path": "exactpack/__init__.py",
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/__init__.py",
+      "sha256": "fac5c9e93253890cff33124da6e7ea5259f5bc171ce45574d43a171fc852d7ff"
+    },
+    {
+      "path": "exactpack/base.py",
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/base.py",
+      "sha256": "ce8e37ee0ed97dedca174a2ac0d8fa01b8b416bc3b441afab4e3bea9fe4f922e"
+    },
+    {
+      "path": "exactpack/solvers/__init__.py",
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "exactpack/solvers/sedov/__init__.py",
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/sedov/__init__.py",
+      "sha256": "322616b5740f79d784b74d9f0f6d7ba514afa96cdab7808f4a322ff0bf3bc340"
+    },
+    {
+      "path": "exactpack/solvers/sedov/sedov.py",
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/sedov/sedov.py",
+      "sha256": "c2c91eb7b8674e6ad383356f0a3b7f29ff00c667c590e95b508f64e91eeafd00"
+    }
+  ],
+  "license": "Unmodified upstream BSD-3-Clause text retained as exactpack-LICENSE.txt",
+  "scope": "Six official files downloaded and hash-checked; selected unmodified Python Sedov evaluator executed, not full library installation or whole test suite."
+}

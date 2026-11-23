@@ -24,7 +24,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/
   1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 無次元の球半径対称Euler系。1D半径方向の密度・運動量・全エネルギーを体積重み付きで発展させます。
 - [この実行例の式と条件](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-algorithm>)
 
-  球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
+  球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4はmax((|u|+c)/(V/(A左+A右)))の逆数を使い、残り時間との比較を先に行います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
 - [圧縮性Euler方程式](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja>)
 
   1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。
@@ -35,12 +35,12 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/
 
   テスト問題の代表図。条件と出典は問題別ページで確認できます。
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png
-- [Sedov–Taylor点爆発：球対称の軽量検証](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png>)
+  https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png
+- [Sedov–Taylor点爆発：球対称の軽量検証](<https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png>)
 
   この実行例自身の保存済み検証図です。
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png
+  https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png
 
 ## 厳密解・参照解
 
@@ -58,7 +58,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/
   半解析解 理想気体Eulerの球半径対称、γ=5/3、周囲密度1・圧力0、爆発エネルギー1、r∈[0,1]、t=0.05。自己相似参照は瞬間的な理想点源を表しますが、有限体積計算は半径0.03の内部へ投入し、同じ最細格子で半径0.015も比較します。参照は相似ODEの数値積分、小さな中心域の正則漸近形、衝撃位置で分割する球殻求積を含む半解析解であり、閉形式の厳密セル平均ではありません。ギャラリー図は1次元球半径データの中心断面で、2D Cartesian計算ではありません。固定投入半径での誤差には点源とのモデル差が含まれ、その傾きは純粋な空間収束次数ではなく、投入半径の変更も感度診断に留まります。
 - [Sedov–Taylor点爆発：球対称の軽量検証：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-validation>)
 
-  入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。
+  初版r1はMacで22単体検査・48判定が合格しましたが、公開ZIPのLinux追試では警告を例外にする設定でCFL比のoverflowにより失敗しました。r2は代数的に等価な逆数最大率へ評価順を変更し、元の入力・参照・受入基準48条件を維持。r2専用の実行前hash契約を保存してから、警告を例外にした23検査と全4計算・48判定が合格しました。初版のソース・契約・Linux失敗記録も保存しています。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約8.89e-16です。
 - [Sedov–Taylorの点爆発：エネルギー正規化した球対称自己相似解](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja>)
   relation: same-problem
   reference_kind: semi-analytic

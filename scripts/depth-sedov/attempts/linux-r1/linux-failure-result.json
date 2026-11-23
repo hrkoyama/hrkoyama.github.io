@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "termination": "calculation_failed",
+  "cases": [
+    {
+      "id": "sedov-blast",
+      "passed": false,
+      "records": [],
+      "source_radius_sensitivity": null,
+      "checks": {
+        "three fixed-radius refinements complete": false,
+        "paired smaller-radius run completes": false
+      },
+      "check_details": [
+        {
+          "name": "three fixed-radius refinements complete",
+          "value": [],
+          "bound": [
+            128,
+            256,
+            512
+          ],
+          "passed": false
+        },
+        {
+          "name": "paired smaller-radius run completes",
+          "value": false,
+          "bound": true,
+          "passed": false
+        }
+      ],
+      "metrics": {},
+      "scope": "One-dimensional spherical radial Euler; fixed finite deposition sphere; not a two-dimensional Cartesian blast."
+    }
+  ],
+  "checks": {
+    "sedov-blast": false
+  },
+  "input_sha256": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+  "source_sha256": {
+    "sedov_solver.py": "a0848f757b593bf1a7d94555216ea8d2fc042b01698eddb8a6e87962809f2d81",
+    "reference_sedov.py": "7a2904a043a2f3aa823b7bb4686b9acd9b1b80759f3dca608d59615b7a0e160a",
+    "run.py": "d0aea58ef35b4c4f707bbfa90c16a5bfd8040ba63dd47fdaa9a6bee69254c0ad",
+    "inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "acceptance.json": "2e066bd5149dda72bc2b04132c56ec0f6af23a83a66d54a52e579d5cd63e4456",
+    "pre-run-contract.json": "1348af65e7055d5e2a28cdbe7854de9c8413fb87abc9b0e31437f88efa7dbd4a"
+  },
+  "files_sha256": {},
+  "reference_summary": {
+    "gamma": 1.6666666666666667,
+    "geometry": 3,
+    "rho0": 1.0,
+    "energy": 1.0,
+    "alpha": 0.4,
+    "beta": 1.1516664179278786,
+    "core_cutoff_xi": 0.001,
+    "ode_rtol": 2e-10,
+    "ode_nfev": 923,
+    "energy_integral": 0.24549160052739238,
+    "energy_quad_error_estimate": 8.418221020585148e-12,
+    "swept_mass_dimensionless": 0.33333333333140547,
+    "mass_quad_error_estimate": 8.711321430415879e-12,
+    "core_model": "G proportional to xi^(9/2), V proportional to xi, P constant",
+    "reference_kind": "semi-analytic similarity ODE plus split Gauss cell quadrature",
+    "refined_core_cutoff_xi": 0.0005,
+    "refined_ode_rtol": 5e-11,
+    "beta_resolution_relative_difference": 2.1685986340003183e-12,
+    "swept_mass_relative_error": 5.7835958244822905e-12
+  },
+  "failure": {
+    "n": 128,
+    "deposit_radius": 0.03,
+    "type": "RuntimeWarning",
+    "message": "overflow encountered in divide"
+  },
+  "duration_seconds": 0.04042031999995288
+}

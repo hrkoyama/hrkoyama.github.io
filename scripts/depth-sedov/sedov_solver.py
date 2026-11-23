@@ -47,6 +47,15 @@ def rhs(q,areas,volumes):
     boundary=areas[0]*flux[0]-areas[-1]*flux[-1]
     return derivative,boundary,np.sum(source*volumes[:,None],axis=0)
 
+def cfl_step(speed,width,cfl,remaining):
+    """Equivalent reciprocal max-rate reduction; cold tails impose no limit."""
+    inverse_step=float(np.max(speed/width))
+    if not np.isfinite(inverse_step) or inverse_step<0:raise ValueError('Invalid inverse CFL step')
+    # Compare before division: an all-cold or subnormal-speed mesh takes the
+    # remaining interval without ever forming an enormous local timestep.
+    if inverse_step<=cfl/remaining:return remaining
+    return cfl/inverse_step
+
 def solve(n=128,radius=1.,final_time=.05,cfl=.4,deposit_radius=.03,energy=1.):
     if final_time<=0 or not 0<cfl<=.5:raise ValueError('Invalid time budget/CFL')
     edges,areas,volumes=geometry(n,radius);q=initial_state(edges,deposit_radius,energy)
@@ -64,8 +73,7 @@ def solve(n=128,radius=1.,final_time=.05,cfl=.4,deposit_radius=.03,energy=1.):
     checked(q,'initial')
     while t<final_time:
         rho,u,p,_=primitive(q);speed=abs(u)+np.sqrt(np.maximum(GAMMA*p/rho,0.))
-        ratios=np.divide(volumes/(areas[:-1]+areas[1:]),speed,out=np.full_like(speed,np.inf),where=speed>0)
-        dt=min(float(cfl*np.min(ratios)),final_time-t)
+        dt=cfl_step(speed,volumes/(areas[:-1]+areas[1:]),cfl,final_time-t)
         if not np.isfinite(dt) or dt<=0:raise ValueError('Invalid time step')
         k0,b0,s0=rhs(q,areas,volumes);predictor=q+dt*k0;checked(predictor,'predictor')
         k1,b1,s1=rhs(predictor,areas,volumes);candidate=.5*q+.5*(predictor+dt*k1);checked(candidate,'update')

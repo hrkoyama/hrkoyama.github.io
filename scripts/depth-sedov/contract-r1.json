@@ -1,0 +1,18 @@
+{
+  "declared_at_utc": "2026-11-23T03:50:42.616380+00:00",
+  "declared_before_first_pde_run": true,
+  "planned_tests": 22,
+  "target_edition": "2026-11-23",
+  "case": "sedov-blast",
+  "files_sha256": {
+    "sedov_solver.py": "a0848f757b593bf1a7d94555216ea8d2fc042b01698eddb8a6e87962809f2d81",
+    "reference_sedov.py": "7a2904a043a2f3aa823b7bb4686b9acd9b1b80759f3dca608d59615b7a0e160a",
+    "run.py": "d0aea58ef35b4c4f707bbfa90c16a5bfd8040ba63dd47fdaa9a6bee69254c0ad",
+    "inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "acceptance.json": "2e066bd5149dda72bc2b04132c56ec0f6af23a83a66d54a52e579d5cd63e4456",
+    "test_sedov.py": "1e2cb193896cc4d849c7de513697b964a1fe64e5abdbab4b98751fe6a1a89392",
+    "exactpack-snapshot.json": "57abc4a93fdddb701774d2595b63920d59b4a77cf4607e3aa4b1438760cf6022",
+    "exactpack-receipt.json": "048d94b8dec429a17ebaf485067a46c74b619e69e4443ca9a4ee5ce62081ba8f"
+  },
+  "fixed_before_execution": "Source/inputs/acceptance and meaningful tests; reference ODE and independent ExactPack development are separate recorded evaluations. No FV run has yet occurred."
+}

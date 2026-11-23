@@ -44,9 +44,9 @@ Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-ca
 
 - Sedov–Taylor point blast: lightweight spherical-radial validation: https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/
 
-Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip
-Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/result.json
 
 Common execution records: [{"id": "noh-shock", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "noh-cartesian-2d", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "sedov-blast", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en"}, "kind": "dedicated-supplement"}]
 
@@ -83,13 +83,13 @@ RusanovとHeunは1D半径例と新2D Cartesian例で使用。MUSCL/minmodは旧�
 
 ##### [Sedov–Taylorの点爆発](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja) (`sedov`)
 
-![1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png)
+![1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png)
 
 区分定数のRusanov有限体積流束とSSPRK2/Heunを使う限定した球半径例です。
 
 [この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja#code-ja)
 
-- [Sedov–Taylor点爆発：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja) (`sedov-blast`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip)
+- [Sedov–Taylor点爆発：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja) (`sedov-blast`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip)
 
 球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
 
@@ -145,11 +145,11 @@ RusanovとHeunは1D半径例と新2D Cartesian例で使用。MUSCL/minmodは旧�
 
 ##### Sedov–Taylor点爆発：球対称の軽量検証 (`sedov-blast`)
 
-[Sedov–Taylorの点爆発](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip)
+[Sedov–Taylorの点爆発](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json)
 
-[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json)
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json)
 
 球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
 
@@ -178,18 +178,18 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/run.py)
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py)
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py)
-- [/code/validated-examples/2026-11-23/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py)
-- [/code/validated-examples/2026-11-23/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py)
-- [/code/validated-examples/2026-11-23/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py)
-- [/code/validated-examples/2026-11-23/sedov/exactpack-generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/exactpack-generate.py)
-- [/code/validated-examples/2026-11-23/sedov/reference-development/ode01-source.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference-development/ode01-source.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/run.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/exactpack-generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/exactpack-generate.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/reference-development/ode01-source.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference-development/ode01-source.py)
 
 ###### 配布版のテスト
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py)
 - [/code/validated-examples/2026-11-23-r5/noh/test_noh.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/test_noh.py)
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py)
-- [/code/validated-examples/2026-11-23/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -226,13 +226,13 @@ A small 2D Euler finite-volume calculation evolves density, both momenta and tot
 
 ##### [Sedov–Taylor point blast](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en) (`sedov`)
 
-![A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png)
+![A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png)
 
 A scoped spherical-radial example using piecewise-constant Rusanov finite-volume fluxes and SSPRK2/Heun.
 
 [This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en#code-en)
 
-- [Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en) (`sedov-blast`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip)
+- [Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en) (`sedov-blast`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip)
 
 A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
 
@@ -288,11 +288,11 @@ A small 2D Euler finite-volume calculation evolves density, both momenta and tot
 
 ##### Sedov–Taylor point blast: lightweight spherical-radial validation (`sedov-blast`)
 
-[Sedov–Taylor point blast](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip)
+[Sedov–Taylor point blast](https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/inputs.json)
 
-[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json)
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json)
 
 A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
 
@@ -321,18 +321,18 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/run.py)
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py)
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py)
-- [/code/validated-examples/2026-11-23/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py)
-- [/code/validated-examples/2026-11-23/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py)
-- [/code/validated-examples/2026-11-23/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py)
-- [/code/validated-examples/2026-11-23/sedov/exactpack-generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/exactpack-generate.py)
-- [/code/validated-examples/2026-11-23/sedov/reference-development/ode01-source.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference-development/ode01-source.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/run.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/exactpack-generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/exactpack-generate.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/reference-development/ode01-source.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference-development/ode01-source.py)
 
 ###### Package tests
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py)
 - [/code/validated-examples/2026-11-23-r5/noh/test_noh.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/test_noh.py)
 - [/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py)
-- [/code/validated-examples/2026-11-23/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py)
+- [/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

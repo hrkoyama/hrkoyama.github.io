@@ -33,7 +33,7 @@ python plot.py --results /path/to/results/result.json --output /path/to/new-figu
 
 `plot.py` checks saved-result/source hashes and the saved density norm. It does
 not import or execute the PDE solver. The release packager independently
-extracts the ZIP and actually reruns all22 pytest tests and every fixed input.
+extracts the ZIP and actually reruns all23 pytest tests and every fixed input.
 
 ## Fixed model and method
 
@@ -49,10 +49,11 @@ extracts the ZIP and actually reruns all22 pytest tests and every fixed input.
   p(A_right-A_left)/V is integrated in the same RK stages. Origin reflection,
   outer outflow, measured boundary fluxes and geometric-source budgets are
   explicit. Radial momentum is not source-free Cartesian total momentum.
-- At extremely small positive cold-tail wave speeds, an unrestrictive local
-  timestep ratio overflows to infinity; this warning is retained in the first
-  log. The minimum selected global timestep is finite and checked. This does
-  not alter conserved states or add a wave-speed/state floor.
+- The r2 CFL reduction evaluates the algebraically equivalent inverse rate
+  max((|u|+c)/(V/(A_left+A_right))), comparing against the remaining interval
+  before reciprocal division. It avoids forming huge unrestrictive local
+  timesteps at cold/subnormal wave speeds. No warnings are suppressed and
+  no state or wave-speed floor is introduced.
 
 ## Reference, independent check and error meaning
 
@@ -87,10 +88,37 @@ values are also retained. Numerical pressure p(mean conserved U) is compared
 with the reference **mean physical pressure**, distinct from p(mean reference
 conserved U) because of subcell kinetic energy.
 
-## Actual first execution
+## r2 portability correction and execution history
+
+The original r1 Mac execution passed22 tests and all48 scientific gates, but
+its subsequent **public-ZIP Linux run failed** under `python -W error`:
+all22 unit tests passed, then the first128-cell main run raised the cold-tail
+CFL overflow warning as an exception. This is not recorded as Linux success.
+The actual failure result, stdout/stderr and workflow context are retained in
+`attempts/linux-r1/`. The original published r1 release is not overwritten.
+
+Revision r2 evaluates the same CFL restriction as a reciprocal maximum rate
+instead of a minimum of local reciprocal rates. It changes no physical
+initial data, boundary rule, reference, source radius, final time, acceptance
+threshold or scientific gate. An added regression test exercises normal,
+zero and subnormal speeds with floating-point errors enabled. The historical
+contract is `contract-r1.json`; every original top-level source file is kept
+byte-for-byte in `attempts/r1-source/` (the test is renamed only to avoid
+collection; see its path map), and `attempts/01/` is untouched.
+
+The new `pre-run-contract.json` explicitly declares r2 scope and locks23 tests
+and revised source hashes **before any r2 test/PDE execution**. The fresh
+`python -W error -m pytest` run passes all23 tests; `python -W error run.py`
+then completes all four calculations and unchanged48 gates without warnings.
+The actual source copies, JUnit, logs, fields and histories are retained in
+`attempts/r2-01/`. `r2-comparison.json` measures the floating-point differences
+from the original Mac arrays; identical bits are not claimed. The reference
+and original numerical input/acceptance files remain byte-identical.
+
+## Original r1 Mac execution
 
 Before any FV execution (including the small unit-test solve),
-`pre-run-contract.json` fixed numerical sources, inputs, acceptance and22 tests.
+`contract-r1.json` fixed numerical sources, inputs, acceptance and22 tests.
 The earlier independent reference development has its own contract and log.
 The exact first numerical source/test copies, JUnit, logs, saved fields,
 histories and results remain in `attempts/01/`. The archived test filename

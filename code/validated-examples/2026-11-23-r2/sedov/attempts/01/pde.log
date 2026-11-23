@@ -1,0 +1,3 @@
+/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-sedov/sedov_solver.py:67: RuntimeWarning: overflow encountered in divide
+  ratios=np.divide(volumes/(areas[:-1]+areas[1:]),speed,out=np.full_like(speed,np.inf),where=speed>0)
+{"passed": true, "runs": 4, "gates": 48, "failed": [], "failure": null}

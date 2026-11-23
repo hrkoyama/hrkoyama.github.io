@@ -1,0 +1,1 @@
+{"passed": false, "runs": 0, "gates": 2, "failed": [{"name": "three fixed-radius refinements complete", "value": [], "bound": [128, 256, 512], "passed": false}, {"name": "paired smaller-radius run completes", "value": false, "bound": true, "passed": false}], "failure": {"n": 128, "deposit_radius": 0.03, "type": "RuntimeWarning", "message": "overflow encountered in divide"}}

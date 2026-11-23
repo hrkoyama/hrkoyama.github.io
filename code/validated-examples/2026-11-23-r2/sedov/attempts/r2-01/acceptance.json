@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "declared_before_first_pde_run": true,
+  "scope": "Fixed physical deposition sphere over three grids, with a paired smaller sphere at the finest grid. Point-blast comparison combines finite-source and discretization errors; source-radius sensitivity is separately reported.",
+  "limits": {
+    "balance": 2e-12,
+    "reference_quadrature": 1e-5,
+    "finest_active_density_l1": 0.3,
+    "finest_active_pressure_l1": 0.3,
+    "finest_shock_cells": 5.0,
+    "minimum_last_pair_density_order": 0.2,
+    "energy_deposition": 2e-14
+  },
+  "diagnostic_only": ["global L2/Linf", "origin density and pressure errors", "smaller-deposition-radius difference", "finest source-radius perturbation does not isolate a continuum point-source limit"]
+}

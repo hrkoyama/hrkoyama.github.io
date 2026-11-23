@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "purpose": "Reference development before any FV PDE execution",
+  "source_sha256": "a9e26a797a6941d59d6cb80d033fdf4f8bf22715f20b3dccc7858bebfbe0e9ae",
+  "gamma": 1.6666666666666667,
+  "geometry": 3,
+  "rho0": 1,
+  "energy": 1,
+  "time": 0.05,
+  "reference_resolutions": [
+    {
+      "cutoff": 0.001,
+      "rtol": 2e-10
+    },
+    {
+      "cutoff": 0.0005,
+      "rtol": 5e-11
+    }
+  ],
+  "criteria": {
+    "beta_resolution_relative": 2e-07,
+    "swept_mass_relative": 2e-07,
+    "exactpack_beta_relative": 2e-07,
+    "exactpack_point_scaled_max": 0.0005
+  },
+  "exactpack_probes_xi": [
+    0.15,
+    0.25,
+    0.5,
+    0.75,
+    0.9,
+    1.05
+  ],
+  "exactpack_npts": [
+    6001,
+    12001
+  ],
+  "scope": "semi-analytic ODE and tiny-core regular asymptote, compared with pinned independent evaluator away from the center and shock; no PDE experiment"
+}

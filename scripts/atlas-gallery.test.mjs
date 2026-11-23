@@ -39,7 +39,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const nohBase='code/validated-examples/2026-11-23-r3/noh/';
  const nohSources=['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json','results/noh-shock.png','results/noh-shock-preview.png'].map(name=>nohBase+name);
  const currentNohSources=nohSources.map(path=>path.replace('2026-11-23-r3/noh/','2026-11-23-r5/noh/'));
- assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(addedSources).size+nohSources.length+currentNohSources.length+14);
+ assert.equal(Object.keys(manifest.source_sha256).length,127+new Set(addedSources).size+nohSources.length+currentNohSources.length+21);
  for(const path of nohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of currentNohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of addedSources)assert.equal(manifest.source_sha256[path],digest(path),path);
